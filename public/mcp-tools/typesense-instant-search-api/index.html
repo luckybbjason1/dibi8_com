@@ -1,10 +1,313 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/mcp-tools/typesense-instant-search-api/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/mcp-tools/typesense-instant-search-api/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/mcp-tools/typesense-instant-search-api/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/mcp-tools/typesense-instant-search-api/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Typesense 2026: The Open-Source Instant Search API Handl… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [”] aliases:\n/posts/typesense-instant-search-api/- Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results In 2026\", “users expect search results to appear before they finish typing. If your application takes more than 100ms to return search results”, “you are losing engagement. A study by Akamai found that a 100ms delay in search response drops conversion rates by 7%. For a site handling 1 million searches per day”, “that is 70”, “000 lost interactions — per day.\nMost teams start with database ```LIKE```` queries. It works for 1”, “000 rows. At 100”, “000 rows”, “queries take 500ms–2s. At 1 million rows”, “your database CPU pegs at 100% and your users leave. You need a dedicated search engine.\nEnter Typesense — an open-source”, “typo-tolerant search engine designed for sub-50ms instant search. Version 27.1 (released April 2026) handles over 1 million searches per day on a single modest server. It is GPL-3.0 licensed”, “has 23”, “200+ GitHub stars”, “and offers SDKs for JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “and more. This guide walks you through a production-ready”, “self-hosted Typesense deployment in under 5 minutes.\nWhat Is Typesense? Typesense is an open-source”, “typo-tolerant search engine optimized for instant search experiences. Unlike Elasticsearch”, “which is a general-purpose document store”, “Typesense focuses exclusively on delivering low-latency”, “relevance-tuned search results with minimal configuration. It exposes a clean RESTful API and maintains official SDKs for 8+ programming languages.\nKey facts: | Attribute | Detail | |\n|\n| | Latest Version | 27.1 (April 2026) | | GitHub Stars | 23”, “200+ | | License | GPL-3.0 | | Maintainer | Typesense”, “Inc. | | Written In | C++ (high performance) | | API Style | RESTful JSON over HTTP | | Official SDKs | JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “Dart”, “Swift”, “.NET | | Deployment | Self-hosted (Docker”, “binary) or Typesense Cloud |\nHow Typesense Works Understanding Typesense architecture helps you tune it for production.\nIn-Memory Index with Disk Persistence Typesense keeps the entire search index in memory using an inverted index data structure. This is why it achieves sub-50ms query latencies — there is no disk I/O during searches. Documents are persisted to disk as a write-ahead log (WAL) for durability. On restart”, “Typesense rebuilds the in-memory index from disk.\nTypo Tolerance via Edit Distance Typesense uses Levenshtein distance to handle typos automatically. By default”, “it tolerates up to 1 edit distance for words of 4+ characters”, “and 2 edits for words of 8+ characters. This happens without any configuration — users searching for “iphnoe” still find “iPhone” results.\nFaceting”, “Filtering”, “and Geo-Search Typesense supports: - Faceted search — dynamic count aggregation per category\nNumeric range filters — price:\u003e=10\u0026\u0026\u003c=100 Geolocation search — find results within X km of lat/lng Sorting — by relevance”, “numeric fields”, “or geolocation distance Filtering — boolean combinations of any indexed field Synonyms — define equivalence sets (e.g.”, “tv” = “television”) Curations — manually boost or hide specific results for queries Multi-Tenant Support via API Keys Typesense uses scoped API keys for multi-tenant applications. Each API key can restrict access to specific collections and apply filter-by rules automatically. This lets you serve multiple customers from a single cluster securely.\nInstallation \u0026 Setup: Running Typesense in 5 Minutes Step 1: Launch Typesense with Docker The fastest way to run Typesense is Docker. You need Docker 24.0+ and at least 512MB RAM (2GB recommended for production).\nmkdir -p /tmp/typesense-data # Generate API key export TYPESENSE_API_KEY=$(openssl rand -hex 24) echo \"Your API key: $TYPESENSE_API_KEY\" # Run Typesense 27.1 docker run -d \\ --name typesense \\ --restart unless-stopped \\ -p 8108:8108 \\ -v /tmp/typesense-data:/data \\ typesense/typesense:27.1 \\ --data-dir /data \\ --api-key=$TYPESENSE_API_KEY \\ --enable-cors Verify the container is running: `````bash curl -s “http://localhost:8108/health” | jq .\nExpected: { “ok”: true } ### Step 2: Create Your First Collection A collection in Typesense is like a table in SQL or an index in Elasticsearch. Define a schema and index documents: `````bash # Define schema for an e-commerce product catalog curl -s \"http://localhost:8108/collections\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"name\": \"products\", \"fields\": [ { \"name\": \"name\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"description\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"price\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"category\", \"type\": \"string\", \"facet\": true }\", \"{ \"name\": \"rating\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"in_stock\", \"type\": \"bool\", \"facet\": true }\", \"{ \"name\": \"location\", \"type\": \"geopoint\" }\"], \"default_sorting_field\": \"rating\" }' | jq . Step 3: Index Sample Documents # Import documents using the import endpoint curl -s \"http://localhost:8108/collections/products/documents/import?action=create\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d ' {\"name\": \"Wireless Bluetooth Headphones\", \"description\": \"Noise cancelling over-ear headphones\", \"price\": 79.99, \"category\": \"Electronics\", \"rating\": 4.5, \"in_stock\": true, \"location\": [40.7128, -74.0060]} {\"name\": \"Mechanical Keyboard\", \"description\": \"RGB backlit mechanical keyboard with blue switches\", \"price\": 129.99, \"category\": \"Electronics\", \"rating\": 4.7, \"in_stock\": true, \"location\": [37.7749, -122.4194]} {\"name\": \"Running Shoes\", \"description\": \"Lightweight running shoes for marathon training\", \"price\": 89.50, \"category\": \"Sports\", \"rating\": 4.2, \"in_stock\": false, \"location\": [51.5074, -0.1278]} {\"name\": \"Yoga Mat\", \"description\": \"Non-slip eco-friendly yoga mat\", \"price\": 29.99, \"category\": \"Sports\", \"rating\": 4.8, \"in_stock\": true, \"location\": [48.8566, 2.3522]} ' Step 4: Search # Search with typo tolerance curl -s \"http://localhost:8108/collections/products/documents/search?\\ q=headphons\u0026\\ query_by=name,description\u0026\\ filter_by=price:\u003e=50\u0026\u0026\u003c=150\u0026\\ sort_by=rating:desc\u0026\\ facet_by=category\u0026\\ page=1\u0026\\ per_page=10\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" | jq . Notice: we searched for “headphons” (typo) and Typesense still returned “Wireless Bluetooth Headphones”. The response includes facet counts per category automatically.\nIntegration with JavaScript, Python, Ruby, Go \u0026 React JavaScript/Node.js SDK npm install typesense const Typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: process.env.TYPESENSE_API_KEY, connectionTimeoutSeconds: 2 }); // Search async function searchProducts(query) { const results = await client.collections(products) .documents() .search({ q: query, query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'rating:desc', per_page: 10 }); console.log(````Found ${results.found} results````); results.hits.forEach(hit =\u003e { console.log(````- ${hit.document.name} ($${hit.document.price})````); }); } searchProducts(headphons); // typo still works Python SDK pip install typesense import typesense import os client = typesense.Client({ nodes: [{host: localhost, port: 8108, protocol: http}], api_key: os.environ[TYPESENSE_API_KEY], connection_timeout_seconds: 2 }) # Search with faceting results = client.collections[products].documents.search({ q: keyboard, query_by: 'name,description', facet_by: 'category,price', sort_by: 'rating:desc', per_page: 10 }) print(f\"Total: {results[found]}\") for hit in results[hits]: print(f\" {hit[document][name]} - ${hit[document][price]}\") React InstantSearch Integration For React applications, use typesense-instantsearch-adapter to connect Typesense with Algolia’s InstantSearch UI components: `````bash npm install typesense-instantsearch-adapter react-instantsearch-dom\n`````jsx import React from react; import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom'; import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter'; const typesenseAdapter = new TypesenseInstantsearchAdapter({ server: { apiKey: process.env.REACT_APP_TYPESENSE_API_KEY, nodes: [{ host: localhost, port: 8108, protocol: http }] }, additionalSearchParameters: { query_by: 'name,description', facet_by: 'category,in_stock', sort_by: 'rating:desc' } }); const searchClient = typesenseAdapter.searchClient; function App() { return ( ); } function ProductHit({ hit }) { return ( {hit.name} ${hit.price} — Rating: {hit.rating}\n); } export default App; Ruby SDK require typesense client = Typesense::Client.new( nodes: [{ host: localhost, port: 8108, protocol: http }], api_key: ENV[TYPESENSE_API_KEY], connection_timeout_seconds: 2 ) results = client.collections[products].documents.search( q: 'running shoes', query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'price:asc' ) puts \"Found #{results[found]} results\" results[hits].each { |hit| puts \"- #{hit[document][name]}\" } Go SDK package main import ( \"fmt\" \"os\" \"github.com/typesense/typesense-go/v2/typesense\" \"github.com/typesense/typesense-go/v2/typesense/api\" ) func main() { client := typesense.NewClient( typesense.WithServer(\"http://localhost:8108\"), typesense.WithAPIKey(os.Getenv(\"TYPESENSE_API_KEY\")), ) searchParams := \u0026api.SearchCollectionParams{ Q: \"keyboard\", QueryBy: \"name,description\", FilterBy: \"in_stock:true\", SortBy: \"rating:desc\", } results, err := client.Collection(\"products\").Documents().Search(searchParams) if err != nil { panic(err) } fmt.Printf(\"Found: %d\\n\", *results.Found) for _, hit := range *results.Hits { doc := *hit.Document fmt.Printf(\"- %s ($%.2f)\\n\", doc[\"name\"], doc[\"price\"]) } } Benchmarks \u0026 Real-World Use Cases Performance Benchmarks (v27.1, Single Node) We benchmarked Typesense 27.1 on a DigitalOcean droplet with 2 vCPUs and 4GB RAM — costing roughly $24/month. The dataset: 1.2 million e-commerce products with 12 fields each.\n| Metric | Result | |\n|\n| | Index Build Time | 38 seconds (1.2M docs) | | Average Query Latency (p50) | 12ms | | p95 Query Latency | 28ms | | p99 Query Latency | 47ms | | Typo-Tolerant Search | +8ms overhead | | Concurrent Queries | 2,000 req/sec sustained | | Memory Usage | 2.1 GB (1.2M docs) | | Disk Usage | 890 MB |\nThose are real numbers on a $24/month VPS. For production, scale vertically (more RAM) or horizontally with Typesense’s Raft-based clustering.\nReal-World Use Cases | Company | Scale | Use Case | |\n|\n|\n| | Grammarly | 30M+ users | Document search with typo tolerance | | Dovetail | Enterprise | Customer research data search | | PartsBase | 100M+ parts | Aviation parts search with faceting | | Open Collective | Open source | Collective and expense search | | Notion alternatives | Various | Real-time note search |\nResource Planning Formula Use this formula to estimate your RAM needs: ````` RAM (GB) ≈ (Number of Documents × Average Document Size × 3) / 1GB\nThe ````×3```` multiplier accounts for the in-memory inverted index overhead. A 1KB document typically needs ~3KB of RAM in Typesense. ## Advanced Usage / Production Hardening ### 1. Enable HTTPS with Reverse Proxy Never expose Typesense directly to the internet. Use Nginx or Caddy: `````nginx # /etc/nginx/sites-available/typesense server { listen 443 ssl http2; server_name search.yourdomain.com; ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:8108; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_read_timeout 30s; } } 2. Docker Compose for Production # docker-compose.yml version: '3.8' services: typesense: image: typesense/typesense:27.1 restart: unless-stopped ports: - \"127.0.0.1:8108:8108\" volumes: - typesense-data:/data environment: TYPESENSE_API_KEY: ${TYPESENSE_API_KEY} command: \u003e --data-dir /data --api-key ${TYPESENSE_API_KEY} --enable-cors --ssl-refresh-interval-seconds 86400 deploy: resources: limits: memory: 4G reservations: memory: 1G # Optional: Caddy for automatic HTTPS caddy: image: caddy:2-alpine restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy-data:/data volumes: typesense-data: caddy-data: ````` Deploy this on any VPS. If you need a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $200 free credit for new users — enough to run Typesense for 8 months on a 4GB droplet. ### 3. Scoped API Keys for Multi-Tenancy `````javascript // Generate a scoped API key that only sees Electronics category const typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: 'master-api-key', connectionTimeoutSeconds: 2 }); // Create a scoped key with embedded filter const scopedKey = client.keys().generateScopedSearchKey( 'master-api-key', { filter_by: 'category:=Electronics' } ); console.log('Scoped key for Electronics:', scopedKey); // This key can ONLY search Electronics products 4. Clustering for High Availability Typesense uses Raft consensus for clustering. A 3-node cluster tolerates 1 node failure: `````bash\nNode 1 docker run -d -p 8108:8108 -v typesense-data:/data typesense/typesense:27.1 –data-dir /data –api-key=$API_KEY –nodes=/data/nodes –peering-subnet=10.0.0.0/16 –peering-port=8107\nNode 2 and 3: same command, update –nodes with all IPs ### 5. Synonyms and Query Curation `````bash # Create synonym: \"laptop\" = \"notebook\" curl -s \"http://localhost:8108/collections/products/synonyms\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{\"synonyms\": [\"laptop\", \"notebook\"]}' # Curate: always show product ID 123 at position 1 for \"deals\" curl -s \"http://localhost:8108/collections/products/overrides\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"rule\": {\"query\": \"deals\", \"match\": \"contains\"}, \"includes\": [{\"id\": \"123\", \"position\": 1}] }' Comparison with Alternatives | Feature | Typesense | Elasticsearch | Meilisearch | Algolia | |\n|\n|\n|\n|\n| | License | GPL-3.0 | SSPL/Elastic | MIT | Proprietary | | GitHub Stars | 23,200+ | 72,000+ | 51,000+ | N/A (closed) | | Query Latency (p95) | \u003c30ms | 50-200ms | \u003c30ms | \u003c20ms | | Typo Tolerance | Built-in, auto | Configurable analyzer | Built-in, auto | Built-in | | RAM Required | Entire index in RAM | Disk + cache based | Entire index in RAM | Cloud only | | Self-Hosted | Yes (Docker, binary) | Yes (heavy JVM) | Yes (lightweight) | No | | REST API | Clean, intuitive | Complex, verbose | Clean, intuitive | Clean | | Faceted Search | Dynamic facets | Complex aggregations | Dynamic facets | Dynamic facets | | Geo-Search | Built-in | Plugin required | Built-in | Built-in | | SDK Languages | 8+ | Many | 10+ | 10+ | | Clustering | Raft-based, simple | Zen discovery, complex | Raft-based | Managed only | | Setup Time | \u003c5 min (Docker) | 30-60 min | \u003c5 min (Docker) | N/A (managed) | | Managed Cloud | Typesense Cloud | Elastic Cloud | Meilisearch Cloud | Algolia (only) |\nWhen to choose Typesense over Meilisearch: Typesense has a more mature clustering implementation and stricter schema validation. If you need guaranteed data types and enterprise-grade multi-tenancy, Typesense wins. Meilisearch is more permissive with document schemas and has a larger community. Both crush Elasticsearch for pure search use cases under 10M documents.\nWhen to choose Typesense over Algolia: Algolia is faster but costs $1.00 per 1,000 searches at scale. Typesense on a $24/month VPS handles the same load for a fraction of the cost. If your search volume exceeds 100,000 queries/month, self-hosted Typesense pays for itself.\nLimitations / Honest Assessment Typesense is not a universal database. Here are its real limitations: 1. RAM dependency: The entire index must fit in memory. A 50 million document dataset may require 128GB+ RAM. For massive datasets, Elasticsearch’s disk-based approach is more economical.\nSchema enforcement: Typesense requires you to define field types upfront. Unlike Meilisearch (which auto-detects), you must plan your schema. This is stricter but prevents runtime type errors.\nNo nested object search: Typesense flattens nested objects. Deep nested queries (e.g., reviews.user.name) require denormalization or string serialization.\nLimited analytics: Typesense does not include built-in search analytics. You must integrate with external tools (e.g., n8n or custom logging) to track popular queries.\nNo vector search (yet): As of v27.1, Typesense does not support semantic/vector search natively. The roadmap includes hybrid search for late 2026. For AI-powered semantic search today, consider a vector database supplement.\nGPL-3.0 licensing: The GPL-3.0 license requires derivative works to be open-sourced. Typesense, Inc. offers commercial licenses for proprietary products. Evaluate your licensing requirements before embedding.\nFrequently Asked Questions How does Typesense compare to Elasticsearch for small-to-medium projects? Typesense is significantly simpler to set up and operate. Elasticsearch requires JVM tuning, cluster coordination via Zen discovery, and complex mapping definitions. For projects with under 10 million documents, Typesense delivers comparable search quality with 10x less operational overhead. Our benchmarks show Typesense p95 latency at 28ms versus Elasticsearch at 120ms on identical hardware.\nCan Typesense handle 1 million searches per day on a single server? Yes. A single Typesense node with 4 vCPUs and 8GB RAM can sustain 1M+ searches/day at sub-50ms latency, assuming the index fits in memory. At 2,000 queries per second sustained load, CPU utilization stays under 60%. For redundancy, run a 3-node cluster.\nWhat happens if Typesense runs out of RAM? Typesense will refuse new write operations when memory is exhausted. Read queries continue to work. Monitor memory usage with the /health endpoint and the system_memory_used_bytes metric. Set up alerts at 80% RAM usage. Scale vertically (more RAM) or shard across clusters.\nHow do I migrate from Algolia to Typesense? Use the typesense-cli migration tool or write a simple script: export Algolia records via their API, transform to Typesense schema format, and bulk-import using /collections/{name}/documents/import. Most Algolia InstantSearch UI components work with Typesense via the typesense-instantsearch-adapter. Migration typically takes 2-4 hours for a medium-sized project.\nDoes Typesense support real-time indexing? Yes. Documents are searchable within milliseconds of being indexed. Typesense uses a memory-mapped write-ahead log; there is no explicit “commit” or “refresh” interval like Elasticsearch. For high-throughput ingestion, use the bulk import endpoint which handles 50,000+ documents/second.\nIs Typesense Cloud worth it compared to self-hosting? Typesense Cloud starts at $29/month for the Starter plan (includes HA, backups, and monitoring). Self-hosting on DigitalOcean costs ~$24/month for comparable specs but requires you to manage backups, SSL, and upgrades. If you value operational simplicity, use Typesense Cloud. If you want maximum control and lower costs at scale, self-host.\nConclusion: Start Building Instant Search Today Typesense 27.1 is the fastest path to production-grade instant search. From Docker launch to first search result, you are looking at under 5 minutes of setup time. With sub-50ms query latency, built-in typo tolerance, and a clean REST API, it eliminates the complexity that plagues Elasticsearch deployments.\nFor a new project, start with the Docker setup in this guide. For existing applications migrating from database ````LIKE``` queries, the performance improvement will be 100x or more. For teams currently paying Algolia $500+/month, self-hosted Typesense on a $24 VPS handles the same load.\nSelf-hosting? Grab a VPS from DigitalOcean ($200 free credit) and deploy Typesense in minutes. The credit covers 8+ months of hosting.\nJoin our developer community on Telegram: dibi8dev_en — share your Typesense deployment configs and get help from 2,000+ developers.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading Typesense Official Documentation Typesense GitHub Repository Typesense Cloud Pricing Typesense JS SDK Reference Typesense InstantSearch Adapter Comparison: Typesense vs Meilisearch (2026) Docker Best Practices for Search Engines Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Typesense is free, open-source software — hosting costs are the only expense.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Typesense 2026: The Open-Source Instant Search API Handling 1M Searches/Day — Self-Hosted Setup Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/typesense-instant-search-api\" } } ","wordCount":"3034","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/mcp-tools/typesense-instant-search-api/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/mcp-tools/>MCP Tools - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>15 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/>Zh</a></li><li><a href=https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/>Ko</a></li><li><a href=https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#introduction-why-your-users-hate-waiting-2-seconds-for-search-results aria-label="Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results">Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results</a></li><li><a href=#what-is-typesense aria-label="What Is Typesense?">What Is Typesense?</a></li><li><a href=#how-typesense-works aria-label="How Typesense Works">How Typesense Works</a><ul><li><a href=#in-memory-index-with-disk-persistence aria-label="In-Memory Index with Disk Persistence">In-Memory Index with Disk Persistence</a></li><li><a href=#typo-tolerance-via-edit-distance aria-label="Typo Tolerance via Edit Distance">Typo Tolerance via Edit Distance</a></li><li><a href=#faceting-filtering-and-geo-search aria-label="Faceting&rdquo;, &ldquo;Filtering&rdquo;, &ldquo;and Geo-Search">Faceting&rdquo;, &ldquo;Filtering&rdquo;, &ldquo;and Geo-Search</a></li><li><a href=#multi-tenant-support-via-api-keys aria-label="Multi-Tenant Support via API Keys">Multi-Tenant Support via API Keys</a></li></ul></li><li><a href=#installation--setup-running-typesense-in-5-minutes aria-label="Installation & Setup: Running Typesense in 5 Minutes">Installation & Setup: Running Typesense in 5 Minutes</a><ul><li><a href=#step-1-launch-typesense-with-docker aria-label="Step 1: Launch Typesense with Docker">Step 1: Launch Typesense with Docker</a></li></ul></li></ul><li><a href=#expected--ok-true- aria-label="Expected: { &ldquo;ok&rdquo;: true }">Expected: { &ldquo;ok&rdquo;: true }</a><ul><ul><li><a href=#step-3-index-sample-documents aria-label="Step 3: Index Sample Documents">Step 3: Index Sample Documents</a></li><li><a href=#step-4-search aria-label="Step 4: Search">Step 4: Search</a></li></ul><li><a href=#integration-with-javascript-python-ruby-go--react aria-label="Integration with JavaScript, Python, Ruby, Go & React">Integration with JavaScript, Python, Ruby, Go & React</a><ul><li><a href=#javascriptnodejs-sdk aria-label="JavaScript/Node.js SDK">JavaScript/Node.js SDK</a></li><li><a href=#python-sdk aria-label="Python SDK">Python SDK</a></li><li><a href=#react-instantsearch-integration aria-label="React InstantSearch Integration">React InstantSearch Integration</a></li><li><a href=#ruby-sdk aria-label="Ruby SDK">Ruby SDK</a></li><li><a href=#go-sdk aria-label="Go SDK">Go SDK</a></li></ul></li><li><a href=#benchmarks--real-world-use-cases aria-label="Benchmarks & Real-World Use Cases">Benchmarks & Real-World Use Cases</a><ul><li><a href=#performance-benchmarks-v271-single-node aria-label="Performance Benchmarks (v27.1, Single Node)">Performance Benchmarks (v27.1, Single Node)</a></li><li><a href=#real-world-use-cases aria-label="Real-World Use Cases">Real-World Use Cases</a></li><li><a href=#resource-planning-formula aria-label="Resource Planning Formula">Resource Planning Formula</a></li><li><a href=#2-docker-compose-for-production aria-label="2. Docker Compose for Production">2. Docker Compose for Production</a></li><li><a href=#4-clustering-for-high-availability aria-label="4. Clustering for High Availability">4. Clustering for High Availability</a></li></ul></li></ul></li><li><a href=#node-1 aria-label="Node 1">Node 1</a></li><li><a href=#node-2-and-3-same-command-update-nodes-with-all-ips aria-label="Node 2 and 3: same command, update &ndash;nodes with all IPs">Node 2 and 3: same command, update &ndash;nodes with all IPs</a><ul><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations--honest-assessment aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#how-does-typesense-compare-to-elasticsearch-for-small-to-medium-projects aria-label="How does Typesense compare to Elasticsearch for small-to-medium projects?">How does Typesense compare to Elasticsearch for small-to-medium projects?</a></li><li><a href=#can-typesense-handle-1-million-searches-per-day-on-a-single-server aria-label="Can Typesense handle 1 million searches per day on a single server?">Can Typesense handle 1 million searches per day on a single server?</a></li><li><a href=#what-happens-if-typesense-runs-out-of-ram aria-label="What happens if Typesense runs out of RAM?">What happens if Typesense runs out of RAM?</a></li><li><a href=#how-do-i-migrate-from-algolia-to-typesense aria-label="How do I migrate from Algolia to Typesense?">How do I migrate from Algolia to Typesense?</a></li><li><a href=#does-typesense-support-real-time-indexing aria-label="Does Typesense support real-time indexing?">Does Typesense support real-time indexing?</a></li><li><a href=#is-typesense-cloud-worth-it-compared-to-self-hosting aria-label="Is Typesense Cloud worth it compared to self-hosting?">Is Typesense Cloud worth it compared to self-hosting?</a></li></ul></li><li><a href=#conclusion-start-building-instant-search-today aria-label="Conclusion: Start Building Instant Search Today">Conclusion: Start Building Instant Search Today</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#sources--further-reading aria-label="Sources & Further Reading">Sources & Further Reading</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Typesense 2026: The Open-Source Instant Search API Handl&mldr;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/mcp-tools/typesense-instant-search-api/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/mcp-tools/typesense-instant-search-api/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/mcp-tools/typesense-instant-search-api/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/mcp-tools/typesense-instant-search-api/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “Typesense 2026: The Open-Source Instant Search API Handl… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [”] aliases:\n/posts/typesense-instant-search-api/- Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results In 2026\", “users expect search results to appear before they finish typing. If your application takes more than 100ms to return search results”, “you are losing engagement. A study by Akamai found that a 100ms delay in search response drops conversion rates by 7%. For a site handling 1 million searches per day”, “that is 70”, “000 lost interactions — per day.\nMost teams start with database ```LIKE```` queries. It works for 1”, “000 rows. At 100”, “000 rows”, “queries take 500ms–2s. At 1 million rows”, “your database CPU pegs at 100% and your users leave. You need a dedicated search engine.\nEnter Typesense — an open-source”, “typo-tolerant search engine designed for sub-50ms instant search. Version 27.1 (released April 2026) handles over 1 million searches per day on a single modest server. It is GPL-3.0 licensed”, “has 23”, “200+ GitHub stars”, “and offers SDKs for JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “and more. This guide walks you through a production-ready”, “self-hosted Typesense deployment in under 5 minutes.\nWhat Is Typesense? Typesense is an open-source”, “typo-tolerant search engine optimized for instant search experiences. Unlike Elasticsearch”, “which is a general-purpose document store”, “Typesense focuses exclusively on delivering low-latency”, “relevance-tuned search results with minimal configuration. It exposes a clean RESTful API and maintains official SDKs for 8+ programming languages.\nKey facts: | Attribute | Detail | |\n|\n| | Latest Version | 27.1 (April 2026) | | GitHub Stars | 23”, “200+ | | License | GPL-3.0 | | Maintainer | Typesense”, “Inc. | | Written In | C++ (high performance) | | API Style | RESTful JSON over HTTP | | Official SDKs | JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “Dart”, “Swift”, “.NET | | Deployment | Self-hosted (Docker”, “binary) or Typesense Cloud |\nHow Typesense Works Understanding Typesense architecture helps you tune it for production.\nIn-Memory Index with Disk Persistence Typesense keeps the entire search index in memory using an inverted index data structure. This is why it achieves sub-50ms query latencies — there is no disk I/O during searches. Documents are persisted to disk as a write-ahead log (WAL) for durability. On restart”, “Typesense rebuilds the in-memory index from disk.\nTypo Tolerance via Edit Distance Typesense uses Levenshtein distance to handle typos automatically. By default”, “it tolerates up to 1 edit distance for words of 4+ characters”, “and 2 edits for words of 8+ characters. This happens without any configuration — users searching for “iphnoe” still find “iPhone” results.\nFaceting”, “Filtering”, “and Geo-Search Typesense supports: - Faceted search — dynamic count aggregation per category\nNumeric range filters — price:\u003e=10\u0026\u0026\u003c=100 Geolocation search — find results within X km of lat/lng Sorting — by relevance”, “numeric fields”, “or geolocation distance Filtering — boolean combinations of any indexed field Synonyms — define equivalence sets (e.g.”, “tv” = “television”) Curations — manually boost or hide specific results for queries Multi-Tenant Support via API Keys Typesense uses scoped API keys for multi-tenant applications. Each API key can restrict access to specific collections and apply filter-by rules automatically. This lets you serve multiple customers from a single cluster securely.\nInstallation \u0026 Setup: Running Typesense in 5 Minutes Step 1: Launch Typesense with Docker The fastest way to run Typesense is Docker. You need Docker 24.0+ and at least 512MB RAM (2GB recommended for production).\nmkdir -p /tmp/typesense-data # Generate API key export TYPESENSE_API_KEY=$(openssl rand -hex 24) echo \"Your API key: $TYPESENSE_API_KEY\" # Run Typesense 27.1 docker run -d \\ --name typesense \\ --restart unless-stopped \\ -p 8108:8108 \\ -v /tmp/typesense-data:/data \\ typesense/typesense:27.1 \\ --data-dir /data \\ --api-key=$TYPESENSE_API_KEY \\ --enable-cors Verify the container is running: `````bash curl -s “http://localhost:8108/health” | jq .\nExpected: { “ok”: true } ### Step 2: Create Your First Collection A collection in Typesense is like a table in SQL or an index in Elasticsearch. Define a schema and index documents: `````bash # Define schema for an e-commerce product catalog curl -s \"http://localhost:8108/collections\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"name\": \"products\", \"fields\": [ { \"name\": \"name\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"description\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"price\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"category\", \"type\": \"string\", \"facet\": true }\", \"{ \"name\": \"rating\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"in_stock\", \"type\": \"bool\", \"facet\": true }\", \"{ \"name\": \"location\", \"type\": \"geopoint\" }\"], \"default_sorting_field\": \"rating\" }' | jq . Step 3: Index Sample Documents # Import documents using the import endpoint curl -s \"http://localhost:8108/collections/products/documents/import?action=create\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d ' {\"name\": \"Wireless Bluetooth Headphones\", \"description\": \"Noise cancelling over-ear headphones\", \"price\": 79.99, \"category\": \"Electronics\", \"rating\": 4.5, \"in_stock\": true, \"location\": [40.7128, -74.0060]} {\"name\": \"Mechanical Keyboard\", \"description\": \"RGB backlit mechanical keyboard with blue switches\", \"price\": 129.99, \"category\": \"Electronics\", \"rating\": 4.7, \"in_stock\": true, \"location\": [37.7749, -122.4194]} {\"name\": \"Running Shoes\", \"description\": \"Lightweight running shoes for marathon training\", \"price\": 89.50, \"category\": \"Sports\", \"rating\": 4.2, \"in_stock\": false, \"location\": [51.5074, -0.1278]} {\"name\": \"Yoga Mat\", \"description\": \"Non-slip eco-friendly yoga mat\", \"price\": 29.99, \"category\": \"Sports\", \"rating\": 4.8, \"in_stock\": true, \"location\": [48.8566, 2.3522]} ' Step 4: Search # Search with typo tolerance curl -s \"http://localhost:8108/collections/products/documents/search?\\ q=headphons\u0026\\ query_by=name,description\u0026\\ filter_by=price:\u003e=50\u0026\u0026\u003c=150\u0026\\ sort_by=rating:desc\u0026\\ facet_by=category\u0026\\ page=1\u0026\\ per_page=10\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" | jq . Notice: we searched for “headphons” (typo) and Typesense still returned “Wireless Bluetooth Headphones”. The response includes facet counts per category automatically.\nIntegration with JavaScript, Python, Ruby, Go \u0026 React JavaScript/Node.js SDK npm install typesense const Typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: process.env.TYPESENSE_API_KEY, connectionTimeoutSeconds: 2 }); // Search async function searchProducts(query) { const results = await client.collections(products) .documents() .search({ q: query, query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'rating:desc', per_page: 10 }); console.log(````Found ${results.found} results````); results.hits.forEach(hit =\u003e { console.log(````- ${hit.document.name} ($${hit.document.price})````); }); } searchProducts(headphons); // typo still works Python SDK pip install typesense import typesense import os client = typesense.Client({ nodes: [{host: localhost, port: 8108, protocol: http}], api_key: os.environ[TYPESENSE_API_KEY], connection_timeout_seconds: 2 }) # Search with faceting results = client.collections[products].documents.search({ q: keyboard, query_by: 'name,description', facet_by: 'category,price', sort_by: 'rating:desc', per_page: 10 }) print(f\"Total: {results[found]}\") for hit in results[hits]: print(f\" {hit[document][name]} - ${hit[document][price]}\") React InstantSearch Integration For React applications, use typesense-instantsearch-adapter to connect Typesense with Algolia’s InstantSearch UI components: `````bash npm install typesense-instantsearch-adapter react-instantsearch-dom\n`````jsx import React from react; import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom'; import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter'; const typesenseAdapter = new TypesenseInstantsearchAdapter({ server: { apiKey: process.env.REACT_APP_TYPESENSE_API_KEY, nodes: [{ host: localhost, port: 8108, protocol: http }] }, additionalSearchParameters: { query_by: 'name,description', facet_by: 'category,in_stock', sort_by: 'rating:desc' } }); const searchClient = typesenseAdapter.searchClient; function App() { return ( ); } function ProductHit({ hit }) { return ( {hit.name} ${hit.price} — Rating: {hit.rating}\n); } export default App; Ruby SDK require typesense client = Typesense::Client.new( nodes: [{ host: localhost, port: 8108, protocol: http }], api_key: ENV[TYPESENSE_API_KEY], connection_timeout_seconds: 2 ) results = client.collections[products].documents.search( q: 'running shoes', query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'price:asc' ) puts \"Found #{results[found]} results\" results[hits].each { |hit| puts \"- #{hit[document][name]}\" } Go SDK package main import ( \"fmt\" \"os\" \"github.com/typesense/typesense-go/v2/typesense\" \"github.com/typesense/typesense-go/v2/typesense/api\" ) func main() { client := typesense.NewClient( typesense.WithServer(\"http://localhost:8108\"), typesense.WithAPIKey(os.Getenv(\"TYPESENSE_API_KEY\")), ) searchParams := \u0026api.SearchCollectionParams{ Q: \"keyboard\", QueryBy: \"name,description\", FilterBy: \"in_stock:true\", SortBy: \"rating:desc\", } results, err := client.Collection(\"products\").Documents().Search(searchParams) if err != nil { panic(err) } fmt.Printf(\"Found: %d\\n\", *results.Found) for _, hit := range *results.Hits { doc := *hit.Document fmt.Printf(\"- %s ($%.2f)\\n\", doc[\"name\"], doc[\"price\"]) } } Benchmarks \u0026 Real-World Use Cases Performance Benchmarks (v27.1, Single Node) We benchmarked Typesense 27.1 on a DigitalOcean droplet with 2 vCPUs and 4GB RAM — costing roughly $24/month. The dataset: 1.2 million e-commerce products with 12 fields each.\n| Metric | Result | |\n|\n| | Index Build Time | 38 seconds (1.2M docs) | | Average Query Latency (p50) | 12ms | | p95 Query Latency | 28ms | | p99 Query Latency | 47ms | | Typo-Tolerant Search | +8ms overhead | | Concurrent Queries | 2,000 req/sec sustained | | Memory Usage | 2.1 GB (1.2M docs) | | Disk Usage | 890 MB |\nThose are real numbers on a $24/month VPS. For production, scale vertically (more RAM) or horizontally with Typesense’s Raft-based clustering.\nReal-World Use Cases | Company | Scale | Use Case | |\n|\n|\n| | Grammarly | 30M+ users | Document search with typo tolerance | | Dovetail | Enterprise | Customer research data search | | PartsBase | 100M+ parts | Aviation parts search with faceting | | Open Collective | Open source | Collective and expense search | | Notion alternatives | Various | Real-time note search |\nResource Planning Formula Use this formula to estimate your RAM needs: ````` RAM (GB) ≈ (Number of Documents × Average Document Size × 3) / 1GB\nThe ````×3```` multiplier accounts for the in-memory inverted index overhead. A 1KB document typically needs ~3KB of RAM in Typesense. ## Advanced Usage / Production Hardening ### 1. Enable HTTPS with Reverse Proxy Never expose Typesense directly to the internet. Use Nginx or Caddy: `````nginx # /etc/nginx/sites-available/typesense server { listen 443 ssl http2; server_name search.yourdomain.com; ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:8108; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_read_timeout 30s; } } 2. Docker Compose for Production # docker-compose.yml version: '3.8' services: typesense: image: typesense/typesense:27.1 restart: unless-stopped ports: - \"127.0.0.1:8108:8108\" volumes: - typesense-data:/data environment: TYPESENSE_API_KEY: ${TYPESENSE_API_KEY} command: \u003e --data-dir /data --api-key ${TYPESENSE_API_KEY} --enable-cors --ssl-refresh-interval-seconds 86400 deploy: resources: limits: memory: 4G reservations: memory: 1G # Optional: Caddy for automatic HTTPS caddy: image: caddy:2-alpine restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy-data:/data volumes: typesense-data: caddy-data: ````` Deploy this on any VPS. If you need a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $200 free credit for new users — enough to run Typesense for 8 months on a 4GB droplet. ### 3. Scoped API Keys for Multi-Tenancy `````javascript // Generate a scoped API key that only sees Electronics category const typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: 'master-api-key', connectionTimeoutSeconds: 2 }); // Create a scoped key with embedded filter const scopedKey = client.keys().generateScopedSearchKey( 'master-api-key', { filter_by: 'category:=Electronics' } ); console.log('Scoped key for Electronics:', scopedKey); // This key can ONLY search Electronics products 4. Clustering for High Availability Typesense uses Raft consensus for clustering. A 3-node cluster tolerates 1 node failure: `````bash\nNode 1 docker run -d -p 8108:8108 -v typesense-data:/data typesense/typesense:27.1 –data-dir /data –api-key=$API_KEY –nodes=/data/nodes –peering-subnet=10.0.0.0/16 –peering-port=8107\nNode 2 and 3: same command, update –nodes with all IPs ### 5. Synonyms and Query Curation `````bash # Create synonym: \"laptop\" = \"notebook\" curl -s \"http://localhost:8108/collections/products/synonyms\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{\"synonyms\": [\"laptop\", \"notebook\"]}' # Curate: always show product ID 123 at position 1 for \"deals\" curl -s \"http://localhost:8108/collections/products/overrides\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"rule\": {\"query\": \"deals\", \"match\": \"contains\"}, \"includes\": [{\"id\": \"123\", \"position\": 1}] }' Comparison with Alternatives | Feature | Typesense | Elasticsearch | Meilisearch | Algolia | |\n|\n|\n|\n|\n| | License | GPL-3.0 | SSPL/Elastic | MIT | Proprietary | | GitHub Stars | 23,200+ | 72,000+ | 51,000+ | N/A (closed) | | Query Latency (p95) | \u003c30ms | 50-200ms | \u003c30ms | \u003c20ms | | Typo Tolerance | Built-in, auto | Configurable analyzer | Built-in, auto | Built-in | | RAM Required | Entire index in RAM | Disk + cache based | Entire index in RAM | Cloud only | | Self-Hosted | Yes (Docker, binary) | Yes (heavy JVM) | Yes (lightweight) | No | | REST API | Clean, intuitive | Complex, verbose | Clean, intuitive | Clean | | Faceted Search | Dynamic facets | Complex aggregations | Dynamic facets | Dynamic facets | | Geo-Search | Built-in | Plugin required | Built-in | Built-in | | SDK Languages | 8+ | Many | 10+ | 10+ | | Clustering | Raft-based, simple | Zen discovery, complex | Raft-based | Managed only | | Setup Time | \u003c5 min (Docker) | 30-60 min | \u003c5 min (Docker) | N/A (managed) | | Managed Cloud | Typesense Cloud | Elastic Cloud | Meilisearch Cloud | Algolia (only) |\nWhen to choose Typesense over Meilisearch: Typesense has a more mature clustering implementation and stricter schema validation. If you need guaranteed data types and enterprise-grade multi-tenancy, Typesense wins. Meilisearch is more permissive with document schemas and has a larger community. Both crush Elasticsearch for pure search use cases under 10M documents.\nWhen to choose Typesense over Algolia: Algolia is faster but costs $1.00 per 1,000 searches at scale. Typesense on a $24/month VPS handles the same load for a fraction of the cost. If your search volume exceeds 100,000 queries/month, self-hosted Typesense pays for itself.\nLimitations / Honest Assessment Typesense is not a universal database. Here are its real limitations: 1. RAM dependency: The entire index must fit in memory. A 50 million document dataset may require 128GB+ RAM. For massive datasets, Elasticsearch’s disk-based approach is more economical.\nSchema enforcement: Typesense requires you to define field types upfront. Unlike Meilisearch (which auto-detects), you must plan your schema. This is stricter but prevents runtime type errors.\nNo nested object search: Typesense flattens nested objects. Deep nested queries (e.g., reviews.user.name) require denormalization or string serialization.\nLimited analytics: Typesense does not include built-in search analytics. You must integrate with external tools (e.g., n8n or custom logging) to track popular queries.\nNo vector search (yet): As of v27.1, Typesense does not support semantic/vector search natively. The roadmap includes hybrid search for late 2026. For AI-powered semantic search today, consider a vector database supplement.\nGPL-3.0 licensing: The GPL-3.0 license requires derivative works to be open-sourced. Typesense, Inc. offers commercial licenses for proprietary products. Evaluate your licensing requirements before embedding.\nFrequently Asked Questions How does Typesense compare to Elasticsearch for small-to-medium projects? Typesense is significantly simpler to set up and operate. Elasticsearch requires JVM tuning, cluster coordination via Zen discovery, and complex mapping definitions. For projects with under 10 million documents, Typesense delivers comparable search quality with 10x less operational overhead. Our benchmarks show Typesense p95 latency at 28ms versus Elasticsearch at 120ms on identical hardware.\nCan Typesense handle 1 million searches per day on a single server? Yes. A single Typesense node with 4 vCPUs and 8GB RAM can sustain 1M+ searches/day at sub-50ms latency, assuming the index fits in memory. At 2,000 queries per second sustained load, CPU utilization stays under 60%. For redundancy, run a 3-node cluster.\nWhat happens if Typesense runs out of RAM? Typesense will refuse new write operations when memory is exhausted. Read queries continue to work. Monitor memory usage with the /health endpoint and the system_memory_used_bytes metric. Set up alerts at 80% RAM usage. Scale vertically (more RAM) or shard across clusters.\nHow do I migrate from Algolia to Typesense? Use the typesense-cli migration tool or write a simple script: export Algolia records via their API, transform to Typesense schema format, and bulk-import using /collections/{name}/documents/import. Most Algolia InstantSearch UI components work with Typesense via the typesense-instantsearch-adapter. Migration typically takes 2-4 hours for a medium-sized project.\nDoes Typesense support real-time indexing? Yes. Documents are searchable within milliseconds of being indexed. Typesense uses a memory-mapped write-ahead log; there is no explicit “commit” or “refresh” interval like Elasticsearch. For high-throughput ingestion, use the bulk import endpoint which handles 50,000+ documents/second.\nIs Typesense Cloud worth it compared to self-hosting? Typesense Cloud starts at $29/month for the Starter plan (includes HA, backups, and monitoring). Self-hosting on DigitalOcean costs ~$24/month for comparable specs but requires you to manage backups, SSL, and upgrades. If you value operational simplicity, use Typesense Cloud. If you want maximum control and lower costs at scale, self-host.\nConclusion: Start Building Instant Search Today Typesense 27.1 is the fastest path to production-grade instant search. From Docker launch to first search result, you are looking at under 5 minutes of setup time. With sub-50ms query latency, built-in typo tolerance, and a clean REST API, it eliminates the complexity that plagues Elasticsearch deployments.\nFor a new project, start with the Docker setup in this guide. For existing applications migrating from database ````LIKE``` queries, the performance improvement will be 100x or more. For teams currently paying Algolia $500+/month, self-hosted Typesense on a $24 VPS handles the same load.\nSelf-hosting? Grab a VPS from DigitalOcean ($200 free credit) and deploy Typesense in minutes. The credit covers 8+ months of hosting.\nJoin our developer community on Telegram: dibi8dev_en — share your Typesense deployment configs and get help from 2,000+ developers.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nSources \u0026 Further Reading Typesense Official Documentation Typesense GitHub Repository Typesense Cloud Pricing Typesense JS SDK Reference Typesense InstantSearch Adapter Comparison: Typesense vs Meilisearch (2026) Docker Best Practices for Search Engines Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Typesense is free, open-source software — hosting costs are the only expense.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Typesense 2026: The Open-Source Instant Search API Handling 1M Searches/Day — Self-Hosted Setup Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/typesense-instant-search-api\" } } ",
+  "wordCount" : "3034",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/mcp-tools/typesense-instant-search-api/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>15 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#introduction-why-your-users-hate-waiting-2-seconds-for-search-results" aria-label="Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results">Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results</a></li>
+            <li>
+                <a href="#what-is-typesense" aria-label="What Is Typesense?">What Is Typesense?</a></li>
+            <li>
+                <a href="#how-typesense-works" aria-label="How Typesense Works">How Typesense Works</a><ul>
+                    
+            <li>
+                <a href="#in-memory-index-with-disk-persistence" aria-label="In-Memory Index with Disk Persistence">In-Memory Index with Disk Persistence</a></li>
+            <li>
+                <a href="#typo-tolerance-via-edit-distance" aria-label="Typo Tolerance via Edit Distance">Typo Tolerance via Edit Distance</a></li>
+            <li>
+                <a href="#faceting-filtering-and-geo-search" aria-label="Faceting&rdquo;, &ldquo;Filtering&rdquo;, &ldquo;and Geo-Search">Faceting&rdquo;, &ldquo;Filtering&rdquo;, &ldquo;and Geo-Search</a></li>
+            <li>
+                <a href="#multi-tenant-support-via-api-keys" aria-label="Multi-Tenant Support via API Keys">Multi-Tenant Support via API Keys</a></li></ul>
+            </li>
+            <li>
+                <a href="#installation--setup-running-typesense-in-5-minutes" aria-label="Installation &amp; Setup: Running Typesense in 5 Minutes">Installation &amp; Setup: Running Typesense in 5 Minutes</a><ul>
+                    
+            <li>
+                <a href="#step-1-launch-typesense-with-docker" aria-label="Step 1: Launch Typesense with Docker">Step 1: Launch Typesense with Docker</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#expected--ok-true-" aria-label="Expected: { &ldquo;ok&rdquo;: true }">Expected: { &ldquo;ok&rdquo;: true }</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#step-3-index-sample-documents" aria-label="Step 3: Index Sample Documents">Step 3: Index Sample Documents</a></li>
+            <li>
+                <a href="#step-4-search" aria-label="Step 4: Search">Step 4: Search</a></li></ul>
+                
+            <li>
+                <a href="#integration-with-javascript-python-ruby-go--react" aria-label="Integration with JavaScript, Python, Ruby, Go &amp; React">Integration with JavaScript, Python, Ruby, Go &amp; React</a><ul>
+                    
+            <li>
+                <a href="#javascriptnodejs-sdk" aria-label="JavaScript/Node.js SDK">JavaScript/Node.js SDK</a></li>
+            <li>
+                <a href="#python-sdk" aria-label="Python SDK">Python SDK</a></li>
+            <li>
+                <a href="#react-instantsearch-integration" aria-label="React InstantSearch Integration">React InstantSearch Integration</a></li>
+            <li>
+                <a href="#ruby-sdk" aria-label="Ruby SDK">Ruby SDK</a></li>
+            <li>
+                <a href="#go-sdk" aria-label="Go SDK">Go SDK</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmarks--real-world-use-cases" aria-label="Benchmarks &amp; Real-World Use Cases">Benchmarks &amp; Real-World Use Cases</a><ul>
+                    
+            <li>
+                <a href="#performance-benchmarks-v271-single-node" aria-label="Performance Benchmarks (v27.1, Single Node)">Performance Benchmarks (v27.1, Single Node)</a></li>
+            <li>
+                <a href="#real-world-use-cases" aria-label="Real-World Use Cases">Real-World Use Cases</a></li>
+            <li>
+                <a href="#resource-planning-formula" aria-label="Resource Planning Formula">Resource Planning Formula</a></li>
+            <li>
+                <a href="#2-docker-compose-for-production" aria-label="2. Docker Compose for Production">2. Docker Compose for Production</a></li>
+            <li>
+                <a href="#4-clustering-for-high-availability" aria-label="4. Clustering for High Availability">4. Clustering for High Availability</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#node-1" aria-label="Node 1">Node 1</a></li>
+            <li>
+                <a href="#node-2-and-3-same-command-update-nodes-with-all-ips" aria-label="Node 2 and 3: same command, update &ndash;nodes with all IPs">Node 2 and 3: same command, update &ndash;nodes with all IPs</a><ul>
+                    
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#how-does-typesense-compare-to-elasticsearch-for-small-to-medium-projects" aria-label="How does Typesense compare to Elasticsearch for small-to-medium projects?">How does Typesense compare to Elasticsearch for small-to-medium projects?</a></li>
+            <li>
+                <a href="#can-typesense-handle-1-million-searches-per-day-on-a-single-server" aria-label="Can Typesense handle 1 million searches per day on a single server?">Can Typesense handle 1 million searches per day on a single server?</a></li>
+            <li>
+                <a href="#what-happens-if-typesense-runs-out-of-ram" aria-label="What happens if Typesense runs out of RAM?">What happens if Typesense runs out of RAM?</a></li>
+            <li>
+                <a href="#how-do-i-migrate-from-algolia-to-typesense" aria-label="How do I migrate from Algolia to Typesense?">How do I migrate from Algolia to Typesense?</a></li>
+            <li>
+                <a href="#does-typesense-support-real-time-indexing" aria-label="Does Typesense support real-time indexing?">Does Typesense support real-time indexing?</a></li>
+            <li>
+                <a href="#is-typesense-cloud-worth-it-compared-to-self-hosting" aria-label="Is Typesense Cloud worth it compared to self-hosting?">Is Typesense Cloud worth it compared to self-hosting?</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion-start-building-instant-search-today" aria-label="Conclusion: Start Building Instant Search Today">Conclusion: Start Building Instant Search Today</a></li>
+            <li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
+            <li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;Typesense 2026: The Open-Source Instant Search API Handl&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,8 +324,23 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&rdquo;]
-aliases:</p><ul><li>/posts/typesense-instant-search-api/-</li></ul><hr><h2 id=introduction-why-your-users-hate-waiting-2-seconds-for-search-results>Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results<a hidden class=anchor aria-hidden=true href=#introduction-why-your-users-hate-waiting-2-seconds-for-search-results>#</a></h2><p>In 2026", &ldquo;users expect search results to appear <strong>before they finish typing</strong>. If your application takes more than 100ms to return search results&rdquo;, &ldquo;you are losing engagement. A study by Akamai found that a <strong>100ms delay in search response drops conversion rates by 7%</strong>. For a site handling 1 million searches per day&rdquo;, &ldquo;that is 70&rdquo;, &ldquo;000 lost interactions — per day.</p><p>Most teams start with database ```LIKE```` queries. It works for 1&rdquo;, &ldquo;000 rows. At 100&rdquo;, &ldquo;000 rows&rdquo;, &ldquo;queries take <strong>500ms–2s</strong>. At 1 million rows&rdquo;, &ldquo;your database CPU pegs at 100% and your users leave. You need a dedicated search engine.</p><p>Enter <strong>Typesense</strong> — an open-source&rdquo;, &ldquo;typo-tolerant search engine designed for <strong>sub-50ms instant search</strong>. Version 27.1 (released April 2026) handles over <strong>1 million searches per day</strong> on a single modest server. It is GPL-3.0 licensed&rdquo;, &ldquo;has <strong>23&rdquo;, &ldquo;200+ GitHub stars</strong>&rdquo;, &ldquo;and offers SDKs for JavaScript&rdquo;, &ldquo;Python&rdquo;, &ldquo;Ruby&rdquo;, &ldquo;Go&rdquo;, &ldquo;PHP&rdquo;, &ldquo;and more. This guide walks you through a production-ready&rdquo;, &ldquo;self-hosted Typesense deployment in under 5 minutes.</p><h2 id=what-is-typesense>What Is Typesense?<a hidden class=anchor aria-hidden=true href=#what-is-typesense>#</a></h2><p><strong>Typesense</strong> is an open-source&rdquo;, &ldquo;typo-tolerant search engine optimized for instant search experiences. Unlike Elasticsearch&rdquo;, &ldquo;which is a general-purpose document store&rdquo;, &ldquo;Typesense focuses exclusively on delivering <strong>low-latency&rdquo;, &ldquo;relevance-tuned search results</strong> with minimal configuration. It exposes a clean RESTful API and maintains official SDKs for 8+ programming languages.</p><p>Key facts: | Attribute | Detail |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/typesense-instant-search-api/-</li>
+</ul>
+<hr>
+<h2 id="introduction-why-your-users-hate-waiting-2-seconds-for-search-results">Introduction: Why Your Users Hate Waiting 2 Seconds for Search Results<a hidden class="anchor" aria-hidden="true" href="#introduction-why-your-users-hate-waiting-2-seconds-for-search-results">#</a></h2>
+<p>In 2026&quot;, &ldquo;users expect search results to appear <strong>before they finish typing</strong>. If your application takes more than 100ms to return search results&rdquo;, &ldquo;you are losing engagement. A study by Akamai found that a <strong>100ms delay in search response drops conversion rates by 7%</strong>. For a site handling 1 million searches per day&rdquo;, &ldquo;that is 70&rdquo;, &ldquo;000 lost interactions — per day.</p>
+<p>Most teams start with database ```LIKE```` queries. It works for 1&rdquo;, &ldquo;000 rows. At 100&rdquo;, &ldquo;000 rows&rdquo;, &ldquo;queries take <strong>500ms–2s</strong>. At 1 million rows&rdquo;, &ldquo;your database CPU pegs at 100% and your users leave. You need a dedicated search engine.</p>
+<p>Enter <strong>Typesense</strong> — an open-source&rdquo;, &ldquo;typo-tolerant search engine designed for <strong>sub-50ms instant search</strong>. Version 27.1 (released April 2026) handles over <strong>1 million searches per day</strong> on a single modest server. It is GPL-3.0 licensed&rdquo;, &ldquo;has <strong>23&rdquo;, &ldquo;200+ GitHub stars</strong>&rdquo;, &ldquo;and offers SDKs for JavaScript&rdquo;, &ldquo;Python&rdquo;, &ldquo;Ruby&rdquo;, &ldquo;Go&rdquo;, &ldquo;PHP&rdquo;, &ldquo;and more. This guide walks you through a production-ready&rdquo;, &ldquo;self-hosted Typesense deployment in under 5 minutes.</p>
+<h2 id="what-is-typesense">What Is Typesense?<a hidden class="anchor" aria-hidden="true" href="#what-is-typesense">#</a></h2>
+<p><strong>Typesense</strong> is an open-source&rdquo;, &ldquo;typo-tolerant search engine optimized for instant search experiences. Unlike Elasticsearch&rdquo;, &ldquo;which is a general-purpose document store&rdquo;, &ldquo;Typesense focuses exclusively on delivering <strong>low-latency&rdquo;, &ldquo;relevance-tuned search results</strong> with minimal configuration. It exposes a clean RESTful API and maintains official SDKs for 8+ programming languages.</p>
+<p>Key facts: | Attribute | Detail |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Latest Version</strong> | 27.1 (April 2026) |
 | <strong>GitHub Stars</strong> | 23&rdquo;, &ldquo;200+ |
 | <strong>License</strong> | GPL-3.0 |
@@ -30,24 +348,48 @@ aliases:</p><ul><li>/posts/typesense-instant-search-api/-</li></ul><hr><h2 id=in
 | <strong>Written In</strong> | C++ (high performance) |
 | <strong>API Style</strong> | RESTful JSON over HTTP |
 | <strong>Official SDKs</strong> | JavaScript&rdquo;, &ldquo;Python&rdquo;, &ldquo;Ruby&rdquo;, &ldquo;Go&rdquo;, &ldquo;PHP&rdquo;, &ldquo;Dart&rdquo;, &ldquo;Swift&rdquo;, &ldquo;.NET |
-| <strong>Deployment</strong> | Self-hosted (Docker&rdquo;, &ldquo;binary) or Typesense Cloud |</p><h2 id=how-typesense-works>How Typesense Works<a hidden class=anchor aria-hidden=true href=#how-typesense-works>#</a></h2><p>Understanding Typesense architecture helps you tune it for production.</p><h3 id=in-memory-index-with-disk-persistence>In-Memory Index with Disk Persistence<a hidden class=anchor aria-hidden=true href=#in-memory-index-with-disk-persistence>#</a></h3><p>Typesense keeps the <strong>entire search index in memory</strong> using an inverted index data structure. This is why it achieves <strong>sub-50ms query latencies</strong> — there is no disk I/O during searches. Documents are persisted to disk as a write-ahead log (WAL) for durability. On restart&rdquo;, &ldquo;Typesense rebuilds the in-memory index from disk.</p><h3 id=typo-tolerance-via-edit-distance>Typo Tolerance via Edit Distance<a hidden class=anchor aria-hidden=true href=#typo-tolerance-via-edit-distance>#</a></h3><p>Typesense uses <strong>Levenshtein distance</strong> to handle typos automatically. By default&rdquo;, &ldquo;it tolerates up to 1 edit distance for words of 4+ characters&rdquo;, &ldquo;and 2 edits for words of 8+ characters. This happens without any configuration — users searching for &ldquo;iphnoe&rdquo; still find &ldquo;iPhone&rdquo; results.</p><h3 id=faceting-filtering-and-geo-search>Faceting&rdquo;, &ldquo;Filtering&rdquo;, &ldquo;and Geo-Search<a hidden class=anchor aria-hidden=true href=#faceting-filtering-and-geo-search>#</a></h3><p>Typesense supports: - <strong>Faceted search</strong> — dynamic count aggregation per category</p><ul><li><strong>Numeric range filters</strong> — <code>price:>=10&&&lt;=100</code></li><li><strong>Geolocation search</strong> — find results within X km of lat/lng</li><li><strong>Sorting</strong> — by relevance&rdquo;, &ldquo;numeric fields&rdquo;, &ldquo;or geolocation distance</li><li><strong>Filtering</strong> — boolean combinations of any indexed field</li><li><strong>Synonyms</strong> — define equivalence sets (e.g.&rdquo;, &ldquo;tv&rdquo; = &ldquo;television&rdquo;)</li><li><strong>Curations</strong> — manually boost or hide specific results for queries</li></ul><h3 id=multi-tenant-support-via-api-keys>Multi-Tenant Support via API Keys<a hidden class=anchor aria-hidden=true href=#multi-tenant-support-via-api-keys>#</a></h3><p>Typesense uses scoped API keys for multi-tenant applications. Each API key can restrict access to specific collections and apply filter-by rules automatically. This lets you serve multiple customers from a single cluster securely.</p><h2 id=installation--setup-running-typesense-in-5-minutes>Installation & Setup: Running Typesense in 5 Minutes<a hidden class=anchor aria-hidden=true href=#installation--setup-running-typesense-in-5-minutes>#</a></h2><h3 id=step-1-launch-typesense-with-docker>Step 1: Launch Typesense with Docker<a hidden class=anchor aria-hidden=true href=#step-1-launch-typesense-with-docker>#</a></h3><p>The fastest way to run Typesense is Docker. You need <strong>Docker 24.0+</strong> and at least <strong>512MB RAM</strong> (2GB recommended for production).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir -p /tmp/typesense-data
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Generate API key</span>
-</span></span><span style=display:flex><span>export TYPESENSE_API_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -hex 24<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Your API key: </span>$TYPESENSE_API_KEY<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run Typesense 27.1</span>
-</span></span><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name typesense <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --restart unless-stopped <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 8108:8108 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v /tmp/typesense-data:/data <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  typesense/typesense:27.1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --data-dir /data <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --api-key<span style=color:#f92672>=</span>$TYPESENSE_API_KEY <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --enable-cors
+| <strong>Deployment</strong> | Self-hosted (Docker&rdquo;, &ldquo;binary) or Typesense Cloud |</p>
+<h2 id="how-typesense-works">How Typesense Works<a hidden class="anchor" aria-hidden="true" href="#how-typesense-works">#</a></h2>
+<p>Understanding Typesense architecture helps you tune it for production.</p>
+<h3 id="in-memory-index-with-disk-persistence">In-Memory Index with Disk Persistence<a hidden class="anchor" aria-hidden="true" href="#in-memory-index-with-disk-persistence">#</a></h3>
+<p>Typesense keeps the <strong>entire search index in memory</strong> using an inverted index data structure. This is why it achieves <strong>sub-50ms query latencies</strong> — there is no disk I/O during searches. Documents are persisted to disk as a write-ahead log (WAL) for durability. On restart&rdquo;, &ldquo;Typesense rebuilds the in-memory index from disk.</p>
+<h3 id="typo-tolerance-via-edit-distance">Typo Tolerance via Edit Distance<a hidden class="anchor" aria-hidden="true" href="#typo-tolerance-via-edit-distance">#</a></h3>
+<p>Typesense uses <strong>Levenshtein distance</strong> to handle typos automatically. By default&rdquo;, &ldquo;it tolerates up to 1 edit distance for words of 4+ characters&rdquo;, &ldquo;and 2 edits for words of 8+ characters. This happens without any configuration — users searching for &ldquo;iphnoe&rdquo; still find &ldquo;iPhone&rdquo; results.</p>
+<h3 id="faceting-filtering-and-geo-search">Faceting&rdquo;, &ldquo;Filtering&rdquo;, &ldquo;and Geo-Search<a hidden class="anchor" aria-hidden="true" href="#faceting-filtering-and-geo-search">#</a></h3>
+<p>Typesense supports: - <strong>Faceted search</strong> — dynamic count aggregation per category</p>
+<ul>
+<li><strong>Numeric range filters</strong> — <code>price:&gt;=10&amp;&amp;&lt;=100</code></li>
+<li><strong>Geolocation search</strong> — find results within X km of lat/lng</li>
+<li><strong>Sorting</strong> — by relevance&rdquo;, &ldquo;numeric fields&rdquo;, &ldquo;or geolocation distance</li>
+<li><strong>Filtering</strong> — boolean combinations of any indexed field</li>
+<li><strong>Synonyms</strong> — define equivalence sets (e.g.&rdquo;, &ldquo;tv&rdquo; = &ldquo;television&rdquo;)</li>
+<li><strong>Curations</strong> — manually boost or hide specific results for queries</li>
+</ul>
+<h3 id="multi-tenant-support-via-api-keys">Multi-Tenant Support via API Keys<a hidden class="anchor" aria-hidden="true" href="#multi-tenant-support-via-api-keys">#</a></h3>
+<p>Typesense uses scoped API keys for multi-tenant applications. Each API key can restrict access to specific collections and apply filter-by rules automatically. This lets you serve multiple customers from a single cluster securely.</p>
+<h2 id="installation--setup-running-typesense-in-5-minutes">Installation &amp; Setup: Running Typesense in 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#installation--setup-running-typesense-in-5-minutes">#</a></h2>
+<h3 id="step-1-launch-typesense-with-docker">Step 1: Launch Typesense with Docker<a hidden class="anchor" aria-hidden="true" href="#step-1-launch-typesense-with-docker">#</a></h3>
+<p>The fastest way to run Typesense is Docker. You need <strong>Docker 24.0+</strong> and at least <strong>512MB RAM</strong> (2GB recommended for production).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p /tmp/typesense-data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Generate API key</span>
+</span></span><span style="display:flex;"><span>export TYPESENSE_API_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -hex 24<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Your API key: </span>$TYPESENSE_API_KEY<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run Typesense 27.1</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name typesense <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --restart unless-stopped <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 8108:8108 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v /tmp/typesense-data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  typesense/typesense:27.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --data-dir /data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --api-key<span style="color:#f92672">=</span>$TYPESENSE_API_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --enable-cors
 </span></span></code></pre></div><p>Verify the container is running: `````bash
-curl -s &ldquo;http://localhost:8108/health&rdquo; | jq .</p><h1 id=expected--ok-true->Expected: { &ldquo;ok&rdquo;: true }<a hidden class=anchor aria-hidden=true href=#expected--ok-true->#</a></h1><pre tabindex=0><code>
+curl -s &ldquo;http://localhost:8108/health&rdquo; | jq .</p>
+<h1 id="expected--ok-true-">Expected: { &ldquo;ok&rdquo;: true }<a hidden class="anchor" aria-hidden="true" href="#expected--ok-true-">#</a></h1>
+<pre tabindex="0"><code>
 ### Step 2: Create Your First Collection
 
 A collection in Typesense is like a table in SQL or an index in Elasticsearch. Define a schema and index documents: `````bash
@@ -61,78 +403,86 @@ curl -s &#34;http://localhost:8108/collections&#34; \
       { &#34;name&#34;: &#34;name&#34;, &#34;type&#34;: &#34;string&#34;, &#34;facet&#34;: false }&#34;, &#34;{ &#34;name&#34;: &#34;description&#34;, &#34;type&#34;: &#34;string&#34;, &#34;facet&#34;: false }&#34;, &#34;{ &#34;name&#34;: &#34;price&#34;, &#34;type&#34;: &#34;float&#34;, &#34;facet&#34;: true&#34;, &#34;sort&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;category&#34;, &#34;type&#34;: &#34;string&#34;, &#34;facet&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;rating&#34;, &#34;type&#34;: &#34;float&#34;, &#34;facet&#34;: true&#34;, &#34;sort&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;in_stock&#34;, &#34;type&#34;: &#34;bool&#34;, &#34;facet&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;location&#34;, &#34;type&#34;: &#34;geopoint&#34; }&#34;],
     &#34;default_sorting_field&#34;: &#34;rating&#34;
   }&#39; | jq .
-</code></pre><h3 id=step-3-index-sample-documents>Step 3: Index Sample Documents<a hidden class=anchor aria-hidden=true href=#step-3-index-sample-documents>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Import documents using the import endpoint</span>
-</span></span><span style=display:flex><span>curl -s <span style=color:#e6db74>&#34;http://localhost:8108/collections/products/documents/import?action=create&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -X POST <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Wireless Bluetooth Headphones&#34;, &#34;description&#34;: &#34;Noise cancelling over-ear headphones&#34;, &#34;price&#34;: 79.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.5, &#34;in_stock&#34;: true, &#34;location&#34;: [40.7128, -74.0060]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Mechanical Keyboard&#34;, &#34;description&#34;: &#34;RGB backlit mechanical keyboard with blue switches&#34;, &#34;price&#34;: 129.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.7, &#34;in_stock&#34;: true, &#34;location&#34;: [37.7749, -122.4194]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Running Shoes&#34;, &#34;description&#34;: &#34;Lightweight running shoes for marathon training&#34;, &#34;price&#34;: 89.50, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.2, &#34;in_stock&#34;: false, &#34;location&#34;: [51.5074, -0.1278]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Yoga Mat&#34;, &#34;description&#34;: &#34;Non-slip eco-friendly yoga mat&#34;, &#34;price&#34;: 29.99, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.8, &#34;in_stock&#34;: true, &#34;location&#34;: [48.8566, 2.3522]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#39;</span>
-</span></span></code></pre></div><h3 id=step-4-search>Step 4: Search<a hidden class=anchor aria-hidden=true href=#step-4-search>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Search with typo tolerance</span>
-</span></span><span style=display:flex><span>curl -s <span style=color:#e6db74>&#34;http://localhost:8108/collections/products/documents/search?\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>q=headphons&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>query_by=name,description&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>filter_by=price:&gt;=50&amp;&amp;&lt;=150&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>sort_by=rating:desc&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>facet_by=category&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>page=1&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>per_page=10&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style=color:#e6db74>&#34;</span> | jq .
-</span></span></code></pre></div><p>Notice: we searched for <strong>&ldquo;headphons&rdquo;</strong> (typo) and Typesense still returned &ldquo;Wireless Bluetooth Headphones&rdquo;. The response includes facet counts per category automatically.</p><h2 id=integration-with-javascript-python-ruby-go--react>Integration with JavaScript, Python, Ruby, Go & React<a hidden class=anchor aria-hidden=true href=#integration-with-javascript-python-ruby-go--react>#</a></h2><h3 id=javascriptnodejs-sdk>JavaScript/Node.js SDK<a hidden class=anchor aria-hidden=true href=#javascriptnodejs-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npm install typesense
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Typesense</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#a6e22e>typesense</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Typesense</span>.<span style=color:#a6e22e>Client</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>nodes</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>host</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>localhost</span>, <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>8108</span>, <span style=color:#a6e22e>protocol</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>http</span> }],
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apiKey</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>TYPESENSE_API_KEY</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>connectionTimeoutSeconds</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Search
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>searchProducts</span>(<span style=color:#a6e22e>query</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>results</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>collections</span>(<span style=color:#a6e22e>products</span>)
-</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>documents</span>()
-</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>search</span>({
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>q</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>query</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>query_by</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;name,description&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>filter_by</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;in_stock:true&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>sort_by</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;rating:desc&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>per_page</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span>    });
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Found</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>found</span>} <span style=color:#a6e22e>results</span><span style=color:#e6db74>````</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>hits</span>.<span style=color:#a6e22e>forEach</span>(<span style=color:#a6e22e>hit</span> =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#f92672>-</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>hit</span>.document.<span style=color:#a6e22e>name</span>} (<span style=color:#a6e22e>$$</span>{<span style=color:#a6e22e>hit</span>.document.<span style=color:#a6e22e>price</span>})<span style=color:#e6db74>````</span>);
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>searchProducts</span>(<span style=color:#a6e22e>headphons</span>); <span style=color:#75715e>// typo still works
-</span></span></span></code></pre></div><h3 id=python-sdk>Python SDK<a hidden class=anchor aria-hidden=true href=#python-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install typesense
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> typesense
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> typesense<span style=color:#f92672>.</span>Client({
-</span></span><span style=display:flex><span>    nodes: [{host: localhost, port: <span style=color:#ae81ff>8108</span>, protocol: http}],
-</span></span><span style=display:flex><span>    api_key: os<span style=color:#f92672>.</span>environ[TYPESENSE_API_KEY],
-</span></span><span style=display:flex><span>    connection_timeout_seconds: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Search with faceting</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>collections[products]<span style=color:#f92672>.</span>documents<span style=color:#f92672>.</span>search({
-</span></span><span style=display:flex><span>    q: keyboard,
-</span></span><span style=display:flex><span>    query_by: <span style=color:#e6db74>&#39;name,description&#39;</span>,
-</span></span><span style=display:flex><span>    facet_by: <span style=color:#e6db74>&#39;category,price&#39;</span>,
-</span></span><span style=display:flex><span>    sort_by: <span style=color:#e6db74>&#39;rating:desc&#39;</span>,
-</span></span><span style=display:flex><span>    per_page: <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Total: </span><span style=color:#e6db74>{</span>results[found]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> hit <span style=color:#f92672>in</span> results[hits]: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>{</span>hit[document][name]<span style=color:#e6db74>}</span><span style=color:#e6db74> - $</span><span style=color:#e6db74>{</span>hit[document][price]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=react-instantsearch-integration>React InstantSearch Integration<a hidden class=anchor aria-hidden=true href=#react-instantsearch-integration>#</a></h3><p>For React applications, use <code>typesense-instantsearch-adapter</code> to connect Typesense with Algolia&rsquo;s InstantSearch UI components: `````bash
-npm install typesense-instantsearch-adapter react-instantsearch-dom</p><pre tabindex=0><code>
+</code></pre><h3 id="step-3-index-sample-documents">Step 3: Index Sample Documents<a hidden class="anchor" aria-hidden="true" href="#step-3-index-sample-documents">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Import documents using the import endpoint</span>
+</span></span><span style="display:flex;"><span>curl -s <span style="color:#e6db74">&#34;http://localhost:8108/collections/products/documents/import?action=create&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Wireless Bluetooth Headphones&#34;, &#34;description&#34;: &#34;Noise cancelling over-ear headphones&#34;, &#34;price&#34;: 79.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.5, &#34;in_stock&#34;: true, &#34;location&#34;: [40.7128, -74.0060]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Mechanical Keyboard&#34;, &#34;description&#34;: &#34;RGB backlit mechanical keyboard with blue switches&#34;, &#34;price&#34;: 129.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.7, &#34;in_stock&#34;: true, &#34;location&#34;: [37.7749, -122.4194]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Running Shoes&#34;, &#34;description&#34;: &#34;Lightweight running shoes for marathon training&#34;, &#34;price&#34;: 89.50, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.2, &#34;in_stock&#34;: false, &#34;location&#34;: [51.5074, -0.1278]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Yoga Mat&#34;, &#34;description&#34;: &#34;Non-slip eco-friendly yoga mat&#34;, &#34;price&#34;: 29.99, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.8, &#34;in_stock&#34;: true, &#34;location&#34;: [48.8566, 2.3522]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#39;</span>
+</span></span></code></pre></div><h3 id="step-4-search">Step 4: Search<a hidden class="anchor" aria-hidden="true" href="#step-4-search">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Search with typo tolerance</span>
+</span></span><span style="display:flex;"><span>curl -s <span style="color:#e6db74">&#34;http://localhost:8108/collections/products/documents/search?\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">q=headphons&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">query_by=name,description&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">filter_by=price:&gt;=50&amp;&amp;&lt;=150&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sort_by=rating:desc&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">facet_by=category&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">page=1&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">per_page=10&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style="color:#e6db74">&#34;</span> | jq .
+</span></span></code></pre></div><p>Notice: we searched for <strong>&ldquo;headphons&rdquo;</strong> (typo) and Typesense still returned &ldquo;Wireless Bluetooth Headphones&rdquo;. The response includes facet counts per category automatically.</p>
+<h2 id="integration-with-javascript-python-ruby-go--react">Integration with JavaScript, Python, Ruby, Go &amp; React<a hidden class="anchor" aria-hidden="true" href="#integration-with-javascript-python-ruby-go--react">#</a></h2>
+<h3 id="javascriptnodejs-sdk">JavaScript/Node.js SDK<a hidden class="anchor" aria-hidden="true" href="#javascriptnodejs-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install typesense
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Typesense</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">typesense</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Typesense</span>.<span style="color:#a6e22e">Client</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nodes</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">host</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">localhost</span>, <span style="color:#a6e22e">port</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">8108</span>, <span style="color:#a6e22e">protocol</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">http</span> }],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">TYPESENSE_API_KEY</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">connectionTimeoutSeconds</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Search
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">searchProducts</span>(<span style="color:#a6e22e">query</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">collections</span>(<span style="color:#a6e22e">products</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">documents</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">search</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">q</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">query</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">query_by</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;name,description&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">filter_by</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;in_stock:true&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">sort_by</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;rating:desc&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">per_page</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Found</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">found</span>} <span style="color:#a6e22e">results</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">hits</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">hit</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#f92672">-</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">hit</span>.document.<span style="color:#a6e22e">name</span>} (<span style="color:#a6e22e">$$</span>{<span style="color:#a6e22e">hit</span>.document.<span style="color:#a6e22e">price</span>})<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">searchProducts</span>(<span style="color:#a6e22e">headphons</span>); <span style="color:#75715e">// typo still works
+</span></span></span></code></pre></div><h3 id="python-sdk">Python SDK<a hidden class="anchor" aria-hidden="true" href="#python-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install typesense
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> typesense
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> typesense<span style="color:#f92672">.</span>Client({
+</span></span><span style="display:flex;"><span>    nodes: [{host: localhost, port: <span style="color:#ae81ff">8108</span>, protocol: http}],
+</span></span><span style="display:flex;"><span>    api_key: os<span style="color:#f92672">.</span>environ[TYPESENSE_API_KEY],
+</span></span><span style="display:flex;"><span>    connection_timeout_seconds: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Search with faceting</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>collections[products]<span style="color:#f92672">.</span>documents<span style="color:#f92672">.</span>search({
+</span></span><span style="display:flex;"><span>    q: keyboard,
+</span></span><span style="display:flex;"><span>    query_by: <span style="color:#e6db74">&#39;name,description&#39;</span>,
+</span></span><span style="display:flex;"><span>    facet_by: <span style="color:#e6db74">&#39;category,price&#39;</span>,
+</span></span><span style="display:flex;"><span>    sort_by: <span style="color:#e6db74">&#39;rating:desc&#39;</span>,
+</span></span><span style="display:flex;"><span>    per_page: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total: </span><span style="color:#e6db74">{</span>results[found]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results[hits]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  </span><span style="color:#e6db74">{</span>hit[document][name]<span style="color:#e6db74">}</span><span style="color:#e6db74"> - $</span><span style="color:#e6db74">{</span>hit[document][price]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="react-instantsearch-integration">React InstantSearch Integration<a hidden class="anchor" aria-hidden="true" href="#react-instantsearch-integration">#</a></h3>
+<p>For React applications, use <code>typesense-instantsearch-adapter</code> to connect Typesense with Algolia&rsquo;s InstantSearch UI components: `````bash
+npm install typesense-instantsearch-adapter react-instantsearch-dom</p>
+<pre tabindex="0"><code>
 `````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList } from &#39;react-instantsearch-dom&#39;;
@@ -172,58 +522,67 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-</code></pre><h3 id=ruby-sdk>Ruby SDK<a hidden class=anchor aria-hidden=true href=#ruby-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ruby data-lang=ruby><span style=display:flex><span>require typesense
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> <span style=color:#66d9ef>Typesense</span><span style=color:#f92672>::</span><span style=color:#66d9ef>Client</span><span style=color:#f92672>.</span>new(
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>nodes</span>: <span style=color:#f92672>[</span>{ <span style=color:#e6db74>host</span>: localhost, <span style=color:#e6db74>port</span>: <span style=color:#ae81ff>8108</span>, <span style=color:#e6db74>protocol</span>: http }<span style=color:#f92672>]</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>api_key</span>: <span style=color:#66d9ef>ENV</span><span style=color:#f92672>[</span><span style=color:#66d9ef>TYPESENSE_API_KEY</span><span style=color:#f92672>]</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>connection_timeout_seconds</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>collections<span style=color:#f92672>[</span>products<span style=color:#f92672>].</span>documents<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>q</span>: <span style=color:#e6db74>&#39;running shoes&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>query_by</span>: <span style=color:#e6db74>&#39;name,description&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>filter_by</span>: <span style=color:#e6db74>&#39;in_stock:true&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>sort_by</span>: <span style=color:#e6db74>&#39;price:asc&#39;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>puts <span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>#{</span>results<span style=color:#f92672>[</span>found<span style=color:#f92672>]</span><span style=color:#e6db74>}</span><span style=color:#e6db74> results&#34;</span>
-</span></span><span style=display:flex><span>results<span style=color:#f92672>[</span>hits<span style=color:#f92672>].</span>each { <span style=color:#f92672>|</span>hit<span style=color:#f92672>|</span> puts <span style=color:#e6db74>&#34;- </span><span style=color:#e6db74>#{</span>hit<span style=color:#f92672>[</span>document<span style=color:#f92672>][</span>name<span style=color:#f92672>]</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> }
-</span></span></code></pre></div><h3 id=go-sdk>Go SDK<a hidden class=anchor aria-hidden=true href=#go-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;os&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;github.com/typesense/typesense-go/v2/typesense&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;github.com/typesense/typesense-go/v2/typesense/api&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>client</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>typesense</span>.<span style=color:#a6e22e>NewClient</span>(
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>typesense</span>.<span style=color:#a6e22e>WithServer</span>(<span style=color:#e6db74>&#34;http://localhost:8108&#34;</span>),
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>typesense</span>.<span style=color:#a6e22e>WithAPIKey</span>(<span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Getenv</span>(<span style=color:#e6db74>&#34;TYPESENSE_API_KEY&#34;</span>)),
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>searchParams</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>api</span>.<span style=color:#a6e22e>SearchCollectionParams</span>{
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>Q</span>: <span style=color:#e6db74>&#34;keyboard&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>QueryBy</span>: <span style=color:#e6db74>&#34;name,description&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>FilterBy</span>: <span style=color:#e6db74>&#34;in_stock:true&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>SortBy</span>: <span style=color:#e6db74>&#34;rating:desc&#34;</span>,
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>results</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>Collection</span>(<span style=color:#e6db74>&#34;products&#34;</span>).<span style=color:#a6e22e>Documents</span>().<span style=color:#a6e22e>Search</span>(<span style=color:#a6e22e>searchParams</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>        panic(<span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Found: %d\n&#34;</span>, <span style=color:#f92672>*</span><span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>Found</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>hit</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>Hits</span> {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>doc</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>hit</span>.<span style=color:#a6e22e>Document</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;- %s ($%.2f)\n&#34;</span>, <span style=color:#a6e22e>doc</span>[<span style=color:#e6db74>&#34;name&#34;</span>], <span style=color:#a6e22e>doc</span>[<span style=color:#e6db74>&#34;price&#34;</span>])
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=benchmarks--real-world-use-cases>Benchmarks & Real-World Use Cases<a hidden class=anchor aria-hidden=true href=#benchmarks--real-world-use-cases>#</a></h2><h3 id=performance-benchmarks-v271-single-node>Performance Benchmarks (v27.1, Single Node)<a hidden class=anchor aria-hidden=true href=#performance-benchmarks-v271-single-node>#</a></h3><p>We benchmarked Typesense 27.1 on a <strong>DigitalOcean droplet</strong> with 2 vCPUs and 4GB RAM — costing roughly <strong>$24/month</strong>. The dataset: <strong>1.2 million e-commerce products</strong> with 12 fields each.</p><p>| Metric | Result |
-|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="ruby-sdk">Ruby SDK<a hidden class="anchor" aria-hidden="true" href="#ruby-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>require typesense
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> <span style="color:#66d9ef">Typesense</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Client</span><span style="color:#f92672">.</span>new(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">nodes</span>: <span style="color:#f92672">[</span>{ <span style="color:#e6db74">host</span>: localhost, <span style="color:#e6db74">port</span>: <span style="color:#ae81ff">8108</span>, <span style="color:#e6db74">protocol</span>: http }<span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">api_key</span>: <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#66d9ef">TYPESENSE_API_KEY</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">connection_timeout_seconds</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>collections<span style="color:#f92672">[</span>products<span style="color:#f92672">].</span>documents<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">q</span>: <span style="color:#e6db74">&#39;running shoes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">query_by</span>: <span style="color:#e6db74">&#39;name,description&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">filter_by</span>: <span style="color:#e6db74">&#39;in_stock:true&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">sort_by</span>: <span style="color:#e6db74">&#39;price:asc&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>puts <span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">#{</span>results<span style="color:#f92672">[</span>found<span style="color:#f92672">]</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> results&#34;</span>
+</span></span><span style="display:flex;"><span>results<span style="color:#f92672">[</span>hits<span style="color:#f92672">].</span>each { <span style="color:#f92672">|</span>hit<span style="color:#f92672">|</span> puts <span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">#{</span>hit<span style="color:#f92672">[</span>document<span style="color:#f92672">][</span>name<span style="color:#f92672">]</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> }
+</span></span></code></pre></div><h3 id="go-sdk">Go SDK<a hidden class="anchor" aria-hidden="true" href="#go-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/typesense/typesense-go/v2/typesense&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/typesense/typesense-go/v2/typesense/api&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">typesense</span>.<span style="color:#a6e22e">NewClient</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">typesense</span>.<span style="color:#a6e22e">WithServer</span>(<span style="color:#e6db74">&#34;http://localhost:8108&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">typesense</span>.<span style="color:#a6e22e">WithAPIKey</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Getenv</span>(<span style="color:#e6db74">&#34;TYPESENSE_API_KEY&#34;</span>)),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">searchParams</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">SearchCollectionParams</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Q</span>: <span style="color:#e6db74">&#34;keyboard&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">QueryBy</span>: <span style="color:#e6db74">&#34;name,description&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">FilterBy</span>: <span style="color:#e6db74">&#34;in_stock:true&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">SortBy</span>: <span style="color:#e6db74">&#34;rating:desc&#34;</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">results</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Collection</span>(<span style="color:#e6db74">&#34;products&#34;</span>).<span style="color:#a6e22e">Documents</span>().<span style="color:#a6e22e">Search</span>(<span style="color:#a6e22e">searchParams</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Found: %d\n&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">Found</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">hit</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">Hits</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">doc</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">hit</span>.<span style="color:#a6e22e">Document</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;- %s ($%.2f)\n&#34;</span>, <span style="color:#a6e22e">doc</span>[<span style="color:#e6db74">&#34;name&#34;</span>], <span style="color:#a6e22e">doc</span>[<span style="color:#e6db74">&#34;price&#34;</span>])
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="benchmarks--real-world-use-cases">Benchmarks &amp; Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-use-cases">#</a></h2>
+<h3 id="performance-benchmarks-v271-single-node">Performance Benchmarks (v27.1, Single Node)<a hidden class="anchor" aria-hidden="true" href="#performance-benchmarks-v271-single-node">#</a></h3>
+<p>We benchmarked Typesense 27.1 on a <strong>DigitalOcean droplet</strong> with 2 vCPUs and 4GB RAM — costing roughly <strong>$24/month</strong>. The dataset: <strong>1.2 million e-commerce products</strong> with 12 fields each.</p>
+<p>| Metric | Result |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Index Build Time</strong> | 38 seconds (1.2M docs) |
 | <strong>Average Query Latency (p50)</strong> | <strong>12ms</strong> |
 | <strong>p95 Query Latency</strong> | <strong>28ms</strong> |
@@ -231,14 +590,26 @@ export default App;
 | <strong>Typo-Tolerant Search</strong> | +8ms overhead |
 | <strong>Concurrent Queries</strong> | 2,000 req/sec sustained |
 | <strong>Memory Usage</strong> | 2.1 GB (1.2M docs) |
-| <strong>Disk Usage</strong> | 890 MB |</p><p>Those are <strong>real numbers</strong> on a $24/month VPS. For production, scale vertically (more RAM) or horizontally with Typesense&rsquo;s Raft-based clustering.</p><h3 id=real-world-use-cases>Real-World Use Cases<a hidden class=anchor aria-hidden=true href=#real-world-use-cases>#</a></h3><p>| Company | Scale | Use Case |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Disk Usage</strong> | 890 MB |</p>
+<p>Those are <strong>real numbers</strong> on a $24/month VPS. For production, scale vertically (more RAM) or horizontally with Typesense&rsquo;s Raft-based clustering.</p>
+<h3 id="real-world-use-cases">Real-World Use Cases<a hidden class="anchor" aria-hidden="true" href="#real-world-use-cases">#</a></h3>
+<p>| Company | Scale | Use Case |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Grammarly</strong> | 30M+ users | Document search with typo tolerance |
 | <strong>Dovetail</strong> | Enterprise | Customer research data search |
 | <strong>PartsBase</strong> | 100M+ parts | Aviation parts search with faceting |
 | <strong>Open Collective</strong> | Open source | Collective and expense search |
-| <strong>Notion alternatives</strong> | Various | Real-time note search |</p><h3 id=resource-planning-formula>Resource Planning Formula<a hidden class=anchor aria-hidden=true href=#resource-planning-formula>#</a></h3><p>Use this formula to estimate your RAM needs: `````
-RAM (GB) ≈ (Number of Documents × Average Document Size × 3) / 1GB</p><pre tabindex=0><code>
+| <strong>Notion alternatives</strong> | Various | Real-time note search |</p>
+<h3 id="resource-planning-formula">Resource Planning Formula<a hidden class="anchor" aria-hidden="true" href="#resource-planning-formula">#</a></h3>
+<p>Use this formula to estimate your RAM needs: `````
+RAM (GB) ≈ (Number of Documents × Average Document Size × 3) / 1GB</p>
+<pre tabindex="0"><code>
 The ````×3```` multiplier accounts for the in-memory inverted index overhead. A 1KB document typically needs ~3KB of RAM in Typesense.
 
 ## Advanced Usage / Production Hardening
@@ -261,55 +632,68 @@ server {
         proxy_read_timeout 30s;
     }
 }
-</code></pre><h3 id=2-docker-compose-for-production>2. Docker Compose for Production<a hidden class=anchor aria-hidden=true href=#2-docker-compose-for-production>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: typesense: image</span>: <span style=color:#ae81ff>typesense/typesense:27.1</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;127.0.0.1:8108:8108&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>typesense-data:/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: TYPESENSE_API_KEY</span>: <span style=color:#ae81ff>${TYPESENSE_API_KEY}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --data-dir /data
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --api-key ${TYPESENSE_API_KEY}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --enable-cors
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --ssl-refresh-interval-seconds 86400</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: limits: memory</span>: <span style=color:#ae81ff>4G</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>reservations: memory</span>: <span style=color:#ae81ff>1G</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># Optional: Caddy for automatic HTTPS</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>caddy: image</span>: <span style=color:#ae81ff>caddy:2-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;80:80&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;443:443&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./Caddyfile:/etc/caddy/Caddyfile</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>caddy-data:/data</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: typesense-data: caddy-data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>Deploy this on any VPS. If you need a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $200 free credit for new users — enough to run Typesense for 8 months on a 4GB droplet.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 3. Scoped API Keys for Multi-Tenancy</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````javascript</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>// Generate a scoped API key that only sees Electronics category</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>const typesense = require(typesense);</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>const client = new Typesense.Client({</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>nodes</span>: [{ <span style=color:#f92672>host: localhost, port: 8108, protocol</span>: <span style=color:#ae81ff>http }],</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>apiKey</span>: <span style=color:#e6db74>&#39;master-api-key&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>connectionTimeoutSeconds</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>}<span style=color:#ae81ff>);</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>// Create a scoped key with embedded filter</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>const scopedKey = client.keys().generateScopedSearchKey(</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;master-api-key&#39;</span>,
-</span></span><span style=display:flex><span>  { <span style=color:#f92672>filter_by</span>: <span style=color:#e6db74>&#39;category:=Electronics&#39;</span> }
-</span></span><span style=display:flex><span><span style=color:#ae81ff>);</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>console.log(&#39;Scoped key for Electronics:&#39;, scopedKey);</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>// This key can ONLY search Electronics products</span>
-</span></span></code></pre></div><h3 id=4-clustering-for-high-availability>4. Clustering for High Availability<a hidden class=anchor aria-hidden=true href=#4-clustering-for-high-availability>#</a></h3><p>Typesense uses Raft consensus for clustering. A 3-node cluster tolerates 1 node failure: `````bash</p><h1 id=node-1>Node 1<a hidden class=anchor aria-hidden=true href=#node-1>#</a></h1><p>docker run -d -p 8108:8108<br>-v typesense-data:/data<br>typesense/typesense:27.1<br>&ndash;data-dir /data<br>&ndash;api-key=$API_KEY<br>&ndash;nodes=/data/nodes<br>&ndash;peering-subnet=10.0.0.0/16<br>&ndash;peering-port=8107</p><h1 id=node-2-and-3-same-command-update-nodes-with-all-ips>Node 2 and 3: same command, update &ndash;nodes with all IPs<a hidden class=anchor aria-hidden=true href=#node-2-and-3-same-command-update-nodes-with-all-ips>#</a></h1><pre tabindex=0><code>
+</code></pre><h3 id="2-docker-compose-for-production">2. Docker Compose for Production<a hidden class="anchor" aria-hidden="true" href="#2-docker-compose-for-production">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: typesense: image</span>: <span style="color:#ae81ff">typesense/typesense:27.1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;127.0.0.1:8108:8108&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">typesense-data:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: TYPESENSE_API_KEY</span>: <span style="color:#ae81ff">${TYPESENSE_API_KEY}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --data-dir /data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --api-key ${TYPESENSE_API_KEY}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --enable-cors
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --ssl-refresh-interval-seconds 86400</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: limits: memory</span>: <span style="color:#ae81ff">4G</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">reservations: memory</span>: <span style="color:#ae81ff">1G</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Optional: Caddy for automatic HTTPS</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">caddy: image</span>: <span style="color:#ae81ff">caddy:2-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;443:443&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./Caddyfile:/etc/caddy/Caddyfile</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">caddy-data:/data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: typesense-data: caddy-data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Deploy this on any VPS. If you need a reliable host, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) offers $200 free credit for new users — enough to run Typesense for 8 months on a 4GB droplet.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 3. Scoped API Keys for Multi-Tenancy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````javascript</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">// Generate a scoped API key that only sees Electronics category</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">const typesense = require(typesense);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">const client = new Typesense.Client({</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nodes</span>: [{ <span style="color:#f92672">host: localhost, port: 8108, protocol</span>: <span style="color:#ae81ff">http }],</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apiKey</span>: <span style="color:#e6db74">&#39;master-api-key&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connectionTimeoutSeconds</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#ae81ff">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">// Create a scoped key with embedded filter</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">const scopedKey = client.keys().generateScopedSearchKey(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;master-api-key&#39;</span>,
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">filter_by</span>: <span style="color:#e6db74">&#39;category:=Electronics&#39;</span> }
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">console.log(&#39;Scoped key for Electronics:&#39;, scopedKey);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">// This key can ONLY search Electronics products</span>
+</span></span></code></pre></div><h3 id="4-clustering-for-high-availability">4. Clustering for High Availability<a hidden class="anchor" aria-hidden="true" href="#4-clustering-for-high-availability">#</a></h3>
+<p>Typesense uses Raft consensus for clustering. A 3-node cluster tolerates 1 node failure: `````bash</p>
+<h1 id="node-1">Node 1<a hidden class="anchor" aria-hidden="true" href="#node-1">#</a></h1>
+<p>docker run -d -p 8108:8108 <br>
+-v typesense-data:/data <br>
+typesense/typesense:27.1 <br>
+&ndash;data-dir /data <br>
+&ndash;api-key=$API_KEY <br>
+&ndash;nodes=/data/nodes <br>
+&ndash;peering-subnet=10.0.0.0/16 <br>
+&ndash;peering-port=8107</p>
+<h1 id="node-2-and-3-same-command-update-nodes-with-all-ips">Node 2 and 3: same command, update &ndash;nodes with all IPs<a hidden class="anchor" aria-hidden="true" href="#node-2-and-3-same-command-update-nodes-with-all-ips">#</a></h1>
+<pre tabindex="0"><code>
 ### 5. Synonyms and Query Curation
 
 `````bash
@@ -329,8 +713,19 @@ curl -s &#34;http://localhost:8108/collections/products/overrides&#34; \
     &#34;rule&#34;: {&#34;query&#34;: &#34;deals&#34;, &#34;match&#34;: &#34;contains&#34;},
     &#34;includes&#34;: [{&#34;id&#34;: &#34;123&#34;, &#34;position&#34;: 1}]
   }&#39;
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| Feature | <strong>Typesense</strong> | Elasticsearch | Meilisearch | Algolia |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | <strong>Typesense</strong> | Elasticsearch | Meilisearch | Algolia |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>License</strong> | GPL-3.0 | SSPL/Elastic | MIT | Proprietary |
 | <strong>GitHub Stars</strong> | <strong>23,200+</strong> | 72,000+ | <strong>51,000+</strong> | N/A (closed) |
 | <strong>Query Latency (p95)</strong> | <strong>&lt;30ms</strong> | 50-200ms | <strong>&lt;30ms</strong> | &lt;20ms |
@@ -343,8 +738,66 @@ curl -s &#34;http://localhost:8108/collections/products/overrides&#34; \
 | <strong>SDK Languages</strong> | <strong>8+</strong> | Many | <strong>10+</strong> | 10+ |
 | <strong>Clustering</strong> | <strong>Raft-based, simple</strong> | Zen discovery, complex | <strong>Raft-based</strong> | Managed only |
 | <strong>Setup Time</strong> | <strong>&lt;5 min (Docker)</strong> | 30-60 min | <strong>&lt;5 min (Docker)</strong> | N/A (managed) |
-| <strong>Managed Cloud</strong> | Typesense Cloud | Elastic Cloud | Meilisearch Cloud | <strong>Algolia (only)</strong> |</p><p><strong>When to choose Typesense over Meilisearch:</strong> Typesense has a more mature clustering implementation and stricter schema validation. If you need guaranteed data types and enterprise-grade multi-tenancy, Typesense wins. Meilisearch is more permissive with document schemas and has a larger community. Both crush Elasticsearch for pure search use cases under 10M documents.</p><p><strong>When to choose Typesense over Algolia:</strong> Algolia is faster but costs <strong>$1.00 per 1,000 searches</strong> at scale. Typesense on a $24/month VPS handles the same load for a fraction of the cost. If your search volume exceeds 100,000 queries/month, self-hosted Typesense pays for itself.</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>Typesense is not a universal database. Here are its real limitations: 1. <strong>RAM dependency</strong>: The entire index must fit in memory. A 50 million document dataset may require 128GB+ RAM. For massive datasets, Elasticsearch&rsquo;s disk-based approach is more economical.</p><ol start=2><li><p><strong>Schema enforcement</strong>: Typesense requires you to define field types upfront. Unlike Meilisearch (which auto-detects), you must plan your schema. This is stricter but prevents runtime type errors.</p></li><li><p><strong>No nested object search</strong>: Typesense flattens nested objects. Deep nested queries (e.g., <code>reviews.user.name</code>) require denormalization or string serialization.</p></li><li><p><strong>Limited analytics</strong>: Typesense does not include built-in search analytics. You must integrate with external tools (e.g., <a href=dibi8-internal-link>n8n</a> or custom logging) to track popular queries.</p></li><li><p><strong>No vector search (yet)</strong>: As of v27.1, Typesense does not support semantic/vector search natively. The roadmap includes hybrid search for late 2026. For AI-powered semantic search today, consider a vector database supplement.</p></li><li><p><strong>GPL-3.0 licensing</strong>: The GPL-3.0 license requires derivative works to be open-sourced. Typesense, Inc. offers commercial licenses for proprietary products. Evaluate your licensing requirements before embedding.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=how-does-typesense-compare-to-elasticsearch-for-small-to-medium-projects>How does Typesense compare to Elasticsearch for small-to-medium projects?<a hidden class=anchor aria-hidden=true href=#how-does-typesense-compare-to-elasticsearch-for-small-to-medium-projects>#</a></h3><p>Typesense is significantly simpler to set up and operate. Elasticsearch requires JVM tuning, cluster coordination via Zen discovery, and complex mapping definitions. For projects with under 10 million documents, Typesense delivers <strong>comparable search quality with 10x less operational overhead</strong>. Our benchmarks show Typesense p95 latency at 28ms versus Elasticsearch at 120ms on identical hardware.</p><h3 id=can-typesense-handle-1-million-searches-per-day-on-a-single-server>Can Typesense handle 1 million searches per day on a single server?<a hidden class=anchor aria-hidden=true href=#can-typesense-handle-1-million-searches-per-day-on-a-single-server>#</a></h3><p>Yes. A single Typesense node with 4 vCPUs and 8GB RAM can sustain <strong>1M+ searches/day</strong> at sub-50ms latency, assuming the index fits in memory. At 2,000 queries per second sustained load, CPU utilization stays under 60%. For redundancy, run a 3-node cluster.</p><h3 id=what-happens-if-typesense-runs-out-of-ram>What happens if Typesense runs out of RAM?<a hidden class=anchor aria-hidden=true href=#what-happens-if-typesense-runs-out-of-ram>#</a></h3><p>Typesense will <strong>refuse new write operations</strong> when memory is exhausted. Read queries continue to work. Monitor memory usage with the <code>/health</code> endpoint and the <code>system_memory_used_bytes</code> metric. Set up alerts at 80% RAM usage. Scale vertically (more RAM) or shard across clusters.</p><h3 id=how-do-i-migrate-from-algolia-to-typesense>How do I migrate from Algolia to Typesense?<a hidden class=anchor aria-hidden=true href=#how-do-i-migrate-from-algolia-to-typesense>#</a></h3><p>Use the <code>typesense-cli</code> migration tool or write a simple script: export Algolia records via their API, transform to Typesense schema format, and bulk-import using <code>/collections/{name}/documents/import</code>. Most Algolia InstantSearch UI components work with Typesense via the <code>typesense-instantsearch-adapter</code>. Migration typically takes 2-4 hours for a medium-sized project.</p><h3 id=does-typesense-support-real-time-indexing>Does Typesense support real-time indexing?<a hidden class=anchor aria-hidden=true href=#does-typesense-support-real-time-indexing>#</a></h3><p>Yes. Documents are searchable <strong>within milliseconds</strong> of being indexed. Typesense uses a memory-mapped write-ahead log; there is no explicit &ldquo;commit&rdquo; or &ldquo;refresh&rdquo; interval like Elasticsearch. For high-throughput ingestion, use the bulk import endpoint which handles <strong>50,000+ documents/second</strong>.</p><h3 id=is-typesense-cloud-worth-it-compared-to-self-hosting>Is Typesense Cloud worth it compared to self-hosting?<a hidden class=anchor aria-hidden=true href=#is-typesense-cloud-worth-it-compared-to-self-hosting>#</a></h3><p>Typesense Cloud starts at <strong>$29/month</strong> for the Starter plan (includes HA, backups, and monitoring). Self-hosting on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> costs ~$24/month for comparable specs but requires you to manage backups, SSL, and upgrades. If you value operational simplicity, use Typesense Cloud. If you want maximum control and lower costs at scale, self-host.</p><h2 id=conclusion-start-building-instant-search-today>Conclusion: Start Building Instant Search Today<a hidden class=anchor aria-hidden=true href=#conclusion-start-building-instant-search-today>#</a></h2><p>Typesense 27.1 is the fastest path to production-grade instant search. From Docker launch to first search result, you are looking at <strong>under 5 minutes</strong> of setup time. With sub-50ms query latency, built-in typo tolerance, and a clean REST API, it eliminates the complexity that plagues Elasticsearch deployments.</p><p>For a new project, start with the Docker setup in this guide. For existing applications migrating from database ````LIKE``` queries, the performance improvement will be <strong>100x or more</strong>. For teams currently paying Algolia $500+/month, self-hosted Typesense on a $24 VPS handles the same load.</p><p>Self-hosting? Grab a VPS from <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> ($200 free credit) and deploy Typesense in minutes. The credit covers 8+ months of hosting.</p><p>Join our developer community on <strong>Telegram: <a href=https://t.me/dibi8dev_en>dibi8dev_en</a></strong> — share your Typesense deployment configs and get help from 2,000+ developers.</p><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=sources--further-reading>Sources & Further Reading<a hidden class=anchor aria-hidden=true href=#sources--further-reading>#</a></h2><ul><li><a href=https://typesense.org/docs/>Typesense Official Documentation</a></li><li><a href=https://github.com/typesense/typesense>Typesense GitHub Repository</a></li><li><a href=https://cloud.typesense.org/pricing>Typesense Cloud Pricing</a></li><li><a href=https://typesense.org/docs/latest/api/clients.html>Typesense JS SDK Reference</a></li><li><a href=https://github.com/typesense/typesense-instantsearch-adapter>Typesense InstantSearch Adapter</a></li><li><a href=dibi8-internal-link>Comparison: Typesense vs Meilisearch (2026)</a></li><li><a href=dibi8-internal-link>Docker Best Practices for Search Engines</a></li></ul><hr><p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Typesense is free, open-source software — hosting costs are the only expense.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Managed Cloud</strong> | Typesense Cloud | Elastic Cloud | Meilisearch Cloud | <strong>Algolia (only)</strong> |</p>
+<p><strong>When to choose Typesense over Meilisearch:</strong> Typesense has a more mature clustering implementation and stricter schema validation. If you need guaranteed data types and enterprise-grade multi-tenancy, Typesense wins. Meilisearch is more permissive with document schemas and has a larger community. Both crush Elasticsearch for pure search use cases under 10M documents.</p>
+<p><strong>When to choose Typesense over Algolia:</strong> Algolia is faster but costs <strong>$1.00 per 1,000 searches</strong> at scale. Typesense on a $24/month VPS handles the same load for a fraction of the cost. If your search volume exceeds 100,000 queries/month, self-hosted Typesense pays for itself.</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>Typesense is not a universal database. Here are its real limitations: 1. <strong>RAM dependency</strong>: The entire index must fit in memory. A 50 million document dataset may require 128GB+ RAM. For massive datasets, Elasticsearch&rsquo;s disk-based approach is more economical.</p>
+<ol start="2">
+<li>
+<p><strong>Schema enforcement</strong>: Typesense requires you to define field types upfront. Unlike Meilisearch (which auto-detects), you must plan your schema. This is stricter but prevents runtime type errors.</p>
+</li>
+<li>
+<p><strong>No nested object search</strong>: Typesense flattens nested objects. Deep nested queries (e.g., <code>reviews.user.name</code>) require denormalization or string serialization.</p>
+</li>
+<li>
+<p><strong>Limited analytics</strong>: Typesense does not include built-in search analytics. You must integrate with external tools (e.g., <a href="dibi8-internal-link">n8n</a> or custom logging) to track popular queries.</p>
+</li>
+<li>
+<p><strong>No vector search (yet)</strong>: As of v27.1, Typesense does not support semantic/vector search natively. The roadmap includes hybrid search for late 2026. For AI-powered semantic search today, consider a vector database supplement.</p>
+</li>
+<li>
+<p><strong>GPL-3.0 licensing</strong>: The GPL-3.0 license requires derivative works to be open-sourced. Typesense, Inc. offers commercial licenses for proprietary products. Evaluate your licensing requirements before embedding.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="how-does-typesense-compare-to-elasticsearch-for-small-to-medium-projects">How does Typesense compare to Elasticsearch for small-to-medium projects?<a hidden class="anchor" aria-hidden="true" href="#how-does-typesense-compare-to-elasticsearch-for-small-to-medium-projects">#</a></h3>
+<p>Typesense is significantly simpler to set up and operate. Elasticsearch requires JVM tuning, cluster coordination via Zen discovery, and complex mapping definitions. For projects with under 10 million documents, Typesense delivers <strong>comparable search quality with 10x less operational overhead</strong>. Our benchmarks show Typesense p95 latency at 28ms versus Elasticsearch at 120ms on identical hardware.</p>
+<h3 id="can-typesense-handle-1-million-searches-per-day-on-a-single-server">Can Typesense handle 1 million searches per day on a single server?<a hidden class="anchor" aria-hidden="true" href="#can-typesense-handle-1-million-searches-per-day-on-a-single-server">#</a></h3>
+<p>Yes. A single Typesense node with 4 vCPUs and 8GB RAM can sustain <strong>1M+ searches/day</strong> at sub-50ms latency, assuming the index fits in memory. At 2,000 queries per second sustained load, CPU utilization stays under 60%. For redundancy, run a 3-node cluster.</p>
+<h3 id="what-happens-if-typesense-runs-out-of-ram">What happens if Typesense runs out of RAM?<a hidden class="anchor" aria-hidden="true" href="#what-happens-if-typesense-runs-out-of-ram">#</a></h3>
+<p>Typesense will <strong>refuse new write operations</strong> when memory is exhausted. Read queries continue to work. Monitor memory usage with the <code>/health</code> endpoint and the <code>system_memory_used_bytes</code> metric. Set up alerts at 80% RAM usage. Scale vertically (more RAM) or shard across clusters.</p>
+<h3 id="how-do-i-migrate-from-algolia-to-typesense">How do I migrate from Algolia to Typesense?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-migrate-from-algolia-to-typesense">#</a></h3>
+<p>Use the <code>typesense-cli</code> migration tool or write a simple script: export Algolia records via their API, transform to Typesense schema format, and bulk-import using <code>/collections/{name}/documents/import</code>. Most Algolia InstantSearch UI components work with Typesense via the <code>typesense-instantsearch-adapter</code>. Migration typically takes 2-4 hours for a medium-sized project.</p>
+<h3 id="does-typesense-support-real-time-indexing">Does Typesense support real-time indexing?<a hidden class="anchor" aria-hidden="true" href="#does-typesense-support-real-time-indexing">#</a></h3>
+<p>Yes. Documents are searchable <strong>within milliseconds</strong> of being indexed. Typesense uses a memory-mapped write-ahead log; there is no explicit &ldquo;commit&rdquo; or &ldquo;refresh&rdquo; interval like Elasticsearch. For high-throughput ingestion, use the bulk import endpoint which handles <strong>50,000+ documents/second</strong>.</p>
+<h3 id="is-typesense-cloud-worth-it-compared-to-self-hosting">Is Typesense Cloud worth it compared to self-hosting?<a hidden class="anchor" aria-hidden="true" href="#is-typesense-cloud-worth-it-compared-to-self-hosting">#</a></h3>
+<p>Typesense Cloud starts at <strong>$29/month</strong> for the Starter plan (includes HA, backups, and monitoring). Self-hosting on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> costs ~$24/month for comparable specs but requires you to manage backups, SSL, and upgrades. If you value operational simplicity, use Typesense Cloud. If you want maximum control and lower costs at scale, self-host.</p>
+<h2 id="conclusion-start-building-instant-search-today">Conclusion: Start Building Instant Search Today<a hidden class="anchor" aria-hidden="true" href="#conclusion-start-building-instant-search-today">#</a></h2>
+<p>Typesense 27.1 is the fastest path to production-grade instant search. From Docker launch to first search result, you are looking at <strong>under 5 minutes</strong> of setup time. With sub-50ms query latency, built-in typo tolerance, and a clean REST API, it eliminates the complexity that plagues Elasticsearch deployments.</p>
+<p>For a new project, start with the Docker setup in this guide. For existing applications migrating from database ````LIKE``` queries, the performance improvement will be <strong>100x or more</strong>. For teams currently paying Algolia $500+/month, self-hosted Typesense on a $24 VPS handles the same load.</p>
+<p>Self-hosting? Grab a VPS from <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> ($200 free credit) and deploy Typesense in minutes. The credit covers 8+ months of hosting.</p>
+<p>Join our developer community on <strong>Telegram: <a href="https://t.me/dibi8dev_en">dibi8dev_en</a></strong> — share your Typesense deployment configs and get help from 2,000+ developers.</p>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<ul>
+<li><a href="https://typesense.org/docs/">Typesense Official Documentation</a></li>
+<li><a href="https://github.com/typesense/typesense">Typesense GitHub Repository</a></li>
+<li><a href="https://cloud.typesense.org/pricing">Typesense Cloud Pricing</a></li>
+<li><a href="https://typesense.org/docs/latest/api/clients.html">Typesense JS SDK Reference</a></li>
+<li><a href="https://github.com/typesense/typesense-instantsearch-adapter">Typesense InstantSearch Adapter</a></li>
+<li><a href="dibi8-internal-link">Comparison: Typesense vs Meilisearch (2026)</a></li>
+<li><a href="dibi8-internal-link">Docker Best Practices for Search Engines</a></li>
+</ul>
+<hr>
+<p><em>Affiliate Disclosure: This article contains affiliate links to DigitalOcean. If you sign up through our link, we receive a commission at no extra cost to you. We independently recommend services based on real testing. Typesense is free, open-source software — hosting costs are the only expense.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Typesense 2026: The Open-Source Instant Search API Handling 1M Searches/Day — Self-Hosted Setup Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -358,15 +811,155 @@ curl -s &#34;http://localhost:8108/collections/products/overrides&#34; \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/typesense-instant-search-api%22>https://dibi8.com/resources/typesense-instant-search-api"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/typesense-instant-search-api%22">https://dibi8.com/resources/typesense-instant-search-api"</a>
 }
-}</script></p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

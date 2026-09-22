@@ -1,10 +1,325 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/crewai/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/crewai/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/crewai/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/crewai/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/crewai/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/crewai/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/crewai/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“crewai”, “multi-agent”, “ai-agent”, “python”, “llm-orchestration”, “automation”, “open-source”, “machine-learning”] aliases:\n/vi/posts/crewai/ /vi/resources/llm-frameworks/crewai-multi-agent-orchestration/ Cách cài đặt CrewAI, cấu hình vai trò agent, kết nối tác vụ và triển khai hệ thống multi-agent production-ready trong vòng 30 phút.\nGiới thiệu Xây dựng một agent LLM đơn lẻ là điều đơn giản. Điều phối năm agent nghiên cứu, viết, chỉnh sửa, kiểm tra sự kiện và xuất bản nội dung mà không chồng chéo lẫn nhau là một vấn đề hoàn toàn khác. CrewAI giải quyết điều này bằng mô hình điều phối dựa trên vai trò, cho phép lập trình viên xác định các agent chuyên biệt, giao tác vụ và chạy chúng như một đội được phối hợp. Với hơn 51,759 sao trên GitHub và 318 ngườ đóng góp, CrewAI đã trở thành framework Python hàng đầu cho việc cộng tác multi-agent vào năm 2026. Hướng dẫn này sẽ đi qua cách cài đặt CrewAI, cấu hình crew đầu tiên của bạn và triển khai lên production với cấu hình thực tế, benchmark và các đánh đổi trung thực.\nCrewAI là gì? CrewAI là framework Python mã nguồn mở để điều phối các AI agent tự chủ dựa trên vai trò, hoạt động cộng tác trên các tác vụ phức tạp. Nó cung cấp hai khái niệm trừu tượng cốt lõi: Crews (đội các agent với vai trò, mục tiêu và câu chuyện nền được xác định) và Flows (luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện và quản lý trạng thái). Khác với prompt LLM đơn lẻ, các agent CrewAI có thể phân công công việc, sử dụng công cụ và tạo đầu ra có cấu trúc thông qua thực thi tuần tự, phân cấp hoặc song song.\nCrewAI hoạt động như thế nào Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều phối: Các thành phần cốt lõi:\nThành phần Mục đích File cấu hình Agent Ngườ làm việc AI dựa trên vai trò với mục tiêu, câu chuyện nền và công cụ ```agents.yaml```` Task Đơn vị công việc được giao cho agent với đầu ra mong đợi tasks.yaml Crew Đội agent thực thi tác vụ thông qua quy trình được định nghĩa crew.py Flow Luồng công việc dựa trên sự kiện kết nối nhiều crew với quản lý trạng thái flow.py Tool Khả năng bên ngoài (tìm kiếm, API, tính toán) tools/ Process Chiến lược thực thi: tuần tự, phân cấp hoặc song song crew.py Luồng thực thi:\nFlow nhận đầu vào và khởi tạo trạng thái Tác vụ được gửi đến agent dựa trên loại quy trình Agent thực thi tác vụ, tùy chọn sử dụng công cụ Đầu ra tác vụ cung cấp ngữ cảnh cho các tác vụ tiếp theo Kết quả cuối cùng được trả về với chỉ số sử dụng token Sơ đồ trên thể hiện kiến trúc kép của CrewAI: Crews xử lý cộng tác agent trong một workflow đơn, còn Flows cung cấp xương sống dựa trên sự kiện để chuỗi hóa nhiều crew với quản lý trạng thái và định tuyến có điều kiện.\nCài đặt \u0026 Thiết lập Yêu cầu trước CrewAI yêu cầu Python 3.10–3.13 và API key từ ít nhất một nhà cung cấp LLM.\n# Kiểm tra phiên bản Python python --version # Phải là 3.10, 3.11, 3.12, hoặc 3.13 # Cài đặt uv (trình quản lý gói được khuyến nghị) curl -LsSf https://astral.sh/uv/install.sh | sh Cài đặt CrewAI # Cài đặt framework CrewAI core uv pip install crewai # Hoặc với gói công cụ tùy chọn uv pip install 'crewai[tools]' # Xác minh cài đặt crewai version Tạo dự án mới # Tạo khung dự án CrewAI mới crewai create crew research_crew # Di chuyển vào thư mục dự án cd research_crew # Cài đặt các phụ thuộc dự án crewai install Cấu trúc dự án được tạo: ````` research_crew/ ├── .gitignore ├── pyproject.toml ├── README.md ├── .env └── src/ └── research_crew/ ├── init.py ├── main.py ├── crew.py ├── config/ │ ├── agents.yaml │ └── tasks.yaml └── tools/ ├── init.py └── custom_tool.py\n### Cấu hình biến môi trường `````bash # .env — thêm file này vào .gitignore! OPENAI_API_KEY=sk-your-openai-key-here SERPER_API_KEY=your-serper-api-key Với LLM cục bộ qua Ollama (không cần API key): `````bash\nTải model cục bộ ollama pull llama3.1\nTrong cấu hình agent, sử dụng: ollama/llama3.1 ## Xác định Agent đầu tiên của bạn Chỉnh sửa ``src/research_crew/config/agents.yaml`` để xác định các agent dựa trên vai trò: `````yaml # src/research_crew/config/agents.yaml researcher: role: \u003e Senior Research Analyst goal: \u003e Conduct thorough research on {topic} and gather comprehensive, accurate, and up-to-date information. backstory: \u003e You are a seasoned research analyst with 15 years of experience in technology analysis. You find obscure but critical data points and synthesize complex information. llm: openai/gpt-4o max_iter: 15 verbose: true writer: role: \u003e Technical Content Writer goal: \u003e Transform research findings on {topic} into a well-structured, engaging article. backstory: \u003e You are an award-winning technical writer who excels at making complex topics accessible without sacrificing accuracy. llm: openai/gpt-4o max_iter: 10 verbose: true editor: role: \u003e Senior Content Editor goal: \u003e Review and polish the article about {topic} to ensure factual accuracy, grammar, and readability. backstory: \u003e You are a meticulous editor with a sharp eye for factual errors and logical inconsistencies. llm: openai/gpt-4o-mini max_iter: 8 verbose: true Các tùy chọn cấu hình chính cho mỗi agent: | Tham số | Mô tả | Ví dụ | |———|——-|——-| | role | Chức danh và chức năng của agent | Senior Research Analyst | | goal | Mục tiêu agent cần đạt được | Nghiên cứu {topic} | | backstory | Ngữ cảnh định hình hành vi của agent | Kinh nghiệm và tính cách | | llm | Mô hình LLM qua LiteLLM | openai/gpt-4o | | max_iter | Số vòng lặp suy luận tối đa mỗi tác vụ | 15 | | verbose | In quá trình suy nghĩ ra console | true | | allow_delegation | Có thể phân công cho agent khác | false |\nXác định tác vụ và kết nối Crew Cấu hình tác vụ Chỉnh sửa src/research_crew/config/tasks.yaml: `````yaml\nsrc/research_crew/config/tasks.yaml research_task: description: “Technical guide and comparison.” Research the topic: {topic}. Gather at least 10 key data points from multiple authoritative sources. Include statistics, expert opinions, and recent developments. expected_output: \u003e A structured research brief with 10+ data points, source citations, and a summary of key findings. agent: researcher\nwriting_task: description: “Technical guide and comparison.” Using the research brief provided, write a comprehensive technical article about {topic}. Target 1500 words. Use clear headings, examples, and engaging prose. expected_output: \u003e A markdown-formatted article with introduction, body sections, and conclusion. Minimum 1500 words. agent: writer context: [research_task]\nediting_task: description: “Technical guide and comparison.” Edit the article for clarity, grammar, factual accuracy, and readability. Ensure all claims are supported by the research brief. expected_output: \u003e A polished final article ready for publication. Include an editor\"s note summarizing changes made. agent: editor context: [writing_task] output_file: output/final_article.md\n### Định nghĩa Crew Kết nối agent và tác vụ trong ``src/research_crew/crew.py``: `````python # src/research_crew/crew.py from crewai import Agent, Crew, Process, Task from crewai.project import CrewBase, agent, crew, task @CrewBase class ResearchCrew: \"\"\"Research crew for producing high-quality articles.\"\"\" agents_config = \"config/agents.yaml\" tasks_config = \"config/tasks.yaml\" @agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[\"researcher\"], tools=[], allow_delegation=False, ) @agent def writer(self) -\u003e Agent: return Agent( config=self.agents_config[\"writer\"], tools=[], allow_delegation=False, ) @agent def editor(self) -\u003e Agent: return Agent( config=self.agents_config[\"editor\"], tools=[], allow_delegation=False, ) @task def research_task(self) -\u003e Task: return Task(config=self.tasks_config[\"research_task\"]) @task def writing_task(self) -\u003e Task: return Task(config=self.tasks_config[\"writing_task\"]) @task def editing_task(self) -\u003e Task: return Task( config=self.tasks_config[\"editing_task\"], output_file=\"output/final_article.md\", ) @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.sequential, verbose=True, ) Điểm vào và thực thi # src/research_crew/main.py #!/usr/bin/env python from research_crew.crew import ResearchCrew def run(): \"\"\"Run the research crew.\"\"\" inputs = { \"topic\": \"AI coding assistants in 2026\" } result = ResearchCrew().crew().kickoff(inputs=inputs) print(\"\\n\\n========== FINAL OUTPUT ==========\\n\") print(result.raw) print(f\"\\nToken usage: {result.token_usage}\") if __name__ == \"__main__\": run() Chạy crew: `````bash\nThực thi qua CLI crewai run\nHoặc chạy trực tiếp bằng Python python -m research_crew.main\nĐầu ra mong đợi: ````` [2026-05-20 10:23:15] Working Agent: Senior Research Analyst [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026... ... [2026-05-20 10:24:02] Working Agent: Technical Content Writer [2026-05-20 10:24:02] Starting Task: Using the research brief provided... ... [2026-05-20 10:25:18] Working Agent: Senior Content Editor ... [Bài viết đã chỉnh sửa hoàn chỉnh xuất hiện ở đây] Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...) Cách sử dụng nâng cao: Flows, công cụ và mẫu production Sử dụng CrewAI Flows cho điều phối phức tạp Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: `````python\nsrc/research_crew/flow.py from crewai.flow.flow import Flow, listen, start from pydantic import BaseModel from research_crew.crew import ResearchCrew\nclass ArticleState(BaseModel): topic: str = \"\" word_count: int = 0 final_article: str = \"\"\nclass ArticleFlow(Flow[ArticleState]): @start() def get_topic(self): self.state.topic = “Multi-agent AI frameworks in 2026” print(f\"Starting flow for topic: {self.state.topic}\")\n@listen(get_topic) def run_research_crew(self): result = ResearchCrew().crew().kickoff( inputs={\"topic\": self.state.topic} ) self.state.final_article = result.raw self.state.word_count = len(result.raw.split()) @listen(run_research_crew) def validate_output(self): if self.state.word_count \u003c 1000: print(\"WARNING: Article too short, triggering revision\") else: print(f\"Article validated: {self.state.word_count} words\") with open(\"output/article.md\", \"w\") as f: f.write(self.state.final_article) if name == “main”: ArticleFlow().kickoff()\n### Tạo công cụ tùy chỉnh `````python # src/research_crew/tools/custom_tool.py from crewai.tools import tool import requests @tool(\"Web Search\") def web_search(query: str) -\u003e str: \"\"\"Search the web for information on a given query.\"\"\" response = requests.get( \"https://serpapi.com/search\", params={\"q\": query, \"api_key\": \"${SERPER_API_KEY}\"} ) return response.json()[\"organic_results\"][0][\"snippet\"] Đăng ký công cụ trong crew: `````python\nTrong crew.py, import và gắn kết from research_crew.tools.custom_tool import web_search\n@agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[“researcher”], tools=[web_search], # Gắn công cụ tùy chỉnh allow_delegation=False, )\n### Quy trình phân cấp với agent quản lý `````python @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.hierarchical, manager_llm=\"openai/gpt-4o\", verbose=True, ) Triển khai production với FastAPI # api_server.py — Triển khai production from fastapi import FastAPI, BackgroundTasks from pydantic import BaseModel from research_crew.crew import ResearchCrew import uuid app = FastAPI(title=\"CrewAI Research API\") jobs: dict = {} class CrewRequest(BaseModel): topic: str @app.post(\"/research\") async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4()) jobs[job_id] = {\"status\": \"queued\", \"topic\": request.topic} background.add_task( lambda: run_crew(job_id, request.topic) ) return {\"job_id\": job_id, \"status\": \"queued\"} @app.get(\"/status/{job_id}\") async def get_status(job_id: str): return jobs.get(job_id, {\"error\": \"Job not found\"}) def run_crew(job_id: str, topic: str): jobs[job_id][\"status\"] = \"running\" result = ResearchCrew().crew().kickoff(inputs={\"topic\": topic}) jobs[job_id][\"status\"] = \"completed\" jobs[job_id][\"result\"] = result.raw # Chạy: uvicorn api_server:app --host 0.0.0.0 --port 8000 Benchmark / Trường hợp sử dụng thực tế Benchmark hiệu năng So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-agent tiêu chuẩn: | Chỉ số | CrewAI | AutoGen | LangGraph | Agno | |——–|——–|———|———–|——| | Thờ gian đến lần chạy đầu tiên | ~15 phút | ~30 phút | ~60 phút | ~20 phút | | Chi phí token (chuẩn hóa) | 1.5–2x | 5–6x | 1x cơ sở | 1.2x | | Sao GitHub (Tháng 5/2026) | 51,759 | ~38,000 | ~28,000 | ~15,000 | | Dòng code hello-world | ~20 | ~40 | ~50 | ~25 | | Checkpoint tích hợp sẵn | Một phần | Không | Có (Postgres/Redis) | Không | | Hỗ trợ async | Có | Có | Có | Có | | Hỗ trợ LLM cục bộ (Ollama) | Có | Có | Có | Có |\nCác trường hợp sử dụng thực tế Báo cáo nghiên cứu tự động: Một startup fintech sử dụng CrewAI để tạo báo cáo phân tích thị trường hàng ngày. Agent nghiên cứu thu thập dữ liệu tài chính, agent phân tích xu hướng và agent viết tạo báo cáo cuối cùng — tất cả trước 8 giờ sáng.\nPipeline sản xuất nội dung: Một công ty media vận hành crew 4 agent cho bài blog: nghiên cứu → viết → chỉnh sửa → tối ưu hóa SEO. Sản lượng tăng từ 3 lên 12 bài mỗi tuần.\nTự động hóa review code: Một team SaaS sử dụng CrewAI để phân loại pull request. Một agent tóm tắt thay đổi, một agent khác kiểm tra pattern bảo mật và một agent thứ ba tạo bình luận review.\nTích hợp với các công cụ phổ biến OpenAI / Anthropic / Google Gemini CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: `````yaml\nagents.yaml — chọn model cho mỗi agent researcher: role: Research Analyst llm: anthropic/claude-sonnet-4-20250514\nhoặc: openai/gpt-4o hoặc: gemini/gemini-2.0-flash ### Ollama (LLM cục bộ) `````yaml researcher: role: Research Analyst llm: ollama/llama3.1 # Yêu cầu: ollama pull llama3.1 Công cụ LangChain # Sử dụng công cụ LangChain trong CrewAI from langchain_community.tools import WikipediaQueryRun from langchain_community.utilities import WikipediaAPIWrapper from crewai import Agent wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()) agent = Agent( role=\"Researcher\", goal=\"Research topics thoroughly\", tools=[wiki_tool], # Công cụ LangChain hoạt động trực tiếp verbose=True, ) LlamaIndex (Tích hợp RAG) from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from crewai.tools import tool @tool(\"Document Search\") def document_search(query: str) -\u003e str: \"\"\"Search internal documents for relevant information.\"\"\" documents = SimpleDirectoryReader(\"./docs\").load_data() index = VectorStoreIndex.from_documents(documents) query_engine = index.as_query_engine() return str(query_engine.query(query)) Triển khai Docker # Dockerfile FROM python:3.12-slim WORKDIR /app COPY pyproject.toml . COPY src/ ./src/ RUN pip install crewai crewai-tools RUN crewai install EXPOSE 8000 CMD [\"crewai\", \"run\"] # docker-compose.yml version: \"3.8\" services: crewai: build: . env_file: .env volumes: - ./output:/app/output ports: - \"8000:8000\" So sánh với các giải pháp thay thế Tính năng CrewAI AutoGen LangGraph Agno Mô hình điều phối Crew dựa trên vai trò Agent hội thoại Đồ thị trạng thái Agent nhẹ Tốc độ prototype 15 phút (nhanh nhất) 30 phút 60 phút (dốc nhất) 20 phút Hiệu quả token Trung bình (1.5–2x) Chi phí cao nhất (5–6x) Tốt nhất (1x) Tốt (1.2x) Checkpoint production Một phần + CrewAI+ Không tích hợp Có (Postgres/Redis) Không Khả năng quan sát CrewAI+ (đang phát triển) OTEL cơ bản LangSmith (sâu) Tối thiểu Độ khó học Thấp Trung bình Cao Thấp Đào bảo trì Tích cực Chế độ bảo trì Tích cực Tích cực Phù hợp nhất Prototype nhanh, luồng dựa trên vai trò Nghiên cứu, agent viết code Luồng production có trạng thái Tác vụ agent đơn giản Hạn chế / Đánh giá trung thực CrewAI KHÔNG phù hợp cho:\nMáy trạng thái phức tạp: Nếu luồng công việc cần đồ thị tuần hoàn với phân nhánh và time-travel debugging, mô hình đồ thị rõ ràng của LangGraph phù hợp hơn.\nProduction khối lượng cực cao: Checkpointing của CrewAI là một phần so với khả năng duy trì trạng thái đầy đủ của LangGraph. Với hàng nghìn lần chạy hàng ngày cần audit trail, LangGraph được thử nghiệm kỹ hơn.\nNgân sách nhạy cảm với token: Các agent của CrewAI mặc định khá dài dòng. Trên các tác vụ tương đương, dự kiến tiêu thụ token gấp 1.5–2 lần LangGraph. Dự trù $100–$500/tháng cho khối lượng production trung bình.\nYêu cầu độ trễ thực thờ: Điều phối multi-agent tăng độ trễ vốn có. Một crew 3-agent tuần tự với GPT-4o mất 45–90 giây. Không phù hợp cho yêu cầu phản hồi dưới 1 giây.\nKhả năng quan sát sâu: CrewAI+ cung cấp giám sát nhưng LangSmith cung cấp khả năng truy vết sâu hơn với tính toán token theo node và khả năng replay.\nCâu hỏi thường gặp Q: CrewAI yêu cầu phiên bản Python nào? A: CrewAI yêu cầu Python 3.10 đến 3.13. Không hỗ trợ Python 3.9 trở xuống. Sử dụng pyenv để quản lý nhiều phiên bản Python trên hệ thống.\nQ: Làm thế nào cài đặt CrewAI với hỗ trợ LLM cục bộ? A: Cài đặt CrewAI bình thường bằng pip install crewai, sau đó cài đặt Ollama riêng. Trong cấu hình agent, đặt llm: ollama/llama3.1. Không cần API key cho suy luận cục bộ.\nQ: CrewAI có thể hoạt động với model không phải OpenAI không? A: Có. CrewAI hỗ trợ mọi model tương thích LiteLLM bao gồm Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral và model cục bộ qua Ollama. Sử dụng định dạng provider/model-name trong cấu hình agent.\nQ: Sự khác biệt giữa CrewAI Crews và Flows là gì? A: Crews là các team agent cộng tác trên tác vụ thông qua các quy trình tuần tự, phân cấp hoặc song song. Flows là luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện, quản lý trạng thái qua Pydantic models và phân nhánh. Dùng Crews cho cộng tác đơn luồng và Flows cho pipeline đa giai đoạn.\nQ: Chi phí chạy crew CrewAI trong production là bao nhiêu? A: Với crew 3-agent sử dụng GPT-4o chạy 100 lần/ngày, dự kiến chi phí API LLM khoảng $100–$300/tháng. Sử dụng model rẻ hơn như GPT-4o-mini cho tác vụ đơn giản có thể giảm chi phí 40–60%. CrewAI miễn phí và mã nguồn mở (giấy phép MIT).\nQ: Làm thế nào debug agent CrewAI cho kết quả kém? A: Đặt verbose: true trên agent để xem quá trình suy nghĩ. Dùng max_iter giới hạn vòng lặp suy luận. Thêm schema đầu ra có cấu trúc để ép format. Xem lại chỉ số sử dụng token sau mỗi lần chạy. Với vấn đề dai dẳng, đơn giản hóa mô tả tác vụ và xác minh cấu hình công cụ.\nQ: CrewAI đã sẵn sàng production cho doanh nghiệp chưa? A: Với khối lượng production vừa và nhỏ, có. CrewAI+ thêm tính năng quan sát và triển khai được quản lý từ $99/tháng. Với khối lượng lớn hoặc cần audit nghiêm ngặt, cân nhắc sử dụng CrewAI với checkpointing tùy chỉnh hoặc đánh giá LangGraph.\nKết luận CrewAI mang lại con đường nhanh nhất từ ý tưởng đến hệ thống multi-agent hoạt động. Tính trừu tượng dựa trên vai trò — các agent với vai trò, mục tiêu và câu chuyện nền được xác định cộng tác hoàn thành tác vụ — ánh xạ rõ ràng với cách team thực sự làm việc. Trong vòng 30 phút, bạn có thể cài đặt CrewAI, tạo khung dự án, xác định agent và tác vụ, và chạy crew đầu tiên. Cho production, thêm Flows cho điều phối dựa trên sự kiện, FastAPI cho endpoint HTTP và Docker cho triển khai.\nCác hành động bắt đầu ngay hôm nay:\nCài đặt CrewAI: pip install crewai Tạo khung dự án đầu tiên: crewai create crew my_project Xác định 2–3 agent với vai trò riêng biệt trong agents.yaml Chạy crew với ````crewai run``` Tham gia cộng đồng CrewAI để được hỗ trợ và tìm hiểu các mẫu nâng cao Tham gia thảo luận trên Telegram: Tham gia cộng đồng dibi8.com để nhận mẹo multi-agent AI và chiến lược triển khai production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo CrewAI GitHub Repository CrewAI Official Documentation CrewAI Quickstart Guide CrewAI Flows Documentation CrewAI Tools Reference LangGraph vs CrewAI vs AutoGen Comparison 2026 CrewAI Multi-Agent Tutorial 2026 CrewAI + IBM watsonx Tutorial Tiết lộ: Bài viết này chứa liên kết affiliate. Nếu bạn nhấp vào liên kết và thực hiện giao dịch mua, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ nghiên cứu kỹ thuật độc lập, thử nghiệm và tạo nội dung giáo dục miễn phí của chúng tôi. Tất cả các khuyến nghị đều dựa trên đánh giá riêng của chúng tôi về các công cụ.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướng dẫn thiết lập đầy đủ 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/crewai\" } } Related Articles google-jax-complete-guide ray-distributed-ai-framework-complete-guide modal-serverless-gpu-compute temporal-ai-workflow-orchestration cleanlab-11k-star-ai-data-cleaning Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"3447","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/crewai/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/crewai/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/crewai/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/crewai/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#crewai-l%c3%a0-g%c3%ac aria-label="CrewAI là gì?">CrewAI là gì?</a></li><li><a href=#crewai-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="CrewAI hoạt động như thế nào">CrewAI hoạt động như thế nào</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt & Thiết lập">Cài đặt & Thiết lập</a><ul><li><a href=#y%c3%aau-c%e1%ba%a7u-tr%c6%b0%e1%bb%9bc aria-label="Yêu cầu trước">Yêu cầu trước</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-crewai aria-label="Cài đặt CrewAI">Cài đặt CrewAI</a></li><li><a href=#t%e1%ba%a1o-d%e1%bb%b1-%c3%a1n-m%e1%bb%9bi aria-label="Tạo dự án mới">Tạo dự án mới</a></li></ul></li></ul><li><a href=#t%e1%ba%a3i-model-c%e1%bb%a5c-b%e1%bb%99 aria-label="Tải model cục bộ">Tải model cục bộ</a></li><li><a href=#trong-c%e1%ba%a5u-h%c3%acnh-agent-s%e1%bb%ad-d%e1%bb%a5ng-ollamallama31 aria-label="Trong cấu hình agent, sử dụng: ollama/llama3.1">Trong cấu hình agent, sử dụng: ollama/llama3.1</a><ul><li><a href=#x%c3%a1c-%c4%91%e1%bb%8bnh-t%c3%a1c-v%e1%bb%a5-v%c3%a0-k%e1%ba%bft-n%e1%bb%91i-crew aria-label="Xác định tác vụ và kết nối Crew">Xác định tác vụ và kết nối Crew</a><ul><li><a href=#c%e1%ba%a5u-h%c3%acnh-t%c3%a1c-v%e1%bb%a5 aria-label="Cấu hình tác vụ">Cấu hình tác vụ</a></li></ul></li></ul></li><li><a href=#srcresearch_crewconfigtasksyaml aria-label=src/research_crew/config/tasks.yaml>src/research_crew/config/tasks.yaml</a><ul><ul><li><a href=#%c4%91i%e1%bb%83m-v%c3%a0o-v%c3%a0-th%e1%bb%b1c-thi aria-label="Điểm vào và thực thi">Điểm vào và thực thi</a></li></ul></ul></li><li><a href=#th%e1%bb%b1c-thi-qua-cli aria-label="Thực thi qua CLI">Thực thi qua CLI</a></li><li><a href=#ho%e1%ba%b7c-ch%e1%ba%a1y-tr%e1%bb%b1c-ti%e1%ba%bfp-b%e1%ba%b1ng-python aria-label="Hoặc chạy trực tiếp bằng Python">Hoặc chạy trực tiếp bằng Python</a><ul><li><a href=#c%c3%a1ch-s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao-flows-c%c3%b4ng-c%e1%bb%a5-v%c3%a0-m%e1%ba%abu-production aria-label="Cách sử dụng nâng cao: Flows, công cụ và mẫu production">Cách sử dụng nâng cao: Flows, công cụ và mẫu production</a><ul><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-crewai-flows-cho-%c4%91i%e1%bb%81u-ph%e1%bb%91i-ph%e1%bb%a9c-t%e1%ba%a1p aria-label="Sử dụng CrewAI Flows cho điều phối phức tạp">Sử dụng CrewAI Flows cho điều phối phức tạp</a></li></ul></li></ul></li><li><a href=#srcresearch_crewflowpy aria-label=src/research_crew/flow.py>src/research_crew/flow.py</a></li><li><a href=#trong-crewpy-import-v%c3%a0-g%e1%ba%afn-k%e1%ba%bft aria-label="Trong crew.py, import và gắn kết">Trong crew.py, import và gắn kết</a><ul><ul><li><a href=#tri%e1%bb%83n-khai-production-v%e1%bb%9bi-fastapi aria-label="Triển khai production với FastAPI">Triển khai production với FastAPI</a></li></ul><li><a href=#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Trường hợp sử dụng thực tế">Benchmark / Trường hợp sử dụng thực tế</a><ul><li><a href=#benchmark-hi%e1%bb%87u-n%c4%83ng aria-label="Benchmark hiệu năng">Benchmark hiệu năng</a></li><li><a href=#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Các trường hợp sử dụng thực tế">Các trường hợp sử dụng thực tế</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Tích hợp với các công cụ phổ biến">Tích hợp với các công cụ phổ biến</a><ul><li><a href=#openai--anthropic--google-gemini aria-label="OpenAI / Anthropic / Google Gemini">OpenAI / Anthropic / Google Gemini</a></li></ul></li></ul></li><li><a href=#agentsyaml--ch%e1%bb%8dn-model-cho-m%e1%bb%97i-agent aria-label="agents.yaml — chọn model cho mỗi agent">agents.yaml — chọn model cho mỗi agent</a></li><li><a href=#ho%e1%ba%b7c-openaigpt-4o aria-label="hoặc: openai/gpt-4o">hoặc: openai/gpt-4o</a></li><li><a href=#ho%e1%ba%b7c-geminigemini-20-flash aria-label="hoặc: gemini/gemini-2.0-flash">hoặc: gemini/gemini-2.0-flash</a><ul><ul><li><a href=#c%c3%b4ng-c%e1%bb%a5-langchain aria-label="Công cụ LangChain">Công cụ LangChain</a></li><li><a href=#llamaindex-t%c3%adch-h%e1%bb%a3p-rag aria-label="LlamaIndex (Tích hợp RAG)">LlamaIndex (Tích hợp RAG)</a></li><li><a href=#tri%e1%bb%83n-khai-docker aria-label="Triển khai Docker">Triển khai Docker</a></li></ul><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf aria-label="So sánh với các giải pháp thay thế">So sánh với các giải pháp thay thế</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết luận">Kết luận</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài liệu tham khảo">Nguồn & Tài liệu tham khảo</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/crewai/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/crewai/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/crewai/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/crewai/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/crewai/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/crewai/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/crewai/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“crewai”, “multi-agent”, “ai-agent”, “python”, “llm-orchestration”, “automation”, “open-source”, “machine-learning”] aliases:\n/vi/posts/crewai/ /vi/resources/llm-frameworks/crewai-multi-agent-orchestration/ Cách cài đặt CrewAI, cấu hình vai trò agent, kết nối tác vụ và triển khai hệ thống multi-agent production-ready trong vòng 30 phút.\nGiới thiệu Xây dựng một agent LLM đơn lẻ là điều đơn giản. Điều phối năm agent nghiên cứu, viết, chỉnh sửa, kiểm tra sự kiện và xuất bản nội dung mà không chồng chéo lẫn nhau là một vấn đề hoàn toàn khác. CrewAI giải quyết điều này bằng mô hình điều phối dựa trên vai trò, cho phép lập trình viên xác định các agent chuyên biệt, giao tác vụ và chạy chúng như một đội được phối hợp. Với hơn 51,759 sao trên GitHub và 318 ngườ đóng góp, CrewAI đã trở thành framework Python hàng đầu cho việc cộng tác multi-agent vào năm 2026. Hướng dẫn này sẽ đi qua cách cài đặt CrewAI, cấu hình crew đầu tiên của bạn và triển khai lên production với cấu hình thực tế, benchmark và các đánh đổi trung thực.\nCrewAI là gì? CrewAI là framework Python mã nguồn mở để điều phối các AI agent tự chủ dựa trên vai trò, hoạt động cộng tác trên các tác vụ phức tạp. Nó cung cấp hai khái niệm trừu tượng cốt lõi: Crews (đội các agent với vai trò, mục tiêu và câu chuyện nền được xác định) và Flows (luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện và quản lý trạng thái). Khác với prompt LLM đơn lẻ, các agent CrewAI có thể phân công công việc, sử dụng công cụ và tạo đầu ra có cấu trúc thông qua thực thi tuần tự, phân cấp hoặc song song.\nCrewAI hoạt động như thế nào Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều phối: Các thành phần cốt lõi:\nThành phần Mục đích File cấu hình Agent Ngườ làm việc AI dựa trên vai trò với mục tiêu, câu chuyện nền và công cụ ```agents.yaml```` Task Đơn vị công việc được giao cho agent với đầu ra mong đợi tasks.yaml Crew Đội agent thực thi tác vụ thông qua quy trình được định nghĩa crew.py Flow Luồng công việc dựa trên sự kiện kết nối nhiều crew với quản lý trạng thái flow.py Tool Khả năng bên ngoài (tìm kiếm, API, tính toán) tools/ Process Chiến lược thực thi: tuần tự, phân cấp hoặc song song crew.py Luồng thực thi:\nFlow nhận đầu vào và khởi tạo trạng thái Tác vụ được gửi đến agent dựa trên loại quy trình Agent thực thi tác vụ, tùy chọn sử dụng công cụ Đầu ra tác vụ cung cấp ngữ cảnh cho các tác vụ tiếp theo Kết quả cuối cùng được trả về với chỉ số sử dụng token Sơ đồ trên thể hiện kiến trúc kép của CrewAI: Crews xử lý cộng tác agent trong một workflow đơn, còn Flows cung cấp xương sống dựa trên sự kiện để chuỗi hóa nhiều crew với quản lý trạng thái và định tuyến có điều kiện.\nCài đặt \u0026 Thiết lập Yêu cầu trước CrewAI yêu cầu Python 3.10–3.13 và API key từ ít nhất một nhà cung cấp LLM.\n# Kiểm tra phiên bản Python python --version # Phải là 3.10, 3.11, 3.12, hoặc 3.13 # Cài đặt uv (trình quản lý gói được khuyến nghị) curl -LsSf https://astral.sh/uv/install.sh | sh Cài đặt CrewAI # Cài đặt framework CrewAI core uv pip install crewai # Hoặc với gói công cụ tùy chọn uv pip install 'crewai[tools]' # Xác minh cài đặt crewai version Tạo dự án mới # Tạo khung dự án CrewAI mới crewai create crew research_crew # Di chuyển vào thư mục dự án cd research_crew # Cài đặt các phụ thuộc dự án crewai install Cấu trúc dự án được tạo: ````` research_crew/ ├── .gitignore ├── pyproject.toml ├── README.md ├── .env └── src/ └── research_crew/ ├── init.py ├── main.py ├── crew.py ├── config/ │ ├── agents.yaml │ └── tasks.yaml └── tools/ ├── init.py └── custom_tool.py\n### Cấu hình biến môi trường `````bash # .env — thêm file này vào .gitignore! OPENAI_API_KEY=sk-your-openai-key-here SERPER_API_KEY=your-serper-api-key Với LLM cục bộ qua Ollama (không cần API key): `````bash\nTải model cục bộ ollama pull llama3.1\nTrong cấu hình agent, sử dụng: ollama/llama3.1 ## Xác định Agent đầu tiên của bạn Chỉnh sửa ``src/research_crew/config/agents.yaml`` để xác định các agent dựa trên vai trò: `````yaml # src/research_crew/config/agents.yaml researcher: role: \u003e Senior Research Analyst goal: \u003e Conduct thorough research on {topic} and gather comprehensive, accurate, and up-to-date information. backstory: \u003e You are a seasoned research analyst with 15 years of experience in technology analysis. You find obscure but critical data points and synthesize complex information. llm: openai/gpt-4o max_iter: 15 verbose: true writer: role: \u003e Technical Content Writer goal: \u003e Transform research findings on {topic} into a well-structured, engaging article. backstory: \u003e You are an award-winning technical writer who excels at making complex topics accessible without sacrificing accuracy. llm: openai/gpt-4o max_iter: 10 verbose: true editor: role: \u003e Senior Content Editor goal: \u003e Review and polish the article about {topic} to ensure factual accuracy, grammar, and readability. backstory: \u003e You are a meticulous editor with a sharp eye for factual errors and logical inconsistencies. llm: openai/gpt-4o-mini max_iter: 8 verbose: true Các tùy chọn cấu hình chính cho mỗi agent: | Tham số | Mô tả | Ví dụ | |———|——-|——-| | role | Chức danh và chức năng của agent | Senior Research Analyst | | goal | Mục tiêu agent cần đạt được | Nghiên cứu {topic} | | backstory | Ngữ cảnh định hình hành vi của agent | Kinh nghiệm và tính cách | | llm | Mô hình LLM qua LiteLLM | openai/gpt-4o | | max_iter | Số vòng lặp suy luận tối đa mỗi tác vụ | 15 | | verbose | In quá trình suy nghĩ ra console | true | | allow_delegation | Có thể phân công cho agent khác | false |\nXác định tác vụ và kết nối Crew Cấu hình tác vụ Chỉnh sửa src/research_crew/config/tasks.yaml: `````yaml\nsrc/research_crew/config/tasks.yaml research_task: description: “Technical guide and comparison.” Research the topic: {topic}. Gather at least 10 key data points from multiple authoritative sources. Include statistics, expert opinions, and recent developments. expected_output: \u003e A structured research brief with 10+ data points, source citations, and a summary of key findings. agent: researcher\nwriting_task: description: “Technical guide and comparison.” Using the research brief provided, write a comprehensive technical article about {topic}. Target 1500 words. Use clear headings, examples, and engaging prose. expected_output: \u003e A markdown-formatted article with introduction, body sections, and conclusion. Minimum 1500 words. agent: writer context: [research_task]\nediting_task: description: “Technical guide and comparison.” Edit the article for clarity, grammar, factual accuracy, and readability. Ensure all claims are supported by the research brief. expected_output: \u003e A polished final article ready for publication. Include an editor\"s note summarizing changes made. agent: editor context: [writing_task] output_file: output/final_article.md\n### Định nghĩa Crew Kết nối agent và tác vụ trong ``src/research_crew/crew.py``: `````python # src/research_crew/crew.py from crewai import Agent, Crew, Process, Task from crewai.project import CrewBase, agent, crew, task @CrewBase class ResearchCrew: \"\"\"Research crew for producing high-quality articles.\"\"\" agents_config = \"config/agents.yaml\" tasks_config = \"config/tasks.yaml\" @agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[\"researcher\"], tools=[], allow_delegation=False, ) @agent def writer(self) -\u003e Agent: return Agent( config=self.agents_config[\"writer\"], tools=[], allow_delegation=False, ) @agent def editor(self) -\u003e Agent: return Agent( config=self.agents_config[\"editor\"], tools=[], allow_delegation=False, ) @task def research_task(self) -\u003e Task: return Task(config=self.tasks_config[\"research_task\"]) @task def writing_task(self) -\u003e Task: return Task(config=self.tasks_config[\"writing_task\"]) @task def editing_task(self) -\u003e Task: return Task( config=self.tasks_config[\"editing_task\"], output_file=\"output/final_article.md\", ) @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.sequential, verbose=True, ) Điểm vào và thực thi # src/research_crew/main.py #!/usr/bin/env python from research_crew.crew import ResearchCrew def run(): \"\"\"Run the research crew.\"\"\" inputs = { \"topic\": \"AI coding assistants in 2026\" } result = ResearchCrew().crew().kickoff(inputs=inputs) print(\"\\n\\n========== FINAL OUTPUT ==========\\n\") print(result.raw) print(f\"\\nToken usage: {result.token_usage}\") if __name__ == \"__main__\": run() Chạy crew: `````bash\nThực thi qua CLI crewai run\nHoặc chạy trực tiếp bằng Python python -m research_crew.main\nĐầu ra mong đợi: ````` [2026-05-20 10:23:15] Working Agent: Senior Research Analyst [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026... ... [2026-05-20 10:24:02] Working Agent: Technical Content Writer [2026-05-20 10:24:02] Starting Task: Using the research brief provided... ... [2026-05-20 10:25:18] Working Agent: Senior Content Editor ... [Bài viết đã chỉnh sửa hoàn chỉnh xuất hiện ở đây] Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...) Cách sử dụng nâng cao: Flows, công cụ và mẫu production Sử dụng CrewAI Flows cho điều phối phức tạp Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: `````python\nsrc/research_crew/flow.py from crewai.flow.flow import Flow, listen, start from pydantic import BaseModel from research_crew.crew import ResearchCrew\nclass ArticleState(BaseModel): topic: str = \"\" word_count: int = 0 final_article: str = \"\"\nclass ArticleFlow(Flow[ArticleState]): @start() def get_topic(self): self.state.topic = “Multi-agent AI frameworks in 2026” print(f\"Starting flow for topic: {self.state.topic}\")\n@listen(get_topic) def run_research_crew(self): result = ResearchCrew().crew().kickoff( inputs={\"topic\": self.state.topic} ) self.state.final_article = result.raw self.state.word_count = len(result.raw.split()) @listen(run_research_crew) def validate_output(self): if self.state.word_count \u003c 1000: print(\"WARNING: Article too short, triggering revision\") else: print(f\"Article validated: {self.state.word_count} words\") with open(\"output/article.md\", \"w\") as f: f.write(self.state.final_article) if name == “main”: ArticleFlow().kickoff()\n### Tạo công cụ tùy chỉnh `````python # src/research_crew/tools/custom_tool.py from crewai.tools import tool import requests @tool(\"Web Search\") def web_search(query: str) -\u003e str: \"\"\"Search the web for information on a given query.\"\"\" response = requests.get( \"https://serpapi.com/search\", params={\"q\": query, \"api_key\": \"${SERPER_API_KEY}\"} ) return response.json()[\"organic_results\"][0][\"snippet\"] Đăng ký công cụ trong crew: `````python\nTrong crew.py, import và gắn kết from research_crew.tools.custom_tool import web_search\n@agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[“researcher”], tools=[web_search], # Gắn công cụ tùy chỉnh allow_delegation=False, )\n### Quy trình phân cấp với agent quản lý `````python @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.hierarchical, manager_llm=\"openai/gpt-4o\", verbose=True, ) Triển khai production với FastAPI # api_server.py — Triển khai production from fastapi import FastAPI, BackgroundTasks from pydantic import BaseModel from research_crew.crew import ResearchCrew import uuid app = FastAPI(title=\"CrewAI Research API\") jobs: dict = {} class CrewRequest(BaseModel): topic: str @app.post(\"/research\") async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4()) jobs[job_id] = {\"status\": \"queued\", \"topic\": request.topic} background.add_task( lambda: run_crew(job_id, request.topic) ) return {\"job_id\": job_id, \"status\": \"queued\"} @app.get(\"/status/{job_id}\") async def get_status(job_id: str): return jobs.get(job_id, {\"error\": \"Job not found\"}) def run_crew(job_id: str, topic: str): jobs[job_id][\"status\"] = \"running\" result = ResearchCrew().crew().kickoff(inputs={\"topic\": topic}) jobs[job_id][\"status\"] = \"completed\" jobs[job_id][\"result\"] = result.raw # Chạy: uvicorn api_server:app --host 0.0.0.0 --port 8000 Benchmark / Trường hợp sử dụng thực tế Benchmark hiệu năng So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-agent tiêu chuẩn: | Chỉ số | CrewAI | AutoGen | LangGraph | Agno | |——–|——–|———|———–|——| | Thờ gian đến lần chạy đầu tiên | ~15 phút | ~30 phút | ~60 phút | ~20 phút | | Chi phí token (chuẩn hóa) | 1.5–2x | 5–6x | 1x cơ sở | 1.2x | | Sao GitHub (Tháng 5/2026) | 51,759 | ~38,000 | ~28,000 | ~15,000 | | Dòng code hello-world | ~20 | ~40 | ~50 | ~25 | | Checkpoint tích hợp sẵn | Một phần | Không | Có (Postgres/Redis) | Không | | Hỗ trợ async | Có | Có | Có | Có | | Hỗ trợ LLM cục bộ (Ollama) | Có | Có | Có | Có |\nCác trường hợp sử dụng thực tế Báo cáo nghiên cứu tự động: Một startup fintech sử dụng CrewAI để tạo báo cáo phân tích thị trường hàng ngày. Agent nghiên cứu thu thập dữ liệu tài chính, agent phân tích xu hướng và agent viết tạo báo cáo cuối cùng — tất cả trước 8 giờ sáng.\nPipeline sản xuất nội dung: Một công ty media vận hành crew 4 agent cho bài blog: nghiên cứu → viết → chỉnh sửa → tối ưu hóa SEO. Sản lượng tăng từ 3 lên 12 bài mỗi tuần.\nTự động hóa review code: Một team SaaS sử dụng CrewAI để phân loại pull request. Một agent tóm tắt thay đổi, một agent khác kiểm tra pattern bảo mật và một agent thứ ba tạo bình luận review.\nTích hợp với các công cụ phổ biến OpenAI / Anthropic / Google Gemini CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: `````yaml\nagents.yaml — chọn model cho mỗi agent researcher: role: Research Analyst llm: anthropic/claude-sonnet-4-20250514\nhoặc: openai/gpt-4o hoặc: gemini/gemini-2.0-flash ### Ollama (LLM cục bộ) `````yaml researcher: role: Research Analyst llm: ollama/llama3.1 # Yêu cầu: ollama pull llama3.1 Công cụ LangChain # Sử dụng công cụ LangChain trong CrewAI from langchain_community.tools import WikipediaQueryRun from langchain_community.utilities import WikipediaAPIWrapper from crewai import Agent wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()) agent = Agent( role=\"Researcher\", goal=\"Research topics thoroughly\", tools=[wiki_tool], # Công cụ LangChain hoạt động trực tiếp verbose=True, ) LlamaIndex (Tích hợp RAG) from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from crewai.tools import tool @tool(\"Document Search\") def document_search(query: str) -\u003e str: \"\"\"Search internal documents for relevant information.\"\"\" documents = SimpleDirectoryReader(\"./docs\").load_data() index = VectorStoreIndex.from_documents(documents) query_engine = index.as_query_engine() return str(query_engine.query(query)) Triển khai Docker # Dockerfile FROM python:3.12-slim WORKDIR /app COPY pyproject.toml . COPY src/ ./src/ RUN pip install crewai crewai-tools RUN crewai install EXPOSE 8000 CMD [\"crewai\", \"run\"] # docker-compose.yml version: \"3.8\" services: crewai: build: . env_file: .env volumes: - ./output:/app/output ports: - \"8000:8000\" So sánh với các giải pháp thay thế Tính năng CrewAI AutoGen LangGraph Agno Mô hình điều phối Crew dựa trên vai trò Agent hội thoại Đồ thị trạng thái Agent nhẹ Tốc độ prototype 15 phút (nhanh nhất) 30 phút 60 phút (dốc nhất) 20 phút Hiệu quả token Trung bình (1.5–2x) Chi phí cao nhất (5–6x) Tốt nhất (1x) Tốt (1.2x) Checkpoint production Một phần + CrewAI+ Không tích hợp Có (Postgres/Redis) Không Khả năng quan sát CrewAI+ (đang phát triển) OTEL cơ bản LangSmith (sâu) Tối thiểu Độ khó học Thấp Trung bình Cao Thấp Đào bảo trì Tích cực Chế độ bảo trì Tích cực Tích cực Phù hợp nhất Prototype nhanh, luồng dựa trên vai trò Nghiên cứu, agent viết code Luồng production có trạng thái Tác vụ agent đơn giản Hạn chế / Đánh giá trung thực CrewAI KHÔNG phù hợp cho:\nMáy trạng thái phức tạp: Nếu luồng công việc cần đồ thị tuần hoàn với phân nhánh và time-travel debugging, mô hình đồ thị rõ ràng của LangGraph phù hợp hơn.\nProduction khối lượng cực cao: Checkpointing của CrewAI là một phần so với khả năng duy trì trạng thái đầy đủ của LangGraph. Với hàng nghìn lần chạy hàng ngày cần audit trail, LangGraph được thử nghiệm kỹ hơn.\nNgân sách nhạy cảm với token: Các agent của CrewAI mặc định khá dài dòng. Trên các tác vụ tương đương, dự kiến tiêu thụ token gấp 1.5–2 lần LangGraph. Dự trù $100–$500/tháng cho khối lượng production trung bình.\nYêu cầu độ trễ thực thờ: Điều phối multi-agent tăng độ trễ vốn có. Một crew 3-agent tuần tự với GPT-4o mất 45–90 giây. Không phù hợp cho yêu cầu phản hồi dưới 1 giây.\nKhả năng quan sát sâu: CrewAI+ cung cấp giám sát nhưng LangSmith cung cấp khả năng truy vết sâu hơn với tính toán token theo node và khả năng replay.\nCâu hỏi thường gặp Q: CrewAI yêu cầu phiên bản Python nào? A: CrewAI yêu cầu Python 3.10 đến 3.13. Không hỗ trợ Python 3.9 trở xuống. Sử dụng pyenv để quản lý nhiều phiên bản Python trên hệ thống.\nQ: Làm thế nào cài đặt CrewAI với hỗ trợ LLM cục bộ? A: Cài đặt CrewAI bình thường bằng pip install crewai, sau đó cài đặt Ollama riêng. Trong cấu hình agent, đặt llm: ollama/llama3.1. Không cần API key cho suy luận cục bộ.\nQ: CrewAI có thể hoạt động với model không phải OpenAI không? A: Có. CrewAI hỗ trợ mọi model tương thích LiteLLM bao gồm Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral và model cục bộ qua Ollama. Sử dụng định dạng provider/model-name trong cấu hình agent.\nQ: Sự khác biệt giữa CrewAI Crews và Flows là gì? A: Crews là các team agent cộng tác trên tác vụ thông qua các quy trình tuần tự, phân cấp hoặc song song. Flows là luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện, quản lý trạng thái qua Pydantic models và phân nhánh. Dùng Crews cho cộng tác đơn luồng và Flows cho pipeline đa giai đoạn.\nQ: Chi phí chạy crew CrewAI trong production là bao nhiêu? A: Với crew 3-agent sử dụng GPT-4o chạy 100 lần/ngày, dự kiến chi phí API LLM khoảng $100–$300/tháng. Sử dụng model rẻ hơn như GPT-4o-mini cho tác vụ đơn giản có thể giảm chi phí 40–60%. CrewAI miễn phí và mã nguồn mở (giấy phép MIT).\nQ: Làm thế nào debug agent CrewAI cho kết quả kém? A: Đặt verbose: true trên agent để xem quá trình suy nghĩ. Dùng max_iter giới hạn vòng lặp suy luận. Thêm schema đầu ra có cấu trúc để ép format. Xem lại chỉ số sử dụng token sau mỗi lần chạy. Với vấn đề dai dẳng, đơn giản hóa mô tả tác vụ và xác minh cấu hình công cụ.\nQ: CrewAI đã sẵn sàng production cho doanh nghiệp chưa? A: Với khối lượng production vừa và nhỏ, có. CrewAI+ thêm tính năng quan sát và triển khai được quản lý từ $99/tháng. Với khối lượng lớn hoặc cần audit nghiêm ngặt, cân nhắc sử dụng CrewAI với checkpointing tùy chỉnh hoặc đánh giá LangGraph.\nKết luận CrewAI mang lại con đường nhanh nhất từ ý tưởng đến hệ thống multi-agent hoạt động. Tính trừu tượng dựa trên vai trò — các agent với vai trò, mục tiêu và câu chuyện nền được xác định cộng tác hoàn thành tác vụ — ánh xạ rõ ràng với cách team thực sự làm việc. Trong vòng 30 phút, bạn có thể cài đặt CrewAI, tạo khung dự án, xác định agent và tác vụ, và chạy crew đầu tiên. Cho production, thêm Flows cho điều phối dựa trên sự kiện, FastAPI cho endpoint HTTP và Docker cho triển khai.\nCác hành động bắt đầu ngay hôm nay:\nCài đặt CrewAI: pip install crewai Tạo khung dự án đầu tiên: crewai create crew my_project Xác định 2–3 agent với vai trò riêng biệt trong agents.yaml Chạy crew với ````crewai run``` Tham gia cộng đồng CrewAI để được hỗ trợ và tìm hiểu các mẫu nâng cao Tham gia thảo luận trên Telegram: Tham gia cộng đồng dibi8.com để nhận mẹo multi-agent AI và chiến lược triển khai production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo CrewAI GitHub Repository CrewAI Official Documentation CrewAI Quickstart Guide CrewAI Flows Documentation CrewAI Tools Reference LangGraph vs CrewAI vs AutoGen Comparison 2026 CrewAI Multi-Agent Tutorial 2026 CrewAI + IBM watsonx Tutorial Tiết lộ: Bài viết này chứa liên kết affiliate. Nếu bạn nhấp vào liên kết và thực hiện giao dịch mua, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ nghiên cứu kỹ thuật độc lập, thử nghiệm và tạo nội dung giáo dục miễn phí của chúng tôi. Tất cả các khuyến nghị đều dựa trên đánh giá riêng của chúng tôi về các công cụ.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướng dẫn thiết lập đầy đủ 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/crewai\" } } Related Articles google-jax-complete-guide ray-distributed-ai-framework-complete-guide modal-serverless-gpu-compute temporal-ai-workflow-orchestration cleanlab-11k-star-ai-data-cleaning Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "3447",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/crewai/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/crewai/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/crewai/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/crewai/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
+            <li>
+                <a href="#crewai-l%c3%a0-g%c3%ac" aria-label="CrewAI là gì?">CrewAI là gì?</a></li>
+            <li>
+                <a href="#crewai-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="CrewAI hoạt động như thế nào">CrewAI hoạt động như thế nào</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt &amp; Thiết lập">Cài đặt &amp; Thiết lập</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-tr%c6%b0%e1%bb%9bc" aria-label="Yêu cầu trước">Yêu cầu trước</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-crewai" aria-label="Cài đặt CrewAI">Cài đặt CrewAI</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-d%e1%bb%b1-%c3%a1n-m%e1%bb%9bi" aria-label="Tạo dự án mới">Tạo dự án mới</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#t%e1%ba%a3i-model-c%e1%bb%a5c-b%e1%bb%99" aria-label="Tải model cục bộ">Tải model cục bộ</a></li>
+            <li>
+                <a href="#trong-c%e1%ba%a5u-h%c3%acnh-agent-s%e1%bb%ad-d%e1%bb%a5ng-ollamallama31" aria-label="Trong cấu hình agent, sử dụng: ollama/llama3.1">Trong cấu hình agent, sử dụng: ollama/llama3.1</a><ul>
+                    
+            <li>
+                <a href="#x%c3%a1c-%c4%91%e1%bb%8bnh-t%c3%a1c-v%e1%bb%a5-v%c3%a0-k%e1%ba%bft-n%e1%bb%91i-crew" aria-label="Xác định tác vụ và kết nối Crew">Xác định tác vụ và kết nối Crew</a><ul>
+                    
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-t%c3%a1c-v%e1%bb%a5" aria-label="Cấu hình tác vụ">Cấu hình tác vụ</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#srcresearch_crewconfigtasksyaml" aria-label="src/research_crew/config/tasks.yaml">src/research_crew/config/tasks.yaml</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#%c4%91i%e1%bb%83m-v%c3%a0o-v%c3%a0-th%e1%bb%b1c-thi" aria-label="Điểm vào và thực thi">Điểm vào và thực thi</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#th%e1%bb%b1c-thi-qua-cli" aria-label="Thực thi qua CLI">Thực thi qua CLI</a></li>
+            <li>
+                <a href="#ho%e1%ba%b7c-ch%e1%ba%a1y-tr%e1%bb%b1c-ti%e1%ba%bfp-b%e1%ba%b1ng-python" aria-label="Hoặc chạy trực tiếp bằng Python">Hoặc chạy trực tiếp bằng Python</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a1ch-s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao-flows-c%c3%b4ng-c%e1%bb%a5-v%c3%a0-m%e1%ba%abu-production" aria-label="Cách sử dụng nâng cao: Flows, công cụ và mẫu production">Cách sử dụng nâng cao: Flows, công cụ và mẫu production</a><ul>
+                    
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-crewai-flows-cho-%c4%91i%e1%bb%81u-ph%e1%bb%91i-ph%e1%bb%a9c-t%e1%ba%a1p" aria-label="Sử dụng CrewAI Flows cho điều phối phức tạp">Sử dụng CrewAI Flows cho điều phối phức tạp</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#srcresearch_crewflowpy" aria-label="src/research_crew/flow.py">src/research_crew/flow.py</a></li>
+            <li>
+                <a href="#trong-crewpy-import-v%c3%a0-g%e1%ba%afn-k%e1%ba%bft" aria-label="Trong crew.py, import và gắn kết">Trong crew.py, import và gắn kết</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#tri%e1%bb%83n-khai-production-v%e1%bb%9bi-fastapi" aria-label="Triển khai production với FastAPI">Triển khai production với FastAPI</a></li></ul>
+                
+            <li>
+                <a href="#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Trường hợp sử dụng thực tế">Benchmark / Trường hợp sử dụng thực tế</a><ul>
+                    
+            <li>
+                <a href="#benchmark-hi%e1%bb%87u-n%c4%83ng" aria-label="Benchmark hiệu năng">Benchmark hiệu năng</a></li>
+            <li>
+                <a href="#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Các trường hợp sử dụng thực tế">Các trường hợp sử dụng thực tế</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích hợp với các công cụ phổ biến">Tích hợp với các công cụ phổ biến</a><ul>
+                    
+            <li>
+                <a href="#openai--anthropic--google-gemini" aria-label="OpenAI / Anthropic / Google Gemini">OpenAI / Anthropic / Google Gemini</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#agentsyaml--ch%e1%bb%8dn-model-cho-m%e1%bb%97i-agent" aria-label="agents.yaml — chọn model cho mỗi agent">agents.yaml — chọn model cho mỗi agent</a></li>
+            <li>
+                <a href="#ho%e1%ba%b7c-openaigpt-4o" aria-label="hoặc: openai/gpt-4o">hoặc: openai/gpt-4o</a></li>
+            <li>
+                <a href="#ho%e1%ba%b7c-geminigemini-20-flash" aria-label="hoặc: gemini/gemini-2.0-flash">hoặc: gemini/gemini-2.0-flash</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-langchain" aria-label="Công cụ LangChain">Công cụ LangChain</a></li>
+            <li>
+                <a href="#llamaindex-t%c3%adch-h%e1%bb%a3p-rag" aria-label="LlamaIndex (Tích hợp RAG)">LlamaIndex (Tích hợp RAG)</a></li>
+            <li>
+                <a href="#tri%e1%bb%83n-khai-docker" aria-label="Triển khai Docker">Triển khai Docker</a></li></ul>
+                
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So sánh với các giải pháp thay thế">So sánh với các giải pháp thay thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài liệu tham khảo">Nguồn &amp; Tài liệu tham khảo</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,27 +336,99 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;crewai&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;ai-agent&rdquo;, &ldquo;python&rdquo;, &ldquo;llm-orchestration&rdquo;, &ldquo;automation&rdquo;, &ldquo;open-source&rdquo;, &ldquo;machine-learning&rdquo;]
-aliases:</p><ul><li>/vi/posts/crewai/</li><li>/vi/resources/llm-frameworks/crewai-multi-agent-orchestration/</li></ul><hr><blockquote><p>Cách cài đặt CrewAI, cấu hình vai trò agent, kết nối tác vụ và triển khai hệ thống multi-agent production-ready trong vòng 30 phút.</p></blockquote><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Xây dựng một agent LLM đơn lẻ là điều đơn giản. Điều phối năm agent nghiên cứu, viết, chỉnh sửa, kiểm tra sự kiện và xuất bản nội dung mà không chồng chéo lẫn nhau là một vấn đề hoàn toàn khác. CrewAI giải quyết điều này bằng mô hình điều phối dựa trên vai trò, cho phép lập trình viên xác định các agent chuyên biệt, giao tác vụ và chạy chúng như một đội được phối hợp. Với hơn 51,759 sao trên GitHub và 318 ngườ đóng góp, CrewAI đã trở thành framework Python hàng đầu cho việc cộng tác multi-agent vào năm 2026. Hướng dẫn này sẽ đi qua cách cài đặt CrewAI, cấu hình crew đầu tiên của bạn và triển khai lên production với cấu hình thực tế, benchmark và các đánh đổi trung thực.</p><h2 id=crewai-là-gì>CrewAI là gì?<a hidden class=anchor aria-hidden=true href=#crewai-là-gì>#</a></h2><p>CrewAI là framework Python mã nguồn mở để điều phối các AI agent tự chủ dựa trên vai trò, hoạt động cộng tác trên các tác vụ phức tạp. Nó cung cấp hai khái niệm trừu tượng cốt lõi: <strong>Crews</strong> (đội các agent với vai trò, mục tiêu và câu chuyện nền được xác định) và <strong>Flows</strong> (luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện và quản lý trạng thái). Khác với prompt LLM đơn lẻ, các agent CrewAI có thể phân công công việc, sử dụng công cụ và tạo đầu ra có cấu trúc thông qua thực thi tuần tự, phân cấp hoặc song song.</p><h2 id=crewai-hoạt-động-như-thế-nào>CrewAI hoạt động như thế nào<a hidden class=anchor aria-hidden=true href=#crewai-hoạt-động-như-thế-nào>#</a></h2><p>Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều phối: <img alt="CrewAI Logo" loading=lazy src=https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png></p><p><strong>Các thành phần cốt lõi:</strong></p><table><thead><tr><th>Thành phần</th><th>Mục đích</th><th>File cấu hình</th></tr></thead><tbody><tr><td><strong>Agent</strong></td><td>Ngườ làm việc AI dựa trên vai trò với mục tiêu, câu chuyện nền và công cụ</td><td>```agents.yaml````</td></tr><tr><td><strong>Task</strong></td><td>Đơn vị công việc được giao cho agent với đầu ra mong đợi</td><td><code>tasks.yaml</code></td></tr><tr><td><strong>Crew</strong></td><td>Đội agent thực thi tác vụ thông qua quy trình được định nghĩa</td><td><code>crew.py</code></td></tr><tr><td><strong>Flow</strong></td><td>Luồng công việc dựa trên sự kiện kết nối nhiều crew với quản lý trạng thái</td><td><code>flow.py</code></td></tr><tr><td><strong>Tool</strong></td><td>Khả năng bên ngoài (tìm kiếm, API, tính toán)</td><td><code>tools/</code></td></tr><tr><td><strong>Process</strong></td><td>Chiến lược thực thi: tuần tự, phân cấp hoặc song song</td><td><code>crew.py</code></td></tr></tbody></table><p><img alt="CrewAI Architecture" loading=lazy src=https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png></p><p><strong>Luồng thực thi:</strong></p><ol><li>Flow nhận đầu vào và khởi tạo trạng thái</li><li>Tác vụ được gửi đến agent dựa trên loại quy trình</li><li>Agent thực thi tác vụ, tùy chọn sử dụng công cụ</li><li>Đầu ra tác vụ cung cấp ngữ cảnh cho các tác vụ tiếp theo</li><li>Kết quả cuối cùng được trả về với chỉ số sử dụng token</li></ol><p>Sơ đồ trên thể hiện kiến trúc kép của CrewAI: <strong>Crews</strong> xử lý cộng tác agent trong một workflow đơn, còn <strong>Flows</strong> cung cấp xương sống dựa trên sự kiện để chuỗi hóa nhiều crew với quản lý trạng thái và định tuyến có điều kiện.</p><h2 id=cài-đặt--thiết-lập>Cài đặt & Thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=yêu-cầu-trước>Yêu cầu trước<a hidden class=anchor aria-hidden=true href=#yêu-cầu-trước>#</a></h3><p>CrewAI yêu cầu Python 3.10–3.13 và API key từ ít nhất một nhà cung cấp LLM.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Kiểm tra phiên bản Python</span>
-</span></span><span style=display:flex><span>python --version  <span style=color:#75715e># Phải là 3.10, 3.11, 3.12, hoặc 3.13</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt uv (trình quản lý gói được khuyến nghị)</span>
-</span></span><span style=display:flex><span>curl -LsSf https://astral.sh/uv/install.sh | sh
-</span></span></code></pre></div><h3 id=cài-đặt-crewai>Cài đặt CrewAI<a hidden class=anchor aria-hidden=true href=#cài-đặt-crewai>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt framework CrewAI core</span>
-</span></span><span style=display:flex><span>uv pip install crewai
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc với gói công cụ tùy chọn</span>
-</span></span><span style=display:flex><span>uv pip install <span style=color:#e6db74>&#39;crewai[tools]&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Xác minh cài đặt</span>
-</span></span><span style=display:flex><span>crewai version
-</span></span></code></pre></div><h3 id=tạo-dự-án-mới>Tạo dự án mới<a hidden class=anchor aria-hidden=true href=#tạo-dự-án-mới>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo khung dự án CrewAI mới</span>
-</span></span><span style=display:flex><span>crewai create crew research_crew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Di chuyển vào thư mục dự án</span>
-</span></span><span style=display:flex><span>cd research_crew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt các phụ thuộc dự án</span>
-</span></span><span style=display:flex><span>crewai install
+aliases:</p>
+<ul>
+<li>/vi/posts/crewai/</li>
+<li>/vi/resources/llm-frameworks/crewai-multi-agent-orchestration/</li>
+</ul>
+<hr>
+<blockquote>
+<p>Cách cài đặt CrewAI, cấu hình vai trò agent, kết nối tác vụ và triển khai hệ thống multi-agent production-ready trong vòng 30 phút.</p>
+</blockquote>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Xây dựng một agent LLM đơn lẻ là điều đơn giản. Điều phối năm agent nghiên cứu, viết, chỉnh sửa, kiểm tra sự kiện và xuất bản nội dung mà không chồng chéo lẫn nhau là một vấn đề hoàn toàn khác. CrewAI giải quyết điều này bằng mô hình điều phối dựa trên vai trò, cho phép lập trình viên xác định các agent chuyên biệt, giao tác vụ và chạy chúng như một đội được phối hợp. Với hơn 51,759 sao trên GitHub và 318 ngườ đóng góp, CrewAI đã trở thành framework Python hàng đầu cho việc cộng tác multi-agent vào năm 2026. Hướng dẫn này sẽ đi qua cách cài đặt CrewAI, cấu hình crew đầu tiên của bạn và triển khai lên production với cấu hình thực tế, benchmark và các đánh đổi trung thực.</p>
+<h2 id="crewai-là-gì">CrewAI là gì?<a hidden class="anchor" aria-hidden="true" href="#crewai-là-gì">#</a></h2>
+<p>CrewAI là framework Python mã nguồn mở để điều phối các AI agent tự chủ dựa trên vai trò, hoạt động cộng tác trên các tác vụ phức tạp. Nó cung cấp hai khái niệm trừu tượng cốt lõi: <strong>Crews</strong> (đội các agent với vai trò, mục tiêu và câu chuyện nền được xác định) và <strong>Flows</strong> (luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện và quản lý trạng thái). Khác với prompt LLM đơn lẻ, các agent CrewAI có thể phân công công việc, sử dụng công cụ và tạo đầu ra có cấu trúc thông qua thực thi tuần tự, phân cấp hoặc song song.</p>
+<h2 id="crewai-hoạt-động-như-thế-nào">CrewAI hoạt động như thế nào<a hidden class="anchor" aria-hidden="true" href="#crewai-hoạt-động-như-thế-nào">#</a></h2>
+<p>Kiến trúc của CrewAI tách biệt định nghĩa agent khỏi logic điều phối: <img alt="CrewAI Logo" loading="lazy" src="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png"></p>
+<p><strong>Các thành phần cốt lõi:</strong></p>
+<table>
+	<thead>
+			<tr>
+					<th>Thành phần</th>
+					<th>Mục đích</th>
+					<th>File cấu hình</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Agent</strong></td>
+					<td>Ngườ làm việc AI dựa trên vai trò với mục tiêu, câu chuyện nền và công cụ</td>
+					<td>```agents.yaml````</td>
+			</tr>
+			<tr>
+					<td><strong>Task</strong></td>
+					<td>Đơn vị công việc được giao cho agent với đầu ra mong đợi</td>
+					<td><code>tasks.yaml</code></td>
+			</tr>
+			<tr>
+					<td><strong>Crew</strong></td>
+					<td>Đội agent thực thi tác vụ thông qua quy trình được định nghĩa</td>
+					<td><code>crew.py</code></td>
+			</tr>
+			<tr>
+					<td><strong>Flow</strong></td>
+					<td>Luồng công việc dựa trên sự kiện kết nối nhiều crew với quản lý trạng thái</td>
+					<td><code>flow.py</code></td>
+			</tr>
+			<tr>
+					<td><strong>Tool</strong></td>
+					<td>Khả năng bên ngoài (tìm kiếm, API, tính toán)</td>
+					<td><code>tools/</code></td>
+			</tr>
+			<tr>
+					<td><strong>Process</strong></td>
+					<td>Chiến lược thực thi: tuần tự, phân cấp hoặc song song</td>
+					<td><code>crew.py</code></td>
+			</tr>
+	</tbody>
+</table>
+<p><img alt="CrewAI Architecture" loading="lazy" src="https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png"></p>
+<p><strong>Luồng thực thi:</strong></p>
+<ol>
+<li>Flow nhận đầu vào và khởi tạo trạng thái</li>
+<li>Tác vụ được gửi đến agent dựa trên loại quy trình</li>
+<li>Agent thực thi tác vụ, tùy chọn sử dụng công cụ</li>
+<li>Đầu ra tác vụ cung cấp ngữ cảnh cho các tác vụ tiếp theo</li>
+<li>Kết quả cuối cùng được trả về với chỉ số sử dụng token</li>
+</ol>
+<p>Sơ đồ trên thể hiện kiến trúc kép của CrewAI: <strong>Crews</strong> xử lý cộng tác agent trong một workflow đơn, còn <strong>Flows</strong> cung cấp xương sống dựa trên sự kiện để chuỗi hóa nhiều crew với quản lý trạng thái và định tuyến có điều kiện.</p>
+<h2 id="cài-đặt--thiết-lập">Cài đặt &amp; Thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<h3 id="yêu-cầu-trước">Yêu cầu trước<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-trước">#</a></h3>
+<p>CrewAI yêu cầu Python 3.10–3.13 và API key từ ít nhất một nhà cung cấp LLM.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra phiên bản Python</span>
+</span></span><span style="display:flex;"><span>python --version  <span style="color:#75715e"># Phải là 3.10, 3.11, 3.12, hoặc 3.13</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt uv (trình quản lý gói được khuyến nghị)</span>
+</span></span><span style="display:flex;"><span>curl -LsSf https://astral.sh/uv/install.sh | sh
+</span></span></code></pre></div><h3 id="cài-đặt-crewai">Cài đặt CrewAI<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-crewai">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt framework CrewAI core</span>
+</span></span><span style="display:flex;"><span>uv pip install crewai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc với gói công cụ tùy chọn</span>
+</span></span><span style="display:flex;"><span>uv pip install <span style="color:#e6db74">&#39;crewai[tools]&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Xác minh cài đặt</span>
+</span></span><span style="display:flex;"><span>crewai version
+</span></span></code></pre></div><h3 id="tạo-dự-án-mới">Tạo dự án mới<a hidden class="anchor" aria-hidden="true" href="#tạo-dự-án-mới">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo khung dự án CrewAI mới</span>
+</span></span><span style="display:flex;"><span>crewai create crew research_crew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Di chuyển vào thư mục dự án</span>
+</span></span><span style="display:flex;"><span>cd research_crew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt các phụ thuộc dự án</span>
+</span></span><span style="display:flex;"><span>crewai install
 </span></span></code></pre></div><p>Cấu trúc dự án được tạo: `````
 research_crew/
 ├── .gitignore
@@ -54,18 +441,23 @@ research_crew/
 ├── main.py
 ├── crew.py
 ├── config/
-│ ├── agents.yaml
-│ └── tasks.yaml
+│   ├── agents.yaml
+│   └── tasks.yaml
 └── tools/
 ├── <strong>init</strong>.py
-└── custom_tool.py</p><pre tabindex=0><code>
+└── custom_tool.py</p>
+<pre tabindex="0"><code>
 ### Cấu hình biến môi trường
 
 `````bash
 # .env — thêm file này vào .gitignore!
 OPENAI_API_KEY=sk-your-openai-key-here
 SERPER_API_KEY=your-serper-api-key
-</code></pre><p>Với LLM cục bộ qua Ollama (không cần API key): `````bash</p><h1 id=tải-model-cục-bộ>Tải model cục bộ<a hidden class=anchor aria-hidden=true href=#tải-model-cục-bộ>#</a></h1><p>ollama pull llama3.1</p><h1 id=trong-cấu-hình-agent-sử-dụng-ollamallama31>Trong cấu hình agent, sử dụng: ollama/llama3.1<a hidden class=anchor aria-hidden=true href=#trong-cấu-hình-agent-sử-dụng-ollamallama31>#</a></h1><pre tabindex=0><code>
+</code></pre><p>Với LLM cục bộ qua Ollama (không cần API key): `````bash</p>
+<h1 id="tải-model-cục-bộ">Tải model cục bộ<a hidden class="anchor" aria-hidden="true" href="#tải-model-cục-bộ">#</a></h1>
+<p>ollama pull llama3.1</p>
+<h1 id="trong-cấu-hình-agent-sử-dụng-ollamallama31">Trong cấu hình agent, sử dụng: ollama/llama3.1<a hidden class="anchor" aria-hidden="true" href="#trong-cấu-hình-agent-sử-dụng-ollamallama31">#</a></h1>
+<pre tabindex="0"><code>
 ## Xác định Agent đầu tiên của bạn
 
 Chỉnh sửa ``src/research_crew/config/agents.yaml`` để xác định các agent dựa trên vai trò: `````yaml
@@ -115,31 +507,39 @@ editor: role: &gt;
 | <code>llm</code> | Mô hình LLM qua LiteLLM | <code>openai/gpt-4o</code> |
 | <code>max_iter</code> | Số vòng lặp suy luận tối đa mỗi tác vụ | <code>15</code> |
 | <code>verbose</code> | In quá trình suy nghĩ ra console | <code>true</code> |
-| <code>allow_delegation</code> | Có thể phân công cho agent khác | <code>false</code> |</p><h2 id=xác-định-tác-vụ-và-kết-nối-crew>Xác định tác vụ và kết nối Crew<a hidden class=anchor aria-hidden=true href=#xác-định-tác-vụ-và-kết-nối-crew>#</a></h2><h3 id=cấu-hình-tác-vụ>Cấu hình tác vụ<a hidden class=anchor aria-hidden=true href=#cấu-hình-tác-vụ>#</a></h3><p>Chỉnh sửa <code>src/research_crew/config/tasks.yaml</code>: `````yaml</p><h1 id=srcresearch_crewconfigtasksyaml>src/research_crew/config/tasks.yaml<a hidden class=anchor aria-hidden=true href=#srcresearch_crewconfigtasksyaml>#</a></h1><p>research_task: description: &ldquo;Technical guide and comparison.&rdquo;
+| <code>allow_delegation</code> | Có thể phân công cho agent khác | <code>false</code> |</p>
+<h2 id="xác-định-tác-vụ-và-kết-nối-crew">Xác định tác vụ và kết nối Crew<a hidden class="anchor" aria-hidden="true" href="#xác-định-tác-vụ-và-kết-nối-crew">#</a></h2>
+<h3 id="cấu-hình-tác-vụ">Cấu hình tác vụ<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-tác-vụ">#</a></h3>
+<p>Chỉnh sửa <code>src/research_crew/config/tasks.yaml</code>: `````yaml</p>
+<h1 id="srcresearch_crewconfigtasksyaml">src/research_crew/config/tasks.yaml<a hidden class="anchor" aria-hidden="true" href="#srcresearch_crewconfigtasksyaml">#</a></h1>
+<p>research_task: description: &ldquo;Technical guide and comparison.&rdquo;
 Research the topic: {topic}. Gather at least 10 key data points
 from multiple authoritative sources. Include statistics,
 expert opinions, and recent developments.
-expected_output: >
+expected_output: &gt;
 A structured research brief with 10+ data points, source
 citations, and a summary of key findings.
-agent: researcher</p><p>writing_task: description: &ldquo;Technical guide and comparison.&rdquo;
+agent: researcher</p>
+<p>writing_task: description: &ldquo;Technical guide and comparison.&rdquo;
 Using the research brief provided, write a comprehensive
 technical article about {topic}. Target 1500 words.
 Use clear headings, examples, and engaging prose.
-expected_output: >
+expected_output: &gt;
 A markdown-formatted article with introduction, body
 sections, and conclusion. Minimum 1500 words.
 agent: writer
-context: [research_task]</p><p>editing_task: description: &ldquo;Technical guide and comparison.&rdquo;
+context: [research_task]</p>
+<p>editing_task: description: &ldquo;Technical guide and comparison.&rdquo;
 Edit the article for clarity, grammar, factual accuracy,
 and readability. Ensure all claims are supported by the
 research brief.
-expected_output: >
+expected_output: &gt;
 A polished final article ready for publication.
-Include an editor"s note summarizing changes made.
+Include an editor&quot;s note summarizing changes made.
 agent: editor
 context: [writing_task]
-output_file: output/final_article.md</p><pre tabindex=0><code>
+output_file: output/final_article.md</p>
+<pre tabindex="0"><code>
 ### Định nghĩa Crew
 
 Kết nối agent và tác vụ trong ``src/research_crew/crew.py``: `````python
@@ -193,21 +593,27 @@ class ResearchCrew: &#34;&#34;&#34;Research crew for producing high-quality arti
             process=Process.sequential,
             verbose=True,
         )
-</code></pre><h3 id=điểm-vào-và-thực-thi>Điểm vào và thực thi<a hidden class=anchor aria-hidden=true href=#điểm-vào-và-thực-thi>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># src/research_crew/main.py</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#!/usr/bin/env python</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_crew.crew <span style=color:#f92672>import</span> ResearchCrew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run</span>(): <span style=color:#e6db74>&#34;&#34;&#34;Run the research crew.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    inputs <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;topic&#34;</span>: <span style=color:#e6db74>&#34;AI coding assistants in 2026&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> ResearchCrew()<span style=color:#f92672>.</span>crew()<span style=color:#f92672>.</span>kickoff(inputs<span style=color:#f92672>=</span>inputs)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>========== FINAL OUTPUT ==========</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    print(result<span style=color:#f92672>.</span>raw)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>Token usage: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>token_usage<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: run()
-</span></span></code></pre></div><p>Chạy crew: `````bash</p><h1 id=thực-thi-qua-cli>Thực thi qua CLI<a hidden class=anchor aria-hidden=true href=#thực-thi-qua-cli>#</a></h1><p>crewai run</p><h1 id=hoặc-chạy-trực-tiếp-bằng-python>Hoặc chạy trực tiếp bằng Python<a hidden class=anchor aria-hidden=true href=#hoặc-chạy-trực-tiếp-bằng-python>#</a></h1><p>python -m research_crew.main</p><pre tabindex=0><code>
+</code></pre><h3 id="điểm-vào-và-thực-thi">Điểm vào và thực thi<a hidden class="anchor" aria-hidden="true" href="#điểm-vào-và-thực-thi">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/main.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_crew.crew <span style="color:#f92672">import</span> ResearchCrew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(): <span style="color:#e6db74">&#34;&#34;&#34;Run the research crew.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    inputs <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;topic&#34;</span>: <span style="color:#e6db74">&#34;AI coding assistants in 2026&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> ResearchCrew()<span style="color:#f92672">.</span>crew()<span style="color:#f92672">.</span>kickoff(inputs<span style="color:#f92672">=</span>inputs)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">========== FINAL OUTPUT ==========</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(result<span style="color:#f92672">.</span>raw)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Token usage: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>token_usage<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: run()
+</span></span></code></pre></div><p>Chạy crew: `````bash</p>
+<h1 id="thực-thi-qua-cli">Thực thi qua CLI<a hidden class="anchor" aria-hidden="true" href="#thực-thi-qua-cli">#</a></h1>
+<p>crewai run</p>
+<h1 id="hoặc-chạy-trực-tiếp-bằng-python">Hoặc chạy trực tiếp bằng Python<a hidden class="anchor" aria-hidden="true" href="#hoặc-chạy-trực-tiếp-bằng-python">#</a></h1>
+<p>python -m research_crew.main</p>
+<pre tabindex="0"><code>
 Đầu ra mong đợi: `````
 [2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
@@ -220,13 +626,20 @@ class ResearchCrew: &#34;&#34;&#34;Research crew for producing high-quality arti
 
 [Bài viết đã chỉnh sửa hoàn chỉnh xuất hiện ở đây]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
-</code></pre><h2 id=cách-sử-dụng-nâng-cao-flows-công-cụ-và-mẫu-production>Cách sử dụng nâng cao: Flows, công cụ và mẫu production<a hidden class=anchor aria-hidden=true href=#cách-sử-dụng-nâng-cao-flows-công-cụ-và-mẫu-production>#</a></h2><h3 id=sử-dụng-crewai-flows-cho-điều-phối-phức-tạp>Sử dụng CrewAI Flows cho điều phối phức tạp<a hidden class=anchor aria-hidden=true href=#sử-dụng-crewai-flows-cho-điều-phối-phức-tạp>#</a></h3><p>Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: `````python</p><h1 id=srcresearch_crewflowpy>src/research_crew/flow.py<a hidden class=anchor aria-hidden=true href=#srcresearch_crewflowpy>#</a></h1><p>from crewai.flow.flow import Flow, listen, start
+</code></pre><h2 id="cách-sử-dụng-nâng-cao-flows-công-cụ-và-mẫu-production">Cách sử dụng nâng cao: Flows, công cụ và mẫu production<a hidden class="anchor" aria-hidden="true" href="#cách-sử-dụng-nâng-cao-flows-công-cụ-và-mẫu-production">#</a></h2>
+<h3 id="sử-dụng-crewai-flows-cho-điều-phối-phức-tạp">Sử dụng CrewAI Flows cho điều phối phức tạp<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-crewai-flows-cho-điều-phối-phức-tạp">#</a></h3>
+<p>Flows cung cấp điều phối dựa trên sự kiện với quản lý trạng thái: `````python</p>
+<h1 id="srcresearch_crewflowpy">src/research_crew/flow.py<a hidden class="anchor" aria-hidden="true" href="#srcresearch_crewflowpy">#</a></h1>
+<p>from crewai.flow.flow import Flow, listen, start
 from pydantic import BaseModel
-from research_crew.crew import ResearchCrew</p><p>class ArticleState(BaseModel): topic: str = ""
+from research_crew.crew import ResearchCrew</p>
+<p>class ArticleState(BaseModel): topic: str = &quot;&quot;
 word_count: int = 0
-final_article: str = ""</p><p>class ArticleFlow(Flow[ArticleState]): @start()
+final_article: str = &quot;&quot;</p>
+<p>class ArticleFlow(Flow[ArticleState]): @start()
 def get_topic(self): self.state.topic = &ldquo;Multi-agent AI frameworks in 2026&rdquo;
-print(f"Starting flow for topic: {self.state.topic}")</p><pre><code>@listen(get_topic)
+print(f&quot;Starting flow for topic: {self.state.topic}&quot;)</p>
+<pre><code>@listen(get_topic)
 def run_research_crew(self): result = ResearchCrew().crew().kickoff(
         inputs={&quot;topic&quot;: self.state.topic}
     )
@@ -237,7 +650,9 @@ def run_research_crew(self): result = ResearchCrew().crew().kickoff(
 def validate_output(self): if self.state.word_count &lt; 1000: print(&quot;WARNING: Article too short, triggering revision&quot;)
     else: print(f&quot;Article validated: {self.state.word_count} words&quot;)
         with open(&quot;output/article.md&quot;, &quot;w&quot;) as f: f.write(self.state.final_article)
-</code></pre><p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;: ArticleFlow().kickoff()</p><pre tabindex=0><code>
+</code></pre>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;: ArticleFlow().kickoff()</p>
+<pre tabindex="0"><code>
 ### Tạo công cụ tùy chỉnh
 
 `````python
@@ -252,12 +667,16 @@ def web_search(query: str) -&gt; str: &#34;&#34;&#34;Search the web for informat
         params={&#34;q&#34;: query, &#34;api_key&#34;: &#34;${SERPER_API_KEY}&#34;}
     )
     return response.json()[&#34;organic_results&#34;][0][&#34;snippet&#34;]
-</code></pre><p>Đăng ký công cụ trong crew: `````python</p><h1 id=trong-crewpy-import-và-gắn-kết>Trong crew.py, import và gắn kết<a hidden class=anchor aria-hidden=true href=#trong-crewpy-import-và-gắn-kết>#</a></h1><p>from research_crew.tools.custom_tool import web_search</p><p>@agent
-def researcher(self) -> Agent: return Agent(
+</code></pre><p>Đăng ký công cụ trong crew: `````python</p>
+<h1 id="trong-crewpy-import-và-gắn-kết">Trong crew.py, import và gắn kết<a hidden class="anchor" aria-hidden="true" href="#trong-crewpy-import-và-gắn-kết">#</a></h1>
+<p>from research_crew.tools.custom_tool import web_search</p>
+<p>@agent
+def researcher(self) -&gt; Agent: return Agent(
 config=self.agents_config[&ldquo;researcher&rdquo;],
-tools=[web_search], # Gắn công cụ tùy chỉnh
+tools=[web_search],  # Gắn công cụ tùy chỉnh
 allow_delegation=False,
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 ### Quy trình phân cấp với agent quản lý
 
 `````python
@@ -269,35 +688,39 @@ def crew(self) -&gt; Crew: return Crew(
         manager_llm=&#34;openai/gpt-4o&#34;,
         verbose=True,
     )
-</code></pre><h3 id=triển-khai-production-với-fastapi>Triển khai production với FastAPI<a hidden class=anchor aria-hidden=true href=#triển-khai-production-với-fastapi>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># api_server.py — Triển khai production</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, BackgroundTasks
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_crew.crew <span style=color:#f92672>import</span> ResearchCrew
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> uuid
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI(title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;CrewAI Research API&#34;</span>)
-</span></span><span style=display:flex><span>jobs: dict <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CrewRequest</span>(BaseModel): topic: str
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/research&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>start_research</span>(request: CrewRequest, background: BackgroundTasks): job_id <span style=color:#f92672>=</span> str(uuid<span style=color:#f92672>.</span>uuid4())
-</span></span><span style=display:flex><span>    jobs[job_id] <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;queued&#34;</span>, <span style=color:#e6db74>&#34;topic&#34;</span>: request<span style=color:#f92672>.</span>topic}
-</span></span><span style=display:flex><span>    background<span style=color:#f92672>.</span>add_task(
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>lambda</span>: run_crew(job_id, request<span style=color:#f92672>.</span>topic)
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;job_id&#34;</span>: job_id, <span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;queued&#34;</span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/status/</span><span style=color:#e6db74>{job_id}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_status</span>(job_id: str): <span style=color:#66d9ef>return</span> jobs<span style=color:#f92672>.</span>get(job_id, {<span style=color:#e6db74>&#34;error&#34;</span>: <span style=color:#e6db74>&#34;Job not found&#34;</span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_crew</span>(job_id: str, topic: str): jobs[job_id][<span style=color:#e6db74>&#34;status&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;running&#34;</span>
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> ResearchCrew()<span style=color:#f92672>.</span>crew()<span style=color:#f92672>.</span>kickoff(inputs<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;topic&#34;</span>: topic})
-</span></span><span style=display:flex><span>    jobs[job_id][<span style=color:#e6db74>&#34;status&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;completed&#34;</span>
-</span></span><span style=display:flex><span>    jobs[job_id][<span style=color:#e6db74>&#34;result&#34;</span>] <span style=color:#f92672>=</span> result<span style=color:#f92672>.</span>raw
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chạy: uvicorn api_server:app --host 0.0.0.0 --port 8000</span>
-</span></span></code></pre></div><h2 id=benchmark--trường-hợp-sử-dụng-thực-tế>Benchmark / Trường hợp sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#benchmark--trường-hợp-sử-dụng-thực-tế>#</a></h2><h3 id=benchmark-hiệu-năng>Benchmark hiệu năng<a hidden class=anchor aria-hidden=true href=#benchmark-hiệu-năng>#</a></h3><p><img alt="Biểu đồ benchmark CrewAI — so sánh hiệu quả token giữa các framework multi-agent, dữ liệu từ benchmark cộng đồng tháng 5/2026" loading=lazy src=https://docs.crewai.com/images/crewai-performance-chart.png></p><p>So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-agent tiêu chuẩn: | Chỉ số | CrewAI | AutoGen | LangGraph | Agno |
+</code></pre><h3 id="triển-khai-production-với-fastapi">Triển khai production với FastAPI<a hidden class="anchor" aria-hidden="true" href="#triển-khai-production-với-fastapi">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># api_server.py — Triển khai production</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, BackgroundTasks
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_crew.crew <span style="color:#f92672">import</span> ResearchCrew
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> uuid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CrewAI Research API&#34;</span>)
+</span></span><span style="display:flex;"><span>jobs: dict <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CrewRequest</span>(BaseModel): topic: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/research&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start_research</span>(request: CrewRequest, background: BackgroundTasks): job_id <span style="color:#f92672">=</span> str(uuid<span style="color:#f92672">.</span>uuid4())
+</span></span><span style="display:flex;"><span>    jobs[job_id] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;queued&#34;</span>, <span style="color:#e6db74">&#34;topic&#34;</span>: request<span style="color:#f92672">.</span>topic}
+</span></span><span style="display:flex;"><span>    background<span style="color:#f92672">.</span>add_task(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">lambda</span>: run_crew(job_id, request<span style="color:#f92672">.</span>topic)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;job_id&#34;</span>: job_id, <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;queued&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/status/</span><span style="color:#e6db74">{job_id}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_status</span>(job_id: str): <span style="color:#66d9ef">return</span> jobs<span style="color:#f92672">.</span>get(job_id, {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Job not found&#34;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_crew</span>(job_id: str, topic: str): jobs[job_id][<span style="color:#e6db74">&#34;status&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;running&#34;</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> ResearchCrew()<span style="color:#f92672">.</span>crew()<span style="color:#f92672">.</span>kickoff(inputs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;topic&#34;</span>: topic})
+</span></span><span style="display:flex;"><span>    jobs[job_id][<span style="color:#e6db74">&#34;status&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;completed&#34;</span>
+</span></span><span style="display:flex;"><span>    jobs[job_id][<span style="color:#e6db74">&#34;result&#34;</span>] <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>raw
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chạy: uvicorn api_server:app --host 0.0.0.0 --port 8000</span>
+</span></span></code></pre></div><h2 id="benchmark--trường-hợp-sử-dụng-thực-tế">Benchmark / Trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="benchmark-hiệu-năng">Benchmark hiệu năng<a hidden class="anchor" aria-hidden="true" href="#benchmark-hiệu-năng">#</a></h3>
+<p><img alt="Biểu đồ benchmark CrewAI — so sánh hiệu quả token giữa các framework multi-agent, dữ liệu từ benchmark cộng đồng tháng 5/2026" loading="lazy" src="https://docs.crewai.com/images/crewai-performance-chart.png"></p>
+<p>So sánh CrewAI với các framework khác trên tác vụ nghiên cứu multi-agent tiêu chuẩn: | Chỉ số | CrewAI | AutoGen | LangGraph | Agno |
 |&mdash;&mdash;&ndash;|&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;|
 | Thờ gian đến lần chạy đầu tiên | ~15 phút | ~30 phút | ~60 phút | ~20 phút |
 | Chi phí token (chuẩn hóa) | 1.5–2x | 5–6x | 1x cơ sở | 1.2x |
@@ -305,64 +728,205 @@ def crew(self) -&gt; Crew: return Crew(
 | Dòng code hello-world | ~20 | ~40 | ~50 | ~25 |
 | Checkpoint tích hợp sẵn | Một phần | Không | Có (Postgres/Redis) | Không |
 | Hỗ trợ async | Có | Có | Có | Có |
-| Hỗ trợ LLM cục bộ (Ollama) | Có | Có | Có | Có |</p><h3 id=các-trường-hợp-sử-dụng-thực-tế>Các trường hợp sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#các-trường-hợp-sử-dụng-thực-tế>#</a></h3><p><strong>Báo cáo nghiên cứu tự động:</strong> Một startup fintech sử dụng CrewAI để tạo báo cáo phân tích thị trường hàng ngày. Agent nghiên cứu thu thập dữ liệu tài chính, agent phân tích xu hướng và agent viết tạo báo cáo cuối cùng — tất cả trước 8 giờ sáng.</p><p><strong>Pipeline sản xuất nội dung:</strong> Một công ty media vận hành crew 4 agent cho bài blog: nghiên cứu → viết → chỉnh sửa → tối ưu hóa SEO. Sản lượng tăng từ 3 lên 12 bài mỗi tuần.</p><p><strong>Tự động hóa review code:</strong> Một team SaaS sử dụng CrewAI để phân loại pull request. Một agent tóm tắt thay đổi, một agent khác kiểm tra pattern bảo mật và một agent thứ ba tạo bình luận review.</p><h2 id=tích-hợp-với-các-công-cụ-phổ-biến>Tích hợp với các công cụ phổ biến<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-các-công-cụ-phổ-biến>#</a></h2><h3 id=openai--anthropic--google-gemini>OpenAI / Anthropic / Google Gemini<a hidden class=anchor aria-hidden=true href=#openai--anthropic--google-gemini>#</a></h3><p>CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: `````yaml</p><h1 id=agentsyaml--chọn-model-cho-mỗi-agent>agents.yaml — chọn model cho mỗi agent<a hidden class=anchor aria-hidden=true href=#agentsyaml--chọn-model-cho-mỗi-agent>#</a></h1><p>researcher: role: Research Analyst
-llm: anthropic/claude-sonnet-4-20250514</p><h1 id=hoặc-openaigpt-4o>hoặc: openai/gpt-4o<a hidden class=anchor aria-hidden=true href=#hoặc-openaigpt-4o>#</a></h1><h1 id=hoặc-geminigemini-20-flash>hoặc: gemini/gemini-2.0-flash<a hidden class=anchor aria-hidden=true href=#hoặc-geminigemini-20-flash>#</a></h1><pre tabindex=0><code>
+| Hỗ trợ LLM cục bộ (Ollama) | Có | Có | Có | Có |</p>
+<h3 id="các-trường-hợp-sử-dụng-thực-tế">Các trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#các-trường-hợp-sử-dụng-thực-tế">#</a></h3>
+<p><strong>Báo cáo nghiên cứu tự động:</strong> Một startup fintech sử dụng CrewAI để tạo báo cáo phân tích thị trường hàng ngày. Agent nghiên cứu thu thập dữ liệu tài chính, agent phân tích xu hướng và agent viết tạo báo cáo cuối cùng — tất cả trước 8 giờ sáng.</p>
+<p><strong>Pipeline sản xuất nội dung:</strong> Một công ty media vận hành crew 4 agent cho bài blog: nghiên cứu → viết → chỉnh sửa → tối ưu hóa SEO. Sản lượng tăng từ 3 lên 12 bài mỗi tuần.</p>
+<p><strong>Tự động hóa review code:</strong> Một team SaaS sử dụng CrewAI để phân loại pull request. Một agent tóm tắt thay đổi, một agent khác kiểm tra pattern bảo mật và một agent thứ ba tạo bình luận review.</p>
+<h2 id="tích-hợp-với-các-công-cụ-phổ-biến">Tích hợp với các công cụ phổ biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-các-công-cụ-phổ-biến">#</a></h2>
+<h3 id="openai--anthropic--google-gemini">OpenAI / Anthropic / Google Gemini<a hidden class="anchor" aria-hidden="true" href="#openai--anthropic--google-gemini">#</a></h3>
+<p>CrewAI sử dụng LiteLLM để định tuyến model độc lập nhà cung cấp: `````yaml</p>
+<h1 id="agentsyaml--chọn-model-cho-mỗi-agent">agents.yaml — chọn model cho mỗi agent<a hidden class="anchor" aria-hidden="true" href="#agentsyaml--chọn-model-cho-mỗi-agent">#</a></h1>
+<p>researcher: role: Research Analyst
+llm: anthropic/claude-sonnet-4-20250514</p>
+<h1 id="hoặc-openaigpt-4o">hoặc: openai/gpt-4o<a hidden class="anchor" aria-hidden="true" href="#hoặc-openaigpt-4o">#</a></h1>
+<h1 id="hoặc-geminigemini-20-flash">hoặc: gemini/gemini-2.0-flash<a hidden class="anchor" aria-hidden="true" href="#hoặc-geminigemini-20-flash">#</a></h1>
+<pre tabindex="0"><code>
 ### Ollama (LLM cục bộ)
 
 `````yaml
 researcher: role: Research Analyst
   llm: ollama/llama3.1
   # Yêu cầu: ollama pull llama3.1
-</code></pre><h3 id=công-cụ-langchain>Công cụ LangChain<a hidden class=anchor aria-hidden=true href=#công-cụ-langchain>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Sử dụng công cụ LangChain trong CrewAI</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.tools <span style=color:#f92672>import</span> WikipediaQueryRun
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.utilities <span style=color:#f92672>import</span> WikipediaAPIWrapper
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>wiki_tool <span style=color:#f92672>=</span> WikipediaQueryRun(api_wrapper<span style=color:#f92672>=</span>WikipediaAPIWrapper())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Researcher&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Research topics thoroughly&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[wiki_tool],  <span style=color:#75715e># Công cụ LangChain hoạt động trực tiếp</span>
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=llamaindex-tích-hợp-rag>LlamaIndex (Tích hợp RAG)<a hidden class=anchor aria-hidden=true href=#llamaindex-tích-hợp-rag>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, SimpleDirectoryReader
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai.tools <span style=color:#f92672>import</span> tool
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>(<span style=color:#e6db74>&#34;Document Search&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>document_search</span>(query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Search internal documents for relevant information.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    documents <span style=color:#f92672>=</span> SimpleDirectoryReader(<span style=color:#e6db74>&#34;./docs&#34;</span>)<span style=color:#f92672>.</span>load_data()
-</span></span><span style=display:flex><span>    index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents)
-</span></span><span style=display:flex><span>    query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> str(query_engine<span style=color:#f92672>.</span>query(query))
-</span></span></code></pre></div><h3 id=triển-khai-docker>Triển khai Docker<a hidden class=anchor aria-hidden=true href=#triển-khai-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:3.12-slim</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> pyproject.toml .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> src/ ./src/<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install crewai crewai-tools<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> crewai install<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>EXPOSE</span> <span style=color:#e6db74>8000</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;crewai&#34;</span>, <span style=color:#e6db74>&#34;run&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: crewai: build</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>env_file</span>: <span style=color:#ae81ff>.env</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./output:/app/output</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
-</span></span></code></pre></div><h2 id=so-sánh-với-các-giải-pháp-thay-thế>So sánh với các giải pháp thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-giải-pháp-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>CrewAI</th><th>AutoGen</th><th>LangGraph</th><th>Agno</th></tr></thead><tbody><tr><td>Mô hình điều phối</td><td>Crew dựa trên vai trò</td><td>Agent hội thoại</td><td>Đồ thị trạng thái</td><td>Agent nhẹ</td></tr><tr><td>Tốc độ prototype</td><td>15 phút (nhanh nhất)</td><td>30 phút</td><td>60 phút (dốc nhất)</td><td>20 phút</td></tr><tr><td>Hiệu quả token</td><td>Trung bình (1.5–2x)</td><td>Chi phí cao nhất (5–6x)</td><td>Tốt nhất (1x)</td><td>Tốt (1.2x)</td></tr><tr><td>Checkpoint production</td><td>Một phần + CrewAI+</td><td>Không tích hợp</td><td>Có (Postgres/Redis)</td><td>Không</td></tr><tr><td>Khả năng quan sát</td><td>CrewAI+ (đang phát triển)</td><td>OTEL cơ bản</td><td>LangSmith (sâu)</td><td>Tối thiểu</td></tr><tr><td>Độ khó học</td><td>Thấp</td><td>Trung bình</td><td>Cao</td><td>Thấp</td></tr><tr><td>Đào bảo trì</td><td>Tích cực</td><td>Chế độ bảo trì</td><td>Tích cực</td><td>Tích cực</td></tr><tr><td>Phù hợp nhất</td><td>Prototype nhanh, luồng dựa trên vai trò</td><td>Nghiên cứu, agent viết code</td><td>Luồng production có trạng thái</td><td>Tác vụ agent đơn giản</td></tr></tbody></table><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn chế / Đánh giá trung thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><p><strong>CrewAI KHÔNG phù hợp cho:</strong></p><ol><li><p><strong>Máy trạng thái phức tạp:</strong> Nếu luồng công việc cần đồ thị tuần hoàn với phân nhánh và time-travel debugging, mô hình đồ thị rõ ràng của LangGraph phù hợp hơn.</p></li><li><p><strong>Production khối lượng cực cao:</strong> Checkpointing của CrewAI là một phần so với khả năng duy trì trạng thái đầy đủ của LangGraph. Với hàng nghìn lần chạy hàng ngày cần audit trail, LangGraph được thử nghiệm kỹ hơn.</p></li><li><p><strong>Ngân sách nhạy cảm với token:</strong> Các agent của CrewAI mặc định khá dài dòng. Trên các tác vụ tương đương, dự kiến tiêu thụ token gấp 1.5–2 lần LangGraph. Dự trù $100–$500/tháng cho khối lượng production trung bình.</p></li><li><p><strong>Yêu cầu độ trễ thực thờ:</strong> Điều phối multi-agent tăng độ trễ vốn có. Một crew 3-agent tuần tự với GPT-4o mất 45–90 giây. Không phù hợp cho yêu cầu phản hồi dưới 1 giây.</p></li><li><p><strong>Khả năng quan sát sâu:</strong> CrewAI+ cung cấp giám sát nhưng LangSmith cung cấp khả năng truy vết sâu hơn với tính toán token theo node và khả năng replay.</p></li></ol><h2 id=câu-hỏi-thường-gặp>Câu hỏi thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><p><strong>Q: CrewAI yêu cầu phiên bản Python nào?</strong>
-A: CrewAI yêu cầu Python 3.10 đến 3.13. Không hỗ trợ Python 3.9 trở xuống. Sử dụng <code>pyenv</code> để quản lý nhiều phiên bản Python trên hệ thống.</p><p><strong>Q: Làm thế nào cài đặt CrewAI với hỗ trợ LLM cục bộ?</strong>
-A: Cài đặt CrewAI bình thường bằng <code>pip install crewai</code>, sau đó cài đặt Ollama riêng. Trong cấu hình agent, đặt <code>llm: ollama/llama3.1</code>. Không cần API key cho suy luận cục bộ.</p><p><strong>Q: CrewAI có thể hoạt động với model không phải OpenAI không?</strong>
-A: Có. CrewAI hỗ trợ mọi model tương thích LiteLLM bao gồm Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral và model cục bộ qua Ollama. Sử dụng định dạng <code>provider/model-name</code> trong cấu hình agent.</p><p><strong>Q: Sự khác biệt giữa CrewAI Crews và Flows là gì?</strong>
-A: Crews là các team agent cộng tác trên tác vụ thông qua các quy trình tuần tự, phân cấp hoặc song song. Flows là luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện, quản lý trạng thái qua Pydantic models và phân nhánh. Dùng Crews cho cộng tác đơn luồng và Flows cho pipeline đa giai đoạn.</p><p><strong>Q: Chi phí chạy crew CrewAI trong production là bao nhiêu?</strong>
-A: Với crew 3-agent sử dụng GPT-4o chạy 100 lần/ngày, dự kiến chi phí API LLM khoảng $100–$300/tháng. Sử dụng model rẻ hơn như GPT-4o-mini cho tác vụ đơn giản có thể giảm chi phí 40–60%. CrewAI miễn phí và mã nguồn mở (giấy phép MIT).</p><p><strong>Q: Làm thế nào debug agent CrewAI cho kết quả kém?</strong>
-A: Đặt <code>verbose: true</code> trên agent để xem quá trình suy nghĩ. Dùng <code>max_iter</code> giới hạn vòng lặp suy luận. Thêm schema đầu ra có cấu trúc để ép format. Xem lại chỉ số sử dụng token sau mỗi lần chạy. Với vấn đề dai dẳng, đơn giản hóa mô tả tác vụ và xác minh cấu hình công cụ.</p><p><strong>Q: CrewAI đã sẵn sàng production cho doanh nghiệp chưa?</strong>
-A: Với khối lượng production vừa và nhỏ, có. CrewAI+ thêm tính năng quan sát và triển khai được quản lý từ $99/tháng. Với khối lượng lớn hoặc cần audit nghiêm ngặt, cân nhắc sử dụng CrewAI với checkpointing tùy chỉnh hoặc đánh giá LangGraph.</p><h2 id=kết-luận>Kết luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>CrewAI mang lại con đường nhanh nhất từ ý tưởng đến hệ thống multi-agent hoạt động. Tính trừu tượng dựa trên vai trò — các agent với vai trò, mục tiêu và câu chuyện nền được xác định cộng tác hoàn thành tác vụ — ánh xạ rõ ràng với cách team thực sự làm việc. Trong vòng 30 phút, bạn có thể cài đặt CrewAI, tạo khung dự án, xác định agent và tác vụ, và chạy crew đầu tiên. Cho production, thêm Flows cho điều phối dựa trên sự kiện, FastAPI cho endpoint HTTP và Docker cho triển khai.</p><p><strong>Các hành động bắt đầu ngay hôm nay:</strong></p><ol><li>Cài đặt CrewAI: <code>pip install crewai</code></li><li>Tạo khung dự án đầu tiên: <code>crewai create crew my_project</code></li><li>Xác định 2–3 agent với vai trò riêng biệt trong <code>agents.yaml</code></li><li>Chạy crew với ````crewai run```</li><li>Tham gia cộng đồng CrewAI để được hỗ trợ và tìm hiểu các mẫu nâng cao</li></ol><p>Tham gia thảo luận trên Telegram: <a href=https://t.me/dibi8tech>Tham gia cộng đồng dibi8.com</a> để nhận mẹo multi-agent AI và chiến lược triển khai production.</p><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài liệu tham khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://github.com/crewAIInc/crewAI>CrewAI GitHub Repository</a></li><li><a href=https://docs.crewai.com/en/introduction>CrewAI Official Documentation</a></li><li><a href=https://docs.crewai.com/en/quickstart>CrewAI Quickstart Guide</a></li><li><a href=https://docs.crewai.com/en/concepts/flows>CrewAI Flows Documentation</a></li><li><a href=https://docs.crewai.com/en/concepts/tools>CrewAI Tools Reference</a></li><li><a href=https://rightaichoice.com/compare/langgraph-vs-crewai-vs-autogen>LangGraph vs CrewAI vs AutoGen Comparison 2026</a></li><li><a href=https://tech-insider.org/crewai-tutorial-multi-agent-ai-python-2026/>CrewAI Multi-Agent Tutorial 2026</a></li><li><a href=https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md>CrewAI + IBM watsonx Tutorial</a></li></ul><p><em>Tiết lộ: Bài viết này chứa liên kết affiliate. Nếu bạn nhấp vào liên kết và thực hiện giao dịch mua, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ nghiên cứu kỹ thuật độc lập, thử nghiệm và tạo nội dung giáo dục miễn phí của chúng tôi. Tất cả các khuyến nghị đều dựa trên đánh giá riêng của chúng tôi về các công cụ.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h3 id="công-cụ-langchain">Công cụ LangChain<a hidden class="anchor" aria-hidden="true" href="#công-cụ-langchain">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Sử dụng công cụ LangChain trong CrewAI</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.tools <span style="color:#f92672">import</span> WikipediaQueryRun
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.utilities <span style="color:#f92672">import</span> WikipediaAPIWrapper
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wiki_tool <span style="color:#f92672">=</span> WikipediaQueryRun(api_wrapper<span style="color:#f92672">=</span>WikipediaAPIWrapper())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Researcher&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research topics thoroughly&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[wiki_tool],  <span style="color:#75715e"># Công cụ LangChain hoạt động trực tiếp</span>
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="llamaindex-tích-hợp-rag">LlamaIndex (Tích hợp RAG)<a hidden class="anchor" aria-hidden="true" href="#llamaindex-tích-hợp-rag">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, SimpleDirectoryReader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai.tools <span style="color:#f92672">import</span> tool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>(<span style="color:#e6db74">&#34;Document Search&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">document_search</span>(query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Search internal documents for relevant information.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./docs&#34;</span>)<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>    index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents)
+</span></span><span style="display:flex;"><span>    query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> str(query_engine<span style="color:#f92672">.</span>query(query))
+</span></span></code></pre></div><h3 id="triển-khai-docker">Triển khai Docker<a hidden class="anchor" aria-hidden="true" href="#triển-khai-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.12-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> pyproject.toml .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> src/ ./src/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install crewai crewai-tools<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> crewai install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;crewai&#34;</span>, <span style="color:#e6db74">&#34;run&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: crewai: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>: <span style="color:#ae81ff">.env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./output:/app/output</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span></code></pre></div><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So sánh với các giải pháp thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>CrewAI</th>
+					<th>AutoGen</th>
+					<th>LangGraph</th>
+					<th>Agno</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Mô hình điều phối</td>
+					<td>Crew dựa trên vai trò</td>
+					<td>Agent hội thoại</td>
+					<td>Đồ thị trạng thái</td>
+					<td>Agent nhẹ</td>
+			</tr>
+			<tr>
+					<td>Tốc độ prototype</td>
+					<td>15 phút (nhanh nhất)</td>
+					<td>30 phút</td>
+					<td>60 phút (dốc nhất)</td>
+					<td>20 phút</td>
+			</tr>
+			<tr>
+					<td>Hiệu quả token</td>
+					<td>Trung bình (1.5–2x)</td>
+					<td>Chi phí cao nhất (5–6x)</td>
+					<td>Tốt nhất (1x)</td>
+					<td>Tốt (1.2x)</td>
+			</tr>
+			<tr>
+					<td>Checkpoint production</td>
+					<td>Một phần + CrewAI+</td>
+					<td>Không tích hợp</td>
+					<td>Có (Postgres/Redis)</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td>Khả năng quan sát</td>
+					<td>CrewAI+ (đang phát triển)</td>
+					<td>OTEL cơ bản</td>
+					<td>LangSmith (sâu)</td>
+					<td>Tối thiểu</td>
+			</tr>
+			<tr>
+					<td>Độ khó học</td>
+					<td>Thấp</td>
+					<td>Trung bình</td>
+					<td>Cao</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td>Đào bảo trì</td>
+					<td>Tích cực</td>
+					<td>Chế độ bảo trì</td>
+					<td>Tích cực</td>
+					<td>Tích cực</td>
+			</tr>
+			<tr>
+					<td>Phù hợp nhất</td>
+					<td>Prototype nhanh, luồng dựa trên vai trò</td>
+					<td>Nghiên cứu, agent viết code</td>
+					<td>Luồng production có trạng thái</td>
+					<td>Tác vụ agent đơn giản</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn chế / Đánh giá trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p><strong>CrewAI KHÔNG phù hợp cho:</strong></p>
+<ol>
+<li>
+<p><strong>Máy trạng thái phức tạp:</strong> Nếu luồng công việc cần đồ thị tuần hoàn với phân nhánh và time-travel debugging, mô hình đồ thị rõ ràng của LangGraph phù hợp hơn.</p>
+</li>
+<li>
+<p><strong>Production khối lượng cực cao:</strong> Checkpointing của CrewAI là một phần so với khả năng duy trì trạng thái đầy đủ của LangGraph. Với hàng nghìn lần chạy hàng ngày cần audit trail, LangGraph được thử nghiệm kỹ hơn.</p>
+</li>
+<li>
+<p><strong>Ngân sách nhạy cảm với token:</strong> Các agent của CrewAI mặc định khá dài dòng. Trên các tác vụ tương đương, dự kiến tiêu thụ token gấp 1.5–2 lần LangGraph. Dự trù $100–$500/tháng cho khối lượng production trung bình.</p>
+</li>
+<li>
+<p><strong>Yêu cầu độ trễ thực thờ:</strong> Điều phối multi-agent tăng độ trễ vốn có. Một crew 3-agent tuần tự với GPT-4o mất 45–90 giây. Không phù hợp cho yêu cầu phản hồi dưới 1 giây.</p>
+</li>
+<li>
+<p><strong>Khả năng quan sát sâu:</strong> CrewAI+ cung cấp giám sát nhưng LangSmith cung cấp khả năng truy vết sâu hơn với tính toán token theo node và khả năng replay.</p>
+</li>
+</ol>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<p><strong>Q: CrewAI yêu cầu phiên bản Python nào?</strong>
+A: CrewAI yêu cầu Python 3.10 đến 3.13. Không hỗ trợ Python 3.9 trở xuống. Sử dụng <code>pyenv</code> để quản lý nhiều phiên bản Python trên hệ thống.</p>
+<p><strong>Q: Làm thế nào cài đặt CrewAI với hỗ trợ LLM cục bộ?</strong>
+A: Cài đặt CrewAI bình thường bằng <code>pip install crewai</code>, sau đó cài đặt Ollama riêng. Trong cấu hình agent, đặt <code>llm: ollama/llama3.1</code>. Không cần API key cho suy luận cục bộ.</p>
+<p><strong>Q: CrewAI có thể hoạt động với model không phải OpenAI không?</strong>
+A: Có. CrewAI hỗ trợ mọi model tương thích LiteLLM bao gồm Anthropic Claude, Google Gemini, Azure OpenAI, DeepSeek, Mistral và model cục bộ qua Ollama. Sử dụng định dạng <code>provider/model-name</code> trong cấu hình agent.</p>
+<p><strong>Q: Sự khác biệt giữa CrewAI Crews và Flows là gì?</strong>
+A: Crews là các team agent cộng tác trên tác vụ thông qua các quy trình tuần tự, phân cấp hoặc song song. Flows là luồng công việc dựa trên sự kiện kết nối nhiều crew với logic có điều kiện, quản lý trạng thái qua Pydantic models và phân nhánh. Dùng Crews cho cộng tác đơn luồng và Flows cho pipeline đa giai đoạn.</p>
+<p><strong>Q: Chi phí chạy crew CrewAI trong production là bao nhiêu?</strong>
+A: Với crew 3-agent sử dụng GPT-4o chạy 100 lần/ngày, dự kiến chi phí API LLM khoảng $100–$300/tháng. Sử dụng model rẻ hơn như GPT-4o-mini cho tác vụ đơn giản có thể giảm chi phí 40–60%. CrewAI miễn phí và mã nguồn mở (giấy phép MIT).</p>
+<p><strong>Q: Làm thế nào debug agent CrewAI cho kết quả kém?</strong>
+A: Đặt <code>verbose: true</code> trên agent để xem quá trình suy nghĩ. Dùng <code>max_iter</code> giới hạn vòng lặp suy luận. Thêm schema đầu ra có cấu trúc để ép format. Xem lại chỉ số sử dụng token sau mỗi lần chạy. Với vấn đề dai dẳng, đơn giản hóa mô tả tác vụ và xác minh cấu hình công cụ.</p>
+<p><strong>Q: CrewAI đã sẵn sàng production cho doanh nghiệp chưa?</strong>
+A: Với khối lượng production vừa và nhỏ, có. CrewAI+ thêm tính năng quan sát và triển khai được quản lý từ $99/tháng. Với khối lượng lớn hoặc cần audit nghiêm ngặt, cân nhắc sử dụng CrewAI với checkpointing tùy chỉnh hoặc đánh giá LangGraph.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>CrewAI mang lại con đường nhanh nhất từ ý tưởng đến hệ thống multi-agent hoạt động. Tính trừu tượng dựa trên vai trò — các agent với vai trò, mục tiêu và câu chuyện nền được xác định cộng tác hoàn thành tác vụ — ánh xạ rõ ràng với cách team thực sự làm việc. Trong vòng 30 phút, bạn có thể cài đặt CrewAI, tạo khung dự án, xác định agent và tác vụ, và chạy crew đầu tiên. Cho production, thêm Flows cho điều phối dựa trên sự kiện, FastAPI cho endpoint HTTP và Docker cho triển khai.</p>
+<p><strong>Các hành động bắt đầu ngay hôm nay:</strong></p>
+<ol>
+<li>Cài đặt CrewAI: <code>pip install crewai</code></li>
+<li>Tạo khung dự án đầu tiên: <code>crewai create crew my_project</code></li>
+<li>Xác định 2–3 agent với vai trò riêng biệt trong <code>agents.yaml</code></li>
+<li>Chạy crew với ````crewai run```</li>
+<li>Tham gia cộng đồng CrewAI để được hỗ trợ và tìm hiểu các mẫu nâng cao</li>
+</ol>
+<p>Tham gia thảo luận trên Telegram: <a href="https://t.me/dibi8tech">Tham gia cộng đồng dibi8.com</a> để nhận mẹo multi-agent AI và chiến lược triển khai production.</p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/crewAIInc/crewAI">CrewAI GitHub Repository</a></li>
+<li><a href="https://docs.crewai.com/en/introduction">CrewAI Official Documentation</a></li>
+<li><a href="https://docs.crewai.com/en/quickstart">CrewAI Quickstart Guide</a></li>
+<li><a href="https://docs.crewai.com/en/concepts/flows">CrewAI Flows Documentation</a></li>
+<li><a href="https://docs.crewai.com/en/concepts/tools">CrewAI Tools Reference</a></li>
+<li><a href="https://rightaichoice.com/compare/langgraph-vs-crewai-vs-autogen">LangGraph vs CrewAI vs AutoGen Comparison 2026</a></li>
+<li><a href="https://tech-insider.org/crewai-tutorial-multi-agent-ai-python-2026/">CrewAI Multi-Agent Tutorial 2026</a></li>
+<li><a href="https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md">CrewAI + IBM watsonx Tutorial</a></li>
+</ul>
+<p><em>Tiết lộ: Bài viết này chứa liên kết affiliate. Nếu bạn nhấp vào liên kết và thực hiện giao dịch mua, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Điều này giúp hỗ trợ nghiên cứu kỹ thuật độc lập, thử nghiệm và tạo nội dung giáo dục miễn phí của chúng tôi. Tất cả các khuyến nghị đều dựa trên đánh giá riêng của chúng tôi về các công cụ.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;CrewAI: Xây dựng đội AI Multi-Agent với 51K+ Star — Hướng dẫn thiết lập đầy đủ 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -376,18 +940,186 @@ A: Với khối lượng production vừa và nhỏ, có. CrewAI+ thêm tính n�
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/crewai%22>https://dibi8.com/vi/resources/crewai"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/crewai%22">https://dibi8.com/vi/resources/crewai"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/ai-coding-agents/crewai/>google-jax-complete-guide</a></li><li><a href=/vi/ai-coding-agents/crewai/>ray-distributed-ai-framework-complete-guide</a></li><li><a href=/vi/ai-coding-agents/crewai/>modal-serverless-gpu-compute</a></li><li><a href=/vi/ai-coding-agents/crewai/>temporal-ai-workflow-orchestration</a></li><li><a href=/vi/ai-coding-agents/crewai/>cleanlab-11k-star-ai-data-cleaning</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/crewai-multi-agent-orchestration/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/cross-border-ai-marketing-stack/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/ai-coding-agents/crewai/">google-jax-complete-guide</a></li>
+<li><a href="/vi/ai-coding-agents/crewai/">ray-distributed-ai-framework-complete-guide</a></li>
+<li><a href="/vi/ai-coding-agents/crewai/">modal-serverless-gpu-compute</a></li>
+<li><a href="/vi/ai-coding-agents/crewai/">temporal-ai-workflow-orchestration</a></li>
+<li><a href="/vi/ai-coding-agents/crewai/">cleanlab-11k-star-ai-data-cleaning</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/crewai-multi-agent-orchestration/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/cross-border-ai-marketing-stack/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

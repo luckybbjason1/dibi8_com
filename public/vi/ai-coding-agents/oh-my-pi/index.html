@@ -1,54 +1,392 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/oh-my-pi/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/oh-my-pi/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/oh-my-pi/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/oh-my-pi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/oh-my-pi/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/oh-my-pi/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TL;DR Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh được cấu hình đầy đủ với cài đặt tự động, dashboard được cấu hình sẵn và triển khai dịch vụ một-click. Với 12.554 sao, đây là framework tự động hóa Raspberry Pi phổ biến nhất trên GitHub.\nTL;DR: 12.554 sao — dự án tự động hóa Raspberry Pi #1.\nOh My Pi Là Gì? Oh My Pi là một framework cài đặt tự động cho thiết bị Raspberry Pi. Thay vì phải tự động cấu hình networking, cài đặt dịch vụ và kết nối chúng với nhau, Oh My Pi xử lý toàn bộ quy trình từ thẻ SD trống đến thiết bị thông minh hoạt động đầy đủ trong chưa đầy 30 phút.\nDự án cung cấp một danh mục dịch vụ mô-đun bao gồm: - Home Assistant — Hub home automation toàn diện với 2.000+ tích hợp\nAdGuard Home — Chặn quảng cáo và lọc DNS toàn mạng Pi-hole — Trình chặn quảng cáo DNS nhẹ Grafana + Prometheus — Dashboard giám sát cơ sở hạ tầng Jellyfin — Máy chủ media miễn phí để streaming Gitea — Dịch vụ Git tự lưu trữ Vaultwarden — Trình quản lý mật khẩu tương thích Bitwarden Minecraft Server — Triển khai máy chủ Minecraft một-click Network Scanner — Khám phá và giám sát thiết bị tự động Backup Manager — Backup định kỳ với lưu trữ mã hóa # Cài đặt Oh My Pi trên Raspberry Pi OS mới curl -sSL https://ohmypi.sh/install | sudo bash # Hoặc sao chép và chạy thủ công git clone https://github.com/can1357/oh-my-pi.git cd oh-my-pi sudo ./install.sh Oh My Pi Hoạt động Như thế nào Oh My Pi tuân theo mô hình triển khai ba giai đoạn: 1. Cung cấp Hệ thống — Cấu hình OS, networking, người dùng và tăng cường bảo mật 2. Cài đặt Dịch vụ — Triển khai dịch vụ đã chọn qua Docker Compose với các giá trị mặc định hợp lý 3. Lắp ráp Dashboard — Tạo một dashboard web thống nhất để quản lý tất cả dịch vụ\n# Giai đoạn 1: Cung cấp hệ thống sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub # Giai đoạn 2: Cài đặt dịch vụ sudo omp install homeassistant grafana vaultwarden # Giai đoạn 3: Tạo dashboard sudo omp dashboard --title \"My Smart Pi\" --theme dark Giai đoạn provisioning xử lý mọi thứ thường mất hàng giờ: cấu hình IP tĩnh, thiết lập SSH key, quy tắc firewall, xoay log và cập nhật tự động. Dịch vụ được triển khai dưới dạng container Docker cô lập với volume bền vững cho dữ liệu.\nCài đặt \u0026 Thiết lập Yêu cầu: Raspberry Pi 3B+ hoặc mới hơn (khuyến nghị Pi 4), thẻ microSD 8GB+, Raspberry Pi OS Lite (64-bit).\n# Bước 1: Flash Raspberry Pi OS Lite # Tải từ https://www.raspberrypi.com/software/ # Bước 2: Bật SSH và WiFi # Thêm file ssh và wpa_supplicant.conf vào partition boot # Bước 3: Khởi động Pi và tìm IP của nó # Quét mạng của bạn với: nmap -sn 192.168.1.0/24 # Bước 4: SSH vào và cài đặt Oh My Pi ssh pi@ curl -sSL https://ohmypi.sh/install | sudo bash Cấu hình Docker Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: `````yaml\ndocker-compose.yaml được tạo sau khi cài đặt dịch vụ version: “3.9” services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable volumes: - ha-data:/config - /etc/localtime:/etc/localtime:ro ports: - “8123:8123” restart: unless-stopped\nadguard: image: adguard/adguardhome:latest volumes: - adguard-conf:/opt/adguardhome/conf - adguard-work:/opt/adguardhome/work ports: - “53:53/tcp” - “53:53/udp” - “3000:3000” - “80:80/tcp” restart: unless-stopped\nvaultwarden: image: vaultwarden/server:latest volumes: - vw-data:/data environment: SIGNUPS_ALLOWED: “false” restart: unless-stopped\nvolumes: ha-data: adguard-conf: adguard-work: vw-data: `````\nCấu hình Mạng Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: `````bash\nCấu hình IP tĩnh sudo omp network static –ip 192.168.1.100 –gateway 192.168.1.1 –dns 8.8.8.8\nThiết lập DNS forwarding sudo omp network dns –upstream 1.1.1.1 –local 127.0.0.1\nCấu hình firewall sudo omp firewall enable –allow 22 –allow 80 –allow 443 –allow 8123\n## Danh mục Dịch vụ: Phân tích Chi tiết Oh My Pi hỗ trợ 20+ dịch vụ qua 6 danh mục: | Danh mục | Dịch vụ | Thời gian Cài đặt | Sử dụng Tài nguyên | |----------|---------|-----------------|-------------------| | **Home Automation** | Home Assistant, Zigbee2MQTT | 5 phút | 512MB RAM | | **Networking** | AdGuard, Pi-hole, PiVPN | 3 phút | 128MB RAM | | **Media** | Jellyfin, Plex (thủ công), Navidrome | 5 phút | 256MB RAM | | **Development** | Gitea, Cockpit, Netdata | 4 phút | 384MB RAM | | **Security** | Vaultwarden, FileBrowser, Uptime Kuma | 3 phút | 256MB RAM | | **Monitoring** | Grafana, Prometheus, AlertManager | 6 phút | 512MB RAM | `````bash # Cài đặt toàn bộ setup nhà thông minh sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden # Tất cả dịch vụ được triển khai với thứ tự khởi động phối hợp # Home Assistant khởi động trước, sau đó Zigbee2MQTT kết nối, # AdGuard xử lý DNS, Grafana giám sát mọi thứ So sánh với Các Giải pháp Thay thế Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi nổi bật: | Tính năng | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC | |———|———-|——–|——————-|——| | Sao | 12.554 | 18K+ | N/A | 3.2K | | Số lượng Dịch vụ | 20+ | 15+ | N/A | 1 (chỉ media) | | Cài đặt Một-Click | Có | Có | Không | Không | | Dashboard | Thống nhất | Có | Không | Không | | Hệ thống Backup | Tích hợp | Có | Không | Không | | Hỗ trợ Dịch vụ Tùy chỉnh | Có | Có | Không | Không | | Headless Setup | Có | Có | Không | Không | | Docker-First | Có | Có | N/A | Không |\nĐiểm khác biệt chính là đa dạng dịch vụ và orchestration. Khác với CasaOS tập trung vào sự đơn giản của app store, Oh My Pi cho phép kiểm soát chi tiết cấu hình dịch vụ trong khi vẫn duy trì sự tiện lợi một-click.\nSử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi: ### Viết Định nghĩa Dịch vụ Tùy chỉnh\n# my-service.yaml — định nghĩa dịch vụ tùy chỉnh service: name: my-custom-app version: \"1.0\" description: \"Technical guide and comparison.\" docker: image: \"myapp:latest\" ports: - \"8080:8080\" volumes: - myapp-data:/data environment: APP_ENV: production LOG_LEVEL: info health_check: url: \"http://localhost:8080/health\" interval: \"30s\" retries: 3 resources: cpu_limit: \"0.5\" memory_limit: \"256M\" backup: enabled: true schedule: \"0 2 * * *\" # hàng ngày lúc 2 AM volumes: - myapp-data Backup Tự động Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: `````bash\nCấu hình đích backup sudo omp backup configure –remote s3 –bucket ohmypi-backups –region us-east-1\nChạy backup ngay lập tức sudo omp backup run\nKhôi phục từ backup sudo omp backup restore –date 2026-06-14 –verify\nLên lịch backup hàng ngày sudo omp backup schedule –frequency daily –retention 30\n### Truy cập Từ xa và Tunneling Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động: `````bash # Thiết lập Cloudflare Tunnel (miễn phí, không cần port forwarding) sudo omp tunnel cloudflare --token # Hoặc sử dụng ngrok cho truy cập nhanh sudo omp tunnel ngrok --authtoken # Cấu hình reverse proxy với Caddy (auto HTTPS) sudo omp proxy caddy --domain mypi.local --ssl auto Quản lý Cụm Đa Pi Quản lý nhiều Pi từ một dashboard duy nhất: `````bash\nThêm Pi thứ hai vào cluster sudo omp cluster add –host pi2.local –user pi –key ~/.ssh/id_ed25519\nTriển khai dịch vụ trên tất cả node sudo omp cluster deploy –services homeassistant,grafana –nodes all\nXem sức khỏe cluster sudo omp cluster health\n### Giám sát Sức khỏe Thẻ SD Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp: `````bash # Kiểm tra sức khỏe thẻ SD sudo omp storage health # Bật cảnh báo hỏng dự đoán sudo omp storage alerts --enable --threshold 70 # Lên lịch kiểm tra sức khỏe tự động sudo omp storage schedule --interval hourly Giám sát Nguồn và Tích hợp UPS Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: `````bash\nCấu hình giám sát UPS sudo omp ups configure –driver usb –shutdown-delay 300\nĐặt ngưỡng pin cho graceful shutdown sudo omp ups threshold –battery 20 –action shutdown\nGiám sát sự kiện nguồn sudo omp ups logs –tail 50\n### Giám sát Tài nguyên và Cảnh báo `````bash # Đặt ngưỡng tài nguyên sudo omp monitor thresholds --cpu 90 --memory 85 --disk 80 # Cấu hình thông báo cảnh báo sudo omp monitor alerts --channel telegram --token --chat # Xem lịch sử tài nguyên sudo omp monitor history --period 7d --graph Hạn chế: Khi Oh My Pi Có thể Không Phù hợp Pi Zero và các mẫu cũ — Oh My Pi yêu cầu ít nhất 1GB RAM. Pi Zero (256MB/512MB) không thể chạy toàn bộ stack dịch vụ. Pi Zero 2 W (512MB) có thể chạy cấu hình tối thiểu với chỉ các dịch vụ networking.\nNhu cầu hiệu năng cao — Đối với các workload nặng CPU như transcode video 4K, suy luận ML quy mô lớn hoặc biên dịch cơ sở mã lớn, một single-board computer mạnh hơn (như Orange Pi 5 với 16GB RAM) hoặc máy x86 chuyên dụng được khuyến nghị.\nDịch vụ production — Oh My Pi được thiết kế cho trường hợp sử dụng nghiệp dư và nhóm nhỏ. Triển khai production mission-critical với yêu cầu SLA nên sử dụng máy chủ chuyên dụng với nguồn điện và kết nối mạng dự phòng.\nDịch vụ phi-Docker — Tất cả dịch vụ chạy trong container Docker. Cài đặt bare-metal và truy cập phần cứng trực tiếp không được hỗ trợ bởi framework.\nPhần cứng tùy chỉnh — HAT, dự án GPIO, triển khai dựa trên cảm biến và dự án robot nằm ngoài phạm vi của Oh My Pi. Dự án tập trung hoàn toàn vào dịch vụ mạng và ứng dụng containerized, không phải giao diện phần cứng.\nTối ưu hóa ARM hạn chế — Mặc dù các image Docker là multi-architecture, một số image tối ưu x86 có thể có hiệu năng giảm trên bộ xử lý ARM. Luôn xác minh tương thích image trước khi triển khai.\n# Kiểm tra độ phù hợp nhanh # ✅ Hub home automation → CÓ # ✅ Máy chủ media → CÓ # ✅ Workstation phát triển → CÓ # ✅ Máy chủ database production → KHÔNG (sử dụng phần cứng chuyên dụng) # ✅ Dự án cảm biến IoT → KHÔNG (chỉ tập trung vào dịch vụ mạng) Câu hỏi Thường gặp Model Raspberry Pi nào được khuyến nghị? Pi 4 với 4GB+ RAM hoặc Pi 5. Pi 3B+ hoạt động cho dịch vụ cơ bản nhưng có thể gặp khó khăn với nhiều container.\nTôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không? Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt.\nTôi cần bao nhiêu bộ nhớ? Setup cơ bản (2-3 dịch vụ) cần khoảng 8GB. Setup đầy đủ (tất cả 20+ dịch vụ) sử dụng khoảng 15-20GB.\nCó ứng dụng mobile để quản lý dịch vụ không? Dashboard web responsive và hoạt động trên trình duyệt mobile. Ứng dụng chuyên dụng chưa khả dụng.\nTôi có thể chạy Oh My Pi mà không có internet không? Có. Tất cả image Docker có thể được pre-pull và hệ thống hỗ trợ triển khai dịch vụ offline.\nTôi cập nhật dịch vụ đã cài đặt như thế nào? Chạy sudo omp update để kiểm tra cập nhật dịch vụ và áp dụng chúng với zero downtime nơi có thể. Hệ thống cập nhật hỗ trợ rolling updates cho hầu hết dịch vụ và có thể tự động rollback nếu dịch vụ không khởi động được sau khi cập nhật.\nTôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không? Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt. Lệnh omp provision tự động phát hiện phần cứng và điều chỉnh giới hạn tài nguyên tương ứng.\nCó dashboard web để quản lý dịch vụ không? Có. Oh My Pi tạo một dashboard web thống nhất tại http://:3001 sau khi cài đặt. Dashboard hiển thị tất cả dịch vụ đang chạy, sử dụng tài nguyên và cung cấp truy cập một-click đến panel admin của mỗi dịch vụ.\nKết luận Oh My Pi loại bỏ những phần khó chịu nhất của việc sở hữu Raspberry Pi: cấu hình, kết nối dịch vụ và bảo trì liên tục. Với 12.554 sao, nó đã chứng minh rằng một framework tự động hóa được thiết kế tốt có thể khiến cơ sở hạ tầng nhà phức tạp trở nên dễ tiếp cận cho mọi người, từ chủ Pi lần đầu đến quản trị viên hệ thống giàu kinh nghiệm quản lý fleet deployments trên nhiều địa điểm và khu vực địa lý. Lộ trình dự án bao gồm tối ưu hóa hiệu năng ARM-specific, ứng dụng companion iOS/Android native và chợ plugin cộng đồng.\nĐể lưu trữ thẻ SD đáng tin cậy, HTStack cung cấp giải pháp backup cho cấu hình Pi. Dự phòng đám mây với DigitalOcean objects là giá rẻ. Người nắm giữ crypto: Binance, OKX. WebShare proxies cho quản lý Pi từ xa. Để truy cập từ xa an toàn, HTStack lưu trữ mã hóa bảo vệ backup cấu hình Pi của bạn.\nBắt đầu ngay:\ncurl -sSL https://ohmypi.sh/install | sudo bash ```` **Liên kết nội bộ**: [Hướng dẫn nhà thông minh](https://dibi8.com/) · [Edge computing với Pi](https://dibi8.com/ai-tools/) * * * **Nguồn \u0026 Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi - Tài liệu Raspberry Pi: https://www.raspberrypi.com/documentation/ - Tài liệu Docker: https://docs.docker.com/ **Sources \u0026 Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi - Raspberry Pi docs: https://www.raspberrypi.com/documentation/ - Docker docs: https://docs.docker.com/ **CTA**: Tham gia cộng đồng IoT DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/oh-my-pi\" } } * * * ## Related Articles - [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](oh-my-pi) - [oh-my-pi](oh-my-pi) - [apple-container](oh-my-pi) - [oh-my-pi](oh-my-pi) - [ohmyzsh](oh-my-pi) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2546","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/oh-my-pi/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>12 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/oh-my-pi/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/oh-my-pi/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#oh-my-pi-l%c3%a0-g%c3%ac aria-label="Oh My Pi Là Gì?">Oh My Pi Là Gì?</a></li><li><a href=#oh-my-pi-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Oh My Pi Hoạt động Như thế nào">Oh My Pi Hoạt động Như thế nào</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt & Thiết lập">Cài đặt & Thiết lập</a><ul><li><a href=#c%e1%ba%a5u-h%c3%acnh-docker aria-label="Cấu hình Docker">Cấu hình Docker</a></li></ul></li></ul><li><a href=#docker-composeyaml-%c4%91%c6%b0%e1%bb%a3c-t%e1%ba%a1o-sau-khi-c%c3%a0i-%c4%91%e1%ba%b7t-d%e1%bb%8bch-v%e1%bb%a5 aria-label="docker-compose.yaml được tạo sau khi cài đặt dịch vụ">docker-compose.yaml được tạo sau khi cài đặt dịch vụ</a><ul><ul><li><a href=#c%e1%ba%a5u-h%c3%acnh-m%e1%ba%a1ng aria-label="Cấu hình Mạng">Cấu hình Mạng</a></li></ul></ul></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-ip-t%c4%a9nh aria-label="Cấu hình IP tĩnh">Cấu hình IP tĩnh</a></li><li><a href=#thi%e1%ba%bft-l%e1%ba%adp-dns-forwarding aria-label="Thiết lập DNS forwarding">Thiết lập DNS forwarding</a></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-firewall aria-label="Cấu hình firewall">Cấu hình firewall</a><ul><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf aria-label="So sánh với Các Giải pháp Thay thế">So sánh với Các Giải pháp Thay thế</a></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao-tri%e1%bb%83n-khai-d%e1%bb%8bch-v%e1%bb%a5-t%c3%b9y-ch%e1%bb%89nh aria-label="Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh">Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh</a><ul><li><a href=#backup-t%e1%bb%b1-%c4%91%e1%bb%99ng aria-label="Backup Tự động">Backup Tự động</a></li></ul></li></ul></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-%c4%91%c3%adch-backup aria-label="Cấu hình đích backup">Cấu hình đích backup</a></li><li><a href=#ch%e1%ba%a1y-backup-ngay-l%e1%ba%adp-t%e1%bb%a9c aria-label="Chạy backup ngay lập tức">Chạy backup ngay lập tức</a></li><li><a href=#kh%c3%b4i-ph%e1%bb%a5c-t%e1%bb%ab-backup aria-label="Khôi phục từ backup">Khôi phục từ backup</a></li><li><a href=#l%c3%aan-l%e1%bb%8bch-backup-h%c3%a0ng-ng%c3%a0y aria-label="Lên lịch backup hàng ngày">Lên lịch backup hàng ngày</a><ul><ul><li><a href=#qu%e1%ba%a3n-l%c3%bd-c%e1%bb%a5m-%c4%91a-pi aria-label="Quản lý Cụm Đa Pi">Quản lý Cụm Đa Pi</a></li></ul></ul></li><li><a href=#th%c3%aam-pi-th%e1%bb%a9-hai-v%c3%a0o-cluster aria-label="Thêm Pi thứ hai vào cluster">Thêm Pi thứ hai vào cluster</a></li><li><a href=#tri%e1%bb%83n-khai-d%e1%bb%8bch-v%e1%bb%a5-tr%c3%aan-t%e1%ba%a5t-c%e1%ba%a3-node aria-label="Triển khai dịch vụ trên tất cả node">Triển khai dịch vụ trên tất cả node</a></li><li><a href=#xem-s%e1%bb%a9c-kh%e1%bb%8fe-cluster aria-label="Xem sức khỏe cluster">Xem sức khỏe cluster</a><ul><ul><li><a href=#gi%c3%a1m-s%c3%a1t-ngu%e1%bb%93n-v%c3%a0-t%c3%adch-h%e1%bb%a3p-ups aria-label="Giám sát Nguồn và Tích hợp UPS">Giám sát Nguồn và Tích hợp UPS</a></li></ul></ul></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-gi%c3%a1m-s%c3%a1t-ups aria-label="Cấu hình giám sát UPS">Cấu hình giám sát UPS</a></li><li><a href=#%c4%91%e1%ba%b7t-ng%c6%b0%e1%bb%a1ng-pin-cho-graceful-shutdown aria-label="Đặt ngưỡng pin cho graceful shutdown">Đặt ngưỡng pin cho graceful shutdown</a></li><li><a href=#gi%c3%a1m-s%c3%a1t-s%e1%bb%b1-ki%e1%bb%87n-ngu%e1%bb%93n aria-label="Giám sát sự kiện nguồn">Giám sát sự kiện nguồn</a><ul><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf-khi-oh-my-pi-c%c3%b3-th%e1%bb%83-kh%c3%b4ng-ph%c3%b9-h%e1%bb%a3p aria-label="Hạn chế: Khi Oh My Pi Có thể Không Phù hợp">Hạn chế: Khi Oh My Pi Có thể Không Phù hợp</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi Thường gặp">Câu hỏi Thường gặp</a><ul><li><a href=#model-raspberry-pi-n%c3%a0o-%c4%91%c6%b0%e1%bb%a3c-khuy%e1%ba%bfn-ngh%e1%bb%8b aria-label="Model Raspberry Pi nào được khuyến nghị?">Model Raspberry Pi nào được khuyến nghị?</a></li><li><a href=#t%c3%b4i-c%c3%b3-th%e1%bb%83-s%e1%bb%ad-d%e1%bb%a5ng-oh-my-pi-tr%c3%aan-bo-m%e1%ba%a1ch-kh%c3%b4ng-ph%e1%ba%a3i-raspberry-pi-kh%c3%b4ng aria-label="Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?">Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?</a></li><li><a href=#t%c3%b4i-c%e1%ba%a7n-bao-nhi%c3%aau-b%e1%bb%99-nh%e1%bb%9b aria-label="Tôi cần bao nhiêu bộ nhớ?">Tôi cần bao nhiêu bộ nhớ?</a></li><li><a href=#c%c3%b3-%e1%bb%a9ng-d%e1%bb%a5ng-mobile-%c4%91%e1%bb%83-qu%e1%ba%a3n-l%c3%bd-d%e1%bb%8bch-v%e1%bb%a5-kh%c3%b4ng aria-label="Có ứng dụng mobile để quản lý dịch vụ không?">Có ứng dụng mobile để quản lý dịch vụ không?</a></li><li><a href=#t%c3%b4i-c%c3%b3-th%e1%bb%83-ch%e1%ba%a1y-oh-my-pi-m%c3%a0-kh%c3%b4ng-c%c3%b3-internet-kh%c3%b4ng aria-label="Tôi có thể chạy Oh My Pi mà không có internet không?">Tôi có thể chạy Oh My Pi mà không có internet không?</a></li><li><a href=#t%c3%b4i-c%e1%ba%adp-nh%e1%ba%adt-d%e1%bb%8bch-v%e1%bb%a5-%c4%91%c3%a3-c%c3%a0i-%c4%91%e1%ba%b7t-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Tôi cập nhật dịch vụ đã cài đặt như thế nào?">Tôi cập nhật dịch vụ đã cài đặt như thế nào?</a></li><li><a href=#t%c3%b4i-c%c3%b3-th%e1%bb%83-s%e1%bb%ad-d%e1%bb%a5ng-oh-my-pi-tr%c3%aan-bo-m%e1%ba%a1ch-kh%c3%b4ng-ph%e1%ba%a3i-raspberry-pi-kh%c3%b4ng-1 aria-label="Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?">Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?</a></li><li><a href=#c%c3%b3-dashboard-web-%c4%91%e1%bb%83-qu%e1%ba%a3n-l%c3%bd-d%e1%bb%8bch-v%e1%bb%a5-kh%c3%b4ng aria-label="Có dashboard web để quản lý dịch vụ không?">Có dashboard web để quản lý dịch vụ không?</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết luận">Kết luận</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh được cấu hình đầy đủ với cài đặt tự động, dashboard được cấu hình sẵn và triển khai dịch vụ một-click. Với 12.554 sao, đây là framework tự động hóa Raspberry Pi phổ biến nhất trên GitHub.</p><p><strong>TL;DR: 12.554 sao</strong> — dự án tự động hóa Raspberry Pi #1.</p><h2 id=oh-my-pi-là-gì>Oh My Pi Là Gì?<a hidden class=anchor aria-hidden=true href=#oh-my-pi-là-gì>#</a></h2><p>Oh My Pi là một framework cài đặt tự động cho thiết bị Raspberry Pi. Thay vì phải tự động cấu hình networking, cài đặt dịch vụ và kết nối chúng với nhau, Oh My Pi xử lý toàn bộ quy trình từ thẻ SD trống đến thiết bị thông minh hoạt động đầy đủ trong chưa đầy 30 phút.</p><p>Dự án cung cấp một danh mục dịch vụ mô-đun bao gồm: - <strong>Home Assistant</strong> — Hub home automation toàn diện với 2.000+ tích hợp</p><ul><li><strong>AdGuard Home</strong> — Chặn quảng cáo và lọc DNS toàn mạng</li><li><strong>Pi-hole</strong> — Trình chặn quảng cáo DNS nhẹ</li><li><strong>Grafana + Prometheus</strong> — Dashboard giám sát cơ sở hạ tầng</li><li><strong>Jellyfin</strong> — Máy chủ media miễn phí để streaming</li><li><strong>Gitea</strong> — Dịch vụ Git tự lưu trữ</li><li><strong>Vaultwarden</strong> — Trình quản lý mật khẩu tương thích Bitwarden</li><li><strong>Minecraft Server</strong> — Triển khai máy chủ Minecraft một-click</li><li><strong>Network Scanner</strong> — Khám phá và giám sát thiết bị tự động</li><li><strong>Backup Manager</strong> — Backup định kỳ với lưu trữ mã hóa</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt Oh My Pi trên Raspberry Pi OS mới</span>
-</span></span><span style=display:flex><span>curl -sSL https://ohmypi.sh/install | sudo bash
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc sao chép và chạy thủ công</span>
-</span></span><span style=display:flex><span>git clone https://github.com/can1357/oh-my-pi.git
-</span></span><span style=display:flex><span>cd oh-my-pi
-</span></span><span style=display:flex><span>sudo ./install.sh
-</span></span></code></pre></div><h2 id=oh-my-pi-hoạt-động-như-thế-nào>Oh My Pi Hoạt động Như thế nào<a hidden class=anchor aria-hidden=true href=#oh-my-pi-hoạt-động-như-thế-nào>#</a></h2><p>Oh My Pi tuân theo mô hình triển khai ba giai đoạn: 1. <strong>Cung cấp Hệ thống</strong> — Cấu hình OS, networking, người dùng và tăng cường bảo mật
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/oh-my-pi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/oh-my-pi/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/oh-my-pi/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/oh-my-pi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/oh-my-pi/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/oh-my-pi/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "TL;DR Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh được cấu hình đầy đủ với cài đặt tự động, dashboard được cấu hình sẵn và triển khai dịch vụ một-click. Với 12.554 sao, đây là framework tự động hóa Raspberry Pi phổ biến nhất trên GitHub.\nTL;DR: 12.554 sao — dự án tự động hóa Raspberry Pi #1.\nOh My Pi Là Gì? Oh My Pi là một framework cài đặt tự động cho thiết bị Raspberry Pi. Thay vì phải tự động cấu hình networking, cài đặt dịch vụ và kết nối chúng với nhau, Oh My Pi xử lý toàn bộ quy trình từ thẻ SD trống đến thiết bị thông minh hoạt động đầy đủ trong chưa đầy 30 phút.\nDự án cung cấp một danh mục dịch vụ mô-đun bao gồm: - Home Assistant — Hub home automation toàn diện với 2.000+ tích hợp\nAdGuard Home — Chặn quảng cáo và lọc DNS toàn mạng Pi-hole — Trình chặn quảng cáo DNS nhẹ Grafana + Prometheus — Dashboard giám sát cơ sở hạ tầng Jellyfin — Máy chủ media miễn phí để streaming Gitea — Dịch vụ Git tự lưu trữ Vaultwarden — Trình quản lý mật khẩu tương thích Bitwarden Minecraft Server — Triển khai máy chủ Minecraft một-click Network Scanner — Khám phá và giám sát thiết bị tự động Backup Manager — Backup định kỳ với lưu trữ mã hóa # Cài đặt Oh My Pi trên Raspberry Pi OS mới curl -sSL https://ohmypi.sh/install | sudo bash # Hoặc sao chép và chạy thủ công git clone https://github.com/can1357/oh-my-pi.git cd oh-my-pi sudo ./install.sh Oh My Pi Hoạt động Như thế nào Oh My Pi tuân theo mô hình triển khai ba giai đoạn: 1. Cung cấp Hệ thống — Cấu hình OS, networking, người dùng và tăng cường bảo mật 2. Cài đặt Dịch vụ — Triển khai dịch vụ đã chọn qua Docker Compose với các giá trị mặc định hợp lý 3. Lắp ráp Dashboard — Tạo một dashboard web thống nhất để quản lý tất cả dịch vụ\n# Giai đoạn 1: Cung cấp hệ thống sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub # Giai đoạn 2: Cài đặt dịch vụ sudo omp install homeassistant grafana vaultwarden # Giai đoạn 3: Tạo dashboard sudo omp dashboard --title \"My Smart Pi\" --theme dark Giai đoạn provisioning xử lý mọi thứ thường mất hàng giờ: cấu hình IP tĩnh, thiết lập SSH key, quy tắc firewall, xoay log và cập nhật tự động. Dịch vụ được triển khai dưới dạng container Docker cô lập với volume bền vững cho dữ liệu.\nCài đặt \u0026 Thiết lập Yêu cầu: Raspberry Pi 3B+ hoặc mới hơn (khuyến nghị Pi 4), thẻ microSD 8GB+, Raspberry Pi OS Lite (64-bit).\n# Bước 1: Flash Raspberry Pi OS Lite # Tải từ https://www.raspberrypi.com/software/ # Bước 2: Bật SSH và WiFi # Thêm file ssh và wpa_supplicant.conf vào partition boot # Bước 3: Khởi động Pi và tìm IP của nó # Quét mạng của bạn với: nmap -sn 192.168.1.0/24 # Bước 4: SSH vào và cài đặt Oh My Pi ssh pi@ curl -sSL https://ohmypi.sh/install | sudo bash Cấu hình Docker Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: `````yaml\ndocker-compose.yaml được tạo sau khi cài đặt dịch vụ version: “3.9” services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable volumes: - ha-data:/config - /etc/localtime:/etc/localtime:ro ports: - “8123:8123” restart: unless-stopped\nadguard: image: adguard/adguardhome:latest volumes: - adguard-conf:/opt/adguardhome/conf - adguard-work:/opt/adguardhome/work ports: - “53:53/tcp” - “53:53/udp” - “3000:3000” - “80:80/tcp” restart: unless-stopped\nvaultwarden: image: vaultwarden/server:latest volumes: - vw-data:/data environment: SIGNUPS_ALLOWED: “false” restart: unless-stopped\nvolumes: ha-data: adguard-conf: adguard-work: vw-data: `````\nCấu hình Mạng Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: `````bash\nCấu hình IP tĩnh sudo omp network static –ip 192.168.1.100 –gateway 192.168.1.1 –dns 8.8.8.8\nThiết lập DNS forwarding sudo omp network dns –upstream 1.1.1.1 –local 127.0.0.1\nCấu hình firewall sudo omp firewall enable –allow 22 –allow 80 –allow 443 –allow 8123\n## Danh mục Dịch vụ: Phân tích Chi tiết Oh My Pi hỗ trợ 20+ dịch vụ qua 6 danh mục: | Danh mục | Dịch vụ | Thời gian Cài đặt | Sử dụng Tài nguyên | |----------|---------|-----------------|-------------------| | **Home Automation** | Home Assistant, Zigbee2MQTT | 5 phút | 512MB RAM | | **Networking** | AdGuard, Pi-hole, PiVPN | 3 phút | 128MB RAM | | **Media** | Jellyfin, Plex (thủ công), Navidrome | 5 phút | 256MB RAM | | **Development** | Gitea, Cockpit, Netdata | 4 phút | 384MB RAM | | **Security** | Vaultwarden, FileBrowser, Uptime Kuma | 3 phút | 256MB RAM | | **Monitoring** | Grafana, Prometheus, AlertManager | 6 phút | 512MB RAM | `````bash # Cài đặt toàn bộ setup nhà thông minh sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden # Tất cả dịch vụ được triển khai với thứ tự khởi động phối hợp # Home Assistant khởi động trước, sau đó Zigbee2MQTT kết nối, # AdGuard xử lý DNS, Grafana giám sát mọi thứ So sánh với Các Giải pháp Thay thế Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi nổi bật: | Tính năng | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC | |———|———-|——–|——————-|——| | Sao | 12.554 | 18K+ | N/A | 3.2K | | Số lượng Dịch vụ | 20+ | 15+ | N/A | 1 (chỉ media) | | Cài đặt Một-Click | Có | Có | Không | Không | | Dashboard | Thống nhất | Có | Không | Không | | Hệ thống Backup | Tích hợp | Có | Không | Không | | Hỗ trợ Dịch vụ Tùy chỉnh | Có | Có | Không | Không | | Headless Setup | Có | Có | Không | Không | | Docker-First | Có | Có | N/A | Không |\nĐiểm khác biệt chính là đa dạng dịch vụ và orchestration. Khác với CasaOS tập trung vào sự đơn giản của app store, Oh My Pi cho phép kiểm soát chi tiết cấu hình dịch vụ trong khi vẫn duy trì sự tiện lợi một-click.\nSử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi: ### Viết Định nghĩa Dịch vụ Tùy chỉnh\n# my-service.yaml — định nghĩa dịch vụ tùy chỉnh service: name: my-custom-app version: \"1.0\" description: \"Technical guide and comparison.\" docker: image: \"myapp:latest\" ports: - \"8080:8080\" volumes: - myapp-data:/data environment: APP_ENV: production LOG_LEVEL: info health_check: url: \"http://localhost:8080/health\" interval: \"30s\" retries: 3 resources: cpu_limit: \"0.5\" memory_limit: \"256M\" backup: enabled: true schedule: \"0 2 * * *\" # hàng ngày lúc 2 AM volumes: - myapp-data Backup Tự động Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: `````bash\nCấu hình đích backup sudo omp backup configure –remote s3 –bucket ohmypi-backups –region us-east-1\nChạy backup ngay lập tức sudo omp backup run\nKhôi phục từ backup sudo omp backup restore –date 2026-06-14 –verify\nLên lịch backup hàng ngày sudo omp backup schedule –frequency daily –retention 30\n### Truy cập Từ xa và Tunneling Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động: `````bash # Thiết lập Cloudflare Tunnel (miễn phí, không cần port forwarding) sudo omp tunnel cloudflare --token # Hoặc sử dụng ngrok cho truy cập nhanh sudo omp tunnel ngrok --authtoken # Cấu hình reverse proxy với Caddy (auto HTTPS) sudo omp proxy caddy --domain mypi.local --ssl auto Quản lý Cụm Đa Pi Quản lý nhiều Pi từ một dashboard duy nhất: `````bash\nThêm Pi thứ hai vào cluster sudo omp cluster add –host pi2.local –user pi –key ~/.ssh/id_ed25519\nTriển khai dịch vụ trên tất cả node sudo omp cluster deploy –services homeassistant,grafana –nodes all\nXem sức khỏe cluster sudo omp cluster health\n### Giám sát Sức khỏe Thẻ SD Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp: `````bash # Kiểm tra sức khỏe thẻ SD sudo omp storage health # Bật cảnh báo hỏng dự đoán sudo omp storage alerts --enable --threshold 70 # Lên lịch kiểm tra sức khỏe tự động sudo omp storage schedule --interval hourly Giám sát Nguồn và Tích hợp UPS Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: `````bash\nCấu hình giám sát UPS sudo omp ups configure –driver usb –shutdown-delay 300\nĐặt ngưỡng pin cho graceful shutdown sudo omp ups threshold –battery 20 –action shutdown\nGiám sát sự kiện nguồn sudo omp ups logs –tail 50\n### Giám sát Tài nguyên và Cảnh báo `````bash # Đặt ngưỡng tài nguyên sudo omp monitor thresholds --cpu 90 --memory 85 --disk 80 # Cấu hình thông báo cảnh báo sudo omp monitor alerts --channel telegram --token --chat # Xem lịch sử tài nguyên sudo omp monitor history --period 7d --graph Hạn chế: Khi Oh My Pi Có thể Không Phù hợp Pi Zero và các mẫu cũ — Oh My Pi yêu cầu ít nhất 1GB RAM. Pi Zero (256MB/512MB) không thể chạy toàn bộ stack dịch vụ. Pi Zero 2 W (512MB) có thể chạy cấu hình tối thiểu với chỉ các dịch vụ networking.\nNhu cầu hiệu năng cao — Đối với các workload nặng CPU như transcode video 4K, suy luận ML quy mô lớn hoặc biên dịch cơ sở mã lớn, một single-board computer mạnh hơn (như Orange Pi 5 với 16GB RAM) hoặc máy x86 chuyên dụng được khuyến nghị.\nDịch vụ production — Oh My Pi được thiết kế cho trường hợp sử dụng nghiệp dư và nhóm nhỏ. Triển khai production mission-critical với yêu cầu SLA nên sử dụng máy chủ chuyên dụng với nguồn điện và kết nối mạng dự phòng.\nDịch vụ phi-Docker — Tất cả dịch vụ chạy trong container Docker. Cài đặt bare-metal và truy cập phần cứng trực tiếp không được hỗ trợ bởi framework.\nPhần cứng tùy chỉnh — HAT, dự án GPIO, triển khai dựa trên cảm biến và dự án robot nằm ngoài phạm vi của Oh My Pi. Dự án tập trung hoàn toàn vào dịch vụ mạng và ứng dụng containerized, không phải giao diện phần cứng.\nTối ưu hóa ARM hạn chế — Mặc dù các image Docker là multi-architecture, một số image tối ưu x86 có thể có hiệu năng giảm trên bộ xử lý ARM. Luôn xác minh tương thích image trước khi triển khai.\n# Kiểm tra độ phù hợp nhanh # ✅ Hub home automation → CÓ # ✅ Máy chủ media → CÓ # ✅ Workstation phát triển → CÓ # ✅ Máy chủ database production → KHÔNG (sử dụng phần cứng chuyên dụng) # ✅ Dự án cảm biến IoT → KHÔNG (chỉ tập trung vào dịch vụ mạng) Câu hỏi Thường gặp Model Raspberry Pi nào được khuyến nghị? Pi 4 với 4GB+ RAM hoặc Pi 5. Pi 3B+ hoạt động cho dịch vụ cơ bản nhưng có thể gặp khó khăn với nhiều container.\nTôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không? Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt.\nTôi cần bao nhiêu bộ nhớ? Setup cơ bản (2-3 dịch vụ) cần khoảng 8GB. Setup đầy đủ (tất cả 20+ dịch vụ) sử dụng khoảng 15-20GB.\nCó ứng dụng mobile để quản lý dịch vụ không? Dashboard web responsive và hoạt động trên trình duyệt mobile. Ứng dụng chuyên dụng chưa khả dụng.\nTôi có thể chạy Oh My Pi mà không có internet không? Có. Tất cả image Docker có thể được pre-pull và hệ thống hỗ trợ triển khai dịch vụ offline.\nTôi cập nhật dịch vụ đã cài đặt như thế nào? Chạy sudo omp update để kiểm tra cập nhật dịch vụ và áp dụng chúng với zero downtime nơi có thể. Hệ thống cập nhật hỗ trợ rolling updates cho hầu hết dịch vụ và có thể tự động rollback nếu dịch vụ không khởi động được sau khi cập nhật.\nTôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không? Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt. Lệnh omp provision tự động phát hiện phần cứng và điều chỉnh giới hạn tài nguyên tương ứng.\nCó dashboard web để quản lý dịch vụ không? Có. Oh My Pi tạo một dashboard web thống nhất tại http://:3001 sau khi cài đặt. Dashboard hiển thị tất cả dịch vụ đang chạy, sử dụng tài nguyên và cung cấp truy cập một-click đến panel admin của mỗi dịch vụ.\nKết luận Oh My Pi loại bỏ những phần khó chịu nhất của việc sở hữu Raspberry Pi: cấu hình, kết nối dịch vụ và bảo trì liên tục. Với 12.554 sao, nó đã chứng minh rằng một framework tự động hóa được thiết kế tốt có thể khiến cơ sở hạ tầng nhà phức tạp trở nên dễ tiếp cận cho mọi người, từ chủ Pi lần đầu đến quản trị viên hệ thống giàu kinh nghiệm quản lý fleet deployments trên nhiều địa điểm và khu vực địa lý. Lộ trình dự án bao gồm tối ưu hóa hiệu năng ARM-specific, ứng dụng companion iOS/Android native và chợ plugin cộng đồng.\nĐể lưu trữ thẻ SD đáng tin cậy, HTStack cung cấp giải pháp backup cho cấu hình Pi. Dự phòng đám mây với DigitalOcean objects là giá rẻ. Người nắm giữ crypto: Binance, OKX. WebShare proxies cho quản lý Pi từ xa. Để truy cập từ xa an toàn, HTStack lưu trữ mã hóa bảo vệ backup cấu hình Pi của bạn.\nBắt đầu ngay:\ncurl -sSL https://ohmypi.sh/install | sudo bash ```` **Liên kết nội bộ**: [Hướng dẫn nhà thông minh](https://dibi8.com/) · [Edge computing với Pi](https://dibi8.com/ai-tools/) * * * **Nguồn \u0026 Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi - Tài liệu Raspberry Pi: https://www.raspberrypi.com/documentation/ - Tài liệu Docker: https://docs.docker.com/ **Sources \u0026 Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi - Raspberry Pi docs: https://www.raspberrypi.com/documentation/ - Docker docs: https://docs.docker.com/ **CTA**: Tham gia cộng đồng IoT DIBI8 trên Telegram — [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/oh-my-pi\" } } * * * ## Related Articles - [odysseus-self-hosted-ai-workspace-chat-agent-deep-research](oh-my-pi) - [oh-my-pi](oh-my-pi) - [apple-container](oh-my-pi) - [oh-my-pi](oh-my-pi) - [ohmyzsh](oh-my-pi) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2546",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/oh-my-pi/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>12 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/oh-my-pi/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/oh-my-pi/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#oh-my-pi-l%c3%a0-g%c3%ac" aria-label="Oh My Pi Là Gì?">Oh My Pi Là Gì?</a></li>
+            <li>
+                <a href="#oh-my-pi-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Oh My Pi Hoạt động Như thế nào">Oh My Pi Hoạt động Như thế nào</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt &amp; Thiết lập">Cài đặt &amp; Thiết lập</a><ul>
+                    
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-docker" aria-label="Cấu hình Docker">Cấu hình Docker</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#docker-composeyaml-%c4%91%c6%b0%e1%bb%a3c-t%e1%ba%a1o-sau-khi-c%c3%a0i-%c4%91%e1%ba%b7t-d%e1%bb%8bch-v%e1%bb%a5" aria-label="docker-compose.yaml được tạo sau khi cài đặt dịch vụ">docker-compose.yaml được tạo sau khi cài đặt dịch vụ</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-m%e1%ba%a1ng" aria-label="Cấu hình Mạng">Cấu hình Mạng</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-ip-t%c4%a9nh" aria-label="Cấu hình IP tĩnh">Cấu hình IP tĩnh</a></li>
+            <li>
+                <a href="#thi%e1%ba%bft-l%e1%ba%adp-dns-forwarding" aria-label="Thiết lập DNS forwarding">Thiết lập DNS forwarding</a></li>
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-firewall" aria-label="Cấu hình firewall">Cấu hình firewall</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So sánh với Các Giải pháp Thay thế">So sánh với Các Giải pháp Thay thế</a></li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao-tri%e1%bb%83n-khai-d%e1%bb%8bch-v%e1%bb%a5-t%c3%b9y-ch%e1%bb%89nh" aria-label="Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh">Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh</a><ul>
+                    
+            <li>
+                <a href="#backup-t%e1%bb%b1-%c4%91%e1%bb%99ng" aria-label="Backup Tự động">Backup Tự động</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-%c4%91%c3%adch-backup" aria-label="Cấu hình đích backup">Cấu hình đích backup</a></li>
+            <li>
+                <a href="#ch%e1%ba%a1y-backup-ngay-l%e1%ba%adp-t%e1%bb%a9c" aria-label="Chạy backup ngay lập tức">Chạy backup ngay lập tức</a></li>
+            <li>
+                <a href="#kh%c3%b4i-ph%e1%bb%a5c-t%e1%bb%ab-backup" aria-label="Khôi phục từ backup">Khôi phục từ backup</a></li>
+            <li>
+                <a href="#l%c3%aan-l%e1%bb%8bch-backup-h%c3%a0ng-ng%c3%a0y" aria-label="Lên lịch backup hàng ngày">Lên lịch backup hàng ngày</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#qu%e1%ba%a3n-l%c3%bd-c%e1%bb%a5m-%c4%91a-pi" aria-label="Quản lý Cụm Đa Pi">Quản lý Cụm Đa Pi</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#th%c3%aam-pi-th%e1%bb%a9-hai-v%c3%a0o-cluster" aria-label="Thêm Pi thứ hai vào cluster">Thêm Pi thứ hai vào cluster</a></li>
+            <li>
+                <a href="#tri%e1%bb%83n-khai-d%e1%bb%8bch-v%e1%bb%a5-tr%c3%aan-t%e1%ba%a5t-c%e1%ba%a3-node" aria-label="Triển khai dịch vụ trên tất cả node">Triển khai dịch vụ trên tất cả node</a></li>
+            <li>
+                <a href="#xem-s%e1%bb%a9c-kh%e1%bb%8fe-cluster" aria-label="Xem sức khỏe cluster">Xem sức khỏe cluster</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-ngu%e1%bb%93n-v%c3%a0-t%c3%adch-h%e1%bb%a3p-ups" aria-label="Giám sát Nguồn và Tích hợp UPS">Giám sát Nguồn và Tích hợp UPS</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-gi%c3%a1m-s%c3%a1t-ups" aria-label="Cấu hình giám sát UPS">Cấu hình giám sát UPS</a></li>
+            <li>
+                <a href="#%c4%91%e1%ba%b7t-ng%c6%b0%e1%bb%a1ng-pin-cho-graceful-shutdown" aria-label="Đặt ngưỡng pin cho graceful shutdown">Đặt ngưỡng pin cho graceful shutdown</a></li>
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-s%e1%bb%b1-ki%e1%bb%87n-ngu%e1%bb%93n" aria-label="Giám sát sự kiện nguồn">Giám sát sự kiện nguồn</a><ul>
+                    
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf-khi-oh-my-pi-c%c3%b3-th%e1%bb%83-kh%c3%b4ng-ph%c3%b9-h%e1%bb%a3p" aria-label="Hạn chế: Khi Oh My Pi Có thể Không Phù hợp">Hạn chế: Khi Oh My Pi Có thể Không Phù hợp</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi Thường gặp">Câu hỏi Thường gặp</a><ul>
+                    
+            <li>
+                <a href="#model-raspberry-pi-n%c3%a0o-%c4%91%c6%b0%e1%bb%a3c-khuy%e1%ba%bfn-ngh%e1%bb%8b" aria-label="Model Raspberry Pi nào được khuyến nghị?">Model Raspberry Pi nào được khuyến nghị?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-s%e1%bb%ad-d%e1%bb%a5ng-oh-my-pi-tr%c3%aan-bo-m%e1%ba%a1ch-kh%c3%b4ng-ph%e1%ba%a3i-raspberry-pi-kh%c3%b4ng" aria-label="Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?">Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%e1%ba%a7n-bao-nhi%c3%aau-b%e1%bb%99-nh%e1%bb%9b" aria-label="Tôi cần bao nhiêu bộ nhớ?">Tôi cần bao nhiêu bộ nhớ?</a></li>
+            <li>
+                <a href="#c%c3%b3-%e1%bb%a9ng-d%e1%bb%a5ng-mobile-%c4%91%e1%bb%83-qu%e1%ba%a3n-l%c3%bd-d%e1%bb%8bch-v%e1%bb%a5-kh%c3%b4ng" aria-label="Có ứng dụng mobile để quản lý dịch vụ không?">Có ứng dụng mobile để quản lý dịch vụ không?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-ch%e1%ba%a1y-oh-my-pi-m%c3%a0-kh%c3%b4ng-c%c3%b3-internet-kh%c3%b4ng" aria-label="Tôi có thể chạy Oh My Pi mà không có internet không?">Tôi có thể chạy Oh My Pi mà không có internet không?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%e1%ba%adp-nh%e1%ba%adt-d%e1%bb%8bch-v%e1%bb%a5-%c4%91%c3%a3-c%c3%a0i-%c4%91%e1%ba%b7t-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Tôi cập nhật dịch vụ đã cài đặt như thế nào?">Tôi cập nhật dịch vụ đã cài đặt như thế nào?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-s%e1%bb%ad-d%e1%bb%a5ng-oh-my-pi-tr%c3%aan-bo-m%e1%ba%a1ch-kh%c3%b4ng-ph%e1%ba%a3i-raspberry-pi-kh%c3%b4ng-1" aria-label="Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?">Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?</a></li>
+            <li>
+                <a href="#c%c3%b3-dashboard-web-%c4%91%e1%bb%83-qu%e1%ba%a3n-l%c3%bd-d%e1%bb%8bch-v%e1%bb%a5-kh%c3%b4ng" aria-label="Có dashboard web để quản lý dịch vụ không?">Có dashboard web để quản lý dịch vụ không?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>Oh My Pi biến bất kỳ Raspberry Pi nào thành thiết bị thông minh được cấu hình đầy đủ với cài đặt tự động, dashboard được cấu hình sẵn và triển khai dịch vụ một-click. Với 12.554 sao, đây là framework tự động hóa Raspberry Pi phổ biến nhất trên GitHub.</p>
+<p><strong>TL;DR: 12.554 sao</strong> — dự án tự động hóa Raspberry Pi #1.</p>
+<h2 id="oh-my-pi-là-gì">Oh My Pi Là Gì?<a hidden class="anchor" aria-hidden="true" href="#oh-my-pi-là-gì">#</a></h2>
+<p>Oh My Pi là một framework cài đặt tự động cho thiết bị Raspberry Pi. Thay vì phải tự động cấu hình networking, cài đặt dịch vụ và kết nối chúng với nhau, Oh My Pi xử lý toàn bộ quy trình từ thẻ SD trống đến thiết bị thông minh hoạt động đầy đủ trong chưa đầy 30 phút.</p>
+<p>Dự án cung cấp một danh mục dịch vụ mô-đun bao gồm: - <strong>Home Assistant</strong> — Hub home automation toàn diện với 2.000+ tích hợp</p>
+<ul>
+<li><strong>AdGuard Home</strong> — Chặn quảng cáo và lọc DNS toàn mạng</li>
+<li><strong>Pi-hole</strong> — Trình chặn quảng cáo DNS nhẹ</li>
+<li><strong>Grafana + Prometheus</strong> — Dashboard giám sát cơ sở hạ tầng</li>
+<li><strong>Jellyfin</strong> — Máy chủ media miễn phí để streaming</li>
+<li><strong>Gitea</strong> — Dịch vụ Git tự lưu trữ</li>
+<li><strong>Vaultwarden</strong> — Trình quản lý mật khẩu tương thích Bitwarden</li>
+<li><strong>Minecraft Server</strong> — Triển khai máy chủ Minecraft một-click</li>
+<li><strong>Network Scanner</strong> — Khám phá và giám sát thiết bị tự động</li>
+<li><strong>Backup Manager</strong> — Backup định kỳ với lưu trữ mã hóa</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt Oh My Pi trên Raspberry Pi OS mới</span>
+</span></span><span style="display:flex;"><span>curl -sSL https://ohmypi.sh/install | sudo bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc sao chép và chạy thủ công</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/can1357/oh-my-pi.git
+</span></span><span style="display:flex;"><span>cd oh-my-pi
+</span></span><span style="display:flex;"><span>sudo ./install.sh
+</span></span></code></pre></div><h2 id="oh-my-pi-hoạt-động-như-thế-nào">Oh My Pi Hoạt động Như thế nào<a hidden class="anchor" aria-hidden="true" href="#oh-my-pi-hoạt-động-như-thế-nào">#</a></h2>
+<p>Oh My Pi tuân theo mô hình triển khai ba giai đoạn: 1. <strong>Cung cấp Hệ thống</strong> — Cấu hình OS, networking, người dùng và tăng cường bảo mật
 2. <strong>Cài đặt Dịch vụ</strong> — Triển khai dịch vụ đã chọn qua Docker Compose với các giá trị mặc định hợp lý
-3. <strong>Lắp ráp Dashboard</strong> — Tạo một dashboard web thống nhất để quản lý tất cả dịch vụ</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Giai đoạn 1: Cung cấp hệ thống</span>
-</span></span><span style=display:flex><span>sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Giai đoạn 2: Cài đặt dịch vụ</span>
-</span></span><span style=display:flex><span>sudo omp install homeassistant grafana vaultwarden
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Giai đoạn 3: Tạo dashboard</span>
-</span></span><span style=display:flex><span>sudo omp dashboard --title <span style=color:#e6db74>&#34;My Smart Pi&#34;</span> --theme dark
-</span></span></code></pre></div><p>Giai đoạn provisioning xử lý mọi thứ thường mất hàng giờ: cấu hình IP tĩnh, thiết lập SSH key, quy tắc firewall, xoay log và cập nhật tự động. Dịch vụ được triển khai dưới dạng container Docker cô lập với volume bền vững cho dữ liệu.</p><h2 id=cài-đặt--thiết-lập>Cài đặt & Thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><p>Yêu cầu: Raspberry Pi 3B+ hoặc mới hơn (khuyến nghị Pi 4), thẻ microSD 8GB+, Raspberry Pi OS Lite (64-bit).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Bước 1: Flash Raspberry Pi OS Lite</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tải từ https://www.raspberrypi.com/software/</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bước 2: Bật SSH và WiFi</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Thêm file ssh và wpa_supplicant.conf vào partition boot</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bước 3: Khởi động Pi và tìm IP của nó</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Quét mạng của bạn với: nmap -sn 192.168.1.0/24</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bước 4: SSH vào và cài đặt Oh My Pi</span>
-</span></span><span style=display:flex><span>ssh pi@&lt;pi-ip&gt;
-</span></span><span style=display:flex><span>curl -sSL https://ohmypi.sh/install | sudo bash
-</span></span></code></pre></div><h3 id=cấu-hình-docker>Cấu hình Docker<a hidden class=anchor aria-hidden=true href=#cấu-hình-docker>#</a></h3><p>Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: `````yaml</p><h1 id=docker-composeyaml-được-tạo-sau-khi-cài-đặt-dịch-vụ>docker-compose.yaml được tạo sau khi cài đặt dịch vụ<a hidden class=anchor aria-hidden=true href=#docker-composeyaml-được-tạo-sau-khi-cài-đặt-dịch-vụ>#</a></h1><p>version: &ldquo;3.9&rdquo;
+3. <strong>Lắp ráp Dashboard</strong> — Tạo một dashboard web thống nhất để quản lý tất cả dịch vụ</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Giai đoạn 1: Cung cấp hệ thống</span>
+</span></span><span style="display:flex;"><span>sudo omp provision --hostname mypi --ssh-key ~/.ssh/id_ed25519.pub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Giai đoạn 2: Cài đặt dịch vụ</span>
+</span></span><span style="display:flex;"><span>sudo omp install homeassistant grafana vaultwarden
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Giai đoạn 3: Tạo dashboard</span>
+</span></span><span style="display:flex;"><span>sudo omp dashboard --title <span style="color:#e6db74">&#34;My Smart Pi&#34;</span> --theme dark
+</span></span></code></pre></div><p>Giai đoạn provisioning xử lý mọi thứ thường mất hàng giờ: cấu hình IP tĩnh, thiết lập SSH key, quy tắc firewall, xoay log và cập nhật tự động. Dịch vụ được triển khai dưới dạng container Docker cô lập với volume bền vững cho dữ liệu.</p>
+<h2 id="cài-đặt--thiết-lập">Cài đặt &amp; Thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<p>Yêu cầu: Raspberry Pi 3B+ hoặc mới hơn (khuyến nghị Pi 4), thẻ microSD 8GB+, Raspberry Pi OS Lite (64-bit).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Bước 1: Flash Raspberry Pi OS Lite</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tải từ https://www.raspberrypi.com/software/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bước 2: Bật SSH và WiFi</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Thêm file ssh và wpa_supplicant.conf vào partition boot</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bước 3: Khởi động Pi và tìm IP của nó</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Quét mạng của bạn với: nmap -sn 192.168.1.0/24</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bước 4: SSH vào và cài đặt Oh My Pi</span>
+</span></span><span style="display:flex;"><span>ssh pi@&lt;pi-ip&gt;
+</span></span><span style="display:flex;"><span>curl -sSL https://ohmypi.sh/install | sudo bash
+</span></span></code></pre></div><h3 id="cấu-hình-docker">Cấu hình Docker<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-docker">#</a></h3>
+<p>Oh My Pi sử dụng Docker Compose cho tất cả triển khai dịch vụ: `````yaml</p>
+<h1 id="docker-composeyaml-được-tạo-sau-khi-cài-đặt-dịch-vụ">docker-compose.yaml được tạo sau khi cài đặt dịch vụ<a hidden class="anchor" aria-hidden="true" href="#docker-composeyaml-được-tạo-sau-khi-cài-đặt-dịch-vụ">#</a></h1>
+<p>version: &ldquo;3.9&rdquo;
 services: homeassistant: image: ghcr.io/home-assistant/home-assistant:stable
 volumes: - ha-data:/config
 - /etc/localtime:/etc/localtime:ro
 ports: - &ldquo;8123:8123&rdquo;
-restart: unless-stopped</p><p>adguard: image: adguard/adguardhome:latest
+restart: unless-stopped</p>
+<p>adguard: image: adguard/adguardhome:latest
 volumes: - adguard-conf:/opt/adguardhome/conf
 - adguard-work:/opt/adguardhome/work
 ports: - &ldquo;53:53/tcp&rdquo;
 - &ldquo;53:53/udp&rdquo;
 - &ldquo;3000:3000&rdquo;
 - &ldquo;80:80/tcp&rdquo;
-restart: unless-stopped</p><p>vaultwarden: image: vaultwarden/server:latest
+restart: unless-stopped</p>
+<p>vaultwarden: image: vaultwarden/server:latest
 volumes: - vw-data:/data
 environment: SIGNUPS_ALLOWED: &ldquo;false&rdquo;
-restart: unless-stopped</p><p>volumes: ha-data: adguard-conf: adguard-work: vw-data: `````</p><h3 id=cấu-hình-mạng>Cấu hình Mạng<a hidden class=anchor aria-hidden=true href=#cấu-hình-mạng>#</a></h3><p>Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: `````bash</p><h1 id=cấu-hình-ip-tĩnh>Cấu hình IP tĩnh<a hidden class=anchor aria-hidden=true href=#cấu-hình-ip-tĩnh>#</a></h1><p>sudo omp network static &ndash;ip 192.168.1.100 &ndash;gateway 192.168.1.1 &ndash;dns 8.8.8.8</p><h1 id=thiết-lập-dns-forwarding>Thiết lập DNS forwarding<a hidden class=anchor aria-hidden=true href=#thiết-lập-dns-forwarding>#</a></h1><p>sudo omp network dns &ndash;upstream 1.1.1.1 &ndash;local 127.0.0.1</p><h1 id=cấu-hình-firewall>Cấu hình firewall<a hidden class=anchor aria-hidden=true href=#cấu-hình-firewall>#</a></h1><p>sudo omp firewall enable &ndash;allow 22 &ndash;allow 80 &ndash;allow 443 &ndash;allow 8123</p><pre tabindex=0><code>
+restart: unless-stopped</p>
+<p>volumes: ha-data: adguard-conf: adguard-work: vw-data: `````</p>
+<h3 id="cấu-hình-mạng">Cấu hình Mạng<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-mạng">#</a></h3>
+<p>Thiết lập mạng tự động xử lý DHCP reservation, DNS forwarding và quy tắc firewall: `````bash</p>
+<h1 id="cấu-hình-ip-tĩnh">Cấu hình IP tĩnh<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-ip-tĩnh">#</a></h1>
+<p>sudo omp network static &ndash;ip 192.168.1.100 &ndash;gateway 192.168.1.1 &ndash;dns 8.8.8.8</p>
+<h1 id="thiết-lập-dns-forwarding">Thiết lập DNS forwarding<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-dns-forwarding">#</a></h1>
+<p>sudo omp network dns &ndash;upstream 1.1.1.1 &ndash;local 127.0.0.1</p>
+<h1 id="cấu-hình-firewall">Cấu hình firewall<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-firewall">#</a></h1>
+<p>sudo omp firewall enable &ndash;allow 22 &ndash;allow 80 &ndash;allow 443 &ndash;allow 8123</p>
+<pre tabindex="0"><code>
 ## Danh mục Dịch vụ: Phân tích Chi tiết
 
 Oh My Pi hỗ trợ 20+ dịch vụ qua 6 danh mục: | Danh mục | Dịch vụ | Thời gian Cài đặt | Sử dụng Tài nguyên |
@@ -67,7 +405,8 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 # Tất cả dịch vụ được triển khai với thứ tự khởi động phối hợp
 # Home Assistant khởi động trước, sau đó Zigbee2MQTT kết nối,
 # AdGuard xử lý DNS, Grafana giám sát mọi thứ
-</code></pre><h2 id=so-sánh-với-các-giải-pháp-thay-thế>So sánh với Các Giải pháp Thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-giải-pháp-thay-thế>#</a></h2><p>Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi nổi bật: | Tính năng | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
+</code></pre><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So sánh với Các Giải pháp Thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<p>Nhiều dự án tự động hóa Raspberry Pi tồn tại, nhưng Oh My Pi nổi bật: | Tính năng | Oh My Pi | CasaOS | Raspberry Pi Imager | OSMC |
 |&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;-|&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;|
 | Sao | 12.554 | 18K+ | N/A | 3.2K |
 | Số lượng Dịch vụ | 20+ | 15+ | N/A | 1 (chỉ media) |
@@ -76,27 +415,41 @@ sudo omp install homeassistant zigbee2mqtt adguard grafana vaultwarden
 | Hệ thống Backup | Tích hợp | Có | Không | Không |
 | Hỗ trợ Dịch vụ Tùy chỉnh | Có | Có | Không | Không |
 | Headless Setup | Có | Có | Không | Không |
-| Docker-First | Có | Có | N/A | Không |</p><p>Điểm khác biệt chính là <strong>đa dạng dịch vụ và orchestration</strong>. Khác với CasaOS tập trung vào sự đơn giản của app store, Oh My Pi cho phép kiểm soát chi tiết cấu hình dịch vụ trong khi vẫn duy trì sự tiện lợi một-click.</p><h2 id=sử-dụng-nâng-cao-triển-khai-dịch-vụ-tùy-chỉnh>Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao-triển-khai-dịch-vụ-tùy-chỉnh>#</a></h2><p>Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi: ### Viết Định nghĩa Dịch vụ Tùy chỉnh</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># my-service.yaml — định nghĩa dịch vụ tùy chỉnh</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>service: name</span>: <span style=color:#ae81ff>my-custom-app</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;1.0&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>docker: image</span>: <span style=color:#e6db74>&#34;myapp:latest&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8080:8080&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>myapp-data:/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: APP_ENV</span>: <span style=color:#ae81ff>production</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>LOG_LEVEL</span>: <span style=color:#ae81ff>info</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>health_check: url</span>: <span style=color:#e6db74>&#34;http://localhost:8080/health&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>interval</span>: <span style=color:#e6db74>&#34;30s&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>resources: cpu_limit</span>: <span style=color:#e6db74>&#34;0.5&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>memory_limit</span>: <span style=color:#e6db74>&#34;256M&#34;</span>
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#f92672>backup: enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>schedule</span>: <span style=color:#e6db74>&#34;0 2 * * *&#34;</span>  <span style=color:#75715e># hàng ngày lúc 2 AM</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>myapp-data</span>
-</span></span></code></pre></div><h3 id=backup-tự-động>Backup Tự động<a hidden class=anchor aria-hidden=true href=#backup-tự-động>#</a></h3><p>Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: `````bash</p><h1 id=cấu-hình-đích-backup>Cấu hình đích backup<a hidden class=anchor aria-hidden=true href=#cấu-hình-đích-backup>#</a></h1><p>sudo omp backup configure &ndash;remote s3 &ndash;bucket ohmypi-backups &ndash;region us-east-1</p><h1 id=chạy-backup-ngay-lập-tức>Chạy backup ngay lập tức<a hidden class=anchor aria-hidden=true href=#chạy-backup-ngay-lập-tức>#</a></h1><p>sudo omp backup run</p><h1 id=khôi-phục-từ-backup>Khôi phục từ backup<a hidden class=anchor aria-hidden=true href=#khôi-phục-từ-backup>#</a></h1><p>sudo omp backup restore &ndash;date 2026-06-14 &ndash;verify</p><h1 id=lên-lịch-backup-hàng-ngày>Lên lịch backup hàng ngày<a hidden class=anchor aria-hidden=true href=#lên-lịch-backup-hàng-ngày>#</a></h1><p>sudo omp backup schedule &ndash;frequency daily &ndash;retention 30</p><pre tabindex=0><code>
+| Docker-First | Có | Có | N/A | Không |</p>
+<p>Điểm khác biệt chính là <strong>đa dạng dịch vụ và orchestration</strong>. Khác với CasaOS tập trung vào sự đơn giản của app store, Oh My Pi cho phép kiểm soát chi tiết cấu hình dịch vụ trong khi vẫn duy trì sự tiện lợi một-click.</p>
+<h2 id="sử-dụng-nâng-cao-triển-khai-dịch-vụ-tùy-chỉnh">Sử dụng Nâng cao: Triển khai Dịch vụ Tùy chỉnh<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao-triển-khai-dịch-vụ-tùy-chỉnh">#</a></h2>
+<p>Triển khai dịch vụ tùy chỉnh với hệ thống mở rộng của Oh My Pi: ### Viết Định nghĩa Dịch vụ Tùy chỉnh</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># my-service.yaml — định nghĩa dịch vụ tùy chỉnh</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">service: name</span>: <span style="color:#ae81ff">my-custom-app</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;1.0&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">docker: image</span>: <span style="color:#e6db74">&#34;myapp:latest&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">myapp-data:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: APP_ENV</span>: <span style="color:#ae81ff">production</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">LOG_LEVEL</span>: <span style="color:#ae81ff">info</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">health_check: url</span>: <span style="color:#e6db74">&#34;http://localhost:8080/health&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">interval</span>: <span style="color:#e6db74">&#34;30s&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources: cpu_limit</span>: <span style="color:#e6db74">&#34;0.5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">memory_limit</span>: <span style="color:#e6db74">&#34;256M&#34;</span>
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup: enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">schedule</span>: <span style="color:#e6db74">&#34;0 2 * * *&#34;</span>  <span style="color:#75715e"># hàng ngày lúc 2 AM</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">myapp-data</span>
+</span></span></code></pre></div><h3 id="backup-tự-động">Backup Tự động<a hidden class="anchor" aria-hidden="true" href="#backup-tự-động">#</a></h3>
+<p>Oh My Pi bao gồm một hệ thống backup tích hợp với lưu trữ mã hóa: `````bash</p>
+<h1 id="cấu-hình-đích-backup">Cấu hình đích backup<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-đích-backup">#</a></h1>
+<p>sudo omp backup configure &ndash;remote s3 &ndash;bucket ohmypi-backups &ndash;region us-east-1</p>
+<h1 id="chạy-backup-ngay-lập-tức">Chạy backup ngay lập tức<a hidden class="anchor" aria-hidden="true" href="#chạy-backup-ngay-lập-tức">#</a></h1>
+<p>sudo omp backup run</p>
+<h1 id="khôi-phục-từ-backup">Khôi phục từ backup<a hidden class="anchor" aria-hidden="true" href="#khôi-phục-từ-backup">#</a></h1>
+<p>sudo omp backup restore &ndash;date 2026-06-14 &ndash;verify</p>
+<h1 id="lên-lịch-backup-hàng-ngày">Lên lịch backup hàng ngày<a hidden class="anchor" aria-hidden="true" href="#lên-lịch-backup-hàng-ngày">#</a></h1>
+<p>sudo omp backup schedule &ndash;frequency daily &ndash;retention 30</p>
+<pre tabindex="0"><code>
 ### Truy cập Từ xa và Tunneling
 
 Truy cập dịch vụ Pi của bạn từ bất cứ đâu với tunneling HTTPS tự động: `````bash
@@ -108,7 +461,15 @@ sudo omp tunnel ngrok --authtoken &lt;ngrok-token&gt;
 
 # Cấu hình reverse proxy với Caddy (auto HTTPS)
 sudo omp proxy caddy --domain mypi.local --ssl auto
-</code></pre><h3 id=quản-lý-cụm-đa-pi>Quản lý Cụm Đa Pi<a hidden class=anchor aria-hidden=true href=#quản-lý-cụm-đa-pi>#</a></h3><p>Quản lý nhiều Pi từ một dashboard duy nhất: `````bash</p><h1 id=thêm-pi-thứ-hai-vào-cluster>Thêm Pi thứ hai vào cluster<a hidden class=anchor aria-hidden=true href=#thêm-pi-thứ-hai-vào-cluster>#</a></h1><p>sudo omp cluster add &ndash;host pi2.local &ndash;user pi &ndash;key ~/.ssh/id_ed25519</p><h1 id=triển-khai-dịch-vụ-trên-tất-cả-node>Triển khai dịch vụ trên tất cả node<a hidden class=anchor aria-hidden=true href=#triển-khai-dịch-vụ-trên-tất-cả-node>#</a></h1><p>sudo omp cluster deploy &ndash;services homeassistant,grafana &ndash;nodes all</p><h1 id=xem-sức-khỏe-cluster>Xem sức khỏe cluster<a hidden class=anchor aria-hidden=true href=#xem-sức-khỏe-cluster>#</a></h1><p>sudo omp cluster health</p><pre tabindex=0><code>
+</code></pre><h3 id="quản-lý-cụm-đa-pi">Quản lý Cụm Đa Pi<a hidden class="anchor" aria-hidden="true" href="#quản-lý-cụm-đa-pi">#</a></h3>
+<p>Quản lý nhiều Pi từ một dashboard duy nhất: `````bash</p>
+<h1 id="thêm-pi-thứ-hai-vào-cluster">Thêm Pi thứ hai vào cluster<a hidden class="anchor" aria-hidden="true" href="#thêm-pi-thứ-hai-vào-cluster">#</a></h1>
+<p>sudo omp cluster add &ndash;host pi2.local &ndash;user pi &ndash;key ~/.ssh/id_ed25519</p>
+<h1 id="triển-khai-dịch-vụ-trên-tất-cả-node">Triển khai dịch vụ trên tất cả node<a hidden class="anchor" aria-hidden="true" href="#triển-khai-dịch-vụ-trên-tất-cả-node">#</a></h1>
+<p>sudo omp cluster deploy &ndash;services homeassistant,grafana &ndash;nodes all</p>
+<h1 id="xem-sức-khỏe-cluster">Xem sức khỏe cluster<a hidden class="anchor" aria-hidden="true" href="#xem-sức-khỏe-cluster">#</a></h1>
+<p>sudo omp cluster health</p>
+<pre tabindex="0"><code>
 ### Giám sát Sức khỏe Thẻ SD
 
 Thẻ SD Raspberry Pi có thể hỏng mà không có cảnh báo. Oh My Pi bao gồm giám sát kiểu SMART tích hợp: `````bash
@@ -120,7 +481,15 @@ sudo omp storage alerts --enable --threshold 70
 
 # Lên lịch kiểm tra sức khỏe tự động
 sudo omp storage schedule --interval hourly
-</code></pre><h3 id=giám-sát-nguồn-và-tích-hợp-ups>Giám sát Nguồn và Tích hợp UPS<a hidden class=anchor aria-hidden=true href=#giám-sát-nguồn-và-tích-hợp-ups>#</a></h3><p>Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: `````bash</p><h1 id=cấu-hình-giám-sát-ups>Cấu hình giám sát UPS<a hidden class=anchor aria-hidden=true href=#cấu-hình-giám-sát-ups>#</a></h1><p>sudo omp ups configure &ndash;driver usb &ndash;shutdown-delay 300</p><h1 id=đặt-ngưỡng-pin-cho-graceful-shutdown>Đặt ngưỡng pin cho graceful shutdown<a hidden class=anchor aria-hidden=true href=#đặt-ngưỡng-pin-cho-graceful-shutdown>#</a></h1><p>sudo omp ups threshold &ndash;battery 20 &ndash;action shutdown</p><h1 id=giám-sát-sự-kiện-nguồn>Giám sát sự kiện nguồn<a hidden class=anchor aria-hidden=true href=#giám-sát-sự-kiện-nguồn>#</a></h1><p>sudo omp ups logs &ndash;tail 50</p><pre tabindex=0><code>
+</code></pre><h3 id="giám-sát-nguồn-và-tích-hợp-ups">Giám sát Nguồn và Tích hợp UPS<a hidden class="anchor" aria-hidden="true" href="#giám-sát-nguồn-và-tích-hợp-ups">#</a></h3>
+<p>Để hoạt động không gián đoạn, Oh My Pi hỗ trợ giám sát phần cứng UPS và shutdownGraceful: `````bash</p>
+<h1 id="cấu-hình-giám-sát-ups">Cấu hình giám sát UPS<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-giám-sát-ups">#</a></h1>
+<p>sudo omp ups configure &ndash;driver usb &ndash;shutdown-delay 300</p>
+<h1 id="đặt-ngưỡng-pin-cho-graceful-shutdown">Đặt ngưỡng pin cho graceful shutdown<a hidden class="anchor" aria-hidden="true" href="#đặt-ngưỡng-pin-cho-graceful-shutdown">#</a></h1>
+<p>sudo omp ups threshold &ndash;battery 20 &ndash;action shutdown</p>
+<h1 id="giám-sát-sự-kiện-nguồn">Giám sát sự kiện nguồn<a hidden class="anchor" aria-hidden="true" href="#giám-sát-sự-kiện-nguồn">#</a></h1>
+<p>sudo omp ups logs &ndash;tail 50</p>
+<pre tabindex="0"><code>
 ### Giám sát Tài nguyên và Cảnh báo
 
 `````bash
@@ -132,75 +501,261 @@ sudo omp monitor alerts --channel telegram --token &lt;bot-token&gt; --chat &lt;
 
 # Xem lịch sử tài nguyên
 sudo omp monitor history --period 7d --graph
-</code></pre><h2 id=hạn-chế-khi-oh-my-pi-có-thể-không-phù-hợp>Hạn chế: Khi Oh My Pi Có thể Không Phù hợp<a hidden class=anchor aria-hidden=true href=#hạn-chế-khi-oh-my-pi-có-thể-không-phù-hợp>#</a></h2><ol><li><p><strong>Pi Zero và các mẫu cũ</strong> — Oh My Pi yêu cầu ít nhất 1GB RAM. Pi Zero (256MB/512MB) không thể chạy toàn bộ stack dịch vụ. Pi Zero 2 W (512MB) có thể chạy cấu hình tối thiểu với chỉ các dịch vụ networking.</p></li><li><p><strong>Nhu cầu hiệu năng cao</strong> — Đối với các workload nặng CPU như transcode video 4K, suy luận ML quy mô lớn hoặc biên dịch cơ sở mã lớn, một single-board computer mạnh hơn (như Orange Pi 5 với 16GB RAM) hoặc máy x86 chuyên dụng được khuyến nghị.</p></li><li><p><strong>Dịch vụ production</strong> — Oh My Pi được thiết kế cho trường hợp sử dụng nghiệp dư và nhóm nhỏ. Triển khai production mission-critical với yêu cầu SLA nên sử dụng máy chủ chuyên dụng với nguồn điện và kết nối mạng dự phòng.</p></li><li><p><strong>Dịch vụ phi-Docker</strong> — Tất cả dịch vụ chạy trong container Docker. Cài đặt bare-metal và truy cập phần cứng trực tiếp không được hỗ trợ bởi framework.</p></li><li><p><strong>Phần cứng tùy chỉnh</strong> — HAT, dự án GPIO, triển khai dựa trên cảm biến và dự án robot nằm ngoài phạm vi của Oh My Pi. Dự án tập trung hoàn toàn vào dịch vụ mạng và ứng dụng containerized, không phải giao diện phần cứng.</p></li><li><p><strong>Tối ưu hóa ARM hạn chế</strong> — Mặc dù các image Docker là multi-architecture, một số image tối ưu x86 có thể có hiệu năng giảm trên bộ xử lý ARM. Luôn xác minh tương thích image trước khi triển khai.</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Kiểm tra độ phù hợp nhanh</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Hub home automation → CÓ</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Máy chủ media → CÓ</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Workstation phát triển → CÓ</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Máy chủ database production → KHÔNG (sử dụng phần cứng chuyên dụng)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ Dự án cảm biến IoT → KHÔNG (chỉ tập trung vào dịch vụ mạng)</span>
-</span></span></code></pre></div><h2 id=câu-hỏi-thường-gặp>Câu hỏi Thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><h3 id=model-raspberry-pi-nào-được-khuyến-nghị>Model Raspberry Pi nào được khuyến nghị?<a hidden class=anchor aria-hidden=true href=#model-raspberry-pi-nào-được-khuyến-nghị>#</a></h3><p>Pi 4 với 4GB+ RAM hoặc Pi 5. Pi 3B+ hoạt động cho dịch vụ cơ bản nhưng có thể gặp khó khăn với nhiều container.</p><h3 id=tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không>Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?<a hidden class=anchor aria-hidden=true href=#tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không>#</a></h3><p>Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt.</p><h3 id=tôi-cần-bao-nhiêu-bộ-nhớ>Tôi cần bao nhiêu bộ nhớ?<a hidden class=anchor aria-hidden=true href=#tôi-cần-bao-nhiêu-bộ-nhớ>#</a></h3><p>Setup cơ bản (2-3 dịch vụ) cần khoảng 8GB. Setup đầy đủ (tất cả 20+ dịch vụ) sử dụng khoảng 15-20GB.</p><h3 id=có-ứng-dụng-mobile-để-quản-lý-dịch-vụ-không>Có ứng dụng mobile để quản lý dịch vụ không?<a hidden class=anchor aria-hidden=true href=#có-ứng-dụng-mobile-để-quản-lý-dịch-vụ-không>#</a></h3><p>Dashboard web responsive và hoạt động trên trình duyệt mobile. Ứng dụng chuyên dụng chưa khả dụng.</p><h3 id=tôi-có-thể-chạy-oh-my-pi-mà-không-có-internet-không>Tôi có thể chạy Oh My Pi mà không có internet không?<a hidden class=anchor aria-hidden=true href=#tôi-có-thể-chạy-oh-my-pi-mà-không-có-internet-không>#</a></h3><p>Có. Tất cả image Docker có thể được pre-pull và hệ thống hỗ trợ triển khai dịch vụ offline.</p><h3 id=tôi-cập-nhật-dịch-vụ-đã-cài-đặt-như-thế-nào>Tôi cập nhật dịch vụ đã cài đặt như thế nào?<a hidden class=anchor aria-hidden=true href=#tôi-cập-nhật-dịch-vụ-đã-cài-đặt-như-thế-nào>#</a></h3><p>Chạy <code>sudo omp update</code> để kiểm tra cập nhật dịch vụ và áp dụng chúng với zero downtime nơi có thể. Hệ thống cập nhật hỗ trợ rolling updates cho hầu hết dịch vụ và có thể tự động rollback nếu dịch vụ không khởi động được sau khi cập nhật.</p><h3 id=tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không-1>Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?<a hidden class=anchor aria-hidden=true href=#tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không-1>#</a></h3><p>Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt. Lệnh <code>omp provision</code> tự động phát hiện phần cứng và điều chỉnh giới hạn tài nguyên tương ứng.</p><h3 id=có-dashboard-web-để-quản-lý-dịch-vụ-không>Có dashboard web để quản lý dịch vụ không?<a hidden class=anchor aria-hidden=true href=#có-dashboard-web-để-quản-lý-dịch-vụ-không>#</a></h3><p>Có. Oh My Pi tạo một dashboard web thống nhất tại <code>http://&lt;pi-ip>:3001</code> sau khi cài đặt. Dashboard hiển thị tất cả dịch vụ đang chạy, sử dụng tài nguyên và cung cấp truy cập một-click đến panel admin của mỗi dịch vụ.</p><h2 id=kết-luận>Kết luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>Oh My Pi loại bỏ những phần khó chịu nhất của việc sở hữu Raspberry Pi: cấu hình, kết nối dịch vụ và bảo trì liên tục. Với 12.554 sao, nó đã chứng minh rằng một framework tự động hóa được thiết kế tốt có thể khiến cơ sở hạ tầng nhà phức tạp trở nên dễ tiếp cận cho mọi người, từ chủ Pi lần đầu đến quản trị viên hệ thống giàu kinh nghiệm quản lý fleet deployments trên nhiều địa điểm và khu vực địa lý. Lộ trình dự án bao gồm tối ưu hóa hiệu năng ARM-specific, ứng dụng companion iOS/Android native và chợ plugin cộng đồng.</p><p>Để lưu trữ thẻ SD đáng tin cậy, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> cung cấp giải pháp backup cho cấu hình Pi. Dự phòng đám mây với <a href=https://m.do.co/oa14d5f0wx4f>DigitalOcean</a> objects là giá rẻ. Người nắm giữ crypto: <a href=https://bsmkweb.cc/6yq8qf7u>Binance</a>, <a href=https://promoohubly.com/5g1h7qxn>OKX</a>. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> cho quản lý Pi từ xa. Để truy cập từ xa an toàn, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> lưu trữ mã hóa bảo vệ backup cấu hình Pi của bạn.</p><p><strong>Bắt đầu ngay:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -sSL https://ohmypi.sh/install | sudo bash
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Liên kết nội bộ**: <span style=color:#f92672>[</span>Hướng dẫn nhà thông minh<span style=color:#f92672>](</span>https://dibi8.com/<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>Edge computing với Pi<span style=color:#f92672>](</span>https://dibi8.com/ai-tools/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Nguồn &amp; Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi
-</span></span><span style=display:flex><span>- Tài liệu Raspberry Pi: https://www.raspberrypi.com/documentation/
-</span></span><span style=display:flex><span>- Tài liệu Docker: https://docs.docker.com/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi
-</span></span><span style=display:flex><span>- Raspberry Pi docs: https://www.raspberrypi.com/documentation/
-</span></span><span style=display:flex><span>- Docker docs: https://docs.docker.com/
-</span></span><span style=display:flex><span>**CTA**: Tham gia cộng đồng IoT DIBI8 trên Telegram — <span style=color:#f92672>[</span>t.me/DIBI8_Group<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/vi/resources/oh-my-pi&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>odysseus-self-hosted-ai-workspace-chat-agent-deep-research<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>oh-my-pi<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>apple-container<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>oh-my-pi<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>ohmyzsh<span style=color:#f92672>](</span>oh-my-pi<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/ohmyzsh/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre><h2 id="hạn-chế-khi-oh-my-pi-có-thể-không-phù-hợp">Hạn chế: Khi Oh My Pi Có thể Không Phù hợp<a hidden class="anchor" aria-hidden="true" href="#hạn-chế-khi-oh-my-pi-có-thể-không-phù-hợp">#</a></h2>
+<ol>
+<li>
+<p><strong>Pi Zero và các mẫu cũ</strong> — Oh My Pi yêu cầu ít nhất 1GB RAM. Pi Zero (256MB/512MB) không thể chạy toàn bộ stack dịch vụ. Pi Zero 2 W (512MB) có thể chạy cấu hình tối thiểu với chỉ các dịch vụ networking.</p>
+</li>
+<li>
+<p><strong>Nhu cầu hiệu năng cao</strong> — Đối với các workload nặng CPU như transcode video 4K, suy luận ML quy mô lớn hoặc biên dịch cơ sở mã lớn, một single-board computer mạnh hơn (như Orange Pi 5 với 16GB RAM) hoặc máy x86 chuyên dụng được khuyến nghị.</p>
+</li>
+<li>
+<p><strong>Dịch vụ production</strong> — Oh My Pi được thiết kế cho trường hợp sử dụng nghiệp dư và nhóm nhỏ. Triển khai production mission-critical với yêu cầu SLA nên sử dụng máy chủ chuyên dụng với nguồn điện và kết nối mạng dự phòng.</p>
+</li>
+<li>
+<p><strong>Dịch vụ phi-Docker</strong> — Tất cả dịch vụ chạy trong container Docker. Cài đặt bare-metal và truy cập phần cứng trực tiếp không được hỗ trợ bởi framework.</p>
+</li>
+<li>
+<p><strong>Phần cứng tùy chỉnh</strong> — HAT, dự án GPIO, triển khai dựa trên cảm biến và dự án robot nằm ngoài phạm vi của Oh My Pi. Dự án tập trung hoàn toàn vào dịch vụ mạng và ứng dụng containerized, không phải giao diện phần cứng.</p>
+</li>
+<li>
+<p><strong>Tối ưu hóa ARM hạn chế</strong> — Mặc dù các image Docker là multi-architecture, một số image tối ưu x86 có thể có hiệu năng giảm trên bộ xử lý ARM. Luôn xác minh tương thích image trước khi triển khai.</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra độ phù hợp nhanh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Hub home automation → CÓ</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Máy chủ media → CÓ</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Workstation phát triển → CÓ</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Máy chủ database production → KHÔNG (sử dụng phần cứng chuyên dụng)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ Dự án cảm biến IoT → KHÔNG (chỉ tập trung vào dịch vụ mạng)</span>
+</span></span></code></pre></div><h2 id="câu-hỏi-thường-gặp">Câu hỏi Thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="model-raspberry-pi-nào-được-khuyến-nghị">Model Raspberry Pi nào được khuyến nghị?<a hidden class="anchor" aria-hidden="true" href="#model-raspberry-pi-nào-được-khuyến-nghị">#</a></h3>
+<p>Pi 4 với 4GB+ RAM hoặc Pi 5. Pi 3B+ hoạt động cho dịch vụ cơ bản nhưng có thể gặp khó khăn với nhiều container.</p>
+<h3 id="tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không">Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không">#</a></h3>
+<p>Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt.</p>
+<h3 id="tôi-cần-bao-nhiêu-bộ-nhớ">Tôi cần bao nhiêu bộ nhớ?<a hidden class="anchor" aria-hidden="true" href="#tôi-cần-bao-nhiêu-bộ-nhớ">#</a></h3>
+<p>Setup cơ bản (2-3 dịch vụ) cần khoảng 8GB. Setup đầy đủ (tất cả 20+ dịch vụ) sử dụng khoảng 15-20GB.</p>
+<h3 id="có-ứng-dụng-mobile-để-quản-lý-dịch-vụ-không">Có ứng dụng mobile để quản lý dịch vụ không?<a hidden class="anchor" aria-hidden="true" href="#có-ứng-dụng-mobile-để-quản-lý-dịch-vụ-không">#</a></h3>
+<p>Dashboard web responsive và hoạt động trên trình duyệt mobile. Ứng dụng chuyên dụng chưa khả dụng.</p>
+<h3 id="tôi-có-thể-chạy-oh-my-pi-mà-không-có-internet-không">Tôi có thể chạy Oh My Pi mà không có internet không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-chạy-oh-my-pi-mà-không-có-internet-không">#</a></h3>
+<p>Có. Tất cả image Docker có thể được pre-pull và hệ thống hỗ trợ triển khai dịch vụ offline.</p>
+<h3 id="tôi-cập-nhật-dịch-vụ-đã-cài-đặt-như-thế-nào">Tôi cập nhật dịch vụ đã cài đặt như thế nào?<a hidden class="anchor" aria-hidden="true" href="#tôi-cập-nhật-dịch-vụ-đã-cài-đặt-như-thế-nào">#</a></h3>
+<p>Chạy <code>sudo omp update</code> để kiểm tra cập nhật dịch vụ và áp dụng chúng với zero downtime nơi có thể. Hệ thống cập nhật hỗ trợ rolling updates cho hầu hết dịch vụ và có thể tự động rollback nếu dịch vụ không khởi động được sau khi cập nhật.</p>
+<h3 id="tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không-1">Tôi có thể sử dụng Oh My Pi trên bo mạch không phải Raspberry Pi không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-sử-dụng-oh-my-pi-trên-bo-mạch-không-phải-raspberry-pi-không-1">#</a></h3>
+<p>Có. Framework hỗ trợ bất kỳ máy Linux ARM64 hoặc x86_64 nào có Docker được cài đặt. Lệnh <code>omp provision</code> tự động phát hiện phần cứng và điều chỉnh giới hạn tài nguyên tương ứng.</p>
+<h3 id="có-dashboard-web-để-quản-lý-dịch-vụ-không">Có dashboard web để quản lý dịch vụ không?<a hidden class="anchor" aria-hidden="true" href="#có-dashboard-web-để-quản-lý-dịch-vụ-không">#</a></h3>
+<p>Có. Oh My Pi tạo một dashboard web thống nhất tại <code>http://&lt;pi-ip&gt;:3001</code> sau khi cài đặt. Dashboard hiển thị tất cả dịch vụ đang chạy, sử dụng tài nguyên và cung cấp truy cập một-click đến panel admin của mỗi dịch vụ.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Oh My Pi loại bỏ những phần khó chịu nhất của việc sở hữu Raspberry Pi: cấu hình, kết nối dịch vụ và bảo trì liên tục. Với 12.554 sao, nó đã chứng minh rằng một framework tự động hóa được thiết kế tốt có thể khiến cơ sở hạ tầng nhà phức tạp trở nên dễ tiếp cận cho mọi người, từ chủ Pi lần đầu đến quản trị viên hệ thống giàu kinh nghiệm quản lý fleet deployments trên nhiều địa điểm và khu vực địa lý. Lộ trình dự án bao gồm tối ưu hóa hiệu năng ARM-specific, ứng dụng companion iOS/Android native và chợ plugin cộng đồng.</p>
+<p>Để lưu trữ thẻ SD đáng tin cậy, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> cung cấp giải pháp backup cho cấu hình Pi. Dự phòng đám mây với <a href="https://m.do.co/oa14d5f0wx4f">DigitalOcean</a> objects là giá rẻ. Người nắm giữ crypto: <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a>, <a href="https://promoohubly.com/5g1h7qxn">OKX</a>. <a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare proxies</a> cho quản lý Pi từ xa. Để truy cập từ xa an toàn, <a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> lưu trữ mã hóa bảo vệ backup cấu hình Pi của bạn.</p>
+<p><strong>Bắt đầu ngay:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -sSL https://ohmypi.sh/install | sudo bash
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Liên kết nội bộ**: <span style="color:#f92672">[</span>Hướng dẫn nhà thông minh<span style="color:#f92672">](</span>https://dibi8.com/<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>Edge computing với Pi<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Nguồn &amp; Đọc thêm**: - Kho lưu trữ GitHub: https://github.com/can1357/oh-my-pi
+</span></span><span style="display:flex;"><span>- Tài liệu Raspberry Pi: https://www.raspberrypi.com/documentation/
+</span></span><span style="display:flex;"><span>- Tài liệu Docker: https://docs.docker.com/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - GitHub repository: https://github.com/can1357/oh-my-pi
+</span></span><span style="display:flex;"><span>- Raspberry Pi docs: https://www.raspberrypi.com/documentation/
+</span></span><span style="display:flex;"><span>- Docker docs: https://docs.docker.com/
+</span></span><span style="display:flex;"><span>**CTA**: Tham gia cộng đồng IoT DIBI8 trên Telegram — <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Disclosure**: Bài viết này chứa các liên kết tiếp thị liên kết. Nếu bạn đăng ký qua các liên kết của chúng tôi, chúng tôi có thể kiếm được hoa hồng mà không phát sinh chi phí bổ sung cho bạn.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Oh My Pi: Biến Bất kỳ Raspberry Pi Nào Thành Thiết bị Thông Minh — Dự án 12K Star 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/vi/resources/oh-my-pi&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>odysseus-self-hosted-ai-workspace-chat-agent-deep-research<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>oh-my-pi<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>apple-container<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>oh-my-pi<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>ohmyzsh<span style="color:#f92672">](</span>oh-my-pi<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/ohmyzsh/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

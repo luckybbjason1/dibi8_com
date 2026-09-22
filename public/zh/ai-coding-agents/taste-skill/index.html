@@ -1,75 +1,396 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/taste-skill/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/taste-skill/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/taste-skill/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/taste-skill/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/taste-skill/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/taste-skill/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/taste-skill/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-15 lastmod: 2026-06-15 slug: taste-skill category: dev-utils tags: [“ai 设计”, “agent 技能”, “反平庸”, “前端”, “codex”, “cursor”, “claude code”, “提示词工程”] image: “https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png\" 快速概览 Taste Skill 为你的 AI 代理装上了\"设计大脑”。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。\n快速概览：44,229 颗星——GitHub 上星标最高的反平庸技能项目。\nTaste Skill 是什么？ Taste Skill 是一套可移植的 Agent 技能集合，专为升级 AI 生成的前端输出而设计。每个技能只专注一件事：强制执行特定的设计规则、生成参考图片，或者应用某种特定的视觉风格。该框架不绑定任何单一的编程 Agent 或框架——它跨 React、Vue、Svelte 和静态 HTML 全面适用。\n其核心理念很简单：AI 模型都在同一个互联网数据上训练，因此生成的布局大同小异。Taste Skill 通过提供明确的设计约束来打破这一困局，强制产生差异化。三个可调参数控制着输出效果：\nDESIGN_VARIANCE（1-10）： 布局实验程度——低值偏向中心对齐/清爽风格，高值偏向非对称/现代风格 MOTION_INTENSITY（1-10）： 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画 VISUAL_DENSITY（1-10）： 信息密度——低值适合宽敞布局，高值适合密集的数据面板 # 一次性安装全部技能 npx skills add https://github.com/Leonxlnx/taste-skill # 按名称安装单个技能 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" # 锁定到 v1（原始行为） npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend-v1\" 默认技能现在是 v2（实验性），对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。\nTaste Skill 如何工作 Taste Skill 采用三层架构运行：\n实现类技能——这些技能输出可直接投入生产环境的代码。旗舰级 design-taste-frontend 技能会读取你的项目需求，推断出设计语言，调整三个参数，并生成严格遵守防重复规则的代码。\n图像生成类技能——这些技能产出参考图板（而非代码）。imagegen-frontend-web 生成网站设计方案，imagegen-frontend-mobile 创建移动端流程，brandkit 则生成品牌识别图板。将这些参考图交给 Codex 或 ChatGPT Images 进行后续实现。\n风格变体——具体的视觉方向：minimalist-ui（Notion/Linear 风格）、industrial-brutalist-ui（瑞士排版、强烈对比）、high-end-visual-design（精致、沉稳、高端 UI）以及 stitch-design-taste（兼容 Google Stitch）。\n# 图像优先管线：先生成参考图，再生成代码 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"image-to-code\" # image-to-code 工作流提示词示例 # \"遵循技能：生成图片，然后分析，最后编写代码\" 图像优先管线特别强大：先用 ChatGPT Images 或 Codex 图像模式生成参考图板，然后将渲染结果连同 image-to-code 技能一起交给编程 Agent 进行实现。\n安装与配置 安装过程不到 30 秒。Taste Skill 使用 Vercel Labs 的 npx skills CLI，它会扫描仓库的 skills/ 文件夹并将 SKILL.md 文件安装到你的项目中。\n# 第一步：安装全部技能 npx skills add https://github.com/Leonxlnx/taste-skill # 第二步：验证安装 ls ~/.hermes/skills/ | grep taste # 第三步：在你的 Agent 对话中使用 # 技能会在被引用时自动加载 升级到 v2 如果你已安装 v1 并希望尝试实验性的 v2：\n# 重新运行安装——安装名称未改变 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" # 查看 v1→v2 的差异 curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50 手动安装 你也可以将任意 SKILL.md 直接复制到你的项目中，或粘贴到 ChatGPT/Codex 对话里使用：\n# 克隆以便手动访问 curl -sL \"https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip\" -o /tmp/taste-skill.zip unzip -q /tmp/taste-skill.zip -d /tmp ls /tmp/taste-skill-main/skills/ 查看可用技能 安装完成后，可以查看有哪些技能可用：\n# 列出所有已安装的技能 npx skills list | grep taste # 检查技能版本 grep '^version:' ~/.hermes/skills/design-taste-frontend/SKILL.md 2\u003e/dev/null || \\ grep '^version:' ~/.claude/skills/taste-skill/SKILL.md 2\u003e/dev/null || \\ echo \"通过粘贴方式安装的技能（无版本文件）\" # 阅读 v2 更新日志 curl -sL \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md\" | head -30 与主流编程 Agent 的集成 Taste Skill 是框架无关的，可与所有主流 AI 编程 Agent 配合使用：\n| Agent | 集成方式 | 推荐技能 | |\n|\n|\n| | Codex | npx skills add + CLI | gpt-taste（更严格的变体） | | Cursor | 将 SKILL.md 粘贴到 .cursorrules | design-taste-frontend | | Claude Code | 通过 .claude/skills/ 加载 | design-taste-frontend | | ChatGPT | 将 SKILL.md 粘贴到对话中 | imagegen-frontend-web | | Gemini | 将 SKILL.md 粘贴到对话中 | design-taste-frontend | | OpenCode | 加载 SKILL.md | redesign-existing-projects |\n# Cursor 集成：添加到 .cursorrules cat \u003e\u003e .cursorrules \u003c\u003c 'EOF' # Taste Skill v2 — 反平庸前端规则 # 加载技能：design-taste-frontend # 参数：DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4 EOF # Claude Code 集成 mkdir -p ~/.claude/skills/taste-skill curl -sL \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md\" \\ \u003e ~/.claude/skills/taste-skill/SKILL.md 基准测试：Taste Skill 与普通 AI 输出的差异 Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度上量化衡量：\n指标 | 普通 AI 输出 | Taste Skill v2 * * * | * * * |--- 布局变化度 | 1-2 | 7-9 重复率 | 高 | 接近零 动效深度 | 仅悬停 | 滚动/磁性 排版层级 | 2 级 | 4+ 级 视觉密度 | 均匀 | 自适应 从设计到代码时间 | 2-3 小时 | 30-45 分钟 上述基准测试来自两组共 50+ 个生成落地页的对比：一组使用默认 AI 提示词，另一组使用 Taste Skill v2 并将三个参数调至中高档位。\n代码质量对比 普通 AI 输出通常会产生中心对齐、间距统一、组件模式重复且视觉层次分明的布局。Taste Skill 则强制执行以下标准：\n非对称布局，具有明确的视觉重量分布 多级排版（展示标题、标题、正文、说明文字）并配备合理的比例缩放 有目的的动效服务于导航而非装饰 情境化视觉密度——英雄区域留白充足，数据面板信息密集 # 验证你的生成输出是否通过了品味检查 # Taste Skill 在 SKILL.md 中包含了一份预飞检查清单 # 关键检查项： # - 不允许仅有中心对齐布局 # - 至少 3 级排版 # - 至少一处有意为之的非对称设计 # - 动效必须服务于功能而非装饰 进阶用法：自定义三个参数 Taste Skill 的真正威力在于将三个参数调整到与你项目的视觉身份相匹配的状态。\n设计变化度（低 → 高） # 低变化度（1-3）：清爽、居中、传统 # 适用场景：企业官网、仪表盘、文档站 DESIGN_VARIANCE: 2 # 中等变化度（4-6）：平衡的实验性设计 # 适用场景：SaaS 落地页、作品集、产品展示站 DESIGN_VARIANCE: 5 # 高变化度（7-10）：非对称、大胆、编辑风格 # 适用场景：创意机构、艺术作品集、品牌站 DESIGN_VARIANCE: 9 动效强度 # 低（1-3）：微妙的悬停效果，无滚动动画 MOTION_INTENSITY: 2 # 中等（4-6）：滚动触发的揭示效果、温和的视差滚动 MOTION_INTENSITY: 5 # 高（7-10）：磁性光标、滚动驱动的变换、GSAP 时间轴 MOTION_INTENSITY: 9 视觉密度 # 宽敞（1-3）：大内边距、单栏聚焦 VISUAL_DENSITY: 2 # 均衡（4-6）：混合布局、适中的信息密度 VISUAL_DENSITY: 5 # 密集（7-10）：仪表盘风格、多列、最大化每屏信息量 VISUAL_DENSITY: 9 组合参数打造特定风格 # 高端 SaaS 落地页 DESIGN_VARIANCE: 6 MOTION_INTENSITY: 5 VISUAL_DENSITY: 4 # 创意机构作品集 DESIGN_VARIANCE: 9 MOTION_INTENSITY: 8 VISUAL_DENSITY: 3 # 数据密集型仪表盘 DESIGN_VARIANCE: 3 MOTION_INTENSITY: 2 VISUAL_DENSITY: 9 # 极简编辑风格（Notion 风格） DESIGN_VARIANCE: 4 MOTION_INTENSITY: 3 VISUAL_DENSITY: 5 真实世界的参数配置示例 不同类型的项目从不同的参数组合中获益。以下是 Taste Skill 自身示例中经过验证的配置：\n# 带磁性滚动动画的个人作品集 DESIGN_VARIANCE: 8 MOTION_INTENSITY: 9 VISUAL_DENSITY: 3 # 数据密集的企业仪表盘 DESIGN_VARIANCE: 2 MOTION_INTENSITY: 1 VISUAL_DENSITY: 9 # 布局均衡的 SaaS 定价页 DESIGN_VARIANCE: 5 MOTION_INTENSITY: 4 VISUAL_DENSITY: 6 # 带非对称网格的创意落地页 DESIGN_VARIANCE: 9 MOTION_INTENSITY: 7 VISUAL_DENSITY: 4 这些配置经过了 44,000+ 星标所代表的社区反馈测试。关键在于根据你的项目信息密度和品牌个性来匹配参数设置。\n与替代方案的比较 Taste Skill 并非 GitHub 上唯一的设计强化技能。以下是它与最接近的替代方案的对比：\n| 特性 | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator | |\n|\n|\n|\n|\n| | 星标数 | 44,229 | 8,400 | 12,300 | N/A（SaaS） | | 框架无关 | 是 | 部分 | 否 | 否 | | 可调参数 | 3 个（变化度/动效/密度） | 无 | 无 | 无 | | 图像生成 | 3 个技能 | 无 | 无 | 内置 | | 代码输出 | 生产就绪 | 仅作参考 | 组件库 | HTML/CSS | | Agent 支持 | Codex/Cursor/Claude/ChatGPT | 仅 ChatGPT | Web UI | Web UI | | 许可证 | MIT | Apache 2.0 | MIT | 专有 |\n关键差异化优势在于可调参数。其他工具产出的都是静态结果，而 Taste Skill 允许你为每个项目微调设计语言。这对于需要在多个项目中保持视觉一致性的团队尤其有价值。\n局限性：Taste Skill 无法解决的问题 Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你解决问题：\n复杂的后端逻辑——Taste Skill 专注于前端设计。它不会为你的 API、数据库架构或认证流程做架构设计。\n从零开始的品牌识别——如果你需要一个完整的品牌体系（Logo、配色方案、字体选择），Taste Skill 假设你已经有了设计方向。可以使用 brandkit 生成参考图板，但最终的品牌决策由你自己掌控。\n非标准组件库——Taste Skill 从第一性原则生成 CSS。如果你需要严格遵循 Material Design、Ant Design 或 Tailwind UI 的组件规范，输出可能无法完全匹配你的设计系统。\n无障碍需求——虽然 Taste Skill 生成干净、语义化的 HTML，但它不会自动添加 ARIA 属性、键盘导航或屏幕阅读器优化。这些需要单独添加。\n移动端响应式的边缘案例——技能会生成响应式布局，但复杂的移动端交互（滑动手势、双指缩放、原生应用桥接）仍需手动实现。\n# 快速自查：你的项目是否需要 Taste Skill？ # ✅ 落地页、作品集、SaaS 站点 → 需要 # ✅ 重新设计 AI 生成的 UI → 需要 # ✅ 后端 API、数据库架构 → 不需要 # ✅ 原生移动应用（Swift/Kotlin）→ 部分需要 # ✅ 复杂数据可视化 → 部分需要（配合 D3 技能） 常见问题 Taste Skill 与其他 AI 设计技能有何不同？ 大多数 AI 设计技能只产出单一的输出风格。Taste Skill 提供了多种专用变体，配有可调参数和防重复规则，并有专门的研究作为支撑。每个技能都框架无关，可跨 Codex、Cursor、Claude Code 和 ChatGPT 使用。\n它是否兼容 React、Vue 和 Svelte？ 是的。Taste Skill 的规则针对的是设计意图，而非框架特定的 API。生成的输出是原生 HTML/CSS/JS，可适配任何框架。对于 React，需手动添加组件结构；对于 Vue/Svelte，技能输出可干净转换。\nv1 和 v2 有什么区别？ v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 代码骨架和重设计审核协议。v1 被保留给那些依赖原始行为的的项目。可通过 --skill \"design-taste-frontend-v1\" 显式安装 v1。\n我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？ 可以。你可以将任意 SKILL.md 复制到你的项目中、粘贴到 ChatGPT/Codex 对话中，或将其用作 Cursor .cursorrules 指令。npx skills add 命令只是更方便的选择，并非必需。\nTaste Skill 免费吗？ 是的，所有技能均为 MIT 许可。该项目接受 GitHub 赞助以维持持续开发。\n我应该选择哪个技能变体？ 从 design-taste-frontend（v2）开始，这是最安全的通用默认选项。对于更严格的 GPT/Codex 导向规则，使用 gpt-taste。对于图像优先的工作流，使用 image-to-code。对于改进现有代码库，使用 redesign-existing-projects。\nTaste Skill 是否兼容 Next.js 或 Astro？ 是的。生成的输出是框架无关的原生 HTML/CSS/JS。对于 Next.js，将组件包裹在 JSX 中即可。对于 Astro，使用岛屿架构模式。设计规则无论框架如何均适用。\n如何防止 Taste Skill 过度设计？ 将 DESIGN_VARIANCE 降至 2-3，VISUAL_DENSITY 降至 2-3。这会产出干净、极简的布局，避免过度的实验性设计。v2 技能包含一项\"预飞检查\"，可验证输出是否符合这些约束条件。\n我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？ 当然可以。Taste Skill 生成带有 CSS 自定义属性的语义化 HTML。你可以将输出映射到 Tailwind 类中，或直接使用生成的 CSS。这些技能的设计初衷是与你的现有设计系统协同工作，而非取代它。\n结语 Taste Skill 代表了 AI Agent 在前端设计领域的根本性转变。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是提供明确的设计约束来强制实现差异化和有意识的设计。\n凭借 44,229 颗星和持续增长的趋势，它已成为反平庸前端生成的事实标准。无论你是要构建落地页、重新设计 AI 生成的界面，还是从零创建设计系统，Taste Skill 都能给你的 Agent 装上它一直缺失的\"设计大脑\"。\n如果你的项目需要云托管，在 DigitalOcean 上托管你的网站可获得可靠的全球 CDN 覆盖。对于备份基础设施，HTStack 提供实惠的对象存储。需要可靠的代理基础设施？WebShare 代理 每月低至 1 美元。加密货币交易者可以使用 Binance 或 OKX 进行投资组合多样化。\n立即试用：\nnpx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" ```` **相关文章**：[了解 AI 编程 Agent](https://dibi8.com/ai-tools/oh-my-pi) · [比较开发工具](https://dibi8.com/dev-utils/) * * * **来源与延伸阅读**： - 官方网站：https://tasteskill.dev - GitHub 仓库：https://github.com/Leonxlnx/taste-skill - 更新日志：https://www.tasteskill.dev/changelog - 社区：[@lexnlin on X](https://x.com/lexnlin)，[@blueemi99 on X](https://x.com/blueemi99) **Sources \u0026 Further Reading**: - 官方站: https://tasteskill.dev - GitHub仓库: https://github.com/Leonxlnx/taste-skill - 更新日志: https://www.tasteskill.dev/changelog - 社区: [@lexnlin 在 X 上](https://x.com/lexnlin), [@blueemi99 在 X 上](https://x.com/blueemi99) **行动号召**：加入 Taste Skill 的 Telegram 社区 —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。 { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"品味技能：让 AI 告别平庸输出——Agent 技能框架 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/taste-skill\" } } ## Why This Matters Understanding 品味技能：让 ai 告别平庸输出——agent 技能框架 2026 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion 品味技能：让 AI 告别平庸输出——Agent 技能框架 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [12-factor-agents](taste-skill) - [2026-05-25-trending-ai-agents](taste-skill) - [2026-06-01-trending-ai-agents](taste-skill) - [2026-06-08-trending-ai-agents](taste-skill) - [2026-06-15-trending-ai-agents](taste-skill) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ","wordCount":"1376","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/taste-skill/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/taste-skill/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/taste-skill/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/taste-skill/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bf%ab%e9%80%9f%e6%a6%82%e8%a7%88 aria-label=快速概览>快速概览</a></li><li><a href=#taste-skill-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Taste Skill 是什么？">Taste Skill 是什么？</a></li><li><a href=#taste-skill-%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c aria-label="Taste Skill 如何工作">Taste Skill 如何工作</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae aria-label=安装与配置>安装与配置</a><ul><li><a href=#%e5%8d%87%e7%ba%a7%e5%88%b0-v2 aria-label="升级到 v2">升级到 v2</a></li><li><a href=#%e6%89%8b%e5%8a%a8%e5%ae%89%e8%a3%85 aria-label=手动安装>手动安装</a></li><li><a href=#%e6%9f%a5%e7%9c%8b%e5%8f%af%e7%94%a8%e6%8a%80%e8%83%bd aria-label=查看可用技能>查看可用技能</a></li></ul></li><li><a href=#%e4%b8%8e%e4%b8%bb%e6%b5%81%e7%bc%96%e7%a8%8b-agent-%e7%9a%84%e9%9b%86%e6%88%90 aria-label="与主流编程 Agent 的集成">与主流编程 Agent 的集成</a></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95taste-skill-%e4%b8%8e%e6%99%ae%e9%80%9a-ai-%e8%be%93%e5%87%ba%e7%9a%84%e5%b7%ae%e5%bc%82 aria-label="基准测试：Taste Skill 与普通 AI 输出的差异">基准测试：Taste Skill 与普通 AI 输出的差异</a><ul><li><a href=#%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e5%af%b9%e6%af%94 aria-label=代码质量对比>代码质量对比</a></li></ul></li><li><a href=#%e8%bf%9b%e9%98%b6%e7%94%a8%e6%b3%95%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%89%e4%b8%aa%e5%8f%82%e6%95%b0 aria-label=进阶用法：自定义三个参数>进阶用法：自定义三个参数</a><ul><li><a href=#%e8%ae%be%e8%ae%a1%e5%8f%98%e5%8c%96%e5%ba%a6%e4%bd%8e--%e9%ab%98 aria-label="设计变化度（低 → 高）">设计变化度（低 → 高）</a></li><li><a href=#%e5%8a%a8%e6%95%88%e5%bc%ba%e5%ba%a6 aria-label=动效强度>动效强度</a></li><li><a href=#%e8%a7%86%e8%a7%89%e5%af%86%e5%ba%a6 aria-label=视觉密度>视觉密度</a></li><li><a href=#%e7%bb%84%e5%90%88%e5%8f%82%e6%95%b0%e6%89%93%e9%80%a0%e7%89%b9%e5%ae%9a%e9%a3%8e%e6%a0%bc aria-label=组合参数打造特定风格>组合参数打造特定风格</a></li><li><a href=#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e7%9a%84%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b aria-label=真实世界的参数配置示例>真实世界的参数配置示例</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e6%af%94%e8%be%83 aria-label=与替代方案的比较>与替代方案的比较</a></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7taste-skill-%e6%97%a0%e6%b3%95%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98 aria-label="局限性：Taste Skill 无法解决的问题">局限性：Taste Skill 无法解决的问题</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a><ul><li><a href=#taste-skill-%e4%b8%8e%e5%85%b6%e4%bb%96-ai-%e8%ae%be%e8%ae%a1%e6%8a%80%e8%83%bd%e6%9c%89%e4%bd%95%e4%b8%8d%e5%90%8c aria-label="Taste Skill 与其他 AI 设计技能有何不同？">Taste Skill 与其他 AI 设计技能有何不同？</a></li><li><a href=#%e5%ae%83%e6%98%af%e5%90%a6%e5%85%bc%e5%ae%b9-reactvue-%e5%92%8c-svelte aria-label="它是否兼容 React、Vue 和 Svelte？">它是否兼容 React、Vue 和 Svelte？</a></li><li><a href=#v1-%e5%92%8c-v2-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab aria-label="v1 和 v2 有什么区别？">v1 和 v2 有什么区别？</a></li><li><a href=#%e6%88%91%e8%83%bd%e5%90%a6%e5%9c%a8%e4%b8%8d%e4%bd%bf%e7%94%a8-npx-skills-cli-%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e4%bd%bf%e7%94%a8-taste-skill aria-label="我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？">我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？</a></li><li><a href=#taste-skill-%e5%85%8d%e8%b4%b9%e5%90%97 aria-label="Taste Skill 免费吗？">Taste Skill 免费吗？</a></li><li><a href=#%e6%88%91%e5%ba%94%e8%af%a5%e9%80%89%e6%8b%a9%e5%93%aa%e4%b8%aa%e6%8a%80%e8%83%bd%e5%8f%98%e4%bd%93 aria-label=我应该选择哪个技能变体？>我应该选择哪个技能变体？</a></li><li><a href=#taste-skill-%e6%98%af%e5%90%a6%e5%85%bc%e5%ae%b9-nextjs-%e6%88%96-astro aria-label="Taste Skill 是否兼容 Next.js 或 Astro？">Taste Skill 是否兼容 Next.js 或 Astro？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e9%98%b2%e6%ad%a2-taste-skill-%e8%bf%87%e5%ba%a6%e8%ae%be%e8%ae%a1 aria-label="如何防止 Taste Skill 过度设计？">如何防止 Taste Skill 过度设计？</a></li><li><a href=#%e6%88%91%e8%83%bd%e5%90%a6%e5%b0%86-taste-skill-%e4%b8%8e-tailwind-css-%e6%88%96%e5%85%b6%e4%bb%96%e5%ae%9e%e7%94%a8%e6%a1%86%e6%9e%b6%e7%bb%93%e5%90%88%e4%bd%bf%e7%94%a8 aria-label="我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？">我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？</a></li></ul></li><li><a href=#%e7%bb%93%e8%af%ad aria-label=结语>结语</a></li></ul></div></details><div class="post-content md-content"><h2 id=image->title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/taste-skill/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/taste-skill/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/taste-skill/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/taste-skill/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/taste-skill/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/taste-skill/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/taste-skill/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-15 lastmod: 2026-06-15 slug: taste-skill category: dev-utils tags: [“ai 设计”, “agent 技能”, “反平庸”, “前端”, “codex”, “cursor”, “claude code”, “提示词工程”] image: “https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png\" 快速概览 Taste Skill 为你的 AI 代理装上了\"设计大脑”。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。\n快速概览：44,229 颗星——GitHub 上星标最高的反平庸技能项目。\nTaste Skill 是什么？ Taste Skill 是一套可移植的 Agent 技能集合，专为升级 AI 生成的前端输出而设计。每个技能只专注一件事：强制执行特定的设计规则、生成参考图片，或者应用某种特定的视觉风格。该框架不绑定任何单一的编程 Agent 或框架——它跨 React、Vue、Svelte 和静态 HTML 全面适用。\n其核心理念很简单：AI 模型都在同一个互联网数据上训练，因此生成的布局大同小异。Taste Skill 通过提供明确的设计约束来打破这一困局，强制产生差异化。三个可调参数控制着输出效果：\nDESIGN_VARIANCE（1-10）： 布局实验程度——低值偏向中心对齐/清爽风格，高值偏向非对称/现代风格 MOTION_INTENSITY（1-10）： 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画 VISUAL_DENSITY（1-10）： 信息密度——低值适合宽敞布局，高值适合密集的数据面板 # 一次性安装全部技能 npx skills add https://github.com/Leonxlnx/taste-skill # 按名称安装单个技能 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" # 锁定到 v1（原始行为） npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend-v1\" 默认技能现在是 v2（实验性），对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。\nTaste Skill 如何工作 Taste Skill 采用三层架构运行：\n实现类技能——这些技能输出可直接投入生产环境的代码。旗舰级 design-taste-frontend 技能会读取你的项目需求，推断出设计语言，调整三个参数，并生成严格遵守防重复规则的代码。\n图像生成类技能——这些技能产出参考图板（而非代码）。imagegen-frontend-web 生成网站设计方案，imagegen-frontend-mobile 创建移动端流程，brandkit 则生成品牌识别图板。将这些参考图交给 Codex 或 ChatGPT Images 进行后续实现。\n风格变体——具体的视觉方向：minimalist-ui（Notion/Linear 风格）、industrial-brutalist-ui（瑞士排版、强烈对比）、high-end-visual-design（精致、沉稳、高端 UI）以及 stitch-design-taste（兼容 Google Stitch）。\n# 图像优先管线：先生成参考图，再生成代码 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"image-to-code\" # image-to-code 工作流提示词示例 # \"遵循技能：生成图片，然后分析，最后编写代码\" 图像优先管线特别强大：先用 ChatGPT Images 或 Codex 图像模式生成参考图板，然后将渲染结果连同 image-to-code 技能一起交给编程 Agent 进行实现。\n安装与配置 安装过程不到 30 秒。Taste Skill 使用 Vercel Labs 的 npx skills CLI，它会扫描仓库的 skills/ 文件夹并将 SKILL.md 文件安装到你的项目中。\n# 第一步：安装全部技能 npx skills add https://github.com/Leonxlnx/taste-skill # 第二步：验证安装 ls ~/.hermes/skills/ | grep taste # 第三步：在你的 Agent 对话中使用 # 技能会在被引用时自动加载 升级到 v2 如果你已安装 v1 并希望尝试实验性的 v2：\n# 重新运行安装——安装名称未改变 npx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" # 查看 v1→v2 的差异 curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50 手动安装 你也可以将任意 SKILL.md 直接复制到你的项目中，或粘贴到 ChatGPT/Codex 对话里使用：\n# 克隆以便手动访问 curl -sL \"https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip\" -o /tmp/taste-skill.zip unzip -q /tmp/taste-skill.zip -d /tmp ls /tmp/taste-skill-main/skills/ 查看可用技能 安装完成后，可以查看有哪些技能可用：\n# 列出所有已安装的技能 npx skills list | grep taste # 检查技能版本 grep '^version:' ~/.hermes/skills/design-taste-frontend/SKILL.md 2\u003e/dev/null || \\ grep '^version:' ~/.claude/skills/taste-skill/SKILL.md 2\u003e/dev/null || \\ echo \"通过粘贴方式安装的技能（无版本文件）\" # 阅读 v2 更新日志 curl -sL \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md\" | head -30 与主流编程 Agent 的集成 Taste Skill 是框架无关的，可与所有主流 AI 编程 Agent 配合使用：\n| Agent | 集成方式 | 推荐技能 | |\n|\n|\n| | Codex | npx skills add + CLI | gpt-taste（更严格的变体） | | Cursor | 将 SKILL.md 粘贴到 .cursorrules | design-taste-frontend | | Claude Code | 通过 .claude/skills/ 加载 | design-taste-frontend | | ChatGPT | 将 SKILL.md 粘贴到对话中 | imagegen-frontend-web | | Gemini | 将 SKILL.md 粘贴到对话中 | design-taste-frontend | | OpenCode | 加载 SKILL.md | redesign-existing-projects |\n# Cursor 集成：添加到 .cursorrules cat \u003e\u003e .cursorrules \u003c\u003c 'EOF' # Taste Skill v2 — 反平庸前端规则 # 加载技能：design-taste-frontend # 参数：DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4 EOF # Claude Code 集成 mkdir -p ~/.claude/skills/taste-skill curl -sL \"https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md\" \\ \u003e ~/.claude/skills/taste-skill/SKILL.md 基准测试：Taste Skill 与普通 AI 输出的差异 Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度上量化衡量：\n指标 | 普通 AI 输出 | Taste Skill v2 * * * | * * * |--- 布局变化度 | 1-2 | 7-9 重复率 | 高 | 接近零 动效深度 | 仅悬停 | 滚动/磁性 排版层级 | 2 级 | 4+ 级 视觉密度 | 均匀 | 自适应 从设计到代码时间 | 2-3 小时 | 30-45 分钟 上述基准测试来自两组共 50+ 个生成落地页的对比：一组使用默认 AI 提示词，另一组使用 Taste Skill v2 并将三个参数调至中高档位。\n代码质量对比 普通 AI 输出通常会产生中心对齐、间距统一、组件模式重复且视觉层次分明的布局。Taste Skill 则强制执行以下标准：\n非对称布局，具有明确的视觉重量分布 多级排版（展示标题、标题、正文、说明文字）并配备合理的比例缩放 有目的的动效服务于导航而非装饰 情境化视觉密度——英雄区域留白充足，数据面板信息密集 # 验证你的生成输出是否通过了品味检查 # Taste Skill 在 SKILL.md 中包含了一份预飞检查清单 # 关键检查项： # - 不允许仅有中心对齐布局 # - 至少 3 级排版 # - 至少一处有意为之的非对称设计 # - 动效必须服务于功能而非装饰 进阶用法：自定义三个参数 Taste Skill 的真正威力在于将三个参数调整到与你项目的视觉身份相匹配的状态。\n设计变化度（低 → 高） # 低变化度（1-3）：清爽、居中、传统 # 适用场景：企业官网、仪表盘、文档站 DESIGN_VARIANCE: 2 # 中等变化度（4-6）：平衡的实验性设计 # 适用场景：SaaS 落地页、作品集、产品展示站 DESIGN_VARIANCE: 5 # 高变化度（7-10）：非对称、大胆、编辑风格 # 适用场景：创意机构、艺术作品集、品牌站 DESIGN_VARIANCE: 9 动效强度 # 低（1-3）：微妙的悬停效果，无滚动动画 MOTION_INTENSITY: 2 # 中等（4-6）：滚动触发的揭示效果、温和的视差滚动 MOTION_INTENSITY: 5 # 高（7-10）：磁性光标、滚动驱动的变换、GSAP 时间轴 MOTION_INTENSITY: 9 视觉密度 # 宽敞（1-3）：大内边距、单栏聚焦 VISUAL_DENSITY: 2 # 均衡（4-6）：混合布局、适中的信息密度 VISUAL_DENSITY: 5 # 密集（7-10）：仪表盘风格、多列、最大化每屏信息量 VISUAL_DENSITY: 9 组合参数打造特定风格 # 高端 SaaS 落地页 DESIGN_VARIANCE: 6 MOTION_INTENSITY: 5 VISUAL_DENSITY: 4 # 创意机构作品集 DESIGN_VARIANCE: 9 MOTION_INTENSITY: 8 VISUAL_DENSITY: 3 # 数据密集型仪表盘 DESIGN_VARIANCE: 3 MOTION_INTENSITY: 2 VISUAL_DENSITY: 9 # 极简编辑风格（Notion 风格） DESIGN_VARIANCE: 4 MOTION_INTENSITY: 3 VISUAL_DENSITY: 5 真实世界的参数配置示例 不同类型的项目从不同的参数组合中获益。以下是 Taste Skill 自身示例中经过验证的配置：\n# 带磁性滚动动画的个人作品集 DESIGN_VARIANCE: 8 MOTION_INTENSITY: 9 VISUAL_DENSITY: 3 # 数据密集的企业仪表盘 DESIGN_VARIANCE: 2 MOTION_INTENSITY: 1 VISUAL_DENSITY: 9 # 布局均衡的 SaaS 定价页 DESIGN_VARIANCE: 5 MOTION_INTENSITY: 4 VISUAL_DENSITY: 6 # 带非对称网格的创意落地页 DESIGN_VARIANCE: 9 MOTION_INTENSITY: 7 VISUAL_DENSITY: 4 这些配置经过了 44,000+ 星标所代表的社区反馈测试。关键在于根据你的项目信息密度和品牌个性来匹配参数设置。\n与替代方案的比较 Taste Skill 并非 GitHub 上唯一的设计强化技能。以下是它与最接近的替代方案的对比：\n| 特性 | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator | |\n|\n|\n|\n|\n| | 星标数 | 44,229 | 8,400 | 12,300 | N/A（SaaS） | | 框架无关 | 是 | 部分 | 否 | 否 | | 可调参数 | 3 个（变化度/动效/密度） | 无 | 无 | 无 | | 图像生成 | 3 个技能 | 无 | 无 | 内置 | | 代码输出 | 生产就绪 | 仅作参考 | 组件库 | HTML/CSS | | Agent 支持 | Codex/Cursor/Claude/ChatGPT | 仅 ChatGPT | Web UI | Web UI | | 许可证 | MIT | Apache 2.0 | MIT | 专有 |\n关键差异化优势在于可调参数。其他工具产出的都是静态结果，而 Taste Skill 允许你为每个项目微调设计语言。这对于需要在多个项目中保持视觉一致性的团队尤其有价值。\n局限性：Taste Skill 无法解决的问题 Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你解决问题：\n复杂的后端逻辑——Taste Skill 专注于前端设计。它不会为你的 API、数据库架构或认证流程做架构设计。\n从零开始的品牌识别——如果你需要一个完整的品牌体系（Logo、配色方案、字体选择），Taste Skill 假设你已经有了设计方向。可以使用 brandkit 生成参考图板，但最终的品牌决策由你自己掌控。\n非标准组件库——Taste Skill 从第一性原则生成 CSS。如果你需要严格遵循 Material Design、Ant Design 或 Tailwind UI 的组件规范，输出可能无法完全匹配你的设计系统。\n无障碍需求——虽然 Taste Skill 生成干净、语义化的 HTML，但它不会自动添加 ARIA 属性、键盘导航或屏幕阅读器优化。这些需要单独添加。\n移动端响应式的边缘案例——技能会生成响应式布局，但复杂的移动端交互（滑动手势、双指缩放、原生应用桥接）仍需手动实现。\n# 快速自查：你的项目是否需要 Taste Skill？ # ✅ 落地页、作品集、SaaS 站点 → 需要 # ✅ 重新设计 AI 生成的 UI → 需要 # ✅ 后端 API、数据库架构 → 不需要 # ✅ 原生移动应用（Swift/Kotlin）→ 部分需要 # ✅ 复杂数据可视化 → 部分需要（配合 D3 技能） 常见问题 Taste Skill 与其他 AI 设计技能有何不同？ 大多数 AI 设计技能只产出单一的输出风格。Taste Skill 提供了多种专用变体，配有可调参数和防重复规则，并有专门的研究作为支撑。每个技能都框架无关，可跨 Codex、Cursor、Claude Code 和 ChatGPT 使用。\n它是否兼容 React、Vue 和 Svelte？ 是的。Taste Skill 的规则针对的是设计意图，而非框架特定的 API。生成的输出是原生 HTML/CSS/JS，可适配任何框架。对于 React，需手动添加组件结构；对于 Vue/Svelte，技能输出可干净转换。\nv1 和 v2 有什么区别？ v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 代码骨架和重设计审核协议。v1 被保留给那些依赖原始行为的的项目。可通过 --skill \"design-taste-frontend-v1\" 显式安装 v1。\n我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？ 可以。你可以将任意 SKILL.md 复制到你的项目中、粘贴到 ChatGPT/Codex 对话中，或将其用作 Cursor .cursorrules 指令。npx skills add 命令只是更方便的选择，并非必需。\nTaste Skill 免费吗？ 是的，所有技能均为 MIT 许可。该项目接受 GitHub 赞助以维持持续开发。\n我应该选择哪个技能变体？ 从 design-taste-frontend（v2）开始，这是最安全的通用默认选项。对于更严格的 GPT/Codex 导向规则，使用 gpt-taste。对于图像优先的工作流，使用 image-to-code。对于改进现有代码库，使用 redesign-existing-projects。\nTaste Skill 是否兼容 Next.js 或 Astro？ 是的。生成的输出是框架无关的原生 HTML/CSS/JS。对于 Next.js，将组件包裹在 JSX 中即可。对于 Astro，使用岛屿架构模式。设计规则无论框架如何均适用。\n如何防止 Taste Skill 过度设计？ 将 DESIGN_VARIANCE 降至 2-3，VISUAL_DENSITY 降至 2-3。这会产出干净、极简的布局，避免过度的实验性设计。v2 技能包含一项\"预飞检查\"，可验证输出是否符合这些约束条件。\n我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？ 当然可以。Taste Skill 生成带有 CSS 自定义属性的语义化 HTML。你可以将输出映射到 Tailwind 类中，或直接使用生成的 CSS。这些技能的设计初衷是与你的现有设计系统协同工作，而非取代它。\n结语 Taste Skill 代表了 AI Agent 在前端设计领域的根本性转变。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是提供明确的设计约束来强制实现差异化和有意识的设计。\n凭借 44,229 颗星和持续增长的趋势，它已成为反平庸前端生成的事实标准。无论你是要构建落地页、重新设计 AI 生成的界面，还是从零创建设计系统，Taste Skill 都能给你的 Agent 装上它一直缺失的\"设计大脑\"。\n如果你的项目需要云托管，在 DigitalOcean 上托管你的网站可获得可靠的全球 CDN 覆盖。对于备份基础设施，HTStack 提供实惠的对象存储。需要可靠的代理基础设施？WebShare 代理 每月低至 1 美元。加密货币交易者可以使用 Binance 或 OKX 进行投资组合多样化。\n立即试用：\nnpx skills add https://github.com/Leonxlnx/taste-skill --skill \"design-taste-frontend\" ```` **相关文章**：[了解 AI 编程 Agent](https://dibi8.com/ai-tools/oh-my-pi) · [比较开发工具](https://dibi8.com/dev-utils/) * * * **来源与延伸阅读**： - 官方网站：https://tasteskill.dev - GitHub 仓库：https://github.com/Leonxlnx/taste-skill - 更新日志：https://www.tasteskill.dev/changelog - 社区：[@lexnlin on X](https://x.com/lexnlin)，[@blueemi99 on X](https://x.com/blueemi99) **Sources \u0026 Further Reading**: - 官方站: https://tasteskill.dev - GitHub仓库: https://github.com/Leonxlnx/taste-skill - 更新日志: https://www.tasteskill.dev/changelog - 社区: [@lexnlin 在 X 上](https://x.com/lexnlin), [@blueemi99 在 X 上](https://x.com/blueemi99) **行动号召**：加入 Taste Skill 的 Telegram 社区 —— [t.me/DIBI8_Group](https://t.me/DIBI8_Group) **披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。 { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"品味技能：让 AI 告别平庸输出——Agent 技能框架 2026\", \"datePublished\": \"2026-06-15\", \"dateModified\": \"2026-06-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/taste-skill\" } } ## Why This Matters Understanding 品味技能：让 ai 告别平庸输出——agent 技能框架 2026 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion 品味技能：让 AI 告别平庸输出——Agent 技能框架 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [12-factor-agents](taste-skill) - [2026-05-25-trending-ai-agents](taste-skill) - [2026-06-01-trending-ai-agents](taste-skill) - [2026-06-08-trending-ai-agents](taste-skill) - [2026-06-15-trending-ai-agents](taste-skill) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ",
+  "wordCount" : "1376",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/taste-skill/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/taste-skill/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/taste-skill/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/taste-skill/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bf%ab%e9%80%9f%e6%a6%82%e8%a7%88" aria-label="快速概览">快速概览</a></li>
+            <li>
+                <a href="#taste-skill-%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Taste Skill 是什么？">Taste Skill 是什么？</a></li>
+            <li>
+                <a href="#taste-skill-%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c" aria-label="Taste Skill 如何工作">Taste Skill 如何工作</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" aria-label="安装与配置">安装与配置</a><ul>
+                    
+            <li>
+                <a href="#%e5%8d%87%e7%ba%a7%e5%88%b0-v2" aria-label="升级到 v2">升级到 v2</a></li>
+            <li>
+                <a href="#%e6%89%8b%e5%8a%a8%e5%ae%89%e8%a3%85" aria-label="手动安装">手动安装</a></li>
+            <li>
+                <a href="#%e6%9f%a5%e7%9c%8b%e5%8f%af%e7%94%a8%e6%8a%80%e8%83%bd" aria-label="查看可用技能">查看可用技能</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e4%b8%bb%e6%b5%81%e7%bc%96%e7%a8%8b-agent-%e7%9a%84%e9%9b%86%e6%88%90" aria-label="与主流编程 Agent 的集成">与主流编程 Agent 的集成</a></li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95taste-skill-%e4%b8%8e%e6%99%ae%e9%80%9a-ai-%e8%be%93%e5%87%ba%e7%9a%84%e5%b7%ae%e5%bc%82" aria-label="基准测试：Taste Skill 与普通 AI 输出的差异">基准测试：Taste Skill 与普通 AI 输出的差异</a><ul>
+                    
+            <li>
+                <a href="#%e4%bb%a3%e7%a0%81%e8%b4%a8%e9%87%8f%e5%af%b9%e6%af%94" aria-label="代码质量对比">代码质量对比</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e8%bf%9b%e9%98%b6%e7%94%a8%e6%b3%95%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%89%e4%b8%aa%e5%8f%82%e6%95%b0" aria-label="进阶用法：自定义三个参数">进阶用法：自定义三个参数</a><ul>
+                    
+            <li>
+                <a href="#%e8%ae%be%e8%ae%a1%e5%8f%98%e5%8c%96%e5%ba%a6%e4%bd%8e--%e9%ab%98" aria-label="设计变化度（低 → 高）">设计变化度（低 → 高）</a></li>
+            <li>
+                <a href="#%e5%8a%a8%e6%95%88%e5%bc%ba%e5%ba%a6" aria-label="动效强度">动效强度</a></li>
+            <li>
+                <a href="#%e8%a7%86%e8%a7%89%e5%af%86%e5%ba%a6" aria-label="视觉密度">视觉密度</a></li>
+            <li>
+                <a href="#%e7%bb%84%e5%90%88%e5%8f%82%e6%95%b0%e6%89%93%e9%80%a0%e7%89%b9%e5%ae%9a%e9%a3%8e%e6%a0%bc" aria-label="组合参数打造特定风格">组合参数打造特定风格</a></li>
+            <li>
+                <a href="#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e7%9a%84%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e7%a4%ba%e4%be%8b" aria-label="真实世界的参数配置示例">真实世界的参数配置示例</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e6%af%94%e8%be%83" aria-label="与替代方案的比较">与替代方案的比较</a></li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7taste-skill-%e6%97%a0%e6%b3%95%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="局限性：Taste Skill 无法解决的问题">局限性：Taste Skill 无法解决的问题</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98" aria-label="常见问题">常见问题</a><ul>
+                    
+            <li>
+                <a href="#taste-skill-%e4%b8%8e%e5%85%b6%e4%bb%96-ai-%e8%ae%be%e8%ae%a1%e6%8a%80%e8%83%bd%e6%9c%89%e4%bd%95%e4%b8%8d%e5%90%8c" aria-label="Taste Skill 与其他 AI 设计技能有何不同？">Taste Skill 与其他 AI 设计技能有何不同？</a></li>
+            <li>
+                <a href="#%e5%ae%83%e6%98%af%e5%90%a6%e5%85%bc%e5%ae%b9-reactvue-%e5%92%8c-svelte" aria-label="它是否兼容 React、Vue 和 Svelte？">它是否兼容 React、Vue 和 Svelte？</a></li>
+            <li>
+                <a href="#v1-%e5%92%8c-v2-%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="v1 和 v2 有什么区别？">v1 和 v2 有什么区别？</a></li>
+            <li>
+                <a href="#%e6%88%91%e8%83%bd%e5%90%a6%e5%9c%a8%e4%b8%8d%e4%bd%bf%e7%94%a8-npx-skills-cli-%e7%9a%84%e6%83%85%e5%86%b5%e4%b8%8b%e4%bd%bf%e7%94%a8-taste-skill" aria-label="我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？">我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？</a></li>
+            <li>
+                <a href="#taste-skill-%e5%85%8d%e8%b4%b9%e5%90%97" aria-label="Taste Skill 免费吗？">Taste Skill 免费吗？</a></li>
+            <li>
+                <a href="#%e6%88%91%e5%ba%94%e8%af%a5%e9%80%89%e6%8b%a9%e5%93%aa%e4%b8%aa%e6%8a%80%e8%83%bd%e5%8f%98%e4%bd%93" aria-label="我应该选择哪个技能变体？">我应该选择哪个技能变体？</a></li>
+            <li>
+                <a href="#taste-skill-%e6%98%af%e5%90%a6%e5%85%bc%e5%ae%b9-nextjs-%e6%88%96-astro" aria-label="Taste Skill 是否兼容 Next.js 或 Astro？">Taste Skill 是否兼容 Next.js 或 Astro？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e9%98%b2%e6%ad%a2-taste-skill-%e8%bf%87%e5%ba%a6%e8%ae%be%e8%ae%a1" aria-label="如何防止 Taste Skill 过度设计？">如何防止 Taste Skill 过度设计？</a></li>
+            <li>
+                <a href="#%e6%88%91%e8%83%bd%e5%90%a6%e5%b0%86-taste-skill-%e4%b8%8e-tailwind-css-%e6%88%96%e5%85%b6%e4%bb%96%e5%ae%9e%e7%94%a8%e6%a1%86%e6%9e%b6%e7%bb%93%e5%90%88%e4%bd%bf%e7%94%a8" aria-label="我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？">我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e8%af%ad" aria-label="结语">结语</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="image-">title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-15
 lastmod: 2026-06-15
 slug: taste-skill
 category: dev-utils
 tags: [&ldquo;ai 设计&rdquo;, &ldquo;agent 技能&rdquo;, &ldquo;反平庸&rdquo;, &ldquo;前端&rdquo;, &ldquo;codex&rdquo;, &ldquo;cursor&rdquo;, &ldquo;claude code&rdquo;, &ldquo;提示词工程&rdquo;]
-image: &ldquo;<a href=https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png%22>https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"</a></h2><h2 id=快速概览>快速概览<a hidden class=anchor aria-hidden=true href=#快速概览>#</a></h2><p>Taste Skill 为你的 AI 代理装上了"设计大脑&rdquo;。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。</p><p><strong>快速概览：44,229 颗星</strong>——GitHub 上星标最高的反平庸技能项目。</p><h2 id=taste-skill-是什么>Taste Skill 是什么？<a hidden class=anchor aria-hidden=true href=#taste-skill-是什么>#</a></h2><p>Taste Skill 是一套可移植的 Agent 技能集合，专为升级 AI 生成的前端输出而设计。每个技能只专注一件事：强制执行特定的设计规则、生成参考图片，或者应用某种特定的视觉风格。该框架<strong>不绑定任何单一的编程 Agent 或框架</strong>——它跨 React、Vue、Svelte 和静态 HTML 全面适用。</p><p>其核心理念很简单：AI 模型都在同一个互联网数据上训练，因此生成的布局大同小异。Taste Skill 通过提供明确的设计约束来打破这一困局，强制产生差异化。三个可调参数控制着输出效果：</p><ul><li><strong>DESIGN_VARIANCE（1-10）：</strong> 布局实验程度——低值偏向中心对齐/清爽风格，高值偏向非对称/现代风格</li><li><strong>MOTION_INTENSITY（1-10）：</strong> 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画</li><li><strong>VISUAL_DENSITY（1-10）：</strong> 信息密度——低值适合宽敞布局，高值适合密集的数据面板</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 一次性安装全部技能</span>
-</span></span><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 按名称安装单个技能</span>
-</span></span><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style=color:#e6db74>&#34;design-taste-frontend&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 锁定到 v1（原始行为）</span>
-</span></span><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style=color:#e6db74>&#34;design-taste-frontend-v1&#34;</span>
-</span></span></code></pre></div><p>默认技能现在是 <strong>v2（实验性）</strong>，对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。</p><h2 id=taste-skill-如何工作>Taste Skill 如何工作<a hidden class=anchor aria-hidden=true href=#taste-skill-如何工作>#</a></h2><p>Taste Skill 采用三层架构运行：</p><ol><li><p><strong>实现类技能</strong>——这些技能输出可直接投入生产环境的代码。旗舰级 <code>design-taste-frontend</code> 技能会读取你的项目需求，推断出设计语言，调整三个参数，并生成严格遵守防重复规则的代码。</p></li><li><p><strong>图像生成类技能</strong>——这些技能产出参考图板（而非代码）。<code>imagegen-frontend-web</code> 生成网站设计方案，<code>imagegen-frontend-mobile</code> 创建移动端流程，<code>brandkit</code> 则生成品牌识别图板。将这些参考图交给 Codex 或 ChatGPT Images 进行后续实现。</p></li><li><p><strong>风格变体</strong>——具体的视觉方向：<code>minimalist-ui</code>（Notion/Linear 风格）、<code>industrial-brutalist-ui</code>（瑞士排版、强烈对比）、<code>high-end-visual-design</code>（精致、沉稳、高端 UI）以及 <code>stitch-design-taste</code>（兼容 Google Stitch）。</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 图像优先管线：先生成参考图，再生成代码</span>
-</span></span><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style=color:#e6db74>&#34;image-to-code&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># image-to-code 工作流提示词示例</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># &#34;遵循技能：生成图片，然后分析，最后编写代码&#34;</span>
-</span></span></code></pre></div><p>图像优先管线特别强大：先用 ChatGPT Images 或 Codex 图像模式生成参考图板，然后将渲染结果连同 <code>image-to-code</code> 技能一起交给编程 Agent 进行实现。</p><h2 id=安装与配置>安装与配置<a hidden class=anchor aria-hidden=true href=#安装与配置>#</a></h2><p>安装过程不到 30 秒。Taste Skill 使用 Vercel Labs 的 <code>npx skills</code> CLI，它会扫描仓库的 <code>skills/</code> 文件夹并将 SKILL.md 文件安装到你的项目中。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 第一步：安装全部技能</span>
-</span></span><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 第二步：验证安装</span>
-</span></span><span style=display:flex><span>ls ~/.hermes/skills/ | grep taste
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 第三步：在你的 Agent 对话中使用</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 技能会在被引用时自动加载</span>
-</span></span></code></pre></div><h3 id=升级到-v2>升级到 v2<a hidden class=anchor aria-hidden=true href=#升级到-v2>#</a></h3><p>如果你已安装 v1 并希望尝试实验性的 v2：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 重新运行安装——安装名称未改变</span>
-</span></span><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style=color:#e6db74>&#34;design-taste-frontend&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 查看 v1→v2 的差异</span>
-</span></span><span style=display:flex><span>curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50
-</span></span></code></pre></div><h3 id=手动安装>手动安装<a hidden class=anchor aria-hidden=true href=#手动安装>#</a></h3><p>你也可以将任意 SKILL.md 直接复制到你的项目中，或粘贴到 ChatGPT/Codex 对话里使用：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆以便手动访问</span>
-</span></span><span style=display:flex><span>curl -sL <span style=color:#e6db74>&#34;https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip&#34;</span> -o /tmp/taste-skill.zip
-</span></span><span style=display:flex><span>unzip -q /tmp/taste-skill.zip -d /tmp
-</span></span><span style=display:flex><span>ls /tmp/taste-skill-main/skills/
-</span></span></code></pre></div><h3 id=查看可用技能>查看可用技能<a hidden class=anchor aria-hidden=true href=#查看可用技能>#</a></h3><p>安装完成后，可以查看有哪些技能可用：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 列出所有已安装的技能</span>
-</span></span><span style=display:flex><span>npx skills list | grep taste
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查技能版本</span>
-</span></span><span style=display:flex><span>grep <span style=color:#e6db74>&#39;^version:&#39;</span> ~/.hermes/skills/design-taste-frontend/SKILL.md 2&gt;/dev/null <span style=color:#f92672>||</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  grep <span style=color:#e6db74>&#39;^version:&#39;</span> ~/.claude/skills/taste-skill/SKILL.md 2&gt;/dev/null <span style=color:#f92672>||</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;通过粘贴方式安装的技能（无版本文件）&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 阅读 v2 更新日志</span>
-</span></span><span style=display:flex><span>curl -sL <span style=color:#e6db74>&#34;https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md&#34;</span> | head -30
-</span></span></code></pre></div><h2 id=与主流编程-agent-的集成>与主流编程 Agent 的集成<a hidden class=anchor aria-hidden=true href=#与主流编程-agent-的集成>#</a></h2><p>Taste Skill 是框架无关的，可与所有主流 AI 编程 Agent 配合使用：</p><p>| Agent | 集成方式 | 推荐技能 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+image: &ldquo;<a href="https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png%22">https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png"</a></h2>
+<h2 id="快速概览">快速概览<a hidden class="anchor" aria-hidden="true" href="#快速概览">#</a></h2>
+<p>Taste Skill 为你的 AI 代理装上了&quot;设计大脑&rdquo;。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。</p>
+<p><strong>快速概览：44,229 颗星</strong>——GitHub 上星标最高的反平庸技能项目。</p>
+<h2 id="taste-skill-是什么">Taste Skill 是什么？<a hidden class="anchor" aria-hidden="true" href="#taste-skill-是什么">#</a></h2>
+<p>Taste Skill 是一套可移植的 Agent 技能集合，专为升级 AI 生成的前端输出而设计。每个技能只专注一件事：强制执行特定的设计规则、生成参考图片，或者应用某种特定的视觉风格。该框架<strong>不绑定任何单一的编程 Agent 或框架</strong>——它跨 React、Vue、Svelte 和静态 HTML 全面适用。</p>
+<p>其核心理念很简单：AI 模型都在同一个互联网数据上训练，因此生成的布局大同小异。Taste Skill 通过提供明确的设计约束来打破这一困局，强制产生差异化。三个可调参数控制着输出效果：</p>
+<ul>
+<li><strong>DESIGN_VARIANCE（1-10）：</strong> 布局实验程度——低值偏向中心对齐/清爽风格，高值偏向非对称/现代风格</li>
+<li><strong>MOTION_INTENSITY（1-10）：</strong> 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画</li>
+<li><strong>VISUAL_DENSITY（1-10）：</strong> 信息密度——低值适合宽敞布局，高值适合密集的数据面板</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 一次性安装全部技能</span>
+</span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 按名称安装单个技能</span>
+</span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 锁定到 v1（原始行为）</span>
+</span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend-v1&#34;</span>
+</span></span></code></pre></div><p>默认技能现在是 <strong>v2（实验性）</strong>，对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。</p>
+<h2 id="taste-skill-如何工作">Taste Skill 如何工作<a hidden class="anchor" aria-hidden="true" href="#taste-skill-如何工作">#</a></h2>
+<p>Taste Skill 采用三层架构运行：</p>
+<ol>
+<li>
+<p><strong>实现类技能</strong>——这些技能输出可直接投入生产环境的代码。旗舰级 <code>design-taste-frontend</code> 技能会读取你的项目需求，推断出设计语言，调整三个参数，并生成严格遵守防重复规则的代码。</p>
+</li>
+<li>
+<p><strong>图像生成类技能</strong>——这些技能产出参考图板（而非代码）。<code>imagegen-frontend-web</code> 生成网站设计方案，<code>imagegen-frontend-mobile</code> 创建移动端流程，<code>brandkit</code> 则生成品牌识别图板。将这些参考图交给 Codex 或 ChatGPT Images 进行后续实现。</p>
+</li>
+<li>
+<p><strong>风格变体</strong>——具体的视觉方向：<code>minimalist-ui</code>（Notion/Linear 风格）、<code>industrial-brutalist-ui</code>（瑞士排版、强烈对比）、<code>high-end-visual-design</code>（精致、沉稳、高端 UI）以及 <code>stitch-design-taste</code>（兼容 Google Stitch）。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 图像优先管线：先生成参考图，再生成代码</span>
+</span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;image-to-code&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># image-to-code 工作流提示词示例</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;遵循技能：生成图片，然后分析，最后编写代码&#34;</span>
+</span></span></code></pre></div><p>图像优先管线特别强大：先用 ChatGPT Images 或 Codex 图像模式生成参考图板，然后将渲染结果连同 <code>image-to-code</code> 技能一起交给编程 Agent 进行实现。</p>
+<h2 id="安装与配置">安装与配置<a hidden class="anchor" aria-hidden="true" href="#安装与配置">#</a></h2>
+<p>安装过程不到 30 秒。Taste Skill 使用 Vercel Labs 的 <code>npx skills</code> CLI，它会扫描仓库的 <code>skills/</code> 文件夹并将 SKILL.md 文件安装到你的项目中。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 第一步：安装全部技能</span>
+</span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 第二步：验证安装</span>
+</span></span><span style="display:flex;"><span>ls ~/.hermes/skills/ | grep taste
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 第三步：在你的 Agent 对话中使用</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 技能会在被引用时自动加载</span>
+</span></span></code></pre></div><h3 id="升级到-v2">升级到 v2<a hidden class="anchor" aria-hidden="true" href="#升级到-v2">#</a></h3>
+<p>如果你已安装 v1 并希望尝试实验性的 v2：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 重新运行安装——安装名称未改变</span>
+</span></span><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看 v1→v2 的差异</span>
+</span></span><span style="display:flex;"><span>curl -sL https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md | head -50
+</span></span></code></pre></div><h3 id="手动安装">手动安装<a hidden class="anchor" aria-hidden="true" href="#手动安装">#</a></h3>
+<p>你也可以将任意 SKILL.md 直接复制到你的项目中，或粘贴到 ChatGPT/Codex 对话里使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 克隆以便手动访问</span>
+</span></span><span style="display:flex;"><span>curl -sL <span style="color:#e6db74">&#34;https://github.com/Leonxlnx/taste-skill/archive/refs/heads/main.zip&#34;</span> -o /tmp/taste-skill.zip
+</span></span><span style="display:flex;"><span>unzip -q /tmp/taste-skill.zip -d /tmp
+</span></span><span style="display:flex;"><span>ls /tmp/taste-skill-main/skills/
+</span></span></code></pre></div><h3 id="查看可用技能">查看可用技能<a hidden class="anchor" aria-hidden="true" href="#查看可用技能">#</a></h3>
+<p>安装完成后，可以查看有哪些技能可用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 列出所有已安装的技能</span>
+</span></span><span style="display:flex;"><span>npx skills list | grep taste
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查技能版本</span>
+</span></span><span style="display:flex;"><span>grep <span style="color:#e6db74">&#39;^version:&#39;</span> ~/.hermes/skills/design-taste-frontend/SKILL.md 2&gt;/dev/null <span style="color:#f92672">||</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  grep <span style="color:#e6db74">&#39;^version:&#39;</span> ~/.claude/skills/taste-skill/SKILL.md 2&gt;/dev/null <span style="color:#f92672">||</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;通过粘贴方式安装的技能（无版本文件）&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 阅读 v2 更新日志</span>
+</span></span><span style="display:flex;"><span>curl -sL <span style="color:#e6db74">&#34;https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/CHANGELOG.md&#34;</span> | head -30
+</span></span></code></pre></div><h2 id="与主流编程-agent-的集成">与主流编程 Agent 的集成<a hidden class="anchor" aria-hidden="true" href="#与主流编程-agent-的集成">#</a></h2>
+<p>Taste Skill 是框架无关的，可与所有主流 AI 编程 Agent 配合使用：</p>
+<p>| Agent | 集成方式 | 推荐技能 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Codex</strong> | <code>npx skills add</code> + CLI | <code>gpt-taste</code>（更严格的变体） |
 | <strong>Cursor</strong> | 将 SKILL.md 粘贴到 <code>.cursorrules</code> | <code>design-taste-frontend</code> |
 | <strong>Claude Code</strong> | 通过 <code>.claude/skills/</code> 加载 | <code>design-taste-frontend</code> |
 | <strong>ChatGPT</strong> | 将 SKILL.md 粘贴到对话中 | <code>imagegen-frontend-web</code> |
 | <strong>Gemini</strong> | 将 SKILL.md 粘贴到对话中 | <code>design-taste-frontend</code> |
-| <strong>OpenCode</strong> | 加载 SKILL.md | <code>redesign-existing-projects</code> |</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cursor 集成：添加到 .cursorrules</span>
-</span></span><span style=display:flex><span>cat &gt;&gt; .cursorrules <span style=color:#e6db74>&lt;&lt; &#39;EOF&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># Taste Skill v2 — 反平庸前端规则
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># 加载技能：design-taste-frontend
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># 参数：DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Claude Code 集成</span>
-</span></span><span style=display:flex><span>mkdir -p ~/.claude/skills/taste-skill
-</span></span><span style=display:flex><span>curl -sL <span style=color:#e6db74>&#34;https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  &gt; ~/.claude/skills/taste-skill/SKILL.md
-</span></span></code></pre></div><h2 id=基准测试taste-skill-与普通-ai-输出的差异>基准测试：Taste Skill 与普通 AI 输出的差异<a hidden class=anchor aria-hidden=true href=#基准测试taste-skill-与普通-ai-输出的差异>#</a></h2><p>Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度上量化衡量：</p><pre tabindex=0><code>指标              | 普通 AI 输出 | Taste Skill v2
+| <strong>OpenCode</strong> | 加载 SKILL.md | <code>redesign-existing-projects</code> |</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cursor 集成：添加到 .cursorrules</span>
+</span></span><span style="display:flex;"><span>cat &gt;&gt; .cursorrules <span style="color:#e6db74">&lt;&lt; &#39;EOF&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Taste Skill v2 — 反平庸前端规则
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 加载技能：design-taste-frontend
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># 参数：DESIGN_VARIANCE=7, MOTION_INTENSITY=5, VISUAL_DENSITY=4
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Claude Code 集成</span>
+</span></span><span style="display:flex;"><span>mkdir -p ~/.claude/skills/taste-skill
+</span></span><span style="display:flex;"><span>curl -sL <span style="color:#e6db74">&#34;https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/skills/design-taste-frontend/SKILL.md&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  &gt; ~/.claude/skills/taste-skill/SKILL.md
+</span></span></code></pre></div><h2 id="基准测试taste-skill-与普通-ai-输出的差异">基准测试：Taste Skill 与普通 AI 输出的差异<a hidden class="anchor" aria-hidden="true" href="#基准测试taste-skill-与普通-ai-输出的差异">#</a></h2>
+<p>Taste Skill 生成的界面与普通 AI 输出之间的差距可在多个维度上量化衡量：</p>
+<pre tabindex="0"><code>指标              | 普通 AI 输出 | Taste Skill v2
 
 * * *
 |
@@ -81,242 +402,461 @@ image: &ldquo;<a href=https://raw.githubusercontent.com/Leonxlnx/taste-skill/mai
 排版层级          | 2 级        | 4+ 级
 视觉密度          | 均匀        | 自适应
 从设计到代码时间  | 2-3 小时    | 30-45 分钟
-</code></pre><p>上述基准测试来自两组共 50+ 个生成落地页的对比：一组使用默认 AI 提示词，另一组使用 Taste Skill v2 并将三个参数调至中高档位。</p><h3 id=代码质量对比>代码质量对比<a hidden class=anchor aria-hidden=true href=#代码质量对比>#</a></h3><p>普通 AI 输出通常会产生中心对齐、间距统一、组件模式重复且视觉层次分明的布局。Taste Skill 则强制执行以下标准：</p><ul><li><strong>非对称布局</strong>，具有明确的视觉重量分布</li><li><strong>多级排版</strong>（展示标题、标题、正文、说明文字）并配备合理的比例缩放</li><li><strong>有目的的动效</strong>服务于导航而非装饰</li><li><strong>情境化视觉密度</strong>——英雄区域留白充足，数据面板信息密集</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 验证你的生成输出是否通过了品味检查</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Taste Skill 在 SKILL.md 中包含了一份预飞检查清单</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 关键检查项：</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 不允许仅有中心对齐布局</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 至少 3 级排版</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 至少一处有意为之的非对称设计</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 动效必须服务于功能而非装饰</span>
-</span></span></code></pre></div><h2 id=进阶用法自定义三个参数>进阶用法：自定义三个参数<a hidden class=anchor aria-hidden=true href=#进阶用法自定义三个参数>#</a></h2><p>Taste Skill 的真正威力在于将三个参数调整到与你项目的视觉身份相匹配的状态。</p><h3 id=设计变化度低--高>设计变化度（低 → 高）<a hidden class=anchor aria-hidden=true href=#设计变化度低--高>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 低变化度（1-3）：清爽、居中、传统</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 适用场景：企业官网、仪表盘、文档站</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 中等变化度（4-6）：平衡的实验性设计</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 适用场景：SaaS 落地页、作品集、产品展示站</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 高变化度（7-10）：非对称、大胆、编辑风格</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 适用场景：创意机构、艺术作品集、品牌站</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>9</span>
-</span></span></code></pre></div><h3 id=动效强度>动效强度<a hidden class=anchor aria-hidden=true href=#动效强度>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 低（1-3）：微妙的悬停效果，无滚动动画</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 中等（4-6）：滚动触发的揭示效果、温和的视差滚动</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 高（7-10）：磁性光标、滚动驱动的变换、GSAP 时间轴</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>9</span>
-</span></span></code></pre></div><h3 id=视觉密度>视觉密度<a hidden class=anchor aria-hidden=true href=#视觉密度>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 宽敞（1-3）：大内边距、单栏聚焦</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 均衡（4-6）：混合布局、适中的信息密度</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 密集（7-10）：仪表盘风格、多列、最大化每屏信息量</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>9</span>
-</span></span></code></pre></div><h3 id=组合参数打造特定风格>组合参数打造特定风格<a hidden class=anchor aria-hidden=true href=#组合参数打造特定风格>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 高端 SaaS 落地页</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>6</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>4</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 创意机构作品集</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>9</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 数据密集型仪表盘</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>9</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 极简编辑风格（Notion 风格）</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>4</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>5</span>
-</span></span></code></pre></div><h3 id=真实世界的参数配置示例>真实世界的参数配置示例<a hidden class=anchor aria-hidden=true href=#真实世界的参数配置示例>#</a></h3><p>不同类型的项目从不同的参数组合中获益。以下是 Taste Skill 自身示例中经过验证的配置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 带磁性滚动动画的个人作品集</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>9</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 数据密集的企业仪表盘</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>9</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 布局均衡的 SaaS 定价页</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>4</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>6</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 带非对称网格的创意落地页</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>DESIGN_VARIANCE</span>: <span style=color:#ae81ff>9</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>MOTION_INTENSITY</span>: <span style=color:#ae81ff>7</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>VISUAL_DENSITY</span>: <span style=color:#ae81ff>4</span>
-</span></span></code></pre></div><p>这些配置经过了 44,000+ 星标所代表的社区反馈测试。关键在于根据你的项目信息密度和品牌个性来匹配参数设置。</p><h2 id=与替代方案的比较>与替代方案的比较<a hidden class=anchor aria-hidden=true href=#与替代方案的比较>#</a></h2><p>Taste Skill 并非 GitHub 上唯一的设计强化技能。以下是它与最接近的替代方案的对比：</p><p>| 特性 | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>上述基准测试来自两组共 50+ 个生成落地页的对比：一组使用默认 AI 提示词，另一组使用 Taste Skill v2 并将三个参数调至中高档位。</p>
+<h3 id="代码质量对比">代码质量对比<a hidden class="anchor" aria-hidden="true" href="#代码质量对比">#</a></h3>
+<p>普通 AI 输出通常会产生中心对齐、间距统一、组件模式重复且视觉层次分明的布局。Taste Skill 则强制执行以下标准：</p>
+<ul>
+<li><strong>非对称布局</strong>，具有明确的视觉重量分布</li>
+<li><strong>多级排版</strong>（展示标题、标题、正文、说明文字）并配备合理的比例缩放</li>
+<li><strong>有目的的动效</strong>服务于导航而非装饰</li>
+<li><strong>情境化视觉密度</strong>——英雄区域留白充足，数据面板信息密集</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 验证你的生成输出是否通过了品味检查</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Taste Skill 在 SKILL.md 中包含了一份预飞检查清单</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 关键检查项：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 不允许仅有中心对齐布局</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 至少 3 级排版</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 至少一处有意为之的非对称设计</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 动效必须服务于功能而非装饰</span>
+</span></span></code></pre></div><h2 id="进阶用法自定义三个参数">进阶用法：自定义三个参数<a hidden class="anchor" aria-hidden="true" href="#进阶用法自定义三个参数">#</a></h2>
+<p>Taste Skill 的真正威力在于将三个参数调整到与你项目的视觉身份相匹配的状态。</p>
+<h3 id="设计变化度低--高">设计变化度（低 → 高）<a hidden class="anchor" aria-hidden="true" href="#设计变化度低--高">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 低变化度（1-3）：清爽、居中、传统</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 适用场景：企业官网、仪表盘、文档站</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中等变化度（4-6）：平衡的实验性设计</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 适用场景：SaaS 落地页、作品集、产品展示站</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 高变化度（7-10）：非对称、大胆、编辑风格</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 适用场景：创意机构、艺术作品集、品牌站</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">9</span>
+</span></span></code></pre></div><h3 id="动效强度">动效强度<a hidden class="anchor" aria-hidden="true" href="#动效强度">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 低（1-3）：微妙的悬停效果，无滚动动画</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 中等（4-6）：滚动触发的揭示效果、温和的视差滚动</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 高（7-10）：磁性光标、滚动驱动的变换、GSAP 时间轴</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">9</span>
+</span></span></code></pre></div><h3 id="视觉密度">视觉密度<a hidden class="anchor" aria-hidden="true" href="#视觉密度">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 宽敞（1-3）：大内边距、单栏聚焦</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 均衡（4-6）：混合布局、适中的信息密度</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 密集（7-10）：仪表盘风格、多列、最大化每屏信息量</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">9</span>
+</span></span></code></pre></div><h3 id="组合参数打造特定风格">组合参数打造特定风格<a hidden class="anchor" aria-hidden="true" href="#组合参数打造特定风格">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 高端 SaaS 落地页</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创意机构作品集</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 数据密集型仪表盘</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 极简编辑风格（Notion 风格）</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">5</span>
+</span></span></code></pre></div><h3 id="真实世界的参数配置示例">真实世界的参数配置示例<a hidden class="anchor" aria-hidden="true" href="#真实世界的参数配置示例">#</a></h3>
+<p>不同类型的项目从不同的参数组合中获益。以下是 Taste Skill 自身示例中经过验证的配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 带磁性滚动动画的个人作品集</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 数据密集的企业仪表盘</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 布局均衡的 SaaS 定价页</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">6</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 带非对称网格的创意落地页</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">DESIGN_VARIANCE</span>: <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">MOTION_INTENSITY</span>: <span style="color:#ae81ff">7</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">VISUAL_DENSITY</span>: <span style="color:#ae81ff">4</span>
+</span></span></code></pre></div><p>这些配置经过了 44,000+ 星标所代表的社区反馈测试。关键在于根据你的项目信息密度和品牌个性来匹配参数设置。</p>
+<h2 id="与替代方案的比较">与替代方案的比较<a hidden class="anchor" aria-hidden="true" href="#与替代方案的比较">#</a></h2>
+<p>Taste Skill 并非 GitHub 上唯一的设计强化技能。以下是它与最接近的替代方案的对比：</p>
+<p>| 特性 | Taste Skill v2 | PromptHero | Uiverse | AI UI Generator |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 星标数 | 44,229 | 8,400 | 12,300 | N/A（SaaS） |
 | 框架无关 | 是 | 部分 | 否 | 否 |
 | 可调参数 | 3 个（变化度/动效/密度） | 无 | 无 | 无 |
 | 图像生成 | 3 个技能 | 无 | 无 | 内置 |
 | 代码输出 | 生产就绪 | 仅作参考 | 组件库 | HTML/CSS |
 | Agent 支持 | Codex/Cursor/Claude/ChatGPT | 仅 ChatGPT | Web UI | Web UI |
-| 许可证 | MIT | Apache 2.0 | MIT | 专有 |</p><p>关键差异化优势在于<strong>可调参数</strong>。其他工具产出的都是静态结果，而 Taste Skill 允许你为每个项目微调设计语言。这对于需要在多个项目中保持视觉一致性的团队尤其有价值。</p><h2 id=局限性taste-skill-无法解决的问题>局限性：Taste Skill 无法解决的问题<a hidden class=anchor aria-hidden=true href=#局限性taste-skill-无法解决的问题>#</a></h2><p>Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你解决问题：</p><ol><li><p><strong>复杂的后端逻辑</strong>——Taste Skill 专注于前端设计。它不会为你的 API、数据库架构或认证流程做架构设计。</p></li><li><p><strong>从零开始的品牌识别</strong>——如果你需要一个完整的品牌体系（Logo、配色方案、字体选择），Taste Skill 假设你已经有了设计方向。可以使用 <code>brandkit</code> 生成参考图板，但最终的品牌决策由你自己掌控。</p></li><li><p><strong>非标准组件库</strong>——Taste Skill 从第一性原则生成 CSS。如果你需要严格遵循 Material Design、Ant Design 或 Tailwind UI 的组件规范，输出可能无法完全匹配你的设计系统。</p></li><li><p><strong>无障碍需求</strong>——虽然 Taste Skill 生成干净、语义化的 HTML，但它不会自动添加 ARIA 属性、键盘导航或屏幕阅读器优化。这些需要单独添加。</p></li><li><p><strong>移动端响应式的边缘案例</strong>——技能会生成响应式布局，但复杂的移动端交互（滑动手势、双指缩放、原生应用桥接）仍需手动实现。</p></li></ol><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 快速自查：你的项目是否需要 Taste Skill？</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 落地页、作品集、SaaS 站点 → 需要</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 重新设计 AI 生成的 UI → 需要</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 后端 API、数据库架构 → 不需要</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 原生移动应用（Swift/Kotlin）→ 部分需要</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 复杂数据可视化 → 部分需要（配合 D3 技能）</span>
-</span></span></code></pre></div><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><h3 id=taste-skill-与其他-ai-设计技能有何不同>Taste Skill 与其他 AI 设计技能有何不同？<a hidden class=anchor aria-hidden=true href=#taste-skill-与其他-ai-设计技能有何不同>#</a></h3><p>大多数 AI 设计技能只产出单一的输出风格。Taste Skill 提供了<strong>多种专用变体</strong>，配有可调参数和防重复规则，并有专门的研究作为支撑。每个技能都框架无关，可跨 Codex、Cursor、Claude Code 和 ChatGPT 使用。</p><h3 id=它是否兼容-reactvue-和-svelte>它是否兼容 React、Vue 和 Svelte？<a hidden class=anchor aria-hidden=true href=#它是否兼容-reactvue-和-svelte>#</a></h3><p>是的。Taste Skill 的规则针对的是设计意图，而非框架特定的 API。生成的输出是原生 HTML/CSS/JS，可适配任何框架。对于 React，需手动添加组件结构；对于 Vue/Svelte，技能输出可干净转换。</p><h3 id=v1-和-v2-有什么区别>v1 和 v2 有什么区别？<a hidden class=anchor aria-hidden=true href=#v1-和-v2-有什么区别>#</a></h3><p>v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 代码骨架和重设计审核协议。v1 被保留给那些依赖原始行为的的项目。可通过 <code>--skill "design-taste-frontend-v1"</code> 显式安装 v1。</p><h3 id=我能否在不使用-npx-skills-cli-的情况下使用-taste-skill>我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？<a hidden class=anchor aria-hidden=true href=#我能否在不使用-npx-skills-cli-的情况下使用-taste-skill>#</a></h3><p>可以。你可以将任意 SKILL.md 复制到你的项目中、粘贴到 ChatGPT/Codex 对话中，或将其用作 Cursor <code>.cursorrules</code> 指令。<code>npx skills add</code> 命令只是更方便的选择，并非必需。</p><h3 id=taste-skill-免费吗>Taste Skill 免费吗？<a hidden class=anchor aria-hidden=true href=#taste-skill-免费吗>#</a></h3><p>是的，所有技能均为 MIT 许可。该项目接受 GitHub 赞助以维持持续开发。</p><h3 id=我应该选择哪个技能变体>我应该选择哪个技能变体？<a hidden class=anchor aria-hidden=true href=#我应该选择哪个技能变体>#</a></h3><p>从 <code>design-taste-frontend</code>（v2）开始，这是最安全的通用默认选项。对于更严格的 GPT/Codex 导向规则，使用 <code>gpt-taste</code>。对于图像优先的工作流，使用 <code>image-to-code</code>。对于改进现有代码库，使用 <code>redesign-existing-projects</code>。</p><h3 id=taste-skill-是否兼容-nextjs-或-astro>Taste Skill 是否兼容 Next.js 或 Astro？<a hidden class=anchor aria-hidden=true href=#taste-skill-是否兼容-nextjs-或-astro>#</a></h3><p>是的。生成的输出是框架无关的原生 HTML/CSS/JS。对于 Next.js，将组件包裹在 JSX 中即可。对于 Astro，使用岛屿架构模式。设计规则无论框架如何均适用。</p><h3 id=如何防止-taste-skill-过度设计>如何防止 Taste Skill 过度设计？<a hidden class=anchor aria-hidden=true href=#如何防止-taste-skill-过度设计>#</a></h3><p>将 DESIGN_VARIANCE 降至 2-3，VISUAL_DENSITY 降至 2-3。这会产出干净、极简的布局，避免过度的实验性设计。v2 技能包含一项"预飞检查"，可验证输出是否符合这些约束条件。</p><h3 id=我能否将-taste-skill-与-tailwind-css-或其他实用框架结合使用>我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？<a hidden class=anchor aria-hidden=true href=#我能否将-taste-skill-与-tailwind-css-或其他实用框架结合使用>#</a></h3><p>当然可以。Taste Skill 生成带有 CSS 自定义属性的语义化 HTML。你可以将输出映射到 Tailwind 类中，或直接使用生成的 CSS。这些技能的设计初衷是与你的现有设计系统协同工作，而非取代它。</p><h2 id=结语>结语<a hidden class=anchor aria-hidden=true href=#结语>#</a></h2><p>Taste Skill 代表了 AI Agent 在前端设计领域的根本性转变。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是提供明确的设计约束来强制实现差异化和有意识的设计。</p><p>凭借 44,229 颗星和持续增长的趋势，它已成为反平庸前端生成的事实标准。无论你是要构建落地页、重新设计 AI 生成的界面，还是从零创建设计系统，Taste Skill 都能给你的 Agent 装上它一直缺失的"设计大脑"。</p><p>如果你的项目需要云托管，<a href=https://m.do.co/oa14d5f0wx4f>在 DigitalOcean 上托管你的网站</a>可获得可靠的全球 CDN 覆盖。对于备份基础设施，<a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> 提供实惠的对象存储。需要可靠的代理基础设施？<a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare 代理</a> 每月低至 1 美元。加密货币交易者可以使用 <a href=https://bsmkweb.cc/6yq8qf7u>Binance</a> 或 <a href=https://promoohubly.com/5g1h7qxn>OKX</a> 进行投资组合多样化。</p><p><strong>立即试用：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style=color:#e6db74>&#34;design-taste-frontend&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**相关文章**：<span style=color:#f92672>[</span>了解 AI 编程 Agent<span style=color:#f92672>](</span>https://dibi8.com/ai-tools/oh-my-pi<span style=color:#f92672>)</span> · <span style=color:#f92672>[</span>比较开发工具<span style=color:#f92672>](</span>https://dibi8.com/dev-utils/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>**来源与延伸阅读**：
-</span></span><span style=display:flex><span>- 官方网站：https://tasteskill.dev
-</span></span><span style=display:flex><span>- GitHub 仓库：https://github.com/Leonxlnx/taste-skill
-</span></span><span style=display:flex><span>- 更新日志：https://www.tasteskill.dev/changelog
-</span></span><span style=display:flex><span>- 社区：<span style=color:#f92672>[</span>@lexnlin on X<span style=color:#f92672>](</span>https://x.com/lexnlin<span style=color:#f92672>)</span>，<span style=color:#f92672>[</span>@blueemi99 on X<span style=color:#f92672>](</span>https://x.com/blueemi99<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Sources &amp; Further Reading**: - 官方站: https://tasteskill.dev
-</span></span><span style=display:flex><span>- GitHub仓库: https://github.com/Leonxlnx/taste-skill
-</span></span><span style=display:flex><span>- 更新日志: https://www.tasteskill.dev/changelog
-</span></span><span style=display:flex><span>- 社区: <span style=color:#f92672>[</span>@lexnlin 在 X 上<span style=color:#f92672>](</span>https://x.com/lexnlin<span style=color:#f92672>)</span>, <span style=color:#f92672>[</span>@blueemi99 在 X 上<span style=color:#f92672>](</span>https://x.com/blueemi99<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>**行动号召**：加入 Taste Skill 的 Telegram 社区 —— <span style=color:#f92672>[</span>t.me/DIBI8_Group<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;品味技能：让 AI 告别平庸输出——Agent 技能框架 2026&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-06-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/zh/resources/taste-skill&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding 品味技能：让 ai 告别平庸输出——agent 技能框架 <span style=color:#ae81ff>2026</span> is crucial <span style=color:#66d9ef>for</span> modern AI development. Here<span style=color:#960050;background-color:#1e0010>&#39;</span>s why: <span style=color:#75715e>### Key Benefits</span>
-</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
-</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
-</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
-</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
-</span></span><span style=display:flex><span>2. Generate documentation automatically
-</span></span><span style=display:flex><span>3. Build internal knowledge bases
-</span></span><span style=display:flex><span>4. Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
-</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
-</span></span><span style=display:flex><span>   - Identify repetitive tasks
-</span></span><span style=display:flex><span>   - Measure current time costs
-</span></span><span style=display:flex><span>   - Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **Choose Your Approach**
-</span></span><span style=display:flex><span>   - Start with simple automations
-</span></span><span style=display:flex><span>   - Gradually increase complexity
-</span></span><span style=display:flex><span>   - Test and iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **Measure Results**
-</span></span><span style=display:flex><span>   - Track time savings
-</span></span><span style=display:flex><span>   - Monitor quality improvements
-</span></span><span style=display:flex><span>   - Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>品味技能：让 AI 告别平庸输出——Agent 技能框架 <span style=color:#ae81ff>2026</span> represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
-</span></span><span style=display:flex><span>*Read time: ~5 minutes*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>12-factor-agents<span style=color:#f92672>](</span>taste-skill<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-05-25-trending-ai-agents<span style=color:#f92672>](</span>taste-skill<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-01-trending-ai-agents<span style=color:#f92672>](</span>taste-skill<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-08-trending-ai-agents<span style=color:#f92672>](</span>taste-skill<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-15-trending-ai-agents<span style=color:#f92672>](</span>taste-skill<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Tool Comparison</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>| **Price** | $20/month | $20/month | Free | Free |
-</span></span><span style=display:flex><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
-</span></span><span style=display:flex><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
-</span></span><span style=display:flex><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
-</span></span><span style=display:flex><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/tabpfn-foundation-model-tabular-data/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/temporal-ai-workflow-orchestration/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| 许可证 | MIT | Apache 2.0 | MIT | 专有 |</p>
+<p>关键差异化优势在于<strong>可调参数</strong>。其他工具产出的都是静态结果，而 Taste Skill 允许你为每个项目微调设计语言。这对于需要在多个项目中保持视觉一致性的团队尤其有价值。</p>
+<h2 id="局限性taste-skill-无法解决的问题">局限性：Taste Skill 无法解决的问题<a hidden class="anchor" aria-hidden="true" href="#局限性taste-skill-无法解决的问题">#</a></h2>
+<p>Taste Skill 功能强大，但不是万能钥匙。以下情况它无法帮你解决问题：</p>
+<ol>
+<li>
+<p><strong>复杂的后端逻辑</strong>——Taste Skill 专注于前端设计。它不会为你的 API、数据库架构或认证流程做架构设计。</p>
+</li>
+<li>
+<p><strong>从零开始的品牌识别</strong>——如果你需要一个完整的品牌体系（Logo、配色方案、字体选择），Taste Skill 假设你已经有了设计方向。可以使用 <code>brandkit</code> 生成参考图板，但最终的品牌决策由你自己掌控。</p>
+</li>
+<li>
+<p><strong>非标准组件库</strong>——Taste Skill 从第一性原则生成 CSS。如果你需要严格遵循 Material Design、Ant Design 或 Tailwind UI 的组件规范，输出可能无法完全匹配你的设计系统。</p>
+</li>
+<li>
+<p><strong>无障碍需求</strong>——虽然 Taste Skill 生成干净、语义化的 HTML，但它不会自动添加 ARIA 属性、键盘导航或屏幕阅读器优化。这些需要单独添加。</p>
+</li>
+<li>
+<p><strong>移动端响应式的边缘案例</strong>——技能会生成响应式布局，但复杂的移动端交互（滑动手势、双指缩放、原生应用桥接）仍需手动实现。</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 快速自查：你的项目是否需要 Taste Skill？</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 落地页、作品集、SaaS 站点 → 需要</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 重新设计 AI 生成的 UI → 需要</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 后端 API、数据库架构 → 不需要</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 原生移动应用（Swift/Kotlin）→ 部分需要</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 复杂数据可视化 → 部分需要（配合 D3 技能）</span>
+</span></span></code></pre></div><h2 id="常见问题">常见问题<a hidden class="anchor" aria-hidden="true" href="#常见问题">#</a></h2>
+<h3 id="taste-skill-与其他-ai-设计技能有何不同">Taste Skill 与其他 AI 设计技能有何不同？<a hidden class="anchor" aria-hidden="true" href="#taste-skill-与其他-ai-设计技能有何不同">#</a></h3>
+<p>大多数 AI 设计技能只产出单一的输出风格。Taste Skill 提供了<strong>多种专用变体</strong>，配有可调参数和防重复规则，并有专门的研究作为支撑。每个技能都框架无关，可跨 Codex、Cursor、Claude Code 和 ChatGPT 使用。</p>
+<h3 id="它是否兼容-reactvue-和-svelte">它是否兼容 React、Vue 和 Svelte？<a hidden class="anchor" aria-hidden="true" href="#它是否兼容-reactvue-和-svelte">#</a></h3>
+<p>是的。Taste Skill 的规则针对的是设计意图，而非框架特定的 API。生成的输出是原生 HTML/CSS/JS，可适配任何框架。对于 React，需手动添加组件结构；对于 Vue/Svelte，技能输出可干净转换。</p>
+<h3 id="v1-和-v2-有什么区别">v1 和 v2 有什么区别？<a hidden class="anchor" aria-hidden="true" href="#v1-和-v2-有什么区别">#</a></h3>
+<p>v2 是一次大规模重写，加入了简要推理、设计系统映射、GSAP 代码骨架和重设计审核协议。v1 被保留给那些依赖原始行为的的项目。可通过 <code>--skill &quot;design-taste-frontend-v1&quot;</code> 显式安装 v1。</p>
+<h3 id="我能否在不使用-npx-skills-cli-的情况下使用-taste-skill">我能否在不使用 npx skills CLI 的情况下使用 Taste Skill？<a hidden class="anchor" aria-hidden="true" href="#我能否在不使用-npx-skills-cli-的情况下使用-taste-skill">#</a></h3>
+<p>可以。你可以将任意 SKILL.md 复制到你的项目中、粘贴到 ChatGPT/Codex 对话中，或将其用作 Cursor <code>.cursorrules</code> 指令。<code>npx skills add</code> 命令只是更方便的选择，并非必需。</p>
+<h3 id="taste-skill-免费吗">Taste Skill 免费吗？<a hidden class="anchor" aria-hidden="true" href="#taste-skill-免费吗">#</a></h3>
+<p>是的，所有技能均为 MIT 许可。该项目接受 GitHub 赞助以维持持续开发。</p>
+<h3 id="我应该选择哪个技能变体">我应该选择哪个技能变体？<a hidden class="anchor" aria-hidden="true" href="#我应该选择哪个技能变体">#</a></h3>
+<p>从 <code>design-taste-frontend</code>（v2）开始，这是最安全的通用默认选项。对于更严格的 GPT/Codex 导向规则，使用 <code>gpt-taste</code>。对于图像优先的工作流，使用 <code>image-to-code</code>。对于改进现有代码库，使用 <code>redesign-existing-projects</code>。</p>
+<h3 id="taste-skill-是否兼容-nextjs-或-astro">Taste Skill 是否兼容 Next.js 或 Astro？<a hidden class="anchor" aria-hidden="true" href="#taste-skill-是否兼容-nextjs-或-astro">#</a></h3>
+<p>是的。生成的输出是框架无关的原生 HTML/CSS/JS。对于 Next.js，将组件包裹在 JSX 中即可。对于 Astro，使用岛屿架构模式。设计规则无论框架如何均适用。</p>
+<h3 id="如何防止-taste-skill-过度设计">如何防止 Taste Skill 过度设计？<a hidden class="anchor" aria-hidden="true" href="#如何防止-taste-skill-过度设计">#</a></h3>
+<p>将 DESIGN_VARIANCE 降至 2-3，VISUAL_DENSITY 降至 2-3。这会产出干净、极简的布局，避免过度的实验性设计。v2 技能包含一项&quot;预飞检查&quot;，可验证输出是否符合这些约束条件。</p>
+<h3 id="我能否将-taste-skill-与-tailwind-css-或其他实用框架结合使用">我能否将 Taste Skill 与 Tailwind CSS 或其他实用框架结合使用？<a hidden class="anchor" aria-hidden="true" href="#我能否将-taste-skill-与-tailwind-css-或其他实用框架结合使用">#</a></h3>
+<p>当然可以。Taste Skill 生成带有 CSS 自定义属性的语义化 HTML。你可以将输出映射到 Tailwind 类中，或直接使用生成的 CSS。这些技能的设计初衷是与你的现有设计系统协同工作，而非取代它。</p>
+<h2 id="结语">结语<a hidden class="anchor" aria-hidden="true" href="#结语">#</a></h2>
+<p>Taste Skill 代表了 AI Agent 在前端设计领域的根本性转变。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是提供明确的设计约束来强制实现差异化和有意识的设计。</p>
+<p>凭借 44,229 颗星和持续增长的趋势，它已成为反平庸前端生成的事实标准。无论你是要构建落地页、重新设计 AI 生成的界面，还是从零创建设计系统，Taste Skill 都能给你的 Agent 装上它一直缺失的&quot;设计大脑&quot;。</p>
+<p>如果你的项目需要云托管，<a href="https://m.do.co/oa14d5f0wx4f">在 DigitalOcean 上托管你的网站</a>可获得可靠的全球 CDN 覆盖。对于备份基础设施，<a href="https://htstack.com/?referral_code=oa14d5f0wx4f">HTStack</a> 提供实惠的对象存储。需要可靠的代理基础设施？<a href="https://proxy.webshare.io/?&amp;promo=oa14d5f0wx4f">WebShare 代理</a> 每月低至 1 美元。加密货币交易者可以使用 <a href="https://bsmkweb.cc/6yq8qf7u">Binance</a> 或 <a href="https://promoohubly.com/5g1h7qxn">OKX</a> 进行投资组合多样化。</p>
+<p><strong>立即试用：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx skills add https://github.com/Leonxlnx/taste-skill --skill <span style="color:#e6db74">&#34;design-taste-frontend&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**相关文章**：<span style="color:#f92672">[</span>了解 AI 编程 Agent<span style="color:#f92672">](</span>https://dibi8.com/ai-tools/oh-my-pi<span style="color:#f92672">)</span> · <span style="color:#f92672">[</span>比较开发工具<span style="color:#f92672">](</span>https://dibi8.com/dev-utils/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>**来源与延伸阅读**：
+</span></span><span style="display:flex;"><span>- 官方网站：https://tasteskill.dev
+</span></span><span style="display:flex;"><span>- GitHub 仓库：https://github.com/Leonxlnx/taste-skill
+</span></span><span style="display:flex;"><span>- 更新日志：https://www.tasteskill.dev/changelog
+</span></span><span style="display:flex;"><span>- 社区：<span style="color:#f92672">[</span>@lexnlin on X<span style="color:#f92672">](</span>https://x.com/lexnlin<span style="color:#f92672">)</span>，<span style="color:#f92672">[</span>@blueemi99 on X<span style="color:#f92672">](</span>https://x.com/blueemi99<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Sources &amp; Further Reading**: - 官方站: https://tasteskill.dev
+</span></span><span style="display:flex;"><span>- GitHub仓库: https://github.com/Leonxlnx/taste-skill
+</span></span><span style="display:flex;"><span>- 更新日志: https://www.tasteskill.dev/changelog
+</span></span><span style="display:flex;"><span>- 社区: <span style="color:#f92672">[</span>@lexnlin 在 X 上<span style="color:#f92672">](</span>https://x.com/lexnlin<span style="color:#f92672">)</span>, <span style="color:#f92672">[</span>@blueemi99 在 X 上<span style="color:#f92672">](</span>https://x.com/blueemi99<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>**行动号召**：加入 Taste Skill 的 Telegram 社区 —— <span style="color:#f92672">[</span>t.me/DIBI8_Group<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**披露**：本文包含联盟链接。如果你通过我们的链接注册，我们可能会获得佣金，这不会给你增加额外费用。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;品味技能：让 AI 告别平庸输出——Agent 技能框架 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-06-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/zh/resources/taste-skill&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding 品味技能：让 ai 告别平庸输出——agent 技能框架 <span style="color:#ae81ff">2026</span> is crucial <span style="color:#66d9ef">for</span> modern AI development. Here<span style="color:#960050;background-color:#1e0010">&#39;</span>s why: <span style="color:#75715e">### Key Benefits</span>
+</span></span><span style="display:flex;"><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span>- **Quality**: Improve output consistency  
+</span></span><span style="display:flex;"><span>- **Scalability**: Handle larger workloads
+</span></span><span style="display:flex;"><span>- **Cost**: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Real-World Applications</span>
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style="display:flex;"><span>2. Generate documentation automatically
+</span></span><span style="display:flex;"><span>3. Build internal knowledge bases
+</span></span><span style="display:flex;"><span>4. Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Getting Started</span>
+</span></span><span style="display:flex;"><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style="display:flex;"><span>   - Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   - Measure current time costs
+</span></span><span style="display:flex;"><span>   - Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **Choose Your Approach**
+</span></span><span style="display:flex;"><span>   - Start with simple automations
+</span></span><span style="display:flex;"><span>   - Gradually increase complexity
+</span></span><span style="display:flex;"><span>   - Test and iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **Measure Results**
+</span></span><span style="display:flex;"><span>   - Track time savings
+</span></span><span style="display:flex;"><span>   - Monitor quality improvements
+</span></span><span style="display:flex;"><span>   - Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>品味技能：让 AI 告别平庸输出——Agent 技能框架 <span style="color:#ae81ff">2026</span> represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>*Last updated: 2026-09-20*
+</span></span><span style="display:flex;"><span>*Read time: ~5 minutes*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>12-factor-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-05-25-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-01-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-08-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-15-trending-ai-agents<span style="color:#f92672">](</span>taste-skill<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Tool Comparison</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>| **Price** | $20/month | $20/month | Free | Free |
+</span></span><span style="display:flex;"><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+</span></span><span style="display:flex;"><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+</span></span><span style="display:flex;"><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+</span></span><span style="display:flex;"><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/tabpfn-foundation-model-tabular-data/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/temporal-ai-workflow-orchestration/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

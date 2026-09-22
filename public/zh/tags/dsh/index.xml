@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Dsh on Dibi8</title><link>https://dibi8.com/zh/tags/dsh/</link><description>Recent content in Dsh on Dibi8</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/zh/tags/dsh/index.xml" rel="self" type="application/rss+xml"/><item><title>DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南</title><link>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</link><pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</guid><description>DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Dsh on Dibi8</title>
+    <link>https://dibi8.com/zh/tags/dsh/</link>
+    <description>Recent content in Dsh on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/zh/tags/dsh/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南</title>
+      <link>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</guid>
+      <description>DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。</description>
+    </item>
+  </channel>
+</rss>

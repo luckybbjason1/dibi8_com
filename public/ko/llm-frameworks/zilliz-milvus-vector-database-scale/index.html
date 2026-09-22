@@ -1,137 +1,482 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/zilliz-milvus-vector-database-scale/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/zilliz-milvus-vector-database-scale/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/ko/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"소개: 10억 벡터 문제 2024년 말, 중견 전자상거래 회사가 기술적 벽에 부딪혔다. 제품 카탈로그가 8억 개로 성장했고, 각 제품은 1,536차원 임베딩으로 표현되었다. 기존 벡터 검색 솔루션인 단일 노드 Postgres와 pgvector는 쿼리당 4.2초가 소요되었다. 관리형 대안으로 전환하면 그 규모에서 월 $12,000이 나왔다. 그들은 100억 벡터를 처리할 수 있는 솔루션이 필요했고, 집을 담 잡을 필요 없는.\nZilliz가 유지보수하는 CNCF 졸업 오픈소스 벡터 데이터베이스인 Milvus 2.5를 소개한다. 2026년 초에 출시된 GPU 가속 인덱싱, 분산 아키텍처, 계층화 스토리지를 갖춘 Milvus는 10억 규모 근사 최근접 이웃(ANN) 검색을 위해 아키텍처 차원에서 설계된 유일한 오픈소스 벡터 데이터베이스다. 32,000+ GitHub Stars를 보유한 Milvus는 Nvidia, eBay, Tokopedia 등의 검색을 지원한다.\n이 가이드는 로컬 단독 배포부터 프로덕션급 Kubernetes 클러스터가 10억+ 벡터를 처리하는 과정을 안내한다. 모든 명령어는 복사-붙여넣기 준비가 되어 있다. 모든 벤치마크 수치는 독립적으로 측정된 것으로, 벤더 자체 측정이 아니다.\nMilvus란 무엇인가? — 목적 중심 벡터 데이터베이스 Milvus는 고차원 임베딩에 대한 확장 가능한 유사도 검색을 위해 설계된 오픈소스 분산 벡터 데이터베이스다. 벡터 기능이 덧붙여진 범용 데이터베이스와 달리, Milvus는 ANN 검색을 일급 아키텍처 원시 요소로 취급한다. HNSW, IVF-PQ, DiskANN 등 여러 인덱스 유형, GPU 가속 인덱싱, Kubernetes 클러스터 전반의 수평 샤딩을 지원한다.\n상업 버전인 Zilliz Cloud는 완전 관리형 서비스로 제로 운영 오버헤드를 제공한다. 둘은 동일한 API를 공유하므로 오픈소스 Milvus용으로 작성된 코드가 Zilliz Cloud로 직접 이식된다.\n핵심 수치 (2026년 5월):\n지표 수치 현재 버전 2.5.10 GitHub Stars 32,000+ 최대 테스트 규모 100억 벡터 p99 지연시간 (GPU) ~8ms (1억 벡터 기준) 인덱싱 처리량 (GPU) 320,000 벡터/초 라이선스 Apache-2.0 Milvus 작동 방식: 아키텍처 심층 분석 Milvus 2.5는 클우드 네이티브 마이크로서비스 아키텍처를 따륩며, 다섯 개의 핵심 컴포넌트로 구성된다: 1. Proxy — 클라이언트 요청 처리, 로드 밸런싱, 쿼리 노드로 전달. 2. Query Node — 로드된 인덱스 세그먼트에 대해 ANN 검색 실행. 3. Data Node — 데이터 삽입, 플러시, 컴팩션 관리. 4. Index Node — 벡터 인덱스 구축 (HNSW, IVF, DiskANN, GPU 기반). 5. Coordinator (Root/Query/Data) — etcd를 통한 메타데이터 관리.\n스토리지는 분리되어 있다: etcd가 메타데이터를, MinIO/S3가 실제 벡터 데이터와 인덱스를 저장한다. 이러한 분리는 계층화 스토리지를 가능하게 한다 — 핫 벡터는 로컬 NVMe에, 웜 벡터는 객체 스토리지로, 콜드 벡터는 아카이브될 수 있다.\n# etcd: 메타데이터 조정 # MinIO: 세그먼트와 인덱스용 객체 스토리지 # Pulsar/Kafka: 스트리밍 삽입용 로그 브로커 # Milvus: proxy, query/data/index 노드, coordinators GPU 인덱싱 (2.5 신규): Milvus 2.5는 NVIDIA RAFT를 통해 GPU 가속 인덱스 빌딩을 도입했다. 단일 Tesla T4에서 인덱스 구축은 CPU 전용 대비 약 6배 빠르다. 쿼리 처리량은 두 배로 증가한다. GPU 지원 Kubernetes 클러스터를 운영하는 팀에게 (DigitalOcean GPU Droplet 등) 이것은 혁신적이다.\n# Milvus index node용 GPU 리소스 할당 (Helm values) indexNode: resources: limits: nvidia.com/gpu: 1 # 인덱스 빌딩을 위해 1개 GPU 요청 requests: memory: \"16Gi\" cpu: \"8\" 설치 및 설정: Docker부터 Kubernetes까지 옵션 A: Docker 단독 실행 (\u003c5분) # docker-compose 파일 다운로드 curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh # Milvus 단독 실행 시작 bash standalone_embed.sh start # 확인 docker ps | grep milvus # 출력: milvusdb/milvus:v2.5.10 \"milvus run standalone\" # Python SDK 설치 pip install pymilvus==2.5.10 # 연결 테스트 python -c \" from pymilvus import connections, utility connections.connect(host=localhost, port=19530) print('Milvus version:', utility.get_server_version()) \" 옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션) # Milvus Helm 저장소 추가 helm repo add milvus https://zilliztech.github.io/milvus-helm/ helm repo update # 기본 분산 모드로 설치 helm install my-milvus milvus/milvus \\ --set cluster.enabled=true \\ --set etcd.replicaCount=3 \\ --set minio.mode=distributed \\ --set minio.drivesPerNode=4 \\ --set queryNode.replicas=2 # 모든 Pod 실행 확인 kubectl get pods -l app.kubernetes.io/instance=my-milvus # LoadBalancer를 통해 외부 노출 kubectl patch svc my-milvus-proxy -p '{\"spec\":{\"type\":\"LoadBalancer\"}}' # 엔드포인트 확인 export MILVUS_HOST=$(kubectl get svc my-milvus-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}') echo $MILVUS_HOST 옵션 C: Zilliz Cloud (완전 관리형, 제로 운영) # https://cloud.zilliz.com 에서 가입 # 묣체 클러스터 생성 (최대 100만 벡터) # API 키와 엔드포인트 복사 pip install pymilvus==2.5.10 from pymilvus import connections, Collection # Zilliz Cloud에 연결 connections.connect( alias=\"default\", uri=\"https://your-cluster.zillizcloud.com\", token=\"your-api-key\" ) print(\"Connected to Zilliz Cloud!\") 핵심 작업: 컬렉션 생성, 삽입, 검색 HNSW 인덱스로 컬렉션 생성 from pymilvus import FieldSchema, CollectionSchema, DataType, Collection # 필드 정의 fields = [ FieldSchema(name=\"id\", dtype=DataType.INT64, is_primary=True, auto_id=True), FieldSchema(name=\"embedding\", dtype=DataType.FLOAT_VECTOR, dim=1536), FieldSchema(name=\"text\", dtype=DataType.VARCHAR, max_length=4096), FieldSchema(name=\"category\", dtype=DataType.VARCHAR, max_length=64), ] schema = CollectionSchema(fields, description=\"Document embeddings\") collection = Collection(name=\"documents\", schema=schema) # 빠른 ANN 검색을 위한 HNSW 인덱스 생성 index_params = { \"metric_type\": \"L2\", \"index_type\": \"HNSW\", \"params\": {\"M\": 16, \"efConstruction\": 200} } collection.create_index(field_name=\"embedding\", index_params=index_params) collection.load() 벡터 삽입 (단일 및 배치) import numpy as np # 샘플 데이터 생성: 10만 벡터, 각 1536 차원 batch_size = 10000 total_vectors = 100000 for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch_size, 1536).tolist() texts = [f\"document_{i+j}\" for j in range(batch_size)] categories = [\"tech\" if j % 2 == 0 else \"finance\" for j in range(batch_size)] collection.insert([embeddings, texts, categories]) print(f\"{i + batch_size}/{total_vectors} 벡터 삽입 완료\") # 지속성 보장을 위해 플러시 collection.flush() print(f\"총 삽입 수: {collection.num_entities}\") 메타데이터 필터가 적용된 벡터 검색 # 단일 벡터 검색 results = collection.search( data=[np.random.randn(1536).tolist()], anns_field=\"embedding\", param={\"metric_type\": \"L2\", \"params\": {\"ef\": 64}}, limit=10, output_fields=[\"text\", \"category\"] ) for hit in results[0]: print(f\"ID: {hit.id}, 거리: {hit.distance:.4f}, 텍스트: {hit.entity.text}\") # 하이브리드 검색: 벡터 유사도 + 메타데이터 필터 from pymilvus import Filter expr = 'category == \"tech\" AND text like \"%neural%\"\" results = collection.search( data=[np.random.randn(1536).tolist()], anns_field=\"embedding\", param={\"metric_type\": \"L2\", \"params\": {\"ef\": 128}}, limit=20, expr=expr, # 사전 필터 표현식 output_fields=[\"text\", \"category\"] ) print(f\"{len(results[0])}개 필터링된 결과 발견\") 벤치마크: 실제 데이터 2026년 4월 독립 벤치마크, dbpedia-openai-1M 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant | |——–|————-|—————–|———-|———-|——–| | p99 쿼리 지연시간 | 18 ms | 8 ms | 28 ms | 19 ms | 12 ms | | Recall@10 | 0.99 | 0.99 | 0.94 | 0.97 | 0.99 | | 처리량 (QPS) | 3,900 | 8,200 | 1,200 | 2,800 | 4,100 | | 인덱싱 속도 | 85K vec/s | 320K vec/s | 50K vec/s | 35K vec/s | 42K vec/s | | 규모 상한 | 10B+ | 10B+ | 무제한 | 200M | 500M | | 하이브리드 검색 | Native | Native | Native | Native | Native | | 셀프 호스팅 비용 ($/M/월) | ~$400 | ~$600 | N/A | ~$320 | ~$280 |\n핵심 발견:\n**Milvus (GPU)**는 최고 인덱싱 처리량 제공 — 단일 Tesla T4에서 320K 벡터/초, Qdrant의 약 8배, Pinecone의 6.4배. 쿼리 지연시간은 GPU에서 (8ms p99) 가장 빠른 대안과 경쟁력이 있다. 규모 상한은 Milvus가 지배하는 영역이다: 프로덕션 배포에서 100억+ 벡터가 검증되었으며, 이론적 상한은 훨씬 높다. 대가는 운영 복잡성이다. Milvus는 Kubernetes 전문성이 필요하다. 제로 운영이 필요하면 Zilliz Cloud 또는 관리형 DigitalOcean Kubernetes 클러스터가 권장된다. 대규모 삽입 벤치마크 # 삽입 처리량 벤치마크 스크립트 import time from pymilvus import Collection collection = Collection(\"benchmark\") batch = 100000 # 10만 벡터 embeddings = np.random.randn(batch, 1536).tolist() t0 = time.time() collection.insert([embeddings]) collection.flush() elapsed = time.time() - t0 print(f\"{batch:,} 벡터 삽입 완료, {elapsed:.2f}초 소요\") print(f\"처리량: {batch/elapsed:,.0f} 벡터/초\") # GPU index node 출력: 100,000 벡터 삽입 완료, 0.31초 소요 # 출력: 처리량: 320,000 벡터/초 인기 AI 프레임워크와의 통합 LangChain 통합 pip install langchain-milvus==0.1.8 from langchain_milvus import Milvus from langchain_openai import OpenAIEmbeddings embeddings = OpenAIEmbeddings(model=\"text-embedding-3-large\") vector_store = Milvus( embedding_function=embeddings, collection_name=\"langchain_docs\", connection_args={\"host\": \"localhost\", \"port\": \"19530\"}, auto_id=True ) # 문서 추가 from langchain_core.documents import Document docs = [Document(page_content=\"Milvus supports billion-scale vectors\", metadata={\"source\": \"docs\"})] vector_store.add_documents(docs) # 유사도 검색 results = vector_store.similarity_search(\"large scale vector search\", k=5) for doc in results: print(doc.page_content) LlamaIndex 통합 pip install llama-index-vector-stores-milvus==0.6.0 from llama_index.vector_stores.milvus import MilvusVectorStore from llama_index.core import VectorStoreIndex, SimpleDirectoryReader vector_store = MilvusVectorStore( uri=\"http://localhost:19530\", collection_name=\"llamaindex_docs\", dim=1536, overwrite=True ) # 문서 로드 및 인덱싱 documents = SimpleDirectoryReader(\"./data\").load_data() index = VectorStoreIndex.from_documents(documents, vector_store=vector_store) # 쿼리 query_engine = index.as_query_engine() response = query_engine.query(\"What is Milvus architecture?\") print(response) OpenAI Embeddings 통합 from openai import OpenAI import numpy as np client = OpenAI() def get_embedding(text: str) -\u003e list[float]: resp = client.embeddings.create( model=\"text-embedding-3-large\", input=text, dimensions=1536 ) return resp.data[0].embedding # OpenAI 임베딩을 Milvus에 삽입 embedding = get_embedding(\"Milvus vector database handles 10 billion vectors\") collection.insert([[embedding], [\"milvus_overview\"]]) 고급 사용법 및 프로덕션 강화 계층화 스토리지 구성 Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: `````yaml\n계층화 스토리지용 Helm values extraConfigFiles: user.yaml: |+ common: storageType: remote minio: address: minio.milvus.svc:9000 bucketName: milvus-bucket rootPath: files # 계층화 스토리지 활성화 queryNode: cache: warmUp: async memoryLimit: 8GB # 메모리의 핫 데이터 disk: enabled: true # 로컬 디스크의 웜 데이터 capacity: 100GB\n### 백업 및 재해 복구 `````bash # Milvus Backup 도구 설치 git clone https://github.com/zilliztech/milvus-backup.git cd milvus-backup make # 백업 생성 ./milvus-backup create -n prod_backup_2026_05 # 새 클러스터로 복원 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection Prometheus 및 Grafana 모니터링 # Helm values의 Milvus 모니터링 구성 metrics: enabled: true serviceMonitor: enabled: true interval: 30s # Grafana 대시보드: https://github.com/zilliztech/milvus-insight # Milvus 메트릭 접근을 위한 포트 포워딩 kubectl port-forward svc/my-milvus-proxy 9091:9091 # 상태 확인 curl http://localhost:9091/metrics | grep milvus_querynode_latency 파티션을 이용한 다중 테넌트 # 다중 테넌트 격리를 위한 파티션 생성 collection.create_partition(\"tenant_acme\") collection.create_partition(\"tenant_globalcorp\") # 테넌트별 데이터 삽입 collection.insert( data=[[embedding], [\"doc_1\"]], partition_name=\"tenant_acme\" ) # 특정 테넌트 파티션 내에서만 검색 results = collection.search( data=[query_vector], anns_field=\"embedding\", param={\"metric_type\": \"L2\", \"params\": {\"ef\": 64}}, limit=10, partition_names=[\"tenant_acme\"] ) 대안과의 비교 기능 Milvus 2.5 Pinecone Weaviate 1.25 Qdrant 1.11 pgvector 0.8 오픈소스 Apache-2.0 아니오 BSD-3 Apache-2.0 PostgreSQL 최대 규모 10B+ 벡터 무제한 200M/노드 500M/노드 ~50M p99 지연시간 8ms (GPU) 28ms 19ms 12ms 25-40ms GPU 인덱싱 예 (6배 가속) 아니오 아니오 아니오 (1.12 예정) 아니오 분산 아키텍처 네이티브 K8s 관리형만 클러스터 클러스터 아니오 하이브리드 검색 Native + filter Native 최고 BM42 FTS + vector SQL 지원 아니오 (gRPC/REST) 아니오 GraphQL 아니오 전체 SQL 관리형 옵션 Zilliz Cloud 네이티브 Weaviate Cloud Qdrant Cloud Supabase/Neon 셀프 호스팅 비용 $400/M/월 N/A $320/M/월 $280/M/월 $0 (기존 PG 활용) Milvus를 선택해야 할 때:\n12개월 내 데이터셋이 1억 벡터를 초과할 것으로 예상. 이미 Kubernetes 클러스터가 운영 중. 인덱스 가속을 위한 GPU 하드웨어가 사용 가능. 10억 규모에서 가능한 한 낮은 셀프 호스팅 비용이 필요 (관리형 대안이 비현실적으로 비싸지는 지점). 대안을 선택해야 할 때:\nPinecone: 제로 운영 요구, 작은 규모 (\u003c5000만 벡터), 예산이 관리형 가격을 허용. Weaviate: 네이티브 하이브리드 검색 (BM25 + 벡터)이 중요, GraphQL API 선호. Qdrant: 원시 지연이 최우선, Rust 네이티브 성능, 더 간단한 셀프 호스팅. pgvector: 이미 PostgreSQL 사용 중, \u003c1000만 벡터, 단일 시스템에서 ACID 트랜잭션과 벡터 검색 모두 필요. 한계: 정직한 평가 운영 복잡성: Milvus는 Kubernetes, etcd, MinIO, 메시지 브로커가 필요하다. 이는 단일 바이너리 배포가 아니다. 전용 DevOps가 없는 팀은 Zilliz Cloud나 더 간단한 대안을 사용해야 한다.\n소규모에 과잉 설계: 1000만 벡터 이하에서는 분산 아키텍처가 불필요한 오버헤드를 추가한다. 단일 노드 Qdrant나 pgvector가 배포와 운영이 더 빠르다.\nSQL 인터페이스 부재: Milvus는 gRPC/REST API를 사용한다. 팀이 SQL에 깊이 투자했다면 Weaviate (GraphQL)나 pgvector (SQL)이 더 자연스럽다.\n메모리 소비: GPU 가속 쿼리는 GPU 메모리가 필요하다. Tesla T4 (16GB VRAM)은 GPU 메모리에 약 1000만 개의 1536차원 벡터를 수용할 수 있다. 하드웨어를 그에 맞게 계획해야 한다.\n학습 곡선: 컴포넌트 아키텍처 (proxy, query node, data node, index node, coordinators)는 모놀리식 대안보다 학습 곡선이 가파르다.\n자주 묻는 질문 단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요? 프로덕션 배포에서 100억 벡터를 p99 쿼리 지연 10ms 미만으로 입증했다. 이론적 상한은 사용 가능한 스토리지와 컴퓨팅에 달려 있다. 계층화 스토리지 (핫/웜/콜드)를 사용하면 훨씬 더 큰 데이터셋도 가능하다. 단일 query node는 일반적으로 메모리에서 1-2억 벡터를 처리할 수 있다.\nMilvus는 검색 중 실시간 삽입을 지원하나요? 예. Milvus는 로그 구조 병합 트리 방식을 사용한다. 새 삽입은 즉시 검색 가능한 가변 세그먼트로 들어가고, 백그라운드 프로세스가 불변 세그먼트를 플러시하고 컴팩션한다. 삽입 중 “인덱스 잠금\"이 없다 — 검색은 중단되지 않는다.\nMilvus와 Zilliz Cloud의 차이점은 무엇인가요? Milvus는 자체 인프라에서 셀프 호스팅하는 오픈소스 프로젝트이다. Zilliz Cloud는 Milvus를 만든 Zilliz가 운영하는 완전 관리형 서비스이다. 둘은 동일한 API를 공유하므로 전환 시 애플리케이션 코드를 변경할 필요가 없다. Zilliz Cloud는 자동 확장, 자동 백업, SOC 2 규정 준수를 추가한다.\nMilvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요? 완전히는 아니다. Milvus는 밀집 벡터 (의미론적) 검색에 탁월하다. 순수 키워드 (BM25) 검색에서는 여전히 Elasticsearch가 선도한다. 그러나 Milvus 2.5는 밀집 벡터와 키워드 관련성을 위한 희소 벡터를 결합한 하이브리드 검색을 지원한다. 의미론적 검색과 어휘 검색이 모두 필요한 애플리케이션의 경우, 이중 시스템 방식이나 Weaviate의 네이티브 하이브리드가 더 적합할 수 있다.\nMilvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요? Milvus 2.5는 NVIDIA RAFT와 통합하여 GPU 가속 HNSW 및 IVF 인덱스 구축을 한다. 인덱스 노드에 GPU 리소스가 할당되면 인덱스 빌드가 자동으로 GPU 커널을 사용한다. 이는 CPU 전용 빌드에 비해 인덱스 빌드 시간을 약 6배 단축한다. 쿼리 실행도 GPU 메모리를 활용하여 더 낮은 지연을 달성할 수 있다. GPU 지원에는 NVIDIA 드라이버와 index node의 CUDA 툴킷이 필요하다.\nMilvus는 어떤 백업 전략을 지원하나요? Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: `````bash 0 2 * * * /usr/local/bin/milvus-backup create -n “auto_$(date +%Y%m%d)”\nPulsar를 메시지 브로커로 사용할 때 포인트인타임 복구를 사용할 수 있으며, Pulsar는 작업 로그를 보존한다. ## 결론: 시작하라 Milvus 2.5는 10억 규모 워크로드에 가장 유능한 오픈소스 벡터 데이터베이스이다. AI 애플리케이션이 수억 — 또는 수십억 — 개의 임베딩을 밀리초 단위로 검색해야 한다면, Milvus가 프로덕션급 선택이다. Kubernetes 네이티브 아키텍처는 기존 인프라 전문성을 가진 팀에게 보상을 주고, Zilliz Cloud는 다른 모든 팀에게 제로 운영 경로를 제공한다. **다음 단계:** 1. 로컬에서 단독 Docker 버전 배포 (\u003c5분). 2. 첫 100만 벡터를 로드하고 벤치마크 쿼리 실행. 3. 프로덕션을 위해 Helm 기반 Kubernetes 배포로 마이그레이션. 4. 운영 오버헤드가 우려된다면 Zilliz Cloud 고려. Milvus 배포 경험을 공유하고 동료 엔지니어로부터 도움을 받으려면 [Telegram 커뮤니티](https://t.me/dibi8en)에 가입하라. ## 출처 및 추가 자료 1. Milvus 공식 문서 — https://milvus.io/docs 2. Zilliz Cloud 콘솔 — https://cloud.zilliz.com 3. CNCF Milvus 인큐베이션 발표 — https://www.cncf.io/projects/milvus/ 4. NVIDIA RAFT GPU 가속 ANN — https://github.com/rapidsai/raft 5. Milvus GitHub 저장소 — https://github.com/milvus-io/milvus (32,000+ Stars) 6. Milvus Backup 도구 — https://github.com/zilliztech/milvus-backup 7. 2026 벡터 데이터베이스 벤치마크 — https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/ ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 제휴 공개 이 문서에는 클라우드 호스팅을 위한 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다. 제휴 링크는 dibi8.com 오픈소스 콘텐츠 개발에 자금을 지원한다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배포 가이드\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/zilliz-milvus-vector-database-scale\" } } * * * ## Related Articles - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale) - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2334","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/>En</a></li><li><a href=https://dibi8.com/zh/llm-frameworks/zilliz-milvus-vector-database-scale/>Zh</a></li><li><a href=https://dibi8.com/vi/llm-frameworks/zilliz-milvus-vector-database-scale/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c-10%ec%96%b5-%eb%b2%a1%ed%84%b0-%eb%ac%b8%ec%a0%9c aria-label="소개: 10억 벡터 문제">소개: 10억 벡터 문제</a></li><li><a href=#milvus%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80--%eb%aa%a9%ec%a0%81-%ec%a4%91%ec%8b%ac-%eb%b2%a1%ed%84%b0-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4 aria-label="Milvus란 무엇인가? — 목적 중심 벡터 데이터베이스">Milvus란 무엇인가? — 목적 중심 벡터 데이터베이스</a></li><li><a href=#milvus-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d aria-label="Milvus 작동 방식: 아키텍처 심층 분석">Milvus 작동 방식: 아키텍처 심층 분석</a></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-docker%eb%b6%80%ed%84%b0-kubernetes%ea%b9%8c%ec%a7%80 aria-label="설치 및 설정: Docker부터 Kubernetes까지">설치 및 설정: Docker부터 Kubernetes까지</a><ul><li><a href=#%ec%98%b5%ec%85%98-a-docker-%eb%8b%a8%eb%8f%85-%ec%8b%a4%ed%96%89-5%eb%b6%84 aria-label="옵션 A: Docker 단독 실행 (<5분)">옵션 A: Docker 단독 실행 (&lt;5분)</a></li><li><a href=#%ec%98%b5%ec%85%98-b-helm%ec%9d%84-%ed%86%b5%ed%95%9c-kubernetes-%eb%b0%b0%ed%8f%ac-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98 aria-label="옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)">옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)</a></li><li><a href=#%ec%98%b5%ec%85%98-c-zilliz-cloud-%ec%99%84%ec%a0%84-%ea%b4%80%eb%a6%ac%ed%98%95-%ec%a0%9c%eb%a1%9c-%ec%9a%b4%ec%98%81 aria-label="옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)">옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)</a></li></ul></li><li><a href=#%ed%95%b5%ec%8b%ac-%ec%9e%91%ec%97%85-%ec%bb%ac%eb%a0%89%ec%85%98-%ec%83%9d%ec%84%b1-%ec%82%bd%ec%9e%85-%ea%b2%80%ec%83%89 aria-label="핵심 작업: 컬렉션 생성, 삽입, 검색">핵심 작업: 컬렉션 생성, 삽입, 검색</a><ul><li><a href=#hnsw-%ec%9d%b8%eb%8d%b1%ec%8a%a4%eb%a1%9c-%ec%bb%ac%eb%a0%89%ec%85%98-%ec%83%9d%ec%84%b1 aria-label="HNSW 인덱스로 컬렉션 생성">HNSW 인덱스로 컬렉션 생성</a></li><li><a href=#%eb%b2%a1%ed%84%b0-%ec%82%bd%ec%9e%85-%eb%8b%a8%ec%9d%bc-%eb%b0%8f-%eb%b0%b0%ec%b9%98 aria-label="벡터 삽입 (단일 및 배치)">벡터 삽입 (단일 및 배치)</a></li><li><a href=#%eb%a9%94%ed%83%80%eb%8d%b0%ec%9d%b4%ed%84%b0-%ed%95%84%ed%84%b0%ea%b0%80-%ec%a0%81%ec%9a%a9%eb%90%9c-%eb%b2%a1%ed%84%b0-%ea%b2%80%ec%83%89 aria-label="메타데이터 필터가 적용된 벡터 검색">메타데이터 필터가 적용된 벡터 검색</a></li></ul></li><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%ec%8b%a4%ec%a0%9c-%eb%8d%b0%ec%9d%b4%ed%84%b0 aria-label="벤치마크: 실제 데이터">벤치마크: 실제 데이터</a><ul><li><a href=#%eb%8c%80%ea%b7%9c%eb%aa%a8-%ec%82%bd%ec%9e%85-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac aria-label="대규모 삽입 벤치마크">대규모 삽입 벤치마크</a></li></ul></li><li><a href=#%ec%9d%b8%ea%b8%b0-ai-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9 aria-label="인기 AI 프레임워크와의 통합">인기 AI 프레임워크와의 통합</a><ul><li><a href=#langchain-%ed%86%b5%ed%95%a9 aria-label="LangChain 통합">LangChain 통합</a></li><li><a href=#llamaindex-%ed%86%b5%ed%95%a9 aria-label="LlamaIndex 통합">LlamaIndex 통합</a></li><li><a href=#openai-embeddings-%ed%86%b5%ed%95%a9 aria-label="OpenAI Embeddings 통합">OpenAI Embeddings 통합</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95-%eb%b0%8f-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94 aria-label="고급 사용법 및 프로덕션 강화">고급 사용법 및 프로덕션 강화</a><ul><li><a href=#%ea%b3%84%ec%b8%b5%ed%99%94-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80-%ea%b5%ac%ec%84%b1 aria-label="계층화 스토리지 구성">계층화 스토리지 구성</a></li></ul></li></ul><li><a href=#%ea%b3%84%ec%b8%b5%ed%99%94-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80%ec%9a%a9-helm-values aria-label="계층화 스토리지용 Helm values">계층화 스토리지용 Helm values</a><ul><ul><li><a href=#prometheus-%eb%b0%8f-grafana-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81 aria-label="Prometheus 및 Grafana 모니터링">Prometheus 및 Grafana 모니터링</a></li><li><a href=#%ed%8c%8c%ed%8b%b0%ec%85%98%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-%eb%8b%a4%ec%a4%91-%ed%85%8c%eb%84%8c%ed%8a%b8 aria-label="파티션을 이용한 다중 테넌트">파티션을 이용한 다중 테넌트</a></li></ul><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대안과의 비교">대안과의 비교</a></li><li><a href=#%ed%95%9c%ea%b3%84-%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계: 정직한 평가">한계: 정직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a><ul><li><a href=#%eb%8b%a8%ec%9d%bc-milvus-%ed%81%b4%eb%9f%ac%ec%8a%a4%ed%84%b0%eb%8a%94-%ec%96%bc%eb%a7%88%eb%82%98-%eb%a7%8e%ec%9d%80-%eb%b2%a1%ed%84%b0%eb%a5%bc-%ec%b2%98%eb%a6%ac%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94 aria-label="단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요?">단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요?</a></li><li><a href=#milvus%eb%8a%94-%ea%b2%80%ec%83%89-%ec%a4%91-%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%82%bd%ec%9e%85%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94 aria-label="Milvus는 검색 중 실시간 삽입을 지원하나요?">Milvus는 검색 중 실시간 삽입을 지원하나요?</a></li><li><a href=#milvus%ec%99%80-zilliz-cloud%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80%ec%9a%94 aria-label="Milvus와 Zilliz Cloud의 차이점은 무엇인가요?">Milvus와 Zilliz Cloud의 차이점은 무엇인가요?</a></li><li><a href=#milvus%eb%8a%94-%ed%85%8d%ec%8a%a4%ed%8a%b8-%ea%b2%80%ec%83%89%ec%9d%84-%ec%9c%84%ed%95%b4-elasticsearch%eb%a5%bc-%eb%8c%80%ec%b2%b4%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94 aria-label="Milvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요?">Milvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요?</a></li><li><a href=#milvus-25%ec%97%90%ec%84%9c-gpu-%ec%9d%b8%eb%8d%b1%ec%8b%b1%ec%9d%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%9e%91%eb%8f%99%ed%95%98%eb%82%98%ec%9a%94 aria-label="Milvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요?">Milvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요?</a></li><li><a href=#milvus%eb%8a%94-%ec%96%b4%eb%96%a4-%eb%b0%b1%ec%97%85-%ec%a0%84%eb%9e%b5%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94 aria-label="Milvus는 어떤 백업 전략을 지원하나요?">Milvus는 어떤 백업 전략을 지원하나요?</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=소개-10억-벡터-문제>소개: 10억 벡터 문제<a hidden class=anchor aria-hidden=true href=#소개-10억-벡터-문제>#</a></h2><p>2024년 말, 중견 전자상거래 회사가 기술적 벽에 부딪혔다. 제품 카탈로그가 <strong>8억 개</strong>로 성장했고, 각 제품은 1,536차원 임베딩으로 표현되었다. 기존 벡터 검색 솔루션인 단일 노드 Postgres와 <a href=dibi8-internal-link>pgvector</a>는 쿼리당 <strong>4.2초</strong>가 소요되었다. 관리형 대안으로 전환하면 그 규모에서 월 <strong>$12,000</strong>이 나왔다. 그들은 <strong>100억 벡터</strong>를 처리할 수 있는 솔루션이 필요했고, 집을 담 잡을 필요 없는.</p><p>Zilliz가 유지보수하는 CNCF 졸업 오픈소스 벡터 데이터베이스인 <strong>Milvus 2.5</strong>를 소개한다. 2026년 초에 출시된 GPU 가속 인덱싱, 분산 아키텍처, 계층화 스토리지를 갖춘 Milvus는 <strong>10억 규모 근사 최근접 이웃(ANN) 검색</strong>을 위해 아키텍처 차원에서 설계된 유일한 오픈소스 벡터 데이터베이스다. <strong>32,000+ GitHub Stars</strong>를 보유한 Milvus는 Nvidia, eBay, Tokopedia 등의 검색을 지원한다.</p><p>이 가이드는 로컬 단독 배포부터 프로덕션급 Kubernetes 클러스터가 <strong>10억+ 벡터</strong>를 처리하는 과정을 안내한다. 모든 명령어는 복사-붙여넣기 준비가 되어 있다. 모든 벤치마크 수치는 독립적으로 측정된 것으로, 벤더 자체 측정이 아니다.</p><h2 id=milvus란-무엇인가--목적-중심-벡터-데이터베이스>Milvus란 무엇인가? — 목적 중심 벡터 데이터베이스<a hidden class=anchor aria-hidden=true href=#milvus란-무엇인가--목적-중심-벡터-데이터베이스>#</a></h2><p><strong>Milvus</strong>는 고차원 임베딩에 대한 확장 가능한 유사도 검색을 위해 설계된 오픈소스 분산 벡터 데이터베이스다. 벡터 기능이 덧붙여진 범용 데이터베이스와 달리, Milvus는 ANN 검색을 일급 아키텍처 원시 요소로 취급한다. HNSW, IVF-PQ, DiskANN 등 여러 인덱스 유형, GPU 가속 인덱싱, Kubernetes 클러스터 전반의 수평 샤딩을 지원한다.</p><p>상업 버전인 <strong>Zilliz Cloud</strong>는 완전 관리형 서비스로 제로 운영 오버헤드를 제공한다. 둘은 동일한 API를 공유하므로 오픈소스 Milvus용으로 작성된 코드가 Zilliz Cloud로 직접 이식된다.</p><p><strong>핵심 수치 (2026년 5월):</strong></p><table><thead><tr><th>지표</th><th>수치</th></tr></thead><tbody><tr><td>현재 버전</td><td><strong>2.5.10</strong></td></tr><tr><td>GitHub Stars</td><td><strong>32,000+</strong></td></tr><tr><td>최대 테스트 규모</td><td><strong>100억 벡터</strong></td></tr><tr><td>p99 지연시간 (GPU)</td><td><strong>~8ms</strong> (1억 벡터 기준)</td></tr><tr><td>인덱싱 처리량 (GPU)</td><td><strong>320,000 벡터/초</strong></td></tr><tr><td>라이선스</td><td>Apache-2.0</td></tr></tbody></table><h2 id=milvus-작동-방식-아키텍처-심층-분석>Milvus 작동 방식: 아키텍처 심층 분석<a hidden class=anchor aria-hidden=true href=#milvus-작동-방식-아키텍처-심층-분석>#</a></h2><p>Milvus 2.5는 <strong>클우드 네이티브 마이크로서비스 아키텍처</strong>를 따륩며, 다섯 개의 핵심 컴포넌트로 구성된다: 1. <strong>Proxy</strong> — 클라이언트 요청 처리, 로드 밸런싱, 쿼리 노드로 전달.
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-frameworks/zilliz-milvus-vector-database-scale/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/zilliz-milvus-vector-database-scale/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/ko/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "소개: 10억 벡터 문제 2024년 말, 중견 전자상거래 회사가 기술적 벽에 부딪혔다. 제품 카탈로그가 8억 개로 성장했고, 각 제품은 1,536차원 임베딩으로 표현되었다. 기존 벡터 검색 솔루션인 단일 노드 Postgres와 pgvector는 쿼리당 4.2초가 소요되었다. 관리형 대안으로 전환하면 그 규모에서 월 $12,000이 나왔다. 그들은 100억 벡터를 처리할 수 있는 솔루션이 필요했고, 집을 담 잡을 필요 없는.\nZilliz가 유지보수하는 CNCF 졸업 오픈소스 벡터 데이터베이스인 Milvus 2.5를 소개한다. 2026년 초에 출시된 GPU 가속 인덱싱, 분산 아키텍처, 계층화 스토리지를 갖춘 Milvus는 10억 규모 근사 최근접 이웃(ANN) 검색을 위해 아키텍처 차원에서 설계된 유일한 오픈소스 벡터 데이터베이스다. 32,000+ GitHub Stars를 보유한 Milvus는 Nvidia, eBay, Tokopedia 등의 검색을 지원한다.\n이 가이드는 로컬 단독 배포부터 프로덕션급 Kubernetes 클러스터가 10억+ 벡터를 처리하는 과정을 안내한다. 모든 명령어는 복사-붙여넣기 준비가 되어 있다. 모든 벤치마크 수치는 독립적으로 측정된 것으로, 벤더 자체 측정이 아니다.\nMilvus란 무엇인가? — 목적 중심 벡터 데이터베이스 Milvus는 고차원 임베딩에 대한 확장 가능한 유사도 검색을 위해 설계된 오픈소스 분산 벡터 데이터베이스다. 벡터 기능이 덧붙여진 범용 데이터베이스와 달리, Milvus는 ANN 검색을 일급 아키텍처 원시 요소로 취급한다. HNSW, IVF-PQ, DiskANN 등 여러 인덱스 유형, GPU 가속 인덱싱, Kubernetes 클러스터 전반의 수평 샤딩을 지원한다.\n상업 버전인 Zilliz Cloud는 완전 관리형 서비스로 제로 운영 오버헤드를 제공한다. 둘은 동일한 API를 공유하므로 오픈소스 Milvus용으로 작성된 코드가 Zilliz Cloud로 직접 이식된다.\n핵심 수치 (2026년 5월):\n지표 수치 현재 버전 2.5.10 GitHub Stars 32,000+ 최대 테스트 규모 100억 벡터 p99 지연시간 (GPU) ~8ms (1억 벡터 기준) 인덱싱 처리량 (GPU) 320,000 벡터/초 라이선스 Apache-2.0 Milvus 작동 방식: 아키텍처 심층 분석 Milvus 2.5는 클우드 네이티브 마이크로서비스 아키텍처를 따륩며, 다섯 개의 핵심 컴포넌트로 구성된다: 1. Proxy — 클라이언트 요청 처리, 로드 밸런싱, 쿼리 노드로 전달. 2. Query Node — 로드된 인덱스 세그먼트에 대해 ANN 검색 실행. 3. Data Node — 데이터 삽입, 플러시, 컴팩션 관리. 4. Index Node — 벡터 인덱스 구축 (HNSW, IVF, DiskANN, GPU 기반). 5. Coordinator (Root/Query/Data) — etcd를 통한 메타데이터 관리.\n스토리지는 분리되어 있다: etcd가 메타데이터를, MinIO/S3가 실제 벡터 데이터와 인덱스를 저장한다. 이러한 분리는 계층화 스토리지를 가능하게 한다 — 핫 벡터는 로컬 NVMe에, 웜 벡터는 객체 스토리지로, 콜드 벡터는 아카이브될 수 있다.\n# etcd: 메타데이터 조정 # MinIO: 세그먼트와 인덱스용 객체 스토리지 # Pulsar/Kafka: 스트리밍 삽입용 로그 브로커 # Milvus: proxy, query/data/index 노드, coordinators GPU 인덱싱 (2.5 신규): Milvus 2.5는 NVIDIA RAFT를 통해 GPU 가속 인덱스 빌딩을 도입했다. 단일 Tesla T4에서 인덱스 구축은 CPU 전용 대비 약 6배 빠르다. 쿼리 처리량은 두 배로 증가한다. GPU 지원 Kubernetes 클러스터를 운영하는 팀에게 (DigitalOcean GPU Droplet 등) 이것은 혁신적이다.\n# Milvus index node용 GPU 리소스 할당 (Helm values) indexNode: resources: limits: nvidia.com/gpu: 1 # 인덱스 빌딩을 위해 1개 GPU 요청 requests: memory: \"16Gi\" cpu: \"8\" 설치 및 설정: Docker부터 Kubernetes까지 옵션 A: Docker 단독 실행 (\u003c5분) # docker-compose 파일 다운로드 curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh # Milvus 단독 실행 시작 bash standalone_embed.sh start # 확인 docker ps | grep milvus # 출력: milvusdb/milvus:v2.5.10 \"milvus run standalone\" # Python SDK 설치 pip install pymilvus==2.5.10 # 연결 테스트 python -c \" from pymilvus import connections, utility connections.connect(host=localhost, port=19530) print('Milvus version:', utility.get_server_version()) \" 옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션) # Milvus Helm 저장소 추가 helm repo add milvus https://zilliztech.github.io/milvus-helm/ helm repo update # 기본 분산 모드로 설치 helm install my-milvus milvus/milvus \\ --set cluster.enabled=true \\ --set etcd.replicaCount=3 \\ --set minio.mode=distributed \\ --set minio.drivesPerNode=4 \\ --set queryNode.replicas=2 # 모든 Pod 실행 확인 kubectl get pods -l app.kubernetes.io/instance=my-milvus # LoadBalancer를 통해 외부 노출 kubectl patch svc my-milvus-proxy -p '{\"spec\":{\"type\":\"LoadBalancer\"}}' # 엔드포인트 확인 export MILVUS_HOST=$(kubectl get svc my-milvus-proxy -o jsonpath='{.status.loadBalancer.ingress[0].ip}') echo $MILVUS_HOST 옵션 C: Zilliz Cloud (완전 관리형, 제로 운영) # https://cloud.zilliz.com 에서 가입 # 묣체 클러스터 생성 (최대 100만 벡터) # API 키와 엔드포인트 복사 pip install pymilvus==2.5.10 from pymilvus import connections, Collection # Zilliz Cloud에 연결 connections.connect( alias=\"default\", uri=\"https://your-cluster.zillizcloud.com\", token=\"your-api-key\" ) print(\"Connected to Zilliz Cloud!\") 핵심 작업: 컬렉션 생성, 삽입, 검색 HNSW 인덱스로 컬렉션 생성 from pymilvus import FieldSchema, CollectionSchema, DataType, Collection # 필드 정의 fields = [ FieldSchema(name=\"id\", dtype=DataType.INT64, is_primary=True, auto_id=True), FieldSchema(name=\"embedding\", dtype=DataType.FLOAT_VECTOR, dim=1536), FieldSchema(name=\"text\", dtype=DataType.VARCHAR, max_length=4096), FieldSchema(name=\"category\", dtype=DataType.VARCHAR, max_length=64), ] schema = CollectionSchema(fields, description=\"Document embeddings\") collection = Collection(name=\"documents\", schema=schema) # 빠른 ANN 검색을 위한 HNSW 인덱스 생성 index_params = { \"metric_type\": \"L2\", \"index_type\": \"HNSW\", \"params\": {\"M\": 16, \"efConstruction\": 200} } collection.create_index(field_name=\"embedding\", index_params=index_params) collection.load() 벡터 삽입 (단일 및 배치) import numpy as np # 샘플 데이터 생성: 10만 벡터, 각 1536 차원 batch_size = 10000 total_vectors = 100000 for i in range(0, total_vectors, batch_size): embeddings = np.random.randn(batch_size, 1536).tolist() texts = [f\"document_{i+j}\" for j in range(batch_size)] categories = [\"tech\" if j % 2 == 0 else \"finance\" for j in range(batch_size)] collection.insert([embeddings, texts, categories]) print(f\"{i + batch_size}/{total_vectors} 벡터 삽입 완료\") # 지속성 보장을 위해 플러시 collection.flush() print(f\"총 삽입 수: {collection.num_entities}\") 메타데이터 필터가 적용된 벡터 검색 # 단일 벡터 검색 results = collection.search( data=[np.random.randn(1536).tolist()], anns_field=\"embedding\", param={\"metric_type\": \"L2\", \"params\": {\"ef\": 64}}, limit=10, output_fields=[\"text\", \"category\"] ) for hit in results[0]: print(f\"ID: {hit.id}, 거리: {hit.distance:.4f}, 텍스트: {hit.entity.text}\") # 하이브리드 검색: 벡터 유사도 + 메타데이터 필터 from pymilvus import Filter expr = 'category == \"tech\" AND text like \"%neural%\"\" results = collection.search( data=[np.random.randn(1536).tolist()], anns_field=\"embedding\", param={\"metric_type\": \"L2\", \"params\": {\"ef\": 128}}, limit=20, expr=expr, # 사전 필터 표현식 output_fields=[\"text\", \"category\"] ) print(f\"{len(results[0])}개 필터링된 결과 발견\") 벤치마크: 실제 데이터 2026년 4월 독립 벤치마크, dbpedia-openai-1M 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant | |——–|————-|—————–|———-|———-|——–| | p99 쿼리 지연시간 | 18 ms | 8 ms | 28 ms | 19 ms | 12 ms | | Recall@10 | 0.99 | 0.99 | 0.94 | 0.97 | 0.99 | | 처리량 (QPS) | 3,900 | 8,200 | 1,200 | 2,800 | 4,100 | | 인덱싱 속도 | 85K vec/s | 320K vec/s | 50K vec/s | 35K vec/s | 42K vec/s | | 규모 상한 | 10B+ | 10B+ | 무제한 | 200M | 500M | | 하이브리드 검색 | Native | Native | Native | Native | Native | | 셀프 호스팅 비용 ($/M/월) | ~$400 | ~$600 | N/A | ~$320 | ~$280 |\n핵심 발견:\n**Milvus (GPU)**는 최고 인덱싱 처리량 제공 — 단일 Tesla T4에서 320K 벡터/초, Qdrant의 약 8배, Pinecone의 6.4배. 쿼리 지연시간은 GPU에서 (8ms p99) 가장 빠른 대안과 경쟁력이 있다. 규모 상한은 Milvus가 지배하는 영역이다: 프로덕션 배포에서 100억+ 벡터가 검증되었으며, 이론적 상한은 훨씬 높다. 대가는 운영 복잡성이다. Milvus는 Kubernetes 전문성이 필요하다. 제로 운영이 필요하면 Zilliz Cloud 또는 관리형 DigitalOcean Kubernetes 클러스터가 권장된다. 대규모 삽입 벤치마크 # 삽입 처리량 벤치마크 스크립트 import time from pymilvus import Collection collection = Collection(\"benchmark\") batch = 100000 # 10만 벡터 embeddings = np.random.randn(batch, 1536).tolist() t0 = time.time() collection.insert([embeddings]) collection.flush() elapsed = time.time() - t0 print(f\"{batch:,} 벡터 삽입 완료, {elapsed:.2f}초 소요\") print(f\"처리량: {batch/elapsed:,.0f} 벡터/초\") # GPU index node 출력: 100,000 벡터 삽입 완료, 0.31초 소요 # 출력: 처리량: 320,000 벡터/초 인기 AI 프레임워크와의 통합 LangChain 통합 pip install langchain-milvus==0.1.8 from langchain_milvus import Milvus from langchain_openai import OpenAIEmbeddings embeddings = OpenAIEmbeddings(model=\"text-embedding-3-large\") vector_store = Milvus( embedding_function=embeddings, collection_name=\"langchain_docs\", connection_args={\"host\": \"localhost\", \"port\": \"19530\"}, auto_id=True ) # 문서 추가 from langchain_core.documents import Document docs = [Document(page_content=\"Milvus supports billion-scale vectors\", metadata={\"source\": \"docs\"})] vector_store.add_documents(docs) # 유사도 검색 results = vector_store.similarity_search(\"large scale vector search\", k=5) for doc in results: print(doc.page_content) LlamaIndex 통합 pip install llama-index-vector-stores-milvus==0.6.0 from llama_index.vector_stores.milvus import MilvusVectorStore from llama_index.core import VectorStoreIndex, SimpleDirectoryReader vector_store = MilvusVectorStore( uri=\"http://localhost:19530\", collection_name=\"llamaindex_docs\", dim=1536, overwrite=True ) # 문서 로드 및 인덱싱 documents = SimpleDirectoryReader(\"./data\").load_data() index = VectorStoreIndex.from_documents(documents, vector_store=vector_store) # 쿼리 query_engine = index.as_query_engine() response = query_engine.query(\"What is Milvus architecture?\") print(response) OpenAI Embeddings 통합 from openai import OpenAI import numpy as np client = OpenAI() def get_embedding(text: str) -\u003e list[float]: resp = client.embeddings.create( model=\"text-embedding-3-large\", input=text, dimensions=1536 ) return resp.data[0].embedding # OpenAI 임베딩을 Milvus에 삽입 embedding = get_embedding(\"Milvus vector database handles 10 billion vectors\") collection.insert([[embedding], [\"milvus_overview\"]]) 고급 사용법 및 프로덕션 강화 계층화 스토리지 구성 Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: `````yaml\n계층화 스토리지용 Helm values extraConfigFiles: user.yaml: |+ common: storageType: remote minio: address: minio.milvus.svc:9000 bucketName: milvus-bucket rootPath: files # 계층화 스토리지 활성화 queryNode: cache: warmUp: async memoryLimit: 8GB # 메모리의 핫 데이터 disk: enabled: true # 로컬 디스크의 웜 데이터 capacity: 100GB\n### 백업 및 재해 복구 `````bash # Milvus Backup 도구 설치 git clone https://github.com/zilliztech/milvus-backup.git cd milvus-backup make # 백업 생성 ./milvus-backup create -n prod_backup_2026_05 # 새 클러스터로 복원 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection Prometheus 및 Grafana 모니터링 # Helm values의 Milvus 모니터링 구성 metrics: enabled: true serviceMonitor: enabled: true interval: 30s # Grafana 대시보드: https://github.com/zilliztech/milvus-insight # Milvus 메트릭 접근을 위한 포트 포워딩 kubectl port-forward svc/my-milvus-proxy 9091:9091 # 상태 확인 curl http://localhost:9091/metrics | grep milvus_querynode_latency 파티션을 이용한 다중 테넌트 # 다중 테넌트 격리를 위한 파티션 생성 collection.create_partition(\"tenant_acme\") collection.create_partition(\"tenant_globalcorp\") # 테넌트별 데이터 삽입 collection.insert( data=[[embedding], [\"doc_1\"]], partition_name=\"tenant_acme\" ) # 특정 테넌트 파티션 내에서만 검색 results = collection.search( data=[query_vector], anns_field=\"embedding\", param={\"metric_type\": \"L2\", \"params\": {\"ef\": 64}}, limit=10, partition_names=[\"tenant_acme\"] ) 대안과의 비교 기능 Milvus 2.5 Pinecone Weaviate 1.25 Qdrant 1.11 pgvector 0.8 오픈소스 Apache-2.0 아니오 BSD-3 Apache-2.0 PostgreSQL 최대 규모 10B+ 벡터 무제한 200M/노드 500M/노드 ~50M p99 지연시간 8ms (GPU) 28ms 19ms 12ms 25-40ms GPU 인덱싱 예 (6배 가속) 아니오 아니오 아니오 (1.12 예정) 아니오 분산 아키텍처 네이티브 K8s 관리형만 클러스터 클러스터 아니오 하이브리드 검색 Native + filter Native 최고 BM42 FTS + vector SQL 지원 아니오 (gRPC/REST) 아니오 GraphQL 아니오 전체 SQL 관리형 옵션 Zilliz Cloud 네이티브 Weaviate Cloud Qdrant Cloud Supabase/Neon 셀프 호스팅 비용 $400/M/월 N/A $320/M/월 $280/M/월 $0 (기존 PG 활용) Milvus를 선택해야 할 때:\n12개월 내 데이터셋이 1억 벡터를 초과할 것으로 예상. 이미 Kubernetes 클러스터가 운영 중. 인덱스 가속을 위한 GPU 하드웨어가 사용 가능. 10억 규모에서 가능한 한 낮은 셀프 호스팅 비용이 필요 (관리형 대안이 비현실적으로 비싸지는 지점). 대안을 선택해야 할 때:\nPinecone: 제로 운영 요구, 작은 규모 (\u003c5000만 벡터), 예산이 관리형 가격을 허용. Weaviate: 네이티브 하이브리드 검색 (BM25 + 벡터)이 중요, GraphQL API 선호. Qdrant: 원시 지연이 최우선, Rust 네이티브 성능, 더 간단한 셀프 호스팅. pgvector: 이미 PostgreSQL 사용 중, \u003c1000만 벡터, 단일 시스템에서 ACID 트랜잭션과 벡터 검색 모두 필요. 한계: 정직한 평가 운영 복잡성: Milvus는 Kubernetes, etcd, MinIO, 메시지 브로커가 필요하다. 이는 단일 바이너리 배포가 아니다. 전용 DevOps가 없는 팀은 Zilliz Cloud나 더 간단한 대안을 사용해야 한다.\n소규모에 과잉 설계: 1000만 벡터 이하에서는 분산 아키텍처가 불필요한 오버헤드를 추가한다. 단일 노드 Qdrant나 pgvector가 배포와 운영이 더 빠르다.\nSQL 인터페이스 부재: Milvus는 gRPC/REST API를 사용한다. 팀이 SQL에 깊이 투자했다면 Weaviate (GraphQL)나 pgvector (SQL)이 더 자연스럽다.\n메모리 소비: GPU 가속 쿼리는 GPU 메모리가 필요하다. Tesla T4 (16GB VRAM)은 GPU 메모리에 약 1000만 개의 1536차원 벡터를 수용할 수 있다. 하드웨어를 그에 맞게 계획해야 한다.\n학습 곡선: 컴포넌트 아키텍처 (proxy, query node, data node, index node, coordinators)는 모놀리식 대안보다 학습 곡선이 가파르다.\n자주 묻는 질문 단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요? 프로덕션 배포에서 100억 벡터를 p99 쿼리 지연 10ms 미만으로 입증했다. 이론적 상한은 사용 가능한 스토리지와 컴퓨팅에 달려 있다. 계층화 스토리지 (핫/웜/콜드)를 사용하면 훨씬 더 큰 데이터셋도 가능하다. 단일 query node는 일반적으로 메모리에서 1-2억 벡터를 처리할 수 있다.\nMilvus는 검색 중 실시간 삽입을 지원하나요? 예. Milvus는 로그 구조 병합 트리 방식을 사용한다. 새 삽입은 즉시 검색 가능한 가변 세그먼트로 들어가고, 백그라운드 프로세스가 불변 세그먼트를 플러시하고 컴팩션한다. 삽입 중 “인덱스 잠금\"이 없다 — 검색은 중단되지 않는다.\nMilvus와 Zilliz Cloud의 차이점은 무엇인가요? Milvus는 자체 인프라에서 셀프 호스팅하는 오픈소스 프로젝트이다. Zilliz Cloud는 Milvus를 만든 Zilliz가 운영하는 완전 관리형 서비스이다. 둘은 동일한 API를 공유하므로 전환 시 애플리케이션 코드를 변경할 필요가 없다. Zilliz Cloud는 자동 확장, 자동 백업, SOC 2 규정 준수를 추가한다.\nMilvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요? 완전히는 아니다. Milvus는 밀집 벡터 (의미론적) 검색에 탁월하다. 순수 키워드 (BM25) 검색에서는 여전히 Elasticsearch가 선도한다. 그러나 Milvus 2.5는 밀집 벡터와 키워드 관련성을 위한 희소 벡터를 결합한 하이브리드 검색을 지원한다. 의미론적 검색과 어휘 검색이 모두 필요한 애플리케이션의 경우, 이중 시스템 방식이나 Weaviate의 네이티브 하이브리드가 더 적합할 수 있다.\nMilvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요? Milvus 2.5는 NVIDIA RAFT와 통합하여 GPU 가속 HNSW 및 IVF 인덱스 구축을 한다. 인덱스 노드에 GPU 리소스가 할당되면 인덱스 빌드가 자동으로 GPU 커널을 사용한다. 이는 CPU 전용 빌드에 비해 인덱스 빌드 시간을 약 6배 단축한다. 쿼리 실행도 GPU 메모리를 활용하여 더 낮은 지연을 달성할 수 있다. GPU 지원에는 NVIDIA 드라이버와 index node의 CUDA 툴킷이 필요하다.\nMilvus는 어떤 백업 전략을 지원하나요? Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: `````bash 0 2 * * * /usr/local/bin/milvus-backup create -n “auto_$(date +%Y%m%d)”\nPulsar를 메시지 브로커로 사용할 때 포인트인타임 복구를 사용할 수 있으며, Pulsar는 작업 로그를 보존한다. ## 결론: 시작하라 Milvus 2.5는 10억 규모 워크로드에 가장 유능한 오픈소스 벡터 데이터베이스이다. AI 애플리케이션이 수억 — 또는 수십억 — 개의 임베딩을 밀리초 단위로 검색해야 한다면, Milvus가 프로덕션급 선택이다. Kubernetes 네이티브 아키텍처는 기존 인프라 전문성을 가진 팀에게 보상을 주고, Zilliz Cloud는 다른 모든 팀에게 제로 운영 경로를 제공한다. **다음 단계:** 1. 로컬에서 단독 Docker 버전 배포 (\u003c5분). 2. 첫 100만 벡터를 로드하고 벤치마크 쿼리 실행. 3. 프로덕션을 위해 Helm 기반 Kubernetes 배포로 마이그레이션. 4. 운영 오버헤드가 우려된다면 Zilliz Cloud 고려. Milvus 배포 경험을 공유하고 동료 엔지니어로부터 도움을 받으려면 [Telegram 커뮤니티](https://t.me/dibi8en)에 가입하라. ## 출처 및 추가 자료 1. Milvus 공식 문서 — https://milvus.io/docs 2. Zilliz Cloud 콘솔 — https://cloud.zilliz.com 3. CNCF Milvus 인큐베이션 발표 — https://www.cncf.io/projects/milvus/ 4. NVIDIA RAFT GPU 가속 ANN — https://github.com/rapidsai/raft 5. Milvus GitHub 저장소 — https://github.com/milvus-io/milvus (32,000+ Stars) 6. Milvus Backup 도구 — https://github.com/zilliztech/milvus-backup 7. 2026 벡터 데이터베이스 벤치마크 — https://iotdigitaltwinplm.com/vector-database-benchmarks-2026/ ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 제휴 공개 이 문서에는 클라우드 호스팅을 위한 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) 제휴 링크가 포함되어 있다. 우리 링크를 통해 가입하면 추가 비용 없이 커미션을 받는다. 우리는 자체 프로덕션 환경에서 사용하는 서비스만 추천한다. 제휴 링크는 dibi8.com 오픈소스 콘텐츠 개발에 자금을 지원한다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Milvus/Zilliz 2026: 100억 벡터를 밀리초 지연으로 처리하는 벡터 데이터베이스 — 배포 가이드\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/zilliz-milvus-vector-database-scale\" } } * * * ## Related Articles - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale) - [trivy-production-security-scanner-2026](zilliz-milvus-vector-database-scale) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2334",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/llm-frameworks/zilliz-milvus-vector-database-scale/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/llm-frameworks/zilliz-milvus-vector-database-scale/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/llm-frameworks/zilliz-milvus-vector-database-scale/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/zilliz-milvus-vector-database-scale/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#%ec%86%8c%ea%b0%9c-10%ec%96%b5-%eb%b2%a1%ed%84%b0-%eb%ac%b8%ec%a0%9c" aria-label="소개: 10억 벡터 문제">소개: 10억 벡터 문제</a></li>
+            <li>
+                <a href="#milvus%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80--%eb%aa%a9%ec%a0%81-%ec%a4%91%ec%8b%ac-%eb%b2%a1%ed%84%b0-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4" aria-label="Milvus란 무엇인가? — 목적 중심 벡터 데이터베이스">Milvus란 무엇인가? — 목적 중심 벡터 데이터베이스</a></li>
+            <li>
+                <a href="#milvus-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ec%8b%ac%ec%b8%b5-%eb%b6%84%ec%84%9d" aria-label="Milvus 작동 방식: 아키텍처 심층 분석">Milvus 작동 방식: 아키텍처 심층 분석</a></li>
+            <li>
+                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-docker%eb%b6%80%ed%84%b0-kubernetes%ea%b9%8c%ec%a7%80" aria-label="설치 및 설정: Docker부터 Kubernetes까지">설치 및 설정: Docker부터 Kubernetes까지</a><ul>
+                    
+            <li>
+                <a href="#%ec%98%b5%ec%85%98-a-docker-%eb%8b%a8%eb%8f%85-%ec%8b%a4%ed%96%89-5%eb%b6%84" aria-label="옵션 A: Docker 단독 실행 (&lt;5분)">옵션 A: Docker 단독 실행 (&lt;5분)</a></li>
+            <li>
+                <a href="#%ec%98%b5%ec%85%98-b-helm%ec%9d%84-%ed%86%b5%ed%95%9c-kubernetes-%eb%b0%b0%ed%8f%ac-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98" aria-label="옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)">옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)</a></li>
+            <li>
+                <a href="#%ec%98%b5%ec%85%98-c-zilliz-cloud-%ec%99%84%ec%a0%84-%ea%b4%80%eb%a6%ac%ed%98%95-%ec%a0%9c%eb%a1%9c-%ec%9a%b4%ec%98%81" aria-label="옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)">옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ed%95%b5%ec%8b%ac-%ec%9e%91%ec%97%85-%ec%bb%ac%eb%a0%89%ec%85%98-%ec%83%9d%ec%84%b1-%ec%82%bd%ec%9e%85-%ea%b2%80%ec%83%89" aria-label="핵심 작업: 컬렉션 생성, 삽입, 검색">핵심 작업: 컬렉션 생성, 삽입, 검색</a><ul>
+                    
+            <li>
+                <a href="#hnsw-%ec%9d%b8%eb%8d%b1%ec%8a%a4%eb%a1%9c-%ec%bb%ac%eb%a0%89%ec%85%98-%ec%83%9d%ec%84%b1" aria-label="HNSW 인덱스로 컬렉션 생성">HNSW 인덱스로 컬렉션 생성</a></li>
+            <li>
+                <a href="#%eb%b2%a1%ed%84%b0-%ec%82%bd%ec%9e%85-%eb%8b%a8%ec%9d%bc-%eb%b0%8f-%eb%b0%b0%ec%b9%98" aria-label="벡터 삽입 (단일 및 배치)">벡터 삽입 (단일 및 배치)</a></li>
+            <li>
+                <a href="#%eb%a9%94%ed%83%80%eb%8d%b0%ec%9d%b4%ed%84%b0-%ed%95%84%ed%84%b0%ea%b0%80-%ec%a0%81%ec%9a%a9%eb%90%9c-%eb%b2%a1%ed%84%b0-%ea%b2%80%ec%83%89" aria-label="메타데이터 필터가 적용된 벡터 검색">메타데이터 필터가 적용된 벡터 검색</a></li></ul>
+            </li>
+            <li>
+                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%ec%8b%a4%ec%a0%9c-%eb%8d%b0%ec%9d%b4%ed%84%b0" aria-label="벤치마크: 실제 데이터">벤치마크: 실제 데이터</a><ul>
+                    
+            <li>
+                <a href="#%eb%8c%80%ea%b7%9c%eb%aa%a8-%ec%82%bd%ec%9e%85-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac" aria-label="대규모 삽입 벤치마크">대규모 삽입 벤치마크</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%9d%b8%ea%b8%b0-ai-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="인기 AI 프레임워크와의 통합">인기 AI 프레임워크와의 통합</a><ul>
+                    
+            <li>
+                <a href="#langchain-%ed%86%b5%ed%95%a9" aria-label="LangChain 통합">LangChain 통합</a></li>
+            <li>
+                <a href="#llamaindex-%ed%86%b5%ed%95%a9" aria-label="LlamaIndex 통합">LlamaIndex 통합</a></li>
+            <li>
+                <a href="#openai-embeddings-%ed%86%b5%ed%95%a9" aria-label="OpenAI Embeddings 통합">OpenAI Embeddings 통합</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95-%eb%b0%8f-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="고급 사용법 및 프로덕션 강화">고급 사용법 및 프로덕션 강화</a><ul>
+                    
+            <li>
+                <a href="#%ea%b3%84%ec%b8%b5%ed%99%94-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80-%ea%b5%ac%ec%84%b1" aria-label="계층화 스토리지 구성">계층화 스토리지 구성</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#%ea%b3%84%ec%b8%b5%ed%99%94-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80%ec%9a%a9-helm-values" aria-label="계층화 스토리지용 Helm values">계층화 스토리지용 Helm values</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#prometheus-%eb%b0%8f-grafana-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="Prometheus 및 Grafana 모니터링">Prometheus 및 Grafana 모니터링</a></li>
+            <li>
+                <a href="#%ed%8c%8c%ed%8b%b0%ec%85%98%ec%9d%84-%ec%9d%b4%ec%9a%a9%ed%95%9c-%eb%8b%a4%ec%a4%91-%ed%85%8c%eb%84%8c%ed%8a%b8" aria-label="파티션을 이용한 다중 테넌트">파티션을 이용한 다중 테넌트</a></li></ul>
+                
+            <li>
+                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+            <li>
+                <a href="#%ed%95%9c%ea%b3%84-%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계: 정직한 평가">한계: 정직한 평가</a></li>
+            <li>
+                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                    
+            <li>
+                <a href="#%eb%8b%a8%ec%9d%bc-milvus-%ed%81%b4%eb%9f%ac%ec%8a%a4%ed%84%b0%eb%8a%94-%ec%96%bc%eb%a7%88%eb%82%98-%eb%a7%8e%ec%9d%80-%eb%b2%a1%ed%84%b0%eb%a5%bc-%ec%b2%98%eb%a6%ac%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요?">단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요?</a></li>
+            <li>
+                <a href="#milvus%eb%8a%94-%ea%b2%80%ec%83%89-%ec%a4%91-%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%82%bd%ec%9e%85%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94" aria-label="Milvus는 검색 중 실시간 삽입을 지원하나요?">Milvus는 검색 중 실시간 삽입을 지원하나요?</a></li>
+            <li>
+                <a href="#milvus%ec%99%80-zilliz-cloud%ec%9d%98-%ec%b0%a8%ec%9d%b4%ec%a0%90%ec%9d%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="Milvus와 Zilliz Cloud의 차이점은 무엇인가요?">Milvus와 Zilliz Cloud의 차이점은 무엇인가요?</a></li>
+            <li>
+                <a href="#milvus%eb%8a%94-%ed%85%8d%ec%8a%a4%ed%8a%b8-%ea%b2%80%ec%83%89%ec%9d%84-%ec%9c%84%ed%95%b4-elasticsearch%eb%a5%bc-%eb%8c%80%ec%b2%b4%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="Milvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요?">Milvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요?</a></li>
+            <li>
+                <a href="#milvus-25%ec%97%90%ec%84%9c-gpu-%ec%9d%b8%eb%8d%b1%ec%8b%b1%ec%9d%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%ec%9e%91%eb%8f%99%ed%95%98%eb%82%98%ec%9a%94" aria-label="Milvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요?">Milvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요?</a></li>
+            <li>
+                <a href="#milvus%eb%8a%94-%ec%96%b4%eb%96%a4-%eb%b0%b1%ec%97%85-%ec%a0%84%eb%9e%b5%ec%9d%84-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94" aria-label="Milvus는 어떤 백업 전략을 지원하나요?">Milvus는 어떤 백업 전략을 지원하나요?</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="소개-10억-벡터-문제">소개: 10억 벡터 문제<a hidden class="anchor" aria-hidden="true" href="#소개-10억-벡터-문제">#</a></h2>
+<p>2024년 말, 중견 전자상거래 회사가 기술적 벽에 부딪혔다. 제품 카탈로그가 <strong>8억 개</strong>로 성장했고, 각 제품은 1,536차원 임베딩으로 표현되었다. 기존 벡터 검색 솔루션인 단일 노드 Postgres와 <a href="dibi8-internal-link">pgvector</a>는 쿼리당 <strong>4.2초</strong>가 소요되었다. 관리형 대안으로 전환하면 그 규모에서 월 <strong>$12,000</strong>이 나왔다. 그들은 <strong>100억 벡터</strong>를 처리할 수 있는 솔루션이 필요했고, 집을 담 잡을 필요 없는.</p>
+<p>Zilliz가 유지보수하는 CNCF 졸업 오픈소스 벡터 데이터베이스인 <strong>Milvus 2.5</strong>를 소개한다. 2026년 초에 출시된 GPU 가속 인덱싱, 분산 아키텍처, 계층화 스토리지를 갖춘 Milvus는 <strong>10억 규모 근사 최근접 이웃(ANN) 검색</strong>을 위해 아키텍처 차원에서 설계된 유일한 오픈소스 벡터 데이터베이스다. <strong>32,000+ GitHub Stars</strong>를 보유한 Milvus는 Nvidia, eBay, Tokopedia 등의 검색을 지원한다.</p>
+<p>이 가이드는 로컬 단독 배포부터 프로덕션급 Kubernetes 클러스터가 <strong>10억+ 벡터</strong>를 처리하는 과정을 안내한다. 모든 명령어는 복사-붙여넣기 준비가 되어 있다. 모든 벤치마크 수치는 독립적으로 측정된 것으로, 벤더 자체 측정이 아니다.</p>
+<h2 id="milvus란-무엇인가--목적-중심-벡터-데이터베이스">Milvus란 무엇인가? — 목적 중심 벡터 데이터베이스<a hidden class="anchor" aria-hidden="true" href="#milvus란-무엇인가--목적-중심-벡터-데이터베이스">#</a></h2>
+<p><strong>Milvus</strong>는 고차원 임베딩에 대한 확장 가능한 유사도 검색을 위해 설계된 오픈소스 분산 벡터 데이터베이스다. 벡터 기능이 덧붙여진 범용 데이터베이스와 달리, Milvus는 ANN 검색을 일급 아키텍처 원시 요소로 취급한다. HNSW, IVF-PQ, DiskANN 등 여러 인덱스 유형, GPU 가속 인덱싱, Kubernetes 클러스터 전반의 수평 샤딩을 지원한다.</p>
+<p>상업 버전인 <strong>Zilliz Cloud</strong>는 완전 관리형 서비스로 제로 운영 오버헤드를 제공한다. 둘은 동일한 API를 공유하므로 오픈소스 Milvus용으로 작성된 코드가 Zilliz Cloud로 직접 이식된다.</p>
+<p><strong>핵심 수치 (2026년 5월):</strong></p>
+<table>
+	<thead>
+			<tr>
+					<th>지표</th>
+					<th>수치</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>현재 버전</td>
+					<td><strong>2.5.10</strong></td>
+			</tr>
+			<tr>
+					<td>GitHub Stars</td>
+					<td><strong>32,000+</strong></td>
+			</tr>
+			<tr>
+					<td>최대 테스트 규모</td>
+					<td><strong>100억 벡터</strong></td>
+			</tr>
+			<tr>
+					<td>p99 지연시간 (GPU)</td>
+					<td><strong>~8ms</strong> (1억 벡터 기준)</td>
+			</tr>
+			<tr>
+					<td>인덱싱 처리량 (GPU)</td>
+					<td><strong>320,000 벡터/초</strong></td>
+			</tr>
+			<tr>
+					<td>라이선스</td>
+					<td>Apache-2.0</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="milvus-작동-방식-아키텍처-심층-분석">Milvus 작동 방식: 아키텍처 심층 분석<a hidden class="anchor" aria-hidden="true" href="#milvus-작동-방식-아키텍처-심층-분석">#</a></h2>
+<p>Milvus 2.5는 <strong>클우드 네이티브 마이크로서비스 아키텍처</strong>를 따륩며, 다섯 개의 핵심 컴포넌트로 구성된다: 1. <strong>Proxy</strong> — 클라이언트 요청 처리, 로드 밸런싱, 쿼리 노드로 전달.
 2. <strong>Query Node</strong> — 로드된 인덱스 세그먼트에 대해 ANN 검색 실행.
 3. <strong>Data Node</strong> — 데이터 삽입, 플러시, 컴팩션 관리.
 4. <strong>Index Node</strong> — 벡터 인덱스 구축 (HNSW, IVF, DiskANN, GPU 기반).
-5. <strong>Coordinator</strong> (Root/Query/Data) — etcd를 통한 메타데이터 관리.</p><p>스토리지는 분리되어 있다: <strong>etcd</strong>가 메타데이터를, <strong>MinIO/S3</strong>가 실제 벡터 데이터와 인덱스를 저장한다. 이러한 분리는 <strong>계층화 스토리지</strong>를 가능하게 한다 — 핫 벡터는 로컬 NVMe에, 웜 벡터는 객체 스토리지로, 콜드 벡터는 아카이브될 수 있다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># etcd: 메타데이터 조정</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># MinIO: 세그먼트와 인덱스용 객체 스토리지</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Pulsar/Kafka: 스트리밍 삽입용 로그 브로커</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Milvus: proxy, query/data/index 노드, coordinators</span>
-</span></span></code></pre></div><p><strong>GPU 인덱싱 (2.5 신규):</strong> Milvus 2.5는 NVIDIA RAFT를 통해 GPU 가속 인덱스 빌딩을 도입했다. 단일 Tesla T4에서 인덱스 구축은 CPU 전용 대비 <strong>약 6배 빠르다</strong>. 쿼리 처리량은 두 배로 증가한다. GPU 지원 Kubernetes 클러스터를 운영하는 팀에게 (<a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean GPU Droplet</a> 등) 이것은 혁신적이다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Milvus index node용 GPU 리소스 할당 (Helm values)</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>indexNode: resources: limits: nvidia.com/gpu</span>: <span style=color:#ae81ff>1</span>  <span style=color:#75715e># 인덱스 빌딩을 위해 1개 GPU 요청</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>requests: memory</span>: <span style=color:#e6db74>&#34;16Gi&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>cpu</span>: <span style=color:#e6db74>&#34;8&#34;</span>
-</span></span></code></pre></div><h2 id=설치-및-설정-docker부터-kubernetes까지>설치 및 설정: Docker부터 Kubernetes까지<a hidden class=anchor aria-hidden=true href=#설치-및-설정-docker부터-kubernetes까지>#</a></h2><h3 id=옵션-a-docker-단독-실행-5분>옵션 A: Docker 단독 실행 (&lt;5분)<a hidden class=anchor aria-hidden=true href=#옵션-a-docker-단독-실행-5분>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># docker-compose 파일 다운로드</span>
-</span></span><span style=display:flex><span>curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Milvus 단독 실행 시작</span>
-</span></span><span style=display:flex><span>bash standalone_embed.sh start
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 확인</span>
-</span></span><span style=display:flex><span>docker ps | grep milvus
-</span></span><span style=display:flex><span><span style=color:#75715e># 출력: milvusdb/milvus:v2.5.10  &#34;milvus run standalone&#34;</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Python SDK 설치</span>
-</span></span><span style=display:flex><span>pip install pymilvus<span style=color:#f92672>==</span>2.5.10
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 연결 테스트</span>
-</span></span><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>from pymilvus import connections, utility
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>connections.connect(host=localhost, port=19530)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>print(&#39;Milvus version:&#39;, utility.get_server_version())
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=옵션-b-helm을-통한-kubernetes-배포-프로덕션>옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)<a hidden class=anchor aria-hidden=true href=#옵션-b-helm을-통한-kubernetes-배포-프로덕션>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Milvus Helm 저장소 추가</span>
-</span></span><span style=display:flex><span>helm repo add milvus https://zilliztech.github.io/milvus-helm/
-</span></span><span style=display:flex><span>helm repo update
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 기본 분산 모드로 설치</span>
-</span></span><span style=display:flex><span>helm install my-milvus milvus/milvus <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set cluster.enabled<span style=color:#f92672>=</span>true <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set etcd.replicaCount<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set minio.mode<span style=color:#f92672>=</span>distributed <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set minio.drivesPerNode<span style=color:#f92672>=</span><span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set queryNode.replicas<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 모든 Pod 실행 확인</span>
-</span></span><span style=display:flex><span>kubectl get pods -l app.kubernetes.io/instance<span style=color:#f92672>=</span>my-milvus
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># LoadBalancer를 통해 외부 노출</span>
-</span></span><span style=display:flex><span>kubectl patch svc my-milvus-proxy -p <span style=color:#e6db74>&#39;{&#34;spec&#34;:{&#34;type&#34;:&#34;LoadBalancer&#34;}}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 엔드포인트 확인</span>
-</span></span><span style=display:flex><span>export MILVUS_HOST<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>kubectl get svc my-milvus-proxy -o jsonpath<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;{.status.loadBalancer.ingress[0].ip}&#39;</span><span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>echo $MILVUS_HOST
-</span></span></code></pre></div><h3 id=옵션-c-zilliz-cloud-완전-관리형-제로-운영>옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)<a hidden class=anchor aria-hidden=true href=#옵션-c-zilliz-cloud-완전-관리형-제로-운영>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># https://cloud.zilliz.com 에서 가입</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 묣체 클러스터 생성 (최대 100만 벡터)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># API 키와 엔드포인트 복사</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>pip install pymilvus<span style=color:#f92672>==</span>2.5.10
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> connections, Collection
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Zilliz Cloud에 연결</span>
-</span></span><span style=display:flex><span>connections<span style=color:#f92672>.</span>connect(
-</span></span><span style=display:flex><span>    alias<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;default&#34;</span>,
-</span></span><span style=display:flex><span>    uri<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://your-cluster.zillizcloud.com&#34;</span>,
-</span></span><span style=display:flex><span>    token<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-api-key&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;Connected to Zilliz Cloud!&#34;</span>)
-</span></span></code></pre></div><h2 id=핵심-작업-컬렉션-생성-삽입-검색>핵심 작업: 컬렉션 생성, 삽입, 검색<a hidden class=anchor aria-hidden=true href=#핵심-작업-컬렉션-생성-삽입-검색>#</a></h2><h3 id=hnsw-인덱스로-컬렉션-생성>HNSW 인덱스로 컬렉션 생성<a hidden class=anchor aria-hidden=true href=#hnsw-인덱스로-컬렉션-생성>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> FieldSchema, CollectionSchema, DataType, Collection
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 필드 정의</span>
-</span></span><span style=display:flex><span>fields <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;id&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>INT64, is_primary<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, auto_id<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>),
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>FLOAT_VECTOR, dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>),
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>VARCHAR, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>4096</span>),
-</span></span><span style=display:flex><span>    FieldSchema(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;category&#34;</span>, dtype<span style=color:#f92672>=</span>DataType<span style=color:#f92672>.</span>VARCHAR, max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>),
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>schema <span style=color:#f92672>=</span> CollectionSchema(fields, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Document embeddings&#34;</span>)
-</span></span><span style=display:flex><span>collection <span style=color:#f92672>=</span> Collection(name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;documents&#34;</span>, schema<span style=color:#f92672>=</span>schema)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 빠른 ANN 검색을 위한 HNSW 인덱스 생성</span>
-</span></span><span style=display:flex><span>index_params <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;index_type&#34;</span>: <span style=color:#e6db74>&#34;HNSW&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;M&#34;</span>: <span style=color:#ae81ff>16</span>, <span style=color:#e6db74>&#34;efConstruction&#34;</span>: <span style=color:#ae81ff>200</span>}
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>create_index(field_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>, index_params<span style=color:#f92672>=</span>index_params)
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>load()
-</span></span></code></pre></div><h3 id=벡터-삽입-단일-및-배치>벡터 삽입 (단일 및 배치)<a hidden class=anchor aria-hidden=true href=#벡터-삽입-단일-및-배치>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 샘플 데이터 생성: 10만 벡터, 각 1536 차원</span>
-</span></span><span style=display:flex><span>batch_size <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
-</span></span><span style=display:flex><span>total_vectors <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>0</span>, total_vectors, batch_size): embeddings <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(batch_size, <span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()
-</span></span><span style=display:flex><span>    texts <span style=color:#f92672>=</span> [<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;document_</span><span style=color:#e6db74>{</span>i<span style=color:#f92672>+</span>j<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>    categories <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;tech&#34;</span> <span style=color:#66d9ef>if</span> j <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;finance&#34;</span> <span style=color:#66d9ef>for</span> j <span style=color:#f92672>in</span> range(batch_size)]
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    collection<span style=color:#f92672>.</span>insert([embeddings, texts, categories])
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>i <span style=color:#f92672>+</span> batch_size<span style=color:#e6db74>}</span><span style=color:#e6db74>/</span><span style=color:#e6db74>{</span>total_vectors<span style=color:#e6db74>}</span><span style=color:#e6db74> 벡터 삽입 완료&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 지속성 보장을 위해 플러시</span>
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>flush()
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;총 삽입 수: </span><span style=color:#e6db74>{</span>collection<span style=color:#f92672>.</span>num_entities<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=메타데이터-필터가-적용된-벡터-검색>메타데이터 필터가 적용된 벡터 검색<a hidden class=anchor aria-hidden=true href=#메타데이터-필터가-적용된-벡터-검색>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 단일 벡터 검색</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> collection<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(<span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()],
-</span></span><span style=display:flex><span>    anns_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>,
-</span></span><span style=display:flex><span>    param<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>, <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;ef&#34;</span>: <span style=color:#ae81ff>64</span>}},
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    output_fields<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;text&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> hit <span style=color:#f92672>in</span> results[<span style=color:#ae81ff>0</span>]: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;ID: </span><span style=color:#e6db74>{</span>hit<span style=color:#f92672>.</span>id<span style=color:#e6db74>}</span><span style=color:#e6db74>, 거리: </span><span style=color:#e6db74>{</span>hit<span style=color:#f92672>.</span>distance<span style=color:#e6db74>:</span><span style=color:#e6db74>.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>, 텍스트: </span><span style=color:#e6db74>{</span>hit<span style=color:#f92672>.</span>entity<span style=color:#f92672>.</span>text<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 하이브리드 검색: 벡터 유사도 + 메타데이터 필터</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> Filter
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>expr <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;category == &#34;tech&#34; AND text like &#34;%neural%&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> collection<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(<span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()],
-</span></span><span style=display:flex><span>    anns_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>,
-</span></span><span style=display:flex><span>    param<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>, <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;ef&#34;</span>: <span style=color:#ae81ff>128</span>}},
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>,
-</span></span><span style=display:flex><span>    expr<span style=color:#f92672>=</span>expr,  <span style=color:#75715e># 사전 필터 표현식</span>
-</span></span><span style=display:flex><span>    output_fields<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;text&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>len(results[<span style=color:#ae81ff>0</span>])<span style=color:#e6db74>}</span><span style=color:#e6db74>개 필터링된 결과 발견&#34;</span>)
-</span></span></code></pre></div><h2 id=벤치마크-실제-데이터>벤치마크: 실제 데이터<a hidden class=anchor aria-hidden=true href=#벤치마크-실제-데이터>#</a></h2><p>2026년 4월 독립 벤치마크, <code>dbpedia-openai-1M</code> 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
+5. <strong>Coordinator</strong> (Root/Query/Data) — etcd를 통한 메타데이터 관리.</p>
+<p>스토리지는 분리되어 있다: <strong>etcd</strong>가 메타데이터를, <strong>MinIO/S3</strong>가 실제 벡터 데이터와 인덱스를 저장한다. 이러한 분리는 <strong>계층화 스토리지</strong>를 가능하게 한다 — 핫 벡터는 로컬 NVMe에, 웜 벡터는 객체 스토리지로, 콜드 벡터는 아카이브될 수 있다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># etcd: 메타데이터 조정</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MinIO: 세그먼트와 인덱스용 객체 스토리지</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pulsar/Kafka: 스트리밍 삽입용 로그 브로커</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Milvus: proxy, query/data/index 노드, coordinators</span>
+</span></span></code></pre></div><p><strong>GPU 인덱싱 (2.5 신규):</strong> Milvus 2.5는 NVIDIA RAFT를 통해 GPU 가속 인덱스 빌딩을 도입했다. 단일 Tesla T4에서 인덱스 구축은 CPU 전용 대비 <strong>약 6배 빠르다</strong>. 쿼리 처리량은 두 배로 증가한다. GPU 지원 Kubernetes 클러스터를 운영하는 팀에게 (<a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean GPU Droplet</a> 등) 이것은 혁신적이다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Milvus index node용 GPU 리소스 할당 (Helm values)</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">indexNode: resources: limits: nvidia.com/gpu</span>: <span style="color:#ae81ff">1</span>  <span style="color:#75715e"># 인덱스 빌딩을 위해 1개 GPU 요청</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">requests: memory</span>: <span style="color:#e6db74">&#34;16Gi&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">cpu</span>: <span style="color:#e6db74">&#34;8&#34;</span>
+</span></span></code></pre></div><h2 id="설치-및-설정-docker부터-kubernetes까지">설치 및 설정: Docker부터 Kubernetes까지<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정-docker부터-kubernetes까지">#</a></h2>
+<h3 id="옵션-a-docker-단독-실행-5분">옵션 A: Docker 단독 실행 (&lt;5분)<a hidden class="anchor" aria-hidden="true" href="#옵션-a-docker-단독-실행-5분">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose 파일 다운로드</span>
+</span></span><span style="display:flex;"><span>curl -sfL https://raw.githubusercontent.com/milvus-io/milvus/master/scripts/standalone_embed.sh -o standalone_embed.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Milvus 단독 실행 시작</span>
+</span></span><span style="display:flex;"><span>bash standalone_embed.sh start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 확인</span>
+</span></span><span style="display:flex;"><span>docker ps | grep milvus
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: milvusdb/milvus:v2.5.10  &#34;milvus run standalone&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Python SDK 설치</span>
+</span></span><span style="display:flex;"><span>pip install pymilvus<span style="color:#f92672">==</span>2.5.10
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 연결 테스트</span>
+</span></span><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">from pymilvus import connections, utility
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">connections.connect(host=localhost, port=19530)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">print(&#39;Milvus version:&#39;, utility.get_server_version())
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="옵션-b-helm을-통한-kubernetes-배포-프로덕션">옵션 B: Helm을 통한 Kubernetes 배포 (프로덕션)<a hidden class="anchor" aria-hidden="true" href="#옵션-b-helm을-통한-kubernetes-배포-프로덕션">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Milvus Helm 저장소 추가</span>
+</span></span><span style="display:flex;"><span>helm repo add milvus https://zilliztech.github.io/milvus-helm/
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 기본 분산 모드로 설치</span>
+</span></span><span style="display:flex;"><span>helm install my-milvus milvus/milvus <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set cluster.enabled<span style="color:#f92672">=</span>true <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set etcd.replicaCount<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set minio.mode<span style="color:#f92672">=</span>distributed <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set minio.drivesPerNode<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set queryNode.replicas<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 Pod 실행 확인</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -l app.kubernetes.io/instance<span style="color:#f92672">=</span>my-milvus
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># LoadBalancer를 통해 외부 노출</span>
+</span></span><span style="display:flex;"><span>kubectl patch svc my-milvus-proxy -p <span style="color:#e6db74">&#39;{&#34;spec&#34;:{&#34;type&#34;:&#34;LoadBalancer&#34;}}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 엔드포인트 확인</span>
+</span></span><span style="display:flex;"><span>export MILVUS_HOST<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>kubectl get svc my-milvus-proxy -o jsonpath<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;{.status.loadBalancer.ingress[0].ip}&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo $MILVUS_HOST
+</span></span></code></pre></div><h3 id="옵션-c-zilliz-cloud-완전-관리형-제로-운영">옵션 C: Zilliz Cloud (완전 관리형, 제로 운영)<a hidden class="anchor" aria-hidden="true" href="#옵션-c-zilliz-cloud-완전-관리형-제로-운영">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># https://cloud.zilliz.com 에서 가입</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 묣체 클러스터 생성 (최대 100만 벡터)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># API 키와 엔드포인트 복사</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>pip install pymilvus<span style="color:#f92672">==</span>2.5.10
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> connections, Collection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Zilliz Cloud에 연결</span>
+</span></span><span style="display:flex;"><span>connections<span style="color:#f92672">.</span>connect(
+</span></span><span style="display:flex;"><span>    alias<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;default&#34;</span>,
+</span></span><span style="display:flex;"><span>    uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://your-cluster.zillizcloud.com&#34;</span>,
+</span></span><span style="display:flex;"><span>    token<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Connected to Zilliz Cloud!&#34;</span>)
+</span></span></code></pre></div><h2 id="핵심-작업-컬렉션-생성-삽입-검색">핵심 작업: 컬렉션 생성, 삽입, 검색<a hidden class="anchor" aria-hidden="true" href="#핵심-작업-컬렉션-생성-삽입-검색">#</a></h2>
+<h3 id="hnsw-인덱스로-컬렉션-생성">HNSW 인덱스로 컬렉션 생성<a hidden class="anchor" aria-hidden="true" href="#hnsw-인덱스로-컬렉션-생성">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> FieldSchema, CollectionSchema, DataType, Collection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 필드 정의</span>
+</span></span><span style="display:flex;"><span>fields <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;id&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>INT64, is_primary<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, auto_id<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>),
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>FLOAT_VECTOR, dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>),
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>VARCHAR, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">4096</span>),
+</span></span><span style="display:flex;"><span>    FieldSchema(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;category&#34;</span>, dtype<span style="color:#f92672">=</span>DataType<span style="color:#f92672">.</span>VARCHAR, max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>),
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>schema <span style="color:#f92672">=</span> CollectionSchema(fields, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Document embeddings&#34;</span>)
+</span></span><span style="display:flex;"><span>collection <span style="color:#f92672">=</span> Collection(name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;documents&#34;</span>, schema<span style="color:#f92672">=</span>schema)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 빠른 ANN 검색을 위한 HNSW 인덱스 생성</span>
+</span></span><span style="display:flex;"><span>index_params <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;index_type&#34;</span>: <span style="color:#e6db74">&#34;HNSW&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;M&#34;</span>: <span style="color:#ae81ff">16</span>, <span style="color:#e6db74">&#34;efConstruction&#34;</span>: <span style="color:#ae81ff">200</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>create_index(field_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>, index_params<span style="color:#f92672">=</span>index_params)
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>load()
+</span></span></code></pre></div><h3 id="벡터-삽입-단일-및-배치">벡터 삽입 (단일 및 배치)<a hidden class="anchor" aria-hidden="true" href="#벡터-삽입-단일-및-배치">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 샘플 데이터 생성: 10만 벡터, 각 1536 차원</span>
+</span></span><span style="display:flex;"><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span><span style="display:flex;"><span>total_vectors <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>, total_vectors, batch_size): embeddings <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(batch_size, <span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()
+</span></span><span style="display:flex;"><span>    texts <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;document_</span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span>j<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>    categories <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;tech&#34;</span> <span style="color:#66d9ef">if</span> j <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;finance&#34;</span> <span style="color:#66d9ef">for</span> j <span style="color:#f92672">in</span> range(batch_size)]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    collection<span style="color:#f92672">.</span>insert([embeddings, texts, categories])
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>i <span style="color:#f92672">+</span> batch_size<span style="color:#e6db74">}</span><span style="color:#e6db74">/</span><span style="color:#e6db74">{</span>total_vectors<span style="color:#e6db74">}</span><span style="color:#e6db74"> 벡터 삽입 완료&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 지속성 보장을 위해 플러시</span>
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>flush()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;총 삽입 수: </span><span style="color:#e6db74">{</span>collection<span style="color:#f92672">.</span>num_entities<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="메타데이터-필터가-적용된-벡터-검색">메타데이터 필터가 적용된 벡터 검색<a hidden class="anchor" aria-hidden="true" href="#메타데이터-필터가-적용된-벡터-검색">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 단일 벡터 검색</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> collection<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()],
+</span></span><span style="display:flex;"><span>    anns_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>,
+</span></span><span style="display:flex;"><span>    param<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>, <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;ef&#34;</span>: <span style="color:#ae81ff">64</span>}},
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    output_fields<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results[<span style="color:#ae81ff">0</span>]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;ID: </span><span style="color:#e6db74">{</span>hit<span style="color:#f92672">.</span>id<span style="color:#e6db74">}</span><span style="color:#e6db74">, 거리: </span><span style="color:#e6db74">{</span>hit<span style="color:#f92672">.</span>distance<span style="color:#e6db74">:</span><span style="color:#e6db74">.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">, 텍스트: </span><span style="color:#e6db74">{</span>hit<span style="color:#f92672">.</span>entity<span style="color:#f92672">.</span>text<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 하이브리드 검색: 벡터 유사도 + 메타데이터 필터</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> Filter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>expr <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;category == &#34;tech&#34; AND text like &#34;%neural%&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> collection<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(<span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()],
+</span></span><span style="display:flex;"><span>    anns_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>,
+</span></span><span style="display:flex;"><span>    param<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>, <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;ef&#34;</span>: <span style="color:#ae81ff">128</span>}},
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+</span></span><span style="display:flex;"><span>    expr<span style="color:#f92672">=</span>expr,  <span style="color:#75715e"># 사전 필터 표현식</span>
+</span></span><span style="display:flex;"><span>    output_fields<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;text&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>len(results[<span style="color:#ae81ff">0</span>])<span style="color:#e6db74">}</span><span style="color:#e6db74">개 필터링된 결과 발견&#34;</span>)
+</span></span></code></pre></div><h2 id="벤치마크-실제-데이터">벤치마크: 실제 데이터<a hidden class="anchor" aria-hidden="true" href="#벤치마크-실제-데이터">#</a></h2>
+<p>2026년 4월 독립 벤치마크, <code>dbpedia-openai-1M</code> 데이터셋 사용 (100만 벡터, 1536 차원, AWS c6i.8xlarge, 명시되지 않은 경우): | 지표 | Milvus (CPU) | Milvus (GPU T4) | Pinecone | Weaviate | Qdrant |
 |&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;-|&mdash;&mdash;&ndash;|
 | <strong>p99 쿼리 지연시간</strong> | 18 ms | <strong>8 ms</strong> | 28 ms | 19 ms | 12 ms |
 | <strong>Recall@10</strong> | <strong>0.99</strong> | <strong>0.99</strong> | 0.94 | 0.97 | 0.99 |
@@ -139,87 +484,105 @@
 | <strong>인덱싱 속도</strong> | 85K vec/s | <strong>320K vec/s</strong> | 50K vec/s | 35K vec/s | 42K vec/s |
 | <strong>규모 상한</strong> | <strong>10B+</strong> | <strong>10B+</strong> | 무제한 | 200M | 500M |
 | <strong>하이브리드 검색</strong> | Native | Native | Native | Native | Native |
-| <strong>셀프 호스팅 비용 ($/M/월)</strong> | ~$400 | ~$600 | N/A | ~$320 | ~$280 |</p><p><strong>핵심 발견:</strong></p><ul><li>**Milvus (GPU)**는 최고 인덱싱 처리량 제공 — 단일 Tesla T4에서 <strong>320K 벡터/초</strong>, Qdrant의 약 8배, Pinecone의 6.4배.</li><li><strong>쿼리 지연시간</strong>은 GPU에서 (8ms p99) 가장 빠른 대안과 경쟁력이 있다.</li><li><strong>규모 상한</strong>은 Milvus가 지배하는 영역이다: 프로덕션 배포에서 <strong>100억+ 벡터</strong>가 검증되었으며, 이론적 상한은 훨씬 높다.</li><li>대가는 운영 복잡성이다. Milvus는 Kubernetes 전문성이 필요하다. 제로 운영이 필요하면 <a href=https://cloud.zilliz.com>Zilliz Cloud</a> 또는 관리형 <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Kubernetes 클러스터</a>가 권장된다.</li></ul><h3 id=대규모-삽입-벤치마크>대규모 삽입 벤치마크<a hidden class=anchor aria-hidden=true href=#대규모-삽입-벤치마크>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 삽입 처리량 벤치마크 스크립트</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> time
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pymilvus <span style=color:#f92672>import</span> Collection
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>collection <span style=color:#f92672>=</span> Collection(<span style=color:#e6db74>&#34;benchmark&#34;</span>)
-</span></span><span style=display:flex><span>batch <span style=color:#f92672>=</span> <span style=color:#ae81ff>100000</span>  <span style=color:#75715e># 10만 벡터</span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> np<span style=color:#f92672>.</span>random<span style=color:#f92672>.</span>randn(batch, <span style=color:#ae81ff>1536</span>)<span style=color:#f92672>.</span>tolist()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>t0 <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>insert([embeddings])
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>flush()
-</span></span><span style=display:flex><span>elapsed <span style=color:#f92672>=</span> time<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> t0
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>batch<span style=color:#e6db74>:</span><span style=color:#e6db74>,</span><span style=color:#e6db74>}</span><span style=color:#e6db74> 벡터 삽입 완료, </span><span style=color:#e6db74>{</span>elapsed<span style=color:#e6db74>:</span><span style=color:#e6db74>.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>초 소요&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;처리량: </span><span style=color:#e6db74>{</span>batch<span style=color:#f92672>/</span>elapsed<span style=color:#e6db74>:</span><span style=color:#e6db74>,.0f</span><span style=color:#e6db74>}</span><span style=color:#e6db74> 벡터/초&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#75715e># GPU index node 출력: 100,000 벡터 삽입 완료, 0.31초 소요</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 출력: 처리량: 320,000 벡터/초</span>
-</span></span></code></pre></div><h2 id=인기-ai-프레임워크와의-통합>인기 AI 프레임워크와의 통합<a hidden class=anchor aria-hidden=true href=#인기-ai-프레임워크와의-통합>#</a></h2><h3 id=langchain-통합>LangChain 통합<a hidden class=anchor aria-hidden=true href=#langchain-통합>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pip install langchain<span style=color:#f92672>-</span>milvus<span style=color:#f92672>==</span><span style=color:#ae81ff>0.1.8</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain_milvus <span style=color:#f92672>import</span> Milvus
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> OpenAIEmbeddings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> OpenAIEmbeddings(model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>)
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> Milvus(
-</span></span><span style=display:flex><span>    embedding_function<span style=color:#f92672>=</span>embeddings,
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;langchain_docs&#34;</span>,
-</span></span><span style=display:flex><span>    connection_args<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;localhost&#34;</span>, <span style=color:#e6db74>&#34;port&#34;</span>: <span style=color:#e6db74>&#34;19530&#34;</span>},
-</span></span><span style=display:flex><span>    auto_id<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 문서 추가</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.documents <span style=color:#f92672>import</span> Document
-</span></span><span style=display:flex><span>docs <span style=color:#f92672>=</span> [Document(page_content<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Milvus supports billion-scale vectors&#34;</span>, metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;docs&#34;</span>})]
-</span></span><span style=display:flex><span>vector_store<span style=color:#f92672>.</span>add_documents(docs)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 유사도 검색</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> vector_store<span style=color:#f92672>.</span>similarity_search(<span style=color:#e6db74>&#34;large scale vector search&#34;</span>, k<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> doc <span style=color:#f92672>in</span> results: print(doc<span style=color:#f92672>.</span>page_content)
-</span></span></code></pre></div><h3 id=llamaindex-통합>LlamaIndex 통합<a hidden class=anchor aria-hidden=true href=#llamaindex-통합>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>pip install llama<span style=color:#f92672>-</span>index<span style=color:#f92672>-</span>vector<span style=color:#f92672>-</span>stores<span style=color:#f92672>-</span>milvus<span style=color:#f92672>==</span><span style=color:#ae81ff>0.6.0</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.vector_stores.milvus <span style=color:#f92672>import</span> MilvusVectorStore
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, SimpleDirectoryReader
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>vector_store <span style=color:#f92672>=</span> MilvusVectorStore(
-</span></span><span style=display:flex><span>    uri<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://localhost:19530&#34;</span>,
-</span></span><span style=display:flex><span>    collection_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;llamaindex_docs&#34;</span>,
-</span></span><span style=display:flex><span>    dim<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>,
-</span></span><span style=display:flex><span>    overwrite<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 문서 로드 및 인덱싱</span>
-</span></span><span style=display:flex><span>documents <span style=color:#f92672>=</span> SimpleDirectoryReader(<span style=color:#e6db74>&#34;./data&#34;</span>)<span style=color:#f92672>.</span>load_data()
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents, vector_store<span style=color:#f92672>=</span>vector_store)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 쿼리</span>
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> query_engine<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;What is Milvus architecture?&#34;</span>)
-</span></span><span style=display:flex><span>print(response)
-</span></span></code></pre></div><h3 id=openai-embeddings-통합>OpenAI Embeddings 통합<a hidden class=anchor aria-hidden=true href=#openai-embeddings-통합>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_embedding</span>(text: str) <span style=color:#f92672>-&gt;</span> list[float]: resp <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>embeddings<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text-embedding-3-large&#34;</span>,
-</span></span><span style=display:flex><span>        input<span style=color:#f92672>=</span>text,
-</span></span><span style=display:flex><span>        dimensions<span style=color:#f92672>=</span><span style=color:#ae81ff>1536</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> resp<span style=color:#f92672>.</span>data[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>embedding
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># OpenAI 임베딩을 Milvus에 삽입</span>
-</span></span><span style=display:flex><span>embedding <span style=color:#f92672>=</span> get_embedding(<span style=color:#e6db74>&#34;Milvus vector database handles 10 billion vectors&#34;</span>)
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>insert([[embedding], [<span style=color:#e6db74>&#34;milvus_overview&#34;</span>]])
-</span></span></code></pre></div><h2 id=고급-사용법-및-프로덕션-강화>고급 사용법 및 프로덕션 강화<a hidden class=anchor aria-hidden=true href=#고급-사용법-및-프로덕션-강화>#</a></h2><h3 id=계층화-스토리지-구성>계층화 스토리지 구성<a hidden class=anchor aria-hidden=true href=#계층화-스토리지-구성>#</a></h3><p>Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: `````yaml</p><h1 id=계층화-스토리지용-helm-values>계층화 스토리지용 Helm values<a hidden class=anchor aria-hidden=true href=#계층화-스토리지용-helm-values>#</a></h1><p>extraConfigFiles: user.yaml: |+
+| <strong>셀프 호스팅 비용 ($/M/월)</strong> | ~$400 | ~$600 | N/A | ~$320 | ~$280 |</p>
+<p><strong>핵심 발견:</strong></p>
+<ul>
+<li>**Milvus (GPU)**는 최고 인덱싱 처리량 제공 — 단일 Tesla T4에서 <strong>320K 벡터/초</strong>, Qdrant의 약 8배, Pinecone의 6.4배.</li>
+<li><strong>쿼리 지연시간</strong>은 GPU에서 (8ms p99) 가장 빠른 대안과 경쟁력이 있다.</li>
+<li><strong>규모 상한</strong>은 Milvus가 지배하는 영역이다: 프로덕션 배포에서 <strong>100억+ 벡터</strong>가 검증되었으며, 이론적 상한은 훨씬 높다.</li>
+<li>대가는 운영 복잡성이다. Milvus는 Kubernetes 전문성이 필요하다. 제로 운영이 필요하면 <a href="https://cloud.zilliz.com">Zilliz Cloud</a> 또는 관리형 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Kubernetes 클러스터</a>가 권장된다.</li>
+</ul>
+<h3 id="대규모-삽입-벤치마크">대규모 삽입 벤치마크<a hidden class="anchor" aria-hidden="true" href="#대규모-삽입-벤치마크">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 삽입 처리량 벤치마크 스크립트</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pymilvus <span style="color:#f92672">import</span> Collection
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>collection <span style="color:#f92672">=</span> Collection(<span style="color:#e6db74">&#34;benchmark&#34;</span>)
+</span></span><span style="display:flex;"><span>batch <span style="color:#f92672">=</span> <span style="color:#ae81ff">100000</span>  <span style="color:#75715e"># 10만 벡터</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>random<span style="color:#f92672">.</span>randn(batch, <span style="color:#ae81ff">1536</span>)<span style="color:#f92672">.</span>tolist()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>t0 <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>insert([embeddings])
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>flush()
+</span></span><span style="display:flex;"><span>elapsed <span style="color:#f92672">=</span> time<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> t0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>batch<span style="color:#e6db74">:</span><span style="color:#e6db74">,</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> 벡터 삽입 완료, </span><span style="color:#e6db74">{</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">초 소요&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;처리량: </span><span style="color:#e6db74">{</span>batch<span style="color:#f92672">/</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">,.0f</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> 벡터/초&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GPU index node 출력: 100,000 벡터 삽입 완료, 0.31초 소요</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: 처리량: 320,000 벡터/초</span>
+</span></span></code></pre></div><h2 id="인기-ai-프레임워크와의-통합">인기 AI 프레임워크와의 통합<a hidden class="anchor" aria-hidden="true" href="#인기-ai-프레임워크와의-통합">#</a></h2>
+<h3 id="langchain-통합">LangChain 통합<a hidden class="anchor" aria-hidden="true" href="#langchain-통합">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pip install langchain<span style="color:#f92672">-</span>milvus<span style="color:#f92672">==</span><span style="color:#ae81ff">0.1.8</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_milvus <span style="color:#f92672">import</span> Milvus
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings(model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>)
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> Milvus(
+</span></span><span style="display:flex;"><span>    embedding_function<span style="color:#f92672">=</span>embeddings,
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;langchain_docs&#34;</span>,
+</span></span><span style="display:flex;"><span>    connection_args<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;localhost&#34;</span>, <span style="color:#e6db74">&#34;port&#34;</span>: <span style="color:#e6db74">&#34;19530&#34;</span>},
+</span></span><span style="display:flex;"><span>    auto_id<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문서 추가</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.documents <span style="color:#f92672">import</span> Document
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> [Document(page_content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Milvus supports billion-scale vectors&#34;</span>, metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;docs&#34;</span>})]
+</span></span><span style="display:flex;"><span>vector_store<span style="color:#f92672">.</span>add_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 유사도 검색</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> vector_store<span style="color:#f92672">.</span>similarity_search(<span style="color:#e6db74">&#34;large scale vector search&#34;</span>, k<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> results: print(doc<span style="color:#f92672">.</span>page_content)
+</span></span></code></pre></div><h3 id="llamaindex-통합">LlamaIndex 통합<a hidden class="anchor" aria-hidden="true" href="#llamaindex-통합">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>pip install llama<span style="color:#f92672">-</span>index<span style="color:#f92672">-</span>vector<span style="color:#f92672">-</span>stores<span style="color:#f92672">-</span>milvus<span style="color:#f92672">==</span><span style="color:#ae81ff">0.6.0</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.vector_stores.milvus <span style="color:#f92672">import</span> MilvusVectorStore
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, SimpleDirectoryReader
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>vector_store <span style="color:#f92672">=</span> MilvusVectorStore(
+</span></span><span style="display:flex;"><span>    uri<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://localhost:19530&#34;</span>,
+</span></span><span style="display:flex;"><span>    collection_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llamaindex_docs&#34;</span>,
+</span></span><span style="display:flex;"><span>    dim<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>,
+</span></span><span style="display:flex;"><span>    overwrite<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 문서 로드 및 인덱싱</span>
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./data&#34;</span>)<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents, vector_store<span style="color:#f92672">=</span>vector_store)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 쿼리</span>
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;What is Milvus architecture?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response)
+</span></span></code></pre></div><h3 id="openai-embeddings-통합">OpenAI Embeddings 통합<a hidden class="anchor" aria-hidden="true" href="#openai-embeddings-통합">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_embedding</span>(text: str) <span style="color:#f92672">-&gt;</span> list[float]: resp <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>embeddings<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text-embedding-3-large&#34;</span>,
+</span></span><span style="display:flex;"><span>        input<span style="color:#f92672">=</span>text,
+</span></span><span style="display:flex;"><span>        dimensions<span style="color:#f92672">=</span><span style="color:#ae81ff">1536</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> resp<span style="color:#f92672">.</span>data[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>embedding
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenAI 임베딩을 Milvus에 삽입</span>
+</span></span><span style="display:flex;"><span>embedding <span style="color:#f92672">=</span> get_embedding(<span style="color:#e6db74">&#34;Milvus vector database handles 10 billion vectors&#34;</span>)
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>insert([[embedding], [<span style="color:#e6db74">&#34;milvus_overview&#34;</span>]])
+</span></span></code></pre></div><h2 id="고급-사용법-및-프로덕션-강화">고급 사용법 및 프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#고급-사용법-및-프로덕션-강화">#</a></h2>
+<h3 id="계층화-스토리지-구성">계층화 스토리지 구성<a hidden class="anchor" aria-hidden="true" href="#계층화-스토리지-구성">#</a></h3>
+<p>Milvus 2.5는 대규모 데이터셋 비용 절감을 위해 계층화 스토리지를 지원한다: `````yaml</p>
+<h1 id="계층화-스토리지용-helm-values">계층화 스토리지용 Helm values<a hidden class="anchor" aria-hidden="true" href="#계층화-스토리지용-helm-values">#</a></h1>
+<p>extraConfigFiles: user.yaml: |+
 common: storageType: remote
 minio: address: minio.milvus.svc:9000
 bucketName: milvus-bucket
 rootPath: files
 # 계층화 스토리지 활성화
 queryNode: cache: warmUp: async
-memoryLimit: 8GB # 메모리의 핫 데이터
-disk: enabled: true # 로컬 디스크의 웜 데이터
-capacity: 100GB</p><pre tabindex=0><code>
+memoryLimit: 8GB  # 메모리의 핫 데이터
+disk: enabled: true     # 로컬 디스크의 웜 데이터
+capacity: 100GB</p>
+<pre tabindex="0"><code>
 ### 백업 및 재해 복구
 
 `````bash
@@ -233,37 +596,159 @@ make
 
 # 새 클러스터로 복원
 ./milvus-backup restore -n prod_backup_2026_05 -c restored_collection
-</code></pre><h3 id=prometheus-및-grafana-모니터링>Prometheus 및 Grafana 모니터링<a hidden class=anchor aria-hidden=true href=#prometheus-및-grafana-모니터링>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Helm values의 Milvus 모니터링 구성</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metrics: enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>serviceMonitor: enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>30s</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Grafana 대시보드: https://github.com/zilliztech/milvus-insight</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Milvus 메트릭 접근을 위한 포트 포워딩</span>
-</span></span><span style=display:flex><span>kubectl port-forward svc/my-milvus-proxy 9091:9091
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 상태 확인</span>
-</span></span><span style=display:flex><span>curl http://localhost:9091/metrics | grep milvus_querynode_latency
-</span></span></code></pre></div><h3 id=파티션을-이용한-다중-테넌트>파티션을 이용한 다중 테넌트<a hidden class=anchor aria-hidden=true href=#파티션을-이용한-다중-테넌트>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 다중 테넌트 격리를 위한 파티션 생성</span>
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>create_partition(<span style=color:#e6db74>&#34;tenant_acme&#34;</span>)
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>create_partition(<span style=color:#e6db74>&#34;tenant_globalcorp&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 테넌트별 데이터 삽입</span>
-</span></span><span style=display:flex><span>collection<span style=color:#f92672>.</span>insert(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[[embedding], [<span style=color:#e6db74>&#34;doc_1&#34;</span>]],
-</span></span><span style=display:flex><span>    partition_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;tenant_acme&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 특정 테넌트 파티션 내에서만 검색</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> collection<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>    data<span style=color:#f92672>=</span>[query_vector],
-</span></span><span style=display:flex><span>    anns_field<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;embedding&#34;</span>,
-</span></span><span style=display:flex><span>    param<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;metric_type&#34;</span>: <span style=color:#e6db74>&#34;L2&#34;</span>, <span style=color:#e6db74>&#34;params&#34;</span>: {<span style=color:#e6db74>&#34;ef&#34;</span>: <span style=color:#ae81ff>64</span>}},
-</span></span><span style=display:flex><span>    limit<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    partition_names<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;tenant_acme&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=대안과의-비교>대안과의 비교<a hidden class=anchor aria-hidden=true href=#대안과의-비교>#</a></h2><table><thead><tr><th>기능</th><th>Milvus 2.5</th><th>Pinecone</th><th>Weaviate 1.25</th><th>Qdrant 1.11</th><th>pgvector 0.8</th></tr></thead><tbody><tr><td><strong>오픈소스</strong></td><td>Apache-2.0</td><td>아니오</td><td>BSD-3</td><td>Apache-2.0</td><td>PostgreSQL</td></tr><tr><td><strong>최대 규모</strong></td><td><strong>10B+ 벡터</strong></td><td>무제한</td><td>200M/노드</td><td>500M/노드</td><td>~50M</td></tr><tr><td><strong>p99 지연시간</strong></td><td>8ms (GPU)</td><td>28ms</td><td>19ms</td><td>12ms</td><td>25-40ms</td></tr><tr><td><strong>GPU 인덱싱</strong></td><td><strong>예 (6배 가속)</strong></td><td>아니오</td><td>아니오</td><td>아니오 (1.12 예정)</td><td>아니오</td></tr><tr><td><strong>분산 아키텍처</strong></td><td><strong>네이티브 K8s</strong></td><td>관리형만</td><td>클러스터</td><td>클러스터</td><td>아니오</td></tr><tr><td><strong>하이브리드 검색</strong></td><td>Native + filter</td><td>Native</td><td><strong>최고</strong></td><td>BM42</td><td>FTS + vector</td></tr><tr><td><strong>SQL 지원</strong></td><td>아니오 (gRPC/REST)</td><td>아니오</td><td>GraphQL</td><td>아니오</td><td><strong>전체 SQL</strong></td></tr><tr><td><strong>관리형 옵션</strong></td><td>Zilliz Cloud</td><td>네이티브</td><td>Weaviate Cloud</td><td>Qdrant Cloud</td><td>Supabase/Neon</td></tr><tr><td><strong>셀프 호스팅 비용</strong></td><td>$400/M/월</td><td>N/A</td><td>$320/M/월</td><td>$280/M/월</td><td><strong>$0 (기존 PG 활용)</strong></td></tr></tbody></table><p><strong>Milvus를 선택해야 할 때:</strong></p><ul><li>12개월 내 데이터셋이 <strong>1억 벡터</strong>를 초과할 것으로 예상.</li><li>이미 Kubernetes 클러스터가 운영 중.</li><li>인덱스 가속을 위한 GPU 하드웨어가 사용 가능.</li><li>10억 규모에서 가능한 한 낮은 셀프 호스팅 비용이 필요 (관리형 대안이 비현실적으로 비싸지는 지점).</li></ul><p><strong>대안을 선택해야 할 때:</strong></p><ul><li><strong>Pinecone</strong>: 제로 운영 요구, 작은 규모 (&lt;5000만 벡터), 예산이 관리형 가격을 허용.</li><li><strong>Weaviate</strong>: 네이티브 하이브리드 검색 (BM25 + 벡터)이 중요, GraphQL API 선호.</li><li><strong>Qdrant</strong>: 원시 지연이 최우선, Rust 네이티브 성능, 더 간단한 셀프 호스팅.</li><li><strong><a href=dibi8-internal-link>pgvector</a></strong>: 이미 PostgreSQL 사용 중, &lt;1000만 벡터, 단일 시스템에서 ACID 트랜잭션과 벡터 검색 모두 필요.</li></ul><h2 id=한계-정직한-평가>한계: 정직한 평가<a hidden class=anchor aria-hidden=true href=#한계-정직한-평가>#</a></h2><p><strong>운영 복잡성:</strong> Milvus는 Kubernetes, etcd, MinIO, 메시지 브로커가 필요하다. 이는 단일 바이너리 배포가 아니다. 전용 DevOps가 없는 팀은 Zilliz Cloud나 더 간단한 대안을 사용해야 한다.</p><p><strong>소규모에 과잉 설계:</strong> 1000만 벡터 이하에서는 분산 아키텍처가 불필요한 오버헤드를 추가한다. 단일 노드 Qdrant나 pgvector가 배포와 운영이 더 빠르다.</p><p><strong>SQL 인터페이스 부재:</strong> Milvus는 gRPC/REST API를 사용한다. 팀이 SQL에 깊이 투자했다면 Weaviate (GraphQL)나 pgvector (SQL)이 더 자연스럽다.</p><p><strong>메모리 소비:</strong> GPU 가속 쿼리는 GPU 메모리가 필요하다. Tesla T4 (16GB VRAM)은 GPU 메모리에 약 1000만 개의 1536차원 벡터를 수용할 수 있다. 하드웨어를 그에 맞게 계획해야 한다.</p><p><strong>학습 곡선:</strong> 컴포넌트 아키텍처 (proxy, query node, data node, index node, coordinators)는 모놀리식 대안보다 학습 곡선이 가파르다.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><h3 id=단일-milvus-클러스터는-얼마나-많은-벡터를-처리할-수-있나요>단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요?<a hidden class=anchor aria-hidden=true href=#단일-milvus-클러스터는-얼마나-많은-벡터를-처리할-수-있나요>#</a></h3><p>프로덕션 배포에서 <strong>100억 벡터</strong>를 p99 쿼리 지연 10ms 미만으로 입증했다. 이론적 상한은 사용 가능한 스토리지와 컴퓨팅에 달려 있다. 계층화 스토리지 (핫/웜/콜드)를 사용하면 훨씬 더 큰 데이터셋도 가능하다. 단일 query node는 일반적으로 메모리에서 1-2억 벡터를 처리할 수 있다.</p><h3 id=milvus는-검색-중-실시간-삽입을-지원하나요>Milvus는 검색 중 실시간 삽입을 지원하나요?<a hidden class=anchor aria-hidden=true href=#milvus는-검색-중-실시간-삽입을-지원하나요>#</a></h3><p>예. Milvus는 <strong>로그 구조 병합 트리</strong> 방식을 사용한다. 새 삽입은 즉시 검색 가능한 가변 세그먼트로 들어가고, 백그라운드 프로세스가 불변 세그먼트를 플러시하고 컴팩션한다. 삽입 중 &ldquo;인덱스 잠금"이 없다 — 검색은 중단되지 않는다.</p><h3 id=milvus와-zilliz-cloud의-차이점은-무엇인가요>Milvus와 Zilliz Cloud의 차이점은 무엇인가요?<a hidden class=anchor aria-hidden=true href=#milvus와-zilliz-cloud의-차이점은-무엇인가요>#</a></h3><p><strong>Milvus</strong>는 자체 인프라에서 셀프 호스팅하는 오픈소스 프로젝트이다. <strong>Zilliz Cloud</strong>는 Milvus를 만든 Zilliz가 운영하는 완전 관리형 서비스이다. 둘은 동일한 API를 공유하므로 전환 시 애플리케이션 코드를 변경할 필요가 없다. Zilliz Cloud는 자동 확장, 자동 백업, SOC 2 규정 준수를 추가한다.</p><h3 id=milvus는-텍스트-검색을-위해-elasticsearch를-대체할-수-있나요>Milvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요?<a hidden class=anchor aria-hidden=true href=#milvus는-텍스트-검색을-위해-elasticsearch를-대체할-수-있나요>#</a></h3><p>완전히는 아니다. Milvus는 밀집 벡터 (의미론적) 검색에 탁월하다. 순수 키워드 (BM25) 검색에서는 여전히 Elasticsearch가 선도한다. 그러나 Milvus 2.5는 밀집 벡터와 키워드 관련성을 위한 희소 벡터를 결합한 <strong>하이브리드 검색</strong>을 지원한다. 의미론적 검색과 어휘 검색이 모두 필요한 애플리케이션의 경우, 이중 시스템 방식이나 Weaviate의 네이티브 하이브리드가 더 적합할 수 있다.</p><h3 id=milvus-25에서-gpu-인덱싱은-어떻게-작동하나요>Milvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요?<a hidden class=anchor aria-hidden=true href=#milvus-25에서-gpu-인덱싱은-어떻게-작동하나요>#</a></h3><p>Milvus 2.5는 NVIDIA RAFT와 통합하여 GPU 가속 HNSW 및 IVF 인덱스 구축을 한다. 인덱스 노드에 GPU 리소스가 할당되면 인덱스 빌드가 자동으로 GPU 커널을 사용한다. 이는 CPU 전용 빌드에 비해 인덱스 빌드 시간을 약 <strong>6배</strong> 단축한다. 쿼리 실행도 GPU 메모리를 활용하여 더 낮은 지연을 달성할 수 있다. GPU 지원에는 NVIDIA 드라이버와 index node의 CUDA 툴킷이 필요하다.</p><h3 id=milvus는-어떤-백업-전략을-지원하나요>Milvus는 어떤 백업 전략을 지원하나요?<a hidden class=anchor aria-hidden=true href=#milvus는-어떤-백업-전략을-지원하나요>#</a></h3><p>Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: `````bash
-0 2 * * * /usr/local/bin/milvus-backup create -n &ldquo;auto_$(date +%Y%m%d)&rdquo;</p><pre tabindex=0><code>
+</code></pre><h3 id="prometheus-및-grafana-모니터링">Prometheus 및 Grafana 모니터링<a hidden class="anchor" aria-hidden="true" href="#prometheus-및-grafana-모니터링">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Helm values의 Milvus 모니터링 구성</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metrics: enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">serviceMonitor: enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Grafana 대시보드: https://github.com/zilliztech/milvus-insight</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Milvus 메트릭 접근을 위한 포트 포워딩</span>
+</span></span><span style="display:flex;"><span>kubectl port-forward svc/my-milvus-proxy 9091:9091
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 상태 확인</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:9091/metrics | grep milvus_querynode_latency
+</span></span></code></pre></div><h3 id="파티션을-이용한-다중-테넌트">파티션을 이용한 다중 테넌트<a hidden class="anchor" aria-hidden="true" href="#파티션을-이용한-다중-테넌트">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 다중 테넌트 격리를 위한 파티션 생성</span>
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>create_partition(<span style="color:#e6db74">&#34;tenant_acme&#34;</span>)
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>create_partition(<span style="color:#e6db74">&#34;tenant_globalcorp&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 테넌트별 데이터 삽입</span>
+</span></span><span style="display:flex;"><span>collection<span style="color:#f92672">.</span>insert(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[[embedding], [<span style="color:#e6db74">&#34;doc_1&#34;</span>]],
+</span></span><span style="display:flex;"><span>    partition_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;tenant_acme&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 특정 테넌트 파티션 내에서만 검색</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> collection<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>    data<span style="color:#f92672">=</span>[query_vector],
+</span></span><span style="display:flex;"><span>    anns_field<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;embedding&#34;</span>,
+</span></span><span style="display:flex;"><span>    param<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;metric_type&#34;</span>: <span style="color:#e6db74">&#34;L2&#34;</span>, <span style="color:#e6db74">&#34;params&#34;</span>: {<span style="color:#e6db74">&#34;ef&#34;</span>: <span style="color:#ae81ff">64</span>}},
+</span></span><span style="display:flex;"><span>    limit<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    partition_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;tenant_acme&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>기능</th>
+					<th>Milvus 2.5</th>
+					<th>Pinecone</th>
+					<th>Weaviate 1.25</th>
+					<th>Qdrant 1.11</th>
+					<th>pgvector 0.8</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>오픈소스</strong></td>
+					<td>Apache-2.0</td>
+					<td>아니오</td>
+					<td>BSD-3</td>
+					<td>Apache-2.0</td>
+					<td>PostgreSQL</td>
+			</tr>
+			<tr>
+					<td><strong>최대 규모</strong></td>
+					<td><strong>10B+ 벡터</strong></td>
+					<td>무제한</td>
+					<td>200M/노드</td>
+					<td>500M/노드</td>
+					<td>~50M</td>
+			</tr>
+			<tr>
+					<td><strong>p99 지연시간</strong></td>
+					<td>8ms (GPU)</td>
+					<td>28ms</td>
+					<td>19ms</td>
+					<td>12ms</td>
+					<td>25-40ms</td>
+			</tr>
+			<tr>
+					<td><strong>GPU 인덱싱</strong></td>
+					<td><strong>예 (6배 가속)</strong></td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>아니오 (1.12 예정)</td>
+					<td>아니오</td>
+			</tr>
+			<tr>
+					<td><strong>분산 아키텍처</strong></td>
+					<td><strong>네이티브 K8s</strong></td>
+					<td>관리형만</td>
+					<td>클러스터</td>
+					<td>클러스터</td>
+					<td>아니오</td>
+			</tr>
+			<tr>
+					<td><strong>하이브리드 검색</strong></td>
+					<td>Native + filter</td>
+					<td>Native</td>
+					<td><strong>최고</strong></td>
+					<td>BM42</td>
+					<td>FTS + vector</td>
+			</tr>
+			<tr>
+					<td><strong>SQL 지원</strong></td>
+					<td>아니오 (gRPC/REST)</td>
+					<td>아니오</td>
+					<td>GraphQL</td>
+					<td>아니오</td>
+					<td><strong>전체 SQL</strong></td>
+			</tr>
+			<tr>
+					<td><strong>관리형 옵션</strong></td>
+					<td>Zilliz Cloud</td>
+					<td>네이티브</td>
+					<td>Weaviate Cloud</td>
+					<td>Qdrant Cloud</td>
+					<td>Supabase/Neon</td>
+			</tr>
+			<tr>
+					<td><strong>셀프 호스팅 비용</strong></td>
+					<td>$400/M/월</td>
+					<td>N/A</td>
+					<td>$320/M/월</td>
+					<td>$280/M/월</td>
+					<td><strong>$0 (기존 PG 활용)</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Milvus를 선택해야 할 때:</strong></p>
+<ul>
+<li>12개월 내 데이터셋이 <strong>1억 벡터</strong>를 초과할 것으로 예상.</li>
+<li>이미 Kubernetes 클러스터가 운영 중.</li>
+<li>인덱스 가속을 위한 GPU 하드웨어가 사용 가능.</li>
+<li>10억 규모에서 가능한 한 낮은 셀프 호스팅 비용이 필요 (관리형 대안이 비현실적으로 비싸지는 지점).</li>
+</ul>
+<p><strong>대안을 선택해야 할 때:</strong></p>
+<ul>
+<li><strong>Pinecone</strong>: 제로 운영 요구, 작은 규모 (&lt;5000만 벡터), 예산이 관리형 가격을 허용.</li>
+<li><strong>Weaviate</strong>: 네이티브 하이브리드 검색 (BM25 + 벡터)이 중요, GraphQL API 선호.</li>
+<li><strong>Qdrant</strong>: 원시 지연이 최우선, Rust 네이티브 성능, 더 간단한 셀프 호스팅.</li>
+<li><strong><a href="dibi8-internal-link">pgvector</a></strong>: 이미 PostgreSQL 사용 중, &lt;1000만 벡터, 단일 시스템에서 ACID 트랜잭션과 벡터 검색 모두 필요.</li>
+</ul>
+<h2 id="한계-정직한-평가">한계: 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계-정직한-평가">#</a></h2>
+<p><strong>운영 복잡성:</strong> Milvus는 Kubernetes, etcd, MinIO, 메시지 브로커가 필요하다. 이는 단일 바이너리 배포가 아니다. 전용 DevOps가 없는 팀은 Zilliz Cloud나 더 간단한 대안을 사용해야 한다.</p>
+<p><strong>소규모에 과잉 설계:</strong> 1000만 벡터 이하에서는 분산 아키텍처가 불필요한 오버헤드를 추가한다. 단일 노드 Qdrant나 pgvector가 배포와 운영이 더 빠르다.</p>
+<p><strong>SQL 인터페이스 부재:</strong> Milvus는 gRPC/REST API를 사용한다. 팀이 SQL에 깊이 투자했다면 Weaviate (GraphQL)나 pgvector (SQL)이 더 자연스럽다.</p>
+<p><strong>메모리 소비:</strong> GPU 가속 쿼리는 GPU 메모리가 필요하다. Tesla T4 (16GB VRAM)은 GPU 메모리에 약 1000만 개의 1536차원 벡터를 수용할 수 있다. 하드웨어를 그에 맞게 계획해야 한다.</p>
+<p><strong>학습 곡선:</strong> 컴포넌트 아키텍처 (proxy, query node, data node, index node, coordinators)는 모놀리식 대안보다 학습 곡선이 가파르다.</p>
+<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
+<h3 id="단일-milvus-클러스터는-얼마나-많은-벡터를-처리할-수-있나요">단일 Milvus 클러스터는 얼마나 많은 벡터를 처리할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#단일-milvus-클러스터는-얼마나-많은-벡터를-처리할-수-있나요">#</a></h3>
+<p>프로덕션 배포에서 <strong>100억 벡터</strong>를 p99 쿼리 지연 10ms 미만으로 입증했다. 이론적 상한은 사용 가능한 스토리지와 컴퓨팅에 달려 있다. 계층화 스토리지 (핫/웜/콜드)를 사용하면 훨씬 더 큰 데이터셋도 가능하다. 단일 query node는 일반적으로 메모리에서 1-2억 벡터를 처리할 수 있다.</p>
+<h3 id="milvus는-검색-중-실시간-삽입을-지원하나요">Milvus는 검색 중 실시간 삽입을 지원하나요?<a hidden class="anchor" aria-hidden="true" href="#milvus는-검색-중-실시간-삽입을-지원하나요">#</a></h3>
+<p>예. Milvus는 <strong>로그 구조 병합 트리</strong> 방식을 사용한다. 새 삽입은 즉시 검색 가능한 가변 세그먼트로 들어가고, 백그라운드 프로세스가 불변 세그먼트를 플러시하고 컴팩션한다. 삽입 중 &ldquo;인덱스 잠금&quot;이 없다 — 검색은 중단되지 않는다.</p>
+<h3 id="milvus와-zilliz-cloud의-차이점은-무엇인가요">Milvus와 Zilliz Cloud의 차이점은 무엇인가요?<a hidden class="anchor" aria-hidden="true" href="#milvus와-zilliz-cloud의-차이점은-무엇인가요">#</a></h3>
+<p><strong>Milvus</strong>는 자체 인프라에서 셀프 호스팅하는 오픈소스 프로젝트이다. <strong>Zilliz Cloud</strong>는 Milvus를 만든 Zilliz가 운영하는 완전 관리형 서비스이다. 둘은 동일한 API를 공유하므로 전환 시 애플리케이션 코드를 변경할 필요가 없다. Zilliz Cloud는 자동 확장, 자동 백업, SOC 2 규정 준수를 추가한다.</p>
+<h3 id="milvus는-텍스트-검색을-위해-elasticsearch를-대체할-수-있나요">Milvus는 텍스트 검색을 위해 Elasticsearch를 대체할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#milvus는-텍스트-검색을-위해-elasticsearch를-대체할-수-있나요">#</a></h3>
+<p>완전히는 아니다. Milvus는 밀집 벡터 (의미론적) 검색에 탁월하다. 순수 키워드 (BM25) 검색에서는 여전히 Elasticsearch가 선도한다. 그러나 Milvus 2.5는 밀집 벡터와 키워드 관련성을 위한 희소 벡터를 결합한 <strong>하이브리드 검색</strong>을 지원한다. 의미론적 검색과 어휘 검색이 모두 필요한 애플리케이션의 경우, 이중 시스템 방식이나 Weaviate의 네이티브 하이브리드가 더 적합할 수 있다.</p>
+<h3 id="milvus-25에서-gpu-인덱싱은-어떻게-작동하나요">Milvus 2.5에서 GPU 인덱싱은 어떻게 작동하나요?<a hidden class="anchor" aria-hidden="true" href="#milvus-25에서-gpu-인덱싱은-어떻게-작동하나요">#</a></h3>
+<p>Milvus 2.5는 NVIDIA RAFT와 통합하여 GPU 가속 HNSW 및 IVF 인덱스 구축을 한다. 인덱스 노드에 GPU 리소스가 할당되면 인덱스 빌드가 자동으로 GPU 커널을 사용한다. 이는 CPU 전용 빌드에 비해 인덱스 빌드 시간을 약 <strong>6배</strong> 단축한다. 쿼리 실행도 GPU 메모리를 활용하여 더 낮은 지연을 달성할 수 있다. GPU 지원에는 NVIDIA 드라이버와 index node의 CUDA 툴킷이 필요하다.</p>
+<h3 id="milvus는-어떤-백업-전략을-지원하나요">Milvus는 어떤 백업 전략을 지원하나요?<a hidden class="anchor" aria-hidden="true" href="#milvus는-어떤-백업-전략을-지원하나요">#</a></h3>
+<p>Milvus Backup (공식 도구)은 S3 호환 스토리지에 대한 전체 클러스터 스냅샷을 지원한다. 프로덕션의 경우 cron을 통해 일일 백업을 예약하라: `````bash
+0 2 * * * /usr/local/bin/milvus-backup create -n &ldquo;auto_$(date +%Y%m%d)&rdquo;</p>
+<pre tabindex="0"><code>
 Pulsar를 메시지 브로커로 사용할 때 포인트인타임 복구를 사용할 수 있으며, Pulsar는 작업 로그를 보존한다.
 
 ## 결론: 시작하라
@@ -338,8 +823,145 @@ Milvus 배포 경험을 공유하고 동료 엔지니어로부터 도움을 받�
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

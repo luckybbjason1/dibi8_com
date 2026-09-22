@@ -1,62 +1,422 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/polymarket-trading-bot-stack/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/polymarket-trading-bot-stack/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python\nRust TypeScript application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: “1.1 GB” file_md5: ’' download_url: https://github.com/QwenLM/Qwen3-Coder backup_url: ’' last_maintained: “2026-03-24” draft: false aliases: /zh/posts/polymarket-trading-bot-stack/ faqs: - q: ‘为什么机器人可以通过 Binance 和 Polymarket 之间的套利获利？’ a: ‘Polymarket 的价格更新速度慢于底层资产在 Binance 上的价格波动。2024 年，这一延迟平均为 12 秒，到 2026 年第一季度，竞争将其压缩至约 2.7 秒。机器人可以读取 Binance 上的真实价格变动，并在市场修正之前抢先以 Polymarket 上的滞后价格成交。’ q: ‘哪类 Polymarket 合约最适合自动化交易？’ a: ‘短周期加密货币合约，具体是 5 分钟和 15 分钟的 BTC 与 ETH 涨跌问题。这类合约结算速度快、反馈即时，且相对于 Binance 的价格延迟最大——套利优势正是存在于此。’ q: ‘Polymarket 套利机器人如何决定仓位大小？’ a: ‘它使用 Kelly Criterion 计算优势大小。在检测到 Binance 与 Polymarket 之间的价差后，机器人按凯利准则确定下注金额，通过 Polymarket 的 CLOB API 执行交易，并在市场修正后平仓，每天重复 200 到 500 次。’ q: ‘Polymarket 为搭建交易机器人提供了哪些 API 接口？’ a: ‘Polymarket 共暴露四个接口：用于市场数据、价格和元数据的 Gamma API；用于订单簿和交易执行的 CLOB API；在 Polygon（链 ID 137）上以 USDC 进行的链上结算；以及用于实时价格更新的 WebSocket 推送。官方 Python 客户端 py-clob-client 封装了所有这些接口。’ q: ‘为什么使用相同 Polymarket 策略时，交易机器人的表现优于人类？’ a: ‘在一段追踪期内，机器人获利约 $206,000，而使用相同逻辑的人类仅获利约 $100,000，差距达 2 倍。人类会犯四种系统性错误：错过窗口后才入场、情绪化且不一致的仓位管理、约 8 小时后产生疲劳，以及回撤心理导致的放弃或加仓。’— Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 {\u003c/* resource-info */\u003e}\n引言 100万3450美元利润。3062次预测。一个钱包。\n当交易者首次在Polymarket上看到钱包地址 0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3 的增长轨迹时，第一反应很简单：假的。一个散户钱包能累计七位数的盈亏，这听起来像是Telegram诈骗群的故事，而不是可验证的链上数据。\n但区块链不会说谎。每笔交易都是公开的。每次结算都是可验证的。\n本文将完整映射使这一切成为可能的 28工具技术栈 —— 从AI推理到生产执行的6个层级。无论你是想构建自己的机器人，还是仅仅想复制盈利交易者，这就是蓝图。\n![Polymarket交易仪表盘](https://picsum.photos/seed/crypto-trading/800/450\nPolymarket是什么，以及优势在哪里 Polymarket 是一个预测市场，用户可以在上面交易二元结果。每个合约最终以1.00美元（正确）或0.00美元（错误）结算。定价为0.73美元的合约意味着市场认为\"是\"的结果有73%的发生概率。\n该平台在2026年初的周交易量超过20亿美元。\n结构性漏洞 自动化交易的关键类别是短期加密货币合约——5分钟和15分钟的BTC和ETH涨跌问题。它们快速结算、提供即时反馈，并且存在一个关键漏洞：\nPolymarket的价格更新速度比Binance上的基础资产移动速度慢。\n2024年，这种延迟平均为12秒。到2026年第一季度，竞争将其压缩到2.7秒。\n对于机器来说，2.7秒就是永恒。\n这个差距——Binance已经知道的价格和Polymarket仍然显示的价格之间的差距——就是每个策略的立足点。\n您的浏览器不支持视频标签。 套利机制，逐步解析 一个15分钟的BTC合约以50/50开盘。十分钟后，比特币在30秒内在Binance上下跌0.6%。BTC在到期时会更低的\"真实\"概率刚刚转变到大约78%。Polymarket仍然显示54/46。\n这是一个二元合约上24个百分点的优势。\n一个监控Binance WebSocket反馈、延迟低于50毫秒的机器人：\n检测到价格差异 使用凯利准则计算优势大小 通过Polymarket的CLOB API执行 两秒后，市场修正 仓位盈利平仓 每天重复200-500次。 这就是coinman2的结果。不是魔法——而是对一个仍然存在差距的工业化规模利用。\n![延迟套利示意图](https://picsum.photos/seed/crypto-trading/800/450\n完整技术栈：6层，28个工具 第一层 - 大脑：AI推理 coinman2机器人运行在 Anthropic的Claude 上。2026年3月，一项对照实验将Claude与OpenClaw框架进行对比——相同的起始资金（1000美元），相同的市场条件，48小时：\nClaude：+1,322% 回报 OpenClaw：完全爆仓 差距在哪里？风险管理质量。Claude生成的代码包含更保守的默认参数、更好的边界情况和更清晰的错误处理。\n| 工具 | 用途 | 链接 | | |\n|\n| | Claude (Anthropic) | 主要策略师。推理市场问题，估计概率与当前价格的差距 | anthropic.com | | Qwen3-Coder | 开源编程大模型。监控实时表现，自主重写模块 | GitHub | | G0DM0D3 | 无审查AI接口，处理不舒服的市场论点 | GitHub | | Claude Squad | 并行运行多个Claude实例，覆盖不同市场板块 | GitHub |\n第二层 - 编排：让智能体执行 没有执行层的推理引擎只是观点生成器。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | Agency Agents | 牛市vs熊市辩论，风险管理人否决 | GitHub | | ClaudeAgent OneClick | 一键部署。24/7市场监控，几分钟内启动 | GitHub | | MiroThinker | 强制思维链层。机器人必须在入场前证明每个仓位 | GitHub | | Superpowers | 为智能体扩展网络访问、文件操作、任意API调用 | GitHub | | TradingAgents | 多智能体框架：基本面+技术面+情绪分析师 | GitHub |\n![多智能体交易架构](https://picsum.photos/seed/crypto-trading/800/450\n第三层 - 数据与市场信号：眼睛 机器人只能看到它能看到的。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | OpenBB | 开源彭博终端。统一100+数据源 | GitHub | | Dexter | 自主深度研究。SEC文件、财报电话会议记录 | GitHub | | MCP Server | 通过MCP协议将金融数据集输入Claude上下文 | GitHub | | Crucix | 链上聚合器。Polygon上的巨鲸钱包动向 | GitHub | | fredapi | 美联储数据集：CPI、失业率、收益率曲线 | GitHub | | Binance Collector | 预测短期BTC/ETH合约的市场方向 | GitHub | | Polymarket Assistant Tool | 在活跃市场上显示方向偏差的指标引擎 | GitHub | | lightweight-charts | TradingView图表库。14k星标，45KB | GitHub |\n![交易数据仪表盘](https://picsum.photos/seed/crypto-trading/800/450\n第四层 - 市场情报：他人的成果 你不必从零开始构建一切。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | Polyscope | 扫描2000+市场。巨鲸警报到Telegram | thepolyscope.com | | Polywhaler | 10000美元+巨鲸交易追踪器，带AI信号 | polywhaler.com | | WHALES tracker | 聪明钱共识、健康评分、信念评分 | Apify | | HyperBuildX bot | 基于Rust，亚100毫秒延迟。AI跟单排名 | GitHub | | polymarketanalytics.com | 开放交易者分析，顶级钱包盈亏 | polymarketanalytics.com | | polyrec | 实时终端，70+指标，内置回测器 | GitHub | | Polymarket-Trading-Bot | 53000行TypeScript。7个预建策略 | GitHub |\n![Polymarket分析仪表盘](https://picsum.photos/seed/crypto-trading/800/450\n第五层 - 回测与模拟：先验证再运行 这是大多数散户机器人跳过的层——也是大多数爆仓的原因。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | prediction-market-backtesting | 针对真实历史Polymarket/Kalshi数据回测策略 | GitHub | | polybot | 完整执行基础设施，带模拟交易。Kafka、ClickHouse、Grafana | GitHub |\n![回测结果图表](https://picsum.photos/seed/crypto-trading/800/450\n第六层 - 执行基础设施 Polymarket暴露四个API接口：\nGamma API - 市场数据、价格、元数据 CLOB API - 订单簿、交易执行 链上结算 - Polygon（链ID 137），USDC WebSocket流 - 实时价格更新 官方Python客户端 ```py-clob-client```` 封装了所有这些。三行代码获取订单簿，五行代码下达签名限价单。\n关键仓库：\nPolymarket/agents - 官方AI智能体框架，已集成LangChain polyterm - 带巨鲸追踪器的终端仪表盘 完整信号流 世界事件 → Binance WebSocket (50毫秒) → AI分析 → 凯利仓位计算 → CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损 ```` **理想路径总延迟：不到10秒。** ## 人类 vs 机器人：性能差距 机器人在跟踪期间产生了约 **20.6万美元**。使用相同逻辑的人类产生了约 **10万美元**。 **2倍差距。相同市场。相同策略。相同时间窗口。** 人类犯四个系统性错误： 1. **入场延迟** - 等到人类确认移动时，窗口已经关闭 2. **仓位不一致** - 情绪化仓位管理摧毁期望值 3. **疲劳** - 人类8小时后表现下降。机器人在第72小时与第1小时相同 4. **回撤心理** - 人类要么放弃有效策略，要么加倍下注 ![人类vs机器人性能对比](https://picsum.photos/seed/crypto-trading/800/450 ## 为什么现在是窗口期 已经在运行的机器人拥有复合优势。优势今天仍然存在。窗口从12秒缩小到2.7秒，但尚未关闭。 **理解这个技术栈的最佳时机是六个月前。第二好的时机就是现在。** ## 入门指南：你的第一个1000美元 如果构建完整技术栈感觉太复杂，从更简单开始： 1. **开设Polymarket账户**：[polymarket.com](https://polymarket.com) 2. **研究coinman2钱包**：[polymarket.com/@coinman2](https://polymarket.com/@coinman2) 3. **通过Telegram机器人复制交易**：[kreo.app/@cvxv666](https://kreo.app/@cvxv666) 4. **收藏本文** - 构建时你会需要这些工具参考 ## 结论 这不是快速致富的计划。这是一个**工业级套利操作**，利用预测市场的结构性低效。100万美元的利润来自3062次预测，而不是一次幸运交易。 技术栈是开放的。工具是免费的。优势是真实的。唯一的问题是，你会是**实际构建的0.01%**，还是喊假然后离开的99.9%。 **记住**：竞争比看起来弱。大多数人会喊\"太难了\"然后说是假的。只有建设者才能吃到肉。 * * * ## 资源与链接 - [Polymarket官方](https://polymarket.com) - [coinman2钱包资料](https://polymarket.com/@coinman2) - [Polymarket/agents GitHub](https://github.com/Polymarket/agents) - [OpenBB终端](https://github.com/OpenBB-finance/OpenBB) - [原文X文章 @antpalkin](https://x.com/antpalkin/status/2046654122892403188) *免责声明：本文仅供教育目的。预测市场交易存在重大风险。过往表现不保证未来结果。交易前请务必进行自己的研究。* * * * ## 推荐工具 跑或部署开源 AI 工具时，推荐： - **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 - **** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/polymarket-trading-bot-stack\" } } ## Why This Matters Understanding polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ## Trading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | | * * * | * * * | * * * | * * * | * * * | | **Freqtrade** | Multi | Custom | Free | Medium | | **Hummingbot** | DEX/CEX | Market making | Free | Hard | | **Jesse** | Crypto | Backtesting | Free | Medium | | **Velocimeter** | Hyperliquid | Perps | Free | Easy | ","wordCount":"915","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/polymarket-trading-bot-stack/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/polymarket-trading-bot-stack/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#polymarket%e4%ba%a4%e6%98%93%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%8a%80%e6%9c%af%e6%a0%88%e6%8f%ad%e7%a7%9828%e4%b8%aa%e5%b7%a5%e5%85%b7%e5%a6%82%e4%bd%95%e8%b5%9a%e5%8f%96100%e4%b8%87%e7%be%8e%e5%85%83 aria-label=Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元>Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元</a><ul><li><a href=#%e5%bc%95%e8%a8%80 aria-label=引言>引言</a></li><li><a href=#polymarket%e6%98%af%e4%bb%80%e4%b9%88%e4%bb%a5%e5%8f%8a%e4%bc%98%e5%8a%bf%e5%9c%a8%e5%93%aa%e9%87%8c aria-label=Polymarket是什么，以及优势在哪里>Polymarket是什么，以及优势在哪里</a><ul><li><a href=#%e7%bb%93%e6%9e%84%e6%80%a7%e6%bc%8f%e6%b4%9e aria-label=结构性漏洞>结构性漏洞</a></li></ul></li><li><a href=#%e5%a5%97%e5%88%a9%e6%9c%ba%e5%88%b6%e9%80%90%e6%ad%a5%e8%a7%a3%e6%9e%90 aria-label=套利机制，逐步解析>套利机制，逐步解析</a></li><li><a href=#%e5%ae%8c%e6%95%b4%e6%8a%80%e6%9c%af%e6%a0%886%e5%b1%8228%e4%b8%aa%e5%b7%a5%e5%85%b7 aria-label=完整技术栈：6层，28个工具>完整技术栈：6层，28个工具</a><ul><li><a href=#%e7%ac%ac%e4%b8%80%e5%b1%82---%e5%a4%a7%e8%84%91ai%e6%8e%a8%e7%90%86 aria-label="第一层 - 大脑：AI推理">第一层 - 大脑：AI推理</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e5%b1%82---%e7%bc%96%e6%8e%92%e8%ae%a9%e6%99%ba%e8%83%bd%e4%bd%93%e6%89%a7%e8%a1%8c aria-label="第二层 - 编排：让智能体执行">第二层 - 编排：让智能体执行</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e5%b1%82---%e6%95%b0%e6%8d%ae%e4%b8%8e%e5%b8%82%e5%9c%ba%e4%bf%a1%e5%8f%b7%e7%9c%bc%e7%9d%9b aria-label="第三层 - 数据与市场信号：眼睛">第三层 - 数据与市场信号：眼睛</a></li><li><a href=#%e7%ac%ac%e5%9b%9b%e5%b1%82---%e5%b8%82%e5%9c%ba%e6%83%85%e6%8a%a5%e4%bb%96%e4%ba%ba%e7%9a%84%e6%88%90%e6%9e%9c aria-label="第四层 - 市场情报：他人的成果">第四层 - 市场情报：他人的成果</a></li><li><a href=#%e7%ac%ac%e4%ba%94%e5%b1%82---%e5%9b%9e%e6%b5%8b%e4%b8%8e%e6%a8%a1%e6%8b%9f%e5%85%88%e9%aa%8c%e8%af%81%e5%86%8d%e8%bf%90%e8%a1%8c aria-label="第五层 - 回测与模拟：先验证再运行">第五层 - 回测与模拟：先验证再运行</a></li><li><a href=#%e7%ac%ac%e5%85%ad%e5%b1%82---%e6%89%a7%e8%a1%8c%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label="第六层 - 执行基础设施">第六层 - 执行基础设施</a></li></ul></li><li><a href=#%e5%ae%8c%e6%95%b4%e4%bf%a1%e5%8f%b7%e6%b5%81 aria-label=完整信号流>完整信号流</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/polymarket-trading-bot-stack/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/polymarket-trading-bot-stack/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python\nRust TypeScript application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: “1.1 GB” file_md5: ’' download_url: https://github.com/QwenLM/Qwen3-Coder backup_url: ’' last_maintained: “2026-03-24” draft: false aliases: /zh/posts/polymarket-trading-bot-stack/ faqs: - q: ‘为什么机器人可以通过 Binance 和 Polymarket 之间的套利获利？’ a: ‘Polymarket 的价格更新速度慢于底层资产在 Binance 上的价格波动。2024 年，这一延迟平均为 12 秒，到 2026 年第一季度，竞争将其压缩至约 2.7 秒。机器人可以读取 Binance 上的真实价格变动，并在市场修正之前抢先以 Polymarket 上的滞后价格成交。’ q: ‘哪类 Polymarket 合约最适合自动化交易？’ a: ‘短周期加密货币合约，具体是 5 分钟和 15 分钟的 BTC 与 ETH 涨跌问题。这类合约结算速度快、反馈即时，且相对于 Binance 的价格延迟最大——套利优势正是存在于此。’ q: ‘Polymarket 套利机器人如何决定仓位大小？’ a: ‘它使用 Kelly Criterion 计算优势大小。在检测到 Binance 与 Polymarket 之间的价差后，机器人按凯利准则确定下注金额，通过 Polymarket 的 CLOB API 执行交易，并在市场修正后平仓，每天重复 200 到 500 次。’ q: ‘Polymarket 为搭建交易机器人提供了哪些 API 接口？’ a: ‘Polymarket 共暴露四个接口：用于市场数据、价格和元数据的 Gamma API；用于订单簿和交易执行的 CLOB API；在 Polygon（链 ID 137）上以 USDC 进行的链上结算；以及用于实时价格更新的 WebSocket 推送。官方 Python 客户端 py-clob-client 封装了所有这些接口。’ q: ‘为什么使用相同 Polymarket 策略时，交易机器人的表现优于人类？’ a: ‘在一段追踪期内，机器人获利约 $206,000，而使用相同逻辑的人类仅获利约 $100,000，差距达 2 倍。人类会犯四种系统性错误：错过窗口后才入场、情绪化且不一致的仓位管理、约 8 小时后产生疲劳，以及回撤心理导致的放弃或加仓。’— Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 {\u003c/* resource-info */\u003e}\n引言 100万3450美元利润。3062次预测。一个钱包。\n当交易者首次在Polymarket上看到钱包地址 0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3 的增长轨迹时，第一反应很简单：假的。一个散户钱包能累计七位数的盈亏，这听起来像是Telegram诈骗群的故事，而不是可验证的链上数据。\n但区块链不会说谎。每笔交易都是公开的。每次结算都是可验证的。\n本文将完整映射使这一切成为可能的 28工具技术栈 —— 从AI推理到生产执行的6个层级。无论你是想构建自己的机器人，还是仅仅想复制盈利交易者，这就是蓝图。\n![Polymarket交易仪表盘](https://picsum.photos/seed/crypto-trading/800/450\nPolymarket是什么，以及优势在哪里 Polymarket 是一个预测市场，用户可以在上面交易二元结果。每个合约最终以1.00美元（正确）或0.00美元（错误）结算。定价为0.73美元的合约意味着市场认为\"是\"的结果有73%的发生概率。\n该平台在2026年初的周交易量超过20亿美元。\n结构性漏洞 自动化交易的关键类别是短期加密货币合约——5分钟和15分钟的BTC和ETH涨跌问题。它们快速结算、提供即时反馈，并且存在一个关键漏洞：\nPolymarket的价格更新速度比Binance上的基础资产移动速度慢。\n2024年，这种延迟平均为12秒。到2026年第一季度，竞争将其压缩到2.7秒。\n对于机器来说，2.7秒就是永恒。\n这个差距——Binance已经知道的价格和Polymarket仍然显示的价格之间的差距——就是每个策略的立足点。\n您的浏览器不支持视频标签。 套利机制，逐步解析 一个15分钟的BTC合约以50/50开盘。十分钟后，比特币在30秒内在Binance上下跌0.6%。BTC在到期时会更低的\"真实\"概率刚刚转变到大约78%。Polymarket仍然显示54/46。\n这是一个二元合约上24个百分点的优势。\n一个监控Binance WebSocket反馈、延迟低于50毫秒的机器人：\n检测到价格差异 使用凯利准则计算优势大小 通过Polymarket的CLOB API执行 两秒后，市场修正 仓位盈利平仓 每天重复200-500次。 这就是coinman2的结果。不是魔法——而是对一个仍然存在差距的工业化规模利用。\n![延迟套利示意图](https://picsum.photos/seed/crypto-trading/800/450\n完整技术栈：6层，28个工具 第一层 - 大脑：AI推理 coinman2机器人运行在 Anthropic的Claude 上。2026年3月，一项对照实验将Claude与OpenClaw框架进行对比——相同的起始资金（1000美元），相同的市场条件，48小时：\nClaude：+1,322% 回报 OpenClaw：完全爆仓 差距在哪里？风险管理质量。Claude生成的代码包含更保守的默认参数、更好的边界情况和更清晰的错误处理。\n| 工具 | 用途 | 链接 | | |\n|\n| | Claude (Anthropic) | 主要策略师。推理市场问题，估计概率与当前价格的差距 | anthropic.com | | Qwen3-Coder | 开源编程大模型。监控实时表现，自主重写模块 | GitHub | | G0DM0D3 | 无审查AI接口，处理不舒服的市场论点 | GitHub | | Claude Squad | 并行运行多个Claude实例，覆盖不同市场板块 | GitHub |\n第二层 - 编排：让智能体执行 没有执行层的推理引擎只是观点生成器。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | Agency Agents | 牛市vs熊市辩论，风险管理人否决 | GitHub | | ClaudeAgent OneClick | 一键部署。24/7市场监控，几分钟内启动 | GitHub | | MiroThinker | 强制思维链层。机器人必须在入场前证明每个仓位 | GitHub | | Superpowers | 为智能体扩展网络访问、文件操作、任意API调用 | GitHub | | TradingAgents | 多智能体框架：基本面+技术面+情绪分析师 | GitHub |\n![多智能体交易架构](https://picsum.photos/seed/crypto-trading/800/450\n第三层 - 数据与市场信号：眼睛 机器人只能看到它能看到的。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | OpenBB | 开源彭博终端。统一100+数据源 | GitHub | | Dexter | 自主深度研究。SEC文件、财报电话会议记录 | GitHub | | MCP Server | 通过MCP协议将金融数据集输入Claude上下文 | GitHub | | Crucix | 链上聚合器。Polygon上的巨鲸钱包动向 | GitHub | | fredapi | 美联储数据集：CPI、失业率、收益率曲线 | GitHub | | Binance Collector | 预测短期BTC/ETH合约的市场方向 | GitHub | | Polymarket Assistant Tool | 在活跃市场上显示方向偏差的指标引擎 | GitHub | | lightweight-charts | TradingView图表库。14k星标，45KB | GitHub |\n![交易数据仪表盘](https://picsum.photos/seed/crypto-trading/800/450\n第四层 - 市场情报：他人的成果 你不必从零开始构建一切。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | Polyscope | 扫描2000+市场。巨鲸警报到Telegram | thepolyscope.com | | Polywhaler | 10000美元+巨鲸交易追踪器，带AI信号 | polywhaler.com | | WHALES tracker | 聪明钱共识、健康评分、信念评分 | Apify | | HyperBuildX bot | 基于Rust，亚100毫秒延迟。AI跟单排名 | GitHub | | polymarketanalytics.com | 开放交易者分析，顶级钱包盈亏 | polymarketanalytics.com | | polyrec | 实时终端，70+指标，内置回测器 | GitHub | | Polymarket-Trading-Bot | 53000行TypeScript。7个预建策略 | GitHub |\n![Polymarket分析仪表盘](https://picsum.photos/seed/crypto-trading/800/450\n第五层 - 回测与模拟：先验证再运行 这是大多数散户机器人跳过的层——也是大多数爆仓的原因。\n| 工具 | 用途 | 链接 | |\n|\n|\n| | prediction-market-backtesting | 针对真实历史Polymarket/Kalshi数据回测策略 | GitHub | | polybot | 完整执行基础设施，带模拟交易。Kafka、ClickHouse、Grafana | GitHub |\n![回测结果图表](https://picsum.photos/seed/crypto-trading/800/450\n第六层 - 执行基础设施 Polymarket暴露四个API接口：\nGamma API - 市场数据、价格、元数据 CLOB API - 订单簿、交易执行 链上结算 - Polygon（链ID 137），USDC WebSocket流 - 实时价格更新 官方Python客户端 ```py-clob-client```` 封装了所有这些。三行代码获取订单簿，五行代码下达签名限价单。\n关键仓库：\nPolymarket/agents - 官方AI智能体框架，已集成LangChain polyterm - 带巨鲸追踪器的终端仪表盘 完整信号流 世界事件 → Binance WebSocket (50毫秒) → AI分析 → 凯利仓位计算 → CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损 ```` **理想路径总延迟：不到10秒。** ## 人类 vs 机器人：性能差距 机器人在跟踪期间产生了约 **20.6万美元**。使用相同逻辑的人类产生了约 **10万美元**。 **2倍差距。相同市场。相同策略。相同时间窗口。** 人类犯四个系统性错误： 1. **入场延迟** - 等到人类确认移动时，窗口已经关闭 2. **仓位不一致** - 情绪化仓位管理摧毁期望值 3. **疲劳** - 人类8小时后表现下降。机器人在第72小时与第1小时相同 4. **回撤心理** - 人类要么放弃有效策略，要么加倍下注 ![人类vs机器人性能对比](https://picsum.photos/seed/crypto-trading/800/450 ## 为什么现在是窗口期 已经在运行的机器人拥有复合优势。优势今天仍然存在。窗口从12秒缩小到2.7秒，但尚未关闭。 **理解这个技术栈的最佳时机是六个月前。第二好的时机就是现在。** ## 入门指南：你的第一个1000美元 如果构建完整技术栈感觉太复杂，从更简单开始： 1. **开设Polymarket账户**：[polymarket.com](https://polymarket.com) 2. **研究coinman2钱包**：[polymarket.com/@coinman2](https://polymarket.com/@coinman2) 3. **通过Telegram机器人复制交易**：[kreo.app/@cvxv666](https://kreo.app/@cvxv666) 4. **收藏本文** - 构建时你会需要这些工具参考 ## 结论 这不是快速致富的计划。这是一个**工业级套利操作**，利用预测市场的结构性低效。100万美元的利润来自3062次预测，而不是一次幸运交易。 技术栈是开放的。工具是免费的。优势是真实的。唯一的问题是，你会是**实际构建的0.01%**，还是喊假然后离开的99.9%。 **记住**：竞争比看起来弱。大多数人会喊\"太难了\"然后说是假的。只有建设者才能吃到肉。 * * * ## 资源与链接 - [Polymarket官方](https://polymarket.com) - [coinman2钱包资料](https://polymarket.com/@coinman2) - [Polymarket/agents GitHub](https://github.com/Polymarket/agents) - [OpenBB终端](https://github.com/OpenBB-finance/OpenBB) - [原文X文章 @antpalkin](https://x.com/antpalkin/status/2046654122892403188) *免责声明：本文仅供教育目的。预测市场交易存在重大风险。过往表现不保证未来结果。交易前请务必进行自己的研究。* * * * ## 推荐工具 跑或部署开源 AI 工具时，推荐： - **** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 - **** — 全球头部加密交易所。现货、合约、稳定币兑换深度流动性 — 跟上面的链上 DeFi 工具、支付或 token 操作自然配合。 *推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/polymarket-trading-bot-stack\" } } ## Why This Matters Understanding polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：量化交易的风险有多大？** 取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。 **问：如何选择适合的交易策略？** 根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。 **问：回测结果可信吗？** 回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。 **问：需要编程基础吗？** 基础策略可使用低代码平台，高级策略需要Python/C++编程能力。 **问：交易系统的维护成本？** 包括服务器费用、数据订阅、算法更新、以及监控维护时间。 ## Trading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | | * * * | * * * | * * * | * * * | * * * | | **Freqtrade** | Multi | Custom | Free | Medium | | **Hummingbot** | DEX/CEX | Market making | Free | Hard | | **Jesse** | Crypto | Backtesting | Free | Medium | | **Velocimeter** | Hyperliquid | Perps | Free | Easy | ",
+  "wordCount" : "915",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/polymarket-trading-bot-stack/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/polymarket-trading-bot-stack/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/polymarket-trading-bot-stack/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/polymarket-trading-bot-stack/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#polymarket%e4%ba%a4%e6%98%93%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%8a%80%e6%9c%af%e6%a0%88%e6%8f%ad%e7%a7%9828%e4%b8%aa%e5%b7%a5%e5%85%b7%e5%a6%82%e4%bd%95%e8%b5%9a%e5%8f%96100%e4%b8%87%e7%be%8e%e5%85%83" aria-label="Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元">Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元</a><ul>
+                    
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+            <li>
+                <a href="#polymarket%e6%98%af%e4%bb%80%e4%b9%88%e4%bb%a5%e5%8f%8a%e4%bc%98%e5%8a%bf%e5%9c%a8%e5%93%aa%e9%87%8c" aria-label="Polymarket是什么，以及优势在哪里">Polymarket是什么，以及优势在哪里</a><ul>
+                    
+            <li>
+                <a href="#%e7%bb%93%e6%9e%84%e6%80%a7%e6%bc%8f%e6%b4%9e" aria-label="结构性漏洞">结构性漏洞</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%a5%97%e5%88%a9%e6%9c%ba%e5%88%b6%e9%80%90%e6%ad%a5%e8%a7%a3%e6%9e%90" aria-label="套利机制，逐步解析">套利机制，逐步解析</a></li>
+            <li>
+                <a href="#%e5%ae%8c%e6%95%b4%e6%8a%80%e6%9c%af%e6%a0%886%e5%b1%8228%e4%b8%aa%e5%b7%a5%e5%85%b7" aria-label="完整技术栈：6层，28个工具">完整技术栈：6层，28个工具</a><ul>
+                    
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%80%e5%b1%82---%e5%a4%a7%e8%84%91ai%e6%8e%a8%e7%90%86" aria-label="第一层 - 大脑：AI推理">第一层 - 大脑：AI推理</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%8c%e5%b1%82---%e7%bc%96%e6%8e%92%e8%ae%a9%e6%99%ba%e8%83%bd%e4%bd%93%e6%89%a7%e8%a1%8c" aria-label="第二层 - 编排：让智能体执行">第二层 - 编排：让智能体执行</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%89%e5%b1%82---%e6%95%b0%e6%8d%ae%e4%b8%8e%e5%b8%82%e5%9c%ba%e4%bf%a1%e5%8f%b7%e7%9c%bc%e7%9d%9b" aria-label="第三层 - 数据与市场信号：眼睛">第三层 - 数据与市场信号：眼睛</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e5%9b%9b%e5%b1%82---%e5%b8%82%e5%9c%ba%e6%83%85%e6%8a%a5%e4%bb%96%e4%ba%ba%e7%9a%84%e6%88%90%e6%9e%9c" aria-label="第四层 - 市场情报：他人的成果">第四层 - 市场情报：他人的成果</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%94%e5%b1%82---%e5%9b%9e%e6%b5%8b%e4%b8%8e%e6%a8%a1%e6%8b%9f%e5%85%88%e9%aa%8c%e8%af%81%e5%86%8d%e8%bf%90%e8%a1%8c" aria-label="第五层 - 回测与模拟：先验证再运行">第五层 - 回测与模拟：先验证再运行</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e5%85%ad%e5%b1%82---%e6%89%a7%e8%a1%8c%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="第六层 - 执行基础设施">第六层 - 执行基础设施</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%8c%e6%95%b4%e4%bf%a1%e5%8f%b7%e6%b5%81" aria-label="完整信号流">完整信号流</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Python</p><ul><li>Rust</li><li>TypeScript
+tech_stack: - Python</p>
+<ul>
+<li>Rust</li>
+<li>TypeScript
 application_domain: Dev Utils
 source_version: &rsquo;'
 licensing_model: Open Source
 license_type: MIT
 file_size: &ldquo;1.1 GB&rdquo;
 file_md5: &rsquo;'
-download_url: <a href=https://github.com/QwenLM/Qwen3-Coder>https://github.com/QwenLM/Qwen3-Coder</a>
+download_url: <a href="https://github.com/QwenLM/Qwen3-Coder">https://github.com/QwenLM/Qwen3-Coder</a>
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-03-24&rdquo;
 draft: false
-aliases:<ul><li>/zh/posts/polymarket-trading-bot-stack/
+aliases:
+<ul>
+<li>/zh/posts/polymarket-trading-bot-stack/
 faqs: - q: &lsquo;为什么机器人可以通过 Binance 和 Polymarket 之间的套利获利？&rsquo;
-a: &lsquo;Polymarket 的价格更新速度慢于底层资产在 Binance 上的价格波动。2024 年，这一延迟平均为 12 秒，到 2026 年第一季度，竞争将其压缩至约 2.7 秒。机器人可以读取 Binance 上的真实价格变动，并在市场修正之前抢先以 Polymarket 上的滞后价格成交。&rsquo;</li><li>q: &lsquo;哪类 Polymarket 合约最适合自动化交易？&rsquo;
-a: &lsquo;短周期加密货币合约，具体是 5 分钟和 15 分钟的 BTC 与 ETH 涨跌问题。这类合约结算速度快、反馈即时，且相对于 Binance 的价格延迟最大——套利优势正是存在于此。&rsquo;</li><li>q: &lsquo;Polymarket 套利机器人如何决定仓位大小？&rsquo;
-a: &lsquo;它使用 Kelly Criterion 计算优势大小。在检测到 Binance 与 Polymarket 之间的价差后，机器人按凯利准则确定下注金额，通过 Polymarket 的 CLOB API 执行交易，并在市场修正后平仓，每天重复 200 到 500 次。&rsquo;</li><li>q: &lsquo;Polymarket 为搭建交易机器人提供了哪些 API 接口？&rsquo;
-a: &lsquo;Polymarket 共暴露四个接口：用于市场数据、价格和元数据的 Gamma API；用于订单簿和交易执行的 CLOB API；在 Polygon（链 ID 137）上以 USDC 进行的链上结算；以及用于实时价格更新的 WebSocket 推送。官方 Python 客户端 py-clob-client 封装了所有这些接口。&rsquo;</li><li>q: &lsquo;为什么使用相同 Polymarket 策略时，交易机器人的表现优于人类？&rsquo;
-a: &lsquo;在一段追踪期内，机器人获利约 $206,000，而使用相同逻辑的人类仅获利约 $100,000，差距达 2 倍。人类会犯四种系统性错误：错过窗口后才入场、情绪化且不一致的仓位管理、约 8 小时后产生疲劳，以及回撤心理导致的放弃或加仓。&rsquo;&mdash;</li></ul></li></ul><h1 id=polymarket交易机器人技术栈揭秘28个工具如何赚取100万美元>Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元<a hidden class=anchor aria-hidden=true href=#polymarket交易机器人技术栈揭秘28个工具如何赚取100万美元>#</a></h1><p>{&lt;/* resource-info */>}</p><h2 id=引言>引言<a hidden class=anchor aria-hidden=true href=#引言>#</a></h2><p><strong>100万3450美元利润。3062次预测。一个钱包。</strong></p><p>当交易者首次在Polymarket上看到钱包地址 <code>0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3</code> 的增长轨迹时，第一反应很简单：<em>假的</em>。一个散户钱包能累计七位数的盈亏，这听起来像是Telegram诈骗群的故事，而不是可验证的链上数据。</p><p>但区块链不会说谎。每笔交易都是公开的。每次结算都是可验证的。</p><p>本文将完整映射使这一切成为可能的 <strong>28工具技术栈</strong> —— 从AI推理到生产执行的6个层级。无论你是想构建自己的机器人，还是仅仅想复制盈利交易者，这就是蓝图。</p><p>![Polymarket交易仪表盘](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h2 id=polymarket是什么以及优势在哪里>Polymarket是什么，以及优势在哪里<a hidden class=anchor aria-hidden=true href=#polymarket是什么以及优势在哪里>#</a></h2><p><strong>Polymarket</strong> 是一个预测市场，用户可以在上面交易二元结果。每个合约最终以1.00美元（正确）或0.00美元（错误）结算。定价为0.73美元的合约意味着市场认为"是"的结果有73%的发生概率。</p><p>该平台在2026年初的<strong>周交易量超过20亿美元</strong>。</p><h3 id=结构性漏洞>结构性漏洞<a hidden class=anchor aria-hidden=true href=#结构性漏洞>#</a></h3><p>自动化交易的关键类别是<strong>短期加密货币合约</strong>——5分钟和15分钟的BTC和ETH涨跌问题。它们快速结算、提供即时反馈，并且存在一个关键漏洞：</p><blockquote><p><strong>Polymarket的价格更新速度比Binance上的基础资产移动速度慢。</strong></p></blockquote><p>2024年，这种延迟平均为12秒。到2026年第一季度，竞争将其压缩到<strong>2.7秒</strong>。</p><p><strong>对于机器来说，2.7秒就是永恒。</strong></p><p>这个差距——Binance已经知道的价格和Polymarket仍然显示的价格之间的差距——就是每个策略的立足点。</p><source src=https://www.youtube.com/embed/dQw4w9WgXcQ type=video/mp4>您的浏览器不支持视频标签。</video><h2 id=套利机制逐步解析>套利机制，逐步解析<a hidden class=anchor aria-hidden=true href=#套利机制逐步解析>#</a></h2><p>一个15分钟的BTC合约以50/50开盘。十分钟后，比特币在30秒内在Binance上下跌0.6%。BTC在到期时会更低的"真实"概率刚刚转变到大约78%。Polymarket仍然显示54/46。</p><p><strong>这是一个二元合约上24个百分点的优势。</strong></p><p>一个监控Binance WebSocket反馈、延迟低于50毫秒的机器人：</p><ol><li>检测到价格差异</li><li>使用凯利准则计算优势大小</li><li>通过Polymarket的CLOB API执行</li><li>两秒后，市场修正</li><li>仓位盈利平仓</li></ol><p><strong>每天重复200-500次。</strong> 这就是coinman2的结果。不是魔法——而是对一个仍然存在差距的工业化规模利用。</p><p>![延迟套利示意图](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h2 id=完整技术栈6层28个工具>完整技术栈：6层，28个工具<a hidden class=anchor aria-hidden=true href=#完整技术栈6层28个工具>#</a></h2><h3 id=第一层---大脑ai推理>第一层 - 大脑：AI推理<a hidden class=anchor aria-hidden=true href=#第一层---大脑ai推理>#</a></h3><p>coinman2机器人运行在 <strong>Anthropic的Claude</strong> 上。2026年3月，一项对照实验将Claude与OpenClaw框架进行对比——相同的起始资金（1000美元），相同的市场条件，48小时：</p><ul><li><strong>Claude</strong>：+1,322% 回报</li><li><strong>OpenClaw</strong>：完全爆仓</li></ul><p>差距在哪里？风险管理质量。Claude生成的代码包含更保守的默认参数、更好的边界情况和更清晰的错误处理。</p><h2 id=heading>| 工具 | 用途 | 链接 |
-|</h2><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Claude (Anthropic)</strong> | 主要策略师。推理市场问题，估计概率与当前价格的差距 | <a href=https://anthropic.com>anthropic.com</a> |
-| <strong>Qwen3-Coder</strong> | 开源编程大模型。监控实时表现，自主重写模块 | <a href=https://github.com/QwenLM/Qwen3-Coder>GitHub</a> |
-| <strong>G0DM0D3</strong> | 无审查AI接口，处理不舒服的市场论点 | <a href=https://github.com/elder-plinius/G0DM0D3>GitHub</a> |
-| <strong>Claude Squad</strong> | 并行运行多个Claude实例，覆盖不同市场板块 | <a href=https://github.com/smtg-ai/claude-squad>GitHub</a> |</p></iframe><h3 id=第二层---编排让智能体执行>第二层 - 编排：让智能体执行<a hidden class=anchor aria-hidden=true href=#第二层---编排让智能体执行>#</a></h3><p>没有执行层的推理引擎只是观点生成器。</p><p>| 工具 | 用途 | 链接 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Agency Agents</strong> | 牛市vs熊市辩论，风险管理人否决 | <a href=https://github.com/msitarzewski/agency-agents>GitHub</a> |
-| <strong>ClaudeAgent OneClick</strong> | 一键部署。24/7市场监控，几分钟内启动 | <a href=https://github.com/cvxv666/ClaudeAgentOneClick>GitHub</a> |
-| <strong>MiroThinker</strong> | 强制思维链层。机器人必须在入场前证明每个仓位 | <a href=https://github.com/MiroMindAI/MiroThinker>GitHub</a> |
-| <strong>Superpowers</strong> | 为智能体扩展网络访问、文件操作、任意API调用 | <a href=https://github.com/obra/superpowers>GitHub</a> |
-| <strong>TradingAgents</strong> | 多智能体框架：基本面+技术面+情绪分析师 | <a href=https://github.com/TauricResearch/TradingAgents>GitHub</a> |</p><p>![多智能体交易架构](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=第三层---数据与市场信号眼睛>第三层 - 数据与市场信号：眼睛<a hidden class=anchor aria-hidden=true href=#第三层---数据与市场信号眼睛>#</a></h3><p>机器人只能看到它能看到的。</p><p>| 工具 | 用途 | 链接 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>OpenBB</strong> | 开源彭博终端。统一100+数据源 | <a href=https://github.com/OpenBB-finance/OpenBB>GitHub</a> |
-| <strong>Dexter</strong> | 自主深度研究。SEC文件、财报电话会议记录 | <a href=https://github.com/virattt/dexter>GitHub</a> |
-| <strong>MCP Server</strong> | 通过MCP协议将金融数据集输入Claude上下文 | <a href=https://github.com/financial-datasets/mcp-server>GitHub</a> |
-| <strong>Crucix</strong> | 链上聚合器。Polygon上的巨鲸钱包动向 | <a href=https://github.com/calesthio/Crucix>GitHub</a> |
-| <strong>fredapi</strong> | 美联储数据集：CPI、失业率、收益率曲线 | <a href=https://github.com/mortada/fredapi>GitHub</a> |
-| <strong>Binance Collector</strong> | 预测短期BTC/ETH合约的市场方向 | <a href=https://github.com/txbabaxyz/mlmodelpoly>GitHub</a> |
-| <strong>Polymarket Assistant Tool</strong> | 在活跃市场上显示方向偏差的指标引擎 | <a href=https://github.com/FiatFiorino/polymarket-assistant-tool>GitHub</a> |
-| <strong>lightweight-charts</strong> | TradingView图表库。14k星标，45KB | <a href=https://github.com/tradingview/lightweight-charts>GitHub</a> |</p><p>![交易数据仪表盘](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=第四层---市场情报他人的成果>第四层 - 市场情报：他人的成果<a hidden class=anchor aria-hidden=true href=#第四层---市场情报他人的成果>#</a></h3><p>你不必从零开始构建一切。</p><p>| 工具 | 用途 | 链接 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Polyscope</strong> | 扫描2000+市场。巨鲸警报到Telegram | <a href=https://thepolyscope.com>thepolyscope.com</a> |
-| <strong>Polywhaler</strong> | 10000美元+巨鲸交易追踪器，带AI信号 | <a href=https://polywhaler.com>polywhaler.com</a> |
-| <strong>WHALES tracker</strong> | 聪明钱共识、健康评分、信念评分 | <a href=https://apify.com>Apify</a> |
-| <strong>HyperBuildX bot</strong> | 基于Rust，亚100毫秒延迟。AI跟单排名 | <a href=https://github.com/HyperBuildX/Polymarket-Trading-Bot>GitHub</a> |
-| <strong>polymarketanalytics.com</strong> | 开放交易者分析，顶级钱包盈亏 | <a href=https://polymarketanalytics.com>polymarketanalytics.com</a> |
-| <strong>polyrec</strong> | 实时终端，70+指标，内置回测器 | <a href=https://github.com/txbabaxyz/polyrec>GitHub</a> |
-| <strong>Polymarket-Trading-Bot</strong> | 53000行TypeScript。7个预建策略 | <a href=https://github.com/dylanpersonguy/Polymarket-Trading-Bot>GitHub</a> |</p><p>![Polymarket分析仪表盘](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=第五层---回测与模拟先验证再运行>第五层 - 回测与模拟：先验证再运行<a hidden class=anchor aria-hidden=true href=#第五层---回测与模拟先验证再运行>#</a></h3><p>这是大多数散户机器人跳过的层——也是大多数爆仓的原因。</p><p>| 工具 | 用途 | 链接 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>prediction-market-backtesting</strong> | 针对真实历史Polymarket/Kalshi数据回测策略 | <a href=https://github.com/evan-kolberg/prediction-market-backtesting>GitHub</a> |
-| <strong>polybot</strong> | 完整执行基础设施，带模拟交易。Kafka、ClickHouse、Grafana | <a href=https://github.com/ent0n29/polybot>GitHub</a> |</p><p>![回测结果图表](<a href=https://picsum.photos/seed/crypto-trading/800/450>https://picsum.photos/seed/crypto-trading/800/450</a></p><h3 id=第六层---执行基础设施>第六层 - 执行基础设施<a hidden class=anchor aria-hidden=true href=#第六层---执行基础设施>#</a></h3><p>Polymarket暴露四个API接口：</p><ol><li><strong>Gamma API</strong> - 市场数据、价格、元数据</li><li><strong>CLOB API</strong> - 订单簿、交易执行</li><li><strong>链上结算</strong> - Polygon（链ID 137），USDC</li><li><strong>WebSocket流</strong> - 实时价格更新</li></ol><p>官方Python客户端 ```py-clob-client```` 封装了所有这些。三行代码获取订单簿，五行代码下达签名限价单。</p><p><strong>关键仓库：</strong></p><ul><li><a href=https://github.com/Polymarket/agents>Polymarket/agents</a> - 官方AI智能体框架，已集成LangChain</li><li><a href=https://github.com/NYTEMODEONLY/polyterm>polyterm</a> - 带巨鲸追踪器的终端仪表盘</li></ul><h2 id=完整信号流>完整信号流<a hidden class=anchor aria-hidden=true href=#完整信号流>#</a></h2><pre tabindex=0><code>世界事件 → Binance WebSocket (50毫秒) → AI分析 → 凯利仓位计算 → 
+a: &lsquo;Polymarket 的价格更新速度慢于底层资产在 Binance 上的价格波动。2024 年，这一延迟平均为 12 秒，到 2026 年第一季度，竞争将其压缩至约 2.7 秒。机器人可以读取 Binance 上的真实价格变动，并在市场修正之前抢先以 Polymarket 上的滞后价格成交。&rsquo;</li>
+<li>q: &lsquo;哪类 Polymarket 合约最适合自动化交易？&rsquo;
+a: &lsquo;短周期加密货币合约，具体是 5 分钟和 15 分钟的 BTC 与 ETH 涨跌问题。这类合约结算速度快、反馈即时，且相对于 Binance 的价格延迟最大——套利优势正是存在于此。&rsquo;</li>
+<li>q: &lsquo;Polymarket 套利机器人如何决定仓位大小？&rsquo;
+a: &lsquo;它使用 Kelly Criterion 计算优势大小。在检测到 Binance 与 Polymarket 之间的价差后，机器人按凯利准则确定下注金额，通过 Polymarket 的 CLOB API 执行交易，并在市场修正后平仓，每天重复 200 到 500 次。&rsquo;</li>
+<li>q: &lsquo;Polymarket 为搭建交易机器人提供了哪些 API 接口？&rsquo;
+a: &lsquo;Polymarket 共暴露四个接口：用于市场数据、价格和元数据的 Gamma API；用于订单簿和交易执行的 CLOB API；在 Polygon（链 ID 137）上以 USDC 进行的链上结算；以及用于实时价格更新的 WebSocket 推送。官方 Python 客户端 py-clob-client 封装了所有这些接口。&rsquo;</li>
+<li>q: &lsquo;为什么使用相同 Polymarket 策略时，交易机器人的表现优于人类？&rsquo;
+a: &lsquo;在一段追踪期内，机器人获利约 $206,000，而使用相同逻辑的人类仅获利约 $100,000，差距达 2 倍。人类会犯四种系统性错误：错过窗口后才入场、情绪化且不一致的仓位管理、约 8 小时后产生疲劳，以及回撤心理导致的放弃或加仓。&rsquo;&mdash;</li>
+</ul>
+</li>
+</ul>
+<h1 id="polymarket交易机器人技术栈揭秘28个工具如何赚取100万美元">Polymarket交易机器人技术栈揭秘：28个工具如何赚取100万美元<a hidden class="anchor" aria-hidden="true" href="#polymarket交易机器人技术栈揭秘28个工具如何赚取100万美元">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p><strong>100万3450美元利润。3062次预测。一个钱包。</strong></p>
+<p>当交易者首次在Polymarket上看到钱包地址 <code>0x55be7aa03ecfbe37aa5460db791205f7ac9ddca3</code> 的增长轨迹时，第一反应很简单：<em>假的</em>。一个散户钱包能累计七位数的盈亏，这听起来像是Telegram诈骗群的故事，而不是可验证的链上数据。</p>
+<p>但区块链不会说谎。每笔交易都是公开的。每次结算都是可验证的。</p>
+<p>本文将完整映射使这一切成为可能的 <strong>28工具技术栈</strong> —— 从AI推理到生产执行的6个层级。无论你是想构建自己的机器人，还是仅仅想复制盈利交易者，这就是蓝图。</p>
+<p>![Polymarket交易仪表盘](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h2 id="polymarket是什么以及优势在哪里">Polymarket是什么，以及优势在哪里<a hidden class="anchor" aria-hidden="true" href="#polymarket是什么以及优势在哪里">#</a></h2>
+<p><strong>Polymarket</strong> 是一个预测市场，用户可以在上面交易二元结果。每个合约最终以1.00美元（正确）或0.00美元（错误）结算。定价为0.73美元的合约意味着市场认为&quot;是&quot;的结果有73%的发生概率。</p>
+<p>该平台在2026年初的<strong>周交易量超过20亿美元</strong>。</p>
+<h3 id="结构性漏洞">结构性漏洞<a hidden class="anchor" aria-hidden="true" href="#结构性漏洞">#</a></h3>
+<p>自动化交易的关键类别是<strong>短期加密货币合约</strong>——5分钟和15分钟的BTC和ETH涨跌问题。它们快速结算、提供即时反馈，并且存在一个关键漏洞：</p>
+<blockquote>
+<p><strong>Polymarket的价格更新速度比Binance上的基础资产移动速度慢。</strong></p>
+</blockquote>
+<p>2024年，这种延迟平均为12秒。到2026年第一季度，竞争将其压缩到<strong>2.7秒</strong>。</p>
+<p><strong>对于机器来说，2.7秒就是永恒。</strong></p>
+<p>这个差距——Binance已经知道的价格和Polymarket仍然显示的价格之间的差距——就是每个策略的立足点。</p>
+<source src="https://www.youtube.com/embed/dQw4w9WgXcQ" type="video/mp4">
+  您的浏览器不支持视频标签。
+</video>
+<h2 id="套利机制逐步解析">套利机制，逐步解析<a hidden class="anchor" aria-hidden="true" href="#套利机制逐步解析">#</a></h2>
+<p>一个15分钟的BTC合约以50/50开盘。十分钟后，比特币在30秒内在Binance上下跌0.6%。BTC在到期时会更低的&quot;真实&quot;概率刚刚转变到大约78%。Polymarket仍然显示54/46。</p>
+<p><strong>这是一个二元合约上24个百分点的优势。</strong></p>
+<p>一个监控Binance WebSocket反馈、延迟低于50毫秒的机器人：</p>
+<ol>
+<li>检测到价格差异</li>
+<li>使用凯利准则计算优势大小</li>
+<li>通过Polymarket的CLOB API执行</li>
+<li>两秒后，市场修正</li>
+<li>仓位盈利平仓</li>
+</ol>
+<p><strong>每天重复200-500次。</strong> 这就是coinman2的结果。不是魔法——而是对一个仍然存在差距的工业化规模利用。</p>
+<p>![延迟套利示意图](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h2 id="完整技术栈6层28个工具">完整技术栈：6层，28个工具<a hidden class="anchor" aria-hidden="true" href="#完整技术栈6层28个工具">#</a></h2>
+<h3 id="第一层---大脑ai推理">第一层 - 大脑：AI推理<a hidden class="anchor" aria-hidden="true" href="#第一层---大脑ai推理">#</a></h3>
+<p>coinman2机器人运行在 <strong>Anthropic的Claude</strong> 上。2026年3月，一项对照实验将Claude与OpenClaw框架进行对比——相同的起始资金（1000美元），相同的市场条件，48小时：</p>
+<ul>
+<li><strong>Claude</strong>：+1,322% 回报</li>
+<li><strong>OpenClaw</strong>：完全爆仓</li>
+</ul>
+<p>差距在哪里？风险管理质量。Claude生成的代码包含更保守的默认参数、更好的边界情况和更清晰的错误处理。</p>
+<h2 id="heading">| 工具 | 用途 | 链接 |
+|</h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Claude (Anthropic)</strong> | 主要策略师。推理市场问题，估计概率与当前价格的差距 | <a href="https://anthropic.com">anthropic.com</a> |
+| <strong>Qwen3-Coder</strong> | 开源编程大模型。监控实时表现，自主重写模块 | <a href="https://github.com/QwenLM/Qwen3-Coder">GitHub</a> |
+| <strong>G0DM0D3</strong> | 无审查AI接口，处理不舒服的市场论点 | <a href="https://github.com/elder-plinius/G0DM0D3">GitHub</a> |
+| <strong>Claude Squad</strong> | 并行运行多个Claude实例，覆盖不同市场板块 | <a href="https://github.com/smtg-ai/claude-squad">GitHub</a> |</p>
+</iframe>
+<h3 id="第二层---编排让智能体执行">第二层 - 编排：让智能体执行<a hidden class="anchor" aria-hidden="true" href="#第二层---编排让智能体执行">#</a></h3>
+<p>没有执行层的推理引擎只是观点生成器。</p>
+<p>| 工具 | 用途 | 链接 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Agency Agents</strong> | 牛市vs熊市辩论，风险管理人否决 | <a href="https://github.com/msitarzewski/agency-agents">GitHub</a> |
+| <strong>ClaudeAgent OneClick</strong> | 一键部署。24/7市场监控，几分钟内启动 | <a href="https://github.com/cvxv666/ClaudeAgentOneClick">GitHub</a> |
+| <strong>MiroThinker</strong> | 强制思维链层。机器人必须在入场前证明每个仓位 | <a href="https://github.com/MiroMindAI/MiroThinker">GitHub</a> |
+| <strong>Superpowers</strong> | 为智能体扩展网络访问、文件操作、任意API调用 | <a href="https://github.com/obra/superpowers">GitHub</a> |
+| <strong>TradingAgents</strong> | 多智能体框架：基本面+技术面+情绪分析师 | <a href="https://github.com/TauricResearch/TradingAgents">GitHub</a> |</p>
+<p>![多智能体交易架构](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="第三层---数据与市场信号眼睛">第三层 - 数据与市场信号：眼睛<a hidden class="anchor" aria-hidden="true" href="#第三层---数据与市场信号眼睛">#</a></h3>
+<p>机器人只能看到它能看到的。</p>
+<p>| 工具 | 用途 | 链接 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>OpenBB</strong> | 开源彭博终端。统一100+数据源 | <a href="https://github.com/OpenBB-finance/OpenBB">GitHub</a> |
+| <strong>Dexter</strong> | 自主深度研究。SEC文件、财报电话会议记录 | <a href="https://github.com/virattt/dexter">GitHub</a> |
+| <strong>MCP Server</strong> | 通过MCP协议将金融数据集输入Claude上下文 | <a href="https://github.com/financial-datasets/mcp-server">GitHub</a> |
+| <strong>Crucix</strong> | 链上聚合器。Polygon上的巨鲸钱包动向 | <a href="https://github.com/calesthio/Crucix">GitHub</a> |
+| <strong>fredapi</strong> | 美联储数据集：CPI、失业率、收益率曲线 | <a href="https://github.com/mortada/fredapi">GitHub</a> |
+| <strong>Binance Collector</strong> | 预测短期BTC/ETH合约的市场方向 | <a href="https://github.com/txbabaxyz/mlmodelpoly">GitHub</a> |
+| <strong>Polymarket Assistant Tool</strong> | 在活跃市场上显示方向偏差的指标引擎 | <a href="https://github.com/FiatFiorino/polymarket-assistant-tool">GitHub</a> |
+| <strong>lightweight-charts</strong> | TradingView图表库。14k星标，45KB | <a href="https://github.com/tradingview/lightweight-charts">GitHub</a> |</p>
+<p>![交易数据仪表盘](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="第四层---市场情报他人的成果">第四层 - 市场情报：他人的成果<a hidden class="anchor" aria-hidden="true" href="#第四层---市场情报他人的成果">#</a></h3>
+<p>你不必从零开始构建一切。</p>
+<p>| 工具 | 用途 | 链接 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Polyscope</strong> | 扫描2000+市场。巨鲸警报到Telegram | <a href="https://thepolyscope.com">thepolyscope.com</a> |
+| <strong>Polywhaler</strong> | 10000美元+巨鲸交易追踪器，带AI信号 | <a href="https://polywhaler.com">polywhaler.com</a> |
+| <strong>WHALES tracker</strong> | 聪明钱共识、健康评分、信念评分 | <a href="https://apify.com">Apify</a> |
+| <strong>HyperBuildX bot</strong> | 基于Rust，亚100毫秒延迟。AI跟单排名 | <a href="https://github.com/HyperBuildX/Polymarket-Trading-Bot">GitHub</a> |
+| <strong>polymarketanalytics.com</strong> | 开放交易者分析，顶级钱包盈亏 | <a href="https://polymarketanalytics.com">polymarketanalytics.com</a> |
+| <strong>polyrec</strong> | 实时终端，70+指标，内置回测器 | <a href="https://github.com/txbabaxyz/polyrec">GitHub</a> |
+| <strong>Polymarket-Trading-Bot</strong> | 53000行TypeScript。7个预建策略 | <a href="https://github.com/dylanpersonguy/Polymarket-Trading-Bot">GitHub</a> |</p>
+<p>![Polymarket分析仪表盘](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="第五层---回测与模拟先验证再运行">第五层 - 回测与模拟：先验证再运行<a hidden class="anchor" aria-hidden="true" href="#第五层---回测与模拟先验证再运行">#</a></h3>
+<p>这是大多数散户机器人跳过的层——也是大多数爆仓的原因。</p>
+<p>| 工具 | 用途 | 链接 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>prediction-market-backtesting</strong> | 针对真实历史Polymarket/Kalshi数据回测策略 | <a href="https://github.com/evan-kolberg/prediction-market-backtesting">GitHub</a> |
+| <strong>polybot</strong> | 完整执行基础设施，带模拟交易。Kafka、ClickHouse、Grafana | <a href="https://github.com/ent0n29/polybot">GitHub</a> |</p>
+<p>![回测结果图表](<a href="https://picsum.photos/seed/crypto-trading/800/450">https://picsum.photos/seed/crypto-trading/800/450</a></p>
+<h3 id="第六层---执行基础设施">第六层 - 执行基础设施<a hidden class="anchor" aria-hidden="true" href="#第六层---执行基础设施">#</a></h3>
+<p>Polymarket暴露四个API接口：</p>
+<ol>
+<li><strong>Gamma API</strong> - 市场数据、价格、元数据</li>
+<li><strong>CLOB API</strong> - 订单簿、交易执行</li>
+<li><strong>链上结算</strong> - Polygon（链ID 137），USDC</li>
+<li><strong>WebSocket流</strong> - 实时价格更新</li>
+</ol>
+<p>官方Python客户端 ```py-clob-client```` 封装了所有这些。三行代码获取订单簿，五行代码下达签名限价单。</p>
+<p><strong>关键仓库：</strong></p>
+<ul>
+<li><a href="https://github.com/Polymarket/agents">Polymarket/agents</a> - 官方AI智能体框架，已集成LangChain</li>
+<li><a href="https://github.com/NYTEMODEONLY/polyterm">polyterm</a> - 带巨鲸追踪器的终端仪表盘</li>
+</ul>
+<h2 id="完整信号流">完整信号流<a hidden class="anchor" aria-hidden="true" href="#完整信号流">#</a></h2>
+<pre tabindex="0"><code>世界事件 → Binance WebSocket (50毫秒) → AI分析 → 凯利仓位计算 → 
 CLOB API订单 → Polygon结算 → 仓位监控 → 盈利/亏损
 ````
 
@@ -232,11 +592,155 @@ For the latest updates and community discussions, join our Telegram channel: htt
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |
 | **Jesse** | Crypto | Backtesting | Free | Medium |
 | **Velocimeter** | Hyperliquid | Perps | Free | Easy |
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/portkey-ai-gateway-production/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/portkey-ai-gateway-production/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

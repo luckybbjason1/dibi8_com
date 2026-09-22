@@ -1,14 +1,259 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/claude-code-subagent-mastery-stack/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-mastery-stack/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-mastery-stack/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-29T00:00:00+08:00 lastmod: 2026-05-30T00:00:00+08:00 tech_stack: - Claude Code\nAgent SDK MCP Bash Markdown application_domain: Collections source_version: ’' licensing_model: Commercial (Anthropic) license_type: Proprietary file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-30” draft: false categories: [“collections”] tags: [“claude code”, “subagents”, “multi-agent”, “agent sdk”, “mcp”, “stack”, “collection”] aliases: /posts/claude-code-subagent-mastery-stack/ faqs: - q: ‘Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인가요?’ a: ‘다섯 가지 패턴은 병렬 리서치 팬아웃, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션입니다. 이들은 다중 에이전트 워크플로의 기반 레이어를 구성하며, 병렬 팬아웃이 가장 마찰이 적은 시작점입니다.’ q: ‘Claude Code에서 skill, subagent, MCP server 중 무엇을 선택해야 할까요?’ a: ‘부족한 것이 무엇인지를 기준으로 하는 3축 프레임워크를 사용하세요. 지식이 부족하면 skill을 작성하고, 컨텍스트가 부족하면 subagent를 생성하며, 기능이 부족하면 MCP server를 구축하세요. 대부분의 팀은 markdown 파일로도 동일한 결과를 낼 수 있음에도 MCP server에 과도하게 의존합니다.’ q: ‘커스텀 Claude Code 에이전트는 어디에 저장되며, 무엇으로 정의되나요?’ a: ‘커스텀 에이전트는 .claude/agents/*.md 경로에 버전 관리되는 Markdown 파일로 저장되며, frontmatter, 시스템 프롬프트, 도구 허용 목록으로 정의됩니다. 가장 중요한 필드는 description(라우팅 신호)과 도구 허용 목록으로, 이는 최소 권한 원칙을 강제합니다.’ q: ‘다중 에이전트 파이프라인 장애의 가장 흔한 근본 원인은 무엇인가요?’ a: ‘모든 주요 장애 유형은 하나의 근본 원인을 공유합니다. 바로 에이전트의 주장을 검증된 사실로 신뢰하는 것입니다. 해결책은 파이프라인의 모든 연결 지점에 검증(git diff 및 테스트 종료 코드 등)과 경계(중단 조건 및 예산)를 내장하는 것입니다.’ q: ‘Claude Code에서 다중 에이전트 파이프라인이 실패하는 다섯 가지 방식은 무엇인가요?’ a: ‘다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.’ Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 단일 스레드 AI 코딩은 2025년 말에 벽에 부딪혔습니다. 하나의 거대한 Claude 대화가 30개의 파일을 읽고, 탐색으로 컨텍스트 윈도를 가득 채운 뒤, 정작 편집을 시작할 때는 필요한 작업 메모리의 절반밖에 남아 있지 않습니다. 2026년의 해답은 위임된 전문화(delegated specialization) 입니다. 과부하된 단일 두뇌 대신, 엄격한 정보 경계를 가진 소규모 서브에이전트 협의회를 두는 것입니다.\n이 컬렉션은 그곳에 도달하기 위한 완전한 경로를 한데 모았습니다. 다섯 편의 심층 가이드 + 도구를, 학습해야 할 순서대로 정리했습니다. 이론이 아닙니다. 이것들은 우리가 dibi8 자체를 만들 때 사용하는 바로 그 패턴입니다(우리는 실제로 병렬 번역 서브에이전트를 사용해 이 스택의 문서들을 만들었습니다).\nTL;DR — 한눈에 보는 마스터리 스택 # 구성 요소 계층 역할 심층 가이드 1 5가지 서브에이전트 패턴 기초 다섯 가지 워크플로: 병렬 팬아웃, 워크트리 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션 서브에이전트 패턴 2 커스텀 에이전트 작성 구축 ```.claude/agents/*.md```` 작성법 — 프런트매터, 시스템 프롬프트, 도구 허용 목록 커스텀 에이전트 작성 3 서브에이전트 vs MCP vs 스킬 결정 3축 프레임워크 — 지식(스킬), 컨텍스트(서브에이전트), 능력(MCP) 서브에이전트 vs MCP vs 스킬 4 스킬 작성 구축 Claude가 관련 있을 때만 로드하는 절차를 패키징 — SKILL.md, 점진적 공개 스킬 작성 5 오케스트레이션 사후 분석 회피 파이프라인이 실패하는 5가지 방식: 신뢰의 함정, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 잘림, 고아가 된 워크트리 파이프라인 사후 분석 + MCP 도구 빌더 도구 에이전트 능력을 확장하는 MCP 도구 스캐폴드 생성 MCP 도구 빌더 학습 순서 (그리고 그 이유) 다섯 가지 패턴(1)부터 시작하세요. 무언가 커스텀한 것을 만들기 전에, 애초에 언제 서브에이전트를 띄워야 하는지를 체득하세요. 병렬 리서치 팬아웃은 진입 마찰이 가장 낮은 출발점이며 그 이득이 즉각적입니다. 그 밑바탕에 깔린 원리는 다른 모든 것을 관통합니다. 당신의 부모 대화는 희소한 자원이며, 서브에이전트는 그것을 고갈시키지 않고 지출하는 방법입니다.\n그다음 커스텀 에이전트 작성법(2)을 배우세요. 패턴을 알게 되면, 그것을 코드로 굳히세요. 커스텀 에이전트는 실행 가능한 제도적 지식입니다 — 당신의 리뷰 체크리스트, 보안 게이트, 또는 마이그레이션 감사자를 버전 관리되는 .md 파일로 만든 것이죠. 성패를 가르는 디테일은 ````description```(라우팅 신호)과 도구 허용 목록입니다(최소 권한 원칙은 리뷰어가 검토하기로 되어 있던 코드를 “친절하게” 편집하는 것을 막아줍니다).\n한 걸음 물러나 의사결정 프레임워크(3)를 보세요. 이것이 핵심 주춧돌입니다. 또 다른 에이전트를 만들기 전에 자문하세요: 내가 부족한 것이 지식인가(→ 스킬을 작성), 컨텍스트인가(→ 서브에이전트를 띄움), 아니면 능력인가(→ MCP 서버를 구축)? 대부분의 팀은 마크다운 파일 한 장이면 점심 전에 똑같은 결과를 낼 수 있는데도 MCP 서버에 과하게 손을 뻗습니다.\n스킬 축(4)을 마스터하세요. 스킬은 가장 과소평가된 확장 수단입니다 — 관련 있을 때만 로드되는 적시(just-in-time) 전문성으로, 기본 컨텍스트를 가볍게 유지해줍니다. 그 기술은 트리거 description과 점진적 공개에 있습니다.\n그다음 이 모든 것이 어떻게 망가지는지(5)를 연구하세요. 사후 분석은 데모와 프로덕션을 가르는 차이입니다. 모든 실패는 하나의 뿌리를 공유합니다: 에이전트의 주장을 검증된 현실로 신뢰하는 것. 모든 이음새에 검증(git diff, 테스트 종료 코드)과 한계(중단 조건, 예산)를 심으세요.\n왜 이 스택이 임기응변식 학습을 이기는가 흩어진 블로그 글들은 서브에이전트가 존재한다는 사실을 가르칩니다. 이 스택은 전체 루프를 가르칩니다: 언제 위임할 것인가 → 어떻게 작업자를 만들 것인가 → 어떤 확장 수단을 집을 것인가 → 어떻게 재사용 가능한 전문성을 패키징할 것인가 → 어떻게 그것이 조용히 실패하지 않게 할 것인가. 이것은 우리가 dibi8에서 매일 돌리는 바로 그 루프입니다 — 재탕한 문서가 아니라, 직접 겪은 경험이라는 해자(moat)입니다.\n프로덕션급 Claude Code 환경 구축 멀티 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 긴 세션과 CI 게이트를 위한 신뢰할 수 있는 호스트(HTStack — 홍콩 VPS, dibi8.com을 호스팅하는 바로 그 IDC), 그리고 병렬 팬아웃을 위한 클라우드 여유 공간(DigitalOcean — $200 무료 크레딧). 쓰러지지 않는 에이전트를 작성하는 것이 처음이신가요? 우리의 Gumroad $19 스킬 번들은 실전에서 검증된 다섯 가지 스킬과 이 패턴들 뒤에 있는 오케스트레이터 프롬프트를 함께 제공합니다.\n마스터리를 넘어서: 무엇 위에 쌓을지 선택하기 위의 패턴들을 체화하고 나면, 다음 질문은 어떤 도구에 베팅할 것인가입니다. 우리는 바로 그 질문에 답하기 위해 의사결정 3부작을 썼습니다: - Subagents vs LangGraph/CrewAI/AutoGen — 내장 subagents만으로 충분한 경우, 그리고 독립형 프레임워크로 졸업해야 하는 경우.\nClaude Agent SDK vs OpenAI Agents SDK — 두 선도적인 에이전트 SDK의 정면 대결: hooks+subagents 대 handoffs+guardrails. Claude Code vs Cline — 에이전틱 코딩 도구 그 자체에 대한, 자율성 대 통제. 먼저 패턴을 마스터하세요; 무엇 위에 쌓을지는 이 3부작으로 결정하세요.\n결론 서브에이전트를 다섯 개의 단절된 트릭으로 배우지 마세요. 스택을 순서대로 밟으세요 — 패턴 → 작성 → 의사결정 프레임워크 → 스킬 → 실패 모드 — 그러면 “하나의 거대한 대화\"에서 프로덕션에서 실제로 신뢰할 수 있는, 협업하는 에이전트 협의회로 졸업하게 됩니다. 오늘 패턴 1부터 시작하세요. 세션이 길어지고 작업이 무거워질수록 나머지를 한 층씩 쌓아 올리면 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로”, “datePublished”: “2026-05-29”, “dateModified”: “2026-05-29”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack\" } } Why This Matters Understanding claude code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles free-mcp-tools-top10-2026 cc-switch-all-in-one-ai-coding-agent-manager codebase-memory-mcp-high-performance-code-intelligence headroom-token-compression-proxy-library-mcp-server codebase-memory-mcp-deep-code-intelligence Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1214","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/claude-code-subagent-mastery-stack/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-mastery-stack/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-mastery-stack/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#claude-code-%ec%84%9c%eb%b8%8c%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac-%ec%8a%a4%ed%83%9d-2026-%ed%95%98%eb%82%98%ec%9d%98-%eb%8c%80%ed%99%94%ec%97%90%ec%84%9c-%ed%98%91%ec%97%85%ed%95%98%eb%8a%94-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ed%98%91%ec%9d%98%ed%9a%8c%eb%a1%9c aria-label="Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로">Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로</a><ul><li><a href=#tldr--%ed%95%9c%eb%88%88%ec%97%90-%eb%b3%b4%eb%8a%94-%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac-%ec%8a%a4%ed%83%9d aria-label="TL;DR — 한눈에 보는 마스터리 스택">TL;DR — 한눈에 보는 마스터리 스택</a></li><li><a href=#%ed%95%99%ec%8a%b5-%ec%88%9c%ec%84%9c-%ea%b7%b8%eb%a6%ac%ea%b3%a0-%ea%b7%b8-%ec%9d%b4%ec%9c%a0 aria-label="학습 순서 (그리고 그 이유)">학습 순서 (그리고 그 이유)</a></li><li><a href=#%ec%99%9c-%ec%9d%b4-%ec%8a%a4%ed%83%9d%ec%9d%b4-%ec%9e%84%ea%b8%b0%ec%9d%91%eb%b3%80%ec%8b%9d-%ed%95%99%ec%8a%b5%ec%9d%84-%ec%9d%b4%ea%b8%b0%eb%8a%94%ea%b0%80 aria-label="왜 이 스택이 임기응변식 학습을 이기는가">왜 이 스택이 임기응변식 학습을 이기는가</a></li><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ea%b8%89-claude-code-%ed%99%98%ea%b2%bd-%ea%b5%ac%ec%b6%95 aria-label="프로덕션급 Claude Code 환경 구축">프로덕션급 Claude Code 환경 구축</a></li><li><a href=#%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac%eb%a5%bc-%eb%84%98%ec%96%b4%ec%84%9c-%eb%ac%b4%ec%97%87-%ec%9c%84%ec%97%90-%ec%8c%93%ec%9d%84%ec%a7%80-%ec%84%a0%ed%83%9d%ed%95%98%ea%b8%b0 aria-label="마스터리를 넘어서: 무엇 위에 쌓을지 선택하기">마스터리를 넘어서: 무엇 위에 쌓을지 선택하기</a></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/claude-code-subagent-mastery-stack/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-mastery-stack/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-mastery-stack/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-29T00:00:00+08:00 lastmod: 2026-05-30T00:00:00+08:00 tech_stack: - Claude Code\nAgent SDK MCP Bash Markdown application_domain: Collections source_version: ’' licensing_model: Commercial (Anthropic) license_type: Proprietary file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-30” draft: false categories: [“collections”] tags: [“claude code”, “subagents”, “multi-agent”, “agent sdk”, “mcp”, “stack”, “collection”] aliases: /posts/claude-code-subagent-mastery-stack/ faqs: - q: ‘Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인가요?’ a: ‘다섯 가지 패턴은 병렬 리서치 팬아웃, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션입니다. 이들은 다중 에이전트 워크플로의 기반 레이어를 구성하며, 병렬 팬아웃이 가장 마찰이 적은 시작점입니다.’ q: ‘Claude Code에서 skill, subagent, MCP server 중 무엇을 선택해야 할까요?’ a: ‘부족한 것이 무엇인지를 기준으로 하는 3축 프레임워크를 사용하세요. 지식이 부족하면 skill을 작성하고, 컨텍스트가 부족하면 subagent를 생성하며, 기능이 부족하면 MCP server를 구축하세요. 대부분의 팀은 markdown 파일로도 동일한 결과를 낼 수 있음에도 MCP server에 과도하게 의존합니다.’ q: ‘커스텀 Claude Code 에이전트는 어디에 저장되며, 무엇으로 정의되나요?’ a: ‘커스텀 에이전트는 .claude/agents/*.md 경로에 버전 관리되는 Markdown 파일로 저장되며, frontmatter, 시스템 프롬프트, 도구 허용 목록으로 정의됩니다. 가장 중요한 필드는 description(라우팅 신호)과 도구 허용 목록으로, 이는 최소 권한 원칙을 강제합니다.’ q: ‘다중 에이전트 파이프라인 장애의 가장 흔한 근본 원인은 무엇인가요?’ a: ‘모든 주요 장애 유형은 하나의 근본 원인을 공유합니다. 바로 에이전트의 주장을 검증된 사실로 신뢰하는 것입니다. 해결책은 파이프라인의 모든 연결 지점에 검증(git diff 및 테스트 종료 코드 등)과 경계(중단 조건 및 예산)를 내장하는 것입니다.’ q: ‘Claude Code에서 다중 에이전트 파이프라인이 실패하는 다섯 가지 방식은 무엇인가요?’ a: ‘다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.’ Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 단일 스레드 AI 코딩은 2025년 말에 벽에 부딪혔습니다. 하나의 거대한 Claude 대화가 30개의 파일을 읽고, 탐색으로 컨텍스트 윈도를 가득 채운 뒤, 정작 편집을 시작할 때는 필요한 작업 메모리의 절반밖에 남아 있지 않습니다. 2026년의 해답은 위임된 전문화(delegated specialization) 입니다. 과부하된 단일 두뇌 대신, 엄격한 정보 경계를 가진 소규모 서브에이전트 협의회를 두는 것입니다.\n이 컬렉션은 그곳에 도달하기 위한 완전한 경로를 한데 모았습니다. 다섯 편의 심층 가이드 + 도구를, 학습해야 할 순서대로 정리했습니다. 이론이 아닙니다. 이것들은 우리가 dibi8 자체를 만들 때 사용하는 바로 그 패턴입니다(우리는 실제로 병렬 번역 서브에이전트를 사용해 이 스택의 문서들을 만들었습니다).\nTL;DR — 한눈에 보는 마스터리 스택 # 구성 요소 계층 역할 심층 가이드 1 5가지 서브에이전트 패턴 기초 다섯 가지 워크플로: 병렬 팬아웃, 워크트리 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션 서브에이전트 패턴 2 커스텀 에이전트 작성 구축 ```.claude/agents/*.md```` 작성법 — 프런트매터, 시스템 프롬프트, 도구 허용 목록 커스텀 에이전트 작성 3 서브에이전트 vs MCP vs 스킬 결정 3축 프레임워크 — 지식(스킬), 컨텍스트(서브에이전트), 능력(MCP) 서브에이전트 vs MCP vs 스킬 4 스킬 작성 구축 Claude가 관련 있을 때만 로드하는 절차를 패키징 — SKILL.md, 점진적 공개 스킬 작성 5 오케스트레이션 사후 분석 회피 파이프라인이 실패하는 5가지 방식: 신뢰의 함정, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 잘림, 고아가 된 워크트리 파이프라인 사후 분석 + MCP 도구 빌더 도구 에이전트 능력을 확장하는 MCP 도구 스캐폴드 생성 MCP 도구 빌더 학습 순서 (그리고 그 이유) 다섯 가지 패턴(1)부터 시작하세요. 무언가 커스텀한 것을 만들기 전에, 애초에 언제 서브에이전트를 띄워야 하는지를 체득하세요. 병렬 리서치 팬아웃은 진입 마찰이 가장 낮은 출발점이며 그 이득이 즉각적입니다. 그 밑바탕에 깔린 원리는 다른 모든 것을 관통합니다. 당신의 부모 대화는 희소한 자원이며, 서브에이전트는 그것을 고갈시키지 않고 지출하는 방법입니다.\n그다음 커스텀 에이전트 작성법(2)을 배우세요. 패턴을 알게 되면, 그것을 코드로 굳히세요. 커스텀 에이전트는 실행 가능한 제도적 지식입니다 — 당신의 리뷰 체크리스트, 보안 게이트, 또는 마이그레이션 감사자를 버전 관리되는 .md 파일로 만든 것이죠. 성패를 가르는 디테일은 ````description```(라우팅 신호)과 도구 허용 목록입니다(최소 권한 원칙은 리뷰어가 검토하기로 되어 있던 코드를 “친절하게” 편집하는 것을 막아줍니다).\n한 걸음 물러나 의사결정 프레임워크(3)를 보세요. 이것이 핵심 주춧돌입니다. 또 다른 에이전트를 만들기 전에 자문하세요: 내가 부족한 것이 지식인가(→ 스킬을 작성), 컨텍스트인가(→ 서브에이전트를 띄움), 아니면 능력인가(→ MCP 서버를 구축)? 대부분의 팀은 마크다운 파일 한 장이면 점심 전에 똑같은 결과를 낼 수 있는데도 MCP 서버에 과하게 손을 뻗습니다.\n스킬 축(4)을 마스터하세요. 스킬은 가장 과소평가된 확장 수단입니다 — 관련 있을 때만 로드되는 적시(just-in-time) 전문성으로, 기본 컨텍스트를 가볍게 유지해줍니다. 그 기술은 트리거 description과 점진적 공개에 있습니다.\n그다음 이 모든 것이 어떻게 망가지는지(5)를 연구하세요. 사후 분석은 데모와 프로덕션을 가르는 차이입니다. 모든 실패는 하나의 뿌리를 공유합니다: 에이전트의 주장을 검증된 현실로 신뢰하는 것. 모든 이음새에 검증(git diff, 테스트 종료 코드)과 한계(중단 조건, 예산)를 심으세요.\n왜 이 스택이 임기응변식 학습을 이기는가 흩어진 블로그 글들은 서브에이전트가 존재한다는 사실을 가르칩니다. 이 스택은 전체 루프를 가르칩니다: 언제 위임할 것인가 → 어떻게 작업자를 만들 것인가 → 어떤 확장 수단을 집을 것인가 → 어떻게 재사용 가능한 전문성을 패키징할 것인가 → 어떻게 그것이 조용히 실패하지 않게 할 것인가. 이것은 우리가 dibi8에서 매일 돌리는 바로 그 루프입니다 — 재탕한 문서가 아니라, 직접 겪은 경험이라는 해자(moat)입니다.\n프로덕션급 Claude Code 환경 구축 멀티 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 긴 세션과 CI 게이트를 위한 신뢰할 수 있는 호스트(HTStack — 홍콩 VPS, dibi8.com을 호스팅하는 바로 그 IDC), 그리고 병렬 팬아웃을 위한 클라우드 여유 공간(DigitalOcean — $200 무료 크레딧). 쓰러지지 않는 에이전트를 작성하는 것이 처음이신가요? 우리의 Gumroad $19 스킬 번들은 실전에서 검증된 다섯 가지 스킬과 이 패턴들 뒤에 있는 오케스트레이터 프롬프트를 함께 제공합니다.\n마스터리를 넘어서: 무엇 위에 쌓을지 선택하기 위의 패턴들을 체화하고 나면, 다음 질문은 어떤 도구에 베팅할 것인가입니다. 우리는 바로 그 질문에 답하기 위해 의사결정 3부작을 썼습니다: - Subagents vs LangGraph/CrewAI/AutoGen — 내장 subagents만으로 충분한 경우, 그리고 독립형 프레임워크로 졸업해야 하는 경우.\nClaude Agent SDK vs OpenAI Agents SDK — 두 선도적인 에이전트 SDK의 정면 대결: hooks+subagents 대 handoffs+guardrails. Claude Code vs Cline — 에이전틱 코딩 도구 그 자체에 대한, 자율성 대 통제. 먼저 패턴을 마스터하세요; 무엇 위에 쌓을지는 이 3부작으로 결정하세요.\n결론 서브에이전트를 다섯 개의 단절된 트릭으로 배우지 마세요. 스택을 순서대로 밟으세요 — 패턴 → 작성 → 의사결정 프레임워크 → 스킬 → 실패 모드 — 그러면 “하나의 거대한 대화\"에서 프로덕션에서 실제로 신뢰할 수 있는, 협업하는 에이전트 협의회로 졸업하게 됩니다. 오늘 패턴 1부터 시작하세요. 세션이 길어지고 작업이 무거워질수록 나머지를 한 층씩 쌓아 올리면 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로”, “datePublished”: “2026-05-29”, “dateModified”: “2026-05-29”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack\" } } Why This Matters Understanding claude code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles free-mcp-tools-top10-2026 cc-switch-all-in-one-ai-coding-agent-manager codebase-memory-mcp-high-performance-code-intelligence headroom-token-compression-proxy-library-mcp-server codebase-memory-mcp-deep-code-intelligence Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1214",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/claude-code-subagent-mastery-stack/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-mastery-stack/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-mastery-stack/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#claude-code-%ec%84%9c%eb%b8%8c%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac-%ec%8a%a4%ed%83%9d-2026-%ed%95%98%eb%82%98%ec%9d%98-%eb%8c%80%ed%99%94%ec%97%90%ec%84%9c-%ed%98%91%ec%97%85%ed%95%98%eb%8a%94-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ed%98%91%ec%9d%98%ed%9a%8c%eb%a1%9c" aria-label="Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로">Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로</a><ul>
+                    
+            <li>
+                <a href="#tldr--%ed%95%9c%eb%88%88%ec%97%90-%eb%b3%b4%eb%8a%94-%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac-%ec%8a%a4%ed%83%9d" aria-label="TL;DR — 한눈에 보는 마스터리 스택">TL;DR — 한눈에 보는 마스터리 스택</a></li>
+            <li>
+                <a href="#%ed%95%99%ec%8a%b5-%ec%88%9c%ec%84%9c-%ea%b7%b8%eb%a6%ac%ea%b3%a0-%ea%b7%b8-%ec%9d%b4%ec%9c%a0" aria-label="학습 순서 (그리고 그 이유)">학습 순서 (그리고 그 이유)</a></li>
+            <li>
+                <a href="#%ec%99%9c-%ec%9d%b4-%ec%8a%a4%ed%83%9d%ec%9d%b4-%ec%9e%84%ea%b8%b0%ec%9d%91%eb%b3%80%ec%8b%9d-%ed%95%99%ec%8a%b5%ec%9d%84-%ec%9d%b4%ea%b8%b0%eb%8a%94%ea%b0%80" aria-label="왜 이 스택이 임기응변식 학습을 이기는가">왜 이 스택이 임기응변식 학습을 이기는가</a></li>
+            <li>
+                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ea%b8%89-claude-code-%ed%99%98%ea%b2%bd-%ea%b5%ac%ec%b6%95" aria-label="프로덕션급 Claude Code 환경 구축">프로덕션급 Claude Code 환경 구축</a></li>
+            <li>
+                <a href="#%eb%a7%88%ec%8a%a4%ed%84%b0%eb%a6%ac%eb%a5%bc-%eb%84%98%ec%96%b4%ec%84%9c-%eb%ac%b4%ec%97%87-%ec%9c%84%ec%97%90-%ec%8c%93%ec%9d%84%ec%a7%80-%ec%84%a0%ed%83%9d%ed%95%98%ea%b8%b0" aria-label="마스터리를 넘어서: 무엇 위에 쌓을지 선택하기">마스터리를 넘어서: 무엇 위에 쌓을지 선택하기</a></li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-29T00:00:00+08:00
 lastmod: 2026-05-30T00:00:00+08:00
-tech_stack: - Claude Code</p><ul><li>Agent SDK</li><li>MCP</li><li>Bash</li><li>Markdown
+tech_stack: - Claude Code</p>
+<ul>
+<li>Agent SDK</li>
+<li>MCP</li>
+<li>Bash</li>
+<li>Markdown
 application_domain: Collections
 source_version: &rsquo;'
 licensing_model: Commercial (Anthropic)
@@ -21,14 +266,100 @@ last_maintained: &ldquo;2026-05-30&rdquo;
 draft: false
 categories: [&ldquo;collections&rdquo;]
 tags: [&ldquo;claude code&rdquo;, &ldquo;subagents&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;agent sdk&rdquo;, &ldquo;mcp&rdquo;, &ldquo;stack&rdquo;, &ldquo;collection&rdquo;]
-aliases:</li><li>/posts/claude-code-subagent-mastery-stack/
+aliases:</li>
+<li>/posts/claude-code-subagent-mastery-stack/
 faqs: - q: &lsquo;Claude Code의 다섯 가지 서브에이전트 패턴은 무엇인가요?&rsquo;
-a: &lsquo;다섯 가지 패턴은 병렬 리서치 팬아웃, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션입니다. 이들은 다중 에이전트 워크플로의 기반 레이어를 구성하며, 병렬 팬아웃이 가장 마찰이 적은 시작점입니다.&rsquo;</li><li>q: &lsquo;Claude Code에서 skill, subagent, MCP server 중 무엇을 선택해야 할까요?&rsquo;
-a: &lsquo;부족한 것이 무엇인지를 기준으로 하는 3축 프레임워크를 사용하세요. 지식이 부족하면 skill을 작성하고, 컨텍스트가 부족하면 subagent를 생성하며, 기능이 부족하면 MCP server를 구축하세요. 대부분의 팀은 markdown 파일로도 동일한 결과를 낼 수 있음에도 MCP server에 과도하게 의존합니다.&rsquo;</li><li>q: &lsquo;커스텀 Claude Code 에이전트는 어디에 저장되며, 무엇으로 정의되나요?&rsquo;
-a: &lsquo;커스텀 에이전트는 .claude/agents/*.md 경로에 버전 관리되는 Markdown 파일로 저장되며, frontmatter, 시스템 프롬프트, 도구 허용 목록으로 정의됩니다. 가장 중요한 필드는 description(라우팅 신호)과 도구 허용 목록으로, 이는 최소 권한 원칙을 강제합니다.&rsquo;</li><li>q: &lsquo;다중 에이전트 파이프라인 장애의 가장 흔한 근본 원인은 무엇인가요?&rsquo;
-a: &lsquo;모든 주요 장애 유형은 하나의 근본 원인을 공유합니다. 바로 에이전트의 주장을 검증된 사실로 신뢰하는 것입니다. 해결책은 파이프라인의 모든 연결 지점에 검증(git diff 및 테스트 종료 코드 등)과 경계(중단 조건 및 예산)를 내장하는 것입니다.&rsquo;</li><li>q: &lsquo;Claude Code에서 다중 에이전트 파이프라인이 실패하는 다섯 가지 방식은 무엇인가요?&rsquo;
-a: &lsquo;다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.&rsquo;</li></ul><hr><h1 id=claude-code-서브에이전트-마스터리-스택-2026-하나의-대화에서-협업하는-에이전트-협의회로>Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로<a hidden class=anchor aria-hidden=true href=#claude-code-서브에이전트-마스터리-스택-2026-하나의-대화에서-협업하는-에이전트-협의회로>#</a></h1><p>단일 스레드 AI 코딩은 2025년 말에 벽에 부딪혔습니다. 하나의 거대한 Claude 대화가 30개의 파일을 읽고, 탐색으로 컨텍스트 윈도를 가득 채운 뒤, 정작 편집을 시작할 때는 필요한 작업 메모리의 절반밖에 남아 있지 않습니다. 2026년의 해답은 <strong>위임된 전문화(delegated specialization)</strong> 입니다. 과부하된 단일 두뇌 대신, 엄격한 정보 경계를 가진 소규모 서브에이전트 협의회를 두는 것입니다.</p><p>이 컬렉션은 그곳에 도달하기 위한 <strong>완전한 경로</strong>를 한데 모았습니다. 다섯 편의 심층 가이드 + 도구를, 학습해야 할 순서대로 정리했습니다. 이론이 아닙니다. 이것들은 우리가 dibi8 자체를 만들 때 사용하는 바로 그 패턴입니다(우리는 실제로 병렬 번역 서브에이전트를 사용해 이 스택의 문서들을 만들었습니다).</p><h2 id=tldr--한눈에-보는-마스터리-스택>TL;DR — 한눈에 보는 마스터리 스택<a hidden class=anchor aria-hidden=true href=#tldr--한눈에-보는-마스터리-스택>#</a></h2><table><thead><tr><th>#</th><th>구성 요소</th><th>계층</th><th>역할</th><th>심층 가이드</th></tr></thead><tbody><tr><td>1</td><td><strong>5가지 서브에이전트 패턴</strong></td><td>기초</td><td>다섯 가지 워크플로: 병렬 팬아웃, 워크트리 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션</td><td><a href=/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/>서브에이전트 패턴</a></td></tr><tr><td>2</td><td><strong>커스텀 에이전트 작성</strong></td><td>구축</td><td>```.claude/agents/*.md```` 작성법 — 프런트매터, 시스템 프롬프트, 도구 허용 목록</td><td><a href=/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/>커스텀 에이전트 작성</a></td></tr><tr><td>3</td><td><strong>서브에이전트 vs MCP vs 스킬</strong></td><td>결정</td><td>3축 프레임워크 — 지식(스킬), 컨텍스트(서브에이전트), 능력(MCP)</td><td><a href=/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/>서브에이전트 vs MCP vs 스킬</a></td></tr><tr><td>4</td><td><strong>스킬 작성</strong></td><td>구축</td><td>Claude가 관련 있을 때만 로드하는 절차를 패키징 — SKILL.md, 점진적 공개</td><td><a href=/kr/resources/llm-frameworks/claude-code-skill-authoring-guide-2026/>스킬 작성</a></td></tr><tr><td>5</td><td><strong>오케스트레이션 사후 분석</strong></td><td>회피</td><td>파이프라인이 실패하는 5가지 방식: 신뢰의 함정, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 잘림, 고아가 된 워크트리</td><td><a href=/kr/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/>파이프라인 사후 분석</a></td></tr><tr><td>+</td><td><strong>MCP 도구 빌더</strong></td><td>도구</td><td>에이전트 능력을 확장하는 MCP 도구 스캐폴드 생성</td><td><a href=/kr/tools/mcp-tool-builder/>MCP 도구 빌더</a></td></tr></tbody></table><h2 id=학습-순서-그리고-그-이유>학습 순서 (그리고 그 이유)<a hidden class=anchor aria-hidden=true href=#학습-순서-그리고-그-이유>#</a></h2><p><strong>다섯 가지 패턴(1)부터 시작하세요.</strong> 무언가 커스텀한 것을 만들기 전에, 애초에 <em>언제</em> 서브에이전트를 띄워야 하는지를 체득하세요. 병렬 리서치 팬아웃은 진입 마찰이 가장 낮은 출발점이며 그 이득이 즉각적입니다. 그 밑바탕에 깔린 원리는 다른 모든 것을 관통합니다. 당신의 부모 대화는 희소한 자원이며, 서브에이전트는 그것을 고갈시키지 않고 지출하는 방법입니다.</p><p><strong>그다음 커스텀 에이전트 작성법(2)을 배우세요.</strong> 패턴을 알게 되면, 그것을 코드로 굳히세요. 커스텀 에이전트는 실행 가능한 제도적 지식입니다 — 당신의 리뷰 체크리스트, 보안 게이트, 또는 마이그레이션 감사자를 버전 관리되는 <code>.md</code> 파일로 만든 것이죠. 성패를 가르는 디테일은 ````description```(라우팅 신호)과 도구 허용 목록입니다(최소 권한 원칙은 리뷰어가 검토하기로 되어 있던 코드를 &ldquo;친절하게&rdquo; 편집하는 것을 막아줍니다).</p><p><strong>한 걸음 물러나 의사결정 프레임워크(3)를 보세요.</strong> 이것이 핵심 주춧돌입니다. 또 다른 에이전트를 만들기 전에 자문하세요: 내가 부족한 것이 <em>지식</em>인가(→ 스킬을 작성), <em>컨텍스트</em>인가(→ 서브에이전트를 띄움), 아니면 <em>능력</em>인가(→ MCP 서버를 구축)? 대부분의 팀은 마크다운 파일 한 장이면 점심 전에 똑같은 결과를 낼 수 있는데도 MCP 서버에 과하게 손을 뻗습니다.</p><p><strong>스킬 축(4)을 마스터하세요.</strong> 스킬은 가장 과소평가된 확장 수단입니다 — 관련 있을 때만 로드되는 적시(just-in-time) 전문성으로, 기본 컨텍스트를 가볍게 유지해줍니다. 그 기술은 트리거 description과 점진적 공개에 있습니다.</p><p><strong>그다음 이 모든 것이 어떻게 망가지는지(5)를 연구하세요.</strong> 사후 분석은 데모와 프로덕션을 가르는 차이입니다. 모든 실패는 하나의 뿌리를 공유합니다: 에이전트의 <em>주장</em>을 검증된 현실로 신뢰하는 것. 모든 이음새에 검증(git diff, 테스트 종료 코드)과 한계(중단 조건, 예산)를 심으세요.</p><h2 id=왜-이-스택이-임기응변식-학습을-이기는가>왜 이 스택이 임기응변식 학습을 이기는가<a hidden class=anchor aria-hidden=true href=#왜-이-스택이-임기응변식-학습을-이기는가>#</a></h2><p>흩어진 블로그 글들은 서브에이전트가 존재한다는 <em>사실</em>을 가르칩니다. 이 스택은 <strong>전체 루프</strong>를 가르칩니다: 언제 위임할 것인가 → 어떻게 작업자를 만들 것인가 → 어떤 확장 수단을 집을 것인가 → 어떻게 재사용 가능한 전문성을 패키징할 것인가 → 어떻게 그것이 조용히 실패하지 않게 할 것인가. 이것은 우리가 dibi8에서 매일 돌리는 바로 그 루프입니다 — 재탕한 문서가 아니라, 직접 겪은 경험이라는 해자(moat)입니다.</p><h2 id=프로덕션급-claude-code-환경-구축>프로덕션급 Claude Code 환경 구축<a hidden class=anchor aria-hidden=true href=#프로덕션급-claude-code-환경-구축>#</a></h2><p>멀티 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 긴 세션과 CI 게이트를 위한 신뢰할 수 있는 호스트(<a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> — 홍콩 VPS, dibi8.com을 호스팅하는 바로 그 IDC), 그리고 병렬 팬아웃을 위한 클라우드 여유 공간(<a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> — $200 무료 크레딧). 쓰러지지 않는 에이전트를 작성하는 것이 처음이신가요? 우리의 <a href=https://kingskill.gumroad.com/l/pfsjmu>Gumroad $19 스킬 번들</a>은 실전에서 검증된 다섯 가지 스킬과 이 패턴들 뒤에 있는 오케스트레이터 프롬프트를 함께 제공합니다.</p><h2 id=마스터리를-넘어서-무엇-위에-쌓을지-선택하기>마스터리를 넘어서: 무엇 위에 쌓을지 선택하기<a hidden class=anchor aria-hidden=true href=#마스터리를-넘어서-무엇-위에-쌓을지-선택하기>#</a></h2><p>위의 패턴들을 체화하고 나면, 다음 질문은 <em>어떤</em> 도구에 베팅할 것인가입니다. 우리는 바로 그 질문에 답하기 위해 의사결정 3부작을 썼습니다: - <strong><a href=/kr/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/>Subagents vs LangGraph/CrewAI/AutoGen</a></strong> — 내장 subagents만으로 충분한 경우, 그리고 독립형 프레임워크로 졸업해야 하는 경우.</p><ul><li><strong><a href=/kr/vs/claude-agent-sdk-vs-openai-agents-sdk/>Claude Agent SDK vs OpenAI Agents SDK</a></strong> — 두 선도적인 에이전트 SDK의 정면 대결: hooks+subagents 대 handoffs+guardrails.</li><li><strong><a href=/kr/vs/claude-code-vs-cline/>Claude Code vs Cline</a></strong> — 에이전틱 코딩 도구 그 자체에 대한, 자율성 대 통제.</li></ul><p>먼저 패턴을 마스터하세요; 무엇 위에 쌓을지는 이 3부작으로 결정하세요.</p><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>서브에이전트를 다섯 개의 단절된 트릭으로 배우지 마세요. 스택을 순서대로 밟으세요 — 패턴 → 작성 → 의사결정 프레임워크 → 스킬 → 실패 모드 — 그러면 &ldquo;하나의 거대한 대화"에서 프로덕션에서 실제로 신뢰할 수 있는, 협업하는 에이전트 협의회로 졸업하게 됩니다. 오늘 패턴 1부터 시작하세요. 세션이 길어지고 작업이 무거워질수록 나머지를 한 층씩 쌓아 올리면 됩니다.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+a: &lsquo;다섯 가지 패턴은 병렬 리서치 팬아웃, worktree 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션입니다. 이들은 다중 에이전트 워크플로의 기반 레이어를 구성하며, 병렬 팬아웃이 가장 마찰이 적은 시작점입니다.&rsquo;</li>
+<li>q: &lsquo;Claude Code에서 skill, subagent, MCP server 중 무엇을 선택해야 할까요?&rsquo;
+a: &lsquo;부족한 것이 무엇인지를 기준으로 하는 3축 프레임워크를 사용하세요. 지식이 부족하면 skill을 작성하고, 컨텍스트가 부족하면 subagent를 생성하며, 기능이 부족하면 MCP server를 구축하세요. 대부분의 팀은 markdown 파일로도 동일한 결과를 낼 수 있음에도 MCP server에 과도하게 의존합니다.&rsquo;</li>
+<li>q: &lsquo;커스텀 Claude Code 에이전트는 어디에 저장되며, 무엇으로 정의되나요?&rsquo;
+a: &lsquo;커스텀 에이전트는 .claude/agents/*.md 경로에 버전 관리되는 Markdown 파일로 저장되며, frontmatter, 시스템 프롬프트, 도구 허용 목록으로 정의됩니다. 가장 중요한 필드는 description(라우팅 신호)과 도구 허용 목록으로, 이는 최소 권한 원칙을 강제합니다.&rsquo;</li>
+<li>q: &lsquo;다중 에이전트 파이프라인 장애의 가장 흔한 근본 원인은 무엇인가요?&rsquo;
+a: &lsquo;모든 주요 장애 유형은 하나의 근본 원인을 공유합니다. 바로 에이전트의 주장을 검증된 사실로 신뢰하는 것입니다. 해결책은 파이프라인의 모든 연결 지점에 검증(git diff 및 테스트 종료 코드 등)과 경계(중단 조건 및 예산)를 내장하는 것입니다.&rsquo;</li>
+<li>q: &lsquo;Claude Code에서 다중 에이전트 파이프라인이 실패하는 다섯 가지 방식은 무엇인가요?&rsquo;
+a: &lsquo;다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스트 누출, 통제 불능 팬아웃, 자동 절단, 고아 worktree입니다. 이것들을 학습하는 것이 작동하는 데모와 프로덕션 준비 파이프라인을 구분 짓는 핵심입니다.&rsquo;</li>
+</ul>
+<hr>
+<h1 id="claude-code-서브에이전트-마스터리-스택-2026-하나의-대화에서-협업하는-에이전트-협의회로">Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로<a hidden class="anchor" aria-hidden="true" href="#claude-code-서브에이전트-마스터리-스택-2026-하나의-대화에서-협업하는-에이전트-협의회로">#</a></h1>
+<p>단일 스레드 AI 코딩은 2025년 말에 벽에 부딪혔습니다. 하나의 거대한 Claude 대화가 30개의 파일을 읽고, 탐색으로 컨텍스트 윈도를 가득 채운 뒤, 정작 편집을 시작할 때는 필요한 작업 메모리의 절반밖에 남아 있지 않습니다. 2026년의 해답은 <strong>위임된 전문화(delegated specialization)</strong> 입니다. 과부하된 단일 두뇌 대신, 엄격한 정보 경계를 가진 소규모 서브에이전트 협의회를 두는 것입니다.</p>
+<p>이 컬렉션은 그곳에 도달하기 위한 <strong>완전한 경로</strong>를 한데 모았습니다. 다섯 편의 심층 가이드 + 도구를, 학습해야 할 순서대로 정리했습니다. 이론이 아닙니다. 이것들은 우리가 dibi8 자체를 만들 때 사용하는 바로 그 패턴입니다(우리는 실제로 병렬 번역 서브에이전트를 사용해 이 스택의 문서들을 만들었습니다).</p>
+<h2 id="tldr--한눈에-보는-마스터리-스택">TL;DR — 한눈에 보는 마스터리 스택<a hidden class="anchor" aria-hidden="true" href="#tldr--한눈에-보는-마스터리-스택">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>구성 요소</th>
+					<th>계층</th>
+					<th>역할</th>
+					<th>심층 가이드</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td><strong>5가지 서브에이전트 패턴</strong></td>
+					<td>기초</td>
+					<td>다섯 가지 워크플로: 병렬 팬아웃, 워크트리 격리, 전문가 위임, 컨텍스트 보호, 파이프라인 오케스트레이션</td>
+					<td><a href="/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">서브에이전트 패턴</a></td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td><strong>커스텀 에이전트 작성</strong></td>
+					<td>구축</td>
+					<td>```.claude/agents/*.md```` 작성법 — 프런트매터, 시스템 프롬프트, 도구 허용 목록</td>
+					<td><a href="/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/">커스텀 에이전트 작성</a></td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td><strong>서브에이전트 vs MCP vs 스킬</strong></td>
+					<td>결정</td>
+					<td>3축 프레임워크 — 지식(스킬), 컨텍스트(서브에이전트), 능력(MCP)</td>
+					<td><a href="/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/">서브에이전트 vs MCP vs 스킬</a></td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td><strong>스킬 작성</strong></td>
+					<td>구축</td>
+					<td>Claude가 관련 있을 때만 로드하는 절차를 패키징 — SKILL.md, 점진적 공개</td>
+					<td><a href="/kr/resources/llm-frameworks/claude-code-skill-authoring-guide-2026/">스킬 작성</a></td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td><strong>오케스트레이션 사후 분석</strong></td>
+					<td>회피</td>
+					<td>파이프라인이 실패하는 5가지 방식: 신뢰의 함정, 컨텍스트 누출, 폭주하는 팬아웃, 조용한 잘림, 고아가 된 워크트리</td>
+					<td><a href="/kr/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/">파이프라인 사후 분석</a></td>
+			</tr>
+			<tr>
+					<td>+</td>
+					<td><strong>MCP 도구 빌더</strong></td>
+					<td>도구</td>
+					<td>에이전트 능력을 확장하는 MCP 도구 스캐폴드 생성</td>
+					<td><a href="/kr/tools/mcp-tool-builder/">MCP 도구 빌더</a></td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="학습-순서-그리고-그-이유">학습 순서 (그리고 그 이유)<a hidden class="anchor" aria-hidden="true" href="#학습-순서-그리고-그-이유">#</a></h2>
+<p><strong>다섯 가지 패턴(1)부터 시작하세요.</strong> 무언가 커스텀한 것을 만들기 전에, 애초에 <em>언제</em> 서브에이전트를 띄워야 하는지를 체득하세요. 병렬 리서치 팬아웃은 진입 마찰이 가장 낮은 출발점이며 그 이득이 즉각적입니다. 그 밑바탕에 깔린 원리는 다른 모든 것을 관통합니다. 당신의 부모 대화는 희소한 자원이며, 서브에이전트는 그것을 고갈시키지 않고 지출하는 방법입니다.</p>
+<p><strong>그다음 커스텀 에이전트 작성법(2)을 배우세요.</strong> 패턴을 알게 되면, 그것을 코드로 굳히세요. 커스텀 에이전트는 실행 가능한 제도적 지식입니다 — 당신의 리뷰 체크리스트, 보안 게이트, 또는 마이그레이션 감사자를 버전 관리되는 <code>.md</code> 파일로 만든 것이죠. 성패를 가르는 디테일은 ````description```(라우팅 신호)과 도구 허용 목록입니다(최소 권한 원칙은 리뷰어가 검토하기로 되어 있던 코드를 &ldquo;친절하게&rdquo; 편집하는 것을 막아줍니다).</p>
+<p><strong>한 걸음 물러나 의사결정 프레임워크(3)를 보세요.</strong> 이것이 핵심 주춧돌입니다. 또 다른 에이전트를 만들기 전에 자문하세요: 내가 부족한 것이 <em>지식</em>인가(→ 스킬을 작성), <em>컨텍스트</em>인가(→ 서브에이전트를 띄움), 아니면 <em>능력</em>인가(→ MCP 서버를 구축)? 대부분의 팀은 마크다운 파일 한 장이면 점심 전에 똑같은 결과를 낼 수 있는데도 MCP 서버에 과하게 손을 뻗습니다.</p>
+<p><strong>스킬 축(4)을 마스터하세요.</strong> 스킬은 가장 과소평가된 확장 수단입니다 — 관련 있을 때만 로드되는 적시(just-in-time) 전문성으로, 기본 컨텍스트를 가볍게 유지해줍니다. 그 기술은 트리거 description과 점진적 공개에 있습니다.</p>
+<p><strong>그다음 이 모든 것이 어떻게 망가지는지(5)를 연구하세요.</strong> 사후 분석은 데모와 프로덕션을 가르는 차이입니다. 모든 실패는 하나의 뿌리를 공유합니다: 에이전트의 <em>주장</em>을 검증된 현실로 신뢰하는 것. 모든 이음새에 검증(git diff, 테스트 종료 코드)과 한계(중단 조건, 예산)를 심으세요.</p>
+<h2 id="왜-이-스택이-임기응변식-학습을-이기는가">왜 이 스택이 임기응변식 학습을 이기는가<a hidden class="anchor" aria-hidden="true" href="#왜-이-스택이-임기응변식-학습을-이기는가">#</a></h2>
+<p>흩어진 블로그 글들은 서브에이전트가 존재한다는 <em>사실</em>을 가르칩니다. 이 스택은 <strong>전체 루프</strong>를 가르칩니다: 언제 위임할 것인가 → 어떻게 작업자를 만들 것인가 → 어떤 확장 수단을 집을 것인가 → 어떻게 재사용 가능한 전문성을 패키징할 것인가 → 어떻게 그것이 조용히 실패하지 않게 할 것인가. 이것은 우리가 dibi8에서 매일 돌리는 바로 그 루프입니다 — 재탕한 문서가 아니라, 직접 겪은 경험이라는 해자(moat)입니다.</p>
+<h2 id="프로덕션급-claude-code-환경-구축">프로덕션급 Claude Code 환경 구축<a hidden class="anchor" aria-hidden="true" href="#프로덕션급-claude-code-환경-구축">#</a></h2>
+<p>멀티 에이전트 파이프라인을 대규모로 돌리려면 안정적인 인프라가 필요합니다: 긴 세션과 CI 게이트를 위한 신뢰할 수 있는 호스트(<a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> — 홍콩 VPS, dibi8.com을 호스팅하는 바로 그 IDC), 그리고 병렬 팬아웃을 위한 클라우드 여유 공간(<a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> — $200 무료 크레딧). 쓰러지지 않는 에이전트를 작성하는 것이 처음이신가요? 우리의 <a href="https://kingskill.gumroad.com/l/pfsjmu">Gumroad $19 스킬 번들</a>은 실전에서 검증된 다섯 가지 스킬과 이 패턴들 뒤에 있는 오케스트레이터 프롬프트를 함께 제공합니다.</p>
+<h2 id="마스터리를-넘어서-무엇-위에-쌓을지-선택하기">마스터리를 넘어서: 무엇 위에 쌓을지 선택하기<a hidden class="anchor" aria-hidden="true" href="#마스터리를-넘어서-무엇-위에-쌓을지-선택하기">#</a></h2>
+<p>위의 패턴들을 체화하고 나면, 다음 질문은 <em>어떤</em> 도구에 베팅할 것인가입니다. 우리는 바로 그 질문에 답하기 위해 의사결정 3부작을 썼습니다: - <strong><a href="/kr/resources/llm-frameworks/claude-code-subagents-vs-langgraph-crewai-autogen-2026/">Subagents vs LangGraph/CrewAI/AutoGen</a></strong> — 내장 subagents만으로 충분한 경우, 그리고 독립형 프레임워크로 졸업해야 하는 경우.</p>
+<ul>
+<li><strong><a href="/kr/vs/claude-agent-sdk-vs-openai-agents-sdk/">Claude Agent SDK vs OpenAI Agents SDK</a></strong> — 두 선도적인 에이전트 SDK의 정면 대결: hooks+subagents 대 handoffs+guardrails.</li>
+<li><strong><a href="/kr/vs/claude-code-vs-cline/">Claude Code vs Cline</a></strong> — 에이전틱 코딩 도구 그 자체에 대한, 자율성 대 통제.</li>
+</ul>
+<p>먼저 패턴을 마스터하세요; 무엇 위에 쌓을지는 이 3부작으로 결정하세요.</p>
+<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
+<p>서브에이전트를 다섯 개의 단절된 트릭으로 배우지 마세요. 스택을 순서대로 밟으세요 — 패턴 → 작성 → 의사결정 프레임워크 → 스킬 → 실패 모드 — 그러면 &ldquo;하나의 거대한 대화&quot;에서 프로덕션에서 실제로 신뢰할 수 있는, 협업하는 에이전트 협의회로 졸업하게 됩니다. 오늘 패턴 1부터 시작하세요. 세션이 길어지고 작업이 무거워질수록 나머지를 한 층씩 쌓아 올리면 됩니다.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-29&rdquo;,
@@ -42,22 +373,230 @@ a: &lsquo;다섯 가지 문서화된 장애 유형은 신뢰 함정, 컨텍스�
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack%22>https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack%22">https://dibi8.com/kr/resources/claude-code-subagent-mastery-stack"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding claude code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding claude code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/claude-code-subagent-mastery-stack/>free-mcp-tools-top10-2026</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-mastery-stack/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-mastery-stack/>codebase-memory-mcp-high-performance-code-intelligence</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-mastery-stack/>headroom-token-compression-proxy-library-mcp-server</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-mastery-stack/>codebase-memory-mcp-deep-code-intelligence</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-patterns-multi-agent-workflows-2026/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Claude Code 서브에이전트 마스터리 스택 2026: 하나의 대화에서 협업하는 에이전트 협의회로 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">free-mcp-tools-top10-2026</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">codebase-memory-mcp-high-performance-code-intelligence</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">headroom-token-compression-proxy-library-mcp-server</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">codebase-memory-mcp-deep-code-intelligence</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-patterns-multi-agent-workflows-2026/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

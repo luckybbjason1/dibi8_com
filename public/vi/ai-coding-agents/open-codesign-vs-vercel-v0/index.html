@@ -1,34 +1,306 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/open-codesign-vs-vercel-v0/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/open-codesign-vs-vercel-v0/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/open-codesign-vs-vercel-v0/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: \"\" backup_url: \"\" last_maintained: “2026-05-15” draft: false faqs: - q: ‘Có giải pháp thay thế Vercel v0 dạng tự lưu trữ và mã nguồn mở không?’ a: ‘Có. Open Codesign là một công cụ tạo UI mã nguồn mở, tự lưu trữ, cung cấp quy trình từ prompt đến preview tương tự v0. Bạn chạy frontend cục bộ và kết nối với LLM nội bộ hoặc API key của riêng mình, hoàn toàn không phụ thuộc vào hệ sinh thái hosting của Vercel.’\nq: ‘Giải pháp thay thế miễn phí tốt nhất cho v0 của Vercel là gì?’ a: ‘Open Codesign là lựa chọn miễn phí hàng đầu. Công cụ này mang lại trải nghiệm UX gần giống nhất với giao diện prompt-to-preview của v0, không giới hạn số lần tạo, hoàn toàn miễn phí và là mã nguồn mở theo giấy phép MIT.’ q: ‘BYOM (Bring Your Own Model) trong Open Codesign có nghĩa là gì?’ a: ‘BYOM có nghĩa là Open Codesign đóng vai trò là lớp điều phối thay vì ràng buộc bạn với mô hình của một nhà cung cấp duy nhất. Bạn có thể kết nối nó với mô hình được lưu trữ cục bộ như DeepSeek Coder qua Ollama, hoặc sử dụng LM Studio hay API key của riêng mình, đảm bảo dữ liệu không bị rò rỉ.’ q: ‘Open Codesign có thể tạo UI hoàn toàn offline không?’ a: ‘Có. Open Codesign hỗ trợ 100% offline khi kết hợp với LLM cục bộ qua Ollama hoặc LM Studio. Tác nhân sẽ render UI được tạo ra trong một iframe cô lập ngay trên máy local, cho phép bạn chỉnh sửa không giới hạn mà không cần gửi prompt lên dịch vụ đám mây hay tiêu tốn bất kỳ API token nào.’ q: ‘Open Codesign hỗ trợ xuất ra những framework nào so với Vercel v0?’ a: ‘Open Codesign cho phép xuất tùy chỉnh cho React, Vue, Svelte và HTML thuần túy, trong khi Vercel v0 chủ yếu hướng đến Next.js và Tailwind.’ {\u003c/* resource-info */\u003e}\nMã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign Vercel v0 từng gây bão khi chỉ cần gõ vài chữ là ra ngay code React. Nhưng tuần trăng mật đã hết. Dev bắt đầu ngán ngẩm vì nó bóp tương tác, ép phải nạp VIP, lại còn trói chặt vào hệ sinh thái của Vercel. Chưa kể mấy sếp trong công ty cấm tiệt việc ném code nội bộ lên mây. Nếu bạn muốn tự tạo UI an toàn trong năm 2026, Open Codesign chính là đấng cứu thế mã nguồn mở.\nCùng bóc tách xem tại sao một con bot tự chạy ở nhà lại ăn đứt mấy cái API đắt đỏ trên mây.\nLên Bàn Cân: Open Codesign vs Vercel v0 Tạo giao diện web đách có lý do gì phải tốn mấy chục đô mỗi tháng cả. Nhìn bảng dưới để thấy đồ open source đang vả vỡ mồm hàng thương mại ra sao: | Tính Năng / Tiêu Chí | Open Codesign (Đồ chùa) | Vercel v0 (Hút máu) | | :— | :— | :— | | Giá Tiền | $0 (Tạo bao nhiêu trang tùy thích) | Giới hạn credit, xài tốn tí là đòi $20/tháng | | Lõi AI (LLM) | Thích xài gì xài nấy (Ollama, DeepSeek) | Bị nhốt trong cái lồng mô hình của Vercel | | Bảo Mật Code | Cúp mạng vẫn code ầm ầm (100% Offline) | Gõ gì nó lưu lại hết trên server | | Công Nghệ Output | Đa dạng (React, Vue, HTML chay tùy ý) | Ép buộc xài Next.js dính chùm Tailwind |\nSự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây) Điểm ăn tiền nhất của Open Codesign là tính lắp ghép. Vercel v0 ép bạn xài AI của nó. Còn Open Codesign chỉ cung cấp cái giao diện chat và khung hiển thị. Bạn có thể cắm con DeepSeek Coder đang chạy bằng Ollama trong máy tính của bạn vào đó. Khi AI nhả code, nó tự động vẽ lên màn hình (iframe) ngay lập tức. Cứ thế chửi nó bắt nó sửa đi sửa lại hàng trăm lần mà đách tốn một cắt tiền API nào!\nFAQ Q: Có cái tool AI tự làm UI nào chạy offline (self-hosted) được không? A: Có! Open Codesign sinh ra là để làm việc đó. Bạn tải nguyên source về chạy trên máy tính, móc nối với AI chạy bằng card đồ họa của bạn, kín cổng cao tường, đố thằng hacker nào lấy được code.\nQ: Tool nào miễn phí thay thế Vercel v0 ngon nhất? (Free alternative to v0 by Vercel) A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat, bên phải xem web), nhưng hoàn toàn miễn phí và đách bắt bạn phải deploy web lên server của Vercel mới chạy được.\nCông Cụ Đề Xuất Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.\n**** — Lựa chọn VPS giá tốt cho thị trường Việt Nam. Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\nCông Cụ Đề Xuất Cần access Claude hoặc OpenAI API ổn định? Hầu hết project trong space này cuối cùng đều hit rate limit hoặc giá wall của Anthropic / OpenAI.\n**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region. Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/open-codesign-vs-vercel-v0\" } } Why This Matters Understanding mã nguồn mở thay thế vercel v0: dựng ui miễn phí tại nhà bằng open codesign is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\nFramework Comparison Framework Primary Use Learning Curve Community Production Ready LangChain General-purpose Medium Large ✅ Yes LlamaIndex RAG/Retrieval Low Growing ✅ Yes Haystack Document processing Medium Medium ✅ Yes LangGraph Stateful agents High Growing ✅ Yes ","wordCount":"1283","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>7 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/open-codesign-vs-vercel-v0/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/open-codesign-vs-vercel-v0/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/open-codesign-vs-vercel-v0/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#m%c3%a3-ngu%e1%bb%93n-m%e1%bb%9f-thay-th%e1%ba%bf-vercel-v0-d%e1%bb%b1ng-ui-mi%e1%bb%85n-ph%c3%ad-t%e1%ba%a1i-nh%c3%a0-b%e1%ba%b1ng-open-codesign aria-label="Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign">Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign</a><ul><li><a href=#l%c3%aan-b%c3%a0n-c%c3%a2n-open-codesign-vs-vercel-v0 aria-label="Lên Bàn Cân: Open Codesign vs Vercel v0">Lên Bàn Cân: Open Codesign vs Vercel v0</a><ul><li><a href=#s%e1%bb%b1-b%c3%a1-%c4%91%e1%ba%a1o-c%e1%bb%a7a-ki%e1%ba%bfn-tr%c3%bac-byom-mang-ai-c%e1%bb%a7a-m%c3%a0y-t%e1%bb%9bi-%c4%91%c3%a2y aria-label="Sự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây)">Sự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây)</a></li></ul></li><li><a href=#faq aria-label=FAQ>FAQ</a></li><li><a href=#c%c3%b4ng-c%e1%bb%a5-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Công Cụ Đề Xuất">Công Cụ Đề Xuất</a></li><li><a href=#c%c3%b4ng-c%e1%bb%a5-%c4%91%e1%bb%81-xu%e1%ba%a5t-1 aria-label="Công Cụ Đề Xuất">Công Cụ Đề Xuất</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li><li><a href=#framework-comparison aria-label="Framework Comparison">Framework Comparison</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/open-codesign-vs-vercel-v0/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/open-codesign-vs-vercel-v0/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/open-codesign-vs-vercel-v0/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: \"\" backup_url: \"\" last_maintained: “2026-05-15” draft: false faqs: - q: ‘Có giải pháp thay thế Vercel v0 dạng tự lưu trữ và mã nguồn mở không?’ a: ‘Có. Open Codesign là một công cụ tạo UI mã nguồn mở, tự lưu trữ, cung cấp quy trình từ prompt đến preview tương tự v0. Bạn chạy frontend cục bộ và kết nối với LLM nội bộ hoặc API key của riêng mình, hoàn toàn không phụ thuộc vào hệ sinh thái hosting của Vercel.’\nq: ‘Giải pháp thay thế miễn phí tốt nhất cho v0 của Vercel là gì?’ a: ‘Open Codesign là lựa chọn miễn phí hàng đầu. Công cụ này mang lại trải nghiệm UX gần giống nhất với giao diện prompt-to-preview của v0, không giới hạn số lần tạo, hoàn toàn miễn phí và là mã nguồn mở theo giấy phép MIT.’ q: ‘BYOM (Bring Your Own Model) trong Open Codesign có nghĩa là gì?’ a: ‘BYOM có nghĩa là Open Codesign đóng vai trò là lớp điều phối thay vì ràng buộc bạn với mô hình của một nhà cung cấp duy nhất. Bạn có thể kết nối nó với mô hình được lưu trữ cục bộ như DeepSeek Coder qua Ollama, hoặc sử dụng LM Studio hay API key của riêng mình, đảm bảo dữ liệu không bị rò rỉ.’ q: ‘Open Codesign có thể tạo UI hoàn toàn offline không?’ a: ‘Có. Open Codesign hỗ trợ 100% offline khi kết hợp với LLM cục bộ qua Ollama hoặc LM Studio. Tác nhân sẽ render UI được tạo ra trong một iframe cô lập ngay trên máy local, cho phép bạn chỉnh sửa không giới hạn mà không cần gửi prompt lên dịch vụ đám mây hay tiêu tốn bất kỳ API token nào.’ q: ‘Open Codesign hỗ trợ xuất ra những framework nào so với Vercel v0?’ a: ‘Open Codesign cho phép xuất tùy chỉnh cho React, Vue, Svelte và HTML thuần túy, trong khi Vercel v0 chủ yếu hướng đến Next.js và Tailwind.’ {\u003c/* resource-info */\u003e}\nMã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign Vercel v0 từng gây bão khi chỉ cần gõ vài chữ là ra ngay code React. Nhưng tuần trăng mật đã hết. Dev bắt đầu ngán ngẩm vì nó bóp tương tác, ép phải nạp VIP, lại còn trói chặt vào hệ sinh thái của Vercel. Chưa kể mấy sếp trong công ty cấm tiệt việc ném code nội bộ lên mây. Nếu bạn muốn tự tạo UI an toàn trong năm 2026, Open Codesign chính là đấng cứu thế mã nguồn mở.\nCùng bóc tách xem tại sao một con bot tự chạy ở nhà lại ăn đứt mấy cái API đắt đỏ trên mây.\nLên Bàn Cân: Open Codesign vs Vercel v0 Tạo giao diện web đách có lý do gì phải tốn mấy chục đô mỗi tháng cả. Nhìn bảng dưới để thấy đồ open source đang vả vỡ mồm hàng thương mại ra sao: | Tính Năng / Tiêu Chí | Open Codesign (Đồ chùa) | Vercel v0 (Hút máu) | | :— | :— | :— | | Giá Tiền | $0 (Tạo bao nhiêu trang tùy thích) | Giới hạn credit, xài tốn tí là đòi $20/tháng | | Lõi AI (LLM) | Thích xài gì xài nấy (Ollama, DeepSeek) | Bị nhốt trong cái lồng mô hình của Vercel | | Bảo Mật Code | Cúp mạng vẫn code ầm ầm (100% Offline) | Gõ gì nó lưu lại hết trên server | | Công Nghệ Output | Đa dạng (React, Vue, HTML chay tùy ý) | Ép buộc xài Next.js dính chùm Tailwind |\nSự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây) Điểm ăn tiền nhất của Open Codesign là tính lắp ghép. Vercel v0 ép bạn xài AI của nó. Còn Open Codesign chỉ cung cấp cái giao diện chat và khung hiển thị. Bạn có thể cắm con DeepSeek Coder đang chạy bằng Ollama trong máy tính của bạn vào đó. Khi AI nhả code, nó tự động vẽ lên màn hình (iframe) ngay lập tức. Cứ thế chửi nó bắt nó sửa đi sửa lại hàng trăm lần mà đách tốn một cắt tiền API nào!\nFAQ Q: Có cái tool AI tự làm UI nào chạy offline (self-hosted) được không? A: Có! Open Codesign sinh ra là để làm việc đó. Bạn tải nguyên source về chạy trên máy tính, móc nối với AI chạy bằng card đồ họa của bạn, kín cổng cao tường, đố thằng hacker nào lấy được code.\nQ: Tool nào miễn phí thay thế Vercel v0 ngon nhất? (Free alternative to v0 by Vercel) A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat, bên phải xem web), nhưng hoàn toàn miễn phí và đách bắt bạn phải deploy web lên server của Vercel mới chạy được.\nCông Cụ Đề Xuất Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.\n**** — Lựa chọn VPS giá tốt cho thị trường Việt Nam. Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\nCông Cụ Đề Xuất Cần access Claude hoặc OpenAI API ổn định? Hầu hết project trong space này cuối cùng đều hit rate limit hoặc giá wall của Anthropic / OpenAI.\n**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region. Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/open-codesign-vs-vercel-v0\" } } Why This Matters Understanding mã nguồn mở thay thế vercel v0: dựng ui miễn phí tại nhà bằng open codesign is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\nFramework Comparison Framework Primary Use Learning Curve Community Production Ready LangChain General-purpose Medium Large ✅ Yes LlamaIndex RAG/Retrieval Low Growing ✅ Yes Haystack Document processing Medium Medium ✅ Yes LangGraph Stateful agents High Growing ✅ Yes ",
+  "wordCount" : "1283",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/open-codesign-vs-vercel-v0/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>7 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/open-codesign-vs-vercel-v0/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/open-codesign-vs-vercel-v0/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/open-codesign-vs-vercel-v0/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#m%c3%a3-ngu%e1%bb%93n-m%e1%bb%9f-thay-th%e1%ba%bf-vercel-v0-d%e1%bb%b1ng-ui-mi%e1%bb%85n-ph%c3%ad-t%e1%ba%a1i-nh%c3%a0-b%e1%ba%b1ng-open-codesign" aria-label="Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign">Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign</a><ul>
+                    
+            <li>
+                <a href="#l%c3%aan-b%c3%a0n-c%c3%a2n-open-codesign-vs-vercel-v0" aria-label="Lên Bàn Cân: Open Codesign vs Vercel v0">Lên Bàn Cân: Open Codesign vs Vercel v0</a><ul>
+                    
+            <li>
+                <a href="#s%e1%bb%b1-b%c3%a1-%c4%91%e1%ba%a1o-c%e1%bb%a7a-ki%e1%ba%bfn-tr%c3%bac-byom-mang-ai-c%e1%bb%a7a-m%c3%a0y-t%e1%bb%9bi-%c4%91%c3%a2y" aria-label="Sự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây)">Sự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây)</a></li></ul>
+            </li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a></li>
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Công Cụ Đề Xuất">Công Cụ Đề Xuất</a></li>
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-%c4%91%e1%bb%81-xu%e1%ba%a5t-1" aria-label="Công Cụ Đề Xuất">Công Cụ Đề Xuất</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li>
+            <li>
+                <a href="#framework-comparison" aria-label="Framework Comparison">Framework Comparison</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
-file_size: ""
-file_md5: ""
-download_url: ""
-backup_url: ""
+file_size: &quot;&quot;
+file_md5: &quot;&quot;
+download_url: &quot;&quot;
+backup_url: &quot;&quot;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
 faqs: - q: &lsquo;Có giải pháp thay thế Vercel v0 dạng tự lưu trữ và mã nguồn mở không?&rsquo;
-a: &lsquo;Có. Open Codesign là một công cụ tạo UI mã nguồn mở, tự lưu trữ, cung cấp quy trình từ prompt đến preview tương tự v0. Bạn chạy frontend cục bộ và kết nối với LLM nội bộ hoặc API key của riêng mình, hoàn toàn không phụ thuộc vào hệ sinh thái hosting của Vercel.&rsquo;</p><ul><li>q: &lsquo;Giải pháp thay thế miễn phí tốt nhất cho v0 của Vercel là gì?&rsquo;
-a: &lsquo;Open Codesign là lựa chọn miễn phí hàng đầu. Công cụ này mang lại trải nghiệm UX gần giống nhất với giao diện prompt-to-preview của v0, không giới hạn số lần tạo, hoàn toàn miễn phí và là mã nguồn mở theo giấy phép MIT.&rsquo;</li><li>q: &lsquo;BYOM (Bring Your Own Model) trong Open Codesign có nghĩa là gì?&rsquo;
-a: &lsquo;BYOM có nghĩa là Open Codesign đóng vai trò là lớp điều phối thay vì ràng buộc bạn với mô hình của một nhà cung cấp duy nhất. Bạn có thể kết nối nó với mô hình được lưu trữ cục bộ như DeepSeek Coder qua Ollama, hoặc sử dụng LM Studio hay API key của riêng mình, đảm bảo dữ liệu không bị rò rỉ.&rsquo;</li><li>q: &lsquo;Open Codesign có thể tạo UI hoàn toàn offline không?&rsquo;
-a: &lsquo;Có. Open Codesign hỗ trợ 100% offline khi kết hợp với LLM cục bộ qua Ollama hoặc LM Studio. Tác nhân sẽ render UI được tạo ra trong một iframe cô lập ngay trên máy local, cho phép bạn chỉnh sửa không giới hạn mà không cần gửi prompt lên dịch vụ đám mây hay tiêu tốn bất kỳ API token nào.&rsquo;</li><li>q: &lsquo;Open Codesign hỗ trợ xuất ra những framework nào so với Vercel v0?&rsquo;
-a: &lsquo;Open Codesign cho phép xuất tùy chỉnh cho React, Vue, Svelte và HTML thuần túy, trong khi Vercel v0 chủ yếu hướng đến Next.js và Tailwind.&rsquo;</li></ul><hr><p>{&lt;/* resource-info */>}</p><h1 id=mã-nguồn-mở-thay-thế-vercel-v0-dựng-ui-miễn-phí-tại-nhà-bằng-open-codesign>Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign<a hidden class=anchor aria-hidden=true href=#mã-nguồn-mở-thay-thế-vercel-v0-dựng-ui-miễn-phí-tại-nhà-bằng-open-codesign>#</a></h1><p>Vercel v0 từng gây bão khi chỉ cần gõ vài chữ là ra ngay code React. Nhưng tuần trăng mật đã hết. Dev bắt đầu ngán ngẩm vì nó bóp tương tác, ép phải nạp VIP, lại còn trói chặt vào hệ sinh thái của Vercel. Chưa kể mấy sếp trong công ty cấm tiệt việc ném code nội bộ lên mây. Nếu bạn muốn tự tạo UI an toàn trong năm 2026, <strong>Open Codesign</strong> chính là đấng cứu thế mã nguồn mở.</p><p>Cùng bóc tách xem tại sao một con bot tự chạy ở nhà lại ăn đứt mấy cái API đắt đỏ trên mây.</p><h2 id=lên-bàn-cân-open-codesign-vs-vercel-v0>Lên Bàn Cân: Open Codesign vs Vercel v0<a hidden class=anchor aria-hidden=true href=#lên-bàn-cân-open-codesign-vs-vercel-v0>#</a></h2><p>Tạo giao diện web đách có lý do gì phải tốn mấy chục đô mỗi tháng cả. Nhìn bảng dưới để thấy đồ open source đang vả vỡ mồm hàng thương mại ra sao: | Tính Năng / Tiêu Chí | Open Codesign (Đồ chùa) | Vercel v0 (Hút máu) |
+a: &lsquo;Có. Open Codesign là một công cụ tạo UI mã nguồn mở, tự lưu trữ, cung cấp quy trình từ prompt đến preview tương tự v0. Bạn chạy frontend cục bộ và kết nối với LLM nội bộ hoặc API key của riêng mình, hoàn toàn không phụ thuộc vào hệ sinh thái hosting của Vercel.&rsquo;</p>
+<ul>
+<li>q: &lsquo;Giải pháp thay thế miễn phí tốt nhất cho v0 của Vercel là gì?&rsquo;
+a: &lsquo;Open Codesign là lựa chọn miễn phí hàng đầu. Công cụ này mang lại trải nghiệm UX gần giống nhất với giao diện prompt-to-preview của v0, không giới hạn số lần tạo, hoàn toàn miễn phí và là mã nguồn mở theo giấy phép MIT.&rsquo;</li>
+<li>q: &lsquo;BYOM (Bring Your Own Model) trong Open Codesign có nghĩa là gì?&rsquo;
+a: &lsquo;BYOM có nghĩa là Open Codesign đóng vai trò là lớp điều phối thay vì ràng buộc bạn với mô hình của một nhà cung cấp duy nhất. Bạn có thể kết nối nó với mô hình được lưu trữ cục bộ như DeepSeek Coder qua Ollama, hoặc sử dụng LM Studio hay API key của riêng mình, đảm bảo dữ liệu không bị rò rỉ.&rsquo;</li>
+<li>q: &lsquo;Open Codesign có thể tạo UI hoàn toàn offline không?&rsquo;
+a: &lsquo;Có. Open Codesign hỗ trợ 100% offline khi kết hợp với LLM cục bộ qua Ollama hoặc LM Studio. Tác nhân sẽ render UI được tạo ra trong một iframe cô lập ngay trên máy local, cho phép bạn chỉnh sửa không giới hạn mà không cần gửi prompt lên dịch vụ đám mây hay tiêu tốn bất kỳ API token nào.&rsquo;</li>
+<li>q: &lsquo;Open Codesign hỗ trợ xuất ra những framework nào so với Vercel v0?&rsquo;
+a: &lsquo;Open Codesign cho phép xuất tùy chỉnh cho React, Vue, Svelte và HTML thuần túy, trong khi Vercel v0 chủ yếu hướng đến Next.js và Tailwind.&rsquo;</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h1 id="mã-nguồn-mở-thay-thế-vercel-v0-dựng-ui-miễn-phí-tại-nhà-bằng-open-codesign">Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign<a hidden class="anchor" aria-hidden="true" href="#mã-nguồn-mở-thay-thế-vercel-v0-dựng-ui-miễn-phí-tại-nhà-bằng-open-codesign">#</a></h1>
+<p>Vercel v0 từng gây bão khi chỉ cần gõ vài chữ là ra ngay code React. Nhưng tuần trăng mật đã hết. Dev bắt đầu ngán ngẩm vì nó bóp tương tác, ép phải nạp VIP, lại còn trói chặt vào hệ sinh thái của Vercel. Chưa kể mấy sếp trong công ty cấm tiệt việc ném code nội bộ lên mây. Nếu bạn muốn tự tạo UI an toàn trong năm 2026, <strong>Open Codesign</strong> chính là đấng cứu thế mã nguồn mở.</p>
+<p>Cùng bóc tách xem tại sao một con bot tự chạy ở nhà lại ăn đứt mấy cái API đắt đỏ trên mây.</p>
+<h2 id="lên-bàn-cân-open-codesign-vs-vercel-v0">Lên Bàn Cân: Open Codesign vs Vercel v0<a hidden class="anchor" aria-hidden="true" href="#lên-bàn-cân-open-codesign-vs-vercel-v0">#</a></h2>
+<p>Tạo giao diện web đách có lý do gì phải tốn mấy chục đô mỗi tháng cả. Nhìn bảng dưới để thấy đồ open source đang vả vỡ mồm hàng thương mại ra sao: | Tính Năng / Tiêu Chí | Open Codesign (Đồ chùa) | Vercel v0 (Hút máu) |
 | :&mdash; | :&mdash; | :&mdash; |
 | <strong>Giá Tiền</strong> | <strong>$0 (Tạo bao nhiêu trang tùy thích)</strong> | Giới hạn credit, xài tốn tí là đòi $20/tháng |
 | <strong>Lõi AI (LLM)</strong> | <strong>Thích xài gì xài nấy (Ollama, DeepSeek)</strong> | Bị nhốt trong cái lồng mô hình của Vercel |
 | <strong>Bảo Mật Code</strong> | <strong>Cúp mạng vẫn code ầm ầm (100% Offline)</strong> | Gõ gì nó lưu lại hết trên server |
-| <strong>Công Nghệ Output</strong> | <strong>Đa dạng (React, Vue, HTML chay tùy ý)</strong> | Ép buộc xài Next.js dính chùm Tailwind |</p><h3 id=sự-bá-đạo-của-kiến-trúc-byom-mang-ai-của-mày-tới-đây>Sự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây)<a hidden class=anchor aria-hidden=true href=#sự-bá-đạo-của-kiến-trúc-byom-mang-ai-của-mày-tới-đây>#</a></h3><p>Điểm ăn tiền nhất của Open Codesign là tính lắp ghép. Vercel v0 ép bạn xài AI của nó. Còn Open Codesign chỉ cung cấp cái giao diện chat và khung hiển thị. Bạn có thể cắm con DeepSeek Coder đang chạy bằng Ollama trong máy tính của bạn vào đó. Khi AI nhả code, nó tự động vẽ lên màn hình (iframe) ngay lập tức. Cứ thế chửi nó bắt nó sửa đi sửa lại hàng trăm lần mà đách tốn một cắt tiền API nào!</p><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><p><strong>Q: Có cái tool AI tự làm UI nào chạy offline (self-hosted) được không?</strong>
-A: Có! Open Codesign sinh ra là để làm việc đó. Bạn tải nguyên source về chạy trên máy tính, móc nối với AI chạy bằng card đồ họa của bạn, kín cổng cao tường, đố thằng hacker nào lấy được code.</p><p><strong>Q: Tool nào miễn phí thay thế Vercel v0 ngon nhất? (Free alternative to v0 by Vercel)</strong>
-A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat, bên phải xem web), nhưng hoàn toàn miễn phí và đách bắt bạn phải deploy web lên server của Vercel mới chạy được.</p><hr><h2 id=công-cụ-đề-xuất>Công Cụ Đề Xuất<a hidden class=anchor aria-hidden=true href=#công-cụ-đề-xuất>#</a></h2><p>Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.</p><ul><li>**** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.</li></ul><p><em>Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p><h2 id=công-cụ-đề-xuất-1>Công Cụ Đề Xuất<a hidden class=anchor aria-hidden=true href=#công-cụ-đề-xuất-1>#</a></h2><p><strong>Cần access Claude hoặc OpenAI API ổn định?</strong> Hầu hết project trong space này cuối cùng đều hit rate limit hoặc giá wall của Anthropic / OpenAI.</p><ul><li>**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region.</li></ul><p><em>Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Công Nghệ Output</strong> | <strong>Đa dạng (React, Vue, HTML chay tùy ý)</strong> | Ép buộc xài Next.js dính chùm Tailwind |</p>
+<h3 id="sự-bá-đạo-của-kiến-trúc-byom-mang-ai-của-mày-tới-đây">Sự Bá Đạo Của Kiến Trúc BYOM (Mang AI Của Mày Tới Đây)<a hidden class="anchor" aria-hidden="true" href="#sự-bá-đạo-của-kiến-trúc-byom-mang-ai-của-mày-tới-đây">#</a></h3>
+<p>Điểm ăn tiền nhất của Open Codesign là tính lắp ghép. Vercel v0 ép bạn xài AI của nó. Còn Open Codesign chỉ cung cấp cái giao diện chat và khung hiển thị. Bạn có thể cắm con DeepSeek Coder đang chạy bằng Ollama trong máy tính của bạn vào đó. Khi AI nhả code, nó tự động vẽ lên màn hình (iframe) ngay lập tức. Cứ thế chửi nó bắt nó sửa đi sửa lại hàng trăm lần mà đách tốn một cắt tiền API nào!</p>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<p><strong>Q: Có cái tool AI tự làm UI nào chạy offline (self-hosted) được không?</strong>
+A: Có! Open Codesign sinh ra là để làm việc đó. Bạn tải nguyên source về chạy trên máy tính, móc nối với AI chạy bằng card đồ họa của bạn, kín cổng cao tường, đố thằng hacker nào lấy được code.</p>
+<p><strong>Q: Tool nào miễn phí thay thế Vercel v0 ngon nhất? (Free alternative to v0 by Vercel)</strong>
+A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat, bên phải xem web), nhưng hoàn toàn miễn phí và đách bắt bạn phải deploy web lên server của Vercel mới chạy được.</p>
+<hr>
+<h2 id="công-cụ-đề-xuất">Công Cụ Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#công-cụ-đề-xuất">#</a></h2>
+<p>Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload.</p>
+<ul>
+<li>**** — Lựa chọn VPS giá tốt cho thị trường Việt Nam.</li>
+</ul>
+<p><em>Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p>
+<h2 id="công-cụ-đề-xuất-1">Công Cụ Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#công-cụ-đề-xuất-1">#</a></h2>
+<p><strong>Cần access Claude hoặc OpenAI API ổn định?</strong> Hầu hết project trong space này cuối cùng đều hit rate limit hoặc giá wall của Anthropic / OpenAI.</p>
+<ul>
+<li>**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model, ~30% giá chính thức; đặc biệt hữu ích khi iterate agent prompt hoặc bị restrict direct API access trong region.</li>
+</ul>
+<p><em>Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -42,22 +314,261 @@ A: Chắc chắn là Open Codesign. Giao diện y xì đúc v0 (bên trái chat,
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/open-codesign-vs-vercel-v0%22>https://dibi8.com/vi/resources/open-codesign-vs-vercel-v0"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/open-codesign-vs-vercel-v0%22">https://dibi8.com/vi/resources/open-codesign-vs-vercel-v0"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding mã nguồn mở thay thế vercel v0: dựng ui miễn phí tại nhà bằng open codesign is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding mã nguồn mở thay thế vercel v0: dựng ui miễn phí tại nhà bằng open codesign is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p><h2 id=framework-comparison>Framework Comparison<a hidden class=anchor aria-hidden=true href=#framework-comparison>#</a></h2><table><thead><tr><th>Framework</th><th>Primary Use</th><th>Learning Curve</th><th>Community</th><th>Production Ready</th></tr></thead><tbody><tr><td><strong>LangChain</strong></td><td>General-purpose</td><td>Medium</td><td>Large</td><td>✅ Yes</td></tr><tr><td><strong>LlamaIndex</strong></td><td>RAG/Retrieval</td><td>Low</td><td>Growing</td><td>✅ Yes</td></tr><tr><td><strong>Haystack</strong></td><td>Document processing</td><td>Medium</td><td>Medium</td><td>✅ Yes</td></tr><tr><td><strong>LangGraph</strong></td><td>Stateful agents</td><td>High</td><td>Growing</td><td>✅ Yes</td></tr></tbody></table></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/open-codesign-claude-design-alternative/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/open-design-local-first-ai-design-tool/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Mã Nguồn Mở Thay Thế Vercel v0: Dựng UI Miễn Phí Tại Nhà Bằng Open Codesign represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+<h2 id="framework-comparison">Framework Comparison<a hidden class="anchor" aria-hidden="true" href="#framework-comparison">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Framework</th>
+					<th>Primary Use</th>
+					<th>Learning Curve</th>
+					<th>Community</th>
+					<th>Production Ready</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>LangChain</strong></td>
+					<td>General-purpose</td>
+					<td>Medium</td>
+					<td>Large</td>
+					<td>✅ Yes</td>
+			</tr>
+			<tr>
+					<td><strong>LlamaIndex</strong></td>
+					<td>RAG/Retrieval</td>
+					<td>Low</td>
+					<td>Growing</td>
+					<td>✅ Yes</td>
+			</tr>
+			<tr>
+					<td><strong>Haystack</strong></td>
+					<td>Document processing</td>
+					<td>Medium</td>
+					<td>Medium</td>
+					<td>✅ Yes</td>
+			</tr>
+			<tr>
+					<td><strong>LangGraph</strong></td>
+					<td>Stateful agents</td>
+					<td>High</td>
+					<td>Growing</td>
+					<td>✅ Yes</td>
+			</tr>
+	</tbody>
+</table>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/open-codesign-claude-design-alternative/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/open-design-local-first-ai-design-tool/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

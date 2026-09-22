@@ -1,10 +1,284 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/vi/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [\"] aliases:\n/vi/posts/vectorbt-quantitative-backtesting/ Giới thiệu: Tại sao Backtest của bạn quá chậm Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã\", “bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy 73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.\nHãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng mảng NumPy và biên dịch JIT Numba”, “VectorBT xử lý hơn 1 triệu giao dịch mỗi giây trên một lõi CPU. Repository GitHub ```polakowo/vectorbt```` đã tích lũy 8.900+ star và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026”, “hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas”, “Plotly và scikit-learn.\nBài hướng dẫn này bao gồm mọi thứ: cài đặt”, “khái niệm cốt lõi”, “ví dụ code thực tế”, “production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ”, “VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.\nVectorBT là gì? VectorBT (Vector Backtesting) là một thư viện Python để backtest chiến lược giao dịch sử dụng phép toán vectorized thay vì vòng lặp event-driven. Không giống các backtester truyền thống xử lý từng cây nến một”, “VectorBT tính toán toàn bộ tín hiệu”, “vị thế và mảng P\u0026L trong một lần quét NumPy. Kết quả: backtest hoàn thành trong vài giây thay vì hàng giờ”, “giúp việc sweep tham số quy mô lớn và pipeline machine learning thực sự khả thi trên phần cứng phổ thông.\nVectorBT hoạt động như thế nào: Kiến trúc \u0026 Khái niệm cốt lõi Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy\nMọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng (2.520\", \"100) —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.\nBiên dịch JIT Numba Các hàm đường dẫn quan trọng được trang trí bằng @njit từ Numba”, “biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống 0”, “03 giây trong VectorBT.\nBroadcasting cho lưới tham số Module vbt của VectorBT có thể broadcast hàm tạo tín hiệu qua các tổ hợp tham số tự động. Việc kiểm tra 50 kích thước cửa sổ × 10 tài sản × 2 quy tắc vào lệnh không yêu cầu vòng lặp for lồng nhau —— nó trở thành một phép toán tensor đơn lẻ.\nimport vectorbt as vbt import numpy as np import pandas as pd # Tải dữ liệu — VectorBT bọc yfinance để thuận tiện price = vbt.YFData.download( \"BTC-USD\", \"start=\"2020-01-01\", \"end=\"2026-01-01\", \"interval=\"1d\" ).get(\"Close\") print(f\"Data shape: {price.shape}\") # (2\", \"210\", \") — giá đóng cửa hàng ngày print(f\"Data type: {type(price)}\") # ","wordCount":"3373","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>16 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/>En</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u-t%e1%ba%a1i-sao-backtest-c%e1%bb%a7a-b%e1%ba%a1n-qu%c3%a1-ch%e1%ba%adm aria-label="Giới thiệu: Tại sao Backtest của bạn quá chậm">Giới thiệu: Tại sao Backtest của bạn quá chậm</a></li><li><a href=#vectorbt-l%c3%a0-g%c3%ac aria-label="VectorBT là gì?">VectorBT là gì?</a></li><li><a href=#vectorbt-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o-ki%e1%ba%bfn-tr%c3%bac--kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i aria-label="VectorBT hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi">VectorBT hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi</a><ul><li><a href=#bi%c3%aan-d%e1%bb%8bch-jit-numba aria-label="Biên dịch JIT Numba">Biên dịch JIT Numba</a></li><li><a href=#broadcasting-cho-l%c6%b0%e1%bb%9bi-tham-s%e1%bb%91 aria-label="Broadcasting cho lưới tham số">Broadcasting cho lưới tham số</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-d%c6%b0%e1%bb%9bi-5-ph%c3%bat aria-label="Cài đặt & Thiết lập: Dưới 5 phút">Cài đặt & Thiết lập: Dưới 5 phút</a></li><li><a href=#t%e1%bb%91i-%c6%b0u-tham-s%e1%bb%91-t%c3%acm-ki%e1%ba%bfm-l%c6%b0%e1%bb%9bi-v%e1%bb%9bi-t%e1%bb%91c-%c4%91%e1%bb%99-cao aria-label="Tối ưu tham số: Tìm kiếm lưới với tốc độ cao">Tối ưu tham số: Tìm kiếm lưới với tốc độ cao</a></li></ul><li><a href=#%c4%91%e1%bb%8bnh-ngh%c4%a9a-ph%e1%ba%a1m-vi-tham-s%e1%bb%91 aria-label="Định nghĩa phạm vi tham số">Định nghĩa phạm vi tham số</a></li><li><a href=#ch%e1%ba%a1y-t%c3%acm-ki%e1%ba%bfm-l%c6%b0%e1%bb%9bi-vectorized aria-label="Chạy tìm kiếm lưới vectorized">Chạy tìm kiếm lưới vectorized</a></li><li><a href=#t%c3%acm-t%e1%bb%95-h%e1%bb%a3p-t%e1%bb%91t-nh%e1%ba%a5t aria-label="Tìm tổ hợp tốt nhất">Tìm tổ hợp tốt nhất</a><ul><li><a href=#t%c3%adch-h%e1%bb%a3p-machine-learning aria-label="Tích hợp Machine Learning">Tích hợp Machine Learning</a></li></ul></li><li><a href=#t%e1%ba%a3i-d%e1%bb%af-li%e1%bb%87u aria-label="Tải dữ liệu">Tải dữ liệu</a></li><li><a href=#x%c3%a2y-d%e1%bb%b1ng-ma-tr%e1%ba%adn-%c4%91%e1%ba%b7c-tr%c6%b0ng-l%e1%bb%a3i-nhu%e1%ba%adn-tr%e1%bb%85 aria-label="Xây dựng ma trận đặc trưng: lợi nhuận trễ">Xây dựng ma trận đặc trưng: lợi nhuận trễ</a></li><li><a href=#m%e1%bb%a5c-ti%c3%aau-1-n%e1%ba%bfu-l%e1%bb%a3i-nhu%e1%ba%adn-ng%c3%a0y-ti%e1%ba%bfp-theo-d%c6%b0%c6%a1ng-0-n%e1%ba%bfu-kh%c3%b4ng aria-label="Mục tiêu: 1 nếu lợi nhuận ngày tiếp theo dương, 0 nếu không">Mục tiêu: 1 nếu lợi nhuận ngày tiếp theo dương, 0 nếu không</a></li><li><a href=#l%c3%a0m-s%e1%ba%a1ch-v%c3%a0-chia aria-label="Làm sạch và chia">Làm sạch và chia</a></li><li><a href=#hu%e1%ba%a5n-luy%e1%bb%87n-b%e1%bb%99-ph%c3%a2n-lo%e1%ba%a1i aria-label="Huấn luyện bộ phân loại">Huấn luyện bộ phân loại</a></li><li><a href=#t%e1%ba%a1o-d%e1%bb%b1-%c4%91o%c3%a1n-tr%c3%aan-t%e1%ba%adp-test aria-label="Tạo dự đoán trên tập test">Tạo dự đoán trên tập test</a></li><li><a href=#t%e1%ba%a1o-t%c3%adn-hi%e1%bb%87u-v%c3%a0o-l%e1%bb%87nh-khi-d%e1%bb%b1-%c4%91o%c3%a1n-t%c4%83ng-tho%c3%a1t-khi-d%e1%bb%b1-%c4%91o%c3%a1n-gi%e1%ba%a3m aria-label="Tạo tín hiệu: vào lệnh khi dự đoán tăng, thoát khi dự đoán giảm">Tạo tín hiệu: vào lệnh khi dự đoán tăng, thoát khi dự đoán giảm</a></li><li><a href=#ch%e1%ba%a1y-backtest-v%e1%bb%9bi-t%c3%adn-hi%e1%bb%87u-ml aria-label="Chạy backtest với tín hiệu ML">Chạy backtest với tín hiệu ML</a><ul><li><a href=#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Trường hợp sử dụng thực tế">Benchmark / Trường hợp sử dụng thực tế</a><ul><li><a href=#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-production-pipeline-x%c3%a1c-th%e1%bb%b1c-t%c3%adn-hi%e1%bb%87u aria-label="Trường hợp Production: Pipeline xác thực tín hiệu">Trường hợp Production: Pipeline xác thực tín hiệu</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--production-hardening aria-label="Sử dụng Nâng cao / Production Hardening">Sử dụng Nâng cao / Production Hardening</a><ul><li><a href=#ch%e1%bb%89-b%c3%a1o-t%c3%b9y-ch%e1%bb%89nh aria-label="Chỉ báo Tùy chỉnh">Chỉ báo Tùy chỉnh</a></li></ul></li></ul></li><li><a href=#b%e1%bb%8dc-b%e1%ba%b1ng-indicatorfactory aria-label="Bọc bằng IndicatorFactory">Bọc bằng IndicatorFactory</a></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng aria-label="Sử dụng">Sử dụng</a><ul><ul><li><a href=#th%e1%bb%b1c-thi-song-song aria-label="Thực thi Song song">Thực thi Song song</a></li></ul></ul></li><li><a href=#chia-360-tham-s%e1%bb%91-qua-4-ti%e1%ba%bfn-tr%c3%acnh aria-label="Chia 360 tham số qua 4 tiến trình">Chia 360 tham số qua 4 tiến trình</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/vectorbt-quantitative-backtesting/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/vi/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [\"] aliases:\n/vi/posts/vectorbt-quantitative-backtesting/ Giới thiệu: Tại sao Backtest của bạn quá chậm Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã\", “bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy 73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.\nHãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng mảng NumPy và biên dịch JIT Numba”, “VectorBT xử lý hơn 1 triệu giao dịch mỗi giây trên một lõi CPU. Repository GitHub ```polakowo/vectorbt```` đã tích lũy 8.900+ star và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026”, “hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas”, “Plotly và scikit-learn.\nBài hướng dẫn này bao gồm mọi thứ: cài đặt”, “khái niệm cốt lõi”, “ví dụ code thực tế”, “production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ”, “VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.\nVectorBT là gì? VectorBT (Vector Backtesting) là một thư viện Python để backtest chiến lược giao dịch sử dụng phép toán vectorized thay vì vòng lặp event-driven. Không giống các backtester truyền thống xử lý từng cây nến một”, “VectorBT tính toán toàn bộ tín hiệu”, “vị thế và mảng P\u0026L trong một lần quét NumPy. Kết quả: backtest hoàn thành trong vài giây thay vì hàng giờ”, “giúp việc sweep tham số quy mô lớn và pipeline machine learning thực sự khả thi trên phần cứng phổ thông.\nVectorBT hoạt động như thế nào: Kiến trúc \u0026 Khái niệm cốt lõi Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy\nMọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng (2.520\", \"100) —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.\nBiên dịch JIT Numba Các hàm đường dẫn quan trọng được trang trí bằng @njit từ Numba”, “biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống 0”, “03 giây trong VectorBT.\nBroadcasting cho lưới tham số Module vbt của VectorBT có thể broadcast hàm tạo tín hiệu qua các tổ hợp tham số tự động. Việc kiểm tra 50 kích thước cửa sổ × 10 tài sản × 2 quy tắc vào lệnh không yêu cầu vòng lặp for lồng nhau —— nó trở thành một phép toán tensor đơn lẻ.\nimport vectorbt as vbt import numpy as np import pandas as pd # Tải dữ liệu — VectorBT bọc yfinance để thuận tiện price = vbt.YFData.download( \"BTC-USD\", \"start=\"2020-01-01\", \"end=\"2026-01-01\", \"interval=\"1d\" ).get(\"Close\") print(f\"Data shape: {price.shape}\") # (2\", \"210\", \") — giá đóng cửa hàng ngày print(f\"Data type: {type(price)}\") # ",
+  "wordCount" : "3373",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/llm-frameworks/vectorbt-quantitative-backtesting/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>16 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/llm-frameworks/vectorbt-quantitative-backtesting/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/llm-frameworks/vectorbt-quantitative-backtesting/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u-t%e1%ba%a1i-sao-backtest-c%e1%bb%a7a-b%e1%ba%a1n-qu%c3%a1-ch%e1%ba%adm" aria-label="Giới thiệu: Tại sao Backtest của bạn quá chậm">Giới thiệu: Tại sao Backtest của bạn quá chậm</a></li>
+            <li>
+                <a href="#vectorbt-l%c3%a0-g%c3%ac" aria-label="VectorBT là gì?">VectorBT là gì?</a></li>
+            <li>
+                <a href="#vectorbt-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o-ki%e1%ba%bfn-tr%c3%bac--kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i" aria-label="VectorBT hoạt động như thế nào: Kiến trúc &amp; Khái niệm cốt lõi">VectorBT hoạt động như thế nào: Kiến trúc &amp; Khái niệm cốt lõi</a><ul>
+                    
+            <li>
+                <a href="#bi%c3%aan-d%e1%bb%8bch-jit-numba" aria-label="Biên dịch JIT Numba">Biên dịch JIT Numba</a></li>
+            <li>
+                <a href="#broadcasting-cho-l%c6%b0%e1%bb%9bi-tham-s%e1%bb%91" aria-label="Broadcasting cho lưới tham số">Broadcasting cho lưới tham số</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-d%c6%b0%e1%bb%9bi-5-ph%c3%bat" aria-label="Cài đặt &amp; Thiết lập: Dưới 5 phút">Cài đặt &amp; Thiết lập: Dưới 5 phút</a></li>
+            <li>
+                <a href="#t%e1%bb%91i-%c6%b0u-tham-s%e1%bb%91-t%c3%acm-ki%e1%ba%bfm-l%c6%b0%e1%bb%9bi-v%e1%bb%9bi-t%e1%bb%91c-%c4%91%e1%bb%99-cao" aria-label="Tối ưu tham số: Tìm kiếm lưới với tốc độ cao">Tối ưu tham số: Tìm kiếm lưới với tốc độ cao</a></li></ul>
+                
+            <li>
+                <a href="#%c4%91%e1%bb%8bnh-ngh%c4%a9a-ph%e1%ba%a1m-vi-tham-s%e1%bb%91" aria-label="Định nghĩa phạm vi tham số">Định nghĩa phạm vi tham số</a></li>
+            <li>
+                <a href="#ch%e1%ba%a1y-t%c3%acm-ki%e1%ba%bfm-l%c6%b0%e1%bb%9bi-vectorized" aria-label="Chạy tìm kiếm lưới vectorized">Chạy tìm kiếm lưới vectorized</a></li>
+            <li>
+                <a href="#t%c3%acm-t%e1%bb%95-h%e1%bb%a3p-t%e1%bb%91t-nh%e1%ba%a5t" aria-label="Tìm tổ hợp tốt nhất">Tìm tổ hợp tốt nhất</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-machine-learning" aria-label="Tích hợp Machine Learning">Tích hợp Machine Learning</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%e1%ba%a3i-d%e1%bb%af-li%e1%bb%87u" aria-label="Tải dữ liệu">Tải dữ liệu</a></li>
+            <li>
+                <a href="#x%c3%a2y-d%e1%bb%b1ng-ma-tr%e1%ba%adn-%c4%91%e1%ba%b7c-tr%c6%b0ng-l%e1%bb%a3i-nhu%e1%ba%adn-tr%e1%bb%85" aria-label="Xây dựng ma trận đặc trưng: lợi nhuận trễ">Xây dựng ma trận đặc trưng: lợi nhuận trễ</a></li>
+            <li>
+                <a href="#m%e1%bb%a5c-ti%c3%aau-1-n%e1%ba%bfu-l%e1%bb%a3i-nhu%e1%ba%adn-ng%c3%a0y-ti%e1%ba%bfp-theo-d%c6%b0%c6%a1ng-0-n%e1%ba%bfu-kh%c3%b4ng" aria-label="Mục tiêu: 1 nếu lợi nhuận ngày tiếp theo dương, 0 nếu không">Mục tiêu: 1 nếu lợi nhuận ngày tiếp theo dương, 0 nếu không</a></li>
+            <li>
+                <a href="#l%c3%a0m-s%e1%ba%a1ch-v%c3%a0-chia" aria-label="Làm sạch và chia">Làm sạch và chia</a></li>
+            <li>
+                <a href="#hu%e1%ba%a5n-luy%e1%bb%87n-b%e1%bb%99-ph%c3%a2n-lo%e1%ba%a1i" aria-label="Huấn luyện bộ phân loại">Huấn luyện bộ phân loại</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-d%e1%bb%b1-%c4%91o%c3%a1n-tr%c3%aan-t%e1%ba%adp-test" aria-label="Tạo dự đoán trên tập test">Tạo dự đoán trên tập test</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-t%c3%adn-hi%e1%bb%87u-v%c3%a0o-l%e1%bb%87nh-khi-d%e1%bb%b1-%c4%91o%c3%a1n-t%c4%83ng-tho%c3%a1t-khi-d%e1%bb%b1-%c4%91o%c3%a1n-gi%e1%ba%a3m" aria-label="Tạo tín hiệu: vào lệnh khi dự đoán tăng, thoát khi dự đoán giảm">Tạo tín hiệu: vào lệnh khi dự đoán tăng, thoát khi dự đoán giảm</a></li>
+            <li>
+                <a href="#ch%e1%ba%a1y-backtest-v%e1%bb%9bi-t%c3%adn-hi%e1%bb%87u-ml" aria-label="Chạy backtest với tín hiệu ML">Chạy backtest với tín hiệu ML</a><ul>
+                    
+            <li>
+                <a href="#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Trường hợp sử dụng thực tế">Benchmark / Trường hợp sử dụng thực tế</a><ul>
+                    
+            <li>
+                <a href="#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-production-pipeline-x%c3%a1c-th%e1%bb%b1c-t%c3%adn-hi%e1%bb%87u" aria-label="Trường hợp Production: Pipeline xác thực tín hiệu">Trường hợp Production: Pipeline xác thực tín hiệu</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--production-hardening" aria-label="Sử dụng Nâng cao / Production Hardening">Sử dụng Nâng cao / Production Hardening</a><ul>
+                    
+            <li>
+                <a href="#ch%e1%bb%89-b%c3%a1o-t%c3%b9y-ch%e1%bb%89nh" aria-label="Chỉ báo Tùy chỉnh">Chỉ báo Tùy chỉnh</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#b%e1%bb%8dc-b%e1%ba%b1ng-indicatorfactory" aria-label="Bọc bằng IndicatorFactory">Bọc bằng IndicatorFactory</a></li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng" aria-label="Sử dụng">Sử dụng</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#th%e1%bb%b1c-thi-song-song" aria-label="Thực thi Song song">Thực thi Song song</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#chia-360-tham-s%e1%bb%91-qua-4-ti%e1%ba%bfn-tr%c3%acnh" aria-label="Chia 360 tham số qua 4 tiến trình">Chia 360 tham số qua 4 tiến trình</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -20,26 +294,47 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-trading&rdquo;]
-tags: ["]
-aliases:</p><ul><li>/vi/posts/vectorbt-quantitative-backtesting/</li></ul><hr><h2 id=giới-thiệu-tại-sao-backtest-của-bạn-quá-chậm>Giới thiệu: Tại sao Backtest của bạn quá chậm<a hidden class=anchor aria-hidden=true href=#giới-thiệu-tại-sao-backtest-của-bạn-quá-chậm>#</a></h2><p>Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã", &ldquo;bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy <strong>73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả</strong>. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.</p><p>Hãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng <strong>mảng NumPy và biên dịch JIT Numba</strong>&rdquo;, &ldquo;VectorBT xử lý <strong>hơn 1 triệu giao dịch mỗi giây</strong> trên một lõi CPU. Repository GitHub ```polakowo/vectorbt```` đã tích lũy <strong>8.900+ star</strong> và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026&rdquo;, &ldquo;hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas&rdquo;, &ldquo;Plotly và scikit-learn.</p><p>Bài hướng dẫn này bao gồm mọi thứ: cài đặt&rdquo;, &ldquo;khái niệm cốt lõi&rdquo;, &ldquo;ví dụ code thực tế&rdquo;, &ldquo;production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ&rdquo;, &ldquo;VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.</p><h2 id=vectorbt-là-gì>VectorBT là gì?<a hidden class=anchor aria-hidden=true href=#vectorbt-là-gì>#</a></h2><p>VectorBT (Vector Backtesting) là một thư viện Python để backtest chiến lược giao dịch sử dụng <strong>phép toán vectorized thay vì vòng lặp event-driven</strong>. Không giống các backtester truyền thống xử lý từng cây nến một&rdquo;, &ldquo;VectorBT tính toán toàn bộ tín hiệu&rdquo;, &ldquo;vị thế và mảng P&amp;L trong một lần quét NumPy. Kết quả: backtest hoàn thành trong vài giây thay vì hàng giờ&rdquo;, &ldquo;giúp việc sweep tham số quy mô lớn và pipeline machine learning thực sự khả thi trên phần cứng phổ thông.</p><h2 id=vectorbt-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi>VectorBT hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi<a hidden class=anchor aria-hidden=true href=#vectorbt-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi>#</a></h2><p>Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy</p><p>Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng <code>(2.520", "100)</code> —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.</p><h3 id=biên-dịch-jit-numba>Biên dịch JIT Numba<a hidden class=anchor aria-hidden=true href=#biên-dịch-jit-numba>#</a></h3><p>Các hàm đường dẫn quan trọng được trang trí bằng <code>@njit</code> từ Numba&rdquo;, &ldquo;biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống <strong>0&rdquo;, &ldquo;03 giây</strong> trong VectorBT.</p><h3 id=broadcasting-cho-lưới-tham-số>Broadcasting cho lưới tham số<a hidden class=anchor aria-hidden=true href=#broadcasting-cho-lưới-tham-số>#</a></h3><p>Module <code>vbt</code> của VectorBT có thể broadcast hàm tạo tín hiệu qua các tổ hợp tham số tự động. Việc kiểm tra 50 kích thước cửa sổ × 10 tài sản × 2 quy tắc vào lệnh không yêu cầu vòng lặp for lồng nhau —— nó trở thành một phép toán tensor đơn lẻ.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> vectorbt <span style=color:#66d9ef>as</span> vbt
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tải dữ liệu — VectorBT bọc yfinance để thuận tiện</span>
-</span></span><span style=display:flex><span>price <span style=color:#f92672>=</span> vbt<span style=color:#f92672>.</span>YFData<span style=color:#f92672>.</span>download(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;BTC-USD&#34;</span>, <span style=color:#e6db74>&#34;start=&#34;</span><span style=color:#ae81ff>2020</span><span style=color:#f92672>-</span><span style=color:#ae81ff>01</span><span style=color:#f92672>-</span><span style=color:#ae81ff>01</span><span style=color:#e6db74>&#34;, &#34;</span>end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2026-01-01&#34;</span>, <span style=color:#e6db74>&#34;interval=&#34;</span><span style=color:#ae81ff>1</span>d<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;Close&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Data shape: </span><span style=color:#e6db74>{</span>price<span style=color:#f92672>.</span>shape<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)  <span style=color:#75715e># (2&#34;, &#34;210&#34;, &#34;) — giá đóng cửa hàng ngày</span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Data type: </span><span style=color:#e6db74>{</span>type(price)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)   <span style=color:#75715e># &lt;class &#39;pandas.core.series.Series&#39;&gt;</span>
-</span></span></code></pre></div><h2 id=cài-đặt--thiết-lập-dưới-5-phút>Cài đặt & Thiết lập: Dưới 5 phút<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập-dưới-5-phút>#</a></h2><p>VectorBT cài đặt sạch qua pip. Gói cơ sở bao gồm Numba&rdquo;, &ldquo;NumPy và tích hợp pandas. Các dependency tùy chọn bổ sung tính năng tải dữ liệu yfinance và vẽ biểu đồ Plotly.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt cơ bản</span>
-</span></span><span style=display:flex><span>pip install vectorbt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Với tất cả dependency tùy chọn (khuyến nghị)</span>
-</span></span><span style=display:flex><span>pip install <span style=color:#e6db74>&#34;vectorbt[all&#34;</span><span style=color:#f92672>]</span><span style=color:#e6db74>&#34;
+tags: [&quot;]
+aliases:</p>
+<ul>
+<li>/vi/posts/vectorbt-quantitative-backtesting/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu-tại-sao-backtest-của-bạn-quá-chậm">Giới thiệu: Tại sao Backtest của bạn quá chậm<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu-tại-sao-backtest-của-bạn-quá-chậm">#</a></h2>
+<p>Nếu bạn từng chờ đợi 20 phút để một backtest dựa trên pandas hoàn thành việc lặp qua 10 năm dữ liệu OHLCV của 50 mã&quot;, &ldquo;bạn không đơn độc. Một khảo sát tài chính lượng tử năm 2025 cho thấy <strong>73% quant bán lẻ dành nhiều thờ gian chờ backtest hơn là phân tích kết quả</strong>. Các backtester dạng event-driven như Zipline hay Backtrader xuất sắc ở tính thực tế nhưng bò khi bạn cần kiểm tra hàng nghìn tổ hợp tham số.</p>
+<p>Hãy làm quen với VectorBT — một thư viện Python tái hình dung backtesting như một bài toán tính toán vectorized. Bằng cách tận dụng <strong>mảng NumPy và biên dịch JIT Numba</strong>&rdquo;, &ldquo;VectorBT xử lý <strong>hơn 1 triệu giao dịch mỗi giây</strong> trên một lõi CPU. Repository GitHub ```polakowo/vectorbt```` đã tích lũy <strong>8.900+ star</strong> và được Oleg Polakowo duy trì dưới giấy phép Apache-2.0. Phát hành phiên bản v0.27.2 tính đến tháng 5/2026&rdquo;, &ldquo;hỗ trợ Python 3.9+ và tích hợp liền mạch với pandas&rdquo;, &ldquo;Plotly và scikit-learn.</p>
+<p>Bài hướng dẫn này bao gồm mọi thứ: cài đặt&rdquo;, &ldquo;khái niệm cốt lõi&rdquo;, &ldquo;ví dụ code thực tế&rdquo;, &ldquo;production hardening và đánh giá trung thực về hạn chế. Dù bạn đang kiểm tra chiến lược đường trung bình động đơn giản hay chạy pipeline tối ưu walk-forward đầy đủ&rdquo;, &ldquo;VectorBT sẽ thay đổi cách bạn nghĩ về tốc độ backtesting.</p>
+<h2 id="vectorbt-là-gì">VectorBT là gì?<a hidden class="anchor" aria-hidden="true" href="#vectorbt-là-gì">#</a></h2>
+<p>VectorBT (Vector Backtesting) là một thư viện Python để backtest chiến lược giao dịch sử dụng <strong>phép toán vectorized thay vì vòng lặp event-driven</strong>. Không giống các backtester truyền thống xử lý từng cây nến một&rdquo;, &ldquo;VectorBT tính toán toàn bộ tín hiệu&rdquo;, &ldquo;vị thế và mảng P&amp;L trong một lần quét NumPy. Kết quả: backtest hoàn thành trong vài giây thay vì hàng giờ&rdquo;, &ldquo;giúp việc sweep tham số quy mô lớn và pipeline machine learning thực sự khả thi trên phần cứng phổ thông.</p>
+<h2 id="vectorbt-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi">VectorBT hoạt động như thế nào: Kiến trúc &amp; Khái niệm cốt lõi<a hidden class="anchor" aria-hidden="true" href="#vectorbt-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi">#</a></h2>
+<p>Tốc độ của VectorBT đến từ ba quyết định kiến trúc: ### Biểu diễn dữ liệu ưu tiên NumPy</p>
+<p>Mọi dữ liệu giá tồn tại dưới dạng NumPy ndarray. Một DataFrame 10 năm dữ liệu ngày của 100 tài sản trở thành mảng 2D có hình dạng <code>(2.520&quot;, &quot;100)</code> —— xấp xỉ 252 ngày giao dịch mỗi năm. Không có vòng lặp theo hàng nào xảy ra trên đường dẫn nóng.</p>
+<h3 id="biên-dịch-jit-numba">Biên dịch JIT Numba<a hidden class="anchor" aria-hidden="true" href="#biên-dịch-jit-numba">#</a></h3>
+<p>Các hàm đường dẫn quan trọng được trang trí bằng <code>@njit</code> từ Numba&rdquo;, &ldquo;biên dịch Python thành mã máy khi chạy. Một chiến lược MA crossover mất 12 giây trong pandas thuần giảm xuống <strong>0&rdquo;, &ldquo;03 giây</strong> trong VectorBT.</p>
+<h3 id="broadcasting-cho-lưới-tham-số">Broadcasting cho lưới tham số<a hidden class="anchor" aria-hidden="true" href="#broadcasting-cho-lưới-tham-số">#</a></h3>
+<p>Module <code>vbt</code> của VectorBT có thể broadcast hàm tạo tín hiệu qua các tổ hợp tham số tự động. Việc kiểm tra 50 kích thước cửa sổ × 10 tài sản × 2 quy tắc vào lệnh không yêu cầu vòng lặp for lồng nhau —— nó trở thành một phép toán tensor đơn lẻ.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> vectorbt <span style="color:#66d9ef">as</span> vbt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tải dữ liệu — VectorBT bọc yfinance để thuận tiện</span>
+</span></span><span style="display:flex;"><span>price <span style="color:#f92672">=</span> vbt<span style="color:#f92672">.</span>YFData<span style="color:#f92672">.</span>download(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;BTC-USD&#34;</span>, <span style="color:#e6db74">&#34;start=&#34;</span><span style="color:#ae81ff">2020</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#f92672">-</span><span style="color:#ae81ff">01</span><span style="color:#e6db74">&#34;, &#34;</span>end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2026-01-01&#34;</span>, <span style="color:#e6db74">&#34;interval=&#34;</span><span style="color:#ae81ff">1</span>d<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;Close&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Data shape: </span><span style="color:#e6db74">{</span>price<span style="color:#f92672">.</span>shape<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)  <span style="color:#75715e"># (2&#34;, &#34;210&#34;, &#34;) — giá đóng cửa hàng ngày</span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Data type: </span><span style="color:#e6db74">{</span>type(price)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)   <span style="color:#75715e"># &lt;class &#39;pandas.core.series.Series&#39;&gt;</span>
+</span></span></code></pre></div><h2 id="cài-đặt--thiết-lập-dưới-5-phút">Cài đặt &amp; Thiết lập: Dưới 5 phút<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập-dưới-5-phút">#</a></h2>
+<p>VectorBT cài đặt sạch qua pip. Gói cơ sở bao gồm Numba&rdquo;, &ldquo;NumPy và tích hợp pandas. Các dependency tùy chọn bổ sung tính năng tải dữ liệu yfinance và vẽ biểu đồ Plotly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt cơ bản</span>
+</span></span><span style="display:flex;"><span>pip install vectorbt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Với tất cả dependency tùy chọn (khuyến nghị)</span>
+</span></span><span style="display:flex;"><span>pip install <span style="color:#e6db74">&#34;vectorbt[all&#34;</span><span style="color:#f92672">]</span><span style="color:#e6db74">&#34;
 </span></span></span></code></pre></div><p>Xác minh cài đặt: `````python
 import vectorbt as vbt
-print(vbt.<strong>version</strong>) # 0.27.2 hoặc mới hơn</p><pre tabindex=0><code>
+print(vbt.<strong>version</strong>)  # 0.27.2 hoặc mới hơn</p>
+<pre tabindex="0"><code>
 Để đảm bảo khả năng tái tạo, cố định môi trường của bạn: `````bash
 # requirements.txt
 vectorbt==0.27.2
@@ -49,7 +344,8 @@ pandas==2.2.3
 yfinance==0.2.54
 plotly==5.24.1
 </code></pre><p>Vấn đề cài đặt phổ biến trên macOS: Numba yêu cầu <code>llvmlite</code>, cần Xcode Command Line Tools: `````bash
-xcode-select &ndash;install # Chạy lệnh này trước nếu cài Numba thất bại</p><pre tabindex=0><code>
+xcode-select &ndash;install  # Chạy lệnh này trước nếu cài Numba thất bại</p>
+<pre tabindex="0"><code>
 ## Backtest đầu tiên của bạn: Chiến lược MA Crossover
 
 Hãy xây dựng chiến lược khả thi đơn giản nhất: mua khi SMA 20 ngày cắt lên trên SMA 50 ngày, thoát khi ngược lại.
@@ -86,20 +382,32 @@ portfolio = vbt.Portfolio.from_signals(
 # Kết quả
 print(portfolio.total_return())
 print(portfolio.sharpe_ratio())
-</code></pre><p>Chạy dưới <strong>2 giây</strong> cho 3 tài sản trong 6 năm. Cùng backtest đó trong Backtrader mất khoảng <strong>90 giây</strong>.</p><h2 id=tối-ưu-tham-số-tìm-kiếm-lưới-với-tốc-độ-cao>Tối ưu tham số: Tìm kiếm lưới với tốc độ cao<a hidden class=anchor aria-hidden=true href=#tối-ưu-tham-số-tìm-kiếm-lưới-với-tốc-độ-cao>#</a></h2><p>Sức mạnh thực sự của VectorBT xuất hiện khi bạn quét tham số. Hãy thử các cửa sổ MA từ 5 đến 200: `````python
-import vectorbt as vbt</p><p>price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;, start=&ldquo;2020-01-01&rdquo;, end=&ldquo;2026-01-01&rdquo;).get(&ldquo;Close&rdquo;)</p><h1 id=định-nghĩa-phạm-vi-tham-số>Định nghĩa phạm vi tham số<a hidden class=anchor aria-hidden=true href=#định-nghĩa-phạm-vi-tham-số>#</a></h1><p>fast_windows = np.arange(5, 51, 5) # [5, 10, 15, &mldr;, 50]
-slow_windows = np.arange(20, 201, 10) # [20, 30, 40, &mldr;, 200]</p><h1 id=chạy-tìm-kiếm-lưới-vectorized>Chạy tìm kiếm lưới vectorized<a hidden class=anchor aria-hidden=true href=#chạy-tìm-kiếm-lưới-vectorized>#</a></h1><p>fast_ma, slow_ma = vbt.MA.run_combs(
+</code></pre><p>Chạy dưới <strong>2 giây</strong> cho 3 tài sản trong 6 năm. Cùng backtest đó trong Backtrader mất khoảng <strong>90 giây</strong>.</p>
+<h2 id="tối-ưu-tham-số-tìm-kiếm-lưới-với-tốc-độ-cao">Tối ưu tham số: Tìm kiếm lưới với tốc độ cao<a hidden class="anchor" aria-hidden="true" href="#tối-ưu-tham-số-tìm-kiếm-lưới-với-tốc-độ-cao">#</a></h2>
+<p>Sức mạnh thực sự của VectorBT xuất hiện khi bạn quét tham số. Hãy thử các cửa sổ MA từ 5 đến 200: `````python
+import vectorbt as vbt</p>
+<p>price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;, start=&ldquo;2020-01-01&rdquo;, end=&ldquo;2026-01-01&rdquo;).get(&ldquo;Close&rdquo;)</p>
+<h1 id="định-nghĩa-phạm-vi-tham-số">Định nghĩa phạm vi tham số<a hidden class="anchor" aria-hidden="true" href="#định-nghĩa-phạm-vi-tham-số">#</a></h1>
+<p>fast_windows = np.arange(5, 51, 5)    # [5, 10, 15, &hellip;, 50]
+slow_windows = np.arange(20, 201, 10)  # [20, 30, 40, &hellip;, 200]</p>
+<h1 id="chạy-tìm-kiếm-lưới-vectorized">Chạy tìm kiếm lưới vectorized<a hidden class="anchor" aria-hidden="true" href="#chạy-tìm-kiếm-lưới-vectorized">#</a></h1>
+<p>fast_ma, slow_ma = vbt.MA.run_combs(
 price,
 window=fast_windows,
 r=2,
 short_names=[&ldquo;fast&rdquo;, &ldquo;slow&rdquo;]
-)</p><p>entries = fast_ma.ma_crossed_above(slow_ma)
-exits = fast_ma.ma_crossed_below(slow_ma)</p><p>portfolio = vbt.Portfolio.from_signals(
+)</p>
+<p>entries = fast_ma.ma_crossed_above(slow_ma)
+exits = fast_ma.ma_crossed_below(slow_ma)</p>
+<p>portfolio = vbt.Portfolio.from_signals(
 price, entries=exits, exits=entries,
 init_cash=10_000, fees=0.001
-)</p><h1 id=tìm-tổ-hợp-tốt-nhất>Tìm tổ hợp tốt nhất<a hidden class=anchor aria-hidden=true href=#tìm-tổ-hợp-tốt-nhất>#</a></h1><p>best_idx = portfolio.sharpe_ratio().idxmax()
-print(f"Best params: {best_idx}&rdquo;)
-print(f"Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}")</p><pre tabindex=0><code>
+)</p>
+<h1 id="tìm-tổ-hợp-tốt-nhất">Tìm tổ hợp tốt nhất<a hidden class="anchor" aria-hidden="true" href="#tìm-tổ-hợp-tốt-nhất">#</a></h1>
+<p>best_idx = portfolio.sharpe_ratio().idxmax()
+print(f&quot;Best params: {best_idx}&rdquo;)
+print(f&quot;Sharpe: {portfolio.sharpe_ratio().loc[best_idx]:.2f}&quot;)</p>
+<pre tabindex="0"><code>
 Lưới **180 tổ hợp tham số** này được đánh giá trong khoảng **3,5 giây** trên M2 MacBook Air. Đó là **50 tổ hợp mỗi giây**.
 
 ## Phân tích Walk-Forward: Xác thực chiến lược mạnh mẽ
@@ -161,36 +469,56 @@ for i in range(n_splits): # Định nghĩa cửa sổ train/test
 
 results_df = pd.DataFrame(results)
 print(results_df[[&#34;test_sharpe&#34;, &#34;test_return&#34;]].mean())
-</code></pre><p>Sharpe ratio trung bình out-of-sample dưới 0,5 cho thấy chiến lược không mạnh —— bất kể hiệu suất in-sample.</p><h2 id=tích-hợp-machine-learning>Tích hợp Machine Learning<a hidden class=anchor aria-hidden=true href=#tích-hợp-machine-learning>#</a></h2><p>VectorBT kết hợp tự nhiên với scikit-learn cho tín hiệu dựa trên ML. Huấn luyện bộ phân loại dự đoán hướng ngày tiếp theo, sau đó đưa dự đoán vào VectorBT để mô phỏng thực thi thực tế: `````python
+</code></pre><p>Sharpe ratio trung bình out-of-sample dưới 0,5 cho thấy chiến lược không mạnh —— bất kể hiệu suất in-sample.</p>
+<h2 id="tích-hợp-machine-learning">Tích hợp Machine Learning<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-machine-learning">#</a></h2>
+<p>VectorBT kết hợp tự nhiên với scikit-learn cho tín hiệu dựa trên ML. Huấn luyện bộ phân loại dự đoán hướng ngày tiếp theo, sau đó đưa dự đoán vào VectorBT để mô phỏng thực thi thực tế: `````python
 import vectorbt as vbt
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 import pandas as pd
-import numpy as np</p><h1 id=tải-dữ-liệu>Tải dữ liệu<a hidden class=anchor aria-hidden=true href=#tải-dữ-liệu>#</a></h1><p>price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;, start=&ldquo;2020-01-01&rdquo;, end=&ldquo;2026-01-01&rdquo;).get(&ldquo;Close&rdquo;)
-returns = price.pct_change()</p><h1 id=xây-dựng-ma-trận-đặc-trưng-lợi-nhuận-trễ>Xây dựng ma trận đặc trưng: lợi nhuận trễ<a hidden class=anchor aria-hidden=true href=#xây-dựng-ma-trận-đặc-trưng-lợi-nhuận-trễ>#</a></h1><p>lags = 5
+import numpy as np</p>
+<h1 id="tải-dữ-liệu">Tải dữ liệu<a hidden class="anchor" aria-hidden="true" href="#tải-dữ-liệu">#</a></h1>
+<p>price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;, start=&ldquo;2020-01-01&rdquo;, end=&ldquo;2026-01-01&rdquo;).get(&ldquo;Close&rdquo;)
+returns = price.pct_change()</p>
+<h1 id="xây-dựng-ma-trận-đặc-trưng-lợi-nhuận-trễ">Xây dựng ma trận đặc trưng: lợi nhuận trễ<a hidden class="anchor" aria-hidden="true" href="#xây-dựng-ma-trận-đặc-trưng-lợi-nhuận-trễ">#</a></h1>
+<p>lags = 5
 features = pd.concat([returns.shift(i) for i in range(1, lags + 1)], axis=1)
-features.columns = [f"lag_{i}" for i in range(1, lags + 1)]</p><h1 id=mục-tiêu-1-nếu-lợi-nhuận-ngày-tiếp-theo-dương-0-nếu-không>Mục tiêu: 1 nếu lợi nhuận ngày tiếp theo dương, 0 nếu không<a hidden class=anchor aria-hidden=true href=#mục-tiêu-1-nếu-lợi-nhuận-ngày-tiếp-theo-dương-0-nếu-không>#</a></h1><p>target = (returns.shift(-1) > 0).astype(int)</p><h1 id=làm-sạch-và-chia>Làm sạch và chia<a hidden class=anchor aria-hidden=true href=#làm-sạch-và-chia>#</a></h1><p>data = pd.concat([features, target], axis=1).dropna()
+features.columns = [f&quot;lag_{i}&quot; for i in range(1, lags + 1)]</p>
+<h1 id="mục-tiêu-1-nếu-lợi-nhuận-ngày-tiếp-theo-dương-0-nếu-không">Mục tiêu: 1 nếu lợi nhuận ngày tiếp theo dương, 0 nếu không<a hidden class="anchor" aria-hidden="true" href="#mục-tiêu-1-nếu-lợi-nhuận-ngày-tiếp-theo-dương-0-nếu-không">#</a></h1>
+<p>target = (returns.shift(-1) &gt; 0).astype(int)</p>
+<h1 id="làm-sạch-và-chia">Làm sạch và chia<a hidden class="anchor" aria-hidden="true" href="#làm-sạch-và-chia">#</a></h1>
+<p>data = pd.concat([features, target], axis=1).dropna()
 X = data.iloc[:, :-1]
 y = data.iloc[:, -1]
 X_train, X_test, y_train, y_test = train_test_split(
 X, y, test_size=0.3, shuffle=False
-)</p><h1 id=huấn-luyện-bộ-phân-loại>Huấn luyện bộ phân loại<a hidden class=anchor aria-hidden=true href=#huấn-luyện-bộ-phân-loại>#</a></h1><p>clf = RandomForestClassifier(n_estimators=200, max_depth=5, random_state=42)
-clf.fit(X_train, y_train)</p><h1 id=tạo-dự-đoán-trên-tập-test>Tạo dự đoán trên tập test<a hidden class=anchor aria-hidden=true href=#tạo-dự-đoán-trên-tập-test>#</a></h1><p>predictions = pd.Series(
+)</p>
+<h1 id="huấn-luyện-bộ-phân-loại">Huấn luyện bộ phân loại<a hidden class="anchor" aria-hidden="true" href="#huấn-luyện-bộ-phân-loại">#</a></h1>
+<p>clf = RandomForestClassifier(n_estimators=200, max_depth=5, random_state=42)
+clf.fit(X_train, y_train)</p>
+<h1 id="tạo-dự-đoán-trên-tập-test">Tạo dự đoán trên tập test<a hidden class="anchor" aria-hidden="true" href="#tạo-dự-đoán-trên-tập-test">#</a></h1>
+<p>predictions = pd.Series(
 clf.predict(X_test),
 index=X_test.index,
 name=&ldquo;prediction&rdquo;
-)</p><h1 id=tạo-tín-hiệu-vào-lệnh-khi-dự-đoán-tăng-thoát-khi-dự-đoán-giảm>Tạo tín hiệu: vào lệnh khi dự đoán tăng, thoát khi dự đoán giảm<a hidden class=anchor aria-hidden=true href=#tạo-tín-hiệu-vào-lệnh-khi-dự-đoán-tăng-thoát-khi-dự-đoán-giảm>#</a></h1><p>test_price = price.loc[X_test.index]
+)</p>
+<h1 id="tạo-tín-hiệu-vào-lệnh-khi-dự-đoán-tăng-thoát-khi-dự-đoán-giảm">Tạo tín hiệu: vào lệnh khi dự đoán tăng, thoát khi dự đoán giảm<a hidden class="anchor" aria-hidden="true" href="#tạo-tín-hiệu-vào-lệnh-khi-dự-đoán-tăng-thoát-khi-dự-đoán-giảm">#</a></h1>
+<p>test_price = price.loc[X_test.index]
 entries = predictions == 1
-exits = predictions == 0</p><h1 id=chạy-backtest-với-tín-hiệu-ml>Chạy backtest với tín hiệu ML<a hidden class=anchor aria-hidden=true href=#chạy-backtest-với-tín-hiệu-ml>#</a></h1><p>ml_portfolio = vbt.Portfolio.from_signals(
+exits = predictions == 0</p>
+<h1 id="chạy-backtest-với-tín-hiệu-ml">Chạy backtest với tín hiệu ML<a hidden class="anchor" aria-hidden="true" href="#chạy-backtest-với-tín-hiệu-ml">#</a></h1>
+<p>ml_portfolio = vbt.Portfolio.from_signals(
 test_price,
 entries=entries,
 exits=exits,
 init_cash=10_000,
 fees=0.001,
 freq=&ldquo;1D&rdquo;
-)</p><p>print(f"ML Strategy Return: {ml_portfolio.total_return():.2%}")
-print(f"ML Strategy Sharpe: {ml_portfolio.sharpe_ratio():.2f}")
-print(f"Buy & Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}")</p><pre tabindex=0><code>
+)</p>
+<p>print(f&quot;ML Strategy Return: {ml_portfolio.total_return():.2%}&quot;)
+print(f&quot;ML Strategy Sharpe: {ml_portfolio.sharpe_ratio():.2f}&quot;)
+print(f&quot;Buy &amp; Hold Return: {(test_price.iloc[-1] / test_price.iloc[0] - 1):.2%}&quot;)</p>
+<pre tabindex="0"><code>
 ## Tối ưu Danh mục với VectorBT
 
 VectorBT PRO (phiên bản trả phí, $299/năm) bổ sung tối ưu cấp danh mục qua mô hình Markowitz mean-variance và Black-Litterman. Phiên bản open-source vẫn hỗ trợ đánh trọng số đa tài sản: `````python
@@ -225,23 +553,91 @@ portfolio = vbt.Portfolio.from_holding(
 print(f&#34;\nCAGR: {portfolio.total_return() ** (1/4) - 1:.2%}&#34;)
 print(f&#34;Sharpe: {portfolio.sharpe_ratio():.2f}&#34;)
 print(f&#34;Max Drawdown: {portfolio.max_drawdown():.2%}&#34;)
-</code></pre><p>Để giao dịch thực trên các sàn lớn, kết nối tài khoản qua API. Binance cung cấp thanh khoản sâu và phí thấp cho giao dịch crypto thuật toán —— <a href="https://www.bsmkweb.cc/register?ref=DIBI8">đăng ký tại đây</a>. Đối với phái sinh và loại lệnh nâng cao, <a href=https://www.promoohubly.com/join/12190433>OKX</a> cung cấp API cấp tổ chức.</p><h2 id=benchmark--trường-hợp-sử-dụng-thực-tế>Benchmark / Trường hợp sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#benchmark--trường-hợp-sử-dụng-thực-tế>#</a></h2><table><thead><tr><th>Kịch bản</th><th>VectorBT</th><th>Backtrader</th><th>Zipline</th><th>pandas loop</th></tr></thead><tbody><tr><td>MA crossover (3 tài sản, 6 năm)</td><td><strong>1,8s</strong></td><td>92s</td><td>45s</td><td>340s</td></tr><tr><td>Grid search (180 tham số)</td><td><strong>3,5s</strong></td><td>N/A</td><td>810s</td><td>6.200s</td></tr><tr><td>Danh mục 50 tài sản (1 năm ngày)</td><td><strong>0,9s</strong></td><td>180s</td><td>95s</td><td>N/A</td></tr><tr><td>Walk-forward (10 splits)</td><td><strong>12s</strong></td><td>1.500s</td><td>720s</td><td>8.400s</td></tr><tr><td>ML pipeline (chỉ backtest)</td><td><strong>0,4s</strong></td><td>55s</td><td>28s</td><td>120s</td></tr><tr><td>Memory peak (50 tài sản)</td><td><strong>180MB</strong></td><td>1,2GB</td><td>890MB</td><td>450MB</td></tr></tbody></table><p><strong>Phần cứng:</strong> Apple M2 MacBook Air, 16GB RAM. VectorBT v0.27.2, Backtrader 1.9.78, Zipline-reloaded 3.0.4.</p><h3 id=trường-hợp-production-pipeline-xác-thực-tín-hiệu>Trường hợp Production: Pipeline xác thực tín hiệu<a hidden class=anchor aria-hidden=true href=#trường-hợp-production-pipeline-xác-thực-tín-hiệu>#</a></h3><p>Một quỹ crypto có hệ thống sử dụng VectorBT làm giai đoạn đầu pipeline xác thực tín hiệu. Mỗi ý tưởng alpha chạy qua <strong>10.000 tổ hợp tham số</strong> trên 20 tài sản trước khi đến paper trading. VectorBT rút ngắn giai đoạn này từ 6 giờ (Zipline) xuống <strong>8 phút</strong> —— tăng tốc <strong>45 lần</strong> giúp các nhà nghiên cứu có thể lặp hàng ngày thay vì hàng tuần.</p><h2 id=sử-dụng-nâng-cao--production-hardening>Sử dụng Nâng cao / Production Hardening<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--production-hardening>#</a></h2><h3 id=chỉ-báo-tùy-chỉnh>Chỉ báo Tùy chỉnh<a hidden class=anchor aria-hidden=true href=#chỉ-báo-tùy-chỉnh>#</a></h3><p><code>IndicatorFactory</code> của VectorBT chuyển đổi bất kỳ hàm nào thành chỉ báo vectorized: `````python
+</code></pre><p>Để giao dịch thực trên các sàn lớn, kết nối tài khoản qua API. Binance cung cấp thanh khoản sâu và phí thấp cho giao dịch crypto thuật toán —— <a href="https://www.bsmkweb.cc/register?ref=DIBI8">đăng ký tại đây</a>. Đối với phái sinh và loại lệnh nâng cao, <a href="https://www.promoohubly.com/join/12190433">OKX</a> cung cấp API cấp tổ chức.</p>
+<h2 id="benchmark--trường-hợp-sử-dụng-thực-tế">Benchmark / Trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Kịch bản</th>
+					<th>VectorBT</th>
+					<th>Backtrader</th>
+					<th>Zipline</th>
+					<th>pandas loop</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>MA crossover (3 tài sản, 6 năm)</td>
+					<td><strong>1,8s</strong></td>
+					<td>92s</td>
+					<td>45s</td>
+					<td>340s</td>
+			</tr>
+			<tr>
+					<td>Grid search (180 tham số)</td>
+					<td><strong>3,5s</strong></td>
+					<td>N/A</td>
+					<td>810s</td>
+					<td>6.200s</td>
+			</tr>
+			<tr>
+					<td>Danh mục 50 tài sản (1 năm ngày)</td>
+					<td><strong>0,9s</strong></td>
+					<td>180s</td>
+					<td>95s</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td>Walk-forward (10 splits)</td>
+					<td><strong>12s</strong></td>
+					<td>1.500s</td>
+					<td>720s</td>
+					<td>8.400s</td>
+			</tr>
+			<tr>
+					<td>ML pipeline (chỉ backtest)</td>
+					<td><strong>0,4s</strong></td>
+					<td>55s</td>
+					<td>28s</td>
+					<td>120s</td>
+			</tr>
+			<tr>
+					<td>Memory peak (50 tài sản)</td>
+					<td><strong>180MB</strong></td>
+					<td>1,2GB</td>
+					<td>890MB</td>
+					<td>450MB</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Phần cứng:</strong> Apple M2 MacBook Air, 16GB RAM. VectorBT v0.27.2, Backtrader 1.9.78, Zipline-reloaded 3.0.4.</p>
+<h3 id="trường-hợp-production-pipeline-xác-thực-tín-hiệu">Trường hợp Production: Pipeline xác thực tín hiệu<a hidden class="anchor" aria-hidden="true" href="#trường-hợp-production-pipeline-xác-thực-tín-hiệu">#</a></h3>
+<p>Một quỹ crypto có hệ thống sử dụng VectorBT làm giai đoạn đầu pipeline xác thực tín hiệu. Mỗi ý tưởng alpha chạy qua <strong>10.000 tổ hợp tham số</strong> trên 20 tài sản trước khi đến paper trading. VectorBT rút ngắn giai đoạn này từ 6 giờ (Zipline) xuống <strong>8 phút</strong> —— tăng tốc <strong>45 lần</strong> giúp các nhà nghiên cứu có thể lặp hàng ngày thay vì hàng tuần.</p>
+<h2 id="sử-dụng-nâng-cao--production-hardening">Sử dụng Nâng cao / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--production-hardening">#</a></h2>
+<h3 id="chỉ-báo-tùy-chỉnh">Chỉ báo Tùy chỉnh<a hidden class="anchor" aria-hidden="true" href="#chỉ-báo-tùy-chỉnh">#</a></h3>
+<p><code>IndicatorFactory</code> của VectorBT chuyển đổi bất kỳ hàm nào thành chỉ báo vectorized: `````python
 import vectorbt as vbt
 import numpy as np
-from numba import njit</p><p>@njit
+from numba import njit</p>
+<p>@njit
 def custom_momentum_nb(price, period): &ldquo;&ldquo;&ldquo;Chỉ báo động lượng tăng tốc Numba.&rdquo;&rdquo;&rdquo;
 momentum = np.empty_like(price)
 momentum[:period] = np.nan
 for i in range(period, len(price)): momentum[i] = (price[i] / price[i - period] - 1) * 100
-return momentum</p><h1 id=bọc-bằng-indicatorfactory>Bọc bằng IndicatorFactory<a hidden class=anchor aria-hidden=true href=#bọc-bằng-indicatorfactory>#</a></h1><p>CustomMomentum = vbt.IF(
+return momentum</p>
+<h1 id="bọc-bằng-indicatorfactory">Bọc bằng IndicatorFactory<a hidden class="anchor" aria-hidden="true" href="#bọc-bằng-indicatorfactory">#</a></h1>
+<p>CustomMomentum = vbt.IF(
 class_name=&ldquo;CustomMomentum&rdquo;,
 short_name=&ldquo;cm&rdquo;,
 input_names=[&ldquo;close&rdquo;],
 param_names=[&ldquo;period&rdquo;],
 output_names=[&ldquo;momentum&rdquo;]
-).with_custom_func(custom_momentum_nb)</p><h1 id=sử-dụng>Sử dụng<a hidden class=anchor aria-hidden=true href=#sử-dụng>#</a></h1><p>price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;, start=&ldquo;2023-01-01&rdquo;).get(&ldquo;Close&rdquo;)
+).with_custom_func(custom_momentum_nb)</p>
+<h1 id="sử-dụng">Sử dụng<a hidden class="anchor" aria-hidden="true" href="#sử-dụng">#</a></h1>
+<p>price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;, start=&ldquo;2023-01-01&rdquo;).get(&ldquo;Close&rdquo;)
 cm = CustomMomentum.run(price, period=[7, 14, 30])
-print(cm.momentum)</p><pre tabindex=0><code>
+print(cm.momentum)</p>
+<pre tabindex="0"><code>
 ### Quản lý Rủi ro: Stop Loss và Take Profit
 
 `````python
@@ -265,17 +661,23 @@ portfolio = vbt.Portfolio.from_signals(
 print(f&#34;Return: {portfolio.total_return():.2%}&#34;)
 print(f&#34;Win rate: {portfolio.trades.win_rate():.2%}&#34;)
 print(f&#34;Avg trade: {portfolio.trades.returns.mean():.2%}&#34;)
-</code></pre><h3 id=thực-thi-song-song>Thực thi Song song<a hidden class=anchor aria-hidden=true href=#thực-thi-song-song>#</a></h3><p>Các phép toán tensor của VectorBT đã bão hòa lõi đơn. Để mở rộng đa lõi, chia lưới tham số qua nhiều tiến trình: `````python
+</code></pre><h3 id="thực-thi-song-song">Thực thi Song song<a hidden class="anchor" aria-hidden="true" href="#thực-thi-song-song">#</a></h3>
+<p>Các phép toán tensor của VectorBT đã bão hòa lõi đơn. Để mở rộng đa lõi, chia lưới tham số qua nhiều tiến trình: `````python
 from multiprocessing import Pool
 import vectorbt as vbt
-import numpy as np</p><p>def run_chunk(param_chunk): price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;).get(&ldquo;Close&rdquo;)
+import numpy as np</p>
+<p>def run_chunk(param_chunk): price = vbt.YFData.download(&ldquo;BTC-USD&rdquo;).get(&ldquo;Close&rdquo;)
 fast_ma = vbt.MA.run(price, param_chunk[:, 0])
 slow_ma = vbt.MA.run(price, param_chunk[:, 1])
 entries = fast_ma.ma_crossed_above(slow_ma)
 exits = fast_ma.ma_crossed_below(slow_ma)
 pf = vbt.Portfolio.from_signals(price, entries, exits, init_cash=10_000)
-return pf.sharpe_ratio()</p><h1 id=chia-360-tham-số-qua-4-tiến-trình>Chia 360 tham số qua 4 tiến trình<a hidden class=anchor aria-hidden=true href=#chia-360-tham-số-qua-4-tiến-trình>#</a></h1><p>params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.reshape(-1, 2)
-chunks = np.array_split(params, 4)</p><p>with Pool(4) as p: results = p.map(run_chunk, chunks)</p><pre tabindex=0><code>
+return pf.sharpe_ratio()</p>
+<h1 id="chia-360-tham-số-qua-4-tiến-trình">Chia 360 tham số qua 4 tiến trình<a hidden class="anchor" aria-hidden="true" href="#chia-360-tham-số-qua-4-tiến-trình">#</a></h1>
+<p>params = np.array(np.meshgrid(np.arange(5, 41, 5), np.arange(20, 121, 10))).T.reshape(-1, 2)
+chunks = np.array_split(params, 4)</p>
+<p>with Pool(4) as p: results = p.map(run_chunk, chunks)</p>
+<pre tabindex="0"><code>
 ## So sánh với các Lựa chọn Thay thế
 
 | Tính năng | VectorBT | Backtrader | Zipline | QuantConnect (Lean) |
@@ -420,8 +822,145 @@ Bài viết này chứa liên kết affiliate đến Binance, OKX, Minara và c�
 **问：交易系统的维护成本？**
 
 包括服务器费用、数据订阅、算法更新、以及监控维护时间。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

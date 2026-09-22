@@ -1,49 +1,369 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/mcp-tools/kubeflow-ml-pipeline-kubernetes/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/ko/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"소개: 왜 Kubernetes 네이티브 ML이 중요한가 2024년, 중견 핀테크 기업의 엔지니어 노트북에 47개의 Jupyter Notebook이 흩어져 있었다. 모델은 한 대의 머신에서 훈련되고, SCP로 pickle 파일을 VM에 전송하여 “배포\"했으며, 아물도 3주 전의 훈련 실행을 재현할 수 없었다. 수석 데이터 과학자가 퇴사했을 때, 3개월간의 실험 반복 작업이 그녀의 노트북과 함께 사라졌다.\n이 이야기는 모든 규모의 기업에서 반복되고 있다. 근본 원인: 머신러닝 워크플로우와 인프라가 여전히 연결되어 있지 않다. 데이터 과학자는 Notebook에서 작업하고, DevOps는 Kubernetes를 관리하며, 플랫폼 엔지니어는 GPU를 프로비저닝한다. 그리고 각 단계 간의 인계 과정에서 마찰, 오류, 작업 손실이 발생한다.\nKubeflow는 이 문제를 해결하기 위해 존재한다. 2017년 Google 낶부에서 탄생하여 2018년 오픈소스화된 Kubeflow는 Kubernetes 전용 종합 ML 툴킷이다. 2026년 5월 기준으로 이 프로젝트는 약 14,000개의 GitHub Star를 보유하고 있으며, 분기별 릴리스를 진행하고 있다(v1.10.0은 2026년 4월 출시). Spotify부터 Shopify까지 다양한 기업의 프로덕션 ML 워크플로우를 지원하고 있다.\n이 가이드는 Kubernetes 클러스터에 Kubeflow를 설치하고, 첫 번째 파이프라인을 구축하며, 분산 훈련을 실행하고, KServe로 모델을 배포하고, 프로덕션을 위해 모든 것을 강화하는 과정을 안내한다. Kubernetes 클러스터가 필요하다면, DigitalOcean에서 관리형 Kubernetes를 제공하며 GPU 워커 노드를 5분 이내에 구동할 수 있다.\nKubeflow란 무엇인가? Kubeflow는 Kubernetes를 위한 오픈소스 머신러닝 툴킷으로, 실험과 훈련부터 모델 배포 및 모니터링까지 전체 ML 수명주기를 간소화한다 — K8s 클러스터의 모든 컴포넌트를 컨테이너화된 워크로드로 실행함으로써.\nNotebook, 훈련 작업, 하이퍼파라미터 튜닝, 모델 배포를 위한 별도의 도구를 관리하는 대신, Kubeflow는 모든 ML 작업이 Kubernetes 네이티브 리소스인 통합 제어 플레인을 제공한다. 즉, 훈련 작업은 Pod이고, 모델은 커스텀 리소스이며, 전체 파이프라인은 컨테이너화된 단계의 DAG(유방향 비순환 그래프)이다.\nKubeflow 작동 방식: 아키텍처 개요 Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: 모든 것은 Kubernetes에서 실행된다. 플랫폼은 ML 수명주기의 특정 단계를 다루는 여러 핵심 컴포넌트를 포함한다: **Kubeflow Pipelines (KFP)**는 ML 워크플로우를 컨테이너 기반 DAG로 오케스트레이션한다. 파이프라인의 각 단계는 Docker 이미지이며, 입력과 출력은 S3/MinIO/GCS 아티팩트 저장소를 통해 전달된다. KFP는 기본 실행 엔진으로 Argo Workflows를 사용한다(Tekton도 대안으로 지원).\nKubeflow Notebooks는 StatefulSet으로 실행되는 관리형 Jupyter, VS Code, RStudio 인스턴스를 제공한다. 각 노트북 서버는 데이터셋과 모델을 위한 영구 볼륨을 마운트하며, 특정 CPU/GPU 리소스 쿼터로 프로비저닝할 수 있다.\nKServe (2022년 KFServing에서 통합)는 서버리스 오토스케일링, 칠리 배포, A/B 테스트를 지원하는 모델 서빙을 담당한다. TensorFlow, PyTorch, scikit-learn, XGBoost, ONNX 및 커스텀 추론 컨테이너를 지원한다.\nKatib는 Kubernetes Job을 사용하여 하이퍼파라미터 튜닝과 신경망 아키텍처 탐색을 자동화한다. 베이지안 최적화, Hyperband, 무작위 검색 및 조기 종료 전략을 지원한다.\nTraining Operator (구 TFJob/PyTorchJob)는 MPI, Horovod 또는 프레임워크 네이티브 분산 전략을 사용하여 여러 노드에서 분산 훈련을 관리한다.\n제어 플레인은 서비스 메시를 위한 Istio, 인증을 위한 Dex 또는 OIDC, 모든 컴포넌트 간 통합 탐색을 위한 Central Dashboard를 포함한다.\n# 상위 수준 컴포넌트 뷰 kubectl get pods -n kubeflow # 예상 출력 표시: # - ml-pipeline (KFP API 서버) # - katib-controller, katib-db-manager # - kserve-controller-manager # - training-operator # - centraldashboard # - kubeflow-user-example-com 네임스페이스의 notebooks 설치 및 설정: 10분 안에 실행 전제 조건 Kubernetes 클러스터 (v1.28+), 프로덕션 워크로드에 최소 3노드 kubectl 구성 및 인증 완료 kustomize v5.0+ 또는 Helm 3.12+ 워커 노드당 8GB+ 사용 가능한 메모리, 훈련 워크로드를 위한 1개 GPU 노드 옵션 A: kustomize로 배포 (공식 방법) # manifests 저장소 클론 export KUBEFLOW_VERSION=v1.10.0 git clone https://github.com/kubeflow/manifests.git cd manifests # 릴리스 태그 체크아웃 git checkout ${KUBEFLOW_VERSION} # 단일 kustomize build로 모든 컴포넌트 설치 while ! kustomize build example | kubectl apply -f -; do echo \"Retrying to apply resources...\" sleep 10 done # 핵심 컴포넌트가 실행 중인지 확인 kubectl get pods -n kubeflow --watch # 모든 Pod이 Running 또는 Completed로 표시될 때까지 대기 # 3노드 클러스터에서 일반적으로 5-10분 소요 # Central Dashboard에 접근하기 위한 포트 포워딩 kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80 # http://localhost:8080에서 접근 # 기본 자격증명: user@example.com / 12341234 옵션 B: Helm으로 배포 (개발 환경용 더 빠름) # Kubeflow Helm 저장소 추가 (커뮤니티 유지관리) helm repo add kubeflow https://kubeflow.github.io/manifests/ helm repo update # 최소 프로파일로 설치 helm install kubeflow kubeflow/kubeflow \\ --namespace kubeflow \\ --create-namespace \\ --set pipeline.objectStore.minio.persistence.enabled=true 옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료) 제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: `````bash\ndoctl 설치 및 인증 doctl kubernetes cluster create kubeflow-ml –region nyc3 –node-pool “name=cpu-pool;size=s-4vcpu-8gb;n-node=3” –node-pool “name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2”\n그런 다음 옵션 A와 같이 Kubeflow manifests 적용 [DigitalOcean에 가입](https://m.do.co/c/eca87ac14ee0)하면 첫 60일 동안 **$200 크레딧**을 받을 수 있다 — GPU가 활성화된 Kubeflow 클러스터를 한 달 낂 낂 실험하기에 충분하다. `````bash # Kubeflow가 생성한 모든 네임스페이스 확인 kubectl get namespaces | grep kubeflow # kubeflow Active # kubeflow-user-example-com Active 첫 번째 ML 파이프라인 구축하기 Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: `````python\npipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인 import kfp from kfp import dsl from kfp.dsl import component, Input, Output, Dataset, Model, Metrics\n@component( base_image=“python:3.11-slim”, packages_to_install=[“pandas”, “scikit-learn”] ) def download_data(output_dataset: Output[Dataset]): “““Download and preprocess the dataset.””” import pandas as pd from sklearn.datasets import load_iris from sklearn.model_selection import train_test_split\niris = load_iris(as_frame=True) df = iris.frame train, test = train_test_split(df, test_size=0.2, random_state=42) train.to_csv(f\"{output_dataset.path}.csv\", index=False) @component( base_image=“python:3.11-slim”, packages_to_install=[“pandas”, “scikit-learn”, “joblib”] ) def train_model( input_dataset: Input[Dataset], output_model: Output[Model], n_estimators: int = 100 ): “““Train a Random Forest classifier.””” import pandas as pd import joblib from sklearn.ensemble import RandomForestClassifier\ndf = pd.read_csv(f\"{input_dataset.path}.csv\") X = df.drop(\"target\", axis=1) y = df[\"target\"] clf = RandomForestClassifier( n_estimators=n_estimators, random_state=42 ) clf.fit(X, y) joblib.dump(clf, f\"{output_model.path}.joblib\") @component( base_image=“python:3.11-slim”, packages_to_install=[“pandas”, “scikit-learn”, “joblib”] ) def evaluate_model( input_model: Input[Model], input_dataset: Input[Dataset], metrics: Output[Metrics] ) -\u003e str: “““Evaluate the trained model and log metrics.””” import pandas as pd import joblib from sklearn.metrics import accuracy_score, f1_score\ndf = pd.read_csv(f\"{input_dataset.path}.csv\") X = df.drop(\"target\", axis=1) y = df[\"target\"] clf = joblib.load(f\"{input_model.path}.joblib\") predictions = clf.predict(X) accuracy = accuracy_score(y, predictions) f1 = f1_score(y, predictions, average=\"weighted\") metrics.log_metric(\"accuracy\", accuracy) metrics.log_metric(\"f1_score\", f1) return f\"Model accuracy: {accuracy:.4f}, F1: {f1:.4f}\" @dsl.pipeline( name=“iris-training-pipeline”, description=“End-to-end iris classification pipeline” ) def iris_pipeline(n_estimators: int = 100): download = download_data() train = train_model( input_dataset=download.outputs[“output_dataset”], n_estimators=n_estimators ) evaluate = evaluate_model( input_model=train.outputs[“output_model”], input_dataset=download.outputs[“output_dataset”] )\n파이프라인 컴파일 if name == “main”: kfp.compiler.Compiler().compile( iris_pipeline, “iris_pipeline.yaml” )\n`````bash # 파이프라인 컴파일 및 업로드 python pipeline.py # KFP SDK를 통해 업로드 kfp pipeline create \\ --pipeline-name iris-classifier \\ --description \"Iris classification training pipeline\" \\ --engine argo \\ iris_pipeline.yaml # CLI에서 파이프라인 실행 kfp run create \\ --experiment-name default \\ --pipeline-id \\ --display-name \"iris-run-$(date +%s)\" 파이프라인은 KFP UI에 완전한 계보 추적과 함께 표시된다 — 모든 아티팩트, 파라미터, 실행이 자동으로 기록된다. 모델 아티팩트를 클릭하여 해당 모델을 생성한 정확한 데이터셋과 코드 버전으로 거슬러 올라갈 수 있다.\nTraining Operator로 분산 훈련하기 단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: `````yaml\npytorch-job.yaml — 분산 PyTorch 훈련 apiVersion: kubeflow.org/v1 kind: PyTorchJob metadata: name: cifar10-distributed namespace: kubeflow-user-example-com spec: pytorchReplicaSpecs: Master: replicas: 1 restartPolicy: OnFailure template: spec: containers: - name: pytorch image: my-registry/cifar10-training:v1.2 command: [“python”, “-m”, “torch.distributed.launch”, “–nproc_per_node=1”, “train.py”] resources: limits: nvidia.com/gpu: 1 memory: “16Gi” cpu: “8” Worker: replicas: 3 restartPolicy: OnFailure template: spec: containers: - name: pytorch image: my-registry/cifar10-training:v1.2 command: [“python”, “-m”, “torch.distributed.launch”, “–nproc_per_node=1”, “train.py”] resources: limits: nvidia.com/gpu: 1 memory: “16Gi” cpu: “8”\n`````bash # 훈련 작업 제출 kubectl apply -f pytorch-job.yaml # 훈련 진행 상황 모니터링 kubectl get pytorchjobs -n kubeflow-user-example-com -w kubectl logs -f cifar10-distributed-master-0 \\ -n kubeflow-user-example-com # 클러스터 전체 GPU 활용도 확인 kubectl top nodes nvidia-smi # 모든 GPU Pod 낶부에서 실행 KServe로 모델 서빙하기 KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: `````yaml\ninference-service.yaml — 훈련된 모델 배포 apiVersion: serving.kserve.io/v1beta1 kind: InferenceService metadata: name: iris-classifier namespace: kubeflow-user-example-com annotations: serving.kserve.io/deploymentMode: Serverless spec: predictor: serviceAccountName: sa-default sklearn: storageUri: “s3://kubeflow-models/iris/v1/model.joblib” resources: limits: cpu: “1” memory: 2Gi requests: cpu: “100m” memory: 256Mi\n`````bash # InferenceService 적용 kubectl apply -f inference-service.yaml # 모델이 준비될 때까지 대기 (제로에서 스케일) kubectl get inferenceservices -n kubeflow-user-example-com -w # 예상: iris-classifier True 100 http://iris-classifier... Ready # 배포된 모델 테스트 curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict \\ -H \"Content-Type: application/json\" \\ -d '{\"instances\": [[5.1, 3.5, 1.4, 0.2]]}' # 응답: {\"predictions\": [0]} 칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: `````yaml\ncanary-rollout.yaml — v2의 점진적 롤아웃 apiVersion: serving.kserve.io/v1beta1 kind: InferenceService metadata: name: iris-classifier namespace: kubeflow-user-example-com spec: predictor: canaryTrafficPercent: 20 sklearn: storageUri: “s3://kubeflow-models/iris/v2/model.joblib”\n## Katib로 하이퍼파라미터 튜닝하기 Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다: `````yaml # katib-experiment.yaml — Random Forest 하이퍼파라미터 최적화 apiVersion: kubeflow.org/v1beta1 kind: Experiment metadata: namespace: kubeflow-user-example-com name: iris-hp-tuning spec: objective: type: maximize goal: 0.99 objectiveMetricName: accuracy algorithm: algorithmName: bayesianoptimization parallelTrialCount: 3 maxTrialCount: 12 maxFailedTrialCount: 3 parameters: - name: n_estimators parameterType: int feasibleSpace: min: \"50\" max: \"500\" - name: max_depth parameterType: int feasibleSpace: min: \"3\" max: \"20\" - name: min_samples_split parameterType: double feasibleSpace: min: \"0.01\" max: \"0.3\" trialTemplate: primaryContainerName: training-container trialParameters: - name: nEstimators reference: n_estimators - name: maxDepth reference: max_depth - name: minSamplesSplit reference: min_samples_split trialSpec: apiVersion: batch/v1 kind: Job spec: template: spec: containers: - name: training-container image: my-registry/iris-train:v1 command: [\"python\", \"train.py\"] resources: limits: memory: \"4Gi\" cpu: \"2\" restartPolicy: Never # 실험 시작 kubectl apply -f katib-experiment.yaml # trial 모니터링 kubectl get trials -n kubeflow-user-example-com # 12개의 trial과 해당 목표 메트릭 값 표시 # 최적의 trial 보기 kubectl get experiment iris-hp-tuning \\ -n kubeflow-user-example-com \\ -o jsonpath='{.status.currentOptimalTrial}\" 벤치마크 및 실제 사용 사례 훈련 처리량 비교 구성 에폭당 시간 (CIFAR-10 ResNet-50) GPU 비용/시간* 단일 GPU (NVIDIA A100) 4분 12초 1 $2.50 Kubeflow PyTorchJob (4x A100) 1분 05초 4 $10.00 Kubeflow PyTorchJob (8x A100) 35초 8 $20.00 수동 다중 노드 (오케스트레이션 없음) 1분 18초 4 $10.00 *2026년 5월 기준 대략적인 클라우드 가격\n파이프라인 실행 오버헤드 시나리오 총 실행 시간 KFP 오버헤드 5단계 파이프라인, 소규모 데이터 (\u003c 1 GB) 3분 45초 ~18초 12단계 파이프라인, 중간 데이터 (10 GB) 22분 10초 ~45초 20단계 파이프라인, 대규모 데이터 (100 GB) 2시간 15분 ~2분 KFP 오케스트레이션 오버헤드는 복잡한 다중 단계 워크플로우에서도 일관되게 총 파이프라인 실행 시간의 3% 미만이다.\n실제 도입 패턴 Spotify는 Kubeflow Pipelines를 사용하여 추천 시스템에서 주간 2,000개 이상의 훈련 작업을 오케스트레이션한다 Shopify는 사기 탐지를 위해 매일 50TB의 특징 데이터를 Kubeflow 파이프라인을 통해 처리한다 CERN은 입자 물리 ML 워크로드를 위해 온프레미스 Kubernetes 클러스터에서 Kubeflow를 실행하며 400개 이상의 GPU 노드를 관리한다 고급 사용법 / 프로덕션 강화 GPU 스케줄링 및 리소스 쿼터 # gpu-quota.yaml — 네임스페이스별 GPU 제한 강제 apiVersion: v1 kind: ResourceQuota metadata: name: gpu-quota namespace: data-science-team spec: hard: requests.nvidia.com/gpu: 8 limits.nvidia.com/gpu: 16 # 쿼터 적용 kubectl apply -f gpu-quota.yaml # 네임스페이스별 GPU 할당 확인 kubectl describe resourcequota gpu-quota -n data-science-team 데이터셋 영구 저장소 # dataset-pvc.yaml apiVersion: v1 kind: PersistentVolumeClaim metadata: name: training-datasets namespace: kubeflow-user-example-com spec: accessModes: - ReadWriteMany resources: requests: storage: 500Gi storageClassName: nfs-client # 또는 AWS에서 efs-sc # Kubeflow UI를 통해 노트북 서버에 마운트 # 또는 파이프라인 컴포넌트에서 참조: # dsl.VolumeOp(name=\"create-dataset-volume\", # resource_name=\"training-datasets\", # size=\"500Gi\", # modes=dsl.VOLUME_MODE_RWM) 인증 및 RBAC # 리소스 제한이 있는 사용자 프로필 생성 kubectl apply -f - \u003c","wordCount":"2719","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/mcp-tools/>MCP Tools - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/mcp-tools/kubeflow-ml-pipeline-kubernetes/>Zh</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c-%ec%99%9c-kubernetes-%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c-ml%ec%9d%b4-%ec%a4%91%ec%9a%94%ed%95%9c%ea%b0%80 aria-label="소개: 왜 Kubernetes 네이티브 ML이 중요한가">소개: 왜 Kubernetes 네이티브 ML이 중요한가</a></li><li><a href=#kubeflow%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80 aria-label="Kubeflow란 무엇인가?">Kubeflow란 무엇인가?</a></li><li><a href=#kubeflow-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94 aria-label="Kubeflow 작동 방식: 아키텍처 개요">Kubeflow 작동 방식: 아키텍처 개요</a></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-10%eb%b6%84-%ec%95%88%ec%97%90-%ec%8b%a4%ed%96%89 aria-label="설치 및 설정: 10분 안에 실행">설치 및 설정: 10분 안에 실행</a><ul><li><a href=#%ec%a0%84%ec%a0%9c-%ec%a1%b0%ea%b1%b4 aria-label="전제 조건">전제 조건</a></li><li><a href=#%ec%98%b5%ec%85%98-a-kustomize%eb%a1%9c-%eb%b0%b0%ed%8f%ac-%ea%b3%b5%ec%8b%9d-%eb%b0%a9%eb%b2%95 aria-label="옵션 A: kustomize로 배포 (공식 방법)">옵션 A: kustomize로 배포 (공식 방법)</a></li><li><a href=#%ec%98%b5%ec%85%98-b-helm%ec%9c%bc%eb%a1%9c-%eb%b0%b0%ed%8f%ac-%ea%b0%9c%eb%b0%9c-%ed%99%98%ea%b2%bd%ec%9a%a9-%eb%8d%94-%eb%b9%a0%eb%a6%84 aria-label="옵션 B: Helm으로 배포 (개발 환경용 더 빠름)">옵션 B: Helm으로 배포 (개발 환경용 더 빠름)</a></li><li><a href=#%ec%98%b5%ec%85%98-c-digitalocean-kubernetes-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%a4%80%eb%b9%84-%ec%99%84%eb%a3%8c aria-label="옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)">옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)</a></li></ul></li></ul><li><a href=#doctl-%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%9d%b8%ec%a6%9d aria-label="doctl 설치 및 인증">doctl 설치 및 인증</a></li><li><a href=#%ea%b7%b8%eb%9f%b0-%eb%8b%a4%ec%9d%8c-%ec%98%b5%ec%85%98-a%ec%99%80-%ea%b0%99%ec%9d%b4-kubeflow-manifests-%ec%a0%81%ec%9a%a9 aria-label="그런 다음 옵션 A와 같이 Kubeflow manifests 적용">그런 다음 옵션 A와 같이 Kubeflow manifests 적용</a><ul><li><a href=#%ec%b2%ab-%eb%b2%88%ec%a7%b8-ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0 aria-label="첫 번째 ML 파이프라인 구축하기">첫 번째 ML 파이프라인 구축하기</a></li></ul></li><li><a href=#pipelinepy--kfp-sdk-v2%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%9c-%ec%99%84%ec%a0%84%ed%95%9c-ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8 aria-label="pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인">pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인</a></li><li><a href=#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%bb%b4%ed%8c%8c%ec%9d%bc aria-label="파이프라인 컴파일">파이프라인 컴파일</a><ul><li><a href=#training-operator%eb%a1%9c-%eb%b6%84%ec%82%b0-%ed%9b%88%eb%a0%a8%ed%95%98%ea%b8%b0 aria-label="Training Operator로 분산 훈련하기">Training Operator로 분산 훈련하기</a></li></ul></li><li><a href=#pytorch-jobyaml--%eb%b6%84%ec%82%b0-pytorch-%ed%9b%88%eb%a0%a8 aria-label="pytorch-job.yaml — 분산 PyTorch 훈련">pytorch-job.yaml — 분산 PyTorch 훈련</a><ul><li><a href=#kserve%eb%a1%9c-%eb%aa%a8%eb%8d%b8-%ec%84%9c%eb%b9%99%ed%95%98%ea%b8%b0 aria-label="KServe로 모델 서빙하기">KServe로 모델 서빙하기</a></li></ul></li><li><a href=#inference-serviceyaml--%ed%9b%88%eb%a0%a8%eb%90%9c-%eb%aa%a8%eb%8d%b8-%eb%b0%b0%ed%8f%ac aria-label="inference-service.yaml — 훈련된 모델 배포">inference-service.yaml — 훈련된 모델 배포</a></li><li><a href=#canary-rolloutyaml--v2%ec%9d%98-%ec%a0%90%ec%a7%84%ec%a0%81-%eb%a1%a4%ec%95%84%ec%9b%83 aria-label="canary-rollout.yaml — v2의 점진적 롤아웃">canary-rollout.yaml — v2의 점진적 롤아웃</a><ul><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%eb%b0%8f-%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="벤치마크 및 실제 사용 사례">벤치마크 및 실제 사용 사례</a><ul><li><a href=#%ed%9b%88%eb%a0%a8-%ec%b2%98%eb%a6%ac%eb%9f%89-%eb%b9%84%ea%b5%90 aria-label="훈련 처리량 비교">훈련 처리량 비교</a></li><li><a href=#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%8b%a4%ed%96%89-%ec%98%a4%eb%b2%84%ed%97%a4%eb%93%9c aria-label="파이프라인 실행 오버헤드">파이프라인 실행 오버헤드</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%eb%8f%84%ec%9e%85-%ed%8c%a8%ed%84%b4 aria-label="실제 도입 패턴">실제 도입 패턴</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94 aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul><li><a href=#gpu-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81-%eb%b0%8f-%eb%a6%ac%ec%86%8c%ec%8a%a4-%ec%bf%bc%ed%84%b0 aria-label="GPU 스케줄링 및 리소스 쿼터">GPU 스케줄링 및 리소스 쿼터</a></li><li><a href=#%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%85%8b-%ec%98%81%ea%b5%ac-%ec%a0%80%ec%9e%a5%ec%86%8c aria-label="데이터셋 영구 저장소">데이터셋 영구 저장소</a></li><li><a href=#%ec%9d%b8%ec%a6%9d-%eb%b0%8f-rbac aria-label="인증 및 RBAC">인증 및 RBAC</a></li><li><a href=#%eb%b0%b1%ec%97%85-%eb%b0%8f-%ec%9e%ac%ed%95%b4-%eb%b3%b5%ea%b5%ac aria-label="백업 및 재해 복구">백업 및 재해 복구</a></li><li><a href=#prometheus-%eb%b0%8f-grafana%eb%a1%9c-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81 aria-label="Prometheus 및 Grafana로 모니터링">Prometheus 및 Grafana로 모니터링</a></li></ul></li><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대안과의 비교">대안과의 비교</a></li><li><a href=#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a></li><li><a href=#%ea%b2%b0%eb%a1%a0-%ec%98%a4%eb%8a%98%eb%b6%80%ed%84%b0-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0 aria-label="결론: 오늘부터 프로덕션 ML 파이프라인 구축하기">결론: 오늘부터 프로덕션 ML 파이프라인 구축하기</a></li><li><a href=#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li><li><a href=#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9d%bd%ea%b8%b0 aria-label="참고 자료 및 추가 읽기">참고 자료 및 추가 읽기</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=소개-왜-kubernetes-네이티브-ml이-중요한가>소개: 왜 Kubernetes 네이티브 ML이 중요한가<a hidden class=anchor aria-hidden=true href=#소개-왜-kubernetes-네이티브-ml이-중요한가>#</a></h2><p>2024년, 중견 핀테크 기업의 엔지니어 노트북에 <strong>47개의 Jupyter Notebook</strong>이 흩어져 있었다. 모델은 한 대의 머신에서 훈련되고, SCP로 pickle 파일을 VM에 전송하여 &ldquo;배포"했으며, 아물도 3주 전의 훈련 실행을 재현할 수 없었다. 수석 데이터 과학자가 퇴사했을 때, 3개월간의 실험 반복 작업이 그녀의 노트북과 함께 사라졌다.</p><p>이 이야기는 모든 규모의 기업에서 반복되고 있다. 근본 원인: <strong>머신러닝 워크플로우와 인프라가 여전히 연결되어 있지 않다</strong>. 데이터 과학자는 Notebook에서 작업하고, DevOps는 Kubernetes를 관리하며, 플랫폼 엔지니어는 GPU를 프로비저닝한다. 그리고 각 단계 간의 인계 과정에서 마찰, 오류, 작업 손실이 발생한다.</p><p>Kubeflow는 이 문제를 해결하기 위해 존재한다. 2017년 Google 낶부에서 탄생하여 2018년 오픈소스화된 Kubeflow는 Kubernetes 전용 종합 ML 툴킷이다. 2026년 5월 기준으로 이 프로젝트는 <strong>약 14,000개의 GitHub Star</strong>를 보유하고 있으며, 분기별 릴리스를 진행하고 있다(v1.10.0은 2026년 4월 출시). Spotify부터 Shopify까지 다양한 기업의 프로덕션 ML 워크플로우를 지원하고 있다.</p><p>이 가이드는 Kubernetes 클러스터에 Kubeflow를 설치하고, 첫 번째 파이프라인을 구축하며, 분산 훈련을 실행하고, KServe로 모델을 배포하고, 프로덕션을 위해 모든 것을 강화하는 과정을 안내한다. Kubernetes 클러스터가 필요하다면, <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>에서 관리형 Kubernetes를 제공하며 GPU 워커 노드를 5분 이내에 구동할 수 있다.</p><h2 id=kubeflow란-무엇인가>Kubeflow란 무엇인가?<a hidden class=anchor aria-hidden=true href=#kubeflow란-무엇인가>#</a></h2><p>Kubeflow는 <strong>Kubernetes를 위한 오픈소스 머신러닝 툴킷</strong>으로, 실험과 훈련부터 모델 배포 및 모니터링까지 전체 ML 수명주기를 간소화한다 — K8s 클러스터의 모든 컴포넌트를 컨테이너화된 워크로드로 실행함으로써.</p><p>Notebook, 훈련 작업, 하이퍼파라미터 튜닝, 모델 배포를 위한 별도의 도구를 관리하는 대신, Kubeflow는 모든 ML 작업이 Kubernetes 네이티브 리소스인 통합 제어 플레인을 제공한다. 즉, 훈련 작업은 Pod이고, 모델은 커스텀 리소스이며, 전체 파이프라인은 컨테이너화된 단계의 DAG(유방향 비순환 그래프)이다.</p><h2 id=kubeflow-작동-방식-아키텍처-개요>Kubeflow 작동 방식: 아키텍처 개요<a hidden class=anchor aria-hidden=true href=#kubeflow-작동-방식-아키텍처-개요>#</a></h2><p>Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: <strong>모든 것은 Kubernetes에서 실행된다</strong>. 플랫폼은 ML 수명주기의 특정 단계를 다루는 여러 핵심 컴포넌트를 포함한다: **Kubeflow Pipelines (KFP)**는 ML 워크플로우를 컨테이너 기반 DAG로 오케스트레이션한다. 파이프라인의 각 단계는 Docker 이미지이며, 입력과 출력은 S3/MinIO/GCS 아티팩트 저장소를 통해 전달된다. KFP는 기본 실행 엔진으로 Argo Workflows를 사용한다(Tekton도 대안으로 지원).</p><p><strong>Kubeflow Notebooks</strong>는 StatefulSet으로 실행되는 관리형 Jupyter, VS Code, RStudio 인스턴스를 제공한다. 각 노트북 서버는 데이터셋과 모델을 위한 영구 볼륨을 마운트하며, 특정 CPU/GPU 리소스 쿼터로 프로비저닝할 수 있다.</p><p><strong>KServe</strong> (2022년 KFServing에서 통합)는 서버리스 오토스케일링, 칠리 배포, A/B 테스트를 지원하는 모델 서빙을 담당한다. TensorFlow, PyTorch, scikit-learn, XGBoost, ONNX 및 커스텀 추론 컨테이너를 지원한다.</p><p><strong>Katib</strong>는 Kubernetes Job을 사용하여 하이퍼파라미터 튜닝과 신경망 아키텍처 탐색을 자동화한다. 베이지안 최적화, Hyperband, 무작위 검색 및 조기 종료 전략을 지원한다.</p><p><strong>Training Operator</strong> (구 TFJob/PyTorchJob)는 MPI, Horovod 또는 프레임워크 네이티브 분산 전략을 사용하여 여러 노드에서 분산 훈련을 관리한다.</p><p>제어 플레인은 서비스 메시를 위한 Istio, 인증을 위한 Dex 또는 OIDC, 모든 컴포넌트 간 통합 탐색을 위한 Central Dashboard를 포함한다.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 상위 수준 컴포넌트 뷰</span>
-</span></span><span style=display:flex><span>kubectl get pods -n kubeflow
-</span></span><span style=display:flex><span><span style=color:#75715e># 예상 출력 표시: # - ml-pipeline (KFP API 서버)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - katib-controller, katib-db-manager</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - kserve-controller-manager</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - training-operator</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - centraldashboard</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - kubeflow-user-example-com 네임스페이스의 notebooks</span>
-</span></span></code></pre></div><h2 id=설치-및-설정-10분-안에-실행>설치 및 설정: 10분 안에 실행<a hidden class=anchor aria-hidden=true href=#설치-및-설정-10분-안에-실행>#</a></h2><h3 id=전제-조건>전제 조건<a hidden class=anchor aria-hidden=true href=#전제-조건>#</a></h3><ul><li>Kubernetes 클러스터 (v1.28+), 프로덕션 워크로드에 <strong>최소 3노드</strong></li><li>kubectl 구성 및 인증 완료</li><li>kustomize v5.0+ 또는 Helm 3.12+</li><li>워커 노드당 8GB+ 사용 가능한 메모리, <strong>훈련 워크로드를 위한 1개 GPU 노드</strong></li></ul><h3 id=옵션-a-kustomize로-배포-공식-방법>옵션 A: kustomize로 배포 (공식 방법)<a hidden class=anchor aria-hidden=true href=#옵션-a-kustomize로-배포-공식-방법>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># manifests 저장소 클론</span>
-</span></span><span style=display:flex><span>export KUBEFLOW_VERSION<span style=color:#f92672>=</span>v1.10.0
-</span></span><span style=display:flex><span>git clone https://github.com/kubeflow/manifests.git
-</span></span><span style=display:flex><span>cd manifests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 릴리스 태그 체크아웃</span>
-</span></span><span style=display:flex><span>git checkout <span style=color:#e6db74>${</span>KUBEFLOW_VERSION<span style=color:#e6db74>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 단일 kustomize build로 모든 컴포넌트 설치</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> ! kustomize build example | kubectl apply -f -; <span style=color:#66d9ef>do</span>
-</span></span><span style=display:flex><span>  echo <span style=color:#e6db74>&#34;Retrying to apply resources...&#34;</span>
-</span></span><span style=display:flex><span>  sleep <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 핵심 컴포넌트가 실행 중인지 확인</span>
-</span></span><span style=display:flex><span>kubectl get pods -n kubeflow --watch
-</span></span><span style=display:flex><span><span style=color:#75715e># 모든 Pod이 Running 또는 Completed로 표시될 때까지 대기</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3노드 클러스터에서 일반적으로 5-10분 소요</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Central Dashboard에 접근하기 위한 포트 포워딩</span>
-</span></span><span style=display:flex><span>kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># http://localhost:8080에서 접근</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 기본 자격증명: user@example.com / 12341234</span>
-</span></span></code></pre></div><h3 id=옵션-b-helm으로-배포-개발-환경용-더-빠름>옵션 B: Helm으로 배포 (개발 환경용 더 빠름)<a hidden class=anchor aria-hidden=true href=#옵션-b-helm으로-배포-개발-환경용-더-빠름>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Kubeflow Helm 저장소 추가 (커뮤니티 유지관리)</span>
-</span></span><span style=display:flex><span>helm repo add kubeflow https://kubeflow.github.io/manifests/
-</span></span><span style=display:flex><span>helm repo update
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 최소 프로파일로 설치</span>
-</span></span><span style=display:flex><span>helm install kubeflow kubeflow/kubeflow <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --namespace kubeflow <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --create-namespace <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --set pipeline.objectStore.minio.persistence.enabled<span style=color:#f92672>=</span>true
-</span></span></code></pre></div><h3 id=옵션-c-digitalocean-kubernetes-프로덕션-준비-완료>옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)<a hidden class=anchor aria-hidden=true href=#옵션-c-digitalocean-kubernetes-프로덕션-준비-완료>#</a></h3><p>제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: `````bash</p><h1 id=doctl-설치-및-인증>doctl 설치 및 인증<a hidden class=anchor aria-hidden=true href=#doctl-설치-및-인증>#</a></h1><p>doctl kubernetes cluster create kubeflow-ml<br>&ndash;region nyc3<br>&ndash;node-pool &ldquo;name=cpu-pool;size=s-4vcpu-8gb;n-node=3&rdquo;<br>&ndash;node-pool &ldquo;name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2&rdquo;</p><h1 id=그런-다음-옵션-a와-같이-kubeflow-manifests-적용>그런 다음 옵션 A와 같이 Kubeflow manifests 적용<a hidden class=anchor aria-hidden=true href=#그런-다음-옵션-a와-같이-kubeflow-manifests-적용>#</a></h1><pre tabindex=0><code>
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tools/kubeflow-ml-pipeline-kubernetes/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/ko/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "소개: 왜 Kubernetes 네이티브 ML이 중요한가 2024년, 중견 핀테크 기업의 엔지니어 노트북에 47개의 Jupyter Notebook이 흩어져 있었다. 모델은 한 대의 머신에서 훈련되고, SCP로 pickle 파일을 VM에 전송하여 “배포\"했으며, 아물도 3주 전의 훈련 실행을 재현할 수 없었다. 수석 데이터 과학자가 퇴사했을 때, 3개월간의 실험 반복 작업이 그녀의 노트북과 함께 사라졌다.\n이 이야기는 모든 규모의 기업에서 반복되고 있다. 근본 원인: 머신러닝 워크플로우와 인프라가 여전히 연결되어 있지 않다. 데이터 과학자는 Notebook에서 작업하고, DevOps는 Kubernetes를 관리하며, 플랫폼 엔지니어는 GPU를 프로비저닝한다. 그리고 각 단계 간의 인계 과정에서 마찰, 오류, 작업 손실이 발생한다.\nKubeflow는 이 문제를 해결하기 위해 존재한다. 2017년 Google 낶부에서 탄생하여 2018년 오픈소스화된 Kubeflow는 Kubernetes 전용 종합 ML 툴킷이다. 2026년 5월 기준으로 이 프로젝트는 약 14,000개의 GitHub Star를 보유하고 있으며, 분기별 릴리스를 진행하고 있다(v1.10.0은 2026년 4월 출시). Spotify부터 Shopify까지 다양한 기업의 프로덕션 ML 워크플로우를 지원하고 있다.\n이 가이드는 Kubernetes 클러스터에 Kubeflow를 설치하고, 첫 번째 파이프라인을 구축하며, 분산 훈련을 실행하고, KServe로 모델을 배포하고, 프로덕션을 위해 모든 것을 강화하는 과정을 안내한다. Kubernetes 클러스터가 필요하다면, DigitalOcean에서 관리형 Kubernetes를 제공하며 GPU 워커 노드를 5분 이내에 구동할 수 있다.\nKubeflow란 무엇인가? Kubeflow는 Kubernetes를 위한 오픈소스 머신러닝 툴킷으로, 실험과 훈련부터 모델 배포 및 모니터링까지 전체 ML 수명주기를 간소화한다 — K8s 클러스터의 모든 컴포넌트를 컨테이너화된 워크로드로 실행함으로써.\nNotebook, 훈련 작업, 하이퍼파라미터 튜닝, 모델 배포를 위한 별도의 도구를 관리하는 대신, Kubeflow는 모든 ML 작업이 Kubernetes 네이티브 리소스인 통합 제어 플레인을 제공한다. 즉, 훈련 작업은 Pod이고, 모델은 커스텀 리소스이며, 전체 파이프라인은 컨테이너화된 단계의 DAG(유방향 비순환 그래프)이다.\nKubeflow 작동 방식: 아키텍처 개요 Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: 모든 것은 Kubernetes에서 실행된다. 플랫폼은 ML 수명주기의 특정 단계를 다루는 여러 핵심 컴포넌트를 포함한다: **Kubeflow Pipelines (KFP)**는 ML 워크플로우를 컨테이너 기반 DAG로 오케스트레이션한다. 파이프라인의 각 단계는 Docker 이미지이며, 입력과 출력은 S3/MinIO/GCS 아티팩트 저장소를 통해 전달된다. KFP는 기본 실행 엔진으로 Argo Workflows를 사용한다(Tekton도 대안으로 지원).\nKubeflow Notebooks는 StatefulSet으로 실행되는 관리형 Jupyter, VS Code, RStudio 인스턴스를 제공한다. 각 노트북 서버는 데이터셋과 모델을 위한 영구 볼륨을 마운트하며, 특정 CPU/GPU 리소스 쿼터로 프로비저닝할 수 있다.\nKServe (2022년 KFServing에서 통합)는 서버리스 오토스케일링, 칠리 배포, A/B 테스트를 지원하는 모델 서빙을 담당한다. TensorFlow, PyTorch, scikit-learn, XGBoost, ONNX 및 커스텀 추론 컨테이너를 지원한다.\nKatib는 Kubernetes Job을 사용하여 하이퍼파라미터 튜닝과 신경망 아키텍처 탐색을 자동화한다. 베이지안 최적화, Hyperband, 무작위 검색 및 조기 종료 전략을 지원한다.\nTraining Operator (구 TFJob/PyTorchJob)는 MPI, Horovod 또는 프레임워크 네이티브 분산 전략을 사용하여 여러 노드에서 분산 훈련을 관리한다.\n제어 플레인은 서비스 메시를 위한 Istio, 인증을 위한 Dex 또는 OIDC, 모든 컴포넌트 간 통합 탐색을 위한 Central Dashboard를 포함한다.\n# 상위 수준 컴포넌트 뷰 kubectl get pods -n kubeflow # 예상 출력 표시: # - ml-pipeline (KFP API 서버) # - katib-controller, katib-db-manager # - kserve-controller-manager # - training-operator # - centraldashboard # - kubeflow-user-example-com 네임스페이스의 notebooks 설치 및 설정: 10분 안에 실행 전제 조건 Kubernetes 클러스터 (v1.28+), 프로덕션 워크로드에 최소 3노드 kubectl 구성 및 인증 완료 kustomize v5.0+ 또는 Helm 3.12+ 워커 노드당 8GB+ 사용 가능한 메모리, 훈련 워크로드를 위한 1개 GPU 노드 옵션 A: kustomize로 배포 (공식 방법) # manifests 저장소 클론 export KUBEFLOW_VERSION=v1.10.0 git clone https://github.com/kubeflow/manifests.git cd manifests # 릴리스 태그 체크아웃 git checkout ${KUBEFLOW_VERSION} # 단일 kustomize build로 모든 컴포넌트 설치 while ! kustomize build example | kubectl apply -f -; do echo \"Retrying to apply resources...\" sleep 10 done # 핵심 컴포넌트가 실행 중인지 확인 kubectl get pods -n kubeflow --watch # 모든 Pod이 Running 또는 Completed로 표시될 때까지 대기 # 3노드 클러스터에서 일반적으로 5-10분 소요 # Central Dashboard에 접근하기 위한 포트 포워딩 kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80 # http://localhost:8080에서 접근 # 기본 자격증명: user@example.com / 12341234 옵션 B: Helm으로 배포 (개발 환경용 더 빠름) # Kubeflow Helm 저장소 추가 (커뮤니티 유지관리) helm repo add kubeflow https://kubeflow.github.io/manifests/ helm repo update # 최소 프로파일로 설치 helm install kubeflow kubeflow/kubeflow \\ --namespace kubeflow \\ --create-namespace \\ --set pipeline.objectStore.minio.persistence.enabled=true 옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료) 제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: `````bash\ndoctl 설치 및 인증 doctl kubernetes cluster create kubeflow-ml –region nyc3 –node-pool “name=cpu-pool;size=s-4vcpu-8gb;n-node=3” –node-pool “name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2”\n그런 다음 옵션 A와 같이 Kubeflow manifests 적용 [DigitalOcean에 가입](https://m.do.co/c/eca87ac14ee0)하면 첫 60일 동안 **$200 크레딧**을 받을 수 있다 — GPU가 활성화된 Kubeflow 클러스터를 한 달 낂 낂 실험하기에 충분하다. `````bash # Kubeflow가 생성한 모든 네임스페이스 확인 kubectl get namespaces | grep kubeflow # kubeflow Active # kubeflow-user-example-com Active 첫 번째 ML 파이프라인 구축하기 Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: `````python\npipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인 import kfp from kfp import dsl from kfp.dsl import component, Input, Output, Dataset, Model, Metrics\n@component( base_image=“python:3.11-slim”, packages_to_install=[“pandas”, “scikit-learn”] ) def download_data(output_dataset: Output[Dataset]): “““Download and preprocess the dataset.””” import pandas as pd from sklearn.datasets import load_iris from sklearn.model_selection import train_test_split\niris = load_iris(as_frame=True) df = iris.frame train, test = train_test_split(df, test_size=0.2, random_state=42) train.to_csv(f\"{output_dataset.path}.csv\", index=False) @component( base_image=“python:3.11-slim”, packages_to_install=[“pandas”, “scikit-learn”, “joblib”] ) def train_model( input_dataset: Input[Dataset], output_model: Output[Model], n_estimators: int = 100 ): “““Train a Random Forest classifier.””” import pandas as pd import joblib from sklearn.ensemble import RandomForestClassifier\ndf = pd.read_csv(f\"{input_dataset.path}.csv\") X = df.drop(\"target\", axis=1) y = df[\"target\"] clf = RandomForestClassifier( n_estimators=n_estimators, random_state=42 ) clf.fit(X, y) joblib.dump(clf, f\"{output_model.path}.joblib\") @component( base_image=“python:3.11-slim”, packages_to_install=[“pandas”, “scikit-learn”, “joblib”] ) def evaluate_model( input_model: Input[Model], input_dataset: Input[Dataset], metrics: Output[Metrics] ) -\u003e str: “““Evaluate the trained model and log metrics.””” import pandas as pd import joblib from sklearn.metrics import accuracy_score, f1_score\ndf = pd.read_csv(f\"{input_dataset.path}.csv\") X = df.drop(\"target\", axis=1) y = df[\"target\"] clf = joblib.load(f\"{input_model.path}.joblib\") predictions = clf.predict(X) accuracy = accuracy_score(y, predictions) f1 = f1_score(y, predictions, average=\"weighted\") metrics.log_metric(\"accuracy\", accuracy) metrics.log_metric(\"f1_score\", f1) return f\"Model accuracy: {accuracy:.4f}, F1: {f1:.4f}\" @dsl.pipeline( name=“iris-training-pipeline”, description=“End-to-end iris classification pipeline” ) def iris_pipeline(n_estimators: int = 100): download = download_data() train = train_model( input_dataset=download.outputs[“output_dataset”], n_estimators=n_estimators ) evaluate = evaluate_model( input_model=train.outputs[“output_model”], input_dataset=download.outputs[“output_dataset”] )\n파이프라인 컴파일 if name == “main”: kfp.compiler.Compiler().compile( iris_pipeline, “iris_pipeline.yaml” )\n`````bash # 파이프라인 컴파일 및 업로드 python pipeline.py # KFP SDK를 통해 업로드 kfp pipeline create \\ --pipeline-name iris-classifier \\ --description \"Iris classification training pipeline\" \\ --engine argo \\ iris_pipeline.yaml # CLI에서 파이프라인 실행 kfp run create \\ --experiment-name default \\ --pipeline-id \\ --display-name \"iris-run-$(date +%s)\" 파이프라인은 KFP UI에 완전한 계보 추적과 함께 표시된다 — 모든 아티팩트, 파라미터, 실행이 자동으로 기록된다. 모델 아티팩트를 클릭하여 해당 모델을 생성한 정확한 데이터셋과 코드 버전으로 거슬러 올라갈 수 있다.\nTraining Operator로 분산 훈련하기 단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: `````yaml\npytorch-job.yaml — 분산 PyTorch 훈련 apiVersion: kubeflow.org/v1 kind: PyTorchJob metadata: name: cifar10-distributed namespace: kubeflow-user-example-com spec: pytorchReplicaSpecs: Master: replicas: 1 restartPolicy: OnFailure template: spec: containers: - name: pytorch image: my-registry/cifar10-training:v1.2 command: [“python”, “-m”, “torch.distributed.launch”, “–nproc_per_node=1”, “train.py”] resources: limits: nvidia.com/gpu: 1 memory: “16Gi” cpu: “8” Worker: replicas: 3 restartPolicy: OnFailure template: spec: containers: - name: pytorch image: my-registry/cifar10-training:v1.2 command: [“python”, “-m”, “torch.distributed.launch”, “–nproc_per_node=1”, “train.py”] resources: limits: nvidia.com/gpu: 1 memory: “16Gi” cpu: “8”\n`````bash # 훈련 작업 제출 kubectl apply -f pytorch-job.yaml # 훈련 진행 상황 모니터링 kubectl get pytorchjobs -n kubeflow-user-example-com -w kubectl logs -f cifar10-distributed-master-0 \\ -n kubeflow-user-example-com # 클러스터 전체 GPU 활용도 확인 kubectl top nodes nvidia-smi # 모든 GPU Pod 낶부에서 실행 KServe로 모델 서빙하기 KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: `````yaml\ninference-service.yaml — 훈련된 모델 배포 apiVersion: serving.kserve.io/v1beta1 kind: InferenceService metadata: name: iris-classifier namespace: kubeflow-user-example-com annotations: serving.kserve.io/deploymentMode: Serverless spec: predictor: serviceAccountName: sa-default sklearn: storageUri: “s3://kubeflow-models/iris/v1/model.joblib” resources: limits: cpu: “1” memory: 2Gi requests: cpu: “100m” memory: 256Mi\n`````bash # InferenceService 적용 kubectl apply -f inference-service.yaml # 모델이 준비될 때까지 대기 (제로에서 스케일) kubectl get inferenceservices -n kubeflow-user-example-com -w # 예상: iris-classifier True 100 http://iris-classifier... Ready # 배포된 모델 테스트 curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict \\ -H \"Content-Type: application/json\" \\ -d '{\"instances\": [[5.1, 3.5, 1.4, 0.2]]}' # 응답: {\"predictions\": [0]} 칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: `````yaml\ncanary-rollout.yaml — v2의 점진적 롤아웃 apiVersion: serving.kserve.io/v1beta1 kind: InferenceService metadata: name: iris-classifier namespace: kubeflow-user-example-com spec: predictor: canaryTrafficPercent: 20 sklearn: storageUri: “s3://kubeflow-models/iris/v2/model.joblib”\n## Katib로 하이퍼파라미터 튜닝하기 Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다: `````yaml # katib-experiment.yaml — Random Forest 하이퍼파라미터 최적화 apiVersion: kubeflow.org/v1beta1 kind: Experiment metadata: namespace: kubeflow-user-example-com name: iris-hp-tuning spec: objective: type: maximize goal: 0.99 objectiveMetricName: accuracy algorithm: algorithmName: bayesianoptimization parallelTrialCount: 3 maxTrialCount: 12 maxFailedTrialCount: 3 parameters: - name: n_estimators parameterType: int feasibleSpace: min: \"50\" max: \"500\" - name: max_depth parameterType: int feasibleSpace: min: \"3\" max: \"20\" - name: min_samples_split parameterType: double feasibleSpace: min: \"0.01\" max: \"0.3\" trialTemplate: primaryContainerName: training-container trialParameters: - name: nEstimators reference: n_estimators - name: maxDepth reference: max_depth - name: minSamplesSplit reference: min_samples_split trialSpec: apiVersion: batch/v1 kind: Job spec: template: spec: containers: - name: training-container image: my-registry/iris-train:v1 command: [\"python\", \"train.py\"] resources: limits: memory: \"4Gi\" cpu: \"2\" restartPolicy: Never # 실험 시작 kubectl apply -f katib-experiment.yaml # trial 모니터링 kubectl get trials -n kubeflow-user-example-com # 12개의 trial과 해당 목표 메트릭 값 표시 # 최적의 trial 보기 kubectl get experiment iris-hp-tuning \\ -n kubeflow-user-example-com \\ -o jsonpath='{.status.currentOptimalTrial}\" 벤치마크 및 실제 사용 사례 훈련 처리량 비교 구성 에폭당 시간 (CIFAR-10 ResNet-50) GPU 비용/시간* 단일 GPU (NVIDIA A100) 4분 12초 1 $2.50 Kubeflow PyTorchJob (4x A100) 1분 05초 4 $10.00 Kubeflow PyTorchJob (8x A100) 35초 8 $20.00 수동 다중 노드 (오케스트레이션 없음) 1분 18초 4 $10.00 *2026년 5월 기준 대략적인 클라우드 가격\n파이프라인 실행 오버헤드 시나리오 총 실행 시간 KFP 오버헤드 5단계 파이프라인, 소규모 데이터 (\u003c 1 GB) 3분 45초 ~18초 12단계 파이프라인, 중간 데이터 (10 GB) 22분 10초 ~45초 20단계 파이프라인, 대규모 데이터 (100 GB) 2시간 15분 ~2분 KFP 오케스트레이션 오버헤드는 복잡한 다중 단계 워크플로우에서도 일관되게 총 파이프라인 실행 시간의 3% 미만이다.\n실제 도입 패턴 Spotify는 Kubeflow Pipelines를 사용하여 추천 시스템에서 주간 2,000개 이상의 훈련 작업을 오케스트레이션한다 Shopify는 사기 탐지를 위해 매일 50TB의 특징 데이터를 Kubeflow 파이프라인을 통해 처리한다 CERN은 입자 물리 ML 워크로드를 위해 온프레미스 Kubernetes 클러스터에서 Kubeflow를 실행하며 400개 이상의 GPU 노드를 관리한다 고급 사용법 / 프로덕션 강화 GPU 스케줄링 및 리소스 쿼터 # gpu-quota.yaml — 네임스페이스별 GPU 제한 강제 apiVersion: v1 kind: ResourceQuota metadata: name: gpu-quota namespace: data-science-team spec: hard: requests.nvidia.com/gpu: 8 limits.nvidia.com/gpu: 16 # 쿼터 적용 kubectl apply -f gpu-quota.yaml # 네임스페이스별 GPU 할당 확인 kubectl describe resourcequota gpu-quota -n data-science-team 데이터셋 영구 저장소 # dataset-pvc.yaml apiVersion: v1 kind: PersistentVolumeClaim metadata: name: training-datasets namespace: kubeflow-user-example-com spec: accessModes: - ReadWriteMany resources: requests: storage: 500Gi storageClassName: nfs-client # 또는 AWS에서 efs-sc # Kubeflow UI를 통해 노트북 서버에 마운트 # 또는 파이프라인 컴포넌트에서 참조: # dsl.VolumeOp(name=\"create-dataset-volume\", # resource_name=\"training-datasets\", # size=\"500Gi\", # modes=dsl.VOLUME_MODE_RWM) 인증 및 RBAC # 리소스 제한이 있는 사용자 프로필 생성 kubectl apply -f - \u003c",
+  "wordCount" : "2719",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/mcp-tools/kubeflow-ml-pipeline-kubernetes/">Zh</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#%ec%86%8c%ea%b0%9c-%ec%99%9c-kubernetes-%eb%84%a4%ec%9d%b4%ed%8b%b0%eb%b8%8c-ml%ec%9d%b4-%ec%a4%91%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="소개: 왜 Kubernetes 네이티브 ML이 중요한가">소개: 왜 Kubernetes 네이티브 ML이 중요한가</a></li>
+            <li>
+                <a href="#kubeflow%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="Kubeflow란 무엇인가?">Kubeflow란 무엇인가?</a></li>
+            <li>
+                <a href="#kubeflow-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94" aria-label="Kubeflow 작동 방식: 아키텍처 개요">Kubeflow 작동 방식: 아키텍처 개요</a></li>
+            <li>
+                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95-10%eb%b6%84-%ec%95%88%ec%97%90-%ec%8b%a4%ed%96%89" aria-label="설치 및 설정: 10분 안에 실행">설치 및 설정: 10분 안에 실행</a><ul>
+                    
+            <li>
+                <a href="#%ec%a0%84%ec%a0%9c-%ec%a1%b0%ea%b1%b4" aria-label="전제 조건">전제 조건</a></li>
+            <li>
+                <a href="#%ec%98%b5%ec%85%98-a-kustomize%eb%a1%9c-%eb%b0%b0%ed%8f%ac-%ea%b3%b5%ec%8b%9d-%eb%b0%a9%eb%b2%95" aria-label="옵션 A: kustomize로 배포 (공식 방법)">옵션 A: kustomize로 배포 (공식 방법)</a></li>
+            <li>
+                <a href="#%ec%98%b5%ec%85%98-b-helm%ec%9c%bc%eb%a1%9c-%eb%b0%b0%ed%8f%ac-%ea%b0%9c%eb%b0%9c-%ed%99%98%ea%b2%bd%ec%9a%a9-%eb%8d%94-%eb%b9%a0%eb%a6%84" aria-label="옵션 B: Helm으로 배포 (개발 환경용 더 빠름)">옵션 B: Helm으로 배포 (개발 환경용 더 빠름)</a></li>
+            <li>
+                <a href="#%ec%98%b5%ec%85%98-c-digitalocean-kubernetes-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%a4%80%eb%b9%84-%ec%99%84%eb%a3%8c" aria-label="옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)">옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#doctl-%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%9d%b8%ec%a6%9d" aria-label="doctl 설치 및 인증">doctl 설치 및 인증</a></li>
+            <li>
+                <a href="#%ea%b7%b8%eb%9f%b0-%eb%8b%a4%ec%9d%8c-%ec%98%b5%ec%85%98-a%ec%99%80-%ea%b0%99%ec%9d%b4-kubeflow-manifests-%ec%a0%81%ec%9a%a9" aria-label="그런 다음 옵션 A와 같이 Kubeflow manifests 적용">그런 다음 옵션 A와 같이 Kubeflow manifests 적용</a><ul>
+                    
+            <li>
+                <a href="#%ec%b2%ab-%eb%b2%88%ec%a7%b8-ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0" aria-label="첫 번째 ML 파이프라인 구축하기">첫 번째 ML 파이프라인 구축하기</a></li></ul>
+            </li>
+            <li>
+                <a href="#pipelinepy--kfp-sdk-v2%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%9c-%ec%99%84%ec%a0%84%ed%95%9c-ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인">pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인</a></li>
+            <li>
+                <a href="#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%bb%b4%ed%8c%8c%ec%9d%bc" aria-label="파이프라인 컴파일">파이프라인 컴파일</a><ul>
+                    
+            <li>
+                <a href="#training-operator%eb%a1%9c-%eb%b6%84%ec%82%b0-%ed%9b%88%eb%a0%a8%ed%95%98%ea%b8%b0" aria-label="Training Operator로 분산 훈련하기">Training Operator로 분산 훈련하기</a></li></ul>
+            </li>
+            <li>
+                <a href="#pytorch-jobyaml--%eb%b6%84%ec%82%b0-pytorch-%ed%9b%88%eb%a0%a8" aria-label="pytorch-job.yaml — 분산 PyTorch 훈련">pytorch-job.yaml — 분산 PyTorch 훈련</a><ul>
+                    
+            <li>
+                <a href="#kserve%eb%a1%9c-%eb%aa%a8%eb%8d%b8-%ec%84%9c%eb%b9%99%ed%95%98%ea%b8%b0" aria-label="KServe로 모델 서빙하기">KServe로 모델 서빙하기</a></li></ul>
+            </li>
+            <li>
+                <a href="#inference-serviceyaml--%ed%9b%88%eb%a0%a8%eb%90%9c-%eb%aa%a8%eb%8d%b8-%eb%b0%b0%ed%8f%ac" aria-label="inference-service.yaml — 훈련된 모델 배포">inference-service.yaml — 훈련된 모델 배포</a></li>
+            <li>
+                <a href="#canary-rolloutyaml--v2%ec%9d%98-%ec%a0%90%ec%a7%84%ec%a0%81-%eb%a1%a4%ec%95%84%ec%9b%83" aria-label="canary-rollout.yaml — v2의 점진적 롤아웃">canary-rollout.yaml — v2의 점진적 롤아웃</a><ul>
+                    
+            <li>
+                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac-%eb%b0%8f-%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 및 실제 사용 사례">벤치마크 및 실제 사용 사례</a><ul>
+                    
+            <li>
+                <a href="#%ed%9b%88%eb%a0%a8-%ec%b2%98%eb%a6%ac%eb%9f%89-%eb%b9%84%ea%b5%90" aria-label="훈련 처리량 비교">훈련 처리량 비교</a></li>
+            <li>
+                <a href="#%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%8b%a4%ed%96%89-%ec%98%a4%eb%b2%84%ed%97%a4%eb%93%9c" aria-label="파이프라인 실행 오버헤드">파이프라인 실행 오버헤드</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%9c-%eb%8f%84%ec%9e%85-%ed%8c%a8%ed%84%b4" aria-label="실제 도입 패턴">실제 도입 패턴</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul>
+                    
+            <li>
+                <a href="#gpu-%ec%8a%a4%ec%bc%80%ec%a4%84%eb%a7%81-%eb%b0%8f-%eb%a6%ac%ec%86%8c%ec%8a%a4-%ec%bf%bc%ed%84%b0" aria-label="GPU 스케줄링 및 리소스 쿼터">GPU 스케줄링 및 리소스 쿼터</a></li>
+            <li>
+                <a href="#%eb%8d%b0%ec%9d%b4%ed%84%b0%ec%85%8b-%ec%98%81%ea%b5%ac-%ec%a0%80%ec%9e%a5%ec%86%8c" aria-label="데이터셋 영구 저장소">데이터셋 영구 저장소</a></li>
+            <li>
+                <a href="#%ec%9d%b8%ec%a6%9d-%eb%b0%8f-rbac" aria-label="인증 및 RBAC">인증 및 RBAC</a></li>
+            <li>
+                <a href="#%eb%b0%b1%ec%97%85-%eb%b0%8f-%ec%9e%ac%ed%95%b4-%eb%b3%b5%ea%b5%ac" aria-label="백업 및 재해 복구">백업 및 재해 복구</a></li>
+            <li>
+                <a href="#prometheus-%eb%b0%8f-grafana%eb%a1%9c-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="Prometheus 및 Grafana로 모니터링">Prometheus 및 Grafana로 모니터링</a></li></ul>
+            </li>
+            <li>
+                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+            <li>
+                <a href="#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li>
+            <li>
+                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0-%ec%98%a4%eb%8a%98%eb%b6%80%ed%84%b0-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-ml-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0" aria-label="결론: 오늘부터 프로덕션 ML 파이프라인 구축하기">결론: 오늘부터 프로덕션 ML 파이프라인 구축하기</a></li>
+            <li>
+                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+            <li>
+                <a href="#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9d%bd%ea%b8%b0" aria-label="참고 자료 및 추가 읽기">참고 자료 및 추가 읽기</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="소개-왜-kubernetes-네이티브-ml이-중요한가">소개: 왜 Kubernetes 네이티브 ML이 중요한가<a hidden class="anchor" aria-hidden="true" href="#소개-왜-kubernetes-네이티브-ml이-중요한가">#</a></h2>
+<p>2024년, 중견 핀테크 기업의 엔지니어 노트북에 <strong>47개의 Jupyter Notebook</strong>이 흩어져 있었다. 모델은 한 대의 머신에서 훈련되고, SCP로 pickle 파일을 VM에 전송하여 &ldquo;배포&quot;했으며, 아물도 3주 전의 훈련 실행을 재현할 수 없었다. 수석 데이터 과학자가 퇴사했을 때, 3개월간의 실험 반복 작업이 그녀의 노트북과 함께 사라졌다.</p>
+<p>이 이야기는 모든 규모의 기업에서 반복되고 있다. 근본 원인: <strong>머신러닝 워크플로우와 인프라가 여전히 연결되어 있지 않다</strong>. 데이터 과학자는 Notebook에서 작업하고, DevOps는 Kubernetes를 관리하며, 플랫폼 엔지니어는 GPU를 프로비저닝한다. 그리고 각 단계 간의 인계 과정에서 마찰, 오류, 작업 손실이 발생한다.</p>
+<p>Kubeflow는 이 문제를 해결하기 위해 존재한다. 2017년 Google 낶부에서 탄생하여 2018년 오픈소스화된 Kubeflow는 Kubernetes 전용 종합 ML 툴킷이다. 2026년 5월 기준으로 이 프로젝트는 <strong>약 14,000개의 GitHub Star</strong>를 보유하고 있으며, 분기별 릴리스를 진행하고 있다(v1.10.0은 2026년 4월 출시). Spotify부터 Shopify까지 다양한 기업의 프로덕션 ML 워크플로우를 지원하고 있다.</p>
+<p>이 가이드는 Kubernetes 클러스터에 Kubeflow를 설치하고, 첫 번째 파이프라인을 구축하며, 분산 훈련을 실행하고, KServe로 모델을 배포하고, 프로덕션을 위해 모든 것을 강화하는 과정을 안내한다. Kubernetes 클러스터가 필요하다면, <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>에서 관리형 Kubernetes를 제공하며 GPU 워커 노드를 5분 이내에 구동할 수 있다.</p>
+<h2 id="kubeflow란-무엇인가">Kubeflow란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#kubeflow란-무엇인가">#</a></h2>
+<p>Kubeflow는 <strong>Kubernetes를 위한 오픈소스 머신러닝 툴킷</strong>으로, 실험과 훈련부터 모델 배포 및 모니터링까지 전체 ML 수명주기를 간소화한다 — K8s 클러스터의 모든 컴포넌트를 컨테이너화된 워크로드로 실행함으로써.</p>
+<p>Notebook, 훈련 작업, 하이퍼파라미터 튜닝, 모델 배포를 위한 별도의 도구를 관리하는 대신, Kubeflow는 모든 ML 작업이 Kubernetes 네이티브 리소스인 통합 제어 플레인을 제공한다. 즉, 훈련 작업은 Pod이고, 모델은 커스텀 리소스이며, 전체 파이프라인은 컨테이너화된 단계의 DAG(유방향 비순환 그래프)이다.</p>
+<h2 id="kubeflow-작동-방식-아키텍처-개요">Kubeflow 작동 방식: 아키텍처 개요<a hidden class="anchor" aria-hidden="true" href="#kubeflow-작동-방식-아키텍처-개요">#</a></h2>
+<p>Kubeflow의 아키텍처는 핵심 원칙을 중심으로 구성된다: <strong>모든 것은 Kubernetes에서 실행된다</strong>. 플랫폼은 ML 수명주기의 특정 단계를 다루는 여러 핵심 컴포넌트를 포함한다: **Kubeflow Pipelines (KFP)**는 ML 워크플로우를 컨테이너 기반 DAG로 오케스트레이션한다. 파이프라인의 각 단계는 Docker 이미지이며, 입력과 출력은 S3/MinIO/GCS 아티팩트 저장소를 통해 전달된다. KFP는 기본 실행 엔진으로 Argo Workflows를 사용한다(Tekton도 대안으로 지원).</p>
+<p><strong>Kubeflow Notebooks</strong>는 StatefulSet으로 실행되는 관리형 Jupyter, VS Code, RStudio 인스턴스를 제공한다. 각 노트북 서버는 데이터셋과 모델을 위한 영구 볼륨을 마운트하며, 특정 CPU/GPU 리소스 쿼터로 프로비저닝할 수 있다.</p>
+<p><strong>KServe</strong> (2022년 KFServing에서 통합)는 서버리스 오토스케일링, 칠리 배포, A/B 테스트를 지원하는 모델 서빙을 담당한다. TensorFlow, PyTorch, scikit-learn, XGBoost, ONNX 및 커스텀 추론 컨테이너를 지원한다.</p>
+<p><strong>Katib</strong>는 Kubernetes Job을 사용하여 하이퍼파라미터 튜닝과 신경망 아키텍처 탐색을 자동화한다. 베이지안 최적화, Hyperband, 무작위 검색 및 조기 종료 전략을 지원한다.</p>
+<p><strong>Training Operator</strong> (구 TFJob/PyTorchJob)는 MPI, Horovod 또는 프레임워크 네이티브 분산 전략을 사용하여 여러 노드에서 분산 훈련을 관리한다.</p>
+<p>제어 플레인은 서비스 메시를 위한 Istio, 인증을 위한 Dex 또는 OIDC, 모든 컴포넌트 간 통합 탐색을 위한 Central Dashboard를 포함한다.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 상위 수준 컴포넌트 뷰</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -n kubeflow
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예상 출력 표시: # - ml-pipeline (KFP API 서버)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - katib-controller, katib-db-manager</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - kserve-controller-manager</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - training-operator</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - centraldashboard</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - kubeflow-user-example-com 네임스페이스의 notebooks</span>
+</span></span></code></pre></div><h2 id="설치-및-설정-10분-안에-실행">설치 및 설정: 10분 안에 실행<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정-10분-안에-실행">#</a></h2>
+<h3 id="전제-조건">전제 조건<a hidden class="anchor" aria-hidden="true" href="#전제-조건">#</a></h3>
+<ul>
+<li>Kubernetes 클러스터 (v1.28+), 프로덕션 워크로드에 <strong>최소 3노드</strong></li>
+<li>kubectl 구성 및 인증 완료</li>
+<li>kustomize v5.0+ 또는 Helm 3.12+</li>
+<li>워커 노드당 8GB+ 사용 가능한 메모리, <strong>훈련 워크로드를 위한 1개 GPU 노드</strong></li>
+</ul>
+<h3 id="옵션-a-kustomize로-배포-공식-방법">옵션 A: kustomize로 배포 (공식 방법)<a hidden class="anchor" aria-hidden="true" href="#옵션-a-kustomize로-배포-공식-방법">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># manifests 저장소 클론</span>
+</span></span><span style="display:flex;"><span>export KUBEFLOW_VERSION<span style="color:#f92672">=</span>v1.10.0
+</span></span><span style="display:flex;"><span>git clone https://github.com/kubeflow/manifests.git
+</span></span><span style="display:flex;"><span>cd manifests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 릴리스 태그 체크아웃</span>
+</span></span><span style="display:flex;"><span>git checkout <span style="color:#e6db74">${</span>KUBEFLOW_VERSION<span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 단일 kustomize build로 모든 컴포넌트 설치</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> ! kustomize build example | kubectl apply -f -; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  echo <span style="color:#e6db74">&#34;Retrying to apply resources...&#34;</span>
+</span></span><span style="display:flex;"><span>  sleep <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 핵심 컴포넌트가 실행 중인지 확인</span>
+</span></span><span style="display:flex;"><span>kubectl get pods -n kubeflow --watch
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 Pod이 Running 또는 Completed로 표시될 때까지 대기</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3노드 클러스터에서 일반적으로 5-10분 소요</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Central Dashboard에 접근하기 위한 포트 포워딩</span>
+</span></span><span style="display:flex;"><span>kubectl port-forward svc/istio-ingressgateway -n istio-system 8080:80
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># http://localhost:8080에서 접근</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 기본 자격증명: user@example.com / 12341234</span>
+</span></span></code></pre></div><h3 id="옵션-b-helm으로-배포-개발-환경용-더-빠름">옵션 B: Helm으로 배포 (개발 환경용 더 빠름)<a hidden class="anchor" aria-hidden="true" href="#옵션-b-helm으로-배포-개발-환경용-더-빠름">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kubeflow Helm 저장소 추가 (커뮤니티 유지관리)</span>
+</span></span><span style="display:flex;"><span>helm repo add kubeflow https://kubeflow.github.io/manifests/
+</span></span><span style="display:flex;"><span>helm repo update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최소 프로파일로 설치</span>
+</span></span><span style="display:flex;"><span>helm install kubeflow kubeflow/kubeflow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --namespace kubeflow <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --create-namespace <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --set pipeline.objectStore.minio.persistence.enabled<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><h3 id="옵션-c-digitalocean-kubernetes-프로덕션-준비-완료">옵션 C: DigitalOcean Kubernetes (프로덕션 준비 완료)<a hidden class="anchor" aria-hidden="true" href="#옵션-c-digitalocean-kubernetes-프로덕션-준비-완료">#</a></h3>
+<p>제어 플레인 관리 없이 프로덕션급 클러스터를 구성하려면: `````bash</p>
+<h1 id="doctl-설치-및-인증">doctl 설치 및 인증<a hidden class="anchor" aria-hidden="true" href="#doctl-설치-및-인증">#</a></h1>
+<p>doctl kubernetes cluster create kubeflow-ml <br>
+&ndash;region nyc3 <br>
+&ndash;node-pool &ldquo;name=cpu-pool;size=s-4vcpu-8gb;n-node=3&rdquo; <br>
+&ndash;node-pool &ldquo;name=gpu-pool;size=gpu-h100-1vcpu-8gb;n-node=2&rdquo;</p>
+<h1 id="그런-다음-옵션-a와-같이-kubeflow-manifests-적용">그런 다음 옵션 A와 같이 Kubeflow manifests 적용<a hidden class="anchor" aria-hidden="true" href="#그런-다음-옵션-a와-같이-kubeflow-manifests-적용">#</a></h1>
+<pre tabindex="0"><code>
 [DigitalOcean에 가입](https://m.do.co/c/eca87ac14ee0)하면 첫 60일 동안 **$200 크레딧**을 받을 수 있다 — GPU가 활성화된 Kubeflow 클러스터를 한 달 낂 낂 실험하기에 충분하다.
 
 `````bash
@@ -51,20 +371,26 @@
 kubectl get namespaces | grep kubeflow
 # kubeflow          Active
 # kubeflow-user-example-com  Active
-</code></pre><h2 id=첫-번째-ml-파이프라인-구축하기>첫 번째 ML 파이프라인 구축하기<a hidden class=anchor aria-hidden=true href=#첫-번째-ml-파이프라인-구축하기>#</a></h2><p>Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: `````python</p><h1 id=pipelinepy--kfp-sdk-v2를-사용한-완전한-ml-파이프라인>pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인<a hidden class=anchor aria-hidden=true href=#pipelinepy--kfp-sdk-v2를-사용한-완전한-ml-파이프라인>#</a></h1><p>import kfp
+</code></pre><h2 id="첫-번째-ml-파이프라인-구축하기">첫 번째 ML 파이프라인 구축하기<a hidden class="anchor" aria-hidden="true" href="#첫-번째-ml-파이프라인-구축하기">#</a></h2>
+<p>Kubeflow Pipelines (KFP)는 Kubeflow가 가장 큰 가치를 제공하는 곳이다. 데이터를 다운로드하고, 모델을 훈련하고, 평가하는 완전한 파이프라인이다: `````python</p>
+<h1 id="pipelinepy--kfp-sdk-v2를-사용한-완전한-ml-파이프라인">pipeline.py — KFP SDK v2를 사용한 완전한 ML 파이프라인<a hidden class="anchor" aria-hidden="true" href="#pipelinepy--kfp-sdk-v2를-사용한-완전한-ml-파이프라인">#</a></h1>
+<p>import kfp
 from kfp import dsl
-from kfp.dsl import component, Input, Output, Dataset, Model, Metrics</p><p>@component(
+from kfp.dsl import component, Input, Output, Dataset, Model, Metrics</p>
+<p>@component(
 base_image=&ldquo;python:3.11-slim&rdquo;,
 packages_to_install=[&ldquo;pandas&rdquo;, &ldquo;scikit-learn&rdquo;]
 )
 def download_data(output_dataset: Output[Dataset]): &ldquo;&ldquo;&ldquo;Download and preprocess the dataset.&rdquo;&rdquo;&rdquo;
 import pandas as pd
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split</p><pre><code>iris = load_iris(as_frame=True)
+from sklearn.model_selection import train_test_split</p>
+<pre><code>iris = load_iris(as_frame=True)
 df = iris.frame
 train, test = train_test_split(df, test_size=0.2, random_state=42)
 train.to_csv(f&quot;{output_dataset.path}.csv&quot;, index=False)
-</code></pre><p>@component(
+</code></pre>
+<p>@component(
 base_image=&ldquo;python:3.11-slim&rdquo;,
 packages_to_install=[&ldquo;pandas&rdquo;, &ldquo;scikit-learn&rdquo;, &ldquo;joblib&rdquo;]
 )
@@ -75,7 +401,8 @@ n_estimators: int = 100
 ): &ldquo;&ldquo;&ldquo;Train a Random Forest classifier.&rdquo;&rdquo;&rdquo;
 import pandas as pd
 import joblib
-from sklearn.ensemble import RandomForestClassifier</p><pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
+from sklearn.ensemble import RandomForestClassifier</p>
+<pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
 X = df.drop(&quot;target&quot;, axis=1)
 y = df[&quot;target&quot;]
 
@@ -85,7 +412,8 @@ clf = RandomForestClassifier(
 )
 clf.fit(X, y)
 joblib.dump(clf, f&quot;{output_model.path}.joblib&quot;)
-</code></pre><p>@component(
+</code></pre>
+<p>@component(
 base_image=&ldquo;python:3.11-slim&rdquo;,
 packages_to_install=[&ldquo;pandas&rdquo;, &ldquo;scikit-learn&rdquo;, &ldquo;joblib&rdquo;]
 )
@@ -93,10 +421,11 @@ def evaluate_model(
 input_model: Input[Model],
 input_dataset: Input[Dataset],
 metrics: Output[Metrics]
-) -> str: &ldquo;&ldquo;&ldquo;Evaluate the trained model and log metrics.&rdquo;&rdquo;&rdquo;
+) -&gt; str: &ldquo;&ldquo;&ldquo;Evaluate the trained model and log metrics.&rdquo;&rdquo;&rdquo;
 import pandas as pd
 import joblib
-from sklearn.metrics import accuracy_score, f1_score</p><pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
+from sklearn.metrics import accuracy_score, f1_score</p>
+<pre><code>df = pd.read_csv(f&quot;{input_dataset.path}.csv&quot;)
 X = df.drop(&quot;target&quot;, axis=1)
 y = df[&quot;target&quot;]
 
@@ -110,7 +439,8 @@ metrics.log_metric(&quot;accuracy&quot;, accuracy)
 metrics.log_metric(&quot;f1_score&quot;, f1)
 
 return f&quot;Model accuracy: {accuracy:.4f}, F1: {f1:.4f}&quot;
-</code></pre><p>@dsl.pipeline(
+</code></pre>
+<p>@dsl.pipeline(
 name=&ldquo;iris-training-pipeline&rdquo;,
 description=&ldquo;End-to-end iris classification pipeline&rdquo;
 )
@@ -122,10 +452,13 @@ n_estimators=n_estimators
 evaluate = evaluate_model(
 input_model=train.outputs[&ldquo;output_model&rdquo;],
 input_dataset=download.outputs[&ldquo;output_dataset&rdquo;]
-)</p><h1 id=파이프라인-컴파일>파이프라인 컴파일<a hidden class=anchor aria-hidden=true href=#파이프라인-컴파일>#</a></h1><p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;: kfp.compiler.Compiler().compile(
+)</p>
+<h1 id="파이프라인-컴파일">파이프라인 컴파일<a hidden class="anchor" aria-hidden="true" href="#파이프라인-컴파일">#</a></h1>
+<p>if <strong>name</strong> == &ldquo;<strong>main</strong>&rdquo;: kfp.compiler.Compiler().compile(
 iris_pipeline,
 &ldquo;iris_pipeline.yaml&rdquo;
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 `````bash
 # 파이프라인 컴파일 및 업로드
 python pipeline.py
@@ -136,12 +469,16 @@ kfp pipeline create \
   --description &#34;Iris classification training pipeline&#34; \
   --engine argo \
   iris_pipeline.yaml
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># CLI에서 파이프라인 실행</span>
-</span></span><span style=display:flex><span>kfp run create <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --experiment-name default <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --pipeline-id &lt;PIPELINE_ID&gt; <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --display-name <span style=color:#e6db74>&#34;iris-run-</span><span style=color:#66d9ef>$(</span>date +%s<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><p>파이프라인은 KFP UI에 완전한 계보 추적과 함께 표시된다 — 모든 아티팩트, 파라미터, 실행이 자동으로 기록된다. 모델 아티팩트를 클릭하여 해당 모델을 생성한 정확한 데이터셋과 코드 버전으로 거슬러 올라갈 수 있다.</p><h2 id=training-operator로-분산-훈련하기>Training Operator로 분산 훈련하기<a hidden class=anchor aria-hidden=true href=#training-operator로-분산-훈련하기>#</a></h2><p>단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: `````yaml</p><h1 id=pytorch-jobyaml--분산-pytorch-훈련>pytorch-job.yaml — 분산 PyTorch 훈련<a hidden class=anchor aria-hidden=true href=#pytorch-jobyaml--분산-pytorch-훈련>#</a></h1><p>apiVersion: kubeflow.org/v1
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># CLI에서 파이프라인 실행</span>
+</span></span><span style="display:flex;"><span>kfp run create <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --experiment-name default <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --pipeline-id &lt;PIPELINE_ID&gt; <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --display-name <span style="color:#e6db74">&#34;iris-run-</span><span style="color:#66d9ef">$(</span>date +%s<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><p>파이프라인은 KFP UI에 완전한 계보 추적과 함께 표시된다 — 모든 아티팩트, 파라미터, 실행이 자동으로 기록된다. 모델 아티팩트를 클릭하여 해당 모델을 생성한 정확한 데이터셋과 코드 버전으로 거슬러 올라갈 수 있다.</p>
+<h2 id="training-operator로-분산-훈련하기">Training Operator로 분산 훈련하기<a hidden class="anchor" aria-hidden="true" href="#training-operator로-분산-훈련하기">#</a></h2>
+<p>단일 GPU에 맞지 않는 워크로드의 경우, Kubeflow의 Training Operator가 분산 훈련 작업을 관리한다: `````yaml</p>
+<h1 id="pytorch-jobyaml--분산-pytorch-훈련">pytorch-job.yaml — 분산 PyTorch 훈련<a hidden class="anchor" aria-hidden="true" href="#pytorch-jobyaml--분산-pytorch-훈련">#</a></h1>
+<p>apiVersion: kubeflow.org/v1
 kind: PyTorchJob
 metadata: name: cifar10-distributed
 namespace: kubeflow-user-example-com
@@ -162,7 +499,8 @@ command: [&ldquo;python&rdquo;, &ldquo;-m&rdquo;, &ldquo;torch.distributed.launc
 &ldquo;&ndash;nproc_per_node=1&rdquo;, &ldquo;train.py&rdquo;]
 resources: limits: nvidia.com/gpu: 1
 memory: &ldquo;16Gi&rdquo;
-cpu: &ldquo;8&rdquo;</p><pre tabindex=0><code>
+cpu: &ldquo;8&rdquo;</p>
+<pre tabindex="0"><code>
 `````bash
 # 훈련 작업 제출
 kubectl apply -f pytorch-job.yaml
@@ -171,10 +509,13 @@ kubectl apply -f pytorch-job.yaml
 kubectl get pytorchjobs -n kubeflow-user-example-com -w
 kubectl logs -f cifar10-distributed-master-0 \
   -n kubeflow-user-example-com
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 클러스터 전체 GPU 활용도 확인</span>
-</span></span><span style=display:flex><span>kubectl top nodes
-</span></span><span style=display:flex><span>nvidia-smi  <span style=color:#75715e># 모든 GPU Pod 낶부에서 실행</span>
-</span></span></code></pre></div><h2 id=kserve로-모델-서빙하기>KServe로 모델 서빙하기<a hidden class=anchor aria-hidden=true href=#kserve로-모델-서빙하기>#</a></h2><p>KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: `````yaml</p><h1 id=inference-serviceyaml--훈련된-모델-배포>inference-service.yaml — 훈련된 모델 배포<a hidden class=anchor aria-hidden=true href=#inference-serviceyaml--훈련된-모델-배포>#</a></h1><p>apiVersion: serving.kserve.io/v1beta1
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 클러스터 전체 GPU 활용도 확인</span>
+</span></span><span style="display:flex;"><span>kubectl top nodes
+</span></span><span style="display:flex;"><span>nvidia-smi  <span style="color:#75715e"># 모든 GPU Pod 낶부에서 실행</span>
+</span></span></code></pre></div><h2 id="kserve로-모델-서빙하기">KServe로 모델 서빙하기<a hidden class="anchor" aria-hidden="true" href="#kserve로-모델-서빙하기">#</a></h2>
+<p>KServe는 오토스케일링, 트래픽 분할 및 표준화된 추론 프로토콜을 갖춘 프로덕션급 모델 서빙을 제공한다: `````yaml</p>
+<h1 id="inference-serviceyaml--훈련된-모델-배포">inference-service.yaml — 훈련된 모델 배포<a hidden class="anchor" aria-hidden="true" href="#inference-serviceyaml--훈련된-모델-배포">#</a></h1>
+<p>apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata: name: iris-classifier
 namespace: kubeflow-user-example-com
@@ -184,7 +525,8 @@ sklearn: storageUri: &ldquo;s3://kubeflow-models/iris/v1/model.joblib&rdquo;
 resources: limits: cpu: &ldquo;1&rdquo;
 memory: 2Gi
 requests: cpu: &ldquo;100m&rdquo;
-memory: 256Mi</p><pre tabindex=0><code>
+memory: 256Mi</p>
+<pre tabindex="0"><code>
 `````bash
 # InferenceService 적용
 kubectl apply -f inference-service.yaml
@@ -193,18 +535,21 @@ kubectl apply -f inference-service.yaml
 kubectl get inferenceservices -n kubeflow-user-example-com -w
 
 # 예상: iris-classifier   True    100   http://iris-classifier...   Ready
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 배포된 모델 테스트</span>
-</span></span><span style=display:flex><span>curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;instances&#34;: [[5.1, 3.5, 1.4, 0.2]]}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 응답: {&#34;predictions&#34;: [0]}</span>
-</span></span></code></pre></div><p>칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: `````yaml</p><h1 id=canary-rolloutyaml--v2의-점진적-롤아웃>canary-rollout.yaml — v2의 점진적 롤아웃<a hidden class=anchor aria-hidden=true href=#canary-rolloutyaml--v2의-점진적-롤아웃>#</a></h1><p>apiVersion: serving.kserve.io/v1beta1
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 배포된 모델 테스트</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://iris-classifier.kubeflow-user-example-com.example.com/v1/models/iris-classifier:predict <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;instances&#34;: [[5.1, 3.5, 1.4, 0.2]]}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 응답: {&#34;predictions&#34;: [0]}</span>
+</span></span></code></pre></div><p>칠리 배포의 경우 KServe는 트래픽 분할을 지원한다: `````yaml</p>
+<h1 id="canary-rolloutyaml--v2의-점진적-롤아웃">canary-rollout.yaml — v2의 점진적 롤아웃<a hidden class="anchor" aria-hidden="true" href="#canary-rolloutyaml--v2의-점진적-롤아웃">#</a></h1>
+<p>apiVersion: serving.kserve.io/v1beta1
 kind: InferenceService
 metadata: name: iris-classifier
 namespace: kubeflow-user-example-com
 spec: predictor: canaryTrafficPercent: 20
-sklearn: storageUri: &ldquo;s3://kubeflow-models/iris/v2/model.joblib&rdquo;</p><pre tabindex=0><code>
+sklearn: storageUri: &ldquo;s3://kubeflow-models/iris/v2/model.joblib&rdquo;</p>
+<pre tabindex="0"><code>
 ## Katib로 하이퍼파라미터 튜닝하기
 
 Katib는 Kubernetes 네이티브 실험을 사용하여 최적의 하이퍼파라미터 탐색을 자동화한다: `````yaml
@@ -247,78 +592,282 @@ spec: objective: type: maximize
                 resources: limits: memory: &#34;4Gi&#34;
                     cpu: &#34;2&#34;
             restartPolicy: Never
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 실험 시작</span>
-</span></span><span style=display:flex><span>kubectl apply -f katib-experiment.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># trial 모니터링</span>
-</span></span><span style=display:flex><span>kubectl get trials -n kubeflow-user-example-com
-</span></span><span style=display:flex><span><span style=color:#75715e># 12개의 trial과 해당 목표 메트릭 값 표시</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 최적의 trial 보기</span>
-</span></span><span style=display:flex><span>kubectl get experiment iris-hp-tuning <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -n kubeflow-user-example-com <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -o jsonpath<span style=color:#f92672>=</span><span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#f92672>{</span>.status.currentOptimalTrial<span style=color:#f92672>}</span><span style=color:#e6db74>&#34;
-</span></span></span></code></pre></div><h2 id=벤치마크-및-실제-사용-사례>벤치마크 및 실제 사용 사례<a hidden class=anchor aria-hidden=true href=#벤치마크-및-실제-사용-사례>#</a></h2><h3 id=훈련-처리량-비교>훈련 처리량 비교<a hidden class=anchor aria-hidden=true href=#훈련-처리량-비교>#</a></h3><table><thead><tr><th>구성</th><th>에폭당 시간 (CIFAR-10 ResNet-50)</th><th>GPU</th><th>비용/시간*</th></tr></thead><tbody><tr><td>단일 GPU (NVIDIA A100)</td><td>4분 12초</td><td>1</td><td>$2.50</td></tr><tr><td>Kubeflow PyTorchJob (4x A100)</td><td>1분 05초</td><td>4</td><td>$10.00</td></tr><tr><td>Kubeflow PyTorchJob (8x A100)</td><td>35초</td><td>8</td><td>$20.00</td></tr><tr><td>수동 다중 노드 (오케스트레이션 없음)</td><td>1분 18초</td><td>4</td><td>$10.00</td></tr></tbody></table><p>*2026년 5월 기준 대략적인 클라우드 가격</p><h3 id=파이프라인-실행-오버헤드>파이프라인 실행 오버헤드<a hidden class=anchor aria-hidden=true href=#파이프라인-실행-오버헤드>#</a></h3><table><thead><tr><th>시나리오</th><th>총 실행 시간</th><th>KFP 오버헤드</th></tr></thead><tbody><tr><td>5단계 파이프라인, 소규모 데이터 (&lt; 1 GB)</td><td>3분 45초</td><td>~18초</td></tr><tr><td>12단계 파이프라인, 중간 데이터 (10 GB)</td><td>22분 10초</td><td>~45초</td></tr><tr><td>20단계 파이프라인, 대규모 데이터 (100 GB)</td><td>2시간 15분</td><td>~2분</td></tr></tbody></table><p>KFP 오케스트레이션 오버헤드는 복잡한 다중 단계 워크플로우에서도 일관되게 <strong>총 파이프라인 실행 시간의 3% 미만</strong>이다.</p><h3 id=실제-도입-패턴>실제 도입 패턴<a hidden class=anchor aria-hidden=true href=#실제-도입-패턴>#</a></h3><ul><li><strong>Spotify</strong>는 Kubeflow Pipelines를 사용하여 추천 시스템에서 <strong>주간 2,000개 이상의 훈련 작업</strong>을 오케스트레이션한다</li><li><strong>Shopify</strong>는 사기 탐지를 위해 <strong>매일 50TB의 특징 데이터</strong>를 Kubeflow 파이프라인을 통해 처리한다</li><li><strong>CERN</strong>은 입자 물리 ML 워크로드를 위해 온프레미스 Kubernetes 클러스터에서 Kubeflow를 실행하며 <strong>400개 이상의 GPU 노드</strong>를 관리한다</li></ul><h2 id=고급-사용법--프로덕션-강화>고급 사용법 / 프로덕션 강화<a hidden class=anchor aria-hidden=true href=#고급-사용법--프로덕션-강화>#</a></h2><h3 id=gpu-스케줄링-및-리소스-쿼터>GPU 스케줄링 및 리소스 쿼터<a hidden class=anchor aria-hidden=true href=#gpu-스케줄링-및-리소스-쿼터>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># gpu-quota.yaml — 네임스페이스별 GPU 제한 강제</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>ResourceQuota</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>gpu-quota</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>data-science-team</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: hard: requests.nvidia.com/gpu</span>: <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>limits.nvidia.com/gpu</span>: <span style=color:#ae81ff>16</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 쿼터 적용</span>
-</span></span><span style=display:flex><span>kubectl apply -f gpu-quota.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 네임스페이스별 GPU 할당 확인</span>
-</span></span><span style=display:flex><span>kubectl describe resourcequota gpu-quota -n data-science-team
-</span></span></code></pre></div><h3 id=데이터셋-영구-저장소>데이터셋 영구 저장소<a hidden class=anchor aria-hidden=true href=#데이터셋-영구-저장소>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># dataset-pvc.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>PersistentVolumeClaim</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>training-datasets</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>namespace</span>: <span style=color:#ae81ff>kubeflow-user-example-com</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: accessModes</span>: - <span style=color:#ae81ff>ReadWriteMany</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>resources: requests: storage</span>: <span style=color:#ae81ff>500Gi</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>storageClassName</span>: <span style=color:#ae81ff>nfs-client </span> <span style=color:#75715e># 또는 AWS에서 efs-sc</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Kubeflow UI를 통해 노트북 서버에 마운트</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 또는 파이프라인 컴포넌트에서 참조: # dsl.VolumeOp(name=&#34;create-dataset-volume&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#              resource_name=&#34;training-datasets&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#              size=&#34;500Gi&#34;,</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#              modes=dsl.VOLUME_MODE_RWM)</span>
-</span></span></code></pre></div><h3 id=인증-및-rbac>인증 및 RBAC<a hidden class=anchor aria-hidden=true href=#인증-및-rbac>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 리소스 제한이 있는 사용자 프로필 생성</span>
-</span></span><span style=display:flex><span>kubectl apply -f - <span style=color:#e6db74>&lt;&lt;EOF
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>apiVersion: kubeflow.org/v1
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>kind: Profile
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>metadata: name: team-ml-platform
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>spec: owner: kind: User
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    name: ml-engineer@company.com
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  resourceQuotaSpec: hard: cpu: &#34;64&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      memory: 256Gi
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      nvidia.com/gpu: &#34;8&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      pods: &#34;50&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
-</span></span></code></pre></div><h3 id=백업-및-재해-복구>백업 및 재해 복구<a hidden class=anchor aria-hidden=true href=#백업-및-재해-복구>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># MySQL 메타데이터 데이터베이스 백업 (KFP 실험/실행)</span>
-</span></span><span style=display:flex><span>kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  mysqldump -u root -p$mysqlpassword mlpipeline <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  &gt; kubeflow-metadata-backup.sql
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># MinIO 아티팩트 저장소 백업</span>
-</span></span><span style=display:flex><span>mc mirror myminio/kubeflow-pipelines/ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  s3-backup/kubeflow-pipelines-backup/
-</span></span></code></pre></div><h3 id=prometheus-및-grafana로-모니터링>Prometheus 및 Grafana로 모니터링<a hidden class=anchor aria-hidden=true href=#prometheus-및-grafana로-모니터링>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Kubeflow는 여러 컴포넌트에서 Prometheus 메트릭을 노출한다</span>
-</span></span><span style=display:flex><span>kubectl apply -f <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 알림을 설정해야 할 핵심 메트릭: # - kubeflow_pipelines_run_count (총 파이프라인 실행 수)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - kubeflow_pipelines_run_latency_seconds (파이프라인 실행 시간)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - nvidia_gpu_utilization_gpu (Pod별 GPU 활용도)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - container_memory_working_set_bytes (OOM 감지)</span>
-</span></span></code></pre></div><h2 id=대안과의-비교>대안과의 비교<a hidden class=anchor aria-hidden=true href=#대안과의-비교>#</a></h2><table><thead><tr><th>기능</th><th>Kubeflow</th><th>MLflow</th><th>Airflow</th><th>SageMaker</th></tr></thead><tbody><tr><td>Kubernetes 네이티브</td><td><strong>예 (핵심 설계)</strong></td><td>아니오 (K8s에 배포 가능)</td><td>옵션 (Helm 통해)</td><td>N/A (관리형 AWS)</td></tr><tr><td>파이프라인 오케스트레이션</td><td><strong>예 (KFP DAG)</strong></td><td>제한적 (MLflow Pipelines)</td><td>예 (범용)</td><td>예 (Step Functions)</td></tr><tr><td>분산 훈련</td><td><strong>예 (Training Operator)</strong></td><td>아니오</td><td>아니오</td><td>예</td></tr><tr><td>모델 서빙 (오토스케일)</td><td><strong>예 (KServe)</strong></td><td>기본 (MLflow Serve)</td><td>아니오</td><td>예 (Endpoints)</td></tr><tr><td>하이퍼파라미터 튜닝</td><td><strong>예 (Katib)</strong></td><td>아니오</td><td>아니오</td><td>예 (Hyperparameter)</td></tr><tr><td>Notebook 통합</td><td><strong>예 (관리형 Notebook)</strong></td><td>아니오</td><td>아니오</td><td>예 (Studio)</td></tr><tr><td>다중 프레임워크 지원</td><td><strong>TF, PyTorch, JAX, XGBoost 등</strong></td><td>모든 프레임워크 (Python 통해)</td><td>모든 프레임워크</td><td>TF, PyTorch, HuggingFace</td></tr><tr><td>GitHub Stars</td><td><strong>~14,000</strong></td><td>~21,000</td><td>~38,000</td><td>N/A (독점)</td></tr><tr><td>라이선스</td><td><strong>Apache-2.0</strong></td><td>Apache-2.0</td><td>Apache-2.0</td><td>독점</td></tr><tr><td>설치 복잡도</td><td>높음</td><td>낮음</td><td>중간</td><td>없음 (관리형)</td></tr></tbody></table><p><strong>Kubeflow를 선택하는 경우:</strong> 이미 Kubernetes를 운영 중이며, 엔드투엔드 ML 수명주기 관리가 필요하고, 훈련 및 서빙을 위한 Kubernetes 네이티브 리소스 관리를 원하며, 공급업체 종속성 없는 오픈소스를 선호하는 경우.</p><p><strong>MLflow를 선택하는 경우:</strong> 가벼운 실험 추적이 필요하며, Kubernetes를 사용하지 않거나, 기존 인프라와 통합되는 더 간단한 도구를 원하는 경우.</p><p><strong>Airflow를 선택하는 경우:</strong> 파이프라인이 일반 데이터 엔지니어링 워크플로우(ML 특화 아님)이며, 성숙한 스케줄링, 백필 및 시스템 간 오케스트레이션이 필요한 경우.</p><p><strong>SageMaker를 선택하는 경우:</strong> AWS를 전적으로 사용하고, 관리형 인프라를 선호하며, 비용 최적화보다 시장 출시 시간이 더 중요한 경우.</p><h2 id=한계--정직한-평가>한계 / 정직한 평가<a hidden class=anchor aria-hidden=true href=#한계--정직한-평가>#</a></h2><p>Kubeflow는 강력하지만 도전 과제가 없는 것은 아니다: <strong>설정 복잡성</strong>: 완전한 Kubeflow 설치에는 30개 이상의 마이크로서비스가 필요하다. 숙련된 Kubernetes 운영자조차 첫 번째 프로덕션 배포에 <strong>2-4시간</strong>이 소요될 수 있다. GCP의 Kubeflow (Vertex AI) 또는 AWS의 도구는 이를 간소화하지만 공급업체 종속성을 초래한다.</p><p><strong>문서 분산</strong>: 서로 다른 컴포넌트(KFP, KServe, Katib)가 별도의 문서 사이트를 유지한다. 크로스 컴포넌트 통합 예제는 때로 오래되었다. 항상 <strong>v1.10.0 문서</strong> 또는 최신 버전과 대조하여 확인하라.</p><p><strong>GPU 스케줄링 제한</strong>: Kubeflow는 GPU 할당을 위해 NVIDIA Device Plugin 및 Kubernetes 스케줄러에 의존한다. GPU 시간 분할(vGPU/MIG)에는 추가 구성이 필요하며 자동으로 이루어지지 않는다.</p><p><strong>크기에 비해 작은 커뮤니티</strong>: 약 14,000개의 Star에도 불구하고, 활발한 기여자 기반은 Airflow나 MLflow보다 작다. 일부 컴포넌트는 드문 업데이트를 받는다 — KServe와 KFP가 가장 적극적으로 유지관리된다.</p><p><strong>버전 호환성</strong>: Kubeflow 마이너 버전 간 업그레이드는 종종 전체 재설치가 필요하다. 제어 플레인 컴포넌트에는 현장 업그레이드 경로가 없다.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><p><strong>Q: 클라우드 제공업체에서 Kubeflow를 실행하는 비용은 얼마인가?</strong>
-A: 최소 프로덕션 클러스터(3 CPU 노드 + 2 GPU 노드)는 DigitalOcean이나 GCP에서 월 <strong>$800-1,200</strong> 정도이다. GPU 유형에 따라 달라진다. CPU 전용 실험 클러스터는 월 $200까지 낮출 수 있다.</p><p><strong>Q: GPU 없이 Kubeflow를 사용할 수 있는가?</strong>
-A: 예. Kubeflow는 CPU 노드에서 완벽하게 작동한다. Training Operator, KFP, KServe는 모두 GPU 없이 작동한다. 단, 딥러닝 훈련은 상당히 느려진다. CPU 전용 클러스터의 경우 모든 매니페스트에서 <code>nvidia.com/gpu</code> 리소스 요청을 0으로 줄이면 된다.</p><p><strong>Q: 원시 Kubernetes + 커스텀 스크립트 대비 Kubeflow의 장점은 무엇인가?</strong>
-A: 원시 Kubernetes는 완전한 제어권을 주지만 자체 파이프라인 엔진, 아티팩트 추적, 실험 관리 및 모델 서빙 레이어를 구축해야 한다. Kubeflow는 이 모든 것을 바로 제공하여 예상 <strong>3-6개월</strong>의 플랫폼 엔지니어링 노력을 절약한다. 대가로 컴포넌트 간 상호작용 방식에 대한 Kubeflow의 설계 선택을 수용해야 한다.</p><p><strong>Q: 기존 CI/CD 시스템과 Kubeflow를 통합할 수 있는가?</strong>
-A: 예. Kubeflow Pipelines는 GitHub Actions, GitLab CI, Jenkins 또는 HTTP API 호출을 할 수 있는 모든 시스템에서 트리거할 수 있다. 많은 팀이 <code>main</code>에 머지하면 자동으로 훈련, 평가 및 조걶적 배포를 수행하는 파이프라인 실행을 트리거하는 패턴을 구현한다.</p><p><strong>Q: 아티팩트를 위한 권장 저장소 백엔드는 무엇인가?</strong>
-A: 온프레미스 배포의 경우 Kubeflow 매니페스트에 포함된 <strong>MinIO</strong>가 S3 호환 저장소를 제공한다. 클라우드 배포의 경우 네이티브 오브젝트 저장소를 사용: GCP에서는 <strong>GCS</strong>, AWS에서는 <strong>S3</strong>, Azure에서는 <strong>Azure Blob Storage</strong>. 아티팩트 저장 비용이 무한정 증가하지 않도록 버킷에 수명 주기 정책이 있는지 확인하라 — 오래된 파이프라인 실행은 <strong>월 수백 기가바이트</strong>를 축적할 수 있다.</p><p><strong>Q: 실패한 파이프라인 단계를 어떻게 디버깅하는가?</strong>
-A: 각 KFP 단계는 Kubernetes Pod로 실행된다. <code>kubectl logs &lt;pod-name> -n &lt;namespace></code>를 사용하여 컨테이너 로그를 검사하라. KFP UI는 Pod 이름과 로그 링크를 표시한다. 영구적인 디버깅을 위해 컴포넌트에 <code>dsl.Retry</code> 정책을 추가하거나 ````kubectl describe pod```를 사용하여 리소스 제한, 이미지 풀 오류 또는 PVC 마운트 실패를 확인하라.</p><h2 id=결론-오늘부터-프로덕션-ml-파이프라인-구축하기>결론: 오늘부터 프로덕션 ML 파이프라인 구축하기<a hidden class=anchor aria-hidden=true href=#결론-오늘부터-프로덕션-ml-파이프라인-구축하기>#</a></h2><p>Kubeflow는 여전히 Kubernetes에서 ML 워크로드를 실행하기 위한 가장 완전한 오픈소스 플랫폼이다. 초기 설정에 투자가 필요하지만, 그 보답은 팀과 함께 성장하는 재현 가능하고 확장 가능하며 감사 가능한 ML 인프라이다. v1.10.0 릴리스(2026년 4월)는 향상된 KServe 성능, 간소화된 KFP v2 SDK 및 개선된 GPU 스케줄링을 가져온다 — 프로덕션 ML에 진지하다면 Kubeflow를 도입하기에 지금이 최적의 시점이다.</p><p>소규모 클러스터에서 단일 파이프라인부터 시작하여 워크플로우를 반복하고 컴포넌트별로 확장하라. &ldquo;노트북에서 실행"에서 &ldquo;완전히 자동화된 ML 파이프라인"으로의 경로는 점진적이며 — Kubeflow는 모든 단계에 도구를 제공한다.</p><p>배포 준비가 되었는가? <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean에서 $200 크레딧을 받아</a> Kubeflow 클러스터를 지금 시작하라. 프로덕션에서 Kubeflow를 운영하는 ML 엔지니어와 실시간 지원을 위해 <a href=https://t.me/dibi8tech>Telegram 그룹</a>에 참여하라.</p><h2 id=추천-호스팅-및-인프라>추천 호스팅 및 인프라<a hidden class=anchor aria-hidden=true href=#추천-호스팅-및-인프라>#</a></h2><p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p><h2 id=참고-자료-및-추가-읽기>참고 자료 및 추가 읽기<a hidden class=anchor aria-hidden=true href=#참고-자료-및-추가-읽기>#</a></h2><ol><li>Kubeflow 공식 문서 — <a href=https://www.kubeflow.org/docs/>https://www.kubeflow.org/docs/</a> (v1.10.0)</li><li>Kubeflow Pipelines SDK v2 가이드 — <a href=https://www.kubeflow.org/docs/components/pipelines/v2/>https://www.kubeflow.org/docs/components/pipelines/v2/</a></li><li>KServe 문서 — <a href=https://kserve.github.io/website/latest/>https://kserve.github.io/website/latest/</a></li><li>Katib 하이퍼파라미터 튜닝 — <a href=https://www.kubeflow.org/docs/components/katib/>https://www.kubeflow.org/docs/components/katib/</a></li><li>Kubeflow Training Operator — <a href=https://www.kubeflow.org/docs/components/training/>https://www.kubeflow.org/docs/components/training/</a></li><li>Kubeflow GitHub 저장소 — <a href=https://github.com/kubeflow/kubeflow>https://github.com/kubeflow/kubeflow</a> (14,000+ stars)</li><li>Kubeflow Manifests — <a href=https://github.com/kubeflow/manifests>https://github.com/kubeflow/manifests</a></li><li>&ldquo;Kubeflow: Tackling ML Complexity on Kubernetes&rdquo; — KubeCon EU 2025 프레젠테이션</li><li><a href=dibi8-internal-link>Kubernetes</a> — Kubernetes 기초 관련 가이드</li><li><a href=dibi8-internal-link>MLflow</a> — ML 실험 추적 관련 가이드</li></ol><p><em>제휴 공개: 이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 해당 링크를 통해 가입하면 추가 비용 없이 dibi8.com에 수수료가 지급된다. 우리는 자체 인프라에 사용하는 서비스만 추천한다.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 실험 시작</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f katib-experiment.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># trial 모니터링</span>
+</span></span><span style="display:flex;"><span>kubectl get trials -n kubeflow-user-example-com
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 12개의 trial과 해당 목표 메트릭 값 표시</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최적의 trial 보기</span>
+</span></span><span style="display:flex;"><span>kubectl get experiment iris-hp-tuning <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -n kubeflow-user-example-com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -o jsonpath<span style="color:#f92672">=</span><span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">{</span>.status.currentOptimalTrial<span style="color:#f92672">}</span><span style="color:#e6db74">&#34;
+</span></span></span></code></pre></div><h2 id="벤치마크-및-실제-사용-사례">벤치마크 및 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크-및-실제-사용-사례">#</a></h2>
+<h3 id="훈련-처리량-비교">훈련 처리량 비교<a hidden class="anchor" aria-hidden="true" href="#훈련-처리량-비교">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>구성</th>
+					<th>에폭당 시간 (CIFAR-10 ResNet-50)</th>
+					<th>GPU</th>
+					<th>비용/시간*</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>단일 GPU (NVIDIA A100)</td>
+					<td>4분 12초</td>
+					<td>1</td>
+					<td>$2.50</td>
+			</tr>
+			<tr>
+					<td>Kubeflow PyTorchJob (4x A100)</td>
+					<td>1분 05초</td>
+					<td>4</td>
+					<td>$10.00</td>
+			</tr>
+			<tr>
+					<td>Kubeflow PyTorchJob (8x A100)</td>
+					<td>35초</td>
+					<td>8</td>
+					<td>$20.00</td>
+			</tr>
+			<tr>
+					<td>수동 다중 노드 (오케스트레이션 없음)</td>
+					<td>1분 18초</td>
+					<td>4</td>
+					<td>$10.00</td>
+			</tr>
+	</tbody>
+</table>
+<p>*2026년 5월 기준 대략적인 클라우드 가격</p>
+<h3 id="파이프라인-실행-오버헤드">파이프라인 실행 오버헤드<a hidden class="anchor" aria-hidden="true" href="#파이프라인-실행-오버헤드">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>시나리오</th>
+					<th>총 실행 시간</th>
+					<th>KFP 오버헤드</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>5단계 파이프라인, 소규모 데이터 (&lt; 1 GB)</td>
+					<td>3분 45초</td>
+					<td>~18초</td>
+			</tr>
+			<tr>
+					<td>12단계 파이프라인, 중간 데이터 (10 GB)</td>
+					<td>22분 10초</td>
+					<td>~45초</td>
+			</tr>
+			<tr>
+					<td>20단계 파이프라인, 대규모 데이터 (100 GB)</td>
+					<td>2시간 15분</td>
+					<td>~2분</td>
+			</tr>
+	</tbody>
+</table>
+<p>KFP 오케스트레이션 오버헤드는 복잡한 다중 단계 워크플로우에서도 일관되게 <strong>총 파이프라인 실행 시간의 3% 미만</strong>이다.</p>
+<h3 id="실제-도입-패턴">실제 도입 패턴<a hidden class="anchor" aria-hidden="true" href="#실제-도입-패턴">#</a></h3>
+<ul>
+<li><strong>Spotify</strong>는 Kubeflow Pipelines를 사용하여 추천 시스템에서 <strong>주간 2,000개 이상의 훈련 작업</strong>을 오케스트레이션한다</li>
+<li><strong>Shopify</strong>는 사기 탐지를 위해 <strong>매일 50TB의 특징 데이터</strong>를 Kubeflow 파이프라인을 통해 처리한다</li>
+<li><strong>CERN</strong>은 입자 물리 ML 워크로드를 위해 온프레미스 Kubernetes 클러스터에서 Kubeflow를 실행하며 <strong>400개 이상의 GPU 노드</strong>를 관리한다</li>
+</ul>
+<h2 id="고급-사용법--프로덕션-강화">고급 사용법 / 프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#고급-사용법--프로덕션-강화">#</a></h2>
+<h3 id="gpu-스케줄링-및-리소스-쿼터">GPU 스케줄링 및 리소스 쿼터<a hidden class="anchor" aria-hidden="true" href="#gpu-스케줄링-및-리소스-쿼터">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># gpu-quota.yaml — 네임스페이스별 GPU 제한 강제</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">ResourceQuota</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">gpu-quota</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">data-science-team</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: hard: requests.nvidia.com/gpu</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">limits.nvidia.com/gpu</span>: <span style="color:#ae81ff">16</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 쿼터 적용</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f gpu-quota.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 네임스페이스별 GPU 할당 확인</span>
+</span></span><span style="display:flex;"><span>kubectl describe resourcequota gpu-quota -n data-science-team
+</span></span></code></pre></div><h3 id="데이터셋-영구-저장소">데이터셋 영구 저장소<a hidden class="anchor" aria-hidden="true" href="#데이터셋-영구-저장소">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># dataset-pvc.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">PersistentVolumeClaim</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">training-datasets</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">namespace</span>: <span style="color:#ae81ff">kubeflow-user-example-com</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: accessModes</span>: - <span style="color:#ae81ff">ReadWriteMany</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">resources: requests: storage</span>: <span style="color:#ae81ff">500Gi</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">storageClassName</span>: <span style="color:#ae81ff">nfs-client </span> <span style="color:#75715e"># 또는 AWS에서 efs-sc</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kubeflow UI를 통해 노트북 서버에 마운트</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 또는 파이프라인 컴포넌트에서 참조: # dsl.VolumeOp(name=&#34;create-dataset-volume&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              resource_name=&#34;training-datasets&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              size=&#34;500Gi&#34;,</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#              modes=dsl.VOLUME_MODE_RWM)</span>
+</span></span></code></pre></div><h3 id="인증-및-rbac">인증 및 RBAC<a hidden class="anchor" aria-hidden="true" href="#인증-및-rbac">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 리소스 제한이 있는 사용자 프로필 생성</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f - <span style="color:#e6db74">&lt;&lt;EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">apiVersion: kubeflow.org/v1
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">kind: Profile
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">metadata: name: team-ml-platform
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">spec: owner: kind: User
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    name: ml-engineer@company.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  resourceQuotaSpec: hard: cpu: &#34;64&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      memory: 256Gi
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      nvidia.com/gpu: &#34;8&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      pods: &#34;50&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span></code></pre></div><h3 id="백업-및-재해-복구">백업 및 재해 복구<a hidden class="anchor" aria-hidden="true" href="#백업-및-재해-복구">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># MySQL 메타데이터 데이터베이스 백업 (KFP 실험/실행)</span>
+</span></span><span style="display:flex;"><span>kubectl exec -it ml-pipeline-mysql-0 -n kubeflow -- <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  mysqldump -u root -p$mysqlpassword mlpipeline <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  &gt; kubeflow-metadata-backup.sql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MinIO 아티팩트 저장소 백업</span>
+</span></span><span style="display:flex;"><span>mc mirror myminio/kubeflow-pipelines/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  s3-backup/kubeflow-pipelines-backup/
+</span></span></code></pre></div><h3 id="prometheus-및-grafana로-모니터링">Prometheus 및 Grafana로 모니터링<a hidden class="anchor" aria-hidden="true" href="#prometheus-및-grafana로-모니터링">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Kubeflow는 여러 컴포넌트에서 Prometheus 메트릭을 노출한다</span>
+</span></span><span style="display:flex;"><span>kubectl apply -f <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  https://raw.githubusercontent.com/kubeflow/manifests/v1.10.0/contrib/prometheus/kustomization.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 알림을 설정해야 할 핵심 메트릭: # - kubeflow_pipelines_run_count (총 파이프라인 실행 수)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - kubeflow_pipelines_run_latency_seconds (파이프라인 실행 시간)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - nvidia_gpu_utilization_gpu (Pod별 GPU 활용도)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - container_memory_working_set_bytes (OOM 감지)</span>
+</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>기능</th>
+					<th>Kubeflow</th>
+					<th>MLflow</th>
+					<th>Airflow</th>
+					<th>SageMaker</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Kubernetes 네이티브</td>
+					<td><strong>예 (핵심 설계)</strong></td>
+					<td>아니오 (K8s에 배포 가능)</td>
+					<td>옵션 (Helm 통해)</td>
+					<td>N/A (관리형 AWS)</td>
+			</tr>
+			<tr>
+					<td>파이프라인 오케스트레이션</td>
+					<td><strong>예 (KFP DAG)</strong></td>
+					<td>제한적 (MLflow Pipelines)</td>
+					<td>예 (범용)</td>
+					<td>예 (Step Functions)</td>
+			</tr>
+			<tr>
+					<td>분산 훈련</td>
+					<td><strong>예 (Training Operator)</strong></td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>모델 서빙 (오토스케일)</td>
+					<td><strong>예 (KServe)</strong></td>
+					<td>기본 (MLflow Serve)</td>
+					<td>아니오</td>
+					<td>예 (Endpoints)</td>
+			</tr>
+			<tr>
+					<td>하이퍼파라미터 튜닝</td>
+					<td><strong>예 (Katib)</strong></td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예 (Hyperparameter)</td>
+			</tr>
+			<tr>
+					<td>Notebook 통합</td>
+					<td><strong>예 (관리형 Notebook)</strong></td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예 (Studio)</td>
+			</tr>
+			<tr>
+					<td>다중 프레임워크 지원</td>
+					<td><strong>TF, PyTorch, JAX, XGBoost 등</strong></td>
+					<td>모든 프레임워크 (Python 통해)</td>
+					<td>모든 프레임워크</td>
+					<td>TF, PyTorch, HuggingFace</td>
+			</tr>
+			<tr>
+					<td>GitHub Stars</td>
+					<td><strong>~14,000</strong></td>
+					<td>~21,000</td>
+					<td>~38,000</td>
+					<td>N/A (독점)</td>
+			</tr>
+			<tr>
+					<td>라이선스</td>
+					<td><strong>Apache-2.0</strong></td>
+					<td>Apache-2.0</td>
+					<td>Apache-2.0</td>
+					<td>독점</td>
+			</tr>
+			<tr>
+					<td>설치 복잡도</td>
+					<td>높음</td>
+					<td>낮음</td>
+					<td>중간</td>
+					<td>없음 (관리형)</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Kubeflow를 선택하는 경우:</strong> 이미 Kubernetes를 운영 중이며, 엔드투엔드 ML 수명주기 관리가 필요하고, 훈련 및 서빙을 위한 Kubernetes 네이티브 리소스 관리를 원하며, 공급업체 종속성 없는 오픈소스를 선호하는 경우.</p>
+<p><strong>MLflow를 선택하는 경우:</strong> 가벼운 실험 추적이 필요하며, Kubernetes를 사용하지 않거나, 기존 인프라와 통합되는 더 간단한 도구를 원하는 경우.</p>
+<p><strong>Airflow를 선택하는 경우:</strong> 파이프라인이 일반 데이터 엔지니어링 워크플로우(ML 특화 아님)이며, 성숙한 스케줄링, 백필 및 시스템 간 오케스트레이션이 필요한 경우.</p>
+<p><strong>SageMaker를 선택하는 경우:</strong> AWS를 전적으로 사용하고, 관리형 인프라를 선호하며, 비용 최적화보다 시장 출시 시간이 더 중요한 경우.</p>
+<h2 id="한계--정직한-평가">한계 / 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--정직한-평가">#</a></h2>
+<p>Kubeflow는 강력하지만 도전 과제가 없는 것은 아니다: <strong>설정 복잡성</strong>: 완전한 Kubeflow 설치에는 30개 이상의 마이크로서비스가 필요하다. 숙련된 Kubernetes 운영자조차 첫 번째 프로덕션 배포에 <strong>2-4시간</strong>이 소요될 수 있다. GCP의 Kubeflow (Vertex AI) 또는 AWS의 도구는 이를 간소화하지만 공급업체 종속성을 초래한다.</p>
+<p><strong>문서 분산</strong>: 서로 다른 컴포넌트(KFP, KServe, Katib)가 별도의 문서 사이트를 유지한다. 크로스 컴포넌트 통합 예제는 때로 오래되었다. 항상 <strong>v1.10.0 문서</strong> 또는 최신 버전과 대조하여 확인하라.</p>
+<p><strong>GPU 스케줄링 제한</strong>: Kubeflow는 GPU 할당을 위해 NVIDIA Device Plugin 및 Kubernetes 스케줄러에 의존한다. GPU 시간 분할(vGPU/MIG)에는 추가 구성이 필요하며 자동으로 이루어지지 않는다.</p>
+<p><strong>크기에 비해 작은 커뮤니티</strong>: 약 14,000개의 Star에도 불구하고, 활발한 기여자 기반은 Airflow나 MLflow보다 작다. 일부 컴포넌트는 드문 업데이트를 받는다 — KServe와 KFP가 가장 적극적으로 유지관리된다.</p>
+<p><strong>버전 호환성</strong>: Kubeflow 마이너 버전 간 업그레이드는 종종 전체 재설치가 필요하다. 제어 플레인 컴포넌트에는 현장 업그레이드 경로가 없다.</p>
+<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
+<p><strong>Q: 클라우드 제공업체에서 Kubeflow를 실행하는 비용은 얼마인가?</strong>
+A: 최소 프로덕션 클러스터(3 CPU 노드 + 2 GPU 노드)는 DigitalOcean이나 GCP에서 월 <strong>$800-1,200</strong> 정도이다. GPU 유형에 따라 달라진다. CPU 전용 실험 클러스터는 월 $200까지 낮출 수 있다.</p>
+<p><strong>Q: GPU 없이 Kubeflow를 사용할 수 있는가?</strong>
+A: 예. Kubeflow는 CPU 노드에서 완벽하게 작동한다. Training Operator, KFP, KServe는 모두 GPU 없이 작동한다. 단, 딥러닝 훈련은 상당히 느려진다. CPU 전용 클러스터의 경우 모든 매니페스트에서 <code>nvidia.com/gpu</code> 리소스 요청을 0으로 줄이면 된다.</p>
+<p><strong>Q: 원시 Kubernetes + 커스텀 스크립트 대비 Kubeflow의 장점은 무엇인가?</strong>
+A: 원시 Kubernetes는 완전한 제어권을 주지만 자체 파이프라인 엔진, 아티팩트 추적, 실험 관리 및 모델 서빙 레이어를 구축해야 한다. Kubeflow는 이 모든 것을 바로 제공하여 예상 <strong>3-6개월</strong>의 플랫폼 엔지니어링 노력을 절약한다. 대가로 컴포넌트 간 상호작용 방식에 대한 Kubeflow의 설계 선택을 수용해야 한다.</p>
+<p><strong>Q: 기존 CI/CD 시스템과 Kubeflow를 통합할 수 있는가?</strong>
+A: 예. Kubeflow Pipelines는 GitHub Actions, GitLab CI, Jenkins 또는 HTTP API 호출을 할 수 있는 모든 시스템에서 트리거할 수 있다. 많은 팀이 <code>main</code>에 머지하면 자동으로 훈련, 평가 및 조걶적 배포를 수행하는 파이프라인 실행을 트리거하는 패턴을 구현한다.</p>
+<p><strong>Q: 아티팩트를 위한 권장 저장소 백엔드는 무엇인가?</strong>
+A: 온프레미스 배포의 경우 Kubeflow 매니페스트에 포함된 <strong>MinIO</strong>가 S3 호환 저장소를 제공한다. 클라우드 배포의 경우 네이티브 오브젝트 저장소를 사용: GCP에서는 <strong>GCS</strong>, AWS에서는 <strong>S3</strong>, Azure에서는 <strong>Azure Blob Storage</strong>. 아티팩트 저장 비용이 무한정 증가하지 않도록 버킷에 수명 주기 정책이 있는지 확인하라 — 오래된 파이프라인 실행은 <strong>월 수백 기가바이트</strong>를 축적할 수 있다.</p>
+<p><strong>Q: 실패한 파이프라인 단계를 어떻게 디버깅하는가?</strong>
+A: 각 KFP 단계는 Kubernetes Pod로 실행된다. <code>kubectl logs &lt;pod-name&gt; -n &lt;namespace&gt;</code>를 사용하여 컨테이너 로그를 검사하라. KFP UI는 Pod 이름과 로그 링크를 표시한다. 영구적인 디버깅을 위해 컴포넌트에 <code>dsl.Retry</code> 정책을 추가하거나 ````kubectl describe pod```를 사용하여 리소스 제한, 이미지 풀 오류 또는 PVC 마운트 실패를 확인하라.</p>
+<h2 id="결론-오늘부터-프로덕션-ml-파이프라인-구축하기">결론: 오늘부터 프로덕션 ML 파이프라인 구축하기<a hidden class="anchor" aria-hidden="true" href="#결론-오늘부터-프로덕션-ml-파이프라인-구축하기">#</a></h2>
+<p>Kubeflow는 여전히 Kubernetes에서 ML 워크로드를 실행하기 위한 가장 완전한 오픈소스 플랫폼이다. 초기 설정에 투자가 필요하지만, 그 보답은 팀과 함께 성장하는 재현 가능하고 확장 가능하며 감사 가능한 ML 인프라이다. v1.10.0 릴리스(2026년 4월)는 향상된 KServe 성능, 간소화된 KFP v2 SDK 및 개선된 GPU 스케줄링을 가져온다 — 프로덕션 ML에 진지하다면 Kubeflow를 도입하기에 지금이 최적의 시점이다.</p>
+<p>소규모 클러스터에서 단일 파이프라인부터 시작하여 워크플로우를 반복하고 컴포넌트별로 확장하라. &ldquo;노트북에서 실행&quot;에서 &ldquo;완전히 자동화된 ML 파이프라인&quot;으로의 경로는 점진적이며 — Kubeflow는 모든 단계에 도구를 제공한다.</p>
+<p>배포 준비가 되었는가? <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean에서 $200 크레딧을 받아</a> Kubeflow 클러스터를 지금 시작하라. 프로덕션에서 Kubeflow를 운영하는 ML 엔지니어와 실시간 지원을 위해 <a href="https://t.me/dibi8tech">Telegram 그룹</a>에 참여하라.</p>
+<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
+<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+</ul>
+<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
+<h2 id="참고-자료-및-추가-읽기">참고 자료 및 추가 읽기<a hidden class="anchor" aria-hidden="true" href="#참고-자료-및-추가-읽기">#</a></h2>
+<ol>
+<li>Kubeflow 공식 문서 — <a href="https://www.kubeflow.org/docs/">https://www.kubeflow.org/docs/</a> (v1.10.0)</li>
+<li>Kubeflow Pipelines SDK v2 가이드 — <a href="https://www.kubeflow.org/docs/components/pipelines/v2/">https://www.kubeflow.org/docs/components/pipelines/v2/</a></li>
+<li>KServe 문서 — <a href="https://kserve.github.io/website/latest/">https://kserve.github.io/website/latest/</a></li>
+<li>Katib 하이퍼파라미터 튜닝 — <a href="https://www.kubeflow.org/docs/components/katib/">https://www.kubeflow.org/docs/components/katib/</a></li>
+<li>Kubeflow Training Operator — <a href="https://www.kubeflow.org/docs/components/training/">https://www.kubeflow.org/docs/components/training/</a></li>
+<li>Kubeflow GitHub 저장소 — <a href="https://github.com/kubeflow/kubeflow">https://github.com/kubeflow/kubeflow</a> (14,000+ stars)</li>
+<li>Kubeflow Manifests — <a href="https://github.com/kubeflow/manifests">https://github.com/kubeflow/manifests</a></li>
+<li>&ldquo;Kubeflow: Tackling ML Complexity on Kubernetes&rdquo; — KubeCon EU 2025 프레젠테이션</li>
+<li><a href="dibi8-internal-link">Kubernetes</a> — Kubernetes 기초 관련 가이드</li>
+<li><a href="dibi8-internal-link">MLflow</a> — ML 실험 추적 관련 가이드</li>
+</ol>
+<p><em>제휴 공개: 이 기사에는 DigitalOcean 제휴 링크가 포함되어 있다. 해당 링크를 통해 가입하면 추가 비용 없이 dibi8.com에 수수료가 지급된다. 우리는 자체 인프라에 사용하는 서비스만 추천한다.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Kubeflow 2026: Kubernetes에서 완전한 ML 파이프라인 실행 — 훈련부터 프로덕션 배포 가이드&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -332,15 +881,165 @@ A: 각 KFP 단계는 Kubernetes Pod로 실행된다. <code>kubectl logs &lt;pod-
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/kubeflow-ml-pipeline-kubernetes%22>https://dibi8.com/kr/resources/kubeflow-ml-pipeline-kubernetes"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/kubeflow-ml-pipeline-kubernetes%22">https://dibi8.com/kr/resources/kubeflow-ml-pipeline-kubernetes"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/>trivy-production-security-scanner-2026</a></li><li><a href=/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/>trivy-production-security-scanner-2026</a></li><li><a href=/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/ko/mcp-tools/kubeflow-ml-pipeline-kubernetes/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

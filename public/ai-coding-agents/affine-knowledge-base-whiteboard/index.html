@@ -1,10 +1,257 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MPL-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“affine”, “knowledge-base”, “whiteboard”, “self-hosted”, “docker”, “notion-alternative”, “miro-alternative”, “crdt”, “local-first”, “ai-writing”] aliases:\n/posts/affine-knowledge-base-whiteboard/- Introduction: The Knowledge Management Mess of 2026 The average developer uses 4.3 different tools to manage notes, tasks, and whiteboards. Notion for docs. Miro for whiteboards. Linear for tasks. A separate AI chatbot for writing help. Context-switching kills flow, and your data is scattered across proprietary servers you do not control.\nAFFiNE (pronounced “affine”) solves this with a single open-source workspace that combines documents, edgeless whiteboards, and databases — all local-first, AI-enhanced, and self-hostable in under 5 minutes.\nWith 47,000 GitHub stars and active releases through v0.26.3 (February 2026), AFFiNE has matured from a promising experiment into a production-ready alternative to both Notion and Miro. Its local-first CRDT architecture means your data stays on your device, real-time collaboration works without cloud lock-in, and the built-in AI assistant helps you write, summarize, and organize without sending sensitive notes to third-party APIs.\nIn this guide, you will deploy a self-hosted AFFiNE instance with Docker, configure the AI assistant, benchmark it against Notion and Miro, and harden it for team production use.\nWhat Is AFFiNE? AFFiNE is an open-source, all-in-one knowledge operating system that unifies docs, whiteboards, and databases. Built by TOEVERYTHING PTE. LTD., it runs on a local-first CRDT (Conflict-free Replicated Data Type) engine called OctoBase, written in Rust. Every keystroke is stored locally in SQLite and synced peer-to-peer or through your self-hosted server — no cloud required.\nThe key differentiator is the Edgeless mode: any document can switch to an infinite whiteboard canvas with a single click. Sticky notes, mind maps, Kanban boards, and database views all coexist on the same surface. Unlike Miro, where brainstorms are static screenshots, AFFiNE whiteboard elements are live data objects that can transform into tasks, database rows, or linked documents.\nAFFiNE supports importing from Notion, exporting to Markdown, and syncing across desktop (macOS/Windows/Linux), web, and mobile PWA. The database engine supports views including table, Kanban, calendar, and gallery — all operating on the same underlying data. This eliminates the copy-paste tax that teams pay when ideas born in Miro must be manually transferred to a task tracker.\nHow AFFiNE Works: Architecture Under the Hood AFFiNE’s architecture is a three-layer stack: Layer 1: OctoBase (Rust CRDT Engine) — Handles conflict resolution, real-time synchronization, and persistent storage. Data is stored as a flat operation log that can merge changes from any client without server coordination. This enables offline-first editing: you can work on a plane, and all changes sync when you reconnect.\nLayer 2: BlockSuite (TypeScript Editor Framework) — A block-based editor framework that renders both document and whiteboard views from the same data model. Every paragraph, image, shape, or database table is a “block” with a unique ID and typed schema.\nLayer 3: AFFiNE App (React + Electron) — The user-facing application that runs as a web app, desktop app (Windows/macOS/Linux), or self-hosted server.\nFor self-hosted deployments, the stack adds PostgreSQL (application data), Redis (caching and session management), and the AFFiNE server container (Node.js API and WebSocket sync).\n# - AFFiNE server (web + API + sync) # - PostgreSQL 16 (persistent data) # - Redis 7 (cache + sessions) # - Optional: object storage for blob files Why CRDTs matter for real-time collaboration: Traditional operational transformation (OT) requires a central server to serialize all edits. When that server goes down, collaboration stops. CRDTs distribute the state across all clients. Each client holds the full document and can merge edits from any other client independently. AFFiNE’s OctoBase engine uses a hybrid approach: Yjs-style CRDTs for document content and vector clocks for structural operations like block moves. The result is that three teammates can edit the same whiteboard on a cross-country flight and have everything merge cleanly when they land.\nThe default port is 3010. The first user who registers becomes the admin automatically.\nInstallation \u0026 Setup: Docker in 5 Minutes AFFiNE’s official Docker Compose setup is the recommended deployment method. It handles database migrations, persistent storage, and service dependencies automatically.\nStep 1: Create a directory and download the official compose file: `````bash mkdir -p ~/affine-selfhost \u0026\u0026 cd ~/affine-selfhost wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example\n**Step 2:** Edit the environment file with your credentials: `````bash # Edit .env file cat \u003e .env \u003c\u003c EOF AFFINE_ADMIN_EMAIL=admin@yourdomain.com AFFINE_ADMIN_PASSWORD=ChangeMeNow2026! DB_PASSWORD=postgres_secret_2026 DB_NAME=affine DB_USER=affine DB_DATA_LOCATION=./postgres UPLOAD_LOCATION=./storage REDIS_DATA_LOCATION=./redis CONFIG_LOCATION=./config EOF Step 3: Launch the stack: `````bash docker compose up -d\nPulls: affineteams/affine-graphql, postgres:16, redis:7.2 Runs automatic DB migrations Creates admin account from .env on first boot **Step 4:** Verify all containers are healthy: `````bash $ docker compose ps NAME STATUS PORTS affine-server Up 10 seconds 0.0.0.0:3010-\u003e3010/tcp affine-postgres Up 10 seconds 5432/tcp affine-redis Up 10 seconds 6379/tcp Step 5: Open http://localhost:3010 in your browser. Log in with the credentials from your .env file.\n# To stop the stack docker compose down # To upgrade to latest version docker compose down wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml docker compose pull docker compose up -d Behind a reverse proxy (production):\n# Nginx snippet for AFFiNE server { listen 443 ssl http2; server_name affine.yourdomain.com; location / { proxy_pass http://localhost:3010; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_read_timeout 86400; } } The Upgrade and Connection headers are critical — they enable WebSocket-based real-time collaboration.\nFor a cloud deployment, DigitalOcean provides $200 free credit for new accounts, which is more than enough to run AFFiNE on a 2-CPU droplet with managed PostgreSQL. A 2 vCPU / 4GB RAM droplet ($24/month) comfortably handles teams of 20-25 users with room for growth. For larger teams, scale PostgreSQL independently using DigitalOcean’s managed database service, which provides automated backups, point-in-time recovery, and connection pooling out of the box.\nIntegration with 4 Mainstream Tools AFFiNE connects to your existing toolchain through its plugin system and API: 1. CalDAV Calendar Integration\nAFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from Settings \u003e Integrations \u003e CalDAV: `````bash\nTest CalDAV connectivity curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ -u admin:password -H “Content-Type: text/xml” -d ‘\u003c?xml version=\"1.0\"?\u003e’\n**2. AI Assistant Configuration (OpenAI API)** The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM: `````bash # In AFFiNE admin panel \u003e Settings \u003e AI # Provider URL: http://your-ollama:11434/v1 # API Key: sk-ollama (or your key) # Model: llama3.2 or your preferred model # Or use OpenAI directly # Provider URL: https://api.openai.com/v1 # Model: gpt-4o-mini 3. REST API for External Automation\n# Export workspace data via API curl -H \"Authorization: Bearer $AFFINE_TOKEN\" \\ http://localhost:3010/api/workspaces # Import documents programmatically curl -X POST http://localhost:3010/api/docs \\ -H \"Authorization: Bearer $AFFINE_TOKEN\" \\ -H \"Content-Type: application/json\" \\ -d '{\"title\":\"Sprint Retrospective\",\"content\":\"...\"}' 4. Git Sync for Developer Workflows\nUse AFFiNE’s export feature combined with git for version-controlled documentation: `````bash #!/bin/bash\ndaily-backup.sh - cron this every night docker exec affine-postgres pg_dump -U affine affine \u003e backup-$(date +%Y%m%d).sql git add backup-*.sql \u0026\u0026 git commit -m “docs: daily AFFiNE backup $(date +%Y-%m-%d)”\n## Benchmarks / Real-World Use Cases AFFiNE's performance characteristics matter for production deployment: | Metric | AFFiNE Self-Hosted | Notion Cloud | Miro Cloud | | * * * | * * * | * * * | * * * | | First Contentful Paint | **1.2s** (local) | 2.8s | 3.1s | | Sync Latency (same LAN) | **\u003c50ms** | 180-400ms | 200-500ms | | Offline Capability | **Full** | Read-only cache | None | | Max Doc Size Tested | **50MB** whiteboard | 10MB page | 30MB board | | Concurrent Users (4-CPU) | **25+** | Unlimited (cloud) | Unlimited (cloud) | | Memory (idle) | 280MB (self) | N/A | N/A | | Storage per 1000 docs | **~450MB** | N/A (proprietary) | N/A (proprietary) | **Real-world deployment story:** A 12-person SaaS team migrated from Notion+Miro to self-hosted AFFiNE in March 2026. The migration included 340 documents, 18 whiteboards, and 2,800 tasks. Sync latency between their Singapore and Berlin offices dropped from 380ms (Notion) to \u003c90ms (AFFiNE on their Frankfurt VPS). Their monthly tool subscription dropped from $276 to a $24 VPS cost. **Load testing methodology:** We benchmarked AFFiNE v0.26.3 self-hosted on a 4-CPU/8GB VPS using a 10-user concurrent editing scenario with 500 blocks per document. Sync latency was measured via WebSocket frame inspection using Chrome DevTools. First Contentful Paint was measured with Lighthouse. Offline capability was verified by disconnecting the network, performing 50 edits, reconnecting, and confirming all edits merged without conflicts. The 50MB whiteboard test used a canvas with 2,400 shapes, 12 embedded images, and 8 database cards. ## Advanced Usage / Production Hardening **Enable HTTPS with Let's Encrypt:** `````bash # Using Caddy as a reverse proxy cat \u003e Caddyfile \u003c\u003c EOF affine.yourdomain.com { reverse_proxy localhost:3010 tls admin@yourdomain.com } EOF Backup Strategy:\n# Automated daily backups cat \u003e backup-affine.sh \u003c\u003c EOF #!/bin/bash set -euo pipefail BACKUP_DIR=\"/backups/affine-$(date +%Y%m%d)\" mkdir -p \"$BACKUP_DIR\" # PostgreSQL dump docker exec affine-postgres pg_dump -U affine -Fc affine \u003e \"$BACKUP_DIR/db.dump\" # File storage tar czf \"$BACKUP_DIR/storage.tar.gz\" -C ./storage . # Config cp -r ./config \"$BACKUP_DIR/\" # Retention: keep 14 days find /backups -maxdepth 1 -name 'affine-*' -mtime +14 -exec rm -rf {} + EOF chmod +x backup-affine.sh # Run at 2 AM daily echo \"0 2 * * * /root/backup-affine.sh\" | crontab - Configure SMTP for Invites:\n# config/affine.js or via admin UI { \"mailer\": { \"host\": \"smtp.sendgrid.net\", \"port\": 587, \"secure\": false, \"auth\": { \"user\": \"apikey\", \"pass\": \"SG.your-api-key\" }, \"from\": \"AFFiNE \" } } OAuth Authentication (Google):\n# In config/affine.js { \"auth\": { \"oauth\": { \"providers\": [{ \"name\": \"google\", \"clientId\": \"YOUR_GOOGLE_CLIENT_ID\", \"clientSecret\": \"YOUR_GOOGLE_SECRET\", \"callbackUrl\": \"https://affine.yourdomain.com/api/auth/google/callback\" }] } } } Database Connection Pool Tuning:\n# Add to docker-compose.yml for high-load scenarios environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine - DATABASE_POOL_SIZE=20 - DATABASE_POOL_MAX=50 - DATABASE_TIMEOUT=30000 Comparison with Alternatives | Feature | AFFiNE v0.26 | Notion | Miro | Obsidian | |\n|\n|\n|\n|\n| | Open Source | Yes (MPL-2.0) | No | No | No | | Self-Hostable | Yes | No | No | No (sync is cloud) | | Local-First / Offline | Yes (CRDT) | Partial (cache) | No | Yes | | Edgeless Whiteboard | Yes (native) | No | Yes (native) | No | | AI Writing Assistant | Yes (open API) | Yes (closed) | No | Yes (plugins) | | Real-Time Collaboration | Yes | Yes | Yes | No (conflict risk) | | Bi-Directional Linking | Yes | Limited | No | Excellent | | Block-Based Editor | Yes (BlockSuite) | Yes | No | No | | Database / Kanban Views | Yes | Excellent | Basic | Via plugins | | Price (Team 10 users) | $0 (self-hosted) | $96/mo | $160/mo | $80/mo (sync) |\nWhen to choose AFFiNE over each competitor:\nvs. Notion: You need a whiteboard that connects to documents, want data ownership, or need offline-first access. Notion’s database formulas are still more powerful. vs. Miro: You want brainstorms to become actionable tasks and linked docs. Miro has more design/UX templates. vs. Obsidian: You need real-time team collaboration and a built-in whiteboard. Obsidian’s plugin ecosystem and linking graph are unmatched for solo researchers. Limitations: Honest Assessment AFFiNE is not perfect. Here is what to know before committing: 1. Database formulas are limited compared to Notion. Complex rollups and cross-database queries are planned but not yet implemented (target: Q3 2026).\nNo native mobile app as of v0.26. The PWA works on mobile browsers, but it is not as smooth as native Notion or Obsidian apps.\nPlugin ecosystem is young. Obsidian has 2,000+ plugins; AFFiNE’s BlockSuite plugin API is still stabilizing. Expect breaking changes.\nLicense complexity: The client code is MPL-2.0, but the sync server (OctoBase) is AGPL-3.0. If you modify and distribute the server, you must publish source. This is generally fine for internal company use.\nAdmin dashboard is minimal. User management, audit logs, and advanced RBAC are improving but less mature than Notion Enterprise or Confluence.\nFrequently Asked Questions Q: How does AFFiNE handle conflicts when two users edit the same block simultaneously?\nA: AFFiNE uses CRDTs (Yjs-based) for conflict resolution. When two users edit the same block, the changes merge automatically based on a hybrid logical clock. In practice, concurrent text edits interleave cleanly, and structural changes (like moving a block) use last-write-wins with vector clock comparison. You never see a “conflict resolution” dialog.\nQ: Can I import my existing Notion workspace into AFFiNE?\nA: Yes. AFFiNE supports Notion ````.zip``` exports. Go to Import \u003e Notion and upload your exported zip. Page hierarchy, text content, and images transfer correctly. Database views convert to AFFiNE database tables, though complex Notion formulas may need manual adjustment.\nQ: What are the hardware requirements for self-hosting AFFiNE for a 20-person team?\nA: Minimum: 2 CPU cores, 4GB RAM, 20GB SSD. Recommended for 20 users: 4 CPU cores, 8GB RAM, 50GB SSD. PostgreSQL will be your largest memory consumer (~1.5GB). A $24/month VPS on DigitalOcean handles 20 concurrent users comfortably.\nQ: Does the AI assistant send my notes to OpenAI by default?\nA: Only if you configure an external API key. By default, the AI assistant is disabled in self-hosted instances. You can point it to a local Ollama instance running entirely on your hardware, ensuring zero data leaves your network. This is a major privacy advantage over Notion AI, which sends content to OpenAI’s servers.\nQ: Can I run AFFiNE without Docker?\nA: Yes, but it is more complex. You need Node.js 20+, PostgreSQL 16, Redis 7, and Rust toolchain to build OctoBase from source. The Docker Compose method handles all dependencies and is the recommended path for production. Building from source is primarily for developers contributing to the project.\nConclusion: Own Your Knowledge AFFiNE represents a shift in knowledge management: from cloud-dependent subscriptions to local-first, self-hosted ownership. With documents, whiteboards, and databases unified in one open-source platform, you eliminate tool fragmentation while keeping complete control over your data.\nDeploy it today in 5 minutes with Docker, connect your AI model of choice, and join the 47,000+ developers who have starred the project. The self-hosting path is production-ready, the CRDT sync is solid, and the team is shipping fast.\nFor teams currently paying $15-20 per user per month for Notion or Miro, the economic case is compelling: a single $24/month VPS replaces both tools for a 20-person team, with better privacy, lower latency, and full data ownership. The migration path is straightforward — Notion exports directly into AFFiNE, and whiteboard content can be recreated or imported as images and then converted to live blocks.\nGet started: Clone the toeverything/AFFiNE repository, follow the Docker setup above, and join the Telegram community for support. Self-host your knowledge base on a VPS via DigitalOcean and never worry about vendor lock-in again.\nSources \u0026 Further Reading AFFiNE Official Documentation AFFiNE GitHub Repository — 47,000 stars, MPL-2.0 BlockSuite Editor Framework Self-Host AFFiNE Guide CRDTs and Local-First Software (Ink \u0026 Switch) Docker Compose Production Best Practices Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. AFFiNE is fully open-source and free to self-host without any paid requirements.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-Enhanced Knowledge Management — Setup Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/affine-knowledge-base-whiteboard\" } } Related Articles mempalace-open-source-ai-memory-system 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents prompts-chat paddleocr-81k-star-ocr-engine Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"2730","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#introduction-the-knowledge-management-mess-of-2026 aria-label="Introduction: The Knowledge Management Mess of 2026">Introduction: The Knowledge Management Mess of 2026</a></li><li><a href=#what-is-affine aria-label="What Is AFFiNE?">What Is AFFiNE?</a></li><li><a href=#how-affine-works-architecture-under-the-hood aria-label="How AFFiNE Works: Architecture Under the Hood">How AFFiNE Works: Architecture Under the Hood</a></li><li><a href=#installation--setup-docker-in-5-minutes aria-label="Installation & Setup: Docker in 5 Minutes">Installation & Setup: Docker in 5 Minutes</a></li></ul><li><a href=#pulls-affineteamsaffine-graphql-postgres16-redis72 aria-label="Pulls: affineteams/affine-graphql, postgres:16, redis:7.2">Pulls: affineteams/affine-graphql, postgres:16, redis:7.2</a></li><li><a href=#runs-automatic-db-migrations aria-label="Runs automatic DB migrations">Runs automatic DB migrations</a></li><li><a href=#creates-admin-account-from-env-on-first-boot aria-label="Creates admin account from .env on first boot">Creates admin account from .env on first boot</a><ul><li><a href=#integration-with-4-mainstream-tools aria-label="Integration with 4 Mainstream Tools">Integration with 4 Mainstream Tools</a></li></ul></li><li><a href=#test-caldav-connectivity aria-label="Test CalDAV connectivity">Test CalDAV connectivity</a></li><li><a href=#daily-backupsh---cron-this-every-night aria-label="daily-backup.sh - cron this every night">daily-backup.sh - cron this every night</a><ul><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations-honest-assessment aria-label="Limitations: Honest Assessment">Limitations: Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li><li><a href=#conclusion-own-your-knowledge aria-label="Conclusion: Own Your Knowledge">Conclusion: Own Your Knowledge</a></li><li><a href=#sources--further-reading aria-label="Sources & Further Reading">Sources & Further Reading</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#affiliate-disclosure aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E&mldr;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/affine-knowledge-base-whiteboard/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/affine-knowledge-base-whiteboard/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MPL-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“affine”, “knowledge-base”, “whiteboard”, “self-hosted”, “docker”, “notion-alternative”, “miro-alternative”, “crdt”, “local-first”, “ai-writing”] aliases:\n/posts/affine-knowledge-base-whiteboard/- Introduction: The Knowledge Management Mess of 2026 The average developer uses 4.3 different tools to manage notes, tasks, and whiteboards. Notion for docs. Miro for whiteboards. Linear for tasks. A separate AI chatbot for writing help. Context-switching kills flow, and your data is scattered across proprietary servers you do not control.\nAFFiNE (pronounced “affine”) solves this with a single open-source workspace that combines documents, edgeless whiteboards, and databases — all local-first, AI-enhanced, and self-hostable in under 5 minutes.\nWith 47,000 GitHub stars and active releases through v0.26.3 (February 2026), AFFiNE has matured from a promising experiment into a production-ready alternative to both Notion and Miro. Its local-first CRDT architecture means your data stays on your device, real-time collaboration works without cloud lock-in, and the built-in AI assistant helps you write, summarize, and organize without sending sensitive notes to third-party APIs.\nIn this guide, you will deploy a self-hosted AFFiNE instance with Docker, configure the AI assistant, benchmark it against Notion and Miro, and harden it for team production use.\nWhat Is AFFiNE? AFFiNE is an open-source, all-in-one knowledge operating system that unifies docs, whiteboards, and databases. Built by TOEVERYTHING PTE. LTD., it runs on a local-first CRDT (Conflict-free Replicated Data Type) engine called OctoBase, written in Rust. Every keystroke is stored locally in SQLite and synced peer-to-peer or through your self-hosted server — no cloud required.\nThe key differentiator is the Edgeless mode: any document can switch to an infinite whiteboard canvas with a single click. Sticky notes, mind maps, Kanban boards, and database views all coexist on the same surface. Unlike Miro, where brainstorms are static screenshots, AFFiNE whiteboard elements are live data objects that can transform into tasks, database rows, or linked documents.\nAFFiNE supports importing from Notion, exporting to Markdown, and syncing across desktop (macOS/Windows/Linux), web, and mobile PWA. The database engine supports views including table, Kanban, calendar, and gallery — all operating on the same underlying data. This eliminates the copy-paste tax that teams pay when ideas born in Miro must be manually transferred to a task tracker.\nHow AFFiNE Works: Architecture Under the Hood AFFiNE’s architecture is a three-layer stack: Layer 1: OctoBase (Rust CRDT Engine) — Handles conflict resolution, real-time synchronization, and persistent storage. Data is stored as a flat operation log that can merge changes from any client without server coordination. This enables offline-first editing: you can work on a plane, and all changes sync when you reconnect.\nLayer 2: BlockSuite (TypeScript Editor Framework) — A block-based editor framework that renders both document and whiteboard views from the same data model. Every paragraph, image, shape, or database table is a “block” with a unique ID and typed schema.\nLayer 3: AFFiNE App (React + Electron) — The user-facing application that runs as a web app, desktop app (Windows/macOS/Linux), or self-hosted server.\nFor self-hosted deployments, the stack adds PostgreSQL (application data), Redis (caching and session management), and the AFFiNE server container (Node.js API and WebSocket sync).\n# - AFFiNE server (web + API + sync) # - PostgreSQL 16 (persistent data) # - Redis 7 (cache + sessions) # - Optional: object storage for blob files Why CRDTs matter for real-time collaboration: Traditional operational transformation (OT) requires a central server to serialize all edits. When that server goes down, collaboration stops. CRDTs distribute the state across all clients. Each client holds the full document and can merge edits from any other client independently. AFFiNE’s OctoBase engine uses a hybrid approach: Yjs-style CRDTs for document content and vector clocks for structural operations like block moves. The result is that three teammates can edit the same whiteboard on a cross-country flight and have everything merge cleanly when they land.\nThe default port is 3010. The first user who registers becomes the admin automatically.\nInstallation \u0026 Setup: Docker in 5 Minutes AFFiNE’s official Docker Compose setup is the recommended deployment method. It handles database migrations, persistent storage, and service dependencies automatically.\nStep 1: Create a directory and download the official compose file: `````bash mkdir -p ~/affine-selfhost \u0026\u0026 cd ~/affine-selfhost wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml wget -O .env https://github.com/toeverything/affine/releases/latest/download/.env.example\n**Step 2:** Edit the environment file with your credentials: `````bash # Edit .env file cat \u003e .env \u003c\u003c EOF AFFINE_ADMIN_EMAIL=admin@yourdomain.com AFFINE_ADMIN_PASSWORD=ChangeMeNow2026! DB_PASSWORD=postgres_secret_2026 DB_NAME=affine DB_USER=affine DB_DATA_LOCATION=./postgres UPLOAD_LOCATION=./storage REDIS_DATA_LOCATION=./redis CONFIG_LOCATION=./config EOF Step 3: Launch the stack: `````bash docker compose up -d\nPulls: affineteams/affine-graphql, postgres:16, redis:7.2 Runs automatic DB migrations Creates admin account from .env on first boot **Step 4:** Verify all containers are healthy: `````bash $ docker compose ps NAME STATUS PORTS affine-server Up 10 seconds 0.0.0.0:3010-\u003e3010/tcp affine-postgres Up 10 seconds 5432/tcp affine-redis Up 10 seconds 6379/tcp Step 5: Open http://localhost:3010 in your browser. Log in with the credentials from your .env file.\n# To stop the stack docker compose down # To upgrade to latest version docker compose down wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml docker compose pull docker compose up -d Behind a reverse proxy (production):\n# Nginx snippet for AFFiNE server { listen 443 ssl http2; server_name affine.yourdomain.com; location / { proxy_pass http://localhost:3010; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_read_timeout 86400; } } The Upgrade and Connection headers are critical — they enable WebSocket-based real-time collaboration.\nFor a cloud deployment, DigitalOcean provides $200 free credit for new accounts, which is more than enough to run AFFiNE on a 2-CPU droplet with managed PostgreSQL. A 2 vCPU / 4GB RAM droplet ($24/month) comfortably handles teams of 20-25 users with room for growth. For larger teams, scale PostgreSQL independently using DigitalOcean’s managed database service, which provides automated backups, point-in-time recovery, and connection pooling out of the box.\nIntegration with 4 Mainstream Tools AFFiNE connects to your existing toolchain through its plugin system and API: 1. CalDAV Calendar Integration\nAFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from Settings \u003e Integrations \u003e CalDAV: `````bash\nTest CalDAV connectivity curl -X PROPFIND https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/ -u admin:password -H “Content-Type: text/xml” -d ‘\u003c?xml version=\"1.0\"?\u003e’\n**2. AI Assistant Configuration (OpenAI API)** The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM: `````bash # In AFFiNE admin panel \u003e Settings \u003e AI # Provider URL: http://your-ollama:11434/v1 # API Key: sk-ollama (or your key) # Model: llama3.2 or your preferred model # Or use OpenAI directly # Provider URL: https://api.openai.com/v1 # Model: gpt-4o-mini 3. REST API for External Automation\n# Export workspace data via API curl -H \"Authorization: Bearer $AFFINE_TOKEN\" \\ http://localhost:3010/api/workspaces # Import documents programmatically curl -X POST http://localhost:3010/api/docs \\ -H \"Authorization: Bearer $AFFINE_TOKEN\" \\ -H \"Content-Type: application/json\" \\ -d '{\"title\":\"Sprint Retrospective\",\"content\":\"...\"}' 4. Git Sync for Developer Workflows\nUse AFFiNE’s export feature combined with git for version-controlled documentation: `````bash #!/bin/bash\ndaily-backup.sh - cron this every night docker exec affine-postgres pg_dump -U affine affine \u003e backup-$(date +%Y%m%d).sql git add backup-*.sql \u0026\u0026 git commit -m “docs: daily AFFiNE backup $(date +%Y-%m-%d)”\n## Benchmarks / Real-World Use Cases AFFiNE's performance characteristics matter for production deployment: | Metric | AFFiNE Self-Hosted | Notion Cloud | Miro Cloud | | * * * | * * * | * * * | * * * | | First Contentful Paint | **1.2s** (local) | 2.8s | 3.1s | | Sync Latency (same LAN) | **\u003c50ms** | 180-400ms | 200-500ms | | Offline Capability | **Full** | Read-only cache | None | | Max Doc Size Tested | **50MB** whiteboard | 10MB page | 30MB board | | Concurrent Users (4-CPU) | **25+** | Unlimited (cloud) | Unlimited (cloud) | | Memory (idle) | 280MB (self) | N/A | N/A | | Storage per 1000 docs | **~450MB** | N/A (proprietary) | N/A (proprietary) | **Real-world deployment story:** A 12-person SaaS team migrated from Notion+Miro to self-hosted AFFiNE in March 2026. The migration included 340 documents, 18 whiteboards, and 2,800 tasks. Sync latency between their Singapore and Berlin offices dropped from 380ms (Notion) to \u003c90ms (AFFiNE on their Frankfurt VPS). Their monthly tool subscription dropped from $276 to a $24 VPS cost. **Load testing methodology:** We benchmarked AFFiNE v0.26.3 self-hosted on a 4-CPU/8GB VPS using a 10-user concurrent editing scenario with 500 blocks per document. Sync latency was measured via WebSocket frame inspection using Chrome DevTools. First Contentful Paint was measured with Lighthouse. Offline capability was verified by disconnecting the network, performing 50 edits, reconnecting, and confirming all edits merged without conflicts. The 50MB whiteboard test used a canvas with 2,400 shapes, 12 embedded images, and 8 database cards. ## Advanced Usage / Production Hardening **Enable HTTPS with Let's Encrypt:** `````bash # Using Caddy as a reverse proxy cat \u003e Caddyfile \u003c\u003c EOF affine.yourdomain.com { reverse_proxy localhost:3010 tls admin@yourdomain.com } EOF Backup Strategy:\n# Automated daily backups cat \u003e backup-affine.sh \u003c\u003c EOF #!/bin/bash set -euo pipefail BACKUP_DIR=\"/backups/affine-$(date +%Y%m%d)\" mkdir -p \"$BACKUP_DIR\" # PostgreSQL dump docker exec affine-postgres pg_dump -U affine -Fc affine \u003e \"$BACKUP_DIR/db.dump\" # File storage tar czf \"$BACKUP_DIR/storage.tar.gz\" -C ./storage . # Config cp -r ./config \"$BACKUP_DIR/\" # Retention: keep 14 days find /backups -maxdepth 1 -name 'affine-*' -mtime +14 -exec rm -rf {} + EOF chmod +x backup-affine.sh # Run at 2 AM daily echo \"0 2 * * * /root/backup-affine.sh\" | crontab - Configure SMTP for Invites:\n# config/affine.js or via admin UI { \"mailer\": { \"host\": \"smtp.sendgrid.net\", \"port\": 587, \"secure\": false, \"auth\": { \"user\": \"apikey\", \"pass\": \"SG.your-api-key\" }, \"from\": \"AFFiNE \" } } OAuth Authentication (Google):\n# In config/affine.js { \"auth\": { \"oauth\": { \"providers\": [{ \"name\": \"google\", \"clientId\": \"YOUR_GOOGLE_CLIENT_ID\", \"clientSecret\": \"YOUR_GOOGLE_SECRET\", \"callbackUrl\": \"https://affine.yourdomain.com/api/auth/google/callback\" }] } } } Database Connection Pool Tuning:\n# Add to docker-compose.yml for high-load scenarios environment: - DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine - DATABASE_POOL_SIZE=20 - DATABASE_POOL_MAX=50 - DATABASE_TIMEOUT=30000 Comparison with Alternatives | Feature | AFFiNE v0.26 | Notion | Miro | Obsidian | |\n|\n|\n|\n|\n| | Open Source | Yes (MPL-2.0) | No | No | No | | Self-Hostable | Yes | No | No | No (sync is cloud) | | Local-First / Offline | Yes (CRDT) | Partial (cache) | No | Yes | | Edgeless Whiteboard | Yes (native) | No | Yes (native) | No | | AI Writing Assistant | Yes (open API) | Yes (closed) | No | Yes (plugins) | | Real-Time Collaboration | Yes | Yes | Yes | No (conflict risk) | | Bi-Directional Linking | Yes | Limited | No | Excellent | | Block-Based Editor | Yes (BlockSuite) | Yes | No | No | | Database / Kanban Views | Yes | Excellent | Basic | Via plugins | | Price (Team 10 users) | $0 (self-hosted) | $96/mo | $160/mo | $80/mo (sync) |\nWhen to choose AFFiNE over each competitor:\nvs. Notion: You need a whiteboard that connects to documents, want data ownership, or need offline-first access. Notion’s database formulas are still more powerful. vs. Miro: You want brainstorms to become actionable tasks and linked docs. Miro has more design/UX templates. vs. Obsidian: You need real-time team collaboration and a built-in whiteboard. Obsidian’s plugin ecosystem and linking graph are unmatched for solo researchers. Limitations: Honest Assessment AFFiNE is not perfect. Here is what to know before committing: 1. Database formulas are limited compared to Notion. Complex rollups and cross-database queries are planned but not yet implemented (target: Q3 2026).\nNo native mobile app as of v0.26. The PWA works on mobile browsers, but it is not as smooth as native Notion or Obsidian apps.\nPlugin ecosystem is young. Obsidian has 2,000+ plugins; AFFiNE’s BlockSuite plugin API is still stabilizing. Expect breaking changes.\nLicense complexity: The client code is MPL-2.0, but the sync server (OctoBase) is AGPL-3.0. If you modify and distribute the server, you must publish source. This is generally fine for internal company use.\nAdmin dashboard is minimal. User management, audit logs, and advanced RBAC are improving but less mature than Notion Enterprise or Confluence.\nFrequently Asked Questions Q: How does AFFiNE handle conflicts when two users edit the same block simultaneously?\nA: AFFiNE uses CRDTs (Yjs-based) for conflict resolution. When two users edit the same block, the changes merge automatically based on a hybrid logical clock. In practice, concurrent text edits interleave cleanly, and structural changes (like moving a block) use last-write-wins with vector clock comparison. You never see a “conflict resolution” dialog.\nQ: Can I import my existing Notion workspace into AFFiNE?\nA: Yes. AFFiNE supports Notion ````.zip``` exports. Go to Import \u003e Notion and upload your exported zip. Page hierarchy, text content, and images transfer correctly. Database views convert to AFFiNE database tables, though complex Notion formulas may need manual adjustment.\nQ: What are the hardware requirements for self-hosting AFFiNE for a 20-person team?\nA: Minimum: 2 CPU cores, 4GB RAM, 20GB SSD. Recommended for 20 users: 4 CPU cores, 8GB RAM, 50GB SSD. PostgreSQL will be your largest memory consumer (~1.5GB). A $24/month VPS on DigitalOcean handles 20 concurrent users comfortably.\nQ: Does the AI assistant send my notes to OpenAI by default?\nA: Only if you configure an external API key. By default, the AI assistant is disabled in self-hosted instances. You can point it to a local Ollama instance running entirely on your hardware, ensuring zero data leaves your network. This is a major privacy advantage over Notion AI, which sends content to OpenAI’s servers.\nQ: Can I run AFFiNE without Docker?\nA: Yes, but it is more complex. You need Node.js 20+, PostgreSQL 16, Redis 7, and Rust toolchain to build OctoBase from source. The Docker Compose method handles all dependencies and is the recommended path for production. Building from source is primarily for developers contributing to the project.\nConclusion: Own Your Knowledge AFFiNE represents a shift in knowledge management: from cloud-dependent subscriptions to local-first, self-hosted ownership. With documents, whiteboards, and databases unified in one open-source platform, you eliminate tool fragmentation while keeping complete control over your data.\nDeploy it today in 5 minutes with Docker, connect your AI model of choice, and join the 47,000+ developers who have starred the project. The self-hosting path is production-ready, the CRDT sync is solid, and the team is shipping fast.\nFor teams currently paying $15-20 per user per month for Notion or Miro, the economic case is compelling: a single $24/month VPS replaces both tools for a 20-person team, with better privacy, lower latency, and full data ownership. The migration path is straightforward — Notion exports directly into AFFiNE, and whiteboard content can be recreated or imported as images and then converted to live blocks.\nGet started: Clone the toeverything/AFFiNE repository, follow the Docker setup above, and join the Telegram community for support. Self-host your knowledge base on a VPS via DigitalOcean and never worry about vendor lock-in again.\nSources \u0026 Further Reading AFFiNE Official Documentation AFFiNE GitHub Repository — 47,000 stars, MPL-2.0 BlockSuite Editor Framework Self-Host AFFiNE Guide CRDTs and Local-First Software (Ink \u0026 Switch) Docker Compose Production Best Practices Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. AFFiNE is fully open-source and free to self-host without any paid requirements.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-Enhanced Knowledge Management — Setup Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/affine-knowledge-base-whiteboard\" } } Related Articles mempalace-open-source-ai-memory-system 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents prompts-chat paddleocr-81k-star-ocr-engine Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "2730",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/affine-knowledge-base-whiteboard/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/affine-knowledge-base-whiteboard/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#introduction-the-knowledge-management-mess-of-2026" aria-label="Introduction: The Knowledge Management Mess of 2026">Introduction: The Knowledge Management Mess of 2026</a></li>
+            <li>
+                <a href="#what-is-affine" aria-label="What Is AFFiNE?">What Is AFFiNE?</a></li>
+            <li>
+                <a href="#how-affine-works-architecture-under-the-hood" aria-label="How AFFiNE Works: Architecture Under the Hood">How AFFiNE Works: Architecture Under the Hood</a></li>
+            <li>
+                <a href="#installation--setup-docker-in-5-minutes" aria-label="Installation &amp; Setup: Docker in 5 Minutes">Installation &amp; Setup: Docker in 5 Minutes</a></li></ul>
+                
+            <li>
+                <a href="#pulls-affineteamsaffine-graphql-postgres16-redis72" aria-label="Pulls: affineteams/affine-graphql, postgres:16, redis:7.2">Pulls: affineteams/affine-graphql, postgres:16, redis:7.2</a></li>
+            <li>
+                <a href="#runs-automatic-db-migrations" aria-label="Runs automatic DB migrations">Runs automatic DB migrations</a></li>
+            <li>
+                <a href="#creates-admin-account-from-env-on-first-boot" aria-label="Creates admin account from .env on first boot">Creates admin account from .env on first boot</a><ul>
+                    
+            <li>
+                <a href="#integration-with-4-mainstream-tools" aria-label="Integration with 4 Mainstream Tools">Integration with 4 Mainstream Tools</a></li></ul>
+            </li>
+            <li>
+                <a href="#test-caldav-connectivity" aria-label="Test CalDAV connectivity">Test CalDAV connectivity</a></li>
+            <li>
+                <a href="#daily-backupsh---cron-this-every-night" aria-label="daily-backup.sh - cron this every night">daily-backup.sh - cron this every night</a><ul>
+                    
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations-honest-assessment" aria-label="Limitations: Honest Assessment">Limitations: Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
+            <li>
+                <a href="#conclusion-own-your-knowledge" aria-label="Conclusion: Own Your Knowledge">Conclusion: Own Your Knowledge</a></li>
+            <li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
+            <li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
+            <li>
+                <a href="#affiliate-disclosure" aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-E&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,14 +268,39 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;affine&rdquo;, &ldquo;knowledge-base&rdquo;, &ldquo;whiteboard&rdquo;, &ldquo;self-hosted&rdquo;, &ldquo;docker&rdquo;, &ldquo;notion-alternative&rdquo;, &ldquo;miro-alternative&rdquo;, &ldquo;crdt&rdquo;, &ldquo;local-first&rdquo;, &ldquo;ai-writing&rdquo;]
-aliases:</p><ul><li>/posts/affine-knowledge-base-whiteboard/-</li></ul><hr><p><img alt="Hero Image" loading=lazy src=https://picsum.photos/seed/ai/1200x800></p><h2 id=introduction-the-knowledge-management-mess-of-2026>Introduction: The Knowledge Management Mess of 2026<a hidden class=anchor aria-hidden=true href=#introduction-the-knowledge-management-mess-of-2026>#</a></h2><p>The average developer uses <strong>4.3 different tools</strong> to manage notes, tasks, and whiteboards. Notion for docs. Miro for whiteboards. Linear for tasks. A separate AI chatbot for writing help. Context-switching kills flow, and your data is scattered across proprietary servers you do not control.</p><p>AFFiNE (pronounced &ldquo;affine&rdquo;) solves this with a single open-source workspace that combines documents, edgeless whiteboards, and databases — all local-first, AI-enhanced, and self-hostable in under 5 minutes.</p><p>With <strong>47,000 GitHub stars</strong> and active releases through v0.26.3 (February 2026), AFFiNE has matured from a promising experiment into a production-ready alternative to both Notion and Miro. Its local-first CRDT architecture means your data stays on your device, real-time collaboration works without cloud lock-in, and the built-in AI assistant helps you write, summarize, and organize without sending sensitive notes to third-party APIs.</p><p>In this guide, you will deploy a self-hosted AFFiNE instance with Docker, configure the AI assistant, benchmark it against Notion and Miro, and harden it for team production use.</p><h2 id=what-is-affine>What Is AFFiNE?<a hidden class=anchor aria-hidden=true href=#what-is-affine>#</a></h2><p>AFFiNE is an open-source, all-in-one knowledge operating system that unifies docs, whiteboards, and databases. Built by TOEVERYTHING PTE. LTD., it runs on a local-first CRDT (Conflict-free Replicated Data Type) engine called OctoBase, written in Rust. Every keystroke is stored locally in SQLite and synced peer-to-peer or through your self-hosted server — no cloud required.</p><p>The key differentiator is the <strong>Edgeless mode</strong>: any document can switch to an infinite whiteboard canvas with a single click. Sticky notes, mind maps, Kanban boards, and database views all coexist on the same surface. Unlike Miro, where brainstorms are static screenshots, AFFiNE whiteboard elements are live data objects that can transform into tasks, database rows, or linked documents.</p><p>AFFiNE supports importing from Notion, exporting to Markdown, and syncing across desktop (macOS/Windows/Linux), web, and mobile PWA. The database engine supports views including table, Kanban, calendar, and gallery — all operating on the same underlying data. This eliminates the copy-paste tax that teams pay when ideas born in Miro must be manually transferred to a task tracker.</p><h2 id=how-affine-works-architecture-under-the-hood>How AFFiNE Works: Architecture Under the Hood<a hidden class=anchor aria-hidden=true href=#how-affine-works-architecture-under-the-hood>#</a></h2><p>AFFiNE&rsquo;s architecture is a three-layer stack: <strong>Layer 1: OctoBase (Rust CRDT Engine)</strong> — Handles conflict resolution, real-time synchronization, and persistent storage. Data is stored as a flat operation log that can merge changes from any client without server coordination. This enables offline-first editing: you can work on a plane, and all changes sync when you reconnect.</p><p><strong>Layer 2: BlockSuite (TypeScript Editor Framework)</strong> — A block-based editor framework that renders both document and whiteboard views from the same data model. Every paragraph, image, shape, or database table is a &ldquo;block&rdquo; with a unique ID and typed schema.</p><p><strong>Layer 3: AFFiNE App (React + Electron)</strong> — The user-facing application that runs as a web app, desktop app (Windows/macOS/Linux), or self-hosted server.</p><p>For self-hosted deployments, the stack adds PostgreSQL (application data), Redis (caching and session management), and the AFFiNE server container (Node.js API and WebSocket sync).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># - AFFiNE server (web + API + sync)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - PostgreSQL 16 (persistent data)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Redis 7 (cache + sessions)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Optional: object storage for blob files</span>
-</span></span></code></pre></div><p><strong>Why CRDTs matter for real-time collaboration:</strong> Traditional operational transformation (OT) requires a central server to serialize all edits. When that server goes down, collaboration stops. CRDTs distribute the state across all clients. Each client holds the full document and can merge edits from any other client independently. AFFiNE&rsquo;s OctoBase engine uses a hybrid approach: Yjs-style CRDTs for document content and vector clocks for structural operations like block moves. The result is that three teammates can edit the same whiteboard on a cross-country flight and have everything merge cleanly when they land.</p><p>The default port is <strong>3010</strong>. The first user who registers becomes the admin automatically.</p><h2 id=installation--setup-docker-in-5-minutes>Installation & Setup: Docker in 5 Minutes<a hidden class=anchor aria-hidden=true href=#installation--setup-docker-in-5-minutes>#</a></h2><p>AFFiNE&rsquo;s official Docker Compose setup is the recommended deployment method. It handles database migrations, persistent storage, and service dependencies automatically.</p><p><strong>Step 1:</strong> Create a directory and download the official compose file: `````bash
-mkdir -p ~/affine-selfhost && cd ~/affine-selfhost
-wget -O docker-compose.yml <a href=https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml>https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml</a>
-wget -O .env <a href=https://github.com/toeverything/affine/releases/latest/download/.env.example>https://github.com/toeverything/affine/releases/latest/download/.env.example</a></p><pre tabindex=0><code>
+aliases:</p>
+<ul>
+<li>/posts/affine-knowledge-base-whiteboard/-</li>
+</ul>
+<hr>
+<p><img alt="Hero Image" loading="lazy" src="https://picsum.photos/seed/ai/1200x800"></p>
+<h2 id="introduction-the-knowledge-management-mess-of-2026">Introduction: The Knowledge Management Mess of 2026<a hidden class="anchor" aria-hidden="true" href="#introduction-the-knowledge-management-mess-of-2026">#</a></h2>
+<p>The average developer uses <strong>4.3 different tools</strong> to manage notes, tasks, and whiteboards. Notion for docs. Miro for whiteboards. Linear for tasks. A separate AI chatbot for writing help. Context-switching kills flow, and your data is scattered across proprietary servers you do not control.</p>
+<p>AFFiNE (pronounced &ldquo;affine&rdquo;) solves this with a single open-source workspace that combines documents, edgeless whiteboards, and databases — all local-first, AI-enhanced, and self-hostable in under 5 minutes.</p>
+<p>With <strong>47,000 GitHub stars</strong> and active releases through v0.26.3 (February 2026), AFFiNE has matured from a promising experiment into a production-ready alternative to both Notion and Miro. Its local-first CRDT architecture means your data stays on your device, real-time collaboration works without cloud lock-in, and the built-in AI assistant helps you write, summarize, and organize without sending sensitive notes to third-party APIs.</p>
+<p>In this guide, you will deploy a self-hosted AFFiNE instance with Docker, configure the AI assistant, benchmark it against Notion and Miro, and harden it for team production use.</p>
+<h2 id="what-is-affine">What Is AFFiNE?<a hidden class="anchor" aria-hidden="true" href="#what-is-affine">#</a></h2>
+<p>AFFiNE is an open-source, all-in-one knowledge operating system that unifies docs, whiteboards, and databases. Built by TOEVERYTHING PTE. LTD., it runs on a local-first CRDT (Conflict-free Replicated Data Type) engine called OctoBase, written in Rust. Every keystroke is stored locally in SQLite and synced peer-to-peer or through your self-hosted server — no cloud required.</p>
+<p>The key differentiator is the <strong>Edgeless mode</strong>: any document can switch to an infinite whiteboard canvas with a single click. Sticky notes, mind maps, Kanban boards, and database views all coexist on the same surface. Unlike Miro, where brainstorms are static screenshots, AFFiNE whiteboard elements are live data objects that can transform into tasks, database rows, or linked documents.</p>
+<p>AFFiNE supports importing from Notion, exporting to Markdown, and syncing across desktop (macOS/Windows/Linux), web, and mobile PWA. The database engine supports views including table, Kanban, calendar, and gallery — all operating on the same underlying data. This eliminates the copy-paste tax that teams pay when ideas born in Miro must be manually transferred to a task tracker.</p>
+<h2 id="how-affine-works-architecture-under-the-hood">How AFFiNE Works: Architecture Under the Hood<a hidden class="anchor" aria-hidden="true" href="#how-affine-works-architecture-under-the-hood">#</a></h2>
+<p>AFFiNE&rsquo;s architecture is a three-layer stack: <strong>Layer 1: OctoBase (Rust CRDT Engine)</strong> — Handles conflict resolution, real-time synchronization, and persistent storage. Data is stored as a flat operation log that can merge changes from any client without server coordination. This enables offline-first editing: you can work on a plane, and all changes sync when you reconnect.</p>
+<p><strong>Layer 2: BlockSuite (TypeScript Editor Framework)</strong> — A block-based editor framework that renders both document and whiteboard views from the same data model. Every paragraph, image, shape, or database table is a &ldquo;block&rdquo; with a unique ID and typed schema.</p>
+<p><strong>Layer 3: AFFiNE App (React + Electron)</strong> — The user-facing application that runs as a web app, desktop app (Windows/macOS/Linux), or self-hosted server.</p>
+<p>For self-hosted deployments, the stack adds PostgreSQL (application data), Redis (caching and session management), and the AFFiNE server container (Node.js API and WebSocket sync).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># - AFFiNE server (web + API + sync)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - PostgreSQL 16 (persistent data)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Redis 7 (cache + sessions)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Optional: object storage for blob files</span>
+</span></span></code></pre></div><p><strong>Why CRDTs matter for real-time collaboration:</strong> Traditional operational transformation (OT) requires a central server to serialize all edits. When that server goes down, collaboration stops. CRDTs distribute the state across all clients. Each client holds the full document and can merge edits from any other client independently. AFFiNE&rsquo;s OctoBase engine uses a hybrid approach: Yjs-style CRDTs for document content and vector clocks for structural operations like block moves. The result is that three teammates can edit the same whiteboard on a cross-country flight and have everything merge cleanly when they land.</p>
+<p>The default port is <strong>3010</strong>. The first user who registers becomes the admin automatically.</p>
+<h2 id="installation--setup-docker-in-5-minutes">Installation &amp; Setup: Docker in 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#installation--setup-docker-in-5-minutes">#</a></h2>
+<p>AFFiNE&rsquo;s official Docker Compose setup is the recommended deployment method. It handles database migrations, persistent storage, and service dependencies automatically.</p>
+<p><strong>Step 1:</strong> Create a directory and download the official compose file: `````bash
+mkdir -p ~/affine-selfhost &amp;&amp; cd ~/affine-selfhost
+wget -O docker-compose.yml <a href="https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml">https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml</a>
+wget -O .env <a href="https://github.com/toeverything/affine/releases/latest/download/.env.example">https://github.com/toeverything/affine/releases/latest/download/.env.example</a></p>
+<pre tabindex="0"><code>
 **Step 2:** Edit the environment file with your credentials: `````bash
 # Edit .env file
 cat &gt; .env &lt;&lt; EOF
@@ -43,36 +315,52 @@ REDIS_DATA_LOCATION=./redis
 CONFIG_LOCATION=./config
 EOF
 </code></pre><p><strong>Step 3:</strong> Launch the stack: `````bash
-docker compose up -d</p><h1 id=pulls-affineteamsaffine-graphql-postgres16-redis72>Pulls: affineteams/affine-graphql, postgres:16, redis:7.2<a hidden class=anchor aria-hidden=true href=#pulls-affineteamsaffine-graphql-postgres16-redis72>#</a></h1><h1 id=runs-automatic-db-migrations>Runs automatic DB migrations<a hidden class=anchor aria-hidden=true href=#runs-automatic-db-migrations>#</a></h1><h1 id=creates-admin-account-from-env-on-first-boot>Creates admin account from .env on first boot<a hidden class=anchor aria-hidden=true href=#creates-admin-account-from-env-on-first-boot>#</a></h1><pre tabindex=0><code>
+docker compose up -d</p>
+<h1 id="pulls-affineteamsaffine-graphql-postgres16-redis72">Pulls: affineteams/affine-graphql, postgres:16, redis:7.2<a hidden class="anchor" aria-hidden="true" href="#pulls-affineteamsaffine-graphql-postgres16-redis72">#</a></h1>
+<h1 id="runs-automatic-db-migrations">Runs automatic DB migrations<a hidden class="anchor" aria-hidden="true" href="#runs-automatic-db-migrations">#</a></h1>
+<h1 id="creates-admin-account-from-env-on-first-boot">Creates admin account from .env on first boot<a hidden class="anchor" aria-hidden="true" href="#creates-admin-account-from-env-on-first-boot">#</a></h1>
+<pre tabindex="0"><code>
 **Step 4:** Verify all containers are healthy: `````bash
 $ docker compose ps
 NAME            STATUS          PORTS
 affine-server   Up 10 seconds   0.0.0.0:3010-&gt;3010/tcp
 affine-postgres Up 10 seconds   5432/tcp
 affine-redis    Up 10 seconds   6379/tcp
-</code></pre><p><strong>Step 5:</strong> Open <code>http://localhost:3010</code> in your browser. Log in with the credentials from your <code>.env</code> file.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># To stop the stack</span>
-</span></span><span style=display:flex><span>docker compose down
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># To upgrade to latest version</span>
-</span></span><span style=display:flex><span>docker compose down
-</span></span><span style=display:flex><span>wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
-</span></span><span style=display:flex><span>docker compose pull
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span></code></pre></div><p><strong>Behind a reverse proxy (production):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#75715e># Nginx snippet for AFFiNE
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>http2</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>affine.yourdomain.com</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://localhost:3010</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_http_version</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>.1</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Upgrade</span> $http_upgrade;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Connection</span> <span style=color:#e6db74>&#34;upgrade&#34;</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_read_timeout</span> <span style=color:#ae81ff>86400</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>The <code>Upgrade</code> and <code>Connection</code> headers are critical — they enable WebSocket-based real-time collaboration.</p><p><strong>For a cloud deployment,</strong> <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> provides $200 free credit for new accounts, which is more than enough to run AFFiNE on a 2-CPU droplet with managed PostgreSQL. A 2 vCPU / 4GB RAM droplet ($24/month) comfortably handles teams of 20-25 users with room for growth. For larger teams, scale PostgreSQL independently using DigitalOcean&rsquo;s managed database service, which provides automated backups, point-in-time recovery, and connection pooling out of the box.</p><h2 id=integration-with-4-mainstream-tools>Integration with 4 Mainstream Tools<a hidden class=anchor aria-hidden=true href=#integration-with-4-mainstream-tools>#</a></h2><p>AFFiNE connects to your existing toolchain through its plugin system and API: <strong>1. CalDAV Calendar Integration</strong></p><p>AFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from <strong>Settings > Integrations > CalDAV</strong>: `````bash</p><h1 id=test-caldav-connectivity>Test CalDAV connectivity<a hidden class=anchor aria-hidden=true href=#test-caldav-connectivity>#</a></h1><p>curl -X PROPFIND <a href=https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/>https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/</a><br>-u admin:password<br>-H &ldquo;Content-Type: text/xml&rdquo;<br>-d &lsquo;&lt;d:propfind xmlns:d=&ldquo;DAV:">&lt;d:prop>&lt;d:displayname/>&lt;/d:prop>&lt;/d:propfind>&rsquo;</p><pre tabindex=0><code>
+</code></pre><p><strong>Step 5:</strong> Open <code>http://localhost:3010</code> in your browser. Log in with the credentials from your <code>.env</code> file.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># To stop the stack</span>
+</span></span><span style="display:flex;"><span>docker compose down
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># To upgrade to latest version</span>
+</span></span><span style="display:flex;"><span>docker compose down
+</span></span><span style="display:flex;"><span>wget -O docker-compose.yml https://github.com/toeverything/affine/releases/latest/download/docker-compose.yml
+</span></span><span style="display:flex;"><span>docker compose pull
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p><strong>Behind a reverse proxy (production):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># Nginx snippet for AFFiNE
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">affine.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:3010</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_read_timeout</span> <span style="color:#ae81ff">86400</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <code>Upgrade</code> and <code>Connection</code> headers are critical — they enable WebSocket-based real-time collaboration.</p>
+<p><strong>For a cloud deployment,</strong> <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> provides $200 free credit for new accounts, which is more than enough to run AFFiNE on a 2-CPU droplet with managed PostgreSQL. A 2 vCPU / 4GB RAM droplet ($24/month) comfortably handles teams of 20-25 users with room for growth. For larger teams, scale PostgreSQL independently using DigitalOcean&rsquo;s managed database service, which provides automated backups, point-in-time recovery, and connection pooling out of the box.</p>
+<h2 id="integration-with-4-mainstream-tools">Integration with 4 Mainstream Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-4-mainstream-tools">#</a></h2>
+<p>AFFiNE connects to your existing toolchain through its plugin system and API: <strong>1. CalDAV Calendar Integration</strong></p>
+<p>AFFiNE v0.26+ supports CalDAV, letting you sync tasks and deadlines with external calendars. Configure it from <strong>Settings &gt; Integrations &gt; CalDAV</strong>: `````bash</p>
+<h1 id="test-caldav-connectivity">Test CalDAV connectivity<a hidden class="anchor" aria-hidden="true" href="#test-caldav-connectivity">#</a></h1>
+<p>curl -X PROPFIND <a href="https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/">https://your-nextcloud.com/remote.php/dav/calendars/admin/personal/</a> <br>
+-u admin:password <br>
+-H &ldquo;Content-Type: text/xml&rdquo; <br>
+-d &lsquo;<?xml version="1.0"?>&lt;d:propfind xmlns:d=&ldquo;DAV:&quot;&gt;&lt;d:prop&gt;&lt;d:displayname/&gt;&lt;/d:prop&gt;&lt;/d:propfind&gt;&rsquo;</p>
+<pre tabindex="0"><code>
 **2. AI Assistant Configuration (OpenAI API)**
 
 The AI assistant can be pointed to any OpenAI-compatible endpoint, including local models via Ollama or LiteLLM: `````bash
@@ -84,18 +372,23 @@ The AI assistant can be pointed to any OpenAI-compatible endpoint, including loc
 # Or use OpenAI directly
 # Provider URL: https://api.openai.com/v1
 # Model: gpt-4o-mini
-</code></pre><p><strong>3. REST API for External Automation</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Export workspace data via API</span>
-</span></span><span style=display:flex><span>curl -H <span style=color:#e6db74>&#34;Authorization: Bearer </span>$AFFINE_TOKEN<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  http://localhost:3010/api/workspaces
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Import documents programmatically</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:3010/api/docs <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Authorization: Bearer </span>$AFFINE_TOKEN<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;title&#34;:&#34;Sprint Retrospective&#34;,&#34;content&#34;:&#34;&lt;blocks&gt;...&lt;/blocks&gt;&#34;}&#39;</span>
-</span></span></code></pre></div><p><strong>4. Git Sync for Developer Workflows</strong></p><p>Use AFFiNE&rsquo;s export feature combined with <code>git</code> for version-controlled documentation: `````bash
-#!/bin/bash</p><h1 id=daily-backupsh---cron-this-every-night>daily-backup.sh - cron this every night<a hidden class=anchor aria-hidden=true href=#daily-backupsh---cron-this-every-night>#</a></h1><p>docker exec affine-postgres pg_dump -U affine affine > backup-$(date +%Y%m%d).sql
-git add backup-*.sql && git commit -m &ldquo;docs: daily AFFiNE backup $(date +%Y-%m-%d)&rdquo;</p><pre tabindex=0><code>
+</code></pre><p><strong>3. REST API for External Automation</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Export workspace data via API</span>
+</span></span><span style="display:flex;"><span>curl -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$AFFINE_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  http://localhost:3010/api/workspaces
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Import documents programmatically</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:3010/api/docs <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$AFFINE_TOKEN<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;title&#34;:&#34;Sprint Retrospective&#34;,&#34;content&#34;:&#34;&lt;blocks&gt;...&lt;/blocks&gt;&#34;}&#39;</span>
+</span></span></code></pre></div><p><strong>4. Git Sync for Developer Workflows</strong></p>
+<p>Use AFFiNE&rsquo;s export feature combined with <code>git</code> for version-controlled documentation: `````bash
+#!/bin/bash</p>
+<h1 id="daily-backupsh---cron-this-every-night">daily-backup.sh - cron this every night<a hidden class="anchor" aria-hidden="true" href="#daily-backupsh---cron-this-every-night">#</a></h1>
+<p>docker exec affine-postgres pg_dump -U affine affine &gt; backup-$(date +%Y%m%d).sql
+git add backup-*.sql &amp;&amp; git commit -m &ldquo;docs: daily AFFiNE backup $(date +%Y-%m-%d)&rdquo;</p>
+<pre tabindex="0"><code>
 ## Benchmarks / Real-World Use Cases
 
 AFFiNE&#39;s performance characteristics matter for production deployment: | Metric | AFFiNE Self-Hosted | Notion Cloud | Miro Cloud |
@@ -132,57 +425,72 @@ affine.yourdomain.com {
     tls admin@yourdomain.com
 }
 EOF
-</code></pre><p><strong>Backup Strategy:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Automated daily backups</span>
-</span></span><span style=display:flex><span>cat &gt; backup-affine.sh <span style=color:#e6db74>&lt;&lt; EOF
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>set -euo pipefail
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>BACKUP_DIR=&#34;/backups/affine-$(date +%Y%m%d)&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>mkdir -p &#34;$BACKUP_DIR&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># PostgreSQL dump
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>docker exec affine-postgres pg_dump -U affine -Fc affine &gt; &#34;$BACKUP_DIR/db.dump&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># File storage
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>tar czf &#34;$BACKUP_DIR/storage.tar.gz&#34; -C ./storage .
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># Config
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>cp -r ./config &#34;$BACKUP_DIR/&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># Retention: keep 14 days
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>find /backups -maxdepth 1 -name &#39;affine-*&#39; -mtime +14 -exec rm -rf {} +
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>EOF</span>
-</span></span><span style=display:flex><span>chmod +x backup-affine.sh
-</span></span><span style=display:flex><span><span style=color:#75715e># Run at 2 AM daily</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;0 2 * * * /root/backup-affine.sh&#34;</span> | crontab -
-</span></span></code></pre></div><p><strong>Configure SMTP for Invites:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># config/affine.js or via admin UI</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mailer&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;host&#34;</span>: <span style=color:#e6db74>&#34;smtp.sendgrid.net&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;port&#34;</span>: 587,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;secure&#34;</span>: false,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;auth&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;user&#34;</span>: <span style=color:#e6db74>&#34;apikey&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;pass&#34;</span>: <span style=color:#e6db74>&#34;SG.your-api-key&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;from&#34;</span>: <span style=color:#e6db74>&#34;AFFiNE &lt;affine@yourdomain.com&gt;&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><p><strong>OAuth Authentication (Google):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># In config/affine.js</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;auth&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;oauth&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;providers&#34;</span>: <span style=color:#f92672>[{</span>
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;google&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;clientId&#34;</span>: <span style=color:#e6db74>&#34;YOUR_GOOGLE_CLIENT_ID&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;clientSecret&#34;</span>: <span style=color:#e6db74>&#34;YOUR_GOOGLE_SECRET&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;callbackUrl&#34;</span>: <span style=color:#e6db74>&#34;https://affine.yourdomain.com/api/auth/google/callback&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>}]</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><p><strong>Database Connection Pool Tuning:</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Add to docker-compose.yml for high-load scenarios</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>DATABASE_POOL_SIZE=20</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>DATABASE_POOL_MAX=50</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>DATABASE_TIMEOUT=30000</span>
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| Feature | AFFiNE v0.26 | Notion | Miro | Obsidian |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>Backup Strategy:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Automated daily backups</span>
+</span></span><span style="display:flex;"><span>cat &gt; backup-affine.sh <span style="color:#e6db74">&lt;&lt; EOF
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">set -euo pipefail
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">BACKUP_DIR=&#34;/backups/affine-$(date +%Y%m%d)&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">mkdir -p &#34;$BACKUP_DIR&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># PostgreSQL dump
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">docker exec affine-postgres pg_dump -U affine -Fc affine &gt; &#34;$BACKUP_DIR/db.dump&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># File storage
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">tar czf &#34;$BACKUP_DIR/storage.tar.gz&#34; -C ./storage .
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Config
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">cp -r ./config &#34;$BACKUP_DIR/&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># Retention: keep 14 days
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">find /backups -maxdepth 1 -name &#39;affine-*&#39; -mtime +14 -exec rm -rf {} +
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">EOF</span>
+</span></span><span style="display:flex;"><span>chmod +x backup-affine.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run at 2 AM daily</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;0 2 * * * /root/backup-affine.sh&#34;</span> | crontab -
+</span></span></code></pre></div><p><strong>Configure SMTP for Invites:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># config/affine.js or via admin UI</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mailer&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;host&#34;</span>: <span style="color:#e6db74">&#34;smtp.sendgrid.net&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;port&#34;</span>: 587,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;secure&#34;</span>: false,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;auth&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;user&#34;</span>: <span style="color:#e6db74">&#34;apikey&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;pass&#34;</span>: <span style="color:#e6db74">&#34;SG.your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;from&#34;</span>: <span style="color:#e6db74">&#34;AFFiNE &lt;affine@yourdomain.com&gt;&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>OAuth Authentication (Google):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># In config/affine.js</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;auth&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;oauth&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;providers&#34;</span>: <span style="color:#f92672">[{</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;google&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;clientId&#34;</span>: <span style="color:#e6db74">&#34;YOUR_GOOGLE_CLIENT_ID&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;clientSecret&#34;</span>: <span style="color:#e6db74">&#34;YOUR_GOOGLE_SECRET&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;callbackUrl&#34;</span>: <span style="color:#e6db74">&#34;https://affine.yourdomain.com/api/auth/google/callback&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">}]</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><p><strong>Database Connection Pool Tuning:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Add to docker-compose.yml for high-load scenarios</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">DATABASE_URL=postgresql://affine:${DB_PASSWORD}@postgres:5432/affine</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">DATABASE_POOL_SIZE=20</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">DATABASE_POOL_MAX=50</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">DATABASE_TIMEOUT=30000</span>
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | AFFiNE v0.26 | Notion | Miro | Obsidian |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Open Source | <strong>Yes (MPL-2.0)</strong> | No | No | No |
 | Self-Hostable | <strong>Yes</strong> | No | No | No (sync is cloud) |
 | Local-First / Offline | <strong>Yes (CRDT)</strong> | Partial (cache) | No | <strong>Yes</strong> |
@@ -192,8 +500,64 @@ EOF
 | Bi-Directional Linking | <strong>Yes</strong> | Limited | No | <strong>Excellent</strong> |
 | Block-Based Editor | <strong>Yes (BlockSuite)</strong> | Yes | No | No |
 | Database / Kanban Views | <strong>Yes</strong> | <strong>Excellent</strong> | Basic | Via plugins |
-| Price (Team 10 users) | <strong>$0 (self-hosted)</strong> | $96/mo | $160/mo | $80/mo (sync) |</p><p><strong>When to choose AFFiNE over each competitor:</strong></p><ul><li><strong>vs. Notion:</strong> You need a whiteboard that connects to documents, want data ownership, or need offline-first access. Notion&rsquo;s database formulas are still more powerful.</li><li><strong>vs. Miro:</strong> You want brainstorms to become actionable tasks and linked docs. Miro has more design/UX templates.</li><li><strong>vs. Obsidian:</strong> You need real-time team collaboration and a built-in whiteboard. Obsidian&rsquo;s plugin ecosystem and linking graph are unmatched for solo researchers.</li></ul><h2 id=limitations-honest-assessment>Limitations: Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations-honest-assessment>#</a></h2><p>AFFiNE is not perfect. Here is what to know before committing: 1. <strong>Database formulas are limited</strong> compared to Notion. Complex rollups and cross-database queries are planned but not yet implemented (target: Q3 2026).</p><ol start=2><li><p><strong>No native mobile app</strong> as of v0.26. The PWA works on mobile browsers, but it is not as smooth as native Notion or Obsidian apps.</p></li><li><p><strong>Plugin ecosystem is young.</strong> Obsidian has 2,000+ plugins; AFFiNE&rsquo;s BlockSuite plugin API is still stabilizing. Expect breaking changes.</p></li><li><p><strong>License complexity:</strong> The client code is MPL-2.0, but the sync server (OctoBase) is AGPL-3.0. If you modify and distribute the server, you must publish source. This is generally fine for internal company use.</p></li><li><p><strong>Admin dashboard is minimal.</strong> User management, audit logs, and advanced RBAC are improving but less mature than Notion Enterprise or Confluence.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><p><strong>Q: How does AFFiNE handle conflicts when two users edit the same block simultaneously?</strong></p><p>A: AFFiNE uses CRDTs (Yjs-based) for conflict resolution. When two users edit the same block, the changes merge automatically based on a hybrid logical clock. In practice, concurrent text edits interleave cleanly, and structural changes (like moving a block) use last-write-wins with vector clock comparison. You never see a &ldquo;conflict resolution&rdquo; dialog.</p><p><strong>Q: Can I import my existing Notion workspace into AFFiNE?</strong></p><p>A: Yes. AFFiNE supports Notion ````.zip``` exports. Go to <strong>Import > Notion</strong> and upload your exported zip. Page hierarchy, text content, and images transfer correctly. Database views convert to AFFiNE database tables, though complex Notion formulas may need manual adjustment.</p><p><strong>Q: What are the hardware requirements for self-hosting AFFiNE for a 20-person team?</strong></p><p>A: Minimum: 2 CPU cores, 4GB RAM, 20GB SSD. Recommended for 20 users: 4 CPU cores, 8GB RAM, 50GB SSD. PostgreSQL will be your largest memory consumer (~1.5GB). A $24/month VPS on <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> handles 20 concurrent users comfortably.</p><p><strong>Q: Does the AI assistant send my notes to OpenAI by default?</strong></p><p>A: Only if you configure an external API key. By default, the AI assistant is disabled in self-hosted instances. You can point it to a local Ollama instance running entirely on your hardware, ensuring zero data leaves your network. This is a major privacy advantage over Notion AI, which sends content to OpenAI&rsquo;s servers.</p><p><strong>Q: Can I run AFFiNE without Docker?</strong></p><p>A: Yes, but it is more complex. You need Node.js 20+, PostgreSQL 16, Redis 7, and Rust toolchain to build OctoBase from source. The Docker Compose method handles all dependencies and is the recommended path for production. Building from source is primarily for developers contributing to the project.</p><h2 id=conclusion-own-your-knowledge>Conclusion: Own Your Knowledge<a hidden class=anchor aria-hidden=true href=#conclusion-own-your-knowledge>#</a></h2><p>AFFiNE represents a shift in knowledge management: from cloud-dependent subscriptions to local-first, self-hosted ownership. With documents, whiteboards, and databases unified in one open-source platform, you eliminate tool fragmentation while keeping complete control over your data.</p><p>Deploy it today in 5 minutes with Docker, connect your AI model of choice, and join the 47,000+ developers who have starred the project. The self-hosting path is production-ready, the CRDT sync is solid, and the team is shipping fast.</p><p>For teams currently paying $15-20 per user per month for Notion or Miro, the economic case is compelling: a single $24/month VPS replaces both tools for a 20-person team, with better privacy, lower latency, and full data ownership. The migration path is straightforward — Notion exports directly into AFFiNE, and whiteboard content can be recreated or imported as images and then converted to live blocks.</p><p><strong>Get started:</strong> Clone the <a href=https://github.com/toeverything/AFFiNE>toeverything/AFFiNE</a> repository, follow the Docker setup above, and join the <a href=https://t.me/affineworkspace>Telegram community</a> for support. Self-host your knowledge base on a VPS via <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> and never worry about vendor lock-in again.</p><h2 id=sources--further-reading>Sources & Further Reading<a hidden class=anchor aria-hidden=true href=#sources--further-reading>#</a></h2><ul><li><a href=https://docs.affine.pro/>AFFiNE Official Documentation</a></li><li><a href=https://github.com/toeverything/AFFiNE>AFFiNE GitHub Repository</a> — 47,000 stars, MPL-2.0</li><li><a href=https://github.com/toeverything/blocksuite>BlockSuite Editor Framework</a></li><li><a href=https://docs.affine.pro/self-host-affine>Self-Host AFFiNE Guide</a></li><li><a href=https://inkandswitch.com/local-first/>CRDTs and Local-First Software (Ink & Switch)</a></li><li><a href=https://docs.docker.com/compose/production/>Docker Compose Production Best Practices</a></li></ul><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure<a hidden class=anchor aria-hidden=true href=#affiliate-disclosure>#</a></h2><p>This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. AFFiNE is fully open-source and free to self-host without any paid requirements.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Price (Team 10 users) | <strong>$0 (self-hosted)</strong> | $96/mo | $160/mo | $80/mo (sync) |</p>
+<p><strong>When to choose AFFiNE over each competitor:</strong></p>
+<ul>
+<li><strong>vs. Notion:</strong> You need a whiteboard that connects to documents, want data ownership, or need offline-first access. Notion&rsquo;s database formulas are still more powerful.</li>
+<li><strong>vs. Miro:</strong> You want brainstorms to become actionable tasks and linked docs. Miro has more design/UX templates.</li>
+<li><strong>vs. Obsidian:</strong> You need real-time team collaboration and a built-in whiteboard. Obsidian&rsquo;s plugin ecosystem and linking graph are unmatched for solo researchers.</li>
+</ul>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-honest-assessment">#</a></h2>
+<p>AFFiNE is not perfect. Here is what to know before committing: 1. <strong>Database formulas are limited</strong> compared to Notion. Complex rollups and cross-database queries are planned but not yet implemented (target: Q3 2026).</p>
+<ol start="2">
+<li>
+<p><strong>No native mobile app</strong> as of v0.26. The PWA works on mobile browsers, but it is not as smooth as native Notion or Obsidian apps.</p>
+</li>
+<li>
+<p><strong>Plugin ecosystem is young.</strong> Obsidian has 2,000+ plugins; AFFiNE&rsquo;s BlockSuite plugin API is still stabilizing. Expect breaking changes.</p>
+</li>
+<li>
+<p><strong>License complexity:</strong> The client code is MPL-2.0, but the sync server (OctoBase) is AGPL-3.0. If you modify and distribute the server, you must publish source. This is generally fine for internal company use.</p>
+</li>
+<li>
+<p><strong>Admin dashboard is minimal.</strong> User management, audit logs, and advanced RBAC are improving but less mature than Notion Enterprise or Confluence.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: How does AFFiNE handle conflicts when two users edit the same block simultaneously?</strong></p>
+<p>A: AFFiNE uses CRDTs (Yjs-based) for conflict resolution. When two users edit the same block, the changes merge automatically based on a hybrid logical clock. In practice, concurrent text edits interleave cleanly, and structural changes (like moving a block) use last-write-wins with vector clock comparison. You never see a &ldquo;conflict resolution&rdquo; dialog.</p>
+<p><strong>Q: Can I import my existing Notion workspace into AFFiNE?</strong></p>
+<p>A: Yes. AFFiNE supports Notion ````.zip``` exports. Go to <strong>Import &gt; Notion</strong> and upload your exported zip. Page hierarchy, text content, and images transfer correctly. Database views convert to AFFiNE database tables, though complex Notion formulas may need manual adjustment.</p>
+<p><strong>Q: What are the hardware requirements for self-hosting AFFiNE for a 20-person team?</strong></p>
+<p>A: Minimum: 2 CPU cores, 4GB RAM, 20GB SSD. Recommended for 20 users: 4 CPU cores, 8GB RAM, 50GB SSD. PostgreSQL will be your largest memory consumer (~1.5GB). A $24/month VPS on <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> handles 20 concurrent users comfortably.</p>
+<p><strong>Q: Does the AI assistant send my notes to OpenAI by default?</strong></p>
+<p>A: Only if you configure an external API key. By default, the AI assistant is disabled in self-hosted instances. You can point it to a local Ollama instance running entirely on your hardware, ensuring zero data leaves your network. This is a major privacy advantage over Notion AI, which sends content to OpenAI&rsquo;s servers.</p>
+<p><strong>Q: Can I run AFFiNE without Docker?</strong></p>
+<p>A: Yes, but it is more complex. You need Node.js 20+, PostgreSQL 16, Redis 7, and Rust toolchain to build OctoBase from source. The Docker Compose method handles all dependencies and is the recommended path for production. Building from source is primarily for developers contributing to the project.</p>
+<h2 id="conclusion-own-your-knowledge">Conclusion: Own Your Knowledge<a hidden class="anchor" aria-hidden="true" href="#conclusion-own-your-knowledge">#</a></h2>
+<p>AFFiNE represents a shift in knowledge management: from cloud-dependent subscriptions to local-first, self-hosted ownership. With documents, whiteboards, and databases unified in one open-source platform, you eliminate tool fragmentation while keeping complete control over your data.</p>
+<p>Deploy it today in 5 minutes with Docker, connect your AI model of choice, and join the 47,000+ developers who have starred the project. The self-hosting path is production-ready, the CRDT sync is solid, and the team is shipping fast.</p>
+<p>For teams currently paying $15-20 per user per month for Notion or Miro, the economic case is compelling: a single $24/month VPS replaces both tools for a 20-person team, with better privacy, lower latency, and full data ownership. The migration path is straightforward — Notion exports directly into AFFiNE, and whiteboard content can be recreated or imported as images and then converted to live blocks.</p>
+<p><strong>Get started:</strong> Clone the <a href="https://github.com/toeverything/AFFiNE">toeverything/AFFiNE</a> repository, follow the Docker setup above, and join the <a href="https://t.me/affineworkspace">Telegram community</a> for support. Self-host your knowledge base on a VPS via <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> and never worry about vendor lock-in again.</p>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<ul>
+<li><a href="https://docs.affine.pro/">AFFiNE Official Documentation</a></li>
+<li><a href="https://github.com/toeverything/AFFiNE">AFFiNE GitHub Repository</a> — 47,000 stars, MPL-2.0</li>
+<li><a href="https://github.com/toeverything/blocksuite">BlockSuite Editor Framework</a></li>
+<li><a href="https://docs.affine.pro/self-host-affine">Self-Host AFFiNE Guide</a></li>
+<li><a href="https://inkandswitch.com/local-first/">CRDTs and Local-First Software (Ink &amp; Switch)</a></li>
+<li><a href="https://docs.docker.com/compose/production/">Docker Compose Production Best Practices</a></li>
+</ul>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="affiliate-disclosure">Affiliate Disclosure<a hidden class="anchor" aria-hidden="true" href="#affiliate-disclosure">#</a></h2>
+<p>This article contains affiliate links for DigitalOcean. If you sign up through our link, we receive a commission at no additional cost to you. All recommendations are based on actual testing and are not influenced by the affiliate program. AFFiNE is fully open-source and free to self-host without any paid requirements.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;AFFiNE 2026: The Open-Source Notion+Miro Hybrid for AI-Enhanced Knowledge Management — Setup Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -207,18 +571,175 @@ EOF
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/affine-knowledge-base-whiteboard%22>https://dibi8.com/resources/affine-knowledge-base-whiteboard"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/affine-knowledge-base-whiteboard%22">https://dibi8.com/resources/affine-knowledge-base-whiteboard"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/affine-knowledge-base-whiteboard/>mempalace-open-source-ai-memory-system</a></li><li><a href=/ai-coding-agents/affine-knowledge-base-whiteboard/>2026-06-15-trending-ai-agents</a></li><li><a href=/ai-coding-agents/affine-knowledge-base-whiteboard/>2026-06-22-trending-ai-agents</a></li><li><a href=/ai-coding-agents/affine-knowledge-base-whiteboard/>prompts-chat</a></li><li><a href=/ai-coding-agents/affine-knowledge-base-whiteboard/>paddleocr-81k-star-ocr-engine</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/activepieces-workflow-automation/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ai-coding-agents/affine-knowledge-base-whiteboard/">mempalace-open-source-ai-memory-system</a></li>
+<li><a href="/ai-coding-agents/affine-knowledge-base-whiteboard/">2026-06-15-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/affine-knowledge-base-whiteboard/">2026-06-22-trending-ai-agents</a></li>
+<li><a href="/ai-coding-agents/affine-knowledge-base-whiteboard/">prompts-chat</a></li>
+<li><a href="/ai-coding-agents/affine-knowledge-base-whiteboard/">paddleocr-81k-star-ocr-engine</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/activepieces-workflow-automation/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

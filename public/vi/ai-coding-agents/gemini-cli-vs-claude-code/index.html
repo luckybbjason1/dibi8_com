@@ -1,15 +1,550 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/gemini-cli-vs-claude-code/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/gemini-cli-vs-claude-code/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn? Câu trả lời nhanh Gemini CLI thắng với developer muốn agent AI coding miễn phí hào phóng nhất, đầu vào đa phương thức native, và 1M context mà không trả tiền. Claude Code thắng với developer muốn vòng agent chín muồi nhất, chất lượng refactor đa file tốt nhất, và code generation đẳng cấp Anthropic.\nDùng Gemini CLI nếu: Muốn AI coding chi phí zero (1.000 request/ngày miễn phí), làm việc với hình ảnh/PDF/screenshot thường xuyên, không phiền vòng agent hơi kém bóng bẩy, làm dự án hobby/indie với ngân sách $0 nghiêm ngặt.\nDùng Claude Code nếu: Muốn trải nghiệm agent tinh chỉnh nhất, cần chất lượng refactor đa file cao cấp, ship code production nơi mọi edit đều quan trọng, sẵn sàng trả $20-$200/tháng cho output đẳng cấp Anthropic.\nSo sánh trực tiếp Đặc điểm Gemini CLI Claude Code Nhà cung cấp Google Anthropic Ra mắt 2025 (mã nguồn mở) 2025 (đóng) Giấy phép Apache 2.0 (CLI), model độc quyền Độc quyền Mô hình mặc định gemini-2.0-flash-thinking claude-opus-4.7 Cửa sổ context (miễn phí) 1M token Không có (không có gói miễn phí) Cửa sổ context (trả phí) 2M token (Vertex AI) 200K chuẩn, 1M beta Gói miễn phí 60 req/phút, 1.000 req/ngày Không Giá trả phí vào cửa Trả theo dùng qua Vertex AI $20/tháng Pro (hạn chế) Giá trả phí nặng ~$1-3 mỗi 1M token $200/tháng Max plan Phong cách agent ReAct + tích hợp shell Vòng tool-use tinh chỉnh Đầu vào đa phương thức Native (hình ảnh, PDF, khung video) Hình ảnh qua hội thoại Sử dụng tool Sẵn có (Read, Write, Shell, WebFetch) Sẵn có (Read, Edit, Bash, Glob, Grep) Checkpoint/resume Resume session cơ bản Checkpoint hội thoại đầy đủ Hỗ trợ MCP Có (2025+) Có (native, hạng nhất) Sandbox / an toàn Prompt xác nhận Phân quyền cấu hình được Mã nguồn mở Có (chỉ CLI) Không Kích cỡ codebase tối ưu \u003c 500K LOC (1M context) \u003c 500K LOC (1M context) Cài đặt ```npm i -g @google/gemini-cli```` npm i -g @anthropic-ai/claude-code Khi nào chọn Gemini CLI Tình huống 1: AI coding ngân sách zero Gói miễn phí của Gemini CLI là hào phóng nhất trên thị trường agent AI coding: 60 request mỗi phút và 1.000 mỗi ngày. Đó là khoảng 30.000 request coding miễn phí mỗi tháng nếu bạn đẩy hết. Với indie dev, hobbyist, sinh viên, đây là agent AI duy nhất có thể chạy công việc hàng ngày ở $0/tháng.\nTình huống 2: Luồng làm việc đa phương thức Cần “nhìn screenshot thiết kế này và viết component tương ứng”? Gemini CLI nhận hình ảnh, PDF, khung video native từ command line. Claude Code cũng xử lý được ảnh, nhưng UX flag của Gemini CLI nhanh hơn cho các luồng nặng screenshot (triển khai UI, QA thiết kế, các tác vụ kiểu OCR).\nTình huống 3: Long context giá rẻ Gemini CLI cho bạn 1M token context ở gói miễn phí. Muốn dump 200 file vào một prompt cho phân tích xuyên file? Miễn phí với Gemini CLI; cần subscribe Claude Code Max (~$200/tháng) để có dung lượng tương tự.\nKhi nào chọn Claude Code Tình huống 1: Refactor đa file cấp production Vòng agent của Claude Code là tinh chỉnh nhất trên thị trường 2026. Refactor đa file đáp xuống sạch hơn — ít path bịa hơn, kỷ luật diff tốt hơn, bảo toàn style nhất quán hơn. Nếu bạn đang sửa code production thật ship cho user, chất lượng edit của Claude Code đáng $20-$200/tháng.\nTình huống 2: Vòng agent dài với checkpoint Checkpoint-resume của Claude Code thực sự hữu ích — bạn có thể pause một refactor 30 phút ở bước 7, xem lại, resume từ bước 8. Gemini CLI có resume session cơ bản nhưng không được rèn luyện cho vòng agent dài với context phân nhánh.\nTình huống 3: Hệ sinh thái MCP hạng nhất Claude Code ra mắt với hỗ trợ MCP (Model Context Protocol) native và có hệ sinh thái MCP server lớn nhất trong 2026 — databases, trình duyệt, monitor, CRM. Gemini CLI đã thêm MCP nhưng hệ sinh thái mỏng hơn. Nếu luồng làm việc cắm vào 5+ MCP server, Claude Code là con đường mượt hơn.\nPhân tích giá chi tiết Gemini CLI Gói miễn phí (tài khoản Google): 60 req/phút, 1.000 req/ngày, gemini-2.0-flash-thinking, 1M context Vertex AI trả theo dùng: ~$0.30 mỗi 1M token đầu vào, ~$1.20 mỗi 1M đầu ra (Flash) Model Pro Vertex AI: ~$1.25 mỗi 1M đầu vào, ~$5 mỗi 1M đầu ra (gemini-2.0-pro) Google Workspace Code Assist: $19-$45/user/tháng cho doanh nghiệp → Chi phí tháng cho indie dev: $0 hoàn toàn khả thi nếu bạn ở trong gói miễn phí. User nặng trên Vertex AI thường rơi vào $5-$20/tháng.\nClaude Code Gói miễn phí: Không Claude Pro: $20/tháng, bao gồm dung lượng Claude Code hạn chế (Sonnet, ~50 message mỗi 5 giờ) Claude Max 5x: $100/tháng, ~5x dung lượng, có Opus Claude Max 20x: $200/tháng, ~20x dung lượng, Opus + 1M context beta API trả theo dùng: ~$3 mỗi 1M đầu vào, ~$15 mỗi 1M đầu ra (Sonnet); ~$15/$75 cho Opus → Chi phí tháng cho power user: $20 (Pro nhẹ), $100 (Max 5x hàng ngày), $200 (Max 20x nặng).\nNgười thắng về ngân sách Sinh viên/hobbyist: Gemini CLI miễn phí \u003e Claude Pro $20. Riêng gói miễn phí đã đủ cho coding hàng ngày. Freelancer ship việc cho client: combo Claude Pro $20 + Gemini CLI miễn phí — Gemini cho khám phá, Claude cho thực thi. Full-time builder: Claude Max 5x $100 + Gemini CLI miễn phí — Claude làm chính, Gemini cho đa phương thức và tràn lưu lượng.\nBenchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày) Tác vụ Gemini CLI Claude Code Sửa bug đơn file 7/10 9/10 Refactor đa file 7/10 9/10 Tính năng mới từ spec 8/10 9/10 Sinh test 7/10 8/10 Đọc codebase lạ 9/10 9/10 Ảnh ra code (UI screenshot) 9/10 7/10 Phân tích PDF/docs 9/10 7/10 Vòng agent dài 6/10 9/10 Kỷ luật sử dụng tool 7/10 9/10 Độ hào phóng gói miễn phí 10/10 0/10 → Gemini CLI thắng ở gói miễn phí, đa phương thức, hấp thụ PDF/docs. Claude Code thắng ở chất lượng vòng agent, refactor đa file, kỷ luật edit cấp production.\nMẹo chuyển đổi Claude Code → Gemini CLI Cài bằng npm install -g @google/gemini-cli Chạy gemini một lần để xác thực qua tài khoản Google (không cần API key cho gói miễn phí) Map lệnh: /clear → /clear, /compact → /compress, /cost → /stats Sandbox mặc định của Gemini CLI dễ dãi hơn — đặt --sandbox-mode strict nếu muốn prompt xác nhận kiểu Claude Code Dùng gói miễn phí trước — chỉ chuyển sang billing Vertex AI khi chạm trần 1.000 req/ngày Mong đợi edit đa file yếu hơn chút; bù bằng prompt rõ ràng hơn (“chỉ chạm 3 file này”) Gemini CLI → Claude Code Cài bằng npm install -g @anthropic-ai/claude-code Chạy claude và xác thực qua subscription Claude Pro/Max hoặc API key Vòng agent của Claude Code tự chủ hơn — mong đợi ít prompt xác nhận hơn, edit trực tiếp nhiều hơn Dùng ````/permissions``` để siết sandbox nếu muốn kiểu Gemini CLI “hỏi trước mỗi hành động” Tận dụng MCP server — hệ sinh thái MCP của Claude Code phong phú hơn nhiều Ngân sách thực tế: user Claude Code nặng thường rơi vào $100/tháng (Max 5x) khi cảm giác lạ với gói miễn phí trôi đi Mẹo Self-Hosting Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.\nLựa chọn thay thế đáng thử Nếu cả Gemini CLI và Claude Code đều không hợp: - Cursor — VS Code fork, autocomplete inline tốt nhất, $20/tháng\nAider — Mã nguồn mở, terminal, BYO API key (hoạt động với Gemini, Claude, OpenAI) Continue.dev — Extension VS Code miễn phí, BYO model cc-switch — Định tuyến Claude Code qua nhà cung cấp rẻ hơn, cắt giảm 60-80% chi phí Góc nhìn dibi8 Năm 2026, thị trường AI coding CLI đang hợp nhất quanh hai phe: phe mở và hào phóng (Gemini CLI) và phe đánh bóng cao cấp (Claude Code). Lựa chọn đúng phụ thuộc ví của bạn và độ kiên nhẫn với các cạnh thô.\nHạn chế ngân sách hoặc chỉ đang khám phá → gói miễn phí Gemini CLI, không tranh cãi. 1.000 request/ngày ở $0 là vô đối. Ship code production hàng ngày → Claude Code Max 5x ($100/tháng), chỉ chất lượng vòng agent đã đủ hoàn vốn. Muốn cả hai → combo Gemini CLI miễn phí + Claude Pro $20. Gemini cho trinh sát (đọc code, scan PR, OCR screenshot), Claude cho thực thi (refactor, ship, review). Tổng cộng: $20/tháng cho AI coding đẳng cấp.\nVới indie dev đang ship SaaS một mình trên ngân sách cuối cùng? Gemini CLI gói miễn phí là lựa chọn ROI dương nhất trong AI coding hiện nay — đúng nghĩa không có cách nào rẻ hơn để ship code với trợ giúp AI. Lý do duy nhất để nâng cấp lên Claude Code là khi bạn bắt đầu mất giờ vì chất lượng refactor đa file yếu hơn của Gemini. Đến lúc đó, miễn phí vẫn là miễn phí.\nFAQ (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)\nĐọc thêm So sánh Cursor vs Claude Code 2026 So sánh Cursor vs Windsurf 2026 Công cụ AI lập trình tốt nhất 2026 — Lựa chọn thay thế Cursor Stack LLM dưới $20/tháng Công Cụ Đề Xuất Cần access Claude hoặc OpenAI API ổn định? Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.\n**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region. Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?”, “datePublished”: “2026-05-22”, “dateModified”: “2026-05-22”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/gemini-cli-vs-claude-code\" } } Related Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1813","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/gemini-cli-vs-claude-code/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/gemini-cli-vs-claude-code/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#gemini-cli-vs-claude-code-2026-agent-ai-coding-n%c3%a0o-t%e1%bb%91t-h%c6%a1n aria-label="Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?">Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?</a><ul><li><a href=#c%c3%a2u-tr%e1%ba%a3-l%e1%bb%9di-nhanh aria-label="Câu trả lời nhanh">Câu trả lời nhanh</a></li><li><a href=#so-s%c3%a1nh-tr%e1%bb%b1c-ti%e1%ba%bfp aria-label="So sánh trực tiếp">So sánh trực tiếp</a></li><li><a href=#khi-n%c3%a0o-ch%e1%bb%8dn-gemini-cli aria-label="Khi nào chọn Gemini CLI">Khi nào chọn Gemini CLI</a><ul><li><a href=#t%c3%acnh-hu%e1%bb%91ng-1-ai-coding-ng%c3%a2n-s%c3%a1ch-zero aria-label="Tình huống 1: AI coding ngân sách zero">Tình huống 1: AI coding ngân sách zero</a></li><li><a href=#t%c3%acnh-hu%e1%bb%91ng-2-lu%e1%bb%93ng-l%c3%a0m-vi%e1%bb%87c-%c4%91a-ph%c6%b0%c6%a1ng-th%e1%bb%a9c aria-label="Tình huống 2: Luồng làm việc đa phương thức">Tình huống 2: Luồng làm việc đa phương thức</a></li><li><a href=#t%c3%acnh-hu%e1%bb%91ng-3-long-context-gi%c3%a1-r%e1%ba%bb aria-label="Tình huống 3: Long context giá rẻ">Tình huống 3: Long context giá rẻ</a></li></ul></li><li><a href=#khi-n%c3%a0o-ch%e1%bb%8dn-claude-code aria-label="Khi nào chọn Claude Code">Khi nào chọn Claude Code</a><ul><li><a href=#t%c3%acnh-hu%e1%bb%91ng-1-refactor-%c4%91a-file-c%e1%ba%a5p-production aria-label="Tình huống 1: Refactor đa file cấp production">Tình huống 1: Refactor đa file cấp production</a></li><li><a href=#t%c3%acnh-hu%e1%bb%91ng-2-v%c3%b2ng-agent-d%c3%a0i-v%e1%bb%9bi-checkpoint aria-label="Tình huống 2: Vòng agent dài với checkpoint">Tình huống 2: Vòng agent dài với checkpoint</a></li><li><a href=#t%c3%acnh-hu%e1%bb%91ng-3-h%e1%bb%87-sinh-th%c3%a1i-mcp-h%e1%ba%a1ng-nh%e1%ba%a5t aria-label="Tình huống 3: Hệ sinh thái MCP hạng nhất">Tình huống 3: Hệ sinh thái MCP hạng nhất</a></li></ul></li><li><a href=#ph%c3%a2n-t%c3%adch-gi%c3%a1-chi-ti%e1%ba%bft aria-label="Phân tích giá chi tiết">Phân tích giá chi tiết</a><ul><li><a href=#gemini-cli aria-label="Gemini CLI">Gemini CLI</a></li><li><a href=#claude-code aria-label="Claude Code">Claude Code</a></li><li><a href=#ng%c6%b0%e1%bb%9di-th%e1%ba%afng-v%e1%bb%81-ng%c3%a2n-s%c3%a1ch aria-label="Người thắng về ngân sách">Người thắng về ngân sách</a></li></ul></li><li><a href=#benchmark-hi%e1%bb%87u-n%c4%83ng-ch%e1%bb%a7-quan-t%e1%bb%ab-tr%e1%ba%a3i-nghi%e1%bb%87m-h%c3%a0ng-ng%c3%a0y aria-label="Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)">Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)</a></li><li><a href=#m%e1%ba%b9o-chuy%e1%bb%83n-%c4%91%e1%bb%95i aria-label="Mẹo chuyển đổi">Mẹo chuyển đổi</a><ul><li><a href=#claude-code--gemini-cli aria-label="Claude Code → Gemini CLI">Claude Code → Gemini CLI</a></li><li><a href=#gemini-cli--claude-code aria-label="Gemini CLI → Claude Code">Gemini CLI → Claude Code</a></li><li><a href=#m%e1%ba%b9o-self-hosting aria-label="Mẹo Self-Hosting">Mẹo Self-Hosting</a></li></ul></li><li><a href=#l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf-%c4%91%c3%a1ng-th%e1%bb%ad aria-label="Lựa chọn thay thế đáng thử">Lựa chọn thay thế đáng thử</a></li><li><a href=#g%c3%b3c-nh%c3%acn-dibi8 aria-label="Góc nhìn dibi8">Góc nhìn dibi8</a></li><li><a href=#faq aria-label=FAQ>FAQ</a></li><li><a href=#%c4%91%e1%bb%8dc-th%c3%aam aria-label="Đọc thêm">Đọc thêm</a></li><li><a href=#c%c3%b4ng-c%e1%bb%a5-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Công Cụ Đề Xuất">Công Cụ Đề Xuất</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=gemini-cli-vs-claude-code-2026-agent-ai-coding-nào-tốt-hơn>Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?<a hidden class=anchor aria-hidden=true href=#gemini-cli-vs-claude-code-2026-agent-ai-coding-nào-tốt-hơn>#</a></h1><h2 id=câu-trả-lời-nhanh>Câu trả lời nhanh<a hidden class=anchor aria-hidden=true href=#câu-trả-lời-nhanh>#</a></h2><p><strong>Gemini CLI</strong> thắng với developer muốn agent AI coding miễn phí hào phóng nhất, đầu vào đa phương thức native, và 1M context mà không trả tiền. <strong>Claude Code</strong> thắng với developer muốn vòng agent chín muồi nhất, chất lượng refactor đa file tốt nhất, và code generation đẳng cấp Anthropic.</p><p>Dùng <strong>Gemini CLI</strong> nếu: Muốn AI coding chi phí zero (1.000 request/ngày miễn phí), làm việc với hình ảnh/PDF/screenshot thường xuyên, không phiền vòng agent hơi kém bóng bẩy, làm dự án hobby/indie với ngân sách $0 nghiêm ngặt.</p><p>Dùng <strong>Claude Code</strong> nếu: Muốn trải nghiệm agent tinh chỉnh nhất, cần chất lượng refactor đa file cao cấp, ship code production nơi mọi edit đều quan trọng, sẵn sàng trả $20-$200/tháng cho output đẳng cấp Anthropic.</p><hr><h2 id=so-sánh-trực-tiếp>So sánh trực tiếp<a hidden class=anchor aria-hidden=true href=#so-sánh-trực-tiếp>#</a></h2><table><thead><tr><th>Đặc điểm</th><th>Gemini CLI</th><th>Claude Code</th></tr></thead><tbody><tr><td><strong>Nhà cung cấp</strong></td><td>Google</td><td>Anthropic</td></tr><tr><td><strong>Ra mắt</strong></td><td>2025 (mã nguồn mở)</td><td>2025 (đóng)</td></tr><tr><td><strong>Giấy phép</strong></td><td>Apache 2.0 (CLI), model độc quyền</td><td>Độc quyền</td></tr><tr><td><strong>Mô hình mặc định</strong></td><td>gemini-2.0-flash-thinking</td><td>claude-opus-4.7</td></tr><tr><td><strong>Cửa sổ context (miễn phí)</strong></td><td>1M token</td><td>Không có (không có gói miễn phí)</td></tr><tr><td><strong>Cửa sổ context (trả phí)</strong></td><td>2M token (Vertex AI)</td><td>200K chuẩn, 1M beta</td></tr><tr><td><strong>Gói miễn phí</strong></td><td>60 req/phút, 1.000 req/ngày</td><td>Không</td></tr><tr><td><strong>Giá trả phí vào cửa</strong></td><td>Trả theo dùng qua Vertex AI</td><td>$20/tháng Pro (hạn chế)</td></tr><tr><td><strong>Giá trả phí nặng</strong></td><td>~$1-3 mỗi 1M token</td><td>$200/tháng Max plan</td></tr><tr><td><strong>Phong cách agent</strong></td><td>ReAct + tích hợp shell</td><td>Vòng tool-use tinh chỉnh</td></tr><tr><td><strong>Đầu vào đa phương thức</strong></td><td>Native (hình ảnh, PDF, khung video)</td><td>Hình ảnh qua hội thoại</td></tr><tr><td><strong>Sử dụng tool</strong></td><td>Sẵn có (Read, Write, Shell, WebFetch)</td><td>Sẵn có (Read, Edit, Bash, Glob, Grep)</td></tr><tr><td><strong>Checkpoint/resume</strong></td><td>Resume session cơ bản</td><td>Checkpoint hội thoại đầy đủ</td></tr><tr><td><strong>Hỗ trợ MCP</strong></td><td>Có (2025+)</td><td>Có (native, hạng nhất)</td></tr><tr><td><strong>Sandbox / an toàn</strong></td><td>Prompt xác nhận</td><td>Phân quyền cấu hình được</td></tr><tr><td><strong>Mã nguồn mở</strong></td><td>Có (chỉ CLI)</td><td>Không</td></tr><tr><td><strong>Kích cỡ codebase tối ưu</strong></td><td>&lt; 500K LOC (1M context)</td><td>&lt; 500K LOC (1M context)</td></tr><tr><td><strong>Cài đặt</strong></td><td>```npm i -g @google/gemini-cli````</td><td><code>npm i -g @anthropic-ai/claude-code</code></td></tr></tbody></table><hr><h2 id=khi-nào-chọn-gemini-cli>Khi nào chọn Gemini CLI<a hidden class=anchor aria-hidden=true href=#khi-nào-chọn-gemini-cli>#</a></h2><h3 id=tình-huống-1-ai-coding-ngân-sách-zero>Tình huống 1: AI coding ngân sách zero<a hidden class=anchor aria-hidden=true href=#tình-huống-1-ai-coding-ngân-sách-zero>#</a></h3><p>Gói miễn phí của Gemini CLI là hào phóng nhất trên thị trường agent AI coding: 60 request mỗi phút và 1.000 mỗi ngày. Đó là khoảng <strong>30.000 request coding miễn phí mỗi tháng</strong> nếu bạn đẩy hết. Với indie dev, hobbyist, sinh viên, đây là agent AI duy nhất có thể chạy công việc hàng ngày ở $0/tháng.</p><h3 id=tình-huống-2-luồng-làm-việc-đa-phương-thức>Tình huống 2: Luồng làm việc đa phương thức<a hidden class=anchor aria-hidden=true href=#tình-huống-2-luồng-làm-việc-đa-phương-thức>#</a></h3><p>Cần &ldquo;nhìn screenshot thiết kế này và viết component tương ứng&rdquo;? Gemini CLI nhận hình ảnh, PDF, khung video native từ command line. Claude Code cũng xử lý được ảnh, nhưng UX flag của Gemini CLI nhanh hơn cho các luồng nặng screenshot (triển khai UI, QA thiết kế, các tác vụ kiểu OCR).</p><h3 id=tình-huống-3-long-context-giá-rẻ>Tình huống 3: Long context giá rẻ<a hidden class=anchor aria-hidden=true href=#tình-huống-3-long-context-giá-rẻ>#</a></h3><p>Gemini CLI cho bạn 1M token context <strong>ở gói miễn phí</strong>. Muốn dump 200 file vào một prompt cho phân tích xuyên file? Miễn phí với Gemini CLI; cần subscribe Claude Code Max (~$200/tháng) để có dung lượng tương tự.</p><hr><h2 id=khi-nào-chọn-claude-code>Khi nào chọn Claude Code<a hidden class=anchor aria-hidden=true href=#khi-nào-chọn-claude-code>#</a></h2><h3 id=tình-huống-1-refactor-đa-file-cấp-production>Tình huống 1: Refactor đa file cấp production<a hidden class=anchor aria-hidden=true href=#tình-huống-1-refactor-đa-file-cấp-production>#</a></h3><p>Vòng agent của Claude Code là tinh chỉnh nhất trên thị trường 2026. Refactor đa file đáp xuống sạch hơn — ít path bịa hơn, kỷ luật diff tốt hơn, bảo toàn style nhất quán hơn. Nếu bạn đang sửa code production thật ship cho user, chất lượng edit của Claude Code đáng $20-$200/tháng.</p><h3 id=tình-huống-2-vòng-agent-dài-với-checkpoint>Tình huống 2: Vòng agent dài với checkpoint<a hidden class=anchor aria-hidden=true href=#tình-huống-2-vòng-agent-dài-với-checkpoint>#</a></h3><p>Checkpoint-resume của Claude Code thực sự hữu ích — bạn có thể pause một refactor 30 phút ở bước 7, xem lại, resume từ bước 8. Gemini CLI có resume session cơ bản nhưng không được rèn luyện cho vòng agent dài với context phân nhánh.</p><h3 id=tình-huống-3-hệ-sinh-thái-mcp-hạng-nhất>Tình huống 3: Hệ sinh thái MCP hạng nhất<a hidden class=anchor aria-hidden=true href=#tình-huống-3-hệ-sinh-thái-mcp-hạng-nhất>#</a></h3><p>Claude Code ra mắt với hỗ trợ MCP (Model Context Protocol) native và có hệ sinh thái MCP server lớn nhất trong 2026 — databases, trình duyệt, monitor, CRM. Gemini CLI đã thêm MCP nhưng hệ sinh thái mỏng hơn. Nếu luồng làm việc cắm vào 5+ MCP server, Claude Code là con đường mượt hơn.</p><hr><h2 id=phân-tích-giá-chi-tiết>Phân tích giá chi tiết<a hidden class=anchor aria-hidden=true href=#phân-tích-giá-chi-tiết>#</a></h2><h3 id=gemini-cli>Gemini CLI<a hidden class=anchor aria-hidden=true href=#gemini-cli>#</a></h3><ul><li><strong>Gói miễn phí (tài khoản Google)</strong>: 60 req/phút, 1.000 req/ngày, gemini-2.0-flash-thinking, 1M context</li><li><strong>Vertex AI trả theo dùng</strong>: ~$0.30 mỗi 1M token đầu vào, ~$1.20 mỗi 1M đầu ra (Flash)</li><li><strong>Model Pro Vertex AI</strong>: ~$1.25 mỗi 1M đầu vào, ~$5 mỗi 1M đầu ra (gemini-2.0-pro)</li><li><strong>Google Workspace Code Assist</strong>: $19-$45/user/tháng cho doanh nghiệp</li></ul><p>→ <strong>Chi phí tháng cho indie dev</strong>: <strong>$0</strong> hoàn toàn khả thi nếu bạn ở trong gói miễn phí. User nặng trên Vertex AI thường rơi vào $5-$20/tháng.</p><h3 id=claude-code>Claude Code<a hidden class=anchor aria-hidden=true href=#claude-code>#</a></h3><ul><li><strong>Gói miễn phí</strong>: Không</li><li><strong>Claude Pro</strong>: $20/tháng, bao gồm dung lượng Claude Code hạn chế (Sonnet, ~50 message mỗi 5 giờ)</li><li><strong>Claude Max 5x</strong>: $100/tháng, ~5x dung lượng, có Opus</li><li><strong>Claude Max 20x</strong>: $200/tháng, ~20x dung lượng, Opus + 1M context beta</li><li><strong>API trả theo dùng</strong>: ~$3 mỗi 1M đầu vào, ~$15 mỗi 1M đầu ra (Sonnet); ~$15/$75 cho Opus</li></ul><p>→ <strong>Chi phí tháng cho power user</strong>: $20 (Pro nhẹ), $100 (Max 5x hàng ngày), $200 (Max 20x nặng).</p><h3 id=người-thắng-về-ngân-sách>Người thắng về ngân sách<a hidden class=anchor aria-hidden=true href=#người-thắng-về-ngân-sách>#</a></h3><p>Sinh viên/hobbyist: <strong>Gemini CLI miễn phí > Claude Pro $20</strong>. Riêng gói miễn phí đã đủ cho coding hàng ngày.
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/gemini-cli-vs-claude-code/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/gemini-cli-vs-claude-code/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn? Câu trả lời nhanh Gemini CLI thắng với developer muốn agent AI coding miễn phí hào phóng nhất, đầu vào đa phương thức native, và 1M context mà không trả tiền. Claude Code thắng với developer muốn vòng agent chín muồi nhất, chất lượng refactor đa file tốt nhất, và code generation đẳng cấp Anthropic.\nDùng Gemini CLI nếu: Muốn AI coding chi phí zero (1.000 request/ngày miễn phí), làm việc với hình ảnh/PDF/screenshot thường xuyên, không phiền vòng agent hơi kém bóng bẩy, làm dự án hobby/indie với ngân sách $0 nghiêm ngặt.\nDùng Claude Code nếu: Muốn trải nghiệm agent tinh chỉnh nhất, cần chất lượng refactor đa file cao cấp, ship code production nơi mọi edit đều quan trọng, sẵn sàng trả $20-$200/tháng cho output đẳng cấp Anthropic.\nSo sánh trực tiếp Đặc điểm Gemini CLI Claude Code Nhà cung cấp Google Anthropic Ra mắt 2025 (mã nguồn mở) 2025 (đóng) Giấy phép Apache 2.0 (CLI), model độc quyền Độc quyền Mô hình mặc định gemini-2.0-flash-thinking claude-opus-4.7 Cửa sổ context (miễn phí) 1M token Không có (không có gói miễn phí) Cửa sổ context (trả phí) 2M token (Vertex AI) 200K chuẩn, 1M beta Gói miễn phí 60 req/phút, 1.000 req/ngày Không Giá trả phí vào cửa Trả theo dùng qua Vertex AI $20/tháng Pro (hạn chế) Giá trả phí nặng ~$1-3 mỗi 1M token $200/tháng Max plan Phong cách agent ReAct + tích hợp shell Vòng tool-use tinh chỉnh Đầu vào đa phương thức Native (hình ảnh, PDF, khung video) Hình ảnh qua hội thoại Sử dụng tool Sẵn có (Read, Write, Shell, WebFetch) Sẵn có (Read, Edit, Bash, Glob, Grep) Checkpoint/resume Resume session cơ bản Checkpoint hội thoại đầy đủ Hỗ trợ MCP Có (2025+) Có (native, hạng nhất) Sandbox / an toàn Prompt xác nhận Phân quyền cấu hình được Mã nguồn mở Có (chỉ CLI) Không Kích cỡ codebase tối ưu \u003c 500K LOC (1M context) \u003c 500K LOC (1M context) Cài đặt ```npm i -g @google/gemini-cli```` npm i -g @anthropic-ai/claude-code Khi nào chọn Gemini CLI Tình huống 1: AI coding ngân sách zero Gói miễn phí của Gemini CLI là hào phóng nhất trên thị trường agent AI coding: 60 request mỗi phút và 1.000 mỗi ngày. Đó là khoảng 30.000 request coding miễn phí mỗi tháng nếu bạn đẩy hết. Với indie dev, hobbyist, sinh viên, đây là agent AI duy nhất có thể chạy công việc hàng ngày ở $0/tháng.\nTình huống 2: Luồng làm việc đa phương thức Cần “nhìn screenshot thiết kế này và viết component tương ứng”? Gemini CLI nhận hình ảnh, PDF, khung video native từ command line. Claude Code cũng xử lý được ảnh, nhưng UX flag của Gemini CLI nhanh hơn cho các luồng nặng screenshot (triển khai UI, QA thiết kế, các tác vụ kiểu OCR).\nTình huống 3: Long context giá rẻ Gemini CLI cho bạn 1M token context ở gói miễn phí. Muốn dump 200 file vào một prompt cho phân tích xuyên file? Miễn phí với Gemini CLI; cần subscribe Claude Code Max (~$200/tháng) để có dung lượng tương tự.\nKhi nào chọn Claude Code Tình huống 1: Refactor đa file cấp production Vòng agent của Claude Code là tinh chỉnh nhất trên thị trường 2026. Refactor đa file đáp xuống sạch hơn — ít path bịa hơn, kỷ luật diff tốt hơn, bảo toàn style nhất quán hơn. Nếu bạn đang sửa code production thật ship cho user, chất lượng edit của Claude Code đáng $20-$200/tháng.\nTình huống 2: Vòng agent dài với checkpoint Checkpoint-resume của Claude Code thực sự hữu ích — bạn có thể pause một refactor 30 phút ở bước 7, xem lại, resume từ bước 8. Gemini CLI có resume session cơ bản nhưng không được rèn luyện cho vòng agent dài với context phân nhánh.\nTình huống 3: Hệ sinh thái MCP hạng nhất Claude Code ra mắt với hỗ trợ MCP (Model Context Protocol) native và có hệ sinh thái MCP server lớn nhất trong 2026 — databases, trình duyệt, monitor, CRM. Gemini CLI đã thêm MCP nhưng hệ sinh thái mỏng hơn. Nếu luồng làm việc cắm vào 5+ MCP server, Claude Code là con đường mượt hơn.\nPhân tích giá chi tiết Gemini CLI Gói miễn phí (tài khoản Google): 60 req/phút, 1.000 req/ngày, gemini-2.0-flash-thinking, 1M context Vertex AI trả theo dùng: ~$0.30 mỗi 1M token đầu vào, ~$1.20 mỗi 1M đầu ra (Flash) Model Pro Vertex AI: ~$1.25 mỗi 1M đầu vào, ~$5 mỗi 1M đầu ra (gemini-2.0-pro) Google Workspace Code Assist: $19-$45/user/tháng cho doanh nghiệp → Chi phí tháng cho indie dev: $0 hoàn toàn khả thi nếu bạn ở trong gói miễn phí. User nặng trên Vertex AI thường rơi vào $5-$20/tháng.\nClaude Code Gói miễn phí: Không Claude Pro: $20/tháng, bao gồm dung lượng Claude Code hạn chế (Sonnet, ~50 message mỗi 5 giờ) Claude Max 5x: $100/tháng, ~5x dung lượng, có Opus Claude Max 20x: $200/tháng, ~20x dung lượng, Opus + 1M context beta API trả theo dùng: ~$3 mỗi 1M đầu vào, ~$15 mỗi 1M đầu ra (Sonnet); ~$15/$75 cho Opus → Chi phí tháng cho power user: $20 (Pro nhẹ), $100 (Max 5x hàng ngày), $200 (Max 20x nặng).\nNgười thắng về ngân sách Sinh viên/hobbyist: Gemini CLI miễn phí \u003e Claude Pro $20. Riêng gói miễn phí đã đủ cho coding hàng ngày. Freelancer ship việc cho client: combo Claude Pro $20 + Gemini CLI miễn phí — Gemini cho khám phá, Claude cho thực thi. Full-time builder: Claude Max 5x $100 + Gemini CLI miễn phí — Claude làm chính, Gemini cho đa phương thức và tràn lưu lượng.\nBenchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày) Tác vụ Gemini CLI Claude Code Sửa bug đơn file 7/10 9/10 Refactor đa file 7/10 9/10 Tính năng mới từ spec 8/10 9/10 Sinh test 7/10 8/10 Đọc codebase lạ 9/10 9/10 Ảnh ra code (UI screenshot) 9/10 7/10 Phân tích PDF/docs 9/10 7/10 Vòng agent dài 6/10 9/10 Kỷ luật sử dụng tool 7/10 9/10 Độ hào phóng gói miễn phí 10/10 0/10 → Gemini CLI thắng ở gói miễn phí, đa phương thức, hấp thụ PDF/docs. Claude Code thắng ở chất lượng vòng agent, refactor đa file, kỷ luật edit cấp production.\nMẹo chuyển đổi Claude Code → Gemini CLI Cài bằng npm install -g @google/gemini-cli Chạy gemini một lần để xác thực qua tài khoản Google (không cần API key cho gói miễn phí) Map lệnh: /clear → /clear, /compact → /compress, /cost → /stats Sandbox mặc định của Gemini CLI dễ dãi hơn — đặt --sandbox-mode strict nếu muốn prompt xác nhận kiểu Claude Code Dùng gói miễn phí trước — chỉ chuyển sang billing Vertex AI khi chạm trần 1.000 req/ngày Mong đợi edit đa file yếu hơn chút; bù bằng prompt rõ ràng hơn (“chỉ chạm 3 file này”) Gemini CLI → Claude Code Cài bằng npm install -g @anthropic-ai/claude-code Chạy claude và xác thực qua subscription Claude Pro/Max hoặc API key Vòng agent của Claude Code tự chủ hơn — mong đợi ít prompt xác nhận hơn, edit trực tiếp nhiều hơn Dùng ````/permissions``` để siết sandbox nếu muốn kiểu Gemini CLI “hỏi trước mỗi hành động” Tận dụng MCP server — hệ sinh thái MCP của Claude Code phong phú hơn nhiều Ngân sách thực tế: user Claude Code nặng thường rơi vào $100/tháng (Max 5x) khi cảm giác lạ với gói miễn phí trôi đi Mẹo Self-Hosting Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.\nLựa chọn thay thế đáng thử Nếu cả Gemini CLI và Claude Code đều không hợp: - Cursor — VS Code fork, autocomplete inline tốt nhất, $20/tháng\nAider — Mã nguồn mở, terminal, BYO API key (hoạt động với Gemini, Claude, OpenAI) Continue.dev — Extension VS Code miễn phí, BYO model cc-switch — Định tuyến Claude Code qua nhà cung cấp rẻ hơn, cắt giảm 60-80% chi phí Góc nhìn dibi8 Năm 2026, thị trường AI coding CLI đang hợp nhất quanh hai phe: phe mở và hào phóng (Gemini CLI) và phe đánh bóng cao cấp (Claude Code). Lựa chọn đúng phụ thuộc ví của bạn và độ kiên nhẫn với các cạnh thô.\nHạn chế ngân sách hoặc chỉ đang khám phá → gói miễn phí Gemini CLI, không tranh cãi. 1.000 request/ngày ở $0 là vô đối. Ship code production hàng ngày → Claude Code Max 5x ($100/tháng), chỉ chất lượng vòng agent đã đủ hoàn vốn. Muốn cả hai → combo Gemini CLI miễn phí + Claude Pro $20. Gemini cho trinh sát (đọc code, scan PR, OCR screenshot), Claude cho thực thi (refactor, ship, review). Tổng cộng: $20/tháng cho AI coding đẳng cấp.\nVới indie dev đang ship SaaS một mình trên ngân sách cuối cùng? Gemini CLI gói miễn phí là lựa chọn ROI dương nhất trong AI coding hiện nay — đúng nghĩa không có cách nào rẻ hơn để ship code với trợ giúp AI. Lý do duy nhất để nâng cấp lên Claude Code là khi bạn bắt đầu mất giờ vì chất lượng refactor đa file yếu hơn của Gemini. Đến lúc đó, miễn phí vẫn là miễn phí.\nFAQ (render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)\nĐọc thêm So sánh Cursor vs Claude Code 2026 So sánh Cursor vs Windsurf 2026 Công cụ AI lập trình tốt nhất 2026 — Lựa chọn thay thế Cursor Stack LLM dưới $20/tháng Công Cụ Đề Xuất Cần access Claude hoặc OpenAI API ổn định? Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.\n**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region. Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?”, “datePublished”: “2026-05-22”, “dateModified”: “2026-05-22”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/gemini-cli-vs-claude-code\" } } Related Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1813",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/gemini-cli-vs-claude-code/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/gemini-cli-vs-claude-code/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/gemini-cli-vs-claude-code/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#gemini-cli-vs-claude-code-2026-agent-ai-coding-n%c3%a0o-t%e1%bb%91t-h%c6%a1n" aria-label="Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?">Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a2u-tr%e1%ba%a3-l%e1%bb%9di-nhanh" aria-label="Câu trả lời nhanh">Câu trả lời nhanh</a></li>
+            <li>
+                <a href="#so-s%c3%a1nh-tr%e1%bb%b1c-ti%e1%ba%bfp" aria-label="So sánh trực tiếp">So sánh trực tiếp</a></li>
+            <li>
+                <a href="#khi-n%c3%a0o-ch%e1%bb%8dn-gemini-cli" aria-label="Khi nào chọn Gemini CLI">Khi nào chọn Gemini CLI</a><ul>
+                    
+            <li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-1-ai-coding-ng%c3%a2n-s%c3%a1ch-zero" aria-label="Tình huống 1: AI coding ngân sách zero">Tình huống 1: AI coding ngân sách zero</a></li>
+            <li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-2-lu%e1%bb%93ng-l%c3%a0m-vi%e1%bb%87c-%c4%91a-ph%c6%b0%c6%a1ng-th%e1%bb%a9c" aria-label="Tình huống 2: Luồng làm việc đa phương thức">Tình huống 2: Luồng làm việc đa phương thức</a></li>
+            <li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-3-long-context-gi%c3%a1-r%e1%ba%bb" aria-label="Tình huống 3: Long context giá rẻ">Tình huống 3: Long context giá rẻ</a></li></ul>
+            </li>
+            <li>
+                <a href="#khi-n%c3%a0o-ch%e1%bb%8dn-claude-code" aria-label="Khi nào chọn Claude Code">Khi nào chọn Claude Code</a><ul>
+                    
+            <li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-1-refactor-%c4%91a-file-c%e1%ba%a5p-production" aria-label="Tình huống 1: Refactor đa file cấp production">Tình huống 1: Refactor đa file cấp production</a></li>
+            <li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-2-v%c3%b2ng-agent-d%c3%a0i-v%e1%bb%9bi-checkpoint" aria-label="Tình huống 2: Vòng agent dài với checkpoint">Tình huống 2: Vòng agent dài với checkpoint</a></li>
+            <li>
+                <a href="#t%c3%acnh-hu%e1%bb%91ng-3-h%e1%bb%87-sinh-th%c3%a1i-mcp-h%e1%ba%a1ng-nh%e1%ba%a5t" aria-label="Tình huống 3: Hệ sinh thái MCP hạng nhất">Tình huống 3: Hệ sinh thái MCP hạng nhất</a></li></ul>
+            </li>
+            <li>
+                <a href="#ph%c3%a2n-t%c3%adch-gi%c3%a1-chi-ti%e1%ba%bft" aria-label="Phân tích giá chi tiết">Phân tích giá chi tiết</a><ul>
+                    
+            <li>
+                <a href="#gemini-cli" aria-label="Gemini CLI">Gemini CLI</a></li>
+            <li>
+                <a href="#claude-code" aria-label="Claude Code">Claude Code</a></li>
+            <li>
+                <a href="#ng%c6%b0%e1%bb%9di-th%e1%ba%afng-v%e1%bb%81-ng%c3%a2n-s%c3%a1ch" aria-label="Người thắng về ngân sách">Người thắng về ngân sách</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark-hi%e1%bb%87u-n%c4%83ng-ch%e1%bb%a7-quan-t%e1%bb%ab-tr%e1%ba%a3i-nghi%e1%bb%87m-h%c3%a0ng-ng%c3%a0y" aria-label="Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)">Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)</a></li>
+            <li>
+                <a href="#m%e1%ba%b9o-chuy%e1%bb%83n-%c4%91%e1%bb%95i" aria-label="Mẹo chuyển đổi">Mẹo chuyển đổi</a><ul>
+                    
+            <li>
+                <a href="#claude-code--gemini-cli" aria-label="Claude Code → Gemini CLI">Claude Code → Gemini CLI</a></li>
+            <li>
+                <a href="#gemini-cli--claude-code" aria-label="Gemini CLI → Claude Code">Gemini CLI → Claude Code</a></li>
+            <li>
+                <a href="#m%e1%ba%b9o-self-hosting" aria-label="Mẹo Self-Hosting">Mẹo Self-Hosting</a></li></ul>
+            </li>
+            <li>
+                <a href="#l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf-%c4%91%c3%a1ng-th%e1%bb%ad" aria-label="Lựa chọn thay thế đáng thử">Lựa chọn thay thế đáng thử</a></li>
+            <li>
+                <a href="#g%c3%b3c-nh%c3%acn-dibi8" aria-label="Góc nhìn dibi8">Góc nhìn dibi8</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a></li>
+            <li>
+                <a href="#%c4%91%e1%bb%8dc-th%c3%aam" aria-label="Đọc thêm">Đọc thêm</a></li>
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Công Cụ Đề Xuất">Công Cụ Đề Xuất</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="gemini-cli-vs-claude-code-2026-agent-ai-coding-nào-tốt-hơn">Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?<a hidden class="anchor" aria-hidden="true" href="#gemini-cli-vs-claude-code-2026-agent-ai-coding-nào-tốt-hơn">#</a></h1>
+<h2 id="câu-trả-lời-nhanh">Câu trả lời nhanh<a hidden class="anchor" aria-hidden="true" href="#câu-trả-lời-nhanh">#</a></h2>
+<p><strong>Gemini CLI</strong> thắng với developer muốn agent AI coding miễn phí hào phóng nhất, đầu vào đa phương thức native, và 1M context mà không trả tiền. <strong>Claude Code</strong> thắng với developer muốn vòng agent chín muồi nhất, chất lượng refactor đa file tốt nhất, và code generation đẳng cấp Anthropic.</p>
+<p>Dùng <strong>Gemini CLI</strong> nếu: Muốn AI coding chi phí zero (1.000 request/ngày miễn phí), làm việc với hình ảnh/PDF/screenshot thường xuyên, không phiền vòng agent hơi kém bóng bẩy, làm dự án hobby/indie với ngân sách $0 nghiêm ngặt.</p>
+<p>Dùng <strong>Claude Code</strong> nếu: Muốn trải nghiệm agent tinh chỉnh nhất, cần chất lượng refactor đa file cao cấp, ship code production nơi mọi edit đều quan trọng, sẵn sàng trả $20-$200/tháng cho output đẳng cấp Anthropic.</p>
+<hr>
+<h2 id="so-sánh-trực-tiếp">So sánh trực tiếp<a hidden class="anchor" aria-hidden="true" href="#so-sánh-trực-tiếp">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Đặc điểm</th>
+					<th>Gemini CLI</th>
+					<th>Claude Code</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Nhà cung cấp</strong></td>
+					<td>Google</td>
+					<td>Anthropic</td>
+			</tr>
+			<tr>
+					<td><strong>Ra mắt</strong></td>
+					<td>2025 (mã nguồn mở)</td>
+					<td>2025 (đóng)</td>
+			</tr>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>Apache 2.0 (CLI), model độc quyền</td>
+					<td>Độc quyền</td>
+			</tr>
+			<tr>
+					<td><strong>Mô hình mặc định</strong></td>
+					<td>gemini-2.0-flash-thinking</td>
+					<td>claude-opus-4.7</td>
+			</tr>
+			<tr>
+					<td><strong>Cửa sổ context (miễn phí)</strong></td>
+					<td>1M token</td>
+					<td>Không có (không có gói miễn phí)</td>
+			</tr>
+			<tr>
+					<td><strong>Cửa sổ context (trả phí)</strong></td>
+					<td>2M token (Vertex AI)</td>
+					<td>200K chuẩn, 1M beta</td>
+			</tr>
+			<tr>
+					<td><strong>Gói miễn phí</strong></td>
+					<td>60 req/phút, 1.000 req/ngày</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Giá trả phí vào cửa</strong></td>
+					<td>Trả theo dùng qua Vertex AI</td>
+					<td>$20/tháng Pro (hạn chế)</td>
+			</tr>
+			<tr>
+					<td><strong>Giá trả phí nặng</strong></td>
+					<td>~$1-3 mỗi 1M token</td>
+					<td>$200/tháng Max plan</td>
+			</tr>
+			<tr>
+					<td><strong>Phong cách agent</strong></td>
+					<td>ReAct + tích hợp shell</td>
+					<td>Vòng tool-use tinh chỉnh</td>
+			</tr>
+			<tr>
+					<td><strong>Đầu vào đa phương thức</strong></td>
+					<td>Native (hình ảnh, PDF, khung video)</td>
+					<td>Hình ảnh qua hội thoại</td>
+			</tr>
+			<tr>
+					<td><strong>Sử dụng tool</strong></td>
+					<td>Sẵn có (Read, Write, Shell, WebFetch)</td>
+					<td>Sẵn có (Read, Edit, Bash, Glob, Grep)</td>
+			</tr>
+			<tr>
+					<td><strong>Checkpoint/resume</strong></td>
+					<td>Resume session cơ bản</td>
+					<td>Checkpoint hội thoại đầy đủ</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ MCP</strong></td>
+					<td>Có (2025+)</td>
+					<td>Có (native, hạng nhất)</td>
+			</tr>
+			<tr>
+					<td><strong>Sandbox / an toàn</strong></td>
+					<td>Prompt xác nhận</td>
+					<td>Phân quyền cấu hình được</td>
+			</tr>
+			<tr>
+					<td><strong>Mã nguồn mở</strong></td>
+					<td>Có (chỉ CLI)</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Kích cỡ codebase tối ưu</strong></td>
+					<td>&lt; 500K LOC (1M context)</td>
+					<td>&lt; 500K LOC (1M context)</td>
+			</tr>
+			<tr>
+					<td><strong>Cài đặt</strong></td>
+					<td>```npm i -g @google/gemini-cli````</td>
+					<td><code>npm i -g @anthropic-ai/claude-code</code></td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h2 id="khi-nào-chọn-gemini-cli">Khi nào chọn Gemini CLI<a hidden class="anchor" aria-hidden="true" href="#khi-nào-chọn-gemini-cli">#</a></h2>
+<h3 id="tình-huống-1-ai-coding-ngân-sách-zero">Tình huống 1: AI coding ngân sách zero<a hidden class="anchor" aria-hidden="true" href="#tình-huống-1-ai-coding-ngân-sách-zero">#</a></h3>
+<p>Gói miễn phí của Gemini CLI là hào phóng nhất trên thị trường agent AI coding: 60 request mỗi phút và 1.000 mỗi ngày. Đó là khoảng <strong>30.000 request coding miễn phí mỗi tháng</strong> nếu bạn đẩy hết. Với indie dev, hobbyist, sinh viên, đây là agent AI duy nhất có thể chạy công việc hàng ngày ở $0/tháng.</p>
+<h3 id="tình-huống-2-luồng-làm-việc-đa-phương-thức">Tình huống 2: Luồng làm việc đa phương thức<a hidden class="anchor" aria-hidden="true" href="#tình-huống-2-luồng-làm-việc-đa-phương-thức">#</a></h3>
+<p>Cần &ldquo;nhìn screenshot thiết kế này và viết component tương ứng&rdquo;? Gemini CLI nhận hình ảnh, PDF, khung video native từ command line. Claude Code cũng xử lý được ảnh, nhưng UX flag của Gemini CLI nhanh hơn cho các luồng nặng screenshot (triển khai UI, QA thiết kế, các tác vụ kiểu OCR).</p>
+<h3 id="tình-huống-3-long-context-giá-rẻ">Tình huống 3: Long context giá rẻ<a hidden class="anchor" aria-hidden="true" href="#tình-huống-3-long-context-giá-rẻ">#</a></h3>
+<p>Gemini CLI cho bạn 1M token context <strong>ở gói miễn phí</strong>. Muốn dump 200 file vào một prompt cho phân tích xuyên file? Miễn phí với Gemini CLI; cần subscribe Claude Code Max (~$200/tháng) để có dung lượng tương tự.</p>
+<hr>
+<h2 id="khi-nào-chọn-claude-code">Khi nào chọn Claude Code<a hidden class="anchor" aria-hidden="true" href="#khi-nào-chọn-claude-code">#</a></h2>
+<h3 id="tình-huống-1-refactor-đa-file-cấp-production">Tình huống 1: Refactor đa file cấp production<a hidden class="anchor" aria-hidden="true" href="#tình-huống-1-refactor-đa-file-cấp-production">#</a></h3>
+<p>Vòng agent của Claude Code là tinh chỉnh nhất trên thị trường 2026. Refactor đa file đáp xuống sạch hơn — ít path bịa hơn, kỷ luật diff tốt hơn, bảo toàn style nhất quán hơn. Nếu bạn đang sửa code production thật ship cho user, chất lượng edit của Claude Code đáng $20-$200/tháng.</p>
+<h3 id="tình-huống-2-vòng-agent-dài-với-checkpoint">Tình huống 2: Vòng agent dài với checkpoint<a hidden class="anchor" aria-hidden="true" href="#tình-huống-2-vòng-agent-dài-với-checkpoint">#</a></h3>
+<p>Checkpoint-resume của Claude Code thực sự hữu ích — bạn có thể pause một refactor 30 phút ở bước 7, xem lại, resume từ bước 8. Gemini CLI có resume session cơ bản nhưng không được rèn luyện cho vòng agent dài với context phân nhánh.</p>
+<h3 id="tình-huống-3-hệ-sinh-thái-mcp-hạng-nhất">Tình huống 3: Hệ sinh thái MCP hạng nhất<a hidden class="anchor" aria-hidden="true" href="#tình-huống-3-hệ-sinh-thái-mcp-hạng-nhất">#</a></h3>
+<p>Claude Code ra mắt với hỗ trợ MCP (Model Context Protocol) native và có hệ sinh thái MCP server lớn nhất trong 2026 — databases, trình duyệt, monitor, CRM. Gemini CLI đã thêm MCP nhưng hệ sinh thái mỏng hơn. Nếu luồng làm việc cắm vào 5+ MCP server, Claude Code là con đường mượt hơn.</p>
+<hr>
+<h2 id="phân-tích-giá-chi-tiết">Phân tích giá chi tiết<a hidden class="anchor" aria-hidden="true" href="#phân-tích-giá-chi-tiết">#</a></h2>
+<h3 id="gemini-cli">Gemini CLI<a hidden class="anchor" aria-hidden="true" href="#gemini-cli">#</a></h3>
+<ul>
+<li><strong>Gói miễn phí (tài khoản Google)</strong>: 60 req/phút, 1.000 req/ngày, gemini-2.0-flash-thinking, 1M context</li>
+<li><strong>Vertex AI trả theo dùng</strong>: ~$0.30 mỗi 1M token đầu vào, ~$1.20 mỗi 1M đầu ra (Flash)</li>
+<li><strong>Model Pro Vertex AI</strong>: ~$1.25 mỗi 1M đầu vào, ~$5 mỗi 1M đầu ra (gemini-2.0-pro)</li>
+<li><strong>Google Workspace Code Assist</strong>: $19-$45/user/tháng cho doanh nghiệp</li>
+</ul>
+<p>→ <strong>Chi phí tháng cho indie dev</strong>: <strong>$0</strong> hoàn toàn khả thi nếu bạn ở trong gói miễn phí. User nặng trên Vertex AI thường rơi vào $5-$20/tháng.</p>
+<h3 id="claude-code">Claude Code<a hidden class="anchor" aria-hidden="true" href="#claude-code">#</a></h3>
+<ul>
+<li><strong>Gói miễn phí</strong>: Không</li>
+<li><strong>Claude Pro</strong>: $20/tháng, bao gồm dung lượng Claude Code hạn chế (Sonnet, ~50 message mỗi 5 giờ)</li>
+<li><strong>Claude Max 5x</strong>: $100/tháng, ~5x dung lượng, có Opus</li>
+<li><strong>Claude Max 20x</strong>: $200/tháng, ~20x dung lượng, Opus + 1M context beta</li>
+<li><strong>API trả theo dùng</strong>: ~$3 mỗi 1M đầu vào, ~$15 mỗi 1M đầu ra (Sonnet); ~$15/$75 cho Opus</li>
+</ul>
+<p>→ <strong>Chi phí tháng cho power user</strong>: $20 (Pro nhẹ), $100 (Max 5x hàng ngày), $200 (Max 20x nặng).</p>
+<h3 id="người-thắng-về-ngân-sách">Người thắng về ngân sách<a hidden class="anchor" aria-hidden="true" href="#người-thắng-về-ngân-sách">#</a></h3>
+<p>Sinh viên/hobbyist: <strong>Gemini CLI miễn phí &gt; Claude Pro $20</strong>. Riêng gói miễn phí đã đủ cho coding hàng ngày.
 Freelancer ship việc cho client: combo <strong>Claude Pro $20 + Gemini CLI miễn phí</strong> — Gemini cho khám phá, Claude cho thực thi.
-Full-time builder: <strong>Claude Max 5x $100 + Gemini CLI miễn phí</strong> — Claude làm chính, Gemini cho đa phương thức và tràn lưu lượng.</p><hr><h2 id=benchmark-hiệu-năng-chủ-quan-từ-trải-nghiệm-hàng-ngày>Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)<a hidden class=anchor aria-hidden=true href=#benchmark-hiệu-năng-chủ-quan-từ-trải-nghiệm-hàng-ngày>#</a></h2><table><thead><tr><th>Tác vụ</th><th>Gemini CLI</th><th>Claude Code</th></tr></thead><tbody><tr><td>Sửa bug đơn file</td><td>7/10</td><td>9/10</td></tr><tr><td>Refactor đa file</td><td>7/10</td><td>9/10</td></tr><tr><td>Tính năng mới từ spec</td><td>8/10</td><td>9/10</td></tr><tr><td>Sinh test</td><td>7/10</td><td>8/10</td></tr><tr><td>Đọc codebase lạ</td><td>9/10</td><td>9/10</td></tr><tr><td>Ảnh ra code (UI screenshot)</td><td>9/10</td><td>7/10</td></tr><tr><td>Phân tích PDF/docs</td><td>9/10</td><td>7/10</td></tr><tr><td>Vòng agent dài</td><td>6/10</td><td>9/10</td></tr><tr><td>Kỷ luật sử dụng tool</td><td>7/10</td><td>9/10</td></tr><tr><td>Độ hào phóng gói miễn phí</td><td>10/10</td><td>0/10</td></tr></tbody></table><p>→ Gemini CLI thắng ở gói miễn phí, đa phương thức, hấp thụ PDF/docs. Claude Code thắng ở chất lượng vòng agent, refactor đa file, kỷ luật edit cấp production.</p><hr><h2 id=mẹo-chuyển-đổi>Mẹo chuyển đổi<a hidden class=anchor aria-hidden=true href=#mẹo-chuyển-đổi>#</a></h2><h3 id=claude-code--gemini-cli>Claude Code → Gemini CLI<a hidden class=anchor aria-hidden=true href=#claude-code--gemini-cli>#</a></h3><ul><li>Cài bằng <code>npm install -g @google/gemini-cli</code></li><li>Chạy <code>gemini</code> một lần để xác thực qua tài khoản Google (không cần API key cho gói miễn phí)</li><li>Map lệnh: <code>/clear</code> → <code>/clear</code>, <code>/compact</code> → <code>/compress</code>, <code>/cost</code> → <code>/stats</code></li><li>Sandbox mặc định của Gemini CLI dễ dãi hơn — đặt <code>--sandbox-mode strict</code> nếu muốn prompt xác nhận kiểu Claude Code</li><li>Dùng gói miễn phí trước — chỉ chuyển sang billing Vertex AI khi chạm trần 1.000 req/ngày</li><li>Mong đợi edit đa file yếu hơn chút; bù bằng prompt rõ ràng hơn (&ldquo;chỉ chạm 3 file này&rdquo;)</li></ul><h3 id=gemini-cli--claude-code>Gemini CLI → Claude Code<a hidden class=anchor aria-hidden=true href=#gemini-cli--claude-code>#</a></h3><ul><li>Cài bằng <code>npm install -g @anthropic-ai/claude-code</code></li><li>Chạy <code>claude</code> và xác thực qua subscription Claude Pro/Max hoặc API key</li><li>Vòng agent của Claude Code tự chủ hơn — mong đợi ít prompt xác nhận hơn, edit trực tiếp nhiều hơn</li><li>Dùng ````/permissions``` để siết sandbox nếu muốn kiểu Gemini CLI &ldquo;hỏi trước mỗi hành động&rdquo;</li><li>Tận dụng MCP server — hệ sinh thái MCP của Claude Code phong phú hơn nhiều</li><li>Ngân sách thực tế: user Claude Code nặng thường rơi vào $100/tháng (Max 5x) khi cảm giác lạ với gói miễn phí trôi đi</li></ul><h3 id=mẹo-self-hosting>Mẹo Self-Hosting<a hidden class=anchor aria-hidden=true href=#mẹo-self-hosting>#</a></h3><p>Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.</p><hr><h2 id=lựa-chọn-thay-thế-đáng-thử>Lựa chọn thay thế đáng thử<a hidden class=anchor aria-hidden=true href=#lựa-chọn-thay-thế-đáng-thử>#</a></h2><p>Nếu cả Gemini CLI và Claude Code đều không hợp: - <strong><a href=https://dibi8.com/vi/vs/cursor-vs-claude-code/>Cursor</a></strong> — VS Code fork, autocomplete inline tốt nhất, $20/tháng</p><ul><li><strong><a href=https://dibi8.com/resources/llm-frameworks/aider/>Aider</a></strong> — Mã nguồn mở, terminal, BYO API key (hoạt động với Gemini, Claude, OpenAI)</li><li><strong><a href=https://dibi8.com/resources/llm-frameworks/continue/>Continue.dev</a></strong> — Extension VS Code miễn phí, BYO model</li><li><strong><a href=https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/>cc-switch</a></strong> — Định tuyến Claude Code qua nhà cung cấp rẻ hơn, cắt giảm 60-80% chi phí</li></ul><hr><h2 id=góc-nhìn-dibi8>Góc nhìn dibi8<a hidden class=anchor aria-hidden=true href=#góc-nhìn-dibi8>#</a></h2><p>Năm 2026, thị trường AI coding CLI đang hợp nhất quanh hai phe: <strong>phe mở và hào phóng (Gemini CLI)</strong> và <strong>phe đánh bóng cao cấp (Claude Code)</strong>. Lựa chọn đúng phụ thuộc ví của bạn và độ kiên nhẫn với các cạnh thô.</p><p>Hạn chế ngân sách hoặc chỉ đang khám phá → <strong>gói miễn phí Gemini CLI</strong>, không tranh cãi. 1.000 request/ngày ở $0 là vô đối.
+Full-time builder: <strong>Claude Max 5x $100 + Gemini CLI miễn phí</strong> — Claude làm chính, Gemini cho đa phương thức và tràn lưu lượng.</p>
+<hr>
+<h2 id="benchmark-hiệu-năng-chủ-quan-từ-trải-nghiệm-hàng-ngày">Benchmark hiệu năng (chủ quan, từ trải nghiệm hàng ngày)<a hidden class="anchor" aria-hidden="true" href="#benchmark-hiệu-năng-chủ-quan-từ-trải-nghiệm-hàng-ngày">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tác vụ</th>
+					<th>Gemini CLI</th>
+					<th>Claude Code</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Sửa bug đơn file</td>
+					<td>7/10</td>
+					<td>9/10</td>
+			</tr>
+			<tr>
+					<td>Refactor đa file</td>
+					<td>7/10</td>
+					<td>9/10</td>
+			</tr>
+			<tr>
+					<td>Tính năng mới từ spec</td>
+					<td>8/10</td>
+					<td>9/10</td>
+			</tr>
+			<tr>
+					<td>Sinh test</td>
+					<td>7/10</td>
+					<td>8/10</td>
+			</tr>
+			<tr>
+					<td>Đọc codebase lạ</td>
+					<td>9/10</td>
+					<td>9/10</td>
+			</tr>
+			<tr>
+					<td>Ảnh ra code (UI screenshot)</td>
+					<td>9/10</td>
+					<td>7/10</td>
+			</tr>
+			<tr>
+					<td>Phân tích PDF/docs</td>
+					<td>9/10</td>
+					<td>7/10</td>
+			</tr>
+			<tr>
+					<td>Vòng agent dài</td>
+					<td>6/10</td>
+					<td>9/10</td>
+			</tr>
+			<tr>
+					<td>Kỷ luật sử dụng tool</td>
+					<td>7/10</td>
+					<td>9/10</td>
+			</tr>
+			<tr>
+					<td>Độ hào phóng gói miễn phí</td>
+					<td>10/10</td>
+					<td>0/10</td>
+			</tr>
+	</tbody>
+</table>
+<p>→ Gemini CLI thắng ở gói miễn phí, đa phương thức, hấp thụ PDF/docs. Claude Code thắng ở chất lượng vòng agent, refactor đa file, kỷ luật edit cấp production.</p>
+<hr>
+<h2 id="mẹo-chuyển-đổi">Mẹo chuyển đổi<a hidden class="anchor" aria-hidden="true" href="#mẹo-chuyển-đổi">#</a></h2>
+<h3 id="claude-code--gemini-cli">Claude Code → Gemini CLI<a hidden class="anchor" aria-hidden="true" href="#claude-code--gemini-cli">#</a></h3>
+<ul>
+<li>Cài bằng <code>npm install -g @google/gemini-cli</code></li>
+<li>Chạy <code>gemini</code> một lần để xác thực qua tài khoản Google (không cần API key cho gói miễn phí)</li>
+<li>Map lệnh: <code>/clear</code> → <code>/clear</code>, <code>/compact</code> → <code>/compress</code>, <code>/cost</code> → <code>/stats</code></li>
+<li>Sandbox mặc định của Gemini CLI dễ dãi hơn — đặt <code>--sandbox-mode strict</code> nếu muốn prompt xác nhận kiểu Claude Code</li>
+<li>Dùng gói miễn phí trước — chỉ chuyển sang billing Vertex AI khi chạm trần 1.000 req/ngày</li>
+<li>Mong đợi edit đa file yếu hơn chút; bù bằng prompt rõ ràng hơn (&ldquo;chỉ chạm 3 file này&rdquo;)</li>
+</ul>
+<h3 id="gemini-cli--claude-code">Gemini CLI → Claude Code<a hidden class="anchor" aria-hidden="true" href="#gemini-cli--claude-code">#</a></h3>
+<ul>
+<li>Cài bằng <code>npm install -g @anthropic-ai/claude-code</code></li>
+<li>Chạy <code>claude</code> và xác thực qua subscription Claude Pro/Max hoặc API key</li>
+<li>Vòng agent của Claude Code tự chủ hơn — mong đợi ít prompt xác nhận hơn, edit trực tiếp nhiều hơn</li>
+<li>Dùng ````/permissions``` để siết sandbox nếu muốn kiểu Gemini CLI &ldquo;hỏi trước mỗi hành động&rdquo;</li>
+<li>Tận dụng MCP server — hệ sinh thái MCP của Claude Code phong phú hơn nhiều</li>
+<li>Ngân sách thực tế: user Claude Code nặng thường rơi vào $100/tháng (Max 5x) khi cảm giác lạ với gói miễn phí trôi đi</li>
+</ul>
+<h3 id="mẹo-self-hosting">Mẹo Self-Hosting<a hidden class="anchor" aria-hidden="true" href="#mẹo-self-hosting">#</a></h3>
+<p>Muốn sandbox đám mây để chạy cả hai agent trên codebase thật mà không đốt tài nguyên cục bộ? Bật  — đủ cho 2 tháng luồng AI agent hàng ngày trên droplet $12/tháng. Rẻ hơn việc giao máy dev cục bộ cho agent chạy quá hung hăng, và bạn có thể SSH từ bất cứ đâu.</p>
+<hr>
+<h2 id="lựa-chọn-thay-thế-đáng-thử">Lựa chọn thay thế đáng thử<a hidden class="anchor" aria-hidden="true" href="#lựa-chọn-thay-thế-đáng-thử">#</a></h2>
+<p>Nếu cả Gemini CLI và Claude Code đều không hợp: - <strong><a href="https://dibi8.com/vi/vs/cursor-vs-claude-code/">Cursor</a></strong> — VS Code fork, autocomplete inline tốt nhất, $20/tháng</p>
+<ul>
+<li><strong><a href="https://dibi8.com/resources/llm-frameworks/aider/">Aider</a></strong> — Mã nguồn mở, terminal, BYO API key (hoạt động với Gemini, Claude, OpenAI)</li>
+<li><strong><a href="https://dibi8.com/resources/llm-frameworks/continue/">Continue.dev</a></strong> — Extension VS Code miễn phí, BYO model</li>
+<li><strong><a href="https://dibi8.com/resources/dev-utils/cc-switch-claude-code-api-router/">cc-switch</a></strong> — Định tuyến Claude Code qua nhà cung cấp rẻ hơn, cắt giảm 60-80% chi phí</li>
+</ul>
+<hr>
+<h2 id="góc-nhìn-dibi8">Góc nhìn dibi8<a hidden class="anchor" aria-hidden="true" href="#góc-nhìn-dibi8">#</a></h2>
+<p>Năm 2026, thị trường AI coding CLI đang hợp nhất quanh hai phe: <strong>phe mở và hào phóng (Gemini CLI)</strong> và <strong>phe đánh bóng cao cấp (Claude Code)</strong>. Lựa chọn đúng phụ thuộc ví của bạn và độ kiên nhẫn với các cạnh thô.</p>
+<p>Hạn chế ngân sách hoặc chỉ đang khám phá → <strong>gói miễn phí Gemini CLI</strong>, không tranh cãi. 1.000 request/ngày ở $0 là vô đối.
 Ship code production hàng ngày → <strong>Claude Code Max 5x ($100/tháng)</strong>, chỉ chất lượng vòng agent đã đủ hoàn vốn.
-Muốn cả hai → combo <strong>Gemini CLI miễn phí + Claude Pro $20</strong>. Gemini cho trinh sát (đọc code, scan PR, OCR screenshot), Claude cho thực thi (refactor, ship, review). Tổng cộng: $20/tháng cho AI coding đẳng cấp.</p><p>Với indie dev đang ship SaaS một mình trên <strong>ngân sách cuối cùng</strong>? <strong>Gemini CLI gói miễn phí</strong> là lựa chọn ROI dương nhất trong AI coding hiện nay — đúng nghĩa không có cách nào rẻ hơn để ship code với trợ giúp AI. Lý do duy nhất để nâng cấp lên Claude Code là khi bạn bắt đầu mất giờ vì chất lượng refactor đa file yếu hơn của Gemini. Đến lúc đó, miễn phí vẫn là miễn phí.</p><hr><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><p>(render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)</p><hr><h2 id=đọc-thêm>Đọc thêm<a hidden class=anchor aria-hidden=true href=#đọc-thêm>#</a></h2><ul><li><a href=https://dibi8.com/vi/vs/cursor-vs-claude-code/>So sánh Cursor vs Claude Code 2026</a></li><li><a href=https://dibi8.com/vi/vs/cursor-vs-windsurf/>So sánh Cursor vs Windsurf 2026</a></li><li><a href=https://dibi8.com/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/>Công cụ AI lập trình tốt nhất 2026 — Lựa chọn thay thế Cursor</a></li><li><a href=https://dibi8.com/collections/cheap-llm-stack/>Stack LLM dưới $20/tháng</a></li></ul><h2 id=công-cụ-đề-xuất>Công Cụ Đề Xuất<a hidden class=anchor aria-hidden=true href=#công-cụ-đề-xuất>#</a></h2><p><strong>Cần access Claude hoặc OpenAI API ổn định?</strong> Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.</p><ul><li>**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.</li></ul><p><em>Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+Muốn cả hai → combo <strong>Gemini CLI miễn phí + Claude Pro $20</strong>. Gemini cho trinh sát (đọc code, scan PR, OCR screenshot), Claude cho thực thi (refactor, ship, review). Tổng cộng: $20/tháng cho AI coding đẳng cấp.</p>
+<p>Với indie dev đang ship SaaS một mình trên <strong>ngân sách cuối cùng</strong>? <strong>Gemini CLI gói miễn phí</strong> là lựa chọn ROI dương nhất trong AI coding hiện nay — đúng nghĩa không có cách nào rẻ hơn để ship code với trợ giúp AI. Lý do duy nhất để nâng cấp lên Claude Code là khi bạn bắt đầu mất giờ vì chất lượng refactor đa file yếu hơn của Gemini. Đến lúc đó, miễn phí vẫn là miễn phí.</p>
+<hr>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<p>(render qua faqs frontmatter — hiển thị inline + JSON-LD cho AIO)</p>
+<hr>
+<h2 id="đọc-thêm">Đọc thêm<a hidden class="anchor" aria-hidden="true" href="#đọc-thêm">#</a></h2>
+<ul>
+<li><a href="https://dibi8.com/vi/vs/cursor-vs-claude-code/">So sánh Cursor vs Claude Code 2026</a></li>
+<li><a href="https://dibi8.com/vi/vs/cursor-vs-windsurf/">So sánh Cursor vs Windsurf 2026</a></li>
+<li><a href="https://dibi8.com/resources/llm-frameworks/ai-coding-tools-cursor-alternatives-2026/">Công cụ AI lập trình tốt nhất 2026 — Lựa chọn thay thế Cursor</a></li>
+<li><a href="https://dibi8.com/collections/cheap-llm-stack/">Stack LLM dưới $20/tháng</a></li>
+</ul>
+<h2 id="công-cụ-đề-xuất">Công Cụ Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#công-cụ-đề-xuất">#</a></h2>
+<p><strong>Cần access Claude hoặc OpenAI API ổn định?</strong> Hầu hết người chọn giữa các tool này cuối cùng đều cần API key.</p>
+<ul>
+<li>**** — Proxy Claude / OpenAI / DeepSeek API. Một key cho phép access nhiều top model với ~30% giá chính thức; đặc biệt hữu ích khi compare model hoặc bị rate-limit Anthropic/OpenAI direct trong region.</li>
+</ul>
+<p><em>Affiliate link — không tốn thêm chi phí và giúp dibi8.com vận hành.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Gemini CLI vs Claude Code 2026: Agent AI coding nào tốt hơn?&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-22&rdquo;,
@@ -23,18 +558,186 @@ Muốn cả hai → combo <strong>Gemini CLI miễn phí + Claude Pro $20</stron
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/gemini-cli-vs-claude-code%22>https://dibi8.com/vi/resources/gemini-cli-vs-claude-code"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/gemini-cli-vs-claude-code%22">https://dibi8.com/vi/resources/gemini-cli-vs-claude-code"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/ai-coding-agents/gemini-cli-vs-claude-code/>claude-code-vs-cline</a></li><li><a href=/vi/ai-coding-agents/gemini-cli-vs-claude-code/>gemini-cli-vs-claude-code</a></li><li><a href=/vi/ai-coding-agents/gemini-cli-vs-claude-code/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/vi/ai-coding-agents/gemini-cli-vs-claude-code/>claude-code-vs-aider</a></li><li><a href=/vi/ai-coding-agents/gemini-cli-vs-claude-code/>cursor-vs-claude-code</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code-2026-real-comparison/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/geo-ai-overviews-optimization-2026-practical/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/ai-coding-agents/gemini-cli-vs-claude-code/">claude-code-vs-cline</a></li>
+<li><a href="/vi/ai-coding-agents/gemini-cli-vs-claude-code/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/vi/ai-coding-agents/gemini-cli-vs-claude-code/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/vi/ai-coding-agents/gemini-cli-vs-claude-code/">claude-code-vs-aider</a></li>
+<li><a href="/vi/ai-coding-agents/gemini-cli-vs-claude-code/">cursor-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/gemini-cli-vs-claude-code-2026-real-comparison/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/geo-ai-overviews-optimization-2026-practical/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

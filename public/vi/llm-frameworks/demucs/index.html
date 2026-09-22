@@ -1,10 +1,311 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/llm-frameworks/demucs/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/demucs/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/demucs/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/demucs/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/vi/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/llm-frameworks/demucs/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“demucs”, “tach-nguon-nhac”, “ai-audio”, “tach-stem”, “pytorch”, “docker”, “ma-nguon-mo”] aliases:\n/vi/posts/demucs/ Việc tách một bản phối hoàn chỉnh thành các track nhạc cụ riêng lẻ — vocal, trống, bass, và các nhạc cụ khác — từng đòi hỏi file đa track gốc từ phòng thu. Điều đó đã thay đổi khi các mô hình học sâu học được cách “unmix” audio đã hoàn thiện. Ngày nay, nhạc sĩ, producer và developer sử dụng các công cụ này để tạo track karaoke, tách sample, chuẩn bị remix, và xây dựng pipeline chuyển đổi giọng nói. Trong các lựa chọn mã nguồn mở, một mô hình thống trị cuộc trò chuyện: Demucs, kiến trúc hybrid transformer của Meta với hơn 10,000 sao trên GitHub và benchmark hàng đầu trên tập dữ liệu MUSDB18-HQ.\nHướng dẫn này trình bày cách Demucs hoạt động, cách cài đặt cục bộ, cách so sánh với Spleeter và Ultimate Vocal Remover, và cách tích hợp vào quy trình production thực tế.\nDemucs là gì? Demucs (Deep Extractor for Music Sources) là mô hình tách nguồn nhạc mã nguồn mở được phát triển bởi Meta AI Research. Nó nhận đầu vào là một bản phối stereo và xuất ra các “stem” — thường là vocal, trống, bass, và một track “other” chứa guitar, keyboard và các nhạc cụ còn lại.\nDự án nằm trên repository ```facebookresearch/demucstrên GitHub, đã tích lũy hơn 10,100 sao và 1,500 fork. Repository đã bị Meta archive vào ngày 1 tháng 1 năm 2025, nhưng tác giả gốc Alexandre Defossez duy trì một fork hoạt động tạiadefossez/demucs````. Phiên bản ổn định mới nhất là v4.1.0 và toàn bộ dự án sử dụng giấy phép MIT.\nĐiều làm Demucs khác biệt với các công cụ trước đó là phương pháp hybrid: nó xử lý audio đồng thởi trong miền thờ gian (waveform thô) và miền tần số (spectrogram), sau đó kết hợp cả hai biểu diễn. Quá trình xử lý hai miền này bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy mất đi, mang lại kết quả tách sạch hơn với ít artifact kim loại hơn.\nDemucs hoạt động như thế nào Tổng quan kiến trúc Thế hệ Demucs hiện tại — chính thức gọi là Hybrid Transformer Demucs (HTDemucs) — xây dựng trên backbone convolutional U-Net với các lớp transformer. Kiến trúc hoạt động theo ba giai đoạn khái niệm: 1. Encoder: Waveform đầu vào đi qua cả encoder miền thờ gian (convolution 1D) và encoder miền tần số (STFT theo sau là convolution 2D). Việc mã hóa kép này nắm bắt cả chi tiết thờ gian tinh vi và cấu trúc tần số hài.\nTransformer bottleneck: Các lớp sâu nhất của U-Net sử dụng encoder transformer cross-domain với self-attention trong từng miền và cross-attention giữa các miền. Cơ chế này mô hình các phụ thuộc dài hạn — rất quan trọng để tách, ví dụ, một giai điệu vocal trải dài nhiều ô nhịp khỏi một đường guitar có cao độ tương tự.\nDecoder: Các decoder riêng biệt tái tạo từng nguồn (trống, bass, other, vocal) trong cả hai miền, và một lớp fusion kết hợp các đầu ra thành các waveform đã tách cuối cùng.\nCác mô hình có sẵn Demucs đi kèm với nhiều mô hình pretrained được tối ưu cho các đánh đổi tốc độ/chất lượng khác nhau: | Mô hình | Số stem | VRAM | SDR (MUSDB) | Trường hợp sử dụng | |———|———|——|————-|——————-| | htdemucs | 4 | ~5.2 GB | 7.1 dB | Mặc định, cân bằng tốc độ/chất lượng | | htdemucs_ft | 4 | ~7.8 GB | 7.8 dB | Chất lượng tối đa, chậm hơn ~4 lần | | htdemucs_6s | 6 | ~6.5 GB | 6.8 dB | Tách guitar + piano | | mdx_extra_q | 4 | ~3.0 GB | 6.5 dB | Hệ thống VRAM thấp |\nMô hình htdemucs_ft đạt SDR tổng thể 7.8 dB trên MUSDB18-HQ, với chi tiết từng nguồn khoảng 8.5 dB cho vocal, 7.5 dB cho bass, 8.9 dB cho trống, và 6.2 dB cho danh mục “other”. Để tham khảo, 0 dB có nghĩa là không có cải thiện tách so với bản phối gốc.\nCài đặt \u0026 Thiết lập Yêu cầu tiên quyết Trước khi cài đặt Demucs, xác minh môi trường: `````bash\nPython 3.8+ bắt buộc python –version\nPhải cài đặt FFmpeg ffmpeg -version\n(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc nvidia-smi\n### Tùy chọn 1: pip Install (Nhanh nhất) Cách đơn giản nhất để chạy Demucs: `````bash # Tạo môi trường ảo python -m venv demucs-env source demucs-env/bin/activate # Linux/macOS # demucs-env\\Scripts\\activate # Windows # Cài đặt Demucs pip install -U demucs # Xác minh cài đặt demucs --help Tùy chọn 2: Conda với GPU Support (Khuyến nghị) Để suy luận tăng tốc GPU và training: `````bash\nClone repository git clone https://github.com/adefossez/demucs.git cd demucs\nTạo môi trường từ spec chính thức conda env update -f environment-cuda.yml conda activate demucs\nCài đặt ở chế độ development pip install -e .\nXác minh GPU được phát hiện python -c “import torch; print(f’CUDA available: {torch.cuda.is_available()}’)”\n### Tùy chọn 3: Docker (Cách ly sạch nhất) Để triển khai có thể tái tạo, không phụ thuộc: `````bash # Dockerfile FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime RUN pip install -U demucs WORKDIR /audio ENTRYPOINT [\"demucs\"] Build và chạy: `````bash docker build -t demucs . docker run –gpus all -v $(pwd):/audio demucs song.mp3\n**Docker Compose (cho dịch vụ batch):** `````yaml version: '3.8' services: demucs: build: . runtime: nvidia environment: - NVIDIA_VISIBLE_DEVICES=all volumes: - ./input:/audio/input:ro - ./output:/audio/output command: [\"-n\", \"htdemucs_ft\", \"--mp3\", \"-o\", \"/audio/output\", \"/audio/input\"] Chạy tách đầu tiên Sau khi cài đặt, tách track đầu tiên: `````bash\nTách 4-stem cơ bản với mô hình mặc định demucs song.mp3\nOutput vào ./separated/htdemucs/song/ Chứa: drums.wav, bass.wav, other.wav, vocals.wav Dùng mô hình fine-tuned cho chất lượng tốt hơn demucs -n htdemucs_ft song.mp3\nChỉ tách vocal khỏi nhạc nền demucs –two-stems=vocals song.mp3\nXuất dạng MP3 (file nhỏ hơn) demucs –mp3 –mp3-bitrate 320 song.mp3\n### Xác minh Model Download và Cache Các model tải xuống tự động khi sử dụng lần đầu. Xác minh cache: `````bash # Liệt kê model đã tải ls ~/.cache/torch/hub/checkpoints/ # Output dự kiến: # htdemucs-*.th, htdemucs_ft-*.th # Kiểm tra model sẽ được sử dụng demucs -n htdemucs_ft --help | grep \"name\" # Test nhanh với file audio ngắn ffmpeg -f lavfi -i \"sine=frequency=1000:duration=5\" test_tone.wav demucs -n htdemucs test_tone.wav Tích hợp với các công cụ phổ biến Ultimate Vocal Remover (UVR) Ultimate Vocal Remover là frontend GUI phổ biến nhất cho Demucs. Thay vì sử dụng Demucs trực tiếp qua command line, hầu hết producer sử dụng UVR vì nó bundle các mô hình Demucs với kiến trúc khác và thêm xử lý ensemble.\nCấu hình trong UVR: 1. Tải UVR5 từ GitHub Releases chính thức 2. Trong UI, chọn Process Method: “Demucs” 3. Chọn mô hình: V4 | htdemucs_ft 4. Bật GPU Conversion nếu có 5. Để có kết quả tốt nhất, dùng Ensemble Mode với htdemucs_ft + MDX-Net\nChế độ ensemble của UVR chạy song song nhiều mô hình và pha trộn đầu ra, liên tục tạo ra kết quả tách sạch hơn bất kỳ mô hình đơn lẻ nào. Chi phí là thờ gian xử lý — chế độ ensemble chậm hơn khoảng 3–5 lần so với một lần chạy mô hình đơn.\nRVC (Retrieval-based Voice Conversion) Các pipeline RVC thường sử dụng Demucs như một bước tiền xử lý để tách vocal trước khi trích xuất giọng: `````python import subprocess import os\ndef preprocess_for_rvc(input_song, output_dir): “““Trích xuất vocal sạch cho chuyển đổi giọng RVC.””” os.makedirs(output_dir, exist_ok=True)\n# Bước 1: Tách bằng Demucs subprocess.run([ demucs, '-n', htdemucs_ft, '--two-stems=vocals', '-o', output_dir, input_song ], check=True) # Bước 2: Trả về đường dẫn vocal đã tách base = os.path.splitext(os.path.basename(input_song))[0] vocals_path = os.path.join( output_dir, htdemucs_ft, base, 'vocals.wav' ) return vocals_path Sử dụng vocals = preprocess_for_rvc(‘input.mp3’, ‘./separated’)\nĐưa vocal vào RVC để chuyển đổi giọng ### GPT-SoVITS Voice cloning GPT-SoVITS yêu cầu audio tham chiếu sạch. Demucs loại bỏ nhạc nền trước khi đưa mẫu vào pipeline TTS: `````python from demucs.api import Separator import torchaudio separator = Separator(model=\"htdemucs\", device=\"cuda\") # Tách và trích xuất vocal origin, separated = separator.separate_audio_file(\"reference.mp3\") vocals = separated[\"vocals\"] # Lưu ở 24kHz cho GPT-SoVITS torchaudio.save(\"clean_reference.wav\", vocals, 24000) Giao diện Web Gradio Để tự host dịch vụ tách nhạc: `````python import gradio as gr from demucs.api import Separator\nseparator = Separator(model=“htdemucs_ft”)\ndef separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file) output_path = f\"{stem}.wav\" separator.save_audio(separated[stem], output_path, samplerate=44100) return output_path\ndemo = gr.Interface( fn=separate, inputs=[ gr.Audio(type=“filepath”, label=“Tải lên bài hát”), gr.Dropdown( choices=[“vocals”, “drums”, “bass”, “other”], value=“vocals”, label=“Stem” ) ], outputs=gr.Audio(label=“Stem đã tách”), title=“Demucs Source Separation”, description=“Tách nhạc thành stem bằng mô hình Demucs của Meta” )\ndemo.launch(server_name=“0.0.0.0”, server_port=7860)\n## Benchmark / Use case thực tế ### Kết quả Benchmark MUSDB18-HQ MUSDB18-HQ là bộ benchmark chuẩn cho tách nguồn nhạc, chứa 150 bài hát đầy đủ với ground-truth stem. SDR càng cao nghĩa là tách càng sạch. | Mô hình | SDR Tổng thể | Vocal | Trống | Bass | Other | Tốc độ (RTX 3090) | |---------|-------------|-------|-------|------|-------|-------------------| | **HTDemucs FT (v4)** | **7.8 dB** | **8.5 dB** | **8.9 dB** | **7.5 dB** | **6.2 dB** | ~4x real-time | | HTDemucs (v4) | 7.1 dB | 7.8 dB | 8.2 dB | 6.9 dB | 5.6 dB | ~16x real-time | | Hybrid Demucs (v3) | 7.7 dB | 8.1 dB | 8.5 dB | 7.2 dB | 5.9 dB | ~12x real-time | | Spleeter 4stems | 5.9 dB | 6.3 dB | 6.8 dB | 5.4 dB | 4.2 dB | ~100x real-time | | Open-Unmix | 5.3 dB | 6.2 dB | 5.9 dB | 4.7 dB | 4.2 dB | ~80x real-time | ### Use case Production **Tạo track karaoke**: Tùy chọn ````--two-stems=vocals```` tạo ra instrumental bằng cách trộn drums + bass + other, loại bỏ track vocal. Một bài 4 phút xử lý dưới 30 giây trên GPU. **Tách sample cho producer**: Tách drum break, bassline, hoặc các yếu tố giai điệu từ bản phối hoàn chỉnh. Mô hình ````htdemucs_6s```` thêm tách guitar và piano, mặc dù chất lượng trên các stem này thấp hơn 4 stem chính. **Tiền xử lý chuyển đổi giọng**: Việc trích xuất vocal sạch là điều kiện tiên quyết cho các pipeline clone giọng như RVC, GPT-SoVITS. Demucs liên tục tạo ra stem vocal với ít bleed hơn các phương pháp spectrogram-only. **Phục hồi audio**: Các chuyên gia lưu trữ sử dụng Demucs để tách các bản ghi lịch sử để giảm nhiễu trên từng stem riêng lẻ, sau đó remix. ### Tham chiếu thờ gian xử lý Cho track stereo 4 phút ở 44.1 kHz: | Phần cứng | htdemucs | htdemucs_ft | htdemucs_6s | |-----------|----------|-------------|-------------| | RTX 4080 GPU | ~15 giây | ~55 giây | ~25 giây | | RTX 3080 GPU | ~20 giây | ~75 giây | ~35 giây | | Apple M3 (MPS) | ~45 giây | ~3 phút | ~70 giây | | Intel i7-13700 CPU | ~5 phút | ~18 phút | ~8 phút | ## Sử dụng nâng cao / Production Hardening ### Python API cho pipeline tùy chỉnh Để kiểm soát lập trình, bỏ qua CLI và sử dụng Python API trực tiếp: `````python import torch import torchaudio from demucs.pretrained import get_model from demucs.apply import apply_model # Tải mô hình device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\") model = get_model(\"htdemucs_ft\") model.to(device) model.eval() # Tải audio wav, sr = torchaudio.load(\"input.mp3\") # Đảm bảo stereo if wav.shape[0] == 1: wav = wav.repeat(2, 1) # Thêm chiều batch mix = wav.unsqueeze(0).to(device) # Tách với cài đặt tối ưu with torch.no_grad(): sources = apply_model( model, mix, shifts=1, # Shift trick: cao hơn = tốt hơn, chậm hơn split=True, # Xử lý theo chunk (bắt buộc cho audio dài) overlap=0.25, # Chồng chéo giữa các chunk segment=10, # Độ dài đoạn (giây) progress=True, device=device )[0] # sources shape: (num_sources, channels, samples) source_names = model.sources # [drums, bass, other, vocals] # Lưu từng stem riêng lẻ for i, name in enumerate(source_names): torchaudio.save(f\"{name}.wav\", sources[i].cpu(), sr) Pipeline xử lý hàng loạt from pathlib import Path import subprocess import json def batch_separate(input_dir, output_dir, model=\"htdemucs\"): \"\"\"Xử lý tất cả file audio trong thư mục.\"\"\" input_dir = Path(input_dir) output_dir = Path(output_dir) output_dir.mkdir(parents=True, exist_ok=True) audio_exts = {'.mp3', '.wav', '.flac', '.ogg', '.m4a'} files = [f for f in input_dir.iterdir() if f.suffix in audio_exts] # Xử lý tất cả file trong một lần gọi Demucs subprocess.run([ demucs, '-n', model, '-o', str(output_dir), '--mp3', '--mp3-bitrate', 320, *[str(f) for f in files] ], check=True) # Tạo manifest metadata manifest = {} for f in files: base = f.stem stem_dir = output_dir / model / base manifest[base] = { drums: str(stem_dir / 'drums.mp3'), bass: str(stem_dir / 'bass.mp3'), other: str(stem_dir / 'other.mp3'), vocals: str(stem_dir / 'vocals.mp3'), } with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2) return manifest # Sử dụng batch_separate('./raw_songs/', './stems/', model=htdemucs_ft) Tối ưu bộ nhớ cho file dài Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế: `````python\nÉp offload CPU cho file lớn import os os.environ[PYTORCH_CUDA_ALLOC_CONF] = ‘max_split_size_mb:128\"\nDùng segment nhỏ hơn sources = apply_model( model, mix, split=True, segment=7, # Giảm từ mặc định ~10s xuống 7s overlap=0.1, # Giảm overlap device=device )[0]\n### Giám sát và Ghi log `````python import logging import time logging.basicConfig(level=logging.INFO) logger = logging.getLogger(demucs) def separate_with_metrics(input_path, output_dir): start = time.time() separator = Separator(model=\"htdemucs_ft\", device=\"cuda\") origin, separated = separator.separate_audio_file(input_path) duration = time.time() - start logger.info(f\"Đã tách {input_path} trong {duration:.1f} giây\") # Log mức từng stem for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item() logger.info(f\" {name}: RMS={rms:.4f}\") return separated So sánh với các lựa chọn thay thế Tính năng Demucs (v4) Ultimate Vocal Remover Spleeter Open-Unmix Kiến trúc Hybrid waveform + spectrogram + Transformer GUI wrapper (đa backend) Spectrogram U-Net Spectrogram LSTM MUSDB SDR 7.8 dB (htdemucs_ft) N/A (dùng Demucs/MDX) 5.9 dB 5.3 dB Số stem tối đa 6 (vocal, trống, bass, guitar, piano, other) 4 (tùy model) 5 (có sides) 4 Cần GPU Khuyến nghị Khuyến nghị Tùy chọn Tùy chọn Tốc độ xử lý ~4–16x real-time (GPU) ~3–10x real-time (ensemble) ~100x real-time ~80x real-time VRAM sử dụng 5–8 GB 6–12 GB (ensemble) \u003c2 GB \u003c2 GB Phát triển Community fork Đang hoạt động Archived (2021) Maintenance mode Giấy phép MIT MIT MIT MIT Phù hợp nhất Tách ưu tiên chất lượng Dễ dùng GUI + ensemble Xử lý batch nhanh Triển khai nhẹ Khi nào chọn gì: Sử dụng Demucs trực tiếp khi cần chất lượng tách tối đa và xây dựng pipeline tự động. Dùng UVR khi muốn GUI, xử lý ensemble, và không ngại overhead thiết lập. Chỉ dùng Spleeter khi cần tốc độ tối đa trên phần cứng hạn chế hoặc đang duy trì code cũ. Open-Unmix vẫn phù hợp cho mục đích giáo dục và triển khai edge có tài nguyên hạn chế.\nHạn chế / Đánh giá trung thực Demucs không phải công cụ phù hợp cho mọi tác vụ audio. Đây là những gì nó không làm tốt: Tách real-time: Ngay cả mô hình Demucs nhanh nhất (htdemucs) cũng chỉ xử lý ở tốc độ khoảng 16x real-time trên RTX 4080. Điều này quá chậm cho biểu diễn trực tiếp hoặc ứng dụng streaming real-time. Các công cụ như Spleeter hoặc bản export ONNX chuyên dụng phù hợp hơn cho các use case nhạy cảm với độ trễ.\nTách guitar và piano: Mô hình htdemucs_6s cố gắng tách guitar và piano thành các stem riêng biệt, nhưng SDR trên các nguồn này thấp hơn đáng kể so với 4 stem chính. Nếu nhu cầu chính là tách track guitar cụ thể, các công cụ chuyển phổ chuyên dụng như Basic Pitch có thể phù hợp hơn.\nMaster được nén mạnh: Các track được maximize loudness với limiting nặng (phổ biến trong EDM và pop hiện đại) tạo ra frequency masking làm các mô hình tách nhầm lẫn. Demucs có thể tạo ra artifact — âm xoáy, bleed chéo nguồn — trên các track này mà không xuất hiện trên các bản phối dynamic hơn.\nKích thước mô hình: Ở ~2 GB cho htdemucs_ft, các mô hình Demucs lớn hơn một bậc so với Spleeter (~150 MB). Điều này quan trọng đối với triển khai edge, ứng dụng di động, và môi trường serverless với ràng buộc cold-start.\nUpstream đã archived: Repository gốc facebookresearch/demucs đã được archived và không còn được duy trì. Mặc dù adefossez/demucs đang hoạt động, quỹ đạo duy trì dài hạn chưa rõ ràng. Cân nhắc yếu tố này trong kế hoạch dependency của bạn.\nCâu hỏi thường gặp Q: Cần phần cứng gì để chạy Demucs? A: Demucs chạy trên CPU, nhưng GPU NVIDIA với 6+ GB VRAM được khuyến nghị mạnh mẽ. Mô hình htdemucs cần 5.2 GB VRAM. Mô hình htdemucs_ft cần 8 GB. Xử lý CPU-only hoạt động được nhưng thờ gian xử lý một bài 4 phút là 5–20 phút so với dưới một phút trên GPU.\nQ: Có thể dùng Demucs thương mại không? A: Có. Demucs được cấp phép MIT, cho phép sử dụng thương mại, sửa đổi, và phân phối không hạn chế. Các stem đã tách có thể được sử dụng trong sản xuất thương mại. Lưu ý rằng giấy phép MIT áp dụng cho code và mô hình, không áp dụng cho bản quyền của nhạc bạn xử lý.\nQ: Tại sao Demucs nghe hay hơn Spleeter? A: Demucs xử lý audio đồng thởi trong cả miền thờ gian và miền tần số, bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy loại bỏ. Các lớp transformer cũng mô hình các phụ thuộc âm nhạc dài hạn tốt hơn U-Net của Spleeter. Điều này dẫn đến ít artifact hơn và ít nhiễu chéo nguồn hơn.\nQ: Làm sao xử lý cả album hiệu quả? A: Truyền nhiều file trong một lần gọi Demucs: demucs -n htdemucs *.mp3. Demucs xử lý tuần tự nhưng tránh overhead tải mô hình lặp lại. Để đạt thông lượng tối đa, chạy nhiều instance Demucs trên các GPU khác nhau hoặc dùng script xử lý batch trong phần Sử dụng nâng cao.\nQ: Demucs hỗ trợ định dạng audio nào? A: Demucs sử dụng FFmpeg để giải mã và torchaudio để mã hóa. Đầu vào: MP3, WAV, FLAC, OGG, M4A, và mọi định dạng FFmpeg hỗ trợ. Đầu ra: WAV (mặc định, 16-bit), float32 WAV (--float32), 24-bit WAV (--int24), hoặc MP3 (--mp3 với bitrate điều chỉnh được).\nQ: Có thể fine-tune Demucs trên dữ liệu riêng không? A: Có, nhưng cần pipeline training đầy đủ. Bạn cần các stem tách rồi cho bài hát training (cùng định dạng MUSDB18-HQ), sau đó dùng trình quản lý thử nghiệm Dora với dora run -d solver=htdemucs dset=your_dataset. Hầu hết ngườ dùng không cần điều này — các mô hình pretrained khái quát hóa tốt qua nhiều thể loại.\nQ: Sự khác biệt giữa htdemucs và htdemucs_ft là gì? A: htdemucs_ft được fine-tune theo từng nguồn với dữ liệu training bổ sung và shift trick được bật mặc định. Nó đạt ~0.7 dB SDR cao hơn trên tất cả nguồn nhưng chạy chậm hơn ~4 lần và sử dụng nhiều VRAM hơn 50%. Dùng htdemucs cho lặp nhanh và htdemucs_ft cho output production cuối cùng.\nKết luận Demucs vẫn là triển khai tham chiếu cho tách nguồn nhạc mã nguồn mở trong năm 2026. Kiến trúc hybrid transformer mang lại chất lượng tách vượt trội Spleeter từ 20–40% trên các benchmark chuẩn, và tích hợp sạch sẽ với các pipeline chuyển đổi giọng nói, trình tạo karaoke, và công cụ sản xuất audio.\nĐối với developer xây dựng pipeline audio, Demucs cung cấp Python API có tài liệu tốt, hỗ trợ Docker, và nhiều biến thể mô hình cho các đánh đổi tốc độ/chất lượng khác nhau. Giấy phép MIT loại bỏ ma sát thương mại. Các cảnh báo chính là yêu cầu phần cứng (GPU được khuyến nghị mạnh mẽ), kích thước mô hình (~2 GB), và trạng thái archived của repository upstream.\nHành động: Cài đặt Demucs bằng pip install -U demucs, chạy lần tách đầu tiên trên track thử nghiệm bằng ````demucs -n htdemucs_ft song.mp3```, và tích hợp vào pipeline bằng các ví dụ Python API ở trên. Để có trải nghiệm GUI, tải Ultimate Vocal Remover và dùng chế độ ensemble.\nTham gia nhóm Telegram dibi8.com để nhận phân tích chuyên sâu hàng tuần về công cụ AI mã nguồn mở: https://t.me/dibi8channel\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo Demucs GitHub Repository (Meta, archived) Demucs Fork đang hoạt động (adefossez) Hybrid Transformers for Music Source Separation (bài báo) MUSDB18-HQ Benchmark Dataset Ultimate Vocal Remover GUI Spleeter (Deezer, archived) Open-Unmix (Sony) MVSEP Quality Checker Leaderboard Audio Developers Conference 2025 — Bài thuyết trình ONNX Export Demucs { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Spleeter 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/demucs\" } } Related Articles wandb-ml-experiment-tracking-platform-2026 wandb-ml-experiment-tracking-platform-2026 apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"3681","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/llm-frameworks/demucs/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/llm-frameworks/demucs/>Zh</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#demucs-l%c3%a0-g%c3%ac aria-label="Demucs là gì?">Demucs là gì?</a></li><li><a href=#demucs-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Demucs hoạt động như thế nào">Demucs hoạt động như thế nào</a><ul><li><a href=#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li><li><a href=#c%c3%a1c-m%c3%b4-h%c3%acnh-c%c3%b3-s%e1%ba%b5n aria-label="Các mô hình có sẵn">Các mô hình có sẵn</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt & Thiết lập">Cài đặt & Thiết lập</a><ul><li><a href=#y%c3%aau-c%e1%ba%a7u-ti%c3%aan-quy%e1%ba%bft aria-label="Yêu cầu tiên quyết">Yêu cầu tiên quyết</a></li></ul></li></ul><li><a href=#python-38-b%e1%ba%aft-bu%e1%bb%99c aria-label="Python 3.8+ bắt buộc">Python 3.8+ bắt buộc</a></li><li><a href=#ph%e1%ba%a3i-c%c3%a0i-%c4%91%e1%ba%b7t-ffmpeg aria-label="Phải cài đặt FFmpeg">Phải cài đặt FFmpeg</a></li><li><a href=#t%c3%b9y-ch%e1%bb%8dn-nvidia-gpu-v%e1%bb%9bi-cuda-118-%c4%91%e1%bb%83-t%c4%83ng-t%e1%bb%91c aria-label="(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc">(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc</a><ul><ul><li><a href=#t%c3%b9y-ch%e1%bb%8dn-2-conda-v%e1%bb%9bi-gpu-support-khuy%e1%ba%bfn-ngh%e1%bb%8b aria-label="Tùy chọn 2: Conda với GPU Support (Khuyến nghị)">Tùy chọn 2: Conda với GPU Support (Khuyến nghị)</a></li></ul></ul></li><li><a href=#clone-repository aria-label="Clone repository">Clone repository</a></li><li><a href=#t%e1%ba%a1o-m%c3%b4i-tr%c6%b0%e1%bb%9dng-t%e1%bb%ab-spec-ch%c3%adnh-th%e1%bb%a9c aria-label="Tạo môi trường từ spec chính thức">Tạo môi trường từ spec chính thức</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-%e1%bb%9f-ch%e1%ba%bf-%c4%91%e1%bb%99-development aria-label="Cài đặt ở chế độ development">Cài đặt ở chế độ development</a></li><li><a href=#x%c3%a1c-minh-gpu-%c4%91%c6%b0%e1%bb%a3c-ph%c3%a1t-hi%e1%bb%87n aria-label="Xác minh GPU được phát hiện">Xác minh GPU được phát hiện</a><ul><ul><li><a href=#ch%e1%ba%a1y-t%c3%a1ch-%c4%91%e1%ba%a7u-ti%c3%aan aria-label="Chạy tách đầu tiên">Chạy tách đầu tiên</a></li></ul></ul></li><li><a href=#t%c3%a1ch-4-stem-c%c6%a1-b%e1%ba%a3n-v%e1%bb%9bi-m%c3%b4-h%c3%acnh-m%e1%ba%b7c-%c4%91%e1%bb%8bnh aria-label="Tách 4-stem cơ bản với mô hình mặc định">Tách 4-stem cơ bản với mô hình mặc định</a></li><li><a href=#output-v%c3%a0o-separatedhtdemucssong aria-label="Output vào ./separated/htdemucs/song/">Output vào ./separated/htdemucs/song/</a></li><li><a href=#ch%e1%bb%a9a-drumswav-basswav-otherwav-vocalswav aria-label="Chứa: drums.wav, bass.wav, other.wav, vocals.wav">Chứa: drums.wav, bass.wav, other.wav, vocals.wav</a></li><li><a href=#d%c3%b9ng-m%c3%b4-h%c3%acnh-fine-tuned-cho-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-t%e1%bb%91t-h%c6%a1n aria-label="Dùng mô hình fine-tuned cho chất lượng tốt hơn">Dùng mô hình fine-tuned cho chất lượng tốt hơn</a></li><li><a href=#ch%e1%bb%89-t%c3%a1ch-vocal-kh%e1%bb%8fi-nh%e1%ba%a1c-n%e1%bb%81n aria-label="Chỉ tách vocal khỏi nhạc nền">Chỉ tách vocal khỏi nhạc nền</a></li><li><a href=#xu%e1%ba%a5t-d%e1%ba%a1ng-mp3-file-nh%e1%bb%8f-h%c6%a1n aria-label="Xuất dạng MP3 (file nhỏ hơn)">Xuất dạng MP3 (file nhỏ hơn)</a><ul><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Tích hợp với các công cụ phổ biến">Tích hợp với các công cụ phổ biến</a><ul><li><a href=#ultimate-vocal-remover-uvr aria-label="Ultimate Vocal Remover (UVR)">Ultimate Vocal Remover (UVR)</a></li><li><a href=#rvc-retrieval-based-voice-conversion aria-label="RVC (Retrieval-based Voice Conversion)">RVC (Retrieval-based Voice Conversion)</a></li></ul></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng aria-label="Sử dụng">Sử dụng</a></li><li><a href=#%c4%91%c6%b0a-vocal-v%c3%a0o-rvc-%c4%91%e1%bb%83-chuy%e1%bb%83n-%c4%91%e1%bb%95i-gi%e1%bb%8dng aria-label="Đưa vocal vào RVC để chuyển đổi giọng">Đưa vocal vào RVC để chuyển đổi giọng</a><ul><ul><li><a href=#giao-di%e1%bb%87n-web-gradio aria-label="Giao diện Web Gradio">Giao diện Web Gradio</a></li><li><a href=#pipeline-x%e1%bb%ad-l%c3%bd-h%c3%a0ng-lo%e1%ba%a1t aria-label="Pipeline xử lý hàng loạt">Pipeline xử lý hàng loạt</a></li><li><a href=#t%e1%bb%91i-%c6%b0u-b%e1%bb%99-nh%e1%bb%9b-cho-file-d%c3%a0i aria-label="Tối ưu bộ nhớ cho file dài">Tối ưu bộ nhớ cho file dài</a></li></ul></ul></li><li><a href=#%c3%a9p-offload-cpu-cho-file-l%e1%bb%9bn aria-label="Ép offload CPU cho file lớn">Ép offload CPU cho file lớn</a></li><li><a href=#d%c3%b9ng-segment-nh%e1%bb%8f-h%c6%a1n aria-label="Dùng segment nhỏ hơn">Dùng segment nhỏ hơn</a><ul><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf aria-label="So sánh với các lựa chọn thay thế">So sánh với các lựa chọn thay thế</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết luận">Kết luận</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài liệu tham khảo">Nguồn & Tài liệu tham khảo</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/llm-frameworks/demucs/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-frameworks/demucs/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/demucs/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/demucs/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/vi/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/llm-frameworks/demucs/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“demucs”, “tach-nguon-nhac”, “ai-audio”, “tach-stem”, “pytorch”, “docker”, “ma-nguon-mo”] aliases:\n/vi/posts/demucs/ Việc tách một bản phối hoàn chỉnh thành các track nhạc cụ riêng lẻ — vocal, trống, bass, và các nhạc cụ khác — từng đòi hỏi file đa track gốc từ phòng thu. Điều đó đã thay đổi khi các mô hình học sâu học được cách “unmix” audio đã hoàn thiện. Ngày nay, nhạc sĩ, producer và developer sử dụng các công cụ này để tạo track karaoke, tách sample, chuẩn bị remix, và xây dựng pipeline chuyển đổi giọng nói. Trong các lựa chọn mã nguồn mở, một mô hình thống trị cuộc trò chuyện: Demucs, kiến trúc hybrid transformer của Meta với hơn 10,000 sao trên GitHub và benchmark hàng đầu trên tập dữ liệu MUSDB18-HQ.\nHướng dẫn này trình bày cách Demucs hoạt động, cách cài đặt cục bộ, cách so sánh với Spleeter và Ultimate Vocal Remover, và cách tích hợp vào quy trình production thực tế.\nDemucs là gì? Demucs (Deep Extractor for Music Sources) là mô hình tách nguồn nhạc mã nguồn mở được phát triển bởi Meta AI Research. Nó nhận đầu vào là một bản phối stereo và xuất ra các “stem” — thường là vocal, trống, bass, và một track “other” chứa guitar, keyboard và các nhạc cụ còn lại.\nDự án nằm trên repository ```facebookresearch/demucstrên GitHub, đã tích lũy hơn 10,100 sao và 1,500 fork. Repository đã bị Meta archive vào ngày 1 tháng 1 năm 2025, nhưng tác giả gốc Alexandre Defossez duy trì một fork hoạt động tạiadefossez/demucs````. Phiên bản ổn định mới nhất là v4.1.0 và toàn bộ dự án sử dụng giấy phép MIT.\nĐiều làm Demucs khác biệt với các công cụ trước đó là phương pháp hybrid: nó xử lý audio đồng thởi trong miền thờ gian (waveform thô) và miền tần số (spectrogram), sau đó kết hợp cả hai biểu diễn. Quá trình xử lý hai miền này bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy mất đi, mang lại kết quả tách sạch hơn với ít artifact kim loại hơn.\nDemucs hoạt động như thế nào Tổng quan kiến trúc Thế hệ Demucs hiện tại — chính thức gọi là Hybrid Transformer Demucs (HTDemucs) — xây dựng trên backbone convolutional U-Net với các lớp transformer. Kiến trúc hoạt động theo ba giai đoạn khái niệm: 1. Encoder: Waveform đầu vào đi qua cả encoder miền thờ gian (convolution 1D) và encoder miền tần số (STFT theo sau là convolution 2D). Việc mã hóa kép này nắm bắt cả chi tiết thờ gian tinh vi và cấu trúc tần số hài.\nTransformer bottleneck: Các lớp sâu nhất của U-Net sử dụng encoder transformer cross-domain với self-attention trong từng miền và cross-attention giữa các miền. Cơ chế này mô hình các phụ thuộc dài hạn — rất quan trọng để tách, ví dụ, một giai điệu vocal trải dài nhiều ô nhịp khỏi một đường guitar có cao độ tương tự.\nDecoder: Các decoder riêng biệt tái tạo từng nguồn (trống, bass, other, vocal) trong cả hai miền, và một lớp fusion kết hợp các đầu ra thành các waveform đã tách cuối cùng.\nCác mô hình có sẵn Demucs đi kèm với nhiều mô hình pretrained được tối ưu cho các đánh đổi tốc độ/chất lượng khác nhau: | Mô hình | Số stem | VRAM | SDR (MUSDB) | Trường hợp sử dụng | |———|———|——|————-|——————-| | htdemucs | 4 | ~5.2 GB | 7.1 dB | Mặc định, cân bằng tốc độ/chất lượng | | htdemucs_ft | 4 | ~7.8 GB | 7.8 dB | Chất lượng tối đa, chậm hơn ~4 lần | | htdemucs_6s | 6 | ~6.5 GB | 6.8 dB | Tách guitar + piano | | mdx_extra_q | 4 | ~3.0 GB | 6.5 dB | Hệ thống VRAM thấp |\nMô hình htdemucs_ft đạt SDR tổng thể 7.8 dB trên MUSDB18-HQ, với chi tiết từng nguồn khoảng 8.5 dB cho vocal, 7.5 dB cho bass, 8.9 dB cho trống, và 6.2 dB cho danh mục “other”. Để tham khảo, 0 dB có nghĩa là không có cải thiện tách so với bản phối gốc.\nCài đặt \u0026 Thiết lập Yêu cầu tiên quyết Trước khi cài đặt Demucs, xác minh môi trường: `````bash\nPython 3.8+ bắt buộc python –version\nPhải cài đặt FFmpeg ffmpeg -version\n(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc nvidia-smi\n### Tùy chọn 1: pip Install (Nhanh nhất) Cách đơn giản nhất để chạy Demucs: `````bash # Tạo môi trường ảo python -m venv demucs-env source demucs-env/bin/activate # Linux/macOS # demucs-env\\Scripts\\activate # Windows # Cài đặt Demucs pip install -U demucs # Xác minh cài đặt demucs --help Tùy chọn 2: Conda với GPU Support (Khuyến nghị) Để suy luận tăng tốc GPU và training: `````bash\nClone repository git clone https://github.com/adefossez/demucs.git cd demucs\nTạo môi trường từ spec chính thức conda env update -f environment-cuda.yml conda activate demucs\nCài đặt ở chế độ development pip install -e .\nXác minh GPU được phát hiện python -c “import torch; print(f’CUDA available: {torch.cuda.is_available()}’)”\n### Tùy chọn 3: Docker (Cách ly sạch nhất) Để triển khai có thể tái tạo, không phụ thuộc: `````bash # Dockerfile FROM pytorch/pytorch:2.5.1-cuda12.4-cudnn9-runtime RUN pip install -U demucs WORKDIR /audio ENTRYPOINT [\"demucs\"] Build và chạy: `````bash docker build -t demucs . docker run –gpus all -v $(pwd):/audio demucs song.mp3\n**Docker Compose (cho dịch vụ batch):** `````yaml version: '3.8' services: demucs: build: . runtime: nvidia environment: - NVIDIA_VISIBLE_DEVICES=all volumes: - ./input:/audio/input:ro - ./output:/audio/output command: [\"-n\", \"htdemucs_ft\", \"--mp3\", \"-o\", \"/audio/output\", \"/audio/input\"] Chạy tách đầu tiên Sau khi cài đặt, tách track đầu tiên: `````bash\nTách 4-stem cơ bản với mô hình mặc định demucs song.mp3\nOutput vào ./separated/htdemucs/song/ Chứa: drums.wav, bass.wav, other.wav, vocals.wav Dùng mô hình fine-tuned cho chất lượng tốt hơn demucs -n htdemucs_ft song.mp3\nChỉ tách vocal khỏi nhạc nền demucs –two-stems=vocals song.mp3\nXuất dạng MP3 (file nhỏ hơn) demucs –mp3 –mp3-bitrate 320 song.mp3\n### Xác minh Model Download và Cache Các model tải xuống tự động khi sử dụng lần đầu. Xác minh cache: `````bash # Liệt kê model đã tải ls ~/.cache/torch/hub/checkpoints/ # Output dự kiến: # htdemucs-*.th, htdemucs_ft-*.th # Kiểm tra model sẽ được sử dụng demucs -n htdemucs_ft --help | grep \"name\" # Test nhanh với file audio ngắn ffmpeg -f lavfi -i \"sine=frequency=1000:duration=5\" test_tone.wav demucs -n htdemucs test_tone.wav Tích hợp với các công cụ phổ biến Ultimate Vocal Remover (UVR) Ultimate Vocal Remover là frontend GUI phổ biến nhất cho Demucs. Thay vì sử dụng Demucs trực tiếp qua command line, hầu hết producer sử dụng UVR vì nó bundle các mô hình Demucs với kiến trúc khác và thêm xử lý ensemble.\nCấu hình trong UVR: 1. Tải UVR5 từ GitHub Releases chính thức 2. Trong UI, chọn Process Method: “Demucs” 3. Chọn mô hình: V4 | htdemucs_ft 4. Bật GPU Conversion nếu có 5. Để có kết quả tốt nhất, dùng Ensemble Mode với htdemucs_ft + MDX-Net\nChế độ ensemble của UVR chạy song song nhiều mô hình và pha trộn đầu ra, liên tục tạo ra kết quả tách sạch hơn bất kỳ mô hình đơn lẻ nào. Chi phí là thờ gian xử lý — chế độ ensemble chậm hơn khoảng 3–5 lần so với một lần chạy mô hình đơn.\nRVC (Retrieval-based Voice Conversion) Các pipeline RVC thường sử dụng Demucs như một bước tiền xử lý để tách vocal trước khi trích xuất giọng: `````python import subprocess import os\ndef preprocess_for_rvc(input_song, output_dir): “““Trích xuất vocal sạch cho chuyển đổi giọng RVC.””” os.makedirs(output_dir, exist_ok=True)\n# Bước 1: Tách bằng Demucs subprocess.run([ demucs, '-n', htdemucs_ft, '--two-stems=vocals', '-o', output_dir, input_song ], check=True) # Bước 2: Trả về đường dẫn vocal đã tách base = os.path.splitext(os.path.basename(input_song))[0] vocals_path = os.path.join( output_dir, htdemucs_ft, base, 'vocals.wav' ) return vocals_path Sử dụng vocals = preprocess_for_rvc(‘input.mp3’, ‘./separated’)\nĐưa vocal vào RVC để chuyển đổi giọng ### GPT-SoVITS Voice cloning GPT-SoVITS yêu cầu audio tham chiếu sạch. Demucs loại bỏ nhạc nền trước khi đưa mẫu vào pipeline TTS: `````python from demucs.api import Separator import torchaudio separator = Separator(model=\"htdemucs\", device=\"cuda\") # Tách và trích xuất vocal origin, separated = separator.separate_audio_file(\"reference.mp3\") vocals = separated[\"vocals\"] # Lưu ở 24kHz cho GPT-SoVITS torchaudio.save(\"clean_reference.wav\", vocals, 24000) Giao diện Web Gradio Để tự host dịch vụ tách nhạc: `````python import gradio as gr from demucs.api import Separator\nseparator = Separator(model=“htdemucs_ft”)\ndef separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file) output_path = f\"{stem}.wav\" separator.save_audio(separated[stem], output_path, samplerate=44100) return output_path\ndemo = gr.Interface( fn=separate, inputs=[ gr.Audio(type=“filepath”, label=“Tải lên bài hát”), gr.Dropdown( choices=[“vocals”, “drums”, “bass”, “other”], value=“vocals”, label=“Stem” ) ], outputs=gr.Audio(label=“Stem đã tách”), title=“Demucs Source Separation”, description=“Tách nhạc thành stem bằng mô hình Demucs của Meta” )\ndemo.launch(server_name=“0.0.0.0”, server_port=7860)\n## Benchmark / Use case thực tế ### Kết quả Benchmark MUSDB18-HQ MUSDB18-HQ là bộ benchmark chuẩn cho tách nguồn nhạc, chứa 150 bài hát đầy đủ với ground-truth stem. SDR càng cao nghĩa là tách càng sạch. | Mô hình | SDR Tổng thể | Vocal | Trống | Bass | Other | Tốc độ (RTX 3090) | |---------|-------------|-------|-------|------|-------|-------------------| | **HTDemucs FT (v4)** | **7.8 dB** | **8.5 dB** | **8.9 dB** | **7.5 dB** | **6.2 dB** | ~4x real-time | | HTDemucs (v4) | 7.1 dB | 7.8 dB | 8.2 dB | 6.9 dB | 5.6 dB | ~16x real-time | | Hybrid Demucs (v3) | 7.7 dB | 8.1 dB | 8.5 dB | 7.2 dB | 5.9 dB | ~12x real-time | | Spleeter 4stems | 5.9 dB | 6.3 dB | 6.8 dB | 5.4 dB | 4.2 dB | ~100x real-time | | Open-Unmix | 5.3 dB | 6.2 dB | 5.9 dB | 4.7 dB | 4.2 dB | ~80x real-time | ### Use case Production **Tạo track karaoke**: Tùy chọn ````--two-stems=vocals```` tạo ra instrumental bằng cách trộn drums + bass + other, loại bỏ track vocal. Một bài 4 phút xử lý dưới 30 giây trên GPU. **Tách sample cho producer**: Tách drum break, bassline, hoặc các yếu tố giai điệu từ bản phối hoàn chỉnh. Mô hình ````htdemucs_6s```` thêm tách guitar và piano, mặc dù chất lượng trên các stem này thấp hơn 4 stem chính. **Tiền xử lý chuyển đổi giọng**: Việc trích xuất vocal sạch là điều kiện tiên quyết cho các pipeline clone giọng như RVC, GPT-SoVITS. Demucs liên tục tạo ra stem vocal với ít bleed hơn các phương pháp spectrogram-only. **Phục hồi audio**: Các chuyên gia lưu trữ sử dụng Demucs để tách các bản ghi lịch sử để giảm nhiễu trên từng stem riêng lẻ, sau đó remix. ### Tham chiếu thờ gian xử lý Cho track stereo 4 phút ở 44.1 kHz: | Phần cứng | htdemucs | htdemucs_ft | htdemucs_6s | |-----------|----------|-------------|-------------| | RTX 4080 GPU | ~15 giây | ~55 giây | ~25 giây | | RTX 3080 GPU | ~20 giây | ~75 giây | ~35 giây | | Apple M3 (MPS) | ~45 giây | ~3 phút | ~70 giây | | Intel i7-13700 CPU | ~5 phút | ~18 phút | ~8 phút | ## Sử dụng nâng cao / Production Hardening ### Python API cho pipeline tùy chỉnh Để kiểm soát lập trình, bỏ qua CLI và sử dụng Python API trực tiếp: `````python import torch import torchaudio from demucs.pretrained import get_model from demucs.apply import apply_model # Tải mô hình device = torch.device(\"cuda\" if torch.cuda.is_available() else \"cpu\") model = get_model(\"htdemucs_ft\") model.to(device) model.eval() # Tải audio wav, sr = torchaudio.load(\"input.mp3\") # Đảm bảo stereo if wav.shape[0] == 1: wav = wav.repeat(2, 1) # Thêm chiều batch mix = wav.unsqueeze(0).to(device) # Tách với cài đặt tối ưu with torch.no_grad(): sources = apply_model( model, mix, shifts=1, # Shift trick: cao hơn = tốt hơn, chậm hơn split=True, # Xử lý theo chunk (bắt buộc cho audio dài) overlap=0.25, # Chồng chéo giữa các chunk segment=10, # Độ dài đoạn (giây) progress=True, device=device )[0] # sources shape: (num_sources, channels, samples) source_names = model.sources # [drums, bass, other, vocals] # Lưu từng stem riêng lẻ for i, name in enumerate(source_names): torchaudio.save(f\"{name}.wav\", sources[i].cpu(), sr) Pipeline xử lý hàng loạt from pathlib import Path import subprocess import json def batch_separate(input_dir, output_dir, model=\"htdemucs\"): \"\"\"Xử lý tất cả file audio trong thư mục.\"\"\" input_dir = Path(input_dir) output_dir = Path(output_dir) output_dir.mkdir(parents=True, exist_ok=True) audio_exts = {'.mp3', '.wav', '.flac', '.ogg', '.m4a'} files = [f for f in input_dir.iterdir() if f.suffix in audio_exts] # Xử lý tất cả file trong một lần gọi Demucs subprocess.run([ demucs, '-n', model, '-o', str(output_dir), '--mp3', '--mp3-bitrate', 320, *[str(f) for f in files] ], check=True) # Tạo manifest metadata manifest = {} for f in files: base = f.stem stem_dir = output_dir / model / base manifest[base] = { drums: str(stem_dir / 'drums.mp3'), bass: str(stem_dir / 'bass.mp3'), other: str(stem_dir / 'other.mp3'), vocals: str(stem_dir / 'vocals.mp3'), } with open(output_dir / 'manifest.json', w) as fp: json.dump(manifest, fp, indent=2) return manifest # Sử dụng batch_separate('./raw_songs/', './stems/', model=htdemucs_ft) Tối ưu bộ nhớ cho file dài Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế: `````python\nÉp offload CPU cho file lớn import os os.environ[PYTORCH_CUDA_ALLOC_CONF] = ‘max_split_size_mb:128\"\nDùng segment nhỏ hơn sources = apply_model( model, mix, split=True, segment=7, # Giảm từ mặc định ~10s xuống 7s overlap=0.1, # Giảm overlap device=device )[0]\n### Giám sát và Ghi log `````python import logging import time logging.basicConfig(level=logging.INFO) logger = logging.getLogger(demucs) def separate_with_metrics(input_path, output_dir): start = time.time() separator = Separator(model=\"htdemucs_ft\", device=\"cuda\") origin, separated = separator.separate_audio_file(input_path) duration = time.time() - start logger.info(f\"Đã tách {input_path} trong {duration:.1f} giây\") # Log mức từng stem for name, audio in separated.items(): rms = torch.sqrt(torch.mean(audio ** 2)).item() logger.info(f\" {name}: RMS={rms:.4f}\") return separated So sánh với các lựa chọn thay thế Tính năng Demucs (v4) Ultimate Vocal Remover Spleeter Open-Unmix Kiến trúc Hybrid waveform + spectrogram + Transformer GUI wrapper (đa backend) Spectrogram U-Net Spectrogram LSTM MUSDB SDR 7.8 dB (htdemucs_ft) N/A (dùng Demucs/MDX) 5.9 dB 5.3 dB Số stem tối đa 6 (vocal, trống, bass, guitar, piano, other) 4 (tùy model) 5 (có sides) 4 Cần GPU Khuyến nghị Khuyến nghị Tùy chọn Tùy chọn Tốc độ xử lý ~4–16x real-time (GPU) ~3–10x real-time (ensemble) ~100x real-time ~80x real-time VRAM sử dụng 5–8 GB 6–12 GB (ensemble) \u003c2 GB \u003c2 GB Phát triển Community fork Đang hoạt động Archived (2021) Maintenance mode Giấy phép MIT MIT MIT MIT Phù hợp nhất Tách ưu tiên chất lượng Dễ dùng GUI + ensemble Xử lý batch nhanh Triển khai nhẹ Khi nào chọn gì: Sử dụng Demucs trực tiếp khi cần chất lượng tách tối đa và xây dựng pipeline tự động. Dùng UVR khi muốn GUI, xử lý ensemble, và không ngại overhead thiết lập. Chỉ dùng Spleeter khi cần tốc độ tối đa trên phần cứng hạn chế hoặc đang duy trì code cũ. Open-Unmix vẫn phù hợp cho mục đích giáo dục và triển khai edge có tài nguyên hạn chế.\nHạn chế / Đánh giá trung thực Demucs không phải công cụ phù hợp cho mọi tác vụ audio. Đây là những gì nó không làm tốt: Tách real-time: Ngay cả mô hình Demucs nhanh nhất (htdemucs) cũng chỉ xử lý ở tốc độ khoảng 16x real-time trên RTX 4080. Điều này quá chậm cho biểu diễn trực tiếp hoặc ứng dụng streaming real-time. Các công cụ như Spleeter hoặc bản export ONNX chuyên dụng phù hợp hơn cho các use case nhạy cảm với độ trễ.\nTách guitar và piano: Mô hình htdemucs_6s cố gắng tách guitar và piano thành các stem riêng biệt, nhưng SDR trên các nguồn này thấp hơn đáng kể so với 4 stem chính. Nếu nhu cầu chính là tách track guitar cụ thể, các công cụ chuyển phổ chuyên dụng như Basic Pitch có thể phù hợp hơn.\nMaster được nén mạnh: Các track được maximize loudness với limiting nặng (phổ biến trong EDM và pop hiện đại) tạo ra frequency masking làm các mô hình tách nhầm lẫn. Demucs có thể tạo ra artifact — âm xoáy, bleed chéo nguồn — trên các track này mà không xuất hiện trên các bản phối dynamic hơn.\nKích thước mô hình: Ở ~2 GB cho htdemucs_ft, các mô hình Demucs lớn hơn một bậc so với Spleeter (~150 MB). Điều này quan trọng đối với triển khai edge, ứng dụng di động, và môi trường serverless với ràng buộc cold-start.\nUpstream đã archived: Repository gốc facebookresearch/demucs đã được archived và không còn được duy trì. Mặc dù adefossez/demucs đang hoạt động, quỹ đạo duy trì dài hạn chưa rõ ràng. Cân nhắc yếu tố này trong kế hoạch dependency của bạn.\nCâu hỏi thường gặp Q: Cần phần cứng gì để chạy Demucs? A: Demucs chạy trên CPU, nhưng GPU NVIDIA với 6+ GB VRAM được khuyến nghị mạnh mẽ. Mô hình htdemucs cần 5.2 GB VRAM. Mô hình htdemucs_ft cần 8 GB. Xử lý CPU-only hoạt động được nhưng thờ gian xử lý một bài 4 phút là 5–20 phút so với dưới một phút trên GPU.\nQ: Có thể dùng Demucs thương mại không? A: Có. Demucs được cấp phép MIT, cho phép sử dụng thương mại, sửa đổi, và phân phối không hạn chế. Các stem đã tách có thể được sử dụng trong sản xuất thương mại. Lưu ý rằng giấy phép MIT áp dụng cho code và mô hình, không áp dụng cho bản quyền của nhạc bạn xử lý.\nQ: Tại sao Demucs nghe hay hơn Spleeter? A: Demucs xử lý audio đồng thởi trong cả miền thờ gian và miền tần số, bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy loại bỏ. Các lớp transformer cũng mô hình các phụ thuộc âm nhạc dài hạn tốt hơn U-Net của Spleeter. Điều này dẫn đến ít artifact hơn và ít nhiễu chéo nguồn hơn.\nQ: Làm sao xử lý cả album hiệu quả? A: Truyền nhiều file trong một lần gọi Demucs: demucs -n htdemucs *.mp3. Demucs xử lý tuần tự nhưng tránh overhead tải mô hình lặp lại. Để đạt thông lượng tối đa, chạy nhiều instance Demucs trên các GPU khác nhau hoặc dùng script xử lý batch trong phần Sử dụng nâng cao.\nQ: Demucs hỗ trợ định dạng audio nào? A: Demucs sử dụng FFmpeg để giải mã và torchaudio để mã hóa. Đầu vào: MP3, WAV, FLAC, OGG, M4A, và mọi định dạng FFmpeg hỗ trợ. Đầu ra: WAV (mặc định, 16-bit), float32 WAV (--float32), 24-bit WAV (--int24), hoặc MP3 (--mp3 với bitrate điều chỉnh được).\nQ: Có thể fine-tune Demucs trên dữ liệu riêng không? A: Có, nhưng cần pipeline training đầy đủ. Bạn cần các stem tách rồi cho bài hát training (cùng định dạng MUSDB18-HQ), sau đó dùng trình quản lý thử nghiệm Dora với dora run -d solver=htdemucs dset=your_dataset. Hầu hết ngườ dùng không cần điều này — các mô hình pretrained khái quát hóa tốt qua nhiều thể loại.\nQ: Sự khác biệt giữa htdemucs và htdemucs_ft là gì? A: htdemucs_ft được fine-tune theo từng nguồn với dữ liệu training bổ sung và shift trick được bật mặc định. Nó đạt ~0.7 dB SDR cao hơn trên tất cả nguồn nhưng chạy chậm hơn ~4 lần và sử dụng nhiều VRAM hơn 50%. Dùng htdemucs cho lặp nhanh và htdemucs_ft cho output production cuối cùng.\nKết luận Demucs vẫn là triển khai tham chiếu cho tách nguồn nhạc mã nguồn mở trong năm 2026. Kiến trúc hybrid transformer mang lại chất lượng tách vượt trội Spleeter từ 20–40% trên các benchmark chuẩn, và tích hợp sạch sẽ với các pipeline chuyển đổi giọng nói, trình tạo karaoke, và công cụ sản xuất audio.\nĐối với developer xây dựng pipeline audio, Demucs cung cấp Python API có tài liệu tốt, hỗ trợ Docker, và nhiều biến thể mô hình cho các đánh đổi tốc độ/chất lượng khác nhau. Giấy phép MIT loại bỏ ma sát thương mại. Các cảnh báo chính là yêu cầu phần cứng (GPU được khuyến nghị mạnh mẽ), kích thước mô hình (~2 GB), và trạng thái archived của repository upstream.\nHành động: Cài đặt Demucs bằng pip install -U demucs, chạy lần tách đầu tiên trên track thử nghiệm bằng ````demucs -n htdemucs_ft song.mp3```, và tích hợp vào pipeline bằng các ví dụ Python API ở trên. Để có trải nghiệm GUI, tải Ultimate Vocal Remover và dùng chế độ ensemble.\nTham gia nhóm Telegram dibi8.com để nhận phân tích chuyên sâu hàng tuần về công cụ AI mã nguồn mở: https://t.me/dibi8channel\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo Demucs GitHub Repository (Meta, archived) Demucs Fork đang hoạt động (adefossez) Hybrid Transformers for Music Source Separation (bài báo) MUSDB18-HQ Benchmark Dataset Ultimate Vocal Remover GUI Spleeter (Deezer, archived) Open-Unmix (Sony) MVSEP Quality Checker Leaderboard Audio Developers Conference 2025 — Bài thuyết trình ONNX Export Demucs { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Spleeter 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/demucs\" } } Related Articles wandb-ml-experiment-tracking-platform-2026 wandb-ml-experiment-tracking-platform-2026 apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3681",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/llm-frameworks/demucs/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/llm-frameworks/demucs/">Zh</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#demucs-l%c3%a0-g%c3%ac" aria-label="Demucs là gì?">Demucs là gì?</a></li>
+            <li>
+                <a href="#demucs-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Demucs hoạt động như thế nào">Demucs hoạt động như thế nào</a><ul>
+                    
+            <li>
+                <a href="#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac" aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li>
+            <li>
+                <a href="#c%c3%a1c-m%c3%b4-h%c3%acnh-c%c3%b3-s%e1%ba%b5n" aria-label="Các mô hình có sẵn">Các mô hình có sẵn</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt &amp; Thiết lập">Cài đặt &amp; Thiết lập</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-ti%c3%aan-quy%e1%ba%bft" aria-label="Yêu cầu tiên quyết">Yêu cầu tiên quyết</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#python-38-b%e1%ba%aft-bu%e1%bb%99c" aria-label="Python 3.8&#43; bắt buộc">Python 3.8+ bắt buộc</a></li>
+            <li>
+                <a href="#ph%e1%ba%a3i-c%c3%a0i-%c4%91%e1%ba%b7t-ffmpeg" aria-label="Phải cài đặt FFmpeg">Phải cài đặt FFmpeg</a></li>
+            <li>
+                <a href="#t%c3%b9y-ch%e1%bb%8dn-nvidia-gpu-v%e1%bb%9bi-cuda-118-%c4%91%e1%bb%83-t%c4%83ng-t%e1%bb%91c" aria-label="(Tùy chọn) NVIDIA GPU với CUDA 11.8&#43; để tăng tốc">(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#t%c3%b9y-ch%e1%bb%8dn-2-conda-v%e1%bb%9bi-gpu-support-khuy%e1%ba%bfn-ngh%e1%bb%8b" aria-label="Tùy chọn 2: Conda với GPU Support (Khuyến nghị)">Tùy chọn 2: Conda với GPU Support (Khuyến nghị)</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#clone-repository" aria-label="Clone repository">Clone repository</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-m%c3%b4i-tr%c6%b0%e1%bb%9dng-t%e1%bb%ab-spec-ch%c3%adnh-th%e1%bb%a9c" aria-label="Tạo môi trường từ spec chính thức">Tạo môi trường từ spec chính thức</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-%e1%bb%9f-ch%e1%ba%bf-%c4%91%e1%bb%99-development" aria-label="Cài đặt ở chế độ development">Cài đặt ở chế độ development</a></li>
+            <li>
+                <a href="#x%c3%a1c-minh-gpu-%c4%91%c6%b0%e1%bb%a3c-ph%c3%a1t-hi%e1%bb%87n" aria-label="Xác minh GPU được phát hiện">Xác minh GPU được phát hiện</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#ch%e1%ba%a1y-t%c3%a1ch-%c4%91%e1%ba%a7u-ti%c3%aan" aria-label="Chạy tách đầu tiên">Chạy tách đầu tiên</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#t%c3%a1ch-4-stem-c%c6%a1-b%e1%ba%a3n-v%e1%bb%9bi-m%c3%b4-h%c3%acnh-m%e1%ba%b7c-%c4%91%e1%bb%8bnh" aria-label="Tách 4-stem cơ bản với mô hình mặc định">Tách 4-stem cơ bản với mô hình mặc định</a></li>
+            <li>
+                <a href="#output-v%c3%a0o-separatedhtdemucssong" aria-label="Output vào ./separated/htdemucs/song/">Output vào ./separated/htdemucs/song/</a></li>
+            <li>
+                <a href="#ch%e1%bb%a9a-drumswav-basswav-otherwav-vocalswav" aria-label="Chứa: drums.wav, bass.wav, other.wav, vocals.wav">Chứa: drums.wav, bass.wav, other.wav, vocals.wav</a></li>
+            <li>
+                <a href="#d%c3%b9ng-m%c3%b4-h%c3%acnh-fine-tuned-cho-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-t%e1%bb%91t-h%c6%a1n" aria-label="Dùng mô hình fine-tuned cho chất lượng tốt hơn">Dùng mô hình fine-tuned cho chất lượng tốt hơn</a></li>
+            <li>
+                <a href="#ch%e1%bb%89-t%c3%a1ch-vocal-kh%e1%bb%8fi-nh%e1%ba%a1c-n%e1%bb%81n" aria-label="Chỉ tách vocal khỏi nhạc nền">Chỉ tách vocal khỏi nhạc nền</a></li>
+            <li>
+                <a href="#xu%e1%ba%a5t-d%e1%ba%a1ng-mp3-file-nh%e1%bb%8f-h%c6%a1n" aria-label="Xuất dạng MP3 (file nhỏ hơn)">Xuất dạng MP3 (file nhỏ hơn)</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích hợp với các công cụ phổ biến">Tích hợp với các công cụ phổ biến</a><ul>
+                    
+            <li>
+                <a href="#ultimate-vocal-remover-uvr" aria-label="Ultimate Vocal Remover (UVR)">Ultimate Vocal Remover (UVR)</a></li>
+            <li>
+                <a href="#rvc-retrieval-based-voice-conversion" aria-label="RVC (Retrieval-based Voice Conversion)">RVC (Retrieval-based Voice Conversion)</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng" aria-label="Sử dụng">Sử dụng</a></li>
+            <li>
+                <a href="#%c4%91%c6%b0a-vocal-v%c3%a0o-rvc-%c4%91%e1%bb%83-chuy%e1%bb%83n-%c4%91%e1%bb%95i-gi%e1%bb%8dng" aria-label="Đưa vocal vào RVC để chuyển đổi giọng">Đưa vocal vào RVC để chuyển đổi giọng</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#giao-di%e1%bb%87n-web-gradio" aria-label="Giao diện Web Gradio">Giao diện Web Gradio</a></li>
+            <li>
+                <a href="#pipeline-x%e1%bb%ad-l%c3%bd-h%c3%a0ng-lo%e1%ba%a1t" aria-label="Pipeline xử lý hàng loạt">Pipeline xử lý hàng loạt</a></li>
+            <li>
+                <a href="#t%e1%bb%91i-%c6%b0u-b%e1%bb%99-nh%e1%bb%9b-cho-file-d%c3%a0i" aria-label="Tối ưu bộ nhớ cho file dài">Tối ưu bộ nhớ cho file dài</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#%c3%a9p-offload-cpu-cho-file-l%e1%bb%9bn" aria-label="Ép offload CPU cho file lớn">Ép offload CPU cho file lớn</a></li>
+            <li>
+                <a href="#d%c3%b9ng-segment-nh%e1%bb%8f-h%c6%a1n" aria-label="Dùng segment nhỏ hơn">Dùng segment nhỏ hơn</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf" aria-label="So sánh với các lựa chọn thay thế">So sánh với các lựa chọn thay thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài liệu tham khảo">Nguồn &amp; Tài liệu tham khảo</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,12 +322,47 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;demucs&rdquo;, &ldquo;tach-nguon-nhac&rdquo;, &ldquo;ai-audio&rdquo;, &ldquo;tach-stem&rdquo;, &ldquo;pytorch&rdquo;, &ldquo;docker&rdquo;, &ldquo;ma-nguon-mo&rdquo;]
-aliases:</p><ul><li>/vi/posts/demucs/</li></ul><hr><p>Việc tách một bản phối hoàn chỉnh thành các track nhạc cụ riêng lẻ — vocal, trống, bass, và các nhạc cụ khác — từng đòi hỏi file đa track gốc từ phòng thu. Điều đó đã thay đổi khi các mô hình học sâu học được cách &ldquo;unmix&rdquo; audio đã hoàn thiện. Ngày nay, nhạc sĩ, producer và developer sử dụng các công cụ này để tạo track karaoke, tách sample, chuẩn bị remix, và xây dựng pipeline chuyển đổi giọng nói. Trong các lựa chọn mã nguồn mở, một mô hình thống trị cuộc trò chuyện: <strong>Demucs</strong>, kiến trúc hybrid transformer của Meta với hơn 10,000 sao trên GitHub và benchmark hàng đầu trên tập dữ liệu MUSDB18-HQ.</p><p>Hướng dẫn này trình bày cách Demucs hoạt động, cách cài đặt cục bộ, cách so sánh với Spleeter và Ultimate Vocal Remover, và cách tích hợp vào quy trình production thực tế.</p><h2 id=demucs-là-gì>Demucs là gì?<a hidden class=anchor aria-hidden=true href=#demucs-là-gì>#</a></h2><p><strong>Demucs</strong> (Deep Extractor for Music Sources) là mô hình tách nguồn nhạc mã nguồn mở được phát triển bởi Meta AI Research. Nó nhận đầu vào là một bản phối stereo và xuất ra các &ldquo;stem&rdquo; — thường là vocal, trống, bass, và một track &ldquo;other&rdquo; chứa guitar, keyboard và các nhạc cụ còn lại.</p><p>Dự án nằm trên repository ```facebookresearch/demucs<code>trên GitHub, đã tích lũy hơn 10,100 sao và 1,500 fork. Repository đã bị Meta archive vào ngày 1 tháng 1 năm 2025, nhưng tác giả gốc Alexandre Defossez duy trì một fork hoạt động tại</code>adefossez/demucs````. Phiên bản ổn định mới nhất là v4.1.0 và toàn bộ dự án sử dụng giấy phép MIT.</p><p>Điều làm Demucs khác biệt với các công cụ trước đó là <strong>phương pháp hybrid</strong>: nó xử lý audio đồng thởi trong miền thờ gian (waveform thô) và miền tần số (spectrogram), sau đó kết hợp cả hai biểu diễn. Quá trình xử lý hai miền này bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy mất đi, mang lại kết quả tách sạch hơn với ít artifact kim loại hơn.</p><h2 id=demucs-hoạt-động-như-thế-nào>Demucs hoạt động như thế nào<a hidden class=anchor aria-hidden=true href=#demucs-hoạt-động-như-thế-nào>#</a></h2><h3 id=tổng-quan-kiến-trúc>Tổng quan kiến trúc<a hidden class=anchor aria-hidden=true href=#tổng-quan-kiến-trúc>#</a></h3><p>Thế hệ Demucs hiện tại — chính thức gọi là <strong>Hybrid Transformer Demucs (HTDemucs)</strong> — xây dựng trên backbone convolutional U-Net với các lớp transformer. Kiến trúc hoạt động theo ba giai đoạn khái niệm: 1. <strong>Encoder</strong>: Waveform đầu vào đi qua cả encoder miền thờ gian (convolution 1D) và encoder miền tần số (STFT theo sau là convolution 2D). Việc mã hóa kép này nắm bắt cả chi tiết thờ gian tinh vi và cấu trúc tần số hài.</p><ol start=2><li><p><strong>Transformer bottleneck</strong>: Các lớp sâu nhất của U-Net sử dụng encoder transformer cross-domain với self-attention trong từng miền và cross-attention giữa các miền. Cơ chế này mô hình các phụ thuộc dài hạn — rất quan trọng để tách, ví dụ, một giai điệu vocal trải dài nhiều ô nhịp khỏi một đường guitar có cao độ tương tự.</p></li><li><p><strong>Decoder</strong>: Các decoder riêng biệt tái tạo từng nguồn (trống, bass, other, vocal) trong cả hai miền, và một lớp fusion kết hợp các đầu ra thành các waveform đã tách cuối cùng.</p></li></ol><p><img alt="Sơ đồ kiến trúc Demucs" loading=lazy src=https://raw.githubusercontent.com/facebookresearch/demucs/main/demucs.png></p><h3 id=các-mô-hình-có-sẵn>Các mô hình có sẵn<a hidden class=anchor aria-hidden=true href=#các-mô-hình-có-sẵn>#</a></h3><p>Demucs đi kèm với nhiều mô hình pretrained được tối ưu cho các đánh đổi tốc độ/chất lượng khác nhau: | Mô hình | Số stem | VRAM | SDR (MUSDB) | Trường hợp sử dụng |
+aliases:</p>
+<ul>
+<li>/vi/posts/demucs/</li>
+</ul>
+<hr>
+<p>Việc tách một bản phối hoàn chỉnh thành các track nhạc cụ riêng lẻ — vocal, trống, bass, và các nhạc cụ khác — từng đòi hỏi file đa track gốc từ phòng thu. Điều đó đã thay đổi khi các mô hình học sâu học được cách &ldquo;unmix&rdquo; audio đã hoàn thiện. Ngày nay, nhạc sĩ, producer và developer sử dụng các công cụ này để tạo track karaoke, tách sample, chuẩn bị remix, và xây dựng pipeline chuyển đổi giọng nói. Trong các lựa chọn mã nguồn mở, một mô hình thống trị cuộc trò chuyện: <strong>Demucs</strong>, kiến trúc hybrid transformer của Meta với hơn 10,000 sao trên GitHub và benchmark hàng đầu trên tập dữ liệu MUSDB18-HQ.</p>
+<p>Hướng dẫn này trình bày cách Demucs hoạt động, cách cài đặt cục bộ, cách so sánh với Spleeter và Ultimate Vocal Remover, và cách tích hợp vào quy trình production thực tế.</p>
+<h2 id="demucs-là-gì">Demucs là gì?<a hidden class="anchor" aria-hidden="true" href="#demucs-là-gì">#</a></h2>
+<p><strong>Demucs</strong> (Deep Extractor for Music Sources) là mô hình tách nguồn nhạc mã nguồn mở được phát triển bởi Meta AI Research. Nó nhận đầu vào là một bản phối stereo và xuất ra các &ldquo;stem&rdquo; — thường là vocal, trống, bass, và một track &ldquo;other&rdquo; chứa guitar, keyboard và các nhạc cụ còn lại.</p>
+<p>Dự án nằm trên repository ```facebookresearch/demucs<code>trên GitHub, đã tích lũy hơn 10,100 sao và 1,500 fork. Repository đã bị Meta archive vào ngày 1 tháng 1 năm 2025, nhưng tác giả gốc Alexandre Defossez duy trì một fork hoạt động tại</code>adefossez/demucs````. Phiên bản ổn định mới nhất là v4.1.0 và toàn bộ dự án sử dụng giấy phép MIT.</p>
+<p>Điều làm Demucs khác biệt với các công cụ trước đó là <strong>phương pháp hybrid</strong>: nó xử lý audio đồng thởi trong miền thờ gian (waveform thô) và miền tần số (spectrogram), sau đó kết hợp cả hai biểu diễn. Quá trình xử lý hai miền này bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy mất đi, mang lại kết quả tách sạch hơn với ít artifact kim loại hơn.</p>
+<h2 id="demucs-hoạt-động-như-thế-nào">Demucs hoạt động như thế nào<a hidden class="anchor" aria-hidden="true" href="#demucs-hoạt-động-như-thế-nào">#</a></h2>
+<h3 id="tổng-quan-kiến-trúc">Tổng quan kiến trúc<a hidden class="anchor" aria-hidden="true" href="#tổng-quan-kiến-trúc">#</a></h3>
+<p>Thế hệ Demucs hiện tại — chính thức gọi là <strong>Hybrid Transformer Demucs (HTDemucs)</strong> — xây dựng trên backbone convolutional U-Net với các lớp transformer. Kiến trúc hoạt động theo ba giai đoạn khái niệm: 1. <strong>Encoder</strong>: Waveform đầu vào đi qua cả encoder miền thờ gian (convolution 1D) và encoder miền tần số (STFT theo sau là convolution 2D). Việc mã hóa kép này nắm bắt cả chi tiết thờ gian tinh vi và cấu trúc tần số hài.</p>
+<ol start="2">
+<li>
+<p><strong>Transformer bottleneck</strong>: Các lớp sâu nhất của U-Net sử dụng encoder transformer cross-domain với self-attention trong từng miền và cross-attention giữa các miền. Cơ chế này mô hình các phụ thuộc dài hạn — rất quan trọng để tách, ví dụ, một giai điệu vocal trải dài nhiều ô nhịp khỏi một đường guitar có cao độ tương tự.</p>
+</li>
+<li>
+<p><strong>Decoder</strong>: Các decoder riêng biệt tái tạo từng nguồn (trống, bass, other, vocal) trong cả hai miền, và một lớp fusion kết hợp các đầu ra thành các waveform đã tách cuối cùng.</p>
+</li>
+</ol>
+<p><img alt="Sơ đồ kiến trúc Demucs" loading="lazy" src="https://raw.githubusercontent.com/facebookresearch/demucs/main/demucs.png"></p>
+<h3 id="các-mô-hình-có-sẵn">Các mô hình có sẵn<a hidden class="anchor" aria-hidden="true" href="#các-mô-hình-có-sẵn">#</a></h3>
+<p>Demucs đi kèm với nhiều mô hình pretrained được tối ưu cho các đánh đổi tốc độ/chất lượng khác nhau: | Mô hình | Số stem | VRAM | SDR (MUSDB) | Trường hợp sử dụng |
 |&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;|&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|
 | <code>htdemucs</code> | 4 | ~5.2 GB | 7.1 dB | Mặc định, cân bằng tốc độ/chất lượng |
 | <code>htdemucs_ft</code> | 4 | ~7.8 GB | 7.8 dB | Chất lượng tối đa, chậm hơn ~4 lần |
 | <code>htdemucs_6s</code> | 6 | ~6.5 GB | 6.8 dB | Tách guitar + piano |
-| <code>mdx_extra_q</code> | 4 | ~3.0 GB | 6.5 dB | Hệ thống VRAM thấp |</p><p>Mô hình <code>htdemucs_ft</code> đạt SDR tổng thể 7.8 dB trên MUSDB18-HQ, với chi tiết từng nguồn khoảng 8.5 dB cho vocal, 7.5 dB cho bass, 8.9 dB cho trống, và 6.2 dB cho danh mục &ldquo;other&rdquo;. Để tham khảo, 0 dB có nghĩa là không có cải thiện tách so với bản phối gốc.</p><h2 id=cài-đặt--thiết-lập>Cài đặt & Thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=yêu-cầu-tiên-quyết>Yêu cầu tiên quyết<a hidden class=anchor aria-hidden=true href=#yêu-cầu-tiên-quyết>#</a></h3><p>Trước khi cài đặt Demucs, xác minh môi trường: `````bash</p><h1 id=python-38-bắt-buộc>Python 3.8+ bắt buộc<a hidden class=anchor aria-hidden=true href=#python-38-bắt-buộc>#</a></h1><p>python &ndash;version</p><h1 id=phải-cài-đặt-ffmpeg>Phải cài đặt FFmpeg<a hidden class=anchor aria-hidden=true href=#phải-cài-đặt-ffmpeg>#</a></h1><p>ffmpeg -version</p><h1 id=tùy-chọn-nvidia-gpu-với-cuda-118-để-tăng-tốc>(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc<a hidden class=anchor aria-hidden=true href=#tùy-chọn-nvidia-gpu-với-cuda-118-để-tăng-tốc>#</a></h1><p>nvidia-smi</p><pre tabindex=0><code>
+| <code>mdx_extra_q</code> | 4 | ~3.0 GB | 6.5 dB | Hệ thống VRAM thấp |</p>
+<p>Mô hình <code>htdemucs_ft</code> đạt SDR tổng thể 7.8 dB trên MUSDB18-HQ, với chi tiết từng nguồn khoảng 8.5 dB cho vocal, 7.5 dB cho bass, 8.9 dB cho trống, và 6.2 dB cho danh mục &ldquo;other&rdquo;. Để tham khảo, 0 dB có nghĩa là không có cải thiện tách so với bản phối gốc.</p>
+<h2 id="cài-đặt--thiết-lập">Cài đặt &amp; Thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<h3 id="yêu-cầu-tiên-quyết">Yêu cầu tiên quyết<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-tiên-quyết">#</a></h3>
+<p>Trước khi cài đặt Demucs, xác minh môi trường: `````bash</p>
+<h1 id="python-38-bắt-buộc">Python 3.8+ bắt buộc<a hidden class="anchor" aria-hidden="true" href="#python-38-bắt-buộc">#</a></h1>
+<p>python &ndash;version</p>
+<h1 id="phải-cài-đặt-ffmpeg">Phải cài đặt FFmpeg<a hidden class="anchor" aria-hidden="true" href="#phải-cài-đặt-ffmpeg">#</a></h1>
+<p>ffmpeg -version</p>
+<h1 id="tùy-chọn-nvidia-gpu-với-cuda-118-để-tăng-tốc">(Tùy chọn) NVIDIA GPU với CUDA 11.8+ để tăng tốc<a hidden class="anchor" aria-hidden="true" href="#tùy-chọn-nvidia-gpu-với-cuda-118-để-tăng-tốc">#</a></h1>
+<p>nvidia-smi</p>
+<pre tabindex="0"><code>
 ### Tùy chọn 1: pip Install (Nhanh nhất)
 
 Cách đơn giản nhất để chạy Demucs: `````bash
@@ -40,9 +376,19 @@ pip install -U demucs
 
 # Xác minh cài đặt
 demucs --help
-</code></pre><h3 id=tùy-chọn-2-conda-với-gpu-support-khuyến-nghị>Tùy chọn 2: Conda với GPU Support (Khuyến nghị)<a hidden class=anchor aria-hidden=true href=#tùy-chọn-2-conda-với-gpu-support-khuyến-nghị>#</a></h3><p>Để suy luận tăng tốc GPU và training: `````bash</p><h1 id=clone-repository>Clone repository<a hidden class=anchor aria-hidden=true href=#clone-repository>#</a></h1><p>git clone <a href=https://github.com/adefossez/demucs.git>https://github.com/adefossez/demucs.git</a>
-cd demucs</p><h1 id=tạo-môi-trường-từ-spec-chính-thức>Tạo môi trường từ spec chính thức<a hidden class=anchor aria-hidden=true href=#tạo-môi-trường-từ-spec-chính-thức>#</a></h1><p>conda env update -f environment-cuda.yml
-conda activate demucs</p><h1 id=cài-đặt-ở-chế-độ-development>Cài đặt ở chế độ development<a hidden class=anchor aria-hidden=true href=#cài-đặt-ở-chế-độ-development>#</a></h1><p>pip install -e .</p><h1 id=xác-minh-gpu-được-phát-hiện>Xác minh GPU được phát hiện<a hidden class=anchor aria-hidden=true href=#xác-minh-gpu-được-phát-hiện>#</a></h1><p>python -c &ldquo;import torch; print(f&rsquo;CUDA available: {torch.cuda.is_available()}&rsquo;)&rdquo;</p><pre tabindex=0><code>
+</code></pre><h3 id="tùy-chọn-2-conda-với-gpu-support-khuyến-nghị">Tùy chọn 2: Conda với GPU Support (Khuyến nghị)<a hidden class="anchor" aria-hidden="true" href="#tùy-chọn-2-conda-với-gpu-support-khuyến-nghị">#</a></h3>
+<p>Để suy luận tăng tốc GPU và training: `````bash</p>
+<h1 id="clone-repository">Clone repository<a hidden class="anchor" aria-hidden="true" href="#clone-repository">#</a></h1>
+<p>git clone <a href="https://github.com/adefossez/demucs.git">https://github.com/adefossez/demucs.git</a>
+cd demucs</p>
+<h1 id="tạo-môi-trường-từ-spec-chính-thức">Tạo môi trường từ spec chính thức<a hidden class="anchor" aria-hidden="true" href="#tạo-môi-trường-từ-spec-chính-thức">#</a></h1>
+<p>conda env update -f environment-cuda.yml
+conda activate demucs</p>
+<h1 id="cài-đặt-ở-chế-độ-development">Cài đặt ở chế độ development<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-ở-chế-độ-development">#</a></h1>
+<p>pip install -e .</p>
+<h1 id="xác-minh-gpu-được-phát-hiện">Xác minh GPU được phát hiện<a hidden class="anchor" aria-hidden="true" href="#xác-minh-gpu-được-phát-hiện">#</a></h1>
+<p>python -c &ldquo;import torch; print(f&rsquo;CUDA available: {torch.cuda.is_available()}&rsquo;)&rdquo;</p>
+<pre tabindex="0"><code>
 ### Tùy chọn 3: Docker (Cách ly sạch nhất)
 
 Để triển khai có thể tái tạo, không phụ thuộc: `````bash
@@ -55,7 +401,8 @@ WORKDIR /audio
 ENTRYPOINT [&#34;demucs&#34;]
 </code></pre><p>Build và chạy: `````bash
 docker build -t demucs .
-docker run &ndash;gpus all -v $(pwd):/audio demucs song.mp3</p><pre tabindex=0><code>
+docker run &ndash;gpus all -v $(pwd):/audio demucs song.mp3</p>
+<pre tabindex="0"><code>
 **Docker Compose (cho dịch vụ batch):**
 
 `````yaml
@@ -67,7 +414,19 @@ services: demucs: build: .
     volumes: - ./input:/audio/input:ro
       - ./output:/audio/output
     command: [&#34;-n&#34;, &#34;htdemucs_ft&#34;, &#34;--mp3&#34;, &#34;-o&#34;, &#34;/audio/output&#34;, &#34;/audio/input&#34;]
-</code></pre><h3 id=chạy-tách-đầu-tiên>Chạy tách đầu tiên<a hidden class=anchor aria-hidden=true href=#chạy-tách-đầu-tiên>#</a></h3><p>Sau khi cài đặt, tách track đầu tiên: `````bash</p><h1 id=tách-4-stem-cơ-bản-với-mô-hình-mặc-định>Tách 4-stem cơ bản với mô hình mặc định<a hidden class=anchor aria-hidden=true href=#tách-4-stem-cơ-bản-với-mô-hình-mặc-định>#</a></h1><p>demucs song.mp3</p><h1 id=output-vào-separatedhtdemucssong>Output vào ./separated/htdemucs/song/<a hidden class=anchor aria-hidden=true href=#output-vào-separatedhtdemucssong>#</a></h1><h1 id=chứa-drumswav-basswav-otherwav-vocalswav>Chứa: drums.wav, bass.wav, other.wav, vocals.wav<a hidden class=anchor aria-hidden=true href=#chứa-drumswav-basswav-otherwav-vocalswav>#</a></h1><h1 id=dùng-mô-hình-fine-tuned-cho-chất-lượng-tốt-hơn>Dùng mô hình fine-tuned cho chất lượng tốt hơn<a hidden class=anchor aria-hidden=true href=#dùng-mô-hình-fine-tuned-cho-chất-lượng-tốt-hơn>#</a></h1><p>demucs -n htdemucs_ft song.mp3</p><h1 id=chỉ-tách-vocal-khỏi-nhạc-nền>Chỉ tách vocal khỏi nhạc nền<a hidden class=anchor aria-hidden=true href=#chỉ-tách-vocal-khỏi-nhạc-nền>#</a></h1><p>demucs &ndash;two-stems=vocals song.mp3</p><h1 id=xuất-dạng-mp3-file-nhỏ-hơn>Xuất dạng MP3 (file nhỏ hơn)<a hidden class=anchor aria-hidden=true href=#xuất-dạng-mp3-file-nhỏ-hơn>#</a></h1><p>demucs &ndash;mp3 &ndash;mp3-bitrate 320 song.mp3</p><pre tabindex=0><code>
+</code></pre><h3 id="chạy-tách-đầu-tiên">Chạy tách đầu tiên<a hidden class="anchor" aria-hidden="true" href="#chạy-tách-đầu-tiên">#</a></h3>
+<p>Sau khi cài đặt, tách track đầu tiên: `````bash</p>
+<h1 id="tách-4-stem-cơ-bản-với-mô-hình-mặc-định">Tách 4-stem cơ bản với mô hình mặc định<a hidden class="anchor" aria-hidden="true" href="#tách-4-stem-cơ-bản-với-mô-hình-mặc-định">#</a></h1>
+<p>demucs song.mp3</p>
+<h1 id="output-vào-separatedhtdemucssong">Output vào ./separated/htdemucs/song/<a hidden class="anchor" aria-hidden="true" href="#output-vào-separatedhtdemucssong">#</a></h1>
+<h1 id="chứa-drumswav-basswav-otherwav-vocalswav">Chứa: drums.wav, bass.wav, other.wav, vocals.wav<a hidden class="anchor" aria-hidden="true" href="#chứa-drumswav-basswav-otherwav-vocalswav">#</a></h1>
+<h1 id="dùng-mô-hình-fine-tuned-cho-chất-lượng-tốt-hơn">Dùng mô hình fine-tuned cho chất lượng tốt hơn<a hidden class="anchor" aria-hidden="true" href="#dùng-mô-hình-fine-tuned-cho-chất-lượng-tốt-hơn">#</a></h1>
+<p>demucs -n htdemucs_ft song.mp3</p>
+<h1 id="chỉ-tách-vocal-khỏi-nhạc-nền">Chỉ tách vocal khỏi nhạc nền<a hidden class="anchor" aria-hidden="true" href="#chỉ-tách-vocal-khỏi-nhạc-nền">#</a></h1>
+<p>demucs &ndash;two-stems=vocals song.mp3</p>
+<h1 id="xuất-dạng-mp3-file-nhỏ-hơn">Xuất dạng MP3 (file nhỏ hơn)<a hidden class="anchor" aria-hidden="true" href="#xuất-dạng-mp3-file-nhỏ-hơn">#</a></h1>
+<p>demucs &ndash;mp3 &ndash;mp3-bitrate 320 song.mp3</p>
+<pre tabindex="0"><code>
 ### Xác minh Model Download và Cache
 
 Các model tải xuống tự động khi sử dụng lần đầu. Xác minh cache: `````bash
@@ -82,14 +441,22 @@ demucs -n htdemucs_ft --help | grep &#34;name&#34;
 # Test nhanh với file audio ngắn
 ffmpeg -f lavfi -i &#34;sine=frequency=1000:duration=5&#34; test_tone.wav
 demucs -n htdemucs test_tone.wav
-</code></pre><h2 id=tích-hợp-với-các-công-cụ-phổ-biến>Tích hợp với các công cụ phổ biến<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-các-công-cụ-phổ-biến>#</a></h2><h3 id=ultimate-vocal-remover-uvr>Ultimate Vocal Remover (UVR)<a hidden class=anchor aria-hidden=true href=#ultimate-vocal-remover-uvr>#</a></h3><p>Ultimate Vocal Remover là frontend GUI phổ biến nhất cho Demucs. Thay vì sử dụng Demucs trực tiếp qua command line, hầu hết producer sử dụng UVR vì nó bundle các mô hình Demucs với kiến trúc khác và thêm xử lý ensemble.</p><p>Cấu hình trong UVR: 1. Tải UVR5 từ <a href=https://github.com/Anjok07/ultimatevocalremovergui/releases>GitHub Releases chính thức</a>
+</code></pre><h2 id="tích-hợp-với-các-công-cụ-phổ-biến">Tích hợp với các công cụ phổ biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-các-công-cụ-phổ-biến">#</a></h2>
+<h3 id="ultimate-vocal-remover-uvr">Ultimate Vocal Remover (UVR)<a hidden class="anchor" aria-hidden="true" href="#ultimate-vocal-remover-uvr">#</a></h3>
+<p>Ultimate Vocal Remover là frontend GUI phổ biến nhất cho Demucs. Thay vì sử dụng Demucs trực tiếp qua command line, hầu hết producer sử dụng UVR vì nó bundle các mô hình Demucs với kiến trúc khác và thêm xử lý ensemble.</p>
+<p>Cấu hình trong UVR: 1. Tải UVR5 từ <a href="https://github.com/Anjok07/ultimatevocalremovergui/releases">GitHub Releases chính thức</a>
 2. Trong UI, chọn <strong>Process Method: &ldquo;Demucs&rdquo;</strong>
 3. Chọn mô hình: <code>V4 | htdemucs_ft</code>
 4. Bật <strong>GPU Conversion</strong> nếu có
-5. Để có kết quả tốt nhất, dùng <strong>Ensemble Mode</strong> với <code>htdemucs_ft</code> + <code>MDX-Net</code></p><p>Chế độ ensemble của UVR chạy song song nhiều mô hình và pha trộn đầu ra, liên tục tạo ra kết quả tách sạch hơn bất kỳ mô hình đơn lẻ nào. Chi phí là thờ gian xử lý — chế độ ensemble chậm hơn khoảng 3–5 lần so với một lần chạy mô hình đơn.</p><h3 id=rvc-retrieval-based-voice-conversion>RVC (Retrieval-based Voice Conversion)<a hidden class=anchor aria-hidden=true href=#rvc-retrieval-based-voice-conversion>#</a></h3><p>Các pipeline RVC thường sử dụng Demucs như một bước tiền xử lý để tách vocal trước khi trích xuất giọng: `````python
+5. Để có kết quả tốt nhất, dùng <strong>Ensemble Mode</strong> với <code>htdemucs_ft</code> + <code>MDX-Net</code></p>
+<p>Chế độ ensemble của UVR chạy song song nhiều mô hình và pha trộn đầu ra, liên tục tạo ra kết quả tách sạch hơn bất kỳ mô hình đơn lẻ nào. Chi phí là thờ gian xử lý — chế độ ensemble chậm hơn khoảng 3–5 lần so với một lần chạy mô hình đơn.</p>
+<h3 id="rvc-retrieval-based-voice-conversion">RVC (Retrieval-based Voice Conversion)<a hidden class="anchor" aria-hidden="true" href="#rvc-retrieval-based-voice-conversion">#</a></h3>
+<p>Các pipeline RVC thường sử dụng Demucs như một bước tiền xử lý để tách vocal trước khi trích xuất giọng: `````python
 import subprocess
-import os</p><p>def preprocess_for_rvc(input_song, output_dir): &ldquo;&ldquo;&ldquo;Trích xuất vocal sạch cho chuyển đổi giọng RVC.&rdquo;&rdquo;&rdquo;
-os.makedirs(output_dir, exist_ok=True)</p><pre><code># Bước 1: Tách bằng Demucs
+import os</p>
+<p>def preprocess_for_rvc(input_song, output_dir): &ldquo;&ldquo;&ldquo;Trích xuất vocal sạch cho chuyển đổi giọng RVC.&rdquo;&rdquo;&rdquo;
+os.makedirs(output_dir, exist_ok=True)</p>
+<pre><code># Bước 1: Tách bằng Demucs
 subprocess.run([
     demucs, '-n', htdemucs_ft,
     '--two-stems=vocals',
@@ -103,7 +470,11 @@ vocals_path = os.path.join(
     output_dir, htdemucs_ft, base, 'vocals.wav'
 )
 return vocals_path
-</code></pre><h1 id=sử-dụng>Sử dụng<a hidden class=anchor aria-hidden=true href=#sử-dụng>#</a></h1><p>vocals = preprocess_for_rvc(&lsquo;input.mp3&rsquo;, &lsquo;./separated&rsquo;)</p><h1 id=đưa-vocal-vào-rvc-để-chuyển-đổi-giọng>Đưa vocal vào RVC để chuyển đổi giọng<a hidden class=anchor aria-hidden=true href=#đưa-vocal-vào-rvc-để-chuyển-đổi-giọng>#</a></h1><pre tabindex=0><code>
+</code></pre>
+<h1 id="sử-dụng">Sử dụng<a hidden class="anchor" aria-hidden="true" href="#sử-dụng">#</a></h1>
+<p>vocals = preprocess_for_rvc(&lsquo;input.mp3&rsquo;, &lsquo;./separated&rsquo;)</p>
+<h1 id="đưa-vocal-vào-rvc-để-chuyển-đổi-giọng">Đưa vocal vào RVC để chuyển đổi giọng<a hidden class="anchor" aria-hidden="true" href="#đưa-vocal-vào-rvc-để-chuyển-đổi-giọng">#</a></h1>
+<pre tabindex="0"><code>
 ### GPT-SoVITS
 
 Voice cloning GPT-SoVITS yêu cầu audio tham chiếu sạch. Demucs loại bỏ nhạc nền trước khi đưa mẫu vào pipeline TTS: `````python
@@ -118,12 +489,16 @@ vocals = separated[&#34;vocals&#34;]
 
 # Lưu ở 24kHz cho GPT-SoVITS
 torchaudio.save(&#34;clean_reference.wav&#34;, vocals, 24000)
-</code></pre><h3 id=giao-diện-web-gradio>Giao diện Web Gradio<a hidden class=anchor aria-hidden=true href=#giao-diện-web-gradio>#</a></h3><p>Để tự host dịch vụ tách nhạc: `````python
+</code></pre><h3 id="giao-diện-web-gradio">Giao diện Web Gradio<a hidden class="anchor" aria-hidden="true" href="#giao-diện-web-gradio">#</a></h3>
+<p>Để tự host dịch vụ tách nhạc: `````python
 import gradio as gr
-from demucs.api import Separator</p><p>separator = Separator(model=&ldquo;htdemucs_ft&rdquo;)</p><p>def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
-output_path = f"{stem}.wav"
+from demucs.api import Separator</p>
+<p>separator = Separator(model=&ldquo;htdemucs_ft&rdquo;)</p>
+<p>def separate(audio_file, stem): origin, separated = separator.separate_audio_file(audio_file)
+output_path = f&quot;{stem}.wav&quot;
 separator.save_audio(separated[stem], output_path, samplerate=44100)
-return output_path</p><p>demo = gr.Interface(
+return output_path</p>
+<p>demo = gr.Interface(
 fn=separate,
 inputs=[
 gr.Audio(type=&ldquo;filepath&rdquo;, label=&ldquo;Tải lên bài hát&rdquo;),
@@ -136,7 +511,9 @@ label=&ldquo;Stem&rdquo;
 outputs=gr.Audio(label=&ldquo;Stem đã tách&rdquo;),
 title=&ldquo;Demucs Source Separation&rdquo;,
 description=&ldquo;Tách nhạc thành stem bằng mô hình Demucs của Meta&rdquo;
-)</p><p>demo.launch(server_name=&ldquo;0.0.0.0&rdquo;, server_port=7860)</p><pre tabindex=0><code>
+)</p>
+<p>demo.launch(server_name=&ldquo;0.0.0.0&rdquo;, server_port=7860)</p>
+<pre tabindex="0"><code>
 ## Benchmark / Use case thực tế
 
 ### Kết quả Benchmark MUSDB18-HQ
@@ -212,53 +589,60 @@ source_names = model.sources  # [drums, bass, other, vocals]
 
 # Lưu từng stem riêng lẻ
 for i, name in enumerate(source_names): torchaudio.save(f&#34;{name}.wav&#34;, sources[i].cpu(), sr)
-</code></pre><h3 id=pipeline-xử-lý-hàng-loạt>Pipeline xử lý hàng loạt<a hidden class=anchor aria-hidden=true href=#pipeline-xử-lý-hàng-loạt>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pathlib <span style=color:#f92672>import</span> Path
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> subprocess
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>batch_separate</span>(input_dir, output_dir, model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;htdemucs&#34;</span>): <span style=color:#e6db74>&#34;&#34;&#34;Xử lý tất cả file audio trong thư mục.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    input_dir <span style=color:#f92672>=</span> Path(input_dir)
-</span></span><span style=display:flex><span>    output_dir <span style=color:#f92672>=</span> Path(output_dir)
-</span></span><span style=display:flex><span>    output_dir<span style=color:#f92672>.</span>mkdir(parents<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, exist_ok<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    audio_exts <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#39;.mp3&#39;</span>, <span style=color:#e6db74>&#39;.wav&#39;</span>, <span style=color:#e6db74>&#39;.flac&#39;</span>, <span style=color:#e6db74>&#39;.ogg&#39;</span>, <span style=color:#e6db74>&#39;.m4a&#39;</span>}
-</span></span><span style=display:flex><span>    files <span style=color:#f92672>=</span> [f <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> input_dir<span style=color:#f92672>.</span>iterdir() <span style=color:#66d9ef>if</span> f<span style=color:#f92672>.</span>suffix <span style=color:#f92672>in</span> audio_exts]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Xử lý tất cả file trong một lần gọi Demucs</span>
-</span></span><span style=display:flex><span>    subprocess<span style=color:#f92672>.</span>run([
-</span></span><span style=display:flex><span>        demucs, <span style=color:#e6db74>&#39;-n&#39;</span>, model,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;-o&#39;</span>, str(output_dir),
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;--mp3&#39;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;--mp3-bitrate&#39;</span>, <span style=color:#ae81ff>320</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f92672>*</span>[str(f) <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> files]
-</span></span><span style=display:flex><span>    ], check<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Tạo manifest metadata</span>
-</span></span><span style=display:flex><span>    manifest <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> files: base <span style=color:#f92672>=</span> f<span style=color:#f92672>.</span>stem
-</span></span><span style=display:flex><span>        stem_dir <span style=color:#f92672>=</span> output_dir <span style=color:#f92672>/</span> model <span style=color:#f92672>/</span> base
-</span></span><span style=display:flex><span>        manifest[base] <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            drums: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;drums.mp3&#39;</span>),
-</span></span><span style=display:flex><span>            bass: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;bass.mp3&#39;</span>),
-</span></span><span style=display:flex><span>            other: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;other.mp3&#39;</span>),
-</span></span><span style=display:flex><span>            vocals: str(stem_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;vocals.mp3&#39;</span>),
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>with</span> open(output_dir <span style=color:#f92672>/</span> <span style=color:#e6db74>&#39;manifest.json&#39;</span>, w) <span style=color:#66d9ef>as</span> fp: json<span style=color:#f92672>.</span>dump(manifest, fp, indent<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> manifest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Sử dụng</span>
-</span></span><span style=display:flex><span>batch_separate(<span style=color:#e6db74>&#39;./raw_songs/&#39;</span>, <span style=color:#e6db74>&#39;./stems/&#39;</span>, model<span style=color:#f92672>=</span>htdemucs_ft)
-</span></span></code></pre></div><h3 id=tối-ưu-bộ-nhớ-cho-file-dài>Tối ưu bộ nhớ cho file dài<a hidden class=anchor aria-hidden=true href=#tối-ưu-bộ-nhớ-cho-file-dài>#</a></h3><p>Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế: `````python</p><h1 id=ép-offload-cpu-cho-file-lớn>Ép offload CPU cho file lớn<a hidden class=anchor aria-hidden=true href=#ép-offload-cpu-cho-file-lớn>#</a></h1><p>import os
-os.environ[PYTORCH_CUDA_ALLOC_CONF] = &lsquo;max_split_size_mb:128"</p><h1 id=dùng-segment-nhỏ-hơn>Dùng segment nhỏ hơn<a hidden class=anchor aria-hidden=true href=#dùng-segment-nhỏ-hơn>#</a></h1><p>sources = apply_model(
+</code></pre><h3 id="pipeline-xử-lý-hàng-loạt">Pipeline xử lý hàng loạt<a hidden class="anchor" aria-hidden="true" href="#pipeline-xử-lý-hàng-loạt">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pathlib <span style="color:#f92672">import</span> Path
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> subprocess
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">batch_separate</span>(input_dir, output_dir, model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;htdemucs&#34;</span>): <span style="color:#e6db74">&#34;&#34;&#34;Xử lý tất cả file audio trong thư mục.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    input_dir <span style="color:#f92672">=</span> Path(input_dir)
+</span></span><span style="display:flex;"><span>    output_dir <span style="color:#f92672">=</span> Path(output_dir)
+</span></span><span style="display:flex;"><span>    output_dir<span style="color:#f92672">.</span>mkdir(parents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, exist_ok<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    audio_exts <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;.mp3&#39;</span>, <span style="color:#e6db74">&#39;.wav&#39;</span>, <span style="color:#e6db74">&#39;.flac&#39;</span>, <span style="color:#e6db74">&#39;.ogg&#39;</span>, <span style="color:#e6db74">&#39;.m4a&#39;</span>}
+</span></span><span style="display:flex;"><span>    files <span style="color:#f92672">=</span> [f <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> input_dir<span style="color:#f92672">.</span>iterdir() <span style="color:#66d9ef">if</span> f<span style="color:#f92672">.</span>suffix <span style="color:#f92672">in</span> audio_exts]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Xử lý tất cả file trong một lần gọi Demucs</span>
+</span></span><span style="display:flex;"><span>    subprocess<span style="color:#f92672">.</span>run([
+</span></span><span style="display:flex;"><span>        demucs, <span style="color:#e6db74">&#39;-n&#39;</span>, model,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;-o&#39;</span>, str(output_dir),
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;--mp3&#39;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;--mp3-bitrate&#39;</span>, <span style="color:#ae81ff">320</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">*</span>[str(f) <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> files]
+</span></span><span style="display:flex;"><span>    ], check<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Tạo manifest metadata</span>
+</span></span><span style="display:flex;"><span>    manifest <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> files: base <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>stem
+</span></span><span style="display:flex;"><span>        stem_dir <span style="color:#f92672">=</span> output_dir <span style="color:#f92672">/</span> model <span style="color:#f92672">/</span> base
+</span></span><span style="display:flex;"><span>        manifest[base] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            drums: str(stem_dir <span style="color:#f92672">/</span> <span style="color:#e6db74">&#39;drums.mp3&#39;</span>),
+</span></span><span style="display:flex;"><span>            bass: str(stem_dir <span style="color:#f92672">/</span> <span style="color:#e6db74">&#39;bass.mp3&#39;</span>),
+</span></span><span style="display:flex;"><span>            other: str(stem_dir <span style="color:#f92672">/</span> <span style="color:#e6db74">&#39;other.mp3&#39;</span>),
+</span></span><span style="display:flex;"><span>            vocals: str(stem_dir <span style="color:#f92672">/</span> <span style="color:#e6db74">&#39;vocals.mp3&#39;</span>),
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">with</span> open(output_dir <span style="color:#f92672">/</span> <span style="color:#e6db74">&#39;manifest.json&#39;</span>, w) <span style="color:#66d9ef">as</span> fp: json<span style="color:#f92672">.</span>dump(manifest, fp, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> manifest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sử dụng</span>
+</span></span><span style="display:flex;"><span>batch_separate(<span style="color:#e6db74">&#39;./raw_songs/&#39;</span>, <span style="color:#e6db74">&#39;./stems/&#39;</span>, model<span style="color:#f92672">=</span>htdemucs_ft)
+</span></span></code></pre></div><h3 id="tối-ưu-bộ-nhớ-cho-file-dài">Tối ưu bộ nhớ cho file dài<a hidden class="anchor" aria-hidden="true" href="#tối-ưu-bộ-nhớ-cho-file-dài">#</a></h3>
+<p>Demucs tải toàn bộ file audio vào bộ nhớ GPU. Cho track dài hoặc VRAM hạn chế: `````python</p>
+<h1 id="ép-offload-cpu-cho-file-lớn">Ép offload CPU cho file lớn<a hidden class="anchor" aria-hidden="true" href="#ép-offload-cpu-cho-file-lớn">#</a></h1>
+<p>import os
+os.environ[PYTORCH_CUDA_ALLOC_CONF] = &lsquo;max_split_size_mb:128&quot;</p>
+<h1 id="dùng-segment-nhỏ-hơn">Dùng segment nhỏ hơn<a hidden class="anchor" aria-hidden="true" href="#dùng-segment-nhỏ-hơn">#</a></h1>
+<p>sources = apply_model(
 model,
 mix,
 split=True,
-segment=7, # Giảm từ mặc định ~10s xuống 7s
-overlap=0.1, # Giảm overlap
+segment=7,      # Giảm từ mặc định ~10s xuống 7s
+overlap=0.1,    # Giảm overlap
 device=device
-)[0]</p><pre tabindex=0><code>
+)[0]</p>
+<pre tabindex="0"><code>
 ### Giám sát và Ghi log
 
 `````python
@@ -281,15 +665,130 @@ def separate_with_metrics(input_path, output_dir): start = time.time()
         logger.info(f&#34;  {name}: RMS={rms:.4f}&#34;)
 
     return separated
-</code></pre><h2 id=so-sánh-với-các-lựa-chọn-thay-thế>So sánh với các lựa chọn thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-lựa-chọn-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>Demucs (v4)</th><th>Ultimate Vocal Remover</th><th>Spleeter</th><th>Open-Unmix</th></tr></thead><tbody><tr><td><strong>Kiến trúc</strong></td><td>Hybrid waveform + spectrogram + Transformer</td><td>GUI wrapper (đa backend)</td><td>Spectrogram U-Net</td><td>Spectrogram LSTM</td></tr><tr><td><strong>MUSDB SDR</strong></td><td>7.8 dB (htdemucs_ft)</td><td>N/A (dùng Demucs/MDX)</td><td>5.9 dB</td><td>5.3 dB</td></tr><tr><td><strong>Số stem tối đa</strong></td><td>6 (vocal, trống, bass, guitar, piano, other)</td><td>4 (tùy model)</td><td>5 (có sides)</td><td>4</td></tr><tr><td><strong>Cần GPU</strong></td><td>Khuyến nghị</td><td>Khuyến nghị</td><td>Tùy chọn</td><td>Tùy chọn</td></tr><tr><td><strong>Tốc độ xử lý</strong></td><td>~4–16x real-time (GPU)</td><td>~3–10x real-time (ensemble)</td><td>~100x real-time</td><td>~80x real-time</td></tr><tr><td><strong>VRAM sử dụng</strong></td><td>5–8 GB</td><td>6–12 GB (ensemble)</td><td>&lt;2 GB</td><td>&lt;2 GB</td></tr><tr><td><strong>Phát triển</strong></td><td>Community fork</td><td>Đang hoạt động</td><td>Archived (2021)</td><td>Maintenance mode</td></tr><tr><td><strong>Giấy phép</strong></td><td>MIT</td><td>MIT</td><td>MIT</td><td>MIT</td></tr><tr><td><strong>Phù hợp nhất</strong></td><td>Tách ưu tiên chất lượng</td><td>Dễ dùng GUI + ensemble</td><td>Xử lý batch nhanh</td><td>Triển khai nhẹ</td></tr></tbody></table><p><strong>Khi nào chọn gì</strong>: Sử dụng Demucs trực tiếp khi cần chất lượng tách tối đa và xây dựng pipeline tự động. Dùng UVR khi muốn GUI, xử lý ensemble, và không ngại overhead thiết lập. Chỉ dùng Spleeter khi cần tốc độ tối đa trên phần cứng hạn chế hoặc đang duy trì code cũ. Open-Unmix vẫn phù hợp cho mục đích giáo dục và triển khai edge có tài nguyên hạn chế.</p><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn chế / Đánh giá trung thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><p>Demucs không phải công cụ phù hợp cho mọi tác vụ audio. Đây là những gì nó không làm tốt: <strong>Tách real-time</strong>: Ngay cả mô hình Demucs nhanh nhất (<code>htdemucs</code>) cũng chỉ xử lý ở tốc độ khoảng 16x real-time trên RTX 4080. Điều này quá chậm cho biểu diễn trực tiếp hoặc ứng dụng streaming real-time. Các công cụ như Spleeter hoặc bản export ONNX chuyên dụng phù hợp hơn cho các use case nhạy cảm với độ trễ.</p><p><strong>Tách guitar và piano</strong>: Mô hình <code>htdemucs_6s</code> cố gắng tách guitar và piano thành các stem riêng biệt, nhưng SDR trên các nguồn này thấp hơn đáng kể so với 4 stem chính. Nếu nhu cầu chính là tách track guitar cụ thể, các công cụ chuyển phổ chuyên dụng như Basic Pitch có thể phù hợp hơn.</p><p><strong>Master được nén mạnh</strong>: Các track được maximize loudness với limiting nặng (phổ biến trong EDM và pop hiện đại) tạo ra frequency masking làm các mô hình tách nhầm lẫn. Demucs có thể tạo ra artifact — âm xoáy, bleed chéo nguồn — trên các track này mà không xuất hiện trên các bản phối dynamic hơn.</p><p><strong>Kích thước mô hình</strong>: Ở ~2 GB cho <code>htdemucs_ft</code>, các mô hình Demucs lớn hơn một bậc so với Spleeter (~150 MB). Điều này quan trọng đối với triển khai edge, ứng dụng di động, và môi trường serverless với ràng buộc cold-start.</p><p><strong>Upstream đã archived</strong>: Repository gốc <code>facebookresearch/demucs</code> đã được archived và không còn được duy trì. Mặc dù <code>adefossez/demucs</code> đang hoạt động, quỹ đạo duy trì dài hạn chưa rõ ràng. Cân nhắc yếu tố này trong kế hoạch dependency của bạn.</p><h2 id=câu-hỏi-thường-gặp>Câu hỏi thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><p><strong>Q: Cần phần cứng gì để chạy Demucs?</strong>
-A: Demucs chạy trên CPU, nhưng GPU NVIDIA với 6+ GB VRAM được khuyến nghị mạnh mẽ. Mô hình <code>htdemucs</code> cần 5.2 GB VRAM. Mô hình <code>htdemucs_ft</code> cần 8 GB. Xử lý CPU-only hoạt động được nhưng thờ gian xử lý một bài 4 phút là 5–20 phút so với dưới một phút trên GPU.</p><p><strong>Q: Có thể dùng Demucs thương mại không?</strong>
-A: Có. Demucs được cấp phép MIT, cho phép sử dụng thương mại, sửa đổi, và phân phối không hạn chế. Các stem đã tách có thể được sử dụng trong sản xuất thương mại. Lưu ý rằng giấy phép MIT áp dụng cho code và mô hình, không áp dụng cho bản quyền của nhạc bạn xử lý.</p><p><strong>Q: Tại sao Demucs nghe hay hơn Spleeter?</strong>
-A: Demucs xử lý audio đồng thởi trong cả miền thờ gian và miền tần số, bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy loại bỏ. Các lớp transformer cũng mô hình các phụ thuộc âm nhạc dài hạn tốt hơn U-Net của Spleeter. Điều này dẫn đến ít artifact hơn và ít nhiễu chéo nguồn hơn.</p><p><strong>Q: Làm sao xử lý cả album hiệu quả?</strong>
-A: Truyền nhiều file trong một lần gọi Demucs: <code>demucs -n htdemucs *.mp3</code>. Demucs xử lý tuần tự nhưng tránh overhead tải mô hình lặp lại. Để đạt thông lượng tối đa, chạy nhiều instance Demucs trên các GPU khác nhau hoặc dùng script xử lý batch trong phần Sử dụng nâng cao.</p><p><strong>Q: Demucs hỗ trợ định dạng audio nào?</strong>
-A: Demucs sử dụng FFmpeg để giải mã và torchaudio để mã hóa. Đầu vào: MP3, WAV, FLAC, OGG, M4A, và mọi định dạng FFmpeg hỗ trợ. Đầu ra: WAV (mặc định, 16-bit), float32 WAV (<code>--float32</code>), 24-bit WAV (<code>--int24</code>), hoặc MP3 (<code>--mp3</code> với bitrate điều chỉnh được).</p><p><strong>Q: Có thể fine-tune Demucs trên dữ liệu riêng không?</strong>
-A: Có, nhưng cần pipeline training đầy đủ. Bạn cần các stem tách rồi cho bài hát training (cùng định dạng MUSDB18-HQ), sau đó dùng trình quản lý thử nghiệm Dora với <code>dora run -d solver=htdemucs dset=your_dataset</code>. Hầu hết ngườ dùng không cần điều này — các mô hình pretrained khái quát hóa tốt qua nhiều thể loại.</p><p><strong>Q: Sự khác biệt giữa <code>htdemucs</code> và <code>htdemucs_ft</code> là gì?</strong>
-A: <code>htdemucs_ft</code> được fine-tune theo từng nguồn với dữ liệu training bổ sung và shift trick được bật mặc định. Nó đạt ~0.7 dB SDR cao hơn trên tất cả nguồn nhưng chạy chậm hơn ~4 lần và sử dụng nhiều VRAM hơn 50%. Dùng <code>htdemucs</code> cho lặp nhanh và <code>htdemucs_ft</code> cho output production cuối cùng.</p><h2 id=kết-luận>Kết luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>Demucs vẫn là triển khai tham chiếu cho tách nguồn nhạc mã nguồn mở trong năm 2026. Kiến trúc hybrid transformer mang lại chất lượng tách vượt trội Spleeter từ 20–40% trên các benchmark chuẩn, và tích hợp sạch sẽ với các pipeline chuyển đổi giọng nói, trình tạo karaoke, và công cụ sản xuất audio.</p><p>Đối với developer xây dựng pipeline audio, Demucs cung cấp Python API có tài liệu tốt, hỗ trợ Docker, và nhiều biến thể mô hình cho các đánh đổi tốc độ/chất lượng khác nhau. Giấy phép MIT loại bỏ ma sát thương mại. Các cảnh báo chính là yêu cầu phần cứng (GPU được khuyến nghị mạnh mẽ), kích thước mô hình (~2 GB), và trạng thái archived của repository upstream.</p><p><strong>Hành động</strong>: Cài đặt Demucs bằng <code>pip install -U demucs</code>, chạy lần tách đầu tiên trên track thử nghiệm bằng ````demucs -n htdemucs_ft song.mp3```, và tích hợp vào pipeline bằng các ví dụ Python API ở trên. Để có trải nghiệm GUI, tải Ultimate Vocal Remover và dùng chế độ ensemble.</p><p><strong>Tham gia nhóm Telegram dibi8.com để nhận phân tích chuyên sâu hàng tuần về công cụ AI mã nguồn mở: <a href=https://t.me/dibi8channel>https://t.me/dibi8channel</a></strong></p><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài liệu tham khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://github.com/facebookresearch/demucs>Demucs GitHub Repository (Meta, archived)</a></li><li><a href=https://github.com/adefossez/demucs>Demucs Fork đang hoạt động (adefossez)</a></li><li><a href=https://arxiv.org/abs/2211.08553>Hybrid Transformers for Music Source Separation (bài báo)</a></li><li><a href=https://zenodo.org/record/3338373>MUSDB18-HQ Benchmark Dataset</a></li><li><a href=https://github.com/Anjok07/ultimatevocalremovergui>Ultimate Vocal Remover GUI</a></li><li><a href=https://github.com/deezer/spleeter>Spleeter (Deezer, archived)</a></li><li><a href=https://github.com/sigsep/open-unmix-pytorch>Open-Unmix (Sony)</a></li><li><a href=https://mvsep.com/quality_checker/>MVSEP Quality Checker Leaderboard</a></li><li><a href=https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874>Audio Developers Conference 2025 — Bài thuyết trình ONNX Export Demucs</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h2 id="so-sánh-với-các-lựa-chọn-thay-thế">So sánh với các lựa chọn thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-lựa-chọn-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Demucs (v4)</th>
+					<th>Ultimate Vocal Remover</th>
+					<th>Spleeter</th>
+					<th>Open-Unmix</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Kiến trúc</strong></td>
+					<td>Hybrid waveform + spectrogram + Transformer</td>
+					<td>GUI wrapper (đa backend)</td>
+					<td>Spectrogram U-Net</td>
+					<td>Spectrogram LSTM</td>
+			</tr>
+			<tr>
+					<td><strong>MUSDB SDR</strong></td>
+					<td>7.8 dB (htdemucs_ft)</td>
+					<td>N/A (dùng Demucs/MDX)</td>
+					<td>5.9 dB</td>
+					<td>5.3 dB</td>
+			</tr>
+			<tr>
+					<td><strong>Số stem tối đa</strong></td>
+					<td>6 (vocal, trống, bass, guitar, piano, other)</td>
+					<td>4 (tùy model)</td>
+					<td>5 (có sides)</td>
+					<td>4</td>
+			</tr>
+			<tr>
+					<td><strong>Cần GPU</strong></td>
+					<td>Khuyến nghị</td>
+					<td>Khuyến nghị</td>
+					<td>Tùy chọn</td>
+					<td>Tùy chọn</td>
+			</tr>
+			<tr>
+					<td><strong>Tốc độ xử lý</strong></td>
+					<td>~4–16x real-time (GPU)</td>
+					<td>~3–10x real-time (ensemble)</td>
+					<td>~100x real-time</td>
+					<td>~80x real-time</td>
+			</tr>
+			<tr>
+					<td><strong>VRAM sử dụng</strong></td>
+					<td>5–8 GB</td>
+					<td>6–12 GB (ensemble)</td>
+					<td>&lt;2 GB</td>
+					<td>&lt;2 GB</td>
+			</tr>
+			<tr>
+					<td><strong>Phát triển</strong></td>
+					<td>Community fork</td>
+					<td>Đang hoạt động</td>
+					<td>Archived (2021)</td>
+					<td>Maintenance mode</td>
+			</tr>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>MIT</td>
+					<td>MIT</td>
+					<td>MIT</td>
+					<td>MIT</td>
+			</tr>
+			<tr>
+					<td><strong>Phù hợp nhất</strong></td>
+					<td>Tách ưu tiên chất lượng</td>
+					<td>Dễ dùng GUI + ensemble</td>
+					<td>Xử lý batch nhanh</td>
+					<td>Triển khai nhẹ</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Khi nào chọn gì</strong>: Sử dụng Demucs trực tiếp khi cần chất lượng tách tối đa và xây dựng pipeline tự động. Dùng UVR khi muốn GUI, xử lý ensemble, và không ngại overhead thiết lập. Chỉ dùng Spleeter khi cần tốc độ tối đa trên phần cứng hạn chế hoặc đang duy trì code cũ. Open-Unmix vẫn phù hợp cho mục đích giáo dục và triển khai edge có tài nguyên hạn chế.</p>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn chế / Đánh giá trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>Demucs không phải công cụ phù hợp cho mọi tác vụ audio. Đây là những gì nó không làm tốt: <strong>Tách real-time</strong>: Ngay cả mô hình Demucs nhanh nhất (<code>htdemucs</code>) cũng chỉ xử lý ở tốc độ khoảng 16x real-time trên RTX 4080. Điều này quá chậm cho biểu diễn trực tiếp hoặc ứng dụng streaming real-time. Các công cụ như Spleeter hoặc bản export ONNX chuyên dụng phù hợp hơn cho các use case nhạy cảm với độ trễ.</p>
+<p><strong>Tách guitar và piano</strong>: Mô hình <code>htdemucs_6s</code> cố gắng tách guitar và piano thành các stem riêng biệt, nhưng SDR trên các nguồn này thấp hơn đáng kể so với 4 stem chính. Nếu nhu cầu chính là tách track guitar cụ thể, các công cụ chuyển phổ chuyên dụng như Basic Pitch có thể phù hợp hơn.</p>
+<p><strong>Master được nén mạnh</strong>: Các track được maximize loudness với limiting nặng (phổ biến trong EDM và pop hiện đại) tạo ra frequency masking làm các mô hình tách nhầm lẫn. Demucs có thể tạo ra artifact — âm xoáy, bleed chéo nguồn — trên các track này mà không xuất hiện trên các bản phối dynamic hơn.</p>
+<p><strong>Kích thước mô hình</strong>: Ở ~2 GB cho <code>htdemucs_ft</code>, các mô hình Demucs lớn hơn một bậc so với Spleeter (~150 MB). Điều này quan trọng đối với triển khai edge, ứng dụng di động, và môi trường serverless với ràng buộc cold-start.</p>
+<p><strong>Upstream đã archived</strong>: Repository gốc <code>facebookresearch/demucs</code> đã được archived và không còn được duy trì. Mặc dù <code>adefossez/demucs</code> đang hoạt động, quỹ đạo duy trì dài hạn chưa rõ ràng. Cân nhắc yếu tố này trong kế hoạch dependency của bạn.</p>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<p><strong>Q: Cần phần cứng gì để chạy Demucs?</strong>
+A: Demucs chạy trên CPU, nhưng GPU NVIDIA với 6+ GB VRAM được khuyến nghị mạnh mẽ. Mô hình <code>htdemucs</code> cần 5.2 GB VRAM. Mô hình <code>htdemucs_ft</code> cần 8 GB. Xử lý CPU-only hoạt động được nhưng thờ gian xử lý một bài 4 phút là 5–20 phút so với dưới một phút trên GPU.</p>
+<p><strong>Q: Có thể dùng Demucs thương mại không?</strong>
+A: Có. Demucs được cấp phép MIT, cho phép sử dụng thương mại, sửa đổi, và phân phối không hạn chế. Các stem đã tách có thể được sử dụng trong sản xuất thương mại. Lưu ý rằng giấy phép MIT áp dụng cho code và mô hình, không áp dụng cho bản quyền của nhạc bạn xử lý.</p>
+<p><strong>Q: Tại sao Demucs nghe hay hơn Spleeter?</strong>
+A: Demucs xử lý audio đồng thởi trong cả miền thờ gian và miền tần số, bảo toàn thông tin pha mà các phương pháp spectrogram thuần túy loại bỏ. Các lớp transformer cũng mô hình các phụ thuộc âm nhạc dài hạn tốt hơn U-Net của Spleeter. Điều này dẫn đến ít artifact hơn và ít nhiễu chéo nguồn hơn.</p>
+<p><strong>Q: Làm sao xử lý cả album hiệu quả?</strong>
+A: Truyền nhiều file trong một lần gọi Demucs: <code>demucs -n htdemucs *.mp3</code>. Demucs xử lý tuần tự nhưng tránh overhead tải mô hình lặp lại. Để đạt thông lượng tối đa, chạy nhiều instance Demucs trên các GPU khác nhau hoặc dùng script xử lý batch trong phần Sử dụng nâng cao.</p>
+<p><strong>Q: Demucs hỗ trợ định dạng audio nào?</strong>
+A: Demucs sử dụng FFmpeg để giải mã và torchaudio để mã hóa. Đầu vào: MP3, WAV, FLAC, OGG, M4A, và mọi định dạng FFmpeg hỗ trợ. Đầu ra: WAV (mặc định, 16-bit), float32 WAV (<code>--float32</code>), 24-bit WAV (<code>--int24</code>), hoặc MP3 (<code>--mp3</code> với bitrate điều chỉnh được).</p>
+<p><strong>Q: Có thể fine-tune Demucs trên dữ liệu riêng không?</strong>
+A: Có, nhưng cần pipeline training đầy đủ. Bạn cần các stem tách rồi cho bài hát training (cùng định dạng MUSDB18-HQ), sau đó dùng trình quản lý thử nghiệm Dora với <code>dora run -d solver=htdemucs dset=your_dataset</code>. Hầu hết ngườ dùng không cần điều này — các mô hình pretrained khái quát hóa tốt qua nhiều thể loại.</p>
+<p><strong>Q: Sự khác biệt giữa <code>htdemucs</code> và <code>htdemucs_ft</code> là gì?</strong>
+A: <code>htdemucs_ft</code> được fine-tune theo từng nguồn với dữ liệu training bổ sung và shift trick được bật mặc định. Nó đạt ~0.7 dB SDR cao hơn trên tất cả nguồn nhưng chạy chậm hơn ~4 lần và sử dụng nhiều VRAM hơn 50%. Dùng <code>htdemucs</code> cho lặp nhanh và <code>htdemucs_ft</code> cho output production cuối cùng.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Demucs vẫn là triển khai tham chiếu cho tách nguồn nhạc mã nguồn mở trong năm 2026. Kiến trúc hybrid transformer mang lại chất lượng tách vượt trội Spleeter từ 20–40% trên các benchmark chuẩn, và tích hợp sạch sẽ với các pipeline chuyển đổi giọng nói, trình tạo karaoke, và công cụ sản xuất audio.</p>
+<p>Đối với developer xây dựng pipeline audio, Demucs cung cấp Python API có tài liệu tốt, hỗ trợ Docker, và nhiều biến thể mô hình cho các đánh đổi tốc độ/chất lượng khác nhau. Giấy phép MIT loại bỏ ma sát thương mại. Các cảnh báo chính là yêu cầu phần cứng (GPU được khuyến nghị mạnh mẽ), kích thước mô hình (~2 GB), và trạng thái archived của repository upstream.</p>
+<p><strong>Hành động</strong>: Cài đặt Demucs bằng <code>pip install -U demucs</code>, chạy lần tách đầu tiên trên track thử nghiệm bằng ````demucs -n htdemucs_ft song.mp3```, và tích hợp vào pipeline bằng các ví dụ Python API ở trên. Để có trải nghiệm GUI, tải Ultimate Vocal Remover và dùng chế độ ensemble.</p>
+<p><strong>Tham gia nhóm Telegram dibi8.com để nhận phân tích chuyên sâu hàng tuần về công cụ AI mã nguồn mở: <a href="https://t.me/dibi8channel">https://t.me/dibi8channel</a></strong></p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/facebookresearch/demucs">Demucs GitHub Repository (Meta, archived)</a></li>
+<li><a href="https://github.com/adefossez/demucs">Demucs Fork đang hoạt động (adefossez)</a></li>
+<li><a href="https://arxiv.org/abs/2211.08553">Hybrid Transformers for Music Source Separation (bài báo)</a></li>
+<li><a href="https://zenodo.org/record/3338373">MUSDB18-HQ Benchmark Dataset</a></li>
+<li><a href="https://github.com/Anjok07/ultimatevocalremovergui">Ultimate Vocal Remover GUI</a></li>
+<li><a href="https://github.com/deezer/spleeter">Spleeter (Deezer, archived)</a></li>
+<li><a href="https://github.com/sigsep/open-unmix-pytorch">Open-Unmix (Sony)</a></li>
+<li><a href="https://mvsep.com/quality_checker/">MVSEP Quality Checker Leaderboard</a></li>
+<li><a href="https://mixxx.discourse.group/t/gsoc-2025-converting-demucs-v4-hybrid-transformer-ai-model-to-onnx-format/32874">Audio Developers Conference 2025 — Bài thuyết trình ONNX Export Demucs</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Demucs: Tách Nguồn Nhạc 10K+ Stars — So Sánh với UVR, Spleeter 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -303,15 +802,165 @@ A: <code>htdemucs_ft</code> được fine-tune theo từng nguồn với dữ li
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/demucs%22>https://dibi8.com/vi/resources/demucs"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/demucs%22">https://dibi8.com/vi/resources/demucs"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/llm-frameworks/demucs/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/vi/llm-frameworks/demucs/>wandb-ml-experiment-tracking-platform-2026</a></li><li><a href=/vi/llm-frameworks/demucs/>apple-container</a></li><li><a href=/vi/llm-frameworks/demucs/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/vi/llm-frameworks/demucs/>moneyprinterturbo-one-click-ai-video-generator</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/llm-frameworks/demucs/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/vi/llm-frameworks/demucs/">wandb-ml-experiment-tracking-platform-2026</a></li>
+<li><a href="/vi/llm-frameworks/demucs/">apple-container</a></li>
+<li><a href="/vi/llm-frameworks/demucs/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/vi/llm-frameworks/demucs/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

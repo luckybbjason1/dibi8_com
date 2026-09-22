@@ -1,46 +1,484 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Archify：2026年生成生产级架构图的终极指南 | Dibi8</title><meta name=keywords content="archify,architecture-diagrams,ai-tools,visualization,code-analysis,2026"><meta name=description content="tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/archify-diagrams/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/archify-diagrams/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/archify-diagrams/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/archify-diagrams/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/archify-diagrams/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Archify：2026年生成生产级架构图的终极指南"><meta property="og:description" content="tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Archify"><meta property="article:tag" content="Architecture-Diagrams"><meta property="article:tag" content="Ai-Tools"><meta property="article:tag" content="Visualization"><meta property="article:tag" content="Code-Analysis"><meta property="article:tag" content="2026"><meta name=twitter:card content="summary"><meta name=twitter:title content="Archify：2026年生成生产级架构图的终极指南"><meta name=twitter:description content="tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Archify：2026年生成生产级架构图的终极指南","item":"https://dibi8.com/zh/archify-diagrams/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Archify：2026年生成生产级架构图的终极指南","name":"Archify：2026年生成生产级架构图的终极指南","description":"tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。","keywords":["archify","architecture-diagrams","ai-tools","visualization","code-analysis",2026],"articleBody":"Archify：2026年生成生产级架构图的终极指南 tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。\n本指南探讨Archify的工作原理、与AI编码代理的集成，以及开发团队的实用工作流。\n什么是Archify？ Archify是一款代理技能，将代码库转换为可视化架构图。与传统需要手动绘图的图表工具不同，Archify分析代码结构并自动生成：\n工作流图：展示执行流程和依赖关系 时序图：说明组件间的交互 数据流图：追踪数据在系统中的流动 生命周期图：映射对象和请求的生命周期 组件图：显示系统架构 核心特性 自包含HTML：无外部依赖，无需构建步骤 动效和动画：带有平滑过渡的交互式图表 清晰导出：导出为SVG、PNG或PDF用于文档 AI原生：专为Claude Code、Codex等代理设计 零配置：开箱即用，适用于大多数代码库 安装和设置 适用于Claude Code # 通过npx安装（推荐） npx -y tt-a1i/archify # 或克隆并链接 git clone https://github.com/tt-a1i/archify.git cd archify ./skills.sh install 适用于其他代理 Archify兼容任何支持Markdown技能的代理：\n# 使用Archify 1. 指向你的仓库 2. 请求架构图 3. 审查并自定义输出 4. 导出用于文档 快速入门 # 分析GitHub仓库 archify https://github.com/your-org/your-repo # 生成特定类型的图表 archify --type=workflow --output=diagram.html archify --type=sequence --scope=\"auth-service\" # 交互模式 archify --interactive Archify如何工作 分析流水线 Archify遵循多阶段分析过程：\n代码解析：扫描源文件以理解结构 依赖映射：识别imports、exports和关系 模式检测：识别常见的架构模式 图表生成：创建视觉表示 优化：应用样式和布局优化 支持的语言 Archify内置了以下语言的解析器：\nJavaScript/TypeScript：Node.js、React、Vue、Next.js Python：Django、Flask、FastAPI Go：标准库模式、微服务 Rust：Cargo项目、异步应用 Java/Kotlin：Spring Boot、Android Ruby：Rails应用 PHP：Laravel、Symfony 图表类型 1. 工作流图 展示系统中的操作序列：\n用户请求 → API网关 → 认证服务 → 数据库 ↓ 速率限制器 → 缓存层 适用场景：\nAPI请求流程 后台作业处理 支付处理管道 事件驱动架构 2. 时序图 说明组件间的交互：\n客户端 服务端 数据库 │ │ │ │──请求──▶│ │ │ │──查询──▶ │ │ │◀──结果── │ │◀──响应──│ │ 适用场景：\nAPI端点流程 服务间通信 认证流程 数据转换管道 3. 数据流图 追踪数据如何在系统中流动：\n┌─────────┐ ┌─────────┐ ┌─────────┐ │ 数据源 │───▶│ 处理器 │───▶│ 存储 │ │ (API) │ │ (转换) │ │ (数据库) │ └─────────┘ └─────────┘ └─────────┘ 适用场景：\nETL管道 事件流 数据仓库 缓存失效 4. 生命周期图 映射对象和请求的生命周期：\n创建 → 初始化 → 活跃 → 空闲 → 销毁 ↑ │ └────────── 回收 ─────────────┘ 适用场景：\n数据库连接池 缓存条目生命周期 Worker进程管理 会话处理 5. 组件图 显示系统架构：\n┌─────────────────────────────────────┐ │ 前端层 │ │ ┌─────────┐ ┌─────────┐ │ │ │ Web │ │ 移动端 │ │ │ └─────────┘ └─────────┘ │ ├─────────────────────────────────────┤ │ API网关层 │ │ ┌─────────────────────────────┐ │ │ │ 速率限制器 │ │ │ │ 认证中间件 │ │ │ └─────────────────────────────┘ │ ├─────────────────────────────────────┤ │ 服务层 │ │ ┌──────┐ ┌──────┐ ┌──────┐ │ │ │用户 │ │订单 │ │支付 │ │ │ └──────┘ └──────┘ └──────┘ │ └─────────────────────────────────────┘ 适用场景：\n微服务架构 分层应用设计 第三方集成映射 基础设施拓扑 实用工作流 1. 新员工入职 问题：新团队成员难以理解代码库结构。\n解决方案：在入职期间生成架构图。\n# 第一天运行 archify --repo=https://github.com/company/main-app \\ --output=docs/onboarding/ \\ --type=all # 创建交互式导览 archify --interactive --port=8080 好处：\n减少40%的入职时间 创建活文档 帮助识别架构债务 2. 技术文档 问题：随着代码演变，文档变得过时。\n解决方案：直接从代码生成图表。\n# 在文档流水线中 def generate_architecture_docs(repo_url, output_dir): # 克隆仓库 subprocess.run([\"git\", \"clone\", repo_url, \"/tmp/app\"]) # 生成图表 subprocess.run([ \"archify\", \"--path=/tmp/app\", \"--output=\" + output_dir, \"--types=workflow,sequence,component\" ]) # 提交文档 subprocess.run([\"git\", \"add\", output_dir]) subprocess.run([\"git\", \"commit\", \"-m\", \"更新架构图\"]) 好处：\n始终与代码保持同步 单一事实来源 自动化文档更新 3. 架构评审 问题：手动创建图表耗时。\n解决方案：使用Archify生成基线图表，然后 refinement。\n# 生成初始图表 archify --repo=. --type=component --output=review/ # 跨版本创建比较 archify --repo=. --compare=main,feature-branch --output=comparison/ # 生成变更检测 archify --repo=. --diff --output=deltas/ 好处：\n快速视觉比较 识别非预期变更 跟踪架构演变 4. 系统设计面试 问题：面试时画图表很有压力。\n解决方案：使用Archify生成整洁专业的图表。\n# 实时图表生成 archify --interactive --mode=interview # 从口头描述生成 echo \"设计一个URL短链接器\" | archify --from=prompt 好处：\n专业外观 专注于讨论而非绘图 保存图表供后续参考 5. 客户演示 问题：创建客户导向的图表花费太多时间。\n解决方案：几分钟内生成精美的图表。\n# 生成演示就绪的图表 archify --repo=. \\ --style=clean \\ --export=svg \\ --output=presentations/ # 创建动画导览 archify --repo=. --animate --output=walkthrough.html 好处：\n节省数小时的手工工作 一致的样式 交互式演示 与AI代理集成 与Claude Code集成 # 在Claude Code会话中 \u003e 分析这个项目中的认证流程 \u003e 生成展示OAuth流程的时序图 \u003e 导出为SVG用于文档 Claude Code可以：\n运行Archify分析 解释结果 生成说明 创建文档 与Codex集成 # 在Codex工作流中 def analyze_system(repo_path): # 生成图表 archify_result = run_archify(repo_path) # 用AI分析 insights = codex.analyze({ \"diagrams\": archify_result, \"question\": \"主要的架构风险是什么？\" }) return insights 与GitHub Actions集成 # .github/workflows/archify.yml name: 生成架构文档 on: push: branches: [main] jobs: generate: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: 安装Archify run: npm install -g @tt-a1i/archify - name: 生成图表 run: archify --path=. --output=docs/architecture - name: 提交文档 run: | git add docs/architecture git commit -m \"更新架构图\" || echo \"无变更\" git push 定制和样式 主题选项 Archify支持多种视觉主题：\n# 可用主题 archify --theme=dark # 深色背景，浅色文字 archify --theme=light # 浅色背景，深色文字 archify --theme=mono # 单色，适合打印 archify --theme=colorful # 鲜艳色彩，引人注目 样式定制 控制图表外观：\n# 节点样式 archify --node-style=filled # 实心彩色节点 archify --node-style=outlined # 轮廓节点 archify --node-style=wireframe # 最小线框 # 布局选项 archify --layout=horizontal # 左到右流程 archify --layout=vertical # 上到下流程 archify --layout=auto # 智能自动布局 # 边样式 archify --edge-style=curved # 平滑曲线 archify --edge-style=straight # 角线 archify --edge-style=dashed # 虚线连接 导出格式 # SVG用于网络和文档 archify --export=svg --output=diagram.svg # PNG用于演示 archify --export=png --resolution=2x --output=diagram.png # PDF用于打印 archify --export=pdf --output=diagram.pdf # 交互HTML用于网络 archify --export=html --interactive --output=diagram.html 高级功能 实时协作 Archify支持协作编辑：\n# 启动协作会话 archify --collab --port=3000 # 与团队分享 # 团队成员通过URL加入 # 更改实时同步 版本比较 跨分支比较架构：\n# main和功能分支间的差异 archify --compare=main,feature/auth \\ --output=comparison/ \\ --highlight-changes # 生成变更报告 archify --compare=main,feature/auth \\ --report=changes.md 性能分析 从图表中识别瓶颈：\n# 分析性能影响 archify --analyze=performance --output=report.html # 找到热路径 archify --hotpaths --top=10 --output=hotpaths.md 安全分析 检测安全模式和问题：\n# 分析认证流程 archify --focus=authentication --output=security/ # 识别数据暴露 archify --focus=data-flow --check=exposure 限制和注意事项 Archify不会做的 解释业务逻辑：显示结构，而非目的 替代设计：帮助文档化，而非创建架构 理解上下文：可能错过组织约束 保证准确性：基于代码分析，可能错过运行时行为 何时使用手动图表 战略规划：高层架构决策 客户沟通：简化的执行视图 监管文档：正式合规要求 遗留系统：需要复杂的历史背景 最佳实践 组合方法：使用Archify作为基线，手动 refinement 定期更新：重大变更后重新生成 团队评审：让架构师验证自动化图表 添加上下文：添加解释业务逻辑的注释 版本控制：将图表与代码一起存储 性能基准 处理速度 仓库大小 分析时间 图表生成 \u003c 10K LOC \u003c 5秒 \u003c 2秒 10K - 100K LOC 10-30秒 3-5秒 100K - 500K LOC 1-3分钟 5-10秒 \u003e 500K LOC 3-10分钟 10-30秒 内存使用 基准：小型项目50-100 MB 大型项目：企业代码库200-500 MB 峰值使用：分析期间的短暂峰值 可扩展性 单用户：适合个人项目 团队使用：协作功能支持5-10个并发用户 企业：10+用户考虑服务器部署 与其他工具比较 Archify vs. Mermaid 功能 Archify Mermaid 自动生成 ✅ 是 ❌ 手动 代码分析 ✅ 深度 ❌ 无 交互式 ✅ 是 有限 学习曲线 低 中 定制性 高 中 集成 代理原生 Markdown原生 结论：使用Archify进行自动化分析，Mermaid用于手动文档。\nArchify vs. Draw.io 功能 Archify Draw.io 自动化 ✅ 完整 ❌ 无 设计质量 高 高 协作 实时 基于云 学习曲线 低 中 导出选项 多个 多个 结论：使用Archify进行快速生成，Draw.io用于详细设计。\nArchify vs. PlantUML 功能 Archify PlantUML 自动生成 ✅ 是 ❌ 手动 语言支持 多种 Java聚焦 输出质量 现代 传统 集成 代理原生 IDE插件 结论：使用Archify用于现代工作流，PlantUML用于Java-heavy项目。\n社区和生态 GitHub统计 Stars：59,700 ⭐ Forks：3,900 🍴 Watchers：1,200 👁️ Issues：积极分类 Contributors：45+ 集成生态 Archify与以下工具集成：\nAI代理：Claude Code、Codex、Cursor、GitHub Copilot CI/CD：GitHub Actions、GitLab CI、Jenkins 文档：MkDocs、Docusaurus、Hugo 设计工具：Figma、Sketch（通过导出） 通讯：Slack、Discord（通过机器人） 贡献方式 贡献方式：\n报告问题：Bug报告和功能请求 提交PR：代码改进和新解析器 添加解析器：支持更多语言 改进文档：教程和示例 分享工作流：真实世界用例 未来路线图 2026年第四季度 API发布：REST API用于程序化访问 浏览器扩展：实时图表生成 IDE插件：VS Code、JetBrains集成 移动应用：iOS和Android查看器 2027年第一季度 高级AI：更好的模式识别 协作：多用户编辑 分析：使用洞察和建议 市场：共享图表模板 2027年第二季度 云服务：托管协作平台 企业功能：SSO、审计日志、SLA 高级可视化：3D架构视图 集成中心：更多第三方集成 结论 Archify代表了架构可视化的重大进步。通过自动化从代码生成图表，它节省开发人员数小时的手工工作，同时创建准确、最新的文档。\n关键优势 节省时间：几秒钟生成图表，而非数小时 准确性：基于实际代码，而非记忆 集成：与现代AI代理工作流兼容 灵活性：多种输出格式和样式 社区：活跃的开发和支持 谁应该使用 开发者：快速文档化代码库 架构师：创建设计可视化表示 团队：更快入职新员工 顾问：高效分析客户系统 学生：可视化学习架构模式 最后 Thoughts 随着代码库变得越来越复杂，清晰文档的需求变得至关重要。Archify弥合了代码与可视化之间的差距，使架构理解对每个人都可访问。\n该工具并不替代人类设计思维——它通过处理文档中繁琐的部分来增强它，让你专注于重要的架构决策。\nGitHub仓库：https://github.com/tt-a1i/archify\nStars：59,700 ⭐ | Forks：3,900 🍴 | 许可证：MIT\n最后更新：2026年9月\n觉得有帮助？加入我们的Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group\n","wordCount":"819","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/archify-diagrams/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">Archify：2026年生成生产级架构图的终极指南</h1><div class=post-description>tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/archify-diagrams/>En</a></li><li><a href=https://dibi8.com/vi/archify-diagrams/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#archify2026%e5%b9%b4%e7%94%9f%e6%88%90%e7%94%9f%e4%ba%a7%e7%ba%a7%e6%9e%b6%e6%9e%84%e5%9b%be%e7%9a%84%e7%bb%88%e6%9e%81%e6%8c%87%e5%8d%97 aria-label=Archify：2026年生成生产级架构图的终极指南>Archify：2026年生成生产级架构图的终极指南</a><ul><li><a href=#%e4%bb%80%e4%b9%88%e6%98%afarchify aria-label=什么是Archify？>什么是Archify？</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e7%89%b9%e6%80%a7 aria-label=核心特性>核心特性</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85%e5%92%8c%e8%ae%be%e7%bd%ae aria-label=安装和设置>安装和设置</a><ul><li><a href=#%e9%80%82%e7%94%a8%e4%ba%8eclaude-code aria-label="适用于Claude Code">适用于Claude Code</a></li><li><a href=#%e9%80%82%e7%94%a8%e4%ba%8e%e5%85%b6%e4%bb%96%e4%bb%a3%e7%90%86 aria-label=适用于其他代理>适用于其他代理</a></li><li><a href=#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8 aria-label=快速入门>快速入门</a></li></ul></li><li><a href=#archify%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c aria-label=Archify如何工作>Archify如何工作</a><ul><li><a href=#%e5%88%86%e6%9e%90%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=分析流水线>分析流水线</a></li><li><a href=#%e6%94%af%e6%8c%81%e7%9a%84%e8%af%ad%e8%a8%80 aria-label=支持的语言>支持的语言</a></li><li><a href=#%e5%9b%be%e8%a1%a8%e7%b1%bb%e5%9e%8b aria-label=图表类型>图表类型</a><ul><li><a href=#1-%e5%b7%a5%e4%bd%9c%e6%b5%81%e5%9b%be aria-label="1. 工作流图">1. 工作流图</a></li><li><a href=#2-%e6%97%b6%e5%ba%8f%e5%9b%be aria-label="2. 时序图">2. 时序图</a></li><li><a href=#3-%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%be aria-label="3. 数据流图">3. 数据流图</a></li><li><a href=#4-%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%9b%be aria-label="4. 生命周期图">4. 生命周期图</a></li><li><a href=#5-%e7%bb%84%e4%bb%b6%e5%9b%be aria-label="5. 组件图">5. 组件图</a></li></ul></li></ul></li><li><a href=#%e5%ae%9e%e7%94%a8%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=实用工作流>实用工作流</a><ul><li><a href=#1-%e6%96%b0%e5%91%98%e5%b7%a5%e5%85%a5%e8%81%8c aria-label="1. 新员工入职">1. 新员工入职</a></li><li><a href=#2-%e6%8a%80%e6%9c%af%e6%96%87%e6%a1%a3 aria-label="2. 技术文档">2. 技术文档</a></li><li><a href=#3-%e6%9e%b6%e6%9e%84%e8%af%84%e5%ae%a1 aria-label="3. 架构评审">3. 架构评审</a></li><li><a href=#4-%e7%b3%bb%e7%bb%9f%e8%ae%be%e8%ae%a1%e9%9d%a2%e8%af%95 aria-label="4. 系统设计面试">4. 系统设计面试</a></li><li><a href=#5-%e5%ae%a2%e6%88%b7%e6%bc%94%e7%a4%ba aria-label="5. 客户演示">5. 客户演示</a></li></ul></li><li><a href=#%e4%b8%8eai%e4%bb%a3%e7%90%86%e9%9b%86%e6%88%90 aria-label=与AI代理集成>与AI代理集成</a><ul><li><a href=#%e4%b8%8eclaude-code%e9%9b%86%e6%88%90 aria-label="与Claude Code集成">与Claude Code集成</a></li><li><a href=#%e4%b8%8ecodex%e9%9b%86%e6%88%90 aria-label=与Codex集成>与Codex集成</a></li><li><a href=#%e4%b8%8egithub-actions%e9%9b%86%e6%88%90 aria-label="与GitHub Actions集成">与GitHub Actions集成</a></li></ul></li><li><a href=#%e5%ae%9a%e5%88%b6%e5%92%8c%e6%a0%b7%e5%bc%8f aria-label=定制和样式>定制和样式</a><ul><li><a href=#%e4%b8%bb%e9%a2%98%e9%80%89%e9%a1%b9 aria-label=主题选项>主题选项</a></li><li><a href=#%e6%a0%b7%e5%bc%8f%e5%ae%9a%e5%88%b6 aria-label=样式定制>样式定制</a></li><li><a href=#%e5%af%bc%e5%87%ba%e6%a0%bc%e5%bc%8f aria-label=导出格式>导出格式</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd aria-label=高级功能>高级功能</a><ul><li><a href=#%e5%ae%9e%e6%97%b6%e5%8d%8f%e4%bd%9c aria-label=实时协作>实时协作</a></li><li><a href=#%e7%89%88%e6%9c%ac%e6%af%94%e8%be%83 aria-label=版本比较>版本比较</a></li><li><a href=#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90 aria-label=性能分析>性能分析</a></li><li><a href=#%e5%ae%89%e5%85%a8%e5%88%86%e6%9e%90 aria-label=安全分析>安全分析</a></li></ul></li><li><a href=#%e9%99%90%e5%88%b6%e5%92%8c%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9 aria-label=限制和注意事项>限制和注意事项</a><ul><li><a href=#archify%e4%b8%8d%e4%bc%9a%e5%81%9a%e7%9a%84 aria-label=Archify不会做的>Archify不会做的</a></li><li><a href=#%e4%bd%95%e6%97%b6%e4%bd%bf%e7%94%a8%e6%89%8b%e5%8a%a8%e5%9b%be%e8%a1%a8 aria-label=何时使用手动图表>何时使用手动图表</a></li><li><a href=#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label=最佳实践>最佳实践</a></li></ul></li><li><a href=#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86 aria-label=性能基准>性能基准</a><ul><li><a href=#%e5%a4%84%e7%90%86%e9%80%9f%e5%ba%a6 aria-label=处理速度>处理速度</a></li><li><a href=#%e5%86%85%e5%ad%98%e4%bd%bf%e7%94%a8 aria-label=内存使用>内存使用</a></li><li><a href=#%e5%8f%af%e6%89%a9%e5%b1%95%e6%80%a7 aria-label=可扩展性>可扩展性</a></li></ul></li><li><a href=#%e4%b8%8e%e5%85%b6%e4%bb%96%e5%b7%a5%e5%85%b7%e6%af%94%e8%be%83 aria-label=与其他工具比较>与其他工具比较</a><ul><li><a href=#archify-vs-mermaid aria-label="Archify vs. Mermaid">Archify vs. Mermaid</a></li><li><a href=#archify-vs-drawio aria-label="Archify vs. Draw.io">Archify vs. Draw.io</a></li><li><a href=#archify-vs-plantuml aria-label="Archify vs. PlantUML">Archify vs. PlantUML</a></li></ul></li><li><a href=#%e7%a4%be%e5%8c%ba%e5%92%8c%e7%94%9f%e6%80%81 aria-label=社区和生态>社区和生态</a><ul><li><a href=#github%e7%bb%9f%e8%ae%a1 aria-label=GitHub统计>GitHub统计</a></li><li><a href=#%e9%9b%86%e6%88%90%e7%94%9f%e6%80%81 aria-label=集成生态>集成生态</a></li><li><a href=#%e8%b4%a1%e7%8c%ae%e6%96%b9%e5%bc%8f aria-label=贡献方式>贡献方式</a></li></ul></li><li><a href=#%e6%9c%aa%e6%9d%a5%e8%b7%af%e7%ba%bf%e5%9b%be aria-label=未来路线图>未来路线图</a><ul><li><a href=#2026%e5%b9%b4%e7%ac%ac%e5%9b%9b%e5%ad%a3%e5%ba%a6 aria-label=2026年第四季度>2026年第四季度</a></li><li><a href=#2027%e5%b9%b4%e7%ac%ac%e4%b8%80%e5%ad%a3%e5%ba%a6 aria-label=2027年第一季度>2027年第一季度</a></li><li><a href=#2027%e5%b9%b4%e7%ac%ac%e4%ba%8c%e5%ad%a3%e5%ba%a6 aria-label=2027年第二季度>2027年第二季度</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a><ul><li><a href=#%e5%85%b3%e9%94%ae%e4%bc%98%e5%8a%bf aria-label=关键优势>关键优势</a></li><li><a href=#%e8%b0%81%e5%ba%94%e8%af%a5%e4%bd%bf%e7%94%a8 aria-label=谁应该使用>谁应该使用</a></li><li><a href=#%e6%9c%80%e5%90%8e-thoughts aria-label="最后 Thoughts">最后 Thoughts</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=archify2026年生成生产级架构图的终极指南>Archify：2026年生成生产级架构图的终极指南<a hidden class=anchor aria-hidden=true href=#archify2026年生成生产级架构图的终极指南>#</a></h1><p>tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获<strong>59,700颗星</strong>和<strong>3,900个fork</strong>。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。</p><p>本指南探讨Archify的工作原理、与AI编码代理的集成，以及开发团队的实用工作流。</p><h2 id=什么是archify>什么是Archify？<a hidden class=anchor aria-hidden=true href=#什么是archify>#</a></h2><p>Archify是一款代理技能，将代码库转换为可视化架构图。与传统需要手动绘图的图表工具不同，Archify分析代码结构并自动生成：</p><ul><li><strong>工作流图</strong>：展示执行流程和依赖关系</li><li><strong>时序图</strong>：说明组件间的交互</li><li><strong>数据流图</strong>：追踪数据在系统中的流动</li><li><strong>生命周期图</strong>：映射对象和请求的生命周期</li><li><strong>组件图</strong>：显示系统架构</li></ul><h3 id=核心特性>核心特性<a hidden class=anchor aria-hidden=true href=#核心特性>#</a></h3><ul><li><strong>自包含HTML</strong>：无外部依赖，无需构建步骤</li><li><strong>动效和动画</strong>：带有平滑过渡的交互式图表</li><li><strong>清晰导出</strong>：导出为SVG、PNG或PDF用于文档</li><li><strong>AI原生</strong>：专为Claude Code、Codex等代理设计</li><li><strong>零配置</strong>：开箱即用，适用于大多数代码库</li></ul><h2 id=安装和设置>安装和设置<a hidden class=anchor aria-hidden=true href=#安装和设置>#</a></h2><h3 id=适用于claude-code>适用于Claude Code<a hidden class=anchor aria-hidden=true href=#适用于claude-code>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过npx安装（推荐）</span>
-</span></span><span style=display:flex><span>npx -y tt-a1i/archify
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或克隆并链接</span>
-</span></span><span style=display:flex><span>git clone https://github.com/tt-a1i/archify.git
-</span></span><span style=display:flex><span>cd archify
-</span></span><span style=display:flex><span>./skills.sh install
-</span></span></code></pre></div><h3 id=适用于其他代理>适用于其他代理<a hidden class=anchor aria-hidden=true href=#适用于其他代理>#</a></h3><p>Archify兼容任何支持Markdown技能的代理：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span># 使用Archify
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span> 指向你的仓库
-</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> 请求架构图
-</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> 审查并自定义输出
-</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span> 导出用于文档
-</span></span></code></pre></div><h3 id=快速入门>快速入门<a hidden class=anchor aria-hidden=true href=#快速入门>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 分析GitHub仓库</span>
-</span></span><span style=display:flex><span>archify https://github.com/your-org/your-repo
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 生成特定类型的图表</span>
-</span></span><span style=display:flex><span>archify --type<span style=color:#f92672>=</span>workflow --output<span style=color:#f92672>=</span>diagram.html
-</span></span><span style=display:flex><span>archify --type<span style=color:#f92672>=</span>sequence --scope<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auth-service&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 交互模式</span>
-</span></span><span style=display:flex><span>archify --interactive
-</span></span></code></pre></div><h2 id=archify如何工作>Archify如何工作<a hidden class=anchor aria-hidden=true href=#archify如何工作>#</a></h2><h3 id=分析流水线>分析流水线<a hidden class=anchor aria-hidden=true href=#分析流水线>#</a></h3><p>Archify遵循多阶段分析过程：</p><ol><li><strong>代码解析</strong>：扫描源文件以理解结构</li><li><strong>依赖映射</strong>：识别imports、exports和关系</li><li><strong>模式检测</strong>：识别常见的架构模式</li><li><strong>图表生成</strong>：创建视觉表示</li><li><strong>优化</strong>：应用样式和布局优化</li></ol><h3 id=支持的语言>支持的语言<a hidden class=anchor aria-hidden=true href=#支持的语言>#</a></h3><p>Archify内置了以下语言的解析器：</p><ul><li><strong>JavaScript/TypeScript</strong>：Node.js、React、Vue、Next.js</li><li><strong>Python</strong>：Django、Flask、FastAPI</li><li><strong>Go</strong>：标准库模式、微服务</li><li><strong>Rust</strong>：Cargo项目、异步应用</li><li><strong>Java/Kotlin</strong>：Spring Boot、Android</li><li><strong>Ruby</strong>：Rails应用</li><li><strong>PHP</strong>：Laravel、Symfony</li></ul><h3 id=图表类型>图表类型<a hidden class=anchor aria-hidden=true href=#图表类型>#</a></h3><h4 id=1-工作流图>1. 工作流图<a hidden class=anchor aria-hidden=true href=#1-工作流图>#</a></h4><p>展示系统中的操作序列：</p><pre tabindex=0><code>用户请求 → API网关 → 认证服务 → 数据库
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Archify：2026年生成生产级架构图的终极指南 | Dibi8</title>
+<meta name="keywords" content="archify, architecture-diagrams, ai-tools, visualization, code-analysis, 2026">
+<meta name="description" content="tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/archify-diagrams/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/archify-diagrams/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/archify-diagrams/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/archify-diagrams/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/archify-diagrams/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/archify-diagrams/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Archify：2026年生成生产级架构图的终极指南">
+  <meta property="og:description" content="tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Archify">
+    <meta property="article:tag" content="Architecture-Diagrams">
+    <meta property="article:tag" content="Ai-Tools">
+    <meta property="article:tag" content="Visualization">
+    <meta property="article:tag" content="Code-Analysis">
+    <meta property="article:tag" content="2026">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Archify：2026年生成生产级架构图的终极指南">
+  <meta name="twitter:description" content="tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Archify：2026年生成生产级架构图的终极指南",
+      "item": "https://dibi8.com/zh/archify-diagrams/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Archify：2026年生成生产级架构图的终极指南",
+  "name": "Archify：2026年生成生产级架构图的终极指南",
+  "description": "tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。",
+  "keywords": [
+    "archify", "architecture-diagrams", "ai-tools", "visualization", "code-analysis",  2026 
+  ],
+  "articleBody": "Archify：2026年生成生产级架构图的终极指南 tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。\n本指南探讨Archify的工作原理、与AI编码代理的集成，以及开发团队的实用工作流。\n什么是Archify？ Archify是一款代理技能，将代码库转换为可视化架构图。与传统需要手动绘图的图表工具不同，Archify分析代码结构并自动生成：\n工作流图：展示执行流程和依赖关系 时序图：说明组件间的交互 数据流图：追踪数据在系统中的流动 生命周期图：映射对象和请求的生命周期 组件图：显示系统架构 核心特性 自包含HTML：无外部依赖，无需构建步骤 动效和动画：带有平滑过渡的交互式图表 清晰导出：导出为SVG、PNG或PDF用于文档 AI原生：专为Claude Code、Codex等代理设计 零配置：开箱即用，适用于大多数代码库 安装和设置 适用于Claude Code # 通过npx安装（推荐） npx -y tt-a1i/archify # 或克隆并链接 git clone https://github.com/tt-a1i/archify.git cd archify ./skills.sh install 适用于其他代理 Archify兼容任何支持Markdown技能的代理：\n# 使用Archify 1. 指向你的仓库 2. 请求架构图 3. 审查并自定义输出 4. 导出用于文档 快速入门 # 分析GitHub仓库 archify https://github.com/your-org/your-repo # 生成特定类型的图表 archify --type=workflow --output=diagram.html archify --type=sequence --scope=\"auth-service\" # 交互模式 archify --interactive Archify如何工作 分析流水线 Archify遵循多阶段分析过程：\n代码解析：扫描源文件以理解结构 依赖映射：识别imports、exports和关系 模式检测：识别常见的架构模式 图表生成：创建视觉表示 优化：应用样式和布局优化 支持的语言 Archify内置了以下语言的解析器：\nJavaScript/TypeScript：Node.js、React、Vue、Next.js Python：Django、Flask、FastAPI Go：标准库模式、微服务 Rust：Cargo项目、异步应用 Java/Kotlin：Spring Boot、Android Ruby：Rails应用 PHP：Laravel、Symfony 图表类型 1. 工作流图 展示系统中的操作序列：\n用户请求 → API网关 → 认证服务 → 数据库 ↓ 速率限制器 → 缓存层 适用场景：\nAPI请求流程 后台作业处理 支付处理管道 事件驱动架构 2. 时序图 说明组件间的交互：\n客户端 服务端 数据库 │ │ │ │──请求──▶│ │ │ │──查询──▶ │ │ │◀──结果── │ │◀──响应──│ │ 适用场景：\nAPI端点流程 服务间通信 认证流程 数据转换管道 3. 数据流图 追踪数据如何在系统中流动：\n┌─────────┐ ┌─────────┐ ┌─────────┐ │ 数据源 │───▶│ 处理器 │───▶│ 存储 │ │ (API) │ │ (转换) │ │ (数据库) │ └─────────┘ └─────────┘ └─────────┘ 适用场景：\nETL管道 事件流 数据仓库 缓存失效 4. 生命周期图 映射对象和请求的生命周期：\n创建 → 初始化 → 活跃 → 空闲 → 销毁 ↑ │ └────────── 回收 ─────────────┘ 适用场景：\n数据库连接池 缓存条目生命周期 Worker进程管理 会话处理 5. 组件图 显示系统架构：\n┌─────────────────────────────────────┐ │ 前端层 │ │ ┌─────────┐ ┌─────────┐ │ │ │ Web │ │ 移动端 │ │ │ └─────────┘ └─────────┘ │ ├─────────────────────────────────────┤ │ API网关层 │ │ ┌─────────────────────────────┐ │ │ │ 速率限制器 │ │ │ │ 认证中间件 │ │ │ └─────────────────────────────┘ │ ├─────────────────────────────────────┤ │ 服务层 │ │ ┌──────┐ ┌──────┐ ┌──────┐ │ │ │用户 │ │订单 │ │支付 │ │ │ └──────┘ └──────┘ └──────┘ │ └─────────────────────────────────────┘ 适用场景：\n微服务架构 分层应用设计 第三方集成映射 基础设施拓扑 实用工作流 1. 新员工入职 问题：新团队成员难以理解代码库结构。\n解决方案：在入职期间生成架构图。\n# 第一天运行 archify --repo=https://github.com/company/main-app \\ --output=docs/onboarding/ \\ --type=all # 创建交互式导览 archify --interactive --port=8080 好处：\n减少40%的入职时间 创建活文档 帮助识别架构债务 2. 技术文档 问题：随着代码演变，文档变得过时。\n解决方案：直接从代码生成图表。\n# 在文档流水线中 def generate_architecture_docs(repo_url, output_dir): # 克隆仓库 subprocess.run([\"git\", \"clone\", repo_url, \"/tmp/app\"]) # 生成图表 subprocess.run([ \"archify\", \"--path=/tmp/app\", \"--output=\" + output_dir, \"--types=workflow,sequence,component\" ]) # 提交文档 subprocess.run([\"git\", \"add\", output_dir]) subprocess.run([\"git\", \"commit\", \"-m\", \"更新架构图\"]) 好处：\n始终与代码保持同步 单一事实来源 自动化文档更新 3. 架构评审 问题：手动创建图表耗时。\n解决方案：使用Archify生成基线图表，然后 refinement。\n# 生成初始图表 archify --repo=. --type=component --output=review/ # 跨版本创建比较 archify --repo=. --compare=main,feature-branch --output=comparison/ # 生成变更检测 archify --repo=. --diff --output=deltas/ 好处：\n快速视觉比较 识别非预期变更 跟踪架构演变 4. 系统设计面试 问题：面试时画图表很有压力。\n解决方案：使用Archify生成整洁专业的图表。\n# 实时图表生成 archify --interactive --mode=interview # 从口头描述生成 echo \"设计一个URL短链接器\" | archify --from=prompt 好处：\n专业外观 专注于讨论而非绘图 保存图表供后续参考 5. 客户演示 问题：创建客户导向的图表花费太多时间。\n解决方案：几分钟内生成精美的图表。\n# 生成演示就绪的图表 archify --repo=. \\ --style=clean \\ --export=svg \\ --output=presentations/ # 创建动画导览 archify --repo=. --animate --output=walkthrough.html 好处：\n节省数小时的手工工作 一致的样式 交互式演示 与AI代理集成 与Claude Code集成 # 在Claude Code会话中 \u003e 分析这个项目中的认证流程 \u003e 生成展示OAuth流程的时序图 \u003e 导出为SVG用于文档 Claude Code可以：\n运行Archify分析 解释结果 生成说明 创建文档 与Codex集成 # 在Codex工作流中 def analyze_system(repo_path): # 生成图表 archify_result = run_archify(repo_path) # 用AI分析 insights = codex.analyze({ \"diagrams\": archify_result, \"question\": \"主要的架构风险是什么？\" }) return insights 与GitHub Actions集成 # .github/workflows/archify.yml name: 生成架构文档 on: push: branches: [main] jobs: generate: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: 安装Archify run: npm install -g @tt-a1i/archify - name: 生成图表 run: archify --path=. --output=docs/architecture - name: 提交文档 run: | git add docs/architecture git commit -m \"更新架构图\" || echo \"无变更\" git push 定制和样式 主题选项 Archify支持多种视觉主题：\n# 可用主题 archify --theme=dark # 深色背景，浅色文字 archify --theme=light # 浅色背景，深色文字 archify --theme=mono # 单色，适合打印 archify --theme=colorful # 鲜艳色彩，引人注目 样式定制 控制图表外观：\n# 节点样式 archify --node-style=filled # 实心彩色节点 archify --node-style=outlined # 轮廓节点 archify --node-style=wireframe # 最小线框 # 布局选项 archify --layout=horizontal # 左到右流程 archify --layout=vertical # 上到下流程 archify --layout=auto # 智能自动布局 # 边样式 archify --edge-style=curved # 平滑曲线 archify --edge-style=straight # 角线 archify --edge-style=dashed # 虚线连接 导出格式 # SVG用于网络和文档 archify --export=svg --output=diagram.svg # PNG用于演示 archify --export=png --resolution=2x --output=diagram.png # PDF用于打印 archify --export=pdf --output=diagram.pdf # 交互HTML用于网络 archify --export=html --interactive --output=diagram.html 高级功能 实时协作 Archify支持协作编辑：\n# 启动协作会话 archify --collab --port=3000 # 与团队分享 # 团队成员通过URL加入 # 更改实时同步 版本比较 跨分支比较架构：\n# main和功能分支间的差异 archify --compare=main,feature/auth \\ --output=comparison/ \\ --highlight-changes # 生成变更报告 archify --compare=main,feature/auth \\ --report=changes.md 性能分析 从图表中识别瓶颈：\n# 分析性能影响 archify --analyze=performance --output=report.html # 找到热路径 archify --hotpaths --top=10 --output=hotpaths.md 安全分析 检测安全模式和问题：\n# 分析认证流程 archify --focus=authentication --output=security/ # 识别数据暴露 archify --focus=data-flow --check=exposure 限制和注意事项 Archify不会做的 解释业务逻辑：显示结构，而非目的 替代设计：帮助文档化，而非创建架构 理解上下文：可能错过组织约束 保证准确性：基于代码分析，可能错过运行时行为 何时使用手动图表 战略规划：高层架构决策 客户沟通：简化的执行视图 监管文档：正式合规要求 遗留系统：需要复杂的历史背景 最佳实践 组合方法：使用Archify作为基线，手动 refinement 定期更新：重大变更后重新生成 团队评审：让架构师验证自动化图表 添加上下文：添加解释业务逻辑的注释 版本控制：将图表与代码一起存储 性能基准 处理速度 仓库大小 分析时间 图表生成 \u003c 10K LOC \u003c 5秒 \u003c 2秒 10K - 100K LOC 10-30秒 3-5秒 100K - 500K LOC 1-3分钟 5-10秒 \u003e 500K LOC 3-10分钟 10-30秒 内存使用 基准：小型项目50-100 MB 大型项目：企业代码库200-500 MB 峰值使用：分析期间的短暂峰值 可扩展性 单用户：适合个人项目 团队使用：协作功能支持5-10个并发用户 企业：10+用户考虑服务器部署 与其他工具比较 Archify vs. Mermaid 功能 Archify Mermaid 自动生成 ✅ 是 ❌ 手动 代码分析 ✅ 深度 ❌ 无 交互式 ✅ 是 有限 学习曲线 低 中 定制性 高 中 集成 代理原生 Markdown原生 结论：使用Archify进行自动化分析，Mermaid用于手动文档。\nArchify vs. Draw.io 功能 Archify Draw.io 自动化 ✅ 完整 ❌ 无 设计质量 高 高 协作 实时 基于云 学习曲线 低 中 导出选项 多个 多个 结论：使用Archify进行快速生成，Draw.io用于详细设计。\nArchify vs. PlantUML 功能 Archify PlantUML 自动生成 ✅ 是 ❌ 手动 语言支持 多种 Java聚焦 输出质量 现代 传统 集成 代理原生 IDE插件 结论：使用Archify用于现代工作流，PlantUML用于Java-heavy项目。\n社区和生态 GitHub统计 Stars：59,700 ⭐ Forks：3,900 🍴 Watchers：1,200 👁️ Issues：积极分类 Contributors：45+ 集成生态 Archify与以下工具集成：\nAI代理：Claude Code、Codex、Cursor、GitHub Copilot CI/CD：GitHub Actions、GitLab CI、Jenkins 文档：MkDocs、Docusaurus、Hugo 设计工具：Figma、Sketch（通过导出） 通讯：Slack、Discord（通过机器人） 贡献方式 贡献方式：\n报告问题：Bug报告和功能请求 提交PR：代码改进和新解析器 添加解析器：支持更多语言 改进文档：教程和示例 分享工作流：真实世界用例 未来路线图 2026年第四季度 API发布：REST API用于程序化访问 浏览器扩展：实时图表生成 IDE插件：VS Code、JetBrains集成 移动应用：iOS和Android查看器 2027年第一季度 高级AI：更好的模式识别 协作：多用户编辑 分析：使用洞察和建议 市场：共享图表模板 2027年第二季度 云服务：托管协作平台 企业功能：SSO、审计日志、SLA 高级可视化：3D架构视图 集成中心：更多第三方集成 结论 Archify代表了架构可视化的重大进步。通过自动化从代码生成图表，它节省开发人员数小时的手工工作，同时创建准确、最新的文档。\n关键优势 节省时间：几秒钟生成图表，而非数小时 准确性：基于实际代码，而非记忆 集成：与现代AI代理工作流兼容 灵活性：多种输出格式和样式 社区：活跃的开发和支持 谁应该使用 开发者：快速文档化代码库 架构师：创建设计可视化表示 团队：更快入职新员工 顾问：高效分析客户系统 学生：可视化学习架构模式 最后 Thoughts 随着代码库变得越来越复杂，清晰文档的需求变得至关重要。Archify弥合了代码与可视化之间的差距，使架构理解对每个人都可访问。\n该工具并不替代人类设计思维——它通过处理文档中繁琐的部分来增强它，让你专注于重要的架构决策。\nGitHub仓库：https://github.com/tt-a1i/archify\nStars：59,700 ⭐ | Forks：3,900 🍴 | 许可证：MIT\n最后更新：2026年9月\n觉得有帮助？加入我们的Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group\n",
+  "wordCount" : "819",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/archify-diagrams/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Archify：2026年生成生产级架构图的终极指南
+    </h1>
+    <div class="post-description">
+      tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获59,700颗星和3,900个fork。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/archify-diagrams/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/archify-diagrams/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/archify-diagrams/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#archify2026%e5%b9%b4%e7%94%9f%e6%88%90%e7%94%9f%e4%ba%a7%e7%ba%a7%e6%9e%b6%e6%9e%84%e5%9b%be%e7%9a%84%e7%bb%88%e6%9e%81%e6%8c%87%e5%8d%97" aria-label="Archify：2026年生成生产级架构图的终极指南">Archify：2026年生成生产级架构图的终极指南</a><ul>
+                    
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%afarchify" aria-label="什么是Archify？">什么是Archify？</a><ul>
+                    
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e7%89%b9%e6%80%a7" aria-label="核心特性">核心特性</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e5%92%8c%e8%ae%be%e7%bd%ae" aria-label="安装和设置">安装和设置</a><ul>
+                    
+            <li>
+                <a href="#%e9%80%82%e7%94%a8%e4%ba%8eclaude-code" aria-label="适用于Claude Code">适用于Claude Code</a></li>
+            <li>
+                <a href="#%e9%80%82%e7%94%a8%e4%ba%8e%e5%85%b6%e4%bb%96%e4%bb%a3%e7%90%86" aria-label="适用于其他代理">适用于其他代理</a></li>
+            <li>
+                <a href="#%e5%bf%ab%e9%80%9f%e5%85%a5%e9%97%a8" aria-label="快速入门">快速入门</a></li></ul>
+            </li>
+            <li>
+                <a href="#archify%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c" aria-label="Archify如何工作">Archify如何工作</a><ul>
+                    
+            <li>
+                <a href="#%e5%88%86%e6%9e%90%e6%b5%81%e6%b0%b4%e7%ba%bf" aria-label="分析流水线">分析流水线</a></li>
+            <li>
+                <a href="#%e6%94%af%e6%8c%81%e7%9a%84%e8%af%ad%e8%a8%80" aria-label="支持的语言">支持的语言</a></li>
+            <li>
+                <a href="#%e5%9b%be%e8%a1%a8%e7%b1%bb%e5%9e%8b" aria-label="图表类型">图表类型</a><ul>
+                    
+            <li>
+                <a href="#1-%e5%b7%a5%e4%bd%9c%e6%b5%81%e5%9b%be" aria-label="1. 工作流图">1. 工作流图</a></li>
+            <li>
+                <a href="#2-%e6%97%b6%e5%ba%8f%e5%9b%be" aria-label="2. 时序图">2. 时序图</a></li>
+            <li>
+                <a href="#3-%e6%95%b0%e6%8d%ae%e6%b5%81%e5%9b%be" aria-label="3. 数据流图">3. 数据流图</a></li>
+            <li>
+                <a href="#4-%e7%94%9f%e5%91%bd%e5%91%a8%e6%9c%9f%e5%9b%be" aria-label="4. 生命周期图">4. 生命周期图</a></li>
+            <li>
+                <a href="#5-%e7%bb%84%e4%bb%b6%e5%9b%be" aria-label="5. 组件图">5. 组件图</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%9e%e7%94%a8%e5%b7%a5%e4%bd%9c%e6%b5%81" aria-label="实用工作流">实用工作流</a><ul>
+                    
+            <li>
+                <a href="#1-%e6%96%b0%e5%91%98%e5%b7%a5%e5%85%a5%e8%81%8c" aria-label="1. 新员工入职">1. 新员工入职</a></li>
+            <li>
+                <a href="#2-%e6%8a%80%e6%9c%af%e6%96%87%e6%a1%a3" aria-label="2. 技术文档">2. 技术文档</a></li>
+            <li>
+                <a href="#3-%e6%9e%b6%e6%9e%84%e8%af%84%e5%ae%a1" aria-label="3. 架构评审">3. 架构评审</a></li>
+            <li>
+                <a href="#4-%e7%b3%bb%e7%bb%9f%e8%ae%be%e8%ae%a1%e9%9d%a2%e8%af%95" aria-label="4. 系统设计面试">4. 系统设计面试</a></li>
+            <li>
+                <a href="#5-%e5%ae%a2%e6%88%b7%e6%bc%94%e7%a4%ba" aria-label="5. 客户演示">5. 客户演示</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8eai%e4%bb%a3%e7%90%86%e9%9b%86%e6%88%90" aria-label="与AI代理集成">与AI代理集成</a><ul>
+                    
+            <li>
+                <a href="#%e4%b8%8eclaude-code%e9%9b%86%e6%88%90" aria-label="与Claude Code集成">与Claude Code集成</a></li>
+            <li>
+                <a href="#%e4%b8%8ecodex%e9%9b%86%e6%88%90" aria-label="与Codex集成">与Codex集成</a></li>
+            <li>
+                <a href="#%e4%b8%8egithub-actions%e9%9b%86%e6%88%90" aria-label="与GitHub Actions集成">与GitHub Actions集成</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%9a%e5%88%b6%e5%92%8c%e6%a0%b7%e5%bc%8f" aria-label="定制和样式">定制和样式</a><ul>
+                    
+            <li>
+                <a href="#%e4%b8%bb%e9%a2%98%e9%80%89%e9%a1%b9" aria-label="主题选项">主题选项</a></li>
+            <li>
+                <a href="#%e6%a0%b7%e5%bc%8f%e5%ae%9a%e5%88%b6" aria-label="样式定制">样式定制</a></li>
+            <li>
+                <a href="#%e5%af%bc%e5%87%ba%e6%a0%bc%e5%bc%8f" aria-label="导出格式">导出格式</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd" aria-label="高级功能">高级功能</a><ul>
+                    
+            <li>
+                <a href="#%e5%ae%9e%e6%97%b6%e5%8d%8f%e4%bd%9c" aria-label="实时协作">实时协作</a></li>
+            <li>
+                <a href="#%e7%89%88%e6%9c%ac%e6%af%94%e8%be%83" aria-label="版本比较">版本比较</a></li>
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e5%88%86%e6%9e%90" aria-label="性能分析">性能分析</a></li>
+            <li>
+                <a href="#%e5%ae%89%e5%85%a8%e5%88%86%e6%9e%90" aria-label="安全分析">安全分析</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%99%90%e5%88%b6%e5%92%8c%e6%b3%a8%e6%84%8f%e4%ba%8b%e9%a1%b9" aria-label="限制和注意事项">限制和注意事项</a><ul>
+                    
+            <li>
+                <a href="#archify%e4%b8%8d%e4%bc%9a%e5%81%9a%e7%9a%84" aria-label="Archify不会做的">Archify不会做的</a></li>
+            <li>
+                <a href="#%e4%bd%95%e6%97%b6%e4%bd%bf%e7%94%a8%e6%89%8b%e5%8a%a8%e5%9b%be%e8%a1%a8" aria-label="何时使用手动图表">何时使用手动图表</a></li>
+            <li>
+                <a href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" aria-label="最佳实践">最佳实践</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86" aria-label="性能基准">性能基准</a><ul>
+                    
+            <li>
+                <a href="#%e5%a4%84%e7%90%86%e9%80%9f%e5%ba%a6" aria-label="处理速度">处理速度</a></li>
+            <li>
+                <a href="#%e5%86%85%e5%ad%98%e4%bd%bf%e7%94%a8" aria-label="内存使用">内存使用</a></li>
+            <li>
+                <a href="#%e5%8f%af%e6%89%a9%e5%b1%95%e6%80%a7" aria-label="可扩展性">可扩展性</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e5%85%b6%e4%bb%96%e5%b7%a5%e5%85%b7%e6%af%94%e8%be%83" aria-label="与其他工具比较">与其他工具比较</a><ul>
+                    
+            <li>
+                <a href="#archify-vs-mermaid" aria-label="Archify vs. Mermaid">Archify vs. Mermaid</a></li>
+            <li>
+                <a href="#archify-vs-drawio" aria-label="Archify vs. Draw.io">Archify vs. Draw.io</a></li>
+            <li>
+                <a href="#archify-vs-plantuml" aria-label="Archify vs. PlantUML">Archify vs. PlantUML</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%a4%be%e5%8c%ba%e5%92%8c%e7%94%9f%e6%80%81" aria-label="社区和生态">社区和生态</a><ul>
+                    
+            <li>
+                <a href="#github%e7%bb%9f%e8%ae%a1" aria-label="GitHub统计">GitHub统计</a></li>
+            <li>
+                <a href="#%e9%9b%86%e6%88%90%e7%94%9f%e6%80%81" aria-label="集成生态">集成生态</a></li>
+            <li>
+                <a href="#%e8%b4%a1%e7%8c%ae%e6%96%b9%e5%bc%8f" aria-label="贡献方式">贡献方式</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%9c%aa%e6%9d%a5%e8%b7%af%e7%ba%bf%e5%9b%be" aria-label="未来路线图">未来路线图</a><ul>
+                    
+            <li>
+                <a href="#2026%e5%b9%b4%e7%ac%ac%e5%9b%9b%e5%ad%a3%e5%ba%a6" aria-label="2026年第四季度">2026年第四季度</a></li>
+            <li>
+                <a href="#2027%e5%b9%b4%e7%ac%ac%e4%b8%80%e5%ad%a3%e5%ba%a6" aria-label="2027年第一季度">2027年第一季度</a></li>
+            <li>
+                <a href="#2027%e5%b9%b4%e7%ac%ac%e4%ba%8c%e5%ad%a3%e5%ba%a6" aria-label="2027年第二季度">2027年第二季度</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a><ul>
+                    
+            <li>
+                <a href="#%e5%85%b3%e9%94%ae%e4%bc%98%e5%8a%bf" aria-label="关键优势">关键优势</a></li>
+            <li>
+                <a href="#%e8%b0%81%e5%ba%94%e8%af%a5%e4%bd%bf%e7%94%a8" aria-label="谁应该使用">谁应该使用</a></li>
+            <li>
+                <a href="#%e6%9c%80%e5%90%8e-thoughts" aria-label="最后 Thoughts">最后 Thoughts</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="archify2026年生成生产级架构图的终极指南">Archify：2026年生成生产级架构图的终极指南<a hidden class="anchor" aria-hidden="true" href="#archify2026年生成生产级架构图的终极指南">#</a></h1>
+<p>tt-a1i的Archify已成为2026年最受欢迎的架构可视化工具之一，单月斩获<strong>59,700颗星</strong>和<strong>3,900个fork</strong>。这款自包含的HTML工具从代码分析生成精美交互式图表，无需外部依赖。</p>
+<p>本指南探讨Archify的工作原理、与AI编码代理的集成，以及开发团队的实用工作流。</p>
+<h2 id="什么是archify">什么是Archify？<a hidden class="anchor" aria-hidden="true" href="#什么是archify">#</a></h2>
+<p>Archify是一款代理技能，将代码库转换为可视化架构图。与传统需要手动绘图的图表工具不同，Archify分析代码结构并自动生成：</p>
+<ul>
+<li><strong>工作流图</strong>：展示执行流程和依赖关系</li>
+<li><strong>时序图</strong>：说明组件间的交互</li>
+<li><strong>数据流图</strong>：追踪数据在系统中的流动</li>
+<li><strong>生命周期图</strong>：映射对象和请求的生命周期</li>
+<li><strong>组件图</strong>：显示系统架构</li>
+</ul>
+<h3 id="核心特性">核心特性<a hidden class="anchor" aria-hidden="true" href="#核心特性">#</a></h3>
+<ul>
+<li><strong>自包含HTML</strong>：无外部依赖，无需构建步骤</li>
+<li><strong>动效和动画</strong>：带有平滑过渡的交互式图表</li>
+<li><strong>清晰导出</strong>：导出为SVG、PNG或PDF用于文档</li>
+<li><strong>AI原生</strong>：专为Claude Code、Codex等代理设计</li>
+<li><strong>零配置</strong>：开箱即用，适用于大多数代码库</li>
+</ul>
+<h2 id="安装和设置">安装和设置<a hidden class="anchor" aria-hidden="true" href="#安装和设置">#</a></h2>
+<h3 id="适用于claude-code">适用于Claude Code<a hidden class="anchor" aria-hidden="true" href="#适用于claude-code">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过npx安装（推荐）</span>
+</span></span><span style="display:flex;"><span>npx -y tt-a1i/archify
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或克隆并链接</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/tt-a1i/archify.git
+</span></span><span style="display:flex;"><span>cd archify
+</span></span><span style="display:flex;"><span>./skills.sh install
+</span></span></code></pre></div><h3 id="适用于其他代理">适用于其他代理<a hidden class="anchor" aria-hidden="true" href="#适用于其他代理">#</a></h3>
+<p>Archify兼容任何支持Markdown技能的代理：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 使用Archify
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> 指向你的仓库
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> 请求架构图
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> 审查并自定义输出
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">4.</span> 导出用于文档
+</span></span></code></pre></div><h3 id="快速入门">快速入门<a hidden class="anchor" aria-hidden="true" href="#快速入门">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 分析GitHub仓库</span>
+</span></span><span style="display:flex;"><span>archify https://github.com/your-org/your-repo
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成特定类型的图表</span>
+</span></span><span style="display:flex;"><span>archify --type<span style="color:#f92672">=</span>workflow --output<span style="color:#f92672">=</span>diagram.html
+</span></span><span style="display:flex;"><span>archify --type<span style="color:#f92672">=</span>sequence --scope<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auth-service&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 交互模式</span>
+</span></span><span style="display:flex;"><span>archify --interactive
+</span></span></code></pre></div><h2 id="archify如何工作">Archify如何工作<a hidden class="anchor" aria-hidden="true" href="#archify如何工作">#</a></h2>
+<h3 id="分析流水线">分析流水线<a hidden class="anchor" aria-hidden="true" href="#分析流水线">#</a></h3>
+<p>Archify遵循多阶段分析过程：</p>
+<ol>
+<li><strong>代码解析</strong>：扫描源文件以理解结构</li>
+<li><strong>依赖映射</strong>：识别imports、exports和关系</li>
+<li><strong>模式检测</strong>：识别常见的架构模式</li>
+<li><strong>图表生成</strong>：创建视觉表示</li>
+<li><strong>优化</strong>：应用样式和布局优化</li>
+</ol>
+<h3 id="支持的语言">支持的语言<a hidden class="anchor" aria-hidden="true" href="#支持的语言">#</a></h3>
+<p>Archify内置了以下语言的解析器：</p>
+<ul>
+<li><strong>JavaScript/TypeScript</strong>：Node.js、React、Vue、Next.js</li>
+<li><strong>Python</strong>：Django、Flask、FastAPI</li>
+<li><strong>Go</strong>：标准库模式、微服务</li>
+<li><strong>Rust</strong>：Cargo项目、异步应用</li>
+<li><strong>Java/Kotlin</strong>：Spring Boot、Android</li>
+<li><strong>Ruby</strong>：Rails应用</li>
+<li><strong>PHP</strong>：Laravel、Symfony</li>
+</ul>
+<h3 id="图表类型">图表类型<a hidden class="anchor" aria-hidden="true" href="#图表类型">#</a></h3>
+<h4 id="1-工作流图">1. 工作流图<a hidden class="anchor" aria-hidden="true" href="#1-工作流图">#</a></h4>
+<p>展示系统中的操作序列：</p>
+<pre tabindex="0"><code>用户请求 → API网关 → 认证服务 → 数据库
             ↓
       速率限制器 → 缓存层
-</code></pre><p><strong>适用场景：</strong></p><ul><li>API请求流程</li><li>后台作业处理</li><li>支付处理管道</li><li>事件驱动架构</li></ul><h4 id=2-时序图>2. 时序图<a hidden class=anchor aria-hidden=true href=#2-时序图>#</a></h4><p>说明组件间的交互：</p><pre tabindex=0><code>客户端      服务端      数据库
+</code></pre><p><strong>适用场景：</strong></p>
+<ul>
+<li>API请求流程</li>
+<li>后台作业处理</li>
+<li>支付处理管道</li>
+<li>事件驱动架构</li>
+</ul>
+<h4 id="2-时序图">2. 时序图<a hidden class="anchor" aria-hidden="true" href="#2-时序图">#</a></h4>
+<p>说明组件间的交互：</p>
+<pre tabindex="0"><code>客户端      服务端      数据库
   │             │             │
   │──请求──▶│             │
   │             │──查询──▶  │
   │             │◀──结果──  │
   │◀──响应──│             │
-</code></pre><p><strong>适用场景：</strong></p><ul><li>API端点流程</li><li>服务间通信</li><li>认证流程</li><li>数据转换管道</li></ul><h4 id=3-数据流图>3. 数据流图<a hidden class=anchor aria-hidden=true href=#3-数据流图>#</a></h4><p>追踪数据如何在系统中流动：</p><pre tabindex=0><code>┌─────────┐    ┌─────────┐    ┌─────────┐
+</code></pre><p><strong>适用场景：</strong></p>
+<ul>
+<li>API端点流程</li>
+<li>服务间通信</li>
+<li>认证流程</li>
+<li>数据转换管道</li>
+</ul>
+<h4 id="3-数据流图">3. 数据流图<a hidden class="anchor" aria-hidden="true" href="#3-数据流图">#</a></h4>
+<p>追踪数据如何在系统中流动：</p>
+<pre tabindex="0"><code>┌─────────┐    ┌─────────┐    ┌─────────┐
 │  数据源  │───▶│  处理器  │───▶│  存储    │
 │ (API)   │    │ (转换)   │   │ (数据库) │
 └─────────┘    └─────────┘    └─────────┘
-</code></pre><p><strong>适用场景：</strong></p><ul><li>ETL管道</li><li>事件流</li><li>数据仓库</li><li>缓存失效</li></ul><h4 id=4-生命周期图>4. 生命周期图<a hidden class=anchor aria-hidden=true href=#4-生命周期图>#</a></h4><p>映射对象和请求的生命周期：</p><pre tabindex=0><code>创建 → 初始化 → 活跃 → 空闲 → 销毁
+</code></pre><p><strong>适用场景：</strong></p>
+<ul>
+<li>ETL管道</li>
+<li>事件流</li>
+<li>数据仓库</li>
+<li>缓存失效</li>
+</ul>
+<h4 id="4-生命周期图">4. 生命周期图<a hidden class="anchor" aria-hidden="true" href="#4-生命周期图">#</a></h4>
+<p>映射对象和请求的生命周期：</p>
+<pre tabindex="0"><code>创建 → 初始化 → 活跃 → 空闲 → 销毁
     ↑                                 │
     └────────── 回收 ─────────────┘
-</code></pre><p><strong>适用场景：</strong></p><ul><li>数据库连接池</li><li>缓存条目生命周期</li><li>Worker进程管理</li><li>会话处理</li></ul><h4 id=5-组件图>5. 组件图<a hidden class=anchor aria-hidden=true href=#5-组件图>#</a></h4><p>显示系统架构：</p><pre tabindex=0><code>┌─────────────────────────────────────┐
+</code></pre><p><strong>适用场景：</strong></p>
+<ul>
+<li>数据库连接池</li>
+<li>缓存条目生命周期</li>
+<li>Worker进程管理</li>
+<li>会话处理</li>
+</ul>
+<h4 id="5-组件图">5. 组件图<a hidden class="anchor" aria-hidden="true" href="#5-组件图">#</a></h4>
+<p>显示系统架构：</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────┐
 │           前端层                    │
 │  ┌─────────┐  ┌─────────┐          │
 │  │  Web    │  │  移动端  │          │
@@ -57,147 +495,626 @@
 │  │用户  │ │订单  │ │支付  │       │
 │  └──────┘ └──────┘ └──────┘       │
 └─────────────────────────────────────┘
-</code></pre><p><strong>适用场景：</strong></p><ul><li>微服务架构</li><li>分层应用设计</li><li>第三方集成映射</li><li>基础设施拓扑</li></ul><h2 id=实用工作流>实用工作流<a hidden class=anchor aria-hidden=true href=#实用工作流>#</a></h2><h3 id=1-新员工入职>1. 新员工入职<a hidden class=anchor aria-hidden=true href=#1-新员工入职>#</a></h3><p><strong>问题</strong>：新团队成员难以理解代码库结构。</p><p><strong>解决方案</strong>：在入职期间生成架构图。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 第一天运行</span>
-</span></span><span style=display:flex><span>archify --repo<span style=color:#f92672>=</span>https://github.com/company/main-app <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --output<span style=color:#f92672>=</span>docs/onboarding/ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --type<span style=color:#f92672>=</span>all
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 创建交互式导览</span>
-</span></span><span style=display:flex><span>archify --interactive --port<span style=color:#f92672>=</span><span style=color:#ae81ff>8080</span>
-</span></span></code></pre></div><p><strong>好处：</strong></p><ul><li>减少40%的入职时间</li><li>创建活文档</li><li>帮助识别架构债务</li></ul><h3 id=2-技术文档>2. 技术文档<a hidden class=anchor aria-hidden=true href=#2-技术文档>#</a></h3><p><strong>问题</strong>：随着代码演变，文档变得过时。</p><p><strong>解决方案</strong>：直接从代码生成图表。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 在文档流水线中</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate_architecture_docs</span>(repo_url, output_dir):
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 克隆仓库</span>
-</span></span><span style=display:flex><span>    subprocess<span style=color:#f92672>.</span>run([<span style=color:#e6db74>&#34;git&#34;</span>, <span style=color:#e6db74>&#34;clone&#34;</span>, repo_url, <span style=color:#e6db74>&#34;/tmp/app&#34;</span>])
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 生成图表</span>
-</span></span><span style=display:flex><span>    subprocess<span style=color:#f92672>.</span>run([
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;archify&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--path=/tmp/app&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--output=&#34;</span> <span style=color:#f92672>+</span> output_dir,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--types=workflow,sequence,component&#34;</span>
-</span></span><span style=display:flex><span>    ])
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 提交文档</span>
-</span></span><span style=display:flex><span>    subprocess<span style=color:#f92672>.</span>run([<span style=color:#e6db74>&#34;git&#34;</span>, <span style=color:#e6db74>&#34;add&#34;</span>, output_dir])
-</span></span><span style=display:flex><span>    subprocess<span style=color:#f92672>.</span>run([<span style=color:#e6db74>&#34;git&#34;</span>, <span style=color:#e6db74>&#34;commit&#34;</span>, <span style=color:#e6db74>&#34;-m&#34;</span>, <span style=color:#e6db74>&#34;更新架构图&#34;</span>])
-</span></span></code></pre></div><p><strong>好处：</strong></p><ul><li>始终与代码保持同步</li><li>单一事实来源</li><li>自动化文档更新</li></ul><h3 id=3-架构评审>3. 架构评审<a hidden class=anchor aria-hidden=true href=#3-架构评审>#</a></h3><p><strong>问题</strong>：手动创建图表耗时。</p><p><strong>解决方案</strong>：使用Archify生成基线图表，然后 refinement。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 生成初始图表</span>
-</span></span><span style=display:flex><span>archify --repo<span style=color:#f92672>=</span>. --type<span style=color:#f92672>=</span>component --output<span style=color:#f92672>=</span>review/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 跨版本创建比较</span>
-</span></span><span style=display:flex><span>archify --repo<span style=color:#f92672>=</span>. --compare<span style=color:#f92672>=</span>main,feature-branch --output<span style=color:#f92672>=</span>comparison/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 生成变更检测</span>
-</span></span><span style=display:flex><span>archify --repo<span style=color:#f92672>=</span>. --diff --output<span style=color:#f92672>=</span>deltas/
-</span></span></code></pre></div><p><strong>好处：</strong></p><ul><li>快速视觉比较</li><li>识别非预期变更</li><li>跟踪架构演变</li></ul><h3 id=4-系统设计面试>4. 系统设计面试<a hidden class=anchor aria-hidden=true href=#4-系统设计面试>#</a></h3><p><strong>问题</strong>：面试时画图表很有压力。</p><p><strong>解决方案</strong>：使用Archify生成整洁专业的图表。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 实时图表生成</span>
-</span></span><span style=display:flex><span>archify --interactive --mode<span style=color:#f92672>=</span>interview
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 从口头描述生成</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;设计一个URL短链接器&#34;</span> | archify --from<span style=color:#f92672>=</span>prompt
-</span></span></code></pre></div><p><strong>好处：</strong></p><ul><li>专业外观</li><li>专注于讨论而非绘图</li><li>保存图表供后续参考</li></ul><h3 id=5-客户演示>5. 客户演示<a hidden class=anchor aria-hidden=true href=#5-客户演示>#</a></h3><p><strong>问题</strong>：创建客户导向的图表花费太多时间。</p><p><strong>解决方案</strong>：几分钟内生成精美的图表。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 生成演示就绪的图表</span>
-</span></span><span style=display:flex><span>archify --repo<span style=color:#f92672>=</span>. <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --style<span style=color:#f92672>=</span>clean <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --export<span style=color:#f92672>=</span>svg <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --output<span style=color:#f92672>=</span>presentations/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 创建动画导览</span>
-</span></span><span style=display:flex><span>archify --repo<span style=color:#f92672>=</span>. --animate --output<span style=color:#f92672>=</span>walkthrough.html
-</span></span></code></pre></div><p><strong>好处：</strong></p><ul><li>节省数小时的手工工作</li><li>一致的样式</li><li>交互式演示</li></ul><h2 id=与ai代理集成>与AI代理集成<a hidden class=anchor aria-hidden=true href=#与ai代理集成>#</a></h2><h3 id=与claude-code集成>与Claude Code集成<a hidden class=anchor aria-hidden=true href=#与claude-code集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span># 在Claude Code会话中
-</span></span><span style=display:flex><span><span style=color:#66d9ef>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>分析这个项目中的认证流程
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>生成展示OAuth流程的时序图
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>&gt; </span><span style=font-style:italic>导出为SVG用于文档
-</span></span></span></code></pre></div><p>Claude Code可以：</p><ol><li>运行Archify分析</li><li>解释结果</li><li>生成说明</li><li>创建文档</li></ol><h3 id=与codex集成>与Codex集成<a hidden class=anchor aria-hidden=true href=#与codex集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 在Codex工作流中</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>analyze_system</span>(repo_path):
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 生成图表</span>
-</span></span><span style=display:flex><span>    archify_result <span style=color:#f92672>=</span> run_archify(repo_path)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 用AI分析</span>
-</span></span><span style=display:flex><span>    insights <span style=color:#f92672>=</span> codex<span style=color:#f92672>.</span>analyze({
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;diagrams&#34;</span>: archify_result,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;question&#34;</span>: <span style=color:#e6db74>&#34;主要的架构风险是什么？&#34;</span>
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> insights
-</span></span></code></pre></div><h3 id=与github-actions集成>与GitHub Actions集成<a hidden class=anchor aria-hidden=true href=#与github-actions集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/archify.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>生成架构文档</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>push</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>branches</span>: [<span style=color:#ae81ff>main]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs</span>:
-</span></span><span style=display:flex><span>  <span style=color:#f92672>generate</span>:
-</span></span><span style=display:flex><span>    <span style=color:#f92672>runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps</span>:
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>      
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>安装Archify</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>npm install -g @tt-a1i/archify</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>生成图表</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>archify --path=. --output=docs/architecture</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>提交文档</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git add docs/architecture
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git commit -m &#34;更新架构图&#34; || echo &#34;无变更&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          git push</span>
-</span></span></code></pre></div><h2 id=定制和样式>定制和样式<a hidden class=anchor aria-hidden=true href=#定制和样式>#</a></h2><h3 id=主题选项>主题选项<a hidden class=anchor aria-hidden=true href=#主题选项>#</a></h3><p>Archify支持多种视觉主题：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 可用主题</span>
-</span></span><span style=display:flex><span>archify --theme<span style=color:#f92672>=</span>dark      <span style=color:#75715e># 深色背景，浅色文字</span>
-</span></span><span style=display:flex><span>archify --theme<span style=color:#f92672>=</span>light     <span style=color:#75715e># 浅色背景，深色文字</span>
-</span></span><span style=display:flex><span>archify --theme<span style=color:#f92672>=</span>mono      <span style=color:#75715e># 单色，适合打印</span>
-</span></span><span style=display:flex><span>archify --theme<span style=color:#f92672>=</span>colorful  <span style=color:#75715e># 鲜艳色彩，引人注目</span>
-</span></span></code></pre></div><h3 id=样式定制>样式定制<a hidden class=anchor aria-hidden=true href=#样式定制>#</a></h3><p>控制图表外观：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 节点样式</span>
-</span></span><span style=display:flex><span>archify --node-style<span style=color:#f92672>=</span>filled    <span style=color:#75715e># 实心彩色节点</span>
-</span></span><span style=display:flex><span>archify --node-style<span style=color:#f92672>=</span>outlined  <span style=color:#75715e># 轮廓节点</span>
-</span></span><span style=display:flex><span>archify --node-style<span style=color:#f92672>=</span>wireframe <span style=color:#75715e># 最小线框</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 布局选项</span>
-</span></span><span style=display:flex><span>archify --layout<span style=color:#f92672>=</span>horizontal    <span style=color:#75715e># 左到右流程</span>
-</span></span><span style=display:flex><span>archify --layout<span style=color:#f92672>=</span>vertical      <span style=color:#75715e># 上到下流程</span>
-</span></span><span style=display:flex><span>archify --layout<span style=color:#f92672>=</span>auto          <span style=color:#75715e># 智能自动布局</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 边样式</span>
-</span></span><span style=display:flex><span>archify --edge-style<span style=color:#f92672>=</span>curved    <span style=color:#75715e># 平滑曲线</span>
-</span></span><span style=display:flex><span>archify --edge-style<span style=color:#f92672>=</span>straight  <span style=color:#75715e># 角线</span>
-</span></span><span style=display:flex><span>archify --edge-style<span style=color:#f92672>=</span>dashed    <span style=color:#75715e># 虚线连接</span>
-</span></span></code></pre></div><h3 id=导出格式>导出格式<a hidden class=anchor aria-hidden=true href=#导出格式>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># SVG用于网络和文档</span>
-</span></span><span style=display:flex><span>archify --export<span style=color:#f92672>=</span>svg --output<span style=color:#f92672>=</span>diagram.svg
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># PNG用于演示</span>
-</span></span><span style=display:flex><span>archify --export<span style=color:#f92672>=</span>png --resolution<span style=color:#f92672>=</span>2x --output<span style=color:#f92672>=</span>diagram.png
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># PDF用于打印</span>
-</span></span><span style=display:flex><span>archify --export<span style=color:#f92672>=</span>pdf --output<span style=color:#f92672>=</span>diagram.pdf
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 交互HTML用于网络</span>
-</span></span><span style=display:flex><span>archify --export<span style=color:#f92672>=</span>html --interactive --output<span style=color:#f92672>=</span>diagram.html
-</span></span></code></pre></div><h2 id=高级功能>高级功能<a hidden class=anchor aria-hidden=true href=#高级功能>#</a></h2><h3 id=实时协作>实时协作<a hidden class=anchor aria-hidden=true href=#实时协作>#</a></h3><p>Archify支持协作编辑：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 启动协作会话</span>
-</span></span><span style=display:flex><span>archify --collab --port<span style=color:#f92672>=</span><span style=color:#ae81ff>3000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 与团队分享</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 团队成员通过URL加入</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 更改实时同步</span>
-</span></span></code></pre></div><h3 id=版本比较>版本比较<a hidden class=anchor aria-hidden=true href=#版本比较>#</a></h3><p>跨分支比较架构：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># main和功能分支间的差异</span>
-</span></span><span style=display:flex><span>archify --compare<span style=color:#f92672>=</span>main,feature/auth <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --output<span style=color:#f92672>=</span>comparison/ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --highlight-changes
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 生成变更报告</span>
-</span></span><span style=display:flex><span>archify --compare<span style=color:#f92672>=</span>main,feature/auth <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>        --report<span style=color:#f92672>=</span>changes.md
-</span></span></code></pre></div><h3 id=性能分析>性能分析<a hidden class=anchor aria-hidden=true href=#性能分析>#</a></h3><p>从图表中识别瓶颈：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 分析性能影响</span>
-</span></span><span style=display:flex><span>archify --analyze<span style=color:#f92672>=</span>performance --output<span style=color:#f92672>=</span>report.html
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 找到热路径</span>
-</span></span><span style=display:flex><span>archify --hotpaths --top<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span> --output<span style=color:#f92672>=</span>hotpaths.md
-</span></span></code></pre></div><h3 id=安全分析>安全分析<a hidden class=anchor aria-hidden=true href=#安全分析>#</a></h3><p>检测安全模式和问题：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 分析认证流程</span>
-</span></span><span style=display:flex><span>archify --focus<span style=color:#f92672>=</span>authentication --output<span style=color:#f92672>=</span>security/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 识别数据暴露</span>
-</span></span><span style=display:flex><span>archify --focus<span style=color:#f92672>=</span>data-flow --check<span style=color:#f92672>=</span>exposure
-</span></span></code></pre></div><h2 id=限制和注意事项>限制和注意事项<a hidden class=anchor aria-hidden=true href=#限制和注意事项>#</a></h2><h3 id=archify不会做的>Archify不会做的<a hidden class=anchor aria-hidden=true href=#archify不会做的>#</a></h3><ol><li><strong>解释业务逻辑</strong>：显示结构，而非目的</li><li><strong>替代设计</strong>：帮助文档化，而非创建架构</li><li><strong>理解上下文</strong>：可能错过组织约束</li><li><strong>保证准确性</strong>：基于代码分析，可能错过运行时行为</li></ol><h3 id=何时使用手动图表>何时使用手动图表<a hidden class=anchor aria-hidden=true href=#何时使用手动图表>#</a></h3><ul><li><strong>战略规划</strong>：高层架构决策</li><li><strong>客户沟通</strong>：简化的执行视图</li><li><strong>监管文档</strong>：正式合规要求</li><li><strong>遗留系统</strong>：需要复杂的历史背景</li></ul><h3 id=最佳实践>最佳实践<a hidden class=anchor aria-hidden=true href=#最佳实践>#</a></h3><ol><li><strong>组合方法</strong>：使用Archify作为基线，手动 refinement</li><li><strong>定期更新</strong>：重大变更后重新生成</li><li><strong>团队评审</strong>：让架构师验证自动化图表</li><li><strong>添加上下文</strong>：添加解释业务逻辑的注释</li><li><strong>版本控制</strong>：将图表与代码一起存储</li></ol><h2 id=性能基准>性能基准<a hidden class=anchor aria-hidden=true href=#性能基准>#</a></h2><h3 id=处理速度>处理速度<a hidden class=anchor aria-hidden=true href=#处理速度>#</a></h3><table><thead><tr><th>仓库大小</th><th>分析时间</th><th>图表生成</th></tr></thead><tbody><tr><td>&lt; 10K LOC</td><td>&lt; 5秒</td><td>&lt; 2秒</td></tr><tr><td>10K - 100K LOC</td><td>10-30秒</td><td>3-5秒</td></tr><tr><td>100K - 500K LOC</td><td>1-3分钟</td><td>5-10秒</td></tr><tr><td>> 500K LOC</td><td>3-10分钟</td><td>10-30秒</td></tr></tbody></table><h3 id=内存使用>内存使用<a hidden class=anchor aria-hidden=true href=#内存使用>#</a></h3><ul><li><strong>基准</strong>：小型项目50-100 MB</li><li><strong>大型项目</strong>：企业代码库200-500 MB</li><li><strong>峰值使用</strong>：分析期间的短暂峰值</li></ul><h3 id=可扩展性>可扩展性<a hidden class=anchor aria-hidden=true href=#可扩展性>#</a></h3><ul><li><strong>单用户</strong>：适合个人项目</li><li><strong>团队使用</strong>：协作功能支持5-10个并发用户</li><li><strong>企业</strong>：10+用户考虑服务器部署</li></ul><h2 id=与其他工具比较>与其他工具比较<a hidden class=anchor aria-hidden=true href=#与其他工具比较>#</a></h2><h3 id=archify-vs-mermaid>Archify vs. Mermaid<a hidden class=anchor aria-hidden=true href=#archify-vs-mermaid>#</a></h3><table><thead><tr><th>功能</th><th>Archify</th><th>Mermaid</th></tr></thead><tbody><tr><td>自动生成</td><td>✅ 是</td><td>❌ 手动</td></tr><tr><td>代码分析</td><td>✅ 深度</td><td>❌ 无</td></tr><tr><td>交互式</td><td>✅ 是</td><td>有限</td></tr><tr><td>学习曲线</td><td>低</td><td>中</td></tr><tr><td>定制性</td><td>高</td><td>中</td></tr><tr><td>集成</td><td>代理原生</td><td>Markdown原生</td></tr></tbody></table><p><strong>结论</strong>：使用Archify进行自动化分析，Mermaid用于手动文档。</p><h3 id=archify-vs-drawio>Archify vs. Draw.io<a hidden class=anchor aria-hidden=true href=#archify-vs-drawio>#</a></h3><table><thead><tr><th>功能</th><th>Archify</th><th>Draw.io</th></tr></thead><tbody><tr><td>自动化</td><td>✅ 完整</td><td>❌ 无</td></tr><tr><td>设计质量</td><td>高</td><td>高</td></tr><tr><td>协作</td><td>实时</td><td>基于云</td></tr><tr><td>学习曲线</td><td>低</td><td>中</td></tr><tr><td>导出选项</td><td>多个</td><td>多个</td></tr></tbody></table><p><strong>结论</strong>：使用Archify进行快速生成，Draw.io用于详细设计。</p><h3 id=archify-vs-plantuml>Archify vs. PlantUML<a hidden class=anchor aria-hidden=true href=#archify-vs-plantuml>#</a></h3><table><thead><tr><th>功能</th><th>Archify</th><th>PlantUML</th></tr></thead><tbody><tr><td>自动生成</td><td>✅ 是</td><td>❌ 手动</td></tr><tr><td>语言支持</td><td>多种</td><td>Java聚焦</td></tr><tr><td>输出质量</td><td>现代</td><td>传统</td></tr><tr><td>集成</td><td>代理原生</td><td>IDE插件</td></tr></tbody></table><p><strong>结论</strong>：使用Archify用于现代工作流，PlantUML用于Java-heavy项目。</p><h2 id=社区和生态>社区和生态<a hidden class=anchor aria-hidden=true href=#社区和生态>#</a></h2><h3 id=github统计>GitHub统计<a hidden class=anchor aria-hidden=true href=#github统计>#</a></h3><ul><li><strong>Stars</strong>：59,700 ⭐</li><li><strong>Forks</strong>：3,900 🍴</li><li><strong>Watchers</strong>：1,200 👁️</li><li><strong>Issues</strong>：积极分类</li><li><strong>Contributors</strong>：45+</li></ul><h3 id=集成生态>集成生态<a hidden class=anchor aria-hidden=true href=#集成生态>#</a></h3><p>Archify与以下工具集成：</p><ul><li><strong>AI代理</strong>：Claude Code、Codex、Cursor、GitHub Copilot</li><li><strong>CI/CD</strong>：GitHub Actions、GitLab CI、Jenkins</li><li><strong>文档</strong>：MkDocs、Docusaurus、Hugo</li><li><strong>设计工具</strong>：Figma、Sketch（通过导出）</li><li><strong>通讯</strong>：Slack、Discord（通过机器人）</li></ul><h3 id=贡献方式>贡献方式<a hidden class=anchor aria-hidden=true href=#贡献方式>#</a></h3><p>贡献方式：</p><ol><li><strong>报告问题</strong>：Bug报告和功能请求</li><li><strong>提交PR</strong>：代码改进和新解析器</li><li><strong>添加解析器</strong>：支持更多语言</li><li><strong>改进文档</strong>：教程和示例</li><li><strong>分享工作流</strong>：真实世界用例</li></ol><h2 id=未来路线图>未来路线图<a hidden class=anchor aria-hidden=true href=#未来路线图>#</a></h2><h3 id=2026年第四季度>2026年第四季度<a hidden class=anchor aria-hidden=true href=#2026年第四季度>#</a></h3><ul><li><strong>API发布</strong>：REST API用于程序化访问</li><li><strong>浏览器扩展</strong>：实时图表生成</li><li><strong>IDE插件</strong>：VS Code、JetBrains集成</li><li><strong>移动应用</strong>：iOS和Android查看器</li></ul><h3 id=2027年第一季度>2027年第一季度<a hidden class=anchor aria-hidden=true href=#2027年第一季度>#</a></h3><ul><li><strong>高级AI</strong>：更好的模式识别</li><li><strong>协作</strong>：多用户编辑</li><li><strong>分析</strong>：使用洞察和建议</li><li><strong>市场</strong>：共享图表模板</li></ul><h3 id=2027年第二季度>2027年第二季度<a hidden class=anchor aria-hidden=true href=#2027年第二季度>#</a></h3><ul><li><strong>云服务</strong>：托管协作平台</li><li><strong>企业功能</strong>：SSO、审计日志、SLA</li><li><strong>高级可视化</strong>：3D架构视图</li><li><strong>集成中心</strong>：更多第三方集成</li></ul><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Archify代表了架构可视化的重大进步。通过自动化从代码生成图表，它节省开发人员数小时的手工工作，同时创建准确、最新的文档。</p><h3 id=关键优势>关键优势<a hidden class=anchor aria-hidden=true href=#关键优势>#</a></h3><ol><li><strong>节省时间</strong>：几秒钟生成图表，而非数小时</li><li><strong>准确性</strong>：基于实际代码，而非记忆</li><li><strong>集成</strong>：与现代AI代理工作流兼容</li><li><strong>灵活性</strong>：多种输出格式和样式</li><li><strong>社区</strong>：活跃的开发和支持</li></ol><h3 id=谁应该使用>谁应该使用<a hidden class=anchor aria-hidden=true href=#谁应该使用>#</a></h3><ul><li><strong>开发者</strong>：快速文档化代码库</li><li><strong>架构师</strong>：创建设计可视化表示</li><li><strong>团队</strong>：更快入职新员工</li><li><strong>顾问</strong>：高效分析客户系统</li><li><strong>学生</strong>：可视化学习架构模式</li></ul><h3 id=最后-thoughts>最后 Thoughts<a hidden class=anchor aria-hidden=true href=#最后-thoughts>#</a></h3><p>随着代码库变得越来越复杂，清晰文档的需求变得至关重要。Archify弥合了代码与可视化之间的差距，使架构理解对每个人都可访问。</p><p>该工具并不替代人类设计思维——它通过处理文档中繁琐的部分来增强它，让你专注于重要的架构决策。</p><hr><p><strong>GitHub仓库</strong>：https://github.com/tt-a1i/archify<br><strong>Stars</strong>：59,700 ⭐ | <strong>Forks</strong>：3,900 🍴 | <strong>许可证</strong>：MIT<br><strong>最后更新</strong>：2026年9月</p><hr><p><em>觉得有帮助？加入我们的Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/archify/>Archify</a></li><li><a href=https://dibi8.com/zh/tags/architecture-diagrams/>Architecture-Diagrams</a></li><li><a href=https://dibi8.com/zh/tags/ai-tools/>Ai-Tools</a></li><li><a href=https://dibi8.com/zh/tags/visualization/>Visualization</a></li><li><a href=https://dibi8.com/zh/tags/code-analysis/>Code-Analysis</a></li><li><a href=https://dibi8.com/zh/tags/2026/>2026</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre><p><strong>适用场景：</strong></p>
+<ul>
+<li>微服务架构</li>
+<li>分层应用设计</li>
+<li>第三方集成映射</li>
+<li>基础设施拓扑</li>
+</ul>
+<h2 id="实用工作流">实用工作流<a hidden class="anchor" aria-hidden="true" href="#实用工作流">#</a></h2>
+<h3 id="1-新员工入职">1. 新员工入职<a hidden class="anchor" aria-hidden="true" href="#1-新员工入职">#</a></h3>
+<p><strong>问题</strong>：新团队成员难以理解代码库结构。</p>
+<p><strong>解决方案</strong>：在入职期间生成架构图。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 第一天运行</span>
+</span></span><span style="display:flex;"><span>archify --repo<span style="color:#f92672">=</span>https://github.com/company/main-app <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --output<span style="color:#f92672">=</span>docs/onboarding/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --type<span style="color:#f92672">=</span>all
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建交互式导览</span>
+</span></span><span style="display:flex;"><span>archify --interactive --port<span style="color:#f92672">=</span><span style="color:#ae81ff">8080</span>
+</span></span></code></pre></div><p><strong>好处：</strong></p>
+<ul>
+<li>减少40%的入职时间</li>
+<li>创建活文档</li>
+<li>帮助识别架构债务</li>
+</ul>
+<h3 id="2-技术文档">2. 技术文档<a hidden class="anchor" aria-hidden="true" href="#2-技术文档">#</a></h3>
+<p><strong>问题</strong>：随着代码演变，文档变得过时。</p>
+<p><strong>解决方案</strong>：直接从代码生成图表。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 在文档流水线中</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_architecture_docs</span>(repo_url, output_dir):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 克隆仓库</span>
+</span></span><span style="display:flex;"><span>    subprocess<span style="color:#f92672">.</span>run([<span style="color:#e6db74">&#34;git&#34;</span>, <span style="color:#e6db74">&#34;clone&#34;</span>, repo_url, <span style="color:#e6db74">&#34;/tmp/app&#34;</span>])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 生成图表</span>
+</span></span><span style="display:flex;"><span>    subprocess<span style="color:#f92672">.</span>run([
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;archify&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--path=/tmp/app&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--output=&#34;</span> <span style="color:#f92672">+</span> output_dir,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--types=workflow,sequence,component&#34;</span>
+</span></span><span style="display:flex;"><span>    ])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 提交文档</span>
+</span></span><span style="display:flex;"><span>    subprocess<span style="color:#f92672">.</span>run([<span style="color:#e6db74">&#34;git&#34;</span>, <span style="color:#e6db74">&#34;add&#34;</span>, output_dir])
+</span></span><span style="display:flex;"><span>    subprocess<span style="color:#f92672">.</span>run([<span style="color:#e6db74">&#34;git&#34;</span>, <span style="color:#e6db74">&#34;commit&#34;</span>, <span style="color:#e6db74">&#34;-m&#34;</span>, <span style="color:#e6db74">&#34;更新架构图&#34;</span>])
+</span></span></code></pre></div><p><strong>好处：</strong></p>
+<ul>
+<li>始终与代码保持同步</li>
+<li>单一事实来源</li>
+<li>自动化文档更新</li>
+</ul>
+<h3 id="3-架构评审">3. 架构评审<a hidden class="anchor" aria-hidden="true" href="#3-架构评审">#</a></h3>
+<p><strong>问题</strong>：手动创建图表耗时。</p>
+<p><strong>解决方案</strong>：使用Archify生成基线图表，然后 refinement。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 生成初始图表</span>
+</span></span><span style="display:flex;"><span>archify --repo<span style="color:#f92672">=</span>. --type<span style="color:#f92672">=</span>component --output<span style="color:#f92672">=</span>review/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 跨版本创建比较</span>
+</span></span><span style="display:flex;"><span>archify --repo<span style="color:#f92672">=</span>. --compare<span style="color:#f92672">=</span>main,feature-branch --output<span style="color:#f92672">=</span>comparison/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成变更检测</span>
+</span></span><span style="display:flex;"><span>archify --repo<span style="color:#f92672">=</span>. --diff --output<span style="color:#f92672">=</span>deltas/
+</span></span></code></pre></div><p><strong>好处：</strong></p>
+<ul>
+<li>快速视觉比较</li>
+<li>识别非预期变更</li>
+<li>跟踪架构演变</li>
+</ul>
+<h3 id="4-系统设计面试">4. 系统设计面试<a hidden class="anchor" aria-hidden="true" href="#4-系统设计面试">#</a></h3>
+<p><strong>问题</strong>：面试时画图表很有压力。</p>
+<p><strong>解决方案</strong>：使用Archify生成整洁专业的图表。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 实时图表生成</span>
+</span></span><span style="display:flex;"><span>archify --interactive --mode<span style="color:#f92672">=</span>interview
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从口头描述生成</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;设计一个URL短链接器&#34;</span> | archify --from<span style="color:#f92672">=</span>prompt
+</span></span></code></pre></div><p><strong>好处：</strong></p>
+<ul>
+<li>专业外观</li>
+<li>专注于讨论而非绘图</li>
+<li>保存图表供后续参考</li>
+</ul>
+<h3 id="5-客户演示">5. 客户演示<a hidden class="anchor" aria-hidden="true" href="#5-客户演示">#</a></h3>
+<p><strong>问题</strong>：创建客户导向的图表花费太多时间。</p>
+<p><strong>解决方案</strong>：几分钟内生成精美的图表。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 生成演示就绪的图表</span>
+</span></span><span style="display:flex;"><span>archify --repo<span style="color:#f92672">=</span>. <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --style<span style="color:#f92672">=</span>clean <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --export<span style="color:#f92672">=</span>svg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --output<span style="color:#f92672">=</span>presentations/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建动画导览</span>
+</span></span><span style="display:flex;"><span>archify --repo<span style="color:#f92672">=</span>. --animate --output<span style="color:#f92672">=</span>walkthrough.html
+</span></span></code></pre></div><p><strong>好处：</strong></p>
+<ul>
+<li>节省数小时的手工工作</li>
+<li>一致的样式</li>
+<li>交互式演示</li>
+</ul>
+<h2 id="与ai代理集成">与AI代理集成<a hidden class="anchor" aria-hidden="true" href="#与ai代理集成">#</a></h2>
+<h3 id="与claude-code集成">与Claude Code集成<a hidden class="anchor" aria-hidden="true" href="#与claude-code集成">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># 在Claude Code会话中
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">分析这个项目中的认证流程
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">生成展示OAuth流程的时序图
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">导出为SVG用于文档
+</span></span></span></code></pre></div><p>Claude Code可以：</p>
+<ol>
+<li>运行Archify分析</li>
+<li>解释结果</li>
+<li>生成说明</li>
+<li>创建文档</li>
+</ol>
+<h3 id="与codex集成">与Codex集成<a hidden class="anchor" aria-hidden="true" href="#与codex集成">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 在Codex工作流中</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">analyze_system</span>(repo_path):
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 生成图表</span>
+</span></span><span style="display:flex;"><span>    archify_result <span style="color:#f92672">=</span> run_archify(repo_path)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 用AI分析</span>
+</span></span><span style="display:flex;"><span>    insights <span style="color:#f92672">=</span> codex<span style="color:#f92672">.</span>analyze({
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;diagrams&#34;</span>: archify_result,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;question&#34;</span>: <span style="color:#e6db74">&#34;主要的架构风险是什么？&#34;</span>
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> insights
+</span></span></code></pre></div><h3 id="与github-actions集成">与GitHub Actions集成<a hidden class="anchor" aria-hidden="true" href="#与github-actions集成">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/archify.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">生成架构文档</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">push</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branches</span>: [<span style="color:#ae81ff">main]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">generate</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>      
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">安装Archify</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">npm install -g @tt-a1i/archify</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">生成图表</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">archify --path=. --output=docs/architecture</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">提交文档</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git add docs/architecture
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git commit -m &#34;更新架构图&#34; || echo &#34;无变更&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          git push</span>
+</span></span></code></pre></div><h2 id="定制和样式">定制和样式<a hidden class="anchor" aria-hidden="true" href="#定制和样式">#</a></h2>
+<h3 id="主题选项">主题选项<a hidden class="anchor" aria-hidden="true" href="#主题选项">#</a></h3>
+<p>Archify支持多种视觉主题：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 可用主题</span>
+</span></span><span style="display:flex;"><span>archify --theme<span style="color:#f92672">=</span>dark      <span style="color:#75715e"># 深色背景，浅色文字</span>
+</span></span><span style="display:flex;"><span>archify --theme<span style="color:#f92672">=</span>light     <span style="color:#75715e"># 浅色背景，深色文字</span>
+</span></span><span style="display:flex;"><span>archify --theme<span style="color:#f92672">=</span>mono      <span style="color:#75715e"># 单色，适合打印</span>
+</span></span><span style="display:flex;"><span>archify --theme<span style="color:#f92672">=</span>colorful  <span style="color:#75715e"># 鲜艳色彩，引人注目</span>
+</span></span></code></pre></div><h3 id="样式定制">样式定制<a hidden class="anchor" aria-hidden="true" href="#样式定制">#</a></h3>
+<p>控制图表外观：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 节点样式</span>
+</span></span><span style="display:flex;"><span>archify --node-style<span style="color:#f92672">=</span>filled    <span style="color:#75715e"># 实心彩色节点</span>
+</span></span><span style="display:flex;"><span>archify --node-style<span style="color:#f92672">=</span>outlined  <span style="color:#75715e"># 轮廓节点</span>
+</span></span><span style="display:flex;"><span>archify --node-style<span style="color:#f92672">=</span>wireframe <span style="color:#75715e"># 最小线框</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 布局选项</span>
+</span></span><span style="display:flex;"><span>archify --layout<span style="color:#f92672">=</span>horizontal    <span style="color:#75715e"># 左到右流程</span>
+</span></span><span style="display:flex;"><span>archify --layout<span style="color:#f92672">=</span>vertical      <span style="color:#75715e"># 上到下流程</span>
+</span></span><span style="display:flex;"><span>archify --layout<span style="color:#f92672">=</span>auto          <span style="color:#75715e"># 智能自动布局</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 边样式</span>
+</span></span><span style="display:flex;"><span>archify --edge-style<span style="color:#f92672">=</span>curved    <span style="color:#75715e"># 平滑曲线</span>
+</span></span><span style="display:flex;"><span>archify --edge-style<span style="color:#f92672">=</span>straight  <span style="color:#75715e"># 角线</span>
+</span></span><span style="display:flex;"><span>archify --edge-style<span style="color:#f92672">=</span>dashed    <span style="color:#75715e"># 虚线连接</span>
+</span></span></code></pre></div><h3 id="导出格式">导出格式<a hidden class="anchor" aria-hidden="true" href="#导出格式">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># SVG用于网络和文档</span>
+</span></span><span style="display:flex;"><span>archify --export<span style="color:#f92672">=</span>svg --output<span style="color:#f92672">=</span>diagram.svg
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PNG用于演示</span>
+</span></span><span style="display:flex;"><span>archify --export<span style="color:#f92672">=</span>png --resolution<span style="color:#f92672">=</span>2x --output<span style="color:#f92672">=</span>diagram.png
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># PDF用于打印</span>
+</span></span><span style="display:flex;"><span>archify --export<span style="color:#f92672">=</span>pdf --output<span style="color:#f92672">=</span>diagram.pdf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 交互HTML用于网络</span>
+</span></span><span style="display:flex;"><span>archify --export<span style="color:#f92672">=</span>html --interactive --output<span style="color:#f92672">=</span>diagram.html
+</span></span></code></pre></div><h2 id="高级功能">高级功能<a hidden class="anchor" aria-hidden="true" href="#高级功能">#</a></h2>
+<h3 id="实时协作">实时协作<a hidden class="anchor" aria-hidden="true" href="#实时协作">#</a></h3>
+<p>Archify支持协作编辑：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 启动协作会话</span>
+</span></span><span style="display:flex;"><span>archify --collab --port<span style="color:#f92672">=</span><span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 与团队分享</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 团队成员通过URL加入</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 更改实时同步</span>
+</span></span></code></pre></div><h3 id="版本比较">版本比较<a hidden class="anchor" aria-hidden="true" href="#版本比较">#</a></h3>
+<p>跨分支比较架构：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># main和功能分支间的差异</span>
+</span></span><span style="display:flex;"><span>archify --compare<span style="color:#f92672">=</span>main,feature/auth <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --output<span style="color:#f92672">=</span>comparison/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --highlight-changes
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 生成变更报告</span>
+</span></span><span style="display:flex;"><span>archify --compare<span style="color:#f92672">=</span>main,feature/auth <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>        --report<span style="color:#f92672">=</span>changes.md
+</span></span></code></pre></div><h3 id="性能分析">性能分析<a hidden class="anchor" aria-hidden="true" href="#性能分析">#</a></h3>
+<p>从图表中识别瓶颈：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 分析性能影响</span>
+</span></span><span style="display:flex;"><span>archify --analyze<span style="color:#f92672">=</span>performance --output<span style="color:#f92672">=</span>report.html
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 找到热路径</span>
+</span></span><span style="display:flex;"><span>archify --hotpaths --top<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span> --output<span style="color:#f92672">=</span>hotpaths.md
+</span></span></code></pre></div><h3 id="安全分析">安全分析<a hidden class="anchor" aria-hidden="true" href="#安全分析">#</a></h3>
+<p>检测安全模式和问题：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 分析认证流程</span>
+</span></span><span style="display:flex;"><span>archify --focus<span style="color:#f92672">=</span>authentication --output<span style="color:#f92672">=</span>security/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 识别数据暴露</span>
+</span></span><span style="display:flex;"><span>archify --focus<span style="color:#f92672">=</span>data-flow --check<span style="color:#f92672">=</span>exposure
+</span></span></code></pre></div><h2 id="限制和注意事项">限制和注意事项<a hidden class="anchor" aria-hidden="true" href="#限制和注意事项">#</a></h2>
+<h3 id="archify不会做的">Archify不会做的<a hidden class="anchor" aria-hidden="true" href="#archify不会做的">#</a></h3>
+<ol>
+<li><strong>解释业务逻辑</strong>：显示结构，而非目的</li>
+<li><strong>替代设计</strong>：帮助文档化，而非创建架构</li>
+<li><strong>理解上下文</strong>：可能错过组织约束</li>
+<li><strong>保证准确性</strong>：基于代码分析，可能错过运行时行为</li>
+</ol>
+<h3 id="何时使用手动图表">何时使用手动图表<a hidden class="anchor" aria-hidden="true" href="#何时使用手动图表">#</a></h3>
+<ul>
+<li><strong>战略规划</strong>：高层架构决策</li>
+<li><strong>客户沟通</strong>：简化的执行视图</li>
+<li><strong>监管文档</strong>：正式合规要求</li>
+<li><strong>遗留系统</strong>：需要复杂的历史背景</li>
+</ul>
+<h3 id="最佳实践">最佳实践<a hidden class="anchor" aria-hidden="true" href="#最佳实践">#</a></h3>
+<ol>
+<li><strong>组合方法</strong>：使用Archify作为基线，手动 refinement</li>
+<li><strong>定期更新</strong>：重大变更后重新生成</li>
+<li><strong>团队评审</strong>：让架构师验证自动化图表</li>
+<li><strong>添加上下文</strong>：添加解释业务逻辑的注释</li>
+<li><strong>版本控制</strong>：将图表与代码一起存储</li>
+</ol>
+<h2 id="性能基准">性能基准<a hidden class="anchor" aria-hidden="true" href="#性能基准">#</a></h2>
+<h3 id="处理速度">处理速度<a hidden class="anchor" aria-hidden="true" href="#处理速度">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>仓库大小</th>
+					<th>分析时间</th>
+					<th>图表生成</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>&lt; 10K LOC</td>
+					<td>&lt; 5秒</td>
+					<td>&lt; 2秒</td>
+			</tr>
+			<tr>
+					<td>10K - 100K LOC</td>
+					<td>10-30秒</td>
+					<td>3-5秒</td>
+			</tr>
+			<tr>
+					<td>100K - 500K LOC</td>
+					<td>1-3分钟</td>
+					<td>5-10秒</td>
+			</tr>
+			<tr>
+					<td>&gt; 500K LOC</td>
+					<td>3-10分钟</td>
+					<td>10-30秒</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="内存使用">内存使用<a hidden class="anchor" aria-hidden="true" href="#内存使用">#</a></h3>
+<ul>
+<li><strong>基准</strong>：小型项目50-100 MB</li>
+<li><strong>大型项目</strong>：企业代码库200-500 MB</li>
+<li><strong>峰值使用</strong>：分析期间的短暂峰值</li>
+</ul>
+<h3 id="可扩展性">可扩展性<a hidden class="anchor" aria-hidden="true" href="#可扩展性">#</a></h3>
+<ul>
+<li><strong>单用户</strong>：适合个人项目</li>
+<li><strong>团队使用</strong>：协作功能支持5-10个并发用户</li>
+<li><strong>企业</strong>：10+用户考虑服务器部署</li>
+</ul>
+<h2 id="与其他工具比较">与其他工具比较<a hidden class="anchor" aria-hidden="true" href="#与其他工具比较">#</a></h2>
+<h3 id="archify-vs-mermaid">Archify vs. Mermaid<a hidden class="anchor" aria-hidden="true" href="#archify-vs-mermaid">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>功能</th>
+					<th>Archify</th>
+					<th>Mermaid</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>自动生成</td>
+					<td>✅ 是</td>
+					<td>❌ 手动</td>
+			</tr>
+			<tr>
+					<td>代码分析</td>
+					<td>✅ 深度</td>
+					<td>❌ 无</td>
+			</tr>
+			<tr>
+					<td>交互式</td>
+					<td>✅ 是</td>
+					<td>有限</td>
+			</tr>
+			<tr>
+					<td>学习曲线</td>
+					<td>低</td>
+					<td>中</td>
+			</tr>
+			<tr>
+					<td>定制性</td>
+					<td>高</td>
+					<td>中</td>
+			</tr>
+			<tr>
+					<td>集成</td>
+					<td>代理原生</td>
+					<td>Markdown原生</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>结论</strong>：使用Archify进行自动化分析，Mermaid用于手动文档。</p>
+<h3 id="archify-vs-drawio">Archify vs. Draw.io<a hidden class="anchor" aria-hidden="true" href="#archify-vs-drawio">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>功能</th>
+					<th>Archify</th>
+					<th>Draw.io</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>自动化</td>
+					<td>✅ 完整</td>
+					<td>❌ 无</td>
+			</tr>
+			<tr>
+					<td>设计质量</td>
+					<td>高</td>
+					<td>高</td>
+			</tr>
+			<tr>
+					<td>协作</td>
+					<td>实时</td>
+					<td>基于云</td>
+			</tr>
+			<tr>
+					<td>学习曲线</td>
+					<td>低</td>
+					<td>中</td>
+			</tr>
+			<tr>
+					<td>导出选项</td>
+					<td>多个</td>
+					<td>多个</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>结论</strong>：使用Archify进行快速生成，Draw.io用于详细设计。</p>
+<h3 id="archify-vs-plantuml">Archify vs. PlantUML<a hidden class="anchor" aria-hidden="true" href="#archify-vs-plantuml">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>功能</th>
+					<th>Archify</th>
+					<th>PlantUML</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>自动生成</td>
+					<td>✅ 是</td>
+					<td>❌ 手动</td>
+			</tr>
+			<tr>
+					<td>语言支持</td>
+					<td>多种</td>
+					<td>Java聚焦</td>
+			</tr>
+			<tr>
+					<td>输出质量</td>
+					<td>现代</td>
+					<td>传统</td>
+			</tr>
+			<tr>
+					<td>集成</td>
+					<td>代理原生</td>
+					<td>IDE插件</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>结论</strong>：使用Archify用于现代工作流，PlantUML用于Java-heavy项目。</p>
+<h2 id="社区和生态">社区和生态<a hidden class="anchor" aria-hidden="true" href="#社区和生态">#</a></h2>
+<h3 id="github统计">GitHub统计<a hidden class="anchor" aria-hidden="true" href="#github统计">#</a></h3>
+<ul>
+<li><strong>Stars</strong>：59,700 ⭐</li>
+<li><strong>Forks</strong>：3,900 🍴</li>
+<li><strong>Watchers</strong>：1,200 👁️</li>
+<li><strong>Issues</strong>：积极分类</li>
+<li><strong>Contributors</strong>：45+</li>
+</ul>
+<h3 id="集成生态">集成生态<a hidden class="anchor" aria-hidden="true" href="#集成生态">#</a></h3>
+<p>Archify与以下工具集成：</p>
+<ul>
+<li><strong>AI代理</strong>：Claude Code、Codex、Cursor、GitHub Copilot</li>
+<li><strong>CI/CD</strong>：GitHub Actions、GitLab CI、Jenkins</li>
+<li><strong>文档</strong>：MkDocs、Docusaurus、Hugo</li>
+<li><strong>设计工具</strong>：Figma、Sketch（通过导出）</li>
+<li><strong>通讯</strong>：Slack、Discord（通过机器人）</li>
+</ul>
+<h3 id="贡献方式">贡献方式<a hidden class="anchor" aria-hidden="true" href="#贡献方式">#</a></h3>
+<p>贡献方式：</p>
+<ol>
+<li><strong>报告问题</strong>：Bug报告和功能请求</li>
+<li><strong>提交PR</strong>：代码改进和新解析器</li>
+<li><strong>添加解析器</strong>：支持更多语言</li>
+<li><strong>改进文档</strong>：教程和示例</li>
+<li><strong>分享工作流</strong>：真实世界用例</li>
+</ol>
+<h2 id="未来路线图">未来路线图<a hidden class="anchor" aria-hidden="true" href="#未来路线图">#</a></h2>
+<h3 id="2026年第四季度">2026年第四季度<a hidden class="anchor" aria-hidden="true" href="#2026年第四季度">#</a></h3>
+<ul>
+<li><strong>API发布</strong>：REST API用于程序化访问</li>
+<li><strong>浏览器扩展</strong>：实时图表生成</li>
+<li><strong>IDE插件</strong>：VS Code、JetBrains集成</li>
+<li><strong>移动应用</strong>：iOS和Android查看器</li>
+</ul>
+<h3 id="2027年第一季度">2027年第一季度<a hidden class="anchor" aria-hidden="true" href="#2027年第一季度">#</a></h3>
+<ul>
+<li><strong>高级AI</strong>：更好的模式识别</li>
+<li><strong>协作</strong>：多用户编辑</li>
+<li><strong>分析</strong>：使用洞察和建议</li>
+<li><strong>市场</strong>：共享图表模板</li>
+</ul>
+<h3 id="2027年第二季度">2027年第二季度<a hidden class="anchor" aria-hidden="true" href="#2027年第二季度">#</a></h3>
+<ul>
+<li><strong>云服务</strong>：托管协作平台</li>
+<li><strong>企业功能</strong>：SSO、审计日志、SLA</li>
+<li><strong>高级可视化</strong>：3D架构视图</li>
+<li><strong>集成中心</strong>：更多第三方集成</li>
+</ul>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>Archify代表了架构可视化的重大进步。通过自动化从代码生成图表，它节省开发人员数小时的手工工作，同时创建准确、最新的文档。</p>
+<h3 id="关键优势">关键优势<a hidden class="anchor" aria-hidden="true" href="#关键优势">#</a></h3>
+<ol>
+<li><strong>节省时间</strong>：几秒钟生成图表，而非数小时</li>
+<li><strong>准确性</strong>：基于实际代码，而非记忆</li>
+<li><strong>集成</strong>：与现代AI代理工作流兼容</li>
+<li><strong>灵活性</strong>：多种输出格式和样式</li>
+<li><strong>社区</strong>：活跃的开发和支持</li>
+</ol>
+<h3 id="谁应该使用">谁应该使用<a hidden class="anchor" aria-hidden="true" href="#谁应该使用">#</a></h3>
+<ul>
+<li><strong>开发者</strong>：快速文档化代码库</li>
+<li><strong>架构师</strong>：创建设计可视化表示</li>
+<li><strong>团队</strong>：更快入职新员工</li>
+<li><strong>顾问</strong>：高效分析客户系统</li>
+<li><strong>学生</strong>：可视化学习架构模式</li>
+</ul>
+<h3 id="最后-thoughts">最后 Thoughts<a hidden class="anchor" aria-hidden="true" href="#最后-thoughts">#</a></h3>
+<p>随着代码库变得越来越复杂，清晰文档的需求变得至关重要。Archify弥合了代码与可视化之间的差距，使架构理解对每个人都可访问。</p>
+<p>该工具并不替代人类设计思维——它通过处理文档中繁琐的部分来增强它，让你专注于重要的架构决策。</p>
+<hr>
+<p><strong>GitHub仓库</strong>：https://github.com/tt-a1i/archify<br>
+<strong>Stars</strong>：59,700 ⭐ | <strong>Forks</strong>：3,900 🍴 | <strong>许可证</strong>：MIT<br>
+<strong>最后更新</strong>：2026年9月</p>
+<hr>
+<p><em>觉得有帮助？加入我们的Telegram社区获取每日AI工具更新：https://t.me/DIBI8_Group</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/archify/">Archify</a></li>
+      <li><a href="https://dibi8.com/zh/tags/architecture-diagrams/">Architecture-Diagrams</a></li>
+      <li><a href="https://dibi8.com/zh/tags/ai-tools/">Ai-Tools</a></li>
+      <li><a href="https://dibi8.com/zh/tags/visualization/">Visualization</a></li>
+      <li><a href="https://dibi8.com/zh/tags/code-analysis/">Code-Analysis</a></li>
+      <li><a href="https://dibi8.com/zh/tags/2026/">2026</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

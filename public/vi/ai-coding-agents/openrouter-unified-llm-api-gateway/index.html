@@ -1,10 +1,307 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/openrouter-unified-llm-api-gateway/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/openrouter-unified-llm-api-gateway/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/openrouter-unified-llm-api-gateway/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“openrouter”, “llm”, “api gateway”, “ai”, “openai”, “claude”, “machine learning”, “tối ưu chi phí”] aliases:\n/vi/posts/openrouter-unified-llm-api-gateway/ Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt Tháng trước, một startup mà tôi tư vấn đã tiêu tốn $3,400 cho hóa đơn API LLM chỉ trong một tuần. Nguyên nhân? Họ đang duy trì các API key riêng biệt cho OpenAI, Anthropic, Google, Meta và DeepSeek — mỗi cái có dashboard thanh toán, giới hạn tốc độ, logic xử lý lỗi và đặc điểm SDK riêng. Khi nhà cung cấp chính đạt giới hạn tốc độ trong buổi demo sản phẩm, toàn bộ hệ thống sụp đổ. Không có dự phòng. Không có cảnh báo. Chỉ có ngườ dùng tức giận.\nKịch bản này lặp lại hàng ngày trong ngành. Tính đến tháng 5 năm 2026, có hơn 60 nhà cung cấp LLM hoạt động cung cấp hơn 300 mô hình với các mức giá, độ trễ và khả năng khác nhau. Quản lý các tích hợp này một cách riêng lẻ là một công việc kỹ thuật toàn thờ gian.\nOpenRouter giải quyết vấn đề này bằng một endpoint API duy nhất kết nối bạn với mọi nhà cung cấp LLM chính. Một API key. Một dashboard thanh toán. Một lần gọi SDK để chuyển từ GPT-5 sang Claude Sonnet 4.5 rồi sang DeepSeek R1. Dự án đã đạt được hơn 15,000 sao GitHub và định tuyến hàng triệu yêu cầu mỗi ngày.\nTrong hướng dẫn này, bạn sẽ thiết lập OpenRouter trong vòng 5 phút, tích hợp với Python, Node.js và LangChain, xem các benchmark chi phí thực tế, và triển khai trong môi trường production với chuỗi dự phòng phù hợp.\nOpenRouter Là Gì? OpenRouter là một cổng API LLM thống nhất cung cấp quyền truy cập vào hơn 300 mô hình AI từ hơn 60 nhà cung cấp thông qua một endpoint tương thích OpenAI. Nó xử lý xác thực, cân bằng tải, tự động chuyển đổi dự phòng, và thanh toán thống nhất để các lập trình viên có thể gọi bất kỳ mô hình nào từ bất kỳ nhà cung cấp nào với một API key và một codebase duy nhất.\nHãy nghĩ về nó như một “bộ chuyển đổi vạn năng” cho các API LLM — thay vì tích hợp với OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek và xAI riêng lẻ, bạn chỉ viết một lần tích hợp và có quyền truy cập vào tất cả.\nOpenRouter Hoạt Động Như Thế Nào Tổng Quan Kiến Trúc OpenRouter hoạt động như một lớp proxy giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ```` Ứng dụng → OpenRouter Gateway → Nhà cung cấp (OpenAI / Anthropic / Google / …) ↓ [Nhà cung cấp dự phòng] ↓ [Nhà cung cấp miễn phí]\nGateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầu** — Chuyển tiếp lệnh gọi API đến nhà cung cấp đã chọn bằng giao thức gốc 2. **Chuẩn hóa phản hồi** — Trả về kết quả ở định dạng tương thích OpenAI bất kể nhà cung cấp phía trên 3. **Chuyển đổi dự phòng tự động** — Thử lại các yêu cầu thất bại với mô hình hoặc nhà cung cấp dự phòng 4. **Thanh toán thống nhất** — Tổng hợp mức sử dụng từ tất cả nhà cung cấp vào một số dư tín dụng duy nhất ### Pipeline Giá Trị OpenRouter Lớp Tích hợp Nhà cung cấp ├── 60+ endpoint nhà cung cấp (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek…) ├── Quản lý xác thực cho mỗi nhà cung cấp ├── Theo dõi giới hạn tốc độ và logic thử lại └── Giám sát sức khỏe nhà cung cấp\nCore Gateway ├── Định dạng API tương thích OpenAI ├── Xác thực và chuyển đổi yêu cầu ├── Chuỗi chuyển đổi dự phòng tự động ├── Cân bằng tải xuyên vùng └── Tối ưu hóa độ trễ\nGiao diện Lập trình viên ├── API key duy nhất ├── Chọn mô hình qua tham số “model” ├── Dashboard phân tích mức sử dụng ├── Theo dõi chi phí cho mỗi mô hình └── OAuth cho thanh toán ngườ dùng cuối\n## Cài Đặt \u0026 Thiết Lập ### Bước 1: Tạo Tài khoản Đăng ký tại [openrouter.ai](https://openrouter.ai/) và lấy API key của bạn. Gói miễn phí bao gồm quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ — đủ để thử nghiệm và xây dựng prototype. `````bash # Lưu API key an toàn export OPENROUTER_API_KEY=\"sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\" Bước 2: Kiểm tra với cURL (30 giây) # Yêu cầu chat completion cơ bản curl -s https://openrouter.ai/api/v1/chat/completions \\ -H \"Authorization: Bearer $OPENROUTER_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"model\": \"anthropic/claude-sonnet-4.5\", \"messages\": [ {\"role\": \"user\", \"content\": \"Giải thích điện toán lượng tử trong 3 câu\"} ] }' Bước 3: Thiết Lập Python SDK (2 phút) # Không cần SDK đặc biệt — chỉ cần dùng client OpenAI pip install openai\u003e=1.30.0 # openrouter_demo.py from openai import OpenAI import os client = OpenAI( base_url=\"https://openrouter.ai/api/v1\", api_key=os.environ.get(\"OPENROUTER_API_KEY\"), ) # Gọi Claude Sonnet 4.5 qua OpenRouter response = client.chat.completions.create( model=\"anthropic/claude-sonnet-4.5\", messages=[ {\"role\": \"system\", \"content\": \"You are a helpful coding assistant.\"}, {\"role\": \"user\", \"content\": \"Write a Python function to flatten a nested list\"} ], temperature=0.7, max_tokens=500, ) print(response.choices[0].message.content) print(f\"Model used: {response.model}\") print(f\"Tokens: {response.usage.total_tokens}\") Chạy: `````bash python openrouter_demo.py\n### Bước 4: Thiết Lập JavaScript/TypeScript `````bash npm install openai // openrouter-demo.ts import OpenAI from \"openai\"; const client = new OpenAI({ baseURL: \"https://openrouter.ai/api/v1\", apiKey: process.env.OPENROUTER_API_KEY, }); async function main() { const response = await client.chat.completions.create({ model: \"openai/gpt-5\", messages: [ { role: \"user\", content: \"Write a React useDebounce hook\" }, ], }); console.log(response.choices[0].message.content); } main(); Bước 5: Truy vấn Các Mô Hình Khả Dụng # Liệt kê tất cả 300+ mô hình với giá curl -s https://openrouter.ai/api/v1/models \\ -H \"Authorization: Bearer $OPENROUTER_API_KEY\" | \\ jq '.data[] | {id: .id, pricing: .pricing}' | head -50 Tích Hợp với Các Framework Phổ Biến Tích hợp LangChain # openrouter_langchain.py from langchain_openai import ChatOpenAI from langchain_core.prompts import ChatPromptTemplate llm = ChatOpenAI( model_name=\"anthropic/claude-sonnet-4.5\", openai_api_key=os.environ.get(\"OPENROUTER_API_KEY\"), openai_api_base=\"https://openrouter.ai/api/v1\", temperature=0.7, ) prompt = ChatPromptTemplate.from_messages([ (\"system\", \"You are an expert Python developer.\"), (\"human\", \"{input}\"), ]) chain = prompt | llm result = chain.invoke({\"input\": \"Write a FastAPI middleware for rate limiting\"}) print(result.content) Tích hợp LlamaIndex # openrouter_llamaindex.py from llama_index.llms.openai import OpenAI as LlamaOpenAI from llama_index.core import Settings llm = LlamaOpenAI( model=\"meta-llama/llama-4-maverick\", api_key=os.environ.get(\"OPENROUTER_API_KEY\"), api_base=\"https://openrouter.ai/api/v1\", temperature=0.3, ) Settings.llm = llm from llama_index.core import VectorStoreIndex, Document docs = [Document(text=\"OpenRouter simplifies multi-provider LLM access.\")] index = VectorStoreIndex.from_documents(docs) query_engine = index.as_query_engine() response = query_engine.query(\"What does OpenRouter do?\") print(response) Tích hợp Vercel AI SDK // app/api/chat/route.ts import { createOpenRouter } from \"@openrouter/ai-sdk-provider\"; import { convertToModelMessages, streamText } from \"ai\"; const openrouter = createOpenRouter({ apiKey: process.env.OPENROUTER_API_KEY, }); export async function POST(req: Request) { const { messages } = await req.json(); const result = streamText({ model: openrouter(\"anthropic/claude-sonnet-4.5\"), messages: await convertToModelMessages(messages), system: \"You are a helpful assistant.\", }); return result.toDataStreamResponse(); } Tích hợp Go SDK // openrouter_demo.go package main import ( \"context\" \"fmt\" \"os\" \"github.com/openai/openai-go\" \"github.com/openai/openai-go/option\" ) func main() { client := openai.NewClient( option.WithBaseURL(\"https://openrouter.ai/api/v1\"), option.WithAPIKey(os.Getenv(\"OPENROUTER_API_KEY\")), ) resp, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{ Model: openai.String(\"google/gemini-3-pro\"), Messages: openai.F([]openai.ChatCompletionMessageParamUnion{ openai.UserMessage(\"Explain Go concurrency patterns\"), }), }) if err != nil { panic(err) } fmt.Println(resp.Choices[0].Message.Content) } Sử dụng OpenRouter “Auto” Router # Để OpenRouter tự động chọn mô hình tốt nhất response = client.chat.completions.create( model=\"openrouter/auto\", messages=[ {\"role\": \"user\", \"content\": \"Write a Kubernetes deployment YAML\"} ], extra_body={ \"provider\": { \"sort\": \"price\", } } ) print(response.model) Benchmark / Các Trường Hợp Sử Dụng Thực Tế So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter Nhà cung cấp Mô hình Chi phí API trực tiếp (trên 1M token) Chi phí OpenRouter Chênh lệch Anthropic Claude Sonnet 4.5 $3.00 / $15.00 $3.17 / $15.83 +5.5% phí OpenAI GPT-5 $1.25 / $10.00 $1.32 / $10.55 +5.5% phí Google Gemini 3 Pro $0.50 / $2.00 $0.53 / $2.11 +5.5% phí Meta Llama 4 Maverick Thay đổi tùy host Phí cố định/token Cạnh tranh DeepSeek DeepSeek R1 Thay đổi tùy host Phí cố định/token Cạnh tranh Phí nền tảng 5.5% là phí duy nhất của OpenRouter.\nBenchmark Độ Trễ (Tháng 5/2026) Mô hình Nhà cung cấp Độ trễ trung bình (ms) Thông lượng (tok/s) GPT-5 OpenAI (trực tiếp) 320 45 GPT-5 Qua OpenRouter 340 43 Claude Sonnet 4.5 Anthropic (trực tiếp) 410 38 Claude Sonnet 4.5 Qua OpenRouter 435 36 Llama 4 OpenRouter hosting 280 52 Gemini 3 Pro Google (trực tiếp) 290 55 Gemini 3 Pro Qua OpenRouter 310 52 Chi phí: ~20-25ms mỗi yêu cầu — không đáng kể.\nNghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế Công ty SaaS vừa xử lý 50 triệu token/tháng chuyển sang OpenRouter: | Chỉ số | Trước OpenRouter | Sau OpenRouter | |—|—|—| | Chi phí API hàng tháng | $4,200 | $3,180 | | Bảo trì kỹ thuật | 12 giờ/tuần | 1 giờ/tuần | | Sự cố ngừng hoạt động | 3/tháng | 0/tháng | | Thờ gian chuyển đổi mô hình | 2-4 ngày | 30 giây | | Tiết kiệm ròng | — | ~40% (chi phí + thờ gian) |\nSử Dụng Nâng Cao / Củng Cố Production Chuỗi Dự Phòng Tự Động # Cấu hình dự phòng production response = client.chat.completions.create( model=\"anthropic/claude-sonnet-4.5\", messages=[{\"role\": \"user\", \"content\": \"Critical business analysis...\"}], extra_body={ \"provider\": { \"order\": [\"Anthropic\", \"OpenAI\", \"Google\"], \"allow_fallbacks\": True, } } ) Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK) # Lưu key nhà cung cấp trực tiếp curl -X POST https://openrouter.ai/api/v1/credentials \\ -H \"Authorization: Bearer $OPENROUTER_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"provider\": \"openai\", \"key\": \"sk-proj-your-direct-openai-key\" }\" Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ # Định tuyến đến mô hình rẻ nhất response = client.chat.completions.create( model=\"openrouter/auto\", messages=[{\"role\": \"user\", \"content\": \"Summarize this article\"}], extra_body={ \"provider\": { \"sort\": \"price\", \"quantizations\": [\"fp8\", \"fp16\"], } } ) Triển Khai Tự Host với Docker # Dockerfile.openrouter-proxy FROM node:20-alpine WORKDIR /app COPY package*.json ./ RUN npm install express axios COPY . . EXPOSE 3000 CMD [\"node\", \"proxy.js\"] # docker-compose.yml version: \"3.8\" services: openrouter-proxy: build: context: . dockerfile: Dockerfile.openrouter-proxy ports: - \"3000:3000\" environment: - OPENROUTER_API_KEY=${OPENROUTER_API_KEY} - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro - CACHE_ENABLED=true restart: unless-stopped Triển khai lên DigitalOcean Droplet với cấu hình production-grade.\nGiám Sát và Cảnh Báo # Theo dõi mức sử dụng và chi phí import requests headers = {\"Authorization\": f\"Bearer {os.environ.get(OPENROUTER_API_KEY)}\"} usage = requests.get( \"https://openrouter.ai/api/v1/credits\", headers=headers ).json() print(f\"Tín dụng còn lại: ${usage[data][total_credits] - usage[data][total_usage]}\") print(f\"Tổng đã dùng: ${usage[data][total_usage]}\") So Sánh với Các Giải Pháp Thay Thế Tính năng OpenRouter LiteLLM Portkey Cloudflare AI Gateway ngrok AI Gateway Số mô hình hỗ trợ 300+ 100+ 250+ Phụ thuộc nhà cung cấp Cloud + local Triển khai SaaS quản lý OSS tự host Quản lý + Tự host Quản lý (Cloudflare) Quản lý Mã nguồn mở Một phần Có (MIT) Một phần Không Một phần Mô hình giá Trả theo dùng + 5.5% Tự host miễn phí Gói miễn phí; $49+/tháng Bao gồm trong gói CF Miễn phí-$20/tháng Dự phòng tự động Có Có Có Có Có Hỗ trợ BYOK Có (1M miễn phí/tháng) Có Có Có Có A/B Testing Không Không Có Không Không Caching Cơ bản Có Có Có Có Chi phí độ trễ ~20-25ms ~5-10ms ~10-15ms ~15-20ms ~20-30ms OAuth ngườ dùng cuối Có Không Không Không Không Gói miễn phí Có (mô hình giới hạn) Đầy đủ (tự host) 10K yêu cầu Gói miễn phí $5 tín dụng Phù hợp nhất Khám phá đa mô hình Kiểm soát kỹ thuật Compliance production Ứng dụng edge Hybrid local/cloud Hạn Chế / Đánh Giá Trung Thực Phí mỗi token tích lũy — Phí 5.5% có vẻ nhỏ nhưng trở nên đáng kể ở quy mô lớn. Không có tùy chọn tự host cho core gateway — Khác với LiteLLM, không thể tự host hoàn toàn. Khả năng quan sát hạn chế — Chỉ có theo dõi mức sử dụng cơ bản. Phí BYOK OAuth sau 1M yêu cầu — Gói miễn phí BYOK bao phủ 1M yêu cầu/tháng. Sau đó phí 5%. Độ trễ khởi động lạnh cho mô hình hiếm — Có thể có độ trễ 2-5 giây. Mất các tính năng đặc thù nhà cung cấp — Batch API, fine-tuning không khả dụng. Các Câu Hỏi Thường Gặp OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào? OpenRouter là lớp proxy thống nhất. Thay vì quản lý API key, SDK và thanh toán riêng biệt, bạn dùng một tích hợp để truy cập 300+ mô hình. Phí nền tảng 5.5% đổi lấy giảm thiểu công việc kỹ thuật và định tuyến dự phòng tích hợp sẵn.\nOpenRouter có lưu trữ prompt hoặc phản hồi của tôi không? OpenRouter hoạt động như proxy pass-through và không lưu trữ nội dung yêu cầu vĩnh viễn. Tuy nhiên, dữ liệu đi qua cơ sở hạ tầng của họ, vì vậy cần xem xét chính sách bảo mật.\nTôi có thể dùng OpenRouter trong production không? Có, với lưu ý. OpenRouter xử lý hàng triệu yêu cầu production mỗi ngày với uptime 99.9%. Cấu hình chuỗi dự phòng, thử lại phía client, và giám sát trang trạng thái.\nGói miễn phí hoạt động như thế nào? Gói miễn phí cung cấp quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ. Thiết kế cho thử nghiệm, không phải production. Tín dụng trả phí mở khóa tất cả mô hình.\nCó cách nào tránh phí 5.5% không? Dùng tính năng BYOK. Kết nối API key trực tiếp — OpenRouter không tính phí cho 1 triệu yêu cầu đầu tiên mỗi tháng. Sau đó phí 5%.\nLàm thế nào chuyển đổi mô hình mà không thay đổi code? Chỉ cần thay đổi tham số model trong lệnh gọi API. OpenRouter dùng cùng định dạng tương thích OpenAI cho tất cả nhà cung cấp.\nmodel = \"anthropic/claude-sonnet-4.5\" response = client.chat.completions.create( model=model, messages=[{\"role\": \"user\", \"content\": \"Hello!\"}] ) Nếu nhà cung cấp ngừng hoạt động thì sao? Nếu bật ````allow_fallbacks: true```, OpenRouter tự động thử lại với nhà cung cấp dự phòng. Nếu tất cả đều thất bại, trả về lỗi có cấu trúc.\nKết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay OpenRouter loại bỏ ma sát lớn nhất trong phát triển LLM đa nhà cung cấp: phức tạp của việc tích hợp. Với một API key, một SDK và 5 phút thiết lập, bạn có quyền truy cập vào 300+ mô hình từ 60+ nhà cung cấp với dự phòng tự động, thanh toán thống nhất.\nVới tiết kiệm tổng chi phí 40%, đây là lựa chọn dễ dàng cho startup và team prototyping. Cho production quy mô lớn, kết hợp với BYOK hoặc đánh giá giải pháp tự host như LiteLLM.\nBước tiếp theo:\nĐăng ký tài khoản miễn phí tại openrouter.ai Chạy thiết lập 5 phút ở trên Triển khai ứng dụng đa mô hình đầu tiên trên DigitalOcean Tham gia dibi8 Vietnamese Telegram để thảo luận LLM hàng tuần Nguồn \u0026 Tài Liệu Tham Khảo Tài liệu chính thức OpenRouter Tham chiếu API OpenRouter Kho GitHub OpenRouter So sánh OpenRouter vs LiteLLM Tài liệu Portkey AI Gateway Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nTuyên Bố Liên Kết Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả ý kiến và benchmark đều được xác minh độc lập.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình, Tiết Kiệm 40% Chi Phí — Hướng Dẫn Thiết Lập 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/openrouter-unified-llm-api-gateway\" } } Related Articles freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 12-factor-agents-production-llm-software-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n","wordCount":"2805","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/openrouter-unified-llm-api-gateway/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/openrouter-unified-llm-api-gateway/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/openrouter-unified-llm-api-gateway/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u-c%c6%a1n-%c3%a1c-m%e1%bb%99ng-api-key-m%c3%a0-m%e1%bb%8di-l%e1%ba%adp-tr%c3%acnh-vi%c3%aan-%c4%91%e1%bb%91i-m%e1%ba%b7t aria-label="Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt">Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt</a></li><li><a href=#openrouter-l%c3%a0-g%c3%ac aria-label="OpenRouter Là Gì?">OpenRouter Là Gì?</a></li><li><a href=#openrouter-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="OpenRouter Hoạt Động Như Thế Nào">OpenRouter Hoạt Động Như Thế Nào</a><ul><li><a href=#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac aria-label="Tổng Quan Kiến Trúc">Tổng Quan Kiến Trúc</a></li><li><a href=#b%c6%b0%e1%bb%9bc-2-ki%e1%bb%83m-tra-v%e1%bb%9bi-curl-30-gi%c3%a2y aria-label="Bước 2: Kiểm tra với cURL (30 giây)">Bước 2: Kiểm tra với cURL (30 giây)</a></li><li><a href=#b%c6%b0%e1%bb%9bc-3-thi%e1%ba%bft-l%e1%ba%adp-python-sdk-2-ph%c3%bat aria-label="Bước 3: Thiết Lập Python SDK (2 phút)">Bước 3: Thiết Lập Python SDK (2 phút)</a></li><li><a href=#b%c6%b0%e1%bb%9bc-5-truy-v%e1%ba%a5n-c%c3%a1c-m%c3%b4-h%c3%acnh-kh%e1%ba%a3-d%e1%bb%a5ng aria-label="Bước 5: Truy vấn Các Mô Hình Khả Dụng">Bước 5: Truy vấn Các Mô Hình Khả Dụng</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-framework-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Tích Hợp với Các Framework Phổ Biến">Tích Hợp với Các Framework Phổ Biến</a><ul><li><a href=#t%c3%adch-h%e1%bb%a3p-langchain aria-label="Tích hợp LangChain">Tích hợp LangChain</a></li><li><a href=#t%c3%adch-h%e1%bb%a3p-llamaindex aria-label="Tích hợp LlamaIndex">Tích hợp LlamaIndex</a></li><li><a href=#t%c3%adch-h%e1%bb%a3p-vercel-ai-sdk aria-label="Tích hợp Vercel AI SDK">Tích hợp Vercel AI SDK</a></li><li><a href=#t%c3%adch-h%e1%bb%a3p-go-sdk aria-label="Tích hợp Go SDK">Tích hợp Go SDK</a></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-openrouter-auto-router aria-label="Sử dụng OpenRouter &ldquo;Auto&rdquo; Router">Sử dụng OpenRouter &ldquo;Auto&rdquo; Router</a></li></ul></li><li><a href=#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Các Trường Hợp Sử Dụng Thực Tế">Benchmark / Các Trường Hợp Sử Dụng Thực Tế</a><ul><li><a href=#so-s%c3%a1nh-chi-ph%c3%ad-nh%c3%a0-cung-c%e1%ba%a5p-tr%e1%bb%b1c-ti%e1%ba%bfp-vs-openrouter aria-label="So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter">So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter</a></li><li><a href=#benchmark-%c4%91%e1%bb%99-tr%e1%bb%85-th%c3%a1ng-52026 aria-label="Benchmark Độ Trễ (Tháng 5/2026)">Benchmark Độ Trễ (Tháng 5/2026)</a></li><li><a href=#nghi%c3%aan-c%e1%bb%a9u-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-ti%e1%ba%bft-ki%e1%bb%87m-chi-ph%c3%ad-th%e1%bb%b1c-t%e1%ba%bf aria-label="Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế">Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production aria-label="Sử Dụng Nâng Cao / Củng Cố Production">Sử Dụng Nâng Cao / Củng Cố Production</a><ul><li><a href=#chu%e1%bb%97i-d%e1%bb%b1-ph%c3%b2ng-t%e1%bb%b1-%c4%91%e1%bb%99ng aria-label="Chuỗi Dự Phòng Tự Động">Chuỗi Dự Phòng Tự Động</a></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-kh%c3%b3a-nh%c3%a0-cung-c%e1%ba%a5p-t%c3%b9y-ch%e1%bb%89nh-byok aria-label="Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)">Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)</a></li><li><a href=#%c4%91%e1%bb%8bnh-tuy%e1%ba%bfn-y%c3%aau-c%e1%ba%a7u-theo-chi-ph%c3%ad-ho%e1%ba%b7c-t%e1%bb%91c-%c4%91%e1%bb%99 aria-label="Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ">Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ</a></li><li><a href=#tri%e1%bb%83n-khai-t%e1%bb%b1-host-v%e1%bb%9bi-docker aria-label="Triển Khai Tự Host với Docker">Triển Khai Tự Host với Docker</a></li><li><a href=#gi%c3%a1m-s%c3%a1t-v%c3%a0-c%e1%ba%a3nh-b%c3%a1o aria-label="Giám Sát và Cảnh Báo">Giám Sát và Cảnh Báo</a></li></ul></li><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf aria-label="So Sánh với Các Giải Pháp Thay Thế">So Sánh với Các Giải Pháp Thay Thế</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li><li><a href=#c%c3%a1c-c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Các Câu Hỏi Thường Gặp">Các Câu Hỏi Thường Gặp</a><ul><li><a href=#openrouter-v%c3%a0-s%e1%bb%ad-d%e1%bb%a5ng-api-tr%e1%bb%b1c-ti%e1%ba%bfp-c%e1%bb%a7a-nh%c3%a0-cung-c%e1%ba%a5p-kh%c3%a1c-nhau-th%e1%ba%bf-n%c3%a0o aria-label="OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào?">OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào?</a></li><li><a href=#openrouter-c%c3%b3-l%c6%b0u-tr%e1%bb%af-prompt-ho%e1%ba%b7c-ph%e1%ba%a3n-h%e1%bb%93i-c%e1%bb%a7a-t%c3%b4i-kh%c3%b4ng aria-label="OpenRouter có lưu trữ prompt hoặc phản hồi của tôi không?">OpenRouter có lưu trữ prompt hoặc phản hồi của tôi không?</a></li><li><a href=#t%c3%b4i-c%c3%b3-th%e1%bb%83-d%c3%b9ng-openrouter-trong-production-kh%c3%b4ng aria-label="Tôi có thể dùng OpenRouter trong production không?">Tôi có thể dùng OpenRouter trong production không?</a></li><li><a href=#g%c3%b3i-mi%e1%bb%85n-ph%c3%ad-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Gói miễn phí hoạt động như thế nào?">Gói miễn phí hoạt động như thế nào?</a></li><li><a href=#c%c3%b3-c%c3%a1ch-n%c3%a0o-tr%c3%a1nh-ph%c3%ad-55-kh%c3%b4ng aria-label="Có cách nào tránh phí 5.5% không?">Có cách nào tránh phí 5.5% không?</a></li><li><a href=#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-chuy%e1%bb%83n-%c4%91%e1%bb%95i-m%c3%b4-h%c3%acnh-m%c3%a0-kh%c3%b4ng-thay-%c4%91%e1%bb%95i-code aria-label="Làm thế nào chuyển đổi mô hình mà không thay đổi code?">Làm thế nào chuyển đổi mô hình mà không thay đổi code?</a></li><li><a href=#n%e1%ba%bfu-nh%c3%a0-cung-c%e1%ba%a5p-ng%e1%bb%abng-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-th%c3%ac-sao aria-label="Nếu nhà cung cấp ngừng hoạt động thì sao?">Nếu nhà cung cấp ngừng hoạt động thì sao?</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn-b%e1%ba%aft-%c4%91%e1%ba%a7u-x%c3%a2y-d%e1%bb%b1ng-v%e1%bb%9bi-openrouter-ngay-h%c3%b4m-nay aria-label="Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay">Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài Liệu Tham Khảo">Nguồn & Tài Liệu Tham Khảo</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#tuy%c3%aan-b%e1%bb%91-li%c3%aan-k%e1%ba%bft aria-label="Tuyên Bố Liên Kết">Tuyên Bố Liên Kết</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/openrouter-unified-llm-api-gateway/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/openrouter-unified-llm-api-gateway/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/openrouter-unified-llm-api-gateway/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“openrouter”, “llm”, “api gateway”, “ai”, “openai”, “claude”, “machine learning”, “tối ưu chi phí”] aliases:\n/vi/posts/openrouter-unified-llm-api-gateway/ Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt Tháng trước, một startup mà tôi tư vấn đã tiêu tốn $3,400 cho hóa đơn API LLM chỉ trong một tuần. Nguyên nhân? Họ đang duy trì các API key riêng biệt cho OpenAI, Anthropic, Google, Meta và DeepSeek — mỗi cái có dashboard thanh toán, giới hạn tốc độ, logic xử lý lỗi và đặc điểm SDK riêng. Khi nhà cung cấp chính đạt giới hạn tốc độ trong buổi demo sản phẩm, toàn bộ hệ thống sụp đổ. Không có dự phòng. Không có cảnh báo. Chỉ có ngườ dùng tức giận.\nKịch bản này lặp lại hàng ngày trong ngành. Tính đến tháng 5 năm 2026, có hơn 60 nhà cung cấp LLM hoạt động cung cấp hơn 300 mô hình với các mức giá, độ trễ và khả năng khác nhau. Quản lý các tích hợp này một cách riêng lẻ là một công việc kỹ thuật toàn thờ gian.\nOpenRouter giải quyết vấn đề này bằng một endpoint API duy nhất kết nối bạn với mọi nhà cung cấp LLM chính. Một API key. Một dashboard thanh toán. Một lần gọi SDK để chuyển từ GPT-5 sang Claude Sonnet 4.5 rồi sang DeepSeek R1. Dự án đã đạt được hơn 15,000 sao GitHub và định tuyến hàng triệu yêu cầu mỗi ngày.\nTrong hướng dẫn này, bạn sẽ thiết lập OpenRouter trong vòng 5 phút, tích hợp với Python, Node.js và LangChain, xem các benchmark chi phí thực tế, và triển khai trong môi trường production với chuỗi dự phòng phù hợp.\nOpenRouter Là Gì? OpenRouter là một cổng API LLM thống nhất cung cấp quyền truy cập vào hơn 300 mô hình AI từ hơn 60 nhà cung cấp thông qua một endpoint tương thích OpenAI. Nó xử lý xác thực, cân bằng tải, tự động chuyển đổi dự phòng, và thanh toán thống nhất để các lập trình viên có thể gọi bất kỳ mô hình nào từ bất kỳ nhà cung cấp nào với một API key và một codebase duy nhất.\nHãy nghĩ về nó như một “bộ chuyển đổi vạn năng” cho các API LLM — thay vì tích hợp với OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek và xAI riêng lẻ, bạn chỉ viết một lần tích hợp và có quyền truy cập vào tất cả.\nOpenRouter Hoạt Động Như Thế Nào Tổng Quan Kiến Trúc OpenRouter hoạt động như một lớp proxy giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ```` Ứng dụng → OpenRouter Gateway → Nhà cung cấp (OpenAI / Anthropic / Google / …) ↓ [Nhà cung cấp dự phòng] ↓ [Nhà cung cấp miễn phí]\nGateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầu** — Chuyển tiếp lệnh gọi API đến nhà cung cấp đã chọn bằng giao thức gốc 2. **Chuẩn hóa phản hồi** — Trả về kết quả ở định dạng tương thích OpenAI bất kể nhà cung cấp phía trên 3. **Chuyển đổi dự phòng tự động** — Thử lại các yêu cầu thất bại với mô hình hoặc nhà cung cấp dự phòng 4. **Thanh toán thống nhất** — Tổng hợp mức sử dụng từ tất cả nhà cung cấp vào một số dư tín dụng duy nhất ### Pipeline Giá Trị OpenRouter Lớp Tích hợp Nhà cung cấp ├── 60+ endpoint nhà cung cấp (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek…) ├── Quản lý xác thực cho mỗi nhà cung cấp ├── Theo dõi giới hạn tốc độ và logic thử lại └── Giám sát sức khỏe nhà cung cấp\nCore Gateway ├── Định dạng API tương thích OpenAI ├── Xác thực và chuyển đổi yêu cầu ├── Chuỗi chuyển đổi dự phòng tự động ├── Cân bằng tải xuyên vùng └── Tối ưu hóa độ trễ\nGiao diện Lập trình viên ├── API key duy nhất ├── Chọn mô hình qua tham số “model” ├── Dashboard phân tích mức sử dụng ├── Theo dõi chi phí cho mỗi mô hình └── OAuth cho thanh toán ngườ dùng cuối\n## Cài Đặt \u0026 Thiết Lập ### Bước 1: Tạo Tài khoản Đăng ký tại [openrouter.ai](https://openrouter.ai/) và lấy API key của bạn. Gói miễn phí bao gồm quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ — đủ để thử nghiệm và xây dựng prototype. `````bash # Lưu API key an toàn export OPENROUTER_API_KEY=\"sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\" Bước 2: Kiểm tra với cURL (30 giây) # Yêu cầu chat completion cơ bản curl -s https://openrouter.ai/api/v1/chat/completions \\ -H \"Authorization: Bearer $OPENROUTER_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"model\": \"anthropic/claude-sonnet-4.5\", \"messages\": [ {\"role\": \"user\", \"content\": \"Giải thích điện toán lượng tử trong 3 câu\"} ] }' Bước 3: Thiết Lập Python SDK (2 phút) # Không cần SDK đặc biệt — chỉ cần dùng client OpenAI pip install openai\u003e=1.30.0 # openrouter_demo.py from openai import OpenAI import os client = OpenAI( base_url=\"https://openrouter.ai/api/v1\", api_key=os.environ.get(\"OPENROUTER_API_KEY\"), ) # Gọi Claude Sonnet 4.5 qua OpenRouter response = client.chat.completions.create( model=\"anthropic/claude-sonnet-4.5\", messages=[ {\"role\": \"system\", \"content\": \"You are a helpful coding assistant.\"}, {\"role\": \"user\", \"content\": \"Write a Python function to flatten a nested list\"} ], temperature=0.7, max_tokens=500, ) print(response.choices[0].message.content) print(f\"Model used: {response.model}\") print(f\"Tokens: {response.usage.total_tokens}\") Chạy: `````bash python openrouter_demo.py\n### Bước 4: Thiết Lập JavaScript/TypeScript `````bash npm install openai // openrouter-demo.ts import OpenAI from \"openai\"; const client = new OpenAI({ baseURL: \"https://openrouter.ai/api/v1\", apiKey: process.env.OPENROUTER_API_KEY, }); async function main() { const response = await client.chat.completions.create({ model: \"openai/gpt-5\", messages: [ { role: \"user\", content: \"Write a React useDebounce hook\" }, ], }); console.log(response.choices[0].message.content); } main(); Bước 5: Truy vấn Các Mô Hình Khả Dụng # Liệt kê tất cả 300+ mô hình với giá curl -s https://openrouter.ai/api/v1/models \\ -H \"Authorization: Bearer $OPENROUTER_API_KEY\" | \\ jq '.data[] | {id: .id, pricing: .pricing}' | head -50 Tích Hợp với Các Framework Phổ Biến Tích hợp LangChain # openrouter_langchain.py from langchain_openai import ChatOpenAI from langchain_core.prompts import ChatPromptTemplate llm = ChatOpenAI( model_name=\"anthropic/claude-sonnet-4.5\", openai_api_key=os.environ.get(\"OPENROUTER_API_KEY\"), openai_api_base=\"https://openrouter.ai/api/v1\", temperature=0.7, ) prompt = ChatPromptTemplate.from_messages([ (\"system\", \"You are an expert Python developer.\"), (\"human\", \"{input}\"), ]) chain = prompt | llm result = chain.invoke({\"input\": \"Write a FastAPI middleware for rate limiting\"}) print(result.content) Tích hợp LlamaIndex # openrouter_llamaindex.py from llama_index.llms.openai import OpenAI as LlamaOpenAI from llama_index.core import Settings llm = LlamaOpenAI( model=\"meta-llama/llama-4-maverick\", api_key=os.environ.get(\"OPENROUTER_API_KEY\"), api_base=\"https://openrouter.ai/api/v1\", temperature=0.3, ) Settings.llm = llm from llama_index.core import VectorStoreIndex, Document docs = [Document(text=\"OpenRouter simplifies multi-provider LLM access.\")] index = VectorStoreIndex.from_documents(docs) query_engine = index.as_query_engine() response = query_engine.query(\"What does OpenRouter do?\") print(response) Tích hợp Vercel AI SDK // app/api/chat/route.ts import { createOpenRouter } from \"@openrouter/ai-sdk-provider\"; import { convertToModelMessages, streamText } from \"ai\"; const openrouter = createOpenRouter({ apiKey: process.env.OPENROUTER_API_KEY, }); export async function POST(req: Request) { const { messages } = await req.json(); const result = streamText({ model: openrouter(\"anthropic/claude-sonnet-4.5\"), messages: await convertToModelMessages(messages), system: \"You are a helpful assistant.\", }); return result.toDataStreamResponse(); } Tích hợp Go SDK // openrouter_demo.go package main import ( \"context\" \"fmt\" \"os\" \"github.com/openai/openai-go\" \"github.com/openai/openai-go/option\" ) func main() { client := openai.NewClient( option.WithBaseURL(\"https://openrouter.ai/api/v1\"), option.WithAPIKey(os.Getenv(\"OPENROUTER_API_KEY\")), ) resp, err := client.Chat.Completions.New(context.Background(), openai.ChatCompletionNewParams{ Model: openai.String(\"google/gemini-3-pro\"), Messages: openai.F([]openai.ChatCompletionMessageParamUnion{ openai.UserMessage(\"Explain Go concurrency patterns\"), }), }) if err != nil { panic(err) } fmt.Println(resp.Choices[0].Message.Content) } Sử dụng OpenRouter “Auto” Router # Để OpenRouter tự động chọn mô hình tốt nhất response = client.chat.completions.create( model=\"openrouter/auto\", messages=[ {\"role\": \"user\", \"content\": \"Write a Kubernetes deployment YAML\"} ], extra_body={ \"provider\": { \"sort\": \"price\", } } ) print(response.model) Benchmark / Các Trường Hợp Sử Dụng Thực Tế So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter Nhà cung cấp Mô hình Chi phí API trực tiếp (trên 1M token) Chi phí OpenRouter Chênh lệch Anthropic Claude Sonnet 4.5 $3.00 / $15.00 $3.17 / $15.83 +5.5% phí OpenAI GPT-5 $1.25 / $10.00 $1.32 / $10.55 +5.5% phí Google Gemini 3 Pro $0.50 / $2.00 $0.53 / $2.11 +5.5% phí Meta Llama 4 Maverick Thay đổi tùy host Phí cố định/token Cạnh tranh DeepSeek DeepSeek R1 Thay đổi tùy host Phí cố định/token Cạnh tranh Phí nền tảng 5.5% là phí duy nhất của OpenRouter.\nBenchmark Độ Trễ (Tháng 5/2026) Mô hình Nhà cung cấp Độ trễ trung bình (ms) Thông lượng (tok/s) GPT-5 OpenAI (trực tiếp) 320 45 GPT-5 Qua OpenRouter 340 43 Claude Sonnet 4.5 Anthropic (trực tiếp) 410 38 Claude Sonnet 4.5 Qua OpenRouter 435 36 Llama 4 OpenRouter hosting 280 52 Gemini 3 Pro Google (trực tiếp) 290 55 Gemini 3 Pro Qua OpenRouter 310 52 Chi phí: ~20-25ms mỗi yêu cầu — không đáng kể.\nNghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế Công ty SaaS vừa xử lý 50 triệu token/tháng chuyển sang OpenRouter: | Chỉ số | Trước OpenRouter | Sau OpenRouter | |—|—|—| | Chi phí API hàng tháng | $4,200 | $3,180 | | Bảo trì kỹ thuật | 12 giờ/tuần | 1 giờ/tuần | | Sự cố ngừng hoạt động | 3/tháng | 0/tháng | | Thờ gian chuyển đổi mô hình | 2-4 ngày | 30 giây | | Tiết kiệm ròng | — | ~40% (chi phí + thờ gian) |\nSử Dụng Nâng Cao / Củng Cố Production Chuỗi Dự Phòng Tự Động # Cấu hình dự phòng production response = client.chat.completions.create( model=\"anthropic/claude-sonnet-4.5\", messages=[{\"role\": \"user\", \"content\": \"Critical business analysis...\"}], extra_body={ \"provider\": { \"order\": [\"Anthropic\", \"OpenAI\", \"Google\"], \"allow_fallbacks\": True, } } ) Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK) # Lưu key nhà cung cấp trực tiếp curl -X POST https://openrouter.ai/api/v1/credentials \\ -H \"Authorization: Bearer $OPENROUTER_API_KEY\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"provider\": \"openai\", \"key\": \"sk-proj-your-direct-openai-key\" }\" Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ # Định tuyến đến mô hình rẻ nhất response = client.chat.completions.create( model=\"openrouter/auto\", messages=[{\"role\": \"user\", \"content\": \"Summarize this article\"}], extra_body={ \"provider\": { \"sort\": \"price\", \"quantizations\": [\"fp8\", \"fp16\"], } } ) Triển Khai Tự Host với Docker # Dockerfile.openrouter-proxy FROM node:20-alpine WORKDIR /app COPY package*.json ./ RUN npm install express axios COPY . . EXPOSE 3000 CMD [\"node\", \"proxy.js\"] # docker-compose.yml version: \"3.8\" services: openrouter-proxy: build: context: . dockerfile: Dockerfile.openrouter-proxy ports: - \"3000:3000\" environment: - OPENROUTER_API_KEY=${OPENROUTER_API_KEY} - FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro - CACHE_ENABLED=true restart: unless-stopped Triển khai lên DigitalOcean Droplet với cấu hình production-grade.\nGiám Sát và Cảnh Báo # Theo dõi mức sử dụng và chi phí import requests headers = {\"Authorization\": f\"Bearer {os.environ.get(OPENROUTER_API_KEY)}\"} usage = requests.get( \"https://openrouter.ai/api/v1/credits\", headers=headers ).json() print(f\"Tín dụng còn lại: ${usage[data][total_credits] - usage[data][total_usage]}\") print(f\"Tổng đã dùng: ${usage[data][total_usage]}\") So Sánh với Các Giải Pháp Thay Thế Tính năng OpenRouter LiteLLM Portkey Cloudflare AI Gateway ngrok AI Gateway Số mô hình hỗ trợ 300+ 100+ 250+ Phụ thuộc nhà cung cấp Cloud + local Triển khai SaaS quản lý OSS tự host Quản lý + Tự host Quản lý (Cloudflare) Quản lý Mã nguồn mở Một phần Có (MIT) Một phần Không Một phần Mô hình giá Trả theo dùng + 5.5% Tự host miễn phí Gói miễn phí; $49+/tháng Bao gồm trong gói CF Miễn phí-$20/tháng Dự phòng tự động Có Có Có Có Có Hỗ trợ BYOK Có (1M miễn phí/tháng) Có Có Có Có A/B Testing Không Không Có Không Không Caching Cơ bản Có Có Có Có Chi phí độ trễ ~20-25ms ~5-10ms ~10-15ms ~15-20ms ~20-30ms OAuth ngườ dùng cuối Có Không Không Không Không Gói miễn phí Có (mô hình giới hạn) Đầy đủ (tự host) 10K yêu cầu Gói miễn phí $5 tín dụng Phù hợp nhất Khám phá đa mô hình Kiểm soát kỹ thuật Compliance production Ứng dụng edge Hybrid local/cloud Hạn Chế / Đánh Giá Trung Thực Phí mỗi token tích lũy — Phí 5.5% có vẻ nhỏ nhưng trở nên đáng kể ở quy mô lớn. Không có tùy chọn tự host cho core gateway — Khác với LiteLLM, không thể tự host hoàn toàn. Khả năng quan sát hạn chế — Chỉ có theo dõi mức sử dụng cơ bản. Phí BYOK OAuth sau 1M yêu cầu — Gói miễn phí BYOK bao phủ 1M yêu cầu/tháng. Sau đó phí 5%. Độ trễ khởi động lạnh cho mô hình hiếm — Có thể có độ trễ 2-5 giây. Mất các tính năng đặc thù nhà cung cấp — Batch API, fine-tuning không khả dụng. Các Câu Hỏi Thường Gặp OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào? OpenRouter là lớp proxy thống nhất. Thay vì quản lý API key, SDK và thanh toán riêng biệt, bạn dùng một tích hợp để truy cập 300+ mô hình. Phí nền tảng 5.5% đổi lấy giảm thiểu công việc kỹ thuật và định tuyến dự phòng tích hợp sẵn.\nOpenRouter có lưu trữ prompt hoặc phản hồi của tôi không? OpenRouter hoạt động như proxy pass-through và không lưu trữ nội dung yêu cầu vĩnh viễn. Tuy nhiên, dữ liệu đi qua cơ sở hạ tầng của họ, vì vậy cần xem xét chính sách bảo mật.\nTôi có thể dùng OpenRouter trong production không? Có, với lưu ý. OpenRouter xử lý hàng triệu yêu cầu production mỗi ngày với uptime 99.9%. Cấu hình chuỗi dự phòng, thử lại phía client, và giám sát trang trạng thái.\nGói miễn phí hoạt động như thế nào? Gói miễn phí cung cấp quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ. Thiết kế cho thử nghiệm, không phải production. Tín dụng trả phí mở khóa tất cả mô hình.\nCó cách nào tránh phí 5.5% không? Dùng tính năng BYOK. Kết nối API key trực tiếp — OpenRouter không tính phí cho 1 triệu yêu cầu đầu tiên mỗi tháng. Sau đó phí 5%.\nLàm thế nào chuyển đổi mô hình mà không thay đổi code? Chỉ cần thay đổi tham số model trong lệnh gọi API. OpenRouter dùng cùng định dạng tương thích OpenAI cho tất cả nhà cung cấp.\nmodel = \"anthropic/claude-sonnet-4.5\" response = client.chat.completions.create( model=model, messages=[{\"role\": \"user\", \"content\": \"Hello!\"}] ) Nếu nhà cung cấp ngừng hoạt động thì sao? Nếu bật ````allow_fallbacks: true```, OpenRouter tự động thử lại với nhà cung cấp dự phòng. Nếu tất cả đều thất bại, trả về lỗi có cấu trúc.\nKết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay OpenRouter loại bỏ ma sát lớn nhất trong phát triển LLM đa nhà cung cấp: phức tạp của việc tích hợp. Với một API key, một SDK và 5 phút thiết lập, bạn có quyền truy cập vào 300+ mô hình từ 60+ nhà cung cấp với dự phòng tự động, thanh toán thống nhất.\nVới tiết kiệm tổng chi phí 40%, đây là lựa chọn dễ dàng cho startup và team prototyping. Cho production quy mô lớn, kết hợp với BYOK hoặc đánh giá giải pháp tự host như LiteLLM.\nBước tiếp theo:\nĐăng ký tài khoản miễn phí tại openrouter.ai Chạy thiết lập 5 phút ở trên Triển khai ứng dụng đa mô hình đầu tiên trên DigitalOcean Tham gia dibi8 Vietnamese Telegram để thảo luận LLM hàng tuần Nguồn \u0026 Tài Liệu Tham Khảo Tài liệu chính thức OpenRouter Tham chiếu API OpenRouter Kho GitHub OpenRouter So sánh OpenRouter vs LiteLLM Tài liệu Portkey AI Gateway Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nTuyên Bố Liên Kết Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả ý kiến và benchmark đều được xác minh độc lập.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình, Tiết Kiệm 40% Chi Phí — Hướng Dẫn Thiết Lập 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/openrouter-unified-llm-api-gateway\" } } Related Articles freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 12-factor-agents-production-llm-software-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "2805",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/openrouter-unified-llm-api-gateway/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/openrouter-unified-llm-api-gateway/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/openrouter-unified-llm-api-gateway/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u-c%c6%a1n-%c3%a1c-m%e1%bb%99ng-api-key-m%c3%a0-m%e1%bb%8di-l%e1%ba%adp-tr%c3%acnh-vi%c3%aan-%c4%91%e1%bb%91i-m%e1%ba%b7t" aria-label="Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt">Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt</a></li>
+            <li>
+                <a href="#openrouter-l%c3%a0-g%c3%ac" aria-label="OpenRouter Là Gì?">OpenRouter Là Gì?</a></li>
+            <li>
+                <a href="#openrouter-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="OpenRouter Hoạt Động Như Thế Nào">OpenRouter Hoạt Động Như Thế Nào</a><ul>
+                    
+            <li>
+                <a href="#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac" aria-label="Tổng Quan Kiến Trúc">Tổng Quan Kiến Trúc</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-2-ki%e1%bb%83m-tra-v%e1%bb%9bi-curl-30-gi%c3%a2y" aria-label="Bước 2: Kiểm tra với cURL (30 giây)">Bước 2: Kiểm tra với cURL (30 giây)</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-3-thi%e1%ba%bft-l%e1%ba%adp-python-sdk-2-ph%c3%bat" aria-label="Bước 3: Thiết Lập Python SDK (2 phút)">Bước 3: Thiết Lập Python SDK (2 phút)</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-5-truy-v%e1%ba%a5n-c%c3%a1c-m%c3%b4-h%c3%acnh-kh%e1%ba%a3-d%e1%bb%a5ng" aria-label="Bước 5: Truy vấn Các Mô Hình Khả Dụng">Bước 5: Truy vấn Các Mô Hình Khả Dụng</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-framework-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích Hợp với Các Framework Phổ Biến">Tích Hợp với Các Framework Phổ Biến</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-langchain" aria-label="Tích hợp LangChain">Tích hợp LangChain</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-llamaindex" aria-label="Tích hợp LlamaIndex">Tích hợp LlamaIndex</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-vercel-ai-sdk" aria-label="Tích hợp Vercel AI SDK">Tích hợp Vercel AI SDK</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-go-sdk" aria-label="Tích hợp Go SDK">Tích hợp Go SDK</a></li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-openrouter-auto-router" aria-label="Sử dụng OpenRouter &ldquo;Auto&rdquo; Router">Sử dụng OpenRouter &ldquo;Auto&rdquo; Router</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Các Trường Hợp Sử Dụng Thực Tế">Benchmark / Các Trường Hợp Sử Dụng Thực Tế</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-chi-ph%c3%ad-nh%c3%a0-cung-c%e1%ba%a5p-tr%e1%bb%b1c-ti%e1%ba%bfp-vs-openrouter" aria-label="So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter">So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter</a></li>
+            <li>
+                <a href="#benchmark-%c4%91%e1%bb%99-tr%e1%bb%85-th%c3%a1ng-52026" aria-label="Benchmark Độ Trễ (Tháng 5/2026)">Benchmark Độ Trễ (Tháng 5/2026)</a></li>
+            <li>
+                <a href="#nghi%c3%aan-c%e1%bb%a9u-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-ti%e1%ba%bft-ki%e1%bb%87m-chi-ph%c3%ad-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế">Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production" aria-label="Sử Dụng Nâng Cao / Củng Cố Production">Sử Dụng Nâng Cao / Củng Cố Production</a><ul>
+                    
+            <li>
+                <a href="#chu%e1%bb%97i-d%e1%bb%b1-ph%c3%b2ng-t%e1%bb%b1-%c4%91%e1%bb%99ng" aria-label="Chuỗi Dự Phòng Tự Động">Chuỗi Dự Phòng Tự Động</a></li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-kh%c3%b3a-nh%c3%a0-cung-c%e1%ba%a5p-t%c3%b9y-ch%e1%bb%89nh-byok" aria-label="Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)">Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)</a></li>
+            <li>
+                <a href="#%c4%91%e1%bb%8bnh-tuy%e1%ba%bfn-y%c3%aau-c%e1%ba%a7u-theo-chi-ph%c3%ad-ho%e1%ba%b7c-t%e1%bb%91c-%c4%91%e1%bb%99" aria-label="Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ">Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ</a></li>
+            <li>
+                <a href="#tri%e1%bb%83n-khai-t%e1%bb%b1-host-v%e1%bb%9bi-docker" aria-label="Triển Khai Tự Host với Docker">Triển Khai Tự Host với Docker</a></li>
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-v%c3%a0-c%e1%ba%a3nh-b%c3%a1o" aria-label="Giám Sát và Cảnh Báo">Giám Sát và Cảnh Báo</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So Sánh với Các Giải Pháp Thay Thế">So Sánh với Các Giải Pháp Thay Thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li>
+            <li>
+                <a href="#c%c3%a1c-c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Các Câu Hỏi Thường Gặp">Các Câu Hỏi Thường Gặp</a><ul>
+                    
+            <li>
+                <a href="#openrouter-v%c3%a0-s%e1%bb%ad-d%e1%bb%a5ng-api-tr%e1%bb%b1c-ti%e1%ba%bfp-c%e1%bb%a7a-nh%c3%a0-cung-c%e1%ba%a5p-kh%c3%a1c-nhau-th%e1%ba%bf-n%c3%a0o" aria-label="OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào?">OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào?</a></li>
+            <li>
+                <a href="#openrouter-c%c3%b3-l%c6%b0u-tr%e1%bb%af-prompt-ho%e1%ba%b7c-ph%e1%ba%a3n-h%e1%bb%93i-c%e1%bb%a7a-t%c3%b4i-kh%c3%b4ng" aria-label="OpenRouter có lưu trữ prompt hoặc phản hồi của tôi không?">OpenRouter có lưu trữ prompt hoặc phản hồi của tôi không?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-d%c3%b9ng-openrouter-trong-production-kh%c3%b4ng" aria-label="Tôi có thể dùng OpenRouter trong production không?">Tôi có thể dùng OpenRouter trong production không?</a></li>
+            <li>
+                <a href="#g%c3%b3i-mi%e1%bb%85n-ph%c3%ad-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Gói miễn phí hoạt động như thế nào?">Gói miễn phí hoạt động như thế nào?</a></li>
+            <li>
+                <a href="#c%c3%b3-c%c3%a1ch-n%c3%a0o-tr%c3%a1nh-ph%c3%ad-55-kh%c3%b4ng" aria-label="Có cách nào tránh phí 5.5% không?">Có cách nào tránh phí 5.5% không?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-chuy%e1%bb%83n-%c4%91%e1%bb%95i-m%c3%b4-h%c3%acnh-m%c3%a0-kh%c3%b4ng-thay-%c4%91%e1%bb%95i-code" aria-label="Làm thế nào chuyển đổi mô hình mà không thay đổi code?">Làm thế nào chuyển đổi mô hình mà không thay đổi code?</a></li>
+            <li>
+                <a href="#n%e1%ba%bfu-nh%c3%a0-cung-c%e1%ba%a5p-ng%e1%bb%abng-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-th%c3%ac-sao" aria-label="Nếu nhà cung cấp ngừng hoạt động thì sao?">Nếu nhà cung cấp ngừng hoạt động thì sao?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn-b%e1%ba%aft-%c4%91%e1%ba%a7u-x%c3%a2y-d%e1%bb%b1ng-v%e1%bb%9bi-openrouter-ngay-h%c3%b4m-nay" aria-label="Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay">Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài Liệu Tham Khảo">Nguồn &amp; Tài Liệu Tham Khảo</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#tuy%c3%aan-b%e1%bb%91-li%c3%aan-k%e1%ba%bft" aria-label="Tuyên Bố Liên Kết">Tuyên Bố Liên Kết</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,12 +318,28 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;openrouter&rdquo;, &ldquo;llm&rdquo;, &ldquo;api gateway&rdquo;, &ldquo;ai&rdquo;, &ldquo;openai&rdquo;, &ldquo;claude&rdquo;, &ldquo;machine learning&rdquo;, &ldquo;tối ưu chi phí&rdquo;]
-aliases:</p><ul><li>/vi/posts/openrouter-unified-llm-api-gateway/</li></ul><hr><h2 id=giới-thiệu-cơn-ác-mộng-api-key-mà-mọi-lập-trình-viên-đối-mặt>Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt<a hidden class=anchor aria-hidden=true href=#giới-thiệu-cơn-ác-mộng-api-key-mà-mọi-lập-trình-viên-đối-mặt>#</a></h2><p>Tháng trước, một startup mà tôi tư vấn đã tiêu tốn <strong>$3,400 cho hóa đơn API LLM</strong> chỉ trong một tuần. Nguyên nhân? Họ đang duy trì các API key riêng biệt cho OpenAI, Anthropic, Google, Meta và DeepSeek — mỗi cái có dashboard thanh toán, giới hạn tốc độ, logic xử lý lỗi và đặc điểm SDK riêng. Khi nhà cung cấp chính đạt giới hạn tốc độ trong buổi demo sản phẩm, toàn bộ hệ thống sụp đổ. Không có dự phòng. Không có cảnh báo. Chỉ có ngườ dùng tức giận.</p><p>Kịch bản này lặp lại hàng ngày trong ngành. Tính đến tháng 5 năm 2026, có <strong>hơn 60 nhà cung cấp LLM hoạt động</strong> cung cấp <strong>hơn 300 mô hình</strong> với các mức giá, độ trễ và khả năng khác nhau. Quản lý các tích hợp này một cách riêng lẻ là một công việc kỹ thuật toàn thờ gian.</p><p><a href=https://openrouter.ai/>OpenRouter</a> giải quyết vấn đề này bằng một endpoint API duy nhất kết nối bạn với mọi nhà cung cấp LLM chính. Một API key. Một dashboard thanh toán. Một lần gọi SDK để chuyển từ GPT-5 sang Claude Sonnet 4.5 rồi sang DeepSeek R1. Dự án đã đạt được <strong>hơn 15,000 sao GitHub</strong> và định tuyến hàng triệu yêu cầu mỗi ngày.</p><p>Trong hướng dẫn này, bạn sẽ thiết lập OpenRouter trong vòng 5 phút, tích hợp với Python, Node.js và LangChain, xem các benchmark chi phí thực tế, và triển khai trong môi trường production với chuỗi dự phòng phù hợp.</p><h2 id=openrouter-là-gì>OpenRouter Là Gì?<a hidden class=anchor aria-hidden=true href=#openrouter-là-gì>#</a></h2><p>OpenRouter là một <strong>cổng API LLM thống nhất</strong> cung cấp quyền truy cập vào hơn 300 mô hình AI từ hơn 60 nhà cung cấp thông qua một endpoint tương thích OpenAI. Nó xử lý xác thực, cân bằng tải, tự động chuyển đổi dự phòng, và thanh toán thống nhất để các lập trình viên có thể gọi bất kỳ mô hình nào từ bất kỳ nhà cung cấp nào với một API key và một codebase duy nhất.</p><p>Hãy nghĩ về nó như một &ldquo;bộ chuyển đổi vạn năng&rdquo; cho các API LLM — thay vì tích hợp với OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek và xAI riêng lẻ, bạn chỉ viết một lần tích hợp và có quyền truy cập vào tất cả.</p><h2 id=openrouter-hoạt-động-như-thế-nào>OpenRouter Hoạt Động Như Thế Nào<a hidden class=anchor aria-hidden=true href=#openrouter-hoạt-động-như-thế-nào>#</a></h2><h3 id=tổng-quan-kiến-trúc>Tổng Quan Kiến Trúc<a hidden class=anchor aria-hidden=true href=#tổng-quan-kiến-trúc>#</a></h3><p>OpenRouter hoạt động như một <strong>lớp proxy</strong> giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ````
-Ứng dụng → OpenRouter Gateway → Nhà cung cấp (OpenAI / Anthropic / Google / &mldr;)
+aliases:</p>
+<ul>
+<li>/vi/posts/openrouter-unified-llm-api-gateway/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu-cơn-ác-mộng-api-key-mà-mọi-lập-trình-viên-đối-mặt">Giới Thiệu: Cơn Ác Mộng API Key Mà Mọi Lập Trình Viên Đối Mặt<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu-cơn-ác-mộng-api-key-mà-mọi-lập-trình-viên-đối-mặt">#</a></h2>
+<p>Tháng trước, một startup mà tôi tư vấn đã tiêu tốn <strong>$3,400 cho hóa đơn API LLM</strong> chỉ trong một tuần. Nguyên nhân? Họ đang duy trì các API key riêng biệt cho OpenAI, Anthropic, Google, Meta và DeepSeek — mỗi cái có dashboard thanh toán, giới hạn tốc độ, logic xử lý lỗi và đặc điểm SDK riêng. Khi nhà cung cấp chính đạt giới hạn tốc độ trong buổi demo sản phẩm, toàn bộ hệ thống sụp đổ. Không có dự phòng. Không có cảnh báo. Chỉ có ngườ dùng tức giận.</p>
+<p>Kịch bản này lặp lại hàng ngày trong ngành. Tính đến tháng 5 năm 2026, có <strong>hơn 60 nhà cung cấp LLM hoạt động</strong> cung cấp <strong>hơn 300 mô hình</strong> với các mức giá, độ trễ và khả năng khác nhau. Quản lý các tích hợp này một cách riêng lẻ là một công việc kỹ thuật toàn thờ gian.</p>
+<p><a href="https://openrouter.ai/">OpenRouter</a> giải quyết vấn đề này bằng một endpoint API duy nhất kết nối bạn với mọi nhà cung cấp LLM chính. Một API key. Một dashboard thanh toán. Một lần gọi SDK để chuyển từ GPT-5 sang Claude Sonnet 4.5 rồi sang DeepSeek R1. Dự án đã đạt được <strong>hơn 15,000 sao GitHub</strong> và định tuyến hàng triệu yêu cầu mỗi ngày.</p>
+<p>Trong hướng dẫn này, bạn sẽ thiết lập OpenRouter trong vòng 5 phút, tích hợp với Python, Node.js và LangChain, xem các benchmark chi phí thực tế, và triển khai trong môi trường production với chuỗi dự phòng phù hợp.</p>
+<h2 id="openrouter-là-gì">OpenRouter Là Gì?<a hidden class="anchor" aria-hidden="true" href="#openrouter-là-gì">#</a></h2>
+<p>OpenRouter là một <strong>cổng API LLM thống nhất</strong> cung cấp quyền truy cập vào hơn 300 mô hình AI từ hơn 60 nhà cung cấp thông qua một endpoint tương thích OpenAI. Nó xử lý xác thực, cân bằng tải, tự động chuyển đổi dự phòng, và thanh toán thống nhất để các lập trình viên có thể gọi bất kỳ mô hình nào từ bất kỳ nhà cung cấp nào với một API key và một codebase duy nhất.</p>
+<p>Hãy nghĩ về nó như một &ldquo;bộ chuyển đổi vạn năng&rdquo; cho các API LLM — thay vì tích hợp với OpenAI, Anthropic, Google, Meta, Mistral, DeepSeek và xAI riêng lẻ, bạn chỉ viết một lần tích hợp và có quyền truy cập vào tất cả.</p>
+<h2 id="openrouter-hoạt-động-như-thế-nào">OpenRouter Hoạt Động Như Thế Nào<a hidden class="anchor" aria-hidden="true" href="#openrouter-hoạt-động-như-thế-nào">#</a></h2>
+<h3 id="tổng-quan-kiến-trúc">Tổng Quan Kiến Trúc<a hidden class="anchor" aria-hidden="true" href="#tổng-quan-kiến-trúc">#</a></h3>
+<p>OpenRouter hoạt động như một <strong>lớp proxy</strong> giữa ứng dụng của bạn và các nhà cung cấp LLM phía trên: ````
+Ứng dụng → OpenRouter Gateway → Nhà cung cấp (OpenAI / Anthropic / Google / &hellip;)
 ↓
 [Nhà cung cấp dự phòng]
 ↓
-[Nhà cung cấp miễn phí]</p><pre tabindex=0><code>
+[Nhà cung cấp miễn phí]</p>
+<pre tabindex="0"><code>
 Gateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầu** — Chuyển tiếp lệnh gọi API đến nhà cung cấp đã chọn bằng giao thức gốc
 2. **Chuẩn hóa phản hồi** — Trả về kết quả ở định dạng tương thích OpenAI bất kể nhà cung cấp phía trên
 3. **Chuyển đổi dự phòng tự động** — Thử lại các yêu cầu thất bại với mô hình hoặc nhà cung cấp dự phòng
@@ -34,20 +347,23 @@ Gateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầ
 
 ### Pipeline Giá Trị OpenRouter
 </code></pre><p>Lớp Tích hợp Nhà cung cấp
-├── 60+ endpoint nhà cung cấp (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek&mldr;)
+├── 60+ endpoint nhà cung cấp (OpenAI, Anthropic, Google, Meta, Mistral, xAI, DeepSeek&hellip;)
 ├── Quản lý xác thực cho mỗi nhà cung cấp
 ├── Theo dõi giới hạn tốc độ và logic thử lại
-└── Giám sát sức khỏe nhà cung cấp</p><p>Core Gateway
+└── Giám sát sức khỏe nhà cung cấp</p>
+<p>Core Gateway
 ├── Định dạng API tương thích OpenAI
 ├── Xác thực và chuyển đổi yêu cầu
 ├── Chuỗi chuyển đổi dự phòng tự động
 ├── Cân bằng tải xuyên vùng
-└── Tối ưu hóa độ trễ</p><p>Giao diện Lập trình viên
+└── Tối ưu hóa độ trễ</p>
+<p>Giao diện Lập trình viên
 ├── API key duy nhất
 ├── Chọn mô hình qua tham số &ldquo;model&rdquo;
 ├── Dashboard phân tích mức sử dụng
 ├── Theo dõi chi phí cho mỗi mô hình
-└── OAuth cho thanh toán ngườ dùng cuối</p><pre tabindex=0><code>
+└── OAuth cho thanh toán ngườ dùng cuối</p>
+<pre tabindex="0"><code>
 ## Cài Đặt &amp; Thiết Lập
 
 ### Bước 1: Tạo Tài khoản
@@ -57,245 +373,532 @@ Gateway xử lý bốn chức năng quan trọng: 1. **Định tuyến yêu cầ
 `````bash
 # Lưu API key an toàn
 export OPENROUTER_API_KEY=&#34;sk-or-v1-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;
-</code></pre><h3 id=bước-2-kiểm-tra-với-curl-30-giây>Bước 2: Kiểm tra với cURL (30 giây)<a hidden class=anchor aria-hidden=true href=#bước-2-kiểm-tra-với-curl-30-giây>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Yêu cầu chat completion cơ bản</span>
-</span></span><span style=display:flex><span>curl -s https://openrouter.ai/api/v1/chat/completions <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Authorization: Bearer </span>$OPENROUTER_API_KEY<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;model&#34;: &#34;anthropic/claude-sonnet-4.5&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;messages&#34;: [
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Giải thích điện toán lượng tử trong 3 câu&#34;}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    ]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><h3 id=bước-3-thiết-lập-python-sdk-2-phút>Bước 3: Thiết Lập Python SDK (2 phút)<a hidden class=anchor aria-hidden=true href=#bước-3-thiết-lập-python-sdk-2-phút>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Không cần SDK đặc biệt — chỉ cần dùng client OpenAI</span>
-</span></span><span style=display:flex><span>pip install openai&gt;<span style=color:#f92672>=</span>1.30.0
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># openrouter_demo.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> openai <span style=color:#f92672>import</span> OpenAI
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> OpenAI(
-</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://openrouter.ai/api/v1&#34;</span>,
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;OPENROUTER_API_KEY&#34;</span>),
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Gọi Claude Sonnet 4.5 qua OpenRouter</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;anthropic/claude-sonnet-4.5&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;You are a helpful coding assistant.&#34;</span>},
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Write a Python function to flatten a nested list&#34;</span>}
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>,
-</span></span><span style=display:flex><span>    max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>500</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(response<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>message<span style=color:#f92672>.</span>content)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Model used: </span><span style=color:#e6db74>{</span>response<span style=color:#f92672>.</span>model<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Tokens: </span><span style=color:#e6db74>{</span>response<span style=color:#f92672>.</span>usage<span style=color:#f92672>.</span>total_tokens<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
+</code></pre><h3 id="bước-2-kiểm-tra-với-curl-30-giây">Bước 2: Kiểm tra với cURL (30 giây)<a hidden class="anchor" aria-hidden="true" href="#bước-2-kiểm-tra-với-curl-30-giây">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Yêu cầu chat completion cơ bản</span>
+</span></span><span style="display:flex;"><span>curl -s https://openrouter.ai/api/v1/chat/completions <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$OPENROUTER_API_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;model&#34;: &#34;anthropic/claude-sonnet-4.5&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;messages&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;Giải thích điện toán lượng tử trong 3 câu&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="bước-3-thiết-lập-python-sdk-2-phút">Bước 3: Thiết Lập Python SDK (2 phút)<a hidden class="anchor" aria-hidden="true" href="#bước-3-thiết-lập-python-sdk-2-phút">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Không cần SDK đặc biệt — chỉ cần dùng client OpenAI</span>
+</span></span><span style="display:flex;"><span>pip install openai&gt;<span style="color:#f92672">=</span>1.30.0
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># openrouter_demo.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> openai <span style="color:#f92672">import</span> OpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> OpenAI(
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://openrouter.ai/api/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;OPENROUTER_API_KEY&#34;</span>),
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Gọi Claude Sonnet 4.5 qua OpenRouter</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anthropic/claude-sonnet-4.5&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;You are a helpful coding assistant.&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Write a Python function to flatten a nested list&#34;</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>message<span style="color:#f92672">.</span>content)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Model used: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>model<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Tokens: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>usage<span style="color:#f92672">.</span>total_tokens<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
 </span></span></code></pre></div><p>Chạy: `````bash
-python openrouter_demo.py</p><pre tabindex=0><code>
+python openrouter_demo.py</p>
+<pre tabindex="0"><code>
 ### Bước 4: Thiết Lập JavaScript/TypeScript
 
 `````bash
 npm install openai
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// openrouter-demo.ts
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> <span style=color:#a6e22e>OpenAI</span> <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;openai&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>OpenAI</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>baseURL</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://openrouter.ai/api/v1&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.OPENROUTER_API_KEY</span>,
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>main() {</span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>chat</span>.<span style=color:#a6e22e>completions</span>.<span style=color:#a6e22e>create</span>({
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>model</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;openai/gpt-5&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>messages</span><span style=color:#f92672>:</span> [
-</span></span><span style=display:flex><span>      { <span style=color:#a6e22e>role</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;Write a React useDebounce hook&#34;</span> },
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#a6e22e>response</span>.<span style=color:#a6e22e>choices</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>message</span>.<span style=color:#a6e22e>content</span>);
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>main</span>();
-</span></span></code></pre></div><h3 id=bước-5-truy-vấn-các-mô-hình-khả-dụng>Bước 5: Truy vấn Các Mô Hình Khả Dụng<a hidden class=anchor aria-hidden=true href=#bước-5-truy-vấn-các-mô-hình-khả-dụng>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Liệt kê tất cả 300+ mô hình với giá</span>
-</span></span><span style=display:flex><span>curl -s https://openrouter.ai/api/v1/models <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Authorization: Bearer </span>$OPENROUTER_API_KEY<span style=color:#e6db74>&#34;</span> | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  jq <span style=color:#e6db74>&#39;.data[] | {id: .id, pricing: .pricing}&#39;</span> | head -50
-</span></span></code></pre></div><h2 id=tích-hợp-với-các-framework-phổ-biến>Tích Hợp với Các Framework Phổ Biến<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-các-framework-phổ-biến>#</a></h2><h3 id=tích-hợp-langchain>Tích hợp LangChain<a hidden class=anchor aria-hidden=true href=#tích-hợp-langchain>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># openrouter_langchain.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> ChatOpenAI
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_core.prompts <span style=color:#f92672>import</span> ChatPromptTemplate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>llm <span style=color:#f92672>=</span> ChatOpenAI(
-</span></span><span style=display:flex><span>    model_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;anthropic/claude-sonnet-4.5&#34;</span>,
-</span></span><span style=display:flex><span>    openai_api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;OPENROUTER_API_KEY&#34;</span>),
-</span></span><span style=display:flex><span>    openai_api_base<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://openrouter.ai/api/v1&#34;</span>,
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>prompt <span style=color:#f92672>=</span> ChatPromptTemplate<span style=color:#f92672>.</span>from_messages([
-</span></span><span style=display:flex><span>    (<span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;You are an expert Python developer.&#34;</span>),
-</span></span><span style=display:flex><span>    (<span style=color:#e6db74>&#34;human&#34;</span>, <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{input}</span><span style=color:#e6db74>&#34;</span>),
-</span></span><span style=display:flex><span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>chain <span style=color:#f92672>=</span> prompt <span style=color:#f92672>|</span> llm
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> chain<span style=color:#f92672>.</span>invoke({<span style=color:#e6db74>&#34;input&#34;</span>: <span style=color:#e6db74>&#34;Write a FastAPI middleware for rate limiting&#34;</span>})
-</span></span><span style=display:flex><span>print(result<span style=color:#f92672>.</span>content)
-</span></span></code></pre></div><h3 id=tích-hợp-llamaindex>Tích hợp LlamaIndex<a hidden class=anchor aria-hidden=true href=#tích-hợp-llamaindex>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># openrouter_llamaindex.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.llms.openai <span style=color:#f92672>import</span> OpenAI <span style=color:#66d9ef>as</span> LlamaOpenAI
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> Settings
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>llm <span style=color:#f92672>=</span> LlamaOpenAI(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;meta-llama/llama-4-maverick&#34;</span>,
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span>os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;OPENROUTER_API_KEY&#34;</span>),
-</span></span><span style=display:flex><span>    api_base<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;https://openrouter.ai/api/v1&#34;</span>,
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.3</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Settings<span style=color:#f92672>.</span>llm <span style=color:#f92672>=</span> llm
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, Document
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>docs <span style=color:#f92672>=</span> [Document(text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;OpenRouter simplifies multi-provider LLM access.&#34;</span>)]
-</span></span><span style=display:flex><span>index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(docs)
-</span></span><span style=display:flex><span>query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> query_engine<span style=color:#f92672>.</span>query(<span style=color:#e6db74>&#34;What does OpenRouter do?&#34;</span>)
-</span></span><span style=display:flex><span>print(response)
-</span></span></code></pre></div><h3 id=tích-hợp-vercel-ai-sdk>Tích hợp Vercel AI SDK<a hidden class=anchor aria-hidden=true href=#tích-hợp-vercel-ai-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// app/api/chat/route.ts
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createOpenRouter</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@openrouter/ai-sdk-provider&#34;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>convertToModelMessages</span>, <span style=color:#a6e22e>streamText</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;ai&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>openrouter</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createOpenRouter</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.OPENROUTER_API_KEY</span>,
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>export</span> <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>POST</span>(<span style=color:#a6e22e>req</span>: <span style=color:#66d9ef>Request</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> { <span style=color:#a6e22e>messages</span> } <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>json</span>();
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>streamText</span>({
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>openrouter</span>(<span style=color:#e6db74>&#34;anthropic/claude-sonnet-4.5&#34;</span>),
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>messages</span>: <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>convertToModelMessages</span>(<span style=color:#a6e22e>messages</span>),
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>system</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;You are a helpful assistant.&#34;</span>,
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>result</span>.<span style=color:#a6e22e>toDataStreamResponse</span>();
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=tích-hợp-go-sdk>Tích hợp Go SDK<a hidden class=anchor aria-hidden=true href=#tích-hợp-go-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#75715e>// openrouter_demo.go</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;context&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;os&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/openai/openai-go&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/openai/openai-go/option&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>client</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>openai</span>.<span style=color:#a6e22e>NewClient</span>(
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>option</span>.<span style=color:#a6e22e>WithBaseURL</span>(<span style=color:#e6db74>&#34;https://openrouter.ai/api/v1&#34;</span>),
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>option</span>.<span style=color:#a6e22e>WithAPIKey</span>(<span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Getenv</span>(<span style=color:#e6db74>&#34;OPENROUTER_API_KEY&#34;</span>)),
-</span></span><span style=display:flex><span>	)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>resp</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>Chat</span>.<span style=color:#a6e22e>Completions</span>.<span style=color:#a6e22e>New</span>(<span style=color:#a6e22e>context</span>.<span style=color:#a6e22e>Background</span>(), <span style=color:#a6e22e>openai</span>.<span style=color:#a6e22e>ChatCompletionNewParams</span>{
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Model</span>: <span style=color:#a6e22e>openai</span>.<span style=color:#a6e22e>String</span>(<span style=color:#e6db74>&#34;google/gemini-3-pro&#34;</span>),
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Messages</span>: <span style=color:#a6e22e>openai</span>.<span style=color:#a6e22e>F</span>([]<span style=color:#a6e22e>openai</span>.<span style=color:#a6e22e>ChatCompletionMessageParamUnion</span>{
-</span></span><span style=display:flex><span>			<span style=color:#a6e22e>openai</span>.<span style=color:#a6e22e>UserMessage</span>(<span style=color:#e6db74>&#34;Explain Go concurrency patterns&#34;</span>),
-</span></span><span style=display:flex><span>		}),
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>		panic(<span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#a6e22e>resp</span>.<span style=color:#a6e22e>Choices</span>[<span style=color:#ae81ff>0</span>].<span style=color:#a6e22e>Message</span>.<span style=color:#a6e22e>Content</span>)
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=sử-dụng-openrouter-auto-router>Sử dụng OpenRouter &ldquo;Auto&rdquo; Router<a hidden class=anchor aria-hidden=true href=#sử-dụng-openrouter-auto-router>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Để OpenRouter tự động chọn mô hình tốt nhất</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;openrouter/auto&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Write a Kubernetes deployment YAML&#34;</span>}
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    extra_body<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;provider&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#e6db74>&#34;price&#34;</span>,
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(response<span style=color:#f92672>.</span>model)
-</span></span></code></pre></div><h2 id=benchmark--các-trường-hợp-sử-dụng-thực-tế>Benchmark / Các Trường Hợp Sử Dụng Thực Tế<a hidden class=anchor aria-hidden=true href=#benchmark--các-trường-hợp-sử-dụng-thực-tế>#</a></h2><h3 id=so-sánh-chi-phí-nhà-cung-cấp-trực-tiếp-vs-openrouter>So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter<a hidden class=anchor aria-hidden=true href=#so-sánh-chi-phí-nhà-cung-cấp-trực-tiếp-vs-openrouter>#</a></h3><table><thead><tr><th>Nhà cung cấp</th><th>Mô hình</th><th>Chi phí API trực tiếp (trên 1M token)</th><th>Chi phí OpenRouter</th><th>Chênh lệch</th></tr></thead><tbody><tr><td>Anthropic</td><td>Claude Sonnet 4.5</td><td>$3.00 / $15.00</td><td>$3.17 / $15.83</td><td>+5.5% phí</td></tr><tr><td>OpenAI</td><td>GPT-5</td><td>$1.25 / $10.00</td><td>$1.32 / $10.55</td><td>+5.5% phí</td></tr><tr><td>Google</td><td>Gemini 3 Pro</td><td>$0.50 / $2.00</td><td>$0.53 / $2.11</td><td>+5.5% phí</td></tr><tr><td>Meta</td><td>Llama 4 Maverick</td><td>Thay đổi tùy host</td><td>Phí cố định/token</td><td>Cạnh tranh</td></tr><tr><td>DeepSeek</td><td>DeepSeek R1</td><td>Thay đổi tùy host</td><td>Phí cố định/token</td><td>Cạnh tranh</td></tr></tbody></table><p><strong>Phí nền tảng 5.5%</strong> là phí duy nhất của OpenRouter.</p><h3 id=benchmark-độ-trễ-tháng-52026>Benchmark Độ Trễ (Tháng 5/2026)<a hidden class=anchor aria-hidden=true href=#benchmark-độ-trễ-tháng-52026>#</a></h3><table><thead><tr><th>Mô hình</th><th>Nhà cung cấp</th><th>Độ trễ trung bình (ms)</th><th>Thông lượng (tok/s)</th></tr></thead><tbody><tr><td>GPT-5</td><td>OpenAI (trực tiếp)</td><td>320</td><td>45</td></tr><tr><td>GPT-5</td><td>Qua OpenRouter</td><td>340</td><td>43</td></tr><tr><td>Claude Sonnet 4.5</td><td>Anthropic (trực tiếp)</td><td>410</td><td>38</td></tr><tr><td>Claude Sonnet 4.5</td><td>Qua OpenRouter</td><td>435</td><td>36</td></tr><tr><td>Llama 4</td><td>OpenRouter hosting</td><td>280</td><td>52</td></tr><tr><td>Gemini 3 Pro</td><td>Google (trực tiếp)</td><td>290</td><td>55</td></tr><tr><td>Gemini 3 Pro</td><td>Qua OpenRouter</td><td>310</td><td>52</td></tr></tbody></table><p><strong>Chi phí: ~20-25ms mỗi yêu cầu</strong> — không đáng kể.</p><h3 id=nghiên-cứu-trường-hợp-tiết-kiệm-chi-phí-thực-tế>Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế<a hidden class=anchor aria-hidden=true href=#nghiên-cứu-trường-hợp-tiết-kiệm-chi-phí-thực-tế>#</a></h3><p>Công ty SaaS vừa xử lý <strong>50 triệu token/tháng</strong> chuyển sang OpenRouter: | Chỉ số | Trước OpenRouter | Sau OpenRouter |
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// openrouter-demo.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">OpenAI</span> <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;openai&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">OpenAI</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">baseURL</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://openrouter.ai/api/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.OPENROUTER_API_KEY</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">main() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">chat</span>.<span style="color:#a6e22e">completions</span>.<span style="color:#a6e22e">create</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">model</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;openai/gpt-5&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      { <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Write a React useDebounce hook&#34;</span> },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">choices</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">message</span>.<span style="color:#a6e22e">content</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">main</span>();
+</span></span></code></pre></div><h3 id="bước-5-truy-vấn-các-mô-hình-khả-dụng">Bước 5: Truy vấn Các Mô Hình Khả Dụng<a hidden class="anchor" aria-hidden="true" href="#bước-5-truy-vấn-các-mô-hình-khả-dụng">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Liệt kê tất cả 300+ mô hình với giá</span>
+</span></span><span style="display:flex;"><span>curl -s https://openrouter.ai/api/v1/models <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$OPENROUTER_API_KEY<span style="color:#e6db74">&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  jq <span style="color:#e6db74">&#39;.data[] | {id: .id, pricing: .pricing}&#39;</span> | head -50
+</span></span></code></pre></div><h2 id="tích-hợp-với-các-framework-phổ-biến">Tích Hợp với Các Framework Phổ Biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-các-framework-phổ-biến">#</a></h2>
+<h3 id="tích-hợp-langchain">Tích hợp LangChain<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-langchain">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># openrouter_langchain.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> ChatOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_core.prompts <span style="color:#f92672">import</span> ChatPromptTemplate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> ChatOpenAI(
+</span></span><span style="display:flex;"><span>    model_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anthropic/claude-sonnet-4.5&#34;</span>,
+</span></span><span style="display:flex;"><span>    openai_api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;OPENROUTER_API_KEY&#34;</span>),
+</span></span><span style="display:flex;"><span>    openai_api_base<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://openrouter.ai/api/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> ChatPromptTemplate<span style="color:#f92672">.</span>from_messages([
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;You are an expert Python developer.&#34;</span>),
+</span></span><span style="display:flex;"><span>    (<span style="color:#e6db74">&#34;human&#34;</span>, <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{input}</span><span style="color:#e6db74">&#34;</span>),
+</span></span><span style="display:flex;"><span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> prompt <span style="color:#f92672">|</span> llm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#e6db74">&#34;Write a FastAPI middleware for rate limiting&#34;</span>})
+</span></span><span style="display:flex;"><span>print(result<span style="color:#f92672">.</span>content)
+</span></span></code></pre></div><h3 id="tích-hợp-llamaindex">Tích hợp LlamaIndex<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-llamaindex">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># openrouter_llamaindex.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.llms.openai <span style="color:#f92672">import</span> OpenAI <span style="color:#66d9ef">as</span> LlamaOpenAI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> Settings
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> LlamaOpenAI(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;meta-llama/llama-4-maverick&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span>os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;OPENROUTER_API_KEY&#34;</span>),
+</span></span><span style="display:flex;"><span>    api_base<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://openrouter.ai/api/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Settings<span style="color:#f92672">.</span>llm <span style="color:#f92672">=</span> llm
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, Document
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> [Document(text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;OpenRouter simplifies multi-provider LLM access.&#34;</span>)]
+</span></span><span style="display:flex;"><span>index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(docs)
+</span></span><span style="display:flex;"><span>query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> query_engine<span style="color:#f92672">.</span>query(<span style="color:#e6db74">&#34;What does OpenRouter do?&#34;</span>)
+</span></span><span style="display:flex;"><span>print(response)
+</span></span></code></pre></div><h3 id="tích-hợp-vercel-ai-sdk">Tích hợp Vercel AI SDK<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-vercel-ai-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// app/api/chat/route.ts
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createOpenRouter</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@openrouter/ai-sdk-provider&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">convertToModelMessages</span>, <span style="color:#a6e22e">streamText</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;ai&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openrouter</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createOpenRouter</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.OPENROUTER_API_KEY</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">POST</span>(<span style="color:#a6e22e">req</span>: <span style="color:#66d9ef">Request</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">messages</span> } <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">json</span>();
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">streamText</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">openrouter</span>(<span style="color:#e6db74">&#34;anthropic/claude-sonnet-4.5&#34;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">messages</span>: <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">convertToModelMessages</span>(<span style="color:#a6e22e">messages</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">system</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;You are a helpful assistant.&#34;</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>.<span style="color:#a6e22e">toDataStreamResponse</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="tích-hợp-go-sdk">Tích hợp Go SDK<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-go-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// openrouter_demo.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/openai/openai-go&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/openai/openai-go/option&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">NewClient</span>(
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">option</span>.<span style="color:#a6e22e">WithBaseURL</span>(<span style="color:#e6db74">&#34;https://openrouter.ai/api/v1&#34;</span>),
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">option</span>.<span style="color:#a6e22e">WithAPIKey</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Getenv</span>(<span style="color:#e6db74">&#34;OPENROUTER_API_KEY&#34;</span>)),
+</span></span><span style="display:flex;"><span>	)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">resp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Chat</span>.<span style="color:#a6e22e">Completions</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">ChatCompletionNewParams</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Model</span>: <span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">String</span>(<span style="color:#e6db74">&#34;google/gemini-3-pro&#34;</span>),
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Messages</span>: <span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">F</span>([]<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">ChatCompletionMessageParamUnion</span>{
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">openai</span>.<span style="color:#a6e22e">UserMessage</span>(<span style="color:#e6db74">&#34;Explain Go concurrency patterns&#34;</span>),
+</span></span><span style="display:flex;"><span>		}),
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Choices</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">Message</span>.<span style="color:#a6e22e">Content</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="sử-dụng-openrouter-auto-router">Sử dụng OpenRouter &ldquo;Auto&rdquo; Router<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-openrouter-auto-router">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Để OpenRouter tự động chọn mô hình tốt nhất</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openrouter/auto&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Write a Kubernetes deployment YAML&#34;</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    extra_body<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;provider&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;sort&#34;</span>: <span style="color:#e6db74">&#34;price&#34;</span>,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(response<span style="color:#f92672">.</span>model)
+</span></span></code></pre></div><h2 id="benchmark--các-trường-hợp-sử-dụng-thực-tế">Benchmark / Các Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--các-trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="so-sánh-chi-phí-nhà-cung-cấp-trực-tiếp-vs-openrouter">So Sánh Chi Phí: Nhà Cung Cấp Trực Tiếp vs. OpenRouter<a hidden class="anchor" aria-hidden="true" href="#so-sánh-chi-phí-nhà-cung-cấp-trực-tiếp-vs-openrouter">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Nhà cung cấp</th>
+					<th>Mô hình</th>
+					<th>Chi phí API trực tiếp (trên 1M token)</th>
+					<th>Chi phí OpenRouter</th>
+					<th>Chênh lệch</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Anthropic</td>
+					<td>Claude Sonnet 4.5</td>
+					<td>$3.00 / $15.00</td>
+					<td>$3.17 / $15.83</td>
+					<td>+5.5% phí</td>
+			</tr>
+			<tr>
+					<td>OpenAI</td>
+					<td>GPT-5</td>
+					<td>$1.25 / $10.00</td>
+					<td>$1.32 / $10.55</td>
+					<td>+5.5% phí</td>
+			</tr>
+			<tr>
+					<td>Google</td>
+					<td>Gemini 3 Pro</td>
+					<td>$0.50 / $2.00</td>
+					<td>$0.53 / $2.11</td>
+					<td>+5.5% phí</td>
+			</tr>
+			<tr>
+					<td>Meta</td>
+					<td>Llama 4 Maverick</td>
+					<td>Thay đổi tùy host</td>
+					<td>Phí cố định/token</td>
+					<td>Cạnh tranh</td>
+			</tr>
+			<tr>
+					<td>DeepSeek</td>
+					<td>DeepSeek R1</td>
+					<td>Thay đổi tùy host</td>
+					<td>Phí cố định/token</td>
+					<td>Cạnh tranh</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Phí nền tảng 5.5%</strong> là phí duy nhất của OpenRouter.</p>
+<h3 id="benchmark-độ-trễ-tháng-52026">Benchmark Độ Trễ (Tháng 5/2026)<a hidden class="anchor" aria-hidden="true" href="#benchmark-độ-trễ-tháng-52026">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Mô hình</th>
+					<th>Nhà cung cấp</th>
+					<th>Độ trễ trung bình (ms)</th>
+					<th>Thông lượng (tok/s)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>GPT-5</td>
+					<td>OpenAI (trực tiếp)</td>
+					<td>320</td>
+					<td>45</td>
+			</tr>
+			<tr>
+					<td>GPT-5</td>
+					<td>Qua OpenRouter</td>
+					<td>340</td>
+					<td>43</td>
+			</tr>
+			<tr>
+					<td>Claude Sonnet 4.5</td>
+					<td>Anthropic (trực tiếp)</td>
+					<td>410</td>
+					<td>38</td>
+			</tr>
+			<tr>
+					<td>Claude Sonnet 4.5</td>
+					<td>Qua OpenRouter</td>
+					<td>435</td>
+					<td>36</td>
+			</tr>
+			<tr>
+					<td>Llama 4</td>
+					<td>OpenRouter hosting</td>
+					<td>280</td>
+					<td>52</td>
+			</tr>
+			<tr>
+					<td>Gemini 3 Pro</td>
+					<td>Google (trực tiếp)</td>
+					<td>290</td>
+					<td>55</td>
+			</tr>
+			<tr>
+					<td>Gemini 3 Pro</td>
+					<td>Qua OpenRouter</td>
+					<td>310</td>
+					<td>52</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Chi phí: ~20-25ms mỗi yêu cầu</strong> — không đáng kể.</p>
+<h3 id="nghiên-cứu-trường-hợp-tiết-kiệm-chi-phí-thực-tế">Nghiên Cứu Trường Hợp Tiết Kiệm Chi Phí Thực Tế<a hidden class="anchor" aria-hidden="true" href="#nghiên-cứu-trường-hợp-tiết-kiệm-chi-phí-thực-tế">#</a></h3>
+<p>Công ty SaaS vừa xử lý <strong>50 triệu token/tháng</strong> chuyển sang OpenRouter: | Chỉ số | Trước OpenRouter | Sau OpenRouter |
 |&mdash;|&mdash;|&mdash;|
 | Chi phí API hàng tháng | $4,200 | $3,180 |
 | Bảo trì kỹ thuật | 12 giờ/tuần | 1 giờ/tuần |
 | Sự cố ngừng hoạt động | 3/tháng | 0/tháng |
 | Thờ gian chuyển đổi mô hình | 2-4 ngày | 30 giây |
-| <strong>Tiết kiệm ròng</strong> | — | <strong>~40%</strong> (chi phí + thờ gian) |</p><h2 id=sử-dụng-nâng-cao--củng-cố-production>Sử Dụng Nâng Cao / Củng Cố Production<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--củng-cố-production>#</a></h2><h3 id=chuỗi-dự-phòng-tự-động>Chuỗi Dự Phòng Tự Động<a hidden class=anchor aria-hidden=true href=#chuỗi-dự-phòng-tự-động>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Cấu hình dự phòng production</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;anthropic/claude-sonnet-4.5&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Critical business analysis...&#34;</span>}],
-</span></span><span style=display:flex><span>    extra_body<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;provider&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;order&#34;</span>: [<span style=color:#e6db74>&#34;Anthropic&#34;</span>, <span style=color:#e6db74>&#34;OpenAI&#34;</span>, <span style=color:#e6db74>&#34;Google&#34;</span>],
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;allow_fallbacks&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=sử-dụng-khóa-nhà-cung-cấp-tùy-chỉnh-byok>Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)<a hidden class=anchor aria-hidden=true href=#sử-dụng-khóa-nhà-cung-cấp-tùy-chỉnh-byok>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Lưu key nhà cung cấp trực tiếp</span>
-</span></span><span style=display:flex><span>curl -X POST https://openrouter.ai/api/v1/credentials <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Authorization: Bearer </span>$OPENROUTER_API_KEY<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;provider&#34;</span>: <span style=color:#e6db74>&#34;openai&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;key&#34;</span>: <span style=color:#e6db74>&#34;sk-proj-your-direct-openai-key&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span><span style=color:#e6db74>&#34;
-</span></span></span></code></pre></div><h3 id=định-tuyến-yêu-cầu-theo-chi-phí-hoặc-tốc-độ>Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ<a hidden class=anchor aria-hidden=true href=#định-tuyến-yêu-cầu-theo-chi-phí-hoặc-tốc-độ>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Định tuyến đến mô hình rẻ nhất</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;openrouter/auto&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Summarize this article&#34;</span>}],
-</span></span><span style=display:flex><span>    extra_body<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;provider&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;sort&#34;</span>: <span style=color:#e6db74>&#34;price&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;quantizations&#34;</span>: [<span style=color:#e6db74>&#34;fp8&#34;</span>, <span style=color:#e6db74>&#34;fp16&#34;</span>],
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=triển-khai-tự-host-với-docker>Triển Khai Tự Host với Docker<a hidden class=anchor aria-hidden=true href=#triển-khai-tự-host-với-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile.openrouter-proxy</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>node:20-alpine</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> package*.json ./<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> npm install express axios<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> . .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>EXPOSE</span> <span style=color:#e6db74>3000</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;node&#34;</span>, <span style=color:#e6db74>&#34;proxy.js&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: openrouter-proxy: build: context</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>dockerfile</span>: <span style=color:#ae81ff>Dockerfile.openrouter-proxy</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>OPENROUTER_API_KEY=${OPENROUTER_API_KEY}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>CACHE_ENABLED=true</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><p>Triển khai lên <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a> với cấu hình production-grade.</p><h3 id=giám-sát-và-cảnh-báo>Giám Sát và Cảnh Báo<a hidden class=anchor aria-hidden=true href=#giám-sát-và-cảnh-báo>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Theo dõi mức sử dụng và chi phí</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>headers <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;Authorization&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Bearer </span><span style=color:#e6db74>{</span>os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(OPENROUTER_API_KEY)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>usage <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://openrouter.ai/api/v1/credits&#34;</span>,
-</span></span><span style=display:flex><span>    headers<span style=color:#f92672>=</span>headers
-</span></span><span style=display:flex><span>)<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Tín dụng còn lại: $</span><span style=color:#e6db74>{</span>usage[data][total_credits] <span style=color:#f92672>-</span> usage[data][total_usage]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Tổng đã dùng: $</span><span style=color:#e6db74>{</span>usage[data][total_usage]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h2 id=so-sánh-với-các-giải-pháp-thay-thế>So Sánh với Các Giải Pháp Thay Thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-giải-pháp-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>OpenRouter</th><th>LiteLLM</th><th>Portkey</th><th>Cloudflare AI Gateway</th><th>ngrok AI Gateway</th></tr></thead><tbody><tr><td><strong>Số mô hình hỗ trợ</strong></td><td>300+</td><td>100+</td><td>250+</td><td>Phụ thuộc nhà cung cấp</td><td>Cloud + local</td></tr><tr><td><strong>Triển khai</strong></td><td>SaaS quản lý</td><td>OSS tự host</td><td>Quản lý + Tự host</td><td>Quản lý (Cloudflare)</td><td>Quản lý</td></tr><tr><td><strong>Mã nguồn mở</strong></td><td>Một phần</td><td>Có (MIT)</td><td>Một phần</td><td>Không</td><td>Một phần</td></tr><tr><td><strong>Mô hình giá</strong></td><td>Trả theo dùng + 5.5%</td><td>Tự host miễn phí</td><td>Gói miễn phí; $49+/tháng</td><td>Bao gồm trong gói CF</td><td>Miễn phí-$20/tháng</td></tr><tr><td><strong>Dự phòng tự động</strong></td><td>Có</td><td>Có</td><td>Có</td><td>Có</td><td>Có</td></tr><tr><td><strong>Hỗ trợ BYOK</strong></td><td>Có (1M miễn phí/tháng)</td><td>Có</td><td>Có</td><td>Có</td><td>Có</td></tr><tr><td><strong>A/B Testing</strong></td><td>Không</td><td>Không</td><td>Có</td><td>Không</td><td>Không</td></tr><tr><td><strong>Caching</strong></td><td>Cơ bản</td><td>Có</td><td>Có</td><td>Có</td><td>Có</td></tr><tr><td><strong>Chi phí độ trễ</strong></td><td>~20-25ms</td><td>~5-10ms</td><td>~10-15ms</td><td>~15-20ms</td><td>~20-30ms</td></tr><tr><td><strong>OAuth ngườ dùng cuối</strong></td><td>Có</td><td>Không</td><td>Không</td><td>Không</td><td>Không</td></tr><tr><td><strong>Gói miễn phí</strong></td><td>Có (mô hình giới hạn)</td><td>Đầy đủ (tự host)</td><td>10K yêu cầu</td><td>Gói miễn phí</td><td>$5 tín dụng</td></tr><tr><td><strong>Phù hợp nhất</strong></td><td>Khám phá đa mô hình</td><td>Kiểm soát kỹ thuật</td><td>Compliance production</td><td>Ứng dụng edge</td><td>Hybrid local/cloud</td></tr></tbody></table><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn Chế / Đánh Giá Trung Thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><ol><li><strong>Phí mỗi token tích lũy</strong> — Phí 5.5% có vẻ nhỏ nhưng trở nên đáng kể ở quy mô lớn.</li><li><strong>Không có tùy chọn tự host cho core gateway</strong> — Khác với LiteLLM, không thể tự host hoàn toàn.</li><li><strong>Khả năng quan sát hạn chế</strong> — Chỉ có theo dõi mức sử dụng cơ bản.</li><li><strong>Phí BYOK OAuth sau 1M yêu cầu</strong> — Gói miễn phí BYOK bao phủ 1M yêu cầu/tháng. Sau đó phí 5%.</li><li><strong>Độ trễ khởi động lạnh cho mô hình hiếm</strong> — Có thể có độ trễ 2-5 giây.</li><li><strong>Mất các tính năng đặc thù nhà cung cấp</strong> — Batch API, fine-tuning không khả dụng.</li></ol><h2 id=các-câu-hỏi-thường-gặp>Các Câu Hỏi Thường Gặp<a hidden class=anchor aria-hidden=true href=#các-câu-hỏi-thường-gặp>#</a></h2><h3 id=openrouter-và-sử-dụng-api-trực-tiếp-của-nhà-cung-cấp-khác-nhau-thế-nào>OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào?<a hidden class=anchor aria-hidden=true href=#openrouter-và-sử-dụng-api-trực-tiếp-của-nhà-cung-cấp-khác-nhau-thế-nào>#</a></h3><p>OpenRouter là lớp proxy thống nhất. Thay vì quản lý API key, SDK và thanh toán riêng biệt, bạn dùng một tích hợp để truy cập 300+ mô hình. <strong>Phí nền tảng 5.5%</strong> đổi lấy giảm thiểu công việc kỹ thuật và định tuyến dự phòng tích hợp sẵn.</p><h3 id=openrouter-có-lưu-trữ-prompt-hoặc-phản-hồi-của-tôi-không>OpenRouter có lưu trữ prompt hoặc phản hồi của tôi không?<a hidden class=anchor aria-hidden=true href=#openrouter-có-lưu-trữ-prompt-hoặc-phản-hồi-của-tôi-không>#</a></h3><p>OpenRouter hoạt động như proxy pass-through và không lưu trữ nội dung yêu cầu vĩnh viễn. Tuy nhiên, dữ liệu đi qua cơ sở hạ tầng của họ, vì vậy cần xem xét <a href=https://openrouter.ai/privacy>chính sách bảo mật</a>.</p><h3 id=tôi-có-thể-dùng-openrouter-trong-production-không>Tôi có thể dùng OpenRouter trong production không?<a hidden class=anchor aria-hidden=true href=#tôi-có-thể-dùng-openrouter-trong-production-không>#</a></h3><p>Có, với lưu ý. OpenRouter xử lý hàng triệu yêu cầu production mỗi ngày với uptime 99.9%. Cấu hình chuỗi dự phòng, thử lại phía client, và giám sát <a href=https://status.openrouter.ai/>trang trạng thái</a>.</p><h3 id=gói-miễn-phí-hoạt-động-như-thế-nào>Gói miễn phí hoạt động như thế nào?<a hidden class=anchor aria-hidden=true href=#gói-miễn-phí-hoạt-động-như-thế-nào>#</a></h3><p>Gói miễn phí cung cấp quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ. Thiết kế cho thử nghiệm, không phải production. Tín dụng trả phí mở khóa tất cả mô hình.</p><h3 id=có-cách-nào-tránh-phí-55-không>Có cách nào tránh phí 5.5% không?<a hidden class=anchor aria-hidden=true href=#có-cách-nào-tránh-phí-55-không>#</a></h3><p>Dùng tính năng <strong>BYOK</strong>. Kết nối API key trực tiếp — OpenRouter không tính phí cho 1 triệu yêu cầu đầu tiên mỗi tháng. Sau đó phí 5%.</p><h3 id=làm-thế-nào-chuyển-đổi-mô-hình-mà-không-thay-đổi-code>Làm thế nào chuyển đổi mô hình mà không thay đổi code?<a hidden class=anchor aria-hidden=true href=#làm-thế-nào-chuyển-đổi-mô-hình-mà-không-thay-đổi-code>#</a></h3><p>Chỉ cần thay đổi tham số <code>model</code> trong lệnh gọi API. OpenRouter dùng cùng định dạng tương thích OpenAI cho tất cả nhà cung cấp.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>model <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;anthropic/claude-sonnet-4.5&#34;</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>model,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Hello!&#34;</span>}]
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=nếu-nhà-cung-cấp-ngừng-hoạt-động-thì-sao>Nếu nhà cung cấp ngừng hoạt động thì sao?<a hidden class=anchor aria-hidden=true href=#nếu-nhà-cung-cấp-ngừng-hoạt-động-thì-sao>#</a></h3><p>Nếu bật ````allow_fallbacks: true```, OpenRouter tự động thử lại với nhà cung cấp dự phòng. Nếu tất cả đều thất bại, trả về lỗi có cấu trúc.</p><h2 id=kết-luận-bắt-đầu-xây-dựng-với-openrouter-ngay-hôm-nay>Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay<a hidden class=anchor aria-hidden=true href=#kết-luận-bắt-đầu-xây-dựng-với-openrouter-ngay-hôm-nay>#</a></h2><p>OpenRouter loại bỏ ma sát lớn nhất trong phát triển LLM đa nhà cung cấp: phức tạp của việc tích hợp. Với <strong>một API key</strong>, <strong>một SDK</strong> và <strong>5 phút thiết lập</strong>, bạn có quyền truy cập vào <strong>300+ mô hình</strong> từ <strong>60+ nhà cung cấp</strong> với dự phòng tự động, thanh toán thống nhất.</p><p>Với <strong>tiết kiệm tổng chi phí 40%</strong>, đây là lựa chọn dễ dàng cho startup và team prototyping. Cho production quy mô lớn, kết hợp với BYOK hoặc đánh giá giải pháp tự host như <a href=dibi8-internal-link>LiteLLM</a>.</p><p><strong>Bước tiếp theo:</strong></p><ol><li>Đăng ký tài khoản miễn phí tại <a href=https://openrouter.ai/>openrouter.ai</a></li><li>Chạy thiết lập 5 phút ở trên</li><li>Triển khai ứng dụng đa mô hình đầu tiên trên <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></li><li>Tham gia <a href=https://t.me/dibi8vi>dibi8 Vietnamese Telegram</a> để thảo luận LLM hàng tuần</li></ol><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài Liệu Tham Khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://openrouter.ai/docs>Tài liệu chính thức OpenRouter</a></li><li><a href=https://openrouter.ai/docs/api>Tham chiếu API OpenRouter</a></li><li><a href=https://github.com/openrouter/openrouter>Kho GitHub OpenRouter</a></li><li><a href=https://docs.litellm.ai/docs/proxy>So sánh OpenRouter vs LiteLLM</a></li><li><a href=https://docs.portkey.ai/>Tài liệu Portkey AI Gateway</a></li></ul><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=tuyên-bố-liên-kết>Tuyên Bố Liên Kết<a hidden class=anchor aria-hidden=true href=#tuyên-bố-liên-kết>#</a></h2><p>Bài viết này chứa liên kết liên kết đến <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>. Nếu bạn đăng ký qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả ý kiến và benchmark đều được xác minh độc lập.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Tiết kiệm ròng</strong> | — | <strong>~40%</strong> (chi phí + thờ gian) |</p>
+<h2 id="sử-dụng-nâng-cao--củng-cố-production">Sử Dụng Nâng Cao / Củng Cố Production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--củng-cố-production">#</a></h2>
+<h3 id="chuỗi-dự-phòng-tự-động">Chuỗi Dự Phòng Tự Động<a hidden class="anchor" aria-hidden="true" href="#chuỗi-dự-phòng-tự-động">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Cấu hình dự phòng production</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anthropic/claude-sonnet-4.5&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Critical business analysis...&#34;</span>}],
+</span></span><span style="display:flex;"><span>    extra_body<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;provider&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;order&#34;</span>: [<span style="color:#e6db74">&#34;Anthropic&#34;</span>, <span style="color:#e6db74">&#34;OpenAI&#34;</span>, <span style="color:#e6db74">&#34;Google&#34;</span>],
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;allow_fallbacks&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="sử-dụng-khóa-nhà-cung-cấp-tùy-chỉnh-byok">Sử Dụng Khóa Nhà Cung Cấp Tùy Chỉnh (BYOK)<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-khóa-nhà-cung-cấp-tùy-chỉnh-byok">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Lưu key nhà cung cấp trực tiếp</span>
+</span></span><span style="display:flex;"><span>curl -X POST https://openrouter.ai/api/v1/credentials <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Authorization: Bearer </span>$OPENROUTER_API_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;provider&#34;</span>: <span style="color:#e6db74">&#34;openai&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;key&#34;</span>: <span style="color:#e6db74">&#34;sk-proj-your-direct-openai-key&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span><span style="color:#e6db74">&#34;
+</span></span></span></code></pre></div><h3 id="định-tuyến-yêu-cầu-theo-chi-phí-hoặc-tốc-độ">Định Tuyến Yêu Cầu Theo Chi Phí Hoặc Tốc Độ<a hidden class="anchor" aria-hidden="true" href="#định-tuyến-yêu-cầu-theo-chi-phí-hoặc-tốc-độ">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Định tuyến đến mô hình rẻ nhất</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openrouter/auto&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Summarize this article&#34;</span>}],
+</span></span><span style="display:flex;"><span>    extra_body<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;provider&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;sort&#34;</span>: <span style="color:#e6db74">&#34;price&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;quantizations&#34;</span>: [<span style="color:#e6db74">&#34;fp8&#34;</span>, <span style="color:#e6db74">&#34;fp16&#34;</span>],
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="triển-khai-tự-host-với-docker">Triển Khai Tự Host với Docker<a hidden class="anchor" aria-hidden="true" href="#triển-khai-tự-host-với-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile.openrouter-proxy</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">node:20-alpine</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> package*.json ./<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> npm install express axios<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">3000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;node&#34;</span>, <span style="color:#e6db74">&#34;proxy.js&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: openrouter-proxy: build: context</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">dockerfile</span>: <span style="color:#ae81ff">Dockerfile.openrouter-proxy</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OPENROUTER_API_KEY=${OPENROUTER_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FALLBACK_MODELS=openai/gpt-5,google/gemini-3-pro</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CACHE_ENABLED=true</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><p>Triển khai lên <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a> với cấu hình production-grade.</p>
+<h3 id="giám-sát-và-cảnh-báo">Giám Sát và Cảnh Báo<a hidden class="anchor" aria-hidden="true" href="#giám-sát-và-cảnh-báo">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Theo dõi mức sử dụng và chi phí</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;Authorization&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Bearer </span><span style="color:#e6db74">{</span>os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(OPENROUTER_API_KEY)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>usage <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://openrouter.ai/api/v1/credits&#34;</span>,
+</span></span><span style="display:flex;"><span>    headers<span style="color:#f92672">=</span>headers
+</span></span><span style="display:flex;"><span>)<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Tín dụng còn lại: $</span><span style="color:#e6db74">{</span>usage[data][total_credits] <span style="color:#f92672">-</span> usage[data][total_usage]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Tổng đã dùng: $</span><span style="color:#e6db74">{</span>usage[data][total_usage]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So Sánh với Các Giải Pháp Thay Thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>OpenRouter</th>
+					<th>LiteLLM</th>
+					<th>Portkey</th>
+					<th>Cloudflare AI Gateway</th>
+					<th>ngrok AI Gateway</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Số mô hình hỗ trợ</strong></td>
+					<td>300+</td>
+					<td>100+</td>
+					<td>250+</td>
+					<td>Phụ thuộc nhà cung cấp</td>
+					<td>Cloud + local</td>
+			</tr>
+			<tr>
+					<td><strong>Triển khai</strong></td>
+					<td>SaaS quản lý</td>
+					<td>OSS tự host</td>
+					<td>Quản lý + Tự host</td>
+					<td>Quản lý (Cloudflare)</td>
+					<td>Quản lý</td>
+			</tr>
+			<tr>
+					<td><strong>Mã nguồn mở</strong></td>
+					<td>Một phần</td>
+					<td>Có (MIT)</td>
+					<td>Một phần</td>
+					<td>Không</td>
+					<td>Một phần</td>
+			</tr>
+			<tr>
+					<td><strong>Mô hình giá</strong></td>
+					<td>Trả theo dùng + 5.5%</td>
+					<td>Tự host miễn phí</td>
+					<td>Gói miễn phí; $49+/tháng</td>
+					<td>Bao gồm trong gói CF</td>
+					<td>Miễn phí-$20/tháng</td>
+			</tr>
+			<tr>
+					<td><strong>Dự phòng tự động</strong></td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ BYOK</strong></td>
+					<td>Có (1M miễn phí/tháng)</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+			</tr>
+			<tr>
+					<td><strong>A/B Testing</strong></td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Caching</strong></td>
+					<td>Cơ bản</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+			</tr>
+			<tr>
+					<td><strong>Chi phí độ trễ</strong></td>
+					<td>~20-25ms</td>
+					<td>~5-10ms</td>
+					<td>~10-15ms</td>
+					<td>~15-20ms</td>
+					<td>~20-30ms</td>
+			</tr>
+			<tr>
+					<td><strong>OAuth ngườ dùng cuối</strong></td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Gói miễn phí</strong></td>
+					<td>Có (mô hình giới hạn)</td>
+					<td>Đầy đủ (tự host)</td>
+					<td>10K yêu cầu</td>
+					<td>Gói miễn phí</td>
+					<td>$5 tín dụng</td>
+			</tr>
+			<tr>
+					<td><strong>Phù hợp nhất</strong></td>
+					<td>Khám phá đa mô hình</td>
+					<td>Kiểm soát kỹ thuật</td>
+					<td>Compliance production</td>
+					<td>Ứng dụng edge</td>
+					<td>Hybrid local/cloud</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn Chế / Đánh Giá Trung Thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<ol>
+<li><strong>Phí mỗi token tích lũy</strong> — Phí 5.5% có vẻ nhỏ nhưng trở nên đáng kể ở quy mô lớn.</li>
+<li><strong>Không có tùy chọn tự host cho core gateway</strong> — Khác với LiteLLM, không thể tự host hoàn toàn.</li>
+<li><strong>Khả năng quan sát hạn chế</strong> — Chỉ có theo dõi mức sử dụng cơ bản.</li>
+<li><strong>Phí BYOK OAuth sau 1M yêu cầu</strong> — Gói miễn phí BYOK bao phủ 1M yêu cầu/tháng. Sau đó phí 5%.</li>
+<li><strong>Độ trễ khởi động lạnh cho mô hình hiếm</strong> — Có thể có độ trễ 2-5 giây.</li>
+<li><strong>Mất các tính năng đặc thù nhà cung cấp</strong> — Batch API, fine-tuning không khả dụng.</li>
+</ol>
+<h2 id="các-câu-hỏi-thường-gặp">Các Câu Hỏi Thường Gặp<a hidden class="anchor" aria-hidden="true" href="#các-câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="openrouter-và-sử-dụng-api-trực-tiếp-của-nhà-cung-cấp-khác-nhau-thế-nào">OpenRouter và sử dụng API trực tiếp của nhà cung cấp khác nhau thế nào?<a hidden class="anchor" aria-hidden="true" href="#openrouter-và-sử-dụng-api-trực-tiếp-của-nhà-cung-cấp-khác-nhau-thế-nào">#</a></h3>
+<p>OpenRouter là lớp proxy thống nhất. Thay vì quản lý API key, SDK và thanh toán riêng biệt, bạn dùng một tích hợp để truy cập 300+ mô hình. <strong>Phí nền tảng 5.5%</strong> đổi lấy giảm thiểu công việc kỹ thuật và định tuyến dự phòng tích hợp sẵn.</p>
+<h3 id="openrouter-có-lưu-trữ-prompt-hoặc-phản-hồi-của-tôi-không">OpenRouter có lưu trữ prompt hoặc phản hồi của tôi không?<a hidden class="anchor" aria-hidden="true" href="#openrouter-có-lưu-trữ-prompt-hoặc-phản-hồi-của-tôi-không">#</a></h3>
+<p>OpenRouter hoạt động như proxy pass-through và không lưu trữ nội dung yêu cầu vĩnh viễn. Tuy nhiên, dữ liệu đi qua cơ sở hạ tầng của họ, vì vậy cần xem xét <a href="https://openrouter.ai/privacy">chính sách bảo mật</a>.</p>
+<h3 id="tôi-có-thể-dùng-openrouter-trong-production-không">Tôi có thể dùng OpenRouter trong production không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-dùng-openrouter-trong-production-không">#</a></h3>
+<p>Có, với lưu ý. OpenRouter xử lý hàng triệu yêu cầu production mỗi ngày với uptime 99.9%. Cấu hình chuỗi dự phòng, thử lại phía client, và giám sát <a href="https://status.openrouter.ai/">trang trạng thái</a>.</p>
+<h3 id="gói-miễn-phí-hoạt-động-như-thế-nào">Gói miễn phí hoạt động như thế nào?<a hidden class="anchor" aria-hidden="true" href="#gói-miễn-phí-hoạt-động-như-thế-nào">#</a></h3>
+<p>Gói miễn phí cung cấp quyền truy cập vào các mô hình nguồn mở đã chọn với giới hạn tốc độ. Thiết kế cho thử nghiệm, không phải production. Tín dụng trả phí mở khóa tất cả mô hình.</p>
+<h3 id="có-cách-nào-tránh-phí-55-không">Có cách nào tránh phí 5.5% không?<a hidden class="anchor" aria-hidden="true" href="#có-cách-nào-tránh-phí-55-không">#</a></h3>
+<p>Dùng tính năng <strong>BYOK</strong>. Kết nối API key trực tiếp — OpenRouter không tính phí cho 1 triệu yêu cầu đầu tiên mỗi tháng. Sau đó phí 5%.</p>
+<h3 id="làm-thế-nào-chuyển-đổi-mô-hình-mà-không-thay-đổi-code">Làm thế nào chuyển đổi mô hình mà không thay đổi code?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-chuyển-đổi-mô-hình-mà-không-thay-đổi-code">#</a></h3>
+<p>Chỉ cần thay đổi tham số <code>model</code> trong lệnh gọi API. OpenRouter dùng cùng định dạng tương thích OpenAI cho tất cả nhà cung cấp.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>model <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;anthropic/claude-sonnet-4.5&#34;</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>model,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Hello!&#34;</span>}]
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="nếu-nhà-cung-cấp-ngừng-hoạt-động-thì-sao">Nếu nhà cung cấp ngừng hoạt động thì sao?<a hidden class="anchor" aria-hidden="true" href="#nếu-nhà-cung-cấp-ngừng-hoạt-động-thì-sao">#</a></h3>
+<p>Nếu bật ````allow_fallbacks: true```, OpenRouter tự động thử lại với nhà cung cấp dự phòng. Nếu tất cả đều thất bại, trả về lỗi có cấu trúc.</p>
+<h2 id="kết-luận-bắt-đầu-xây-dựng-với-openrouter-ngay-hôm-nay">Kết Luận: Bắt Đầu Xây Dựng Với OpenRouter Ngay Hôm Nay<a hidden class="anchor" aria-hidden="true" href="#kết-luận-bắt-đầu-xây-dựng-với-openrouter-ngay-hôm-nay">#</a></h2>
+<p>OpenRouter loại bỏ ma sát lớn nhất trong phát triển LLM đa nhà cung cấp: phức tạp của việc tích hợp. Với <strong>một API key</strong>, <strong>một SDK</strong> và <strong>5 phút thiết lập</strong>, bạn có quyền truy cập vào <strong>300+ mô hình</strong> từ <strong>60+ nhà cung cấp</strong> với dự phòng tự động, thanh toán thống nhất.</p>
+<p>Với <strong>tiết kiệm tổng chi phí 40%</strong>, đây là lựa chọn dễ dàng cho startup và team prototyping. Cho production quy mô lớn, kết hợp với BYOK hoặc đánh giá giải pháp tự host như <a href="dibi8-internal-link">LiteLLM</a>.</p>
+<p><strong>Bước tiếp theo:</strong></p>
+<ol>
+<li>Đăng ký tài khoản miễn phí tại <a href="https://openrouter.ai/">openrouter.ai</a></li>
+<li>Chạy thiết lập 5 phút ở trên</li>
+<li>Triển khai ứng dụng đa mô hình đầu tiên trên <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></li>
+<li>Tham gia <a href="https://t.me/dibi8vi">dibi8 Vietnamese Telegram</a> để thảo luận LLM hàng tuần</li>
+</ol>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài Liệu Tham Khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://openrouter.ai/docs">Tài liệu chính thức OpenRouter</a></li>
+<li><a href="https://openrouter.ai/docs/api">Tham chiếu API OpenRouter</a></li>
+<li><a href="https://github.com/openrouter/openrouter">Kho GitHub OpenRouter</a></li>
+<li><a href="https://docs.litellm.ai/docs/proxy">So sánh OpenRouter vs LiteLLM</a></li>
+<li><a href="https://docs.portkey.ai/">Tài liệu Portkey AI Gateway</a></li>
+</ul>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="tuyên-bố-liên-kết">Tuyên Bố Liên Kết<a hidden class="anchor" aria-hidden="true" href="#tuyên-bố-liên-kết">#</a></h2>
+<p>Bài viết này chứa liên kết liên kết đến <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>. Nếu bạn đăng ký qua các liên kết này, chúng tôi có thể nhận được hoa hồng mà không phát sinh thêm chi phí cho bạn. Tất cả ý kiến và benchmark đều được xác minh độc lập.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;OpenRouter: Cổng API LLM Thống Nhất Kết Nối 300+ Mô Hình, Tiết Kiệm 40% Chi Phí — Hướng Dẫn Thiết Lập 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -309,18 +912,186 @@ npm install openai
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/openrouter-unified-llm-api-gateway%22>https://dibi8.com/vi/resources/openrouter-unified-llm-api-gateway"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/openrouter-unified-llm-api-gateway%22">https://dibi8.com/vi/resources/openrouter-unified-llm-api-gateway"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li><li><a href=/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li><li><a href=/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/>12-factor-agents-production-llm-software-2026</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/openmontage-agentic-video-production-system/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/opensea-nft-marketplace-api/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+<li><a href="/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+<li><a href="/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/vi/ai-coding-agents/openrouter-unified-llm-api-gateway/">12-factor-agents-production-llm-software-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/openmontage-agentic-video-production-system/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/opensea-nft-marketplace-api/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

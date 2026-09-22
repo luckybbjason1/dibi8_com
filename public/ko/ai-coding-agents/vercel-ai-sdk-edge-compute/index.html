@@ -1,52 +1,307 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"TL;DR Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.\nVercel AI SDK란? Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. 제공자 비종속 API: 코드 한 번 작성, 모든 LLM 제공자에 배포 2. 스트리밍 우선 아키텍처: 응답을 토큰 단위로 프론트엔드로 스트리밍 3. 프레임워크 통합: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원\n왜 Edge-First가 AI 앱에 중요한가 전통적 AI 앱은 이런 패턴을 따릅니다: ```` 사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답\n각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: ````` 사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답 엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.\n핵심 아키텍처 // 제공자 추상화 계층 import { createOpenAI } from \"@ai-sdk/openai\"; import { createAnthropic } from \"@ai-sdk/anthropic\"; import { createGoogleGenerativeAI } from \"@ai-sdk/google\"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // 제공자Regardless 동일한 API 호출 const result = await streamText({ model: openai(\"gpt-4o\"), messages: [{ role: \"user\", content: \"안녕!\" }], system: \"도움이 되는 어시스턴트입니다.\" }); streamText 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.\n시작하기 단계 1: 의존성 설치 # TypeScript로 새로운 Next.js 프로젝트 생성 npx create-next-app@latest my-ai-app --typescript --tailwind --app cd my-ai-app # AI SDK 및 제공자 패키지 설치 npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google # 선택사항: 구조화된 출력 npm install zod 단계 2: 첫 번째 채팅 API 구성 app/api/chat/route.ts 생성: `````typescript import { streamText } from “ai”; import { createOpenAI } from “@ai-sdk/openai”;\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL, // 선택사항: 호환 API용 });\nexport async function POST(req: Request) { const { messages } = await req.json();\nconst result = streamText({ model: openai(“gpt-4o”), messages, system: 도움이 되는 프로그래밍 어시스턴트입니다. 관련 시 코드 예시를 제공하세요., maxTokens: 2048, temperature: 0.7, });\nreturn result.toDataStreamResponse(); }\n그것뿐입니다. 파일 하나, 20줄 코드로 완전히 스트리밍되는 채팅 API가 생깁니다. ### 단계 3: 프론트엔드 구축 ``app/page.tsx`` 생성: `````typescript \"use client\"; import { useChat } from \"ai/react\"; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat(); return ( {/* 메시지 목록 */} {messages.map((msg) =\u003e ( ","wordCount":"1044","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#vercel-ai-sdk%eb%9e%80 aria-label="Vercel AI SDK란?">Vercel AI SDK란?</a><ul><li><a href=#%ec%99%9c-edge-first%ea%b0%80-ai-%ec%95%b1%ec%97%90-%ec%a4%91%ec%9a%94%ed%95%9c%ea%b0%80 aria-label="왜 Edge-First가 AI 앱에 중요한가">왜 Edge-First가 AI 앱에 중요한가</a></li><li><a href=#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98 aria-label="핵심 아키텍처">핵심 아키텍처</a></li></ul></li><li><a href=#%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0 aria-label=시작하기>시작하기</a><ul><li><a href=#%eb%8b%a8%ea%b3%84-1-%ec%9d%98%ec%a1%b4%ec%84%b1-%ec%84%a4%ec%b9%98 aria-label="단계 1: 의존성 설치">단계 1: 의존성 설치</a></li><li><a href=#%eb%8b%a8%ea%b3%84-2-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%b1%84%ed%8c%85-api-%ea%b5%ac%ec%84%b1 aria-label="단계 2: 첫 번째 채팅 API 구성">단계 2: 첫 번째 채팅 API 구성</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ed%8c%a8%ed%84%b4 aria-label="고급 패턴">고급 패턴</a><ul><li><a href=#%ed%8c%a8%ed%84%b4-1-%eb%a9%80%ed%8b%b0-%ec%a0%9c%ea%b3%b5%ec%9e%90-%eb%9d%bc%ec%9a%b0%ed%8c%85 aria-label="패턴 1: 멀티 제공자 라우팅">패턴 1: 멀티 제공자 라우팅</a></li><li><a href=#%ed%8c%a8%ed%84%b4-3-%ec%9e%84%eb%b2%a0%eb%94%a9%ec%9d%b4-%ec%9e%88%eb%8a%94-rag-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8 aria-label="패턴 3: 임베딩이 있는 RAG 파이프라인">패턴 3: 임베딩이 있는 RAG 파이프라인</a></li></ul></li></ul></div></details><div class="post-content md-content"><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.</p><hr><h2 id=vercel-ai-sdk란>Vercel AI SDK란?<a hidden class=anchor aria-hidden=true href=#vercel-ai-sdk란>#</a></h2><p>Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. <strong>제공자 비종속 API</strong>: 코드 한 번 작성, 모든 LLM 제공자에 배포
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "TL;DR Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.\nVercel AI SDK란? Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. 제공자 비종속 API: 코드 한 번 작성, 모든 LLM 제공자에 배포 2. 스트리밍 우선 아키텍처: 응답을 토큰 단위로 프론트엔드로 스트리밍 3. 프레임워크 통합: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원\n왜 Edge-First가 AI 앱에 중요한가 전통적 AI 앱은 이런 패턴을 따릅니다: ```` 사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답\n각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: ````` 사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답 엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.\n핵심 아키텍처 // 제공자 추상화 계층 import { createOpenAI } from \"@ai-sdk/openai\"; import { createAnthropic } from \"@ai-sdk/anthropic\"; import { createGoogleGenerativeAI } from \"@ai-sdk/google\"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // 제공자Regardless 동일한 API 호출 const result = await streamText({ model: openai(\"gpt-4o\"), messages: [{ role: \"user\", content: \"안녕!\" }], system: \"도움이 되는 어시스턴트입니다.\" }); streamText 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.\n시작하기 단계 1: 의존성 설치 # TypeScript로 새로운 Next.js 프로젝트 생성 npx create-next-app@latest my-ai-app --typescript --tailwind --app cd my-ai-app # AI SDK 및 제공자 패키지 설치 npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google # 선택사항: 구조화된 출력 npm install zod 단계 2: 첫 번째 채팅 API 구성 app/api/chat/route.ts 생성: `````typescript import { streamText } from “ai”; import { createOpenAI } from “@ai-sdk/openai”;\nconst openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY, baseURL: process.env.OPENAI_BASE_URL, // 선택사항: 호환 API용 });\nexport async function POST(req: Request) { const { messages } = await req.json();\nconst result = streamText({ model: openai(“gpt-4o”), messages, system: 도움이 되는 프로그래밍 어시스턴트입니다. 관련 시 코드 예시를 제공하세요., maxTokens: 2048, temperature: 0.7, });\nreturn result.toDataStreamResponse(); }\n그것뿐입니다. 파일 하나, 20줄 코드로 완전히 스트리밍되는 채팅 API가 생깁니다. ### 단계 3: 프론트엔드 구축 ``app/page.tsx`` 생성: `````typescript \"use client\"; import { useChat } from \"ai/react\"; export default function Chat() { const { messages, input, handleSubmit, isLoading } = useChat(); return ( {/* 메시지 목록 */} {messages.map((msg) =\u003e ( ",
+  "wordCount" : "1044",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-edge-compute/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/vercel-ai-sdk-edge-compute/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/vercel-ai-sdk-edge-compute/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#vercel-ai-sdk%eb%9e%80" aria-label="Vercel AI SDK란?">Vercel AI SDK란?</a><ul>
+                    
+            <li>
+                <a href="#%ec%99%9c-edge-first%ea%b0%80-ai-%ec%95%b1%ec%97%90-%ec%a4%91%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="왜 Edge-First가 AI 앱에 중요한가">왜 Edge-First가 AI 앱에 중요한가</a></li>
+            <li>
+                <a href="#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="핵심 아키텍처">핵심 아키텍처</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%8b%9c%ec%9e%91%ed%95%98%ea%b8%b0" aria-label="시작하기">시작하기</a><ul>
+                    
+            <li>
+                <a href="#%eb%8b%a8%ea%b3%84-1-%ec%9d%98%ec%a1%b4%ec%84%b1-%ec%84%a4%ec%b9%98" aria-label="단계 1: 의존성 설치">단계 1: 의존성 설치</a></li>
+            <li>
+                <a href="#%eb%8b%a8%ea%b3%84-2-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%b1%84%ed%8c%85-api-%ea%b5%ac%ec%84%b1" aria-label="단계 2: 첫 번째 채팅 API 구성">단계 2: 첫 번째 채팅 API 구성</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b3%a0%ea%b8%89-%ed%8c%a8%ed%84%b4" aria-label="고급 패턴">고급 패턴</a><ul>
+                    
+            <li>
+                <a href="#%ed%8c%a8%ed%84%b4-1-%eb%a9%80%ed%8b%b0-%ec%a0%9c%ea%b3%b5%ec%9e%90-%eb%9d%bc%ec%9a%b0%ed%8c%85" aria-label="패턴 1: 멀티 제공자 라우팅">패턴 1: 멀티 제공자 라우팅</a></li>
+            <li>
+                <a href="#%ed%8c%a8%ed%84%b4-3-%ec%9e%84%eb%b2%a0%eb%94%a9%ec%9d%b4-%ec%9e%88%eb%8a%94-rag-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="패턴 3: 임베딩이 있는 RAG 파이프라인">패턴 3: 임베딩이 있는 RAG 파이프라인</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>Vercel AI SDK는 스트리밍 지원을 갖춘 AI 기반 사용자 인터페이스를 구축하기 위한 오픈소스 라이브러리입니다. 모든 주요 프레임워크에서 작동하며 LLM 제공자(OpenAI, Anthropic, Google) 통합을 위한 타입 안전 API, 자동 응답 스트리밍, React 내장 UI 컴포넌트, 엣지 런타임으로의 원활한 배포를 제공합니다. 핵심 이점: 한 SDK가 모든 곳에서 작동합니다 — Next.js App Router, Remix, SvelteKit, Nuxt 또는 fetch를 지원하는 어떤 프레임워크든.</p>
+<hr>
+<h2 id="vercel-ai-sdk란">Vercel AI SDK란?<a hidden class="anchor" aria-hidden="true" href="#vercel-ai-sdk란">#</a></h2>
+<p>Vercel AI SDK는 AI 앱 구축의 복잡성을 추상화하는 오픈소스 라이브러리입니다. 핵심 세 가지 주요 기능: 1. <strong>제공자 비종속 API</strong>: 코드 한 번 작성, 모든 LLM 제공자에 배포
 2. <strong>스트리밍 우선 아키텍처</strong>: 응답을 토큰 단위로 프론트엔드로 스트리밍
-3. <strong>프레임워크 통합</strong>: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원</p><h3 id=왜-edge-first가-ai-앱에-중요한가>왜 Edge-First가 AI 앱에 중요한가<a hidden class=anchor aria-hidden=true href=#왜-edge-first가-ai-앱에-중요한가>#</a></h3><p>전통적 AI 앱은 이런 패턴을 따릅니다: ````
-사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답</p><pre tabindex=0><code>
+3. <strong>프레임워크 통합</strong>: React, Next.js, Vue, Svelte, SolidJS 네이티브 지원</p>
+<h3 id="왜-edge-first가-ai-앱에-중요한가">왜 Edge-First가 AI 앱에 중요한가<a hidden class="anchor" aria-hidden="true" href="#왜-edge-first가-ai-앱에-중요한가">#</a></h3>
+<p>전통적 AI 앱은 이런 패턴을 따릅니다: ````
+사용자 → 웹 서버 → API 라우트 → LLM 제공자 → 응답</p>
+<pre tabindex="0"><code>
 각 홉마다 지연 시간이 추가됩니다. Vercel의 엣지 우선 접근법은 미들맨을 제거합니다: `````
 사용자 → 엣지 함수 → LLM 제공자 → 스트리밍 응답
-</code></pre><p>엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.</p><h3 id=핵심-아키텍처>핵심 아키텍처<a hidden class=anchor aria-hidden=true href=#핵심-아키텍처>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// 제공자 추상화 계층
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createOpenAI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@ai-sdk/openai&#34;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createAnthropic</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@ai-sdk/anthropic&#34;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>createGoogleGenerativeAI</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@ai-sdk/google&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>openai</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createOpenAI</span>({ <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.OPENAI_API_KEY</span> });
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>anthropic</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>createAnthropic</span>({ <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.ANTHROPIC_API_KEY</span> });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// 제공자Regardless 동일한 API 호출
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>streamText</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>model</span>: <span style=color:#66d9ef>openai</span>(<span style=color:#e6db74>&#34;gpt-4o&#34;</span>),
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>messages</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>role</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#a6e22e>content</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;안녕!&#34;</span> }],
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>system</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;도움이 되는 어시스턴트입니다.&#34;</span>
-</span></span><span style=display:flex><span>});
-</span></span></code></pre></div><p><code>streamText</code> 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.</p><hr><h2 id=시작하기>시작하기<a hidden class=anchor aria-hidden=true href=#시작하기>#</a></h2><h3 id=단계-1-의존성-설치>단계 1: 의존성 설치<a hidden class=anchor aria-hidden=true href=#단계-1-의존성-설치>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># TypeScript로 새로운 Next.js 프로젝트 생성</span>
-</span></span><span style=display:flex><span>npx create-next-app@latest my-ai-app --typescript --tailwind --app
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>cd my-ai-app
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># AI SDK 및 제공자 패키지 설치</span>
-</span></span><span style=display:flex><span>npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
-</span></span><span style=display:flex><span><span style=color:#75715e># 선택사항: 구조화된 출력</span>
-</span></span><span style=display:flex><span>npm install zod
-</span></span></code></pre></div><h3 id=단계-2-첫-번째-채팅-api-구성>단계 2: 첫 번째 채팅 API 구성<a hidden class=anchor aria-hidden=true href=#단계-2-첫-번째-채팅-api-구성>#</a></h3><p><code>app/api/chat/route.ts</code> 생성: `````typescript
+</code></pre><p>엣지 함수는 Cloudflare Worker, Fastly Compute@Edge 또는 Vercel Edge Function에서 실행됩니다 — 사용자에게 100-300ms 떨어진 지리적 분산 노드. 채팅 앱의 경우 첫 번째 토큰이 500ms 이내에 도달한다는 의미입니다.</p>
+<h3 id="핵심-아키텍처">핵심 아키텍처<a hidden class="anchor" aria-hidden="true" href="#핵심-아키텍처">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// 제공자 추상화 계층
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createOpenAI</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@ai-sdk/openai&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createAnthropic</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@ai-sdk/anthropic&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">createGoogleGenerativeAI</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@ai-sdk/google&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">openai</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createOpenAI</span>({ <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.OPENAI_API_KEY</span> });
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">anthropic</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">createAnthropic</span>({ <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.ANTHROPIC_API_KEY</span> });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 제공자Regardless 동일한 API 호출
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">streamText</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">model</span>: <span style="color:#66d9ef">openai</span>(<span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">messages</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">role</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#a6e22e">content</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;안녕!&#34;</span> }],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">system</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;도움이 되는 어시스턴트입니다.&#34;</span>
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p><code>streamText</code> 함수는 GPT-4o, Claude 3.5 Sonnet 또는 Gemini 1.5 Pro를 호출하든 동일하게 작동합니다. 제공자를 바꾸려면 한 줄만 변경하면 됩니다.</p>
+<hr>
+<h2 id="시작하기">시작하기<a hidden class="anchor" aria-hidden="true" href="#시작하기">#</a></h2>
+<h3 id="단계-1-의존성-설치">단계 1: 의존성 설치<a hidden class="anchor" aria-hidden="true" href="#단계-1-의존성-설치">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># TypeScript로 새로운 Next.js 프로젝트 생성</span>
+</span></span><span style="display:flex;"><span>npx create-next-app@latest my-ai-app --typescript --tailwind --app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd my-ai-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AI SDK 및 제공자 패키지 설치</span>
+</span></span><span style="display:flex;"><span>npm install ai @ai-sdk/openai @ai-sdk/anthropic @ai-sdk/google
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 선택사항: 구조화된 출력</span>
+</span></span><span style="display:flex;"><span>npm install zod
+</span></span></code></pre></div><h3 id="단계-2-첫-번째-채팅-api-구성">단계 2: 첫 번째 채팅 API 구성<a hidden class="anchor" aria-hidden="true" href="#단계-2-첫-번째-채팅-api-구성">#</a></h3>
+<p><code>app/api/chat/route.ts</code> 생성: `````typescript
 import { streamText } from &ldquo;ai&rdquo;;
-import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;</p><p>const openai = createOpenAI({
+import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;</p>
+<p>const openai = createOpenAI({
 apiKey: process.env.OPENAI_API_KEY,
 baseURL: process.env.OPENAI_BASE_URL, // 선택사항: 호환 API용
-});</p><p>export async function POST(req: Request) {
-const { messages } = await req.json();</p><p>const result = streamText({
+});</p>
+<p>export async function POST(req: Request) {
+const { messages } = await req.json();</p>
+<p>const result = streamText({
 model: openai(&ldquo;gpt-4o&rdquo;),
 messages,
 system: <code>도움이 되는 프로그래밍 어시스턴트입니다. 관련 시 코드 예시를 제공하세요.</code>,
 maxTokens: 2048,
 temperature: 0.7,
-});</p><p>return result.toDataStreamResponse();
-}</p><pre tabindex=0><code>
+});</p>
+<p>return result.toDataStreamResponse();
+}</p>
+<pre tabindex="0"><code>
 그것뿐입니다. 파일 하나, 20줄 코드로 완전히 스트리밍되는 채팅 API가 생깁니다.
 
 ### 단계 3: 프론트엔드 구축
@@ -94,26 +349,37 @@ export default function Chat() {
     &lt;/div&gt;
   );
 }
-</code></pre><p><code>useChat</code> hook이 상태 관리, 스트리밍 업데이트, 에러 처리 및 로딩 상태를 모두 처리합니다.</p><hr><h2 id=고급-패턴>고급 패턴<a hidden class=anchor aria-hidden=true href=#고급-패턴>#</a></h2><h3 id=패턴-1-멀티-제공자-라우팅>패턴 1: 멀티 제공자 라우팅<a hidden class=anchor aria-hidden=true href=#패턴-1-멀티-제공자-라우팅>#</a></h3><p>작업 유형에 따라 요청을 다른 모델로 라우팅: `````typescript
+</code></pre><p><code>useChat</code> hook이 상태 관리, 스트리밍 업데이트, 에러 처리 및 로딩 상태를 모두 처리합니다.</p>
+<hr>
+<h2 id="고급-패턴">고급 패턴<a hidden class="anchor" aria-hidden="true" href="#고급-패턴">#</a></h2>
+<h3 id="패턴-1-멀티-제공자-라우팅">패턴 1: 멀티 제공자 라우팅<a hidden class="anchor" aria-hidden="true" href="#패턴-1-멀티-제공자-라우팅">#</a></h3>
+<p>작업 유형에 따라 요청을 다른 모델로 라우팅: `````typescript
 import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;
 import { createAnthropic } from &ldquo;@ai-sdk/anthropic&rdquo;;
 import { createGoogleGenerativeAI } from &ldquo;@ai-sdk/google&rdquo;;
-import { streamText } from &ldquo;ai&rdquo;;</p><p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
+import { streamText } from &ldquo;ai&rdquo;;</p>
+<p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });
 const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_API_KEY });</p><p>type TaskType = &ldquo;creative&rdquo; | &ldquo;analytical&rdquo; | &ldquo;code&rdquo; | &ldquo;summary&rdquo;;</p><p>const modelRouter: Record&lt;TaskType, any> = {
+const google = createGoogleGenerativeAI({ apiKey: process.env.GOOGLE_API_KEY });</p>
+<p>type TaskType = &ldquo;creative&rdquo; | &ldquo;analytical&rdquo; | &ldquo;code&rdquo; | &ldquo;summary&rdquo;;</p>
+<p>const modelRouter: Record&lt;TaskType, any&gt; = {
 creative: anthropic(&ldquo;claude-sonnet-4-20260514&rdquo;),
 analytical: openai(&ldquo;o3-mini&rdquo;),
 code: anthropic(&ldquo;claude-sonnet-4-20260514&rdquo;),
 summary: google(&ldquo;gemini-2.0-flash&rdquo;),
-};</p><p>export async function POST(req: Request) {
+};</p>
+<p>export async function POST(req: Request) {
 const { messages, taskType }: { messages: any[]; taskType: TaskType } = await req.json();
-const model = modelRouter[taskType] || modelRouter.creative;</p><p>const result = streamText({
+const model = modelRouter[taskType] || modelRouter.creative;</p>
+<p>const result = streamText({
 model,
 messages,
 maxTokens: taskType === &ldquo;code&rdquo; ? 4096 : 1024,
 temperature: taskType === &ldquo;creative&rdquo; ? 0.9 : 0.3,
-});</p><p>return result.toDataStreamResponse();
-}</p><pre tabindex=0><code>
+});</p>
+<p>return result.toDataStreamResponse();
+}</p>
+<pre tabindex="0"><code>
 ### 패턴 2: Zod와 함께 구조화된 출력
 
 LLM 응답을 검증하고 타입 객체로 파싱: `````typescript
@@ -141,39 +407,52 @@ export async function POST(req: Request) {
 
   return Response.json(object);
 }
-</code></pre><p>응답이 스키마와 일치하도록 보장됩니다 — TypeScript 타입이 스키마 정의부터 프론트엔드 컴포넌트까지 끝에서 끝으로 흐릅니다.</p><h3 id=패턴-3-임베딩이-있는-rag-파이프라인>패턴 3: 임베딩이 있는 RAG 파이프라인<a hidden class=anchor aria-hidden=true href=#패턴-3-임베딩이-있는-rag-파이프라인>#</a></h3><p>단일 라우트에서 검색 증강 생성 구축: `````typescript
+</code></pre><p>응답이 스키마와 일치하도록 보장됩니다 — TypeScript 타입이 스키마 정의부터 프론트엔드 컴포넌트까지 끝에서 끝으로 흐릅니다.</p>
+<h3 id="패턴-3-임베딩이-있는-rag-파이프라인">패턴 3: 임베딩이 있는 RAG 파이프라인<a hidden class="anchor" aria-hidden="true" href="#패턴-3-임베딩이-있는-rag-파이프라인">#</a></h3>
+<p>단일 라우트에서 검색 증강 생성 구축: `````typescript
 import { embed, embedMany, streamText } from &ldquo;ai&rdquo;;
 import { createOpenAI } from &ldquo;@ai-sdk/openai&rdquo;;
-import { cosineSimilarity } from &ldquo;ai/embeddings&rdquo;;</p><p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });</p><p>let documentVectors: { embedding: number[]; content: string }[] = [];</p><p>async function addDocuments(documents: string[]) {
+import { cosineSimilarity } from &ldquo;ai/embeddings&rdquo;;</p>
+<p>const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY });</p>
+<p>let documentVectors: { embedding: number[]; content: string }[] = [];</p>
+<p>async function addDocuments(documents: string[]) {
 const { embeddings } = await embedMany({
 model: openai.embedding(&ldquo;text-embedding-3-small&rdquo;),
 values: documents,
 });
-documentVectors = documents.map((content, i) => ({
+documentVectors = documents.map((content, i) =&gt; ({
 embedding: embeddings[i],
 content,
 }));
-}</p><p>async function searchDocuments(query: string, topK: number = 3) {
+}</p>
+<p>async function searchDocuments(query: string, topK: number = 3) {
 const { embedding } = await embed({
 model: openai.embedding(&ldquo;text-embedding-3-small&rdquo;),
 value: query,
 });
 const scored = documentVectors
-.map((doc) => ({ &mldr;doc, similarity: cosineSimilarity(embedding, doc.embedding) }))
-.sort((a, b) => b.similarity - a.similarity)
+.map((doc) =&gt; ({ &hellip;doc, similarity: cosineSimilarity(embedding, doc.embedding) }))
+.sort((a, b) =&gt; b.similarity - a.similarity)
 .slice(0, topK);
-return scored.map((s) => s.content);
-}</p><p>export async function POST(req: Request) {
+return scored.map((s) =&gt; s.content);
+}</p>
+<p>export async function POST(req: Request) {
 const { messages, documents } = await req.json();
-if (documents?.length) await addDocuments(documents);</p><p>const lastMessage = messages[messages.length - 1];
-const context = await searchDocuments(lastMessage.content);</p><p>const result = streamText({
+if (documents?.length) await addDocuments(documents);</p>
+<p>const lastMessage = messages[messages.length - 1];
+const context = await searchDocuments(lastMessage.content);</p>
+<p>const result = streamText({
 model: openai(&ldquo;gpt-4o&rdquo;),
 messages,
 system: ````다음 컨텍스트만 사용하여 답변하세요.
-컨텍스트에 관련 정보가 없으면 그렇게 말하세요.</p><pre><code>컨텍스트: ${context.join(&quot;\n\n&quot;)}
+컨텍스트에 관련 정보가 없으면 그렇게 말하세요.</p>
+<pre><code>컨텍스트: ${context.join(&quot;\n\n&quot;)}
 ````,
-</code></pre><p>});</p><p>return result.toDataStreamResponse();
-}</p><pre tabindex=0><code>
+</code></pre>
+<p>});</p>
+<p>return result.toDataStreamResponse();
+}</p>
+<pre tabindex="0"><code>
 ### 패턴 4: 에이전트 도구 호출
 
 LLM에게 외부 도구 접근 권한 부여: ````typescript
@@ -221,11 +500,155 @@ const result = streamText({
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/vibe-coding-2026-korean-concept-explained/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/vercel-ai-sdk-complete-guide/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/vibe-coding-2026-korean-concept-explained/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

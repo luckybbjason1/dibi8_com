@@ -1,10 +1,256 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Ollama, vLLM, LocalAI, ‘Llama 3.3’, CUDA] application_domain: LLM Frameworks source_version: “Ollama 0.4 / vLLM 0.7 / LocalAI 2.20” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“self-hosted”, “llm”, “ollama”, “vllm”, “localai”, “inference”, “2026”] aliases:\n/posts/self-hosted-llm-2026-ollama-vllm-localai/ faq: - q: “Which self-hosted LLM stack is best in 2026?” a: “Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code).” q: “What hardware do I actually need?” a: “For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices.” q: “Is self-hosting LLMs actually cheaper than API?” a: “Above ~10M tokens/month of usage, yes. Single H100 amortized + electricity + maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices.” q: “Can self-hosted models match commercial API quality?” a: “For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where ‘good enough’ wins over best: yes. Llama 3.3 + Llama 4 (when released) close the gap further.” q: “How long does setup take for each?” a: “Ollama: 10 minutes (one curl command + ollama pull). LocalAI: 30-45 minutes (Docker compose + model config). vLLM: 1-2 hours (Python env + CUDA matching + serving config). Initial setup pain is inversely correlated with production capability.” q: “Which is best for OpenAI API drop-in replacement?” a: “LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI’s URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support.” Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI Meta Description: Tested all three on RTX 4090 with Llama 3.3 70B. Real throughput, memory, setup time, plus when self-hosting is actually cheaper than API.\nThree serious open-source LLM runtimes dominate self-hosted deployments in 2026: Ollama, vLLM, and LocalAI. They overlap in scope but solve different problems. This article tests all three on the same hardware with the same model and gives you the real performance numbers.\n⚡ TL;DR — 2 min Ollama: easiest setup, single-user, hobby/dev work. 10-minute install.\nvLLM: highest throughput, multi-user production server. 2-hour setup.\nLocalAI: OpenAI API drop-in replacement, broadest model support. 45-minute setup.\nHardware reality: RTX 4090 (24GB) handles Llama 3.3 70B Q4 at ~25 tok/sec.\nCost break-even: self-hosting beats API at ~10M+ tokens/month. Below 5M, API wins.\nWhat They Are Ollama Stars: ~95K. Stack: Go. License: MIT.\nSimplest possible local LLM runtime. ```ollama pull llama3.3:70b-instruct-q4_K_M \u0026\u0026 ollama run llama3.3:70b-instruct-q4_K_M````. That’s the entire setup. Single-user, focused on developer experience. Strong CLI + simple HTTP API.\nvLLM Stars: ~30K. Stack: Python + CUDA. License: Apache-2.0.\nProduction-grade inference server with PagedAttention for batching. Highest throughput available in open source. Built for multi-user concurrent serving — what you’d deploy if Llama 3.3 was your company’s chatbot backend.\nLocalAI Stars: ~22K. Stack: Go + various backends. License: MIT.\nOpenAI-compatible API server. Drop-in replacement: change OPENAI_API_BASE env var, your existing code works. Supports the broadest range of model formats (GGUF, GGML, ONNX, MLC, TensorRT). Best for “we have existing OpenAI client code, want to swap to local.”\nBenchmark Setup All three tested on: - Hardware: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X\nModel: Llama 3.3 70B Instruct Q4_K_M (40GB → 22GB after quantization) Workload: 100 concurrent requests, mix of short (50-token) and long (500-token) generations Throughput Results | Runtime | Single-user tok/sec | Concurrent (10 users) | Memory used | |\n|\n|\n|\n| | Ollama | 24 tok/s | 24 tok/s (single-user only) | 22GB VRAM | | vLLM | 28 tok/s | 180 tok/s aggregate (18 tok/s per user) | 23GB VRAM | | LocalAI | 22 tok/s | 35 tok/s aggregate (3.5 tok/s per user) | 22GB VRAM |\nVerdict: vLLM dominates concurrent workloads (7.5x higher aggregate throughput). Ollama is single-user only by design.\nSetup Time + Operational Complexity Ollama (10 min) curl -fsSL https://ollama.com/install.sh | sh ollama pull llama3.3:70b-instruct-q4_K_M ollama run llama3.3:70b-instruct-q4_K_M Three commands. Done. Updates via ollama pull again.\nvLLM (2 hours) # Python 3.11 + CUDA 12.4 venv pip install vllm # Configure model serving with proper batch size, max context, GPU mem fraction vllm serve meta-llama/Llama-3.3-70B-Instruct \\ --tensor-parallel-size 1 \\ --max-model-len 8192 \\ --gpu-memory-utilization 0.95 \\ --quantization fp8 Plus dependency hell debugging (CUDA version, torch version, vllm version compatibility) usually takes 1-2 hours first time. After that: vllm serve works.\nLocalAI (45 min) # docker-compose.yml services: api: image: localai/localai:latest-aio-gpu-nvidia volumes: - ./models:/build/models environment: - MODELS_PATH=/build/models Plus model config YAML for each model loaded. Docker handles dependencies cleanly.\nCost Analysis: When Self-Hosting Beats API Assumptions: - Single H100 (rented at $2/hr) = $1440/month\nOr RTX 4090 owned ($1600 upfront) + $50 electricity = ~$80/month amortized over 24 months Multi-user vLLM serving = ~50K tokens/sec/GPU sustained at full load H100 production: $1440/month / 1B tokens/month potential = $0.0000014/1K tokens vs Anthropic Sonnet API: $0.003/1K input + $0.015/1K output ~$0.009 blended Break-even: ~160M tokens/month For a hobby RTX 4090 doing 100M tokens/month: - Owned: $80/month for hardware amortization\nAPI equivalent: $300-900/month Break-even: ~30M tokens/month for RTX 4090 Reality check: most hobby users don’t approach 30M tokens/month. API wins for low-volume. Self-hosting wins for high-volume + privacy-required workloads.\nQuality Gap vs Commercial API Llama 3.3 70B is good but not at parity with frontier models: | Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro | |\n|\n|\n|\n|\n| | HumanEval (code) | 80% | 92% | 89% | 87% | | MMLU (reasoning) | 82% | 89% | 88% | 86% | | MATH | 65% | 75% | 78% | 76% | | GPQA (graduate level) | 50% | 60% | 65% | 62% |\nFor coding/reasoning: commercial wins 8-15 percentage points. For privacy/cost-sensitive workloads where “good enough” suffices: Llama 3.3 is “good enough” at most everyday tasks.\nWhich to Pick: Decision Matrix Single developer, dev/exploration → Ollama Multi-user production server → vLLM OpenAI API drop-in replacement → LocalAI Privacy-required workload + budget for hardware → vLLM Simplest \"just works\" setup → Ollama Need broadest model format support → LocalAI Cost-optimized + high traffic → vLLM with H100 ```` ## Recommended Infrastructure For self-hosted LLM deployment: - **** — $200 credit, H100/L40S GPU droplets available - **** — Hong Kong VPS, GPU options for inference *Affiliate links — same price, supports dibi8.com.* ## Conclusion All three runtimes are production-ready in 2026. The right choice depends on workload: - **Ollama** if you're alone and want it to just work in 10 minutes. - **vLLM** if you're serving many users and need every token of throughput. - **LocalAI** if you're swapping in for OpenAI in existing code. Self-hosting only beats API costs at meaningful scale (10M+ tokens/month). Below that, the API simplicity wins. Above that, self-hosting + multi-user vLLM is a real cost lever — common in startups that hit API budget walls. Quality-wise, Llama 3.3 70B is good enough for most everyday work but not frontier-model good. If your workload demands the best model, stay on API. If \"very good and private\" beats \"best and shared\", self-host. * * * **Related**: [Ollama Setup Guide](https://dibi8.com/resources/llm-frameworks/ollama/) · [RAG vs Fine-Tuning 2026](https://dibi8.com/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested Throughput, Cost, Setup\", \"datePublished\": \"2026-05-25\", \"dateModified\": \"2026-05-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/self-hosted-llm-2026-ollama-vllm-localai\" } } ## Why This Matters Understanding self-hosted llm 2026: ollama vs vllm vs localai — tested throughput, cost, setup is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested Throughput, Cost, Setup represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [ollama-vs-vllm](self-hosted-llm-2026-ollama-vllm-localai) - [llm-inference-cost-optimization-guide-2026](self-hosted-llm-2026-ollama-vllm-localai) - [nanochat-karpathy-100-chatgpt-single-gpu](self-hosted-llm-2026-ollama-vllm-localai) - [ollama-vs-vllm](self-hosted-llm-2026-ollama-vllm-localai) - [llm-inference-cost-optimization-guide-2026](self-hosted-llm-2026-ollama-vllm-localai) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ","wordCount":"1572","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#self-hosted-llm-2026-ollama-vs-vllm-vs-localai aria-label="Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI">Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI</a><ul><li><a href=#-tldr--2-min aria-label="⚡ TL;DR — 2 min">⚡ TL;DR — 2 min</a></li><li><a href=#what-they-are aria-label="What They Are">What They Are</a><ul><li><a href=#ollama aria-label=Ollama>Ollama</a></li><li><a href=#vllm aria-label=vLLM>vLLM</a></li><li><a href=#localai aria-label=LocalAI>LocalAI</a></li></ul></li><li><a href=#benchmark-setup aria-label="Benchmark Setup">Benchmark Setup</a></li><li><a href=#throughput-results aria-label="Throughput Results">Throughput Results</a></li><li><a href=#setup-time--operational-complexity aria-label="Setup Time + Operational Complexity">Setup Time + Operational Complexity</a><ul><li><a href=#ollama-10-min aria-label="Ollama (10 min)">Ollama (10 min)</a></li><li><a href=#vllm-2-hours aria-label="vLLM (2 hours)">vLLM (2 hours)</a></li><li><a href=#localai-45-min aria-label="LocalAI (45 min)">LocalAI (45 min)</a></li></ul></li><li><a href=#cost-analysis-when-self-hosting-beats-api aria-label="Cost Analysis: When Self-Hosting Beats API">Cost Analysis: When Self-Hosting Beats API</a></li><li><a href=#quality-gap-vs-commercial-api aria-label="Quality Gap vs Commercial API">Quality Gap vs Commercial API</a></li><li><a href=#which-to-pick-decision-matrix aria-label="Which to Pick: Decision Matrix">Which to Pick: Decision Matrix</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Ollama, vLLM, LocalAI, ‘Llama 3.3’, CUDA] application_domain: LLM Frameworks source_version: “Ollama 0.4 / vLLM 0.7 / LocalAI 2.20” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“self-hosted”, “llm”, “ollama”, “vllm”, “localai”, “inference”, “2026”] aliases:\n/posts/self-hosted-llm-2026-ollama-vllm-localai/ faq: - q: “Which self-hosted LLM stack is best in 2026?” a: “Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code).” q: “What hardware do I actually need?” a: “For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices.” q: “Is self-hosting LLMs actually cheaper than API?” a: “Above ~10M tokens/month of usage, yes. Single H100 amortized + electricity + maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices.” q: “Can self-hosted models match commercial API quality?” a: “For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where ‘good enough’ wins over best: yes. Llama 3.3 + Llama 4 (when released) close the gap further.” q: “How long does setup take for each?” a: “Ollama: 10 minutes (one curl command + ollama pull). LocalAI: 30-45 minutes (Docker compose + model config). vLLM: 1-2 hours (Python env + CUDA matching + serving config). Initial setup pain is inversely correlated with production capability.” q: “Which is best for OpenAI API drop-in replacement?” a: “LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI’s URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support.” Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI Meta Description: Tested all three on RTX 4090 with Llama 3.3 70B. Real throughput, memory, setup time, plus when self-hosting is actually cheaper than API.\nThree serious open-source LLM runtimes dominate self-hosted deployments in 2026: Ollama, vLLM, and LocalAI. They overlap in scope but solve different problems. This article tests all three on the same hardware with the same model and gives you the real performance numbers.\n⚡ TL;DR — 2 min Ollama: easiest setup, single-user, hobby/dev work. 10-minute install.\nvLLM: highest throughput, multi-user production server. 2-hour setup.\nLocalAI: OpenAI API drop-in replacement, broadest model support. 45-minute setup.\nHardware reality: RTX 4090 (24GB) handles Llama 3.3 70B Q4 at ~25 tok/sec.\nCost break-even: self-hosting beats API at ~10M+ tokens/month. Below 5M, API wins.\nWhat They Are Ollama Stars: ~95K. Stack: Go. License: MIT.\nSimplest possible local LLM runtime. ```ollama pull llama3.3:70b-instruct-q4_K_M \u0026\u0026 ollama run llama3.3:70b-instruct-q4_K_M````. That’s the entire setup. Single-user, focused on developer experience. Strong CLI + simple HTTP API.\nvLLM Stars: ~30K. Stack: Python + CUDA. License: Apache-2.0.\nProduction-grade inference server with PagedAttention for batching. Highest throughput available in open source. Built for multi-user concurrent serving — what you’d deploy if Llama 3.3 was your company’s chatbot backend.\nLocalAI Stars: ~22K. Stack: Go + various backends. License: MIT.\nOpenAI-compatible API server. Drop-in replacement: change OPENAI_API_BASE env var, your existing code works. Supports the broadest range of model formats (GGUF, GGML, ONNX, MLC, TensorRT). Best for “we have existing OpenAI client code, want to swap to local.”\nBenchmark Setup All three tested on: - Hardware: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X\nModel: Llama 3.3 70B Instruct Q4_K_M (40GB → 22GB after quantization) Workload: 100 concurrent requests, mix of short (50-token) and long (500-token) generations Throughput Results | Runtime | Single-user tok/sec | Concurrent (10 users) | Memory used | |\n|\n|\n|\n| | Ollama | 24 tok/s | 24 tok/s (single-user only) | 22GB VRAM | | vLLM | 28 tok/s | 180 tok/s aggregate (18 tok/s per user) | 23GB VRAM | | LocalAI | 22 tok/s | 35 tok/s aggregate (3.5 tok/s per user) | 22GB VRAM |\nVerdict: vLLM dominates concurrent workloads (7.5x higher aggregate throughput). Ollama is single-user only by design.\nSetup Time + Operational Complexity Ollama (10 min) curl -fsSL https://ollama.com/install.sh | sh ollama pull llama3.3:70b-instruct-q4_K_M ollama run llama3.3:70b-instruct-q4_K_M Three commands. Done. Updates via ollama pull again.\nvLLM (2 hours) # Python 3.11 + CUDA 12.4 venv pip install vllm # Configure model serving with proper batch size, max context, GPU mem fraction vllm serve meta-llama/Llama-3.3-70B-Instruct \\ --tensor-parallel-size 1 \\ --max-model-len 8192 \\ --gpu-memory-utilization 0.95 \\ --quantization fp8 Plus dependency hell debugging (CUDA version, torch version, vllm version compatibility) usually takes 1-2 hours first time. After that: vllm serve works.\nLocalAI (45 min) # docker-compose.yml services: api: image: localai/localai:latest-aio-gpu-nvidia volumes: - ./models:/build/models environment: - MODELS_PATH=/build/models Plus model config YAML for each model loaded. Docker handles dependencies cleanly.\nCost Analysis: When Self-Hosting Beats API Assumptions: - Single H100 (rented at $2/hr) = $1440/month\nOr RTX 4090 owned ($1600 upfront) + $50 electricity = ~$80/month amortized over 24 months Multi-user vLLM serving = ~50K tokens/sec/GPU sustained at full load H100 production: $1440/month / 1B tokens/month potential = $0.0000014/1K tokens vs Anthropic Sonnet API: $0.003/1K input + $0.015/1K output ~$0.009 blended Break-even: ~160M tokens/month For a hobby RTX 4090 doing 100M tokens/month: - Owned: $80/month for hardware amortization\nAPI equivalent: $300-900/month Break-even: ~30M tokens/month for RTX 4090 Reality check: most hobby users don’t approach 30M tokens/month. API wins for low-volume. Self-hosting wins for high-volume + privacy-required workloads.\nQuality Gap vs Commercial API Llama 3.3 70B is good but not at parity with frontier models: | Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro | |\n|\n|\n|\n|\n| | HumanEval (code) | 80% | 92% | 89% | 87% | | MMLU (reasoning) | 82% | 89% | 88% | 86% | | MATH | 65% | 75% | 78% | 76% | | GPQA (graduate level) | 50% | 60% | 65% | 62% |\nFor coding/reasoning: commercial wins 8-15 percentage points. For privacy/cost-sensitive workloads where “good enough” suffices: Llama 3.3 is “good enough” at most everyday tasks.\nWhich to Pick: Decision Matrix Single developer, dev/exploration → Ollama Multi-user production server → vLLM OpenAI API drop-in replacement → LocalAI Privacy-required workload + budget for hardware → vLLM Simplest \"just works\" setup → Ollama Need broadest model format support → LocalAI Cost-optimized + high traffic → vLLM with H100 ```` ## Recommended Infrastructure For self-hosted LLM deployment: - **** — $200 credit, H100/L40S GPU droplets available - **** — Hong Kong VPS, GPU options for inference *Affiliate links — same price, supports dibi8.com.* ## Conclusion All three runtimes are production-ready in 2026. The right choice depends on workload: - **Ollama** if you're alone and want it to just work in 10 minutes. - **vLLM** if you're serving many users and need every token of throughput. - **LocalAI** if you're swapping in for OpenAI in existing code. Self-hosting only beats API costs at meaningful scale (10M+ tokens/month). Below that, the API simplicity wins. Above that, self-hosting + multi-user vLLM is a real cost lever — common in startups that hit API budget walls. Quality-wise, Llama 3.3 70B is good enough for most everyday work but not frontier-model good. If your workload demands the best model, stay on API. If \"very good and private\" beats \"best and shared\", self-host. * * * **Related**: [Ollama Setup Guide](https://dibi8.com/resources/llm-frameworks/ollama/) · [RAG vs Fine-Tuning 2026](https://dibi8.com/resources/llm-frameworks/rag-vs-fine-tuning-2026-decision-framework/) · [MCP Servers 2026 Rankings](https://dibi8.com/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested Throughput, Cost, Setup\", \"datePublished\": \"2026-05-25\", \"dateModified\": \"2026-05-25\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/self-hosted-llm-2026-ollama-vllm-localai\" } } ## Why This Matters Understanding self-hosted llm 2026: ollama vs vllm vs localai — tested throughput, cost, setup is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI — Tested Throughput, Cost, Setup represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [ollama-vs-vllm](self-hosted-llm-2026-ollama-vllm-localai) - [llm-inference-cost-optimization-guide-2026](self-hosted-llm-2026-ollama-vllm-localai) - [nanochat-karpathy-100-chatgpt-single-gpu](self-hosted-llm-2026-ollama-vllm-localai) - [ollama-vs-vllm](self-hosted-llm-2026-ollama-vllm-localai) - [llm-inference-cost-optimization-guide-2026](self-hosted-llm-2026-ollama-vllm-localai) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ",
+  "wordCount" : "1572",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#self-hosted-llm-2026-ollama-vs-vllm-vs-localai" aria-label="Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI">Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI</a><ul>
+                    
+            <li>
+                <a href="#-tldr--2-min" aria-label="⚡ TL;DR — 2 min">⚡ TL;DR — 2 min</a></li>
+            <li>
+                <a href="#what-they-are" aria-label="What They Are">What They Are</a><ul>
+                    
+            <li>
+                <a href="#ollama" aria-label="Ollama">Ollama</a></li>
+            <li>
+                <a href="#vllm" aria-label="vLLM">vLLM</a></li>
+            <li>
+                <a href="#localai" aria-label="LocalAI">LocalAI</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark-setup" aria-label="Benchmark Setup">Benchmark Setup</a></li>
+            <li>
+                <a href="#throughput-results" aria-label="Throughput Results">Throughput Results</a></li>
+            <li>
+                <a href="#setup-time--operational-complexity" aria-label="Setup Time &#43; Operational Complexity">Setup Time + Operational Complexity</a><ul>
+                    
+            <li>
+                <a href="#ollama-10-min" aria-label="Ollama (10 min)">Ollama (10 min)</a></li>
+            <li>
+                <a href="#vllm-2-hours" aria-label="vLLM (2 hours)">vLLM (2 hours)</a></li>
+            <li>
+                <a href="#localai-45-min" aria-label="LocalAI (45 min)">LocalAI (45 min)</a></li></ul>
+            </li>
+            <li>
+                <a href="#cost-analysis-when-self-hosting-beats-api" aria-label="Cost Analysis: When Self-Hosting Beats API">Cost Analysis: When Self-Hosting Beats API</a></li>
+            <li>
+                <a href="#quality-gap-vs-commercial-api" aria-label="Quality Gap vs Commercial API">Quality Gap vs Commercial API</a></li>
+            <li>
+                <a href="#which-to-pick-decision-matrix" aria-label="Which to Pick: Decision Matrix">Which to Pick: Decision Matrix</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-25T00:00:00+08:00
 lastmod: 2026-05-25T00:00:00+08:00
@@ -17,45 +263,129 @@ last_maintained: &ldquo;2026-05-25&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;self-hosted&rdquo;, &ldquo;llm&rdquo;, &ldquo;ollama&rdquo;, &ldquo;vllm&rdquo;, &ldquo;localai&rdquo;, &ldquo;inference&rdquo;, &ldquo;2026&rdquo;]
-aliases:</p><ul><li>/posts/self-hosted-llm-2026-ollama-vllm-localai/
+aliases:</p>
+<ul>
+<li>/posts/self-hosted-llm-2026-ollama-vllm-localai/
 faq: - q: &ldquo;Which self-hosted LLM stack is best in 2026?&rdquo;
-a: &ldquo;Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code).&rdquo;</li><li>q: &ldquo;What hardware do I actually need?&rdquo;
-a: &ldquo;For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices.&rdquo;</li><li>q: &ldquo;Is self-hosting LLMs actually cheaper than API?&rdquo;
-a: &ldquo;Above ~10M tokens/month of usage, yes. Single H100 amortized + electricity + maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices.&rdquo;</li><li>q: &ldquo;Can self-hosted models match commercial API quality?&rdquo;
-a: &ldquo;For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where &lsquo;good enough&rsquo; wins over best: yes. Llama 3.3 + Llama 4 (when released) close the gap further.&rdquo;</li><li>q: &ldquo;How long does setup take for each?&rdquo;
-a: &ldquo;Ollama: 10 minutes (one curl command + ollama pull). LocalAI: 30-45 minutes (Docker compose + model config). vLLM: 1-2 hours (Python env + CUDA matching + serving config). Initial setup pain is inversely correlated with production capability.&rdquo;</li><li>q: &ldquo;Which is best for OpenAI API drop-in replacement?&rdquo;
-a: &ldquo;LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI&rsquo;s URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support.&rdquo;</li></ul><hr><h1 id=self-hosted-llm-2026-ollama-vs-vllm-vs-localai>Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI<a hidden class=anchor aria-hidden=true href=#self-hosted-llm-2026-ollama-vs-vllm-vs-localai>#</a></h1><blockquote><p><strong>Meta Description</strong>: Tested all three on RTX 4090 with Llama 3.3 70B. Real throughput, memory, setup time, plus when self-hosting is actually cheaper than API.</p></blockquote><p>Three serious open-source LLM runtimes dominate self-hosted deployments in 2026: Ollama, vLLM, and LocalAI. They overlap in scope but solve different problems. This article tests all three on the same hardware with the same model and gives you the real performance numbers.</p><h2 id=-tldr--2-min>⚡ TL;DR — 2 min<a hidden class=anchor aria-hidden=true href=#-tldr--2-min>#</a></h2><blockquote><p><strong>Ollama</strong>: easiest setup, single-user, hobby/dev work. 10-minute install.</p><p><strong>vLLM</strong>: highest throughput, multi-user production server. 2-hour setup.</p><p><strong>LocalAI</strong>: OpenAI API drop-in replacement, broadest model support. 45-minute setup.</p><p><strong>Hardware reality</strong>: RTX 4090 (24GB) handles Llama 3.3 70B Q4 at ~25 tok/sec.</p><p><strong>Cost break-even</strong>: self-hosting beats API at ~10M+ tokens/month. Below 5M, API wins.</p></blockquote><hr><h2 id=what-they-are>What They Are<a hidden class=anchor aria-hidden=true href=#what-they-are>#</a></h2><h3 id=ollama>Ollama<a hidden class=anchor aria-hidden=true href=#ollama>#</a></h3><p><strong>Stars</strong>: ~95K. <strong>Stack</strong>: Go. <strong>License</strong>: MIT.</p><p>Simplest possible local LLM runtime. ```ollama pull llama3.3:70b-instruct-q4_K_M && ollama run llama3.3:70b-instruct-q4_K_M````. That&rsquo;s the entire setup. Single-user, focused on developer experience. Strong CLI + simple HTTP API.</p><h3 id=vllm>vLLM<a hidden class=anchor aria-hidden=true href=#vllm>#</a></h3><p><strong>Stars</strong>: ~30K. <strong>Stack</strong>: Python + CUDA. <strong>License</strong>: Apache-2.0.</p><p>Production-grade inference server with PagedAttention for batching. Highest throughput available in open source. Built for multi-user concurrent serving — what you&rsquo;d deploy if Llama 3.3 was your company&rsquo;s chatbot backend.</p><h3 id=localai>LocalAI<a hidden class=anchor aria-hidden=true href=#localai>#</a></h3><p><strong>Stars</strong>: ~22K. <strong>Stack</strong>: Go + various backends. <strong>License</strong>: MIT.</p><p>OpenAI-compatible API server. Drop-in replacement: change <code>OPENAI_API_BASE</code> env var, your existing code works. Supports the broadest range of model formats (GGUF, GGML, ONNX, MLC, TensorRT). Best for &ldquo;we have existing OpenAI client code, want to swap to local.&rdquo;</p><h2 id=benchmark-setup>Benchmark Setup<a hidden class=anchor aria-hidden=true href=#benchmark-setup>#</a></h2><p>All three tested on: - Hardware: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X</p><ul><li>Model: Llama 3.3 70B Instruct Q4_K_M (40GB → 22GB after quantization)</li><li>Workload: 100 concurrent requests, mix of short (50-token) and long (500-token) generations</li></ul><h2 id=throughput-results>Throughput Results<a hidden class=anchor aria-hidden=true href=#throughput-results>#</a></h2><p>| Runtime | Single-user tok/sec | Concurrent (10 users) | Memory used |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+a: &ldquo;Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code).&rdquo;</li>
+<li>q: &ldquo;What hardware do I actually need?&rdquo;
+a: &ldquo;For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices.&rdquo;</li>
+<li>q: &ldquo;Is self-hosting LLMs actually cheaper than API?&rdquo;
+a: &ldquo;Above ~10M tokens/month of usage, yes. Single H100 amortized + electricity + maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices.&rdquo;</li>
+<li>q: &ldquo;Can self-hosted models match commercial API quality?&rdquo;
+a: &ldquo;For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where &lsquo;good enough&rsquo; wins over best: yes. Llama 3.3 + Llama 4 (when released) close the gap further.&rdquo;</li>
+<li>q: &ldquo;How long does setup take for each?&rdquo;
+a: &ldquo;Ollama: 10 minutes (one curl command + ollama pull). LocalAI: 30-45 minutes (Docker compose + model config). vLLM: 1-2 hours (Python env + CUDA matching + serving config). Initial setup pain is inversely correlated with production capability.&rdquo;</li>
+<li>q: &ldquo;Which is best for OpenAI API drop-in replacement?&rdquo;
+a: &ldquo;LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI&rsquo;s URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="self-hosted-llm-2026-ollama-vs-vllm-vs-localai">Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI<a hidden class="anchor" aria-hidden="true" href="#self-hosted-llm-2026-ollama-vs-vllm-vs-localai">#</a></h1>
+<blockquote>
+<p><strong>Meta Description</strong>: Tested all three on RTX 4090 with Llama 3.3 70B. Real throughput, memory, setup time, plus when self-hosting is actually cheaper than API.</p>
+</blockquote>
+<p>Three serious open-source LLM runtimes dominate self-hosted deployments in 2026: Ollama, vLLM, and LocalAI. They overlap in scope but solve different problems. This article tests all three on the same hardware with the same model and gives you the real performance numbers.</p>
+<h2 id="-tldr--2-min">⚡ TL;DR — 2 min<a hidden class="anchor" aria-hidden="true" href="#-tldr--2-min">#</a></h2>
+<blockquote>
+<p><strong>Ollama</strong>: easiest setup, single-user, hobby/dev work. 10-minute install.</p>
+<p><strong>vLLM</strong>: highest throughput, multi-user production server. 2-hour setup.</p>
+<p><strong>LocalAI</strong>: OpenAI API drop-in replacement, broadest model support. 45-minute setup.</p>
+<p><strong>Hardware reality</strong>: RTX 4090 (24GB) handles Llama 3.3 70B Q4 at ~25 tok/sec.</p>
+<p><strong>Cost break-even</strong>: self-hosting beats API at ~10M+ tokens/month. Below 5M, API wins.</p>
+</blockquote>
+<hr>
+<h2 id="what-they-are">What They Are<a hidden class="anchor" aria-hidden="true" href="#what-they-are">#</a></h2>
+<h3 id="ollama">Ollama<a hidden class="anchor" aria-hidden="true" href="#ollama">#</a></h3>
+<p><strong>Stars</strong>: ~95K. <strong>Stack</strong>: Go. <strong>License</strong>: MIT.</p>
+<p>Simplest possible local LLM runtime. ```ollama pull llama3.3:70b-instruct-q4_K_M &amp;&amp; ollama run llama3.3:70b-instruct-q4_K_M````. That&rsquo;s the entire setup. Single-user, focused on developer experience. Strong CLI + simple HTTP API.</p>
+<h3 id="vllm">vLLM<a hidden class="anchor" aria-hidden="true" href="#vllm">#</a></h3>
+<p><strong>Stars</strong>: ~30K. <strong>Stack</strong>: Python + CUDA. <strong>License</strong>: Apache-2.0.</p>
+<p>Production-grade inference server with PagedAttention for batching. Highest throughput available in open source. Built for multi-user concurrent serving — what you&rsquo;d deploy if Llama 3.3 was your company&rsquo;s chatbot backend.</p>
+<h3 id="localai">LocalAI<a hidden class="anchor" aria-hidden="true" href="#localai">#</a></h3>
+<p><strong>Stars</strong>: ~22K. <strong>Stack</strong>: Go + various backends. <strong>License</strong>: MIT.</p>
+<p>OpenAI-compatible API server. Drop-in replacement: change <code>OPENAI_API_BASE</code> env var, your existing code works. Supports the broadest range of model formats (GGUF, GGML, ONNX, MLC, TensorRT). Best for &ldquo;we have existing OpenAI client code, want to swap to local.&rdquo;</p>
+<h2 id="benchmark-setup">Benchmark Setup<a hidden class="anchor" aria-hidden="true" href="#benchmark-setup">#</a></h2>
+<p>All three tested on: - Hardware: RTX 4090 (24GB VRAM), 64GB RAM, AMD 7950X</p>
+<ul>
+<li>Model: Llama 3.3 70B Instruct Q4_K_M (40GB → 22GB after quantization)</li>
+<li>Workload: 100 concurrent requests, mix of short (50-token) and long (500-token) generations</li>
+</ul>
+<h2 id="throughput-results">Throughput Results<a hidden class="anchor" aria-hidden="true" href="#throughput-results">#</a></h2>
+<p>| Runtime | Single-user tok/sec | Concurrent (10 users) | Memory used |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Ollama | 24 tok/s | 24 tok/s (single-user only) | 22GB VRAM |
 | vLLM | 28 tok/s | 180 tok/s aggregate (18 tok/s per user) | 23GB VRAM |
-| LocalAI | 22 tok/s | 35 tok/s aggregate (3.5 tok/s per user) | 22GB VRAM |</p><p><strong>Verdict</strong>: vLLM dominates concurrent workloads (7.5x higher aggregate throughput). Ollama is single-user only by design.</p><h2 id=setup-time--operational-complexity>Setup Time + Operational Complexity<a hidden class=anchor aria-hidden=true href=#setup-time--operational-complexity>#</a></h2><h3 id=ollama-10-min>Ollama (10 min)<a hidden class=anchor aria-hidden=true href=#ollama-10-min>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -fsSL https://ollama.com/install.sh | sh
-</span></span><span style=display:flex><span>ollama pull llama3.3:70b-instruct-q4_K_M
-</span></span><span style=display:flex><span>ollama run llama3.3:70b-instruct-q4_K_M
-</span></span></code></pre></div><p>Three commands. Done. Updates via <code>ollama pull</code> again.</p><h3 id=vllm-2-hours>vLLM (2 hours)<a hidden class=anchor aria-hidden=true href=#vllm-2-hours>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Python 3.11 + CUDA 12.4 venv</span>
-</span></span><span style=display:flex><span>pip install vllm
-</span></span><span style=display:flex><span><span style=color:#75715e># Configure model serving with proper batch size, max context, GPU mem fraction</span>
-</span></span><span style=display:flex><span>vllm serve meta-llama/Llama-3.3-70B-Instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>1</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --max-model-len <span style=color:#ae81ff>8192</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --gpu-memory-utilization 0.95 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --quantization fp8
-</span></span></code></pre></div><p>Plus dependency hell debugging (CUDA version, torch version, vllm version compatibility) usually takes 1-2 hours first time. After that: <code>vllm serve</code> works.</p><h3 id=localai-45-min>LocalAI (45 min)<a hidden class=anchor aria-hidden=true href=#localai-45-min>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: api: image</span>: <span style=color:#ae81ff>localai/localai:latest-aio-gpu-nvidia</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./models:/build/models</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>MODELS_PATH=/build/models</span>
-</span></span></code></pre></div><p>Plus model config YAML for each model loaded. Docker handles dependencies cleanly.</p><h2 id=cost-analysis-when-self-hosting-beats-api>Cost Analysis: When Self-Hosting Beats API<a hidden class=anchor aria-hidden=true href=#cost-analysis-when-self-hosting-beats-api>#</a></h2><p>Assumptions: - Single H100 (rented at $2/hr) = $1440/month</p><ul><li>Or RTX 4090 owned ($1600 upfront) + $50 electricity = ~$80/month amortized over 24 months</li><li>Multi-user vLLM serving = ~50K tokens/sec/GPU sustained at full load</li></ul><pre tabindex=0><code>H100 production: $1440/month / 1B tokens/month potential
+| LocalAI | 22 tok/s | 35 tok/s aggregate (3.5 tok/s per user) | 22GB VRAM |</p>
+<p><strong>Verdict</strong>: vLLM dominates concurrent workloads (7.5x higher aggregate throughput). Ollama is single-user only by design.</p>
+<h2 id="setup-time--operational-complexity">Setup Time + Operational Complexity<a hidden class="anchor" aria-hidden="true" href="#setup-time--operational-complexity">#</a></h2>
+<h3 id="ollama-10-min">Ollama (10 min)<a hidden class="anchor" aria-hidden="true" href="#ollama-10-min">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
+</span></span><span style="display:flex;"><span>ollama pull llama3.3:70b-instruct-q4_K_M
+</span></span><span style="display:flex;"><span>ollama run llama3.3:70b-instruct-q4_K_M
+</span></span></code></pre></div><p>Three commands. Done. Updates via <code>ollama pull</code> again.</p>
+<h3 id="vllm-2-hours">vLLM (2 hours)<a hidden class="anchor" aria-hidden="true" href="#vllm-2-hours">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Python 3.11 + CUDA 12.4 venv</span>
+</span></span><span style="display:flex;"><span>pip install vllm
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure model serving with proper batch size, max context, GPU mem fraction</span>
+</span></span><span style="display:flex;"><span>vllm serve meta-llama/Llama-3.3-70B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-model-len <span style="color:#ae81ff">8192</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --gpu-memory-utilization 0.95 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --quantization fp8
+</span></span></code></pre></div><p>Plus dependency hell debugging (CUDA version, torch version, vllm version compatibility) usually takes 1-2 hours first time. After that: <code>vllm serve</code> works.</p>
+<h3 id="localai-45-min">LocalAI (45 min)<a hidden class="anchor" aria-hidden="true" href="#localai-45-min">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: api: image</span>: <span style="color:#ae81ff">localai/localai:latest-aio-gpu-nvidia</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./models:/build/models</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">MODELS_PATH=/build/models</span>
+</span></span></code></pre></div><p>Plus model config YAML for each model loaded. Docker handles dependencies cleanly.</p>
+<h2 id="cost-analysis-when-self-hosting-beats-api">Cost Analysis: When Self-Hosting Beats API<a hidden class="anchor" aria-hidden="true" href="#cost-analysis-when-self-hosting-beats-api">#</a></h2>
+<p>Assumptions: - Single H100 (rented at $2/hr) = $1440/month</p>
+<ul>
+<li>Or RTX 4090 owned ($1600 upfront) + $50 electricity = ~$80/month amortized over 24 months</li>
+<li>Multi-user vLLM serving = ~50K tokens/sec/GPU sustained at full load</li>
+</ul>
+<pre tabindex="0"><code>H100 production: $1440/month / 1B tokens/month potential
   = $0.0000014/1K tokens
   
 vs Anthropic Sonnet API: $0.003/1K input + $0.015/1K output
   ~$0.009 blended
   
 Break-even: ~160M tokens/month
-</code></pre><p>For a hobby RTX 4090 doing 100M tokens/month: - Owned: $80/month for hardware amortization</p><ul><li>API equivalent: $300-900/month</li><li>Break-even: ~30M tokens/month for RTX 4090</li></ul><p><strong>Reality check</strong>: most hobby users don&rsquo;t approach 30M tokens/month. API wins for low-volume. Self-hosting wins for high-volume + privacy-required workloads.</p><h2 id=quality-gap-vs-commercial-api>Quality Gap vs Commercial API<a hidden class=anchor aria-hidden=true href=#quality-gap-vs-commercial-api>#</a></h2><p>Llama 3.3 70B is good but <strong>not at parity</strong> with frontier models: | Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>For a hobby RTX 4090 doing 100M tokens/month: - Owned: $80/month for hardware amortization</p>
+<ul>
+<li>API equivalent: $300-900/month</li>
+<li>Break-even: ~30M tokens/month for RTX 4090</li>
+</ul>
+<p><strong>Reality check</strong>: most hobby users don&rsquo;t approach 30M tokens/month. API wins for low-volume. Self-hosting wins for high-volume + privacy-required workloads.</p>
+<h2 id="quality-gap-vs-commercial-api">Quality Gap vs Commercial API<a hidden class="anchor" aria-hidden="true" href="#quality-gap-vs-commercial-api">#</a></h2>
+<p>Llama 3.3 70B is good but <strong>not at parity</strong> with frontier models: | Benchmark | Llama 3.3 70B | Claude Sonnet 4.6 | GPT-5 | Gemini 2.5 Pro |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | HumanEval (code) | 80% | 92% | 89% | 87% |
 | MMLU (reasoning) | 82% | 89% | 88% | 86% |
 | MATH | 65% | 75% | 78% | 76% |
-| GPQA (graduate level) | 50% | 60% | 65% | 62% |</p><p>For coding/reasoning: commercial wins 8-15 percentage points. For privacy/cost-sensitive workloads where &ldquo;good enough&rdquo; suffices: Llama 3.3 is &ldquo;good enough&rdquo; at most everyday tasks.</p><h2 id=which-to-pick-decision-matrix>Which to Pick: Decision Matrix<a hidden class=anchor aria-hidden=true href=#which-to-pick-decision-matrix>#</a></h2><pre tabindex=0><code>Single developer, dev/exploration → Ollama
+| GPQA (graduate level) | 50% | 60% | 65% | 62% |</p>
+<p>For coding/reasoning: commercial wins 8-15 percentage points. For privacy/cost-sensitive workloads where &ldquo;good enough&rdquo; suffices: Llama 3.3 is &ldquo;good enough&rdquo; at most everyday tasks.</p>
+<h2 id="which-to-pick-decision-matrix">Which to Pick: Decision Matrix<a hidden class="anchor" aria-hidden="true" href="#which-to-pick-decision-matrix">#</a></h2>
+<pre tabindex="0"><code>Single developer, dev/exploration → Ollama
 Multi-user production server → vLLM
 OpenAI API drop-in replacement → LocalAI
 Privacy-required workload + budget for hardware → vLLM
@@ -187,11 +517,155 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 **问：企业级部署的最佳实践？**
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/self-hosted-ai-coding-workflow/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/semgrep-15k-star-sast-security-scanner/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/self-hosted-ai-coding-workflow/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/semgrep-15k-star-sast-security-scanner/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

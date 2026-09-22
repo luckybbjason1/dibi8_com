@@ -1,72 +1,501 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo JavaScript TypeScript application_domain: “Llm Frameworks” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “3.2 MB” file_md5: \"\" download_url: “https://github.com/rtk-ai/rtk\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/ faqs: - q: ‘什么是 9Router，它是如何工作的？’ a: ‘9Router 是一款开源、自托管的智能代理，位于你的 AI 编程工具与模型提供商之间，默认运行在 localhost:20128 上。你的工具不再直接调用 Claude 或 OpenAI，而是把请求发送给 9Router，由它通过智能回退逻辑和 token 压缩，将请求路由到 40+ 个提供商之间。’ q: ‘使用 9Router 需要花钱吗？’ a: ‘不需要。9Router 软件基于开源 MIT 许可证永久免费，并在你自己的硬件上自托管。它没有任何计费基础设施，永远不会向你收费；你只需直接为自己配置的订阅或 API key 向各提供商付费，免费提供商则始终免费。仪表盘上的费用数字是一个节省追踪器，显示如果使用等量的付费 API 会花费多少。’ q: ‘9Router 能减少多少 AI token 用量？’ a: ‘通过内置的 RTK 压缩，9Router 会在 git diff、grep 结果和目录列表等工具输出抵达 LLM 之前先行压缩，每次请求可节省 20-40% 的输入 token。其可选的 Caveman 模式最多可将冗长的模型输出减少 65%，而每日调用量在 500+ 次的开发者反馈称，实际模型消耗下降了 40-60%。’ q: ‘哪些 AI 编程工具和 IDE 可以配合 9Router 使用？’ a: ‘任何支持自定义 OpenAI 兼容 API 端点的工具都可以通过 http://localhost:20128/v1 连接到 9Router。受支持的工具包括 Claude Code、OpenAI Codex CLI、Cursor IDE、GitHub Copilot、Cline、Continue、Roo Code、Antigravity、Droid、Kilo Code 和 OpenCode。’ q: ‘我能否以零月费使用 9Router 进行 AI 编程？’ a: ‘可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。’— {\u003c/* resource-info */\u003e}\nAI编程助手革命为开发者带来了前所未有的困境：我们通过Claude Code、OpenAI Codex、Cursor和GitHub Copilot等工具获得了世界级的语言模型访问权限——但同时管理多个平台上的订阅、配额和速率限制正变得日益昂贵和令人沮丧。许多开发者发现自己两周内就耗尽了Claude Pro的月度配额，然后在冲刺截止日期面前只能面对速率限制的墙壁。\n9Router应运而生——一个开源的智能代理和令牌管理系统，彻底消除了这种痛点。拥有超过6,900个GitHub星标、1,200多个Fork和快速社区增长，9Router已成为那些想要获得最大AI能力而不必支付不必要高级版本费用的开发者的首选解决方案。基于Node.js 20+、Next.js 16和React 19构建，它提供了一个统一界面，使用智能回退逻辑和强大的令牌节省压缩技术，将您的AI编程请求路由到40多个提供商。\n什么是9Router以及它是如何工作的？ 9Router是一个本地托管的中间件服务（默认运行在localhost:20128），位于您的AI编程工具和底层模型提供商之间。您的工具不再直接向Claude、OpenAI或任何单一提供商发送API请求，而是与9Router通信——然后由它智能决定将请求路由到哪个后端提供商。\n这种架构为您带来三大优势：\n从一个地方访问多个提供商：在单个仪表板中配置Claude、Gemini、GLM、MiniMax、Kiro、OpenCode、Vertex AI和40多个其他提供商。您的CLI工具发送到localhost；9Router处理其余部分。 自动回退机制：当主要提供商达到配额限制或出现故障时，9Router无缝切换到下一个层级——无论是便宜的备用提供商还是完全免费的选项。工作流程零中断。 请求离开机器前的令牌压缩：通过其内置的RTK集成（约40K星标），9Router在请求到达LLM之前自动压缩工具输出（git差异、grep结果、目录列表、日志转储）。仅此一项就能在每个请求中节省20-40%的输入令牌。 让9Router与众不同的核心功能 🚀 RTK令牌压缩引擎 工具输出通常占您总提示预算的30-50%。当Claude Code在大型代码库中运行git diff、ls -R或grep时，它会向模型发送数百万字节的文本——其中大部分是无关噪音。\n9Router内置的RTK集成功能自动检测这些工具输出并应用智能的无损压缩过滤器：\ngit-diff：将差异输出简化为必要的变更行 git-status：将状态压缩为摘要格式 grep / find：修剪无关匹配项，保留上下文丰富的行 tree / ls：以有意义的方式折叠目录结构 dedup-log：删除重复的连续日志条目 smart-truncate：保留首尾部分，同时移除冗余的中间内容 至关重要的是，如果任何过滤器失败或产生比原始文本更差的输出，RTK会静默回退到未修改的文本。错误永远不会破坏您的请求。压缩在任何格式转换之前运行，因此它适用于所有支持的格式（OpenAI、Claude、Gem尼、Cursor、Kiro、OpenAI Responses）。\n不使用RTK：向LLM发送47K令牌 使用RTK：向LLM发送28K令牌（节省40%·相同质量的答案） 在实际应用中，开发者报告每个请求都能看到20-40%的令牌节省——有效地将每个订阅的使用寿命延长了数天甚至数周。\n🪨洞穴人模式（输出压缩） 除了输入优化外，9Router还减少了LLM返回的内容量。通过注入\"洞穴人风格\"的系统提示（灵感来源于Caveman，约52K星标），9Router指示模型简洁回复——保留所有技术内容，同时消除对话性填充词。\n这可以节省高达65%的输出令牌。对于复杂的重构任务或长代码生成会话，这些节省在数百次API调用中迅速累积。\n🎯 智能三层回退系统 这可以说是9Router的核心杀手锏。您可以定义\"组合\"——不同定价层级的有序模型列表——然后9Router自动相应地路由请求：\n组合：\"my-coding-stack\" 1. cc/claude-opus-4-6 → 您的Claude Code Pro订阅 2. glm/glm-4.7 → 便宜备用（每百万令牌$0.6） 3. kr/claude-sonnet-4.5 → Kiro AI免费紧急备用 当Opus配额耗尽（或发生错误）时，9Router立即过渡到GLM。如果GLM也耗尽，则下降到Kiro的无限免费层级。您永远不会遇到墙。\n系统支持五种不同的定价层级：\n| 层级 | 提供商 | 典型成本 | 重置模式 | | |\n|\n|\n| | 订阅版 | Claude Code、Codex、Copilot、Cursor | $10-$200/月 | 5小时滚动 + 每周/每月 | | 廉价版 | GLM-5.1、MiniMax M2.7、Kimi K2.5 | $0.2-$0.6/百万令牌 | 每日/滚动/固定月度 | | 免费版 | Kiro AI、OpenCode Free、Vertex AI | $0 | 无限 |\n📊 实时配额跟踪与分析 网页仪表板显示每个提供商的实时令牌消耗、重置倒计时（5小时、每日、每周、每月）和预估成本跟踪。虽然仪表板显示的\"成本\"仅作为参考比较工具——9Router本身是免费软件，从不收费——但这些分析帮助您了解使用模式并优化支出。\n如果您的仪表板在使用Kiro免费层时显示\"$290总成本\"，那$290代表如果您直接使用那些API本应支付的金额。您实际支付仍然为$0。它本质上是一个节省跟踪器，展示您避免了多少开支。\n🔄 跨每种主要协议的格式翻译 9Router透明地在OpenAI、Claude、Gemini、Cursor、Kiro、Vertex AI、Antigravity、Ollama和OpenAI Responses格式之间进行翻译。您的CLI工具发送标准的OpenAI兼容负载；9Router将其翻译成每个提供商期望的原生格式。这意味着您可以使用任何支持自定义OpenAI端点的工具，并将其接入任何后端提供商。\n👥 多账户支持 需要跨账户负载均衡或冗余吗？9Router允许您为每个提供商添加多个账户，支持自动轮询分发或基于优先级的路由。如果一个账户达到其配额，请求会自动转移到下一个可用账户。OAuth令牌自动刷新，消除了手动重新认证周期。\n💾 云同步 通过加密云存储在整个设备上同步您的完整配置——提供商、组合、别名、设置。在您本机电脑上设置完美的组合，然后在VPS、Docker部署或同事工作站上访问完全相同的配置。\n支持的编程工具和IDE 9Router充当通用适配器，支持几乎所有流行的AI编程工具：\nClaude Code（~/.claude/config.json中使用自定义API基本地址） OpenAI Codex CLI（环境变量覆盖） Cursor IDE（自定义OpenAI端点设置） GitHub Copilot OpenClaw（WhatsApp、Telegram、Slack消息） Cline Continue Roo Code Antigravity Droid Kilo Code OpenCode 任何支持自定义OpenAI兼容API端点的工具都可以连接到9Router。该服务在http://localhost:20128/v1上暴露标准OpenAI兼容接口。\n入门：安装和设置 快速开始：本地主机（大多数用户推荐） # 克隆并安装 git clone https://github.com/decolua/9router.git cd 9router npm install npm run build # 可选环境设置 export JWT_SECRET=\"your-secure-secret-change-this\" export INITIAL_PASSWORD=\"your-dashboard-password\" export PORT=\"20128\" export NODE_ENV=\"production\" # 启动服务器 npm run start 启动后，打开http://localhost:20128访问网页仪表板。从此处连接您的第一个提供商。\nDocker部署 对于生产或多设备设置，Docker使部署变得简单：\ndocker build -t 9router . docker run -d \\ --name 9router \\ -p 20128:20128 \\ --env-file ./.env \\ -v 9router-data:/app/data \\ -v 9router-usage:/root/.9router \\ 9router 连接您的第一个提供商 让我们设置一个完整的免费层级组合——无需任何支付方式：\n在仪表板中连接Kiro AI（使用AWS Builder ID、Google或GitHub OAuth——不需要API密钥） 连接OpenCode Free（零认证、直通代理，模型自动获取） 创建名为free-dev的组合，包含以下模型： kr/claude-sonnet-4.5（通过Kiro的Claude Sonnet 4.5——免费无限） kr/glm-5（通过Kiro的GLM-5——免费无限） vertex/gemini-3.1-pro-preview（Google Cloud——$300免费信用额度） 然后将您首选的工具配置为指向http://localhost:20128/v1并使用您的仪表板API密钥：\n{ \"anthropic_api_base\": \"http://localhost:20128/v1\", \"anthropic_api_key\": \"your-9router-api-key\" } 配置Cursor IDE 在Cursor设置→模型→高级中：\nOpenAI API基本地址：http://localhost:20128/v1 OpenAI API密钥：[从9Router仪表板复制] 模型：cc/claude-opus-4-7 现在Cursor的每个模型调用都流经9Router的路由智能。\n真实世界应用场景 场景A：最大化现有订阅价值 您每月为Claude Pro支付$20。如果没有9Router，一旦配额耗尽，编码就会停止直到重置。\n使用9Router的\"maximize-claude\"组合：\n主用：cc/claude-opus-4-7（充分利用订阅） 备用：glm/glm-5.1（$0.6/百万令牌，每天上午10点重置） 紧急：kr/claude-sonnet-4.5（Kiro免费备用） 结果：由于RTK节省20-40%令牌，您的$20订阅持续更长时间；即使到期，您也有无缝备用方案。 cheap层级的总有效成本仅增加约$5——远低于升级到Claude Max（$200/月）。\n场景B：完全零月度预算 完全使用免费模型开始：\ngc/gemini-3-flash（Google每月180K免费查询） kr/claude-sonnet-4.5（Kiro免费无限） oc/（OpenCode Free，无需认证） 结合RTK压缩，这套配置以真正的零月度成本提供生产级模型响应。\n场景C：不间断24/7开发 对于截止期限内工作的团队和自由职业者，分层五个回退层级：\nClaude Opus（优质级别） GPT-5.5 via Codex（第二份订阅） GLM-5.1（便宜的每日重置） MiniMax M2.7（最便宜的$0.2/百万令牌，5小时滚动重置） Kiro Claude Sonnet 4.5（免费无限） 五层保障确保无论配额耗尽还是提供商故障，都不会出现停机。\n定价透明度：实际花费多少？ 评估9Router时的关键问题：9Router会向您收费吗？ 不会。永远不。\n实际的经济运作方式如下：\n9Router软件 = 永久免费（开源MIT许可证，在您自己的硬件上自托管） 仪表板成本 = 仅用于显示/跟踪（不是真正的账单） 您直接向提供商付费（订阅、API密钥、无论您配置什么） 免费提供商保持免费（Kiro AI、OpenCode Free、Vertex AI信用额度） 9Router纯粹是在您自己计算机上运行的本地代理路由器。它无法访问您的信用卡，不能生成发票，也没有计费基础设施。它只是转发请求并可选择性地压缩令牌。\n仪表板的成本显示作为\"节省跟踪器\"——向您展示使用付费API直接进行的等效使用本应花费多少。如果您配置了所有免费提供商，显示的成本可能读作\"$290\"而您的实际银行交易是$0。这$290是您主动节省下来的钱。\n9Router与其他方案的对比 9Router如何与现有方案相比？\n| 功能 | 9Router | 直接提供商访问 | 其他代理工具 | |\n|\n|\n|\n| | 智能回退路由 | ✅ 自动3+层级 | ❌ 单提供商 | 部分支持 | | 令牌压缩（RTK） | ✅ 内置 | ❌ 无 | 罕见 | | 多格式翻译 | ✅ 8+协议 | N/A | 有限 | | 多账户轮换 | ✅ 轮询 | ❌ 手动 | 手动 | | 免费提供商支持 | ✅ Kiro、OpenCode、Vertex | ❌ 不适用 | 通常不支持 | | 实时分析 | ✅ 仪表板 + 日志 | ❌ 提供商门户 | 基础 | | 自托管 | ✅ 完全控制 | N/A | 取决于具体方案 | | 成本 | 免费软件 + 提供商费用 | 完整提供商价格 | 通常为付费 |\n值得注意的主要替代方案是 OmniRoute，这是9Router的一个TypeScript分支，添加了36+提供商、四层自动回退、多模态API（图像、嵌入、音频、TTS）、熔断模式、语义缓存、LLM评估框架以及带有368+单元测试的精制仪表板。OmniRoute可通过npm和Docker获取，适合希望超越核心9Router功能集的用户。\n为什么9Router此时很重要 我们正处于AI编程工具的黄金时代，但经济现实尚未跟上。每个主要提供商独立地将访问权限限制在付费墙后面、配额限制和速率帽背后。在Claude、OpenAI、Google、Anthropic、DeepSeek和xAI之间管理六份不同的订阅既造成了财务负担又带来了操作复杂性。\n9Router通过将所有这些提供商视为通过单一智能层可互换的商品来解决这个问题。您为每项任务获得最佳模型，为常规任务选择最便宜的路径，并在配额耗尽时保证可用性——同时让您的机器在令牌离开之前就压缩掉浪费。\nRTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65%）和智能多层回退相结合产生了复合效应。报告每天500+次API调用的开发者看到他们有效的模型消耗降低了40-60%，将一个$200/月的AI栈变成了$20-30可管理的水平。\n技术架构亮点 9Router建立在针对可靠性优化的现代JavaScript栈上：\n运行时：Node.js 20+，用于一致、高性能的异步I/O 框架：Next.js 16配合React 19用于网页仪表板 数据库：LowDB（JSON文件-based）——简单、可移植、可版本控制的配置 流式传输：Server-Sent Events (SSE) 用于实时进度反馈 认证：OAuth 2.0加PKCE、JWT会话cookie、HMAC签名API密钥 代理：完整HTTP透传，支持可配置的上游代理 环境变量提供了对部署的细致控制：\nJWT_SECRET：生产中请更改 REQUIRE_API_KEY：强制在/v1/*路线上使用bearer token认证 ENABLE_REQUEST_LOGS：启用调试级别的请求/响应日志记录 AUTH_COOKIE_SECURE：在HTTPS反向代理后面强制Secure cookie标志 HTTP_PROXY / HTTPS_PROXY：通过企业代理路由上游请求 该服务默认监听端口20128，除存储在````${DATA_DIR}```中的JSON文件外，不需要外部依赖或数据库。\n总结 9Router解决了一个真正痛苦的问题，越来越多的开发者正在感受到这一问题。随着AI工具订阅的倍增，我们没有接受不断上涨的费用和任意的速率限制作为AI辅助开发的不可避免代价，9Router改变了游戏规则：使用您已经拥有的任何提供商，用便宜或免费的替代品填补缺口，尽可能压缩一切，并确保无论配额状态如何都维持连续的编码流程。\n对于预算紧张的独立开发者，免费-first策略可以以正好$0的成本交付完全功能的AI编程辅助。对于愿意投资于高级订阅的团队，令牌压缩和智能路由通过确保每一分钱花得更远来最大化投资回报率。\n它是免费的、开源的，并且几分钟内即可自托管。鉴于当前AI工具定价的走势，将9Router添加到您的开发基础设施中不仅可能有用——它正变得越来越必要。\n仓库：github.com/decolua/9router 网站：9router.com\n相关文章 GenericAgent：自我进化AI代理框架\nAnthropic的金融服务：AI驱动的Claude代理\nAddy Osmani的Agent技能：生产级AI编程代理\n推荐工具 跑或部署开源 AI 工具时，推荐：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。 推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “9Router：智能AI代理网关——节省60%令牌开销，告别API限流”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/9router-smart-llm-proxy-token-saver-free-coding\" } } Why This Matters Understanding 9router：智能ai代理网关——节省60%令牌开销，告别api限流 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 9Router：智能AI代理网关——节省60%令牌开销，告别API限流 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\nFramework Comparison | Framework | Primary Use | Learning Curve | Community | Production Ready | |\n|\n|\n|\n|\n| | LangChain | General-purpose | Medium | Large | ✅ Yes | | LlamaIndex | RAG/Retrieval | Low | Growing | ✅ Yes | | Haystack | Document processing | Medium | Medium | ✅ Yes | | LangGraph | Stateful agents | High | Growing | ✅ Yes |\n","wordCount":"913","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af9router%e4%bb%a5%e5%8f%8a%e5%ae%83%e6%98%af%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c%e7%9a%84 aria-label=什么是9Router以及它是如何工作的？>什么是9Router以及它是如何工作的？</a></li><li><a href=#%e8%ae%a99router%e4%b8%8e%e4%bc%97%e4%b8%8d%e5%90%8c%e7%9a%84%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd aria-label=让9Router与众不同的核心功能>让9Router与众不同的核心功能</a><ul><li><a href=#-rtk%e4%bb%a4%e7%89%8c%e5%8e%8b%e7%bc%a9%e5%bc%95%e6%93%8e aria-label="🚀 RTK令牌压缩引擎">🚀 RTK令牌压缩引擎</a></li><li><a href=#%e6%b4%9e%e7%a9%b4%e4%ba%ba%e6%a8%a1%e5%bc%8f%e8%be%93%e5%87%ba%e5%8e%8b%e7%bc%a9 aria-label=🪨洞穴人模式（输出压缩）>🪨洞穴人模式（输出压缩）</a></li><li><a href=#-%e6%99%ba%e8%83%bd%e4%b8%89%e5%b1%82%e5%9b%9e%e9%80%80%e7%b3%bb%e7%bb%9f aria-label="🎯 智能三层回退系统">🎯 智能三层回退系统</a></li><li><a href=#-%e5%ae%9e%e6%97%b6%e9%85%8d%e9%a2%9d%e8%b7%9f%e8%b8%aa%e4%b8%8e%e5%88%86%e6%9e%90 aria-label="📊 实时配额跟踪与分析">📊 实时配额跟踪与分析</a></li><li><a href=#-%e8%b7%a8%e6%af%8f%e7%a7%8d%e4%b8%bb%e8%a6%81%e5%8d%8f%e8%ae%ae%e7%9a%84%e6%a0%bc%e5%bc%8f%e7%bf%bb%e8%af%91 aria-label="🔄 跨每种主要协议的格式翻译">🔄 跨每种主要协议的格式翻译</a></li><li><a href=#-%e5%a4%9a%e8%b4%a6%e6%88%b7%e6%94%af%e6%8c%81 aria-label="👥 多账户支持">👥 多账户支持</a></li><li><a href=#-%e4%ba%91%e5%90%8c%e6%ad%a5 aria-label="💾 云同步">💾 云同步</a></li></ul></li><li><a href=#%e6%94%af%e6%8c%81%e7%9a%84%e7%bc%96%e7%a8%8b%e5%b7%a5%e5%85%b7%e5%92%8cide aria-label=支持的编程工具和IDE>支持的编程工具和IDE</a></li><li><a href=#%e5%85%a5%e9%97%a8%e5%ae%89%e8%a3%85%e5%92%8c%e8%ae%be%e7%bd%ae aria-label=入门：安装和设置>入门：安装和设置</a><ul><li><a href=#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e6%9c%ac%e5%9c%b0%e4%b8%bb%e6%9c%ba%e5%a4%a7%e5%a4%9a%e6%95%b0%e7%94%a8%e6%88%b7%e6%8e%a8%e8%8d%90 aria-label=快速开始：本地主机（大多数用户推荐）>快速开始：本地主机（大多数用户推荐）</a></li><li><a href=#docker%e9%83%a8%e7%bd%b2 aria-label=Docker部署>Docker部署</a></li><li><a href=#%e8%bf%9e%e6%8e%a5%e6%82%a8%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e6%8f%90%e4%be%9b%e5%95%86 aria-label=连接您的第一个提供商>连接您的第一个提供商</a></li><li><a href=#%e9%85%8d%e7%bd%aecursor-ide aria-label="配置Cursor IDE">配置Cursor IDE</a></li></ul></li><li><a href=#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af aria-label=真实世界应用场景>真实世界应用场景</a><ul><li><a href=#%e5%9c%ba%e6%99%afa%e6%9c%80%e5%a4%a7%e5%8c%96%e7%8e%b0%e6%9c%89%e8%ae%a2%e9%98%85%e4%bb%b7%e5%80%bc aria-label=场景A：最大化现有订阅价值>场景A：最大化现有订阅价值</a></li><li><a href=#%e5%9c%ba%e6%99%afb%e5%ae%8c%e5%85%a8%e9%9b%b6%e6%9c%88%e5%ba%a6%e9%a2%84%e7%ae%97 aria-label=场景B：完全零月度预算>场景B：完全零月度预算</a></li><li><a href=#%e5%9c%ba%e6%99%afc%e4%b8%8d%e9%97%b4%e6%96%ad247%e5%bc%80%e5%8f%91 aria-label=场景C：不间断24/7开发>场景C：不间断24/7开发</a></li></ul></li><li><a href=#%e5%ae%9a%e4%bb%b7%e9%80%8f%e6%98%8e%e5%ba%a6%e5%ae%9e%e9%99%85%e8%8a%b1%e8%b4%b9%e5%a4%9a%e5%b0%91 aria-label=定价透明度：实际花费多少？>定价透明度：实际花费多少？</a></li><li><a href=#9router%e4%b8%8e%e5%85%b6%e4%bb%96%e6%96%b9%e6%a1%88%e7%9a%84%e5%af%b9%e6%af%94 aria-label=9Router与其他方案的对比>9Router与其他方案的对比</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%889router%e6%ad%a4%e6%97%b6%e5%be%88%e9%87%8d%e8%a6%81 aria-label=为什么9Router此时很重要>为什么9Router此时很重要</a></li><li><a href=#%e6%8a%80%e6%9c%af%e6%9e%b6%e6%9e%84%e4%ba%ae%e7%82%b9 aria-label=技术架构亮点>技术架构亮点</a></li><li><a href=#%e6%80%bb%e7%bb%93 aria-label=总结>总结</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0 aria-label=相关文章>相关文章</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e5%b7%a5%e5%85%b7 aria-label=推荐工具>推荐工具</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li><li><a href=#framework-comparison aria-label="Framework Comparison">Framework Comparison</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nGo JavaScript TypeScript application_domain: “Llm Frameworks” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “3.2 MB” file_md5: \"\" download_url: “https://github.com/rtk-ai/rtk\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /zh/posts/9router-smart-llm-proxy-token-saver-free-coding/ faqs: - q: ‘什么是 9Router，它是如何工作的？’ a: ‘9Router 是一款开源、自托管的智能代理，位于你的 AI 编程工具与模型提供商之间，默认运行在 localhost:20128 上。你的工具不再直接调用 Claude 或 OpenAI，而是把请求发送给 9Router，由它通过智能回退逻辑和 token 压缩，将请求路由到 40+ 个提供商之间。’ q: ‘使用 9Router 需要花钱吗？’ a: ‘不需要。9Router 软件基于开源 MIT 许可证永久免费，并在你自己的硬件上自托管。它没有任何计费基础设施，永远不会向你收费；你只需直接为自己配置的订阅或 API key 向各提供商付费，免费提供商则始终免费。仪表盘上的费用数字是一个节省追踪器，显示如果使用等量的付费 API 会花费多少。’ q: ‘9Router 能减少多少 AI token 用量？’ a: ‘通过内置的 RTK 压缩，9Router 会在 git diff、grep 结果和目录列表等工具输出抵达 LLM 之前先行压缩，每次请求可节省 20-40% 的输入 token。其可选的 Caveman 模式最多可将冗长的模型输出减少 65%，而每日调用量在 500+ 次的开发者反馈称，实际模型消耗下降了 40-60%。’ q: ‘哪些 AI 编程工具和 IDE 可以配合 9Router 使用？’ a: ‘任何支持自定义 OpenAI 兼容 API 端点的工具都可以通过 http://localhost:20128/v1 连接到 9Router。受支持的工具包括 Claude Code、OpenAI Codex CLI、Cursor IDE、GitHub Copilot、Cline、Continue、Roo Code、Antigravity、Droid、Kilo Code 和 OpenCode。’ q: ‘我能否以零月费使用 9Router 进行 AI 编程？’ a: ‘可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。’— {\u003c/* resource-info */\u003e}\nAI编程助手革命为开发者带来了前所未有的困境：我们通过Claude Code、OpenAI Codex、Cursor和GitHub Copilot等工具获得了世界级的语言模型访问权限——但同时管理多个平台上的订阅、配额和速率限制正变得日益昂贵和令人沮丧。许多开发者发现自己两周内就耗尽了Claude Pro的月度配额，然后在冲刺截止日期面前只能面对速率限制的墙壁。\n9Router应运而生——一个开源的智能代理和令牌管理系统，彻底消除了这种痛点。拥有超过6,900个GitHub星标、1,200多个Fork和快速社区增长，9Router已成为那些想要获得最大AI能力而不必支付不必要高级版本费用的开发者的首选解决方案。基于Node.js 20+、Next.js 16和React 19构建，它提供了一个统一界面，使用智能回退逻辑和强大的令牌节省压缩技术，将您的AI编程请求路由到40多个提供商。\n什么是9Router以及它是如何工作的？ 9Router是一个本地托管的中间件服务（默认运行在localhost:20128），位于您的AI编程工具和底层模型提供商之间。您的工具不再直接向Claude、OpenAI或任何单一提供商发送API请求，而是与9Router通信——然后由它智能决定将请求路由到哪个后端提供商。\n这种架构为您带来三大优势：\n从一个地方访问多个提供商：在单个仪表板中配置Claude、Gemini、GLM、MiniMax、Kiro、OpenCode、Vertex AI和40多个其他提供商。您的CLI工具发送到localhost；9Router处理其余部分。 自动回退机制：当主要提供商达到配额限制或出现故障时，9Router无缝切换到下一个层级——无论是便宜的备用提供商还是完全免费的选项。工作流程零中断。 请求离开机器前的令牌压缩：通过其内置的RTK集成（约40K星标），9Router在请求到达LLM之前自动压缩工具输出（git差异、grep结果、目录列表、日志转储）。仅此一项就能在每个请求中节省20-40%的输入令牌。 让9Router与众不同的核心功能 🚀 RTK令牌压缩引擎 工具输出通常占您总提示预算的30-50%。当Claude Code在大型代码库中运行git diff、ls -R或grep时，它会向模型发送数百万字节的文本——其中大部分是无关噪音。\n9Router内置的RTK集成功能自动检测这些工具输出并应用智能的无损压缩过滤器：\ngit-diff：将差异输出简化为必要的变更行 git-status：将状态压缩为摘要格式 grep / find：修剪无关匹配项，保留上下文丰富的行 tree / ls：以有意义的方式折叠目录结构 dedup-log：删除重复的连续日志条目 smart-truncate：保留首尾部分，同时移除冗余的中间内容 至关重要的是，如果任何过滤器失败或产生比原始文本更差的输出，RTK会静默回退到未修改的文本。错误永远不会破坏您的请求。压缩在任何格式转换之前运行，因此它适用于所有支持的格式（OpenAI、Claude、Gem尼、Cursor、Kiro、OpenAI Responses）。\n不使用RTK：向LLM发送47K令牌 使用RTK：向LLM发送28K令牌（节省40%·相同质量的答案） 在实际应用中，开发者报告每个请求都能看到20-40%的令牌节省——有效地将每个订阅的使用寿命延长了数天甚至数周。\n🪨洞穴人模式（输出压缩） 除了输入优化外，9Router还减少了LLM返回的内容量。通过注入\"洞穴人风格\"的系统提示（灵感来源于Caveman，约52K星标），9Router指示模型简洁回复——保留所有技术内容，同时消除对话性填充词。\n这可以节省高达65%的输出令牌。对于复杂的重构任务或长代码生成会话，这些节省在数百次API调用中迅速累积。\n🎯 智能三层回退系统 这可以说是9Router的核心杀手锏。您可以定义\"组合\"——不同定价层级的有序模型列表——然后9Router自动相应地路由请求：\n组合：\"my-coding-stack\" 1. cc/claude-opus-4-6 → 您的Claude Code Pro订阅 2. glm/glm-4.7 → 便宜备用（每百万令牌$0.6） 3. kr/claude-sonnet-4.5 → Kiro AI免费紧急备用 当Opus配额耗尽（或发生错误）时，9Router立即过渡到GLM。如果GLM也耗尽，则下降到Kiro的无限免费层级。您永远不会遇到墙。\n系统支持五种不同的定价层级：\n| 层级 | 提供商 | 典型成本 | 重置模式 | | |\n|\n|\n| | 订阅版 | Claude Code、Codex、Copilot、Cursor | $10-$200/月 | 5小时滚动 + 每周/每月 | | 廉价版 | GLM-5.1、MiniMax M2.7、Kimi K2.5 | $0.2-$0.6/百万令牌 | 每日/滚动/固定月度 | | 免费版 | Kiro AI、OpenCode Free、Vertex AI | $0 | 无限 |\n📊 实时配额跟踪与分析 网页仪表板显示每个提供商的实时令牌消耗、重置倒计时（5小时、每日、每周、每月）和预估成本跟踪。虽然仪表板显示的\"成本\"仅作为参考比较工具——9Router本身是免费软件，从不收费——但这些分析帮助您了解使用模式并优化支出。\n如果您的仪表板在使用Kiro免费层时显示\"$290总成本\"，那$290代表如果您直接使用那些API本应支付的金额。您实际支付仍然为$0。它本质上是一个节省跟踪器，展示您避免了多少开支。\n🔄 跨每种主要协议的格式翻译 9Router透明地在OpenAI、Claude、Gemini、Cursor、Kiro、Vertex AI、Antigravity、Ollama和OpenAI Responses格式之间进行翻译。您的CLI工具发送标准的OpenAI兼容负载；9Router将其翻译成每个提供商期望的原生格式。这意味着您可以使用任何支持自定义OpenAI端点的工具，并将其接入任何后端提供商。\n👥 多账户支持 需要跨账户负载均衡或冗余吗？9Router允许您为每个提供商添加多个账户，支持自动轮询分发或基于优先级的路由。如果一个账户达到其配额，请求会自动转移到下一个可用账户。OAuth令牌自动刷新，消除了手动重新认证周期。\n💾 云同步 通过加密云存储在整个设备上同步您的完整配置——提供商、组合、别名、设置。在您本机电脑上设置完美的组合，然后在VPS、Docker部署或同事工作站上访问完全相同的配置。\n支持的编程工具和IDE 9Router充当通用适配器，支持几乎所有流行的AI编程工具：\nClaude Code（~/.claude/config.json中使用自定义API基本地址） OpenAI Codex CLI（环境变量覆盖） Cursor IDE（自定义OpenAI端点设置） GitHub Copilot OpenClaw（WhatsApp、Telegram、Slack消息） Cline Continue Roo Code Antigravity Droid Kilo Code OpenCode 任何支持自定义OpenAI兼容API端点的工具都可以连接到9Router。该服务在http://localhost:20128/v1上暴露标准OpenAI兼容接口。\n入门：安装和设置 快速开始：本地主机（大多数用户推荐） # 克隆并安装 git clone https://github.com/decolua/9router.git cd 9router npm install npm run build # 可选环境设置 export JWT_SECRET=\"your-secure-secret-change-this\" export INITIAL_PASSWORD=\"your-dashboard-password\" export PORT=\"20128\" export NODE_ENV=\"production\" # 启动服务器 npm run start 启动后，打开http://localhost:20128访问网页仪表板。从此处连接您的第一个提供商。\nDocker部署 对于生产或多设备设置，Docker使部署变得简单：\ndocker build -t 9router . docker run -d \\ --name 9router \\ -p 20128:20128 \\ --env-file ./.env \\ -v 9router-data:/app/data \\ -v 9router-usage:/root/.9router \\ 9router 连接您的第一个提供商 让我们设置一个完整的免费层级组合——无需任何支付方式：\n在仪表板中连接Kiro AI（使用AWS Builder ID、Google或GitHub OAuth——不需要API密钥） 连接OpenCode Free（零认证、直通代理，模型自动获取） 创建名为free-dev的组合，包含以下模型： kr/claude-sonnet-4.5（通过Kiro的Claude Sonnet 4.5——免费无限） kr/glm-5（通过Kiro的GLM-5——免费无限） vertex/gemini-3.1-pro-preview（Google Cloud——$300免费信用额度） 然后将您首选的工具配置为指向http://localhost:20128/v1并使用您的仪表板API密钥：\n{ \"anthropic_api_base\": \"http://localhost:20128/v1\", \"anthropic_api_key\": \"your-9router-api-key\" } 配置Cursor IDE 在Cursor设置→模型→高级中：\nOpenAI API基本地址：http://localhost:20128/v1 OpenAI API密钥：[从9Router仪表板复制] 模型：cc/claude-opus-4-7 现在Cursor的每个模型调用都流经9Router的路由智能。\n真实世界应用场景 场景A：最大化现有订阅价值 您每月为Claude Pro支付$20。如果没有9Router，一旦配额耗尽，编码就会停止直到重置。\n使用9Router的\"maximize-claude\"组合：\n主用：cc/claude-opus-4-7（充分利用订阅） 备用：glm/glm-5.1（$0.6/百万令牌，每天上午10点重置） 紧急：kr/claude-sonnet-4.5（Kiro免费备用） 结果：由于RTK节省20-40%令牌，您的$20订阅持续更长时间；即使到期，您也有无缝备用方案。 cheap层级的总有效成本仅增加约$5——远低于升级到Claude Max（$200/月）。\n场景B：完全零月度预算 完全使用免费模型开始：\ngc/gemini-3-flash（Google每月180K免费查询） kr/claude-sonnet-4.5（Kiro免费无限） oc/（OpenCode Free，无需认证） 结合RTK压缩，这套配置以真正的零月度成本提供生产级模型响应。\n场景C：不间断24/7开发 对于截止期限内工作的团队和自由职业者，分层五个回退层级：\nClaude Opus（优质级别） GPT-5.5 via Codex（第二份订阅） GLM-5.1（便宜的每日重置） MiniMax M2.7（最便宜的$0.2/百万令牌，5小时滚动重置） Kiro Claude Sonnet 4.5（免费无限） 五层保障确保无论配额耗尽还是提供商故障，都不会出现停机。\n定价透明度：实际花费多少？ 评估9Router时的关键问题：9Router会向您收费吗？ 不会。永远不。\n实际的经济运作方式如下：\n9Router软件 = 永久免费（开源MIT许可证，在您自己的硬件上自托管） 仪表板成本 = 仅用于显示/跟踪（不是真正的账单） 您直接向提供商付费（订阅、API密钥、无论您配置什么） 免费提供商保持免费（Kiro AI、OpenCode Free、Vertex AI信用额度） 9Router纯粹是在您自己计算机上运行的本地代理路由器。它无法访问您的信用卡，不能生成发票，也没有计费基础设施。它只是转发请求并可选择性地压缩令牌。\n仪表板的成本显示作为\"节省跟踪器\"——向您展示使用付费API直接进行的等效使用本应花费多少。如果您配置了所有免费提供商，显示的成本可能读作\"$290\"而您的实际银行交易是$0。这$290是您主动节省下来的钱。\n9Router与其他方案的对比 9Router如何与现有方案相比？\n| 功能 | 9Router | 直接提供商访问 | 其他代理工具 | |\n|\n|\n|\n| | 智能回退路由 | ✅ 自动3+层级 | ❌ 单提供商 | 部分支持 | | 令牌压缩（RTK） | ✅ 内置 | ❌ 无 | 罕见 | | 多格式翻译 | ✅ 8+协议 | N/A | 有限 | | 多账户轮换 | ✅ 轮询 | ❌ 手动 | 手动 | | 免费提供商支持 | ✅ Kiro、OpenCode、Vertex | ❌ 不适用 | 通常不支持 | | 实时分析 | ✅ 仪表板 + 日志 | ❌ 提供商门户 | 基础 | | 自托管 | ✅ 完全控制 | N/A | 取决于具体方案 | | 成本 | 免费软件 + 提供商费用 | 完整提供商价格 | 通常为付费 |\n值得注意的主要替代方案是 OmniRoute，这是9Router的一个TypeScript分支，添加了36+提供商、四层自动回退、多模态API（图像、嵌入、音频、TTS）、熔断模式、语义缓存、LLM评估框架以及带有368+单元测试的精制仪表板。OmniRoute可通过npm和Docker获取，适合希望超越核心9Router功能集的用户。\n为什么9Router此时很重要 我们正处于AI编程工具的黄金时代，但经济现实尚未跟上。每个主要提供商独立地将访问权限限制在付费墙后面、配额限制和速率帽背后。在Claude、OpenAI、Google、Anthropic、DeepSeek和xAI之间管理六份不同的订阅既造成了财务负担又带来了操作复杂性。\n9Router通过将所有这些提供商视为通过单一智能层可互换的商品来解决这个问题。您为每项任务获得最佳模型，为常规任务选择最便宜的路径，并在配额耗尽时保证可用性——同时让您的机器在令牌离开之前就压缩掉浪费。\nRTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65%）和智能多层回退相结合产生了复合效应。报告每天500+次API调用的开发者看到他们有效的模型消耗降低了40-60%，将一个$200/月的AI栈变成了$20-30可管理的水平。\n技术架构亮点 9Router建立在针对可靠性优化的现代JavaScript栈上：\n运行时：Node.js 20+，用于一致、高性能的异步I/O 框架：Next.js 16配合React 19用于网页仪表板 数据库：LowDB（JSON文件-based）——简单、可移植、可版本控制的配置 流式传输：Server-Sent Events (SSE) 用于实时进度反馈 认证：OAuth 2.0加PKCE、JWT会话cookie、HMAC签名API密钥 代理：完整HTTP透传，支持可配置的上游代理 环境变量提供了对部署的细致控制：\nJWT_SECRET：生产中请更改 REQUIRE_API_KEY：强制在/v1/*路线上使用bearer token认证 ENABLE_REQUEST_LOGS：启用调试级别的请求/响应日志记录 AUTH_COOKIE_SECURE：在HTTPS反向代理后面强制Secure cookie标志 HTTP_PROXY / HTTPS_PROXY：通过企业代理路由上游请求 该服务默认监听端口20128，除存储在````${DATA_DIR}```中的JSON文件外，不需要外部依赖或数据库。\n总结 9Router解决了一个真正痛苦的问题，越来越多的开发者正在感受到这一问题。随着AI工具订阅的倍增，我们没有接受不断上涨的费用和任意的速率限制作为AI辅助开发的不可避免代价，9Router改变了游戏规则：使用您已经拥有的任何提供商，用便宜或免费的替代品填补缺口，尽可能压缩一切，并确保无论配额状态如何都维持连续的编码流程。\n对于预算紧张的独立开发者，免费-first策略可以以正好$0的成本交付完全功能的AI编程辅助。对于愿意投资于高级订阅的团队，令牌压缩和智能路由通过确保每一分钱花得更远来最大化投资回报率。\n它是免费的、开源的，并且几分钟内即可自托管。鉴于当前AI工具定价的走势，将9Router添加到您的开发基础设施中不仅可能有用——它正变得越来越必要。\n仓库：github.com/decolua/9router 网站：9router.com\n相关文章 GenericAgent：自我进化AI代理框架\nAnthropic的金融服务：AI驱动的Claude代理\nAddy Osmani的Agent技能：生产级AI编程代理\n推荐工具 跑或部署开源 AI 工具时，推荐：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。 推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “9Router：智能AI代理网关——节省60%令牌开销，告别API限流”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/9router-smart-llm-proxy-token-saver-free-coding\" } } Why This Matters Understanding 9router：智能ai代理网关——节省60%令牌开销，告别api限流 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 9Router：智能AI代理网关——节省60%令牌开销，告别API限流 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\nFramework Comparison | Framework | Primary Use | Learning Curve | Community | Production Ready | |\n|\n|\n|\n|\n| | LangChain | General-purpose | Medium | Large | ✅ Yes | | LlamaIndex | RAG/Retrieval | Low | Growing | ✅ Yes | | Haystack | Document processing | Medium | Medium | ✅ Yes | | LangGraph | Stateful agents | High | Growing | ✅ Yes |\n",
+  "wordCount" : "913",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af9router%e4%bb%a5%e5%8f%8a%e5%ae%83%e6%98%af%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c%e7%9a%84" aria-label="什么是9Router以及它是如何工作的？">什么是9Router以及它是如何工作的？</a></li>
+            <li>
+                <a href="#%e8%ae%a99router%e4%b8%8e%e4%bc%97%e4%b8%8d%e5%90%8c%e7%9a%84%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd" aria-label="让9Router与众不同的核心功能">让9Router与众不同的核心功能</a><ul>
+                    
+            <li>
+                <a href="#-rtk%e4%bb%a4%e7%89%8c%e5%8e%8b%e7%bc%a9%e5%bc%95%e6%93%8e" aria-label="🚀 RTK令牌压缩引擎">🚀 RTK令牌压缩引擎</a></li>
+            <li>
+                <a href="#%e6%b4%9e%e7%a9%b4%e4%ba%ba%e6%a8%a1%e5%bc%8f%e8%be%93%e5%87%ba%e5%8e%8b%e7%bc%a9" aria-label="🪨洞穴人模式（输出压缩）">🪨洞穴人模式（输出压缩）</a></li>
+            <li>
+                <a href="#-%e6%99%ba%e8%83%bd%e4%b8%89%e5%b1%82%e5%9b%9e%e9%80%80%e7%b3%bb%e7%bb%9f" aria-label="🎯 智能三层回退系统">🎯 智能三层回退系统</a></li>
+            <li>
+                <a href="#-%e5%ae%9e%e6%97%b6%e9%85%8d%e9%a2%9d%e8%b7%9f%e8%b8%aa%e4%b8%8e%e5%88%86%e6%9e%90" aria-label="📊 实时配额跟踪与分析">📊 实时配额跟踪与分析</a></li>
+            <li>
+                <a href="#-%e8%b7%a8%e6%af%8f%e7%a7%8d%e4%b8%bb%e8%a6%81%e5%8d%8f%e8%ae%ae%e7%9a%84%e6%a0%bc%e5%bc%8f%e7%bf%bb%e8%af%91" aria-label="🔄 跨每种主要协议的格式翻译">🔄 跨每种主要协议的格式翻译</a></li>
+            <li>
+                <a href="#-%e5%a4%9a%e8%b4%a6%e6%88%b7%e6%94%af%e6%8c%81" aria-label="👥 多账户支持">👥 多账户支持</a></li>
+            <li>
+                <a href="#-%e4%ba%91%e5%90%8c%e6%ad%a5" aria-label="💾 云同步">💾 云同步</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%94%af%e6%8c%81%e7%9a%84%e7%bc%96%e7%a8%8b%e5%b7%a5%e5%85%b7%e5%92%8cide" aria-label="支持的编程工具和IDE">支持的编程工具和IDE</a></li>
+            <li>
+                <a href="#%e5%85%a5%e9%97%a8%e5%ae%89%e8%a3%85%e5%92%8c%e8%ae%be%e7%bd%ae" aria-label="入门：安装和设置">入门：安装和设置</a><ul>
+                    
+            <li>
+                <a href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e6%9c%ac%e5%9c%b0%e4%b8%bb%e6%9c%ba%e5%a4%a7%e5%a4%9a%e6%95%b0%e7%94%a8%e6%88%b7%e6%8e%a8%e8%8d%90" aria-label="快速开始：本地主机（大多数用户推荐）">快速开始：本地主机（大多数用户推荐）</a></li>
+            <li>
+                <a href="#docker%e9%83%a8%e7%bd%b2" aria-label="Docker部署">Docker部署</a></li>
+            <li>
+                <a href="#%e8%bf%9e%e6%8e%a5%e6%82%a8%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e6%8f%90%e4%be%9b%e5%95%86" aria-label="连接您的第一个提供商">连接您的第一个提供商</a></li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%aecursor-ide" aria-label="配置Cursor IDE">配置Cursor IDE</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="真实世界应用场景">真实世界应用场景</a><ul>
+                    
+            <li>
+                <a href="#%e5%9c%ba%e6%99%afa%e6%9c%80%e5%a4%a7%e5%8c%96%e7%8e%b0%e6%9c%89%e8%ae%a2%e9%98%85%e4%bb%b7%e5%80%bc" aria-label="场景A：最大化现有订阅价值">场景A：最大化现有订阅价值</a></li>
+            <li>
+                <a href="#%e5%9c%ba%e6%99%afb%e5%ae%8c%e5%85%a8%e9%9b%b6%e6%9c%88%e5%ba%a6%e9%a2%84%e7%ae%97" aria-label="场景B：完全零月度预算">场景B：完全零月度预算</a></li>
+            <li>
+                <a href="#%e5%9c%ba%e6%99%afc%e4%b8%8d%e9%97%b4%e6%96%ad247%e5%bc%80%e5%8f%91" aria-label="场景C：不间断24/7开发">场景C：不间断24/7开发</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%9a%e4%bb%b7%e9%80%8f%e6%98%8e%e5%ba%a6%e5%ae%9e%e9%99%85%e8%8a%b1%e8%b4%b9%e5%a4%9a%e5%b0%91" aria-label="定价透明度：实际花费多少？">定价透明度：实际花费多少？</a></li>
+            <li>
+                <a href="#9router%e4%b8%8e%e5%85%b6%e4%bb%96%e6%96%b9%e6%a1%88%e7%9a%84%e5%af%b9%e6%af%94" aria-label="9Router与其他方案的对比">9Router与其他方案的对比</a></li>
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%889router%e6%ad%a4%e6%97%b6%e5%be%88%e9%87%8d%e8%a6%81" aria-label="为什么9Router此时很重要">为什么9Router此时很重要</a></li>
+            <li>
+                <a href="#%e6%8a%80%e6%9c%af%e6%9e%b6%e6%9e%84%e4%ba%ae%e7%82%b9" aria-label="技术架构亮点">技术架构亮点</a></li>
+            <li>
+                <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a></li>
+            <li>
+                <a href="#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0" aria-label="相关文章">相关文章</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e5%b7%a5%e5%85%b7" aria-label="推荐工具">推荐工具</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li>
+            <li>
+                <a href="#framework-comparison" aria-label="Framework Comparison">Framework Comparison</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker</p><ul><li>Go</li><li>JavaScript</li><li>TypeScript
+tech_stack: - Docker</p>
+<ul>
+<li>Go</li>
+<li>JavaScript</li>
+<li>TypeScript
 application_domain: &ldquo;Llm Frameworks&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
 file_size: &ldquo;3.2 MB&rdquo;
-file_md5: ""
-download_url: &ldquo;<a href=https://github.com/rtk-ai/rtk%22>https://github.com/rtk-ai/rtk"</a>
-backup_url: "&rdquo;
+file_md5: &quot;&quot;
+download_url: &ldquo;<a href="https://github.com/rtk-ai/rtk%22">https://github.com/rtk-ai/rtk"</a>
+backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</li><li>/zh/posts/9router-smart-llm-proxy-token-saver-free-coding/
+aliases:</li>
+<li>/zh/posts/9router-smart-llm-proxy-token-saver-free-coding/
 faqs: - q: &lsquo;什么是 9Router，它是如何工作的？&rsquo;
-a: &lsquo;9Router 是一款开源、自托管的智能代理，位于你的 AI 编程工具与模型提供商之间，默认运行在 localhost:20128 上。你的工具不再直接调用 Claude 或 OpenAI，而是把请求发送给 9Router，由它通过智能回退逻辑和 token 压缩，将请求路由到 40+ 个提供商之间。&rsquo;</li><li>q: &lsquo;使用 9Router 需要花钱吗？&rsquo;
-a: &lsquo;不需要。9Router 软件基于开源 MIT 许可证永久免费，并在你自己的硬件上自托管。它没有任何计费基础设施，永远不会向你收费；你只需直接为自己配置的订阅或 API key 向各提供商付费，免费提供商则始终免费。仪表盘上的费用数字是一个节省追踪器，显示如果使用等量的付费 API 会花费多少。&rsquo;</li><li>q: &lsquo;9Router 能减少多少 AI token 用量？&rsquo;
-a: &lsquo;通过内置的 RTK 压缩，9Router 会在 git diff、grep 结果和目录列表等工具输出抵达 LLM 之前先行压缩，每次请求可节省 20-40% 的输入 token。其可选的 Caveman 模式最多可将冗长的模型输出减少 65%，而每日调用量在 500+ 次的开发者反馈称，实际模型消耗下降了 40-60%。&rsquo;</li><li>q: &lsquo;哪些 AI 编程工具和 IDE 可以配合 9Router 使用？&rsquo;
-a: &lsquo;任何支持自定义 OpenAI 兼容 API 端点的工具都可以通过 http://localhost:20128/v1 连接到 9Router。受支持的工具包括 Claude Code、OpenAI Codex CLI、Cursor IDE、GitHub Copilot、Cline、Continue、Roo Code、Antigravity、Droid、Kilo Code 和 OpenCode。&rsquo;</li><li>q: &lsquo;我能否以零月费使用 9Router 进行 AI 编程？&rsquo;
-a: &lsquo;可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。&rsquo;&mdash;</li></ul><p>{&lt;/* resource-info */>}</p><p>AI编程助手革命为开发者带来了前所未有的困境：我们通过Claude Code、OpenAI Codex、Cursor和GitHub Copilot等工具获得了世界级的语言模型访问权限——但同时管理多个平台上的订阅、配额和速率限制正变得日益昂贵和令人沮丧。许多开发者发现自己两周内就耗尽了Claude Pro的月度配额，然后在冲刺截止日期面前只能面对速率限制的墙壁。</p><p><strong>9Router</strong>应运而生——一个开源的智能代理和令牌管理系统，彻底消除了这种痛点。拥有超过<strong>6,900个GitHub星标</strong>、1,200多个Fork和快速社区增长，9Router已成为那些想要获得最大AI能力而不必支付不必要高级版本费用的开发者的首选解决方案。基于Node.js 20+、Next.js 16和React 19构建，它提供了一个统一界面，使用智能回退逻辑和强大的令牌节省压缩技术，将您的AI编程请求路由到40多个提供商。</p><h2 id=什么是9router以及它是如何工作的>什么是9Router以及它是如何工作的？<a hidden class=anchor aria-hidden=true href=#什么是9router以及它是如何工作的>#</a></h2><p>9Router是一个本地托管的中间件服务（默认运行在<code>localhost:20128</code>），位于您的AI编程工具和底层模型提供商之间。您的工具不再直接向Claude、OpenAI或任何单一提供商发送API请求，而是与9Router通信——然后由它智能决定将请求路由到哪个后端提供商。</p><p>这种架构为您带来三大优势：</p><ol><li><strong>从一个地方访问多个提供商</strong>：在单个仪表板中配置Claude、Gemini、GLM、MiniMax、Kiro、OpenCode、Vertex AI和40多个其他提供商。您的CLI工具发送到localhost；9Router处理其余部分。</li><li><strong>自动回退机制</strong>：当主要提供商达到配额限制或出现故障时，9Router无缝切换到下一个层级——无论是便宜的备用提供商还是完全免费的选项。工作流程零中断。</li><li><strong>请求离开机器前的令牌压缩</strong>：通过其内置的<a href=https://github.com/rtk-ai/rtk>RTK</a>集成（约40K星标），9Router在请求到达LLM之前自动压缩工具输出（git差异、grep结果、目录列表、日志转储）。仅此一项就能在每个请求中节省20-40%的输入令牌。</li></ol><h2 id=让9router与众不同的核心功能>让9Router与众不同的核心功能<a hidden class=anchor aria-hidden=true href=#让9router与众不同的核心功能>#</a></h2><h3 id=-rtk令牌压缩引擎>🚀 RTK令牌压缩引擎<a hidden class=anchor aria-hidden=true href=#-rtk令牌压缩引擎>#</a></h3><p>工具输出通常占您总提示预算的30-50%。当Claude Code在大型代码库中运行<code>git diff</code>、<code>ls -R</code>或<code>grep</code>时，它会向模型发送数百万字节的文本——其中大部分是无关噪音。</p><p>9Router内置的RTK集成功能自动检测这些工具输出并应用智能的无损压缩过滤器：</p><ul><li><strong>git-diff</strong>：将差异输出简化为必要的变更行</li><li><strong>git-status</strong>：将状态压缩为摘要格式</li><li><strong>grep / find</strong>：修剪无关匹配项，保留上下文丰富的行</li><li><strong>tree / ls</strong>：以有意义的方式折叠目录结构</li><li><strong>dedup-log</strong>：删除重复的连续日志条目</li><li><strong>smart-truncate</strong>：保留首尾部分，同时移除冗余的中间内容</li></ul><p>至关重要的是，如果任何过滤器失败或产生比原始文本更差的输出，RTK会静默回退到未修改的文本。错误永远不会破坏您的请求。压缩在任何格式转换<strong>之前</strong>运行，因此它适用于所有支持的格式（OpenAI、Claude、Gem尼、Cursor、Kiro、OpenAI Responses）。</p><pre tabindex=0><code>不使用RTK：向LLM发送47K令牌
+a: &lsquo;9Router 是一款开源、自托管的智能代理，位于你的 AI 编程工具与模型提供商之间，默认运行在 localhost:20128 上。你的工具不再直接调用 Claude 或 OpenAI，而是把请求发送给 9Router，由它通过智能回退逻辑和 token 压缩，将请求路由到 40+ 个提供商之间。&rsquo;</li>
+<li>q: &lsquo;使用 9Router 需要花钱吗？&rsquo;
+a: &lsquo;不需要。9Router 软件基于开源 MIT 许可证永久免费，并在你自己的硬件上自托管。它没有任何计费基础设施，永远不会向你收费；你只需直接为自己配置的订阅或 API key 向各提供商付费，免费提供商则始终免费。仪表盘上的费用数字是一个节省追踪器，显示如果使用等量的付费 API 会花费多少。&rsquo;</li>
+<li>q: &lsquo;9Router 能减少多少 AI token 用量？&rsquo;
+a: &lsquo;通过内置的 RTK 压缩，9Router 会在 git diff、grep 结果和目录列表等工具输出抵达 LLM 之前先行压缩，每次请求可节省 20-40% 的输入 token。其可选的 Caveman 模式最多可将冗长的模型输出减少 65%，而每日调用量在 500+ 次的开发者反馈称，实际模型消耗下降了 40-60%。&rsquo;</li>
+<li>q: &lsquo;哪些 AI 编程工具和 IDE 可以配合 9Router 使用？&rsquo;
+a: &lsquo;任何支持自定义 OpenAI 兼容 API 端点的工具都可以通过 http://localhost:20128/v1 连接到 9Router。受支持的工具包括 Claude Code、OpenAI Codex CLI、Cursor IDE、GitHub Copilot、Cline、Continue、Roo Code、Antigravity、Droid、Kilo Code 和 OpenCode。&rsquo;</li>
+<li>q: &lsquo;我能否以零月费使用 9Router 进行 AI 编程？&rsquo;
+a: &lsquo;可以。你可以仅使用免费提供商搭建一个组合，例如 Kiro AI（通过 AWS Builder ID、Google 或 GitHub OAuth 免费无限使用，无需 API key）、OpenCode Free（零认证直通）以及 Vertex AI（$300 免费 Google Cloud 额度）。再结合 RTK 压缩，这套方案能以真正每月 $0 的成本提供生产级质量的响应。&rsquo;&mdash;</li>
+</ul>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>AI编程助手革命为开发者带来了前所未有的困境：我们通过Claude Code、OpenAI Codex、Cursor和GitHub Copilot等工具获得了世界级的语言模型访问权限——但同时管理多个平台上的订阅、配额和速率限制正变得日益昂贵和令人沮丧。许多开发者发现自己两周内就耗尽了Claude Pro的月度配额，然后在冲刺截止日期面前只能面对速率限制的墙壁。</p>
+<p><strong>9Router</strong>应运而生——一个开源的智能代理和令牌管理系统，彻底消除了这种痛点。拥有超过<strong>6,900个GitHub星标</strong>、1,200多个Fork和快速社区增长，9Router已成为那些想要获得最大AI能力而不必支付不必要高级版本费用的开发者的首选解决方案。基于Node.js 20+、Next.js 16和React 19构建，它提供了一个统一界面，使用智能回退逻辑和强大的令牌节省压缩技术，将您的AI编程请求路由到40多个提供商。</p>
+<h2 id="什么是9router以及它是如何工作的">什么是9Router以及它是如何工作的？<a hidden class="anchor" aria-hidden="true" href="#什么是9router以及它是如何工作的">#</a></h2>
+<p>9Router是一个本地托管的中间件服务（默认运行在<code>localhost:20128</code>），位于您的AI编程工具和底层模型提供商之间。您的工具不再直接向Claude、OpenAI或任何单一提供商发送API请求，而是与9Router通信——然后由它智能决定将请求路由到哪个后端提供商。</p>
+<p>这种架构为您带来三大优势：</p>
+<ol>
+<li><strong>从一个地方访问多个提供商</strong>：在单个仪表板中配置Claude、Gemini、GLM、MiniMax、Kiro、OpenCode、Vertex AI和40多个其他提供商。您的CLI工具发送到localhost；9Router处理其余部分。</li>
+<li><strong>自动回退机制</strong>：当主要提供商达到配额限制或出现故障时，9Router无缝切换到下一个层级——无论是便宜的备用提供商还是完全免费的选项。工作流程零中断。</li>
+<li><strong>请求离开机器前的令牌压缩</strong>：通过其内置的<a href="https://github.com/rtk-ai/rtk">RTK</a>集成（约40K星标），9Router在请求到达LLM之前自动压缩工具输出（git差异、grep结果、目录列表、日志转储）。仅此一项就能在每个请求中节省20-40%的输入令牌。</li>
+</ol>
+<h2 id="让9router与众不同的核心功能">让9Router与众不同的核心功能<a hidden class="anchor" aria-hidden="true" href="#让9router与众不同的核心功能">#</a></h2>
+<h3 id="-rtk令牌压缩引擎">🚀 RTK令牌压缩引擎<a hidden class="anchor" aria-hidden="true" href="#-rtk令牌压缩引擎">#</a></h3>
+<p>工具输出通常占您总提示预算的30-50%。当Claude Code在大型代码库中运行<code>git diff</code>、<code>ls -R</code>或<code>grep</code>时，它会向模型发送数百万字节的文本——其中大部分是无关噪音。</p>
+<p>9Router内置的RTK集成功能自动检测这些工具输出并应用智能的无损压缩过滤器：</p>
+<ul>
+<li><strong>git-diff</strong>：将差异输出简化为必要的变更行</li>
+<li><strong>git-status</strong>：将状态压缩为摘要格式</li>
+<li><strong>grep / find</strong>：修剪无关匹配项，保留上下文丰富的行</li>
+<li><strong>tree / ls</strong>：以有意义的方式折叠目录结构</li>
+<li><strong>dedup-log</strong>：删除重复的连续日志条目</li>
+<li><strong>smart-truncate</strong>：保留首尾部分，同时移除冗余的中间内容</li>
+</ul>
+<p>至关重要的是，如果任何过滤器失败或产生比原始文本更差的输出，RTK会静默回退到未修改的文本。错误永远不会破坏您的请求。压缩在任何格式转换<strong>之前</strong>运行，因此它适用于所有支持的格式（OpenAI、Claude、Gem尼、Cursor、Kiro、OpenAI Responses）。</p>
+<pre tabindex="0"><code>不使用RTK：向LLM发送47K令牌
 使用RTK：向LLM发送28K令牌（节省40%·相同质量的答案）
-</code></pre><p>在实际应用中，开发者报告每个请求都能看到20-40%的令牌节省——有效地将每个订阅的使用寿命延长了数天甚至数周。</p><h3 id=洞穴人模式输出压缩>🪨洞穴人模式（输出压缩）<a hidden class=anchor aria-hidden=true href=#洞穴人模式输出压缩>#</a></h3><p>除了输入优化外，9Router还减少了LLM返回的内容量。通过注入"洞穴人风格"的系统提示（灵感来源于<a href=https://github.com/JuliusBrussee/caveman>Caveman</a>，约52K星标），9Router指示模型简洁回复——保留所有技术内容，同时消除对话性填充词。</p><p>这可以节省高达<strong>65%的输出令牌</strong>。对于复杂的重构任务或长代码生成会话，这些节省在数百次API调用中迅速累积。</p><h3 id=-智能三层回退系统>🎯 智能三层回退系统<a hidden class=anchor aria-hidden=true href=#-智能三层回退系统>#</a></h3><p>这可以说是9Router的核心杀手锏。您可以定义"组合"——不同定价层级的有序模型列表——然后9Router自动相应地路由请求：</p><pre tabindex=0><code>组合：&#34;my-coding-stack&#34;
+</code></pre><p>在实际应用中，开发者报告每个请求都能看到20-40%的令牌节省——有效地将每个订阅的使用寿命延长了数天甚至数周。</p>
+<h3 id="洞穴人模式输出压缩">🪨洞穴人模式（输出压缩）<a hidden class="anchor" aria-hidden="true" href="#洞穴人模式输出压缩">#</a></h3>
+<p>除了输入优化外，9Router还减少了LLM返回的内容量。通过注入&quot;洞穴人风格&quot;的系统提示（灵感来源于<a href="https://github.com/JuliusBrussee/caveman">Caveman</a>，约52K星标），9Router指示模型简洁回复——保留所有技术内容，同时消除对话性填充词。</p>
+<p>这可以节省高达<strong>65%的输出令牌</strong>。对于复杂的重构任务或长代码生成会话，这些节省在数百次API调用中迅速累积。</p>
+<h3 id="-智能三层回退系统">🎯 智能三层回退系统<a hidden class="anchor" aria-hidden="true" href="#-智能三层回退系统">#</a></h3>
+<p>这可以说是9Router的核心杀手锏。您可以定义&quot;组合&quot;——不同定价层级的有序模型列表——然后9Router自动相应地路由请求：</p>
+<pre tabindex="0"><code>组合：&#34;my-coding-stack&#34;
   1. cc/claude-opus-4-6        → 您的Claude Code Pro订阅
   2. glm/glm-4.7               → 便宜备用（每百万令牌$0.6）
   3. kr/claude-sonnet-4.5      → Kiro AI免费紧急备用
-</code></pre><p>当Opus配额耗尽（或发生错误）时，9Router立即过渡到GLM。如果GLM也耗尽，则下降到Kiro的无限免费层级。您永远不会遇到墙。</p><p>系统支持五种不同的定价层级：</p><h2 id=heading>| 层级 | 提供商 | 典型成本 | 重置模式 |
-|</h2><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>当Opus配额耗尽（或发生错误）时，9Router立即过渡到GLM。如果GLM也耗尽，则下降到Kiro的无限免费层级。您永远不会遇到墙。</p>
+<p>系统支持五种不同的定价层级：</p>
+<h2 id="heading">| 层级 | 提供商 | 典型成本 | 重置模式 |
+|</h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 订阅版 | Claude Code、Codex、Copilot、Cursor | $10-$200/月 | 5小时滚动 + 每周/每月 |
 | 廉价版 | GLM-5.1、MiniMax M2.7、Kimi K2.5 | $0.2-$0.6/百万令牌 | 每日/滚动/固定月度 |
-| 免费版 | Kiro AI、OpenCode Free、Vertex AI | $0 | 无限 |</p><h3 id=-实时配额跟踪与分析>📊 实时配额跟踪与分析<a hidden class=anchor aria-hidden=true href=#-实时配额跟踪与分析>#</a></h3><p>网页仪表板显示每个提供商的实时令牌消耗、重置倒计时（5小时、每日、每周、每月）和预估成本跟踪。虽然仪表板显示的"成本"仅作为参考比较工具——9Router本身是免费软件，从不收费——但这些分析帮助您了解使用模式并优化支出。</p><p>如果您的仪表板在使用Kiro免费层时显示"$290总成本"，那$290代表如果您直接使用那些API本应支付的金额。您实际支付仍然为$0。它本质上是一个节省跟踪器，展示您避免了多少开支。</p><h3 id=-跨每种主要协议的格式翻译>🔄 跨每种主要协议的格式翻译<a hidden class=anchor aria-hidden=true href=#-跨每种主要协议的格式翻译>#</a></h3><p>9Router透明地在OpenAI、Claude、Gemini、Cursor、Kiro、Vertex AI、Antigravity、Ollama和OpenAI Responses格式之间进行翻译。您的CLI工具发送标准的OpenAI兼容负载；9Router将其翻译成每个提供商期望的原生格式。这意味着您可以使用任何支持自定义OpenAI端点的工具，并将其接入任何后端提供商。</p><h3 id=-多账户支持>👥 多账户支持<a hidden class=anchor aria-hidden=true href=#-多账户支持>#</a></h3><p>需要跨账户负载均衡或冗余吗？9Router允许您为每个提供商添加多个账户，支持自动轮询分发或基于优先级的路由。如果一个账户达到其配额，请求会自动转移到下一个可用账户。OAuth令牌自动刷新，消除了手动重新认证周期。</p><h3 id=-云同步>💾 云同步<a hidden class=anchor aria-hidden=true href=#-云同步>#</a></h3><p>通过加密云存储在整个设备上同步您的完整配置——提供商、组合、别名、设置。在您本机电脑上设置完美的组合，然后在VPS、Docker部署或同事工作站上访问完全相同的配置。</p><h2 id=支持的编程工具和ide>支持的编程工具和IDE<a hidden class=anchor aria-hidden=true href=#支持的编程工具和ide>#</a></h2><p>9Router充当通用适配器，支持几乎所有流行的AI编程工具：</p><ul><li><strong>Claude Code</strong>（<code>~/.claude/config.json</code>中使用自定义API基本地址）</li><li><strong>OpenAI Codex CLI</strong>（环境变量覆盖）</li><li><strong>Cursor IDE</strong>（自定义OpenAI端点设置）</li><li><strong>GitHub Copilot</strong></li><li><strong>OpenClaw</strong>（WhatsApp、Telegram、Slack消息）</li><li><strong>Cline</strong></li><li><strong>Continue</strong></li><li><strong>Roo Code</strong></li><li><strong>Antigravity</strong></li><li><strong>Droid</strong></li><li><strong>Kilo Code</strong></li><li><strong>OpenCode</strong></li></ul><p>任何支持自定义OpenAI兼容API端点的工具都可以连接到9Router。该服务在<code>http://localhost:20128/v1</code>上暴露标准OpenAI兼容接口。</p><h2 id=入门安装和设置>入门：安装和设置<a hidden class=anchor aria-hidden=true href=#入门安装和设置>#</a></h2><h3 id=快速开始本地主机大多数用户推荐>快速开始：本地主机（大多数用户推荐）<a hidden class=anchor aria-hidden=true href=#快速开始本地主机大多数用户推荐>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆并安装</span>
-</span></span><span style=display:flex><span>git clone https://github.com/decolua/9router.git
-</span></span><span style=display:flex><span>cd 9router
-</span></span><span style=display:flex><span>npm install
-</span></span><span style=display:flex><span>npm run build
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 可选环境设置</span>
-</span></span><span style=display:flex><span>export JWT_SECRET<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-secure-secret-change-this&#34;</span>
-</span></span><span style=display:flex><span>export INITIAL_PASSWORD<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-dashboard-password&#34;</span>
-</span></span><span style=display:flex><span>export PORT<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;20128&#34;</span>
-</span></span><span style=display:flex><span>export NODE_ENV<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;production&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动服务器</span>
-</span></span><span style=display:flex><span>npm run start
-</span></span></code></pre></div><p>启动后，打开<code>http://localhost:20128</code>访问网页仪表板。从此处连接您的第一个提供商。</p><h3 id=docker部署>Docker部署<a hidden class=anchor aria-hidden=true href=#docker部署>#</a></h3><p>对于生产或多设备设置，Docker使部署变得简单：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker build -t 9router .
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name 9router <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 20128:20128 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --env-file ./.env <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v 9router-data:/app/data <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v 9router-usage:/root/.9router <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  9router
-</span></span></code></pre></div><h3 id=连接您的第一个提供商>连接您的第一个提供商<a hidden class=anchor aria-hidden=true href=#连接您的第一个提供商>#</a></h3><p>让我们设置一个完整的免费层级组合——无需任何支付方式：</p><ol><li><strong>在仪表板中连接Kiro AI</strong>（使用AWS Builder ID、Google或GitHub OAuth——不需要API密钥）</li><li><strong>连接OpenCode Free</strong>（零认证、直通代理，模型自动获取）</li><li><strong>创建名为<code>free-dev</code>的组合</strong>，包含以下模型：<ul><li><code>kr/claude-sonnet-4.5</code>（通过Kiro的Claude Sonnet 4.5——免费无限）</li><li><code>kr/glm-5</code>（通过Kiro的GLM-5——免费无限）</li><li><code>vertex/gemini-3.1-pro-preview</code>（Google Cloud——$300免费信用额度）</li></ul></li></ol><p>然后将您首选的工具配置为指向<code>http://localhost:20128/v1</code>并使用您的仪表板API密钥：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;anthropic_api_base&#34;</span>: <span style=color:#e6db74>&#34;http://localhost:20128/v1&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;anthropic_api_key&#34;</span>: <span style=color:#e6db74>&#34;your-9router-api-key&#34;</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=配置cursor-ide>配置Cursor IDE<a hidden class=anchor aria-hidden=true href=#配置cursor-ide>#</a></h3><p>在Cursor设置→模型→高级中：</p><pre tabindex=0><code>OpenAI API基本地址：http://localhost:20128/v1
+| 免费版 | Kiro AI、OpenCode Free、Vertex AI | $0 | 无限 |</p>
+<h3 id="-实时配额跟踪与分析">📊 实时配额跟踪与分析<a hidden class="anchor" aria-hidden="true" href="#-实时配额跟踪与分析">#</a></h3>
+<p>网页仪表板显示每个提供商的实时令牌消耗、重置倒计时（5小时、每日、每周、每月）和预估成本跟踪。虽然仪表板显示的&quot;成本&quot;仅作为参考比较工具——9Router本身是免费软件，从不收费——但这些分析帮助您了解使用模式并优化支出。</p>
+<p>如果您的仪表板在使用Kiro免费层时显示&quot;$290总成本&quot;，那$290代表如果您直接使用那些API本应支付的金额。您实际支付仍然为$0。它本质上是一个节省跟踪器，展示您避免了多少开支。</p>
+<h3 id="-跨每种主要协议的格式翻译">🔄 跨每种主要协议的格式翻译<a hidden class="anchor" aria-hidden="true" href="#-跨每种主要协议的格式翻译">#</a></h3>
+<p>9Router透明地在OpenAI、Claude、Gemini、Cursor、Kiro、Vertex AI、Antigravity、Ollama和OpenAI Responses格式之间进行翻译。您的CLI工具发送标准的OpenAI兼容负载；9Router将其翻译成每个提供商期望的原生格式。这意味着您可以使用任何支持自定义OpenAI端点的工具，并将其接入任何后端提供商。</p>
+<h3 id="-多账户支持">👥 多账户支持<a hidden class="anchor" aria-hidden="true" href="#-多账户支持">#</a></h3>
+<p>需要跨账户负载均衡或冗余吗？9Router允许您为每个提供商添加多个账户，支持自动轮询分发或基于优先级的路由。如果一个账户达到其配额，请求会自动转移到下一个可用账户。OAuth令牌自动刷新，消除了手动重新认证周期。</p>
+<h3 id="-云同步">💾 云同步<a hidden class="anchor" aria-hidden="true" href="#-云同步">#</a></h3>
+<p>通过加密云存储在整个设备上同步您的完整配置——提供商、组合、别名、设置。在您本机电脑上设置完美的组合，然后在VPS、Docker部署或同事工作站上访问完全相同的配置。</p>
+<h2 id="支持的编程工具和ide">支持的编程工具和IDE<a hidden class="anchor" aria-hidden="true" href="#支持的编程工具和ide">#</a></h2>
+<p>9Router充当通用适配器，支持几乎所有流行的AI编程工具：</p>
+<ul>
+<li><strong>Claude Code</strong>（<code>~/.claude/config.json</code>中使用自定义API基本地址）</li>
+<li><strong>OpenAI Codex CLI</strong>（环境变量覆盖）</li>
+<li><strong>Cursor IDE</strong>（自定义OpenAI端点设置）</li>
+<li><strong>GitHub Copilot</strong></li>
+<li><strong>OpenClaw</strong>（WhatsApp、Telegram、Slack消息）</li>
+<li><strong>Cline</strong></li>
+<li><strong>Continue</strong></li>
+<li><strong>Roo Code</strong></li>
+<li><strong>Antigravity</strong></li>
+<li><strong>Droid</strong></li>
+<li><strong>Kilo Code</strong></li>
+<li><strong>OpenCode</strong></li>
+</ul>
+<p>任何支持自定义OpenAI兼容API端点的工具都可以连接到9Router。该服务在<code>http://localhost:20128/v1</code>上暴露标准OpenAI兼容接口。</p>
+<h2 id="入门安装和设置">入门：安装和设置<a hidden class="anchor" aria-hidden="true" href="#入门安装和设置">#</a></h2>
+<h3 id="快速开始本地主机大多数用户推荐">快速开始：本地主机（大多数用户推荐）<a hidden class="anchor" aria-hidden="true" href="#快速开始本地主机大多数用户推荐">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 克隆并安装</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/decolua/9router.git
+</span></span><span style="display:flex;"><span>cd 9router
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>npm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可选环境设置</span>
+</span></span><span style="display:flex;"><span>export JWT_SECRET<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-secure-secret-change-this&#34;</span>
+</span></span><span style="display:flex;"><span>export INITIAL_PASSWORD<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-dashboard-password&#34;</span>
+</span></span><span style="display:flex;"><span>export PORT<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;20128&#34;</span>
+</span></span><span style="display:flex;"><span>export NODE_ENV<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;production&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动服务器</span>
+</span></span><span style="display:flex;"><span>npm run start
+</span></span></code></pre></div><p>启动后，打开<code>http://localhost:20128</code>访问网页仪表板。从此处连接您的第一个提供商。</p>
+<h3 id="docker部署">Docker部署<a hidden class="anchor" aria-hidden="true" href="#docker部署">#</a></h3>
+<p>对于生产或多设备设置，Docker使部署变得简单：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker build -t 9router .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name 9router <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 20128:20128 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --env-file ./.env <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v 9router-data:/app/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v 9router-usage:/root/.9router <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  9router
+</span></span></code></pre></div><h3 id="连接您的第一个提供商">连接您的第一个提供商<a hidden class="anchor" aria-hidden="true" href="#连接您的第一个提供商">#</a></h3>
+<p>让我们设置一个完整的免费层级组合——无需任何支付方式：</p>
+<ol>
+<li><strong>在仪表板中连接Kiro AI</strong>（使用AWS Builder ID、Google或GitHub OAuth——不需要API密钥）</li>
+<li><strong>连接OpenCode Free</strong>（零认证、直通代理，模型自动获取）</li>
+<li><strong>创建名为<code>free-dev</code>的组合</strong>，包含以下模型：
+<ul>
+<li><code>kr/claude-sonnet-4.5</code>（通过Kiro的Claude Sonnet 4.5——免费无限）</li>
+<li><code>kr/glm-5</code>（通过Kiro的GLM-5——免费无限）</li>
+<li><code>vertex/gemini-3.1-pro-preview</code>（Google Cloud——$300免费信用额度）</li>
+</ul>
+</li>
+</ol>
+<p>然后将您首选的工具配置为指向<code>http://localhost:20128/v1</code>并使用您的仪表板API密钥：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;anthropic_api_base&#34;</span>: <span style="color:#e6db74">&#34;http://localhost:20128/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;anthropic_api_key&#34;</span>: <span style="color:#e6db74">&#34;your-9router-api-key&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="配置cursor-ide">配置Cursor IDE<a hidden class="anchor" aria-hidden="true" href="#配置cursor-ide">#</a></h3>
+<p>在Cursor设置→模型→高级中：</p>
+<pre tabindex="0"><code>OpenAI API基本地址：http://localhost:20128/v1
 OpenAI API密钥：[从9Router仪表板复制]
 模型：cc/claude-opus-4-7
-</code></pre><p>现在Cursor的每个模型调用都流经9Router的路由智能。</p><h2 id=真实世界应用场景>真实世界应用场景<a hidden class=anchor aria-hidden=true href=#真实世界应用场景>#</a></h2><h3 id=场景a最大化现有订阅价值>场景A：最大化现有订阅价值<a hidden class=anchor aria-hidden=true href=#场景a最大化现有订阅价值>#</a></h3><p>您每月为Claude Pro支付$20。如果没有9Router，一旦配额耗尽，编码就会停止直到重置。</p><p>使用9Router的"maximize-claude"组合：</p><ul><li>主用：<code>cc/claude-opus-4-7</code>（充分利用订阅）</li><li>备用：<code>glm/glm-5.1</code>（$0.6/百万令牌，每天上午10点重置）</li><li>紧急：<code>kr/claude-sonnet-4.5</code>（Kiro免费备用）</li></ul><p>结果：由于RTK节省20-40%令牌，您的$20订阅持续更长时间；即使到期，您也有无缝备用方案。 cheap层级的总有效成本仅增加约$5——远低于升级到Claude Max（$200/月）。</p><h3 id=场景b完全零月度预算>场景B：完全零月度预算<a hidden class=anchor aria-hidden=true href=#场景b完全零月度预算>#</a></h3><p>完全使用免费模型开始：</p><ul><li><code>gc/gemini-3-flash</code>（Google每月180K免费查询）</li><li><code>kr/claude-sonnet-4.5</code>（Kiro免费无限）</li><li><code>oc/&lt;auto></code>（OpenCode Free，无需认证）</li></ul><p>结合RTK压缩，这套配置以真正的零月度成本提供生产级模型响应。</p><h3 id=场景c不间断247开发>场景C：不间断24/7开发<a hidden class=anchor aria-hidden=true href=#场景c不间断247开发>#</a></h3><p>对于截止期限内工作的团队和自由职业者，分层五个回退层级：</p><ol><li>Claude Opus（优质级别）</li><li>GPT-5.5 via Codex（第二份订阅）</li><li>GLM-5.1（便宜的每日重置）</li><li>MiniMax M2.7（最便宜的$0.2/百万令牌，5小时滚动重置）</li><li>Kiro Claude Sonnet 4.5（免费无限）</li></ol><p>五层保障确保无论配额耗尽还是提供商故障，都不会出现停机。</p><h2 id=定价透明度实际花费多少>定价透明度：实际花费多少？<a hidden class=anchor aria-hidden=true href=#定价透明度实际花费多少>#</a></h2><p>评估9Router时的关键问题：<strong>9Router会向您收费吗？</strong> 不会。永远不。</p><p>实际的经济运作方式如下：</p><ul><li><strong>9Router软件 = 永久免费</strong>（开源MIT许可证，在您自己的硬件上自托管）</li><li><strong>仪表板成本 = 仅用于显示/跟踪</strong>（不是真正的账单）</li><li><strong>您直接向提供商付费</strong>（订阅、API密钥、无论您配置什么）</li><li><strong>免费提供商保持免费</strong>（Kiro AI、OpenCode Free、Vertex AI信用额度）</li></ul><p>9Router纯粹是在您自己计算机上运行的本地代理路由器。它无法访问您的信用卡，不能生成发票，也没有计费基础设施。它只是转发请求并可选择性地压缩令牌。</p><p>仪表板的成本显示作为"节省跟踪器"——向您展示使用付费API直接进行的等效使用本应花费多少。如果您配置了所有免费提供商，显示的成本可能读作"$290"而您的实际银行交易是$0。这$290是您主动节省下来的钱。</p><h2 id=9router与其他方案的对比>9Router与其他方案的对比<a hidden class=anchor aria-hidden=true href=#9router与其他方案的对比>#</a></h2><p>9Router如何与现有方案相比？</p><p>| 功能 | 9Router | 直接提供商访问 | 其他代理工具 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>现在Cursor的每个模型调用都流经9Router的路由智能。</p>
+<h2 id="真实世界应用场景">真实世界应用场景<a hidden class="anchor" aria-hidden="true" href="#真实世界应用场景">#</a></h2>
+<h3 id="场景a最大化现有订阅价值">场景A：最大化现有订阅价值<a hidden class="anchor" aria-hidden="true" href="#场景a最大化现有订阅价值">#</a></h3>
+<p>您每月为Claude Pro支付$20。如果没有9Router，一旦配额耗尽，编码就会停止直到重置。</p>
+<p>使用9Router的&quot;maximize-claude&quot;组合：</p>
+<ul>
+<li>主用：<code>cc/claude-opus-4-7</code>（充分利用订阅）</li>
+<li>备用：<code>glm/glm-5.1</code>（$0.6/百万令牌，每天上午10点重置）</li>
+<li>紧急：<code>kr/claude-sonnet-4.5</code>（Kiro免费备用）</li>
+</ul>
+<p>结果：由于RTK节省20-40%令牌，您的$20订阅持续更长时间；即使到期，您也有无缝备用方案。 cheap层级的总有效成本仅增加约$5——远低于升级到Claude Max（$200/月）。</p>
+<h3 id="场景b完全零月度预算">场景B：完全零月度预算<a hidden class="anchor" aria-hidden="true" href="#场景b完全零月度预算">#</a></h3>
+<p>完全使用免费模型开始：</p>
+<ul>
+<li><code>gc/gemini-3-flash</code>（Google每月180K免费查询）</li>
+<li><code>kr/claude-sonnet-4.5</code>（Kiro免费无限）</li>
+<li><code>oc/&lt;auto&gt;</code>（OpenCode Free，无需认证）</li>
+</ul>
+<p>结合RTK压缩，这套配置以真正的零月度成本提供生产级模型响应。</p>
+<h3 id="场景c不间断247开发">场景C：不间断24/7开发<a hidden class="anchor" aria-hidden="true" href="#场景c不间断247开发">#</a></h3>
+<p>对于截止期限内工作的团队和自由职业者，分层五个回退层级：</p>
+<ol>
+<li>Claude Opus（优质级别）</li>
+<li>GPT-5.5 via Codex（第二份订阅）</li>
+<li>GLM-5.1（便宜的每日重置）</li>
+<li>MiniMax M2.7（最便宜的$0.2/百万令牌，5小时滚动重置）</li>
+<li>Kiro Claude Sonnet 4.5（免费无限）</li>
+</ol>
+<p>五层保障确保无论配额耗尽还是提供商故障，都不会出现停机。</p>
+<h2 id="定价透明度实际花费多少">定价透明度：实际花费多少？<a hidden class="anchor" aria-hidden="true" href="#定价透明度实际花费多少">#</a></h2>
+<p>评估9Router时的关键问题：<strong>9Router会向您收费吗？</strong> 不会。永远不。</p>
+<p>实际的经济运作方式如下：</p>
+<ul>
+<li><strong>9Router软件 = 永久免费</strong>（开源MIT许可证，在您自己的硬件上自托管）</li>
+<li><strong>仪表板成本 = 仅用于显示/跟踪</strong>（不是真正的账单）</li>
+<li><strong>您直接向提供商付费</strong>（订阅、API密钥、无论您配置什么）</li>
+<li><strong>免费提供商保持免费</strong>（Kiro AI、OpenCode Free、Vertex AI信用额度）</li>
+</ul>
+<p>9Router纯粹是在您自己计算机上运行的本地代理路由器。它无法访问您的信用卡，不能生成发票，也没有计费基础设施。它只是转发请求并可选择性地压缩令牌。</p>
+<p>仪表板的成本显示作为&quot;节省跟踪器&quot;——向您展示使用付费API直接进行的等效使用本应花费多少。如果您配置了所有免费提供商，显示的成本可能读作&quot;$290&quot;而您的实际银行交易是$0。这$290是您主动节省下来的钱。</p>
+<h2 id="9router与其他方案的对比">9Router与其他方案的对比<a hidden class="anchor" aria-hidden="true" href="#9router与其他方案的对比">#</a></h2>
+<p>9Router如何与现有方案相比？</p>
+<p>| 功能 | 9Router | 直接提供商访问 | 其他代理工具 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 智能回退路由 | ✅ 自动3+层级 | ❌ 单提供商 | 部分支持 |
 | 令牌压缩（RTK） | ✅ 内置 | ❌ 无 | 罕见 |
 | 多格式翻译 | ✅ 8+协议 | N/A | 有限 |
@@ -74,9 +503,60 @@ OpenAI API密钥：[从9Router仪表板复制]
 | 免费提供商支持 | ✅ Kiro、OpenCode、Vertex | ❌ 不适用 | 通常不支持 |
 | 实时分析 | ✅ 仪表板 + 日志 | ❌ 提供商门户 | 基础 |
 | 自托管 | ✅ 完全控制 | N/A | 取决于具体方案 |
-| 成本 | 免费软件 + 提供商费用 | 完整提供商价格 | 通常为付费 |</p><p>值得注意的主要替代方案是 <strong><a href=https://github.com/diegosouzapw/OmniRoute>OmniRoute</a></strong>，这是9Router的一个TypeScript分支，添加了36+提供商、四层自动回退、多模态API（图像、嵌入、音频、TTS）、熔断模式、语义缓存、LLM评估框架以及带有368+单元测试的精制仪表板。OmniRoute可通过npm和Docker获取，适合希望超越核心9Router功能集的用户。</p><h2 id=为什么9router此时很重要>为什么9Router此时很重要<a hidden class=anchor aria-hidden=true href=#为什么9router此时很重要>#</a></h2><p>我们正处于AI编程工具的黄金时代，但经济现实尚未跟上。每个主要提供商独立地将访问权限限制在付费墙后面、配额限制和速率帽背后。在Claude、OpenAI、Google、Anthropic、DeepSeek和xAI之间管理六份不同的订阅既造成了财务负担又带来了操作复杂性。</p><p>9Router通过将所有这些提供商视为通过单一智能层可互换的商品来解决这个问题。您为每项任务获得最佳模型，为常规任务选择最便宜的路径，并在配额耗尽时保证可用性——同时让您的机器在令牌离开之前就压缩掉浪费。</p><p>RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65%）和智能多层回退相结合产生了复合效应。报告每天500+次API调用的开发者看到他们有效的模型消耗降低了40-60%，将一个$200/月的AI栈变成了$20-30可管理的水平。</p><h2 id=技术架构亮点>技术架构亮点<a hidden class=anchor aria-hidden=true href=#技术架构亮点>#</a></h2><p>9Router建立在针对可靠性优化的现代JavaScript栈上：</p><ul><li><strong>运行时</strong>：Node.js 20+，用于一致、高性能的异步I/O</li><li><strong>框架</strong>：Next.js 16配合React 19用于网页仪表板</li><li><strong>数据库</strong>：LowDB（JSON文件-based）——简单、可移植、可版本控制的配置</li><li><strong>流式传输</strong>：Server-Sent Events (SSE) 用于实时进度反馈</li><li><strong>认证</strong>：OAuth 2.0加PKCE、JWT会话cookie、HMAC签名API密钥</li><li><strong>代理</strong>：完整HTTP透传，支持可配置的上游代理</li></ul><p>环境变量提供了对部署的细致控制：</p><ul><li><code>JWT_SECRET</code>：生产中请更改</li><li><code>REQUIRE_API_KEY</code>：强制在<code>/v1/*</code>路线上使用bearer token认证</li><li><code>ENABLE_REQUEST_LOGS</code>：启用调试级别的请求/响应日志记录</li><li><code>AUTH_COOKIE_SECURE</code>：在HTTPS反向代理后面强制Secure cookie标志</li><li><code>HTTP_PROXY</code> / <code>HTTPS_PROXY</code>：通过企业代理路由上游请求</li></ul><p>该服务默认监听端口<code>20128</code>，除存储在````${DATA_DIR}```中的JSON文件外，不需要外部依赖或数据库。</p><h2 id=总结>总结<a hidden class=anchor aria-hidden=true href=#总结>#</a></h2><p>9Router解决了一个真正痛苦的问题，越来越多的开发者正在感受到这一问题。随着AI工具订阅的倍增，我们没有接受不断上涨的费用和任意的速率限制作为AI辅助开发的不可避免代价，9Router改变了游戏规则：使用您已经拥有的任何提供商，用便宜或免费的替代品填补缺口，尽可能压缩一切，并确保无论配额状态如何都维持连续的编码流程。</p><p>对于预算紧张的独立开发者，免费-first策略可以以正好$0的成本交付完全功能的AI编程辅助。对于愿意投资于高级订阅的团队，令牌压缩和智能路由通过确保每一分钱花得更远来最大化投资回报率。</p><p>它是免费的、开源的，并且几分钟内即可自托管。鉴于当前AI工具定价的走势，将9Router添加到您的开发基础设施中不仅可能有用——它正变得越来越必要。</p><p><strong>仓库</strong>：<a href=https://github.com/decolua/9router>github.com/decolua/9router</a>
-<strong>网站</strong>：<a href=https://9router.com>9router.com</a></p><hr><h2 id=相关文章>相关文章<a hidden class=anchor aria-hidden=true href=#相关文章>#</a></h2><ul><li><p><a href=/resources/llm-frameworks/hermes-agent-self-improving-ai-agent.zh/>GenericAgent：自我进化AI代理框架</a></p></li><li><p><a href=/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation.zh/>Anthropic的金融服务：AI驱动的Claude代理</a></p></li><li><p><a href=/resources/llm-frameworks/agent-skills-production-grade-ai-coding.zh/>Addy Osmani的Agent技能：生产级AI编程代理</a></p></li></ul><hr><h2 id=推荐工具>推荐工具<a hidden class=anchor aria-hidden=true href=#推荐工具>#</a></h2><p>跑或部署开源 AI 工具时，推荐：</p><ul><li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。</li><li>**** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。</li></ul><p><em>推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 成本 | 免费软件 + 提供商费用 | 完整提供商价格 | 通常为付费 |</p>
+<p>值得注意的主要替代方案是 <strong><a href="https://github.com/diegosouzapw/OmniRoute">OmniRoute</a></strong>，这是9Router的一个TypeScript分支，添加了36+提供商、四层自动回退、多模态API（图像、嵌入、音频、TTS）、熔断模式、语义缓存、LLM评估框架以及带有368+单元测试的精制仪表板。OmniRoute可通过npm和Docker获取，适合希望超越核心9Router功能集的用户。</p>
+<h2 id="为什么9router此时很重要">为什么9Router此时很重要<a hidden class="anchor" aria-hidden="true" href="#为什么9router此时很重要">#</a></h2>
+<p>我们正处于AI编程工具的黄金时代，但经济现实尚未跟上。每个主要提供商独立地将访问权限限制在付费墙后面、配额限制和速率帽背后。在Claude、OpenAI、Google、Anthropic、DeepSeek和xAI之间管理六份不同的订阅既造成了财务负担又带来了操作复杂性。</p>
+<p>9Router通过将所有这些提供商视为通过单一智能层可互换的商品来解决这个问题。您为每项任务获得最佳模型，为常规任务选择最便宜的路径，并在配额耗尽时保证可用性——同时让您的机器在令牌离开之前就压缩掉浪费。</p>
+<p>RTK令牌压缩（节省约20-40%）、洞穴人模式输出减少（节省约65%）和智能多层回退相结合产生了复合效应。报告每天500+次API调用的开发者看到他们有效的模型消耗降低了40-60%，将一个$200/月的AI栈变成了$20-30可管理的水平。</p>
+<h2 id="技术架构亮点">技术架构亮点<a hidden class="anchor" aria-hidden="true" href="#技术架构亮点">#</a></h2>
+<p>9Router建立在针对可靠性优化的现代JavaScript栈上：</p>
+<ul>
+<li><strong>运行时</strong>：Node.js 20+，用于一致、高性能的异步I/O</li>
+<li><strong>框架</strong>：Next.js 16配合React 19用于网页仪表板</li>
+<li><strong>数据库</strong>：LowDB（JSON文件-based）——简单、可移植、可版本控制的配置</li>
+<li><strong>流式传输</strong>：Server-Sent Events (SSE) 用于实时进度反馈</li>
+<li><strong>认证</strong>：OAuth 2.0加PKCE、JWT会话cookie、HMAC签名API密钥</li>
+<li><strong>代理</strong>：完整HTTP透传，支持可配置的上游代理</li>
+</ul>
+<p>环境变量提供了对部署的细致控制：</p>
+<ul>
+<li><code>JWT_SECRET</code>：生产中请更改</li>
+<li><code>REQUIRE_API_KEY</code>：强制在<code>/v1/*</code>路线上使用bearer token认证</li>
+<li><code>ENABLE_REQUEST_LOGS</code>：启用调试级别的请求/响应日志记录</li>
+<li><code>AUTH_COOKIE_SECURE</code>：在HTTPS反向代理后面强制Secure cookie标志</li>
+<li><code>HTTP_PROXY</code> / <code>HTTPS_PROXY</code>：通过企业代理路由上游请求</li>
+</ul>
+<p>该服务默认监听端口<code>20128</code>，除存储在````${DATA_DIR}```中的JSON文件外，不需要外部依赖或数据库。</p>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>9Router解决了一个真正痛苦的问题，越来越多的开发者正在感受到这一问题。随着AI工具订阅的倍增，我们没有接受不断上涨的费用和任意的速率限制作为AI辅助开发的不可避免代价，9Router改变了游戏规则：使用您已经拥有的任何提供商，用便宜或免费的替代品填补缺口，尽可能压缩一切，并确保无论配额状态如何都维持连续的编码流程。</p>
+<p>对于预算紧张的独立开发者，免费-first策略可以以正好$0的成本交付完全功能的AI编程辅助。对于愿意投资于高级订阅的团队，令牌压缩和智能路由通过确保每一分钱花得更远来最大化投资回报率。</p>
+<p>它是免费的、开源的，并且几分钟内即可自托管。鉴于当前AI工具定价的走势，将9Router添加到您的开发基础设施中不仅可能有用——它正变得越来越必要。</p>
+<p><strong>仓库</strong>：<a href="https://github.com/decolua/9router">github.com/decolua/9router</a>
+<strong>网站</strong>：<a href="https://9router.com">9router.com</a></p>
+<hr>
+<h2 id="相关文章">相关文章<a hidden class="anchor" aria-hidden="true" href="#相关文章">#</a></h2>
+<ul>
+<li>
+<p><a href="/resources/llm-frameworks/hermes-agent-self-improving-ai-agent.zh/">GenericAgent：自我进化AI代理框架</a></p>
+</li>
+<li>
+<p><a href="/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation.zh/">Anthropic的金融服务：AI驱动的Claude代理</a></p>
+</li>
+<li>
+<p><a href="/resources/llm-frameworks/agent-skills-production-grade-ai-coding.zh/">Addy Osmani的Agent技能：生产级AI编程代理</a></p>
+</li>
+</ul>
+<hr>
+<h2 id="推荐工具">推荐工具<a hidden class="anchor" aria-hidden="true" href="#推荐工具">#</a></h2>
+<p>跑或部署开源 AI 工具时，推荐：</p>
+<ul>
+<li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。</li>
+<li>**** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。</li>
+</ul>
+<p><em>推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;9Router：智能AI代理网关——节省60%令牌开销，告别API限流&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -90,27 +570,236 @@ OpenAI API密钥：[从9Router仪表板复制]
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/9router-smart-llm-proxy-token-saver-free-coding%22>https://dibi8.com/zh/resources/9router-smart-llm-proxy-token-saver-free-coding"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/9router-smart-llm-proxy-token-saver-free-coding%22">https://dibi8.com/zh/resources/9router-smart-llm-proxy-token-saver-free-coding"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding 9router：智能ai代理网关——节省60%令牌开销，告别api限流 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding 9router：智能ai代理网关——节省60%令牌开销，告别api限流 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>9Router：智能AI代理网关——节省60%令牌开销，告别API限流 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p><h2 id=framework-comparison>Framework Comparison<a hidden class=anchor aria-hidden=true href=#framework-comparison>#</a></h2><p>| Framework | Primary Use | Learning Curve | Community | Production Ready |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>9Router：智能AI代理网关——节省60%令牌开销，告别API限流 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<h2 id="framework-comparison">Framework Comparison<a hidden class="anchor" aria-hidden="true" href="#framework-comparison">#</a></h2>
+<p>| Framework | Primary Use | Learning Curve | Community | Production Ready |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>LangChain</strong> | General-purpose | Medium | Large | ✅ Yes |
 | <strong>LlamaIndex</strong> | RAG/Retrieval | Low | Growing | ✅ Yes |
 | <strong>Haystack</strong> | Document processing | Medium | Medium | ✅ Yes |
-| <strong>LangGraph</strong> | Stateful agents | High | Growing | ✅ Yes |</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/2026-local-first-ai-stack-production-architecture/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/academic-research-skills/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| <strong>LangGraph</strong> | Stateful agents | High | Growing | ✅ Yes |</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/2026-local-first-ai-stack-production-architecture/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/academic-research-skills/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

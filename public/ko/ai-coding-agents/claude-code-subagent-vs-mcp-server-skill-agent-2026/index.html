@@ -1,10 +1,270 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-28T00:00:00+08:00 lastmod: 2026-05-29T00:00:00+08:00 tech_stack: [‘Claude Code’, ‘Agent SDK’, MCP, CLI] application_domain: LLM Frameworks source_version: ’’ licensing_model: Commercial (Anthropic) license_type: Proprietary file_size: ’’ file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-28” draft: false categories: [“llm-frameworks”] tags: [“claude-code”, “mcp”, “subagents”, “skills”, “agent-sdk”, “llm-frameworks”, “developer-tools”] aliases:\n/posts/claude-code-subagent-vs-mcp-vs-skill/ faq: - q: “스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 말하면?” a: “스킬은 Claude에게 어떤 일을 『어떻게』 하는지 가르치고(컨텍스트에 로드되는 패키지화된 지침과 지식), 서브에이전트는 그 일을 『누가』 하느냐이며(자체 컨텍스트 윈도우를 가진 위임된 작업자), MCP 서버는 Claude가 『무엇에』 닿을 수 있느냐다(외부 도구 및 데이터로의 연결). 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다 — 서로 경쟁하는 세 가지 선택지가 아니라, 세 가지 서로 다른 축이다.” q: “Claude가 우리 내부 데이터베이스를 조회해야 한다면, 이건 스킬인가 서브에이전트인가 MCP 서버인가?” a: “MCP 서버다. Claude를 외부 시스템 — 데이터베이스, 내부 API, SaaS 플랫폼, 티켓팅 시스템 — 에 연결하는 모든 것은 통합(integration)이며, 통합이야말로 MCP 서버가 존재하는 이유다. 스킬은 좋은 쿼리를 『어떻게』 작성하는지 문서화할 수 있고, 서브에이전트는 분석을 격리된 채로 실행하는 작업자가 될 수 있지만, 데이터베이스로의 실제 연결은 MCP 서버의 몫이다. 실제로는 세 가지를 함께 쓰게 되는 경우가 많다.” q: “지침을 그냥 CLAUDE.md에 넣지 않고 스킬을 작성해야 하는 때는 언제인가?” a: “모든 상호작용에 적용되는 상시 작동의, 프로젝트 전반에 걸친 규칙에는 CLAUDE.md를 사용하라. 안내가 상황 의존적일 때 — 다단계 절차, 도메인 플레이북, 체크리스트처럼 관련 있을 때만 로드하고 싶은 것 — 스킬을 작성하라. 스킬은 기본 컨텍스트를 가볍게 유지해 준다: 『릴리스를 어떻게 자르는가』에 대한 상세 지침은 모든 프롬프트를 부풀리는 대신, 실제로 릴리스를 자를 때만 대화에 들어온다.” q: “서브에이전트가 MCP 서버와 스킬을 사용할 수 있나?” a: “그렇다. 서브에이전트는 완전한 Claude 대화로 실행되므로, 세션에 연결된 MCP 서버에 대한 접근을 상속하고 자기 작업에 관련된 스킬을 로드할 수 있다. 이것이 흔한 조합이다: MCP 서버가 데이터베이스를 노출하고, 스킬이 분석 방법론을 인코딩하며, 서브에이전트가 격리된 컨텍스트에서 전체를 실행해 무거운 쿼리 출력이 부모를 오염시키지 않게 한다. 세 계층은 차곡차곡 쌓인다.” q: “MCP 서버가 가장 강력하니, 그냥 모든 것을 MCP 서버로 만들면 안 되나?” a: “안 된다. MCP 서버는 만들고 유지하기에 가장 무겁기 때문이다 — 자체 배포, 인증, 버전 관리를 가진 별도 프로세스다. 필요한 것이 『Claude가 이 체크리스트를 따라야 한다』라면 그건 스킬이다(마크다운 파일). 『내 컨텍스트를 부풀리지 않고 이 탐색을 수행』이라면 그건 서브에이전트다(마크다운 파일). 스킬로 충분한데 MCP 서버에 손을 뻗는 것은 과도한 엔지니어링이다: 문서화 문제를 풀자고 서비스를 출시한 셈이다.” q: “스킬, 서브에이전트, MCP 서버가 모두 CI / 헤드리스 모드에서 동작하나?” a: “그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다.” 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026) 들어가며 2026년이 되면서 Claude Code에는 세 가지 뚜렷한 확장 방식 — 스킬, 서브에이전트, MCP 서버 — 이 생겼고, 우리가 가장 자주 받는 질문 하나는 “어느 걸 만들어야 하나요?“다. 혼란은 이해할 만하다: 셋 다 “Claude가 더 많은 일을 하게 만드는 방법\"이고, 마케팅이 이들을 한데 뭉뚱그린다. 하지만 셋은 완전히 다른 세 개의 축 위에 놓여 있으며, 잘못된 것을 고르면 과도한 엔지니어링(마크다운 파일이면 될 일에 서버 한 대)에 빠지거나, 벽에 부딪힌다(데이터베이스에 실제로 닿지 못하는 스킬).\n이 글은 의사결정 프레임워크를 제공한다. 각 확장 지점을 한 줄로 정의하고, 각각이 움직이는 축을 짚으며, 실제 시나리오 세 가지를 처음부터 끝까지 돌려 보고, 주말을 통째로 날리게 만드는 안티패턴을 지적한다. 커스텀 에이전트 작성과 MCP 서버 2026 랭킹을 이미 읽었다면, 이 글이 그것들을 하나로 엮어 주는 조각이다.\n세 가지 확장 지점, 각 한 줄 스킬 — Claude에게 어떤 일을 어떻게 하는지 가르친다. 패키지화된 지침, 플레이북, 체크리스트로, 관련 있을 때만 컨텍스트에 로드된다. 서브에이전트 — 그 일을 누가 하는가. 자체 컨텍스트 윈도우를 가진 위임된 작업자로, 부모 대화를 가볍게 유지하기 위해 생성된다(서브에이전트 패턴 참고). MCP 서버 — 무엇에 닿을 수 있는가. 외부 시스템으로의 연결: 데이터베이스, API, SaaS 도구, 데이터 소스. 한 문장으로 말하면 혼란이 풀린다: 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다. 이들은 한 질문에 대한 세 가지 답이 아니다. 서로 다른 세 질문에 대한 답이다.\n각각이 움직이는 축 스킬은 “지식” 축을 움직인다 스킬은 *“Claude가 우리의 특정 절차를 모른다”*에 대한 답이다. 당신의 릴리스 프로세스, 당신의 코드 리뷰 평가 기준, 당신의 인시던트 대응 런북 — 상황 의존적인 지식이다. 이걸 ```CLAUDE.md````에 두고 싶지는 않을 것이다(그건 모든 상호작용마다 로드되어 기본 컨텍스트를 부풀린다); 작업이 요구할 때만 로드되기를 원할 것이다. 스킬은 트리거 설명이 달린 마크다운 파일이다; 작업이 매칭되면 상세 지침이 대화에 들어오고, 그렇지 않으면 비켜서 있는다.\n서브에이전트는 “컨텍스트” 축을 움직인다 서브에이전트는 *“이 작업은 내 컨텍스트 윈도우를 터뜨릴 것이다”*에 대한 답이다. 지식은 이미 거기 있을 수도 있다; 문제는 그 작업을 인라인으로 하는 것 — 파일 30개를 읽고, 긴 탐색을 돌리는 것 — 이 당신이 정작 신경 쓰는 추론을 밀어내 버린다는 점이다. 서브에이전트는 그걸 별도 컨텍스트에서 실행하고 결론만 돌려준다. 역량에 관해서는 아무것도 바뀌지 않는다; 바뀌는 것은 누구의 작업 기억이 그 탐색의 비용을 치르느냐다.\nMCP 서버는 “역량” 축을 움직인다 MCP 서버는 *“Claude가 이 시스템에 말 그대로 닿을 수 없다”*에 대한 답이다. 당신의 Postgres 데이터베이스, 당신의 내부 메트릭 API, 당신의 Stripe 계정, 당신의 Linear 보드. 아무리 스킬을 작성하거나 서브에이전트를 생성해도 데이터베이스 연결이 불려 나오지는 않는다 — 그건 진짜 새로운 역량이며, 역량은 MCP 서버에서 온다. 이것은 또한 셋 중 가장 무겁다: 배포, 인증, 버전 관리를 직접 떠안아야 하는 별도 프로세스다.\n의사결정 프레임워크 다음을 순서대로 물어보라: 1. “Claude가 지금은 닿을 수 없는 시스템에 닿아야 하는가?” → MCP 서버. (데이터베이스, API, SaaS, 외부 데이터.) 2. “Claude가 이미 그 역량은 있지만, 그 작업이 내 컨텍스트를 부풀릴까?” → 서브에이전트. (대규모 탐색, 병렬 리서치, 격리된 실험.) 3. “Claude가 역량과 컨텍스트는 있지만, 우리만의 특정 방식을 모르는가?” → 스킬. (플레이북, 체크리스트, 절차.)\n문제가 …라면 만들 것: 이유 시스템에 닿을 수 없음 MCP 서버 새로운 역량 컨텍스트가 폭발할 것 서브에이전트 작업 기억 보호 우리 절차를 모름 스킬 상황 의존적 지식 표준이 결코 강제되지 않음 서브에이전트(커스텀 에이전트) 실행 가능하고 버전 관리되는 리뷰 당신의 문제를 푸는 가장 저렴한 선택지가 거의 언제나 정답이다. 마크다운 파일(스킬 또는 서브에이전트)은 일을 해낼 수 있는 한, 배포된 서비스(MCP 서버)를 이긴다.\n실제 시나리오 1: “우리 코드베이스를 SQL 인젝션에 대해 감사하라” 역량? 코드 읽기 — Claude는 이미 갖고 있다. MCP 서버 불필요. 컨텍스트? 코드베이스 전체를 감사하려면 수십 개 파일을 읽어야 한다. 그건 부모를 부풀릴 것이다. → 서브에이전트. 절차? 감사가 OWASP의 특정 체크리스트를 따르기를 원한다. → 스킬(또는 체크리스트를 security-auditor 커스텀 에이전트의 시스템 프롬프트에 구워 넣기). 답: 체크리스트를 시스템 프롬프트에 인코딩한 ````security-auditor``` 서브에이전트. 하나의 아티팩트, 두 개의 축 커버. 서버 없음.\n실제 시나리오 2: “지난달에 어떤 고객이 이탈했는지 보여달라” 역량? 그 데이터는 당신의 웨어하우스에 있다. Claude는 닿을 수 없다. → MCP 서버(웨어하우스/SQL MCP). 컨텍스트? 큰 결과 집합은 노이즈가 될 수 있다. → 요약만 돌려주는 서브에이전트 안에서 쿼리를 실행. 절차? “이탈(churn)“은 당신 회사에서 특정한 정의를 가진다. → 이탈 쿼리 로직을 문서화한 스킬. 답: 셋 다, 조합해서. MCP 서버가 연결하고, 스킬이 “이탈\"을 정의하며, 서브에이전트가 깔끔하게 실행한다. 이것이 전형적인 풀스택 사례다.\n실제 시나리오 3: “모든 릴리스가 우리 체크리스트를 따르도록 보장하라” 역량? Git, 파일 읽기 — 이미 있다. 서버 없음. 컨텍스트? 가볍다. 보호를 위해 엄밀히 서브에이전트가 필요하지는 않다. 절차? 전적으로 이게 핵심 — 당신 팀의 릴리스 단계들. → 스킬, 또는 강제하고 보고서를 만들기를 원한다면 커스텀 에이전트. 답: 스킬(또는 릴리스 게이트 커스텀 에이전트). 여기서 MCP 서버를 만드는 것은 순전한 과도 엔지니어링이다.\n안티패턴 모든 것을 MCP 서버로 만드는 함정. 문서화 문제를 풀자고 서비스를 출시하는 것. 외부 시스템에 연결하는 게 아니라면, 아마 서버는 필요 없다. (진짜로 서버가 정당화되는 경우가 무엇인지 보려면 MCP 서버 레지스트리를 둘러보라.) 비대해진 CLAUDE.md. 모든 절차를 상시 작동 컨텍스트에 쑤셔 넣는 것. 상황 의존적 플레이북은 스킬로 옮겨 기본 컨텍스트를 날카롭게 유지하라. 거대 서브에이전트. “모든 걸 하는” 서브에이전트는 기억력만 더 나쁜 부모일 뿐이다. 관심사별로 쪼개라. 역량이 필요했던 스킬. Claude가 메트릭에 닿을 수 없는데 “우리 메트릭을 분석하라\"를 위한 아름다운 스킬을 작성하는 것. 어떤 지침도 빠져 있는 MCP 연결을 대체하지 못한다. 원칙 세 가지 확장 지점은 세 가지 리소스에 대응한다: 지식(스킬), 컨텍스트(서브에이전트), 역량(MCP 서버). 당신이 실제로 부족한 리소스가 무엇인지 진단하면, 선택은 저절로 정해진다. 대부분의 팀은 MCP 서버가 강력하게 들린다는 이유로 그쪽으로 과하게 손을 뻗지만, 마크다운 파일이면 점심 전에 똑같은 결과를 출시했을 것이다. 당신이 막혀 있는 축을 움직이는 가장 가벼운 것을 만들어라.\n프로덕션 준비된 Claude Code 구축하기 세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. MCP 서버와 CI를 위한 신뢰할 수 있는 호스트. MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.\n병렬 계층을 위한 클라우드 여유 공간. 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.\n스킬 번들. 스킬/서브에이전트/서버 구분을 가장 빠르게 체득하는 방법은 동작하는 예제를 연구하는 것이다. 우리는 실전 검증된 스킬 다섯 개를 Gumroad에서 $19 번들로 패키지했다 — 화면 구석의 떠 있는 CTA를 보라 — 커스텀 에이전트 정의와 세 계층을 모두 조합하는 오케스트레이터 프롬프트가 포함된다.\n함께 읽기 커스텀 에이전트 작성 가이드 — 서브에이전트 절반을 실제로 만드는 법. 서브에이전트 패턴 — 컨텍스트 축을 위한 다섯 가지 워크플로. MCP 서버 2026 랭킹 — 역량 계층 선택하기. MCP 서버 레지스트리 가이드 — 연결할 가치가 있는 것들의 카탈로그. 결론 “스킬이냐, 서브에이전트냐, MCP 서버냐?“를 마치 경쟁하는 것처럼 묻는 걸 멈춰라. 대신 이렇게 물어라: 나는 지식이 부족한가, 컨텍스트가 부족한가, 역량이 부족한가? 지식 → 스킬. 컨텍스트 → 서브에이전트. 역량 → MCP 서버. 풀스택 사례는 셋 모두를 계층으로 쌓아 쓴다. 그리고 의심스러울 때는, 당신의 축을 움직이는 가장 저렴한 아티팩트를 만들어라 — 마크다운 파일은 가능한 한 언제나 배포된 서비스를 이긴다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)”, “datePublished”: “2026-05-28”, “dateModified”: “2026-05-28”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026\" } } Why This Matters Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1790","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#%ec%84%9c%eb%b8%8c%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-vs-mcp-%ec%84%9c%eb%b2%84-vs-%ec%8a%a4%ed%82%ac-%ea%b0%81-claude-code-%ed%99%95%ec%9e%a5%ec%9d%84-%ec%96%b8%ec%a0%9c-%eb%a7%8c%eb%93%a4%ec%96%b4%ec%95%bc-%ed%95%98%eb%8a%94%ea%b0%80-2026 aria-label="서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)">서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)</a><ul><li><a href=#%eb%93%a4%ec%96%b4%ea%b0%80%eb%a9%b0 aria-label=들어가며>들어가며</a></li><li><a href=#%ec%84%b8-%ea%b0%80%ec%a7%80-%ed%99%95%ec%9e%a5-%ec%a7%80%ec%a0%90-%ea%b0%81-%ed%95%9c-%ec%a4%84 aria-label="세 가지 확장 지점, 각 한 줄">세 가지 확장 지점, 각 한 줄</a></li><li><a href=#%ea%b0%81%ea%b0%81%ec%9d%b4-%ec%9b%80%ec%a7%81%ec%9d%b4%eb%8a%94-%ec%b6%95 aria-label="각각이 움직이는 축">각각이 움직이는 축</a><ul><li><a href=#%ec%8a%a4%ed%82%ac%ec%9d%80-%ec%a7%80%ec%8b%9d-%ec%b6%95%ec%9d%84-%ec%9b%80%ec%a7%81%ec%9d%b8%eb%8b%a4 aria-label="스킬은 &ldquo;지식&rdquo; 축을 움직인다">스킬은 &ldquo;지식&rdquo; 축을 움직인다</a></li><li><a href=#%ec%84%9c%eb%b8%8c%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%8a%94-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8-%ec%b6%95%ec%9d%84-%ec%9b%80%ec%a7%81%ec%9d%b8%eb%8b%a4 aria-label="서브에이전트는 &ldquo;컨텍스트&rdquo; 축을 움직인다">서브에이전트는 &ldquo;컨텍스트&rdquo; 축을 움직인다</a></li><li><a href=#mcp-%ec%84%9c%eb%b2%84%eb%8a%94-%ec%97%ad%eb%9f%89-%ec%b6%95%ec%9d%84-%ec%9b%80%ec%a7%81%ec%9d%b8%eb%8b%a4 aria-label="MCP 서버는 &ldquo;역량&rdquo; 축을 움직인다">MCP 서버는 &ldquo;역량&rdquo; 축을 움직인다</a></li></ul></li><li><a href=#%ec%9d%98%ec%82%ac%ea%b2%b0%ec%a0%95-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac aria-label="의사결정 프레임워크">의사결정 프레임워크</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4-1-%ec%9a%b0%eb%a6%ac-%ec%bd%94%eb%93%9c%eb%b2%a0%ec%9d%b4%ec%8a%a4%eb%a5%bc-sql-%ec%9d%b8%ec%a0%9d%ec%85%98%ec%97%90-%eb%8c%80%ed%95%b4-%ea%b0%90%ec%82%ac%ed%95%98%eb%9d%bc aria-label="실제 시나리오 1: &ldquo;우리 코드베이스를 SQL 인젝션에 대해 감사하라&rdquo;">실제 시나리오 1: &ldquo;우리 코드베이스를 SQL 인젝션에 대해 감사하라&rdquo;</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4-2-%ec%a7%80%eb%82%9c%eb%8b%ac%ec%97%90-%ec%96%b4%eb%96%a4-%ea%b3%a0%ea%b0%9d%ec%9d%b4-%ec%9d%b4%ed%83%88%ed%96%88%eb%8a%94%ec%a7%80-%eb%b3%b4%ec%97%ac%eb%8b%ac%eb%9d%bc aria-label="실제 시나리오 2: &ldquo;지난달에 어떤 고객이 이탈했는지 보여달라&rdquo;">실제 시나리오 2: &ldquo;지난달에 어떤 고객이 이탈했는지 보여달라&rdquo;</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4-3-%eb%aa%a8%eb%93%a0-%eb%a6%b4%eb%a6%ac%ec%8a%a4%ea%b0%80-%ec%9a%b0%eb%a6%ac-%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8%eb%a5%bc-%eb%94%b0%eb%a5%b4%eb%8f%84%eb%a1%9d-%eb%b3%b4%ec%9e%a5%ed%95%98%eb%9d%bc aria-label="실제 시나리오 3: &ldquo;모든 릴리스가 우리 체크리스트를 따르도록 보장하라&rdquo;">실제 시나리오 3: &ldquo;모든 릴리스가 우리 체크리스트를 따르도록 보장하라&rdquo;</a></li><li><a href=#%ec%95%88%ed%8b%b0%ed%8c%a8%ed%84%b4 aria-label=안티패턴>안티패턴</a></li><li><a href=#%ec%9b%90%ec%b9%99 aria-label=원칙>원칙</a></li><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%a4%80%eb%b9%84%eb%90%9c-claude-code-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0 aria-label="프로덕션 준비된 Claude Code 구축하기">프로덕션 준비된 Claude Code 구축하기</a></li><li><a href=#%ed%95%a8%ea%bb%98-%ec%9d%bd%ea%b8%b0 aria-label="함께 읽기">함께 읽기</a></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-28T00:00:00+08:00 lastmod: 2026-05-29T00:00:00+08:00 tech_stack: [‘Claude Code’, ‘Agent SDK’, MCP, CLI] application_domain: LLM Frameworks source_version: ’’ licensing_model: Commercial (Anthropic) license_type: Proprietary file_size: ’’ file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-28” draft: false categories: [“llm-frameworks”] tags: [“claude-code”, “mcp”, “subagents”, “skills”, “agent-sdk”, “llm-frameworks”, “developer-tools”] aliases:\n/posts/claude-code-subagent-vs-mcp-vs-skill/ faq: - q: “스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 말하면?” a: “스킬은 Claude에게 어떤 일을 『어떻게』 하는지 가르치고(컨텍스트에 로드되는 패키지화된 지침과 지식), 서브에이전트는 그 일을 『누가』 하느냐이며(자체 컨텍스트 윈도우를 가진 위임된 작업자), MCP 서버는 Claude가 『무엇에』 닿을 수 있느냐다(외부 도구 및 데이터로의 연결). 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다 — 서로 경쟁하는 세 가지 선택지가 아니라, 세 가지 서로 다른 축이다.” q: “Claude가 우리 내부 데이터베이스를 조회해야 한다면, 이건 스킬인가 서브에이전트인가 MCP 서버인가?” a: “MCP 서버다. Claude를 외부 시스템 — 데이터베이스, 내부 API, SaaS 플랫폼, 티켓팅 시스템 — 에 연결하는 모든 것은 통합(integration)이며, 통합이야말로 MCP 서버가 존재하는 이유다. 스킬은 좋은 쿼리를 『어떻게』 작성하는지 문서화할 수 있고, 서브에이전트는 분석을 격리된 채로 실행하는 작업자가 될 수 있지만, 데이터베이스로의 실제 연결은 MCP 서버의 몫이다. 실제로는 세 가지를 함께 쓰게 되는 경우가 많다.” q: “지침을 그냥 CLAUDE.md에 넣지 않고 스킬을 작성해야 하는 때는 언제인가?” a: “모든 상호작용에 적용되는 상시 작동의, 프로젝트 전반에 걸친 규칙에는 CLAUDE.md를 사용하라. 안내가 상황 의존적일 때 — 다단계 절차, 도메인 플레이북, 체크리스트처럼 관련 있을 때만 로드하고 싶은 것 — 스킬을 작성하라. 스킬은 기본 컨텍스트를 가볍게 유지해 준다: 『릴리스를 어떻게 자르는가』에 대한 상세 지침은 모든 프롬프트를 부풀리는 대신, 실제로 릴리스를 자를 때만 대화에 들어온다.” q: “서브에이전트가 MCP 서버와 스킬을 사용할 수 있나?” a: “그렇다. 서브에이전트는 완전한 Claude 대화로 실행되므로, 세션에 연결된 MCP 서버에 대한 접근을 상속하고 자기 작업에 관련된 스킬을 로드할 수 있다. 이것이 흔한 조합이다: MCP 서버가 데이터베이스를 노출하고, 스킬이 분석 방법론을 인코딩하며, 서브에이전트가 격리된 컨텍스트에서 전체를 실행해 무거운 쿼리 출력이 부모를 오염시키지 않게 한다. 세 계층은 차곡차곡 쌓인다.” q: “MCP 서버가 가장 강력하니, 그냥 모든 것을 MCP 서버로 만들면 안 되나?” a: “안 된다. MCP 서버는 만들고 유지하기에 가장 무겁기 때문이다 — 자체 배포, 인증, 버전 관리를 가진 별도 프로세스다. 필요한 것이 『Claude가 이 체크리스트를 따라야 한다』라면 그건 스킬이다(마크다운 파일). 『내 컨텍스트를 부풀리지 않고 이 탐색을 수행』이라면 그건 서브에이전트다(마크다운 파일). 스킬로 충분한데 MCP 서버에 손을 뻗는 것은 과도한 엔지니어링이다: 문서화 문제를 풀자고 서비스를 출시한 셈이다.” q: “스킬, 서브에이전트, MCP 서버가 모두 CI / 헤드리스 모드에서 동작하나?” a: “그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다.” 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026) 들어가며 2026년이 되면서 Claude Code에는 세 가지 뚜렷한 확장 방식 — 스킬, 서브에이전트, MCP 서버 — 이 생겼고, 우리가 가장 자주 받는 질문 하나는 “어느 걸 만들어야 하나요?“다. 혼란은 이해할 만하다: 셋 다 “Claude가 더 많은 일을 하게 만드는 방법\"이고, 마케팅이 이들을 한데 뭉뚱그린다. 하지만 셋은 완전히 다른 세 개의 축 위에 놓여 있으며, 잘못된 것을 고르면 과도한 엔지니어링(마크다운 파일이면 될 일에 서버 한 대)에 빠지거나, 벽에 부딪힌다(데이터베이스에 실제로 닿지 못하는 스킬).\n이 글은 의사결정 프레임워크를 제공한다. 각 확장 지점을 한 줄로 정의하고, 각각이 움직이는 축을 짚으며, 실제 시나리오 세 가지를 처음부터 끝까지 돌려 보고, 주말을 통째로 날리게 만드는 안티패턴을 지적한다. 커스텀 에이전트 작성과 MCP 서버 2026 랭킹을 이미 읽었다면, 이 글이 그것들을 하나로 엮어 주는 조각이다.\n세 가지 확장 지점, 각 한 줄 스킬 — Claude에게 어떤 일을 어떻게 하는지 가르친다. 패키지화된 지침, 플레이북, 체크리스트로, 관련 있을 때만 컨텍스트에 로드된다. 서브에이전트 — 그 일을 누가 하는가. 자체 컨텍스트 윈도우를 가진 위임된 작업자로, 부모 대화를 가볍게 유지하기 위해 생성된다(서브에이전트 패턴 참고). MCP 서버 — 무엇에 닿을 수 있는가. 외부 시스템으로의 연결: 데이터베이스, API, SaaS 도구, 데이터 소스. 한 문장으로 말하면 혼란이 풀린다: 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다. 이들은 한 질문에 대한 세 가지 답이 아니다. 서로 다른 세 질문에 대한 답이다.\n각각이 움직이는 축 스킬은 “지식” 축을 움직인다 스킬은 *“Claude가 우리의 특정 절차를 모른다”*에 대한 답이다. 당신의 릴리스 프로세스, 당신의 코드 리뷰 평가 기준, 당신의 인시던트 대응 런북 — 상황 의존적인 지식이다. 이걸 ```CLAUDE.md````에 두고 싶지는 않을 것이다(그건 모든 상호작용마다 로드되어 기본 컨텍스트를 부풀린다); 작업이 요구할 때만 로드되기를 원할 것이다. 스킬은 트리거 설명이 달린 마크다운 파일이다; 작업이 매칭되면 상세 지침이 대화에 들어오고, 그렇지 않으면 비켜서 있는다.\n서브에이전트는 “컨텍스트” 축을 움직인다 서브에이전트는 *“이 작업은 내 컨텍스트 윈도우를 터뜨릴 것이다”*에 대한 답이다. 지식은 이미 거기 있을 수도 있다; 문제는 그 작업을 인라인으로 하는 것 — 파일 30개를 읽고, 긴 탐색을 돌리는 것 — 이 당신이 정작 신경 쓰는 추론을 밀어내 버린다는 점이다. 서브에이전트는 그걸 별도 컨텍스트에서 실행하고 결론만 돌려준다. 역량에 관해서는 아무것도 바뀌지 않는다; 바뀌는 것은 누구의 작업 기억이 그 탐색의 비용을 치르느냐다.\nMCP 서버는 “역량” 축을 움직인다 MCP 서버는 *“Claude가 이 시스템에 말 그대로 닿을 수 없다”*에 대한 답이다. 당신의 Postgres 데이터베이스, 당신의 내부 메트릭 API, 당신의 Stripe 계정, 당신의 Linear 보드. 아무리 스킬을 작성하거나 서브에이전트를 생성해도 데이터베이스 연결이 불려 나오지는 않는다 — 그건 진짜 새로운 역량이며, 역량은 MCP 서버에서 온다. 이것은 또한 셋 중 가장 무겁다: 배포, 인증, 버전 관리를 직접 떠안아야 하는 별도 프로세스다.\n의사결정 프레임워크 다음을 순서대로 물어보라: 1. “Claude가 지금은 닿을 수 없는 시스템에 닿아야 하는가?” → MCP 서버. (데이터베이스, API, SaaS, 외부 데이터.) 2. “Claude가 이미 그 역량은 있지만, 그 작업이 내 컨텍스트를 부풀릴까?” → 서브에이전트. (대규모 탐색, 병렬 리서치, 격리된 실험.) 3. “Claude가 역량과 컨텍스트는 있지만, 우리만의 특정 방식을 모르는가?” → 스킬. (플레이북, 체크리스트, 절차.)\n문제가 …라면 만들 것: 이유 시스템에 닿을 수 없음 MCP 서버 새로운 역량 컨텍스트가 폭발할 것 서브에이전트 작업 기억 보호 우리 절차를 모름 스킬 상황 의존적 지식 표준이 결코 강제되지 않음 서브에이전트(커스텀 에이전트) 실행 가능하고 버전 관리되는 리뷰 당신의 문제를 푸는 가장 저렴한 선택지가 거의 언제나 정답이다. 마크다운 파일(스킬 또는 서브에이전트)은 일을 해낼 수 있는 한, 배포된 서비스(MCP 서버)를 이긴다.\n실제 시나리오 1: “우리 코드베이스를 SQL 인젝션에 대해 감사하라” 역량? 코드 읽기 — Claude는 이미 갖고 있다. MCP 서버 불필요. 컨텍스트? 코드베이스 전체를 감사하려면 수십 개 파일을 읽어야 한다. 그건 부모를 부풀릴 것이다. → 서브에이전트. 절차? 감사가 OWASP의 특정 체크리스트를 따르기를 원한다. → 스킬(또는 체크리스트를 security-auditor 커스텀 에이전트의 시스템 프롬프트에 구워 넣기). 답: 체크리스트를 시스템 프롬프트에 인코딩한 ````security-auditor``` 서브에이전트. 하나의 아티팩트, 두 개의 축 커버. 서버 없음.\n실제 시나리오 2: “지난달에 어떤 고객이 이탈했는지 보여달라” 역량? 그 데이터는 당신의 웨어하우스에 있다. Claude는 닿을 수 없다. → MCP 서버(웨어하우스/SQL MCP). 컨텍스트? 큰 결과 집합은 노이즈가 될 수 있다. → 요약만 돌려주는 서브에이전트 안에서 쿼리를 실행. 절차? “이탈(churn)“은 당신 회사에서 특정한 정의를 가진다. → 이탈 쿼리 로직을 문서화한 스킬. 답: 셋 다, 조합해서. MCP 서버가 연결하고, 스킬이 “이탈\"을 정의하며, 서브에이전트가 깔끔하게 실행한다. 이것이 전형적인 풀스택 사례다.\n실제 시나리오 3: “모든 릴리스가 우리 체크리스트를 따르도록 보장하라” 역량? Git, 파일 읽기 — 이미 있다. 서버 없음. 컨텍스트? 가볍다. 보호를 위해 엄밀히 서브에이전트가 필요하지는 않다. 절차? 전적으로 이게 핵심 — 당신 팀의 릴리스 단계들. → 스킬, 또는 강제하고 보고서를 만들기를 원한다면 커스텀 에이전트. 답: 스킬(또는 릴리스 게이트 커스텀 에이전트). 여기서 MCP 서버를 만드는 것은 순전한 과도 엔지니어링이다.\n안티패턴 모든 것을 MCP 서버로 만드는 함정. 문서화 문제를 풀자고 서비스를 출시하는 것. 외부 시스템에 연결하는 게 아니라면, 아마 서버는 필요 없다. (진짜로 서버가 정당화되는 경우가 무엇인지 보려면 MCP 서버 레지스트리를 둘러보라.) 비대해진 CLAUDE.md. 모든 절차를 상시 작동 컨텍스트에 쑤셔 넣는 것. 상황 의존적 플레이북은 스킬로 옮겨 기본 컨텍스트를 날카롭게 유지하라. 거대 서브에이전트. “모든 걸 하는” 서브에이전트는 기억력만 더 나쁜 부모일 뿐이다. 관심사별로 쪼개라. 역량이 필요했던 스킬. Claude가 메트릭에 닿을 수 없는데 “우리 메트릭을 분석하라\"를 위한 아름다운 스킬을 작성하는 것. 어떤 지침도 빠져 있는 MCP 연결을 대체하지 못한다. 원칙 세 가지 확장 지점은 세 가지 리소스에 대응한다: 지식(스킬), 컨텍스트(서브에이전트), 역량(MCP 서버). 당신이 실제로 부족한 리소스가 무엇인지 진단하면, 선택은 저절로 정해진다. 대부분의 팀은 MCP 서버가 강력하게 들린다는 이유로 그쪽으로 과하게 손을 뻗지만, 마크다운 파일이면 점심 전에 똑같은 결과를 출시했을 것이다. 당신이 막혀 있는 축을 움직이는 가장 가벼운 것을 만들어라.\n프로덕션 준비된 Claude Code 구축하기 세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. MCP 서버와 CI를 위한 신뢰할 수 있는 호스트. MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.\n병렬 계층을 위한 클라우드 여유 공간. 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.\n스킬 번들. 스킬/서브에이전트/서버 구분을 가장 빠르게 체득하는 방법은 동작하는 예제를 연구하는 것이다. 우리는 실전 검증된 스킬 다섯 개를 Gumroad에서 $19 번들로 패키지했다 — 화면 구석의 떠 있는 CTA를 보라 — 커스텀 에이전트 정의와 세 계층을 모두 조합하는 오케스트레이터 프롬프트가 포함된다.\n함께 읽기 커스텀 에이전트 작성 가이드 — 서브에이전트 절반을 실제로 만드는 법. 서브에이전트 패턴 — 컨텍스트 축을 위한 다섯 가지 워크플로. MCP 서버 2026 랭킹 — 역량 계층 선택하기. MCP 서버 레지스트리 가이드 — 연결할 가치가 있는 것들의 카탈로그. 결론 “스킬이냐, 서브에이전트냐, MCP 서버냐?“를 마치 경쟁하는 것처럼 묻는 걸 멈춰라. 대신 이렇게 물어라: 나는 지식이 부족한가, 컨텍스트가 부족한가, 역량이 부족한가? 지식 → 스킬. 컨텍스트 → 서브에이전트. 역량 → MCP 서버. 풀스택 사례는 셋 모두를 계층으로 쌓아 쓴다. 그리고 의심스러울 때는, 당신의 축을 움직이는 가장 저렴한 아티팩트를 만들어라 — 마크다운 파일은 가능한 한 언제나 배포된 서비스를 이긴다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)”, “datePublished”: “2026-05-28”, “dateModified”: “2026-05-28”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026\" } } Why This Matters Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1790",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%ec%84%9c%eb%b8%8c%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-vs-mcp-%ec%84%9c%eb%b2%84-vs-%ec%8a%a4%ed%82%ac-%ea%b0%81-claude-code-%ed%99%95%ec%9e%a5%ec%9d%84-%ec%96%b8%ec%a0%9c-%eb%a7%8c%eb%93%a4%ec%96%b4%ec%95%bc-%ed%95%98%eb%8a%94%ea%b0%80-2026" aria-label="서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)">서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)</a><ul>
+                    
+            <li>
+                <a href="#%eb%93%a4%ec%96%b4%ea%b0%80%eb%a9%b0" aria-label="들어가며">들어가며</a></li>
+            <li>
+                <a href="#%ec%84%b8-%ea%b0%80%ec%a7%80-%ed%99%95%ec%9e%a5-%ec%a7%80%ec%a0%90-%ea%b0%81-%ed%95%9c-%ec%a4%84" aria-label="세 가지 확장 지점, 각 한 줄">세 가지 확장 지점, 각 한 줄</a></li>
+            <li>
+                <a href="#%ea%b0%81%ea%b0%81%ec%9d%b4-%ec%9b%80%ec%a7%81%ec%9d%b4%eb%8a%94-%ec%b6%95" aria-label="각각이 움직이는 축">각각이 움직이는 축</a><ul>
+                    
+            <li>
+                <a href="#%ec%8a%a4%ed%82%ac%ec%9d%80-%ec%a7%80%ec%8b%9d-%ec%b6%95%ec%9d%84-%ec%9b%80%ec%a7%81%ec%9d%b8%eb%8b%a4" aria-label="스킬은 &ldquo;지식&rdquo; 축을 움직인다">스킬은 &ldquo;지식&rdquo; 축을 움직인다</a></li>
+            <li>
+                <a href="#%ec%84%9c%eb%b8%8c%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%8a%94-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8-%ec%b6%95%ec%9d%84-%ec%9b%80%ec%a7%81%ec%9d%b8%eb%8b%a4" aria-label="서브에이전트는 &ldquo;컨텍스트&rdquo; 축을 움직인다">서브에이전트는 &ldquo;컨텍스트&rdquo; 축을 움직인다</a></li>
+            <li>
+                <a href="#mcp-%ec%84%9c%eb%b2%84%eb%8a%94-%ec%97%ad%eb%9f%89-%ec%b6%95%ec%9d%84-%ec%9b%80%ec%a7%81%ec%9d%b8%eb%8b%a4" aria-label="MCP 서버는 &ldquo;역량&rdquo; 축을 움직인다">MCP 서버는 &ldquo;역량&rdquo; 축을 움직인다</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%9d%98%ec%82%ac%ea%b2%b0%ec%a0%95-%ed%94%84%eb%a0%88%ec%9e%84%ec%9b%8c%ed%81%ac" aria-label="의사결정 프레임워크">의사결정 프레임워크</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4-1-%ec%9a%b0%eb%a6%ac-%ec%bd%94%eb%93%9c%eb%b2%a0%ec%9d%b4%ec%8a%a4%eb%a5%bc-sql-%ec%9d%b8%ec%a0%9d%ec%85%98%ec%97%90-%eb%8c%80%ed%95%b4-%ea%b0%90%ec%82%ac%ed%95%98%eb%9d%bc" aria-label="실제 시나리오 1: &ldquo;우리 코드베이스를 SQL 인젝션에 대해 감사하라&rdquo;">실제 시나리오 1: &ldquo;우리 코드베이스를 SQL 인젝션에 대해 감사하라&rdquo;</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4-2-%ec%a7%80%eb%82%9c%eb%8b%ac%ec%97%90-%ec%96%b4%eb%96%a4-%ea%b3%a0%ea%b0%9d%ec%9d%b4-%ec%9d%b4%ed%83%88%ed%96%88%eb%8a%94%ec%a7%80-%eb%b3%b4%ec%97%ac%eb%8b%ac%eb%9d%bc" aria-label="실제 시나리오 2: &ldquo;지난달에 어떤 고객이 이탈했는지 보여달라&rdquo;">실제 시나리오 2: &ldquo;지난달에 어떤 고객이 이탈했는지 보여달라&rdquo;</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4-3-%eb%aa%a8%eb%93%a0-%eb%a6%b4%eb%a6%ac%ec%8a%a4%ea%b0%80-%ec%9a%b0%eb%a6%ac-%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8%eb%a5%bc-%eb%94%b0%eb%a5%b4%eb%8f%84%eb%a1%9d-%eb%b3%b4%ec%9e%a5%ed%95%98%eb%9d%bc" aria-label="실제 시나리오 3: &ldquo;모든 릴리스가 우리 체크리스트를 따르도록 보장하라&rdquo;">실제 시나리오 3: &ldquo;모든 릴리스가 우리 체크리스트를 따르도록 보장하라&rdquo;</a></li>
+            <li>
+                <a href="#%ec%95%88%ed%8b%b0%ed%8c%a8%ed%84%b4" aria-label="안티패턴">안티패턴</a></li>
+            <li>
+                <a href="#%ec%9b%90%ec%b9%99" aria-label="원칙">원칙</a></li>
+            <li>
+                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%a4%80%eb%b9%84%eb%90%9c-claude-code-%ea%b5%ac%ec%b6%95%ed%95%98%ea%b8%b0" aria-label="프로덕션 준비된 Claude Code 구축하기">프로덕션 준비된 Claude Code 구축하기</a></li>
+            <li>
+                <a href="#%ed%95%a8%ea%bb%98-%ec%9d%bd%ea%b8%b0" aria-label="함께 읽기">함께 읽기</a></li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
@@ -21,17 +281,128 @@ last_maintained: &ldquo;2026-05-28&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;claude-code&rdquo;, &ldquo;mcp&rdquo;, &ldquo;subagents&rdquo;, &ldquo;skills&rdquo;, &ldquo;agent-sdk&rdquo;, &ldquo;llm-frameworks&rdquo;, &ldquo;developer-tools&rdquo;]
-aliases:</p><ul><li>/posts/claude-code-subagent-vs-mcp-vs-skill/
+aliases:</p>
+<ul>
+<li>/posts/claude-code-subagent-vs-mcp-vs-skill/
 faq: - q: &ldquo;스킬, 서브에이전트, MCP 서버의 차이를 한 문장으로 말하면?&rdquo;
-a: &ldquo;스킬은 Claude에게 어떤 일을 『어떻게』 하는지 가르치고(컨텍스트에 로드되는 패키지화된 지침과 지식), 서브에이전트는 그 일을 『누가』 하느냐이며(자체 컨텍스트 윈도우를 가진 위임된 작업자), MCP 서버는 Claude가 『무엇에』 닿을 수 있느냐다(외부 도구 및 데이터로의 연결). 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다 — 서로 경쟁하는 세 가지 선택지가 아니라, 세 가지 서로 다른 축이다.&rdquo;</li><li>q: &ldquo;Claude가 우리 내부 데이터베이스를 조회해야 한다면, 이건 스킬인가 서브에이전트인가 MCP 서버인가?&rdquo;
-a: &ldquo;MCP 서버다. Claude를 외부 시스템 — 데이터베이스, 내부 API, SaaS 플랫폼, 티켓팅 시스템 — 에 연결하는 모든 것은 통합(integration)이며, 통합이야말로 MCP 서버가 존재하는 이유다. 스킬은 좋은 쿼리를 『어떻게』 작성하는지 문서화할 수 있고, 서브에이전트는 분석을 격리된 채로 실행하는 작업자가 될 수 있지만, 데이터베이스로의 실제 연결은 MCP 서버의 몫이다. 실제로는 세 가지를 함께 쓰게 되는 경우가 많다.&rdquo;</li><li>q: &ldquo;지침을 그냥 CLAUDE.md에 넣지 않고 스킬을 작성해야 하는 때는 언제인가?&rdquo;
-a: &ldquo;모든 상호작용에 적용되는 상시 작동의, 프로젝트 전반에 걸친 규칙에는 CLAUDE.md를 사용하라. 안내가 상황 의존적일 때 — 다단계 절차, 도메인 플레이북, 체크리스트처럼 관련 있을 때만 로드하고 싶은 것 — 스킬을 작성하라. 스킬은 기본 컨텍스트를 가볍게 유지해 준다: 『릴리스를 어떻게 자르는가』에 대한 상세 지침은 모든 프롬프트를 부풀리는 대신, 실제로 릴리스를 자를 때만 대화에 들어온다.&rdquo;</li><li>q: &ldquo;서브에이전트가 MCP 서버와 스킬을 사용할 수 있나?&rdquo;
-a: &ldquo;그렇다. 서브에이전트는 완전한 Claude 대화로 실행되므로, 세션에 연결된 MCP 서버에 대한 접근을 상속하고 자기 작업에 관련된 스킬을 로드할 수 있다. 이것이 흔한 조합이다: MCP 서버가 데이터베이스를 노출하고, 스킬이 분석 방법론을 인코딩하며, 서브에이전트가 격리된 컨텍스트에서 전체를 실행해 무거운 쿼리 출력이 부모를 오염시키지 않게 한다. 세 계층은 차곡차곡 쌓인다.&rdquo;</li><li>q: &ldquo;MCP 서버가 가장 강력하니, 그냥 모든 것을 MCP 서버로 만들면 안 되나?&rdquo;
-a: &ldquo;안 된다. MCP 서버는 만들고 유지하기에 가장 무겁기 때문이다 — 자체 배포, 인증, 버전 관리를 가진 별도 프로세스다. 필요한 것이 『Claude가 이 체크리스트를 따라야 한다』라면 그건 스킬이다(마크다운 파일). 『내 컨텍스트를 부풀리지 않고 이 탐색을 수행』이라면 그건 서브에이전트다(마크다운 파일). 스킬로 충분한데 MCP 서버에 손을 뻗는 것은 과도한 엔지니어링이다: 문서화 문제를 풀자고 서비스를 출시한 셈이다.&rdquo;</li><li>q: &ldquo;스킬, 서브에이전트, MCP 서버가 모두 CI / 헤드리스 모드에서 동작하나?&rdquo;
-a: &ldquo;그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다.&rdquo;</li></ul><hr><h1 id=서브에이전트-vs-mcp-서버-vs-스킬-각-claude-code-확장을-언제-만들어야-하는가-2026>서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)<a hidden class=anchor aria-hidden=true href=#서브에이전트-vs-mcp-서버-vs-스킬-각-claude-code-확장을-언제-만들어야-하는가-2026>#</a></h1><h2 id=들어가며>들어가며<a hidden class=anchor aria-hidden=true href=#들어가며>#</a></h2><p>2026년이 되면서 Claude Code에는 세 가지 뚜렷한 확장 방식 — <strong>스킬</strong>, <strong>서브에이전트</strong>, <strong>MCP 서버</strong> — 이 생겼고, 우리가 가장 자주 받는 질문 하나는 &ldquo;어느 걸 만들어야 하나요?&ldquo;다. 혼란은 이해할 만하다: 셋 다 &ldquo;Claude가 더 많은 일을 하게 만드는 방법"이고, 마케팅이 이들을 한데 뭉뚱그린다. 하지만 셋은 완전히 다른 세 개의 축 위에 놓여 있으며, 잘못된 것을 고르면 과도한 엔지니어링(마크다운 파일이면 될 일에 서버 한 대)에 빠지거나, 벽에 부딪힌다(데이터베이스에 실제로 닿지 못하는 스킬).</p><p>이 글은 의사결정 프레임워크를 제공한다. 각 확장 지점을 한 줄로 정의하고, 각각이 움직이는 축을 짚으며, 실제 시나리오 세 가지를 처음부터 끝까지 돌려 보고, 주말을 통째로 날리게 만드는 안티패턴을 지적한다. <a href=/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/>커스텀 에이전트 작성</a>과 <a href=/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/>MCP 서버 2026 랭킹</a>을 이미 읽었다면, 이 글이 그것들을 하나로 엮어 주는 조각이다.</p><h2 id=세-가지-확장-지점-각-한-줄>세 가지 확장 지점, 각 한 줄<a hidden class=anchor aria-hidden=true href=#세-가지-확장-지점-각-한-줄>#</a></h2><ul><li><strong>스킬</strong> — Claude에게 어떤 일을 <em>어떻게</em> 하는지 가르친다. 패키지화된 지침, 플레이북, 체크리스트로, 관련 있을 때만 컨텍스트에 로드된다.</li><li><strong>서브에이전트</strong> — 그 일을 <em>누가</em> 하는가. 자체 컨텍스트 윈도우를 가진 위임된 작업자로, 부모 대화를 가볍게 유지하기 위해 생성된다(<a href=/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/>서브에이전트 패턴</a> 참고).</li><li><strong>MCP 서버</strong> — <em>무엇에</em> 닿을 수 있는가. 외부 시스템으로의 연결: 데이터베이스, API, SaaS 도구, 데이터 소스.</li></ul><p>한 문장으로 말하면 혼란이 풀린다: <strong>스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다.</strong> 이들은 한 질문에 대한 세 가지 답이 아니다. 서로 다른 세 질문에 대한 답이다.</p><h2 id=각각이-움직이는-축>각각이 움직이는 축<a hidden class=anchor aria-hidden=true href=#각각이-움직이는-축>#</a></h2><h3 id=스킬은-지식-축을-움직인다>스킬은 &ldquo;지식&rdquo; 축을 움직인다<a hidden class=anchor aria-hidden=true href=#스킬은-지식-축을-움직인다>#</a></h3><p>스킬은 *&ldquo;Claude가 우리의 특정 절차를 모른다&rdquo;*에 대한 답이다. 당신의 릴리스 프로세스, 당신의 코드 리뷰 평가 기준, 당신의 인시던트 대응 런북 — 상황 의존적인 지식이다. 이걸 ```CLAUDE.md````에 두고 싶지는 않을 것이다(그건 모든 상호작용마다 로드되어 기본 컨텍스트를 부풀린다); 작업이 요구할 때만 로드되기를 원할 것이다. 스킬은 트리거 설명이 달린 마크다운 파일이다; 작업이 매칭되면 상세 지침이 대화에 들어오고, 그렇지 않으면 비켜서 있는다.</p><h3 id=서브에이전트는-컨텍스트-축을-움직인다>서브에이전트는 &ldquo;컨텍스트&rdquo; 축을 움직인다<a hidden class=anchor aria-hidden=true href=#서브에이전트는-컨텍스트-축을-움직인다>#</a></h3><p>서브에이전트는 *&ldquo;이 작업은 내 컨텍스트 윈도우를 터뜨릴 것이다&rdquo;*에 대한 답이다. 지식은 이미 거기 있을 수도 있다; 문제는 그 작업을 인라인으로 하는 것 — 파일 30개를 읽고, 긴 탐색을 돌리는 것 — 이 당신이 정작 신경 쓰는 추론을 밀어내 버린다는 점이다. 서브에이전트는 그걸 별도 컨텍스트에서 실행하고 결론만 돌려준다. <em>역량</em>에 관해서는 아무것도 바뀌지 않는다; 바뀌는 것은 <em>누구의 작업 기억</em>이 그 탐색의 비용을 치르느냐다.</p><h3 id=mcp-서버는-역량-축을-움직인다>MCP 서버는 &ldquo;역량&rdquo; 축을 움직인다<a hidden class=anchor aria-hidden=true href=#mcp-서버는-역량-축을-움직인다>#</a></h3><p>MCP 서버는 *&ldquo;Claude가 이 시스템에 말 그대로 닿을 수 없다&rdquo;*에 대한 답이다. 당신의 Postgres 데이터베이스, 당신의 내부 메트릭 API, 당신의 Stripe 계정, 당신의 Linear 보드. 아무리 스킬을 작성하거나 서브에이전트를 생성해도 데이터베이스 연결이 불려 나오지는 않는다 — 그건 진짜 새로운 역량이며, 역량은 MCP 서버에서 온다. 이것은 또한 셋 중 가장 무겁다: 배포, 인증, 버전 관리를 직접 떠안아야 하는 별도 프로세스다.</p><h2 id=의사결정-프레임워크>의사결정 프레임워크<a hidden class=anchor aria-hidden=true href=#의사결정-프레임워크>#</a></h2><p>다음을 순서대로 물어보라: 1. <strong>&ldquo;Claude가 지금은 닿을 수 없는 시스템에 닿아야 하는가?&rdquo;</strong> → <strong>MCP 서버.</strong> (데이터베이스, API, SaaS, 외부 데이터.)
+a: &ldquo;스킬은 Claude에게 어떤 일을 『어떻게』 하는지 가르치고(컨텍스트에 로드되는 패키지화된 지침과 지식), 서브에이전트는 그 일을 『누가』 하느냐이며(자체 컨텍스트 윈도우를 가진 위임된 작업자), MCP 서버는 Claude가 『무엇에』 닿을 수 있느냐다(외부 도구 및 데이터로의 연결). 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다 — 서로 경쟁하는 세 가지 선택지가 아니라, 세 가지 서로 다른 축이다.&rdquo;</li>
+<li>q: &ldquo;Claude가 우리 내부 데이터베이스를 조회해야 한다면, 이건 스킬인가 서브에이전트인가 MCP 서버인가?&rdquo;
+a: &ldquo;MCP 서버다. Claude를 외부 시스템 — 데이터베이스, 내부 API, SaaS 플랫폼, 티켓팅 시스템 — 에 연결하는 모든 것은 통합(integration)이며, 통합이야말로 MCP 서버가 존재하는 이유다. 스킬은 좋은 쿼리를 『어떻게』 작성하는지 문서화할 수 있고, 서브에이전트는 분석을 격리된 채로 실행하는 작업자가 될 수 있지만, 데이터베이스로의 실제 연결은 MCP 서버의 몫이다. 실제로는 세 가지를 함께 쓰게 되는 경우가 많다.&rdquo;</li>
+<li>q: &ldquo;지침을 그냥 CLAUDE.md에 넣지 않고 스킬을 작성해야 하는 때는 언제인가?&rdquo;
+a: &ldquo;모든 상호작용에 적용되는 상시 작동의, 프로젝트 전반에 걸친 규칙에는 CLAUDE.md를 사용하라. 안내가 상황 의존적일 때 — 다단계 절차, 도메인 플레이북, 체크리스트처럼 관련 있을 때만 로드하고 싶은 것 — 스킬을 작성하라. 스킬은 기본 컨텍스트를 가볍게 유지해 준다: 『릴리스를 어떻게 자르는가』에 대한 상세 지침은 모든 프롬프트를 부풀리는 대신, 실제로 릴리스를 자를 때만 대화에 들어온다.&rdquo;</li>
+<li>q: &ldquo;서브에이전트가 MCP 서버와 스킬을 사용할 수 있나?&rdquo;
+a: &ldquo;그렇다. 서브에이전트는 완전한 Claude 대화로 실행되므로, 세션에 연결된 MCP 서버에 대한 접근을 상속하고 자기 작업에 관련된 스킬을 로드할 수 있다. 이것이 흔한 조합이다: MCP 서버가 데이터베이스를 노출하고, 스킬이 분석 방법론을 인코딩하며, 서브에이전트가 격리된 컨텍스트에서 전체를 실행해 무거운 쿼리 출력이 부모를 오염시키지 않게 한다. 세 계층은 차곡차곡 쌓인다.&rdquo;</li>
+<li>q: &ldquo;MCP 서버가 가장 강력하니, 그냥 모든 것을 MCP 서버로 만들면 안 되나?&rdquo;
+a: &ldquo;안 된다. MCP 서버는 만들고 유지하기에 가장 무겁기 때문이다 — 자체 배포, 인증, 버전 관리를 가진 별도 프로세스다. 필요한 것이 『Claude가 이 체크리스트를 따라야 한다』라면 그건 스킬이다(마크다운 파일). 『내 컨텍스트를 부풀리지 않고 이 탐색을 수행』이라면 그건 서브에이전트다(마크다운 파일). 스킬로 충분한데 MCP 서버에 손을 뻗는 것은 과도한 엔지니어링이다: 문서화 문제를 풀자고 서비스를 출시한 셈이다.&rdquo;</li>
+<li>q: &ldquo;스킬, 서브에이전트, MCP 서버가 모두 CI / 헤드리스 모드에서 동작하나?&rdquo;
+a: &ldquo;그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 버전 관리되는 파일이라 CI가 자동으로 가져간다. MCP 서버는 CI 환경에서 구성되고 닿을 수 있어야 한다(CI 시크릿에 자격 증명, 서비스로의 네트워크 접근). 헤드리스 -p 모드는 셋 다 존중한다; 유일한 실무적 함정은 무인 실행 시 대화형 로그인 없이도 MCP 서버 인증이 동작하도록 확실히 해 두는 것이다.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="서브에이전트-vs-mcp-서버-vs-스킬-각-claude-code-확장을-언제-만들어야-하는가-2026">서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)<a hidden class="anchor" aria-hidden="true" href="#서브에이전트-vs-mcp-서버-vs-스킬-각-claude-code-확장을-언제-만들어야-하는가-2026">#</a></h1>
+<h2 id="들어가며">들어가며<a hidden class="anchor" aria-hidden="true" href="#들어가며">#</a></h2>
+<p>2026년이 되면서 Claude Code에는 세 가지 뚜렷한 확장 방식 — <strong>스킬</strong>, <strong>서브에이전트</strong>, <strong>MCP 서버</strong> — 이 생겼고, 우리가 가장 자주 받는 질문 하나는 &ldquo;어느 걸 만들어야 하나요?&ldquo;다. 혼란은 이해할 만하다: 셋 다 &ldquo;Claude가 더 많은 일을 하게 만드는 방법&quot;이고, 마케팅이 이들을 한데 뭉뚱그린다. 하지만 셋은 완전히 다른 세 개의 축 위에 놓여 있으며, 잘못된 것을 고르면 과도한 엔지니어링(마크다운 파일이면 될 일에 서버 한 대)에 빠지거나, 벽에 부딪힌다(데이터베이스에 실제로 닿지 못하는 스킬).</p>
+<p>이 글은 의사결정 프레임워크를 제공한다. 각 확장 지점을 한 줄로 정의하고, 각각이 움직이는 축을 짚으며, 실제 시나리오 세 가지를 처음부터 끝까지 돌려 보고, 주말을 통째로 날리게 만드는 안티패턴을 지적한다. <a href="/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/">커스텀 에이전트 작성</a>과 <a href="/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/">MCP 서버 2026 랭킹</a>을 이미 읽었다면, 이 글이 그것들을 하나로 엮어 주는 조각이다.</p>
+<h2 id="세-가지-확장-지점-각-한-줄">세 가지 확장 지점, 각 한 줄<a hidden class="anchor" aria-hidden="true" href="#세-가지-확장-지점-각-한-줄">#</a></h2>
+<ul>
+<li><strong>스킬</strong> — Claude에게 어떤 일을 <em>어떻게</em> 하는지 가르친다. 패키지화된 지침, 플레이북, 체크리스트로, 관련 있을 때만 컨텍스트에 로드된다.</li>
+<li><strong>서브에이전트</strong> — 그 일을 <em>누가</em> 하는가. 자체 컨텍스트 윈도우를 가진 위임된 작업자로, 부모 대화를 가볍게 유지하기 위해 생성된다(<a href="/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">서브에이전트 패턴</a> 참고).</li>
+<li><strong>MCP 서버</strong> — <em>무엇에</em> 닿을 수 있는가. 외부 시스템으로의 연결: 데이터베이스, API, SaaS 도구, 데이터 소스.</li>
+</ul>
+<p>한 문장으로 말하면 혼란이 풀린다: <strong>스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 더한다.</strong> 이들은 한 질문에 대한 세 가지 답이 아니다. 서로 다른 세 질문에 대한 답이다.</p>
+<h2 id="각각이-움직이는-축">각각이 움직이는 축<a hidden class="anchor" aria-hidden="true" href="#각각이-움직이는-축">#</a></h2>
+<h3 id="스킬은-지식-축을-움직인다">스킬은 &ldquo;지식&rdquo; 축을 움직인다<a hidden class="anchor" aria-hidden="true" href="#스킬은-지식-축을-움직인다">#</a></h3>
+<p>스킬은 *&ldquo;Claude가 우리의 특정 절차를 모른다&rdquo;*에 대한 답이다. 당신의 릴리스 프로세스, 당신의 코드 리뷰 평가 기준, 당신의 인시던트 대응 런북 — 상황 의존적인 지식이다. 이걸 ```CLAUDE.md````에 두고 싶지는 않을 것이다(그건 모든 상호작용마다 로드되어 기본 컨텍스트를 부풀린다); 작업이 요구할 때만 로드되기를 원할 것이다. 스킬은 트리거 설명이 달린 마크다운 파일이다; 작업이 매칭되면 상세 지침이 대화에 들어오고, 그렇지 않으면 비켜서 있는다.</p>
+<h3 id="서브에이전트는-컨텍스트-축을-움직인다">서브에이전트는 &ldquo;컨텍스트&rdquo; 축을 움직인다<a hidden class="anchor" aria-hidden="true" href="#서브에이전트는-컨텍스트-축을-움직인다">#</a></h3>
+<p>서브에이전트는 *&ldquo;이 작업은 내 컨텍스트 윈도우를 터뜨릴 것이다&rdquo;*에 대한 답이다. 지식은 이미 거기 있을 수도 있다; 문제는 그 작업을 인라인으로 하는 것 — 파일 30개를 읽고, 긴 탐색을 돌리는 것 — 이 당신이 정작 신경 쓰는 추론을 밀어내 버린다는 점이다. 서브에이전트는 그걸 별도 컨텍스트에서 실행하고 결론만 돌려준다. <em>역량</em>에 관해서는 아무것도 바뀌지 않는다; 바뀌는 것은 <em>누구의 작업 기억</em>이 그 탐색의 비용을 치르느냐다.</p>
+<h3 id="mcp-서버는-역량-축을-움직인다">MCP 서버는 &ldquo;역량&rdquo; 축을 움직인다<a hidden class="anchor" aria-hidden="true" href="#mcp-서버는-역량-축을-움직인다">#</a></h3>
+<p>MCP 서버는 *&ldquo;Claude가 이 시스템에 말 그대로 닿을 수 없다&rdquo;*에 대한 답이다. 당신의 Postgres 데이터베이스, 당신의 내부 메트릭 API, 당신의 Stripe 계정, 당신의 Linear 보드. 아무리 스킬을 작성하거나 서브에이전트를 생성해도 데이터베이스 연결이 불려 나오지는 않는다 — 그건 진짜 새로운 역량이며, 역량은 MCP 서버에서 온다. 이것은 또한 셋 중 가장 무겁다: 배포, 인증, 버전 관리를 직접 떠안아야 하는 별도 프로세스다.</p>
+<h2 id="의사결정-프레임워크">의사결정 프레임워크<a hidden class="anchor" aria-hidden="true" href="#의사결정-프레임워크">#</a></h2>
+<p>다음을 순서대로 물어보라: 1. <strong>&ldquo;Claude가 지금은 닿을 수 없는 시스템에 닿아야 하는가?&rdquo;</strong> → <strong>MCP 서버.</strong> (데이터베이스, API, SaaS, 외부 데이터.)
 2. <strong>&ldquo;Claude가 이미 그 역량은 있지만, 그 작업이 내 컨텍스트를 부풀릴까?&rdquo;</strong> → <strong>서브에이전트.</strong> (대규모 탐색, 병렬 리서치, 격리된 실험.)
-3. <strong>&ldquo;Claude가 역량과 컨텍스트는 있지만, 우리만의 특정 방식을 모르는가?&rdquo;</strong> → <strong>스킬.</strong> (플레이북, 체크리스트, 절차.)</p><table><thead><tr><th>문제가 &mldr;라면</th><th>만들 것:</th><th>이유</th></tr></thead><tbody><tr><td>시스템에 닿을 수 없음</td><td>MCP 서버</td><td>새로운 역량</td></tr><tr><td>컨텍스트가 폭발할 것</td><td>서브에이전트</td><td>작업 기억 보호</td></tr><tr><td>우리 절차를 모름</td><td>스킬</td><td>상황 의존적 지식</td></tr><tr><td>표준이 결코 강제되지 않음</td><td>서브에이전트(커스텀 에이전트)</td><td>실행 가능하고 버전 관리되는 리뷰</td></tr></tbody></table><p>당신의 문제를 푸는 가장 저렴한 선택지가 거의 언제나 정답이다. 마크다운 파일(스킬 또는 서브에이전트)은 일을 해낼 수 있는 한, 배포된 서비스(MCP 서버)를 이긴다.</p><h2 id=실제-시나리오-1-우리-코드베이스를-sql-인젝션에-대해-감사하라>실제 시나리오 1: &ldquo;우리 코드베이스를 SQL 인젝션에 대해 감사하라&rdquo;<a hidden class=anchor aria-hidden=true href=#실제-시나리오-1-우리-코드베이스를-sql-인젝션에-대해-감사하라>#</a></h2><ul><li><strong>역량?</strong> 코드 읽기 — Claude는 이미 갖고 있다. MCP 서버 불필요.</li><li><strong>컨텍스트?</strong> 코드베이스 전체를 감사하려면 수십 개 파일을 읽어야 한다. 그건 부모를 부풀릴 것이다. → <strong>서브에이전트.</strong></li><li><strong>절차?</strong> 감사가 OWASP의 특정 체크리스트를 따르기를 원한다. → <strong>스킬</strong>(또는 체크리스트를 <code>security-auditor</code> 커스텀 에이전트의 시스템 프롬프트에 구워 넣기).</li></ul><p><strong>답:</strong> 체크리스트를 시스템 프롬프트에 인코딩한 ````security-auditor``` 서브에이전트. 하나의 아티팩트, 두 개의 축 커버. 서버 없음.</p><h2 id=실제-시나리오-2-지난달에-어떤-고객이-이탈했는지-보여달라>실제 시나리오 2: &ldquo;지난달에 어떤 고객이 이탈했는지 보여달라&rdquo;<a hidden class=anchor aria-hidden=true href=#실제-시나리오-2-지난달에-어떤-고객이-이탈했는지-보여달라>#</a></h2><ul><li><strong>역량?</strong> 그 데이터는 당신의 웨어하우스에 있다. Claude는 닿을 수 없다. → <strong>MCP 서버</strong>(웨어하우스/SQL MCP).</li><li><strong>컨텍스트?</strong> 큰 결과 집합은 노이즈가 될 수 있다. → 요약만 돌려주는 <strong>서브에이전트</strong> 안에서 쿼리를 실행.</li><li><strong>절차?</strong> &ldquo;이탈(churn)&ldquo;은 당신 회사에서 특정한 정의를 가진다. → 이탈 쿼리 로직을 문서화한 <strong>스킬</strong>.</li></ul><p><strong>답:</strong> 셋 다, 조합해서. MCP 서버가 연결하고, 스킬이 &ldquo;이탈"을 정의하며, 서브에이전트가 깔끔하게 실행한다. 이것이 전형적인 풀스택 사례다.</p><h2 id=실제-시나리오-3-모든-릴리스가-우리-체크리스트를-따르도록-보장하라>실제 시나리오 3: &ldquo;모든 릴리스가 우리 체크리스트를 따르도록 보장하라&rdquo;<a hidden class=anchor aria-hidden=true href=#실제-시나리오-3-모든-릴리스가-우리-체크리스트를-따르도록-보장하라>#</a></h2><ul><li><strong>역량?</strong> Git, 파일 읽기 — 이미 있다. 서버 없음.</li><li><strong>컨텍스트?</strong> 가볍다. 보호를 위해 엄밀히 서브에이전트가 필요하지는 않다.</li><li><strong>절차?</strong> 전적으로 이게 핵심 — 당신 팀의 릴리스 단계들. → <strong>스킬</strong>, 또는 강제하고 보고서를 만들기를 원한다면 커스텀 에이전트.</li></ul><p><strong>답:</strong> 스킬(또는 릴리스 게이트 커스텀 에이전트). 여기서 MCP 서버를 만드는 것은 순전한 과도 엔지니어링이다.</p><h2 id=안티패턴>안티패턴<a hidden class=anchor aria-hidden=true href=#안티패턴>#</a></h2><ul><li><strong>모든 것을 MCP 서버로 만드는 함정.</strong> 문서화 문제를 풀자고 서비스를 출시하는 것. 외부 시스템에 연결하는 게 아니라면, 아마 서버는 필요 없다. (진짜로 서버가 정당화되는 경우가 무엇인지 보려면 <a href=/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/>MCP 서버 레지스트리</a>를 둘러보라.)</li><li><strong>비대해진 CLAUDE.md.</strong> 모든 절차를 상시 작동 컨텍스트에 쑤셔 넣는 것. 상황 의존적 플레이북은 스킬로 옮겨 기본 컨텍스트를 날카롭게 유지하라.</li><li><strong>거대 서브에이전트.</strong> &ldquo;모든 걸 하는&rdquo; 서브에이전트는 기억력만 더 나쁜 부모일 뿐이다. 관심사별로 쪼개라.</li><li><strong>역량이 필요했던 스킬.</strong> Claude가 메트릭에 닿을 수 없는데 &ldquo;우리 메트릭을 분석하라"를 위한 아름다운 스킬을 작성하는 것. 어떤 지침도 빠져 있는 MCP 연결을 대체하지 못한다.</li></ul><h2 id=원칙>원칙<a hidden class=anchor aria-hidden=true href=#원칙>#</a></h2><p>세 가지 확장 지점은 세 가지 리소스에 대응한다: <strong>지식</strong>(스킬), <strong>컨텍스트</strong>(서브에이전트), <strong>역량</strong>(MCP 서버). 당신이 실제로 부족한 리소스가 무엇인지 진단하면, 선택은 저절로 정해진다. 대부분의 팀은 MCP 서버가 강력하게 들린다는 이유로 그쪽으로 과하게 손을 뻗지만, 마크다운 파일이면 점심 전에 똑같은 결과를 출시했을 것이다. 당신이 막혀 있는 축을 움직이는 가장 가벼운 것을 만들어라.</p><h2 id=프로덕션-준비된-claude-code-구축하기>프로덕션 준비된 Claude Code 구축하기<a hidden class=anchor aria-hidden=true href=#프로덕션-준비된-claude-code-구축하기>#</a></h2><p>세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. <strong>MCP 서버와 CI를 위한 신뢰할 수 있는 호스트.</strong> MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.</p><ol start=2><li><p><strong>병렬 계층을 위한 클라우드 여유 공간.</strong> 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.</p></li><li><p><strong>스킬 번들.</strong> 스킬/서브에이전트/서버 구분을 가장 빠르게 체득하는 방법은 동작하는 예제를 연구하는 것이다. 우리는 실전 검증된 스킬 다섯 개를 Gumroad에서 $19 번들로 패키지했다 — 화면 구석의 떠 있는 CTA를 보라 — 커스텀 에이전트 정의와 세 계층을 모두 조합하는 오케스트레이터 프롬프트가 포함된다.</p></li></ol><h2 id=함께-읽기>함께 읽기<a hidden class=anchor aria-hidden=true href=#함께-읽기>#</a></h2><ul><li><a href=/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/>커스텀 에이전트 작성 가이드</a> — 서브에이전트 절반을 실제로 만드는 법.</li><li><a href=/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/>서브에이전트 패턴</a> — 컨텍스트 축을 위한 다섯 가지 워크플로.</li><li><a href=/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/>MCP 서버 2026 랭킹</a> — 역량 계층 선택하기.</li><li><a href=/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/>MCP 서버 레지스트리 가이드</a> — 연결할 가치가 있는 것들의 카탈로그.</li></ul><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>&ldquo;스킬이냐, 서브에이전트냐, MCP 서버냐?&ldquo;를 마치 경쟁하는 것처럼 묻는 걸 멈춰라. 대신 이렇게 물어라: 나는 <strong>지식</strong>이 부족한가, <strong>컨텍스트</strong>가 부족한가, <strong>역량</strong>이 부족한가? 지식 → 스킬. 컨텍스트 → 서브에이전트. 역량 → MCP 서버. 풀스택 사례는 셋 모두를 계층으로 쌓아 쓴다. 그리고 의심스러울 때는, 당신의 축을 움직이는 가장 저렴한 아티팩트를 만들어라 — 마크다운 파일은 가능한 한 언제나 배포된 서비스를 이긴다.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+3. <strong>&ldquo;Claude가 역량과 컨텍스트는 있지만, 우리만의 특정 방식을 모르는가?&rdquo;</strong> → <strong>스킬.</strong> (플레이북, 체크리스트, 절차.)</p>
+<table>
+	<thead>
+			<tr>
+					<th>문제가 &hellip;라면</th>
+					<th>만들 것:</th>
+					<th>이유</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>시스템에 닿을 수 없음</td>
+					<td>MCP 서버</td>
+					<td>새로운 역량</td>
+			</tr>
+			<tr>
+					<td>컨텍스트가 폭발할 것</td>
+					<td>서브에이전트</td>
+					<td>작업 기억 보호</td>
+			</tr>
+			<tr>
+					<td>우리 절차를 모름</td>
+					<td>스킬</td>
+					<td>상황 의존적 지식</td>
+			</tr>
+			<tr>
+					<td>표준이 결코 강제되지 않음</td>
+					<td>서브에이전트(커스텀 에이전트)</td>
+					<td>실행 가능하고 버전 관리되는 리뷰</td>
+			</tr>
+	</tbody>
+</table>
+<p>당신의 문제를 푸는 가장 저렴한 선택지가 거의 언제나 정답이다. 마크다운 파일(스킬 또는 서브에이전트)은 일을 해낼 수 있는 한, 배포된 서비스(MCP 서버)를 이긴다.</p>
+<h2 id="실제-시나리오-1-우리-코드베이스를-sql-인젝션에-대해-감사하라">실제 시나리오 1: &ldquo;우리 코드베이스를 SQL 인젝션에 대해 감사하라&rdquo;<a hidden class="anchor" aria-hidden="true" href="#실제-시나리오-1-우리-코드베이스를-sql-인젝션에-대해-감사하라">#</a></h2>
+<ul>
+<li><strong>역량?</strong> 코드 읽기 — Claude는 이미 갖고 있다. MCP 서버 불필요.</li>
+<li><strong>컨텍스트?</strong> 코드베이스 전체를 감사하려면 수십 개 파일을 읽어야 한다. 그건 부모를 부풀릴 것이다. → <strong>서브에이전트.</strong></li>
+<li><strong>절차?</strong> 감사가 OWASP의 특정 체크리스트를 따르기를 원한다. → <strong>스킬</strong>(또는 체크리스트를 <code>security-auditor</code> 커스텀 에이전트의 시스템 프롬프트에 구워 넣기).</li>
+</ul>
+<p><strong>답:</strong> 체크리스트를 시스템 프롬프트에 인코딩한 ````security-auditor``` 서브에이전트. 하나의 아티팩트, 두 개의 축 커버. 서버 없음.</p>
+<h2 id="실제-시나리오-2-지난달에-어떤-고객이-이탈했는지-보여달라">실제 시나리오 2: &ldquo;지난달에 어떤 고객이 이탈했는지 보여달라&rdquo;<a hidden class="anchor" aria-hidden="true" href="#실제-시나리오-2-지난달에-어떤-고객이-이탈했는지-보여달라">#</a></h2>
+<ul>
+<li><strong>역량?</strong> 그 데이터는 당신의 웨어하우스에 있다. Claude는 닿을 수 없다. → <strong>MCP 서버</strong>(웨어하우스/SQL MCP).</li>
+<li><strong>컨텍스트?</strong> 큰 결과 집합은 노이즈가 될 수 있다. → 요약만 돌려주는 <strong>서브에이전트</strong> 안에서 쿼리를 실행.</li>
+<li><strong>절차?</strong> &ldquo;이탈(churn)&ldquo;은 당신 회사에서 특정한 정의를 가진다. → 이탈 쿼리 로직을 문서화한 <strong>스킬</strong>.</li>
+</ul>
+<p><strong>답:</strong> 셋 다, 조합해서. MCP 서버가 연결하고, 스킬이 &ldquo;이탈&quot;을 정의하며, 서브에이전트가 깔끔하게 실행한다. 이것이 전형적인 풀스택 사례다.</p>
+<h2 id="실제-시나리오-3-모든-릴리스가-우리-체크리스트를-따르도록-보장하라">실제 시나리오 3: &ldquo;모든 릴리스가 우리 체크리스트를 따르도록 보장하라&rdquo;<a hidden class="anchor" aria-hidden="true" href="#실제-시나리오-3-모든-릴리스가-우리-체크리스트를-따르도록-보장하라">#</a></h2>
+<ul>
+<li><strong>역량?</strong> Git, 파일 읽기 — 이미 있다. 서버 없음.</li>
+<li><strong>컨텍스트?</strong> 가볍다. 보호를 위해 엄밀히 서브에이전트가 필요하지는 않다.</li>
+<li><strong>절차?</strong> 전적으로 이게 핵심 — 당신 팀의 릴리스 단계들. → <strong>스킬</strong>, 또는 강제하고 보고서를 만들기를 원한다면 커스텀 에이전트.</li>
+</ul>
+<p><strong>답:</strong> 스킬(또는 릴리스 게이트 커스텀 에이전트). 여기서 MCP 서버를 만드는 것은 순전한 과도 엔지니어링이다.</p>
+<h2 id="안티패턴">안티패턴<a hidden class="anchor" aria-hidden="true" href="#안티패턴">#</a></h2>
+<ul>
+<li><strong>모든 것을 MCP 서버로 만드는 함정.</strong> 문서화 문제를 풀자고 서비스를 출시하는 것. 외부 시스템에 연결하는 게 아니라면, 아마 서버는 필요 없다. (진짜로 서버가 정당화되는 경우가 무엇인지 보려면 <a href="/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/">MCP 서버 레지스트리</a>를 둘러보라.)</li>
+<li><strong>비대해진 CLAUDE.md.</strong> 모든 절차를 상시 작동 컨텍스트에 쑤셔 넣는 것. 상황 의존적 플레이북은 스킬로 옮겨 기본 컨텍스트를 날카롭게 유지하라.</li>
+<li><strong>거대 서브에이전트.</strong> &ldquo;모든 걸 하는&rdquo; 서브에이전트는 기억력만 더 나쁜 부모일 뿐이다. 관심사별로 쪼개라.</li>
+<li><strong>역량이 필요했던 스킬.</strong> Claude가 메트릭에 닿을 수 없는데 &ldquo;우리 메트릭을 분석하라&quot;를 위한 아름다운 스킬을 작성하는 것. 어떤 지침도 빠져 있는 MCP 연결을 대체하지 못한다.</li>
+</ul>
+<h2 id="원칙">원칙<a hidden class="anchor" aria-hidden="true" href="#원칙">#</a></h2>
+<p>세 가지 확장 지점은 세 가지 리소스에 대응한다: <strong>지식</strong>(스킬), <strong>컨텍스트</strong>(서브에이전트), <strong>역량</strong>(MCP 서버). 당신이 실제로 부족한 리소스가 무엇인지 진단하면, 선택은 저절로 정해진다. 대부분의 팀은 MCP 서버가 강력하게 들린다는 이유로 그쪽으로 과하게 손을 뻗지만, 마크다운 파일이면 점심 전에 똑같은 결과를 출시했을 것이다. 당신이 막혀 있는 축을 움직이는 가장 가벼운 것을 만들어라.</p>
+<h2 id="프로덕션-준비된-claude-code-구축하기">프로덕션 준비된 Claude Code 구축하기<a hidden class="anchor" aria-hidden="true" href="#프로덕션-준비된-claude-code-구축하기">#</a></h2>
+<p>세 계층 모두를 — 특히 MCP 서버를 — 규모 있게 돌리려면 안정적인 인프라가 필요하다: 1. <strong>MCP 서버와 CI를 위한 신뢰할 수 있는 호스트.</strong> MCP 서버는 장시간 실행되는 프로세스다; 계속 떠 있는 머신이 필요하다. **** — 저지연 중국 본토 접속과 안정적인 BGP를 갖춘 홍콩 VPS. dibi8.com을 호스팅하는 바로 그 IDC로, 우리가 직접 MCP 서버와 에이전트 파이프라인을 돌리는 곳이다. 월 $5-12 가성비 티어.</p>
+<ol start="2">
+<li>
+<p><strong>병렬 계층을 위한 클라우드 여유 공간.</strong> 서브에이전트가 펼쳐지고 MCP 서버가 나란히 돌아갈 때, 여유 CPU가 필요하다. **** — 14개 이상의 리전에서 60일간 $200 무료 크레딧.</p>
+</li>
+<li>
+<p><strong>스킬 번들.</strong> 스킬/서브에이전트/서버 구분을 가장 빠르게 체득하는 방법은 동작하는 예제를 연구하는 것이다. 우리는 실전 검증된 스킬 다섯 개를 Gumroad에서 $19 번들로 패키지했다 — 화면 구석의 떠 있는 CTA를 보라 — 커스텀 에이전트 정의와 세 계층을 모두 조합하는 오케스트레이터 프롬프트가 포함된다.</p>
+</li>
+</ol>
+<h2 id="함께-읽기">함께 읽기<a hidden class="anchor" aria-hidden="true" href="#함께-읽기">#</a></h2>
+<ul>
+<li><a href="/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/">커스텀 에이전트 작성 가이드</a> — 서브에이전트 절반을 실제로 만드는 법.</li>
+<li><a href="/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">서브에이전트 패턴</a> — 컨텍스트 축을 위한 다섯 가지 워크플로.</li>
+<li><a href="/kr/resources/llm-frameworks/mcp-servers-2026-rankings-selection-guide/">MCP 서버 2026 랭킹</a> — 역량 계층 선택하기.</li>
+<li><a href="/kr/resources/llm-frameworks/mcp-server-registry-comprehensive-guide-2026/">MCP 서버 레지스트리 가이드</a> — 연결할 가치가 있는 것들의 카탈로그.</li>
+</ul>
+<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
+<p>&ldquo;스킬이냐, 서브에이전트냐, MCP 서버냐?&ldquo;를 마치 경쟁하는 것처럼 묻는 걸 멈춰라. 대신 이렇게 물어라: 나는 <strong>지식</strong>이 부족한가, <strong>컨텍스트</strong>가 부족한가, <strong>역량</strong>이 부족한가? 지식 → 스킬. 컨텍스트 → 서브에이전트. 역량 → MCP 서버. 풀스택 사례는 셋 모두를 계층으로 쌓아 쓴다. 그리고 의심스러울 때는, 당신의 축을 움직이는 가장 저렴한 아티팩트를 만들어라 — 마크다운 파일은 가능한 한 언제나 배포된 서비스를 이긴다.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026)&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-28&rdquo;,
@@ -45,22 +416,230 @@ a: &ldquo;그렇다, 셋 다. 스킬과 서브에이전트는 저장소 안에 �
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026%22>https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026%22">https://dibi8.com/kr/resources/claude-code-subagent-vs-mcp-server-skill-agent-2026"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here"s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding 서브에이전트 vs mcp 서버 vs 스킬: 각 claude code 확장을 언제 만들어야 하는가 (2026) is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>claude-code-vs-cline</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>gemini-cli-vs-claude-code</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>claude-code-vs-aider</a></li><li><a href=/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/>cursor-vs-claude-code</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-patterns-multi-agent-workflows-2026/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagents-vs-langgraph-crewai-autogen-2026/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>서브에이전트 vs MCP 서버 vs 스킬: 각 Claude Code 확장을 언제 만들어야 하는가 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">claude-code-vs-cline</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">claude-code-vs-aider</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026/">cursor-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-patterns-multi-agent-workflows-2026/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagents-vs-langgraph-crewai-autogen-2026/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

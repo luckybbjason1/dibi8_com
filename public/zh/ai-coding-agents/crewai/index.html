@@ -1,10 +1,299 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/crewai/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/crewai/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/crewai/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/crewai/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/crewai/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/crewai/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/crewai/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“crewai”, “多智能体”, “ai智能体”, “python”, “llm编排”, “自动化”, “开源”, “机器学习”] aliases:\n/zh/posts/crewai/ /zh/resources/llm-frameworks/crewai-multi-agent-orchestration/- 如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。\n简介 构建单个 LLM 驱动的智能体很简单。但要编排五个智能体协同完成研究、写作、编辑、事实核查和发布内容，且互不干扰，这是完全不同的挑战。CrewAI 通过基于角色的编排模型解决了这个问题，让开发者能够定义专门的智能体，为其分配任务，并以协调团队的形式运行它们。CrewAI 在 GitHub 上拥有超过 51,759 个星标和 318 位贡献者，已成为 2026 年 Python 多智能体协作的首选框架。本指南将带你完成 CrewAI 的安装、配置你的第一个 crew，并通过真实配置、基准测试和诚实的权衡分析将其部署到生产环境。\n什么是 CrewAI？ CrewAI 是一个开源 Python 框架，用于编排基于角色扮演的自主 AI 智能体，这些智能体在复杂任务上进行协作工作。它提供两个核心抽象：Crews（具有明确定义角色、目标和背景故事的智能体团队）和 Flows（通过条件逻辑和状态管理来串联多个 crew 的事件驱动工作流）。与单一的 LLM 提示不同，CrewAI 智能体可以委派工作、使用工具，并通过顺序、层级或并行执行来生成结构化输出。\nCrewAI 的工作原理 CrewAI 的架构将智能体定义与编排逻辑分离：\n核心组件：\n| 组件 | 用途 | 配置文件 | |\n|\n|\n| | Agent | 具有目标、背景故事和工具的基于角色的 AI 工作者 | ```agents.yaml| | **Task** | 分配给智能体的工作单元，包含预期输出 |tasks.yaml| | **Crew** | 通过定义的过程执行任务的智能体团队 |crew.py| | **Flow** | 通过状态管理串联多个 crew 的事件驱动工作流 |flow.py| | **Tool** | 外部能力（搜索、API、计算） |tools/| | **Process** | 执行策略：顺序、层级或并行 |crew.py```` |\n执行流程：\nFlow 接收输入并初始化状态 基于过程类型将任务分派给智能体 智能体执行任务，可选择使用工具 任务输出作为上下文输入到后续任务 返回最终结果及 token 使用量指标 上图展示了 CrewAI 的双模型架构：Crews 处理单一工作流内的智能体协作，而 Flows 提供了将多个 crew 与状态管理和条件路由相连接的事件驱动骨干。\n安装与设置 前置条件 CrewAI 需要 Python 3.10–3.13 以及至少一个 LLM 提供商的 API 密钥。\n# 检查 Python 版本 python --version # 必须是 3.10、3.11、3.12 或 3.13 # 安装 uv（推荐的包管理器） curl -LsSf https://astral.sh/uv/install.sh | sh 安装 CrewAI # 安装 CrewAI 核心框架 uv pip install crewai # 或安装包含可选工具的版本 uv pip install 'crewai[tools]' # 验证安装 crewai version 创建新项目 # 搭建新的 CrewAI 项目 crewai create crew research_crew # 进入项目目录 cd research_crew # 安装项目依赖 crewai install 生成的项目结构：\nresearch_crew/ ├── .gitignore ├── pyproject.toml ├── README.md ├── .env └── src/ └── research_crew/ ├── __init__.py ├── main.py ├── crew.py ├── config/ │ ├── agents.yaml │ └── tasks.yaml └── tools/ ├── __init__.py └── custom_tool.py 配置环境变量 # .env — 将此文件添加到 .gitignore！ OPENAI_API_KEY=sk-your-openai-key-here SERPER_API_KEY=your-serper-api-key 对于通过 Ollama 使用本地 LLM（无需 API 密钥）：\n# 拉取本地模型 ollama pull llama3.1 # 在智能体配置中使用：ollama/llama3.1 定义你的第一个智能体 编辑 src/research_crew/config/agents.yaml 来定义基于角色的智能体：\n# src/research_crew/config/agents.yaml researcher: role: \u003e Senior Research Analyst goal: \u003e Conduct thorough research on {topic} and gather comprehensive, accurate, and up-to-date information. backstory: \u003e You are a seasoned research analyst with 15 years of experience in technology analysis. You find obscure but critical data points and synthesize complex information. llm: openai/gpt-4o max_iter: 15 verbose: true writer: role: \u003e Technical Content Writer goal: \u003e Transform research findings on {topic} into a well-structured, engaging article. backstory: \u003e You are an award-winning technical writer who excels at making complex topics accessible without sacrificing accuracy. llm: openai/gpt-4o max_iter: 10 verbose: true editor: role: \u003e Senior Content Editor goal: \u003e Review and polish the article about {topic} to ensure factual accuracy, grammar, and readability. backstory: \u003e You are a meticulous editor with a sharp eye for factual errors and logical inconsistencies. llm: openai/gpt-4o-mini max_iter: 8 verbose: true 每个智能体的关键配置选项：\n| 参数 | 描述 | 示例 | |\n|\n|\n| | role | 智能体的工作职责 | Senior Research Analyst | | goal | 智能体要达到的目标 | 研究 {topic} | | backstory | 塑造智能体行为的背景 | 经验和性格 | | llm | 通过 LiteLLM 使用的模型 | openai/gpt-4o | | max_iter | 每个任务的最大推理循环次数 | 15 | | verbose | 在控制台打印思考过程 | true | | allow_delegation | 可以委派给其他智能体 | false |\n定义任务并连接 Crew 任务配置 编辑 src/research_crew/config/tasks.yaml：\n# src/research_crew/config/tasks.yaml research_task: description: \"Technical guide and comparison.\" Research the topic: {topic}. Gather at least 10 key data points from multiple authoritative sources. Include statistics, expert opinions, and recent developments. expected_output: \u003e A structured research brief with 10+ data points, source citations, and a summary of key findings. agent: researcher writing_task: description: \"Technical guide and comparison.\" Using the research brief provided, write a comprehensive technical article about {topic}. Target 1500 words. Use clear headings, examples, and engaging prose. expected_output: \u003e A markdown-formatted article with introduction, body sections, and conclusion. Minimum 1500 words. agent: writer context: [research_task] editing_task: description: \"Technical guide and comparison.\" Edit the article for clarity, grammar, factual accuracy, and readability. Ensure all claims are supported by the research brief. expected_output: \u003e A polished final article ready for publication. Include an editor's note summarizing changes made. agent: editor context: [writing_task] output_file: output/final_article.md Crew 定义 在 src/research_crew/crew.py 中连接智能体和任务：\n# src/research_crew/crew.py from crewai import Agent, Crew, Process, Task from crewai.project import CrewBase, agent, crew, task @CrewBase class ResearchCrew: \"\"\"Research crew for producing high-quality articles.\"\"\" agents_config = \"config/agents.yaml\" tasks_config = \"config/tasks.yaml\" @agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[\"researcher\"], tools=[], allow_delegation=False, ) @agent def writer(self) -\u003e Agent: return Agent( config=self.agents_config[\"writer\"], tools=[], allow_delegation=False, ) @agent def editor(self) -\u003e Agent: return Agent( config=self.agents_config[\"editor\"], tools=[], allow_delegation=False, ) @task def research_task(self) -\u003e Task: return Task(config=self.tasks_config[\"research_task\"]) @task def writing_task(self) -\u003e Task: return Task(config=self.tasks_config[\"writing_task\"]) @task def editing_task(self) -\u003e Task: return Task( config=self.tasks_config[\"editing_task\"], output_file=\"output/final_article.md\", ) @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.sequential, verbose=True, ) 入口点与执行 # src/research_crew/main.py #!/usr/bin/env python from research_crew.crew import ResearchCrew def run(): \"\"\"Run the research crew.\"\"\" inputs = { \"topic\": \"AI coding assistants in 2026\" } result = ResearchCrew().crew().kickoff(inputs=inputs) print(\"\\n\\n========== FINAL OUTPUT ==========\\n\") print(result.raw) print(f\"\\nToken usage: {result.token_usage}\") if __name__ == \"__main__\": run() 运行 crew：\n# 通过 CLI 执行 crewai run # 或通过 Python 直接运行 python -m research_crew.main 预期输出：\n[2026-05-20 10:23:15] Working Agent: Senior Research Analyst [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026... ... [2026-05-20 10:24:02] Working Agent: Technical Content Writer [2026-05-20 10:24:02] Starting Task: Using the research brief provided... ... [2026-05-20 10:25:18] Working Agent: Senior Content Editor ... [完整的编辑后文章显示在此处] Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...) 高级用法：Flows、工具和生产模式 使用 CrewAI Flows 进行复杂编排 Flows 提供具有状态管理的事件驱动编排：\n# src/research_crew/flow.py from crewai.flow.flow import Flow, listen, start from pydantic import BaseModel from research_crew.crew import ResearchCrew class ArticleState(BaseModel): topic: str = \"\" word_count: int = 0 final_article: str = \"\" class ArticleFlow(Flow[ArticleState]): @start() def get_topic(self): self.state.topic = \"Multi-agent AI frameworks in 2026\" print(f\"Starting flow for topic: {self.state.topic}\") @listen(get_topic) def run_research_crew(self): result = ResearchCrew().crew().kickoff( inputs={\"topic\": self.state.topic} ) self.state.final_article = result.raw self.state.word_count = len(result.raw.split()) @listen(run_research_crew) def validate_output(self): if self.state.word_count \u003c 1000: print(\"WARNING: Article too short, triggering revision\") else: print(f\"Article validated: {self.state.word_count} words\") with open(\"output/article.md\", \"w\") as f: f.write(self.state.final_article) if __name__ == \"__main__\": ArticleFlow().kickoff() 创建自定义工具 # src/research_crew/tools/custom_tool.py from crewai.tools import tool import requests @tool(\"Web Search\") def web_search(query: str) -\u003e str: \"\"\"Search the web for information on a given query.\"\"\" response = requests.get( \"https://serpapi.com/search\", params={\"q\": query, \"api_key\": \"${SERPER_API_KEY}\"} ) return response.json()[\"organic_results\"][0][\"snippet\"] 在你的 crew 中注册工具：\n# 在 crew.py 中，导入并附加 from research_crew.tools.custom_tool import web_search @agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[\"researcher\"], tools=[web_search], # 附加自定义工具 allow_delegation=False, ) 使用管理器智能体的层级过程 @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.hierarchical, manager_llm=\"openai/gpt-4o\", verbose=True, ) 使用 FastAPI 进行生产部署 # api_server.py — 生产部署 from fastapi import FastAPI, BackgroundTasks from pydantic import BaseModel from research_crew.crew import ResearchCrew import uuid app = FastAPI(title=\"CrewAI Research API\") jobs: dict = {} class CrewRequest(BaseModel): topic: str @app.post(\"/research\") async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4()) jobs[job_id] = {\"status\": \"queued\", \"topic\": request.topic} background.add_task( lambda: run_crew(job_id, request.topic) ) return {\"job_id\": job_id, \"status\": \"queued\"} @app.get(\"/status/{job_id}\") async def get_status(job_id: str): return jobs.get(job_id, {\"error\": \"Job not found\"}) def run_crew(job_id: str, topic: str): jobs[job_id][\"status\"] = \"running\" result = ResearchCrew().crew().kickoff(inputs={\"topic\": topic}) jobs[job_id][\"status\"] = \"completed\" jobs[job_id][\"result\"] = result.raw # 运行：uvicorn api_server:app --host 0.0.0.0 --port 8000 基准测试 / 实际用例 性能基准测试 CrewAI 与其他框架在标准多智能体研究任务上的性能对比：\n| 指标 | CrewAI | AutoGen | LangGraph | Agno | |\n|\n|\n|\n|\n| | 首次成功运行所需时间 | ~15 分钟 | ~30 分钟 | ~60 分钟 | ~20 分钟 | | Token 成本（标准化） | 1.5–2x | 5–6x | 1x 基准 | 1.2x | | GitHub 星标 (2026年5月) | 51,759 | ~38,000 | ~28,000 | ~15,000 | | Hello-world 代码行数 | ~20 | ~40 | ~50 | ~25 | | 内置检查点 | 部分 | 无 | 是 (Postgres/Redis) | 无 | | 异步支持 | 是 | 是 | 是 | 是 | | 本地 LLM 支持 (Ollama) | 是 | 是 | 是 | 是 |\n实际用例 自动化研究报告： 一家金融科技初创公司使用 CrewAI 生成每日市场分析报告。研究员智能体抓取财务数据，分析智能体识别趋势，写作智能体生成最终报告 —— 全部在早上 8 点前完成。\n内容生产流水线： 一家媒体公司运行 4 智能体 crew 来撰写博客文章：研究 → 写作 → 编辑 → SEO 优化。产出从每周 3 篇增加到 12 篇。\n代码审查自动化： 一家 SaaS 团队使用 CrewAI 分流拉取请求。一个智能体总结变更，另一个检查安全模式，第三个生成审查评论。\n与流行工具集成 OpenAI / Anthropic / Google Gemini CrewAI 使用 LiteLLM 进行提供商无关的模型路由：\n# agents.yaml — 每个智能体的模型选择 researcher: role: Research Analyst llm: anthropic/claude-sonnet-4-20250514 # 或: openai/gpt-4o # 或: gemini/gemini-2.0-flash Ollama（本地 LLM） researcher: role: Research Analyst llm: ollama/llama3.1 # 需要：ollama pull llama3.1 LangChain 工具 # 在 CrewAI 中使用 LangChain 工具 from langchain_community.tools import WikipediaQueryRun from langchain_community.utilities import WikipediaAPIWrapper from crewai import Agent wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()) agent = Agent( role=\"Researcher\", goal=\"Research topics thoroughly\", tools=[wiki_tool], # LangChain 工具直接可用 verbose=True, ) LlamaIndex（RAG 集成） from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from crewai.tools import tool @tool(\"Document Search\") def document_search(query: str) -\u003e str: \"\"\"Search internal documents for relevant information.\"\"\" documents = SimpleDirectoryReader(\"./docs\").load_data() index = VectorStoreIndex.from_documents(documents) query_engine = index.as_query_engine() return str(query_engine.query(query)) Docker 部署 # Dockerfile FROM python:3.12-slim WORKDIR /app COPY pyproject.toml . COPY src/ ./src/ RUN pip install crewai crewai-tools RUN crewai install EXPOSE 8000 CMD [\"crewai\", \"run\"] # docker-compose.yml version: \"3.8\" services: crewai: build: . env_file: .env volumes: - ./output:/app/output ports: - \"8000:8000\" 与替代方案对比 | 特性 | CrewAI | AutoGen | LangGraph | Agno | |\n|\n|\n|\n|\n| | 编排模型 | 基于角色的 crew | 对话式智能体 | 状态图 | 轻量级智能体 | | 原型开发速度 | 15 分钟（最快） | 30 分钟 | 60 分钟（最陡） | 20 分钟 | | Token 效率 | 中等 (1.5–2x) | 最高开销 (5–6x) | 最佳 (1x) | 良好 (1.2x) | | 生产级检查点 | 部分 + CrewAI+ | 无内置 | 是 (Postgres/Redis) | 无 | | 可观测性 | CrewAI+（成长中） | 基础 OTEL | LangSmith（深入） | 最小化 | | 学习曲线 | 低 | 中等 | 陡峭 | 低 | | 维护者势头 | 活跃 | 维护模式 | 活跃 | 活跃 | | 最适合 | 快速原型、基于角色的工作流 | 研究、代码编写智能体 | 有状态的生产工作流 | 简单智能体任务 |\n局限性 / 诚实评估 CrewAI 不适合的场景：\n复杂状态机： 如果你的工作流需要带有分支和时间旅行调试的循环图，LangGraph 的显式图模型更合适。\n超高量生产： 与 LangGraph 的完整状态持久化相比，CrewAI 的检查点是部分的。对于每天需要审计追踪的数千次运行，LangGraph 经过了更多生产验证。\nToken 敏感预算： CrewAI 的智能体默认较为冗长。在同等任务上，预计 Token 消耗是 LangGraph 的 1.5–2 倍。中等生产工作负载的预算约为每月 $100–$500。\n实时延迟要求： 多智能体编排增加了固有延迟。一个使用 GPT-4o 的 3 智能体顺序 crew 需要 45–90 秒。不适合亚秒级响应需求。\n深度可观测性： CrewAI+ 提供监控，但 LangSmith 提供更深入的追踪，包括每个节点的 Token 核算和重放功能。\n常见问题解答 Q: CrewAI 需要什么 Python 版本？ A: CrewAI 需要 Python 3.10 至 3.13。不支持 Python 3.9 或更早版本。使用 pyenv 在系统上管理多个 Python 版本。\nQ: 如何安装支持本地 LLM 的 CrewAI？ A: 正常使用 pip install crewai 安装，然后单独安装 Ollama。在智能体配置中设置 llm: ollama/llama3.1（或你偏好的模型）。本地推理不需要 API 密钥。\nQ: CrewAI 可以使用非 OpenAI 模型吗？ A: 可以。CrewAI 支持任何 LiteLLM 兼容的模型，包括 Anthropic Claude、Google Gemini、Azure OpenAI、DeepSeek、Mistral 以及通过 Ollama 的本地模型。在智能体配置中使用 provider/model-name 格式。\nQ: CrewAI Crews 和 Flows 的区别是什么？ A: Crews 是通过顺序、层级或并行过程协作完成任务的智能体团队。Flows 是通过条件逻辑、通过 Pydantic 模型进行状态管理和分支来串联多个 crew 的事件驱动工作流。Crews 用于单工作流协作，Flows 用于多阶段流水线。\nQ: 在生产环境中运行 CrewAI crew 的成本是多少？ A: 对于每天运行 100 次的 3 智能体 crew 使用 GPT-4o，预计 LLM API 成本约为每月 $100–$300。为简单任务使用 GPT-4o-mini 等更便宜的模型可以将成本降低 40–60%。CrewAI 本身是免费开源的（MIT 许可证）。\nQ: 如何调试输出质量不佳的 CrewAI 智能体？ A: 在智能体上设置 verbose: true 以查看其思考过程。使用 max_iter 限制推理循环。添加结构化输出模式来强制格式。在每次运行后查看 Token 使用指标。对于持续存在的问题，简化任务描述并验证工具配置。\nQ: CrewAI 对于企业使用是否已具备生产就绪性？ A: 对于中小规模的生产工作负载，是的。CrewAI+ 增加了托管可观测性和部署功能，起价为每月 $99。对于高容量或需要审计的关键工作负载，考虑将 CrewAI 与自定义检查点配对或评估 LangGraph。\n结论 CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其基于角色的抽象 —— 具有明确定义角色、目标和背景故事的智能体协作完成任务 —— 与团队的实际工作方式清晰对应。在 30 分钟内，你可以安装 CrewAI、搭建项目、定义智能体和任务，并运行你的第一个 crew。对于生产环境，添加 Flows 进行事件驱动编排，使用 FastAPI 提供 HTTP 端点，使用 Docker 进行部署。\n今天开始的行动项目：\n安装 CrewAI：pip install crewai 搭建你的第一个项目：crewai create crew my_project 在 agents.yaml 中定义 2–3 个具有不同角色的智能体 使用 ````crewai run``` 运行你的 crew 加入 CrewAI 社区获取支持和高级模式 加入 Telegram 讨论：加入 dibi8.com 社区 获取多智能体 AI 技巧和生产部署策略。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 CrewAI GitHub 仓库 CrewAI 官方文档 CrewAI 快速入门指南 CrewAI Flows 文档 CrewAI 工具参考 LangGraph vs CrewAI vs AutoGen 对比 2026 CrewAI 多智能体教程 2026 CrewAI + IBM watsonx 教程 披露声明：本文包含联盟链接。如果你点击链接并进行购买，我们可能会获得佣金，无需额外费用。这有助于支持我们独立的技术研究、测试和免费教育内容的创建。所有推荐均基于我们对工具自行评估的结果。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “CrewAI: 51000+ Star 构建多智能体 AI 团队 — 完整设置指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/crewai\" } } Related Articles tradingagents-llm-multi-agent-trading-framework-2026 tradingagents-llm-multi-agent-trading-framework-2026 ai-engineering-from-scratch ray-distributed-ai-framework-complete-guide cleanlab-11k-star-ai-data-cleaning Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1888","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/crewai/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/crewai/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/crewai/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/crewai/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e7%ae%80%e4%bb%8b aria-label=简介>简介</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-crewai aria-label="什么是 CrewAI？">什么是 CrewAI？</a></li><li><a href=#crewai-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="CrewAI 的工作原理">CrewAI 的工作原理</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae aria-label=安装与设置>安装与设置</a><ul><li><a href=#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6 aria-label=前置条件>前置条件</a></li><li><a href=#%e5%ae%89%e8%a3%85-crewai aria-label="安装 CrewAI">安装 CrewAI</a></li><li><a href=#%e5%88%9b%e5%bb%ba%e6%96%b0%e9%a1%b9%e7%9b%ae aria-label=创建新项目>创建新项目</a></li><li><a href=#%e9%85%8d%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f aria-label=配置环境变量>配置环境变量</a></li></ul></li><li><a href=#%e5%ae%9a%e4%b9%89%e4%bd%a0%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e6%99%ba%e8%83%bd%e4%bd%93 aria-label=定义你的第一个智能体>定义你的第一个智能体</a></li><li><a href=#%e5%ae%9a%e4%b9%89%e4%bb%bb%e5%8a%a1%e5%b9%b6%e8%bf%9e%e6%8e%a5-crew aria-label="定义任务并连接 Crew">定义任务并连接 Crew</a><ul><li><a href=#%e4%bb%bb%e5%8a%a1%e9%85%8d%e7%bd%ae aria-label=任务配置>任务配置</a></li><li><a href=#crew-%e5%ae%9a%e4%b9%89 aria-label="Crew 定义">Crew 定义</a></li><li><a href=#%e5%85%a5%e5%8f%a3%e7%82%b9%e4%b8%8e%e6%89%a7%e8%a1%8c aria-label=入口点与执行>入口点与执行</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95flows%e5%b7%a5%e5%85%b7%e5%92%8c%e7%94%9f%e4%ba%a7%e6%a8%a1%e5%bc%8f aria-label=高级用法：Flows、工具和生产模式>高级用法：Flows、工具和生产模式</a><ul><li><a href=#%e4%bd%bf%e7%94%a8-crewai-flows-%e8%bf%9b%e8%a1%8c%e5%a4%8d%e6%9d%82%e7%bc%96%e6%8e%92 aria-label="使用 CrewAI Flows 进行复杂编排">使用 CrewAI Flows 进行复杂编排</a></li><li><a href=#%e5%88%9b%e5%bb%ba%e8%87%aa%e5%ae%9a%e4%b9%89%e5%b7%a5%e5%85%b7 aria-label=创建自定义工具>创建自定义工具</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e7%ae%a1%e7%90%86%e5%99%a8%e6%99%ba%e8%83%bd%e4%bd%93%e7%9a%84%e5%b1%82%e7%ba%a7%e8%bf%87%e7%a8%8b aria-label=使用管理器智能体的层级过程>使用管理器智能体的层级过程</a></li><li><a href=#%e4%bd%bf%e7%94%a8-fastapi-%e8%bf%9b%e8%a1%8c%e7%94%9f%e4%ba%a7%e9%83%a8%e7%bd%b2 aria-label="使用 FastAPI 进行生产部署">使用 FastAPI 进行生产部署</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b aria-label="基准测试 / 实际用例">基准测试 / 实际用例</a><ul><li><a href=#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95 aria-label=性能基准测试>性能基准测试</a></li><li><a href=#%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b aria-label=实际用例>实际用例</a></li></ul></li><li><a href=#%e4%b8%8e%e6%b5%81%e8%a1%8c%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90 aria-label=与流行工具集成>与流行工具集成</a><ul><li><a href=#openai--anthropic--google-gemini aria-label="OpenAI / Anthropic / Google Gemini">OpenAI / Anthropic / Google Gemini</a></li><li><a href=#ollama%e6%9c%ac%e5%9c%b0-llm aria-label="Ollama（本地 LLM）">Ollama（本地 LLM）</a></li><li><a href=#langchain-%e5%b7%a5%e5%85%b7 aria-label="LangChain 工具">LangChain 工具</a></li><li><a href=#llamaindexrag-%e9%9b%86%e6%88%90 aria-label="LlamaIndex（RAG 集成）">LlamaIndex（RAG 集成）</a></li><li><a href=#docker-%e9%83%a8%e7%bd%b2 aria-label="Docker 部署">Docker 部署</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94 aria-label=与替代方案对比>与替代方案对比</a></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0 aria-label="局限性 / 诚实评估">局限性 / 诚实评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94 aria-label=常见问题解答>常见问题解答</a></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/crewai/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/crewai/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/crewai/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/crewai/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/crewai/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/crewai/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/crewai/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“crewai”, “多智能体”, “ai智能体”, “python”, “llm编排”, “自动化”, “开源”, “机器学习”] aliases:\n/zh/posts/crewai/ /zh/resources/llm-frameworks/crewai-multi-agent-orchestration/- 如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。\n简介 构建单个 LLM 驱动的智能体很简单。但要编排五个智能体协同完成研究、写作、编辑、事实核查和发布内容，且互不干扰，这是完全不同的挑战。CrewAI 通过基于角色的编排模型解决了这个问题，让开发者能够定义专门的智能体，为其分配任务，并以协调团队的形式运行它们。CrewAI 在 GitHub 上拥有超过 51,759 个星标和 318 位贡献者，已成为 2026 年 Python 多智能体协作的首选框架。本指南将带你完成 CrewAI 的安装、配置你的第一个 crew，并通过真实配置、基准测试和诚实的权衡分析将其部署到生产环境。\n什么是 CrewAI？ CrewAI 是一个开源 Python 框架，用于编排基于角色扮演的自主 AI 智能体，这些智能体在复杂任务上进行协作工作。它提供两个核心抽象：Crews（具有明确定义角色、目标和背景故事的智能体团队）和 Flows（通过条件逻辑和状态管理来串联多个 crew 的事件驱动工作流）。与单一的 LLM 提示不同，CrewAI 智能体可以委派工作、使用工具，并通过顺序、层级或并行执行来生成结构化输出。\nCrewAI 的工作原理 CrewAI 的架构将智能体定义与编排逻辑分离：\n核心组件：\n| 组件 | 用途 | 配置文件 | |\n|\n|\n| | Agent | 具有目标、背景故事和工具的基于角色的 AI 工作者 | ```agents.yaml| | **Task** | 分配给智能体的工作单元，包含预期输出 |tasks.yaml| | **Crew** | 通过定义的过程执行任务的智能体团队 |crew.py| | **Flow** | 通过状态管理串联多个 crew 的事件驱动工作流 |flow.py| | **Tool** | 外部能力（搜索、API、计算） |tools/| | **Process** | 执行策略：顺序、层级或并行 |crew.py```` |\n执行流程：\nFlow 接收输入并初始化状态 基于过程类型将任务分派给智能体 智能体执行任务，可选择使用工具 任务输出作为上下文输入到后续任务 返回最终结果及 token 使用量指标 上图展示了 CrewAI 的双模型架构：Crews 处理单一工作流内的智能体协作，而 Flows 提供了将多个 crew 与状态管理和条件路由相连接的事件驱动骨干。\n安装与设置 前置条件 CrewAI 需要 Python 3.10–3.13 以及至少一个 LLM 提供商的 API 密钥。\n# 检查 Python 版本 python --version # 必须是 3.10、3.11、3.12 或 3.13 # 安装 uv（推荐的包管理器） curl -LsSf https://astral.sh/uv/install.sh | sh 安装 CrewAI # 安装 CrewAI 核心框架 uv pip install crewai # 或安装包含可选工具的版本 uv pip install 'crewai[tools]' # 验证安装 crewai version 创建新项目 # 搭建新的 CrewAI 项目 crewai create crew research_crew # 进入项目目录 cd research_crew # 安装项目依赖 crewai install 生成的项目结构：\nresearch_crew/ ├── .gitignore ├── pyproject.toml ├── README.md ├── .env └── src/ └── research_crew/ ├── __init__.py ├── main.py ├── crew.py ├── config/ │ ├── agents.yaml │ └── tasks.yaml └── tools/ ├── __init__.py └── custom_tool.py 配置环境变量 # .env — 将此文件添加到 .gitignore！ OPENAI_API_KEY=sk-your-openai-key-here SERPER_API_KEY=your-serper-api-key 对于通过 Ollama 使用本地 LLM（无需 API 密钥）：\n# 拉取本地模型 ollama pull llama3.1 # 在智能体配置中使用：ollama/llama3.1 定义你的第一个智能体 编辑 src/research_crew/config/agents.yaml 来定义基于角色的智能体：\n# src/research_crew/config/agents.yaml researcher: role: \u003e Senior Research Analyst goal: \u003e Conduct thorough research on {topic} and gather comprehensive, accurate, and up-to-date information. backstory: \u003e You are a seasoned research analyst with 15 years of experience in technology analysis. You find obscure but critical data points and synthesize complex information. llm: openai/gpt-4o max_iter: 15 verbose: true writer: role: \u003e Technical Content Writer goal: \u003e Transform research findings on {topic} into a well-structured, engaging article. backstory: \u003e You are an award-winning technical writer who excels at making complex topics accessible without sacrificing accuracy. llm: openai/gpt-4o max_iter: 10 verbose: true editor: role: \u003e Senior Content Editor goal: \u003e Review and polish the article about {topic} to ensure factual accuracy, grammar, and readability. backstory: \u003e You are a meticulous editor with a sharp eye for factual errors and logical inconsistencies. llm: openai/gpt-4o-mini max_iter: 8 verbose: true 每个智能体的关键配置选项：\n| 参数 | 描述 | 示例 | |\n|\n|\n| | role | 智能体的工作职责 | Senior Research Analyst | | goal | 智能体要达到的目标 | 研究 {topic} | | backstory | 塑造智能体行为的背景 | 经验和性格 | | llm | 通过 LiteLLM 使用的模型 | openai/gpt-4o | | max_iter | 每个任务的最大推理循环次数 | 15 | | verbose | 在控制台打印思考过程 | true | | allow_delegation | 可以委派给其他智能体 | false |\n定义任务并连接 Crew 任务配置 编辑 src/research_crew/config/tasks.yaml：\n# src/research_crew/config/tasks.yaml research_task: description: \"Technical guide and comparison.\" Research the topic: {topic}. Gather at least 10 key data points from multiple authoritative sources. Include statistics, expert opinions, and recent developments. expected_output: \u003e A structured research brief with 10+ data points, source citations, and a summary of key findings. agent: researcher writing_task: description: \"Technical guide and comparison.\" Using the research brief provided, write a comprehensive technical article about {topic}. Target 1500 words. Use clear headings, examples, and engaging prose. expected_output: \u003e A markdown-formatted article with introduction, body sections, and conclusion. Minimum 1500 words. agent: writer context: [research_task] editing_task: description: \"Technical guide and comparison.\" Edit the article for clarity, grammar, factual accuracy, and readability. Ensure all claims are supported by the research brief. expected_output: \u003e A polished final article ready for publication. Include an editor's note summarizing changes made. agent: editor context: [writing_task] output_file: output/final_article.md Crew 定义 在 src/research_crew/crew.py 中连接智能体和任务：\n# src/research_crew/crew.py from crewai import Agent, Crew, Process, Task from crewai.project import CrewBase, agent, crew, task @CrewBase class ResearchCrew: \"\"\"Research crew for producing high-quality articles.\"\"\" agents_config = \"config/agents.yaml\" tasks_config = \"config/tasks.yaml\" @agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[\"researcher\"], tools=[], allow_delegation=False, ) @agent def writer(self) -\u003e Agent: return Agent( config=self.agents_config[\"writer\"], tools=[], allow_delegation=False, ) @agent def editor(self) -\u003e Agent: return Agent( config=self.agents_config[\"editor\"], tools=[], allow_delegation=False, ) @task def research_task(self) -\u003e Task: return Task(config=self.tasks_config[\"research_task\"]) @task def writing_task(self) -\u003e Task: return Task(config=self.tasks_config[\"writing_task\"]) @task def editing_task(self) -\u003e Task: return Task( config=self.tasks_config[\"editing_task\"], output_file=\"output/final_article.md\", ) @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.sequential, verbose=True, ) 入口点与执行 # src/research_crew/main.py #!/usr/bin/env python from research_crew.crew import ResearchCrew def run(): \"\"\"Run the research crew.\"\"\" inputs = { \"topic\": \"AI coding assistants in 2026\" } result = ResearchCrew().crew().kickoff(inputs=inputs) print(\"\\n\\n========== FINAL OUTPUT ==========\\n\") print(result.raw) print(f\"\\nToken usage: {result.token_usage}\") if __name__ == \"__main__\": run() 运行 crew：\n# 通过 CLI 执行 crewai run # 或通过 Python 直接运行 python -m research_crew.main 预期输出：\n[2026-05-20 10:23:15] Working Agent: Senior Research Analyst [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026... ... [2026-05-20 10:24:02] Working Agent: Technical Content Writer [2026-05-20 10:24:02] Starting Task: Using the research brief provided... ... [2026-05-20 10:25:18] Working Agent: Senior Content Editor ... [完整的编辑后文章显示在此处] Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...) 高级用法：Flows、工具和生产模式 使用 CrewAI Flows 进行复杂编排 Flows 提供具有状态管理的事件驱动编排：\n# src/research_crew/flow.py from crewai.flow.flow import Flow, listen, start from pydantic import BaseModel from research_crew.crew import ResearchCrew class ArticleState(BaseModel): topic: str = \"\" word_count: int = 0 final_article: str = \"\" class ArticleFlow(Flow[ArticleState]): @start() def get_topic(self): self.state.topic = \"Multi-agent AI frameworks in 2026\" print(f\"Starting flow for topic: {self.state.topic}\") @listen(get_topic) def run_research_crew(self): result = ResearchCrew().crew().kickoff( inputs={\"topic\": self.state.topic} ) self.state.final_article = result.raw self.state.word_count = len(result.raw.split()) @listen(run_research_crew) def validate_output(self): if self.state.word_count \u003c 1000: print(\"WARNING: Article too short, triggering revision\") else: print(f\"Article validated: {self.state.word_count} words\") with open(\"output/article.md\", \"w\") as f: f.write(self.state.final_article) if __name__ == \"__main__\": ArticleFlow().kickoff() 创建自定义工具 # src/research_crew/tools/custom_tool.py from crewai.tools import tool import requests @tool(\"Web Search\") def web_search(query: str) -\u003e str: \"\"\"Search the web for information on a given query.\"\"\" response = requests.get( \"https://serpapi.com/search\", params={\"q\": query, \"api_key\": \"${SERPER_API_KEY}\"} ) return response.json()[\"organic_results\"][0][\"snippet\"] 在你的 crew 中注册工具：\n# 在 crew.py 中，导入并附加 from research_crew.tools.custom_tool import web_search @agent def researcher(self) -\u003e Agent: return Agent( config=self.agents_config[\"researcher\"], tools=[web_search], # 附加自定义工具 allow_delegation=False, ) 使用管理器智能体的层级过程 @crew def crew(self) -\u003e Crew: return Crew( agents=self.agents, tasks=self.tasks, process=Process.hierarchical, manager_llm=\"openai/gpt-4o\", verbose=True, ) 使用 FastAPI 进行生产部署 # api_server.py — 生产部署 from fastapi import FastAPI, BackgroundTasks from pydantic import BaseModel from research_crew.crew import ResearchCrew import uuid app = FastAPI(title=\"CrewAI Research API\") jobs: dict = {} class CrewRequest(BaseModel): topic: str @app.post(\"/research\") async def start_research(request: CrewRequest, background: BackgroundTasks): job_id = str(uuid.uuid4()) jobs[job_id] = {\"status\": \"queued\", \"topic\": request.topic} background.add_task( lambda: run_crew(job_id, request.topic) ) return {\"job_id\": job_id, \"status\": \"queued\"} @app.get(\"/status/{job_id}\") async def get_status(job_id: str): return jobs.get(job_id, {\"error\": \"Job not found\"}) def run_crew(job_id: str, topic: str): jobs[job_id][\"status\"] = \"running\" result = ResearchCrew().crew().kickoff(inputs={\"topic\": topic}) jobs[job_id][\"status\"] = \"completed\" jobs[job_id][\"result\"] = result.raw # 运行：uvicorn api_server:app --host 0.0.0.0 --port 8000 基准测试 / 实际用例 性能基准测试 CrewAI 与其他框架在标准多智能体研究任务上的性能对比：\n| 指标 | CrewAI | AutoGen | LangGraph | Agno | |\n|\n|\n|\n|\n| | 首次成功运行所需时间 | ~15 分钟 | ~30 分钟 | ~60 分钟 | ~20 分钟 | | Token 成本（标准化） | 1.5–2x | 5–6x | 1x 基准 | 1.2x | | GitHub 星标 (2026年5月) | 51,759 | ~38,000 | ~28,000 | ~15,000 | | Hello-world 代码行数 | ~20 | ~40 | ~50 | ~25 | | 内置检查点 | 部分 | 无 | 是 (Postgres/Redis) | 无 | | 异步支持 | 是 | 是 | 是 | 是 | | 本地 LLM 支持 (Ollama) | 是 | 是 | 是 | 是 |\n实际用例 自动化研究报告： 一家金融科技初创公司使用 CrewAI 生成每日市场分析报告。研究员智能体抓取财务数据，分析智能体识别趋势，写作智能体生成最终报告 —— 全部在早上 8 点前完成。\n内容生产流水线： 一家媒体公司运行 4 智能体 crew 来撰写博客文章：研究 → 写作 → 编辑 → SEO 优化。产出从每周 3 篇增加到 12 篇。\n代码审查自动化： 一家 SaaS 团队使用 CrewAI 分流拉取请求。一个智能体总结变更，另一个检查安全模式，第三个生成审查评论。\n与流行工具集成 OpenAI / Anthropic / Google Gemini CrewAI 使用 LiteLLM 进行提供商无关的模型路由：\n# agents.yaml — 每个智能体的模型选择 researcher: role: Research Analyst llm: anthropic/claude-sonnet-4-20250514 # 或: openai/gpt-4o # 或: gemini/gemini-2.0-flash Ollama（本地 LLM） researcher: role: Research Analyst llm: ollama/llama3.1 # 需要：ollama pull llama3.1 LangChain 工具 # 在 CrewAI 中使用 LangChain 工具 from langchain_community.tools import WikipediaQueryRun from langchain_community.utilities import WikipediaAPIWrapper from crewai import Agent wiki_tool = WikipediaQueryRun(api_wrapper=WikipediaAPIWrapper()) agent = Agent( role=\"Researcher\", goal=\"Research topics thoroughly\", tools=[wiki_tool], # LangChain 工具直接可用 verbose=True, ) LlamaIndex（RAG 集成） from llama_index.core import VectorStoreIndex, SimpleDirectoryReader from crewai.tools import tool @tool(\"Document Search\") def document_search(query: str) -\u003e str: \"\"\"Search internal documents for relevant information.\"\"\" documents = SimpleDirectoryReader(\"./docs\").load_data() index = VectorStoreIndex.from_documents(documents) query_engine = index.as_query_engine() return str(query_engine.query(query)) Docker 部署 # Dockerfile FROM python:3.12-slim WORKDIR /app COPY pyproject.toml . COPY src/ ./src/ RUN pip install crewai crewai-tools RUN crewai install EXPOSE 8000 CMD [\"crewai\", \"run\"] # docker-compose.yml version: \"3.8\" services: crewai: build: . env_file: .env volumes: - ./output:/app/output ports: - \"8000:8000\" 与替代方案对比 | 特性 | CrewAI | AutoGen | LangGraph | Agno | |\n|\n|\n|\n|\n| | 编排模型 | 基于角色的 crew | 对话式智能体 | 状态图 | 轻量级智能体 | | 原型开发速度 | 15 分钟（最快） | 30 分钟 | 60 分钟（最陡） | 20 分钟 | | Token 效率 | 中等 (1.5–2x) | 最高开销 (5–6x) | 最佳 (1x) | 良好 (1.2x) | | 生产级检查点 | 部分 + CrewAI+ | 无内置 | 是 (Postgres/Redis) | 无 | | 可观测性 | CrewAI+（成长中） | 基础 OTEL | LangSmith（深入） | 最小化 | | 学习曲线 | 低 | 中等 | 陡峭 | 低 | | 维护者势头 | 活跃 | 维护模式 | 活跃 | 活跃 | | 最适合 | 快速原型、基于角色的工作流 | 研究、代码编写智能体 | 有状态的生产工作流 | 简单智能体任务 |\n局限性 / 诚实评估 CrewAI 不适合的场景：\n复杂状态机： 如果你的工作流需要带有分支和时间旅行调试的循环图，LangGraph 的显式图模型更合适。\n超高量生产： 与 LangGraph 的完整状态持久化相比，CrewAI 的检查点是部分的。对于每天需要审计追踪的数千次运行，LangGraph 经过了更多生产验证。\nToken 敏感预算： CrewAI 的智能体默认较为冗长。在同等任务上，预计 Token 消耗是 LangGraph 的 1.5–2 倍。中等生产工作负载的预算约为每月 $100–$500。\n实时延迟要求： 多智能体编排增加了固有延迟。一个使用 GPT-4o 的 3 智能体顺序 crew 需要 45–90 秒。不适合亚秒级响应需求。\n深度可观测性： CrewAI+ 提供监控，但 LangSmith 提供更深入的追踪，包括每个节点的 Token 核算和重放功能。\n常见问题解答 Q: CrewAI 需要什么 Python 版本？ A: CrewAI 需要 Python 3.10 至 3.13。不支持 Python 3.9 或更早版本。使用 pyenv 在系统上管理多个 Python 版本。\nQ: 如何安装支持本地 LLM 的 CrewAI？ A: 正常使用 pip install crewai 安装，然后单独安装 Ollama。在智能体配置中设置 llm: ollama/llama3.1（或你偏好的模型）。本地推理不需要 API 密钥。\nQ: CrewAI 可以使用非 OpenAI 模型吗？ A: 可以。CrewAI 支持任何 LiteLLM 兼容的模型，包括 Anthropic Claude、Google Gemini、Azure OpenAI、DeepSeek、Mistral 以及通过 Ollama 的本地模型。在智能体配置中使用 provider/model-name 格式。\nQ: CrewAI Crews 和 Flows 的区别是什么？ A: Crews 是通过顺序、层级或并行过程协作完成任务的智能体团队。Flows 是通过条件逻辑、通过 Pydantic 模型进行状态管理和分支来串联多个 crew 的事件驱动工作流。Crews 用于单工作流协作，Flows 用于多阶段流水线。\nQ: 在生产环境中运行 CrewAI crew 的成本是多少？ A: 对于每天运行 100 次的 3 智能体 crew 使用 GPT-4o，预计 LLM API 成本约为每月 $100–$300。为简单任务使用 GPT-4o-mini 等更便宜的模型可以将成本降低 40–60%。CrewAI 本身是免费开源的（MIT 许可证）。\nQ: 如何调试输出质量不佳的 CrewAI 智能体？ A: 在智能体上设置 verbose: true 以查看其思考过程。使用 max_iter 限制推理循环。添加结构化输出模式来强制格式。在每次运行后查看 Token 使用指标。对于持续存在的问题，简化任务描述并验证工具配置。\nQ: CrewAI 对于企业使用是否已具备生产就绪性？ A: 对于中小规模的生产工作负载，是的。CrewAI+ 增加了托管可观测性和部署功能，起价为每月 $99。对于高容量或需要审计的关键工作负载，考虑将 CrewAI 与自定义检查点配对或评估 LangGraph。\n结论 CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其基于角色的抽象 —— 具有明确定义角色、目标和背景故事的智能体协作完成任务 —— 与团队的实际工作方式清晰对应。在 30 分钟内，你可以安装 CrewAI、搭建项目、定义智能体和任务，并运行你的第一个 crew。对于生产环境，添加 Flows 进行事件驱动编排，使用 FastAPI 提供 HTTP 端点，使用 Docker 进行部署。\n今天开始的行动项目：\n安装 CrewAI：pip install crewai 搭建你的第一个项目：crewai create crew my_project 在 agents.yaml 中定义 2–3 个具有不同角色的智能体 使用 ````crewai run``` 运行你的 crew 加入 CrewAI 社区获取支持和高级模式 加入 Telegram 讨论：加入 dibi8.com 社区 获取多智能体 AI 技巧和生产部署策略。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 CrewAI GitHub 仓库 CrewAI 官方文档 CrewAI 快速入门指南 CrewAI Flows 文档 CrewAI 工具参考 LangGraph vs CrewAI vs AutoGen 对比 2026 CrewAI 多智能体教程 2026 CrewAI + IBM watsonx 教程 披露声明：本文包含联盟链接。如果你点击链接并进行购买，我们可能会获得佣金，无需额外费用。这有助于支持我们独立的技术研究、测试和免费教育内容的创建。所有推荐均基于我们对工具自行评估的结果。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “CrewAI: 51000+ Star 构建多智能体 AI 团队 — 完整设置指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/crewai\" } } Related Articles tradingagents-llm-multi-agent-trading-framework-2026 tradingagents-llm-multi-agent-trading-framework-2026 ai-engineering-from-scratch ray-distributed-ai-framework-complete-guide cleanlab-11k-star-ai-data-cleaning Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1888",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/crewai/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/crewai/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/crewai/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/crewai/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e7%ae%80%e4%bb%8b" aria-label="简介">简介</a></li>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af-crewai" aria-label="什么是 CrewAI？">什么是 CrewAI？</a></li>
+            <li>
+                <a href="#crewai-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="CrewAI 的工作原理">CrewAI 的工作原理</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae" aria-label="安装与设置">安装与设置</a><ul>
+                    
+            <li>
+                <a href="#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6" aria-label="前置条件">前置条件</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85-crewai" aria-label="安装 CrewAI">安装 CrewAI</a></li>
+            <li>
+                <a href="#%e5%88%9b%e5%bb%ba%e6%96%b0%e9%a1%b9%e7%9b%ae" aria-label="创建新项目">创建新项目</a></li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" aria-label="配置环境变量">配置环境变量</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%9a%e4%b9%89%e4%bd%a0%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa%e6%99%ba%e8%83%bd%e4%bd%93" aria-label="定义你的第一个智能体">定义你的第一个智能体</a></li>
+            <li>
+                <a href="#%e5%ae%9a%e4%b9%89%e4%bb%bb%e5%8a%a1%e5%b9%b6%e8%bf%9e%e6%8e%a5-crew" aria-label="定义任务并连接 Crew">定义任务并连接 Crew</a><ul>
+                    
+            <li>
+                <a href="#%e4%bb%bb%e5%8a%a1%e9%85%8d%e7%bd%ae" aria-label="任务配置">任务配置</a></li>
+            <li>
+                <a href="#crew-%e5%ae%9a%e4%b9%89" aria-label="Crew 定义">Crew 定义</a></li>
+            <li>
+                <a href="#%e5%85%a5%e5%8f%a3%e7%82%b9%e4%b8%8e%e6%89%a7%e8%a1%8c" aria-label="入口点与执行">入口点与执行</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95flows%e5%b7%a5%e5%85%b7%e5%92%8c%e7%94%9f%e4%ba%a7%e6%a8%a1%e5%bc%8f" aria-label="高级用法：Flows、工具和生产模式">高级用法：Flows、工具和生产模式</a><ul>
+                    
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8-crewai-flows-%e8%bf%9b%e8%a1%8c%e5%a4%8d%e6%9d%82%e7%bc%96%e6%8e%92" aria-label="使用 CrewAI Flows 进行复杂编排">使用 CrewAI Flows 进行复杂编排</a></li>
+            <li>
+                <a href="#%e5%88%9b%e5%bb%ba%e8%87%aa%e5%ae%9a%e4%b9%89%e5%b7%a5%e5%85%b7" aria-label="创建自定义工具">创建自定义工具</a></li>
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8%e7%ae%a1%e7%90%86%e5%99%a8%e6%99%ba%e8%83%bd%e4%bd%93%e7%9a%84%e5%b1%82%e7%ba%a7%e8%bf%87%e7%a8%8b" aria-label="使用管理器智能体的层级过程">使用管理器智能体的层级过程</a></li>
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8-fastapi-%e8%bf%9b%e8%a1%8c%e7%94%9f%e4%ba%a7%e9%83%a8%e7%bd%b2" aria-label="使用 FastAPI 进行生产部署">使用 FastAPI 进行生产部署</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b" aria-label="基准测试 / 实际用例">基准测试 / 实际用例</a><ul>
+                    
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95" aria-label="性能基准测试">性能基准测试</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b" aria-label="实际用例">实际用例</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%b5%81%e8%a1%8c%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90" aria-label="与流行工具集成">与流行工具集成</a><ul>
+                    
+            <li>
+                <a href="#openai--anthropic--google-gemini" aria-label="OpenAI / Anthropic / Google Gemini">OpenAI / Anthropic / Google Gemini</a></li>
+            <li>
+                <a href="#ollama%e6%9c%ac%e5%9c%b0-llm" aria-label="Ollama（本地 LLM）">Ollama（本地 LLM）</a></li>
+            <li>
+                <a href="#langchain-%e5%b7%a5%e5%85%b7" aria-label="LangChain 工具">LangChain 工具</a></li>
+            <li>
+                <a href="#llamaindexrag-%e9%9b%86%e6%88%90" aria-label="LlamaIndex（RAG 集成）">LlamaIndex（RAG 集成）</a></li>
+            <li>
+                <a href="#docker-%e9%83%a8%e7%bd%b2" aria-label="Docker 部署">Docker 部署</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94" aria-label="与替代方案对比">与替代方案对比</a></li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0" aria-label="局限性 / 诚实评估">局限性 / 诚实评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94" aria-label="常见问题解答">常见问题解答</a></li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="来源与延伸阅读">来源与延伸阅读</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,30 +310,70 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;crewai&rdquo;, &ldquo;多智能体&rdquo;, &ldquo;ai智能体&rdquo;, &ldquo;python&rdquo;, &ldquo;llm编排&rdquo;, &ldquo;自动化&rdquo;, &ldquo;开源&rdquo;, &ldquo;机器学习&rdquo;]
-aliases:</p><ul><li>/zh/posts/crewai/</li><li>/zh/resources/llm-frameworks/crewai-multi-agent-orchestration/-</li></ul><hr><blockquote><p>如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。</p></blockquote><h2 id=简介>简介<a hidden class=anchor aria-hidden=true href=#简介>#</a></h2><p>构建单个 LLM 驱动的智能体很简单。但要编排五个智能体协同完成研究、写作、编辑、事实核查和发布内容，且互不干扰，这是完全不同的挑战。CrewAI 通过基于角色的编排模型解决了这个问题，让开发者能够定义专门的智能体，为其分配任务，并以协调团队的形式运行它们。CrewAI 在 GitHub 上拥有超过 51,759 个星标和 318 位贡献者，已成为 2026 年 Python 多智能体协作的首选框架。本指南将带你完成 CrewAI 的安装、配置你的第一个 crew，并通过真实配置、基准测试和诚实的权衡分析将其部署到生产环境。</p><h2 id=什么是-crewai>什么是 CrewAI？<a hidden class=anchor aria-hidden=true href=#什么是-crewai>#</a></h2><p>CrewAI 是一个开源 Python 框架，用于编排基于角色扮演的自主 AI 智能体，这些智能体在复杂任务上进行协作工作。它提供两个核心抽象：<strong>Crews</strong>（具有明确定义角色、目标和背景故事的智能体团队）和 <strong>Flows</strong>（通过条件逻辑和状态管理来串联多个 crew 的事件驱动工作流）。与单一的 LLM 提示不同，CrewAI 智能体可以委派工作、使用工具，并通过顺序、层级或并行执行来生成结构化输出。</p><h2 id=crewai-的工作原理>CrewAI 的工作原理<a hidden class=anchor aria-hidden=true href=#crewai-的工作原理>#</a></h2><p>CrewAI 的架构将智能体定义与编排逻辑分离：</p><p><img alt="CrewAI Logo" loading=lazy src=https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png></p><p><strong>核心组件：</strong></p><p>| 组件 | 用途 | 配置文件 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| <strong>Agent</strong> | 具有目标、背景故事和工具的基于角色的 AI 工作者 | ```agents.yaml<code>| | **Task** | 分配给智能体的工作单元，包含预期输出 |</code>tasks.yaml<code>| | **Crew** | 通过定义的过程执行任务的智能体团队 |</code>crew.py<code>| | **Flow** | 通过状态管理串联多个 crew 的事件驱动工作流 |</code>flow.py<code>| | **Tool** | 外部能力（搜索、API、计算） |</code>tools/<code>| | **Process** | 执行策略：顺序、层级或并行 |</code>crew.py```` |</p><p><img alt="CrewAI Architecture" loading=lazy src=https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png></p><p><strong>执行流程：</strong></p><ol><li>Flow 接收输入并初始化状态</li><li>基于过程类型将任务分派给智能体</li><li>智能体执行任务，可选择使用工具</li><li>任务输出作为上下文输入到后续任务</li><li>返回最终结果及 token 使用量指标</li></ol><p>上图展示了 CrewAI 的双模型架构：<strong>Crews</strong> 处理单一工作流内的智能体协作，而 <strong>Flows</strong> 提供了将多个 crew 与状态管理和条件路由相连接的事件驱动骨干。</p><h2 id=安装与设置>安装与设置<a hidden class=anchor aria-hidden=true href=#安装与设置>#</a></h2><h3 id=前置条件>前置条件<a hidden class=anchor aria-hidden=true href=#前置条件>#</a></h3><p>CrewAI 需要 Python 3.10–3.13 以及至少一个 LLM 提供商的 API 密钥。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 检查 Python 版本</span>
-</span></span><span style=display:flex><span>python --version  <span style=color:#75715e># 必须是 3.10、3.11、3.12 或 3.13</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 安装 uv（推荐的包管理器）</span>
-</span></span><span style=display:flex><span>curl -LsSf https://astral.sh/uv/install.sh | sh
-</span></span></code></pre></div><h3 id=安装-crewai>安装 CrewAI<a hidden class=anchor aria-hidden=true href=#安装-crewai>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装 CrewAI 核心框架</span>
-</span></span><span style=display:flex><span>uv pip install crewai
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或安装包含可选工具的版本</span>
-</span></span><span style=display:flex><span>uv pip install <span style=color:#e6db74>&#39;crewai[tools]&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证安装</span>
-</span></span><span style=display:flex><span>crewai version
-</span></span></code></pre></div><h3 id=创建新项目>创建新项目<a hidden class=anchor aria-hidden=true href=#创建新项目>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 搭建新的 CrewAI 项目</span>
-</span></span><span style=display:flex><span>crewai create crew research_crew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 进入项目目录</span>
-</span></span><span style=display:flex><span>cd research_crew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 安装项目依赖</span>
-</span></span><span style=display:flex><span>crewai install
-</span></span></code></pre></div><p>生成的项目结构：</p><pre tabindex=0><code>research_crew/
+aliases:</p>
+<ul>
+<li>/zh/posts/crewai/</li>
+<li>/zh/resources/llm-frameworks/crewai-multi-agent-orchestration/-</li>
+</ul>
+<hr>
+<blockquote>
+<p>如何在 30 分钟内安装 CrewAI、配置智能体角色、编排任务并交付生产级多智能体系统。</p>
+</blockquote>
+<h2 id="简介">简介<a hidden class="anchor" aria-hidden="true" href="#简介">#</a></h2>
+<p>构建单个 LLM 驱动的智能体很简单。但要编排五个智能体协同完成研究、写作、编辑、事实核查和发布内容，且互不干扰，这是完全不同的挑战。CrewAI 通过基于角色的编排模型解决了这个问题，让开发者能够定义专门的智能体，为其分配任务，并以协调团队的形式运行它们。CrewAI 在 GitHub 上拥有超过 51,759 个星标和 318 位贡献者，已成为 2026 年 Python 多智能体协作的首选框架。本指南将带你完成 CrewAI 的安装、配置你的第一个 crew，并通过真实配置、基准测试和诚实的权衡分析将其部署到生产环境。</p>
+<h2 id="什么是-crewai">什么是 CrewAI？<a hidden class="anchor" aria-hidden="true" href="#什么是-crewai">#</a></h2>
+<p>CrewAI 是一个开源 Python 框架，用于编排基于角色扮演的自主 AI 智能体，这些智能体在复杂任务上进行协作工作。它提供两个核心抽象：<strong>Crews</strong>（具有明确定义角色、目标和背景故事的智能体团队）和 <strong>Flows</strong>（通过条件逻辑和状态管理来串联多个 crew 的事件驱动工作流）。与单一的 LLM 提示不同，CrewAI 智能体可以委派工作、使用工具，并通过顺序、层级或并行执行来生成结构化输出。</p>
+<h2 id="crewai-的工作原理">CrewAI 的工作原理<a hidden class="anchor" aria-hidden="true" href="#crewai-的工作原理">#</a></h2>
+<p>CrewAI 的架构将智能体定义与编排逻辑分离：</p>
+<p><img alt="CrewAI Logo" loading="lazy" src="https://raw.githubusercontent.com/crewAIInc/crewAI/main/docs/images/crewai_logo.png"></p>
+<p><strong>核心组件：</strong></p>
+<p>| 组件 | 用途 | 配置文件 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| <strong>Agent</strong> | 具有目标、背景故事和工具的基于角色的 AI 工作者 | ```agents.yaml<code>| | **Task** | 分配给智能体的工作单元，包含预期输出 |</code>tasks.yaml<code>| | **Crew** | 通过定义的过程执行任务的智能体团队 |</code>crew.py<code>| | **Flow** | 通过状态管理串联多个 crew 的事件驱动工作流 |</code>flow.py<code>| | **Tool** | 外部能力（搜索、API、计算） |</code>tools/<code>| | **Process** | 执行策略：顺序、层级或并行 |</code>crew.py```` |</p>
+<p><img alt="CrewAI Architecture" loading="lazy" src="https://github.com/crewAIInc/crewAI/raw/main/docs/images/asset.png"></p>
+<p><strong>执行流程：</strong></p>
+<ol>
+<li>Flow 接收输入并初始化状态</li>
+<li>基于过程类型将任务分派给智能体</li>
+<li>智能体执行任务，可选择使用工具</li>
+<li>任务输出作为上下文输入到后续任务</li>
+<li>返回最终结果及 token 使用量指标</li>
+</ol>
+<p>上图展示了 CrewAI 的双模型架构：<strong>Crews</strong> 处理单一工作流内的智能体协作，而 <strong>Flows</strong> 提供了将多个 crew 与状态管理和条件路由相连接的事件驱动骨干。</p>
+<h2 id="安装与设置">安装与设置<a hidden class="anchor" aria-hidden="true" href="#安装与设置">#</a></h2>
+<h3 id="前置条件">前置条件<a hidden class="anchor" aria-hidden="true" href="#前置条件">#</a></h3>
+<p>CrewAI 需要 Python 3.10–3.13 以及至少一个 LLM 提供商的 API 密钥。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 检查 Python 版本</span>
+</span></span><span style="display:flex;"><span>python --version  <span style="color:#75715e"># 必须是 3.10、3.11、3.12 或 3.13</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安装 uv（推荐的包管理器）</span>
+</span></span><span style="display:flex;"><span>curl -LsSf https://astral.sh/uv/install.sh | sh
+</span></span></code></pre></div><h3 id="安装-crewai">安装 CrewAI<a hidden class="anchor" aria-hidden="true" href="#安装-crewai">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装 CrewAI 核心框架</span>
+</span></span><span style="display:flex;"><span>uv pip install crewai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或安装包含可选工具的版本</span>
+</span></span><span style="display:flex;"><span>uv pip install <span style="color:#e6db74">&#39;crewai[tools]&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证安装</span>
+</span></span><span style="display:flex;"><span>crewai version
+</span></span></code></pre></div><h3 id="创建新项目">创建新项目<a hidden class="anchor" aria-hidden="true" href="#创建新项目">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 搭建新的 CrewAI 项目</span>
+</span></span><span style="display:flex;"><span>crewai create crew research_crew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 进入项目目录</span>
+</span></span><span style="display:flex;"><span>cd research_crew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安装项目依赖</span>
+</span></span><span style="display:flex;"><span>crewai install
+</span></span></code></pre></div><p>生成的项目结构：</p>
+<pre tabindex="0"><code>research_crew/
 ├── .gitignore
 ├── pyproject.toml
 ├── README.md
@@ -60,160 +389,180 @@ aliases:</p><ul><li>/zh/posts/crewai/</li><li>/zh/resources/llm-frameworks/crewa
         └── tools/
             ├── __init__.py
             └── custom_tool.py
-</code></pre><h3 id=配置环境变量>配置环境变量<a hidden class=anchor aria-hidden=true href=#配置环境变量>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># .env — 将此文件添加到 .gitignore！</span>
-</span></span><span style=display:flex><span>OPENAI_API_KEY<span style=color:#f92672>=</span>sk-your-openai-key-here
-</span></span><span style=display:flex><span>SERPER_API_KEY<span style=color:#f92672>=</span>your-serper-api-key
-</span></span></code></pre></div><p>对于通过 Ollama 使用本地 LLM（无需 API 密钥）：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 拉取本地模型</span>
-</span></span><span style=display:flex><span>ollama pull llama3.1
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在智能体配置中使用：ollama/llama3.1</span>
-</span></span></code></pre></div><h2 id=定义你的第一个智能体>定义你的第一个智能体<a hidden class=anchor aria-hidden=true href=#定义你的第一个智能体>#</a></h2><p>编辑 <code>src/research_crew/config/agents.yaml</code> 来定义基于角色的智能体：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># src/research_crew/config/agents.yaml</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>researcher: role</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Senior Research Analyst</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>goal</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Conduct thorough research on {topic} and gather
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    comprehensive, accurate, and up-to-date information.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>backstory</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    You are a seasoned research analyst with 15 years of
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    experience in technology analysis. You find obscure but
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    critical data points and synthesize complex information.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>llm</span>: <span style=color:#ae81ff>openai/gpt-4o</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>max_iter</span>: <span style=color:#ae81ff>15</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>writer: role</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Technical Content Writer</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>goal</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Transform research findings on {topic} into a
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    well-structured, engaging article.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>backstory</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    You are an award-winning technical writer who excels at
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    making complex topics accessible without sacrificing accuracy.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>llm</span>: <span style=color:#ae81ff>openai/gpt-4o</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>max_iter</span>: <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>editor: role</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Senior Content Editor</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>goal</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Review and polish the article about {topic} to ensure
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    factual accuracy, grammar, and readability.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>backstory</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    You are a meticulous editor with a sharp eye for factual
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    errors and logical inconsistencies.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>llm</span>: <span style=color:#ae81ff>openai/gpt-4o-mini</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>max_iter</span>: <span style=color:#ae81ff>8</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>verbose</span>: <span style=color:#66d9ef>true</span>
-</span></span></code></pre></div><p>每个智能体的关键配置选项：</p><p>| 参数 | 描述 | 示例 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="配置环境变量">配置环境变量<a hidden class="anchor" aria-hidden="true" href="#配置环境变量">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># .env — 将此文件添加到 .gitignore！</span>
+</span></span><span style="display:flex;"><span>OPENAI_API_KEY<span style="color:#f92672">=</span>sk-your-openai-key-here
+</span></span><span style="display:flex;"><span>SERPER_API_KEY<span style="color:#f92672">=</span>your-serper-api-key
+</span></span></code></pre></div><p>对于通过 Ollama 使用本地 LLM（无需 API 密钥）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 拉取本地模型</span>
+</span></span><span style="display:flex;"><span>ollama pull llama3.1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在智能体配置中使用：ollama/llama3.1</span>
+</span></span></code></pre></div><h2 id="定义你的第一个智能体">定义你的第一个智能体<a hidden class="anchor" aria-hidden="true" href="#定义你的第一个智能体">#</a></h2>
+<p>编辑 <code>src/research_crew/config/agents.yaml</code> 来定义基于角色的智能体：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/config/agents.yaml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">researcher: role</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Senior Research Analyst</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">goal</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Conduct thorough research on {topic} and gather
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    comprehensive, accurate, and up-to-date information.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backstory</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    You are a seasoned research analyst with 15 years of
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    experience in technology analysis. You find obscure but
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    critical data points and synthesize complex information.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">llm</span>: <span style="color:#ae81ff">openai/gpt-4o</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">max_iter</span>: <span style="color:#ae81ff">15</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">verbose</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">writer: role</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Technical Content Writer</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">goal</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Transform research findings on {topic} into a
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    well-structured, engaging article.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backstory</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    You are an award-winning technical writer who excels at
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    making complex topics accessible without sacrificing accuracy.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">llm</span>: <span style="color:#ae81ff">openai/gpt-4o</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">max_iter</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">verbose</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">editor: role</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Senior Content Editor</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">goal</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Review and polish the article about {topic} to ensure
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    factual accuracy, grammar, and readability.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backstory</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    You are a meticulous editor with a sharp eye for factual
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    errors and logical inconsistencies.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">llm</span>: <span style="color:#ae81ff">openai/gpt-4o-mini</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">max_iter</span>: <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">verbose</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><p>每个智能体的关键配置选项：</p>
+<p>| 参数 | 描述 | 示例 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>role</code> | 智能体的工作职责 | <code>Senior Research Analyst</code> |
 | <code>goal</code> | 智能体要达到的目标 | 研究 <code>{topic}</code> |
 | <code>backstory</code> | 塑造智能体行为的背景 | 经验和性格 |
 | <code>llm</code> | 通过 LiteLLM 使用的模型 | <code>openai/gpt-4o</code> |
 | <code>max_iter</code> | 每个任务的最大推理循环次数 | <code>15</code> |
 | <code>verbose</code> | 在控制台打印思考过程 | <code>true</code> |
-| <code>allow_delegation</code> | 可以委派给其他智能体 | <code>false</code> |</p><h2 id=定义任务并连接-crew>定义任务并连接 Crew<a hidden class=anchor aria-hidden=true href=#定义任务并连接-crew>#</a></h2><h3 id=任务配置>任务配置<a hidden class=anchor aria-hidden=true href=#任务配置>#</a></h3><p>编辑 <code>src/research_crew/config/tasks.yaml</code>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># src/research_crew/config/tasks.yaml</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>research_task: description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>Research the topic</span>: {<span style=color:#ae81ff>topic}. Gather at least 10 key data points</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>from multiple authoritative sources. Include statistics,</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>expert opinions, and recent developments.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>expected_output</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    A structured research brief with 10+ data points, source
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    citations, and a summary of key findings.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>agent</span>: <span style=color:#ae81ff>researcher</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>writing_task: description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>Using the research brief provided, write a comprehensive</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>technical article about {topic}. Target 1500 words.</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>Use clear headings, examples, and engaging prose.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>expected_output</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    A markdown-formatted article with introduction, body
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    sections, and conclusion. Minimum 1500 words.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>agent</span>: <span style=color:#ae81ff>writer</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>context</span>: [<span style=color:#ae81ff>research_task]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>editing_task: description</span>: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>Edit the article for clarity, grammar, factual accuracy,</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>and readability. Ensure all claims are supported by the</span>
-</span></span><span style=display:flex><span>    <span style=color:#ae81ff>research brief.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>expected_output</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    A polished final article ready for publication.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Include an editor&#39;s note summarizing changes made.</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>agent</span>: <span style=color:#ae81ff>editor</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>context</span>: [<span style=color:#ae81ff>writing_task]</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>output_file</span>: <span style=color:#ae81ff>output/final_article.md</span>
-</span></span></code></pre></div><h3 id=crew-定义>Crew 定义<a hidden class=anchor aria-hidden=true href=#crew-定义>#</a></h3><p>在 <code>src/research_crew/crew.py</code> 中连接智能体和任务：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># src/research_crew/crew.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent, Crew, Process, Task
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai.project <span style=color:#f92672>import</span> CrewBase, agent, crew, task
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@CrewBase</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ResearchCrew</span>: <span style=color:#e6db74>&#34;&#34;&#34;Research crew for producing high-quality articles.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    agents_config <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;config/agents.yaml&#34;</span>
-</span></span><span style=display:flex><span>    tasks_config <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;config/tasks.yaml&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@agent</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>researcher</span>(self) <span style=color:#f92672>-&gt;</span> Agent: <span style=color:#66d9ef>return</span> Agent(
-</span></span><span style=display:flex><span>            config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>agents_config[<span style=color:#e6db74>&#34;researcher&#34;</span>],
-</span></span><span style=display:flex><span>            tools<span style=color:#f92672>=</span>[],
-</span></span><span style=display:flex><span>            allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@agent</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>writer</span>(self) <span style=color:#f92672>-&gt;</span> Agent: <span style=color:#66d9ef>return</span> Agent(
-</span></span><span style=display:flex><span>            config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>agents_config[<span style=color:#e6db74>&#34;writer&#34;</span>],
-</span></span><span style=display:flex><span>            tools<span style=color:#f92672>=</span>[],
-</span></span><span style=display:flex><span>            allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@agent</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>editor</span>(self) <span style=color:#f92672>-&gt;</span> Agent: <span style=color:#66d9ef>return</span> Agent(
-</span></span><span style=display:flex><span>            config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>agents_config[<span style=color:#e6db74>&#34;editor&#34;</span>],
-</span></span><span style=display:flex><span>            tools<span style=color:#f92672>=</span>[],
-</span></span><span style=display:flex><span>            allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@task</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>research_task</span>(self) <span style=color:#f92672>-&gt;</span> Task: <span style=color:#66d9ef>return</span> Task(config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>tasks_config[<span style=color:#e6db74>&#34;research_task&#34;</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@task</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>writing_task</span>(self) <span style=color:#f92672>-&gt;</span> Task: <span style=color:#66d9ef>return</span> Task(config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>tasks_config[<span style=color:#e6db74>&#34;writing_task&#34;</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@task</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>editing_task</span>(self) <span style=color:#f92672>-&gt;</span> Task: <span style=color:#66d9ef>return</span> Task(
-</span></span><span style=display:flex><span>            config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>tasks_config[<span style=color:#e6db74>&#34;editing_task&#34;</span>],
-</span></span><span style=display:flex><span>            output_file<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;output/final_article.md&#34;</span>,
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@crew</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>crew</span>(self) <span style=color:#f92672>-&gt;</span> Crew: <span style=color:#66d9ef>return</span> Crew(
-</span></span><span style=display:flex><span>            agents<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>agents,
-</span></span><span style=display:flex><span>            tasks<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>tasks,
-</span></span><span style=display:flex><span>            process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>sequential,
-</span></span><span style=display:flex><span>            verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>        )
-</span></span></code></pre></div><h3 id=入口点与执行>入口点与执行<a hidden class=anchor aria-hidden=true href=#入口点与执行>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># src/research_crew/main.py</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#!/usr/bin/env python</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_crew.crew <span style=color:#f92672>import</span> ResearchCrew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run</span>(): <span style=color:#e6db74>&#34;&#34;&#34;Run the research crew.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    inputs <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;topic&#34;</span>: <span style=color:#e6db74>&#34;AI coding assistants in 2026&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> ResearchCrew()<span style=color:#f92672>.</span>crew()<span style=color:#f92672>.</span>kickoff(inputs<span style=color:#f92672>=</span>inputs)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n\n</span><span style=color:#e6db74>========== FINAL OUTPUT ==========</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    print(result<span style=color:#f92672>.</span>raw)
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>Token usage: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>token_usage<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: run()
-</span></span></code></pre></div><p>运行 crew：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过 CLI 执行</span>
-</span></span><span style=display:flex><span>crewai run
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或通过 Python 直接运行</span>
-</span></span><span style=display:flex><span>python -m research_crew.main
-</span></span></code></pre></div><p>预期输出：</p><pre tabindex=0><code>[2026-05-20 10:23:15] Working Agent: Senior Research Analyst
+| <code>allow_delegation</code> | 可以委派给其他智能体 | <code>false</code> |</p>
+<h2 id="定义任务并连接-crew">定义任务并连接 Crew<a hidden class="anchor" aria-hidden="true" href="#定义任务并连接-crew">#</a></h2>
+<h3 id="任务配置">任务配置<a hidden class="anchor" aria-hidden="true" href="#任务配置">#</a></h3>
+<p>编辑 <code>src/research_crew/config/tasks.yaml</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/config/tasks.yaml</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">research_task: description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Research the topic</span>: {<span style="color:#ae81ff">topic}. Gather at least 10 key data points</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">from multiple authoritative sources. Include statistics,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">expert opinions, and recent developments.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expected_output</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    A structured research brief with 10+ data points, source
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    citations, and a summary of key findings.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">agent</span>: <span style="color:#ae81ff">researcher</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">writing_task: description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">Using the research brief provided, write a comprehensive</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">technical article about {topic}. Target 1500 words.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">Use clear headings, examples, and engaging prose.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expected_output</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    A markdown-formatted article with introduction, body
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    sections, and conclusion. Minimum 1500 words.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">agent</span>: <span style="color:#ae81ff">writer</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">context</span>: [<span style="color:#ae81ff">research_task]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">editing_task: description</span>: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">Edit the article for clarity, grammar, factual accuracy,</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">and readability. Ensure all claims are supported by the</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#ae81ff">research brief.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">expected_output</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    A polished final article ready for publication.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Include an editor&#39;s note summarizing changes made.</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">agent</span>: <span style="color:#ae81ff">editor</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">context</span>: [<span style="color:#ae81ff">writing_task]</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">output_file</span>: <span style="color:#ae81ff">output/final_article.md</span>
+</span></span></code></pre></div><h3 id="crew-定义">Crew 定义<a hidden class="anchor" aria-hidden="true" href="#crew-定义">#</a></h3>
+<p>在 <code>src/research_crew/crew.py</code> 中连接智能体和任务：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/crew.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent, Crew, Process, Task
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai.project <span style="color:#f92672">import</span> CrewBase, agent, crew, task
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@CrewBase</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ResearchCrew</span>: <span style="color:#e6db74">&#34;&#34;&#34;Research crew for producing high-quality articles.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    agents_config <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;config/agents.yaml&#34;</span>
+</span></span><span style="display:flex;"><span>    tasks_config <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;config/tasks.yaml&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@agent</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">researcher</span>(self) <span style="color:#f92672">-&gt;</span> Agent: <span style="color:#66d9ef">return</span> Agent(
+</span></span><span style="display:flex;"><span>            config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>agents_config[<span style="color:#e6db74">&#34;researcher&#34;</span>],
+</span></span><span style="display:flex;"><span>            tools<span style="color:#f92672">=</span>[],
+</span></span><span style="display:flex;"><span>            allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@agent</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">writer</span>(self) <span style="color:#f92672">-&gt;</span> Agent: <span style="color:#66d9ef">return</span> Agent(
+</span></span><span style="display:flex;"><span>            config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>agents_config[<span style="color:#e6db74">&#34;writer&#34;</span>],
+</span></span><span style="display:flex;"><span>            tools<span style="color:#f92672">=</span>[],
+</span></span><span style="display:flex;"><span>            allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@agent</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">editor</span>(self) <span style="color:#f92672">-&gt;</span> Agent: <span style="color:#66d9ef">return</span> Agent(
+</span></span><span style="display:flex;"><span>            config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>agents_config[<span style="color:#e6db74">&#34;editor&#34;</span>],
+</span></span><span style="display:flex;"><span>            tools<span style="color:#f92672">=</span>[],
+</span></span><span style="display:flex;"><span>            allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@task</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">research_task</span>(self) <span style="color:#f92672">-&gt;</span> Task: <span style="color:#66d9ef">return</span> Task(config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tasks_config[<span style="color:#e6db74">&#34;research_task&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@task</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">writing_task</span>(self) <span style="color:#f92672">-&gt;</span> Task: <span style="color:#66d9ef">return</span> Task(config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tasks_config[<span style="color:#e6db74">&#34;writing_task&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@task</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">editing_task</span>(self) <span style="color:#f92672">-&gt;</span> Task: <span style="color:#66d9ef">return</span> Task(
+</span></span><span style="display:flex;"><span>            config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tasks_config[<span style="color:#e6db74">&#34;editing_task&#34;</span>],
+</span></span><span style="display:flex;"><span>            output_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;output/final_article.md&#34;</span>,
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@crew</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">crew</span>(self) <span style="color:#f92672">-&gt;</span> Crew: <span style="color:#66d9ef">return</span> Crew(
+</span></span><span style="display:flex;"><span>            agents<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>agents,
+</span></span><span style="display:flex;"><span>            tasks<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tasks,
+</span></span><span style="display:flex;"><span>            process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>sequential,
+</span></span><span style="display:flex;"><span>            verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></div><h3 id="入口点与执行">入口点与执行<a hidden class="anchor" aria-hidden="true" href="#入口点与执行">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/main.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#!/usr/bin/env python</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_crew.crew <span style="color:#f92672">import</span> ResearchCrew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(): <span style="color:#e6db74">&#34;&#34;&#34;Run the research crew.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    inputs <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;topic&#34;</span>: <span style="color:#e6db74">&#34;AI coding assistants in 2026&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> ResearchCrew()<span style="color:#f92672">.</span>crew()<span style="color:#f92672">.</span>kickoff(inputs<span style="color:#f92672">=</span>inputs)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n\n</span><span style="color:#e6db74">========== FINAL OUTPUT ==========</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    print(result<span style="color:#f92672">.</span>raw)
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Token usage: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>token_usage<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: run()
+</span></span></code></pre></div><p>运行 crew：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过 CLI 执行</span>
+</span></span><span style="display:flex;"><span>crewai run
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或通过 Python 直接运行</span>
+</span></span><span style="display:flex;"><span>python -m research_crew.main
+</span></span></code></pre></div><p>预期输出：</p>
+<pre tabindex="0"><code>[2026-05-20 10:23:15] Working Agent: Senior Research Analyst
 [2026-05-20 10:23:15] Starting Task: Research the topic: AI coding assistants in 2026...
 ...
 [2026-05-20 10:24:02] Working Agent: Technical Content Writer
@@ -224,147 +573,191 @@ aliases:</p><ul><li>/zh/posts/crewai/</li><li>/zh/resources/llm-frameworks/crewa
 
 [完整的编辑后文章显示在此处]
 Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
-</code></pre><h2 id=高级用法flows工具和生产模式>高级用法：Flows、工具和生产模式<a hidden class=anchor aria-hidden=true href=#高级用法flows工具和生产模式>#</a></h2><h3 id=使用-crewai-flows-进行复杂编排>使用 CrewAI Flows 进行复杂编排<a hidden class=anchor aria-hidden=true href=#使用-crewai-flows-进行复杂编排>#</a></h3><p>Flows 提供具有状态管理的事件驱动编排：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># src/research_crew/flow.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai.flow.flow <span style=color:#f92672>import</span> Flow, listen, start
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_crew.crew <span style=color:#f92672>import</span> ResearchCrew
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ArticleState</span>(BaseModel): topic: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
-</span></span><span style=display:flex><span>    word_count: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>    final_article: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ArticleFlow</span>(Flow[ArticleState]): <span style=color:#a6e22e>@start</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_topic</span>(self): self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>topic <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Multi-agent AI frameworks in 2026&#34;</span>
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Starting flow for topic: </span><span style=color:#e6db74>{</span>self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>topic<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@listen</span>(get_topic)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_research_crew</span>(self): result <span style=color:#f92672>=</span> ResearchCrew()<span style=color:#f92672>.</span>crew()<span style=color:#f92672>.</span>kickoff(
-</span></span><span style=display:flex><span>            inputs<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;topic&#34;</span>: self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>topic}
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>final_article <span style=color:#f92672>=</span> result<span style=color:#f92672>.</span>raw
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>word_count <span style=color:#f92672>=</span> len(result<span style=color:#f92672>.</span>raw<span style=color:#f92672>.</span>split())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@listen</span>(run_research_crew)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>validate_output</span>(self): <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>word_count <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>1000</span>: print(<span style=color:#e6db74>&#34;WARNING: Article too short, triggering revision&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Article validated: </span><span style=color:#e6db74>{</span>self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>word_count<span style=color:#e6db74>}</span><span style=color:#e6db74> words&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>with</span> open(<span style=color:#e6db74>&#34;output/article.md&#34;</span>, <span style=color:#e6db74>&#34;w&#34;</span>) <span style=color:#66d9ef>as</span> f: f<span style=color:#f92672>.</span>write(self<span style=color:#f92672>.</span>state<span style=color:#f92672>.</span>final_article)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: ArticleFlow()<span style=color:#f92672>.</span>kickoff()
-</span></span></code></pre></div><h3 id=创建自定义工具>创建自定义工具<a hidden class=anchor aria-hidden=true href=#创建自定义工具>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># src/research_crew/tools/custom_tool.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai.tools <span style=color:#f92672>import</span> tool
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>(<span style=color:#e6db74>&#34;Web Search&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>web_search</span>(query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Search the web for information on a given query.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;https://serpapi.com/search&#34;</span>,
-</span></span><span style=display:flex><span>        params<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;q&#34;</span>: query, <span style=color:#e6db74>&#34;api_key&#34;</span>: <span style=color:#e6db74>&#34;$</span><span style=color:#e6db74>{SERPER_API_KEY}</span><span style=color:#e6db74>&#34;</span>}
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;organic_results&#34;</span>][<span style=color:#ae81ff>0</span>][<span style=color:#e6db74>&#34;snippet&#34;</span>]
-</span></span></code></pre></div><p>在你的 crew 中注册工具：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 在 crew.py 中，导入并附加</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_crew.tools.custom_tool <span style=color:#f92672>import</span> web_search
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@agent</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>researcher</span>(self) <span style=color:#f92672>-&gt;</span> Agent: <span style=color:#66d9ef>return</span> Agent(
-</span></span><span style=display:flex><span>        config<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>agents_config[<span style=color:#e6db74>&#34;researcher&#34;</span>],
-</span></span><span style=display:flex><span>        tools<span style=color:#f92672>=</span>[web_search],  <span style=color:#75715e># 附加自定义工具</span>
-</span></span><span style=display:flex><span>        allow_delegation<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>,
-</span></span><span style=display:flex><span>    )
-</span></span></code></pre></div><h3 id=使用管理器智能体的层级过程>使用管理器智能体的层级过程<a hidden class=anchor aria-hidden=true href=#使用管理器智能体的层级过程>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@crew</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>crew</span>(self) <span style=color:#f92672>-&gt;</span> Crew: <span style=color:#66d9ef>return</span> Crew(
-</span></span><span style=display:flex><span>        agents<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>agents,
-</span></span><span style=display:flex><span>        tasks<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>tasks,
-</span></span><span style=display:flex><span>        process<span style=color:#f92672>=</span>Process<span style=color:#f92672>.</span>hierarchical,
-</span></span><span style=display:flex><span>        manager_llm<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;openai/gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>        verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    )
-</span></span></code></pre></div><h3 id=使用-fastapi-进行生产部署>使用 FastAPI 进行生产部署<a hidden class=anchor aria-hidden=true href=#使用-fastapi-进行生产部署>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># api_server.py — 生产部署</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI, BackgroundTasks
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> research_crew.crew <span style=color:#f92672>import</span> ResearchCrew
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> uuid
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI(title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;CrewAI Research API&#34;</span>)
-</span></span><span style=display:flex><span>jobs: dict <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CrewRequest</span>(BaseModel): topic: str
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/research&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>start_research</span>(request: CrewRequest, background: BackgroundTasks): job_id <span style=color:#f92672>=</span> str(uuid<span style=color:#f92672>.</span>uuid4())
-</span></span><span style=display:flex><span>    jobs[job_id] <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;queued&#34;</span>, <span style=color:#e6db74>&#34;topic&#34;</span>: request<span style=color:#f92672>.</span>topic}
-</span></span><span style=display:flex><span>    background<span style=color:#f92672>.</span>add_task(
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>lambda</span>: run_crew(job_id, request<span style=color:#f92672>.</span>topic)
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;job_id&#34;</span>: job_id, <span style=color:#e6db74>&#34;status&#34;</span>: <span style=color:#e6db74>&#34;queued&#34;</span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/status/</span><span style=color:#e6db74>{job_id}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_status</span>(job_id: str): <span style=color:#66d9ef>return</span> jobs<span style=color:#f92672>.</span>get(job_id, {<span style=color:#e6db74>&#34;error&#34;</span>: <span style=color:#e6db74>&#34;Job not found&#34;</span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_crew</span>(job_id: str, topic: str): jobs[job_id][<span style=color:#e6db74>&#34;status&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;running&#34;</span>
-</span></span><span style=display:flex><span>    result <span style=color:#f92672>=</span> ResearchCrew()<span style=color:#f92672>.</span>crew()<span style=color:#f92672>.</span>kickoff(inputs<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;topic&#34;</span>: topic})
-</span></span><span style=display:flex><span>    jobs[job_id][<span style=color:#e6db74>&#34;status&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;completed&#34;</span>
-</span></span><span style=display:flex><span>    jobs[job_id][<span style=color:#e6db74>&#34;result&#34;</span>] <span style=color:#f92672>=</span> result<span style=color:#f92672>.</span>raw
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 运行：uvicorn api_server:app --host 0.0.0.0 --port 8000</span>
-</span></span></code></pre></div><h2 id=基准测试--实际用例>基准测试 / 实际用例<a hidden class=anchor aria-hidden=true href=#基准测试--实际用例>#</a></h2><h3 id=性能基准测试>性能基准测试<a hidden class=anchor aria-hidden=true href=#性能基准测试>#</a></h3><p><img alt="CrewAI 基准测试图表 — 显示多智能体框架间的 token 效率对比，数据来源于 2026 年 5 月的社区基准测试" loading=lazy src=https://docs.crewai.com/images/crewai-performance-chart.png></p><p>CrewAI 与其他框架在标准多智能体研究任务上的性能对比：</p><p>| 指标 | CrewAI | AutoGen | LangGraph | Agno |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="高级用法flows工具和生产模式">高级用法：Flows、工具和生产模式<a hidden class="anchor" aria-hidden="true" href="#高级用法flows工具和生产模式">#</a></h2>
+<h3 id="使用-crewai-flows-进行复杂编排">使用 CrewAI Flows 进行复杂编排<a hidden class="anchor" aria-hidden="true" href="#使用-crewai-flows-进行复杂编排">#</a></h3>
+<p>Flows 提供具有状态管理的事件驱动编排：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/flow.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai.flow.flow <span style="color:#f92672">import</span> Flow, listen, start
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_crew.crew <span style="color:#f92672">import</span> ResearchCrew
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ArticleState</span>(BaseModel): topic: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    word_count: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>    final_article: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ArticleFlow</span>(Flow[ArticleState]): <span style="color:#a6e22e">@start</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_topic</span>(self): self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>topic <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Multi-agent AI frameworks in 2026&#34;</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Starting flow for topic: </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>topic<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@listen</span>(get_topic)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_research_crew</span>(self): result <span style="color:#f92672">=</span> ResearchCrew()<span style="color:#f92672">.</span>crew()<span style="color:#f92672">.</span>kickoff(
+</span></span><span style="display:flex;"><span>            inputs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;topic&#34;</span>: self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>topic}
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>final_article <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>raw
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>word_count <span style="color:#f92672">=</span> len(result<span style="color:#f92672">.</span>raw<span style="color:#f92672">.</span>split())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@listen</span>(run_research_crew)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">validate_output</span>(self): <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>word_count <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">1000</span>: print(<span style="color:#e6db74">&#34;WARNING: Article too short, triggering revision&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Article validated: </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>word_count<span style="color:#e6db74">}</span><span style="color:#e6db74"> words&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">with</span> open(<span style="color:#e6db74">&#34;output/article.md&#34;</span>, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f: f<span style="color:#f92672">.</span>write(self<span style="color:#f92672">.</span>state<span style="color:#f92672">.</span>final_article)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: ArticleFlow()<span style="color:#f92672">.</span>kickoff()
+</span></span></code></pre></div><h3 id="创建自定义工具">创建自定义工具<a hidden class="anchor" aria-hidden="true" href="#创建自定义工具">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># src/research_crew/tools/custom_tool.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai.tools <span style="color:#f92672">import</span> tool
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>(<span style="color:#e6db74">&#34;Web Search&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">web_search</span>(query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Search the web for information on a given query.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;https://serpapi.com/search&#34;</span>,
+</span></span><span style="display:flex;"><span>        params<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;q&#34;</span>: query, <span style="color:#e6db74">&#34;api_key&#34;</span>: <span style="color:#e6db74">&#34;$</span><span style="color:#e6db74">{SERPER_API_KEY}</span><span style="color:#e6db74">&#34;</span>}
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;organic_results&#34;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#34;snippet&#34;</span>]
+</span></span></code></pre></div><p>在你的 crew 中注册工具：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 在 crew.py 中，导入并附加</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_crew.tools.custom_tool <span style="color:#f92672">import</span> web_search
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@agent</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">researcher</span>(self) <span style="color:#f92672">-&gt;</span> Agent: <span style="color:#66d9ef">return</span> Agent(
+</span></span><span style="display:flex;"><span>        config<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>agents_config[<span style="color:#e6db74">&#34;researcher&#34;</span>],
+</span></span><span style="display:flex;"><span>        tools<span style="color:#f92672">=</span>[web_search],  <span style="color:#75715e"># 附加自定义工具</span>
+</span></span><span style="display:flex;"><span>        allow_delegation<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><h3 id="使用管理器智能体的层级过程">使用管理器智能体的层级过程<a hidden class="anchor" aria-hidden="true" href="#使用管理器智能体的层级过程">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@crew</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">crew</span>(self) <span style="color:#f92672">-&gt;</span> Crew: <span style="color:#66d9ef">return</span> Crew(
+</span></span><span style="display:flex;"><span>        agents<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>agents,
+</span></span><span style="display:flex;"><span>        tasks<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>tasks,
+</span></span><span style="display:flex;"><span>        process<span style="color:#f92672">=</span>Process<span style="color:#f92672">.</span>hierarchical,
+</span></span><span style="display:flex;"><span>        manager_llm<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openai/gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>        verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span></code></pre></div><h3 id="使用-fastapi-进行生产部署">使用 FastAPI 进行生产部署<a hidden class="anchor" aria-hidden="true" href="#使用-fastapi-进行生产部署">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># api_server.py — 生产部署</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI, BackgroundTasks
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> research_crew.crew <span style="color:#f92672">import</span> ResearchCrew
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> uuid
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI(title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CrewAI Research API&#34;</span>)
+</span></span><span style="display:flex;"><span>jobs: dict <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CrewRequest</span>(BaseModel): topic: str
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/research&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">start_research</span>(request: CrewRequest, background: BackgroundTasks): job_id <span style="color:#f92672">=</span> str(uuid<span style="color:#f92672">.</span>uuid4())
+</span></span><span style="display:flex;"><span>    jobs[job_id] <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;queued&#34;</span>, <span style="color:#e6db74">&#34;topic&#34;</span>: request<span style="color:#f92672">.</span>topic}
+</span></span><span style="display:flex;"><span>    background<span style="color:#f92672">.</span>add_task(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">lambda</span>: run_crew(job_id, request<span style="color:#f92672">.</span>topic)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;job_id&#34;</span>: job_id, <span style="color:#e6db74">&#34;status&#34;</span>: <span style="color:#e6db74">&#34;queued&#34;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/status/</span><span style="color:#e6db74">{job_id}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_status</span>(job_id: str): <span style="color:#66d9ef">return</span> jobs<span style="color:#f92672">.</span>get(job_id, {<span style="color:#e6db74">&#34;error&#34;</span>: <span style="color:#e6db74">&#34;Job not found&#34;</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_crew</span>(job_id: str, topic: str): jobs[job_id][<span style="color:#e6db74">&#34;status&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;running&#34;</span>
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> ResearchCrew()<span style="color:#f92672">.</span>crew()<span style="color:#f92672">.</span>kickoff(inputs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;topic&#34;</span>: topic})
+</span></span><span style="display:flex;"><span>    jobs[job_id][<span style="color:#e6db74">&#34;status&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;completed&#34;</span>
+</span></span><span style="display:flex;"><span>    jobs[job_id][<span style="color:#e6db74">&#34;result&#34;</span>] <span style="color:#f92672">=</span> result<span style="color:#f92672">.</span>raw
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 运行：uvicorn api_server:app --host 0.0.0.0 --port 8000</span>
+</span></span></code></pre></div><h2 id="基准测试--实际用例">基准测试 / 实际用例<a hidden class="anchor" aria-hidden="true" href="#基准测试--实际用例">#</a></h2>
+<h3 id="性能基准测试">性能基准测试<a hidden class="anchor" aria-hidden="true" href="#性能基准测试">#</a></h3>
+<p><img alt="CrewAI 基准测试图表 — 显示多智能体框架间的 token 效率对比，数据来源于 2026 年 5 月的社区基准测试" loading="lazy" src="https://docs.crewai.com/images/crewai-performance-chart.png"></p>
+<p>CrewAI 与其他框架在标准多智能体研究任务上的性能对比：</p>
+<p>| 指标 | CrewAI | AutoGen | LangGraph | Agno |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 首次成功运行所需时间 | ~15 分钟 | ~30 分钟 | ~60 分钟 | ~20 分钟 |
 | Token 成本（标准化） | 1.5–2x | 5–6x | 1x 基准 | 1.2x |
 | GitHub 星标 (2026年5月) | 51,759 | ~38,000 | ~28,000 | ~15,000 |
 | Hello-world 代码行数 | ~20 | ~40 | ~50 | ~25 |
 | 内置检查点 | 部分 | 无 | 是 (Postgres/Redis) | 无 |
 | 异步支持 | 是 | 是 | 是 | 是 |
-| 本地 LLM 支持 (Ollama) | 是 | 是 | 是 | 是 |</p><h3 id=实际用例>实际用例<a hidden class=anchor aria-hidden=true href=#实际用例>#</a></h3><p><strong>自动化研究报告：</strong> 一家金融科技初创公司使用 CrewAI 生成每日市场分析报告。研究员智能体抓取财务数据，分析智能体识别趋势，写作智能体生成最终报告 —— 全部在早上 8 点前完成。</p><p><strong>内容生产流水线：</strong> 一家媒体公司运行 4 智能体 crew 来撰写博客文章：研究 → 写作 → 编辑 → SEO 优化。产出从每周 3 篇增加到 12 篇。</p><p><strong>代码审查自动化：</strong> 一家 SaaS 团队使用 CrewAI 分流拉取请求。一个智能体总结变更，另一个检查安全模式，第三个生成审查评论。</p><h2 id=与流行工具集成>与流行工具集成<a hidden class=anchor aria-hidden=true href=#与流行工具集成>#</a></h2><h3 id=openai--anthropic--google-gemini>OpenAI / Anthropic / Google Gemini<a hidden class=anchor aria-hidden=true href=#openai--anthropic--google-gemini>#</a></h3><p>CrewAI 使用 LiteLLM 进行提供商无关的模型路由：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># agents.yaml — 每个智能体的模型选择</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>researcher: role</span>: <span style=color:#ae81ff>Research Analyst</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>llm</span>: <span style=color:#ae81ff>anthropic/claude-sonnet-4-20250514</span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># 或: openai/gpt-4o</span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># 或: gemini/gemini-2.0-flash</span>
-</span></span></code></pre></div><h3 id=ollama本地-llm>Ollama（本地 LLM）<a hidden class=anchor aria-hidden=true href=#ollama本地-llm>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>researcher: role</span>: <span style=color:#ae81ff>Research Analyst</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>llm</span>: <span style=color:#ae81ff>ollama/llama3.1</span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># 需要：ollama pull llama3.1</span>
-</span></span></code></pre></div><h3 id=langchain-工具>LangChain 工具<a hidden class=anchor aria-hidden=true href=#langchain-工具>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 在 CrewAI 中使用 LangChain 工具</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.tools <span style=color:#f92672>import</span> WikipediaQueryRun
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.utilities <span style=color:#f92672>import</span> WikipediaAPIWrapper
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>wiki_tool <span style=color:#f92672>=</span> WikipediaQueryRun(api_wrapper<span style=color:#f92672>=</span>WikipediaAPIWrapper())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    role<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Researcher&#34;</span>,
-</span></span><span style=display:flex><span>    goal<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Research topics thoroughly&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[wiki_tool],  <span style=color:#75715e># LangChain 工具直接可用</span>
-</span></span><span style=display:flex><span>    verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=llamaindexrag-集成>LlamaIndex（RAG 集成）<a hidden class=anchor aria-hidden=true href=#llamaindexrag-集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> llama_index.core <span style=color:#f92672>import</span> VectorStoreIndex, SimpleDirectoryReader
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> crewai.tools <span style=color:#f92672>import</span> tool
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@tool</span>(<span style=color:#e6db74>&#34;Document Search&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>document_search</span>(query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Search internal documents for relevant information.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    documents <span style=color:#f92672>=</span> SimpleDirectoryReader(<span style=color:#e6db74>&#34;./docs&#34;</span>)<span style=color:#f92672>.</span>load_data()
-</span></span><span style=display:flex><span>    index <span style=color:#f92672>=</span> VectorStoreIndex<span style=color:#f92672>.</span>from_documents(documents)
-</span></span><span style=display:flex><span>    query_engine <span style=color:#f92672>=</span> index<span style=color:#f92672>.</span>as_query_engine()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> str(query_engine<span style=color:#f92672>.</span>query(query))
-</span></span></code></pre></div><h3 id=docker-部署>Docker 部署<a hidden class=anchor aria-hidden=true href=#docker-部署>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:3.12-slim</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> pyproject.toml .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> src/ ./src/<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install crewai crewai-tools<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> crewai install<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>EXPOSE</span> <span style=color:#e6db74>8000</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;crewai&#34;</span>, <span style=color:#e6db74>&#34;run&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: crewai: build</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>env_file</span>: <span style=color:#ae81ff>.env</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./output:/app/output</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
-</span></span></code></pre></div><h2 id=与替代方案对比>与替代方案对比<a hidden class=anchor aria-hidden=true href=#与替代方案对比>#</a></h2><p>| 特性 | CrewAI | AutoGen | LangGraph | Agno |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 本地 LLM 支持 (Ollama) | 是 | 是 | 是 | 是 |</p>
+<h3 id="实际用例">实际用例<a hidden class="anchor" aria-hidden="true" href="#实际用例">#</a></h3>
+<p><strong>自动化研究报告：</strong> 一家金融科技初创公司使用 CrewAI 生成每日市场分析报告。研究员智能体抓取财务数据，分析智能体识别趋势，写作智能体生成最终报告 —— 全部在早上 8 点前完成。</p>
+<p><strong>内容生产流水线：</strong> 一家媒体公司运行 4 智能体 crew 来撰写博客文章：研究 → 写作 → 编辑 → SEO 优化。产出从每周 3 篇增加到 12 篇。</p>
+<p><strong>代码审查自动化：</strong> 一家 SaaS 团队使用 CrewAI 分流拉取请求。一个智能体总结变更，另一个检查安全模式，第三个生成审查评论。</p>
+<h2 id="与流行工具集成">与流行工具集成<a hidden class="anchor" aria-hidden="true" href="#与流行工具集成">#</a></h2>
+<h3 id="openai--anthropic--google-gemini">OpenAI / Anthropic / Google Gemini<a hidden class="anchor" aria-hidden="true" href="#openai--anthropic--google-gemini">#</a></h3>
+<p>CrewAI 使用 LiteLLM 进行提供商无关的模型路由：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># agents.yaml — 每个智能体的模型选择</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">researcher: role</span>: <span style="color:#ae81ff">Research Analyst</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">llm</span>: <span style="color:#ae81ff">anthropic/claude-sonnet-4-20250514</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 或: openai/gpt-4o</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 或: gemini/gemini-2.0-flash</span>
+</span></span></code></pre></div><h3 id="ollama本地-llm">Ollama（本地 LLM）<a hidden class="anchor" aria-hidden="true" href="#ollama本地-llm">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">researcher: role</span>: <span style="color:#ae81ff">Research Analyst</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">llm</span>: <span style="color:#ae81ff">ollama/llama3.1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 需要：ollama pull llama3.1</span>
+</span></span></code></pre></div><h3 id="langchain-工具">LangChain 工具<a hidden class="anchor" aria-hidden="true" href="#langchain-工具">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 在 CrewAI 中使用 LangChain 工具</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.tools <span style="color:#f92672">import</span> WikipediaQueryRun
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.utilities <span style="color:#f92672">import</span> WikipediaAPIWrapper
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>wiki_tool <span style="color:#f92672">=</span> WikipediaQueryRun(api_wrapper<span style="color:#f92672">=</span>WikipediaAPIWrapper())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    role<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Researcher&#34;</span>,
+</span></span><span style="display:flex;"><span>    goal<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Research topics thoroughly&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[wiki_tool],  <span style="color:#75715e"># LangChain 工具直接可用</span>
+</span></span><span style="display:flex;"><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="llamaindexrag-集成">LlamaIndex（RAG 集成）<a hidden class="anchor" aria-hidden="true" href="#llamaindexrag-集成">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_index.core <span style="color:#f92672">import</span> VectorStoreIndex, SimpleDirectoryReader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> crewai.tools <span style="color:#f92672">import</span> tool
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@tool</span>(<span style="color:#e6db74">&#34;Document Search&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">document_search</span>(query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Search internal documents for relevant information.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    documents <span style="color:#f92672">=</span> SimpleDirectoryReader(<span style="color:#e6db74">&#34;./docs&#34;</span>)<span style="color:#f92672">.</span>load_data()
+</span></span><span style="display:flex;"><span>    index <span style="color:#f92672">=</span> VectorStoreIndex<span style="color:#f92672">.</span>from_documents(documents)
+</span></span><span style="display:flex;"><span>    query_engine <span style="color:#f92672">=</span> index<span style="color:#f92672">.</span>as_query_engine()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> str(query_engine<span style="color:#f92672">.</span>query(query))
+</span></span></code></pre></div><h3 id="docker-部署">Docker 部署<a hidden class="anchor" aria-hidden="true" href="#docker-部署">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.12-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> pyproject.toml .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> src/ ./src/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install crewai crewai-tools<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> crewai install<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;crewai&#34;</span>, <span style="color:#e6db74">&#34;run&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: crewai: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>: <span style="color:#ae81ff">.env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./output:/app/output</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span></code></pre></div><h2 id="与替代方案对比">与替代方案对比<a hidden class="anchor" aria-hidden="true" href="#与替代方案对比">#</a></h2>
+<p>| 特性 | CrewAI | AutoGen | LangGraph | Agno |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 编排模型 | 基于角色的 crew | 对话式智能体 | 状态图 | 轻量级智能体 |
 | 原型开发速度 | 15 分钟（最快） | 30 分钟 | 60 分钟（最陡） | 20 分钟 |
 | Token 效率 | 中等 (1.5–2x) | 最高开销 (5–6x) | 最佳 (1x) | 良好 (1.2x) |
@@ -372,15 +765,73 @@ Token usage: UsageMetrics(total_tokens=18432, prompt_tokens=14201, ...)
 | 可观测性 | CrewAI+（成长中） | 基础 OTEL | LangSmith（深入） | 最小化 |
 | 学习曲线 | 低 | 中等 | 陡峭 | 低 |
 | 维护者势头 | 活跃 | 维护模式 | 活跃 | 活跃 |
-| 最适合 | 快速原型、基于角色的工作流 | 研究、代码编写智能体 | 有状态的生产工作流 | 简单智能体任务 |</p><h2 id=局限性--诚实评估>局限性 / 诚实评估<a hidden class=anchor aria-hidden=true href=#局限性--诚实评估>#</a></h2><p><strong>CrewAI 不适合的场景：</strong></p><ol><li><p><strong>复杂状态机：</strong> 如果你的工作流需要带有分支和时间旅行调试的循环图，LangGraph 的显式图模型更合适。</p></li><li><p><strong>超高量生产：</strong> 与 LangGraph 的完整状态持久化相比，CrewAI 的检查点是部分的。对于每天需要审计追踪的数千次运行，LangGraph 经过了更多生产验证。</p></li><li><p><strong>Token 敏感预算：</strong> CrewAI 的智能体默认较为冗长。在同等任务上，预计 Token 消耗是 LangGraph 的 1.5–2 倍。中等生产工作负载的预算约为每月 $100–$500。</p></li><li><p><strong>实时延迟要求：</strong> 多智能体编排增加了固有延迟。一个使用 GPT-4o 的 3 智能体顺序 crew 需要 45–90 秒。不适合亚秒级响应需求。</p></li><li><p><strong>深度可观测性：</strong> CrewAI+ 提供监控，但 LangSmith 提供更深入的追踪，包括每个节点的 Token 核算和重放功能。</p></li></ol><h2 id=常见问题解答>常见问题解答<a hidden class=anchor aria-hidden=true href=#常见问题解答>#</a></h2><p><strong>Q: CrewAI 需要什么 Python 版本？</strong>
-A: CrewAI 需要 Python 3.10 至 3.13。不支持 Python 3.9 或更早版本。使用 <code>pyenv</code> 在系统上管理多个 Python 版本。</p><p><strong>Q: 如何安装支持本地 LLM 的 CrewAI？</strong>
-A: 正常使用 <code>pip install crewai</code> 安装，然后单独安装 Ollama。在智能体配置中设置 <code>llm: ollama/llama3.1</code>（或你偏好的模型）。本地推理不需要 API 密钥。</p><p><strong>Q: CrewAI 可以使用非 OpenAI 模型吗？</strong>
-A: 可以。CrewAI 支持任何 LiteLLM 兼容的模型，包括 Anthropic Claude、Google Gemini、Azure OpenAI、DeepSeek、Mistral 以及通过 Ollama 的本地模型。在智能体配置中使用 <code>provider/model-name</code> 格式。</p><p><strong>Q: CrewAI Crews 和 Flows 的区别是什么？</strong>
-A: Crews 是通过顺序、层级或并行过程协作完成任务的智能体团队。Flows 是通过条件逻辑、通过 Pydantic 模型进行状态管理和分支来串联多个 crew 的事件驱动工作流。Crews 用于单工作流协作，Flows 用于多阶段流水线。</p><p><strong>Q: 在生产环境中运行 CrewAI crew 的成本是多少？</strong>
-A: 对于每天运行 100 次的 3 智能体 crew 使用 GPT-4o，预计 LLM API 成本约为每月 $100–$300。为简单任务使用 GPT-4o-mini 等更便宜的模型可以将成本降低 40–60%。CrewAI 本身是免费开源的（MIT 许可证）。</p><p><strong>Q: 如何调试输出质量不佳的 CrewAI 智能体？</strong>
-A: 在智能体上设置 <code>verbose: true</code> 以查看其思考过程。使用 <code>max_iter</code> 限制推理循环。添加结构化输出模式来强制格式。在每次运行后查看 Token 使用指标。对于持续存在的问题，简化任务描述并验证工具配置。</p><p><strong>Q: CrewAI 对于企业使用是否已具备生产就绪性？</strong>
-A: 对于中小规模的生产工作负载，是的。CrewAI+ 增加了托管可观测性和部署功能，起价为每月 $99。对于高容量或需要审计的关键工作负载，考虑将 CrewAI 与自定义检查点配对或评估 LangGraph。</p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其基于角色的抽象 —— 具有明确定义角色、目标和背景故事的智能体协作完成任务 —— 与团队的实际工作方式清晰对应。在 30 分钟内，你可以安装 CrewAI、搭建项目、定义智能体和任务，并运行你的第一个 crew。对于生产环境，添加 Flows 进行事件驱动编排，使用 FastAPI 提供 HTTP 端点，使用 Docker 进行部署。</p><p><strong>今天开始的行动项目：</strong></p><ol><li>安装 CrewAI：<code>pip install crewai</code></li><li>搭建你的第一个项目：<code>crewai create crew my_project</code></li><li>在 <code>agents.yaml</code> 中定义 2–3 个具有不同角色的智能体</li><li>使用 ````crewai run``` 运行你的 crew</li><li>加入 CrewAI 社区获取支持和高级模式</li></ol><p>加入 Telegram 讨论：<a href=https://t.me/dibi8tech>加入 dibi8.com 社区</a> 获取多智能体 AI 技巧和生产部署策略。</p><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h2><ul><li><a href=https://github.com/crewAIInc/crewAI>CrewAI GitHub 仓库</a></li><li><a href=https://docs.crewai.com/en/introduction>CrewAI 官方文档</a></li><li><a href=https://docs.crewai.com/en/quickstart>CrewAI 快速入门指南</a></li><li><a href=https://docs.crewai.com/en/concepts/flows>CrewAI Flows 文档</a></li><li><a href=https://docs.crewai.com/en/concepts/tools>CrewAI 工具参考</a></li><li><a href=https://rightaichoice.com/compare/langgraph-vs-crewai-vs-autogen>LangGraph vs CrewAI vs AutoGen 对比 2026</a></li><li><a href=https://tech-insider.org/crewai-tutorial-multi-agent-ai-python-2026/>CrewAI 多智能体教程 2026</a></li><li><a href=https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md>CrewAI + IBM watsonx 教程</a></li></ul><p><em>披露声明：本文包含联盟链接。如果你点击链接并进行购买，我们可能会获得佣金，无需额外费用。这有助于支持我们独立的技术研究、测试和免费教育内容的创建。所有推荐均基于我们对工具自行评估的结果。</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 最适合 | 快速原型、基于角色的工作流 | 研究、代码编写智能体 | 有状态的生产工作流 | 简单智能体任务 |</p>
+<h2 id="局限性--诚实评估">局限性 / 诚实评估<a hidden class="anchor" aria-hidden="true" href="#局限性--诚实评估">#</a></h2>
+<p><strong>CrewAI 不适合的场景：</strong></p>
+<ol>
+<li>
+<p><strong>复杂状态机：</strong> 如果你的工作流需要带有分支和时间旅行调试的循环图，LangGraph 的显式图模型更合适。</p>
+</li>
+<li>
+<p><strong>超高量生产：</strong> 与 LangGraph 的完整状态持久化相比，CrewAI 的检查点是部分的。对于每天需要审计追踪的数千次运行，LangGraph 经过了更多生产验证。</p>
+</li>
+<li>
+<p><strong>Token 敏感预算：</strong> CrewAI 的智能体默认较为冗长。在同等任务上，预计 Token 消耗是 LangGraph 的 1.5–2 倍。中等生产工作负载的预算约为每月 $100–$500。</p>
+</li>
+<li>
+<p><strong>实时延迟要求：</strong> 多智能体编排增加了固有延迟。一个使用 GPT-4o 的 3 智能体顺序 crew 需要 45–90 秒。不适合亚秒级响应需求。</p>
+</li>
+<li>
+<p><strong>深度可观测性：</strong> CrewAI+ 提供监控，但 LangSmith 提供更深入的追踪，包括每个节点的 Token 核算和重放功能。</p>
+</li>
+</ol>
+<h2 id="常见问题解答">常见问题解答<a hidden class="anchor" aria-hidden="true" href="#常见问题解答">#</a></h2>
+<p><strong>Q: CrewAI 需要什么 Python 版本？</strong>
+A: CrewAI 需要 Python 3.10 至 3.13。不支持 Python 3.9 或更早版本。使用 <code>pyenv</code> 在系统上管理多个 Python 版本。</p>
+<p><strong>Q: 如何安装支持本地 LLM 的 CrewAI？</strong>
+A: 正常使用 <code>pip install crewai</code> 安装，然后单独安装 Ollama。在智能体配置中设置 <code>llm: ollama/llama3.1</code>（或你偏好的模型）。本地推理不需要 API 密钥。</p>
+<p><strong>Q: CrewAI 可以使用非 OpenAI 模型吗？</strong>
+A: 可以。CrewAI 支持任何 LiteLLM 兼容的模型，包括 Anthropic Claude、Google Gemini、Azure OpenAI、DeepSeek、Mistral 以及通过 Ollama 的本地模型。在智能体配置中使用 <code>provider/model-name</code> 格式。</p>
+<p><strong>Q: CrewAI Crews 和 Flows 的区别是什么？</strong>
+A: Crews 是通过顺序、层级或并行过程协作完成任务的智能体团队。Flows 是通过条件逻辑、通过 Pydantic 模型进行状态管理和分支来串联多个 crew 的事件驱动工作流。Crews 用于单工作流协作，Flows 用于多阶段流水线。</p>
+<p><strong>Q: 在生产环境中运行 CrewAI crew 的成本是多少？</strong>
+A: 对于每天运行 100 次的 3 智能体 crew 使用 GPT-4o，预计 LLM API 成本约为每月 $100–$300。为简单任务使用 GPT-4o-mini 等更便宜的模型可以将成本降低 40–60%。CrewAI 本身是免费开源的（MIT 许可证）。</p>
+<p><strong>Q: 如何调试输出质量不佳的 CrewAI 智能体？</strong>
+A: 在智能体上设置 <code>verbose: true</code> 以查看其思考过程。使用 <code>max_iter</code> 限制推理循环。添加结构化输出模式来强制格式。在每次运行后查看 Token 使用指标。对于持续存在的问题，简化任务描述并验证工具配置。</p>
+<p><strong>Q: CrewAI 对于企业使用是否已具备生产就绪性？</strong>
+A: 对于中小规模的生产工作负载，是的。CrewAI+ 增加了托管可观测性和部署功能，起价为每月 $99。对于高容量或需要审计的关键工作负载，考虑将 CrewAI 与自定义检查点配对或评估 LangGraph。</p>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>CrewAI 提供了从想法到可运行的多智能体系统的最快路径。其基于角色的抽象 —— 具有明确定义角色、目标和背景故事的智能体协作完成任务 —— 与团队的实际工作方式清晰对应。在 30 分钟内，你可以安装 CrewAI、搭建项目、定义智能体和任务，并运行你的第一个 crew。对于生产环境，添加 Flows 进行事件驱动编排，使用 FastAPI 提供 HTTP 端点，使用 Docker 进行部署。</p>
+<p><strong>今天开始的行动项目：</strong></p>
+<ol>
+<li>安装 CrewAI：<code>pip install crewai</code></li>
+<li>搭建你的第一个项目：<code>crewai create crew my_project</code></li>
+<li>在 <code>agents.yaml</code> 中定义 2–3 个具有不同角色的智能体</li>
+<li>使用 ````crewai run``` 运行你的 crew</li>
+<li>加入 CrewAI 社区获取支持和高级模式</li>
+</ol>
+<p>加入 Telegram 讨论：<a href="https://t.me/dibi8tech">加入 dibi8.com 社区</a> 获取多智能体 AI 技巧和生产部署策略。</p>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="来源与延伸阅读">来源与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#来源与延伸阅读">#</a></h2>
+<ul>
+<li><a href="https://github.com/crewAIInc/crewAI">CrewAI GitHub 仓库</a></li>
+<li><a href="https://docs.crewai.com/en/introduction">CrewAI 官方文档</a></li>
+<li><a href="https://docs.crewai.com/en/quickstart">CrewAI 快速入门指南</a></li>
+<li><a href="https://docs.crewai.com/en/concepts/flows">CrewAI Flows 文档</a></li>
+<li><a href="https://docs.crewai.com/en/concepts/tools">CrewAI 工具参考</a></li>
+<li><a href="https://rightaichoice.com/compare/langgraph-vs-crewai-vs-autogen">LangGraph vs CrewAI vs AutoGen 对比 2026</a></li>
+<li><a href="https://tech-insider.org/crewai-tutorial-multi-agent-ai-python-2026/">CrewAI 多智能体教程 2026</a></li>
+<li><a href="https://github.com/IBM/ibmdotcom-tutorials/blob/main/crew-ai-projects/crewAI-multiagent-retail-example.md">CrewAI + IBM watsonx 教程</a></li>
+</ul>
+<p><em>披露声明：本文包含联盟链接。如果你点击链接并进行购买，我们可能会获得佣金，无需额外费用。这有助于支持我们独立的技术研究、测试和免费教育内容的创建。所有推荐均基于我们对工具自行评估的结果。</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;CrewAI: 51000+ Star 构建多智能体 AI 团队 — 完整设置指南 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -394,18 +845,186 @@ A: 对于中小规模的生产工作负载，是的。CrewAI+ 增加了托管可
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/crewai%22>https://dibi8.com/zh/resources/crewai"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/crewai%22">https://dibi8.com/zh/resources/crewai"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/crewai/>tradingagents-llm-multi-agent-trading-framework-2026</a></li><li><a href=/zh/ai-coding-agents/crewai/>tradingagents-llm-multi-agent-trading-framework-2026</a></li><li><a href=/zh/ai-coding-agents/crewai/>ai-engineering-from-scratch</a></li><li><a href=/zh/ai-coding-agents/crewai/>ray-distributed-ai-framework-complete-guide</a></li><li><a href=/zh/ai-coding-agents/crewai/>cleanlab-11k-star-ai-data-cleaning</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/crewai-multi-agent-orchestration/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/cross-border-ai-marketing-stack/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/crewai/">tradingagents-llm-multi-agent-trading-framework-2026</a></li>
+<li><a href="/zh/ai-coding-agents/crewai/">tradingagents-llm-multi-agent-trading-framework-2026</a></li>
+<li><a href="/zh/ai-coding-agents/crewai/">ai-engineering-from-scratch</a></li>
+<li><a href="/zh/ai-coding-agents/crewai/">ray-distributed-ai-framework-complete-guide</a></li>
+<li><a href="/zh/ai-coding-agents/crewai/">cleanlab-11k-star-ai-data-cleaning</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/crewai-multi-agent-orchestration/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/cross-border-ai-marketing-stack/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

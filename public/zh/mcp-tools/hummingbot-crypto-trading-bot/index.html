@@ -1,10 +1,333 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/mcp-tools/hummingbot-crypto-trading-bot/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/zh/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"引言：为什么大多数交易机器人会失败 每个加密货币交易者都有过这样的经历 —— 你发现了Binance和Coinbase之间的套利机会，但等你手动转账并执行两边交易时，价差已经消失了。或者更糟：你花钱买了\"专业\"的黑盒机器人，结果发现它只是开源项目换个皮，价格翻了20倍，而且没有技术支持。\n来看看真实数据。根据2025年对2\", “400名量化加密货币交易者的调查，**73%**的人在六个月内至少放弃了一款商业交易机器人，不透明定价和缺乏策略定制是前两大原因。剩下的27%？大多数人转向了开源替代方案。\n这就是 Hummingbot —— 采用Apache-2.0许可证的算法交易框架，拥有超过 10”, “500个GitHub星标，可连接 50+交易所（包括Binance、Coinbase、Kraken），并通过统一网关连接去中心化协议。在本指南中，你将在五分钟内从零开始运行一个做市机器人，然后扩展到生产级策略。\n联盟营销说明： 本指南包含交易所联盟链接。通过 Binance” 或 OKX 注册，无需额外费用即可支持本项目。如需AI增强交易，请查看 Minara。\nHummingbot 是什么？ Hummingbot是一个用于构建和运行自动化加密货币交易策略的开源框架。最初由CoinAlpha于2019年推出，现已发展成为社区维护的强大工具，支持：\n中心化交易所（CEX）： Binance、Coinbase、Kraken、KuCoin、Gate.io、Bybit等40+交易所 去中心化交易所（DEX）： Uniswap、PancakeSwap、TraderJoe等（通过Hummingbot Gateway） 策略类型： 做市、套利、跨所做市、永续合约、自定义脚本 部署模式： Docker容器、源码安装、云VPS 最新的v2.0版本（2026年3月发布）引入了模块化架构、可插拔连接器、统一投资组合管理和改进的回测功能。\nHummingbot 的工作原理：架构概览 Hummingbot的架构遵循清晰的责任分离：\n┌─────────────────────────────────────────────────────┐ │ 策略层（Strategy Layer） │ │ （纯做市 / 套利 / 自定义脚本） │ ├─────────────────────────────────────────────────────┤ │ 连接器层（Connector Layer） │ │ （Binance / Coinbase / Kraken / Gateway / ...） │ ├─────────────────────────────────────────────────────┤ │ 核心引擎（Core Engine） │ │ （订单管理 / 投资组合 / 事件循环） │ ├─────────────────────────────────────────────────────┤ │ 基础设施（Infrastructure） │ │ （Docker / 配置 / 日志 / SQLite数据库） │ └─────────────────────────────────────────────────────┘ 核心循环工作原理：\n策略（Strategy） 定义订单参数（价差、库存偏移、刷新时间） 连接器（Connector） 将特定交易所API归一化为统一接口 引擎（Engine） 管理订单生命周期、追踪成交、处理错误 数据库（Database） 持久化交易、余额和策略状态 Hummingbot Gateway 值得特别关注。它是一个独立的Node.js服务，将Hummingbot桥接到EVM兼容的DEX。当你在Uniswap上交易时，Hummingbot向Gateway发送指令，Gateway通过你的钱包（如MetaMask）构建并提交区块链交易。\n安装与配置：5分钟快速开始 前置条件 Docker Engine 24.0+ 或 Docker Desktop 一个有资金的交易所账户（推荐使用 Binance，适合初学者） 具有交易权限的API密钥 步骤一：拉取并运行Hummingbot # 创建Hummingbot文件目录 mkdir -p hummingbot_files/hummingbot_conf mkdir -p hummingbot_files/hummingbot_logs mkdir -p hummingbot_files/hummingbot_data # 拉取最新Docker镜像 docker pull hummingbot/hummingbot:latest # 以交互模式运行Hummingbot docker run -it --name hummingbot \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data\" \\ hummingbot/hummingbot:latest 容器启动后，你将看到Hummingbot命令行界面：\n╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌ ╠╣ │ │ │ │ │ │ │ │├┤ │││ ╚ └─┘ ┴ ┴ ┴ ┴ └─┘└─┘┘└┘ Version: 2.0.0 Enter \"config\" to configure a strategy Enter \"start\" to start the current strategy \u003e\u003e\u003e 步骤二：连接你的交易所 # 在Hummingbot CLI中 \u003e\u003e\u003e connect binance # 输入你的API密钥 Enter your Binance API key \u003e\u003e\u003e YOUR_API_KEY # 输入你的API密钥 Enter your Binance API secret \u003e\u003e\u003e YOUR_API_SECRET # 验证连接 \u003e\u003e\u003e balance Updating balances, please wait... binance: asset amount USDT 1,234.56 BTC 0.0234 ETH 1.5678 步骤三：配置纯做市策略 # 创建新策略配置 \u003e\u003e\u003e create # 选择策略 What is your market making strategy? (pure_market_making/cross_exchange_market_making/arbitrage) \u003e\u003e\u003e pure_market_making # 选择交易对 Enter the token trading pair you would like to trade on binance (e.g., BTC-USDT) \u003e\u003e\u003e BTC-USDT # 设置买卖价差（0.5%） What is the bid spread? (Enter 0.01 for 1%) \u003e\u003e\u003e 0.005 What is the ask spread? (Enter 0.01 for 1%) \u003e\u003e\u003e 0.005 # 设置订单刷新时间 How often do you want to cancel and replace orders (in seconds)? \u003e\u003e\u003e 30 # 设置订单数量 What is the amount of BTC per order? \u003e\u003e\u003e 0.001 步骤四：开始交易 # 确认配置 \u003e\u003e\u003e config # 启动策略 \u003e\u003e\u003e start The pure_market_making strategy is starting. Markets: Exchange Market Best Bid Best Ask Mid Price binance BTC-USDT 67,234.50 67,245.00 67,239.75 Orders: Level Type Price Amount Spread Order ID 1 buy 66,898.30 0.001 0.50% ... 1 sell 67,581.20 0.001 0.50% ... 步骤五：后台运行（分离模式） # 退出Hummingbot但保持容器运行 Ctrl+P then Ctrl+Q # 或从一开始就使用分离模式启动 docker run -d --name hummingbot \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data\" \\ hummingbot/hummingbot:latest # 附加到容器查看状态 docker attach hummingbot # 然后再次使用 Ctrl+P, Ctrl+Q 分离 与交易所和工具的集成 Binance现货与合约 Binance是最受欢迎的连接器，支持现货和U本位合约。连接器自动处理速率限制 —— 遵循Binance的 每分钟1,200请求权重 限制，并采用自适应退避策略。\n# conf/connectors/binance.yml connector: binance api_key: ${BINANCE_API_KEY} api_secret: ${BINANCE_API_SECRET} rate_limit: adaptive timeout: 10 use_futures: false Coinbase Advanced Trade Coinbase使用不同的认证方式（2024年后采用基于JWT的认证）。Hummingbot的Coinbase连接器在内部处理JWT签名：\n\u003e\u003e\u003e connect coinbase_advanced_trade Enter your Coinbase API key (UUID format) \u003e\u003e\u003e xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx Enter your Coinbase API secret \u003e\u003e\u003e YOUR_PRIVATE_KEY Hummingbot Gateway 进行DEX交易 对于Uniswap、PancakeSwap和其他DEX，你需要Gateway服务：\n# 拉取并运行Gateway docker pull hummingbot/gateway:latest docker run -d --name gateway \\ -p 15888:15888 \\ --env GATEWAY_PASSPHRASE=your_secure_passphrase \\ hummingbot/gateway:latest # 在Hummingbot中连接到Gateway \u003e\u003e\u003e gateway connect uniswap_ethereum_mainnet # Gateway配置：以太坊主网上的Uniswap networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY chain_id: 1 token_list_type: FILE token_list_source: /home/gateway/conf/lists/ethereum_token_list.json connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564 Telegram通知 # conf/telegram.yml telegram_enabled: true telegram_token: \"YOUR_BOT_TOKEN\" telegram_chat_id: \"YOUR_CHAT_ID\" notify_events: - order_filled - trade_completed - strategy_error 导出数据到Grafana Hummingbot将所有交易记录到SQLite数据库。你可以导出到Prometheus/Grafana进行可视化：\n# SQLite查询示例 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \\ \"SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;\" 基准测试与真实用例 按策略类型划分的性能对比 | 策略类型 | 日均交易次数 | 平均价差捕获 | 交易所延迟 | 适用场景 | |\n|\n|\n|\n|\n| | 纯做市 | 150-400 | 0.3-0.8% | 50-200ms | 流动性好的交易对 | | 跨所做市 | 80-200 | 0.5-1.2% | 100-300ms | BTC/ETH跨所套利 | | 套利 | 20-60 | 1.0-3.0% | 80-250ms | 高波动时期 | | 永续做市 | 100-300 | 0.4-1.0% | 60-200ms | 资金费率套利 |\n案例研究：Binance上BTC-USDT做市 一位社区成员分享了在BTC-USDT上运行 30天 纯做市策略的数据，使用 $5,000 资金：\n总交易次数： 8,247 Maker手续费（0.02%）： 0.412 BTC 价差捕获（平均）： 0.42% 库存周转率： 1.8x/天 PnL（税前）： +2.14%/月 PnL（税后）： +1.72%/月 夏普比率： 1.34 最大回撤： 1.2% 资源占用 Hummingbot设计轻量：\n| 资源 | 空闲 | 活跃（1个策略） | 活跃（5个策略） | |\n|\n|\n|\n| | CPU | \u003c1% | 5-15% | 20-40% | | RAM | 80MB | 200-400MB | 800MB-1.5GB | | 网络 | ~0 | 5-20 KB/s | 20-80 KB/s | | 磁盘（每天） | ~0 | 5-20MB日志 | 20-100MB日志 |\n这些数据使得Hummingbot可以在 $5/月的VPS 上单策略部署。\n高级用法与生产环境加固 用Python编写自定义策略 Hummingbot v2.0的脚本策略接口允许你用纯Python编写逻辑：\n# strategies/my_custom_mm.py from decimal import Decimal from hummingbot.strategy.script_strategy_base import ScriptStrategyBase from hummingbot.core.data_type.common import OrderType, TradeType class CustomMarketMaker(ScriptStrategyBase): \"\"\" Dynamic spread market maker that adjusts based on volatility. \"\"\" spread_base = Decimal(\"0.005\") # 0.5% base spread spread_multiplier = Decimal(\"2.0\") # 波动大时价差加倍 order_amount = Decimal(\"0.001\") # 每笔订单BTC数量 order_refresh_time = 30.0 # 秒 volatility_threshold = Decimal(\"0.02\") # 2%价格变动=高波动 def __init__(self): super().__init__() self.last_mid_price = None self.is_volatile = False def on_tick(self): mid_price = self.connectors[\"binance\"].get_mid_price(\"BTC-USDT\") # Detect volatility if self.last_mid_price: change = abs(mid_price - self.last_mid_price) / self.last_mid_price self.is_volatile = change \u003e self.volatility_threshold self.last_mid_price = mid_price # Adjust spread spread = self.spread_base if self.is_volatile: spread *= self.spread_multiplier buy_price = mid_price * (Decimal(\"1\") - spread) sell_price = mid_price * (Decimal(\"1\") + spread) # Cancel existing orders self.cancel_all_orders() # Place new orders self.buy(\"binance\", \"BTC-USDT\", self.order_amount, OrderType.LIMIT, buy_price) self.sell(\"binance\", \"BTC-USDT\", self.order_amount, OrderType.LIMIT, sell_price) def cancel_all_orders(self): for order in self.get_active_orders(\"binance\"): self.cancel(order) 基于库存管理的订单偏移 # 添加到你的策略中实现库存偏移 def calculate_inventory_skew(self): \"\"\"Adjust order sizes based on inventory ratio.\"\"\" base_balance = self.connectors[\"binance\"].get_balance(\"BTC\") quote_balance = self.connectors[\"binance\"].get_balance(\"USDT\") mid_price = self.connectors[\"binance\"].get_mid_price(\"BTC-USDT\") base_value = base_balance * mid_price total_value = base_value + quote_balance inventory_ratio = base_value / total_value target_ratio = Decimal(\"0.5\") # 50/50目标 # Skew orders based on inventory if inventory_ratio \u003e target_ratio: # BTC持仓过多，减少买单 self.buy_multiplier = Decimal(\"0.5\") self.sell_multiplier = Decimal(\"1.5\") else: self.buy_multiplier = Decimal(\"1.5\") self.sell_multiplier = Decimal(\"0.5\") 使用历史数据回测 # 下载历史交易数据 python scripts/download_historical_data.py \\ --exchange binance \\ --trading-pair BTC-USDT \\ --start-date 2026-01-01 \\ --end-date 2026-03-31 \\ --interval 1m # 运行回测 python scripts/backtest.py \\ --strategy pure_market_making \\ --config conf/strategies/pmm_btc.yml \\ --data data/binance_BTC-USDT_1m.csv \\ --output results/btc_pmm_backtest.html 回测结果（2026-01-01 至 2026-03-31） 总交易次数： 12,450 总收益： +5.23% 夏普比率： 2.14 最大回撤： -2.1% 平均持仓时间： 18.4分钟 胜率： 62.3% 盈亏比： 1.48 模拟交易模式 在实盘交易之前，始终先在模拟模式下测试：\n# 在配置中启用模拟交易 paper_trade_enabled: true paper_trade_account_balance: BTC: 1.0 USDT: 50000.0 # 模拟交易会显示[PAPER]前缀 \u003e\u003e\u003e status Markets: [PAPER] binance BTC-USDT 67,234.50 67,245.00 67,239.75 生产环境Docker Compose配置 # docker-compose.yml version: '3.8' services: hummingbot: image: hummingbot/hummingbot:2.0.0 container_name: hummingbot_prod restart: unless-stopped volumes: - ./conf:/conf - ./logs:/logs - ./data:/data environment: - CONFIG_PASSWORD=${HBOT_PASSWORD} - STRATEGY=pure_market_making - CONFIG_FILE=pmm_btc_usdt.yml logging: driver: \"json-file\" options: max-size: \"50m\" max-file: \"5\" deploy: resources: limits: memory: 2G cpus: '1.0' healthcheck: test: [\"CMD\", \"python\", \"-c\", \"import urllib.request; urllib.request.urlopen('http://localhost:15888/')\"] interval: 30s timeout: 10s retries: 3 安全检查清单 # 1. 使用IP白名单API密钥（Binance支持） # 2. 在API密钥上启用提币限制 # 3. 在隔离的Docker网络中运行 # 4. 加密配置文件 # 加密敏感配置 openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc 与替代方案对比 | 功能 | Hummingbot | Freqtrade | 3Commas | Gunbot | |\n|\n|\n|\n|\n| | 许可证 | Apache-2.0 | GPL-3.0 | 专有 | 专有 | | CEX连接器 | 50+ | 20+ | 15+ | 10+ | | DEX支持 | 是（Gateway） | 有限 | 否 | 否 | | 策略语言 | Python | Python | 可视化/UI | JavaScript | | 自定义策略 | 完整Python | 完整Python | 有限 | 脚本 | | 回测 | 是 | 是（高级） | 有限 | 否 | | 模拟交易 | 是 | 是 | 是 | 有限 | | 自托管 | 是 | 是 | 否 | 是 | | 成本 | 免费 | 免费 | $29-99/月 | $299一次性 | | 社区规模 | 10.5K星标 | 37K星标 | N/A | N/A | | Telegram机器人 | 是 | 是 | 是 | 是 | | 做市能力 | 优秀 | 基础 | 良好 | 中等 |\n选择建议：\nHummingbot： 最适合做市和CEX+DEX组合策略 Freqtrade： 最适合基于机器学习的方向性策略（了解更多） 3Commas： 最适合想要SaaS且设置最少的新手 Gunbot： 最适合想要一次性付费和简单机器人的交易者 局限性与诚实的评估 Hummingbot不是印钞机。 在部署资金之前，请了解以下限制：\n做市需要库存。 你需要同时拥有基础资产和计价资产。资金少于 $1,000 时，手续费通常会吃掉大部分利润。\n延迟很重要。 如果你的VPS在新加坡而Binance的撮合引擎在东京，你相比同地点做市商处于劣势。考虑使用低延迟VPS服务。\n策略开发有学习曲线。 虽然快速入门只需几分钟，但编写盈利性自定义策略需要理解订单簿动态、库存风险和逆向选择。\nGateway DEX交易需要gas费。 在以太坊主网上，一次Uniswap交易可能需要$5-20的gas费。请将此纳入价差计算。\n不是所有交易所都一样。 某些连接器（Binance、Coinbase）经过充分测试。其他可能有bug或不完整 —— 务必先在模拟交易中测试。\n常见问题解答 使用Hummingbot需要多少资金？ 对于BTC-USDT等流动性好的交易对，建议最少 $2,000-5,000。这覆盖了订单簿两边并吸收手续费。用于测试的话，可以用$0进行模拟交易，或在低市值交易对上以$500运行 —— 但需注意更高的波动风险。\n在Hummingbot中使用交易所API密钥安全吗？ Hummingbot在本地Docker卷中存储API密钥。代码是开源且可审计的。最佳实践：创建仅具有交易权限的API密钥（无提币权限），将其IP限制到你的VPS，且切勿将配置提交到Git。该项目已通过多家第三方安全公司审计。\n可以同时运行多个策略吗？ 可以。启动多个Docker容器，每个容器有自己的配置目录和策略文件。单个容器运行一个策略，但在 $10/月的VPS 上可以同时运行5-10个策略。资源占用线性增长。\nHummingbot与3Commas等付费机器人相比如何？ Hummingbot免费、开源且完全可定制 —— 但需要技术设置。3Commas是SaaS服务，有友好的用户界面，但每月花费$29-99且策略定制受限。如果你能写Python并管理VPS，Hummingbot给你更多控制权且零成本。如果你想要一键设置，付费服务可能值得考虑。\nGateway和普通连接器有什么区别？ 普通连接器通过REST/WebSocket与中心化交易所API交互。Hummingbot Gateway 是一个独立服务，为Uniswap V3等DEX协议创建区块链交易。Gateway要求你自行管理钱包私钥并支付gas费。它增加了复杂性，但解锁了去中心化交易。\n如何将Hummingbot更新到新版本？ # 拉取最新镜像 docker pull hummingbot/hummingbot:latest # 停止并删除旧容器 docker stop hummingbot \u0026\u0026 docker rm hummingbot # 使用相同的卷挂载重新启动 docker run -it --name hummingbot \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs\" \\ hummingbot/hummingbot:latest 你的配置存储在挂载卷中，会持久保留。\nHummingbot可以用于期货/永续合约交易吗？ 可以。Binance、Bybit和OKX连接器支持永续合约。将 ````domain``` 参数设置为合约子域名，并谨慎配置杠杆。在理解资金费率机制之前，建议使用 1x-3x杠杆。\n结论：今天就开始算法交易 Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器、Docker 5分钟部署和完整的Python扩展性，它在可访问性和强大功能之间取得了平衡。\n你的下一步：\n在 Binance 或 OKX 注册 并创建API密钥 使用上方Docker快速指南部署Hummingbot 在投入真实资金前先用模拟交易运行1周 加入社区 —— Hummingbot Discord 有15,000+活跃交易者分享策略 探索AI增强交易 通过 Minara 实现机器学习驱动的信号生成 加入我们的开发者Telegram社区：t.me/dibi8developers —— 我们每天讨论机器人策略、交易所集成和生产环境部署。\n来源与延伸阅读 Hummingbot 官方文档 Hummingbot GitHub 仓库 Hummingbot Gateway 文档 Hummingbot 学院（策略指南） Binance API 文档 Coinbase Advanced Trade API Uniswap V3 文档 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n联盟营销披露 本指南包含 Binance、OKX 和 Minara 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot\" } } Why This Matters Understanding hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~7 minutes\nFrequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n","wordCount":"1547","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/mcp-tools/>MCP Tools - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ko/mcp-tools/hummingbot-crypto-trading-bot/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bc%95%e8%a8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a4%a7%e5%a4%9a%e6%95%b0%e4%ba%a4%e6%98%93%e6%9c%ba%e5%99%a8%e4%ba%ba%e4%bc%9a%e5%a4%b1%e8%b4%a5 aria-label=引言：为什么大多数交易机器人会失败>引言：为什么大多数交易机器人会失败</a></li><li><a href=#hummingbot-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Hummingbot 是什么？">Hummingbot 是什么？</a></li><li><a href=#hummingbot-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88 aria-label="Hummingbot 的工作原理：架构概览">Hummingbot 的工作原理：架构概览</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae5%e5%88%86%e9%92%9f%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b aria-label=安装与配置：5分钟快速开始>安装与配置：5分钟快速开始</a><ul><li><a href=#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6 aria-label=前置条件>前置条件</a></li><li><a href=#%e6%ad%a5%e9%aa%a4%e4%b8%80%e6%8b%89%e5%8f%96%e5%b9%b6%e8%bf%90%e8%a1%8chummingbot aria-label=步骤一：拉取并运行Hummingbot>步骤一：拉取并运行Hummingbot</a></li><li><a href=#%e6%ad%a5%e9%aa%a4%e4%ba%8c%e8%bf%9e%e6%8e%a5%e4%bd%a0%e7%9a%84%e4%ba%a4%e6%98%93%e6%89%80 aria-label=步骤二：连接你的交易所>步骤二：连接你的交易所</a></li><li><a href=#%e6%ad%a5%e9%aa%a4%e4%b8%89%e9%85%8d%e7%bd%ae%e7%ba%af%e5%81%9a%e5%b8%82%e7%ad%96%e7%95%a5 aria-label=步骤三：配置纯做市策略>步骤三：配置纯做市策略</a></li><li><a href=#%e6%ad%a5%e9%aa%a4%e5%9b%9b%e5%bc%80%e5%a7%8b%e4%ba%a4%e6%98%93 aria-label=步骤四：开始交易>步骤四：开始交易</a></li><li><a href=#%e6%ad%a5%e9%aa%a4%e4%ba%94%e5%90%8e%e5%8f%b0%e8%bf%90%e8%a1%8c%e5%88%86%e7%a6%bb%e6%a8%a1%e5%bc%8f aria-label=步骤五：后台运行（分离模式）>步骤五：后台运行（分离模式）</a></li></ul></li><li><a href=#%e4%b8%8e%e4%ba%a4%e6%98%93%e6%89%80%e5%92%8c%e5%b7%a5%e5%85%b7%e7%9a%84%e9%9b%86%e6%88%90 aria-label=与交易所和工具的集成>与交易所和工具的集成</a><ul><li><a href=#binance%e7%8e%b0%e8%b4%a7%e4%b8%8e%e5%90%88%e7%ba%a6 aria-label=Binance现货与合约>Binance现货与合约</a></li><li><a href=#coinbase-advanced-trade aria-label="Coinbase Advanced Trade">Coinbase Advanced Trade</a></li><li><a href=#hummingbot-gateway-%e8%bf%9b%e8%a1%8cdex%e4%ba%a4%e6%98%93 aria-label="Hummingbot Gateway 进行DEX交易">Hummingbot Gateway 进行DEX交易</a></li><li><a href=#telegram%e9%80%9a%e7%9f%a5 aria-label=Telegram通知>Telegram通知</a></li><li><a href=#%e5%af%bc%e5%87%ba%e6%95%b0%e6%8d%ae%e5%88%b0grafana aria-label=导出数据到Grafana>导出数据到Grafana</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e4%b8%8e%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b aria-label=基准测试与真实用例>基准测试与真实用例</a><ul><li><a href=#%e6%8c%89%e7%ad%96%e7%95%a5%e7%b1%bb%e5%9e%8b%e5%88%92%e5%88%86%e7%9a%84%e6%80%a7%e8%83%bd%e5%af%b9%e6%af%94 aria-label=按策略类型划分的性能对比>按策略类型划分的性能对比</a></li><li><a href=#%e6%a1%88%e4%be%8b%e7%a0%94%e7%a9%b6binance%e4%b8%8abtc-usdt%e5%81%9a%e5%b8%82 aria-label=案例研究：Binance上BTC-USDT做市>案例研究：Binance上BTC-USDT做市</a></li><li><a href=#%e8%b5%84%e6%ba%90%e5%8d%a0%e7%94%a8 aria-label=资源占用>资源占用</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b8%8e%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba aria-label=高级用法与生产环境加固>高级用法与生产环境加固</a><ul><li><a href=#%e7%94%a8python%e7%bc%96%e5%86%99%e8%87%aa%e5%ae%9a%e4%b9%89%e7%ad%96%e7%95%a5 aria-label=用Python编写自定义策略>用Python编写自定义策略</a></li><li><a href=#%e5%9f%ba%e4%ba%8e%e5%ba%93%e5%ad%98%e7%ae%a1%e7%90%86%e7%9a%84%e8%ae%a2%e5%8d%95%e5%81%8f%e7%a7%bb aria-label=基于库存管理的订单偏移>基于库存管理的订单偏移</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e5%8e%86%e5%8f%b2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%b5%8b aria-label=使用历史数据回测>使用历史数据回测</a></li><li><a href=#%e6%a8%a1%e6%8b%9f%e4%ba%a4%e6%98%93%e6%a8%a1%e5%bc%8f aria-label=模拟交易模式>模拟交易模式</a></li><li><a href=#%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83docker-compose%e9%85%8d%e7%bd%ae aria-label="生产环境Docker Compose配置">生产环境Docker Compose配置</a></li><li><a href=#%e5%ae%89%e5%85%a8%e6%a3%80%e6%9f%a5%e6%b8%85%e5%8d%95 aria-label=安全检查清单>安全检查清单</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94 aria-label=与替代方案对比>与替代方案对比</a></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7%e4%b8%8e%e8%af%9a%e5%ae%9e%e7%9a%84%e8%af%84%e4%bc%b0 aria-label=局限性与诚实的评估>局限性与诚实的评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94 aria-label=常见问题解答>常见问题解答</a><ul><li><a href=#%e4%bd%bf%e7%94%a8hummingbot%e9%9c%80%e8%a6%81%e5%a4%9a%e5%b0%91%e8%b5%84%e9%87%91 aria-label=使用Hummingbot需要多少资金？>使用Hummingbot需要多少资金？</a></li><li><a href=#%e5%9c%a8hummingbot%e4%b8%ad%e4%bd%bf%e7%94%a8%e4%ba%a4%e6%98%93%e6%89%80api%e5%af%86%e9%92%a5%e5%ae%89%e5%85%a8%e5%90%97 aria-label=在Hummingbot中使用交易所API密钥安全吗？>在Hummingbot中使用交易所API密钥安全吗？</a></li><li><a href=#%e5%8f%af%e4%bb%a5%e5%90%8c%e6%97%b6%e8%bf%90%e8%a1%8c%e5%a4%9a%e4%b8%aa%e7%ad%96%e7%95%a5%e5%90%97 aria-label=可以同时运行多个策略吗？>可以同时运行多个策略吗？</a></li><li><a href=#hummingbot%e4%b8%8e3commas%e7%ad%89%e4%bb%98%e8%b4%b9%e6%9c%ba%e5%99%a8%e4%ba%ba%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95 aria-label=Hummingbot与3Commas等付费机器人相比如何？>Hummingbot与3Commas等付费机器人相比如何？</a></li><li><a href=#gateway%e5%92%8c%e6%99%ae%e9%80%9a%e8%bf%9e%e6%8e%a5%e5%99%a8%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab aria-label=Gateway和普通连接器有什么区别？>Gateway和普通连接器有什么区别？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e5%b0%86hummingbot%e6%9b%b4%e6%96%b0%e5%88%b0%e6%96%b0%e7%89%88%e6%9c%ac aria-label=如何将Hummingbot更新到新版本？>如何将Hummingbot更新到新版本？</a></li><li><a href=#hummingbot%e5%8f%af%e4%bb%a5%e7%94%a8%e4%ba%8e%e6%9c%9f%e8%b4%a7%e6%b0%b8%e7%bb%ad%e5%90%88%e7%ba%a6%e4%ba%a4%e6%98%93%e5%90%97 aria-label=Hummingbot可以用于期货/永续合约交易吗？>Hummingbot可以用于期货/永续合约交易吗？</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba%e4%bb%8a%e5%a4%a9%e5%b0%b1%e5%bc%80%e5%a7%8b%e7%ae%97%e6%b3%95%e4%ba%a4%e6%98%93 aria-label=结论：今天就开始算法交易>结论：今天就开始算法交易</a></li><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e8%81%94%e7%9b%9f%e8%90%a5%e9%94%80%e6%8a%ab%e9%9c%b2 aria-label=联盟营销披露>联盟营销披露</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><h2 id=引言为什么大多数交易机器人会失败>引言：为什么大多数交易机器人会失败<a hidden class=anchor aria-hidden=true href=#引言为什么大多数交易机器人会失败>#</a></h2><p>每个加密货币交易者都有过这样的经历 —— 你发现了Binance和Coinbase之间的套利机会，但等你手动转账并执行两边交易时，价差已经消失了。或者更糟：你花钱买了"专业"的黑盒机器人，结果发现它只是开源项目换个皮，价格翻了20倍，而且没有技术支持。</p><p>来看看真实数据。根据2025年对2", &ldquo;400名量化加密货币交易者的调查，**73%**的人在六个月内至少放弃了一款商业交易机器人，不透明定价和缺乏策略定制是前两大原因。剩下的27%？大多数人转向了开源替代方案。</p><p>这就是 <strong>Hummingbot</strong> —— 采用Apache-2.0许可证的算法交易框架，拥有超过 <strong>10&rdquo;, &ldquo;500个GitHub星标</strong>，可连接 <strong>50+交易所</strong>（包括Binance、Coinbase、Kraken），并通过统一网关连接去中心化协议。在本指南中，你将在五分钟内从零开始运行一个做市机器人，然后扩展到生产级策略。</p><blockquote><p><strong>联盟营销说明：</strong> 本指南包含交易所联盟链接。通过 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance&rdquo;</a> 或 <a href=https://www.promoohubly.com/join/12190433>OKX</a> 注册，无需额外费用即可支持本项目。如需AI增强交易，请查看 <a href=https://minara.ai/r/OSXG4X>Minara</a>。</p></blockquote><h2 id=hummingbot-是什么>Hummingbot 是什么？<a hidden class=anchor aria-hidden=true href=#hummingbot-是什么>#</a></h2><p>Hummingbot是一个用于构建和运行自动化加密货币交易策略的开源框架。最初由CoinAlpha于2019年推出，现已发展成为社区维护的强大工具，支持：</p><ul><li><strong>中心化交易所（CEX）：</strong> Binance、Coinbase、Kraken、KuCoin、Gate.io、Bybit等40+交易所</li><li><strong>去中心化交易所（DEX）：</strong> Uniswap、PancakeSwap、TraderJoe等（通过Hummingbot Gateway）</li><li><strong>策略类型：</strong> 做市、套利、跨所做市、永续合约、自定义脚本</li><li><strong>部署模式：</strong> Docker容器、源码安装、云VPS</li></ul><p>最新的v2.0版本（2026年3月发布）引入了模块化架构、可插拔连接器、统一投资组合管理和改进的回测功能。</p><h2 id=hummingbot-的工作原理架构概览>Hummingbot 的工作原理：架构概览<a hidden class=anchor aria-hidden=true href=#hummingbot-的工作原理架构概览>#</a></h2><p>Hummingbot的架构遵循清晰的责任分离：</p><pre tabindex=0><code>┌─────────────────────────────────────────────────────┐
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/mcp-tools/hummingbot-crypto-trading-bot/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/zh/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "引言：为什么大多数交易机器人会失败 每个加密货币交易者都有过这样的经历 —— 你发现了Binance和Coinbase之间的套利机会，但等你手动转账并执行两边交易时，价差已经消失了。或者更糟：你花钱买了\"专业\"的黑盒机器人，结果发现它只是开源项目换个皮，价格翻了20倍，而且没有技术支持。\n来看看真实数据。根据2025年对2\", “400名量化加密货币交易者的调查，**73%**的人在六个月内至少放弃了一款商业交易机器人，不透明定价和缺乏策略定制是前两大原因。剩下的27%？大多数人转向了开源替代方案。\n这就是 Hummingbot —— 采用Apache-2.0许可证的算法交易框架，拥有超过 10”, “500个GitHub星标，可连接 50+交易所（包括Binance、Coinbase、Kraken），并通过统一网关连接去中心化协议。在本指南中，你将在五分钟内从零开始运行一个做市机器人，然后扩展到生产级策略。\n联盟营销说明： 本指南包含交易所联盟链接。通过 Binance” 或 OKX 注册，无需额外费用即可支持本项目。如需AI增强交易，请查看 Minara。\nHummingbot 是什么？ Hummingbot是一个用于构建和运行自动化加密货币交易策略的开源框架。最初由CoinAlpha于2019年推出，现已发展成为社区维护的强大工具，支持：\n中心化交易所（CEX）： Binance、Coinbase、Kraken、KuCoin、Gate.io、Bybit等40+交易所 去中心化交易所（DEX）： Uniswap、PancakeSwap、TraderJoe等（通过Hummingbot Gateway） 策略类型： 做市、套利、跨所做市、永续合约、自定义脚本 部署模式： Docker容器、源码安装、云VPS 最新的v2.0版本（2026年3月发布）引入了模块化架构、可插拔连接器、统一投资组合管理和改进的回测功能。\nHummingbot 的工作原理：架构概览 Hummingbot的架构遵循清晰的责任分离：\n┌─────────────────────────────────────────────────────┐ │ 策略层（Strategy Layer） │ │ （纯做市 / 套利 / 自定义脚本） │ ├─────────────────────────────────────────────────────┤ │ 连接器层（Connector Layer） │ │ （Binance / Coinbase / Kraken / Gateway / ...） │ ├─────────────────────────────────────────────────────┤ │ 核心引擎（Core Engine） │ │ （订单管理 / 投资组合 / 事件循环） │ ├─────────────────────────────────────────────────────┤ │ 基础设施（Infrastructure） │ │ （Docker / 配置 / 日志 / SQLite数据库） │ └─────────────────────────────────────────────────────┘ 核心循环工作原理：\n策略（Strategy） 定义订单参数（价差、库存偏移、刷新时间） 连接器（Connector） 将特定交易所API归一化为统一接口 引擎（Engine） 管理订单生命周期、追踪成交、处理错误 数据库（Database） 持久化交易、余额和策略状态 Hummingbot Gateway 值得特别关注。它是一个独立的Node.js服务，将Hummingbot桥接到EVM兼容的DEX。当你在Uniswap上交易时，Hummingbot向Gateway发送指令，Gateway通过你的钱包（如MetaMask）构建并提交区块链交易。\n安装与配置：5分钟快速开始 前置条件 Docker Engine 24.0+ 或 Docker Desktop 一个有资金的交易所账户（推荐使用 Binance，适合初学者） 具有交易权限的API密钥 步骤一：拉取并运行Hummingbot # 创建Hummingbot文件目录 mkdir -p hummingbot_files/hummingbot_conf mkdir -p hummingbot_files/hummingbot_logs mkdir -p hummingbot_files/hummingbot_data # 拉取最新Docker镜像 docker pull hummingbot/hummingbot:latest # 以交互模式运行Hummingbot docker run -it --name hummingbot \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data\" \\ hummingbot/hummingbot:latest 容器启动后，你将看到Hummingbot命令行界面：\n╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌ ╠╣ │ │ │ │ │ │ │ │├┤ │││ ╚ └─┘ ┴ ┴ ┴ ┴ └─┘└─┘┘└┘ Version: 2.0.0 Enter \"config\" to configure a strategy Enter \"start\" to start the current strategy \u003e\u003e\u003e 步骤二：连接你的交易所 # 在Hummingbot CLI中 \u003e\u003e\u003e connect binance # 输入你的API密钥 Enter your Binance API key \u003e\u003e\u003e YOUR_API_KEY # 输入你的API密钥 Enter your Binance API secret \u003e\u003e\u003e YOUR_API_SECRET # 验证连接 \u003e\u003e\u003e balance Updating balances, please wait... binance: asset amount USDT 1,234.56 BTC 0.0234 ETH 1.5678 步骤三：配置纯做市策略 # 创建新策略配置 \u003e\u003e\u003e create # 选择策略 What is your market making strategy? (pure_market_making/cross_exchange_market_making/arbitrage) \u003e\u003e\u003e pure_market_making # 选择交易对 Enter the token trading pair you would like to trade on binance (e.g., BTC-USDT) \u003e\u003e\u003e BTC-USDT # 设置买卖价差（0.5%） What is the bid spread? (Enter 0.01 for 1%) \u003e\u003e\u003e 0.005 What is the ask spread? (Enter 0.01 for 1%) \u003e\u003e\u003e 0.005 # 设置订单刷新时间 How often do you want to cancel and replace orders (in seconds)? \u003e\u003e\u003e 30 # 设置订单数量 What is the amount of BTC per order? \u003e\u003e\u003e 0.001 步骤四：开始交易 # 确认配置 \u003e\u003e\u003e config # 启动策略 \u003e\u003e\u003e start The pure_market_making strategy is starting. Markets: Exchange Market Best Bid Best Ask Mid Price binance BTC-USDT 67,234.50 67,245.00 67,239.75 Orders: Level Type Price Amount Spread Order ID 1 buy 66,898.30 0.001 0.50% ... 1 sell 67,581.20 0.001 0.50% ... 步骤五：后台运行（分离模式） # 退出Hummingbot但保持容器运行 Ctrl+P then Ctrl+Q # 或从一开始就使用分离模式启动 docker run -d --name hummingbot \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_data,destination=/data\" \\ hummingbot/hummingbot:latest # 附加到容器查看状态 docker attach hummingbot # 然后再次使用 Ctrl+P, Ctrl+Q 分离 与交易所和工具的集成 Binance现货与合约 Binance是最受欢迎的连接器，支持现货和U本位合约。连接器自动处理速率限制 —— 遵循Binance的 每分钟1,200请求权重 限制，并采用自适应退避策略。\n# conf/connectors/binance.yml connector: binance api_key: ${BINANCE_API_KEY} api_secret: ${BINANCE_API_SECRET} rate_limit: adaptive timeout: 10 use_futures: false Coinbase Advanced Trade Coinbase使用不同的认证方式（2024年后采用基于JWT的认证）。Hummingbot的Coinbase连接器在内部处理JWT签名：\n\u003e\u003e\u003e connect coinbase_advanced_trade Enter your Coinbase API key (UUID format) \u003e\u003e\u003e xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx Enter your Coinbase API secret \u003e\u003e\u003e YOUR_PRIVATE_KEY Hummingbot Gateway 进行DEX交易 对于Uniswap、PancakeSwap和其他DEX，你需要Gateway服务：\n# 拉取并运行Gateway docker pull hummingbot/gateway:latest docker run -d --name gateway \\ -p 15888:15888 \\ --env GATEWAY_PASSPHRASE=your_secure_passphrase \\ hummingbot/gateway:latest # 在Hummingbot中连接到Gateway \u003e\u003e\u003e gateway connect uniswap_ethereum_mainnet # Gateway配置：以太坊主网上的Uniswap networks: ethereum: rpc_url: https://mainnet.infura.io/v3/YOUR_INFURA_KEY chain_id: 1 token_list_type: FILE token_list_source: /home/gateway/conf/lists/ethereum_token_list.json connectors: uniswap: contract_addresses: v3: 0xE592427A0AEce92De3Edee1F18E0157C05861564 Telegram通知 # conf/telegram.yml telegram_enabled: true telegram_token: \"YOUR_BOT_TOKEN\" telegram_chat_id: \"YOUR_CHAT_ID\" notify_events: - order_filled - trade_completed - strategy_error 导出数据到Grafana Hummingbot将所有交易记录到SQLite数据库。你可以导出到Prometheus/Grafana进行可视化：\n# SQLite查询示例 sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db \\ \"SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;\" 基准测试与真实用例 按策略类型划分的性能对比 | 策略类型 | 日均交易次数 | 平均价差捕获 | 交易所延迟 | 适用场景 | |\n|\n|\n|\n|\n| | 纯做市 | 150-400 | 0.3-0.8% | 50-200ms | 流动性好的交易对 | | 跨所做市 | 80-200 | 0.5-1.2% | 100-300ms | BTC/ETH跨所套利 | | 套利 | 20-60 | 1.0-3.0% | 80-250ms | 高波动时期 | | 永续做市 | 100-300 | 0.4-1.0% | 60-200ms | 资金费率套利 |\n案例研究：Binance上BTC-USDT做市 一位社区成员分享了在BTC-USDT上运行 30天 纯做市策略的数据，使用 $5,000 资金：\n总交易次数： 8,247 Maker手续费（0.02%）： 0.412 BTC 价差捕获（平均）： 0.42% 库存周转率： 1.8x/天 PnL（税前）： +2.14%/月 PnL（税后）： +1.72%/月 夏普比率： 1.34 最大回撤： 1.2% 资源占用 Hummingbot设计轻量：\n| 资源 | 空闲 | 活跃（1个策略） | 活跃（5个策略） | |\n|\n|\n|\n| | CPU | \u003c1% | 5-15% | 20-40% | | RAM | 80MB | 200-400MB | 800MB-1.5GB | | 网络 | ~0 | 5-20 KB/s | 20-80 KB/s | | 磁盘（每天） | ~0 | 5-20MB日志 | 20-100MB日志 |\n这些数据使得Hummingbot可以在 $5/月的VPS 上单策略部署。\n高级用法与生产环境加固 用Python编写自定义策略 Hummingbot v2.0的脚本策略接口允许你用纯Python编写逻辑：\n# strategies/my_custom_mm.py from decimal import Decimal from hummingbot.strategy.script_strategy_base import ScriptStrategyBase from hummingbot.core.data_type.common import OrderType, TradeType class CustomMarketMaker(ScriptStrategyBase): \"\"\" Dynamic spread market maker that adjusts based on volatility. \"\"\" spread_base = Decimal(\"0.005\") # 0.5% base spread spread_multiplier = Decimal(\"2.0\") # 波动大时价差加倍 order_amount = Decimal(\"0.001\") # 每笔订单BTC数量 order_refresh_time = 30.0 # 秒 volatility_threshold = Decimal(\"0.02\") # 2%价格变动=高波动 def __init__(self): super().__init__() self.last_mid_price = None self.is_volatile = False def on_tick(self): mid_price = self.connectors[\"binance\"].get_mid_price(\"BTC-USDT\") # Detect volatility if self.last_mid_price: change = abs(mid_price - self.last_mid_price) / self.last_mid_price self.is_volatile = change \u003e self.volatility_threshold self.last_mid_price = mid_price # Adjust spread spread = self.spread_base if self.is_volatile: spread *= self.spread_multiplier buy_price = mid_price * (Decimal(\"1\") - spread) sell_price = mid_price * (Decimal(\"1\") + spread) # Cancel existing orders self.cancel_all_orders() # Place new orders self.buy(\"binance\", \"BTC-USDT\", self.order_amount, OrderType.LIMIT, buy_price) self.sell(\"binance\", \"BTC-USDT\", self.order_amount, OrderType.LIMIT, sell_price) def cancel_all_orders(self): for order in self.get_active_orders(\"binance\"): self.cancel(order) 基于库存管理的订单偏移 # 添加到你的策略中实现库存偏移 def calculate_inventory_skew(self): \"\"\"Adjust order sizes based on inventory ratio.\"\"\" base_balance = self.connectors[\"binance\"].get_balance(\"BTC\") quote_balance = self.connectors[\"binance\"].get_balance(\"USDT\") mid_price = self.connectors[\"binance\"].get_mid_price(\"BTC-USDT\") base_value = base_balance * mid_price total_value = base_value + quote_balance inventory_ratio = base_value / total_value target_ratio = Decimal(\"0.5\") # 50/50目标 # Skew orders based on inventory if inventory_ratio \u003e target_ratio: # BTC持仓过多，减少买单 self.buy_multiplier = Decimal(\"0.5\") self.sell_multiplier = Decimal(\"1.5\") else: self.buy_multiplier = Decimal(\"1.5\") self.sell_multiplier = Decimal(\"0.5\") 使用历史数据回测 # 下载历史交易数据 python scripts/download_historical_data.py \\ --exchange binance \\ --trading-pair BTC-USDT \\ --start-date 2026-01-01 \\ --end-date 2026-03-31 \\ --interval 1m # 运行回测 python scripts/backtest.py \\ --strategy pure_market_making \\ --config conf/strategies/pmm_btc.yml \\ --data data/binance_BTC-USDT_1m.csv \\ --output results/btc_pmm_backtest.html 回测结果（2026-01-01 至 2026-03-31） 总交易次数： 12,450 总收益： +5.23% 夏普比率： 2.14 最大回撤： -2.1% 平均持仓时间： 18.4分钟 胜率： 62.3% 盈亏比： 1.48 模拟交易模式 在实盘交易之前，始终先在模拟模式下测试：\n# 在配置中启用模拟交易 paper_trade_enabled: true paper_trade_account_balance: BTC: 1.0 USDT: 50000.0 # 模拟交易会显示[PAPER]前缀 \u003e\u003e\u003e status Markets: [PAPER] binance BTC-USDT 67,234.50 67,245.00 67,239.75 生产环境Docker Compose配置 # docker-compose.yml version: '3.8' services: hummingbot: image: hummingbot/hummingbot:2.0.0 container_name: hummingbot_prod restart: unless-stopped volumes: - ./conf:/conf - ./logs:/logs - ./data:/data environment: - CONFIG_PASSWORD=${HBOT_PASSWORD} - STRATEGY=pure_market_making - CONFIG_FILE=pmm_btc_usdt.yml logging: driver: \"json-file\" options: max-size: \"50m\" max-file: \"5\" deploy: resources: limits: memory: 2G cpus: '1.0' healthcheck: test: [\"CMD\", \"python\", \"-c\", \"import urllib.request; urllib.request.urlopen('http://localhost:15888/')\"] interval: 30s timeout: 10s retries: 3 安全检查清单 # 1. 使用IP白名单API密钥（Binance支持） # 2. 在API密钥上启用提币限制 # 3. 在隔离的Docker网络中运行 # 4. 加密配置文件 # 加密敏感配置 openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc 与替代方案对比 | 功能 | Hummingbot | Freqtrade | 3Commas | Gunbot | |\n|\n|\n|\n|\n| | 许可证 | Apache-2.0 | GPL-3.0 | 专有 | 专有 | | CEX连接器 | 50+ | 20+ | 15+ | 10+ | | DEX支持 | 是（Gateway） | 有限 | 否 | 否 | | 策略语言 | Python | Python | 可视化/UI | JavaScript | | 自定义策略 | 完整Python | 完整Python | 有限 | 脚本 | | 回测 | 是 | 是（高级） | 有限 | 否 | | 模拟交易 | 是 | 是 | 是 | 有限 | | 自托管 | 是 | 是 | 否 | 是 | | 成本 | 免费 | 免费 | $29-99/月 | $299一次性 | | 社区规模 | 10.5K星标 | 37K星标 | N/A | N/A | | Telegram机器人 | 是 | 是 | 是 | 是 | | 做市能力 | 优秀 | 基础 | 良好 | 中等 |\n选择建议：\nHummingbot： 最适合做市和CEX+DEX组合策略 Freqtrade： 最适合基于机器学习的方向性策略（了解更多） 3Commas： 最适合想要SaaS且设置最少的新手 Gunbot： 最适合想要一次性付费和简单机器人的交易者 局限性与诚实的评估 Hummingbot不是印钞机。 在部署资金之前，请了解以下限制：\n做市需要库存。 你需要同时拥有基础资产和计价资产。资金少于 $1,000 时，手续费通常会吃掉大部分利润。\n延迟很重要。 如果你的VPS在新加坡而Binance的撮合引擎在东京，你相比同地点做市商处于劣势。考虑使用低延迟VPS服务。\n策略开发有学习曲线。 虽然快速入门只需几分钟，但编写盈利性自定义策略需要理解订单簿动态、库存风险和逆向选择。\nGateway DEX交易需要gas费。 在以太坊主网上，一次Uniswap交易可能需要$5-20的gas费。请将此纳入价差计算。\n不是所有交易所都一样。 某些连接器（Binance、Coinbase）经过充分测试。其他可能有bug或不完整 —— 务必先在模拟交易中测试。\n常见问题解答 使用Hummingbot需要多少资金？ 对于BTC-USDT等流动性好的交易对，建议最少 $2,000-5,000。这覆盖了订单簿两边并吸收手续费。用于测试的话，可以用$0进行模拟交易，或在低市值交易对上以$500运行 —— 但需注意更高的波动风险。\n在Hummingbot中使用交易所API密钥安全吗？ Hummingbot在本地Docker卷中存储API密钥。代码是开源且可审计的。最佳实践：创建仅具有交易权限的API密钥（无提币权限），将其IP限制到你的VPS，且切勿将配置提交到Git。该项目已通过多家第三方安全公司审计。\n可以同时运行多个策略吗？ 可以。启动多个Docker容器，每个容器有自己的配置目录和策略文件。单个容器运行一个策略，但在 $10/月的VPS 上可以同时运行5-10个策略。资源占用线性增长。\nHummingbot与3Commas等付费机器人相比如何？ Hummingbot免费、开源且完全可定制 —— 但需要技术设置。3Commas是SaaS服务，有友好的用户界面，但每月花费$29-99且策略定制受限。如果你能写Python并管理VPS，Hummingbot给你更多控制权且零成本。如果你想要一键设置，付费服务可能值得考虑。\nGateway和普通连接器有什么区别？ 普通连接器通过REST/WebSocket与中心化交易所API交互。Hummingbot Gateway 是一个独立服务，为Uniswap V3等DEX协议创建区块链交易。Gateway要求你自行管理钱包私钥并支付gas费。它增加了复杂性，但解锁了去中心化交易。\n如何将Hummingbot更新到新版本？ # 拉取最新镜像 docker pull hummingbot/hummingbot:latest # 停止并删除旧容器 docker stop hummingbot \u0026\u0026 docker rm hummingbot # 使用相同的卷挂载重新启动 docker run -it --name hummingbot \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_conf,destination=/conf\" \\ --mount \"type=bind,source=$(pwd)/hummingbot_files/hummingbot_logs,destination=/logs\" \\ hummingbot/hummingbot:latest 你的配置存储在挂载卷中，会持久保留。\nHummingbot可以用于期货/永续合约交易吗？ 可以。Binance、Bybit和OKX连接器支持永续合约。将 ````domain``` 参数设置为合约子域名，并谨慎配置杠杆。在理解资金费率机制之前，建议使用 1x-3x杠杆。\n结论：今天就开始算法交易 Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器、Docker 5分钟部署和完整的Python扩展性，它在可访问性和强大功能之间取得了平衡。\n你的下一步：\n在 Binance 或 OKX 注册 并创建API密钥 使用上方Docker快速指南部署Hummingbot 在投入真实资金前先用模拟交易运行1周 加入社区 —— Hummingbot Discord 有15,000+活跃交易者分享策略 探索AI增强交易 通过 Minara 实现机器学习驱动的信号生成 加入我们的开发者Telegram社区：t.me/dibi8developers —— 我们每天讨论机器人策略、交易所集成和生产环境部署。\n来源与延伸阅读 Hummingbot 官方文档 Hummingbot GitHub 仓库 Hummingbot Gateway 文档 Hummingbot 学院（策略指南） Binance API 文档 Coinbase Advanced Trade API Uniswap V3 文档 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n联盟营销披露 本指南包含 Binance、OKX 和 Minara 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot\" } } Why This Matters Understanding hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~7 minutes\nFrequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n",
+  "wordCount" : "1547",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/mcp-tools/hummingbot-crypto-trading-bot/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ko/mcp-tools/hummingbot-crypto-trading-bot/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a4%a7%e5%a4%9a%e6%95%b0%e4%ba%a4%e6%98%93%e6%9c%ba%e5%99%a8%e4%ba%ba%e4%bc%9a%e5%a4%b1%e8%b4%a5" aria-label="引言：为什么大多数交易机器人会失败">引言：为什么大多数交易机器人会失败</a></li>
+            <li>
+                <a href="#hummingbot-%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Hummingbot 是什么？">Hummingbot 是什么？</a></li>
+            <li>
+                <a href="#hummingbot-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88" aria-label="Hummingbot 的工作原理：架构概览">Hummingbot 的工作原理：架构概览</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae5%e5%88%86%e9%92%9f%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b" aria-label="安装与配置：5分钟快速开始">安装与配置：5分钟快速开始</a><ul>
+                    
+            <li>
+                <a href="#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6" aria-label="前置条件">前置条件</a></li>
+            <li>
+                <a href="#%e6%ad%a5%e9%aa%a4%e4%b8%80%e6%8b%89%e5%8f%96%e5%b9%b6%e8%bf%90%e8%a1%8chummingbot" aria-label="步骤一：拉取并运行Hummingbot">步骤一：拉取并运行Hummingbot</a></li>
+            <li>
+                <a href="#%e6%ad%a5%e9%aa%a4%e4%ba%8c%e8%bf%9e%e6%8e%a5%e4%bd%a0%e7%9a%84%e4%ba%a4%e6%98%93%e6%89%80" aria-label="步骤二：连接你的交易所">步骤二：连接你的交易所</a></li>
+            <li>
+                <a href="#%e6%ad%a5%e9%aa%a4%e4%b8%89%e9%85%8d%e7%bd%ae%e7%ba%af%e5%81%9a%e5%b8%82%e7%ad%96%e7%95%a5" aria-label="步骤三：配置纯做市策略">步骤三：配置纯做市策略</a></li>
+            <li>
+                <a href="#%e6%ad%a5%e9%aa%a4%e5%9b%9b%e5%bc%80%e5%a7%8b%e4%ba%a4%e6%98%93" aria-label="步骤四：开始交易">步骤四：开始交易</a></li>
+            <li>
+                <a href="#%e6%ad%a5%e9%aa%a4%e4%ba%94%e5%90%8e%e5%8f%b0%e8%bf%90%e8%a1%8c%e5%88%86%e7%a6%bb%e6%a8%a1%e5%bc%8f" aria-label="步骤五：后台运行（分离模式）">步骤五：后台运行（分离模式）</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e4%ba%a4%e6%98%93%e6%89%80%e5%92%8c%e5%b7%a5%e5%85%b7%e7%9a%84%e9%9b%86%e6%88%90" aria-label="与交易所和工具的集成">与交易所和工具的集成</a><ul>
+                    
+            <li>
+                <a href="#binance%e7%8e%b0%e8%b4%a7%e4%b8%8e%e5%90%88%e7%ba%a6" aria-label="Binance现货与合约">Binance现货与合约</a></li>
+            <li>
+                <a href="#coinbase-advanced-trade" aria-label="Coinbase Advanced Trade">Coinbase Advanced Trade</a></li>
+            <li>
+                <a href="#hummingbot-gateway-%e8%bf%9b%e8%a1%8cdex%e4%ba%a4%e6%98%93" aria-label="Hummingbot Gateway 进行DEX交易">Hummingbot Gateway 进行DEX交易</a></li>
+            <li>
+                <a href="#telegram%e9%80%9a%e7%9f%a5" aria-label="Telegram通知">Telegram通知</a></li>
+            <li>
+                <a href="#%e5%af%bc%e5%87%ba%e6%95%b0%e6%8d%ae%e5%88%b0grafana" aria-label="导出数据到Grafana">导出数据到Grafana</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e4%b8%8e%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b" aria-label="基准测试与真实用例">基准测试与真实用例</a><ul>
+                    
+            <li>
+                <a href="#%e6%8c%89%e7%ad%96%e7%95%a5%e7%b1%bb%e5%9e%8b%e5%88%92%e5%88%86%e7%9a%84%e6%80%a7%e8%83%bd%e5%af%b9%e6%af%94" aria-label="按策略类型划分的性能对比">按策略类型划分的性能对比</a></li>
+            <li>
+                <a href="#%e6%a1%88%e4%be%8b%e7%a0%94%e7%a9%b6binance%e4%b8%8abtc-usdt%e5%81%9a%e5%b8%82" aria-label="案例研究：Binance上BTC-USDT做市">案例研究：Binance上BTC-USDT做市</a></li>
+            <li>
+                <a href="#%e8%b5%84%e6%ba%90%e5%8d%a0%e7%94%a8" aria-label="资源占用">资源占用</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b8%8e%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba" aria-label="高级用法与生产环境加固">高级用法与生产环境加固</a><ul>
+                    
+            <li>
+                <a href="#%e7%94%a8python%e7%bc%96%e5%86%99%e8%87%aa%e5%ae%9a%e4%b9%89%e7%ad%96%e7%95%a5" aria-label="用Python编写自定义策略">用Python编写自定义策略</a></li>
+            <li>
+                <a href="#%e5%9f%ba%e4%ba%8e%e5%ba%93%e5%ad%98%e7%ae%a1%e7%90%86%e7%9a%84%e8%ae%a2%e5%8d%95%e5%81%8f%e7%a7%bb" aria-label="基于库存管理的订单偏移">基于库存管理的订单偏移</a></li>
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8%e5%8e%86%e5%8f%b2%e6%95%b0%e6%8d%ae%e5%9b%9e%e6%b5%8b" aria-label="使用历史数据回测">使用历史数据回测</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e6%8b%9f%e4%ba%a4%e6%98%93%e6%a8%a1%e5%bc%8f" aria-label="模拟交易模式">模拟交易模式</a></li>
+            <li>
+                <a href="#%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83docker-compose%e9%85%8d%e7%bd%ae" aria-label="生产环境Docker Compose配置">生产环境Docker Compose配置</a></li>
+            <li>
+                <a href="#%e5%ae%89%e5%85%a8%e6%a3%80%e6%9f%a5%e6%b8%85%e5%8d%95" aria-label="安全检查清单">安全检查清单</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e5%af%b9%e6%af%94" aria-label="与替代方案对比">与替代方案对比</a></li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7%e4%b8%8e%e8%af%9a%e5%ae%9e%e7%9a%84%e8%af%84%e4%bc%b0" aria-label="局限性与诚实的评估">局限性与诚实的评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94" aria-label="常见问题解答">常见问题解答</a><ul>
+                    
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8hummingbot%e9%9c%80%e8%a6%81%e5%a4%9a%e5%b0%91%e8%b5%84%e9%87%91" aria-label="使用Hummingbot需要多少资金？">使用Hummingbot需要多少资金？</a></li>
+            <li>
+                <a href="#%e5%9c%a8hummingbot%e4%b8%ad%e4%bd%bf%e7%94%a8%e4%ba%a4%e6%98%93%e6%89%80api%e5%af%86%e9%92%a5%e5%ae%89%e5%85%a8%e5%90%97" aria-label="在Hummingbot中使用交易所API密钥安全吗？">在Hummingbot中使用交易所API密钥安全吗？</a></li>
+            <li>
+                <a href="#%e5%8f%af%e4%bb%a5%e5%90%8c%e6%97%b6%e8%bf%90%e8%a1%8c%e5%a4%9a%e4%b8%aa%e7%ad%96%e7%95%a5%e5%90%97" aria-label="可以同时运行多个策略吗？">可以同时运行多个策略吗？</a></li>
+            <li>
+                <a href="#hummingbot%e4%b8%8e3commas%e7%ad%89%e4%bb%98%e8%b4%b9%e6%9c%ba%e5%99%a8%e4%ba%ba%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95" aria-label="Hummingbot与3Commas等付费机器人相比如何？">Hummingbot与3Commas等付费机器人相比如何？</a></li>
+            <li>
+                <a href="#gateway%e5%92%8c%e6%99%ae%e9%80%9a%e8%bf%9e%e6%8e%a5%e5%99%a8%e6%9c%89%e4%bb%80%e4%b9%88%e5%8c%ba%e5%88%ab" aria-label="Gateway和普通连接器有什么区别？">Gateway和普通连接器有什么区别？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e5%b0%86hummingbot%e6%9b%b4%e6%96%b0%e5%88%b0%e6%96%b0%e7%89%88%e6%9c%ac" aria-label="如何将Hummingbot更新到新版本？">如何将Hummingbot更新到新版本？</a></li>
+            <li>
+                <a href="#hummingbot%e5%8f%af%e4%bb%a5%e7%94%a8%e4%ba%8e%e6%9c%9f%e8%b4%a7%e6%b0%b8%e7%bb%ad%e5%90%88%e7%ba%a6%e4%ba%a4%e6%98%93%e5%90%97" aria-label="Hummingbot可以用于期货/永续合约交易吗？">Hummingbot可以用于期货/永续合约交易吗？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba%e4%bb%8a%e5%a4%a9%e5%b0%b1%e5%bc%80%e5%a7%8b%e7%ae%97%e6%b3%95%e4%ba%a4%e6%98%93" aria-label="结论：今天就开始算法交易">结论：今天就开始算法交易</a></li>
+            <li>
+                <a href="#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="来源与延伸阅读">来源与延伸阅读</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#%e8%81%94%e7%9b%9f%e8%90%a5%e9%94%80%e6%8a%ab%e9%9c%b2" aria-label="联盟营销披露">联盟营销披露</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="引言为什么大多数交易机器人会失败">引言：为什么大多数交易机器人会失败<a hidden class="anchor" aria-hidden="true" href="#引言为什么大多数交易机器人会失败">#</a></h2>
+<p>每个加密货币交易者都有过这样的经历 —— 你发现了Binance和Coinbase之间的套利机会，但等你手动转账并执行两边交易时，价差已经消失了。或者更糟：你花钱买了&quot;专业&quot;的黑盒机器人，结果发现它只是开源项目换个皮，价格翻了20倍，而且没有技术支持。</p>
+<p>来看看真实数据。根据2025年对2&quot;, &ldquo;400名量化加密货币交易者的调查，**73%**的人在六个月内至少放弃了一款商业交易机器人，不透明定价和缺乏策略定制是前两大原因。剩下的27%？大多数人转向了开源替代方案。</p>
+<p>这就是 <strong>Hummingbot</strong> —— 采用Apache-2.0许可证的算法交易框架，拥有超过 <strong>10&rdquo;, &ldquo;500个GitHub星标</strong>，可连接 <strong>50+交易所</strong>（包括Binance、Coinbase、Kraken），并通过统一网关连接去中心化协议。在本指南中，你将在五分钟内从零开始运行一个做市机器人，然后扩展到生产级策略。</p>
+<blockquote>
+<p><strong>联盟营销说明：</strong> 本指南包含交易所联盟链接。通过 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance&rdquo;</a> 或 <a href="https://www.promoohubly.com/join/12190433">OKX</a> 注册，无需额外费用即可支持本项目。如需AI增强交易，请查看 <a href="https://minara.ai/r/OSXG4X">Minara</a>。</p>
+</blockquote>
+<h2 id="hummingbot-是什么">Hummingbot 是什么？<a hidden class="anchor" aria-hidden="true" href="#hummingbot-是什么">#</a></h2>
+<p>Hummingbot是一个用于构建和运行自动化加密货币交易策略的开源框架。最初由CoinAlpha于2019年推出，现已发展成为社区维护的强大工具，支持：</p>
+<ul>
+<li><strong>中心化交易所（CEX）：</strong> Binance、Coinbase、Kraken、KuCoin、Gate.io、Bybit等40+交易所</li>
+<li><strong>去中心化交易所（DEX）：</strong> Uniswap、PancakeSwap、TraderJoe等（通过Hummingbot Gateway）</li>
+<li><strong>策略类型：</strong> 做市、套利、跨所做市、永续合约、自定义脚本</li>
+<li><strong>部署模式：</strong> Docker容器、源码安装、云VPS</li>
+</ul>
+<p>最新的v2.0版本（2026年3月发布）引入了模块化架构、可插拔连接器、统一投资组合管理和改进的回测功能。</p>
+<h2 id="hummingbot-的工作原理架构概览">Hummingbot 的工作原理：架构概览<a hidden class="anchor" aria-hidden="true" href="#hummingbot-的工作原理架构概览">#</a></h2>
+<p>Hummingbot的架构遵循清晰的责任分离：</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────┐
 │                   策略层（Strategy Layer）            │
 │  （纯做市 / 套利 / 自定义脚本）                      │
 ├─────────────────────────────────────────────────────┤
@@ -17,21 +340,38 @@
 │                   基础设施（Infrastructure）           │
 │  （Docker / 配置 / 日志 / SQLite数据库）             │
 └─────────────────────────────────────────────────────┘
-</code></pre><p><strong>核心循环</strong>工作原理：</p><ol><li><strong>策略（Strategy）</strong> 定义订单参数（价差、库存偏移、刷新时间）</li><li><strong>连接器（Connector）</strong> 将特定交易所API归一化为统一接口</li><li><strong>引擎（Engine）</strong> 管理订单生命周期、追踪成交、处理错误</li><li><strong>数据库（Database）</strong> 持久化交易、余额和策略状态</li></ol><p><strong>Hummingbot Gateway</strong> 值得特别关注。它是一个独立的Node.js服务，将Hummingbot桥接到EVM兼容的DEX。当你在Uniswap上交易时，Hummingbot向Gateway发送指令，Gateway通过你的钱包（如MetaMask）构建并提交区块链交易。</p><h2 id=安装与配置5分钟快速开始>安装与配置：5分钟快速开始<a hidden class=anchor aria-hidden=true href=#安装与配置5分钟快速开始>#</a></h2><h3 id=前置条件>前置条件<a hidden class=anchor aria-hidden=true href=#前置条件>#</a></h3><ul><li>Docker Engine 24.0+ 或 Docker Desktop</li><li>一个有资金的交易所账户（推荐使用 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>，适合初学者）</li><li>具有交易权限的API密钥</li></ul><h3 id=步骤一拉取并运行hummingbot>步骤一：拉取并运行Hummingbot<a hidden class=anchor aria-hidden=true href=#步骤一拉取并运行hummingbot>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 创建Hummingbot文件目录</span>
-</span></span><span style=display:flex><span>mkdir -p hummingbot_files/hummingbot_conf
-</span></span><span style=display:flex><span>mkdir -p hummingbot_files/hummingbot_logs
-</span></span><span style=display:flex><span>mkdir -p hummingbot_files/hummingbot_data
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 拉取最新Docker镜像</span>
-</span></span><span style=display:flex><span>docker pull hummingbot/hummingbot:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 以交互模式运行Hummingbot</span>
-</span></span><span style=display:flex><span>docker run -it --name hummingbot <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_conf,destination=/conf&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_logs,destination=/logs&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_data,destination=/data&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  hummingbot/hummingbot:latest
-</span></span></code></pre></div><p>容器启动后，你将看到Hummingbot命令行界面：</p><pre tabindex=0><code>    ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
+</code></pre><p><strong>核心循环</strong>工作原理：</p>
+<ol>
+<li><strong>策略（Strategy）</strong> 定义订单参数（价差、库存偏移、刷新时间）</li>
+<li><strong>连接器（Connector）</strong> 将特定交易所API归一化为统一接口</li>
+<li><strong>引擎（Engine）</strong> 管理订单生命周期、追踪成交、处理错误</li>
+<li><strong>数据库（Database）</strong> 持久化交易、余额和策略状态</li>
+</ol>
+<p><strong>Hummingbot Gateway</strong> 值得特别关注。它是一个独立的Node.js服务，将Hummingbot桥接到EVM兼容的DEX。当你在Uniswap上交易时，Hummingbot向Gateway发送指令，Gateway通过你的钱包（如MetaMask）构建并提交区块链交易。</p>
+<h2 id="安装与配置5分钟快速开始">安装与配置：5分钟快速开始<a hidden class="anchor" aria-hidden="true" href="#安装与配置5分钟快速开始">#</a></h2>
+<h3 id="前置条件">前置条件<a hidden class="anchor" aria-hidden="true" href="#前置条件">#</a></h3>
+<ul>
+<li>Docker Engine 24.0+ 或 Docker Desktop</li>
+<li>一个有资金的交易所账户（推荐使用 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>，适合初学者）</li>
+<li>具有交易权限的API密钥</li>
+</ul>
+<h3 id="步骤一拉取并运行hummingbot">步骤一：拉取并运行Hummingbot<a hidden class="anchor" aria-hidden="true" href="#步骤一拉取并运行hummingbot">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建Hummingbot文件目录</span>
+</span></span><span style="display:flex;"><span>mkdir -p hummingbot_files/hummingbot_conf
+</span></span><span style="display:flex;"><span>mkdir -p hummingbot_files/hummingbot_logs
+</span></span><span style="display:flex;"><span>mkdir -p hummingbot_files/hummingbot_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 拉取最新Docker镜像</span>
+</span></span><span style="display:flex;"><span>docker pull hummingbot/hummingbot:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 以交互模式运行Hummingbot</span>
+</span></span><span style="display:flex;"><span>docker run -it --name hummingbot <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_conf,destination=/conf&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_logs,destination=/logs&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_data,destination=/data&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  hummingbot/hummingbot:latest
+</span></span></code></pre></div><p>容器启动后，你将看到Hummingbot命令行界面：</p>
+<pre tabindex="0"><code>    ╔═╗┬ ┬┌┬┐┌┬┐┌┬┐┌─┐┌─┐┌┐┌
     ╠╣ │ │ │  │ │ │ │ │├┤ │││
     ╚  └─┘ ┴  ┴ ┴ ┴ └─┘└─┘┘└┘
     Version: 2.0.0
@@ -40,109 +380,138 @@
     Enter &#34;start&#34; to start the current strategy
     
     &gt;&gt;&gt;
-</code></pre><h3 id=步骤二连接你的交易所>步骤二：连接你的交易所<a hidden class=anchor aria-hidden=true href=#步骤二连接你的交易所>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在Hummingbot CLI中</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; connect binance
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 输入你的API密钥</span>
-</span></span><span style=display:flex><span>Enter your Binance API key &gt;&gt;&gt; YOUR_API_KEY
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 输入你的API密钥</span>
-</span></span><span style=display:flex><span>Enter your Binance API secret &gt;&gt;&gt; YOUR_API_SECRET
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证连接</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; balance
-</span></span></code></pre></div><pre tabindex=0><code>Updating balances, please wait...
+</code></pre><h3 id="步骤二连接你的交易所">步骤二：连接你的交易所<a hidden class="anchor" aria-hidden="true" href="#步骤二连接你的交易所">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在Hummingbot CLI中</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; connect binance
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输入你的API密钥</span>
+</span></span><span style="display:flex;"><span>Enter your Binance API key &gt;&gt;&gt; YOUR_API_KEY
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输入你的API密钥</span>
+</span></span><span style="display:flex;"><span>Enter your Binance API secret &gt;&gt;&gt; YOUR_API_SECRET
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证连接</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; balance
+</span></span></code></pre></div><pre tabindex="0"><code>Updating balances, please wait...
 
  binance: asset    amount
      USDT     1,234.56
      BTC      0.0234
      ETH      1.5678
-</code></pre><h3 id=步骤三配置纯做市策略>步骤三：配置纯做市策略<a hidden class=anchor aria-hidden=true href=#步骤三配置纯做市策略>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 创建新策略配置</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; create
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 选择策略</span>
-</span></span><span style=display:flex><span>What is your market making strategy? <span style=color:#f92672>(</span>pure_market_making/cross_exchange_market_making/arbitrage<span style=color:#f92672>)</span> &gt;&gt;&gt; pure_market_making
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 选择交易对</span>
-</span></span><span style=display:flex><span>Enter the token trading pair you would like to trade on binance <span style=color:#f92672>(</span>e.g., BTC-USDT<span style=color:#f92672>)</span> &gt;&gt;&gt; BTC-USDT
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 设置买卖价差（0.5%）</span>
-</span></span><span style=display:flex><span>What is the bid spread? <span style=color:#f92672>(</span>Enter 0.01 <span style=color:#66d9ef>for</span> 1%<span style=color:#f92672>)</span> &gt;&gt;&gt; 0.005
-</span></span><span style=display:flex><span>What is the ask spread? <span style=color:#f92672>(</span>Enter 0.01 <span style=color:#66d9ef>for</span> 1%<span style=color:#f92672>)</span> &gt;&gt;&gt; 0.005
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 设置订单刷新时间</span>
-</span></span><span style=display:flex><span>How often <span style=color:#66d9ef>do</span> you want to cancel and replace orders <span style=color:#f92672>(</span>in seconds<span style=color:#f92672>)</span>? &gt;&gt;&gt; <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 设置订单数量</span>
-</span></span><span style=display:flex><span>What is the amount of BTC per order? &gt;&gt;&gt; 0.001
-</span></span></code></pre></div><h3 id=步骤四开始交易>步骤四：开始交易<a hidden class=anchor aria-hidden=true href=#步骤四开始交易>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 确认配置</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; config
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动策略</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; start
-</span></span></code></pre></div><pre tabindex=0><code>The pure_market_making strategy is starting.
+</code></pre><h3 id="步骤三配置纯做市策略">步骤三：配置纯做市策略<a hidden class="anchor" aria-hidden="true" href="#步骤三配置纯做市策略">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建新策略配置</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; create
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 选择策略</span>
+</span></span><span style="display:flex;"><span>What is your market making strategy? <span style="color:#f92672">(</span>pure_market_making/cross_exchange_market_making/arbitrage<span style="color:#f92672">)</span> &gt;&gt;&gt; pure_market_making
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 选择交易对</span>
+</span></span><span style="display:flex;"><span>Enter the token trading pair you would like to trade on binance <span style="color:#f92672">(</span>e.g., BTC-USDT<span style="color:#f92672">)</span> &gt;&gt;&gt; BTC-USDT
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置买卖价差（0.5%）</span>
+</span></span><span style="display:flex;"><span>What is the bid spread? <span style="color:#f92672">(</span>Enter 0.01 <span style="color:#66d9ef">for</span> 1%<span style="color:#f92672">)</span> &gt;&gt;&gt; 0.005
+</span></span><span style="display:flex;"><span>What is the ask spread? <span style="color:#f92672">(</span>Enter 0.01 <span style="color:#66d9ef">for</span> 1%<span style="color:#f92672">)</span> &gt;&gt;&gt; 0.005
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置订单刷新时间</span>
+</span></span><span style="display:flex;"><span>How often <span style="color:#66d9ef">do</span> you want to cancel and replace orders <span style="color:#f92672">(</span>in seconds<span style="color:#f92672">)</span>? &gt;&gt;&gt; <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置订单数量</span>
+</span></span><span style="display:flex;"><span>What is the amount of BTC per order? &gt;&gt;&gt; 0.001
+</span></span></code></pre></div><h3 id="步骤四开始交易">步骤四：开始交易<a hidden class="anchor" aria-hidden="true" href="#步骤四开始交易">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 确认配置</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; config
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动策略</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; start
+</span></span></code></pre></div><pre tabindex="0"><code>The pure_market_making strategy is starting.
 Markets: Exchange    Market    Best Bid    Best Ask    Mid Price
   binance     BTC-USDT  67,234.50   67,245.00   67,239.75
 
 Orders: Level  Type   Price       Amount    Spread    Order ID
   1      buy    66,898.30   0.001     0.50%     ...
   1      sell   67,581.20   0.001     0.50%     ...
-</code></pre><h3 id=步骤五后台运行分离模式>步骤五：后台运行（分离模式）<a hidden class=anchor aria-hidden=true href=#步骤五后台运行分离模式>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 退出Hummingbot但保持容器运行</span>
-</span></span><span style=display:flex><span>Ctrl+P <span style=color:#66d9ef>then</span> Ctrl+Q
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或从一开始就使用分离模式启动</span>
-</span></span><span style=display:flex><span>docker run -d --name hummingbot <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_conf,destination=/conf&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_logs,destination=/logs&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_data,destination=/data&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  hummingbot/hummingbot:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 附加到容器查看状态</span>
-</span></span><span style=display:flex><span>docker attach hummingbot
-</span></span><span style=display:flex><span><span style=color:#75715e># 然后再次使用 Ctrl+P, Ctrl+Q 分离</span>
-</span></span></code></pre></div><h2 id=与交易所和工具的集成>与交易所和工具的集成<a hidden class=anchor aria-hidden=true href=#与交易所和工具的集成>#</a></h2><h3 id=binance现货与合约>Binance现货与合约<a hidden class=anchor aria-hidden=true href=#binance现货与合约>#</a></h3><p>Binance是最受欢迎的连接器，支持现货和U本位合约。连接器自动处理速率限制 —— 遵循Binance的 <strong>每分钟1,200请求权重</strong> 限制，并采用自适应退避策略。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># conf/connectors/binance.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>connector</span>: <span style=color:#ae81ff>binance</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>api_key</span>: <span style=color:#ae81ff>${BINANCE_API_KEY}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>api_secret</span>: <span style=color:#ae81ff>${BINANCE_API_SECRET}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>rate_limit</span>: <span style=color:#ae81ff>adaptive</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>timeout</span>: <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>use_futures</span>: <span style=color:#66d9ef>false</span>
-</span></span></code></pre></div><h3 id=coinbase-advanced-trade>Coinbase Advanced Trade<a hidden class=anchor aria-hidden=true href=#coinbase-advanced-trade>#</a></h3><p>Coinbase使用不同的认证方式（2024年后采用基于JWT的认证）。Hummingbot的Coinbase连接器在内部处理JWT签名：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>&gt;&gt;&gt; connect coinbase_advanced_trade
-</span></span><span style=display:flex><span>Enter your Coinbase API key <span style=color:#f92672>(</span>UUID format<span style=color:#f92672>)</span> &gt;&gt;&gt; xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
-</span></span><span style=display:flex><span>Enter your Coinbase API secret &gt;&gt;&gt; YOUR_PRIVATE_KEY
-</span></span></code></pre></div><h3 id=hummingbot-gateway-进行dex交易>Hummingbot Gateway 进行DEX交易<a hidden class=anchor aria-hidden=true href=#hummingbot-gateway-进行dex交易>#</a></h3><p>对于Uniswap、PancakeSwap和其他DEX，你需要Gateway服务：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 拉取并运行Gateway</span>
-</span></span><span style=display:flex><span>docker pull hummingbot/gateway:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>docker run -d --name gateway <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 15888:15888 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --env GATEWAY_PASSPHRASE<span style=color:#f92672>=</span>your_secure_passphrase <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  hummingbot/gateway:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在Hummingbot中连接到Gateway</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; gateway connect uniswap_ethereum_mainnet
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Gateway配置：以太坊主网上的Uniswap</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>networks: ethereum: rpc_url</span>: <span style=color:#ae81ff>https://mainnet.infura.io/v3/YOUR_INFURA_KEY</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>chain_id</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>token_list_type</span>: <span style=color:#ae81ff>FILE</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>token_list_source</span>: <span style=color:#ae81ff>/home/gateway/conf/lists/ethereum_token_list.json</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>connectors: uniswap: contract_addresses: v3</span>: <span style=color:#ae81ff>0xE592427A0AEce92De3Edee1F18E0157C05861564</span>
-</span></span></code></pre></div><h3 id=telegram通知>Telegram通知<a hidden class=anchor aria-hidden=true href=#telegram通知>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># conf/telegram.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>telegram_enabled</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>telegram_token</span>: <span style=color:#e6db74>&#34;YOUR_BOT_TOKEN&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>telegram_chat_id</span>: <span style=color:#e6db74>&#34;YOUR_CHAT_ID&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>notify_events</span>: - <span style=color:#ae81ff>order_filled</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>trade_completed</span>
-</span></span><span style=display:flex><span>  - <span style=color:#ae81ff>strategy_error</span>
-</span></span></code></pre></div><h3 id=导出数据到grafana>导出数据到Grafana<a hidden class=anchor aria-hidden=true href=#导出数据到grafana>#</a></h3><p>Hummingbot将所有交易记录到SQLite数据库。你可以导出到Prometheus/Grafana进行可视化：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># SQLite查询示例</span>
-</span></span><span style=display:flex><span>sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;&#34;</span>
-</span></span></code></pre></div><h2 id=基准测试与真实用例>基准测试与真实用例<a hidden class=anchor aria-hidden=true href=#基准测试与真实用例>#</a></h2><h3 id=按策略类型划分的性能对比>按策略类型划分的性能对比<a hidden class=anchor aria-hidden=true href=#按策略类型划分的性能对比>#</a></h3><p>| 策略类型 | 日均交易次数 | 平均价差捕获 | 交易所延迟 | 适用场景 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="步骤五后台运行分离模式">步骤五：后台运行（分离模式）<a hidden class="anchor" aria-hidden="true" href="#步骤五后台运行分离模式">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 退出Hummingbot但保持容器运行</span>
+</span></span><span style="display:flex;"><span>Ctrl+P <span style="color:#66d9ef">then</span> Ctrl+Q
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或从一开始就使用分离模式启动</span>
+</span></span><span style="display:flex;"><span>docker run -d --name hummingbot <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_conf,destination=/conf&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_logs,destination=/logs&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_data,destination=/data&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  hummingbot/hummingbot:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 附加到容器查看状态</span>
+</span></span><span style="display:flex;"><span>docker attach hummingbot
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 然后再次使用 Ctrl+P, Ctrl+Q 分离</span>
+</span></span></code></pre></div><h2 id="与交易所和工具的集成">与交易所和工具的集成<a hidden class="anchor" aria-hidden="true" href="#与交易所和工具的集成">#</a></h2>
+<h3 id="binance现货与合约">Binance现货与合约<a hidden class="anchor" aria-hidden="true" href="#binance现货与合约">#</a></h3>
+<p>Binance是最受欢迎的连接器，支持现货和U本位合约。连接器自动处理速率限制 —— 遵循Binance的 <strong>每分钟1,200请求权重</strong> 限制，并采用自适应退避策略。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># conf/connectors/binance.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">connector</span>: <span style="color:#ae81ff">binance</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">api_key</span>: <span style="color:#ae81ff">${BINANCE_API_KEY}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">api_secret</span>: <span style="color:#ae81ff">${BINANCE_API_SECRET}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rate_limit</span>: <span style="color:#ae81ff">adaptive</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">use_futures</span>: <span style="color:#66d9ef">false</span>
+</span></span></code></pre></div><h3 id="coinbase-advanced-trade">Coinbase Advanced Trade<a hidden class="anchor" aria-hidden="true" href="#coinbase-advanced-trade">#</a></h3>
+<p>Coinbase使用不同的认证方式（2024年后采用基于JWT的认证）。Hummingbot的Coinbase连接器在内部处理JWT签名：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>&gt;&gt;&gt; connect coinbase_advanced_trade
+</span></span><span style="display:flex;"><span>Enter your Coinbase API key <span style="color:#f92672">(</span>UUID format<span style="color:#f92672">)</span> &gt;&gt;&gt; xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+</span></span><span style="display:flex;"><span>Enter your Coinbase API secret &gt;&gt;&gt; YOUR_PRIVATE_KEY
+</span></span></code></pre></div><h3 id="hummingbot-gateway-进行dex交易">Hummingbot Gateway 进行DEX交易<a hidden class="anchor" aria-hidden="true" href="#hummingbot-gateway-进行dex交易">#</a></h3>
+<p>对于Uniswap、PancakeSwap和其他DEX，你需要Gateway服务：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 拉取并运行Gateway</span>
+</span></span><span style="display:flex;"><span>docker pull hummingbot/gateway:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker run -d --name gateway <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 15888:15888 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --env GATEWAY_PASSPHRASE<span style="color:#f92672">=</span>your_secure_passphrase <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  hummingbot/gateway:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在Hummingbot中连接到Gateway</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; gateway connect uniswap_ethereum_mainnet
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Gateway配置：以太坊主网上的Uniswap</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">networks: ethereum: rpc_url</span>: <span style="color:#ae81ff">https://mainnet.infura.io/v3/YOUR_INFURA_KEY</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">chain_id</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">token_list_type</span>: <span style="color:#ae81ff">FILE</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">token_list_source</span>: <span style="color:#ae81ff">/home/gateway/conf/lists/ethereum_token_list.json</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">connectors: uniswap: contract_addresses: v3</span>: <span style="color:#ae81ff">0xE592427A0AEce92De3Edee1F18E0157C05861564</span>
+</span></span></code></pre></div><h3 id="telegram通知">Telegram通知<a hidden class="anchor" aria-hidden="true" href="#telegram通知">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># conf/telegram.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">telegram_enabled</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">telegram_token</span>: <span style="color:#e6db74">&#34;YOUR_BOT_TOKEN&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">telegram_chat_id</span>: <span style="color:#e6db74">&#34;YOUR_CHAT_ID&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">notify_events</span>: - <span style="color:#ae81ff">order_filled</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">trade_completed</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">strategy_error</span>
+</span></span></code></pre></div><h3 id="导出数据到grafana">导出数据到Grafana<a hidden class="anchor" aria-hidden="true" href="#导出数据到grafana">#</a></h3>
+<p>Hummingbot将所有交易记录到SQLite数据库。你可以导出到Prometheus/Grafana进行可视化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># SQLite查询示例</span>
+</span></span><span style="display:flex;"><span>sqlite3 hummingbot_files/hummingbot_data/hummingbot_trades.db <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;SELECT timestamp, trading_pair, order_type, amount, price FROM trades ORDER BY timestamp DESC LIMIT 10;&#34;</span>
+</span></span></code></pre></div><h2 id="基准测试与真实用例">基准测试与真实用例<a hidden class="anchor" aria-hidden="true" href="#基准测试与真实用例">#</a></h2>
+<h3 id="按策略类型划分的性能对比">按策略类型划分的性能对比<a hidden class="anchor" aria-hidden="true" href="#按策略类型划分的性能对比">#</a></h3>
+<p>| 策略类型 | 日均交易次数 | 平均价差捕获 | 交易所延迟 | 适用场景 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 纯做市 | 150-400 | 0.3-0.8% | 50-200ms | 流动性好的交易对 |
 | 跨所做市 | 80-200 | 0.5-1.2% | 100-300ms | BTC/ETH跨所套利 |
 | 套利 | 20-60 | 1.0-3.0% | 80-250ms | 高波动时期 |
-| 永续做市 | 100-300 | 0.4-1.0% | 60-200ms | 资金费率套利 |</p><h3 id=案例研究binance上btc-usdt做市>案例研究：Binance上BTC-USDT做市<a hidden class=anchor aria-hidden=true href=#案例研究binance上btc-usdt做市>#</a></h3><p>一位社区成员分享了在BTC-USDT上运行 <strong>30天</strong> 纯做市策略的数据，使用 <strong>$5,000</strong> 资金：</p><pre tabindex=0><code>总交易次数：             8,247
+| 永续做市 | 100-300 | 0.4-1.0% | 60-200ms | 资金费率套利 |</p>
+<h3 id="案例研究binance上btc-usdt做市">案例研究：Binance上BTC-USDT做市<a hidden class="anchor" aria-hidden="true" href="#案例研究binance上btc-usdt做市">#</a></h3>
+<p>一位社区成员分享了在BTC-USDT上运行 <strong>30天</strong> 纯做市策略的数据，使用 <strong>$5,000</strong> 资金：</p>
+<pre tabindex="0"><code>总交易次数：             8,247
 Maker手续费（0.02%）：   0.412 BTC
 价差捕获（平均）：        0.42%
 库存周转率：             1.8x/天
@@ -150,85 +519,102 @@ PnL（税前）：            +2.14%/月
 PnL（税后）：            +1.72%/月
 夏普比率：               1.34
 最大回撤：               1.2%
-</code></pre><h3 id=资源占用>资源占用<a hidden class=anchor aria-hidden=true href=#资源占用>#</a></h3><p>Hummingbot设计轻量：</p><p>| 资源 | 空闲 | 活跃（1个策略） | 活跃（5个策略） |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="资源占用">资源占用<a hidden class="anchor" aria-hidden="true" href="#资源占用">#</a></h3>
+<p>Hummingbot设计轻量：</p>
+<p>| 资源 | 空闲 | 活跃（1个策略） | 活跃（5个策略） |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | CPU | &lt;1% | 5-15% | 20-40% |
 | RAM | 80MB | 200-400MB | 800MB-1.5GB |
 | 网络 | ~0 | 5-20 KB/s | 20-80 KB/s |
-| 磁盘（每天） | ~0 | 5-20MB日志 | 20-100MB日志 |</p><p>这些数据使得Hummingbot可以在 <strong>$5/月的VPS</strong> 上单策略部署。</p><h2 id=高级用法与生产环境加固>高级用法与生产环境加固<a hidden class=anchor aria-hidden=true href=#高级用法与生产环境加固>#</a></h2><h3 id=用python编写自定义策略>用Python编写自定义策略<a hidden class=anchor aria-hidden=true href=#用python编写自定义策略>#</a></h3><p>Hummingbot v2.0的脚本策略接口允许你用纯Python编写逻辑：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># strategies/my_custom_mm.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> decimal <span style=color:#f92672>import</span> Decimal
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> hummingbot.strategy.script_strategy_base <span style=color:#f92672>import</span> ScriptStrategyBase
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> hummingbot.core.data_type.common <span style=color:#f92672>import</span> OrderType, TradeType
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>CustomMarketMaker</span>(ScriptStrategyBase): <span style=color:#e6db74>&#34;&#34;&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Dynamic spread market maker that adjusts based on volatility.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    spread_base <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;0.005&#34;</span>)      <span style=color:#75715e># 0.5% base spread</span>
-</span></span><span style=display:flex><span>    spread_multiplier <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;2.0&#34;</span>)   <span style=color:#75715e># 波动大时价差加倍</span>
-</span></span><span style=display:flex><span>    order_amount <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;0.001&#34;</span>)     <span style=color:#75715e># 每笔订单BTC数量</span>
-</span></span><span style=display:flex><span>    order_refresh_time <span style=color:#f92672>=</span> <span style=color:#ae81ff>30.0</span>           <span style=color:#75715e># 秒</span>
-</span></span><span style=display:flex><span>    volatility_threshold <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;0.02&#34;</span>)  <span style=color:#75715e># 2%价格变动=高波动</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self): super()<span style=color:#f92672>.</span><span style=color:#a6e22e>__init__</span>()
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>last_mid_price <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>is_volatile <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>on_tick</span>(self): mid_price <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>connectors[<span style=color:#e6db74>&#34;binance&#34;</span>]<span style=color:#f92672>.</span>get_mid_price(<span style=color:#e6db74>&#34;BTC-USDT&#34;</span>)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Detect volatility</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>last_mid_price: change <span style=color:#f92672>=</span> abs(mid_price <span style=color:#f92672>-</span> self<span style=color:#f92672>.</span>last_mid_price) <span style=color:#f92672>/</span> self<span style=color:#f92672>.</span>last_mid_price
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>is_volatile <span style=color:#f92672>=</span> change <span style=color:#f92672>&gt;</span> self<span style=color:#f92672>.</span>volatility_threshold
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>last_mid_price <span style=color:#f92672>=</span> mid_price
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Adjust spread</span>
-</span></span><span style=display:flex><span>        spread <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>spread_base
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>is_volatile: spread <span style=color:#f92672>*=</span> self<span style=color:#f92672>.</span>spread_multiplier
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        buy_price <span style=color:#f92672>=</span> mid_price <span style=color:#f92672>*</span> (Decimal(<span style=color:#e6db74>&#34;1&#34;</span>) <span style=color:#f92672>-</span> spread)
-</span></span><span style=display:flex><span>        sell_price <span style=color:#f92672>=</span> mid_price <span style=color:#f92672>*</span> (Decimal(<span style=color:#e6db74>&#34;1&#34;</span>) <span style=color:#f92672>+</span> spread)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Cancel existing orders</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>cancel_all_orders()
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Place new orders</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>buy(<span style=color:#e6db74>&#34;binance&#34;</span>, <span style=color:#e6db74>&#34;BTC-USDT&#34;</span>, self<span style=color:#f92672>.</span>order_amount, OrderType<span style=color:#f92672>.</span>LIMIT, buy_price)
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>sell(<span style=color:#e6db74>&#34;binance&#34;</span>, <span style=color:#e6db74>&#34;BTC-USDT&#34;</span>, self<span style=color:#f92672>.</span>order_amount, OrderType<span style=color:#f92672>.</span>LIMIT, sell_price)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>cancel_all_orders</span>(self): <span style=color:#66d9ef>for</span> order <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>get_active_orders(<span style=color:#e6db74>&#34;binance&#34;</span>): self<span style=color:#f92672>.</span>cancel(order)
-</span></span></code></pre></div><h3 id=基于库存管理的订单偏移>基于库存管理的订单偏移<a hidden class=anchor aria-hidden=true href=#基于库存管理的订单偏移>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 添加到你的策略中实现库存偏移</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>calculate_inventory_skew</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;Adjust order sizes based on inventory ratio.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        base_balance <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>connectors[<span style=color:#e6db74>&#34;binance&#34;</span>]<span style=color:#f92672>.</span>get_balance(<span style=color:#e6db74>&#34;BTC&#34;</span>)
-</span></span><span style=display:flex><span>        quote_balance <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>connectors[<span style=color:#e6db74>&#34;binance&#34;</span>]<span style=color:#f92672>.</span>get_balance(<span style=color:#e6db74>&#34;USDT&#34;</span>)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        mid_price <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>connectors[<span style=color:#e6db74>&#34;binance&#34;</span>]<span style=color:#f92672>.</span>get_mid_price(<span style=color:#e6db74>&#34;BTC-USDT&#34;</span>)
-</span></span><span style=display:flex><span>        base_value <span style=color:#f92672>=</span> base_balance <span style=color:#f92672>*</span> mid_price
-</span></span><span style=display:flex><span>        total_value <span style=color:#f92672>=</span> base_value <span style=color:#f92672>+</span> quote_balance
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        inventory_ratio <span style=color:#f92672>=</span> base_value <span style=color:#f92672>/</span> total_value
-</span></span><span style=display:flex><span>        target_ratio <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;0.5&#34;</span>)  <span style=color:#75715e># 50/50目标</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#75715e># Skew orders based on inventory</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> inventory_ratio <span style=color:#f92672>&gt;</span> target_ratio: <span style=color:#75715e># BTC持仓过多，减少买单</span>
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>buy_multiplier <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;0.5&#34;</span>)
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>sell_multiplier <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;1.5&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>else</span>: self<span style=color:#f92672>.</span>buy_multiplier <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;1.5&#34;</span>)
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>sell_multiplier <span style=color:#f92672>=</span> Decimal(<span style=color:#e6db74>&#34;0.5&#34;</span>)
-</span></span></code></pre></div><h3 id=使用历史数据回测>使用历史数据回测<a hidden class=anchor aria-hidden=true href=#使用历史数据回测>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 下载历史交易数据</span>
-</span></span><span style=display:flex><span>python scripts/download_historical_data.py <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --exchange binance <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --trading-pair BTC-USDT <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --start-date 2026-01-01 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --end-date 2026-03-31 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --interval 1m
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 运行回测</span>
-</span></span><span style=display:flex><span>python scripts/backtest.py <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --strategy pure_market_making <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --config conf/strategies/pmm_btc.yml <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --data data/binance_BTC-USDT_1m.csv <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --output results/btc_pmm_backtest.html
-</span></span></code></pre></div><pre tabindex=0><code>回测结果（2026-01-01 至 2026-03-31）
+| 磁盘（每天） | ~0 | 5-20MB日志 | 20-100MB日志 |</p>
+<p>这些数据使得Hummingbot可以在 <strong>$5/月的VPS</strong> 上单策略部署。</p>
+<h2 id="高级用法与生产环境加固">高级用法与生产环境加固<a hidden class="anchor" aria-hidden="true" href="#高级用法与生产环境加固">#</a></h2>
+<h3 id="用python编写自定义策略">用Python编写自定义策略<a hidden class="anchor" aria-hidden="true" href="#用python编写自定义策略">#</a></h3>
+<p>Hummingbot v2.0的脚本策略接口允许你用纯Python编写逻辑：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># strategies/my_custom_mm.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> decimal <span style="color:#f92672">import</span> Decimal
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> hummingbot.strategy.script_strategy_base <span style="color:#f92672">import</span> ScriptStrategyBase
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> hummingbot.core.data_type.common <span style="color:#f92672">import</span> OrderType, TradeType
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">CustomMarketMaker</span>(ScriptStrategyBase): <span style="color:#e6db74">&#34;&#34;&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Dynamic spread market maker that adjusts based on volatility.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    spread_base <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;0.005&#34;</span>)      <span style="color:#75715e"># 0.5% base spread</span>
+</span></span><span style="display:flex;"><span>    spread_multiplier <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;2.0&#34;</span>)   <span style="color:#75715e"># 波动大时价差加倍</span>
+</span></span><span style="display:flex;"><span>    order_amount <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;0.001&#34;</span>)     <span style="color:#75715e"># 每笔订单BTC数量</span>
+</span></span><span style="display:flex;"><span>    order_refresh_time <span style="color:#f92672">=</span> <span style="color:#ae81ff">30.0</span>           <span style="color:#75715e"># 秒</span>
+</span></span><span style="display:flex;"><span>    volatility_threshold <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;0.02&#34;</span>)  <span style="color:#75715e"># 2%价格变动=高波动</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self): super()<span style="color:#f92672">.</span><span style="color:#a6e22e">__init__</span>()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>last_mid_price <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>is_volatile <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">on_tick</span>(self): mid_price <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>connectors[<span style="color:#e6db74">&#34;binance&#34;</span>]<span style="color:#f92672">.</span>get_mid_price(<span style="color:#e6db74">&#34;BTC-USDT&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Detect volatility</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>last_mid_price: change <span style="color:#f92672">=</span> abs(mid_price <span style="color:#f92672">-</span> self<span style="color:#f92672">.</span>last_mid_price) <span style="color:#f92672">/</span> self<span style="color:#f92672">.</span>last_mid_price
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>is_volatile <span style="color:#f92672">=</span> change <span style="color:#f92672">&gt;</span> self<span style="color:#f92672">.</span>volatility_threshold
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>last_mid_price <span style="color:#f92672">=</span> mid_price
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Adjust spread</span>
+</span></span><span style="display:flex;"><span>        spread <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>spread_base
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>is_volatile: spread <span style="color:#f92672">*=</span> self<span style="color:#f92672">.</span>spread_multiplier
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        buy_price <span style="color:#f92672">=</span> mid_price <span style="color:#f92672">*</span> (Decimal(<span style="color:#e6db74">&#34;1&#34;</span>) <span style="color:#f92672">-</span> spread)
+</span></span><span style="display:flex;"><span>        sell_price <span style="color:#f92672">=</span> mid_price <span style="color:#f92672">*</span> (Decimal(<span style="color:#e6db74">&#34;1&#34;</span>) <span style="color:#f92672">+</span> spread)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Cancel existing orders</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>cancel_all_orders()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Place new orders</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>buy(<span style="color:#e6db74">&#34;binance&#34;</span>, <span style="color:#e6db74">&#34;BTC-USDT&#34;</span>, self<span style="color:#f92672">.</span>order_amount, OrderType<span style="color:#f92672">.</span>LIMIT, buy_price)
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sell(<span style="color:#e6db74">&#34;binance&#34;</span>, <span style="color:#e6db74">&#34;BTC-USDT&#34;</span>, self<span style="color:#f92672">.</span>order_amount, OrderType<span style="color:#f92672">.</span>LIMIT, sell_price)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">cancel_all_orders</span>(self): <span style="color:#66d9ef">for</span> order <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>get_active_orders(<span style="color:#e6db74">&#34;binance&#34;</span>): self<span style="color:#f92672">.</span>cancel(order)
+</span></span></code></pre></div><h3 id="基于库存管理的订单偏移">基于库存管理的订单偏移<a hidden class="anchor" aria-hidden="true" href="#基于库存管理的订单偏移">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 添加到你的策略中实现库存偏移</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">calculate_inventory_skew</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;Adjust order sizes based on inventory ratio.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        base_balance <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>connectors[<span style="color:#e6db74">&#34;binance&#34;</span>]<span style="color:#f92672">.</span>get_balance(<span style="color:#e6db74">&#34;BTC&#34;</span>)
+</span></span><span style="display:flex;"><span>        quote_balance <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>connectors[<span style="color:#e6db74">&#34;binance&#34;</span>]<span style="color:#f92672">.</span>get_balance(<span style="color:#e6db74">&#34;USDT&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        mid_price <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>connectors[<span style="color:#e6db74">&#34;binance&#34;</span>]<span style="color:#f92672">.</span>get_mid_price(<span style="color:#e6db74">&#34;BTC-USDT&#34;</span>)
+</span></span><span style="display:flex;"><span>        base_value <span style="color:#f92672">=</span> base_balance <span style="color:#f92672">*</span> mid_price
+</span></span><span style="display:flex;"><span>        total_value <span style="color:#f92672">=</span> base_value <span style="color:#f92672">+</span> quote_balance
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        inventory_ratio <span style="color:#f92672">=</span> base_value <span style="color:#f92672">/</span> total_value
+</span></span><span style="display:flex;"><span>        target_ratio <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;0.5&#34;</span>)  <span style="color:#75715e"># 50/50目标</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Skew orders based on inventory</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> inventory_ratio <span style="color:#f92672">&gt;</span> target_ratio: <span style="color:#75715e"># BTC持仓过多，减少买单</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>buy_multiplier <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;0.5&#34;</span>)
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>sell_multiplier <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;1.5&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>: self<span style="color:#f92672">.</span>buy_multiplier <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;1.5&#34;</span>)
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>sell_multiplier <span style="color:#f92672">=</span> Decimal(<span style="color:#e6db74">&#34;0.5&#34;</span>)
+</span></span></code></pre></div><h3 id="使用历史数据回测">使用历史数据回测<a hidden class="anchor" aria-hidden="true" href="#使用历史数据回测">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 下载历史交易数据</span>
+</span></span><span style="display:flex;"><span>python scripts/download_historical_data.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --exchange binance <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --trading-pair BTC-USDT <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --start-date 2026-01-01 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --end-date 2026-03-31 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --interval 1m
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 运行回测</span>
+</span></span><span style="display:flex;"><span>python scripts/backtest.py <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --strategy pure_market_making <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --config conf/strategies/pmm_btc.yml <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --data data/binance_BTC-USDT_1m.csv <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --output results/btc_pmm_backtest.html
+</span></span></code></pre></div><pre tabindex="0"><code>回测结果（2026-01-01 至 2026-03-31）
 
 总交易次数：           12,450
 总收益：               +5.23%
@@ -237,44 +623,59 @@ PnL（税后）：            +1.72%/月
 平均持仓时间：          18.4分钟
 胜率：                 62.3%
 盈亏比：               1.48
-</code></pre><h3 id=模拟交易模式>模拟交易模式<a hidden class=anchor aria-hidden=true href=#模拟交易模式>#</a></h3><p>在实盘交易之前，始终先在模拟模式下测试：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在配置中启用模拟交易</span>
-</span></span><span style=display:flex><span>paper_trade_enabled: true
-</span></span><span style=display:flex><span>paper_trade_account_balance: BTC: 1.0
-</span></span><span style=display:flex><span>  USDT: 50000.0
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 模拟交易会显示[PAPER]前缀</span>
-</span></span><span style=display:flex><span>&gt;&gt;&gt; status
-</span></span><span style=display:flex><span>  Markets: <span style=color:#f92672>[</span>PAPER<span style=color:#f92672>]</span> binance  BTC-USDT  67,234.50  67,245.00  67,239.75
-</span></span></code></pre></div><h3 id=生产环境docker-compose配置>生产环境Docker Compose配置<a hidden class=anchor aria-hidden=true href=#生产环境docker-compose配置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: hummingbot: image</span>: <span style=color:#ae81ff>hummingbot/hummingbot:2.0.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>hummingbot_prod</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./conf:/conf</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./logs:/logs</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./data:/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>CONFIG_PASSWORD=${HBOT_PASSWORD}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>STRATEGY=pure_market_making</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>CONFIG_FILE=pmm_btc_usdt.yml</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>logging: driver</span>: <span style=color:#e6db74>&#34;json-file&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>options: max-size</span>: <span style=color:#e6db74>&#34;50m&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>max-file</span>: <span style=color:#e6db74>&#34;5&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: limits: memory</span>: <span style=color:#ae81ff>2G</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>cpus</span>: <span style=color:#e6db74>&#39;1.0&#39;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>healthcheck: test</span>: [<span style=color:#e6db74>&#34;CMD&#34;</span>, <span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;-c&#34;</span>, <span style=color:#e6db74>&#34;import urllib.request; urllib.request.urlopen(&#39;http://localhost:15888/&#39;)&#34;</span>]
-</span></span><span style=display:flex><span>      <span style=color:#f92672>interval</span>: <span style=color:#ae81ff>30s</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>timeout</span>: <span style=color:#ae81ff>10s</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>retries</span>: <span style=color:#ae81ff>3</span>
-</span></span></code></pre></div><h3 id=安全检查清单>安全检查清单<a hidden class=anchor aria-hidden=true href=#安全检查清单>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. 使用IP白名单API密钥（Binance支持）</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. 在API密钥上启用提币限制</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. 在隔离的Docker网络中运行</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. 加密配置文件</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 加密敏感配置</span>
-</span></span><span style=display:flex><span>openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
-</span></span></code></pre></div><h2 id=与替代方案对比>与替代方案对比<a hidden class=anchor aria-hidden=true href=#与替代方案对比>#</a></h2><p>| 功能 | Hummingbot | Freqtrade | 3Commas | Gunbot |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="模拟交易模式">模拟交易模式<a hidden class="anchor" aria-hidden="true" href="#模拟交易模式">#</a></h3>
+<p>在实盘交易之前，始终先在模拟模式下测试：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在配置中启用模拟交易</span>
+</span></span><span style="display:flex;"><span>paper_trade_enabled: true
+</span></span><span style="display:flex;"><span>paper_trade_account_balance: BTC: 1.0
+</span></span><span style="display:flex;"><span>  USDT: 50000.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 模拟交易会显示[PAPER]前缀</span>
+</span></span><span style="display:flex;"><span>&gt;&gt;&gt; status
+</span></span><span style="display:flex;"><span>  Markets: <span style="color:#f92672">[</span>PAPER<span style="color:#f92672">]</span> binance  BTC-USDT  67,234.50  67,245.00  67,239.75
+</span></span></code></pre></div><h3 id="生产环境docker-compose配置">生产环境Docker Compose配置<a hidden class="anchor" aria-hidden="true" href="#生产环境docker-compose配置">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: hummingbot: image</span>: <span style="color:#ae81ff">hummingbot/hummingbot:2.0.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">hummingbot_prod</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./conf:/conf</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./logs:/logs</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./data:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">CONFIG_PASSWORD=${HBOT_PASSWORD}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">STRATEGY=pure_market_making</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">CONFIG_FILE=pmm_btc_usdt.yml</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">logging: driver</span>: <span style="color:#e6db74">&#34;json-file&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">options: max-size</span>: <span style="color:#e6db74">&#34;50m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">max-file</span>: <span style="color:#e6db74">&#34;5&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: limits: memory</span>: <span style="color:#ae81ff">2G</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">cpus</span>: <span style="color:#e6db74">&#39;1.0&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">healthcheck: test</span>: [<span style="color:#e6db74">&#34;CMD&#34;</span>, <span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;-c&#34;</span>, <span style="color:#e6db74">&#34;import urllib.request; urllib.request.urlopen(&#39;http://localhost:15888/&#39;)&#34;</span>]
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">interval</span>: <span style="color:#ae81ff">30s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">timeout</span>: <span style="color:#ae81ff">10s</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">retries</span>: <span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><h3 id="安全检查清单">安全检查清单<a hidden class="anchor" aria-hidden="true" href="#安全检查清单">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. 使用IP白名单API密钥（Binance支持）</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 在API密钥上启用提币限制</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 在隔离的Docker网络中运行</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 加密配置文件</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 加密敏感配置</span>
+</span></span><span style="display:flex;"><span>openssl enc -aes-256-cbc -salt -in secrets.yml -out secrets.yml.enc
+</span></span></code></pre></div><h2 id="与替代方案对比">与替代方案对比<a hidden class="anchor" aria-hidden="true" href="#与替代方案对比">#</a></h2>
+<p>| 功能 | Hummingbot | Freqtrade | 3Commas | Gunbot |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>许可证</strong> | Apache-2.0 | GPL-3.0 | 专有 | 专有 |
 | <strong>CEX连接器</strong> | 50+ | 20+ | 15+ | 10+ |
 | <strong>DEX支持</strong> | 是（Gateway） | 有限 | 否 | 否 |
@@ -286,19 +687,91 @@ PnL（税后）：            +1.72%/月
 | <strong>成本</strong> | 免费 | 免费 | $29-99/月 | $299一次性 |
 | <strong>社区规模</strong> | 10.5K星标 | 37K星标 | N/A | N/A |
 | <strong>Telegram机器人</strong> | 是 | 是 | 是 | 是 |
-| <strong>做市能力</strong> | 优秀 | 基础 | 良好 | 中等 |</p><p><strong>选择建议：</strong></p><ul><li><strong>Hummingbot：</strong> 最适合做市和CEX+DEX组合策略</li><li><strong>Freqtrade：</strong> 最适合基于机器学习的方向性策略（<a href=dibi8-internal-link>了解更多</a>）</li><li><strong>3Commas：</strong> 最适合想要SaaS且设置最少的新手</li><li><strong>Gunbot：</strong> 最适合想要一次性付费和简单机器人的交易者</li></ul><h2 id=局限性与诚实的评估>局限性与诚实的评估<a hidden class=anchor aria-hidden=true href=#局限性与诚实的评估>#</a></h2><p><strong>Hummingbot不是印钞机。</strong> 在部署资金之前，请了解以下限制：</p><ol><li><p><strong>做市需要库存。</strong> 你需要同时拥有基础资产和计价资产。资金少于 <strong>$1,000</strong> 时，手续费通常会吃掉大部分利润。</p></li><li><p><strong>延迟很重要。</strong> 如果你的VPS在新加坡而Binance的撮合引擎在东京，你相比同地点做市商处于劣势。考虑使用低延迟VPS服务。</p></li><li><p><strong>策略开发有学习曲线。</strong> 虽然快速入门只需几分钟，但编写盈利性自定义策略需要理解订单簿动态、库存风险和逆向选择。</p></li><li><p><strong>Gateway DEX交易需要gas费。</strong> 在以太坊主网上，一次Uniswap交易可能需要$5-20的gas费。请将此纳入价差计算。</p></li><li><p><strong>不是所有交易所都一样。</strong> 某些连接器（Binance、Coinbase）经过充分测试。其他可能有bug或不完整 —— 务必先在模拟交易中测试。</p></li></ol><h2 id=常见问题解答>常见问题解答<a hidden class=anchor aria-hidden=true href=#常见问题解答>#</a></h2><h3 id=使用hummingbot需要多少资金>使用Hummingbot需要多少资金？<a hidden class=anchor aria-hidden=true href=#使用hummingbot需要多少资金>#</a></h3><p>对于BTC-USDT等流动性好的交易对，建议最少 <strong>$2,000-5,000</strong>。这覆盖了订单簿两边并吸收手续费。用于测试的话，可以用$0进行模拟交易，或在低市值交易对上以$500运行 —— 但需注意更高的波动风险。</p><h3 id=在hummingbot中使用交易所api密钥安全吗>在Hummingbot中使用交易所API密钥安全吗？<a hidden class=anchor aria-hidden=true href=#在hummingbot中使用交易所api密钥安全吗>#</a></h3><p>Hummingbot在本地Docker卷中存储API密钥。代码是开源且可审计的。最佳实践：创建仅具有<strong>交易权限</strong>的API密钥（无提币权限），将其IP限制到你的VPS，且切勿将配置提交到Git。该项目已通过多家第三方安全公司审计。</p><h3 id=可以同时运行多个策略吗>可以同时运行多个策略吗？<a hidden class=anchor aria-hidden=true href=#可以同时运行多个策略吗>#</a></h3><p>可以。启动多个Docker容器，每个容器有自己的配置目录和策略文件。单个容器运行一个策略，但在 <strong>$10/月的VPS</strong> 上可以同时运行5-10个策略。资源占用线性增长。</p><h3 id=hummingbot与3commas等付费机器人相比如何>Hummingbot与3Commas等付费机器人相比如何？<a hidden class=anchor aria-hidden=true href=#hummingbot与3commas等付费机器人相比如何>#</a></h3><p>Hummingbot免费、开源且完全可定制 —— 但需要技术设置。3Commas是SaaS服务，有友好的用户界面，但每月花费$29-99且策略定制受限。如果你能写Python并管理VPS，Hummingbot给你更多控制权且零成本。如果你想要一键设置，付费服务可能值得考虑。</p><h3 id=gateway和普通连接器有什么区别>Gateway和普通连接器有什么区别？<a hidden class=anchor aria-hidden=true href=#gateway和普通连接器有什么区别>#</a></h3><p>普通连接器通过REST/WebSocket与中心化交易所API交互。<strong>Hummingbot Gateway</strong> 是一个独立服务，为Uniswap V3等DEX协议创建区块链交易。Gateway要求你自行管理钱包私钥并支付gas费。它增加了复杂性，但解锁了去中心化交易。</p><h3 id=如何将hummingbot更新到新版本>如何将Hummingbot更新到新版本？<a hidden class=anchor aria-hidden=true href=#如何将hummingbot更新到新版本>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 拉取最新镜像</span>
-</span></span><span style=display:flex><span>docker pull hummingbot/hummingbot:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 停止并删除旧容器</span>
-</span></span><span style=display:flex><span>docker stop hummingbot <span style=color:#f92672>&amp;&amp;</span> docker rm hummingbot
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用相同的卷挂载重新启动</span>
-</span></span><span style=display:flex><span>docker run -it --name hummingbot <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_conf,destination=/conf&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mount <span style=color:#e6db74>&#34;type=bind,source=</span><span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span><span style=color:#e6db74>/hummingbot_files/hummingbot_logs,destination=/logs&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  hummingbot/hummingbot:latest
-</span></span></code></pre></div><p>你的配置存储在挂载卷中，会持久保留。</p><h3 id=hummingbot可以用于期货永续合约交易吗>Hummingbot可以用于期货/永续合约交易吗？<a hidden class=anchor aria-hidden=true href=#hummingbot可以用于期货永续合约交易吗>#</a></h3><p>可以。Binance、Bybit和OKX连接器支持永续合约。将 ````domain``` 参数设置为合约子域名，并谨慎配置杠杆。在理解资金费率机制之前，建议使用 <strong>1x-3x杠杆</strong>。</p><h2 id=结论今天就开始算法交易>结论：今天就开始算法交易<a hidden class=anchor aria-hidden=true href=#结论今天就开始算法交易>#</a></h2><p>Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器、Docker 5分钟部署和完整的Python扩展性，它在可访问性和强大功能之间取得了平衡。</p><p>你的下一步：</p><ol><li><strong>在 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> 或 <a href=https://www.promoohubly.com/join/12190433>OKX</a> 注册</strong> 并创建API密钥</li><li><strong>使用上方Docker快速指南部署Hummingbot</strong></li><li><strong>在投入真实资金前先用模拟交易运行1周</strong></li><li><strong>加入社区</strong> —— <a href=https://discord.gg/hummingbot>Hummingbot Discord</a> 有15,000+活跃交易者分享策略</li><li><strong>探索AI增强交易</strong> 通过 <a href=https://minara.ai/r/OSXG4X>Minara</a> 实现机器学习驱动的信号生成</li></ol><p>加入我们的开发者Telegram社区：<a href=https://t.me/dibi8developers>t.me/dibi8developers</a> —— 我们每天讨论机器人策略、交易所集成和生产环境部署。</p><h2 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h2><ul><li><a href=https://hummingbot.org/>Hummingbot 官方文档</a></li><li><a href=https://github.com/hummingbot/hummingbot>Hummingbot GitHub 仓库</a></li><li><a href=https://hummingbot.org/gateway/>Hummingbot Gateway 文档</a></li><li><a href=https://hummingbot.org/academy/>Hummingbot 学院（策略指南）</a></li><li><a href=https://binance-docs.github.io/apidocs/>Binance API 文档</a></li><li><a href=https://docs.cdp.coinbase.com/advanced-trade/docs/welcome/>Coinbase Advanced Trade API</a></li><li><a href=https://docs.uniswap.org/contracts/v3/overview>Uniswap V3 文档</a></li></ul><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=联盟营销披露>联盟营销披露<a hidden class=anchor aria-hidden=true href=#联盟营销披露>#</a></h2><p>本指南包含 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>、<a href=https://www.promoohubly.com/join/12190433>OKX</a> 和 <a href=https://minara.ai/r/OSXG4X>Minara</a> 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>做市能力</strong> | 优秀 | 基础 | 良好 | 中等 |</p>
+<p><strong>选择建议：</strong></p>
+<ul>
+<li><strong>Hummingbot：</strong> 最适合做市和CEX+DEX组合策略</li>
+<li><strong>Freqtrade：</strong> 最适合基于机器学习的方向性策略（<a href="dibi8-internal-link">了解更多</a>）</li>
+<li><strong>3Commas：</strong> 最适合想要SaaS且设置最少的新手</li>
+<li><strong>Gunbot：</strong> 最适合想要一次性付费和简单机器人的交易者</li>
+</ul>
+<h2 id="局限性与诚实的评估">局限性与诚实的评估<a hidden class="anchor" aria-hidden="true" href="#局限性与诚实的评估">#</a></h2>
+<p><strong>Hummingbot不是印钞机。</strong> 在部署资金之前，请了解以下限制：</p>
+<ol>
+<li>
+<p><strong>做市需要库存。</strong> 你需要同时拥有基础资产和计价资产。资金少于 <strong>$1,000</strong> 时，手续费通常会吃掉大部分利润。</p>
+</li>
+<li>
+<p><strong>延迟很重要。</strong> 如果你的VPS在新加坡而Binance的撮合引擎在东京，你相比同地点做市商处于劣势。考虑使用低延迟VPS服务。</p>
+</li>
+<li>
+<p><strong>策略开发有学习曲线。</strong> 虽然快速入门只需几分钟，但编写盈利性自定义策略需要理解订单簿动态、库存风险和逆向选择。</p>
+</li>
+<li>
+<p><strong>Gateway DEX交易需要gas费。</strong> 在以太坊主网上，一次Uniswap交易可能需要$5-20的gas费。请将此纳入价差计算。</p>
+</li>
+<li>
+<p><strong>不是所有交易所都一样。</strong> 某些连接器（Binance、Coinbase）经过充分测试。其他可能有bug或不完整 —— 务必先在模拟交易中测试。</p>
+</li>
+</ol>
+<h2 id="常见问题解答">常见问题解答<a hidden class="anchor" aria-hidden="true" href="#常见问题解答">#</a></h2>
+<h3 id="使用hummingbot需要多少资金">使用Hummingbot需要多少资金？<a hidden class="anchor" aria-hidden="true" href="#使用hummingbot需要多少资金">#</a></h3>
+<p>对于BTC-USDT等流动性好的交易对，建议最少 <strong>$2,000-5,000</strong>。这覆盖了订单簿两边并吸收手续费。用于测试的话，可以用$0进行模拟交易，或在低市值交易对上以$500运行 —— 但需注意更高的波动风险。</p>
+<h3 id="在hummingbot中使用交易所api密钥安全吗">在Hummingbot中使用交易所API密钥安全吗？<a hidden class="anchor" aria-hidden="true" href="#在hummingbot中使用交易所api密钥安全吗">#</a></h3>
+<p>Hummingbot在本地Docker卷中存储API密钥。代码是开源且可审计的。最佳实践：创建仅具有<strong>交易权限</strong>的API密钥（无提币权限），将其IP限制到你的VPS，且切勿将配置提交到Git。该项目已通过多家第三方安全公司审计。</p>
+<h3 id="可以同时运行多个策略吗">可以同时运行多个策略吗？<a hidden class="anchor" aria-hidden="true" href="#可以同时运行多个策略吗">#</a></h3>
+<p>可以。启动多个Docker容器，每个容器有自己的配置目录和策略文件。单个容器运行一个策略，但在 <strong>$10/月的VPS</strong> 上可以同时运行5-10个策略。资源占用线性增长。</p>
+<h3 id="hummingbot与3commas等付费机器人相比如何">Hummingbot与3Commas等付费机器人相比如何？<a hidden class="anchor" aria-hidden="true" href="#hummingbot与3commas等付费机器人相比如何">#</a></h3>
+<p>Hummingbot免费、开源且完全可定制 —— 但需要技术设置。3Commas是SaaS服务，有友好的用户界面，但每月花费$29-99且策略定制受限。如果你能写Python并管理VPS，Hummingbot给你更多控制权且零成本。如果你想要一键设置，付费服务可能值得考虑。</p>
+<h3 id="gateway和普通连接器有什么区别">Gateway和普通连接器有什么区别？<a hidden class="anchor" aria-hidden="true" href="#gateway和普通连接器有什么区别">#</a></h3>
+<p>普通连接器通过REST/WebSocket与中心化交易所API交互。<strong>Hummingbot Gateway</strong> 是一个独立服务，为Uniswap V3等DEX协议创建区块链交易。Gateway要求你自行管理钱包私钥并支付gas费。它增加了复杂性，但解锁了去中心化交易。</p>
+<h3 id="如何将hummingbot更新到新版本">如何将Hummingbot更新到新版本？<a hidden class="anchor" aria-hidden="true" href="#如何将hummingbot更新到新版本">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 拉取最新镜像</span>
+</span></span><span style="display:flex;"><span>docker pull hummingbot/hummingbot:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 停止并删除旧容器</span>
+</span></span><span style="display:flex;"><span>docker stop hummingbot <span style="color:#f92672">&amp;&amp;</span> docker rm hummingbot
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用相同的卷挂载重新启动</span>
+</span></span><span style="display:flex;"><span>docker run -it --name hummingbot <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_conf,destination=/conf&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mount <span style="color:#e6db74">&#34;type=bind,source=</span><span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span><span style="color:#e6db74">/hummingbot_files/hummingbot_logs,destination=/logs&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  hummingbot/hummingbot:latest
+</span></span></code></pre></div><p>你的配置存储在挂载卷中，会持久保留。</p>
+<h3 id="hummingbot可以用于期货永续合约交易吗">Hummingbot可以用于期货/永续合约交易吗？<a hidden class="anchor" aria-hidden="true" href="#hummingbot可以用于期货永续合约交易吗">#</a></h3>
+<p>可以。Binance、Bybit和OKX连接器支持永续合约。将 ````domain``` 参数设置为合约子域名，并谨慎配置杠杆。在理解资金费率机制之前，建议使用 <strong>1x-3x杠杆</strong>。</p>
+<h2 id="结论今天就开始算法交易">结论：今天就开始算法交易<a hidden class="anchor" aria-hidden="true" href="#结论今天就开始算法交易">#</a></h2>
+<p>Hummingbot是2026年最成熟的做市开源框架。凭借50+交易所连接器、Docker 5分钟部署和完整的Python扩展性，它在可访问性和强大功能之间取得了平衡。</p>
+<p>你的下一步：</p>
+<ol>
+<li><strong>在 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> 或 <a href="https://www.promoohubly.com/join/12190433">OKX</a> 注册</strong> 并创建API密钥</li>
+<li><strong>使用上方Docker快速指南部署Hummingbot</strong></li>
+<li><strong>在投入真实资金前先用模拟交易运行1周</strong></li>
+<li><strong>加入社区</strong> —— <a href="https://discord.gg/hummingbot">Hummingbot Discord</a> 有15,000+活跃交易者分享策略</li>
+<li><strong>探索AI增强交易</strong> 通过 <a href="https://minara.ai/r/OSXG4X">Minara</a> 实现机器学习驱动的信号生成</li>
+</ol>
+<p>加入我们的开发者Telegram社区：<a href="https://t.me/dibi8developers">t.me/dibi8developers</a> —— 我们每天讨论机器人策略、交易所集成和生产环境部署。</p>
+<h2 id="来源与延伸阅读">来源与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#来源与延伸阅读">#</a></h2>
+<ul>
+<li><a href="https://hummingbot.org/">Hummingbot 官方文档</a></li>
+<li><a href="https://github.com/hummingbot/hummingbot">Hummingbot GitHub 仓库</a></li>
+<li><a href="https://hummingbot.org/gateway/">Hummingbot Gateway 文档</a></li>
+<li><a href="https://hummingbot.org/academy/">Hummingbot 学院（策略指南）</a></li>
+<li><a href="https://binance-docs.github.io/apidocs/">Binance API 文档</a></li>
+<li><a href="https://docs.cdp.coinbase.com/advanced-trade/docs/welcome/">Coinbase Advanced Trade API</a></li>
+<li><a href="https://docs.uniswap.org/contracts/v3/overview">Uniswap V3 文档</a></li>
+</ul>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="联盟营销披露">联盟营销披露<a hidden class="anchor" aria-hidden="true" href="#联盟营销披露">#</a></h2>
+<p>本指南包含 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a>、<a href="https://www.promoohubly.com/join/12190433">OKX</a> 和 <a href="https://minara.ai/r/OSXG4X">Minara</a> 的联盟链接。如果你通过这些链接注册，我们会获得佣金，你不会产生额外费用。这支持我们的开源文档工作。我们只推荐我们积极使用和测试的工具。</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -312,19 +785,210 @@ PnL（税后）：            +1.72%/月
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot%22>https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot%22">https://dibi8.com/zh/resources/hummingbot-crypto-trading-bot"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~7 minutes</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：量化交易的风险有多大？</strong></p><p>取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。</p><p><strong>问：如何选择适合的交易策略？</strong></p><p>根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。</p><p><strong>问：回测结果可信吗？</strong></p><p>回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。</p><p><strong>问：需要编程基础吗？</strong></p><p>基础策略可使用低代码平台，高级策略需要Python/C++编程能力。</p><p><strong>问：交易系统的维护成本？</strong></p><p>包括服务器费用、数据订阅、算法更新、以及监控维护时间。</p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Hummingbot 2026：开源加密货币交易机器人支持50+交易所连接器 — 安装与策略指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~7 minutes</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：量化交易的风险有多大？</strong></p>
+<p>取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。</p>
+<p><strong>问：如何选择适合的交易策略？</strong></p>
+<p>根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。</p>
+<p><strong>问：回测结果可信吗？</strong></p>
+<p>回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。</p>
+<p><strong>问：需要编程基础吗？</strong></p>
+<p>基础策略可使用低代码平台，高级策略需要Python/C++编程能力。</p>
+<p><strong>问：交易系统的维护成本？</strong></p>
+<p>包括服务器费用、数据订阅、算法更新、以及监控维护时间。</p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

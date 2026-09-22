@@ -1,153 +1,588 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"{\u003c/* resource-info */\u003e}\n引言：为什么 MCP 是 2026 年最值得投入的技术 如果你还在用传统方式为每个 LLM 编写定制化的工具调用代码，你已经落后了。\n2024 年 11 月，Anthropic 推出了 Model Context Protocol（MCP）。这个看似简单的开放协议，正在以惊人的速度重塑 AI 与外部世界的连接方式。短短半年内，OpenAI、Google DeepMind、Microsoft 先后宣布全面支持；社区涌现出 10,000+ 个 MCP 服务器；Python 与 JavaScript SDK 的周下载量突破 2000 万次。\n更重要的是，Linux Foundation 于 2025 年 12 月接管 MCP，成立 Agentic AI Foundation 独立运营——这意味着 MCP 不再是某一家公司的私产，而是整个行业的公共基础设施。\n本文不是概念科普。我将带你从第一行代码开始，亲手构建一个生产级的 MCP 服务器，并接入 Claude、Cursor、VS Code Copilot 等主流客户端。读完之后，你会拥有一个真正可用的服务器监控 MCP 工具，可以在任意 AI 对话中直接查询网站状态、SSL 证书有效期。\n目录 MCP 的本质：AI 世界的 USB-C 接口 架构解析：Client-Server 如何协作 环境准备：5 分钟搭建开发环境 实战：构建一个网站监控 MCP 服务器 接入 Claude Desktop 与 Cursor 进阶：Resources、Prompts 与 Streaming HTTP 安全与生产最佳实践 生态速查：值得立刻试用的 15 个 MCP 服务器 常见问题 FAQ 1. MCP 的本质：AI 世界的 USB-C 接口 在 MCP 出现之前，开发者面临一个经典的 M×N 困境：\n你有 M 个大模型（GPT-4、Claude、Gemini、Llama……） 你有 N 个外部工具（GitHub API、数据库、Slack、浏览器、文件系统……） 每接入一个新工具，都要为每个模型写一遍适配代码 MCP 把这个复杂度降到了 M+N：\n工具开发者按 MCP 标准暴露一次接口（Server） 模型厂商实现一次 MCP 客户端（Client） 二者天然互通，无需额外胶水代码 MCP 解决的三个核心问题 | 痛点 | 传统方案 | MCP 方案 | |\n|\n|\n| | 工具集成碎片化 | 每个平台写一遍适配 | 写一次，到处用 | | 上下文传递混乱 | 各平台格式不统一 | JSON-RPC 2.0 标准协议 | | 动态发现困难 | 硬编码工具列表 | 运行时握手 + 能力协商 |\n谁在用 MCP（2026 年 5 月更新） Claude Desktop / Claude Code：原生支持，最早推出 ChatGPT (Plus/Pro)：2025 年 9 月全面接入 Google Gemini：Demis Hassabis 公开确认集成路线 Cursor / Windsurf / Zed：主流 AI IDE 全部支持 GitHub Copilot Agent Mode：VS Code v1.99 起内置 MCP Sourcegraph Cody：企业级 MCP 部署 2. 架构解析：Client-Server 如何协作 MCP 采用经典的 Client-Server 架构，通信基于 JSON-RPC 2.0。理解这四个核心概念，你就掌握了 80% 的 MCP：\n核心组件 ┌─────────────┐ JSON-RPC 2.0 ┌─────────────┐ │ MCP Host │ ◄──────────────────► │ MCP Server │ │ (AI Agent) │ stdio / HTTP+SSE │ (Tool Box) │ └─────────────┘ └─────────────┘ Host 是运行 AI 模型的主程序（如 Claude Desktop）。Client 是 Host 内部负责与 Server 通信的模块。Server 是暴露工具、资源和提示模板的独立进程。\n三大交互原语 Tools（工具）：AI 可调用的函数，带参数和返回值 Resources（资源）：AI 可读取的数据源，如文件、数据库记录 Prompts（提示模板）：预定义的提示词模板，AI 可直接引用 传输层选项 | 传输方式 | 适用场景 | 特点 | |\n|\n|\n| | stdio | 本地开发、桌面应用 | 低延迟、零网络暴露、最安全 | | HTTP + SSE | 远程服务、Serverless | 支持流式响应、跨机器 | | Streamable HTTP | 生产环境 | 长连接 + 无状态回退 |\n开发建议：本地原型用 stdio，生产环境再迁移到 HTTP/SSE。\n3. 环境准备：5 分钟搭建开发环境 MCP 官方支持 Python 和 TypeScript/JavaScript SDK，社区还有 Go、C#、Java/Kotlin、Rust 实现。本文以 Python 为主（最快上手），末尾附 TypeScript 等效代码。\n安装 uv（推荐包管理器） curl -LsSf https://astral.sh/uv/install.sh | sh 创建项目 mkdir mcp-site-monitor \u0026\u0026 cd mcp-site-monitor uv init uv add \"mcp[cli]\" httpx 项目结构 mcp-site-monitor/ ├── .env # API 密钥（加入 .gitignore） ├── .gitignore ├── pyproject.toml └── server.py # MCP 服务器主文件 4. 实战：构建一个网站监控 MCP 服务器 我们将创建一个名为 SiteMonitor 的 MCP 服务器，暴露两个工具：\ncheck_site_status：检查网站是否在线，返回 HTTP 状态码和响应时间 check_ssl_expiry：检查域名 SSL 证书剩余有效期 完整代码（server.py） import asyncio import ssl import socket from datetime import datetime from urllib.parse import urlparse import httpx from mcp.server.fastmcp import FastMCP mcp = FastMCP(\"SiteMonitor\") @mcp.tool() async def check_site_status(url: str, timeout: int = 10) -\u003e str: \"\"\"检查指定 URL 的网站可用性。 Args: url: 要检查的网站地址，如 https://example.com timeout: 请求超时秒数，默认 10 秒 \"\"\" try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: start = asyncio.get_event_loop().time() response = await client.get(url) elapsed = asyncio.get_event_loop().time() - start status = \"✅ 在线\" if response.status_code \u003c 400 else \"⚠️ 异常\" return ( f\"{status}\\n\" f\"• URL: {url}\\n\" f\"• HTTP 状态码: {response.status_code}\\n\" f\"• 响应时间: {elapsed:.2f}s\\n\" f\"• 服务器: {response.headers.get('server', '未知')}\\n\" ) except httpx.TimeoutException: return f\"❌ 超时: {url} 在 {timeout} 秒内未响应\" except Exception as e: return f\"❌ 错误: {type(e).__name__}: {str(e)}\" @mcp.tool() async def check_ssl_expiry(hostname: str, port: int = 443) -\u003e str: \"\"\"检查域名 SSL 证书的剩余有效期。 Args: hostname: 域名，如 example.com port: HTTPS 端口，默认 443 \"\"\" try: context = ssl.create_default_context() with socket.create_connection((hostname, port), timeout=10) as sock: with context.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert() expiry = datetime.strptime(cert[\"notAfter\"], \"%b %d %H:%M:%S %Y %Z\") days_left = (expiry - datetime.utcnow()).days status = \"🟢 正常\" if days_left \u003e 30 else \"🟡 即将过期\" if days_left \u003e 7 else \"🔴 紧急\" return ( f\"{status}\\n\" f\"• 域名: {hostname}\\n\" f\"• 颁发者: {cert.get('issuer', '未知')}\\n\" f\"• 过期时间: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\\n\" f\"• 剩余天数: {days_left} 天\\n\" ) except Exception as e: return f\"❌ SSL 检查失败: {type(e).__name__}: {str(e)}\" if __name__ == \"__main__\": mcp.run(transport=\"stdio\") 代码关键点解读 @mcp.tool() 装饰器：将普通 Python 函数注册为 MCP 工具。函数的 docstring 会被自动提取为工具描述，AI 根据描述决定何时调用它。 类型注解：参数类型（str、int）会被自动转换为 JSON Schema，供 AI 验证输入。 transport=\"stdio\"：使用标准输入输出通信，Claude Desktop 启动 Server 作为子进程。 错误处理：所有异常被捕获并返回友好文本，避免 JSON-RPC 消息流被破坏。 本地测试 uv run server.py # 此时 Server 会等待 stdin 输入，可以先用 MCP Inspector 测试 5. 接入 Claude Desktop 与 Cursor Claude Desktop（macOS） 编辑配置文件：\n~/Library/Application\\ Support/Claude/claude_desktop_config.json 添加 Server 配置：\n{ \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } 重启 Claude Desktop，在对话中即可使用：\n“帮我检查一下 https://github.com 的状态，再看看它 SSL 证书还有多久过期。”\nClaude 会自动调用 check_site_status 和 check_ssl_expiry，并将结果整理后回复你。\nCursor 在项目根目录创建 .cursor/mcp.json：\n{ \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } Cursor 的 AI Chat 会直接识别并使用这些工具。\nVS Code Copilot Agent Mode VS Code v1.99+ 的 Copilot Agent Mode 原生支持 MCP。在 settings.json 中配置：\n{ \"github.copilot.chat.mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [\"run\", \"server.py\"], \"cwd\": \"/absolute/path/to/mcp-site-monitor\" } } } 6. 进阶：Resources、Prompts 与 Streaming HTTP 暴露 Resources（只读数据） 让 AI 能够读取服务器上的配置文件或日志：\n@mcp.resource(\"config://app\") def get_app_config() -\u003e str: \"\"\"获取当前应用配置。\"\"\" import json return json.dumps({\"version\": \"1.0.0\", \"check_interval\": 300}) @mcp.resource(\"log://latest\") def get_latest_log() -\u003e str: \"\"\"读取最近一条监控日志。\"\"\" # 实现日志读取逻辑 return \"[2026-05-15 08:00:00] github.com: OK (23ms)\" 暴露 Prompts（可复用提示模板） @mcp.prompt() def debug_site_issue(url: str, error_code: int) -\u003e str: \"\"\"生成网站故障排查提示词。\"\"\" return f\"\"\"网站 {url} 返回 HTTP {error_code}。请按以下步骤排查： 1. 检查 DNS 解析是否正常 2. 确认服务器进程是否存活 3. 查看最近 10 分钟的应用日志 4. 分析是否有流量突增导致服务过载 \"\"\" 迁移到 HTTP + SSE（生产环境） from mcp.server.sse import SseServerTransport from starlette.applications import Starlette from starlette.routing import Route sse = SseServerTransport(\"/messages/\") async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options()) app = Starlette(routes=[Route(\"/sse\", endpoint=handle_sse)]) 部署到任意支持 ASGI 的平台（Vercel、Railway、自有服务器），AI 客户端通过远程 URL 连接。\n7. 安全与生产最佳实践 MCP 连接 AI 与外部世界，安全不是可选项。\n必须遵守的 7 条规则 绝不向 stdout 写日志：stdio 传输层用 stdout 传 JSON-RPC，任何额外输出都会破坏协议。日志必须写 stderr 或文件。 最小权限原则：Server 只暴露必要的工具和最小范围的数据。不要给 AI 读整个文件系统的权限。 输入校验：用 Pydantic / Zod 严格校验所有参数，拒绝非法输入。 敏感操作二次确认：删除数据、转账、发送邮件等操作，Server 应返回确认请求而非直接执行。 环境变量管理：API 密钥写在 .env 文件，绝不硬编码，绝不提交到 Git。 生产用 HTTPS：HTTP 传输必须加 TLS，防止中间人篡改工具调用。 监控与审计：记录所有工具调用日志，异常行为告警。2025 年 7 月曝出的 MCP Inspector RCE 漏洞（CVE-2025-49596，CVSS 9.4）就是警示。 8. 生态速查：值得立刻试用的 15 个 MCP 服务器 | 名称 | 功能 | 适用场景 | |\n|\n|\n| | filesystem | 本地文件系统读写 | 代码分析、文档处理 | | github | PR、Issue、代码搜索 | 自动化代码审查 | | postgres / sqlite | 数据库查询 | 数据分析、BI | | slack | 消息发送、频道管理 | 告警通知 | | brave-search | 网页搜索 | 实时信息获取 | | puppeteer | 浏览器自动化 | 爬虫、截图 | | memory | 知识图谱持久存储 | 长期记忆 | | google-drive | Google Drive 文件操作 | 文档协作 | | notion | Notion 页面/数据库 | 知识管理 | | fetch | 任意 URL 内容获取 | 网页摘要 | | sequential-thinking | 思维链推理辅助 | 复杂问题分析 | | playwright | E2E 测试自动化 | 测试生成 | | redis | Redis 数据操作 | 缓存管理 | | docker | 容器管理 | DevOps 自动化 | | kubernetes | K8s 资源操作 | 运维自动化 |\n完整列表见 Smithery.ai 和 MCP.so。\n9. 常见问题 FAQ Q1：MCP 与 Function Calling / Tool Use 有什么区别？\nFunction Calling 是模型层面的能力（如 GPT-4 的 tools 参数），每个平台格式不同。MCP 是协议层面的标准，定义了 Server 如何暴露工具、Client 如何发现和调用，二者互补——MCP Server 可以作为 Function Calling 的底层实现。\nQ2：MCP Server 只能本地运行吗？\n不是。stdio 适合本地，HTTP/SSE 可以部署到远程服务器、Docker 容器、甚至 Serverless（注意 MCP 有状态特性对 Serverless 的限制）。\nQ3：一个 Server 可以暴露多少个工具？\n技术上无上限，但建议控制在 10 个以内。工具过多会降低 AI 的选择准确率（每次对话都要加载所有工具定义，消耗 token）。可以按功能拆分为多个 Server。\nQ4：MCP 与 LangChain 的关系？\nLangChain 是框架，提供链式调用、记忆管理、Agent 编排。MCP 是协议，标准化工具连接方式。LangChain 已经通过 langchain-mcp-adapters 支持 MCP，二者可以协同使用。\nQ5：企业使用 MCP 有什么额外考量？\n部署私有 Registry 管理内部 Server 实施 OAuth 2.1 + RBAC 访问控制 版本锁定防止未授权更新 隔离信任域（Trust Domain Isolation） 审计所有工具调用日志 结语：现在就开始 MCP 不是未来技术，它是正在发生的标准。2026 年的开发者如果还不会构建 MCP Server，就像 2010 年的开发者不会写 REST API。\n今天这篇文章的代码可以直接复制运行。建议你：\n现在就用 ````uv``` 把 SiteMonitor 跑起来 接入 Claude Desktop 体验一次自然语言驱动的运维查询 把你们团队最常用的内部 API 包装成 MCP Server 把你的 Server 开源到 GitHub，加入 10,000+ 的 MCP 生态 参考资源\nMCP 官方文档 Python SDK (FastMCP) TypeScript SDK Smithery.ai — MCP 服务器目录 MCP.so — 社区 MCP 市场 🔌 跳过 JSON Schema 模板代码 手写每个 tool 的 JSON Schema 是 MCP 开发最烦的部分。试试 dibi8 免费的 MCP Tool Builder —— 粘贴 Python 或 TypeScript 函数签名，自动产出符合协议的 tool 定义 + 完整 server 模板（FastMCP / TypeScript SDK）+ cURL 测试命令。省 80% 模板代码。\n推荐自托管基础设施 要 7×24 稳定跑这套，服务器选择很关键：\nDigitalOcean — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。 HTStack — 香港 VPS，国内访问低延迟。这就是 dibi8.com 自家所在的 IDC，生产环境已验证。 以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。\n本文发布于 2026 年 5 月 15 日，基于 MCP Protocol Specification 2025-11-25 周年版本。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/mcp-deep-dive-definitive-2026-guide\" } } Why This Matters Understanding mcp (model context protocol) 终极实战指南：2026 年开发者必须掌握的 ai 工具连接标准 is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1443","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bc%95%e8%a8%80%e4%b8%ba%e4%bb%80%e4%b9%88-mcp-%e6%98%af-2026-%e5%b9%b4%e6%9c%80%e5%80%bc%e5%be%97%e6%8a%95%e5%85%a5%e7%9a%84%e6%8a%80%e6%9c%af aria-label="引言：为什么 MCP 是 2026 年最值得投入的技术">引言：为什么 MCP 是 2026 年最值得投入的技术</a></li><li><a href=#%e7%9b%ae%e5%bd%95 aria-label=目录>目录</a></li><li><a href=#1-mcp-%e7%9a%84%e6%9c%ac%e8%b4%a8ai-%e4%b8%96%e7%95%8c%e7%9a%84-usb-c-%e6%8e%a5%e5%8f%a3 aria-label="1. MCP 的本质：AI 世界的 USB-C 接口">1. MCP 的本质：AI 世界的 USB-C 接口</a><ul><li><a href=#mcp-%e8%a7%a3%e5%86%b3%e7%9a%84%e4%b8%89%e4%b8%aa%e6%a0%b8%e5%bf%83%e9%97%ae%e9%a2%98 aria-label="MCP 解决的三个核心问题">MCP 解决的三个核心问题</a></li><li><a href=#%e8%b0%81%e5%9c%a8%e7%94%a8-mcp2026-%e5%b9%b4-5-%e6%9c%88%e6%9b%b4%e6%96%b0 aria-label="谁在用 MCP（2026 年 5 月更新）">谁在用 MCP（2026 年 5 月更新）</a></li></ul></li><li><a href=#2-%e6%9e%b6%e6%9e%84%e8%a7%a3%e6%9e%90client-server-%e5%a6%82%e4%bd%95%e5%8d%8f%e4%bd%9c aria-label="2. 架构解析：Client-Server 如何协作">2. 架构解析：Client-Server 如何协作</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6 aria-label=核心组件>核心组件</a></li><li><a href=#%e4%b8%89%e5%a4%a7%e4%ba%a4%e4%ba%92%e5%8e%9f%e8%af%ad aria-label=三大交互原语>三大交互原语</a></li><li><a href=#%e4%bc%a0%e8%be%93%e5%b1%82%e9%80%89%e9%a1%b9 aria-label=传输层选项>传输层选项</a></li></ul></li><li><a href=#3-%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%875-%e5%88%86%e9%92%9f%e6%90%ad%e5%bb%ba%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83 aria-label="3. 环境准备：5 分钟搭建开发环境">3. 环境准备：5 分钟搭建开发环境</a><ul><li><a href=#%e5%ae%89%e8%a3%85-uv%e6%8e%a8%e8%8d%90%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8 aria-label="安装 uv（推荐包管理器）">安装 uv（推荐包管理器）</a></li><li><a href=#%e5%88%9b%e5%bb%ba%e9%a1%b9%e7%9b%ae aria-label=创建项目>创建项目</a></li><li><a href=#%e9%a1%b9%e7%9b%ae%e7%bb%93%e6%9e%84 aria-label=项目结构>项目结构</a></li></ul></li><li><a href=#4-%e5%ae%9e%e6%88%98%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e7%bd%91%e7%ab%99%e7%9b%91%e6%8e%a7-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label="4. 实战：构建一个网站监控 MCP 服务器">4. 实战：构建一个网站监控 MCP 服务器</a><ul><li><a href=#%e5%ae%8c%e6%95%b4%e4%bb%a3%e7%a0%81serverpy aria-label=完整代码（server.py）>完整代码（server.py）</a></li><li><a href=#%e4%bb%a3%e7%a0%81%e5%85%b3%e9%94%ae%e7%82%b9%e8%a7%a3%e8%af%bb aria-label=代码关键点解读>代码关键点解读</a></li><li><a href=#%e6%9c%ac%e5%9c%b0%e6%b5%8b%e8%af%95 aria-label=本地测试>本地测试</a></li></ul></li><li><a href=#5-%e6%8e%a5%e5%85%a5-claude-desktop-%e4%b8%8e-cursor aria-label="5. 接入 Claude Desktop 与 Cursor">5. 接入 Claude Desktop 与 Cursor</a><ul><li><a href=#claude-desktopmacos aria-label="Claude Desktop（macOS）">Claude Desktop（macOS）</a></li><li><a href=#cursor aria-label=Cursor>Cursor</a></li><li><a href=#vs-code-copilot-agent-mode aria-label="VS Code Copilot Agent Mode">VS Code Copilot Agent Mode</a></li></ul></li><li><a href=#6-%e8%bf%9b%e9%98%b6resourcesprompts-%e4%b8%8e-streaming-http aria-label="6. 进阶：Resources、Prompts 与 Streaming HTTP">6. 进阶：Resources、Prompts 与 Streaming HTTP</a><ul><li><a href=#%e6%9a%b4%e9%9c%b2-resources%e5%8f%aa%e8%af%bb%e6%95%b0%e6%8d%ae aria-label="暴露 Resources（只读数据）">暴露 Resources（只读数据）</a></li><li><a href=#%e6%9a%b4%e9%9c%b2-prompts%e5%8f%af%e5%a4%8d%e7%94%a8%e6%8f%90%e7%a4%ba%e6%a8%a1%e6%9d%bf aria-label="暴露 Prompts（可复用提示模板）">暴露 Prompts（可复用提示模板）</a></li><li><a href=#%e8%bf%81%e7%a7%bb%e5%88%b0-http--sse%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83 aria-label="迁移到 HTTP + SSE（生产环境）">迁移到 HTTP + SSE（生产环境）</a></li></ul></li><li><a href=#7-%e5%ae%89%e5%85%a8%e4%b8%8e%e7%94%9f%e4%ba%a7%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label="7. 安全与生产最佳实践">7. 安全与生产最佳实践</a><ul><li><a href=#%e5%bf%85%e9%a1%bb%e9%81%b5%e5%ae%88%e7%9a%84-7-%e6%9d%a1%e8%a7%84%e5%88%99 aria-label="必须遵守的 7 条规则">必须遵守的 7 条规则</a></li></ul></li><li><a href=#8-%e7%94%9f%e6%80%81%e9%80%9f%e6%9f%a5%e5%80%bc%e5%be%97%e7%ab%8b%e5%88%bb%e8%af%95%e7%94%a8%e7%9a%84-15-%e4%b8%aa-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label="8. 生态速查：值得立刻试用的 15 个 MCP 服务器">8. 生态速查：值得立刻试用的 15 个 MCP 服务器</a></li><li><a href=#9-%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98-faq aria-label="9. 常见问题 FAQ">9. 常见问题 FAQ</a></li><li><a href=#%e7%bb%93%e8%af%ad%e7%8e%b0%e5%9c%a8%e5%b0%b1%e5%bc%80%e5%a7%8b aria-label=结语：现在就开始>结语：现在就开始</a></li><li><a href=#-%e8%b7%b3%e8%bf%87-json-schema-%e6%a8%a1%e6%9d%bf%e4%bb%a3%e7%a0%81 aria-label="🔌 跳过 JSON Schema 模板代码">🔌 跳过 JSON Schema 模板代码</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e8%87%aa%e6%89%98%e7%ae%a1%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐自托管基础设施>推荐自托管基础设施</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>{&lt;/* resource-info */>}</p><hr><h2 id=引言为什么-mcp-是-2026-年最值得投入的技术>引言：为什么 MCP 是 2026 年最值得投入的技术<a hidden class=anchor aria-hidden=true href=#引言为什么-mcp-是-2026-年最值得投入的技术>#</a></h2><p>如果你还在用传统方式为每个 LLM 编写定制化的工具调用代码，你已经落后了。</p><p>2024 年 11 月，Anthropic 推出了 <strong>Model Context Protocol（MCP）</strong>。这个看似简单的开放协议，正在以惊人的速度重塑 AI 与外部世界的连接方式。短短半年内，OpenAI、Google DeepMind、Microsoft 先后宣布全面支持；社区涌现出 <strong>10,000+ 个 MCP 服务器</strong>；Python 与 JavaScript SDK 的周下载量突破 <strong>2000 万次</strong>。</p><p>更重要的是，Linux Foundation 于 2025 年 12 月接管 MCP，成立 Agentic AI Foundation 独立运营——这意味着 MCP 不再是某一家公司的私产，而是整个行业的公共基础设施。</p><p>本文不是概念科普。我将带你从第一行代码开始，亲手构建一个生产级的 MCP 服务器，并接入 Claude、Cursor、VS Code Copilot 等主流客户端。读完之后，你会拥有一个<strong>真正可用的服务器监控 MCP 工具</strong>，可以在任意 AI 对话中直接查询网站状态、SSL 证书有效期。</p><hr><h2 id=目录>目录<a hidden class=anchor aria-hidden=true href=#目录>#</a></h2><ol><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#1-mcp-%e7%9a%84%e6%9c%ac%e8%b4%a8ai-%e4%b8%96%e7%95%8c%e7%9a%84-usb-c-%e6%8e%a5%e5%8f%a3>MCP 的本质：AI 世界的 USB-C 接口</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#2-%e6%9e%b6%e6%9e%84%e8%a7%a3%e6%9e%90client-server-%e5%a6%82%e4%bd%95%e5%8d%8f%e4%bd%9c>架构解析：Client-Server 如何协作</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#3-%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%875-%e5%88%86%e9%92%9f%e6%90%ad%e5%bb%ba%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83>环境准备：5 分钟搭建开发环境</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#4-%e5%ae%9e%e6%88%98%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e7%bd%91%e7%ab%99%e7%9b%91%e6%8e%a7-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8>实战：构建一个网站监控 MCP 服务器</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#5-%e6%8e%a5%e5%85%a5-claude-desktop-%e4%b8%8e-cursor>接入 Claude Desktop 与 Cursor</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#6-%e8%bf%9b%e9%98%b6resourcesprompts-%e4%b8%8e-streaming-http>进阶：Resources、Prompts 与 Streaming HTTP</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#7-%e5%ae%89%e5%85%a8%e4%b8%8e%e7%94%9f%e4%ba%a7%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5>安全与生产最佳实践</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#8-%e7%94%9f%e6%80%81%e9%80%9f%e6%9f%a5%e5%80%bc%e5%be%97%e7%ab%8b%e5%88%bb%e8%af%95%e7%94%a8%e7%9a%84-15-%e4%b8%aa-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8>生态速查：值得立刻试用的 15 个 MCP 服务器</a></li><li><a href=/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#9-%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98-faq>常见问题 FAQ</a></li></ol><hr><h2 id=1-mcp-的本质ai-世界的-usb-c-接口>1. MCP 的本质：AI 世界的 USB-C 接口<a hidden class=anchor aria-hidden=true href=#1-mcp-的本质ai-世界的-usb-c-接口>#</a></h2><p>在 MCP 出现之前，开发者面临一个经典的 <strong>M×N 困境</strong>：</p><ul><li>你有 M 个大模型（GPT-4、Claude、Gemini、Llama……）</li><li>你有 N 个外部工具（GitHub API、数据库、Slack、浏览器、文件系统……）</li><li>每接入一个新工具，都要为每个模型写一遍适配代码</li></ul><p>MCP 把这个复杂度降到了 <strong>M+N</strong>：</p><ul><li>工具开发者按 MCP 标准暴露一次接口（Server）</li><li>模型厂商实现一次 MCP 客户端（Client）</li><li>二者天然互通，无需额外胶水代码</li></ul><h3 id=mcp-解决的三个核心问题>MCP 解决的三个核心问题<a hidden class=anchor aria-hidden=true href=#mcp-解决的三个核心问题>#</a></h3><p>| 痛点 | 传统方案 | MCP 方案 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "{\u003c/* resource-info */\u003e}\n引言：为什么 MCP 是 2026 年最值得投入的技术 如果你还在用传统方式为每个 LLM 编写定制化的工具调用代码，你已经落后了。\n2024 年 11 月，Anthropic 推出了 Model Context Protocol（MCP）。这个看似简单的开放协议，正在以惊人的速度重塑 AI 与外部世界的连接方式。短短半年内，OpenAI、Google DeepMind、Microsoft 先后宣布全面支持；社区涌现出 10,000+ 个 MCP 服务器；Python 与 JavaScript SDK 的周下载量突破 2000 万次。\n更重要的是，Linux Foundation 于 2025 年 12 月接管 MCP，成立 Agentic AI Foundation 独立运营——这意味着 MCP 不再是某一家公司的私产，而是整个行业的公共基础设施。\n本文不是概念科普。我将带你从第一行代码开始，亲手构建一个生产级的 MCP 服务器，并接入 Claude、Cursor、VS Code Copilot 等主流客户端。读完之后，你会拥有一个真正可用的服务器监控 MCP 工具，可以在任意 AI 对话中直接查询网站状态、SSL 证书有效期。\n目录 MCP 的本质：AI 世界的 USB-C 接口 架构解析：Client-Server 如何协作 环境准备：5 分钟搭建开发环境 实战：构建一个网站监控 MCP 服务器 接入 Claude Desktop 与 Cursor 进阶：Resources、Prompts 与 Streaming HTTP 安全与生产最佳实践 生态速查：值得立刻试用的 15 个 MCP 服务器 常见问题 FAQ 1. MCP 的本质：AI 世界的 USB-C 接口 在 MCP 出现之前，开发者面临一个经典的 M×N 困境：\n你有 M 个大模型（GPT-4、Claude、Gemini、Llama……） 你有 N 个外部工具（GitHub API、数据库、Slack、浏览器、文件系统……） 每接入一个新工具，都要为每个模型写一遍适配代码 MCP 把这个复杂度降到了 M+N：\n工具开发者按 MCP 标准暴露一次接口（Server） 模型厂商实现一次 MCP 客户端（Client） 二者天然互通，无需额外胶水代码 MCP 解决的三个核心问题 | 痛点 | 传统方案 | MCP 方案 | |\n|\n|\n| | 工具集成碎片化 | 每个平台写一遍适配 | 写一次，到处用 | | 上下文传递混乱 | 各平台格式不统一 | JSON-RPC 2.0 标准协议 | | 动态发现困难 | 硬编码工具列表 | 运行时握手 + 能力协商 |\n谁在用 MCP（2026 年 5 月更新） Claude Desktop / Claude Code：原生支持，最早推出 ChatGPT (Plus/Pro)：2025 年 9 月全面接入 Google Gemini：Demis Hassabis 公开确认集成路线 Cursor / Windsurf / Zed：主流 AI IDE 全部支持 GitHub Copilot Agent Mode：VS Code v1.99 起内置 MCP Sourcegraph Cody：企业级 MCP 部署 2. 架构解析：Client-Server 如何协作 MCP 采用经典的 Client-Server 架构，通信基于 JSON-RPC 2.0。理解这四个核心概念，你就掌握了 80% 的 MCP：\n核心组件 ┌─────────────┐ JSON-RPC 2.0 ┌─────────────┐ │ MCP Host │ ◄──────────────────► │ MCP Server │ │ (AI Agent) │ stdio / HTTP+SSE │ (Tool Box) │ └─────────────┘ └─────────────┘ Host 是运行 AI 模型的主程序（如 Claude Desktop）。Client 是 Host 内部负责与 Server 通信的模块。Server 是暴露工具、资源和提示模板的独立进程。\n三大交互原语 Tools（工具）：AI 可调用的函数，带参数和返回值 Resources（资源）：AI 可读取的数据源，如文件、数据库记录 Prompts（提示模板）：预定义的提示词模板，AI 可直接引用 传输层选项 | 传输方式 | 适用场景 | 特点 | |\n|\n|\n| | stdio | 本地开发、桌面应用 | 低延迟、零网络暴露、最安全 | | HTTP + SSE | 远程服务、Serverless | 支持流式响应、跨机器 | | Streamable HTTP | 生产环境 | 长连接 + 无状态回退 |\n开发建议：本地原型用 stdio，生产环境再迁移到 HTTP/SSE。\n3. 环境准备：5 分钟搭建开发环境 MCP 官方支持 Python 和 TypeScript/JavaScript SDK，社区还有 Go、C#、Java/Kotlin、Rust 实现。本文以 Python 为主（最快上手），末尾附 TypeScript 等效代码。\n安装 uv（推荐包管理器） curl -LsSf https://astral.sh/uv/install.sh | sh 创建项目 mkdir mcp-site-monitor \u0026\u0026 cd mcp-site-monitor uv init uv add \"mcp[cli]\" httpx 项目结构 mcp-site-monitor/ ├── .env # API 密钥（加入 .gitignore） ├── .gitignore ├── pyproject.toml └── server.py # MCP 服务器主文件 4. 实战：构建一个网站监控 MCP 服务器 我们将创建一个名为 SiteMonitor 的 MCP 服务器，暴露两个工具：\ncheck_site_status：检查网站是否在线，返回 HTTP 状态码和响应时间 check_ssl_expiry：检查域名 SSL 证书剩余有效期 完整代码（server.py） import asyncio import ssl import socket from datetime import datetime from urllib.parse import urlparse import httpx from mcp.server.fastmcp import FastMCP mcp = FastMCP(\"SiteMonitor\") @mcp.tool() async def check_site_status(url: str, timeout: int = 10) -\u003e str: \"\"\"检查指定 URL 的网站可用性。 Args: url: 要检查的网站地址，如 https://example.com timeout: 请求超时秒数，默认 10 秒 \"\"\" try: async with httpx.AsyncClient(follow_redirects=True, timeout=timeout) as client: start = asyncio.get_event_loop().time() response = await client.get(url) elapsed = asyncio.get_event_loop().time() - start status = \"✅ 在线\" if response.status_code \u003c 400 else \"⚠️ 异常\" return ( f\"{status}\\n\" f\"• URL: {url}\\n\" f\"• HTTP 状态码: {response.status_code}\\n\" f\"• 响应时间: {elapsed:.2f}s\\n\" f\"• 服务器: {response.headers.get('server', '未知')}\\n\" ) except httpx.TimeoutException: return f\"❌ 超时: {url} 在 {timeout} 秒内未响应\" except Exception as e: return f\"❌ 错误: {type(e).__name__}: {str(e)}\" @mcp.tool() async def check_ssl_expiry(hostname: str, port: int = 443) -\u003e str: \"\"\"检查域名 SSL 证书的剩余有效期。 Args: hostname: 域名，如 example.com port: HTTPS 端口，默认 443 \"\"\" try: context = ssl.create_default_context() with socket.create_connection((hostname, port), timeout=10) as sock: with context.wrap_socket(sock, server_hostname=hostname) as ssock: cert = ssock.getpeercert() expiry = datetime.strptime(cert[\"notAfter\"], \"%b %d %H:%M:%S %Y %Z\") days_left = (expiry - datetime.utcnow()).days status = \"🟢 正常\" if days_left \u003e 30 else \"🟡 即将过期\" if days_left \u003e 7 else \"🔴 紧急\" return ( f\"{status}\\n\" f\"• 域名: {hostname}\\n\" f\"• 颁发者: {cert.get('issuer', '未知')}\\n\" f\"• 过期时间: {expiry.strftime('%Y-%m-%d %H:%M UTC')}\\n\" f\"• 剩余天数: {days_left} 天\\n\" ) except Exception as e: return f\"❌ SSL 检查失败: {type(e).__name__}: {str(e)}\" if __name__ == \"__main__\": mcp.run(transport=\"stdio\") 代码关键点解读 @mcp.tool() 装饰器：将普通 Python 函数注册为 MCP 工具。函数的 docstring 会被自动提取为工具描述，AI 根据描述决定何时调用它。 类型注解：参数类型（str、int）会被自动转换为 JSON Schema，供 AI 验证输入。 transport=\"stdio\"：使用标准输入输出通信，Claude Desktop 启动 Server 作为子进程。 错误处理：所有异常被捕获并返回友好文本，避免 JSON-RPC 消息流被破坏。 本地测试 uv run server.py # 此时 Server 会等待 stdin 输入，可以先用 MCP Inspector 测试 5. 接入 Claude Desktop 与 Cursor Claude Desktop（macOS） 编辑配置文件：\n~/Library/Application\\ Support/Claude/claude_desktop_config.json 添加 Server 配置：\n{ \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } 重启 Claude Desktop，在对话中即可使用：\n“帮我检查一下 https://github.com 的状态，再看看它 SSL 证书还有多久过期。”\nClaude 会自动调用 check_site_status 和 check_ssl_expiry，并将结果整理后回复你。\nCursor 在项目根目录创建 .cursor/mcp.json：\n{ \"mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [ \"run\", \"--directory\", \"/absolute/path/to/mcp-site-monitor\", \"server.py\" ] } } } Cursor 的 AI Chat 会直接识别并使用这些工具。\nVS Code Copilot Agent Mode VS Code v1.99+ 的 Copilot Agent Mode 原生支持 MCP。在 settings.json 中配置：\n{ \"github.copilot.chat.mcpServers\": { \"site-monitor\": { \"command\": \"uv\", \"args\": [\"run\", \"server.py\"], \"cwd\": \"/absolute/path/to/mcp-site-monitor\" } } } 6. 进阶：Resources、Prompts 与 Streaming HTTP 暴露 Resources（只读数据） 让 AI 能够读取服务器上的配置文件或日志：\n@mcp.resource(\"config://app\") def get_app_config() -\u003e str: \"\"\"获取当前应用配置。\"\"\" import json return json.dumps({\"version\": \"1.0.0\", \"check_interval\": 300}) @mcp.resource(\"log://latest\") def get_latest_log() -\u003e str: \"\"\"读取最近一条监控日志。\"\"\" # 实现日志读取逻辑 return \"[2026-05-15 08:00:00] github.com: OK (23ms)\" 暴露 Prompts（可复用提示模板） @mcp.prompt() def debug_site_issue(url: str, error_code: int) -\u003e str: \"\"\"生成网站故障排查提示词。\"\"\" return f\"\"\"网站 {url} 返回 HTTP {error_code}。请按以下步骤排查： 1. 检查 DNS 解析是否正常 2. 确认服务器进程是否存活 3. 查看最近 10 分钟的应用日志 4. 分析是否有流量突增导致服务过载 \"\"\" 迁移到 HTTP + SSE（生产环境） from mcp.server.sse import SseServerTransport from starlette.applications import Starlette from starlette.routing import Route sse = SseServerTransport(\"/messages/\") async def handle_sse(request): async with sse.connect_sse(request.scope, request.receive, request._send) as streams: await mcp.run(streams[0], streams[1], mcp.create_initialization_options()) app = Starlette(routes=[Route(\"/sse\", endpoint=handle_sse)]) 部署到任意支持 ASGI 的平台（Vercel、Railway、自有服务器），AI 客户端通过远程 URL 连接。\n7. 安全与生产最佳实践 MCP 连接 AI 与外部世界，安全不是可选项。\n必须遵守的 7 条规则 绝不向 stdout 写日志：stdio 传输层用 stdout 传 JSON-RPC，任何额外输出都会破坏协议。日志必须写 stderr 或文件。 最小权限原则：Server 只暴露必要的工具和最小范围的数据。不要给 AI 读整个文件系统的权限。 输入校验：用 Pydantic / Zod 严格校验所有参数，拒绝非法输入。 敏感操作二次确认：删除数据、转账、发送邮件等操作，Server 应返回确认请求而非直接执行。 环境变量管理：API 密钥写在 .env 文件，绝不硬编码，绝不提交到 Git。 生产用 HTTPS：HTTP 传输必须加 TLS，防止中间人篡改工具调用。 监控与审计：记录所有工具调用日志，异常行为告警。2025 年 7 月曝出的 MCP Inspector RCE 漏洞（CVE-2025-49596，CVSS 9.4）就是警示。 8. 生态速查：值得立刻试用的 15 个 MCP 服务器 | 名称 | 功能 | 适用场景 | |\n|\n|\n| | filesystem | 本地文件系统读写 | 代码分析、文档处理 | | github | PR、Issue、代码搜索 | 自动化代码审查 | | postgres / sqlite | 数据库查询 | 数据分析、BI | | slack | 消息发送、频道管理 | 告警通知 | | brave-search | 网页搜索 | 实时信息获取 | | puppeteer | 浏览器自动化 | 爬虫、截图 | | memory | 知识图谱持久存储 | 长期记忆 | | google-drive | Google Drive 文件操作 | 文档协作 | | notion | Notion 页面/数据库 | 知识管理 | | fetch | 任意 URL 内容获取 | 网页摘要 | | sequential-thinking | 思维链推理辅助 | 复杂问题分析 | | playwright | E2E 测试自动化 | 测试生成 | | redis | Redis 数据操作 | 缓存管理 | | docker | 容器管理 | DevOps 自动化 | | kubernetes | K8s 资源操作 | 运维自动化 |\n完整列表见 Smithery.ai 和 MCP.so。\n9. 常见问题 FAQ Q1：MCP 与 Function Calling / Tool Use 有什么区别？\nFunction Calling 是模型层面的能力（如 GPT-4 的 tools 参数），每个平台格式不同。MCP 是协议层面的标准，定义了 Server 如何暴露工具、Client 如何发现和调用，二者互补——MCP Server 可以作为 Function Calling 的底层实现。\nQ2：MCP Server 只能本地运行吗？\n不是。stdio 适合本地，HTTP/SSE 可以部署到远程服务器、Docker 容器、甚至 Serverless（注意 MCP 有状态特性对 Serverless 的限制）。\nQ3：一个 Server 可以暴露多少个工具？\n技术上无上限，但建议控制在 10 个以内。工具过多会降低 AI 的选择准确率（每次对话都要加载所有工具定义，消耗 token）。可以按功能拆分为多个 Server。\nQ4：MCP 与 LangChain 的关系？\nLangChain 是框架，提供链式调用、记忆管理、Agent 编排。MCP 是协议，标准化工具连接方式。LangChain 已经通过 langchain-mcp-adapters 支持 MCP，二者可以协同使用。\nQ5：企业使用 MCP 有什么额外考量？\n部署私有 Registry 管理内部 Server 实施 OAuth 2.1 + RBAC 访问控制 版本锁定防止未授权更新 隔离信任域（Trust Domain Isolation） 审计所有工具调用日志 结语：现在就开始 MCP 不是未来技术，它是正在发生的标准。2026 年的开发者如果还不会构建 MCP Server，就像 2010 年的开发者不会写 REST API。\n今天这篇文章的代码可以直接复制运行。建议你：\n现在就用 ````uv``` 把 SiteMonitor 跑起来 接入 Claude Desktop 体验一次自然语言驱动的运维查询 把你们团队最常用的内部 API 包装成 MCP Server 把你的 Server 开源到 GitHub，加入 10,000+ 的 MCP 生态 参考资源\nMCP 官方文档 Python SDK (FastMCP) TypeScript SDK Smithery.ai — MCP 服务器目录 MCP.so — 社区 MCP 市场 🔌 跳过 JSON Schema 模板代码 手写每个 tool 的 JSON Schema 是 MCP 开发最烦的部分。试试 dibi8 免费的 MCP Tool Builder —— 粘贴 Python 或 TypeScript 函数签名，自动产出符合协议的 tool 定义 + 完整 server 模板（FastMCP / TypeScript SDK）+ cURL 测试命令。省 80% 模板代码。\n推荐自托管基础设施 要 7×24 稳定跑这套，服务器选择很关键：\nDigitalOcean — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。 HTStack — 香港 VPS，国内访问低延迟。这就是 dibi8.com 自家所在的 IDC，生产环境已验证。 以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。\n本文发布于 2026 年 5 月 15 日，基于 MCP Protocol Specification 2025-11-25 周年版本。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/mcp-deep-dive-definitive-2026-guide\" } } Why This Matters Understanding mcp (model context protocol) 终极实战指南：2026 年开发者必须掌握的 ai 工具连接标准 is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1443",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80%e4%b8%ba%e4%bb%80%e4%b9%88-mcp-%e6%98%af-2026-%e5%b9%b4%e6%9c%80%e5%80%bc%e5%be%97%e6%8a%95%e5%85%a5%e7%9a%84%e6%8a%80%e6%9c%af" aria-label="引言：为什么 MCP 是 2026 年最值得投入的技术">引言：为什么 MCP 是 2026 年最值得投入的技术</a></li>
+            <li>
+                <a href="#%e7%9b%ae%e5%bd%95" aria-label="目录">目录</a></li>
+            <li>
+                <a href="#1-mcp-%e7%9a%84%e6%9c%ac%e8%b4%a8ai-%e4%b8%96%e7%95%8c%e7%9a%84-usb-c-%e6%8e%a5%e5%8f%a3" aria-label="1. MCP 的本质：AI 世界的 USB-C 接口">1. MCP 的本质：AI 世界的 USB-C 接口</a><ul>
+                    
+            <li>
+                <a href="#mcp-%e8%a7%a3%e5%86%b3%e7%9a%84%e4%b8%89%e4%b8%aa%e6%a0%b8%e5%bf%83%e9%97%ae%e9%a2%98" aria-label="MCP 解决的三个核心问题">MCP 解决的三个核心问题</a></li>
+            <li>
+                <a href="#%e8%b0%81%e5%9c%a8%e7%94%a8-mcp2026-%e5%b9%b4-5-%e6%9c%88%e6%9b%b4%e6%96%b0" aria-label="谁在用 MCP（2026 年 5 月更新）">谁在用 MCP（2026 年 5 月更新）</a></li></ul>
+            </li>
+            <li>
+                <a href="#2-%e6%9e%b6%e6%9e%84%e8%a7%a3%e6%9e%90client-server-%e5%a6%82%e4%bd%95%e5%8d%8f%e4%bd%9c" aria-label="2. 架构解析：Client-Server 如何协作">2. 架构解析：Client-Server 如何协作</a><ul>
+                    
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6" aria-label="核心组件">核心组件</a></li>
+            <li>
+                <a href="#%e4%b8%89%e5%a4%a7%e4%ba%a4%e4%ba%92%e5%8e%9f%e8%af%ad" aria-label="三大交互原语">三大交互原语</a></li>
+            <li>
+                <a href="#%e4%bc%a0%e8%be%93%e5%b1%82%e9%80%89%e9%a1%b9" aria-label="传输层选项">传输层选项</a></li></ul>
+            </li>
+            <li>
+                <a href="#3-%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%875-%e5%88%86%e9%92%9f%e6%90%ad%e5%bb%ba%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83" aria-label="3. 环境准备：5 分钟搭建开发环境">3. 环境准备：5 分钟搭建开发环境</a><ul>
+                    
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85-uv%e6%8e%a8%e8%8d%90%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8" aria-label="安装 uv（推荐包管理器）">安装 uv（推荐包管理器）</a></li>
+            <li>
+                <a href="#%e5%88%9b%e5%bb%ba%e9%a1%b9%e7%9b%ae" aria-label="创建项目">创建项目</a></li>
+            <li>
+                <a href="#%e9%a1%b9%e7%9b%ae%e7%bb%93%e6%9e%84" aria-label="项目结构">项目结构</a></li></ul>
+            </li>
+            <li>
+                <a href="#4-%e5%ae%9e%e6%88%98%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e7%bd%91%e7%ab%99%e7%9b%91%e6%8e%a7-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="4. 实战：构建一个网站监控 MCP 服务器">4. 实战：构建一个网站监控 MCP 服务器</a><ul>
+                    
+            <li>
+                <a href="#%e5%ae%8c%e6%95%b4%e4%bb%a3%e7%a0%81serverpy" aria-label="完整代码（server.py）">完整代码（server.py）</a></li>
+            <li>
+                <a href="#%e4%bb%a3%e7%a0%81%e5%85%b3%e9%94%ae%e7%82%b9%e8%a7%a3%e8%af%bb" aria-label="代码关键点解读">代码关键点解读</a></li>
+            <li>
+                <a href="#%e6%9c%ac%e5%9c%b0%e6%b5%8b%e8%af%95" aria-label="本地测试">本地测试</a></li></ul>
+            </li>
+            <li>
+                <a href="#5-%e6%8e%a5%e5%85%a5-claude-desktop-%e4%b8%8e-cursor" aria-label="5. 接入 Claude Desktop 与 Cursor">5. 接入 Claude Desktop 与 Cursor</a><ul>
+                    
+            <li>
+                <a href="#claude-desktopmacos" aria-label="Claude Desktop（macOS）">Claude Desktop（macOS）</a></li>
+            <li>
+                <a href="#cursor" aria-label="Cursor">Cursor</a></li>
+            <li>
+                <a href="#vs-code-copilot-agent-mode" aria-label="VS Code Copilot Agent Mode">VS Code Copilot Agent Mode</a></li></ul>
+            </li>
+            <li>
+                <a href="#6-%e8%bf%9b%e9%98%b6resourcesprompts-%e4%b8%8e-streaming-http" aria-label="6. 进阶：Resources、Prompts 与 Streaming HTTP">6. 进阶：Resources、Prompts 与 Streaming HTTP</a><ul>
+                    
+            <li>
+                <a href="#%e6%9a%b4%e9%9c%b2-resources%e5%8f%aa%e8%af%bb%e6%95%b0%e6%8d%ae" aria-label="暴露 Resources（只读数据）">暴露 Resources（只读数据）</a></li>
+            <li>
+                <a href="#%e6%9a%b4%e9%9c%b2-prompts%e5%8f%af%e5%a4%8d%e7%94%a8%e6%8f%90%e7%a4%ba%e6%a8%a1%e6%9d%bf" aria-label="暴露 Prompts（可复用提示模板）">暴露 Prompts（可复用提示模板）</a></li>
+            <li>
+                <a href="#%e8%bf%81%e7%a7%bb%e5%88%b0-http--sse%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83" aria-label="迁移到 HTTP &#43; SSE（生产环境）">迁移到 HTTP + SSE（生产环境）</a></li></ul>
+            </li>
+            <li>
+                <a href="#7-%e5%ae%89%e5%85%a8%e4%b8%8e%e7%94%9f%e4%ba%a7%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" aria-label="7. 安全与生产最佳实践">7. 安全与生产最佳实践</a><ul>
+                    
+            <li>
+                <a href="#%e5%bf%85%e9%a1%bb%e9%81%b5%e5%ae%88%e7%9a%84-7-%e6%9d%a1%e8%a7%84%e5%88%99" aria-label="必须遵守的 7 条规则">必须遵守的 7 条规则</a></li></ul>
+            </li>
+            <li>
+                <a href="#8-%e7%94%9f%e6%80%81%e9%80%9f%e6%9f%a5%e5%80%bc%e5%be%97%e7%ab%8b%e5%88%bb%e8%af%95%e7%94%a8%e7%9a%84-15-%e4%b8%aa-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="8. 生态速查：值得立刻试用的 15 个 MCP 服务器">8. 生态速查：值得立刻试用的 15 个 MCP 服务器</a></li>
+            <li>
+                <a href="#9-%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98-faq" aria-label="9. 常见问题 FAQ">9. 常见问题 FAQ</a></li>
+            <li>
+                <a href="#%e7%bb%93%e8%af%ad%e7%8e%b0%e5%9c%a8%e5%b0%b1%e5%bc%80%e5%a7%8b" aria-label="结语：现在就开始">结语：现在就开始</a></li>
+            <li>
+                <a href="#-%e8%b7%b3%e8%bf%87-json-schema-%e6%a8%a1%e6%9d%bf%e4%bb%a3%e7%a0%81" aria-label="🔌 跳过 JSON Schema 模板代码">🔌 跳过 JSON Schema 模板代码</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e8%87%aa%e6%89%98%e7%ae%a1%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐自托管基础设施">推荐自托管基础设施</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+<hr>
+<h2 id="引言为什么-mcp-是-2026-年最值得投入的技术">引言：为什么 MCP 是 2026 年最值得投入的技术<a hidden class="anchor" aria-hidden="true" href="#引言为什么-mcp-是-2026-年最值得投入的技术">#</a></h2>
+<p>如果你还在用传统方式为每个 LLM 编写定制化的工具调用代码，你已经落后了。</p>
+<p>2024 年 11 月，Anthropic 推出了 <strong>Model Context Protocol（MCP）</strong>。这个看似简单的开放协议，正在以惊人的速度重塑 AI 与外部世界的连接方式。短短半年内，OpenAI、Google DeepMind、Microsoft 先后宣布全面支持；社区涌现出 <strong>10,000+ 个 MCP 服务器</strong>；Python 与 JavaScript SDK 的周下载量突破 <strong>2000 万次</strong>。</p>
+<p>更重要的是，Linux Foundation 于 2025 年 12 月接管 MCP，成立 Agentic AI Foundation 独立运营——这意味着 MCP 不再是某一家公司的私产，而是整个行业的公共基础设施。</p>
+<p>本文不是概念科普。我将带你从第一行代码开始，亲手构建一个生产级的 MCP 服务器，并接入 Claude、Cursor、VS Code Copilot 等主流客户端。读完之后，你会拥有一个<strong>真正可用的服务器监控 MCP 工具</strong>，可以在任意 AI 对话中直接查询网站状态、SSL 证书有效期。</p>
+<hr>
+<h2 id="目录">目录<a hidden class="anchor" aria-hidden="true" href="#目录">#</a></h2>
+<ol>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#1-mcp-%e7%9a%84%e6%9c%ac%e8%b4%a8ai-%e4%b8%96%e7%95%8c%e7%9a%84-usb-c-%e6%8e%a5%e5%8f%a3">MCP 的本质：AI 世界的 USB-C 接口</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#2-%e6%9e%b6%e6%9e%84%e8%a7%a3%e6%9e%90client-server-%e5%a6%82%e4%bd%95%e5%8d%8f%e4%bd%9c">架构解析：Client-Server 如何协作</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#3-%e7%8e%af%e5%a2%83%e5%87%86%e5%a4%875-%e5%88%86%e9%92%9f%e6%90%ad%e5%bb%ba%e5%bc%80%e5%8f%91%e7%8e%af%e5%a2%83">环境准备：5 分钟搭建开发环境</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#4-%e5%ae%9e%e6%88%98%e6%9e%84%e5%bb%ba%e4%b8%80%e4%b8%aa%e7%bd%91%e7%ab%99%e7%9b%91%e6%8e%a7-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8">实战：构建一个网站监控 MCP 服务器</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#5-%e6%8e%a5%e5%85%a5-claude-desktop-%e4%b8%8e-cursor">接入 Claude Desktop 与 Cursor</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#6-%e8%bf%9b%e9%98%b6resourcesprompts-%e4%b8%8e-streaming-http">进阶：Resources、Prompts 与 Streaming HTTP</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#7-%e5%ae%89%e5%85%a8%e4%b8%8e%e7%94%9f%e4%ba%a7%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5">安全与生产最佳实践</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#8-%e7%94%9f%e6%80%81%e9%80%9f%e6%9f%a5%e5%80%bc%e5%be%97%e7%ab%8b%e5%88%bb%e8%af%95%e7%94%a8%e7%9a%84-15-%e4%b8%aa-mcp-%e6%9c%8d%e5%8a%a1%e5%99%a8">生态速查：值得立刻试用的 15 个 MCP 服务器</a></li>
+<li><a href="/zh/ai-coding-agents/mcp-deep-dive-definitive-2026-guide/#9-%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98-faq">常见问题 FAQ</a></li>
+</ol>
+<hr>
+<h2 id="1-mcp-的本质ai-世界的-usb-c-接口">1. MCP 的本质：AI 世界的 USB-C 接口<a hidden class="anchor" aria-hidden="true" href="#1-mcp-的本质ai-世界的-usb-c-接口">#</a></h2>
+<p>在 MCP 出现之前，开发者面临一个经典的 <strong>M×N 困境</strong>：</p>
+<ul>
+<li>你有 M 个大模型（GPT-4、Claude、Gemini、Llama……）</li>
+<li>你有 N 个外部工具（GitHub API、数据库、Slack、浏览器、文件系统……）</li>
+<li>每接入一个新工具，都要为每个模型写一遍适配代码</li>
+</ul>
+<p>MCP 把这个复杂度降到了 <strong>M+N</strong>：</p>
+<ul>
+<li>工具开发者按 MCP 标准暴露一次接口（Server）</li>
+<li>模型厂商实现一次 MCP 客户端（Client）</li>
+<li>二者天然互通，无需额外胶水代码</li>
+</ul>
+<h3 id="mcp-解决的三个核心问题">MCP 解决的三个核心问题<a hidden class="anchor" aria-hidden="true" href="#mcp-解决的三个核心问题">#</a></h3>
+<p>| 痛点 | 传统方案 | MCP 方案 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 工具集成碎片化 | 每个平台写一遍适配 | 写一次，到处用 |
 | 上下文传递混乱 | 各平台格式不统一 | JSON-RPC 2.0 标准协议 |
-| 动态发现困难 | 硬编码工具列表 | 运行时握手 + 能力协商 |</p><h3 id=谁在用-mcp2026-年-5-月更新>谁在用 MCP（2026 年 5 月更新）<a hidden class=anchor aria-hidden=true href=#谁在用-mcp2026-年-5-月更新>#</a></h3><ul><li><strong>Claude Desktop / Claude Code</strong>：原生支持，最早推出</li><li><strong>ChatGPT (Plus/Pro)</strong>：2025 年 9 月全面接入</li><li><strong>Google Gemini</strong>：Demis Hassabis 公开确认集成路线</li><li><strong>Cursor / Windsurf / Zed</strong>：主流 AI IDE 全部支持</li><li><strong>GitHub Copilot Agent Mode</strong>：VS Code v1.99 起内置 MCP</li><li><strong>Sourcegraph Cody</strong>：企业级 MCP 部署</li></ul><hr><h2 id=2-架构解析client-server-如何协作>2. 架构解析：Client-Server 如何协作<a hidden class=anchor aria-hidden=true href=#2-架构解析client-server-如何协作>#</a></h2><p>MCP 采用经典的 <strong>Client-Server 架构</strong>，通信基于 <strong>JSON-RPC 2.0</strong>。理解这四个核心概念，你就掌握了 80% 的 MCP：</p><h3 id=核心组件>核心组件<a hidden class=anchor aria-hidden=true href=#核心组件>#</a></h3><pre tabindex=0><code>┌─────────────┐      JSON-RPC 2.0       ┌─────────────┐
+| 动态发现困难 | 硬编码工具列表 | 运行时握手 + 能力协商 |</p>
+<h3 id="谁在用-mcp2026-年-5-月更新">谁在用 MCP（2026 年 5 月更新）<a hidden class="anchor" aria-hidden="true" href="#谁在用-mcp2026-年-5-月更新">#</a></h3>
+<ul>
+<li><strong>Claude Desktop / Claude Code</strong>：原生支持，最早推出</li>
+<li><strong>ChatGPT (Plus/Pro)</strong>：2025 年 9 月全面接入</li>
+<li><strong>Google Gemini</strong>：Demis Hassabis 公开确认集成路线</li>
+<li><strong>Cursor / Windsurf / Zed</strong>：主流 AI IDE 全部支持</li>
+<li><strong>GitHub Copilot Agent Mode</strong>：VS Code v1.99 起内置 MCP</li>
+<li><strong>Sourcegraph Cody</strong>：企业级 MCP 部署</li>
+</ul>
+<hr>
+<h2 id="2-架构解析client-server-如何协作">2. 架构解析：Client-Server 如何协作<a hidden class="anchor" aria-hidden="true" href="#2-架构解析client-server-如何协作">#</a></h2>
+<p>MCP 采用经典的 <strong>Client-Server 架构</strong>，通信基于 <strong>JSON-RPC 2.0</strong>。理解这四个核心概念，你就掌握了 80% 的 MCP：</p>
+<h3 id="核心组件">核心组件<a hidden class="anchor" aria-hidden="true" href="#核心组件">#</a></h3>
+<pre tabindex="0"><code>┌─────────────┐      JSON-RPC 2.0       ┌─────────────┐
 │  MCP Host   │  ◄──────────────────►  │  MCP Server │
 │  (AI Agent) │    stdio / HTTP+SSE      │  (Tool Box) │
 └─────────────┘                          └─────────────┘
-</code></pre><p><strong>Host</strong> 是运行 AI 模型的主程序（如 Claude Desktop）。<strong>Client</strong> 是 Host 内部负责与 Server 通信的模块。<strong>Server</strong> 是暴露工具、资源和提示模板的独立进程。</p><h3 id=三大交互原语>三大交互原语<a hidden class=anchor aria-hidden=true href=#三大交互原语>#</a></h3><ol><li><strong>Tools（工具）</strong>：AI 可调用的函数，带参数和返回值</li><li><strong>Resources（资源）</strong>：AI 可读取的数据源，如文件、数据库记录</li><li><strong>Prompts（提示模板）</strong>：预定义的提示词模板，AI 可直接引用</li></ol><h3 id=传输层选项>传输层选项<a hidden class=anchor aria-hidden=true href=#传输层选项>#</a></h3><p>| 传输方式 | 适用场景 | 特点 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>Host</strong> 是运行 AI 模型的主程序（如 Claude Desktop）。<strong>Client</strong> 是 Host 内部负责与 Server 通信的模块。<strong>Server</strong> 是暴露工具、资源和提示模板的独立进程。</p>
+<h3 id="三大交互原语">三大交互原语<a hidden class="anchor" aria-hidden="true" href="#三大交互原语">#</a></h3>
+<ol>
+<li><strong>Tools（工具）</strong>：AI 可调用的函数，带参数和返回值</li>
+<li><strong>Resources（资源）</strong>：AI 可读取的数据源，如文件、数据库记录</li>
+<li><strong>Prompts（提示模板）</strong>：预定义的提示词模板，AI 可直接引用</li>
+</ol>
+<h3 id="传输层选项">传输层选项<a hidden class="anchor" aria-hidden="true" href="#传输层选项">#</a></h3>
+<p>| 传输方式 | 适用场景 | 特点 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>stdio</strong> | 本地开发、桌面应用 | 低延迟、零网络暴露、最安全 |
 | <strong>HTTP + SSE</strong> | 远程服务、Serverless | 支持流式响应、跨机器 |
-| <strong>Streamable HTTP</strong> | 生产环境 | 长连接 + 无状态回退 |</p><p><strong>开发建议</strong>：本地原型用 stdio，生产环境再迁移到 HTTP/SSE。</p><hr><h2 id=3-环境准备5-分钟搭建开发环境>3. 环境准备：5 分钟搭建开发环境<a hidden class=anchor aria-hidden=true href=#3-环境准备5-分钟搭建开发环境>#</a></h2><p>MCP 官方支持 <strong>Python</strong> 和 <strong>TypeScript/JavaScript</strong> SDK，社区还有 Go、C#、Java/Kotlin、Rust 实现。本文以 Python 为主（最快上手），末尾附 TypeScript 等效代码。</p><h3 id=安装-uv推荐包管理器>安装 uv（推荐包管理器）<a hidden class=anchor aria-hidden=true href=#安装-uv推荐包管理器>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -LsSf https://astral.sh/uv/install.sh | sh
-</span></span></code></pre></div><h3 id=创建项目>创建项目<a hidden class=anchor aria-hidden=true href=#创建项目>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir mcp-site-monitor <span style=color:#f92672>&amp;&amp;</span> cd mcp-site-monitor
-</span></span><span style=display:flex><span>uv init
-</span></span><span style=display:flex><span>uv add <span style=color:#e6db74>&#34;mcp[cli]&#34;</span> httpx
-</span></span></code></pre></div><h3 id=项目结构>项目结构<a hidden class=anchor aria-hidden=true href=#项目结构>#</a></h3><pre tabindex=0><code>mcp-site-monitor/
+| <strong>Streamable HTTP</strong> | 生产环境 | 长连接 + 无状态回退 |</p>
+<p><strong>开发建议</strong>：本地原型用 stdio，生产环境再迁移到 HTTP/SSE。</p>
+<hr>
+<h2 id="3-环境准备5-分钟搭建开发环境">3. 环境准备：5 分钟搭建开发环境<a hidden class="anchor" aria-hidden="true" href="#3-环境准备5-分钟搭建开发环境">#</a></h2>
+<p>MCP 官方支持 <strong>Python</strong> 和 <strong>TypeScript/JavaScript</strong> SDK，社区还有 Go、C#、Java/Kotlin、Rust 实现。本文以 Python 为主（最快上手），末尾附 TypeScript 等效代码。</p>
+<h3 id="安装-uv推荐包管理器">安装 uv（推荐包管理器）<a hidden class="anchor" aria-hidden="true" href="#安装-uv推荐包管理器">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -LsSf https://astral.sh/uv/install.sh | sh
+</span></span></code></pre></div><h3 id="创建项目">创建项目<a hidden class="anchor" aria-hidden="true" href="#创建项目">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir mcp-site-monitor <span style="color:#f92672">&amp;&amp;</span> cd mcp-site-monitor
+</span></span><span style="display:flex;"><span>uv init
+</span></span><span style="display:flex;"><span>uv add <span style="color:#e6db74">&#34;mcp[cli]&#34;</span> httpx
+</span></span></code></pre></div><h3 id="项目结构">项目结构<a hidden class="anchor" aria-hidden="true" href="#项目结构">#</a></h3>
+<pre tabindex="0"><code>mcp-site-monitor/
 ├── .env              # API 密钥（加入 .gitignore）
 ├── .gitignore
 ├── pyproject.toml
 └── server.py         # MCP 服务器主文件
-</code></pre><hr><h2 id=4-实战构建一个网站监控-mcp-服务器>4. 实战：构建一个网站监控 MCP 服务器<a hidden class=anchor aria-hidden=true href=#4-实战构建一个网站监控-mcp-服务器>#</a></h2><p>我们将创建一个名为 <strong>SiteMonitor</strong> 的 MCP 服务器，暴露两个工具：</p><ul><li><code>check_site_status</code>：检查网站是否在线，返回 HTTP 状态码和响应时间</li><li><code>check_ssl_expiry</code>：检查域名 SSL 证书剩余有效期</li></ul><h3 id=完整代码serverpy>完整代码（server.py）<a hidden class=anchor aria-hidden=true href=#完整代码serverpy>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> ssl
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> socket
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> urllib.parse <span style=color:#f92672>import</span> urlparse
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> httpx
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mcp.server.fastmcp <span style=color:#f92672>import</span> FastMCP
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>mcp <span style=color:#f92672>=</span> FastMCP(<span style=color:#e6db74>&#34;SiteMonitor&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@mcp.tool</span>()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_site_status</span>(url: str, timeout: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>10</span>) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;检查指定 URL 的网站可用性。
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Args: url: 要检查的网站地址，如 https://example.com
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        timeout: 请求超时秒数，默认 10 秒
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> httpx<span style=color:#f92672>.</span>AsyncClient(follow_redirects<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>, timeout<span style=color:#f92672>=</span>timeout) <span style=color:#66d9ef>as</span> client: start <span style=color:#f92672>=</span> asyncio<span style=color:#f92672>.</span>get_event_loop()<span style=color:#f92672>.</span>time()
-</span></span><span style=display:flex><span>            response <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> client<span style=color:#f92672>.</span>get(url)
-</span></span><span style=display:flex><span>            elapsed <span style=color:#f92672>=</span> asyncio<span style=color:#f92672>.</span>get_event_loop()<span style=color:#f92672>.</span>time() <span style=color:#f92672>-</span> start
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>            status <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;✅ 在线&#34;</span> <span style=color:#66d9ef>if</span> response<span style=color:#f92672>.</span>status_code <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>400</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;⚠️ 异常&#34;</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> (
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>status<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• URL: </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• HTTP 状态码: </span><span style=color:#e6db74>{</span>response<span style=color:#f92672>.</span>status_code<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• 响应时间: </span><span style=color:#e6db74>{</span>elapsed<span style=color:#e6db74>:</span><span style=color:#e6db74>.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>s</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• 服务器: </span><span style=color:#e6db74>{</span>response<span style=color:#f92672>.</span>headers<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;server&#39;</span>, <span style=color:#e6db74>&#39;未知&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>            )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> httpx<span style=color:#f92672>.</span>TimeoutException: <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;❌ 超时: </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#e6db74> 在 </span><span style=color:#e6db74>{</span>timeout<span style=color:#e6db74>}</span><span style=color:#e6db74> 秒内未响应&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;❌ 错误: </span><span style=color:#e6db74>{</span>type(e)<span style=color:#f92672>.</span>__name__<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>str(e)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@mcp.tool</span>()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_ssl_expiry</span>(hostname: str, port: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>443</span>) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;检查域名 SSL 证书的剩余有效期。
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    Args: hostname: 域名，如 example.com
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        port: HTTPS 端口，默认 443
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>try</span>: context <span style=color:#f92672>=</span> ssl<span style=color:#f92672>.</span>create_default_context()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>with</span> socket<span style=color:#f92672>.</span>create_connection((hostname, port), timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>) <span style=color:#66d9ef>as</span> sock: <span style=color:#66d9ef>with</span> context<span style=color:#f92672>.</span>wrap_socket(sock, server_hostname<span style=color:#f92672>=</span>hostname) <span style=color:#66d9ef>as</span> ssock: cert <span style=color:#f92672>=</span> ssock<span style=color:#f92672>.</span>getpeercert()
-</span></span><span style=display:flex><span>                expiry <span style=color:#f92672>=</span> datetime<span style=color:#f92672>.</span>strptime(cert[<span style=color:#e6db74>&#34;notAfter&#34;</span>], <span style=color:#e6db74>&#34;%b </span><span style=color:#e6db74>%d</span><span style=color:#e6db74> %H:%M:%S %Y %Z&#34;</span>)
-</span></span><span style=display:flex><span>                days_left <span style=color:#f92672>=</span> (expiry <span style=color:#f92672>-</span> datetime<span style=color:#f92672>.</span>utcnow())<span style=color:#f92672>.</span>days
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>                status <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;🟢 正常&#34;</span> <span style=color:#66d9ef>if</span> days_left <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>30</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;🟡 即将过期&#34;</span> <span style=color:#66d9ef>if</span> days_left <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>7</span> <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;🔴 紧急&#34;</span>
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> (
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>status<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• 域名: </span><span style=color:#e6db74>{</span>hostname<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• 颁发者: </span><span style=color:#e6db74>{</span>cert<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#39;issuer&#39;</span>, <span style=color:#e6db74>&#39;未知&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• 过期时间: </span><span style=color:#e6db74>{</span>expiry<span style=color:#f92672>.</span>strftime(<span style=color:#e6db74>&#39;%Y-%m-</span><span style=color:#e6db74>%d</span><span style=color:#e6db74> %H:%M UTC&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                    <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;• 剩余天数: </span><span style=color:#e6db74>{</span>days_left<span style=color:#e6db74>}</span><span style=color:#e6db74> 天</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>                )
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;❌ SSL 检查失败: </span><span style=color:#e6db74>{</span>type(e)<span style=color:#f92672>.</span>__name__<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>str(e)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> __name__ <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;__main__&#34;</span>: mcp<span style=color:#f92672>.</span>run(transport<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;stdio&#34;</span>)
-</span></span></code></pre></div><h3 id=代码关键点解读>代码关键点解读<a hidden class=anchor aria-hidden=true href=#代码关键点解读>#</a></h3><ol><li><strong><code>@mcp.tool()</code> 装饰器</strong>：将普通 Python 函数注册为 MCP 工具。函数的 docstring 会被自动提取为工具描述，AI 根据描述决定何时调用它。</li><li><strong>类型注解</strong>：参数类型（<code>str</code>、<code>int</code>）会被自动转换为 JSON Schema，供 AI 验证输入。</li><li><strong><code>transport="stdio"</code></strong>：使用标准输入输出通信，Claude Desktop 启动 Server 作为子进程。</li><li><strong>错误处理</strong>：所有异常被捕获并返回友好文本，避免 JSON-RPC 消息流被破坏。</li></ol><h3 id=本地测试>本地测试<a hidden class=anchor aria-hidden=true href=#本地测试>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>uv run server.py
-</span></span><span style=display:flex><span><span style=color:#75715e># 此时 Server 会等待 stdin 输入，可以先用 MCP Inspector 测试</span>
-</span></span></code></pre></div><hr><h2 id=5-接入-claude-desktop-与-cursor>5. 接入 Claude Desktop 与 Cursor<a hidden class=anchor aria-hidden=true href=#5-接入-claude-desktop-与-cursor>#</a></h2><h3 id=claude-desktopmacos>Claude Desktop（macOS）<a hidden class=anchor aria-hidden=true href=#claude-desktopmacos>#</a></h3><p>编辑配置文件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>~/Library/Application<span style=color:#ae81ff>\ </span>Support/Claude/claude_desktop_config.json
-</span></span></code></pre></div><p>添加 Server 配置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mcpServers&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;site-monitor&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;command&#34;</span>: <span style=color:#e6db74>&#34;uv&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;args&#34;</span>: [
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;run&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--directory&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;/absolute/path/to/mcp-site-monitor&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;server.py&#34;</span>
-</span></span><span style=display:flex><span>      ]
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p><strong>重启 Claude Desktop</strong>，在对话中即可使用：</p><blockquote><p>&ldquo;帮我检查一下 <a href=https://github.com>https://github.com</a> 的状态，再看看它 SSL 证书还有多久过期。&rdquo;</p></blockquote><p>Claude 会自动调用 <code>check_site_status</code> 和 <code>check_ssl_expiry</code>，并将结果整理后回复你。</p><h3 id=cursor>Cursor<a hidden class=anchor aria-hidden=true href=#cursor>#</a></h3><p>在项目根目录创建 <code>.cursor/mcp.json</code>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;mcpServers&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;site-monitor&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;command&#34;</span>: <span style=color:#e6db74>&#34;uv&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;args&#34;</span>: [
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;run&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;--directory&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;/absolute/path/to/mcp-site-monitor&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;server.py&#34;</span>
-</span></span><span style=display:flex><span>      ]
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>Cursor 的 AI Chat 会直接识别并使用这些工具。</p><h3 id=vs-code-copilot-agent-mode>VS Code Copilot Agent Mode<a hidden class=anchor aria-hidden=true href=#vs-code-copilot-agent-mode>#</a></h3><p>VS Code v1.99+ 的 Copilot Agent Mode 原生支持 MCP。在 <code>settings.json</code> 中配置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;github.copilot.chat.mcpServers&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;site-monitor&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;command&#34;</span>: <span style=color:#e6db74>&#34;uv&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;args&#34;</span>: [<span style=color:#e6db74>&#34;run&#34;</span>, <span style=color:#e6db74>&#34;server.py&#34;</span>],
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;cwd&#34;</span>: <span style=color:#e6db74>&#34;/absolute/path/to/mcp-site-monitor&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=6-进阶resourcesprompts-与-streaming-http>6. 进阶：Resources、Prompts 与 Streaming HTTP<a hidden class=anchor aria-hidden=true href=#6-进阶resourcesprompts-与-streaming-http>#</a></h2><h3 id=暴露-resources只读数据>暴露 Resources（只读数据）<a hidden class=anchor aria-hidden=true href=#暴露-resources只读数据>#</a></h3><p>让 AI 能够读取服务器上的配置文件或日志：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@mcp.resource</span>(<span style=color:#e6db74>&#34;config://app&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_app_config</span>() <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;获取当前应用配置。&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> json<span style=color:#f92672>.</span>dumps({<span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>, <span style=color:#e6db74>&#34;check_interval&#34;</span>: <span style=color:#ae81ff>300</span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@mcp.resource</span>(<span style=color:#e6db74>&#34;log://latest&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_latest_log</span>() <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;读取最近一条监控日志。&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 实现日志读取逻辑</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;[2026-05-15 08:00:00] github.com: OK (23ms)&#34;</span>
-</span></span></code></pre></div><h3 id=暴露-prompts可复用提示模板>暴露 Prompts（可复用提示模板）<a hidden class=anchor aria-hidden=true href=#暴露-prompts可复用提示模板>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@mcp.prompt</span>()
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>debug_site_issue</span>(url: str, error_code: int) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;生成网站故障排查提示词。&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;&#34;&#34;网站 </span><span style=color:#e6db74>{</span>url<span style=color:#e6db74>}</span><span style=color:#e6db74> 返回 HTTP </span><span style=color:#e6db74>{</span>error_code<span style=color:#e6db74>}</span><span style=color:#e6db74>。请按以下步骤排查：
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>1. 检查 DNS 解析是否正常
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>2. 确认服务器进程是否存活
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>3. 查看最近 10 分钟的应用日志
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>4. 分析是否有流量突增导致服务过载
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#34;&#34;&#34;</span>
-</span></span></code></pre></div><h3 id=迁移到-http--sse生产环境>迁移到 HTTP + SSE（生产环境）<a hidden class=anchor aria-hidden=true href=#迁移到-http--sse生产环境>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mcp.server.sse <span style=color:#f92672>import</span> SseServerTransport
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> starlette.applications <span style=color:#f92672>import</span> Starlette
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> starlette.routing <span style=color:#f92672>import</span> Route
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>sse <span style=color:#f92672>=</span> SseServerTransport(<span style=color:#e6db74>&#34;/messages/&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>handle_sse</span>(request): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> sse<span style=color:#f92672>.</span>connect_sse(request<span style=color:#f92672>.</span>scope, request<span style=color:#f92672>.</span>receive, request<span style=color:#f92672>.</span>_send) <span style=color:#66d9ef>as</span> streams: <span style=color:#66d9ef>await</span> mcp<span style=color:#f92672>.</span>run(streams[<span style=color:#ae81ff>0</span>], streams[<span style=color:#ae81ff>1</span>], mcp<span style=color:#f92672>.</span>create_initialization_options())
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> Starlette(routes<span style=color:#f92672>=</span>[Route(<span style=color:#e6db74>&#34;/sse&#34;</span>, endpoint<span style=color:#f92672>=</span>handle_sse)])
-</span></span></code></pre></div><p>部署到任意支持 ASGI 的平台（Vercel、Railway、自有服务器），AI 客户端通过远程 URL 连接。</p><hr><h2 id=7-安全与生产最佳实践>7. 安全与生产最佳实践<a hidden class=anchor aria-hidden=true href=#7-安全与生产最佳实践>#</a></h2><p>MCP 连接 AI 与外部世界，安全不是可选项。</p><h3 id=必须遵守的-7-条规则>必须遵守的 7 条规则<a hidden class=anchor aria-hidden=true href=#必须遵守的-7-条规则>#</a></h3><ol><li><strong>绝不向 stdout 写日志</strong>：stdio 传输层用 stdout 传 JSON-RPC，任何额外输出都会破坏协议。日志必须写 stderr 或文件。</li><li><strong>最小权限原则</strong>：Server 只暴露必要的工具和最小范围的数据。不要给 AI 读整个文件系统的权限。</li><li><strong>输入校验</strong>：用 Pydantic / Zod 严格校验所有参数，拒绝非法输入。</li><li><strong>敏感操作二次确认</strong>：删除数据、转账、发送邮件等操作，Server 应返回确认请求而非直接执行。</li><li><strong>环境变量管理</strong>：API 密钥写在 <code>.env</code> 文件，绝不硬编码，绝不提交到 Git。</li><li><strong>生产用 HTTPS</strong>：HTTP 传输必须加 TLS，防止中间人篡改工具调用。</li><li><strong>监控与审计</strong>：记录所有工具调用日志，异常行为告警。2025 年 7 月曝出的 MCP Inspector RCE 漏洞（CVE-2025-49596，CVSS 9.4）就是警示。</li></ol><hr><h2 id=8-生态速查值得立刻试用的-15-个-mcp-服务器>8. 生态速查：值得立刻试用的 15 个 MCP 服务器<a hidden class=anchor aria-hidden=true href=#8-生态速查值得立刻试用的-15-个-mcp-服务器>#</a></h2><p>| 名称 | 功能 | 适用场景 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><hr>
+<h2 id="4-实战构建一个网站监控-mcp-服务器">4. 实战：构建一个网站监控 MCP 服务器<a hidden class="anchor" aria-hidden="true" href="#4-实战构建一个网站监控-mcp-服务器">#</a></h2>
+<p>我们将创建一个名为 <strong>SiteMonitor</strong> 的 MCP 服务器，暴露两个工具：</p>
+<ul>
+<li><code>check_site_status</code>：检查网站是否在线，返回 HTTP 状态码和响应时间</li>
+<li><code>check_ssl_expiry</code>：检查域名 SSL 证书剩余有效期</li>
+</ul>
+<h3 id="完整代码serverpy">完整代码（server.py）<a hidden class="anchor" aria-hidden="true" href="#完整代码serverpy">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ssl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> socket
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> urllib.parse <span style="color:#f92672">import</span> urlparse
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> httpx
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mcp.server.fastmcp <span style="color:#f92672">import</span> FastMCP
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>mcp <span style="color:#f92672">=</span> FastMCP(<span style="color:#e6db74">&#34;SiteMonitor&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.tool</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_site_status</span>(url: str, timeout: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;检查指定 URL 的网站可用性。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Args: url: 要检查的网站地址，如 https://example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        timeout: 请求超时秒数，默认 10 秒
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> httpx<span style="color:#f92672">.</span>AsyncClient(follow_redirects<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, timeout<span style="color:#f92672">=</span>timeout) <span style="color:#66d9ef">as</span> client: start <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>get_event_loop()<span style="color:#f92672">.</span>time()
+</span></span><span style="display:flex;"><span>            response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> client<span style="color:#f92672">.</span>get(url)
+</span></span><span style="display:flex;"><span>            elapsed <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>get_event_loop()<span style="color:#f92672">.</span>time() <span style="color:#f92672">-</span> start
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;✅ 在线&#34;</span> <span style="color:#66d9ef">if</span> response<span style="color:#f92672">.</span>status_code <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">400</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;⚠️ 异常&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>status<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• URL: </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• HTTP 状态码: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>status_code<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 响应时间: </span><span style="color:#e6db74">{</span>elapsed<span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">s</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 服务器: </span><span style="color:#e6db74">{</span>response<span style="color:#f92672">.</span>headers<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;server&#39;</span>, <span style="color:#e6db74">&#39;未知&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> httpx<span style="color:#f92672">.</span>TimeoutException: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;❌ 超时: </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> 在 </span><span style="color:#e6db74">{</span>timeout<span style="color:#e6db74">}</span><span style="color:#e6db74"> 秒内未响应&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;❌ 错误: </span><span style="color:#e6db74">{</span>type(e)<span style="color:#f92672">.</span>__name__<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.tool</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_ssl_expiry</span>(hostname: str, port: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">443</span>) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;检查域名 SSL 证书的剩余有效期。
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    Args: hostname: 域名，如 example.com
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        port: HTTPS 端口，默认 443
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span>: context <span style="color:#f92672">=</span> ssl<span style="color:#f92672">.</span>create_default_context()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">with</span> socket<span style="color:#f92672">.</span>create_connection((hostname, port), timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>) <span style="color:#66d9ef">as</span> sock: <span style="color:#66d9ef">with</span> context<span style="color:#f92672">.</span>wrap_socket(sock, server_hostname<span style="color:#f92672">=</span>hostname) <span style="color:#66d9ef">as</span> ssock: cert <span style="color:#f92672">=</span> ssock<span style="color:#f92672">.</span>getpeercert()
+</span></span><span style="display:flex;"><span>                expiry <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>strptime(cert[<span style="color:#e6db74">&#34;notAfter&#34;</span>], <span style="color:#e6db74">&#34;%b </span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M:%S %Y %Z&#34;</span>)
+</span></span><span style="display:flex;"><span>                days_left <span style="color:#f92672">=</span> (expiry <span style="color:#f92672">-</span> datetime<span style="color:#f92672">.</span>utcnow())<span style="color:#f92672">.</span>days
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                status <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;🟢 正常&#34;</span> <span style="color:#66d9ef">if</span> days_left <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">30</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;🟡 即将过期&#34;</span> <span style="color:#66d9ef">if</span> days_left <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">7</span> <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;🔴 紧急&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> (
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>status<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 域名: </span><span style="color:#e6db74">{</span>hostname<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 颁发者: </span><span style="color:#e6db74">{</span>cert<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;issuer&#39;</span>, <span style="color:#e6db74">&#39;未知&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 过期时间: </span><span style="color:#e6db74">{</span>expiry<span style="color:#f92672">.</span>strftime(<span style="color:#e6db74">&#39;%Y-%m-</span><span style="color:#e6db74">%d</span><span style="color:#e6db74"> %H:%M UTC&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;• 剩余天数: </span><span style="color:#e6db74">{</span>days_left<span style="color:#e6db74">}</span><span style="color:#e6db74"> 天</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>                )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;❌ SSL 检查失败: </span><span style="color:#e6db74">{</span>type(e)<span style="color:#f92672">.</span>__name__<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>str(e)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>: mcp<span style="color:#f92672">.</span>run(transport<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stdio&#34;</span>)
+</span></span></code></pre></div><h3 id="代码关键点解读">代码关键点解读<a hidden class="anchor" aria-hidden="true" href="#代码关键点解读">#</a></h3>
+<ol>
+<li><strong><code>@mcp.tool()</code> 装饰器</strong>：将普通 Python 函数注册为 MCP 工具。函数的 docstring 会被自动提取为工具描述，AI 根据描述决定何时调用它。</li>
+<li><strong>类型注解</strong>：参数类型（<code>str</code>、<code>int</code>）会被自动转换为 JSON Schema，供 AI 验证输入。</li>
+<li><strong><code>transport=&quot;stdio&quot;</code></strong>：使用标准输入输出通信，Claude Desktop 启动 Server 作为子进程。</li>
+<li><strong>错误处理</strong>：所有异常被捕获并返回友好文本，避免 JSON-RPC 消息流被破坏。</li>
+</ol>
+<h3 id="本地测试">本地测试<a hidden class="anchor" aria-hidden="true" href="#本地测试">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>uv run server.py
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 此时 Server 会等待 stdin 输入，可以先用 MCP Inspector 测试</span>
+</span></span></code></pre></div><hr>
+<h2 id="5-接入-claude-desktop-与-cursor">5. 接入 Claude Desktop 与 Cursor<a hidden class="anchor" aria-hidden="true" href="#5-接入-claude-desktop-与-cursor">#</a></h2>
+<h3 id="claude-desktopmacos">Claude Desktop（macOS）<a hidden class="anchor" aria-hidden="true" href="#claude-desktopmacos">#</a></h3>
+<p>编辑配置文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/Library/Application<span style="color:#ae81ff">\ </span>Support/Claude/claude_desktop_config.json
+</span></span></code></pre></div><p>添加 Server 配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site-monitor&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;uv&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;run&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--directory&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;/absolute/path/to/mcp-site-monitor&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;server.py&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>重启 Claude Desktop</strong>，在对话中即可使用：</p>
+<blockquote>
+<p>&ldquo;帮我检查一下 <a href="https://github.com">https://github.com</a> 的状态，再看看它 SSL 证书还有多久过期。&rdquo;</p>
+</blockquote>
+<p>Claude 会自动调用 <code>check_site_status</code> 和 <code>check_ssl_expiry</code>，并将结果整理后回复你。</p>
+<h3 id="cursor">Cursor<a hidden class="anchor" aria-hidden="true" href="#cursor">#</a></h3>
+<p>在项目根目录创建 <code>.cursor/mcp.json</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site-monitor&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;uv&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;run&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;--directory&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;/absolute/path/to/mcp-site-monitor&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;server.py&#34;</span>
+</span></span><span style="display:flex;"><span>      ]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Cursor 的 AI Chat 会直接识别并使用这些工具。</p>
+<h3 id="vs-code-copilot-agent-mode">VS Code Copilot Agent Mode<a hidden class="anchor" aria-hidden="true" href="#vs-code-copilot-agent-mode">#</a></h3>
+<p>VS Code v1.99+ 的 Copilot Agent Mode 原生支持 MCP。在 <code>settings.json</code> 中配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;github.copilot.chat.mcpServers&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;site-monitor&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;uv&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;run&#34;</span>, <span style="color:#e6db74">&#34;server.py&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;cwd&#34;</span>: <span style="color:#e6db74">&#34;/absolute/path/to/mcp-site-monitor&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="6-进阶resourcesprompts-与-streaming-http">6. 进阶：Resources、Prompts 与 Streaming HTTP<a hidden class="anchor" aria-hidden="true" href="#6-进阶resourcesprompts-与-streaming-http">#</a></h2>
+<h3 id="暴露-resources只读数据">暴露 Resources（只读数据）<a hidden class="anchor" aria-hidden="true" href="#暴露-resources只读数据">#</a></h3>
+<p>让 AI 能够读取服务器上的配置文件或日志：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.resource</span>(<span style="color:#e6db74">&#34;config://app&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_app_config</span>() <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;获取当前应用配置。&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>, <span style="color:#e6db74">&#34;check_interval&#34;</span>: <span style="color:#ae81ff">300</span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.resource</span>(<span style="color:#e6db74">&#34;log://latest&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_latest_log</span>() <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;读取最近一条监控日志。&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 实现日志读取逻辑</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;[2026-05-15 08:00:00] github.com: OK (23ms)&#34;</span>
+</span></span></code></pre></div><h3 id="暴露-prompts可复用提示模板">暴露 Prompts（可复用提示模板）<a hidden class="anchor" aria-hidden="true" href="#暴露-prompts可复用提示模板">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@mcp.prompt</span>()
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">debug_site_issue</span>(url: str, error_code: int) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;生成网站故障排查提示词。&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;&#34;&#34;网站 </span><span style="color:#e6db74">{</span>url<span style="color:#e6db74">}</span><span style="color:#e6db74"> 返回 HTTP </span><span style="color:#e6db74">{</span>error_code<span style="color:#e6db74">}</span><span style="color:#e6db74">。请按以下步骤排查：
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">1. 检查 DNS 解析是否正常
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">2. 确认服务器进程是否存活
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">3. 查看最近 10 分钟的应用日志
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">4. 分析是否有流量突增导致服务过载
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;&#34;&#34;</span>
+</span></span></code></pre></div><h3 id="迁移到-http--sse生产环境">迁移到 HTTP + SSE（生产环境）<a hidden class="anchor" aria-hidden="true" href="#迁移到-http--sse生产环境">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mcp.server.sse <span style="color:#f92672">import</span> SseServerTransport
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> starlette.applications <span style="color:#f92672">import</span> Starlette
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> starlette.routing <span style="color:#f92672">import</span> Route
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>sse <span style="color:#f92672">=</span> SseServerTransport(<span style="color:#e6db74">&#34;/messages/&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle_sse</span>(request): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> sse<span style="color:#f92672">.</span>connect_sse(request<span style="color:#f92672">.</span>scope, request<span style="color:#f92672">.</span>receive, request<span style="color:#f92672">.</span>_send) <span style="color:#66d9ef">as</span> streams: <span style="color:#66d9ef">await</span> mcp<span style="color:#f92672">.</span>run(streams[<span style="color:#ae81ff">0</span>], streams[<span style="color:#ae81ff">1</span>], mcp<span style="color:#f92672">.</span>create_initialization_options())
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Starlette(routes<span style="color:#f92672">=</span>[Route(<span style="color:#e6db74">&#34;/sse&#34;</span>, endpoint<span style="color:#f92672">=</span>handle_sse)])
+</span></span></code></pre></div><p>部署到任意支持 ASGI 的平台（Vercel、Railway、自有服务器），AI 客户端通过远程 URL 连接。</p>
+<hr>
+<h2 id="7-安全与生产最佳实践">7. 安全与生产最佳实践<a hidden class="anchor" aria-hidden="true" href="#7-安全与生产最佳实践">#</a></h2>
+<p>MCP 连接 AI 与外部世界，安全不是可选项。</p>
+<h3 id="必须遵守的-7-条规则">必须遵守的 7 条规则<a hidden class="anchor" aria-hidden="true" href="#必须遵守的-7-条规则">#</a></h3>
+<ol>
+<li><strong>绝不向 stdout 写日志</strong>：stdio 传输层用 stdout 传 JSON-RPC，任何额外输出都会破坏协议。日志必须写 stderr 或文件。</li>
+<li><strong>最小权限原则</strong>：Server 只暴露必要的工具和最小范围的数据。不要给 AI 读整个文件系统的权限。</li>
+<li><strong>输入校验</strong>：用 Pydantic / Zod 严格校验所有参数，拒绝非法输入。</li>
+<li><strong>敏感操作二次确认</strong>：删除数据、转账、发送邮件等操作，Server 应返回确认请求而非直接执行。</li>
+<li><strong>环境变量管理</strong>：API 密钥写在 <code>.env</code> 文件，绝不硬编码，绝不提交到 Git。</li>
+<li><strong>生产用 HTTPS</strong>：HTTP 传输必须加 TLS，防止中间人篡改工具调用。</li>
+<li><strong>监控与审计</strong>：记录所有工具调用日志，异常行为告警。2025 年 7 月曝出的 MCP Inspector RCE 漏洞（CVE-2025-49596，CVSS 9.4）就是警示。</li>
+</ol>
+<hr>
+<h2 id="8-生态速查值得立刻试用的-15-个-mcp-服务器">8. 生态速查：值得立刻试用的 15 个 MCP 服务器<a hidden class="anchor" aria-hidden="true" href="#8-生态速查值得立刻试用的-15-个-mcp-服务器">#</a></h2>
+<p>| 名称 | 功能 | 适用场景 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>filesystem</strong> | 本地文件系统读写 | 代码分析、文档处理 |
 | <strong>github</strong> | PR、Issue、代码搜索 | 自动化代码审查 |
 | <strong>postgres</strong> / <strong>sqlite</strong> | 数据库查询 | 数据分析、BI |
@@ -162,8 +597,62 @@
 | <strong>playwright</strong> | E2E 测试自动化 | 测试生成 |
 | <strong>redis</strong> | Redis 数据操作 | 缓存管理 |
 | <strong>docker</strong> | 容器管理 | DevOps 自动化 |
-| <strong>kubernetes</strong> | K8s 资源操作 | 运维自动化 |</p><p>完整列表见 <a href=https://smithery.ai>Smithery.ai</a> 和 <a href=https://mcp.so>MCP.so</a>。</p><hr><h2 id=9-常见问题-faq>9. 常见问题 FAQ<a hidden class=anchor aria-hidden=true href=#9-常见问题-faq>#</a></h2><p><strong>Q1：MCP 与 Function Calling / Tool Use 有什么区别？</strong></p><p>Function Calling 是模型层面的能力（如 GPT-4 的 <code>tools</code> 参数），每个平台格式不同。MCP 是<strong>协议层面</strong>的标准，定义了 Server 如何暴露工具、Client 如何发现和调用，二者互补——MCP Server 可以作为 Function Calling 的底层实现。</p><p><strong>Q2：MCP Server 只能本地运行吗？</strong></p><p>不是。stdio 适合本地，HTTP/SSE 可以部署到远程服务器、Docker 容器、甚至 Serverless（注意 MCP 有状态特性对 Serverless 的限制）。</p><p><strong>Q3：一个 Server 可以暴露多少个工具？</strong></p><p>技术上无上限，但建议控制在 <strong>10 个以内</strong>。工具过多会降低 AI 的选择准确率（每次对话都要加载所有工具定义，消耗 token）。可以按功能拆分为多个 Server。</p><p><strong>Q4：MCP 与 LangChain 的关系？</strong></p><p>LangChain 是<strong>框架</strong>，提供链式调用、记忆管理、Agent 编排。MCP 是<strong>协议</strong>，标准化工具连接方式。LangChain 已经通过 <code>langchain-mcp-adapters</code> 支持 MCP，二者可以协同使用。</p><p><strong>Q5：企业使用 MCP 有什么额外考量？</strong></p><ul><li>部署私有 Registry 管理内部 Server</li><li>实施 OAuth 2.1 + RBAC 访问控制</li><li>版本锁定防止未授权更新</li><li>隔离信任域（Trust Domain Isolation）</li><li>审计所有工具调用日志</li></ul><hr><h2 id=结语现在就开始>结语：现在就开始<a hidden class=anchor aria-hidden=true href=#结语现在就开始>#</a></h2><p>MCP 不是未来技术，它是<strong>正在发生的标准</strong>。2026 年的开发者如果还不会构建 MCP Server，就像 2010 年的开发者不会写 REST API。</p><p>今天这篇文章的代码可以直接复制运行。建议你：</p><ol><li>现在就用 ````uv``` 把 SiteMonitor 跑起来</li><li>接入 Claude Desktop 体验一次自然语言驱动的运维查询</li><li>把你们团队最常用的内部 API 包装成 MCP Server</li><li>把你的 Server 开源到 GitHub，加入 10,000+ 的 MCP 生态</li></ol><p><strong>参考资源</strong></p><ul><li><a href=https://modelcontextprotocol.io>MCP 官方文档</a></li><li><a href=https://github.com/modelcontextprotocol/python-sdk>Python SDK (FastMCP)</a></li><li><a href=https://github.com/modelcontextprotocol/typescript-sdk>TypeScript SDK</a></li><li><a href=https://smithery.ai>Smithery.ai — MCP 服务器目录</a></li><li><a href=https://mcp.so>MCP.so — 社区 MCP 市场</a></li></ul><hr><h2 id=-跳过-json-schema-模板代码>🔌 跳过 JSON Schema 模板代码<a hidden class=anchor aria-hidden=true href=#-跳过-json-schema-模板代码>#</a></h2><p>手写每个 tool 的 JSON Schema 是 MCP 开发最烦的部分。试试 dibi8 免费的 <strong><a href=/zh/tools/mcp-tool-builder/>MCP Tool Builder</a></strong> —— 粘贴 Python 或 TypeScript 函数签名，自动产出符合协议的 tool 定义 + 完整 server 模板（FastMCP / TypeScript SDK）+ cURL 测试命令。省 80% 模板代码。</p><hr><ul><li></li></ul><hr><h2 id=推荐自托管基础设施>推荐自托管基础设施<a hidden class=anchor aria-hidden=true href=#推荐自托管基础设施>#</a></h2><p>要 7×24 稳定跑这套，服务器选择很关键：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟。<strong>这就是 dibi8.com 自家所在的 IDC</strong>，生产环境已验证。</li></ul><p><em>以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。</em></p><p><em>本文发布于 2026 年 5 月 15 日，基于 MCP Protocol Specification 2025-11-25 周年版本。</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>kubernetes</strong> | K8s 资源操作 | 运维自动化 |</p>
+<p>完整列表见 <a href="https://smithery.ai">Smithery.ai</a> 和 <a href="https://mcp.so">MCP.so</a>。</p>
+<hr>
+<h2 id="9-常见问题-faq">9. 常见问题 FAQ<a hidden class="anchor" aria-hidden="true" href="#9-常见问题-faq">#</a></h2>
+<p><strong>Q1：MCP 与 Function Calling / Tool Use 有什么区别？</strong></p>
+<p>Function Calling 是模型层面的能力（如 GPT-4 的 <code>tools</code> 参数），每个平台格式不同。MCP 是<strong>协议层面</strong>的标准，定义了 Server 如何暴露工具、Client 如何发现和调用，二者互补——MCP Server 可以作为 Function Calling 的底层实现。</p>
+<p><strong>Q2：MCP Server 只能本地运行吗？</strong></p>
+<p>不是。stdio 适合本地，HTTP/SSE 可以部署到远程服务器、Docker 容器、甚至 Serverless（注意 MCP 有状态特性对 Serverless 的限制）。</p>
+<p><strong>Q3：一个 Server 可以暴露多少个工具？</strong></p>
+<p>技术上无上限，但建议控制在 <strong>10 个以内</strong>。工具过多会降低 AI 的选择准确率（每次对话都要加载所有工具定义，消耗 token）。可以按功能拆分为多个 Server。</p>
+<p><strong>Q4：MCP 与 LangChain 的关系？</strong></p>
+<p>LangChain 是<strong>框架</strong>，提供链式调用、记忆管理、Agent 编排。MCP 是<strong>协议</strong>，标准化工具连接方式。LangChain 已经通过 <code>langchain-mcp-adapters</code> 支持 MCP，二者可以协同使用。</p>
+<p><strong>Q5：企业使用 MCP 有什么额外考量？</strong></p>
+<ul>
+<li>部署私有 Registry 管理内部 Server</li>
+<li>实施 OAuth 2.1 + RBAC 访问控制</li>
+<li>版本锁定防止未授权更新</li>
+<li>隔离信任域（Trust Domain Isolation）</li>
+<li>审计所有工具调用日志</li>
+</ul>
+<hr>
+<h2 id="结语现在就开始">结语：现在就开始<a hidden class="anchor" aria-hidden="true" href="#结语现在就开始">#</a></h2>
+<p>MCP 不是未来技术，它是<strong>正在发生的标准</strong>。2026 年的开发者如果还不会构建 MCP Server，就像 2010 年的开发者不会写 REST API。</p>
+<p>今天这篇文章的代码可以直接复制运行。建议你：</p>
+<ol>
+<li>现在就用 ````uv``` 把 SiteMonitor 跑起来</li>
+<li>接入 Claude Desktop 体验一次自然语言驱动的运维查询</li>
+<li>把你们团队最常用的内部 API 包装成 MCP Server</li>
+<li>把你的 Server 开源到 GitHub，加入 10,000+ 的 MCP 生态</li>
+</ol>
+<p><strong>参考资源</strong></p>
+<ul>
+<li><a href="https://modelcontextprotocol.io">MCP 官方文档</a></li>
+<li><a href="https://github.com/modelcontextprotocol/python-sdk">Python SDK (FastMCP)</a></li>
+<li><a href="https://github.com/modelcontextprotocol/typescript-sdk">TypeScript SDK</a></li>
+<li><a href="https://smithery.ai">Smithery.ai — MCP 服务器目录</a></li>
+<li><a href="https://mcp.so">MCP.so — 社区 MCP 市场</a></li>
+</ul>
+<hr>
+<h2 id="-跳过-json-schema-模板代码">🔌 跳过 JSON Schema 模板代码<a hidden class="anchor" aria-hidden="true" href="#-跳过-json-schema-模板代码">#</a></h2>
+<p>手写每个 tool 的 JSON Schema 是 MCP 开发最烦的部分。试试 dibi8 免费的 <strong><a href="/zh/tools/mcp-tool-builder/">MCP Tool Builder</a></strong> —— 粘贴 Python 或 TypeScript 函数签名，自动产出符合协议的 tool 定义 + 完整 server 模板（FastMCP / TypeScript SDK）+ cURL 测试命令。省 80% 模板代码。</p>
+<hr>
+<ul>
+<li></li>
+</ul>
+<hr>
+<h2 id="推荐自托管基础设施">推荐自托管基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐自托管基础设施">#</a></h2>
+<p>要 7×24 稳定跑这套，服务器选择很关键：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟。<strong>这就是 dibi8.com 自家所在的 IDC</strong>，生产环境已验证。</li>
+</ul>
+<p><em>以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。</em></p>
+<p><em>本文发布于 2026 年 5 月 15 日，基于 MCP Protocol Specification 2025-11-25 周年版本。</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -177,22 +666,219 @@
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/mcp-deep-dive-definitive-2026-guide%22>https://dibi8.com/zh/resources/mcp-deep-dive-definitive-2026-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/mcp-deep-dive-definitive-2026-guide%22">https://dibi8.com/zh/resources/mcp-deep-dive-definitive-2026-guide"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding mcp (model context protocol) 终极实战指南：2026 年开发者必须掌握的 ai 工具连接标准 is crucial for modern AI development. Here"s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding mcp (model context protocol) 终极实战指南：2026 年开发者必须掌握的 ai 工具连接标准 is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/mcp-server-registry-comprehensive-guide-2026/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>MCP (Model Context Protocol) 终极实战指南：2026 年开发者必须掌握的 AI 工具连接标准 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/mcp-server-registry-comprehensive-guide-2026/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

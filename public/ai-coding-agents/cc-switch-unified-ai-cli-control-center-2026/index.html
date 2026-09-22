@@ -1,10 +1,281 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “CC Switch Review: The Missing Control Center for AI Codi… description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“dev-utils”] tags: [“cc-switch”, “ai-cli”, “meta-tool”, “claude-code”, “developer-productivity”] aliases:\n/posts/cc-switch-unified-ai-cli-control-center-2026/- {\u003c/* resource-info */\u003e}\nThe Problem: AI CLI Tool Fragmentation Is Eating Your Flow State If you’re a developer in 2026, you’ve felt it. The moment when you’re five minutes into a deep debugging session, realize you need to switch from Claude Code to Gemini CLI to burn through some free quota, and then spend the next ten minutes hunting through ```.env```` files, API key docs, and config directories.\nThe AI coding agent space has exploded. Each tool is genuinely excellent at what it does: - Claude Code — 2M token context window, unmatched reasoning for architecture refactoring\nOpenAI Codex — Rust-rewritten for speed, three autonomy modes from suggest to full-auto Gemini CLI — 1,000 free requests/day, Google’s pricing experiment OpenClaw — Sub-agent orchestration for complex multi-step workflows OpenCode — Community-driven, 162K stars, multi-model flexibility Hermes Agent — Enterprise-grade deployment and governance But managing them? That’s still stuck in 2010. JSON files, environment variables, scattered MCP configs. CC Switch (GitHub: farion1231/cc-switch, 74,754 stars) is the first serious attempt to build a unified control layer — and it might be the most underrated productivity tool in the AI dev stack right now.\nWhat Is CC Switch? A Technical Overview | Attribute | Detail | |\n|\n| | Repository | farion1231/cc-switch | | Stars / Forks | 74,754 / 4,847 | | Backend | Rust (Tauri 2.8) | | Frontend | React 18, TypeScript, TailwindCSS | | License | MIT | | Platforms | Windows, macOS, Linux |\nThe Rust + Tauri Decision Matters CC Switch didn’t go with Electron, and that choice reveals intent: - Binary size: Tauri apps are ~60% smaller than equivalent Electron apps\nMemory footprint: Uses the system’s native WebView, not a bundled Chromium Startup time: Cold start in under 500ms on modern hardware Native integrations: System tray, global shortcuts, and SQLite atomic writes all feel first-class, not hacked-in This architecture — Rust for the heavy lifting, web tech for the UI — is becoming the default for serious cross-platform tools in 2026. The alignment between Tauri’s growth curve and CC Switch’s star velocity isn’t coincidental.\nCore Features: From Config Hell to One-Click Switching 2.1 Unified Dashboard for Six CLI Agents CC Switch treats each AI tool as a “managed application” rather than a standalone binary: | Tool | Developer | Best For | Default Models | |\n|\n|\n|\n| | Claude Code | Anthropic | Deep reasoning, large-scale refactoring | Claude Opus / Sonnet | | Codex CLI | OpenAI | Speed, execution autonomy | GPT-5 / GPT-5.5 | | Gemini CLI | Google | Free-tier prototyping, fast iterations | Gemini Pro / Flash | | OpenCode | Community | Multi-model experiments | User-configurable | | OpenClaw | OpenClaw | Sub-agent orchestration | User-configurable | | Hermes Agent | Hermes | Enterprise governance | Enterprise-deployed |\nReal workflow: Start the morning with Claude Code for a complex service decomposition. Switch to Gemini CLI after lunch for quick scaffolding tasks that don’t need premium reasoning. Drop into OpenClaw at 4pm to orchestrate a multi-step data pipeline. Never touch a config file.\n2.2 50+ Provider Presets: From Official APIs to Community Relays The provider management is where CC Switch saves the most time. Built-in presets cover: Official channels: Anthropic, OpenAI, Google AI Studio Cloud platforms: AWS Bedrock, Google Cloud Vertex AI, Azure OpenAI Community relays (50+): Regional API aggregators, academic access programs, team-specific endpoints\nEach provider supports multiple endpoints with independent API keys, automatic latency testing, and failover ordering. If your primary Claude endpoint goes down, CC Switch can round-robin to a secondary without you noticing.\n2.3 MCP Server Management: The Secret Weapon Model Context Protocol has quietly become the USB-C of AI agent infrastructure in 2026. CC Switch’s MCP panel does something no individual tool does well: - Add once, sync everywhere: Configure an MCP server (filesystem, Git, browser automation, database query) and it propagates to all connected CLI tools\nTransport flexibility: Stdio, HTTP, and SSE — all three MCP transport modes supported Bidirectional sync: Change the filesystem MCP timeout in CC Switch, and Claude Code + Codex + Gemini CLI all pick it up Team sharing: Export your MCP config as JSON, share it in Slack, new teammate imports and is fully operational in 30 seconds This alone justifies CC Switch if you use more than one AI CLI tool. MCP configuration drift is a real problem, and this solves it at the source.\n2.4 System Tray Quick Switch: The Flow State Protector The feature that sounds minor but matters most: - Click tray icon → select provider → instant switch\nNo full app window needed No terminal restart (Claude Code doesn’t even require a reload) Keyboard shortcuts for power users For developers doing model A/B testing — running the same prompt through Claude and GPT to compare output quality — this turns a 2-minute context switch into a 3-second gesture.\nAdvanced Features for Power Users 3.1 Prompt Presets with Cross-App Sync Create unlimited system prompt presets with a live Markdown editor Auto-maps to each tool’s expected config file (CLAUDE.md, AGENTS.md, GEMINI.md) Team-wide prompt standardization: enforce code review formats, security checklists, API documentation templates 3.2 Skills Browser and One-Click Install Browse GitHub skills repositories from inside CC Switch Install a skill to all connected tools simultaneously Support for private GitHub repos and enterprise-hosted skill registries 3.3 Cloud Sync Architecture Backends: Dropbox, OneDrive, iCloud, WebDAV SQLite database with atomic transactions means conflict resolution is deterministic Work Mac, home PC, and cloud development environment stay perfectly synchronized 3.4 Deep Link Protocol (ccswitch://) Click a link in your API provider’s dashboard → CC Switch auto-configures the provider Reduces API key copy-paste errors (a real security vector) Integrates with OAuth flows for seamless authentication Installation and Setup Guide Quick Install # macOS / Linux brew install cc-switch # Windows (Scoop) scoop install cc-switch # Or download directly from GitHub Releases # https://github.com/farion1231/cc-switch/releases First-Time Setup (Recommended) Import existing configs: On first launch, CC Switch detects installed CLI tools and offers to import their current settings Add primary providers: Configure at least one official channel (Anthropic/OpenAI/Google) as a fallback Add community relays (optional): Browse 50+ presets, enter API key, done Enable MCP sync: Add your core MCP servers (filesystem, Git, browser) in the MCP panel Configure cloud sync (optional): Point to a WebDAV endpoint or cloud folder Team Onboarding Template team-ai-config/ ├── mcp-servers.json # Shared MCP configurations ├── prompt-presets/ # Standardized system prompts │ ├── security-review.md │ ├── test-generation.md │ └── api-documentation.md └── skills-index.json # Curated internal skills New team member: installs CC Switch → imports ````team-ai-config``` → fully operational in under 5 minutes.\nThe 2026 AI CLI Landscape: Why CC Switch’s Timing Is Perfect Three Distinct Tiers Have Emerged | Tier | Tools | Model Strategy | Ideal User | |\n|\n|\n|\n| | Subscription CLI | Claude Code, Codex CLI | Vendor-locked, premium | Full-time developers | | Free/Open CLI | Gemini CLI, Aider | BYO-key or free tier | Students, side projects | | Orchestration | OpenClaw, Symphony | Multi-agent pipelines | Engineering teams |\nCC Switch’s value proposition is cross-tier mobility. You’re not locked into one strategy — you can route simple tasks through free tiers and complex work through premium subscriptions, all from the same interface.\nWhy This Matters Now Three converging trends make unified management essential: 1. MCP standardization: The Linux Foundation’s AAIF (Agentic AI Foundation) now stewards MCP. More tools will adopt it, and managing multiple MCP configs manually won’t scale. 2. Model switching as default: Developers increasingly route by task type — reasoning vs speed vs cost — rather than loyalty to a single model provider. 3. Team complexity: When your team uses 3+ AI tools, onboarding and configuration drift become real operational costs.\nCompetitive Analysis | Dimension | CC Switch | Manual Config | IDE-Native Management | |\n|\n|\n|\n| | Tools supported | 6+ CLI agents | Unlimited (with pain) | Usually 1-2 | | Switch speed | Seconds (tray) | Minutes | Moderate | | MCP unification | ✅ Bidirectional sync | ❌ Per-tool setup | ⚠️ Limited | | Cross-platform | ✅ Consistent | ❌ Platform-specific | ⚠️ IDE-dependent | | Team sharing | ✅ Import/export | ⚠️ Documentation | ❌ | | Provider presets | 50+ built-in | ❌ Research required | ⚠️ Limited |\nVerdict: If you regularly use 2+ AI CLI tools, CC Switch pays for itself in time saved on day one. If you’re committed to a single tool forever, it’s less essential — but “single tool forever” is an increasingly rare position in 2026.\nLimitations and Honest Assessment No tool is perfect. CC Switch’s current limitations: - Desktop only: No mobile or tablet interface (though web version exists for headless servers)\nLearning curve: First-time Tauri apps may trigger security prompts on macOS Gatekeeper Community relay trust: 50+ presets is great, but you’re still entering API keys into a third-party application Enterprise features: Role-based access control and audit logging aren’t mature yet The developers are active — the GitHub issue tracker shows consistent releases and responsive maintainers. The MIT license means enterprise users can fork and extend if needed.\nRecommended Hosting \u0026 Infrastructure Once you’ve got CC Switch managing all your AI CLI tools, you’ll still need solid infrastructure to actually run them. Two options dibi8 uses and recommends: - DigitalOcean — $200 free credit for 60 days. Great for running self-hosted AI tools (OpenClaw, Ollama, Hermes Agent) that CC Switch manages.\nHTStack — Hong Kong VPS with low-latency mainland China access. Same IDC hosting dibi8.com. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nConclusion: The Meta-Tool for the Agent Era CC Switch doesn’t make any individual AI tool better. What it does is prevent the management overhead of multiple tools from canceling out their individual productivity gains.\nIn 2026, the question isn’t “which AI coding agent should I use?” — it\"s “how do I use all of them without drowning in configuration?” CC Switch is the first credible answer to that second question, and its 74K stars suggest developers were waiting for exactly this.\nResources: - GitHub: https://github.com/farion1231/cc-switch\nWebsite: https://ccswitch.io Download: GitHub Releases Review based on CC Switch v2.x. Features may evolve — check the official docs for the latest.\nKeywords: CC Switch, AI CLI manager, Claude Code, Codex CLI, Gemini CLI, OpenClaw, OpenCode, Hermes Agent, AI coding tools, Rust, Tauri, MCP protocol, cross-platform desktop app, developer productivity, 2026 dev tools, model switching\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “CC Switch Review: The Missing Control Center for AI Coding Agents (2026)”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center-2026\" } } Related Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1894","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#the-problem-ai-cli-tool-fragmentation-is-eating-your-flow-state aria-label="The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State">The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State</a></li><li><a href=#what-is-cc-switch-a-technical-overview aria-label="What Is CC Switch? A Technical Overview">What Is CC Switch? A Technical Overview</a><ul><li><a href=#the-rust--tauri-decision-matters aria-label="The Rust + Tauri Decision Matters">The Rust + Tauri Decision Matters</a></li></ul></li><li><a href=#core-features-from-config-hell-to-one-click-switching aria-label="Core Features: From Config Hell to One-Click Switching">Core Features: From Config Hell to One-Click Switching</a><ul><li><a href=#21-unified-dashboard-for-six-cli-agents aria-label="2.1 Unified Dashboard for Six CLI Agents">2.1 Unified Dashboard for Six CLI Agents</a></li><li><a href=#22-50-provider-presets-from-official-apis-to-community-relays aria-label="2.2 50+ Provider Presets: From Official APIs to Community Relays">2.2 50+ Provider Presets: From Official APIs to Community Relays</a></li><li><a href=#23-mcp-server-management-the-secret-weapon aria-label="2.3 MCP Server Management: The Secret Weapon">2.3 MCP Server Management: The Secret Weapon</a></li><li><a href=#24-system-tray-quick-switch-the-flow-state-protector aria-label="2.4 System Tray Quick Switch: The Flow State Protector">2.4 System Tray Quick Switch: The Flow State Protector</a></li></ul></li><li><a href=#advanced-features-for-power-users aria-label="Advanced Features for Power Users">Advanced Features for Power Users</a><ul><li><a href=#31-prompt-presets-with-cross-app-sync aria-label="3.1 Prompt Presets with Cross-App Sync">3.1 Prompt Presets with Cross-App Sync</a></li><li><a href=#32-skills-browser-and-one-click-install aria-label="3.2 Skills Browser and One-Click Install">3.2 Skills Browser and One-Click Install</a></li><li><a href=#33-cloud-sync-architecture aria-label="3.3 Cloud Sync Architecture">3.3 Cloud Sync Architecture</a></li><li><a href=#34-deep-link-protocol-ccswitch aria-label="3.4 Deep Link Protocol (ccswitch://)">3.4 Deep Link Protocol (ccswitch://)</a></li></ul></li><li><a href=#installation-and-setup-guide aria-label="Installation and Setup Guide">Installation and Setup Guide</a><ul><li><a href=#quick-install aria-label="Quick Install">Quick Install</a></li><li><a href=#first-time-setup-recommended aria-label="First-Time Setup (Recommended)">First-Time Setup (Recommended)</a></li><li><a href=#team-onboarding-template aria-label="Team Onboarding Template">Team Onboarding Template</a></li></ul></li><li><a href=#the-2026-ai-cli-landscape-why-cc-switchs-timing-is-perfect aria-label="The 2026 AI CLI Landscape: Why CC Switch&rsquo;s Timing Is Perfect">The 2026 AI CLI Landscape: Why CC Switch&rsquo;s Timing Is Perfect</a><ul><li><a href=#three-distinct-tiers-have-emerged aria-label="Three Distinct Tiers Have Emerged">Three Distinct Tiers Have Emerged</a></li><li><a href=#why-this-matters-now aria-label="Why This Matters Now">Why This Matters Now</a></li></ul></li><li><a href=#competitive-analysis aria-label="Competitive Analysis">Competitive Analysis</a></li><li><a href=#limitations-and-honest-assessment aria-label="Limitations and Honest Assessment">Limitations and Honest Assessment</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#conclusion-the-meta-tool-for-the-agent-era aria-label="Conclusion: The Meta-Tool for the Agent Era">Conclusion: The Meta-Tool for the Agent Era</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;CC Switch Review: The Missing Control Center for AI Codi&mldr;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “CC Switch Review: The Missing Control Center for AI Codi… description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“dev-utils”] tags: [“cc-switch”, “ai-cli”, “meta-tool”, “claude-code”, “developer-productivity”] aliases:\n/posts/cc-switch-unified-ai-cli-control-center-2026/- {\u003c/* resource-info */\u003e}\nThe Problem: AI CLI Tool Fragmentation Is Eating Your Flow State If you’re a developer in 2026, you’ve felt it. The moment when you’re five minutes into a deep debugging session, realize you need to switch from Claude Code to Gemini CLI to burn through some free quota, and then spend the next ten minutes hunting through ```.env```` files, API key docs, and config directories.\nThe AI coding agent space has exploded. Each tool is genuinely excellent at what it does: - Claude Code — 2M token context window, unmatched reasoning for architecture refactoring\nOpenAI Codex — Rust-rewritten for speed, three autonomy modes from suggest to full-auto Gemini CLI — 1,000 free requests/day, Google’s pricing experiment OpenClaw — Sub-agent orchestration for complex multi-step workflows OpenCode — Community-driven, 162K stars, multi-model flexibility Hermes Agent — Enterprise-grade deployment and governance But managing them? That’s still stuck in 2010. JSON files, environment variables, scattered MCP configs. CC Switch (GitHub: farion1231/cc-switch, 74,754 stars) is the first serious attempt to build a unified control layer — and it might be the most underrated productivity tool in the AI dev stack right now.\nWhat Is CC Switch? A Technical Overview | Attribute | Detail | |\n|\n| | Repository | farion1231/cc-switch | | Stars / Forks | 74,754 / 4,847 | | Backend | Rust (Tauri 2.8) | | Frontend | React 18, TypeScript, TailwindCSS | | License | MIT | | Platforms | Windows, macOS, Linux |\nThe Rust + Tauri Decision Matters CC Switch didn’t go with Electron, and that choice reveals intent: - Binary size: Tauri apps are ~60% smaller than equivalent Electron apps\nMemory footprint: Uses the system’s native WebView, not a bundled Chromium Startup time: Cold start in under 500ms on modern hardware Native integrations: System tray, global shortcuts, and SQLite atomic writes all feel first-class, not hacked-in This architecture — Rust for the heavy lifting, web tech for the UI — is becoming the default for serious cross-platform tools in 2026. The alignment between Tauri’s growth curve and CC Switch’s star velocity isn’t coincidental.\nCore Features: From Config Hell to One-Click Switching 2.1 Unified Dashboard for Six CLI Agents CC Switch treats each AI tool as a “managed application” rather than a standalone binary: | Tool | Developer | Best For | Default Models | |\n|\n|\n|\n| | Claude Code | Anthropic | Deep reasoning, large-scale refactoring | Claude Opus / Sonnet | | Codex CLI | OpenAI | Speed, execution autonomy | GPT-5 / GPT-5.5 | | Gemini CLI | Google | Free-tier prototyping, fast iterations | Gemini Pro / Flash | | OpenCode | Community | Multi-model experiments | User-configurable | | OpenClaw | OpenClaw | Sub-agent orchestration | User-configurable | | Hermes Agent | Hermes | Enterprise governance | Enterprise-deployed |\nReal workflow: Start the morning with Claude Code for a complex service decomposition. Switch to Gemini CLI after lunch for quick scaffolding tasks that don’t need premium reasoning. Drop into OpenClaw at 4pm to orchestrate a multi-step data pipeline. Never touch a config file.\n2.2 50+ Provider Presets: From Official APIs to Community Relays The provider management is where CC Switch saves the most time. Built-in presets cover: Official channels: Anthropic, OpenAI, Google AI Studio Cloud platforms: AWS Bedrock, Google Cloud Vertex AI, Azure OpenAI Community relays (50+): Regional API aggregators, academic access programs, team-specific endpoints\nEach provider supports multiple endpoints with independent API keys, automatic latency testing, and failover ordering. If your primary Claude endpoint goes down, CC Switch can round-robin to a secondary without you noticing.\n2.3 MCP Server Management: The Secret Weapon Model Context Protocol has quietly become the USB-C of AI agent infrastructure in 2026. CC Switch’s MCP panel does something no individual tool does well: - Add once, sync everywhere: Configure an MCP server (filesystem, Git, browser automation, database query) and it propagates to all connected CLI tools\nTransport flexibility: Stdio, HTTP, and SSE — all three MCP transport modes supported Bidirectional sync: Change the filesystem MCP timeout in CC Switch, and Claude Code + Codex + Gemini CLI all pick it up Team sharing: Export your MCP config as JSON, share it in Slack, new teammate imports and is fully operational in 30 seconds This alone justifies CC Switch if you use more than one AI CLI tool. MCP configuration drift is a real problem, and this solves it at the source.\n2.4 System Tray Quick Switch: The Flow State Protector The feature that sounds minor but matters most: - Click tray icon → select provider → instant switch\nNo full app window needed No terminal restart (Claude Code doesn’t even require a reload) Keyboard shortcuts for power users For developers doing model A/B testing — running the same prompt through Claude and GPT to compare output quality — this turns a 2-minute context switch into a 3-second gesture.\nAdvanced Features for Power Users 3.1 Prompt Presets with Cross-App Sync Create unlimited system prompt presets with a live Markdown editor Auto-maps to each tool’s expected config file (CLAUDE.md, AGENTS.md, GEMINI.md) Team-wide prompt standardization: enforce code review formats, security checklists, API documentation templates 3.2 Skills Browser and One-Click Install Browse GitHub skills repositories from inside CC Switch Install a skill to all connected tools simultaneously Support for private GitHub repos and enterprise-hosted skill registries 3.3 Cloud Sync Architecture Backends: Dropbox, OneDrive, iCloud, WebDAV SQLite database with atomic transactions means conflict resolution is deterministic Work Mac, home PC, and cloud development environment stay perfectly synchronized 3.4 Deep Link Protocol (ccswitch://) Click a link in your API provider’s dashboard → CC Switch auto-configures the provider Reduces API key copy-paste errors (a real security vector) Integrates with OAuth flows for seamless authentication Installation and Setup Guide Quick Install # macOS / Linux brew install cc-switch # Windows (Scoop) scoop install cc-switch # Or download directly from GitHub Releases # https://github.com/farion1231/cc-switch/releases First-Time Setup (Recommended) Import existing configs: On first launch, CC Switch detects installed CLI tools and offers to import their current settings Add primary providers: Configure at least one official channel (Anthropic/OpenAI/Google) as a fallback Add community relays (optional): Browse 50+ presets, enter API key, done Enable MCP sync: Add your core MCP servers (filesystem, Git, browser) in the MCP panel Configure cloud sync (optional): Point to a WebDAV endpoint or cloud folder Team Onboarding Template team-ai-config/ ├── mcp-servers.json # Shared MCP configurations ├── prompt-presets/ # Standardized system prompts │ ├── security-review.md │ ├── test-generation.md │ └── api-documentation.md └── skills-index.json # Curated internal skills New team member: installs CC Switch → imports ````team-ai-config``` → fully operational in under 5 minutes.\nThe 2026 AI CLI Landscape: Why CC Switch’s Timing Is Perfect Three Distinct Tiers Have Emerged | Tier | Tools | Model Strategy | Ideal User | |\n|\n|\n|\n| | Subscription CLI | Claude Code, Codex CLI | Vendor-locked, premium | Full-time developers | | Free/Open CLI | Gemini CLI, Aider | BYO-key or free tier | Students, side projects | | Orchestration | OpenClaw, Symphony | Multi-agent pipelines | Engineering teams |\nCC Switch’s value proposition is cross-tier mobility. You’re not locked into one strategy — you can route simple tasks through free tiers and complex work through premium subscriptions, all from the same interface.\nWhy This Matters Now Three converging trends make unified management essential: 1. MCP standardization: The Linux Foundation’s AAIF (Agentic AI Foundation) now stewards MCP. More tools will adopt it, and managing multiple MCP configs manually won’t scale. 2. Model switching as default: Developers increasingly route by task type — reasoning vs speed vs cost — rather than loyalty to a single model provider. 3. Team complexity: When your team uses 3+ AI tools, onboarding and configuration drift become real operational costs.\nCompetitive Analysis | Dimension | CC Switch | Manual Config | IDE-Native Management | |\n|\n|\n|\n| | Tools supported | 6+ CLI agents | Unlimited (with pain) | Usually 1-2 | | Switch speed | Seconds (tray) | Minutes | Moderate | | MCP unification | ✅ Bidirectional sync | ❌ Per-tool setup | ⚠️ Limited | | Cross-platform | ✅ Consistent | ❌ Platform-specific | ⚠️ IDE-dependent | | Team sharing | ✅ Import/export | ⚠️ Documentation | ❌ | | Provider presets | 50+ built-in | ❌ Research required | ⚠️ Limited |\nVerdict: If you regularly use 2+ AI CLI tools, CC Switch pays for itself in time saved on day one. If you’re committed to a single tool forever, it’s less essential — but “single tool forever” is an increasingly rare position in 2026.\nLimitations and Honest Assessment No tool is perfect. CC Switch’s current limitations: - Desktop only: No mobile or tablet interface (though web version exists for headless servers)\nLearning curve: First-time Tauri apps may trigger security prompts on macOS Gatekeeper Community relay trust: 50+ presets is great, but you’re still entering API keys into a third-party application Enterprise features: Role-based access control and audit logging aren’t mature yet The developers are active — the GitHub issue tracker shows consistent releases and responsive maintainers. The MIT license means enterprise users can fork and extend if needed.\nRecommended Hosting \u0026 Infrastructure Once you’ve got CC Switch managing all your AI CLI tools, you’ll still need solid infrastructure to actually run them. Two options dibi8 uses and recommends: - DigitalOcean — $200 free credit for 60 days. Great for running self-hosted AI tools (OpenClaw, Ollama, Hermes Agent) that CC Switch manages.\nHTStack — Hong Kong VPS with low-latency mainland China access. Same IDC hosting dibi8.com. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nConclusion: The Meta-Tool for the Agent Era CC Switch doesn’t make any individual AI tool better. What it does is prevent the management overhead of multiple tools from canceling out their individual productivity gains.\nIn 2026, the question isn’t “which AI coding agent should I use?” — it\"s “how do I use all of them without drowning in configuration?” CC Switch is the first credible answer to that second question, and its 74K stars suggest developers were waiting for exactly this.\nResources: - GitHub: https://github.com/farion1231/cc-switch\nWebsite: https://ccswitch.io Download: GitHub Releases Review based on CC Switch v2.x. Features may evolve — check the official docs for the latest.\nKeywords: CC Switch, AI CLI manager, Claude Code, Codex CLI, Gemini CLI, OpenClaw, OpenCode, Hermes Agent, AI coding tools, Rust, Tauri, MCP protocol, cross-platform desktop app, developer productivity, 2026 dev tools, model switching\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “CC Switch Review: The Missing Control Center for AI Coding Agents (2026)”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center-2026\" } } Related Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1894",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#the-problem-ai-cli-tool-fragmentation-is-eating-your-flow-state" aria-label="The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State">The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State</a></li>
+            <li>
+                <a href="#what-is-cc-switch-a-technical-overview" aria-label="What Is CC Switch? A Technical Overview">What Is CC Switch? A Technical Overview</a><ul>
+                    
+            <li>
+                <a href="#the-rust--tauri-decision-matters" aria-label="The Rust &#43; Tauri Decision Matters">The Rust + Tauri Decision Matters</a></li></ul>
+            </li>
+            <li>
+                <a href="#core-features-from-config-hell-to-one-click-switching" aria-label="Core Features: From Config Hell to One-Click Switching">Core Features: From Config Hell to One-Click Switching</a><ul>
+                    
+            <li>
+                <a href="#21-unified-dashboard-for-six-cli-agents" aria-label="2.1 Unified Dashboard for Six CLI Agents">2.1 Unified Dashboard for Six CLI Agents</a></li>
+            <li>
+                <a href="#22-50-provider-presets-from-official-apis-to-community-relays" aria-label="2.2 50&#43; Provider Presets: From Official APIs to Community Relays">2.2 50+ Provider Presets: From Official APIs to Community Relays</a></li>
+            <li>
+                <a href="#23-mcp-server-management-the-secret-weapon" aria-label="2.3 MCP Server Management: The Secret Weapon">2.3 MCP Server Management: The Secret Weapon</a></li>
+            <li>
+                <a href="#24-system-tray-quick-switch-the-flow-state-protector" aria-label="2.4 System Tray Quick Switch: The Flow State Protector">2.4 System Tray Quick Switch: The Flow State Protector</a></li></ul>
+            </li>
+            <li>
+                <a href="#advanced-features-for-power-users" aria-label="Advanced Features for Power Users">Advanced Features for Power Users</a><ul>
+                    
+            <li>
+                <a href="#31-prompt-presets-with-cross-app-sync" aria-label="3.1 Prompt Presets with Cross-App Sync">3.1 Prompt Presets with Cross-App Sync</a></li>
+            <li>
+                <a href="#32-skills-browser-and-one-click-install" aria-label="3.2 Skills Browser and One-Click Install">3.2 Skills Browser and One-Click Install</a></li>
+            <li>
+                <a href="#33-cloud-sync-architecture" aria-label="3.3 Cloud Sync Architecture">3.3 Cloud Sync Architecture</a></li>
+            <li>
+                <a href="#34-deep-link-protocol-ccswitch" aria-label="3.4 Deep Link Protocol (ccswitch://)">3.4 Deep Link Protocol (ccswitch://)</a></li></ul>
+            </li>
+            <li>
+                <a href="#installation-and-setup-guide" aria-label="Installation and Setup Guide">Installation and Setup Guide</a><ul>
+                    
+            <li>
+                <a href="#quick-install" aria-label="Quick Install">Quick Install</a></li>
+            <li>
+                <a href="#first-time-setup-recommended" aria-label="First-Time Setup (Recommended)">First-Time Setup (Recommended)</a></li>
+            <li>
+                <a href="#team-onboarding-template" aria-label="Team Onboarding Template">Team Onboarding Template</a></li></ul>
+            </li>
+            <li>
+                <a href="#the-2026-ai-cli-landscape-why-cc-switchs-timing-is-perfect" aria-label="The 2026 AI CLI Landscape: Why CC Switch&rsquo;s Timing Is Perfect">The 2026 AI CLI Landscape: Why CC Switch&rsquo;s Timing Is Perfect</a><ul>
+                    
+            <li>
+                <a href="#three-distinct-tiers-have-emerged" aria-label="Three Distinct Tiers Have Emerged">Three Distinct Tiers Have Emerged</a></li>
+            <li>
+                <a href="#why-this-matters-now" aria-label="Why This Matters Now">Why This Matters Now</a></li></ul>
+            </li>
+            <li>
+                <a href="#competitive-analysis" aria-label="Competitive Analysis">Competitive Analysis</a></li>
+            <li>
+                <a href="#limitations-and-honest-assessment" aria-label="Limitations and Honest Assessment">Limitations and Honest Assessment</a></li>
+            <li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
+            <li>
+                <a href="#conclusion-the-meta-tool-for-the-agent-era" aria-label="Conclusion: The Meta-Tool for the Agent Era">Conclusion: The Meta-Tool for the Agent Era</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;CC Switch Review: The Missing Control Center for AI Codi&hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
@@ -21,52 +292,209 @@ last_maintained: &ldquo;2026-05-20&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;cc-switch&rdquo;, &ldquo;ai-cli&rdquo;, &ldquo;meta-tool&rdquo;, &ldquo;claude-code&rdquo;, &ldquo;developer-productivity&rdquo;]
-aliases:</p><ul><li>/posts/cc-switch-unified-ai-cli-control-center-2026/-</li></ul><hr><p>{&lt;/* resource-info */>}</p><h2 id=the-problem-ai-cli-tool-fragmentation-is-eating-your-flow-state>The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State<a hidden class=anchor aria-hidden=true href=#the-problem-ai-cli-tool-fragmentation-is-eating-your-flow-state>#</a></h2><p>If you&rsquo;re a developer in 2026, you&rsquo;ve felt it. The moment when you&rsquo;re five minutes into a deep debugging session, realize you need to switch from Claude Code to Gemini CLI to burn through some free quota, and then spend the next ten minutes hunting through ```.env```` files, API key docs, and config directories.</p><p>The AI coding agent space has exploded. Each tool is genuinely excellent at what it does: - <strong>Claude Code</strong> — 2M token context window, unmatched reasoning for architecture refactoring</p><ul><li><strong>OpenAI Codex</strong> — Rust-rewritten for speed, three autonomy modes from suggest to full-auto</li><li><strong>Gemini CLI</strong> — 1,000 free requests/day, Google&rsquo;s pricing experiment</li><li><strong>OpenClaw</strong> — Sub-agent orchestration for complex multi-step workflows</li><li><strong>OpenCode</strong> — Community-driven, 162K stars, multi-model flexibility</li><li><strong>Hermes Agent</strong> — Enterprise-grade deployment and governance</li></ul><p>But managing them? That&rsquo;s still stuck in 2010. JSON files, environment variables, scattered MCP configs. <strong>CC Switch</strong> (GitHub: <code>farion1231/cc-switch</code>, 74,754 stars) is the first serious attempt to build a unified control layer — and it might be the most underrated productivity tool in the AI dev stack right now.</p><hr><h2 id=what-is-cc-switch-a-technical-overview>What Is CC Switch? A Technical Overview<a hidden class=anchor aria-hidden=true href=#what-is-cc-switch-a-technical-overview>#</a></h2><p>| Attribute | Detail |
-|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/posts/cc-switch-unified-ai-cli-control-center-2026/-</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="the-problem-ai-cli-tool-fragmentation-is-eating-your-flow-state">The Problem: AI CLI Tool Fragmentation Is Eating Your Flow State<a hidden class="anchor" aria-hidden="true" href="#the-problem-ai-cli-tool-fragmentation-is-eating-your-flow-state">#</a></h2>
+<p>If you&rsquo;re a developer in 2026, you&rsquo;ve felt it. The moment when you&rsquo;re five minutes into a deep debugging session, realize you need to switch from Claude Code to Gemini CLI to burn through some free quota, and then spend the next ten minutes hunting through ```.env```` files, API key docs, and config directories.</p>
+<p>The AI coding agent space has exploded. Each tool is genuinely excellent at what it does: - <strong>Claude Code</strong> — 2M token context window, unmatched reasoning for architecture refactoring</p>
+<ul>
+<li><strong>OpenAI Codex</strong> — Rust-rewritten for speed, three autonomy modes from suggest to full-auto</li>
+<li><strong>Gemini CLI</strong> — 1,000 free requests/day, Google&rsquo;s pricing experiment</li>
+<li><strong>OpenClaw</strong> — Sub-agent orchestration for complex multi-step workflows</li>
+<li><strong>OpenCode</strong> — Community-driven, 162K stars, multi-model flexibility</li>
+<li><strong>Hermes Agent</strong> — Enterprise-grade deployment and governance</li>
+</ul>
+<p>But managing them? That&rsquo;s still stuck in 2010. JSON files, environment variables, scattered MCP configs. <strong>CC Switch</strong> (GitHub: <code>farion1231/cc-switch</code>, 74,754 stars) is the first serious attempt to build a unified control layer — and it might be the most underrated productivity tool in the AI dev stack right now.</p>
+<hr>
+<h2 id="what-is-cc-switch-a-technical-overview">What Is CC Switch? A Technical Overview<a hidden class="anchor" aria-hidden="true" href="#what-is-cc-switch-a-technical-overview">#</a></h2>
+<p>| Attribute | Detail |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Repository</strong> | farion1231/cc-switch |
 | <strong>Stars / Forks</strong> | 74,754 / 4,847 |
 | <strong>Backend</strong> | Rust (Tauri 2.8) |
 | <strong>Frontend</strong> | React 18, TypeScript, TailwindCSS |
 | <strong>License</strong> | MIT |
-| <strong>Platforms</strong> | Windows, macOS, Linux |</p><h3 id=the-rust--tauri-decision-matters>The Rust + Tauri Decision Matters<a hidden class=anchor aria-hidden=true href=#the-rust--tauri-decision-matters>#</a></h3><p>CC Switch didn&rsquo;t go with Electron, and that choice reveals intent: - <strong>Binary size</strong>: Tauri apps are ~60% smaller than equivalent Electron apps</p><ul><li><strong>Memory footprint</strong>: Uses the system&rsquo;s native WebView, not a bundled Chromium</li><li><strong>Startup time</strong>: Cold start in under 500ms on modern hardware</li><li><strong>Native integrations</strong>: System tray, global shortcuts, and SQLite atomic writes all feel first-class, not hacked-in</li></ul><p>This architecture — Rust for the heavy lifting, web tech for the UI — is becoming the default for serious cross-platform tools in 2026. The alignment between Tauri&rsquo;s growth curve and CC Switch&rsquo;s star velocity isn&rsquo;t coincidental.</p><hr><h2 id=core-features-from-config-hell-to-one-click-switching>Core Features: From Config Hell to One-Click Switching<a hidden class=anchor aria-hidden=true href=#core-features-from-config-hell-to-one-click-switching>#</a></h2><h3 id=21-unified-dashboard-for-six-cli-agents>2.1 Unified Dashboard for Six CLI Agents<a hidden class=anchor aria-hidden=true href=#21-unified-dashboard-for-six-cli-agents>#</a></h3><p>CC Switch treats each AI tool as a &ldquo;managed application&rdquo; rather than a standalone binary: | Tool | Developer | Best For | Default Models |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Platforms</strong> | Windows, macOS, Linux |</p>
+<h3 id="the-rust--tauri-decision-matters">The Rust + Tauri Decision Matters<a hidden class="anchor" aria-hidden="true" href="#the-rust--tauri-decision-matters">#</a></h3>
+<p>CC Switch didn&rsquo;t go with Electron, and that choice reveals intent: - <strong>Binary size</strong>: Tauri apps are ~60% smaller than equivalent Electron apps</p>
+<ul>
+<li><strong>Memory footprint</strong>: Uses the system&rsquo;s native WebView, not a bundled Chromium</li>
+<li><strong>Startup time</strong>: Cold start in under 500ms on modern hardware</li>
+<li><strong>Native integrations</strong>: System tray, global shortcuts, and SQLite atomic writes all feel first-class, not hacked-in</li>
+</ul>
+<p>This architecture — Rust for the heavy lifting, web tech for the UI — is becoming the default for serious cross-platform tools in 2026. The alignment between Tauri&rsquo;s growth curve and CC Switch&rsquo;s star velocity isn&rsquo;t coincidental.</p>
+<hr>
+<h2 id="core-features-from-config-hell-to-one-click-switching">Core Features: From Config Hell to One-Click Switching<a hidden class="anchor" aria-hidden="true" href="#core-features-from-config-hell-to-one-click-switching">#</a></h2>
+<h3 id="21-unified-dashboard-for-six-cli-agents">2.1 Unified Dashboard for Six CLI Agents<a hidden class="anchor" aria-hidden="true" href="#21-unified-dashboard-for-six-cli-agents">#</a></h3>
+<p>CC Switch treats each AI tool as a &ldquo;managed application&rdquo; rather than a standalone binary: | Tool | Developer | Best For | Default Models |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Claude Code | Anthropic | Deep reasoning, large-scale refactoring | Claude Opus / Sonnet |
 | Codex CLI | OpenAI | Speed, execution autonomy | GPT-5 / GPT-5.5 |
 | Gemini CLI | Google | Free-tier prototyping, fast iterations | Gemini Pro / Flash |
 | OpenCode | Community | Multi-model experiments | User-configurable |
 | OpenClaw | OpenClaw | Sub-agent orchestration | User-configurable |
-| Hermes Agent | Hermes | Enterprise governance | Enterprise-deployed |</p><p><strong>Real workflow</strong>: Start the morning with Claude Code for a complex service decomposition. Switch to Gemini CLI after lunch for quick scaffolding tasks that don&rsquo;t need premium reasoning. Drop into OpenClaw at 4pm to orchestrate a multi-step data pipeline. Never touch a config file.</p><h3 id=22-50-provider-presets-from-official-apis-to-community-relays>2.2 50+ Provider Presets: From Official APIs to Community Relays<a hidden class=anchor aria-hidden=true href=#22-50-provider-presets-from-official-apis-to-community-relays>#</a></h3><p>The provider management is where CC Switch saves the most time. Built-in presets cover: <strong>Official channels</strong>: Anthropic, OpenAI, Google AI Studio
+| Hermes Agent | Hermes | Enterprise governance | Enterprise-deployed |</p>
+<p><strong>Real workflow</strong>: Start the morning with Claude Code for a complex service decomposition. Switch to Gemini CLI after lunch for quick scaffolding tasks that don&rsquo;t need premium reasoning. Drop into OpenClaw at 4pm to orchestrate a multi-step data pipeline. Never touch a config file.</p>
+<h3 id="22-50-provider-presets-from-official-apis-to-community-relays">2.2 50+ Provider Presets: From Official APIs to Community Relays<a hidden class="anchor" aria-hidden="true" href="#22-50-provider-presets-from-official-apis-to-community-relays">#</a></h3>
+<p>The provider management is where CC Switch saves the most time. Built-in presets cover: <strong>Official channels</strong>: Anthropic, OpenAI, Google AI Studio
 <strong>Cloud platforms</strong>: AWS Bedrock, Google Cloud Vertex AI, Azure OpenAI
-<strong>Community relays</strong> (50+): Regional API aggregators, academic access programs, team-specific endpoints</p><p>Each provider supports multiple endpoints with independent API keys, automatic latency testing, and failover ordering. If your primary Claude endpoint goes down, CC Switch can round-robin to a secondary without you noticing.</p><h3 id=23-mcp-server-management-the-secret-weapon>2.3 MCP Server Management: The Secret Weapon<a hidden class=anchor aria-hidden=true href=#23-mcp-server-management-the-secret-weapon>#</a></h3><p>Model Context Protocol has quietly become the USB-C of AI agent infrastructure in 2026. CC Switch&rsquo;s MCP panel does something no individual tool does well: - <strong>Add once, sync everywhere</strong>: Configure an MCP server (filesystem, Git, browser automation, database query) and it propagates to all connected CLI tools</p><ul><li><strong>Transport flexibility</strong>: Stdio, HTTP, and SSE — all three MCP transport modes supported</li><li><strong>Bidirectional sync</strong>: Change the filesystem MCP timeout in CC Switch, and Claude Code + Codex + Gemini CLI all pick it up</li><li><strong>Team sharing</strong>: Export your MCP config as JSON, share it in Slack, new teammate imports and is fully operational in 30 seconds</li></ul><p>This alone justifies CC Switch if you use more than one AI CLI tool. MCP configuration drift is a real problem, and this solves it at the source.</p><h3 id=24-system-tray-quick-switch-the-flow-state-protector>2.4 System Tray Quick Switch: The Flow State Protector<a hidden class=anchor aria-hidden=true href=#24-system-tray-quick-switch-the-flow-state-protector>#</a></h3><p>The feature that sounds minor but matters most: - Click tray icon → select provider → instant switch</p><ul><li>No full app window needed</li><li>No terminal restart (Claude Code doesn&rsquo;t even require a reload)</li><li>Keyboard shortcuts for power users</li></ul><p>For developers doing model A/B testing — running the same prompt through Claude and GPT to compare output quality — this turns a 2-minute context switch into a 3-second gesture.</p><hr><h2 id=advanced-features-for-power-users>Advanced Features for Power Users<a hidden class=anchor aria-hidden=true href=#advanced-features-for-power-users>#</a></h2><h3 id=31-prompt-presets-with-cross-app-sync>3.1 Prompt Presets with Cross-App Sync<a hidden class=anchor aria-hidden=true href=#31-prompt-presets-with-cross-app-sync>#</a></h3><ul><li>Create unlimited system prompt presets with a live Markdown editor</li><li>Auto-maps to each tool&rsquo;s expected config file (<code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>GEMINI.md</code>)</li><li>Team-wide prompt standardization: enforce code review formats, security checklists, API documentation templates</li></ul><h3 id=32-skills-browser-and-one-click-install>3.2 Skills Browser and One-Click Install<a hidden class=anchor aria-hidden=true href=#32-skills-browser-and-one-click-install>#</a></h3><ul><li>Browse GitHub skills repositories from inside CC Switch</li><li>Install a skill to all connected tools simultaneously</li><li>Support for private GitHub repos and enterprise-hosted skill registries</li></ul><h3 id=33-cloud-sync-architecture>3.3 Cloud Sync Architecture<a hidden class=anchor aria-hidden=true href=#33-cloud-sync-architecture>#</a></h3><ul><li>Backends: Dropbox, OneDrive, iCloud, WebDAV</li><li>SQLite database with atomic transactions means conflict resolution is deterministic</li><li>Work Mac, home PC, and cloud development environment stay perfectly synchronized</li></ul><h3 id=34-deep-link-protocol-ccswitch>3.4 Deep Link Protocol (<code>ccswitch://</code>)<a hidden class=anchor aria-hidden=true href=#34-deep-link-protocol-ccswitch>#</a></h3><ul><li>Click a link in your API provider&rsquo;s dashboard → CC Switch auto-configures the provider</li><li>Reduces API key copy-paste errors (a real security vector)</li><li>Integrates with OAuth flows for seamless authentication</li></ul><hr><h2 id=installation-and-setup-guide>Installation and Setup Guide<a hidden class=anchor aria-hidden=true href=#installation-and-setup-guide>#</a></h2><h3 id=quick-install>Quick Install<a hidden class=anchor aria-hidden=true href=#quick-install>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># macOS / Linux</span>
-</span></span><span style=display:flex><span>brew install cc-switch
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Windows (Scoop)</span>
-</span></span><span style=display:flex><span>scoop install cc-switch
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Or download directly from GitHub Releases</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># https://github.com/farion1231/cc-switch/releases</span>
-</span></span></code></pre></div><h3 id=first-time-setup-recommended>First-Time Setup (Recommended)<a hidden class=anchor aria-hidden=true href=#first-time-setup-recommended>#</a></h3><ol><li><strong>Import existing configs</strong>: On first launch, CC Switch detects installed CLI tools and offers to import their current settings</li><li><strong>Add primary providers</strong>: Configure at least one official channel (Anthropic/OpenAI/Google) as a fallback</li><li><strong>Add community relays</strong> (optional): Browse 50+ presets, enter API key, done</li><li><strong>Enable MCP sync</strong>: Add your core MCP servers (filesystem, Git, browser) in the MCP panel</li><li><strong>Configure cloud sync</strong> (optional): Point to a WebDAV endpoint or cloud folder</li></ol><h3 id=team-onboarding-template>Team Onboarding Template<a hidden class=anchor aria-hidden=true href=#team-onboarding-template>#</a></h3><pre tabindex=0><code>team-ai-config/
+<strong>Community relays</strong> (50+): Regional API aggregators, academic access programs, team-specific endpoints</p>
+<p>Each provider supports multiple endpoints with independent API keys, automatic latency testing, and failover ordering. If your primary Claude endpoint goes down, CC Switch can round-robin to a secondary without you noticing.</p>
+<h3 id="23-mcp-server-management-the-secret-weapon">2.3 MCP Server Management: The Secret Weapon<a hidden class="anchor" aria-hidden="true" href="#23-mcp-server-management-the-secret-weapon">#</a></h3>
+<p>Model Context Protocol has quietly become the USB-C of AI agent infrastructure in 2026. CC Switch&rsquo;s MCP panel does something no individual tool does well: - <strong>Add once, sync everywhere</strong>: Configure an MCP server (filesystem, Git, browser automation, database query) and it propagates to all connected CLI tools</p>
+<ul>
+<li><strong>Transport flexibility</strong>: Stdio, HTTP, and SSE — all three MCP transport modes supported</li>
+<li><strong>Bidirectional sync</strong>: Change the filesystem MCP timeout in CC Switch, and Claude Code + Codex + Gemini CLI all pick it up</li>
+<li><strong>Team sharing</strong>: Export your MCP config as JSON, share it in Slack, new teammate imports and is fully operational in 30 seconds</li>
+</ul>
+<p>This alone justifies CC Switch if you use more than one AI CLI tool. MCP configuration drift is a real problem, and this solves it at the source.</p>
+<h3 id="24-system-tray-quick-switch-the-flow-state-protector">2.4 System Tray Quick Switch: The Flow State Protector<a hidden class="anchor" aria-hidden="true" href="#24-system-tray-quick-switch-the-flow-state-protector">#</a></h3>
+<p>The feature that sounds minor but matters most: - Click tray icon → select provider → instant switch</p>
+<ul>
+<li>No full app window needed</li>
+<li>No terminal restart (Claude Code doesn&rsquo;t even require a reload)</li>
+<li>Keyboard shortcuts for power users</li>
+</ul>
+<p>For developers doing model A/B testing — running the same prompt through Claude and GPT to compare output quality — this turns a 2-minute context switch into a 3-second gesture.</p>
+<hr>
+<h2 id="advanced-features-for-power-users">Advanced Features for Power Users<a hidden class="anchor" aria-hidden="true" href="#advanced-features-for-power-users">#</a></h2>
+<h3 id="31-prompt-presets-with-cross-app-sync">3.1 Prompt Presets with Cross-App Sync<a hidden class="anchor" aria-hidden="true" href="#31-prompt-presets-with-cross-app-sync">#</a></h3>
+<ul>
+<li>Create unlimited system prompt presets with a live Markdown editor</li>
+<li>Auto-maps to each tool&rsquo;s expected config file (<code>CLAUDE.md</code>, <code>AGENTS.md</code>, <code>GEMINI.md</code>)</li>
+<li>Team-wide prompt standardization: enforce code review formats, security checklists, API documentation templates</li>
+</ul>
+<h3 id="32-skills-browser-and-one-click-install">3.2 Skills Browser and One-Click Install<a hidden class="anchor" aria-hidden="true" href="#32-skills-browser-and-one-click-install">#</a></h3>
+<ul>
+<li>Browse GitHub skills repositories from inside CC Switch</li>
+<li>Install a skill to all connected tools simultaneously</li>
+<li>Support for private GitHub repos and enterprise-hosted skill registries</li>
+</ul>
+<h3 id="33-cloud-sync-architecture">3.3 Cloud Sync Architecture<a hidden class="anchor" aria-hidden="true" href="#33-cloud-sync-architecture">#</a></h3>
+<ul>
+<li>Backends: Dropbox, OneDrive, iCloud, WebDAV</li>
+<li>SQLite database with atomic transactions means conflict resolution is deterministic</li>
+<li>Work Mac, home PC, and cloud development environment stay perfectly synchronized</li>
+</ul>
+<h3 id="34-deep-link-protocol-ccswitch">3.4 Deep Link Protocol (<code>ccswitch://</code>)<a hidden class="anchor" aria-hidden="true" href="#34-deep-link-protocol-ccswitch">#</a></h3>
+<ul>
+<li>Click a link in your API provider&rsquo;s dashboard → CC Switch auto-configures the provider</li>
+<li>Reduces API key copy-paste errors (a real security vector)</li>
+<li>Integrates with OAuth flows for seamless authentication</li>
+</ul>
+<hr>
+<h2 id="installation-and-setup-guide">Installation and Setup Guide<a hidden class="anchor" aria-hidden="true" href="#installation-and-setup-guide">#</a></h2>
+<h3 id="quick-install">Quick Install<a hidden class="anchor" aria-hidden="true" href="#quick-install">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># macOS / Linux</span>
+</span></span><span style="display:flex;"><span>brew install cc-switch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Windows (Scoop)</span>
+</span></span><span style="display:flex;"><span>scoop install cc-switch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Or download directly from GitHub Releases</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># https://github.com/farion1231/cc-switch/releases</span>
+</span></span></code></pre></div><h3 id="first-time-setup-recommended">First-Time Setup (Recommended)<a hidden class="anchor" aria-hidden="true" href="#first-time-setup-recommended">#</a></h3>
+<ol>
+<li><strong>Import existing configs</strong>: On first launch, CC Switch detects installed CLI tools and offers to import their current settings</li>
+<li><strong>Add primary providers</strong>: Configure at least one official channel (Anthropic/OpenAI/Google) as a fallback</li>
+<li><strong>Add community relays</strong> (optional): Browse 50+ presets, enter API key, done</li>
+<li><strong>Enable MCP sync</strong>: Add your core MCP servers (filesystem, Git, browser) in the MCP panel</li>
+<li><strong>Configure cloud sync</strong> (optional): Point to a WebDAV endpoint or cloud folder</li>
+</ol>
+<h3 id="team-onboarding-template">Team Onboarding Template<a hidden class="anchor" aria-hidden="true" href="#team-onboarding-template">#</a></h3>
+<pre tabindex="0"><code>team-ai-config/
 ├── mcp-servers.json          # Shared MCP configurations
 ├── prompt-presets/             # Standardized system prompts
 │   ├── security-review.md
 │   ├── test-generation.md
 │   └── api-documentation.md
 └── skills-index.json           # Curated internal skills
-</code></pre><p>New team member: installs CC Switch → imports ````team-ai-config``` → fully operational in under 5 minutes.</p><hr><h2 id=the-2026-ai-cli-landscape-why-cc-switchs-timing-is-perfect>The 2026 AI CLI Landscape: Why CC Switch&rsquo;s Timing Is Perfect<a hidden class=anchor aria-hidden=true href=#the-2026-ai-cli-landscape-why-cc-switchs-timing-is-perfect>#</a></h2><h3 id=three-distinct-tiers-have-emerged>Three Distinct Tiers Have Emerged<a hidden class=anchor aria-hidden=true href=#three-distinct-tiers-have-emerged>#</a></h3><p>| Tier | Tools | Model Strategy | Ideal User |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>New team member: installs CC Switch → imports ````team-ai-config``` → fully operational in under 5 minutes.</p>
+<hr>
+<h2 id="the-2026-ai-cli-landscape-why-cc-switchs-timing-is-perfect">The 2026 AI CLI Landscape: Why CC Switch&rsquo;s Timing Is Perfect<a hidden class="anchor" aria-hidden="true" href="#the-2026-ai-cli-landscape-why-cc-switchs-timing-is-perfect">#</a></h2>
+<h3 id="three-distinct-tiers-have-emerged">Three Distinct Tiers Have Emerged<a hidden class="anchor" aria-hidden="true" href="#three-distinct-tiers-have-emerged">#</a></h3>
+<p>| Tier | Tools | Model Strategy | Ideal User |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Subscription CLI | Claude Code, Codex CLI | Vendor-locked, premium | Full-time developers |
 | Free/Open CLI | Gemini CLI, Aider | BYO-key or free tier | Students, side projects |
-| Orchestration | OpenClaw, Symphony | Multi-agent pipelines | Engineering teams |</p><p>CC Switch&rsquo;s value proposition is <strong>cross-tier mobility</strong>. You&rsquo;re not locked into one strategy — you can route simple tasks through free tiers and complex work through premium subscriptions, all from the same interface.</p><h3 id=why-this-matters-now>Why This Matters Now<a hidden class=anchor aria-hidden=true href=#why-this-matters-now>#</a></h3><p>Three converging trends make unified management essential: 1. <strong>MCP standardization</strong>: The Linux Foundation&rsquo;s AAIF (Agentic AI Foundation) now stewards MCP. More tools will adopt it, and managing multiple MCP configs manually won&rsquo;t scale.
+| Orchestration | OpenClaw, Symphony | Multi-agent pipelines | Engineering teams |</p>
+<p>CC Switch&rsquo;s value proposition is <strong>cross-tier mobility</strong>. You&rsquo;re not locked into one strategy — you can route simple tasks through free tiers and complex work through premium subscriptions, all from the same interface.</p>
+<h3 id="why-this-matters-now">Why This Matters Now<a hidden class="anchor" aria-hidden="true" href="#why-this-matters-now">#</a></h3>
+<p>Three converging trends make unified management essential: 1. <strong>MCP standardization</strong>: The Linux Foundation&rsquo;s AAIF (Agentic AI Foundation) now stewards MCP. More tools will adopt it, and managing multiple MCP configs manually won&rsquo;t scale.
 2. <strong>Model switching as default</strong>: Developers increasingly route by task type — reasoning vs speed vs cost — rather than loyalty to a single model provider.
-3. <strong>Team complexity</strong>: When your team uses 3+ AI tools, onboarding and configuration drift become real operational costs.</p><hr><h2 id=competitive-analysis>Competitive Analysis<a hidden class=anchor aria-hidden=true href=#competitive-analysis>#</a></h2><p>| Dimension | CC Switch | Manual Config | IDE-Native Management |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+3. <strong>Team complexity</strong>: When your team uses 3+ AI tools, onboarding and configuration drift become real operational costs.</p>
+<hr>
+<h2 id="competitive-analysis">Competitive Analysis<a hidden class="anchor" aria-hidden="true" href="#competitive-analysis">#</a></h2>
+<p>| Dimension | CC Switch | Manual Config | IDE-Native Management |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Tools supported | 6+ CLI agents | Unlimited (with pain) | Usually 1-2 |
 | Switch speed | Seconds (tray) | Minutes | Moderate |
 | MCP unification | ✅ Bidirectional sync | ❌ Per-tool setup | ⚠️ Limited |
 | Cross-platform | ✅ Consistent | ❌ Platform-specific | ⚠️ IDE-dependent |
 | Team sharing | ✅ Import/export | ⚠️ Documentation | ❌ |
-| Provider presets | 50+ built-in | ❌ Research required | ⚠️ Limited |</p><p><strong>Verdict</strong>: If you regularly use 2+ AI CLI tools, CC Switch pays for itself in time saved on day one. If you&rsquo;re committed to a single tool forever, it&rsquo;s less essential — but &ldquo;single tool forever&rdquo; is an increasingly rare position in 2026.</p><hr><h2 id=limitations-and-honest-assessment>Limitations and Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations-and-honest-assessment>#</a></h2><p>No tool is perfect. CC Switch&rsquo;s current limitations: - <strong>Desktop only</strong>: No mobile or tablet interface (though web version exists for headless servers)</p><ul><li><strong>Learning curve</strong>: First-time Tauri apps may trigger security prompts on macOS Gatekeeper</li><li><strong>Community relay trust</strong>: 50+ presets is great, but you&rsquo;re still entering API keys into a third-party application</li><li><strong>Enterprise features</strong>: Role-based access control and audit logging aren&rsquo;t mature yet</li></ul><p>The developers are active — the GitHub issue tracker shows consistent releases and responsive maintainers. The MIT license means enterprise users can fork and extend if needed.</p><hr><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Once you&rsquo;ve got CC Switch managing all your AI CLI tools, you&rsquo;ll still need solid infrastructure to actually run them. Two options dibi8 uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days. Great for running self-hosted AI tools (OpenClaw, Ollama, Hermes Agent) that CC Switch manages.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency mainland China access. Same IDC hosting dibi8.com.</li></ul><p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p><h2 id=conclusion-the-meta-tool-for-the-agent-era>Conclusion: The Meta-Tool for the Agent Era<a hidden class=anchor aria-hidden=true href=#conclusion-the-meta-tool-for-the-agent-era>#</a></h2><p>CC Switch doesn&rsquo;t make any individual AI tool better. What it does is prevent the <strong>management overhead of multiple tools</strong> from canceling out their individual productivity gains.</p><p>In 2026, the question isn&rsquo;t &ldquo;which AI coding agent should I use?&rdquo; — it"s &ldquo;how do I use all of them without drowning in configuration?&rdquo; CC Switch is the first credible answer to that second question, and its 74K stars suggest developers were waiting for exactly this.</p><p><strong>Resources</strong>: - GitHub: <a href=https://github.com/farion1231/cc-switch>https://github.com/farion1231/cc-switch</a></p><ul><li>Website: <a href=https://ccswitch.io>https://ccswitch.io</a></li><li>Download: GitHub Releases</li></ul><hr><p><em>Review based on CC Switch v2.x. Features may evolve — check the official docs for the latest.</em></p><p><strong>Keywords</strong>: CC Switch, AI CLI manager, Claude Code, Codex CLI, Gemini CLI, OpenClaw, OpenCode, Hermes Agent, AI coding tools, Rust, Tauri, MCP protocol, cross-platform desktop app, developer productivity, 2026 dev tools, model switching</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Provider presets | 50+ built-in | ❌ Research required | ⚠️ Limited |</p>
+<p><strong>Verdict</strong>: If you regularly use 2+ AI CLI tools, CC Switch pays for itself in time saved on day one. If you&rsquo;re committed to a single tool forever, it&rsquo;s less essential — but &ldquo;single tool forever&rdquo; is an increasingly rare position in 2026.</p>
+<hr>
+<h2 id="limitations-and-honest-assessment">Limitations and Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-and-honest-assessment">#</a></h2>
+<p>No tool is perfect. CC Switch&rsquo;s current limitations: - <strong>Desktop only</strong>: No mobile or tablet interface (though web version exists for headless servers)</p>
+<ul>
+<li><strong>Learning curve</strong>: First-time Tauri apps may trigger security prompts on macOS Gatekeeper</li>
+<li><strong>Community relay trust</strong>: 50+ presets is great, but you&rsquo;re still entering API keys into a third-party application</li>
+<li><strong>Enterprise features</strong>: Role-based access control and audit logging aren&rsquo;t mature yet</li>
+</ul>
+<p>The developers are active — the GitHub issue tracker shows consistent releases and responsive maintainers. The MIT license means enterprise users can fork and extend if needed.</p>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Once you&rsquo;ve got CC Switch managing all your AI CLI tools, you&rsquo;ll still need solid infrastructure to actually run them. Two options dibi8 uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days. Great for running self-hosted AI tools (OpenClaw, Ollama, Hermes Agent) that CC Switch manages.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency mainland China access. Same IDC hosting dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="conclusion-the-meta-tool-for-the-agent-era">Conclusion: The Meta-Tool for the Agent Era<a hidden class="anchor" aria-hidden="true" href="#conclusion-the-meta-tool-for-the-agent-era">#</a></h2>
+<p>CC Switch doesn&rsquo;t make any individual AI tool better. What it does is prevent the <strong>management overhead of multiple tools</strong> from canceling out their individual productivity gains.</p>
+<p>In 2026, the question isn&rsquo;t &ldquo;which AI coding agent should I use?&rdquo; — it&quot;s &ldquo;how do I use all of them without drowning in configuration?&rdquo; CC Switch is the first credible answer to that second question, and its 74K stars suggest developers were waiting for exactly this.</p>
+<p><strong>Resources</strong>: - GitHub: <a href="https://github.com/farion1231/cc-switch">https://github.com/farion1231/cc-switch</a></p>
+<ul>
+<li>Website: <a href="https://ccswitch.io">https://ccswitch.io</a></li>
+<li>Download: GitHub Releases</li>
+</ul>
+<hr>
+<p><em>Review based on CC Switch v2.x. Features may evolve — check the official docs for the latest.</em></p>
+<p><strong>Keywords</strong>: CC Switch, AI CLI manager, Claude Code, Codex CLI, Gemini CLI, OpenClaw, OpenCode, Hermes Agent, AI coding tools, Rust, Tauri, MCP protocol, cross-platform desktop app, developer productivity, 2026 dev tools, model switching</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;CC Switch Review: The Missing Control Center for AI Coding Agents (2026)&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
@@ -80,18 +508,186 @@ aliases:</p><ul><li>/posts/cc-switch-unified-ai-cli-control-center-2026/-</li></
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center-2026%22>https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center-2026%22">https://dibi8.com/resources/cc-switch-unified-ai-cli-control-center-2026"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>claude-code-vs-cline</a></li><li><a href=/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>gemini-cli-vs-claude-code</a></li><li><a href=/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>claude-code-vs-aider</a></li><li><a href=/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/>cursor-vs-claude-code</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/cc-switch-all-in-one-ai-coding-agent-manager/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">claude-code-vs-cline</a></li>
+<li><a href="/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">claude-code-vs-aider</a></li>
+<li><a href="/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026/">cursor-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/cc-switch-all-in-one-ai-coding-agent-manager/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/cc-switch-unified-ai-cli-control-center/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

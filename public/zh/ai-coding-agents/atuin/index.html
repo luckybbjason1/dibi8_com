@@ -1,10 +1,339 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/atuin/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/atuin/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/atuin/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/atuin/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/atuin/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/atuin/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/atuin/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“atuin”, “shell历史”, “命令行工具”, “sqlite”, “rust”, “同步”, “bash”, “zsh”, “fish”] aliases:\n/zh/posts/atuin/- Atuin 将现有 shell 历史替换为 SQLite 数据库和全屏模糊搜索界面，通过 Ctrl+R 激活。\n```atuin stats```` 命令显示你最常用的命令、总命令数和唯一命令统计。\n引言 那个复杂的 kubectl 命令你这周至少输入过三次。你知道它肯定在历史记录里的某个地方——可能埋在另外四万条命令下面——但 Ctrl+R 反向搜索只能逐个匹配循环，而 grep ~/.bash_history 返回的则是一堵噪声之墙。对于活在终端里的开发者来说，shell 历史就是第二记忆。当它失效时，生产力随之下降。\nAtuin 通过 SQLite 驱动的历史数据库解决了这个问题，它不仅记录命令本身，还记录围绕命令的上下文：退出码、工作目录、主机名、会话 ID 和执行时长。凭借 29,794 个 GitHub Stars 和基于 Rust 的代码库，Atuin 为每个 shell 会话添加了模糊搜索、加密跨机同步和使用分析功能。本指南将带你完成生产级的 Atuin 安装，从第一条命令到自托管同步服务器。\nAtuin 是什么？ Atuin 是一款用 Rust 编写的 shell 历史替换工具，它将命令存储在带有丰富元数据的本地 SQLite 数据库中，然后通过端到端加密可选地在多台机器间同步历史记录。它由 atuinsh 组织维护，采用 MIT 许可证发布，支持 Bash、Zsh、Fish、Nushell、Xonsh 和 PowerShell（二级支持）。\nAtuin 的工作原理 Atuin 作为客户端历史拦截器和可选的同步客户端运行。理解其架构有助于调试同步问题或规划自托管部署。\n架构概览 + * * * + preexec/precmd 钩子 + * * * + | Shell | * * * \u003e | Atuin Client | | (bash/zsh) | | (Rust binary) | + * * * + + * * * + * * * + | + * * * v * * * + | SQLite (本地) | | ~/.local/share | + * * * + * * * + | + * * * v * * * + | 同步协议 V2 | | PASETO V4 (XChaCha20-Poly1305 + Blake2b) | + * * * + * * * + | + * * * v * * * + | Atuin 服务器（自托管或云端） | | PostgreSQL 或 SQLite 后端 | + * * * + 核心组件 Shell 钩子层：Atuin 通过 shell 专用插件注册 preexec（命令前）和 precmd（命令后）钩子。这些钩子捕获命令字符串、工作目录、开始时间和退出码。 本地 SQLite 数据库：所有历史记录存储在 ~/.local/share/atuin/history.db 中，使用 SQLite 配合 WAL 模式以实现并发读写性能。 同步客户端：可选的后台同步将加密记录推送到 Atuin 服务器。数据在离开机器前使用每条记录独立的内容加密密钥进行信封加密。 TUI 搜索界面：全屏终端 UI（基于 ratatui 构建）替代 Ctrl+R，支持模糊/前缀/全文搜索和过滤模式。 加密细节 | 协议 | 算法 | 状态 | |\n|\n|\n| | V1（旧版） | XSalsa20Poly1305（NaCl secretbox） | 逐步淘汰 | | V2（当前） | PASETO V4 Local（XChaCha20-Poly1305 + Blake2b） | 活跃 |\nV2 使用信封加密：每条记录获得一个随机 CEK，用用户的主密钥包裹。主密钥位于 ~/.local/share/atuin/key，永远不会离开设备。\n安装与设置 一行命令安装（推荐） # Unix/macOS — 交互式安装，带 shell 设置提示 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh # 非交互式（CI、Dockerfile） curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive 安装程序将二进制文件放在 ~/.atuin/bin/atuin，并将 shell 集成添加到你的 rc 文件。\n包管理器安装 # Homebrew（macOS/Linux） brew install atuin # Cargo（需要 Rust 工具链） cargo install atuin # Arch Linux sudo pacman -S atuin # NixOS / nix nix-env -iA nixpkgs.atuin # Debian/Ubuntu（从 GitHub releases） VERSION=\"18.16.1\" curl -LO \"https://github.com/atuinsh/atuin/releases/download/v${VERSION}/atuin_${VERSION}_amd64.deb\" sudo dpkg -i \"atuin_${VERSION}_amd64.deb\" # Windows（WinGet） winget install -e Atuinsh.Atuin Shell 集成 安装后，将 Atuin 添加到 shell 的 rc 文件：\n# Bash — 添加到 ~/.bashrc eval \"$(atuin init bash)\" # Zsh — 添加到 ~/.zshrc eval \"$(atuin init zsh)\" # Fish — 添加到 ~/.config/fish/config.fish atuin init fish | source # Nushell — 添加到 config.nu atuin init nu | save ~/.config/nushell/atuin.nu source ~/.config/nushell/atuin.nu 重新加载 shell 或运行 exec $SHELL 激活。\n导入现有历史记录 # 自动检测 shell 并导入 atuin import auto # 或显式指定 atuin import bash atuin import zsh atuin import fish # 检查导入了多少 atuin stats 验证安装 $ atuin --version atuin 18.16.1 $ atuin doctor Atuin Doctor Checking for diagnostics [✓] Atuin is compiled with sqlite support [✓] Atuin is compiled with sync support [✓] Atuin config directory exists 核心配置 Atuin 的配置文件位于 ~/.config/atuin/config.toml。在深入设置之前，以下是搜索界面在不同过滤模式下的实际效果：\n*Atuin 的 TUI 显示内联搜索窗口，支持模糊匹配和目录范围搜索结果。*以下是一份生产级加固配置：\n# ~/.config/atuin/config.toml [settings] # 搜索模式：prefix, fulltext, fuzzy, skim search_mode = \"fuzzy\" # 过滤模式：global, host, session, directory filter_mode = \"global\" # UI 样式：compact, full style = \"compact\" # 同步设置 auto_sync = true sync_frequency = \"5m\" sync_address = \"https://api.atuin.sh\" # 不记录敏感命令（正则表达式模式） history_filter = [ \"^export.*KEY\", \"^export.*SECRET\", \"^export.*PASSWORD\", \"^aws configure\", \"^ssh-keygen\", ] # 工作目录过滤器 — 在这些路径下不记录 cwd_filter = [ \"/tmp/secrets\", \"~/.*cred\", ] # Enter 直接执行命令；false = Tab 先编辑 enter_accept = true # 在搜索 UI 中显示帮助提示 show_help = false # 结果数量 inline_height = 20 关键配置选项说明 # 查看当前配置值 atuin config get search_mode # fuzzy # 查看解析后的（有效）值 atuin config get search_mode --resolved # fuzzy # 内联设置配置值 atuin config set search_mode fulltext atuin config set filter_mode directory # 打印完整配置 atuin config print 搜索与过滤模式 # Ctrl+R 可在过滤模式间交互切换 # 默认过滤模式：global -\u003e host -\u003e session -\u003e directory # 命令行搜索带过滤 atuin search --exit 0 --after \"yesterday 3pm\" make atuin search --before \"2026-01-01\" --cwd /project deploy atuin search --exit 1 --session # 本会话中失败的命令 # 删除匹配的条目 atuin search --delete \"rm -rf /accident\" 与流行工具集成 Starship 提示符 Starship 与 Atuin 无冲突地协同工作。两者独立 hook 到 shell 事件：\n# ~/.config/starship.toml — 无需特殊配置 # Atuin 处理历史记录；Starship 处理提示符 # 确保在 rc 文件中 Atuin init 在 Starship init 之前运行 # ~/.zshrc — 顺序很重要 eval \"$(atuin init zsh)\" # Atuin 在前 eval \"$(starship init zsh)\" # Starship 在后 tmux Atuin 与 tmux 会话干净集成。每个 tmux 窗口获得独立的会话 ID，支持按窗口历史过滤：\n# ~/.tmux.conf — 绑定按键打开 Atuin 搜索 bind-key r run-shell \"tmux send-keys C-r\" # Atuin 通过环境变量自动检测 tmux 会话 # 按会话过滤：按 Ctrl+R 然后切换过滤模式 fzf 一些用户将 Atuin 与 fzf 配对：用 fzf 模糊查找文件，用 Atuin 处理历史：\n# fzf 用于文件，Atuin 用于历史 # 禁用 fzf 历史绑定（在 ~/.bashrc 或 ~/.zshrc 中） export FZF_DEFAULT_COMMAND='fd --type f --hidden' # 不要绑定 Ctrl+R — 让 Atuin 处理 # fzf 查找文件 alias ff='fzf --preview \"bat --style=numbers --color=always {}\"' # Atuin 处理历史（自动绑定到 Ctrl+R） Nushell 由于 Nushell 使用不同的配置系统，需要显式设置：\n# config.nu source ~/.config/nushell/atuin.nu # 设置环境变量 $env.ATUIN_NOBIND = true # 如果需要自定义按键绑定 Docker / Dev Containers # Dockerfile.dev RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive COPY config.toml /root/.config/atuin/config.toml RUN echo 'eval \"$(atuin init bash)\"' \u003e\u003e /root/.bashrc 自托管同步服务器 对于团队或注重隐私的用户，Atuin 的同步服务器可以通过 Docker 自托管。\nDocker Compose 设置 # docker-compose.yml version: \"3\" services: atuin: restart: always image: ghcr.io/atuinsh/atuin:latest command: server start volumes: - ./config:/config - ./atuin-data:/atuin-data links: - postgresql ports: - \"8888:8888\" environment: ATUIN_HOST: \"0.0.0.0\" ATUIN_PORT: \"8888\" ATUIN_OPEN_REGISTRATION: \"true\" ATUIN_DB_URI: \"postgres://atuin:change-me@postgresql/atuin\" RUST_LOG: \"info,atuin_server=debug\" user: \"1000:1000\" postgresql: image: postgres:14 restart: always volumes: - ./postgres-data:/var/lib/postgresql/data environment: POSTGRES_USER: atuin POSTGRES_PASSWORD: change-me POSTGRES_DB: atuin user: \"1000:1000\" # 可选：自动备份 backup: image: prodrigestivill/postgres-backup-local restart: always volumes: - ./backups:/backups links: - postgresql environment: POSTGRES_HOST: postgresql POSTGRES_DB: atuin POSTGRES_USER: atuin POSTGRES_PASSWORD: change-me POSTGRES_EXTRA_OPTS: \"-Z6 --schema=public --blobs\" SCHEDULE: \"@daily\" BACKUP_KEEP_DAYS: \"7\" 启动服务器 # 创建数据目录 mkdir -p atuin-data postgres-data backups # 启动服务 docker compose up -d # 检查健康状态 curl http://localhost:8888/health # {\"status\":\"ok\"} 自托管的客户端配置 # ~/.config/atuin/config.toml [settings] sync_address = \"http://your-server:8888\" auto_sync = true sync_frequency = \"5m\" # 在自托管服务器上注册新账户 atuin register -u myuser -e myuser@example.com -p securepassword # 或在其他机器上登录 atuin login -u myuser -p securepassword # 获取你的加密密钥（安全备份） atuin key # c2e2d6e5a9b1c3f4d7e8a9b0c1d2e3f4... # 触发同步 atuin sync Kubernetes 部署 # atuin-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: atuin-server spec: replicas: 2 selector: matchLabels: app: atuin template: metadata: labels: app: atuin spec: containers: - name: atuin image: ghcr.io/atuinsh/atuin:18.16.1 command: [\"atuin\", \"server\", \"start\"] ports: - containerPort: 8888 env: - name: ATUIN_HOST value: \"0.0.0.0\" - name: ATUIN_DB_URI valueFrom: secretKeyRef: name: atuin-db-secret key: uri * * * apiVersion: v1 kind: Service metadata: name: atuin-service spec: selector: app: atuin ports: - port: 8888 targetPort: 8888 基准测试 / 真实用例 性能特征 Atuin 的 Rust 实现和 SQLite 后端在大型历史数据集上提供稳定的性能：\n| 指标 | 数值 | 说明 | |\n|\n|\n| | 历史查询（10万条） | ~15ms | 模糊搜索，冷缓存 | | 历史查询（50万条） | ~45ms | 模糊搜索，热缓存 | | 同步初始上传（5万条命令） | ~30秒 | 取决于带宽 | | 增量同步 | ~1-3秒 | 典型每日增量 | | 二进制文件大小 | ~12MB | 单静态二进制 | | 内存占用 | ~15MB | 空闲时驻留 | | SQLite DB 大小 | ~100MB/10万命令 | 含完整元数据 |\n生产用例 多设备开发：一位开发者拥有工作笔记本、个人台式机和云虚拟机，保持所有 shell 历史同步。在一台机器上运行 docker compose up，可在另一台机器上搜索到。 团队知识保留：DevOps 团队自托管 Atuin，以在轮值的 on-call 工程师之间维护可搜索的基础设施命令审计跟踪。 远程环境恢复：使用临时云工作空间（Gitpod、Coder）的开发者同步历史，工作空间销毁不会擦除命令上下文。 Stats 命令输出 $ atuin stats [▮▮▮▮▮▮▮▮▮▮] 9,607 fg [▮▮▮▮▮▮▮▮▮ ] 9,458 vim [▮▮▮ ] 3,144 ag [▮▮▮ ] 3,095 git status [▮▮ ] 2,248 git diff [▮ ] 1,787 curl [▮ ] 1,571 jq [▮ ] 1,357 rg [▮ ] 1,348 cd [▮ ] 1,322 git log Total commands: 62,849 Unique commands: 26,908 高级用法 / 生产环境加固 历史隐私过滤器 防止敏感命令进入数据库：\n# ~/.config/atuin/config.toml [settings] history_filter = [ # AWS 凭证 \"^aws configure\", \"^export AWS_SECRET_ACCESS_KEY\", # 通用密钥 \"^export.*SECRET\", \"^export.*PASSWORD\", \"^export.*TOKEN\", \"^echo.*password\", # SSH 密钥 \"^ssh-add\", \"^ssh-keygen\", # 数据库连接字符串 \"^psql.*://.*:\", \"^mysql.*-p\", ] 备份你的历史记录 # SQLite 备份（安全，无锁问题） sqlite3 ~/.local/share/atuin/history.db \".backup '/backup/atuin-$(date +%Y%m%d).db'\" # 或通过 WAL 检查点复制 cp ~/.local/share/atuin/history.db ~/backups/atuin-backup.db # 通过 cron 自动每日备份 0 2 * * * sqlite3 ~/.local/share/atuin/history.db \".backup '/backups/atuin/atuin-$(date +\\%Y\\%m\\%d).db'\" \u0026\u0026 find /backups/atuin -mtime +30 -delete 监控同步健康 # 检查上次同步时间 atuin sync --force # 强制同步并显示状态 # 查看同步信息 atuin info # Atuin v18.16.1 # Sync interval: 5m # Sync address: https://api.atuin.sh # Last sync: 2026-05-20T08:15:32Z # History count: 47,231 # 检查问题 atuin doctor TUI 主题 # ~/.config/atuin/config.toml [theme] # 使用终端默认颜色 use_default_colors = true # 或指定显式颜色 base = \"#1e1e2e\" layer1 = \"#313244\" text = \"#cdd6f4\" accent = \"#89b4fa\" 多机器密钥迁移 设置新机器时，安全地传输加密密钥：\n# 在旧机器上 — 复制密钥到剪贴板（或通过安全传输） cat ~/.local/share/atuin/key # 在新机器上 — 安装并登录后 mkdir -p ~/.local/share/atuin echo \"YOUR_KEY_HERE\" \u003e ~/.local/share/atuin/key chmod 600 ~/.local/share/atuin/key # 验证同步正常 atuin sync atuin stats 与替代品对比 | 功能 | Atuin | mcfly | fzf + history | Hstr | |\n|\n|\n|\n|\n| | 数据库 | SQLite | SQLite | 纯文本文件 | 纯文本文件 | | 跨机同步 | 是（端到端加密） | 否 | 否 | 否 | | 搜索 UI | 内置 TUI | 内置 TUI | fzf 集成 | 内置 TUI | | 上下文记录 | cwd、退出码、时长、主机 | cwd、退出码 | 无 | 无 | | 统计 | atuin stats | 无 | 无 | 无 | | Shell 支持 | bash、zsh、fish、nu、xonsh | bash、zsh、fish | 任意 shell | bash、zsh | | 加密 | PASETO V4 | 无 | 无 | 无 | | 自托管服务器 | 是（Docker/K8s） | 不适用 | 不适用 | 不适用 | | AI 集成 | 是（可选） | 否 | 否 | 否 | | 历史导入 | bash、zsh、fish、nu | bash、zsh、fish | 不适用 | bash、zsh | | GitHub Stars | 29,794 | 6,800 | 67,000 (fzf) | 3,900 | | 二进制大小 | ~12MB | ~4MB | ~4MB（仅 fzf） | ~2MB |\n何时选择哪款工具 Atuin：你需要在多台机器间加密同步、丰富的上下文元数据和全功能搜索 UI。最适合使用 2 台以上机器且重视历史分析的开发者。 mcfly：你需要轻量、完全本地的工具，带智能上下文排序。最适合单机用户，零网络依赖。 fzf + history：你已使用 fzf 查找文件，想要极简的历史方案。最适合希望一个工具搞定所有模糊搜索的用户。 Hstr：你需要简单轻量的历史 TUI，无数据库开销。最适合 bash/zsh 上的极简主义者。 限制 / 诚实评估 Atuin 并非适用于所有场景：\n无执行者追踪：Atuin 记录命令，但无法区分是手动输入、脚本执行还是 AI 助手生成。所有来源在数据库中看起来都一样。\n本地数据库未加密：位于 ~/.local/share/atuin/ 的 SQLite 数据库以明文存储以保证搜索性能。同步是加密的，但本地存储未加密。使用文件系统加密（LUKS、FileVault）进行保护。\nBash 集成可能脆弱：Bash 的 preexec 钩子依赖 DEBUG trap，可能与其他工具（pyenv、nodenv、某些 PROMPT_COMMAND 设置）冲突。Zsh 和 Fish 集成更可靠。\n同步需要账户：即使自托管同步也需要用户注册。没有匿名或\"直接同步到 S3\"模式。\n上箭头绑定让新用户困惑：Atuin 默认替换上箭头键，可能让只想循环最近命令的用户困惑。设置 filter_mode_shell_up_key = \"session\" 或完全禁用该绑定。\nPowerShell 支持为二级：虽然功能正常，但 PowerShell 集成测试较少，可能落后于 Unix shell 功能。\n常见问题 如何禁用上箭头绑定？ 在配置中添加 filter_mode_shell_up_key = \"global\" 或 show_preview = false。要完全禁用 Atuin 的上箭头，在 init 行前添加 export ATUIN_NOBIND=1，然后手动绑定 Ctrl+R：\n# ~/.bashrc export ATUIN_NOBIND=1 eval \"$(atuin init bash)\" bind '\"\\C-r\": \"\\C-aatuin search\\C-j\"' 可以完全不使用同步吗？ 可以。Atuin 完全作为本地工具工作。跳过注册，忽略所有同步命令。你的历史存储在本地 SQLite 中，所有搜索功能离线可用。\n我的数据如何加密？ 所有同步数据在离开机器前使用 PASETO V4（XChaCha20-Poly1305 + Blake2b）进行客户端加密。同步服务器（无论是自托管还是 atuin.sh）只能看到加密 blob——它无法解密或读取你的命令。本地 SQLite 数据库未加密，以保证搜索性能。\n如果丢失加密密钥会怎样？ 加密密钥是解密同步历史所必需的。如果丢失，无法恢复之前同步的数据。密钥在初始设置时通过 atuin key 显示——请备份到密码管理器。本地历史无论密钥是否存在都可访问。\n两个用户可以共享历史数据库吗？ 不能直接共享。Atuin 的同步模型专为同一用户跨多设备设计。对于团队共享历史，每个用户维护自己的数据库和同步账户。自托管服务器支持多个独立账户。\nAtuin 会降低 shell 速度吗？ 没有可测量的影响。Rust 二进制文件增加约 5-10ms 的 shell 启动时间（一次性），命令捕获通过 shell 钩子异步进行。SQLite WAL 模式确保写入不会阻塞 shell 提示符。\n如何从历史记录中删除命令？ # 按搜索模式删除 atuin search --delete \"sensitive-command\" # 或使用 TUI — 找到命令，然后按 Alt+Delete 结论 Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移植的数据库。凭借 29,794 个 GitHub Stars、端到端加密同步和对所有主流 shell 的支持，它是任何活在终端里的开发者的实用升级。\n后续步骤：\n运行 curl --proto '=https\" --tlsv1.2 -LsSf https://setup.atuin.sh | sh 安装 使用 ````atuin import auto``` 导入现有历史 注册同步或配置自托管服务器 加入 Telegram 开发者社区 获取技巧和故障排除 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 Atuin GitHub 仓库 Atuin 官方文档 Atuin 自托管指南 Atuin 配置参考 PASETO V4 规范 Ellie Huxtable — Atuin 创作者博客 mcfly GitHub 仓库 fzf GitHub 仓库 Hstr GitHub 仓库 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/atuin\" } } Related Articles ohmyzsh ohmyzsh ohmyzsh cc-switch-all-in-one-ai-coding-agent-manager zed-vs-cursor Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1799","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/atuin/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/atuin/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/atuin/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/atuin/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bc%95%e8%a8%80 aria-label=引言>引言</a></li><li><a href=#atuin-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Atuin 是什么？">Atuin 是什么？</a></li><li><a href=#atuin-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="Atuin 的工作原理">Atuin 的工作原理</a><ul><li><a href=#%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88 aria-label=架构概览>架构概览</a></li><li><a href=#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6 aria-label=核心组件>核心组件</a></li><li><a href=#%e5%8a%a0%e5%af%86%e7%bb%86%e8%8a%82 aria-label=加密细节>加密细节</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae aria-label=安装与设置>安装与设置</a><ul><li><a href=#%e4%b8%80%e8%a1%8c%e5%91%bd%e4%bb%a4%e5%ae%89%e8%a3%85%e6%8e%a8%e8%8d%90 aria-label=一行命令安装（推荐）>一行命令安装（推荐）</a></li><li><a href=#%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%e5%ae%89%e8%a3%85 aria-label=包管理器安装>包管理器安装</a></li><li><a href=#shell-%e9%9b%86%e6%88%90 aria-label="Shell 集成">Shell 集成</a></li><li><a href=#%e5%af%bc%e5%85%a5%e7%8e%b0%e6%9c%89%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95 aria-label=导入现有历史记录>导入现有历史记录</a></li><li><a href=#%e9%aa%8c%e8%af%81%e5%ae%89%e8%a3%85 aria-label=验证安装>验证安装</a></li></ul></li><li><a href=#%e6%a0%b8%e5%bf%83%e9%85%8d%e7%bd%ae aria-label=核心配置>核心配置</a><ul><li><a href=#%e5%85%b3%e9%94%ae%e9%85%8d%e7%bd%ae%e9%80%89%e9%a1%b9%e8%af%b4%e6%98%8e aria-label=关键配置选项说明>关键配置选项说明</a></li><li><a href=#%e6%90%9c%e7%b4%a2%e4%b8%8e%e8%bf%87%e6%bb%a4%e6%a8%a1%e5%bc%8f aria-label=搜索与过滤模式>搜索与过滤模式</a></li></ul></li><li><a href=#%e4%b8%8e%e6%b5%81%e8%a1%8c%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90 aria-label=与流行工具集成>与流行工具集成</a><ul><li><a href=#starship-%e6%8f%90%e7%a4%ba%e7%ac%a6 aria-label="Starship 提示符">Starship 提示符</a></li><li><a href=#tmux aria-label=tmux>tmux</a></li><li><a href=#fzf aria-label=fzf>fzf</a></li><li><a href=#nushell aria-label=Nushell>Nushell</a></li><li><a href=#docker--dev-containers aria-label="Docker / Dev Containers">Docker / Dev Containers</a></li></ul></li><li><a href=#%e8%87%aa%e6%89%98%e7%ae%a1%e5%90%8c%e6%ad%a5%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=自托管同步服务器>自托管同步服务器</a><ul><li><a href=#docker-compose-%e8%ae%be%e7%bd%ae aria-label="Docker Compose 设置">Docker Compose 设置</a></li><li><a href=#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=启动服务器>启动服务器</a></li><li><a href=#%e8%87%aa%e6%89%98%e7%ae%a1%e7%9a%84%e5%ae%a2%e6%88%b7%e7%ab%af%e9%85%8d%e7%bd%ae aria-label=自托管的客户端配置>自托管的客户端配置</a></li><li><a href=#kubernetes-%e9%83%a8%e7%bd%b2 aria-label="Kubernetes 部署">Kubernetes 部署</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b aria-label="基准测试 / 真实用例">基准测试 / 真实用例</a><ul><li><a href=#%e6%80%a7%e8%83%bd%e7%89%b9%e5%be%81 aria-label=性能特征>性能特征</a></li><li><a href=#%e7%94%9f%e4%ba%a7%e7%94%a8%e4%be%8b aria-label=生产用例>生产用例</a></li><li><a href=#stats-%e5%91%bd%e4%bb%a4%e8%be%93%e5%87%ba aria-label="Stats 命令输出">Stats 命令输出</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba aria-label="高级用法 / 生产环境加固">高级用法 / 生产环境加固</a><ul><li><a href=#%e5%8e%86%e5%8f%b2%e9%9a%90%e7%a7%81%e8%bf%87%e6%bb%a4%e5%99%a8 aria-label=历史隐私过滤器>历史隐私过滤器</a></li><li><a href=#%e5%a4%87%e4%bb%bd%e4%bd%a0%e7%9a%84%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95 aria-label=备份你的历史记录>备份你的历史记录</a></li><li><a href=#%e7%9b%91%e6%8e%a7%e5%90%8c%e6%ad%a5%e5%81%a5%e5%ba%b7 aria-label=监控同步健康>监控同步健康</a></li><li><a href=#tui-%e4%b8%bb%e9%a2%98 aria-label="TUI 主题">TUI 主题</a></li><li><a href=#%e5%a4%9a%e6%9c%ba%e5%99%a8%e5%af%86%e9%92%a5%e8%bf%81%e7%a7%bb aria-label=多机器密钥迁移>多机器密钥迁移</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%93%81%e5%af%b9%e6%af%94 aria-label=与替代品对比>与替代品对比</a><ul><li><a href=#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9%e5%93%aa%e6%ac%be%e5%b7%a5%e5%85%b7 aria-label=何时选择哪款工具>何时选择哪款工具</a></li></ul></li><li><a href=#%e9%99%90%e5%88%b6--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0 aria-label="限制 / 诚实评估">限制 / 诚实评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a><ul><li><a href=#%e5%a6%82%e4%bd%95%e7%a6%81%e7%94%a8%e4%b8%8a%e7%ae%ad%e5%a4%b4%e7%bb%91%e5%ae%9a aria-label=如何禁用上箭头绑定？>如何禁用上箭头绑定？</a></li><li><a href=#%e5%8f%af%e4%bb%a5%e5%ae%8c%e5%85%a8%e4%b8%8d%e4%bd%bf%e7%94%a8%e5%90%8c%e6%ad%a5%e5%90%97 aria-label=可以完全不使用同步吗？>可以完全不使用同步吗？</a></li><li><a href=#%e6%88%91%e7%9a%84%e6%95%b0%e6%8d%ae%e5%a6%82%e4%bd%95%e5%8a%a0%e5%af%86 aria-label=我的数据如何加密？>我的数据如何加密？</a></li><li><a href=#%e5%a6%82%e6%9e%9c%e4%b8%a2%e5%a4%b1%e5%8a%a0%e5%af%86%e5%af%86%e9%92%a5%e4%bc%9a%e6%80%8e%e6%a0%b7 aria-label=如果丢失加密密钥会怎样？>如果丢失加密密钥会怎样？</a></li><li><a href=#%e4%b8%a4%e4%b8%aa%e7%94%a8%e6%88%b7%e5%8f%af%e4%bb%a5%e5%85%b1%e4%ba%ab%e5%8e%86%e5%8f%b2%e6%95%b0%e6%8d%ae%e5%ba%93%e5%90%97 aria-label=两个用户可以共享历史数据库吗？>两个用户可以共享历史数据库吗？</a></li><li><a href=#atuin-%e4%bc%9a%e9%99%8d%e4%bd%8e-shell-%e9%80%9f%e5%ba%a6%e5%90%97 aria-label="Atuin 会降低 shell 速度吗？">Atuin 会降低 shell 速度吗？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e4%bb%8e%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95%e4%b8%ad%e5%88%a0%e9%99%a4%e5%91%bd%e4%bb%a4 aria-label=如何从历史记录中删除命令？>如何从历史记录中删除命令？</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/atuin/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/atuin/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/atuin/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/atuin/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/atuin/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/atuin/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/atuin/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“atuin”, “shell历史”, “命令行工具”, “sqlite”, “rust”, “同步”, “bash”, “zsh”, “fish”] aliases:\n/zh/posts/atuin/- Atuin 将现有 shell 历史替换为 SQLite 数据库和全屏模糊搜索界面，通过 Ctrl+R 激活。\n```atuin stats```` 命令显示你最常用的命令、总命令数和唯一命令统计。\n引言 那个复杂的 kubectl 命令你这周至少输入过三次。你知道它肯定在历史记录里的某个地方——可能埋在另外四万条命令下面——但 Ctrl+R 反向搜索只能逐个匹配循环，而 grep ~/.bash_history 返回的则是一堵噪声之墙。对于活在终端里的开发者来说，shell 历史就是第二记忆。当它失效时，生产力随之下降。\nAtuin 通过 SQLite 驱动的历史数据库解决了这个问题，它不仅记录命令本身，还记录围绕命令的上下文：退出码、工作目录、主机名、会话 ID 和执行时长。凭借 29,794 个 GitHub Stars 和基于 Rust 的代码库，Atuin 为每个 shell 会话添加了模糊搜索、加密跨机同步和使用分析功能。本指南将带你完成生产级的 Atuin 安装，从第一条命令到自托管同步服务器。\nAtuin 是什么？ Atuin 是一款用 Rust 编写的 shell 历史替换工具，它将命令存储在带有丰富元数据的本地 SQLite 数据库中，然后通过端到端加密可选地在多台机器间同步历史记录。它由 atuinsh 组织维护，采用 MIT 许可证发布，支持 Bash、Zsh、Fish、Nushell、Xonsh 和 PowerShell（二级支持）。\nAtuin 的工作原理 Atuin 作为客户端历史拦截器和可选的同步客户端运行。理解其架构有助于调试同步问题或规划自托管部署。\n架构概览 + * * * + preexec/precmd 钩子 + * * * + | Shell | * * * \u003e | Atuin Client | | (bash/zsh) | | (Rust binary) | + * * * + + * * * + * * * + | + * * * v * * * + | SQLite (本地) | | ~/.local/share | + * * * + * * * + | + * * * v * * * + | 同步协议 V2 | | PASETO V4 (XChaCha20-Poly1305 + Blake2b) | + * * * + * * * + | + * * * v * * * + | Atuin 服务器（自托管或云端） | | PostgreSQL 或 SQLite 后端 | + * * * + 核心组件 Shell 钩子层：Atuin 通过 shell 专用插件注册 preexec（命令前）和 precmd（命令后）钩子。这些钩子捕获命令字符串、工作目录、开始时间和退出码。 本地 SQLite 数据库：所有历史记录存储在 ~/.local/share/atuin/history.db 中，使用 SQLite 配合 WAL 模式以实现并发读写性能。 同步客户端：可选的后台同步将加密记录推送到 Atuin 服务器。数据在离开机器前使用每条记录独立的内容加密密钥进行信封加密。 TUI 搜索界面：全屏终端 UI（基于 ratatui 构建）替代 Ctrl+R，支持模糊/前缀/全文搜索和过滤模式。 加密细节 | 协议 | 算法 | 状态 | |\n|\n|\n| | V1（旧版） | XSalsa20Poly1305（NaCl secretbox） | 逐步淘汰 | | V2（当前） | PASETO V4 Local（XChaCha20-Poly1305 + Blake2b） | 活跃 |\nV2 使用信封加密：每条记录获得一个随机 CEK，用用户的主密钥包裹。主密钥位于 ~/.local/share/atuin/key，永远不会离开设备。\n安装与设置 一行命令安装（推荐） # Unix/macOS — 交互式安装，带 shell 设置提示 curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh # 非交互式（CI、Dockerfile） curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive 安装程序将二进制文件放在 ~/.atuin/bin/atuin，并将 shell 集成添加到你的 rc 文件。\n包管理器安装 # Homebrew（macOS/Linux） brew install atuin # Cargo（需要 Rust 工具链） cargo install atuin # Arch Linux sudo pacman -S atuin # NixOS / nix nix-env -iA nixpkgs.atuin # Debian/Ubuntu（从 GitHub releases） VERSION=\"18.16.1\" curl -LO \"https://github.com/atuinsh/atuin/releases/download/v${VERSION}/atuin_${VERSION}_amd64.deb\" sudo dpkg -i \"atuin_${VERSION}_amd64.deb\" # Windows（WinGet） winget install -e Atuinsh.Atuin Shell 集成 安装后，将 Atuin 添加到 shell 的 rc 文件：\n# Bash — 添加到 ~/.bashrc eval \"$(atuin init bash)\" # Zsh — 添加到 ~/.zshrc eval \"$(atuin init zsh)\" # Fish — 添加到 ~/.config/fish/config.fish atuin init fish | source # Nushell — 添加到 config.nu atuin init nu | save ~/.config/nushell/atuin.nu source ~/.config/nushell/atuin.nu 重新加载 shell 或运行 exec $SHELL 激活。\n导入现有历史记录 # 自动检测 shell 并导入 atuin import auto # 或显式指定 atuin import bash atuin import zsh atuin import fish # 检查导入了多少 atuin stats 验证安装 $ atuin --version atuin 18.16.1 $ atuin doctor Atuin Doctor Checking for diagnostics [✓] Atuin is compiled with sqlite support [✓] Atuin is compiled with sync support [✓] Atuin config directory exists 核心配置 Atuin 的配置文件位于 ~/.config/atuin/config.toml。在深入设置之前，以下是搜索界面在不同过滤模式下的实际效果：\n*Atuin 的 TUI 显示内联搜索窗口，支持模糊匹配和目录范围搜索结果。*以下是一份生产级加固配置：\n# ~/.config/atuin/config.toml [settings] # 搜索模式：prefix, fulltext, fuzzy, skim search_mode = \"fuzzy\" # 过滤模式：global, host, session, directory filter_mode = \"global\" # UI 样式：compact, full style = \"compact\" # 同步设置 auto_sync = true sync_frequency = \"5m\" sync_address = \"https://api.atuin.sh\" # 不记录敏感命令（正则表达式模式） history_filter = [ \"^export.*KEY\", \"^export.*SECRET\", \"^export.*PASSWORD\", \"^aws configure\", \"^ssh-keygen\", ] # 工作目录过滤器 — 在这些路径下不记录 cwd_filter = [ \"/tmp/secrets\", \"~/.*cred\", ] # Enter 直接执行命令；false = Tab 先编辑 enter_accept = true # 在搜索 UI 中显示帮助提示 show_help = false # 结果数量 inline_height = 20 关键配置选项说明 # 查看当前配置值 atuin config get search_mode # fuzzy # 查看解析后的（有效）值 atuin config get search_mode --resolved # fuzzy # 内联设置配置值 atuin config set search_mode fulltext atuin config set filter_mode directory # 打印完整配置 atuin config print 搜索与过滤模式 # Ctrl+R 可在过滤模式间交互切换 # 默认过滤模式：global -\u003e host -\u003e session -\u003e directory # 命令行搜索带过滤 atuin search --exit 0 --after \"yesterday 3pm\" make atuin search --before \"2026-01-01\" --cwd /project deploy atuin search --exit 1 --session # 本会话中失败的命令 # 删除匹配的条目 atuin search --delete \"rm -rf /accident\" 与流行工具集成 Starship 提示符 Starship 与 Atuin 无冲突地协同工作。两者独立 hook 到 shell 事件：\n# ~/.config/starship.toml — 无需特殊配置 # Atuin 处理历史记录；Starship 处理提示符 # 确保在 rc 文件中 Atuin init 在 Starship init 之前运行 # ~/.zshrc — 顺序很重要 eval \"$(atuin init zsh)\" # Atuin 在前 eval \"$(starship init zsh)\" # Starship 在后 tmux Atuin 与 tmux 会话干净集成。每个 tmux 窗口获得独立的会话 ID，支持按窗口历史过滤：\n# ~/.tmux.conf — 绑定按键打开 Atuin 搜索 bind-key r run-shell \"tmux send-keys C-r\" # Atuin 通过环境变量自动检测 tmux 会话 # 按会话过滤：按 Ctrl+R 然后切换过滤模式 fzf 一些用户将 Atuin 与 fzf 配对：用 fzf 模糊查找文件，用 Atuin 处理历史：\n# fzf 用于文件，Atuin 用于历史 # 禁用 fzf 历史绑定（在 ~/.bashrc 或 ~/.zshrc 中） export FZF_DEFAULT_COMMAND='fd --type f --hidden' # 不要绑定 Ctrl+R — 让 Atuin 处理 # fzf 查找文件 alias ff='fzf --preview \"bat --style=numbers --color=always {}\"' # Atuin 处理历史（自动绑定到 Ctrl+R） Nushell 由于 Nushell 使用不同的配置系统，需要显式设置：\n# config.nu source ~/.config/nushell/atuin.nu # 设置环境变量 $env.ATUIN_NOBIND = true # 如果需要自定义按键绑定 Docker / Dev Containers # Dockerfile.dev RUN curl --proto '=https' --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive COPY config.toml /root/.config/atuin/config.toml RUN echo 'eval \"$(atuin init bash)\"' \u003e\u003e /root/.bashrc 自托管同步服务器 对于团队或注重隐私的用户，Atuin 的同步服务器可以通过 Docker 自托管。\nDocker Compose 设置 # docker-compose.yml version: \"3\" services: atuin: restart: always image: ghcr.io/atuinsh/atuin:latest command: server start volumes: - ./config:/config - ./atuin-data:/atuin-data links: - postgresql ports: - \"8888:8888\" environment: ATUIN_HOST: \"0.0.0.0\" ATUIN_PORT: \"8888\" ATUIN_OPEN_REGISTRATION: \"true\" ATUIN_DB_URI: \"postgres://atuin:change-me@postgresql/atuin\" RUST_LOG: \"info,atuin_server=debug\" user: \"1000:1000\" postgresql: image: postgres:14 restart: always volumes: - ./postgres-data:/var/lib/postgresql/data environment: POSTGRES_USER: atuin POSTGRES_PASSWORD: change-me POSTGRES_DB: atuin user: \"1000:1000\" # 可选：自动备份 backup: image: prodrigestivill/postgres-backup-local restart: always volumes: - ./backups:/backups links: - postgresql environment: POSTGRES_HOST: postgresql POSTGRES_DB: atuin POSTGRES_USER: atuin POSTGRES_PASSWORD: change-me POSTGRES_EXTRA_OPTS: \"-Z6 --schema=public --blobs\" SCHEDULE: \"@daily\" BACKUP_KEEP_DAYS: \"7\" 启动服务器 # 创建数据目录 mkdir -p atuin-data postgres-data backups # 启动服务 docker compose up -d # 检查健康状态 curl http://localhost:8888/health # {\"status\":\"ok\"} 自托管的客户端配置 # ~/.config/atuin/config.toml [settings] sync_address = \"http://your-server:8888\" auto_sync = true sync_frequency = \"5m\" # 在自托管服务器上注册新账户 atuin register -u myuser -e myuser@example.com -p securepassword # 或在其他机器上登录 atuin login -u myuser -p securepassword # 获取你的加密密钥（安全备份） atuin key # c2e2d6e5a9b1c3f4d7e8a9b0c1d2e3f4... # 触发同步 atuin sync Kubernetes 部署 # atuin-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: atuin-server spec: replicas: 2 selector: matchLabels: app: atuin template: metadata: labels: app: atuin spec: containers: - name: atuin image: ghcr.io/atuinsh/atuin:18.16.1 command: [\"atuin\", \"server\", \"start\"] ports: - containerPort: 8888 env: - name: ATUIN_HOST value: \"0.0.0.0\" - name: ATUIN_DB_URI valueFrom: secretKeyRef: name: atuin-db-secret key: uri * * * apiVersion: v1 kind: Service metadata: name: atuin-service spec: selector: app: atuin ports: - port: 8888 targetPort: 8888 基准测试 / 真实用例 性能特征 Atuin 的 Rust 实现和 SQLite 后端在大型历史数据集上提供稳定的性能：\n| 指标 | 数值 | 说明 | |\n|\n|\n| | 历史查询（10万条） | ~15ms | 模糊搜索，冷缓存 | | 历史查询（50万条） | ~45ms | 模糊搜索，热缓存 | | 同步初始上传（5万条命令） | ~30秒 | 取决于带宽 | | 增量同步 | ~1-3秒 | 典型每日增量 | | 二进制文件大小 | ~12MB | 单静态二进制 | | 内存占用 | ~15MB | 空闲时驻留 | | SQLite DB 大小 | ~100MB/10万命令 | 含完整元数据 |\n生产用例 多设备开发：一位开发者拥有工作笔记本、个人台式机和云虚拟机，保持所有 shell 历史同步。在一台机器上运行 docker compose up，可在另一台机器上搜索到。 团队知识保留：DevOps 团队自托管 Atuin，以在轮值的 on-call 工程师之间维护可搜索的基础设施命令审计跟踪。 远程环境恢复：使用临时云工作空间（Gitpod、Coder）的开发者同步历史，工作空间销毁不会擦除命令上下文。 Stats 命令输出 $ atuin stats [▮▮▮▮▮▮▮▮▮▮] 9,607 fg [▮▮▮▮▮▮▮▮▮ ] 9,458 vim [▮▮▮ ] 3,144 ag [▮▮▮ ] 3,095 git status [▮▮ ] 2,248 git diff [▮ ] 1,787 curl [▮ ] 1,571 jq [▮ ] 1,357 rg [▮ ] 1,348 cd [▮ ] 1,322 git log Total commands: 62,849 Unique commands: 26,908 高级用法 / 生产环境加固 历史隐私过滤器 防止敏感命令进入数据库：\n# ~/.config/atuin/config.toml [settings] history_filter = [ # AWS 凭证 \"^aws configure\", \"^export AWS_SECRET_ACCESS_KEY\", # 通用密钥 \"^export.*SECRET\", \"^export.*PASSWORD\", \"^export.*TOKEN\", \"^echo.*password\", # SSH 密钥 \"^ssh-add\", \"^ssh-keygen\", # 数据库连接字符串 \"^psql.*://.*:\", \"^mysql.*-p\", ] 备份你的历史记录 # SQLite 备份（安全，无锁问题） sqlite3 ~/.local/share/atuin/history.db \".backup '/backup/atuin-$(date +%Y%m%d).db'\" # 或通过 WAL 检查点复制 cp ~/.local/share/atuin/history.db ~/backups/atuin-backup.db # 通过 cron 自动每日备份 0 2 * * * sqlite3 ~/.local/share/atuin/history.db \".backup '/backups/atuin/atuin-$(date +\\%Y\\%m\\%d).db'\" \u0026\u0026 find /backups/atuin -mtime +30 -delete 监控同步健康 # 检查上次同步时间 atuin sync --force # 强制同步并显示状态 # 查看同步信息 atuin info # Atuin v18.16.1 # Sync interval: 5m # Sync address: https://api.atuin.sh # Last sync: 2026-05-20T08:15:32Z # History count: 47,231 # 检查问题 atuin doctor TUI 主题 # ~/.config/atuin/config.toml [theme] # 使用终端默认颜色 use_default_colors = true # 或指定显式颜色 base = \"#1e1e2e\" layer1 = \"#313244\" text = \"#cdd6f4\" accent = \"#89b4fa\" 多机器密钥迁移 设置新机器时，安全地传输加密密钥：\n# 在旧机器上 — 复制密钥到剪贴板（或通过安全传输） cat ~/.local/share/atuin/key # 在新机器上 — 安装并登录后 mkdir -p ~/.local/share/atuin echo \"YOUR_KEY_HERE\" \u003e ~/.local/share/atuin/key chmod 600 ~/.local/share/atuin/key # 验证同步正常 atuin sync atuin stats 与替代品对比 | 功能 | Atuin | mcfly | fzf + history | Hstr | |\n|\n|\n|\n|\n| | 数据库 | SQLite | SQLite | 纯文本文件 | 纯文本文件 | | 跨机同步 | 是（端到端加密） | 否 | 否 | 否 | | 搜索 UI | 内置 TUI | 内置 TUI | fzf 集成 | 内置 TUI | | 上下文记录 | cwd、退出码、时长、主机 | cwd、退出码 | 无 | 无 | | 统计 | atuin stats | 无 | 无 | 无 | | Shell 支持 | bash、zsh、fish、nu、xonsh | bash、zsh、fish | 任意 shell | bash、zsh | | 加密 | PASETO V4 | 无 | 无 | 无 | | 自托管服务器 | 是（Docker/K8s） | 不适用 | 不适用 | 不适用 | | AI 集成 | 是（可选） | 否 | 否 | 否 | | 历史导入 | bash、zsh、fish、nu | bash、zsh、fish | 不适用 | bash、zsh | | GitHub Stars | 29,794 | 6,800 | 67,000 (fzf) | 3,900 | | 二进制大小 | ~12MB | ~4MB | ~4MB（仅 fzf） | ~2MB |\n何时选择哪款工具 Atuin：你需要在多台机器间加密同步、丰富的上下文元数据和全功能搜索 UI。最适合使用 2 台以上机器且重视历史分析的开发者。 mcfly：你需要轻量、完全本地的工具，带智能上下文排序。最适合单机用户，零网络依赖。 fzf + history：你已使用 fzf 查找文件，想要极简的历史方案。最适合希望一个工具搞定所有模糊搜索的用户。 Hstr：你需要简单轻量的历史 TUI，无数据库开销。最适合 bash/zsh 上的极简主义者。 限制 / 诚实评估 Atuin 并非适用于所有场景：\n无执行者追踪：Atuin 记录命令，但无法区分是手动输入、脚本执行还是 AI 助手生成。所有来源在数据库中看起来都一样。\n本地数据库未加密：位于 ~/.local/share/atuin/ 的 SQLite 数据库以明文存储以保证搜索性能。同步是加密的，但本地存储未加密。使用文件系统加密（LUKS、FileVault）进行保护。\nBash 集成可能脆弱：Bash 的 preexec 钩子依赖 DEBUG trap，可能与其他工具（pyenv、nodenv、某些 PROMPT_COMMAND 设置）冲突。Zsh 和 Fish 集成更可靠。\n同步需要账户：即使自托管同步也需要用户注册。没有匿名或\"直接同步到 S3\"模式。\n上箭头绑定让新用户困惑：Atuin 默认替换上箭头键，可能让只想循环最近命令的用户困惑。设置 filter_mode_shell_up_key = \"session\" 或完全禁用该绑定。\nPowerShell 支持为二级：虽然功能正常，但 PowerShell 集成测试较少，可能落后于 Unix shell 功能。\n常见问题 如何禁用上箭头绑定？ 在配置中添加 filter_mode_shell_up_key = \"global\" 或 show_preview = false。要完全禁用 Atuin 的上箭头，在 init 行前添加 export ATUIN_NOBIND=1，然后手动绑定 Ctrl+R：\n# ~/.bashrc export ATUIN_NOBIND=1 eval \"$(atuin init bash)\" bind '\"\\C-r\": \"\\C-aatuin search\\C-j\"' 可以完全不使用同步吗？ 可以。Atuin 完全作为本地工具工作。跳过注册，忽略所有同步命令。你的历史存储在本地 SQLite 中，所有搜索功能离线可用。\n我的数据如何加密？ 所有同步数据在离开机器前使用 PASETO V4（XChaCha20-Poly1305 + Blake2b）进行客户端加密。同步服务器（无论是自托管还是 atuin.sh）只能看到加密 blob——它无法解密或读取你的命令。本地 SQLite 数据库未加密，以保证搜索性能。\n如果丢失加密密钥会怎样？ 加密密钥是解密同步历史所必需的。如果丢失，无法恢复之前同步的数据。密钥在初始设置时通过 atuin key 显示——请备份到密码管理器。本地历史无论密钥是否存在都可访问。\n两个用户可以共享历史数据库吗？ 不能直接共享。Atuin 的同步模型专为同一用户跨多设备设计。对于团队共享历史，每个用户维护自己的数据库和同步账户。自托管服务器支持多个独立账户。\nAtuin 会降低 shell 速度吗？ 没有可测量的影响。Rust 二进制文件增加约 5-10ms 的 shell 启动时间（一次性），命令捕获通过 shell 钩子异步进行。SQLite WAL 模式确保写入不会阻塞 shell 提示符。\n如何从历史记录中删除命令？ # 按搜索模式删除 atuin search --delete \"sensitive-command\" # 或使用 TUI — 找到命令，然后按 Alt+Delete 结论 Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移植的数据库。凭借 29,794 个 GitHub Stars、端到端加密同步和对所有主流 shell 的支持，它是任何活在终端里的开发者的实用升级。\n后续步骤：\n运行 curl --proto '=https\" --tlsv1.2 -LsSf https://setup.atuin.sh | sh 安装 使用 ````atuin import auto``` 导入现有历史 注册同步或配置自托管服务器 加入 Telegram 开发者社区 获取技巧和故障排除 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 Atuin GitHub 仓库 Atuin 官方文档 Atuin 自托管指南 Atuin 配置参考 PASETO V4 规范 Ellie Huxtable — Atuin 创作者博客 mcfly GitHub 仓库 fzf GitHub 仓库 Hstr GitHub 仓库 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/atuin\" } } Related Articles ohmyzsh ohmyzsh ohmyzsh cc-switch-all-in-one-ai-coding-agent-manager zed-vs-cursor Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1799",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/atuin/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/atuin/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/atuin/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/atuin/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+            <li>
+                <a href="#atuin-%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Atuin 是什么？">Atuin 是什么？</a></li>
+            <li>
+                <a href="#atuin-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="Atuin 的工作原理">Atuin 的工作原理</a><ul>
+                    
+            <li>
+                <a href="#%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88" aria-label="架构概览">架构概览</a></li>
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6" aria-label="核心组件">核心组件</a></li>
+            <li>
+                <a href="#%e5%8a%a0%e5%af%86%e7%bb%86%e8%8a%82" aria-label="加密细节">加密细节</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae" aria-label="安装与设置">安装与设置</a><ul>
+                    
+            <li>
+                <a href="#%e4%b8%80%e8%a1%8c%e5%91%bd%e4%bb%a4%e5%ae%89%e8%a3%85%e6%8e%a8%e8%8d%90" aria-label="一行命令安装（推荐）">一行命令安装（推荐）</a></li>
+            <li>
+                <a href="#%e5%8c%85%e7%ae%a1%e7%90%86%e5%99%a8%e5%ae%89%e8%a3%85" aria-label="包管理器安装">包管理器安装</a></li>
+            <li>
+                <a href="#shell-%e9%9b%86%e6%88%90" aria-label="Shell 集成">Shell 集成</a></li>
+            <li>
+                <a href="#%e5%af%bc%e5%85%a5%e7%8e%b0%e6%9c%89%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95" aria-label="导入现有历史记录">导入现有历史记录</a></li>
+            <li>
+                <a href="#%e9%aa%8c%e8%af%81%e5%ae%89%e8%a3%85" aria-label="验证安装">验证安装</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e9%85%8d%e7%bd%ae" aria-label="核心配置">核心配置</a><ul>
+                    
+            <li>
+                <a href="#%e5%85%b3%e9%94%ae%e9%85%8d%e7%bd%ae%e9%80%89%e9%a1%b9%e8%af%b4%e6%98%8e" aria-label="关键配置选项说明">关键配置选项说明</a></li>
+            <li>
+                <a href="#%e6%90%9c%e7%b4%a2%e4%b8%8e%e8%bf%87%e6%bb%a4%e6%a8%a1%e5%bc%8f" aria-label="搜索与过滤模式">搜索与过滤模式</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%b5%81%e8%a1%8c%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90" aria-label="与流行工具集成">与流行工具集成</a><ul>
+                    
+            <li>
+                <a href="#starship-%e6%8f%90%e7%a4%ba%e7%ac%a6" aria-label="Starship 提示符">Starship 提示符</a></li>
+            <li>
+                <a href="#tmux" aria-label="tmux">tmux</a></li>
+            <li>
+                <a href="#fzf" aria-label="fzf">fzf</a></li>
+            <li>
+                <a href="#nushell" aria-label="Nushell">Nushell</a></li>
+            <li>
+                <a href="#docker--dev-containers" aria-label="Docker / Dev Containers">Docker / Dev Containers</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e8%87%aa%e6%89%98%e7%ae%a1%e5%90%8c%e6%ad%a5%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="自托管同步服务器">自托管同步服务器</a><ul>
+                    
+            <li>
+                <a href="#docker-compose-%e8%ae%be%e7%bd%ae" aria-label="Docker Compose 设置">Docker Compose 设置</a></li>
+            <li>
+                <a href="#%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="启动服务器">启动服务器</a></li>
+            <li>
+                <a href="#%e8%87%aa%e6%89%98%e7%ae%a1%e7%9a%84%e5%ae%a2%e6%88%b7%e7%ab%af%e9%85%8d%e7%bd%ae" aria-label="自托管的客户端配置">自托管的客户端配置</a></li>
+            <li>
+                <a href="#kubernetes-%e9%83%a8%e7%bd%b2" aria-label="Kubernetes 部署">Kubernetes 部署</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b" aria-label="基准测试 / 真实用例">基准测试 / 真实用例</a><ul>
+                    
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e7%89%b9%e5%be%81" aria-label="性能特征">性能特征</a></li>
+            <li>
+                <a href="#%e7%94%9f%e4%ba%a7%e7%94%a8%e4%be%8b" aria-label="生产用例">生产用例</a></li>
+            <li>
+                <a href="#stats-%e5%91%bd%e4%bb%a4%e8%be%93%e5%87%ba" aria-label="Stats 命令输出">Stats 命令输出</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba" aria-label="高级用法 / 生产环境加固">高级用法 / 生产环境加固</a><ul>
+                    
+            <li>
+                <a href="#%e5%8e%86%e5%8f%b2%e9%9a%90%e7%a7%81%e8%bf%87%e6%bb%a4%e5%99%a8" aria-label="历史隐私过滤器">历史隐私过滤器</a></li>
+            <li>
+                <a href="#%e5%a4%87%e4%bb%bd%e4%bd%a0%e7%9a%84%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95" aria-label="备份你的历史记录">备份你的历史记录</a></li>
+            <li>
+                <a href="#%e7%9b%91%e6%8e%a7%e5%90%8c%e6%ad%a5%e5%81%a5%e5%ba%b7" aria-label="监控同步健康">监控同步健康</a></li>
+            <li>
+                <a href="#tui-%e4%b8%bb%e9%a2%98" aria-label="TUI 主题">TUI 主题</a></li>
+            <li>
+                <a href="#%e5%a4%9a%e6%9c%ba%e5%99%a8%e5%af%86%e9%92%a5%e8%bf%81%e7%a7%bb" aria-label="多机器密钥迁移">多机器密钥迁移</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%93%81%e5%af%b9%e6%af%94" aria-label="与替代品对比">与替代品对比</a><ul>
+                    
+            <li>
+                <a href="#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9%e5%93%aa%e6%ac%be%e5%b7%a5%e5%85%b7" aria-label="何时选择哪款工具">何时选择哪款工具</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%99%90%e5%88%b6--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0" aria-label="限制 / 诚实评估">限制 / 诚实评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98" aria-label="常见问题">常见问题</a><ul>
+                    
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e7%a6%81%e7%94%a8%e4%b8%8a%e7%ae%ad%e5%a4%b4%e7%bb%91%e5%ae%9a" aria-label="如何禁用上箭头绑定？">如何禁用上箭头绑定？</a></li>
+            <li>
+                <a href="#%e5%8f%af%e4%bb%a5%e5%ae%8c%e5%85%a8%e4%b8%8d%e4%bd%bf%e7%94%a8%e5%90%8c%e6%ad%a5%e5%90%97" aria-label="可以完全不使用同步吗？">可以完全不使用同步吗？</a></li>
+            <li>
+                <a href="#%e6%88%91%e7%9a%84%e6%95%b0%e6%8d%ae%e5%a6%82%e4%bd%95%e5%8a%a0%e5%af%86" aria-label="我的数据如何加密？">我的数据如何加密？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e6%9e%9c%e4%b8%a2%e5%a4%b1%e5%8a%a0%e5%af%86%e5%af%86%e9%92%a5%e4%bc%9a%e6%80%8e%e6%a0%b7" aria-label="如果丢失加密密钥会怎样？">如果丢失加密密钥会怎样？</a></li>
+            <li>
+                <a href="#%e4%b8%a4%e4%b8%aa%e7%94%a8%e6%88%b7%e5%8f%af%e4%bb%a5%e5%85%b1%e4%ba%ab%e5%8e%86%e5%8f%b2%e6%95%b0%e6%8d%ae%e5%ba%93%e5%90%97" aria-label="两个用户可以共享历史数据库吗？">两个用户可以共享历史数据库吗？</a></li>
+            <li>
+                <a href="#atuin-%e4%bc%9a%e9%99%8d%e4%bd%8e-shell-%e9%80%9f%e5%ba%a6%e5%90%97" aria-label="Atuin 会降低 shell 速度吗？">Atuin 会降低 shell 速度吗？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e4%bb%8e%e5%8e%86%e5%8f%b2%e8%ae%b0%e5%bd%95%e4%b8%ad%e5%88%a0%e9%99%a4%e5%91%bd%e4%bb%a4" aria-label="如何从历史记录中删除命令？">如何从历史记录中删除命令？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="来源与延伸阅读">来源与延伸阅读</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,7 +350,24 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;atuin&rdquo;, &ldquo;shell历史&rdquo;, &ldquo;命令行工具&rdquo;, &ldquo;sqlite&rdquo;, &ldquo;rust&rdquo;, &ldquo;同步&rdquo;, &ldquo;bash&rdquo;, &ldquo;zsh&rdquo;, &ldquo;fish&rdquo;]
-aliases:</p><ul><li>/zh/posts/atuin/-</li></ul><hr><p><img alt="Atuin Shell History" loading=lazy src=https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png></p><p><em>Atuin 将现有 shell 历史替换为 SQLite 数据库和全屏模糊搜索界面，通过 Ctrl+R 激活。</em></p><p><img alt="Atuin Stats" loading=lazy src=https://docs.atuin.sh/assets/images/stats.png></p><p><em>```atuin stats```` 命令显示你最常用的命令、总命令数和唯一命令统计。</em></p><h2 id=引言>引言<a hidden class=anchor aria-hidden=true href=#引言>#</a></h2><p>那个复杂的 <code>kubectl</code> 命令你这周至少输入过三次。你知道它肯定在历史记录里的某个地方——可能埋在另外四万条命令下面——但 <code>Ctrl+R</code> 反向搜索只能逐个匹配循环，而 <code>grep ~/.bash_history</code> 返回的则是一堵噪声之墙。对于活在终端里的开发者来说，shell 历史就是第二记忆。当它失效时，生产力随之下降。</p><p>Atuin 通过 SQLite 驱动的历史数据库解决了这个问题，它不仅记录命令本身，还记录围绕命令的上下文：退出码、工作目录、主机名、会话 ID 和执行时长。凭借 29,794 个 GitHub Stars 和基于 Rust 的代码库，Atuin 为每个 shell 会话添加了模糊搜索、加密跨机同步和使用分析功能。本指南将带你完成生产级的 Atuin 安装，从第一条命令到自托管同步服务器。</p><h2 id=atuin-是什么>Atuin 是什么？<a hidden class=anchor aria-hidden=true href=#atuin-是什么>#</a></h2><p>Atuin 是一款用 Rust 编写的 shell 历史替换工具，它将命令存储在带有丰富元数据的本地 SQLite 数据库中，然后通过端到端加密可选地在多台机器间同步历史记录。它由 atuinsh 组织维护，采用 MIT 许可证发布，支持 Bash、Zsh、Fish、Nushell、Xonsh 和 PowerShell（二级支持）。</p><h2 id=atuin-的工作原理>Atuin 的工作原理<a hidden class=anchor aria-hidden=true href=#atuin-的工作原理>#</a></h2><p>Atuin 作为客户端历史拦截器和可选的同步客户端运行。理解其架构有助于调试同步问题或规划自托管部署。</p><h3 id=架构概览>架构概览<a hidden class=anchor aria-hidden=true href=#架构概览>#</a></h3><pre tabindex=0><code>+
+aliases:</p>
+<ul>
+<li>/zh/posts/atuin/-</li>
+</ul>
+<hr>
+<p><img alt="Atuin Shell History" loading="lazy" src="https://raw.githubusercontent.com/atuinsh/atuin/main/docs/static/img/atuin.png"></p>
+<p><em>Atuin 将现有 shell 历史替换为 SQLite 数据库和全屏模糊搜索界面，通过 Ctrl+R 激活。</em></p>
+<p><img alt="Atuin Stats" loading="lazy" src="https://docs.atuin.sh/assets/images/stats.png"></p>
+<p><em>```atuin stats```` 命令显示你最常用的命令、总命令数和唯一命令统计。</em></p>
+<h2 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p>那个复杂的 <code>kubectl</code> 命令你这周至少输入过三次。你知道它肯定在历史记录里的某个地方——可能埋在另外四万条命令下面——但 <code>Ctrl+R</code> 反向搜索只能逐个匹配循环，而 <code>grep ~/.bash_history</code> 返回的则是一堵噪声之墙。对于活在终端里的开发者来说，shell 历史就是第二记忆。当它失效时，生产力随之下降。</p>
+<p>Atuin 通过 SQLite 驱动的历史数据库解决了这个问题，它不仅记录命令本身，还记录围绕命令的上下文：退出码、工作目录、主机名、会话 ID 和执行时长。凭借 29,794 个 GitHub Stars 和基于 Rust 的代码库，Atuin 为每个 shell 会话添加了模糊搜索、加密跨机同步和使用分析功能。本指南将带你完成生产级的 Atuin 安装，从第一条命令到自托管同步服务器。</p>
+<h2 id="atuin-是什么">Atuin 是什么？<a hidden class="anchor" aria-hidden="true" href="#atuin-是什么">#</a></h2>
+<p>Atuin 是一款用 Rust 编写的 shell 历史替换工具，它将命令存储在带有丰富元数据的本地 SQLite 数据库中，然后通过端到端加密可选地在多台机器间同步历史记录。它由 atuinsh 组织维护，采用 MIT 许可证发布，支持 Bash、Zsh、Fish、Nushell、Xonsh 和 PowerShell（二级支持）。</p>
+<h2 id="atuin-的工作原理">Atuin 的工作原理<a hidden class="anchor" aria-hidden="true" href="#atuin-的工作原理">#</a></h2>
+<p>Atuin 作为客户端历史拦截器和可选的同步客户端运行。理解其架构有助于调试同步问题或规划自托管部署。</p>
+<h3 id="架构概览">架构概览<a hidden class="anchor" aria-hidden="true" href="#架构概览">#</a></h3>
+<pre tabindex="0"><code>+
 * * *
 +     preexec/precmd 钩子     +
 * * *
@@ -74,325 +420,408 @@ v
                               +
 * * *
 +
-</code></pre><h3 id=核心组件>核心组件<a hidden class=anchor aria-hidden=true href=#核心组件>#</a></h3><ol><li><strong>Shell 钩子层</strong>：Atuin 通过 shell 专用插件注册 <code>preexec</code>（命令前）和 <code>precmd</code>（命令后）钩子。这些钩子捕获命令字符串、工作目录、开始时间和退出码。</li><li><strong>本地 SQLite 数据库</strong>：所有历史记录存储在 <code>~/.local/share/atuin/history.db</code> 中，使用 SQLite 配合 WAL 模式以实现并发读写性能。</li><li><strong>同步客户端</strong>：可选的后台同步将加密记录推送到 Atuin 服务器。数据在离开机器前使用每条记录独立的内容加密密钥进行信封加密。</li><li><strong>TUI 搜索界面</strong>：全屏终端 UI（基于 <code>ratatui</code> 构建）替代 <code>Ctrl+R</code>，支持模糊/前缀/全文搜索和过滤模式。</li></ol><h3 id=加密细节>加密细节<a hidden class=anchor aria-hidden=true href=#加密细节>#</a></h3><p>| 协议 | 算法 | 状态 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="核心组件">核心组件<a hidden class="anchor" aria-hidden="true" href="#核心组件">#</a></h3>
+<ol>
+<li><strong>Shell 钩子层</strong>：Atuin 通过 shell 专用插件注册 <code>preexec</code>（命令前）和 <code>precmd</code>（命令后）钩子。这些钩子捕获命令字符串、工作目录、开始时间和退出码。</li>
+<li><strong>本地 SQLite 数据库</strong>：所有历史记录存储在 <code>~/.local/share/atuin/history.db</code> 中，使用 SQLite 配合 WAL 模式以实现并发读写性能。</li>
+<li><strong>同步客户端</strong>：可选的后台同步将加密记录推送到 Atuin 服务器。数据在离开机器前使用每条记录独立的内容加密密钥进行信封加密。</li>
+<li><strong>TUI 搜索界面</strong>：全屏终端 UI（基于 <code>ratatui</code> 构建）替代 <code>Ctrl+R</code>，支持模糊/前缀/全文搜索和过滤模式。</li>
+</ol>
+<h3 id="加密细节">加密细节<a hidden class="anchor" aria-hidden="true" href="#加密细节">#</a></h3>
+<p>| 协议 | 算法 | 状态 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | V1（旧版） | XSalsa20Poly1305（NaCl secretbox） | 逐步淘汰 |
-| V2（当前） | PASETO V4 Local（XChaCha20-Poly1305 + Blake2b） | 活跃 |</p><p>V2 使用信封加密：每条记录获得一个随机 CEK，用用户的主密钥包裹。主密钥位于 <code>~/.local/share/atuin/key</code>，永远不会离开设备。</p><h2 id=安装与设置>安装与设置<a hidden class=anchor aria-hidden=true href=#安装与设置>#</a></h2><h3 id=一行命令安装推荐>一行命令安装（推荐）<a hidden class=anchor aria-hidden=true href=#一行命令安装推荐>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Unix/macOS — 交互式安装，带 shell 设置提示</span>
-</span></span><span style=display:flex><span>curl --proto <span style=color:#e6db74>&#39;=https&#39;</span> --tlsv1.2 -LsSf https://setup.atuin.sh | sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 非交互式（CI、Dockerfile）</span>
-</span></span><span style=display:flex><span>curl --proto <span style=color:#e6db74>&#39;=https&#39;</span> --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
-</span></span></code></pre></div><p>安装程序将二进制文件放在 <code>~/.atuin/bin/atuin</code>，并将 shell 集成添加到你的 rc 文件。</p><h3 id=包管理器安装>包管理器安装<a hidden class=anchor aria-hidden=true href=#包管理器安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Homebrew（macOS/Linux）</span>
-</span></span><span style=display:flex><span>brew install atuin
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cargo（需要 Rust 工具链）</span>
-</span></span><span style=display:flex><span>cargo install atuin
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Arch Linux</span>
-</span></span><span style=display:flex><span>sudo pacman -S atuin
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># NixOS / nix</span>
-</span></span><span style=display:flex><span>nix-env -iA nixpkgs.atuin
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Debian/Ubuntu（从 GitHub releases）</span>
-</span></span><span style=display:flex><span>VERSION<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;18.16.1&#34;</span>
-</span></span><span style=display:flex><span>curl -LO <span style=color:#e6db74>&#34;https://github.com/atuinsh/atuin/releases/download/v</span><span style=color:#e6db74>${</span>VERSION<span style=color:#e6db74>}</span><span style=color:#e6db74>/atuin_</span><span style=color:#e6db74>${</span>VERSION<span style=color:#e6db74>}</span><span style=color:#e6db74>_amd64.deb&#34;</span>
-</span></span><span style=display:flex><span>sudo dpkg -i <span style=color:#e6db74>&#34;atuin_</span><span style=color:#e6db74>${</span>VERSION<span style=color:#e6db74>}</span><span style=color:#e6db74>_amd64.deb&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Windows（WinGet）</span>
-</span></span><span style=display:flex><span>winget install -e Atuinsh.Atuin
-</span></span></code></pre></div><h3 id=shell-集成>Shell 集成<a hidden class=anchor aria-hidden=true href=#shell-集成>#</a></h3><p>安装后，将 Atuin 添加到 shell 的 rc 文件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Bash — 添加到 ~/.bashrc</span>
-</span></span><span style=display:flex><span>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>atuin init bash<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Zsh — 添加到 ~/.zshrc</span>
-</span></span><span style=display:flex><span>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>atuin init zsh<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Fish — 添加到 ~/.config/fish/config.fish</span>
-</span></span><span style=display:flex><span>atuin init fish | source
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Nushell — 添加到 config.nu</span>
-</span></span><span style=display:flex><span>atuin init nu | save ~/.config/nushell/atuin.nu
-</span></span><span style=display:flex><span>source ~/.config/nushell/atuin.nu
-</span></span></code></pre></div><p>重新加载 shell 或运行 <code>exec $SHELL</code> 激活。</p><h3 id=导入现有历史记录>导入现有历史记录<a hidden class=anchor aria-hidden=true href=#导入现有历史记录>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 自动检测 shell 并导入</span>
-</span></span><span style=display:flex><span>atuin import auto
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或显式指定</span>
-</span></span><span style=display:flex><span>atuin import bash
-</span></span><span style=display:flex><span>atuin import zsh
-</span></span><span style=display:flex><span>atuin import fish
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查导入了多少</span>
-</span></span><span style=display:flex><span>atuin stats
-</span></span></code></pre></div><h3 id=验证安装>验证安装<a hidden class=anchor aria-hidden=true href=#验证安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>$ atuin --version
-</span></span><span style=display:flex><span>atuin 18.16.1
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>$ atuin doctor
-</span></span><span style=display:flex><span>Atuin Doctor
-</span></span><span style=display:flex><span>Checking <span style=color:#66d9ef>for</span> diagnostics
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>✓<span style=color:#f92672>]</span> Atuin is compiled with sqlite support
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>✓<span style=color:#f92672>]</span> Atuin is compiled with sync support
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>✓<span style=color:#f92672>]</span> Atuin config directory exists
-</span></span></code></pre></div><h2 id=核心配置>核心配置<a hidden class=anchor aria-hidden=true href=#核心配置>#</a></h2><p>Atuin 的配置文件位于 <code>~/.config/atuin/config.toml</code>。在深入设置之前，以下是搜索界面在不同过滤模式下的实际效果：</p><p><img alt="Atuin Search UI" loading=lazy src=https://docs.atuin.sh/assets/images/search.png></p><p>*Atuin 的 TUI 显示内联搜索窗口，支持模糊匹配和目录范围搜索结果。*以下是一份生产级加固配置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># ~/.config/atuin/config.toml</span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>settings</span>]
-</span></span><span style=display:flex><span><span style=color:#75715e># 搜索模式：prefix, fulltext, fuzzy, skim</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>search_mode</span> = <span style=color:#e6db74>&#34;fuzzy&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 过滤模式：global, host, session, directory</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>filter_mode</span> = <span style=color:#e6db74>&#34;global&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># UI 样式：compact, full</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>style</span> = <span style=color:#e6db74>&#34;compact&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 同步设置</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>auto_sync</span> = <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>sync_frequency</span> = <span style=color:#e6db74>&#34;5m&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>sync_address</span> = <span style=color:#e6db74>&#34;https://api.atuin.sh&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 不记录敏感命令（正则表达式模式）</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>history_filter</span> = [
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export.*KEY&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export.*SECRET&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export.*PASSWORD&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^aws configure&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^ssh-keygen&#34;</span>,
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 工作目录过滤器 — 在这些路径下不记录</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>cwd_filter</span> = [
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;/tmp/secrets&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;~/.*cred&#34;</span>,
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Enter 直接执行命令；false = Tab 先编辑</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>enter_accept</span> = <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在搜索 UI 中显示帮助提示</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>show_help</span> = <span style=color:#66d9ef>false</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 结果数量</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>inline_height</span> = <span style=color:#ae81ff>20</span>
-</span></span></code></pre></div><h3 id=关键配置选项说明>关键配置选项说明<a hidden class=anchor aria-hidden=true href=#关键配置选项说明>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 查看当前配置值</span>
-</span></span><span style=display:flex><span>atuin config get search_mode
-</span></span><span style=display:flex><span><span style=color:#75715e># fuzzy</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 查看解析后的（有效）值</span>
-</span></span><span style=display:flex><span>atuin config get search_mode --resolved
-</span></span><span style=display:flex><span><span style=color:#75715e># fuzzy</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 内联设置配置值</span>
-</span></span><span style=display:flex><span>atuin config set search_mode fulltext
-</span></span><span style=display:flex><span>atuin config set filter_mode directory
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 打印完整配置</span>
-</span></span><span style=display:flex><span>atuin config print
-</span></span></code></pre></div><h3 id=搜索与过滤模式>搜索与过滤模式<a hidden class=anchor aria-hidden=true href=#搜索与过滤模式>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Ctrl+R 可在过滤模式间交互切换</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 默认过滤模式：global -&gt; host -&gt; session -&gt; directory</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 命令行搜索带过滤</span>
-</span></span><span style=display:flex><span>atuin search --exit <span style=color:#ae81ff>0</span> --after <span style=color:#e6db74>&#34;yesterday 3pm&#34;</span> make
-</span></span><span style=display:flex><span>atuin search --before <span style=color:#e6db74>&#34;2026-01-01&#34;</span> --cwd /project deploy
-</span></span><span style=display:flex><span>atuin search --exit <span style=color:#ae81ff>1</span> --session       <span style=color:#75715e># 本会话中失败的命令</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 删除匹配的条目</span>
-</span></span><span style=display:flex><span>atuin search --delete <span style=color:#e6db74>&#34;rm -rf /accident&#34;</span>
-</span></span></code></pre></div><h2 id=与流行工具集成>与流行工具集成<a hidden class=anchor aria-hidden=true href=#与流行工具集成>#</a></h2><h3 id=starship-提示符>Starship 提示符<a hidden class=anchor aria-hidden=true href=#starship-提示符>#</a></h3><p>Starship 与 Atuin 无冲突地协同工作。两者独立 hook 到 shell 事件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># ~/.config/starship.toml — 无需特殊配置</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Atuin 处理历史记录；Starship 处理提示符</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 确保在 rc 文件中 Atuin init 在 Starship init 之前运行</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.zshrc — 顺序很重要</span>
-</span></span><span style=display:flex><span>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>atuin init zsh<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>       <span style=color:#75715e># Atuin 在前</span>
-</span></span><span style=display:flex><span>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>starship init zsh<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>    <span style=color:#75715e># Starship 在后</span>
-</span></span></code></pre></div><h3 id=tmux>tmux<a hidden class=anchor aria-hidden=true href=#tmux>#</a></h3><p>Atuin 与 tmux 会话干净集成。每个 tmux 窗口获得独立的会话 ID，支持按窗口历史过滤：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.tmux.conf — 绑定按键打开 Atuin 搜索</span>
-</span></span><span style=display:flex><span>bind-key r run-shell <span style=color:#e6db74>&#34;tmux send-keys C-r&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Atuin 通过环境变量自动检测 tmux 会话</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 按会话过滤：按 Ctrl+R 然后切换过滤模式</span>
-</span></span></code></pre></div><h3 id=fzf>fzf<a hidden class=anchor aria-hidden=true href=#fzf>#</a></h3><p>一些用户将 Atuin 与 fzf 配对：用 fzf 模糊查找文件，用 Atuin 处理历史：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># fzf 用于文件，Atuin 用于历史</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 禁用 fzf 历史绑定（在 ~/.bashrc 或 ~/.zshrc 中）</span>
-</span></span><span style=display:flex><span>export FZF_DEFAULT_COMMAND<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;fd --type f --hidden&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 不要绑定 Ctrl+R — 让 Atuin 处理</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># fzf 查找文件</span>
-</span></span><span style=display:flex><span>alias ff<span style=color:#f92672>=</span><span style=color:#e6db74>&#39;fzf --preview &#34;bat --style=numbers --color=always {}&#34;&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Atuin 处理历史（自动绑定到 Ctrl+R）</span>
-</span></span></code></pre></div><h3 id=nushell>Nushell<a hidden class=anchor aria-hidden=true href=#nushell>#</a></h3><p>由于 Nushell 使用不同的配置系统，需要显式设置：</p><pre tabindex=0><code class=language-nushell data-lang=nushell># config.nu
+| V2（当前） | PASETO V4 Local（XChaCha20-Poly1305 + Blake2b） | 活跃 |</p>
+<p>V2 使用信封加密：每条记录获得一个随机 CEK，用用户的主密钥包裹。主密钥位于 <code>~/.local/share/atuin/key</code>，永远不会离开设备。</p>
+<h2 id="安装与设置">安装与设置<a hidden class="anchor" aria-hidden="true" href="#安装与设置">#</a></h2>
+<h3 id="一行命令安装推荐">一行命令安装（推荐）<a hidden class="anchor" aria-hidden="true" href="#一行命令安装推荐">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Unix/macOS — 交互式安装，带 shell 设置提示</span>
+</span></span><span style="display:flex;"><span>curl --proto <span style="color:#e6db74">&#39;=https&#39;</span> --tlsv1.2 -LsSf https://setup.atuin.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 非交互式（CI、Dockerfile）</span>
+</span></span><span style="display:flex;"><span>curl --proto <span style="color:#e6db74">&#39;=https&#39;</span> --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive
+</span></span></code></pre></div><p>安装程序将二进制文件放在 <code>~/.atuin/bin/atuin</code>，并将 shell 集成添加到你的 rc 文件。</p>
+<h3 id="包管理器安装">包管理器安装<a hidden class="anchor" aria-hidden="true" href="#包管理器安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Homebrew（macOS/Linux）</span>
+</span></span><span style="display:flex;"><span>brew install atuin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cargo（需要 Rust 工具链）</span>
+</span></span><span style="display:flex;"><span>cargo install atuin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Arch Linux</span>
+</span></span><span style="display:flex;"><span>sudo pacman -S atuin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># NixOS / nix</span>
+</span></span><span style="display:flex;"><span>nix-env -iA nixpkgs.atuin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Debian/Ubuntu（从 GitHub releases）</span>
+</span></span><span style="display:flex;"><span>VERSION<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;18.16.1&#34;</span>
+</span></span><span style="display:flex;"><span>curl -LO <span style="color:#e6db74">&#34;https://github.com/atuinsh/atuin/releases/download/v</span><span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">/atuin_</span><span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">_amd64.deb&#34;</span>
+</span></span><span style="display:flex;"><span>sudo dpkg -i <span style="color:#e6db74">&#34;atuin_</span><span style="color:#e6db74">${</span>VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">_amd64.deb&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Windows（WinGet）</span>
+</span></span><span style="display:flex;"><span>winget install -e Atuinsh.Atuin
+</span></span></code></pre></div><h3 id="shell-集成">Shell 集成<a hidden class="anchor" aria-hidden="true" href="#shell-集成">#</a></h3>
+<p>安装后，将 Atuin 添加到 shell 的 rc 文件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Bash — 添加到 ~/.bashrc</span>
+</span></span><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>atuin init bash<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Zsh — 添加到 ~/.zshrc</span>
+</span></span><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>atuin init zsh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fish — 添加到 ~/.config/fish/config.fish</span>
+</span></span><span style="display:flex;"><span>atuin init fish | source
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Nushell — 添加到 config.nu</span>
+</span></span><span style="display:flex;"><span>atuin init nu | save ~/.config/nushell/atuin.nu
+</span></span><span style="display:flex;"><span>source ~/.config/nushell/atuin.nu
+</span></span></code></pre></div><p>重新加载 shell 或运行 <code>exec $SHELL</code> 激活。</p>
+<h3 id="导入现有历史记录">导入现有历史记录<a hidden class="anchor" aria-hidden="true" href="#导入现有历史记录">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 自动检测 shell 并导入</span>
+</span></span><span style="display:flex;"><span>atuin import auto
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或显式指定</span>
+</span></span><span style="display:flex;"><span>atuin import bash
+</span></span><span style="display:flex;"><span>atuin import zsh
+</span></span><span style="display:flex;"><span>atuin import fish
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查导入了多少</span>
+</span></span><span style="display:flex;"><span>atuin stats
+</span></span></code></pre></div><h3 id="验证安装">验证安装<a hidden class="anchor" aria-hidden="true" href="#验证安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ atuin --version
+</span></span><span style="display:flex;"><span>atuin 18.16.1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>$ atuin doctor
+</span></span><span style="display:flex;"><span>Atuin Doctor
+</span></span><span style="display:flex;"><span>Checking <span style="color:#66d9ef">for</span> diagnostics
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> Atuin is compiled with sqlite support
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> Atuin is compiled with sync support
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>✓<span style="color:#f92672">]</span> Atuin config directory exists
+</span></span></code></pre></div><h2 id="核心配置">核心配置<a hidden class="anchor" aria-hidden="true" href="#核心配置">#</a></h2>
+<p>Atuin 的配置文件位于 <code>~/.config/atuin/config.toml</code>。在深入设置之前，以下是搜索界面在不同过滤模式下的实际效果：</p>
+<p><img alt="Atuin Search UI" loading="lazy" src="https://docs.atuin.sh/assets/images/search.png"></p>
+<p>*Atuin 的 TUI 显示内联搜索窗口，支持模糊匹配和目录范围搜索结果。*以下是一份生产级加固配置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.config/atuin/config.toml</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">settings</span>]
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 搜索模式：prefix, fulltext, fuzzy, skim</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">search_mode</span> = <span style="color:#e6db74">&#34;fuzzy&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 过滤模式：global, host, session, directory</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">filter_mode</span> = <span style="color:#e6db74">&#34;global&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># UI 样式：compact, full</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">style</span> = <span style="color:#e6db74">&#34;compact&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 同步设置</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">auto_sync</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sync_frequency</span> = <span style="color:#e6db74">&#34;5m&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sync_address</span> = <span style="color:#e6db74">&#34;https://api.atuin.sh&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 不记录敏感命令（正则表达式模式）</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">history_filter</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export.*KEY&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export.*SECRET&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export.*PASSWORD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^aws configure&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^ssh-keygen&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 工作目录过滤器 — 在这些路径下不记录</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">cwd_filter</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;/tmp/secrets&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;~/.*cred&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enter 直接执行命令；false = Tab 先编辑</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">enter_accept</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在搜索 UI 中显示帮助提示</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">show_help</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 结果数量</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">inline_height</span> = <span style="color:#ae81ff">20</span>
+</span></span></code></pre></div><h3 id="关键配置选项说明">关键配置选项说明<a hidden class="anchor" aria-hidden="true" href="#关键配置选项说明">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看当前配置值</span>
+</span></span><span style="display:flex;"><span>atuin config get search_mode
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># fuzzy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看解析后的（有效）值</span>
+</span></span><span style="display:flex;"><span>atuin config get search_mode --resolved
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># fuzzy</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 内联设置配置值</span>
+</span></span><span style="display:flex;"><span>atuin config set search_mode fulltext
+</span></span><span style="display:flex;"><span>atuin config set filter_mode directory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 打印完整配置</span>
+</span></span><span style="display:flex;"><span>atuin config print
+</span></span></code></pre></div><h3 id="搜索与过滤模式">搜索与过滤模式<a hidden class="anchor" aria-hidden="true" href="#搜索与过滤模式">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Ctrl+R 可在过滤模式间交互切换</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 默认过滤模式：global -&gt; host -&gt; session -&gt; directory</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 命令行搜索带过滤</span>
+</span></span><span style="display:flex;"><span>atuin search --exit <span style="color:#ae81ff">0</span> --after <span style="color:#e6db74">&#34;yesterday 3pm&#34;</span> make
+</span></span><span style="display:flex;"><span>atuin search --before <span style="color:#e6db74">&#34;2026-01-01&#34;</span> --cwd /project deploy
+</span></span><span style="display:flex;"><span>atuin search --exit <span style="color:#ae81ff">1</span> --session       <span style="color:#75715e"># 本会话中失败的命令</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 删除匹配的条目</span>
+</span></span><span style="display:flex;"><span>atuin search --delete <span style="color:#e6db74">&#34;rm -rf /accident&#34;</span>
+</span></span></code></pre></div><h2 id="与流行工具集成">与流行工具集成<a hidden class="anchor" aria-hidden="true" href="#与流行工具集成">#</a></h2>
+<h3 id="starship-提示符">Starship 提示符<a hidden class="anchor" aria-hidden="true" href="#starship-提示符">#</a></h3>
+<p>Starship 与 Atuin 无冲突地协同工作。两者独立 hook 到 shell 事件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.config/starship.toml — 无需特殊配置</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Atuin 处理历史记录；Starship 处理提示符</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 确保在 rc 文件中 Atuin init 在 Starship init 之前运行</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.zshrc — 顺序很重要</span>
+</span></span><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>atuin init zsh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>       <span style="color:#75715e"># Atuin 在前</span>
+</span></span><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>starship init zsh<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>    <span style="color:#75715e"># Starship 在后</span>
+</span></span></code></pre></div><h3 id="tmux">tmux<a hidden class="anchor" aria-hidden="true" href="#tmux">#</a></h3>
+<p>Atuin 与 tmux 会话干净集成。每个 tmux 窗口获得独立的会话 ID，支持按窗口历史过滤：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.tmux.conf — 绑定按键打开 Atuin 搜索</span>
+</span></span><span style="display:flex;"><span>bind-key r run-shell <span style="color:#e6db74">&#34;tmux send-keys C-r&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Atuin 通过环境变量自动检测 tmux 会话</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 按会话过滤：按 Ctrl+R 然后切换过滤模式</span>
+</span></span></code></pre></div><h3 id="fzf">fzf<a hidden class="anchor" aria-hidden="true" href="#fzf">#</a></h3>
+<p>一些用户将 Atuin 与 fzf 配对：用 fzf 模糊查找文件，用 Atuin 处理历史：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># fzf 用于文件，Atuin 用于历史</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 禁用 fzf 历史绑定（在 ~/.bashrc 或 ~/.zshrc 中）</span>
+</span></span><span style="display:flex;"><span>export FZF_DEFAULT_COMMAND<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fd --type f --hidden&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 不要绑定 Ctrl+R — 让 Atuin 处理</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># fzf 查找文件</span>
+</span></span><span style="display:flex;"><span>alias ff<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;fzf --preview &#34;bat --style=numbers --color=always {}&#34;&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Atuin 处理历史（自动绑定到 Ctrl+R）</span>
+</span></span></code></pre></div><h3 id="nushell">Nushell<a hidden class="anchor" aria-hidden="true" href="#nushell">#</a></h3>
+<p>由于 Nushell 使用不同的配置系统，需要显式设置：</p>
+<pre tabindex="0"><code class="language-nushell" data-lang="nushell"># config.nu
 source ~/.config/nushell/atuin.nu
 
 # 设置环境变量
 $env.ATUIN_NOBIND = true  # 如果需要自定义按键绑定
-</code></pre><h3 id=docker--dev-containers>Docker / Dev Containers<a hidden class=anchor aria-hidden=true href=#docker--dev-containers>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile.dev</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> curl --proto <span style=color:#e6db74>&#39;=https&#39;</span> --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> config.toml /root/.config/atuin/config.toml<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> echo <span style=color:#e6db74>&#39;eval &#34;$(atuin init bash)&#34;&#39;</span> &gt;&gt; /root/.bashrc<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><h2 id=自托管同步服务器>自托管同步服务器<a hidden class=anchor aria-hidden=true href=#自托管同步服务器>#</a></h2><p>对于团队或注重隐私的用户，Atuin 的同步服务器可以通过 Docker 自托管。</p><h3 id=docker-compose-设置>Docker Compose 设置<a hidden class=anchor aria-hidden=true href=#docker-compose-设置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: atuin: restart</span>: <span style=color:#ae81ff>always</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>image</span>: <span style=color:#ae81ff>ghcr.io/atuinsh/atuin:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: <span style=color:#ae81ff>server start</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./config:/config</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./atuin-data:/atuin-data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>links</span>: - <span style=color:#ae81ff>postgresql</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8888:8888&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: ATUIN_HOST</span>: <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>ATUIN_PORT</span>: <span style=color:#e6db74>&#34;8888&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>ATUIN_OPEN_REGISTRATION</span>: <span style=color:#e6db74>&#34;true&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>ATUIN_DB_URI</span>: <span style=color:#e6db74>&#34;postgres://atuin:change-me@postgresql/atuin&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>RUST_LOG</span>: <span style=color:#e6db74>&#34;info,atuin_server=debug&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>user</span>: <span style=color:#e6db74>&#34;1000:1000&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>postgresql: image</span>: <span style=color:#ae81ff>postgres:14</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>always</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./postgres-data:/var/lib/postgresql/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: POSTGRES_USER</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_PASSWORD</span>: <span style=color:#ae81ff>change-me</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_DB</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>user</span>: <span style=color:#e6db74>&#34;1000:1000&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># 可选：自动备份</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>backup: image</span>: <span style=color:#ae81ff>prodrigestivill/postgres-backup-local</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>always</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./backups:/backups</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>links</span>: - <span style=color:#ae81ff>postgresql</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: POSTGRES_HOST</span>: <span style=color:#ae81ff>postgresql</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_DB</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_USER</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_PASSWORD</span>: <span style=color:#ae81ff>change-me</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>POSTGRES_EXTRA_OPTS</span>: <span style=color:#e6db74>&#34;-Z6 --schema=public --blobs&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>SCHEDULE</span>: <span style=color:#e6db74>&#34;@daily&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>BACKUP_KEEP_DAYS</span>: <span style=color:#e6db74>&#34;7&#34;</span>
-</span></span></code></pre></div><h3 id=启动服务器>启动服务器<a hidden class=anchor aria-hidden=true href=#启动服务器>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 创建数据目录</span>
-</span></span><span style=display:flex><span>mkdir -p atuin-data postgres-data backups
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动服务</span>
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查健康状态</span>
-</span></span><span style=display:flex><span>curl http://localhost:8888/health
-</span></span><span style=display:flex><span><span style=color:#75715e># {&#34;status&#34;:&#34;ok&#34;}</span>
-</span></span></code></pre></div><h3 id=自托管的客户端配置>自托管的客户端配置<a hidden class=anchor aria-hidden=true href=#自托管的客户端配置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># ~/.config/atuin/config.toml</span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>settings</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>sync_address</span> = <span style=color:#e6db74>&#34;http://your-server:8888&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>auto_sync</span> = <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>sync_frequency</span> = <span style=color:#e6db74>&#34;5m&#34;</span>
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在自托管服务器上注册新账户</span>
-</span></span><span style=display:flex><span>atuin register -u myuser -e myuser@example.com -p securepassword
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或在其他机器上登录</span>
-</span></span><span style=display:flex><span>atuin login -u myuser -p securepassword
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 获取你的加密密钥（安全备份）</span>
-</span></span><span style=display:flex><span>atuin key
-</span></span><span style=display:flex><span><span style=color:#75715e># c2e2d6e5a9b1c3f4d7e8a9b0c1d2e3f4...</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 触发同步</span>
-</span></span><span style=display:flex><span>atuin sync
-</span></span></code></pre></div><h3 id=kubernetes-部署>Kubernetes 部署<a hidden class=anchor aria-hidden=true href=#kubernetes-部署>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># atuin-deployment.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>atuin-server</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: replicas</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector: matchLabels: app</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>template: metadata: labels: app</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>spec: containers: - name</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>image</span>: <span style=color:#ae81ff>ghcr.io/atuinsh/atuin:18.16.1</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>command</span>: [<span style=color:#e6db74>&#34;atuin&#34;</span>, <span style=color:#e6db74>&#34;server&#34;</span>, <span style=color:#e6db74>&#34;start&#34;</span>]
-</span></span><span style=display:flex><span>          <span style=color:#f92672>ports: - containerPort</span>: <span style=color:#ae81ff>8888</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>env: - name</span>: <span style=color:#ae81ff>ATUIN_HOST</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>value</span>: <span style=color:#e6db74>&#34;0.0.0.0&#34;</span>
-</span></span><span style=display:flex><span>            - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>ATUIN_DB_URI</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>valueFrom: secretKeyRef: name</span>: <span style=color:#ae81ff>atuin-db-secret</span>
-</span></span><span style=display:flex><span>                  <span style=color:#f92672>key</span>: <span style=color:#ae81ff>uri</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>atuin-service</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: selector: app</span>: <span style=color:#ae81ff>atuin</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>ports: - port</span>: <span style=color:#ae81ff>8888</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>targetPort</span>: <span style=color:#ae81ff>8888</span>
-</span></span></code></pre></div><h2 id=基准测试--真实用例>基准测试 / 真实用例<a hidden class=anchor aria-hidden=true href=#基准测试--真实用例>#</a></h2><h3 id=性能特征>性能特征<a hidden class=anchor aria-hidden=true href=#性能特征>#</a></h3><p>Atuin 的 Rust 实现和 SQLite 后端在大型历史数据集上提供稳定的性能：</p><p>| 指标 | 数值 | 说明 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="docker--dev-containers">Docker / Dev Containers<a hidden class="anchor" aria-hidden="true" href="#docker--dev-containers">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile.dev</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> curl --proto <span style="color:#e6db74">&#39;=https&#39;</span> --tlsv1.2 -LsSf https://setup.atuin.sh | sh -s -- --non-interactive<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> config.toml /root/.config/atuin/config.toml<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> echo <span style="color:#e6db74">&#39;eval &#34;$(atuin init bash)&#34;&#39;</span> &gt;&gt; /root/.bashrc<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h2 id="自托管同步服务器">自托管同步服务器<a hidden class="anchor" aria-hidden="true" href="#自托管同步服务器">#</a></h2>
+<p>对于团队或注重隐私的用户，Atuin 的同步服务器可以通过 Docker 自托管。</p>
+<h3 id="docker-compose-设置">Docker Compose 设置<a hidden class="anchor" aria-hidden="true" href="#docker-compose-设置">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: atuin: restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/atuinsh/atuin:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: <span style="color:#ae81ff">server start</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./config:/config</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./atuin-data:/atuin-data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">links</span>: - <span style="color:#ae81ff">postgresql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8888:8888&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: ATUIN_HOST</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ATUIN_PORT</span>: <span style="color:#e6db74">&#34;8888&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ATUIN_OPEN_REGISTRATION</span>: <span style="color:#e6db74">&#34;true&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">ATUIN_DB_URI</span>: <span style="color:#e6db74">&#34;postgres://atuin:change-me@postgresql/atuin&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">RUST_LOG</span>: <span style="color:#e6db74">&#34;info,atuin_server=debug&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#e6db74">&#34;1000:1000&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgresql: image</span>: <span style="color:#ae81ff">postgres:14</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./postgres-data:/var/lib/postgresql/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: POSTGRES_USER</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">change-me</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">user</span>: <span style="color:#e6db74">&#34;1000:1000&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># 可选：自动备份</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">backup: image</span>: <span style="color:#ae81ff">prodrigestivill/postgres-backup-local</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">always</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./backups:/backups</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">links</span>: - <span style="color:#ae81ff">postgresql</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: POSTGRES_HOST</span>: <span style="color:#ae81ff">postgresql</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_DB</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_USER</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_PASSWORD</span>: <span style="color:#ae81ff">change-me</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">POSTGRES_EXTRA_OPTS</span>: <span style="color:#e6db74">&#34;-Z6 --schema=public --blobs&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">SCHEDULE</span>: <span style="color:#e6db74">&#34;@daily&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">BACKUP_KEEP_DAYS</span>: <span style="color:#e6db74">&#34;7&#34;</span>
+</span></span></code></pre></div><h3 id="启动服务器">启动服务器<a hidden class="anchor" aria-hidden="true" href="#启动服务器">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 创建数据目录</span>
+</span></span><span style="display:flex;"><span>mkdir -p atuin-data postgres-data backups
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动服务</span>
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查健康状态</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:8888/health
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># {&#34;status&#34;:&#34;ok&#34;}</span>
+</span></span></code></pre></div><h3 id="自托管的客户端配置">自托管的客户端配置<a hidden class="anchor" aria-hidden="true" href="#自托管的客户端配置">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.config/atuin/config.toml</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">settings</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sync_address</span> = <span style="color:#e6db74">&#34;http://your-server:8888&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">auto_sync</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">sync_frequency</span> = <span style="color:#e6db74">&#34;5m&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在自托管服务器上注册新账户</span>
+</span></span><span style="display:flex;"><span>atuin register -u myuser -e myuser@example.com -p securepassword
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或在其他机器上登录</span>
+</span></span><span style="display:flex;"><span>atuin login -u myuser -p securepassword
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 获取你的加密密钥（安全备份）</span>
+</span></span><span style="display:flex;"><span>atuin key
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># c2e2d6e5a9b1c3f4d7e8a9b0c1d2e3f4...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 触发同步</span>
+</span></span><span style="display:flex;"><span>atuin sync
+</span></span></code></pre></div><h3 id="kubernetes-部署">Kubernetes 部署<a hidden class="anchor" aria-hidden="true" href="#kubernetes-部署">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># atuin-deployment.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">atuin-server</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: replicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: matchLabels: app</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template: metadata: labels: app</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec: containers: - name</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">image</span>: <span style="color:#ae81ff">ghcr.io/atuinsh/atuin:18.16.1</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">command</span>: [<span style="color:#e6db74">&#34;atuin&#34;</span>, <span style="color:#e6db74">&#34;server&#34;</span>, <span style="color:#e6db74">&#34;start&#34;</span>]
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">ports: - containerPort</span>: <span style="color:#ae81ff">8888</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">env: - name</span>: <span style="color:#ae81ff">ATUIN_HOST</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">value</span>: <span style="color:#e6db74">&#34;0.0.0.0&#34;</span>
+</span></span><span style="display:flex;"><span>            - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">ATUIN_DB_URI</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">valueFrom: secretKeyRef: name</span>: <span style="color:#ae81ff">atuin-db-secret</span>
+</span></span><span style="display:flex;"><span>                  <span style="color:#f92672">key</span>: <span style="color:#ae81ff">uri</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">atuin-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: selector: app</span>: <span style="color:#ae81ff">atuin</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports: - port</span>: <span style="color:#ae81ff">8888</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8888</span>
+</span></span></code></pre></div><h2 id="基准测试--真实用例">基准测试 / 真实用例<a hidden class="anchor" aria-hidden="true" href="#基准测试--真实用例">#</a></h2>
+<h3 id="性能特征">性能特征<a hidden class="anchor" aria-hidden="true" href="#性能特征">#</a></h3>
+<p>Atuin 的 Rust 实现和 SQLite 后端在大型历史数据集上提供稳定的性能：</p>
+<p>| 指标 | 数值 | 说明 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 历史查询（10万条） | ~15ms | 模糊搜索，冷缓存 |
 | 历史查询（50万条） | ~45ms | 模糊搜索，热缓存 |
 | 同步初始上传（5万条命令） | ~30秒 | 取决于带宽 |
 | 增量同步 | ~1-3秒 | 典型每日增量 |
 | 二进制文件大小 | ~12MB | 单静态二进制 |
 | 内存占用 | ~15MB | 空闲时驻留 |
-| SQLite DB 大小 | ~100MB/10万命令 | 含完整元数据 |</p><h3 id=生产用例>生产用例<a hidden class=anchor aria-hidden=true href=#生产用例>#</a></h3><ol><li><strong>多设备开发</strong>：一位开发者拥有工作笔记本、个人台式机和云虚拟机，保持所有 shell 历史同步。在一台机器上运行 <code>docker compose up</code>，可在另一台机器上搜索到。</li><li><strong>团队知识保留</strong>：DevOps 团队自托管 Atuin，以在轮值的 on-call 工程师之间维护可搜索的基础设施命令审计跟踪。</li><li><strong>远程环境恢复</strong>：使用临时云工作空间（Gitpod、Coder）的开发者同步历史，工作空间销毁不会擦除命令上下文。</li></ol><h3 id=stats-命令输出>Stats 命令输出<a hidden class=anchor aria-hidden=true href=#stats-命令输出>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>$ atuin stats
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮▮▮▮▮▮▮▮▮▮<span style=color:#f92672>]</span>  9,607 fg
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮▮▮▮▮▮▮▮▮ <span style=color:#f92672>]</span>  9,458 vim
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮▮▮       <span style=color:#f92672>]</span>  3,144 ag
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮▮▮       <span style=color:#f92672>]</span>  3,095 git status
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮▮        <span style=color:#f92672>]</span>  2,248 git diff
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮         <span style=color:#f92672>]</span>  1,787 curl
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮         <span style=color:#f92672>]</span>  1,571 jq
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮         <span style=color:#f92672>]</span>  1,357 rg
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮         <span style=color:#f92672>]</span>  1,348 cd
-</span></span><span style=display:flex><span><span style=color:#f92672>[</span>▮         <span style=color:#f92672>]</span>  1,322 git log
-</span></span><span style=display:flex><span>Total commands: 62,849
-</span></span><span style=display:flex><span>Unique commands: 26,908
-</span></span></code></pre></div><h2 id=高级用法--生产环境加固>高级用法 / 生产环境加固<a hidden class=anchor aria-hidden=true href=#高级用法--生产环境加固>#</a></h2><h3 id=历史隐私过滤器>历史隐私过滤器<a hidden class=anchor aria-hidden=true href=#历史隐私过滤器>#</a></h3><p>防止敏感命令进入数据库：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># ~/.config/atuin/config.toml</span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>settings</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>history_filter</span> = [
-</span></span><span style=display:flex><span>    <span style=color:#75715e># AWS 凭证</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^aws configure&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export AWS_SECRET_ACCESS_KEY&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 通用密钥</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export.*SECRET&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export.*PASSWORD&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^export.*TOKEN&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^echo.*password&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#75715e># SSH 密钥</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^ssh-add&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^ssh-keygen&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 数据库连接字符串</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^psql.*://.*:&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;^mysql.*-p&#34;</span>,
-</span></span><span style=display:flex><span>]
-</span></span></code></pre></div><h3 id=备份你的历史记录>备份你的历史记录<a hidden class=anchor aria-hidden=true href=#备份你的历史记录>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># SQLite 备份（安全，无锁问题）</span>
-</span></span><span style=display:flex><span>sqlite3 ~/.local/share/atuin/history.db <span style=color:#e6db74>&#34;.backup &#39;/backup/atuin-</span><span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span><span style=color:#e6db74>.db&#39;&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或通过 WAL 检查点复制</span>
-</span></span><span style=display:flex><span>cp ~/.local/share/atuin/history.db ~/backups/atuin-backup.db
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 通过 cron 自动每日备份</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>0</span> <span style=color:#ae81ff>2</span> * * * sqlite3 ~/.local/share/atuin/history.db <span style=color:#e6db74>&#34;.backup &#39;/backups/atuin/atuin-</span><span style=color:#66d9ef>$(</span>date +<span style=color:#ae81ff>\%</span>Y<span style=color:#ae81ff>\%</span>m<span style=color:#ae81ff>\%</span>d<span style=color:#66d9ef>)</span><span style=color:#e6db74>.db&#39;&#34;</span> <span style=color:#f92672>&amp;&amp;</span> find /backups/atuin -mtime +30 -delete
-</span></span></code></pre></div><h3 id=监控同步健康>监控同步健康<a hidden class=anchor aria-hidden=true href=#监控同步健康>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 检查上次同步时间</span>
-</span></span><span style=display:flex><span>atuin sync --force  <span style=color:#75715e># 强制同步并显示状态</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 查看同步信息</span>
-</span></span><span style=display:flex><span>atuin info
-</span></span><span style=display:flex><span><span style=color:#75715e># Atuin v18.16.1</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Sync interval: 5m</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Sync address: https://api.atuin.sh</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Last sync: 2026-05-20T08:15:32Z</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># History count: 47,231</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查问题</span>
-</span></span><span style=display:flex><span>atuin doctor
-</span></span></code></pre></div><h3 id=tui-主题>TUI 主题<a hidden class=anchor aria-hidden=true href=#tui-主题>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span><span style=color:#75715e># ~/.config/atuin/config.toml</span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>theme</span>]
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用终端默认颜色</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>use_default_colors</span> = <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或指定显式颜色</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>base</span> = <span style=color:#e6db74>&#34;#1e1e2e&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>layer1</span> = <span style=color:#e6db74>&#34;#313244&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>text</span> = <span style=color:#e6db74>&#34;#cdd6f4&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>accent</span> = <span style=color:#e6db74>&#34;#89b4fa&#34;</span>
-</span></span></code></pre></div><h3 id=多机器密钥迁移>多机器密钥迁移<a hidden class=anchor aria-hidden=true href=#多机器密钥迁移>#</a></h3><p>设置新机器时，安全地传输加密密钥：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在旧机器上 — 复制密钥到剪贴板（或通过安全传输）</span>
-</span></span><span style=display:flex><span>cat ~/.local/share/atuin/key
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在新机器上 — 安装并登录后</span>
-</span></span><span style=display:flex><span>mkdir -p ~/.local/share/atuin
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;YOUR_KEY_HERE&#34;</span> &gt; ~/.local/share/atuin/key
-</span></span><span style=display:flex><span>chmod <span style=color:#ae81ff>600</span> ~/.local/share/atuin/key
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证同步正常</span>
-</span></span><span style=display:flex><span>atuin sync
-</span></span><span style=display:flex><span>atuin stats
-</span></span></code></pre></div><h2 id=与替代品对比>与替代品对比<a hidden class=anchor aria-hidden=true href=#与替代品对比>#</a></h2><p>| 功能 | Atuin | mcfly | fzf + history | Hstr |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| SQLite DB 大小 | ~100MB/10万命令 | 含完整元数据 |</p>
+<h3 id="生产用例">生产用例<a hidden class="anchor" aria-hidden="true" href="#生产用例">#</a></h3>
+<ol>
+<li><strong>多设备开发</strong>：一位开发者拥有工作笔记本、个人台式机和云虚拟机，保持所有 shell 历史同步。在一台机器上运行 <code>docker compose up</code>，可在另一台机器上搜索到。</li>
+<li><strong>团队知识保留</strong>：DevOps 团队自托管 Atuin，以在轮值的 on-call 工程师之间维护可搜索的基础设施命令审计跟踪。</li>
+<li><strong>远程环境恢复</strong>：使用临时云工作空间（Gitpod、Coder）的开发者同步历史，工作空间销毁不会擦除命令上下文。</li>
+</ol>
+<h3 id="stats-命令输出">Stats 命令输出<a hidden class="anchor" aria-hidden="true" href="#stats-命令输出">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ atuin stats
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮▮▮▮▮▮▮▮▮▮<span style="color:#f92672">]</span>  9,607 fg
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮▮▮▮▮▮▮▮▮ <span style="color:#f92672">]</span>  9,458 vim
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮▮▮       <span style="color:#f92672">]</span>  3,144 ag
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮▮▮       <span style="color:#f92672">]</span>  3,095 git status
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮▮        <span style="color:#f92672">]</span>  2,248 git diff
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮         <span style="color:#f92672">]</span>  1,787 curl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮         <span style="color:#f92672">]</span>  1,571 jq
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮         <span style="color:#f92672">]</span>  1,357 rg
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮         <span style="color:#f92672">]</span>  1,348 cd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">[</span>▮         <span style="color:#f92672">]</span>  1,322 git log
+</span></span><span style="display:flex;"><span>Total commands: 62,849
+</span></span><span style="display:flex;"><span>Unique commands: 26,908
+</span></span></code></pre></div><h2 id="高级用法--生产环境加固">高级用法 / 生产环境加固<a hidden class="anchor" aria-hidden="true" href="#高级用法--生产环境加固">#</a></h2>
+<h3 id="历史隐私过滤器">历史隐私过滤器<a hidden class="anchor" aria-hidden="true" href="#历史隐私过滤器">#</a></h3>
+<p>防止敏感命令进入数据库：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.config/atuin/config.toml</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">settings</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">history_filter</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># AWS 凭证</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^aws configure&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export AWS_SECRET_ACCESS_KEY&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 通用密钥</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export.*SECRET&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export.*PASSWORD&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^export.*TOKEN&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^echo.*password&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># SSH 密钥</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^ssh-add&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^ssh-keygen&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 数据库连接字符串</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^psql.*://.*:&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;^mysql.*-p&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="备份你的历史记录">备份你的历史记录<a hidden class="anchor" aria-hidden="true" href="#备份你的历史记录">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># SQLite 备份（安全，无锁问题）</span>
+</span></span><span style="display:flex;"><span>sqlite3 ~/.local/share/atuin/history.db <span style="color:#e6db74">&#34;.backup &#39;/backup/atuin-</span><span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span><span style="color:#e6db74">.db&#39;&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或通过 WAL 检查点复制</span>
+</span></span><span style="display:flex;"><span>cp ~/.local/share/atuin/history.db ~/backups/atuin-backup.db
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 通过 cron 自动每日备份</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span> * * * sqlite3 ~/.local/share/atuin/history.db <span style="color:#e6db74">&#34;.backup &#39;/backups/atuin/atuin-</span><span style="color:#66d9ef">$(</span>date +<span style="color:#ae81ff">\%</span>Y<span style="color:#ae81ff">\%</span>m<span style="color:#ae81ff">\%</span>d<span style="color:#66d9ef">)</span><span style="color:#e6db74">.db&#39;&#34;</span> <span style="color:#f92672">&amp;&amp;</span> find /backups/atuin -mtime +30 -delete
+</span></span></code></pre></div><h3 id="监控同步健康">监控同步健康<a hidden class="anchor" aria-hidden="true" href="#监控同步健康">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 检查上次同步时间</span>
+</span></span><span style="display:flex;"><span>atuin sync --force  <span style="color:#75715e"># 强制同步并显示状态</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查看同步信息</span>
+</span></span><span style="display:flex;"><span>atuin info
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Atuin v18.16.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sync interval: 5m</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sync address: https://api.atuin.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Last sync: 2026-05-20T08:15:32Z</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># History count: 47,231</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查问题</span>
+</span></span><span style="display:flex;"><span>atuin doctor
+</span></span></code></pre></div><h3 id="tui-主题">TUI 主题<a hidden class="anchor" aria-hidden="true" href="#tui-主题">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.config/atuin/config.toml</span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">theme</span>]
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用终端默认颜色</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">use_default_colors</span> = <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或指定显式颜色</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">base</span> = <span style="color:#e6db74">&#34;#1e1e2e&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">layer1</span> = <span style="color:#e6db74">&#34;#313244&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">text</span> = <span style="color:#e6db74">&#34;#cdd6f4&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">accent</span> = <span style="color:#e6db74">&#34;#89b4fa&#34;</span>
+</span></span></code></pre></div><h3 id="多机器密钥迁移">多机器密钥迁移<a hidden class="anchor" aria-hidden="true" href="#多机器密钥迁移">#</a></h3>
+<p>设置新机器时，安全地传输加密密钥：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在旧机器上 — 复制密钥到剪贴板（或通过安全传输）</span>
+</span></span><span style="display:flex;"><span>cat ~/.local/share/atuin/key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在新机器上 — 安装并登录后</span>
+</span></span><span style="display:flex;"><span>mkdir -p ~/.local/share/atuin
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;YOUR_KEY_HERE&#34;</span> &gt; ~/.local/share/atuin/key
+</span></span><span style="display:flex;"><span>chmod <span style="color:#ae81ff">600</span> ~/.local/share/atuin/key
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证同步正常</span>
+</span></span><span style="display:flex;"><span>atuin sync
+</span></span><span style="display:flex;"><span>atuin stats
+</span></span></code></pre></div><h2 id="与替代品对比">与替代品对比<a hidden class="anchor" aria-hidden="true" href="#与替代品对比">#</a></h2>
+<p>| 功能 | Atuin | mcfly | fzf + history | Hstr |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>数据库</strong> | SQLite | SQLite | 纯文本文件 | 纯文本文件 |
 | <strong>跨机同步</strong> | 是（端到端加密） | 否 | 否 | 否 |
 | <strong>搜索 UI</strong> | 内置 TUI | 内置 TUI | fzf 集成 | 内置 TUI |
@@ -404,16 +833,88 @@ $env.ATUIN_NOBIND = true  # 如果需要自定义按键绑定
 | <strong>AI 集成</strong> | 是（可选） | 否 | 否 | 否 |
 | <strong>历史导入</strong> | bash、zsh、fish、nu | bash、zsh、fish | 不适用 | bash、zsh |
 | <strong>GitHub Stars</strong> | 29,794 | 6,800 | 67,000 (fzf) | 3,900 |
-| <strong>二进制大小</strong> | ~12MB | ~4MB | ~4MB（仅 fzf） | ~2MB |</p><h3 id=何时选择哪款工具>何时选择哪款工具<a hidden class=anchor aria-hidden=true href=#何时选择哪款工具>#</a></h3><ul><li><strong>Atuin</strong>：你需要在多台机器间加密同步、丰富的上下文元数据和全功能搜索 UI。最适合使用 2 台以上机器且重视历史分析的开发者。</li><li><strong>mcfly</strong>：你需要轻量、完全本地的工具，带智能上下文排序。最适合单机用户，零网络依赖。</li><li><strong>fzf + history</strong>：你已使用 fzf 查找文件，想要极简的历史方案。最适合希望一个工具搞定所有模糊搜索的用户。</li><li><strong>Hstr</strong>：你需要简单轻量的历史 TUI，无数据库开销。最适合 bash/zsh 上的极简主义者。</li></ul><h2 id=限制--诚实评估>限制 / 诚实评估<a hidden class=anchor aria-hidden=true href=#限制--诚实评估>#</a></h2><p>Atuin 并非适用于所有场景：</p><ol><li><p><strong>无执行者追踪</strong>：Atuin 记录命令，但无法区分是手动输入、脚本执行还是 AI 助手生成。所有来源在数据库中看起来都一样。</p></li><li><p><strong>本地数据库未加密</strong>：位于 <code>~/.local/share/atuin/</code> 的 SQLite 数据库以明文存储以保证搜索性能。同步是加密的，但本地存储未加密。使用文件系统加密（LUKS、FileVault）进行保护。</p></li><li><p><strong>Bash 集成可能脆弱</strong>：Bash 的 <code>preexec</code> 钩子依赖 DEBUG trap，可能与其他工具（pyenv、nodenv、某些 PROMPT_COMMAND 设置）冲突。Zsh 和 Fish 集成更可靠。</p></li><li><p><strong>同步需要账户</strong>：即使自托管同步也需要用户注册。没有匿名或"直接同步到 S3"模式。</p></li><li><p><strong>上箭头绑定让新用户困惑</strong>：Atuin 默认替换上箭头键，可能让只想循环最近命令的用户困惑。设置 <code>filter_mode_shell_up_key = "session"</code> 或完全禁用该绑定。</p></li><li><p><strong>PowerShell 支持为二级</strong>：虽然功能正常，但 PowerShell 集成测试较少，可能落后于 Unix shell 功能。</p></li></ol><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><h3 id=如何禁用上箭头绑定>如何禁用上箭头绑定？<a hidden class=anchor aria-hidden=true href=#如何禁用上箭头绑定>#</a></h3><p>在配置中添加 <code>filter_mode_shell_up_key = "global"</code> 或 <code>show_preview = false</code>。要完全禁用 Atuin 的上箭头，在 init 行前添加 <code>export ATUIN_NOBIND=1</code>，然后手动绑定 <code>Ctrl+R</code>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.bashrc</span>
-</span></span><span style=display:flex><span>export ATUIN_NOBIND<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>eval <span style=color:#e6db74>&#34;</span><span style=color:#66d9ef>$(</span>atuin init bash<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>bind <span style=color:#e6db74>&#39;&#34;\C-r&#34;: &#34;\C-aatuin search\C-j&#34;&#39;</span>
-</span></span></code></pre></div><h3 id=可以完全不使用同步吗>可以完全不使用同步吗？<a hidden class=anchor aria-hidden=true href=#可以完全不使用同步吗>#</a></h3><p>可以。Atuin 完全作为本地工具工作。跳过注册，忽略所有同步命令。你的历史存储在本地 SQLite 中，所有搜索功能离线可用。</p><h3 id=我的数据如何加密>我的数据如何加密？<a hidden class=anchor aria-hidden=true href=#我的数据如何加密>#</a></h3><p>所有同步数据在离开机器前使用 PASETO V4（XChaCha20-Poly1305 + Blake2b）进行客户端加密。同步服务器（无论是自托管还是 atuin.sh）只能看到加密 blob——它无法解密或读取你的命令。本地 SQLite 数据库未加密，以保证搜索性能。</p><h3 id=如果丢失加密密钥会怎样>如果丢失加密密钥会怎样？<a hidden class=anchor aria-hidden=true href=#如果丢失加密密钥会怎样>#</a></h3><p>加密密钥是解密同步历史所必需的。如果丢失，无法恢复之前同步的数据。密钥在初始设置时通过 <code>atuin key</code> 显示——请备份到密码管理器。本地历史无论密钥是否存在都可访问。</p><h3 id=两个用户可以共享历史数据库吗>两个用户可以共享历史数据库吗？<a hidden class=anchor aria-hidden=true href=#两个用户可以共享历史数据库吗>#</a></h3><p>不能直接共享。Atuin 的同步模型专为同一用户跨多设备设计。对于团队共享历史，每个用户维护自己的数据库和同步账户。自托管服务器支持多个独立账户。</p><h3 id=atuin-会降低-shell-速度吗>Atuin 会降低 shell 速度吗？<a hidden class=anchor aria-hidden=true href=#atuin-会降低-shell-速度吗>#</a></h3><p>没有可测量的影响。Rust 二进制文件增加约 5-10ms 的 shell 启动时间（一次性），命令捕获通过 shell 钩子异步进行。SQLite WAL 模式确保写入不会阻塞 shell 提示符。</p><h3 id=如何从历史记录中删除命令>如何从历史记录中删除命令？<a hidden class=anchor aria-hidden=true href=#如何从历史记录中删除命令>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 按搜索模式删除</span>
-</span></span><span style=display:flex><span>atuin search --delete <span style=color:#e6db74>&#34;sensitive-command&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或使用 TUI — 找到命令，然后按 Alt+Delete</span>
-</span></span></code></pre></div><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移植的数据库。凭借 29,794 个 GitHub Stars、端到端加密同步和对所有主流 shell 的支持，它是任何活在终端里的开发者的实用升级。</p><p><strong>后续步骤：</strong></p><ol><li>运行 <code>curl --proto '=https" --tlsv1.2 -LsSf https://setup.atuin.sh | sh</code> 安装</li><li>使用 ````atuin import auto``` 导入现有历史</li><li>注册同步或配置自托管服务器</li><li>加入 <a href=https://t.me/dibi8dev>Telegram 开发者社区</a> 获取技巧和故障排除</li></ol><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h2><ul><li><a href=https://github.com/atuinsh/atuin>Atuin GitHub 仓库</a></li><li><a href=https://docs.atuin.sh/>Atuin 官方文档</a></li><li><a href=https://docs.atuin.sh/self-hosting/docker/>Atuin 自托管指南</a></li><li><a href=https://docs.atuin.sh/cli/reference/config/>Atuin 配置参考</a></li><li><a href=https://paseto.io/>PASETO V4 规范</a></li><li><a href=https://ellie.wtf/projects/atuin>Ellie Huxtable — Atuin 创作者博客</a></li><li><a href=https://github.com/cantino/mcfly>mcfly GitHub 仓库</a></li><li><a href=https://github.com/junegunn/fzf>fzf GitHub 仓库</a></li><li><a href=https://github.com/dvorka/hstr>Hstr GitHub 仓库</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>二进制大小</strong> | ~12MB | ~4MB | ~4MB（仅 fzf） | ~2MB |</p>
+<h3 id="何时选择哪款工具">何时选择哪款工具<a hidden class="anchor" aria-hidden="true" href="#何时选择哪款工具">#</a></h3>
+<ul>
+<li><strong>Atuin</strong>：你需要在多台机器间加密同步、丰富的上下文元数据和全功能搜索 UI。最适合使用 2 台以上机器且重视历史分析的开发者。</li>
+<li><strong>mcfly</strong>：你需要轻量、完全本地的工具，带智能上下文排序。最适合单机用户，零网络依赖。</li>
+<li><strong>fzf + history</strong>：你已使用 fzf 查找文件，想要极简的历史方案。最适合希望一个工具搞定所有模糊搜索的用户。</li>
+<li><strong>Hstr</strong>：你需要简单轻量的历史 TUI，无数据库开销。最适合 bash/zsh 上的极简主义者。</li>
+</ul>
+<h2 id="限制--诚实评估">限制 / 诚实评估<a hidden class="anchor" aria-hidden="true" href="#限制--诚实评估">#</a></h2>
+<p>Atuin 并非适用于所有场景：</p>
+<ol>
+<li>
+<p><strong>无执行者追踪</strong>：Atuin 记录命令，但无法区分是手动输入、脚本执行还是 AI 助手生成。所有来源在数据库中看起来都一样。</p>
+</li>
+<li>
+<p><strong>本地数据库未加密</strong>：位于 <code>~/.local/share/atuin/</code> 的 SQLite 数据库以明文存储以保证搜索性能。同步是加密的，但本地存储未加密。使用文件系统加密（LUKS、FileVault）进行保护。</p>
+</li>
+<li>
+<p><strong>Bash 集成可能脆弱</strong>：Bash 的 <code>preexec</code> 钩子依赖 DEBUG trap，可能与其他工具（pyenv、nodenv、某些 PROMPT_COMMAND 设置）冲突。Zsh 和 Fish 集成更可靠。</p>
+</li>
+<li>
+<p><strong>同步需要账户</strong>：即使自托管同步也需要用户注册。没有匿名或&quot;直接同步到 S3&quot;模式。</p>
+</li>
+<li>
+<p><strong>上箭头绑定让新用户困惑</strong>：Atuin 默认替换上箭头键，可能让只想循环最近命令的用户困惑。设置 <code>filter_mode_shell_up_key = &quot;session&quot;</code> 或完全禁用该绑定。</p>
+</li>
+<li>
+<p><strong>PowerShell 支持为二级</strong>：虽然功能正常，但 PowerShell 集成测试较少，可能落后于 Unix shell 功能。</p>
+</li>
+</ol>
+<h2 id="常见问题">常见问题<a hidden class="anchor" aria-hidden="true" href="#常见问题">#</a></h2>
+<h3 id="如何禁用上箭头绑定">如何禁用上箭头绑定？<a hidden class="anchor" aria-hidden="true" href="#如何禁用上箭头绑定">#</a></h3>
+<p>在配置中添加 <code>filter_mode_shell_up_key = &quot;global&quot;</code> 或 <code>show_preview = false</code>。要完全禁用 Atuin 的上箭头，在 init 行前添加 <code>export ATUIN_NOBIND=1</code>，然后手动绑定 <code>Ctrl+R</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.bashrc</span>
+</span></span><span style="display:flex;"><span>export ATUIN_NOBIND<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>eval <span style="color:#e6db74">&#34;</span><span style="color:#66d9ef">$(</span>atuin init bash<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>bind <span style="color:#e6db74">&#39;&#34;\C-r&#34;: &#34;\C-aatuin search\C-j&#34;&#39;</span>
+</span></span></code></pre></div><h3 id="可以完全不使用同步吗">可以完全不使用同步吗？<a hidden class="anchor" aria-hidden="true" href="#可以完全不使用同步吗">#</a></h3>
+<p>可以。Atuin 完全作为本地工具工作。跳过注册，忽略所有同步命令。你的历史存储在本地 SQLite 中，所有搜索功能离线可用。</p>
+<h3 id="我的数据如何加密">我的数据如何加密？<a hidden class="anchor" aria-hidden="true" href="#我的数据如何加密">#</a></h3>
+<p>所有同步数据在离开机器前使用 PASETO V4（XChaCha20-Poly1305 + Blake2b）进行客户端加密。同步服务器（无论是自托管还是 atuin.sh）只能看到加密 blob——它无法解密或读取你的命令。本地 SQLite 数据库未加密，以保证搜索性能。</p>
+<h3 id="如果丢失加密密钥会怎样">如果丢失加密密钥会怎样？<a hidden class="anchor" aria-hidden="true" href="#如果丢失加密密钥会怎样">#</a></h3>
+<p>加密密钥是解密同步历史所必需的。如果丢失，无法恢复之前同步的数据。密钥在初始设置时通过 <code>atuin key</code> 显示——请备份到密码管理器。本地历史无论密钥是否存在都可访问。</p>
+<h3 id="两个用户可以共享历史数据库吗">两个用户可以共享历史数据库吗？<a hidden class="anchor" aria-hidden="true" href="#两个用户可以共享历史数据库吗">#</a></h3>
+<p>不能直接共享。Atuin 的同步模型专为同一用户跨多设备设计。对于团队共享历史，每个用户维护自己的数据库和同步账户。自托管服务器支持多个独立账户。</p>
+<h3 id="atuin-会降低-shell-速度吗">Atuin 会降低 shell 速度吗？<a hidden class="anchor" aria-hidden="true" href="#atuin-会降低-shell-速度吗">#</a></h3>
+<p>没有可测量的影响。Rust 二进制文件增加约 5-10ms 的 shell 启动时间（一次性），命令捕获通过 shell 钩子异步进行。SQLite WAL 模式确保写入不会阻塞 shell 提示符。</p>
+<h3 id="如何从历史记录中删除命令">如何从历史记录中删除命令？<a hidden class="anchor" aria-hidden="true" href="#如何从历史记录中删除命令">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 按搜索模式删除</span>
+</span></span><span style="display:flex;"><span>atuin search --delete <span style="color:#e6db74">&#34;sensitive-command&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或使用 TUI — 找到命令，然后按 Alt+Delete</span>
+</span></span></code></pre></div><h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>Atuin 将 shell 历史从纯文本文件转变为结构化、可搜索、可移植的数据库。凭借 29,794 个 GitHub Stars、端到端加密同步和对所有主流 shell 的支持，它是任何活在终端里的开发者的实用升级。</p>
+<p><strong>后续步骤：</strong></p>
+<ol>
+<li>运行 <code>curl --proto '=https&quot; --tlsv1.2 -LsSf https://setup.atuin.sh | sh</code> 安装</li>
+<li>使用 ````atuin import auto``` 导入现有历史</li>
+<li>注册同步或配置自托管服务器</li>
+<li>加入 <a href="https://t.me/dibi8dev">Telegram 开发者社区</a> 获取技巧和故障排除</li>
+</ol>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="来源与延伸阅读">来源与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#来源与延伸阅读">#</a></h2>
+<ul>
+<li><a href="https://github.com/atuinsh/atuin">Atuin GitHub 仓库</a></li>
+<li><a href="https://docs.atuin.sh/">Atuin 官方文档</a></li>
+<li><a href="https://docs.atuin.sh/self-hosting/docker/">Atuin 自托管指南</a></li>
+<li><a href="https://docs.atuin.sh/cli/reference/config/">Atuin 配置参考</a></li>
+<li><a href="https://paseto.io/">PASETO V4 规范</a></li>
+<li><a href="https://ellie.wtf/projects/atuin">Ellie Huxtable — Atuin 创作者博客</a></li>
+<li><a href="https://github.com/cantino/mcfly">mcfly GitHub 仓库</a></li>
+<li><a href="https://github.com/junegunn/fzf">fzf GitHub 仓库</a></li>
+<li><a href="https://github.com/dvorka/hstr">Hstr GitHub 仓库</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Atuin: 29,794 GitHub Stars — Shell History Sync 完整设置指南 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -427,18 +928,175 @@ $env.ATUIN_NOBIND = true  # 如果需要自定义按键绑定
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/atuin%22>https://dibi8.com/zh/resources/atuin"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/atuin%22">https://dibi8.com/zh/resources/atuin"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/atuin/>ohmyzsh</a></li><li><a href=/zh/ai-coding-agents/atuin/>ohmyzsh</a></li><li><a href=/zh/ai-coding-agents/atuin/>ohmyzsh</a></li><li><a href=/zh/ai-coding-agents/atuin/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/zh/ai-coding-agents/atuin/>zed-vs-cursor</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/arize-ai-observability-llm/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/auto-gpt-autonomous-agent-2026/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/atuin/">ohmyzsh</a></li>
+<li><a href="/zh/ai-coding-agents/atuin/">ohmyzsh</a></li>
+<li><a href="/zh/ai-coding-agents/atuin/">ohmyzsh</a></li>
+<li><a href="/zh/ai-coding-agents/atuin/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/zh/ai-coding-agents/atuin/">zed-vs-cursor</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/arize-ai-observability-llm/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/auto-gpt-autonomous-agent-2026/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

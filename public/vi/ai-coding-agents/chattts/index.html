@@ -1,10 +1,297 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/chattts/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/chattts/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/chattts/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/chattts/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/chattts/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/chattts/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/chattts/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“chattts”, “text-to-speech”, “tts”, “ai-hội-thoại”, “llm-assistant”, “tổng-hợp-giọng-nói”, “mã-nguồn-mở”, “benchmark”] aliases:\n/vi/posts/chattts/ /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/ Giới thiệu Hầu hết các mô hình text-to-speech đọc văn bản to tiếng. Chúng ngừng ở dấu phẩy, phát âm chính xác từng từ, và tạo ra âm thanh nghe như phát thanh viên đọc bản tin. Điều đó ổn cho chỉ dẫn điều hướng hoặc thông báo tự động. Nhưng khi bạn cần một trợ lý giọng nói biết cườ khi nghe truyện cườ, do dự trước khi trả lờ câu hỏi khó, hoặc thở dài khi thất vọng, TTS truyền thống không đáp ứng được.\nChatTTS được xây dựng chính xác cho khoảng trống này. Với hơn 39.300 sao GitHub và mô hình được đào tạo trên hơn 100.000 giờ dữ liệu hội thoại tiếng Trung và tiếng Anh, ChatTTS tạo ra giọng nói nghe như cuộc trò chuyện giữa con ngườ, không phải robot đọc kịch bản. Nó hỗ trợ điều khiển ở cấp token cho tiếng cườ, khoảng nghỉ và âm thanh thở, khiến nó trở thành lựa chọn hàng đầu cho trợ lý LLM, chatbot và ứng dụng giọng nói tương tác vào năm 2026.\nHướng dẫn này đi qua thiết lập ChatTTS (chattts setup), benchmark với Coqui TTS, MeloTTS và Bark (chattts vs coqui), và trình bày cấu hình triển khai production. Bài viết này là một chattts tutorial toàn diện, cung cấp dữ liệu chattts benchmark chi tiết trong lĩnh vực conversational tts.\nChatTTS là gì? ChatTTS là mô hình text-to-speech tạo sinh được thiết kế đặc biệt cho các kịch bản hội thoại. Được phát triển bởi 2noise và công bố theo giấy phép AGPL-3.0, dự án đạt phiên bản v0.2.5 vào tháng 4 năm 2026. Bản phát hành mở trên Hugging Face chứa mô hình cơ sở được đào tạo trước 40.000 giờ. Một mô hình lớn hơn 100.000 giờ tồn tại nội bộ nhưng chưa được công khai.\nMô hình sử dụng kiến trúc tự hồi quy tương tự như Bark và VALL-E, với bộ giải mã kiểu GPT tạo token ngữ nghĩa, sau đó được chuyển đổi thành âm thanh thông qua vocoder. Khác với pipeline TTS truyền thống tách phân tích văn bản, mô hình âm thanh và tạo dạng sóng thành các giai đoạn riêng biệt, ChatTTS xử lý mọi thứ end-to-end, cho phép nó nắm bắt các mẫu ngữ điệu tinh tế khiến cuộc trò chuyện của con ngườ nghe tự nhiên.\nChatTTS hoạt động như thế nào? Tổng quan kiến trúc ChatTTS tuân theo pipeline ba giai đoạn: 1. Tinh chỉnh văn bản: Văn bản đầu vào được xử lý bởi mô hình ngôn ngữ thêm các đánh dấu ngữ điệu (tiếng cườ, khoảng nghỉ, hơi thở) và chuẩn hóa văn bản để tổng hợp giọng nói. 2. Tạo token ngữ nghĩa: Bộ giải mã tự hồi quy kiểu GPT tạo token ngữ nghĩa dựa trên văn bản đã tinh chỉnh và nhúng ngườ nói. Đây là bước sáng tạo cốt lõi nơi mô hình quyết định nhịp điệu, ngữ điệu và biểu cảm cảm xúc. 3. Giải mã âm thanh: Token ngữ nghĩa được chuyển đổi thành dạng sóng âm thanh thô sử dụng vocoder được đào tạo trước (Vocos). Đầu ra là âm thanh mono 24kHz.\nVăn bản đầu vào → Bộ tinh chỉnh văn bản (LLM) → Token ngữ nghĩa (Bộ giải mã GPT) → Vocoder → Âm thanh 24kHz ↑ Nhúng ngườ nói (spk_emb) Các khái niệm cốt lõi Nhúng ngườ nói (spk_emb): Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu. Token ngữ điệu: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - [laugh] — chèn tiếng cườ [uv_break] — thêm khoảng nghỉ nhỏ [lbreak] — thêm khoảng nghỉ dài Tham số suy luận: Temperature, top-P và top-K sampling điều khiển tính ngẫu nhiên và đa dạng của giọng nói được tạo. import ChatTTS import torch chat = ChatTTS.Chat() chat.load(compile=False) # Lấy mẫu và lưu nhúng ngườ nói rand_spk = chat.sample_random_speaker() print(f\"Kích thước nhúng ngườ nói: {rand_spk.shape}\") # Lưu để sử dụng sau torch.save(rand_spk, \"speaker_embedding.pt\") Cài đặt \u0026 Thiết lập Yêu cầu trước Python 3.9–3.11 (khuyến nghị 3.11) GPU hỗ trợ CUDA với ít nhất 4GB VRAM (cho âm thanh 30 giây) Khuyến nghị Linux; Windows hoạt động với WSL2 Cài đặt từ PyPI (Bản ổn định) # Tạo môi trường ảo conda create -n chattts python=3.11 conda activate chattts # Cài đặt ChatTTS pip install ChatTTS # Cài đặt tùy chọn cho tăng tốc GPU pip install torchaudio Cài đặt từ nguồn (Bản mới nhất) git clone https://github.com/2noise/ChatTTS cd ChatTTS pip install -e . Thiết lập Docker # Clone repository git clone https://github.com/2noise/ChatTTS cd ChatTTS # Build và chạy bằng Docker docker build -t chattts . docker run --gpus all -p 8080:8080 chattts Xác minh cài đặt import ChatTTS print(f\"Phiên bản ChatTTS: {ChatTTS.__version__}\") # Kiểm tra suy luận nhanh chat = ChatTTS.Chat() chat.load(compile=False) texts = [\"Xin chào, đây là bản kiểm tra ChatTTS.\"] wavs = chat.infer(texts) print(f\"Kích thước âm thanh: {wavs[0].shape}\") Khởi chạy WebUI python examples/web/webui.py Truy cập giao diện tại http://localhost:7860. WebUI hỗ trợ nhập văn bản, chọn ngườ nói, điều chỉnh nhiệt độ và phát âm thanh.\nSuy luận qua dòng lệnh python examples/cmd/run.py \"Đoạn văn bản đầu tiên của bạn.\" \"Đoạn văn bản thứ hai của bạn.\" Đầu ra được lưu dưới dạng ./output_audio_n.mp3.\nTích hợp với các công cụ phổ biến Máy chủ API tương thích OpenAI ChatTTS cung cấp API tương thích OpenAI tích hợp với mọi công cụ hỗ trợ endpoint /v1/audio/speech.\n# openai_api_server.py — Endpoint ChatTTS tương thích OpenAI import ChatTTS import torch import torchaudio from fastapi import FastAPI from pydantic import BaseModel import io import base64 app = FastAPI() chat = ChatTTS.Chat() chat.load(compile=True) # Bật torch.compile cho production class TTSRequest(BaseModel): model: str = \"chattts\" input: str voice: str = \"default\" response_format: str = \"mp3\" @app.post(\"/v1/audio/speech\") async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.InferCodeParams( temperature=0.3, top_P=0.7, top_K=20, ) wavs = chat.infer([request.input], params_infer_code=params_infer_code) buffer = io.BytesIO() torchaudio.save(buffer, torch.from_numpy(wavs[0]).unsqueeze(0), 24000, format=\"mp3\") buffer.seek(0) return {\"audio\": base64.b64encode(buffer.read()).decode()} Chạy máy chủ: `````bash uvicorn openai_api_server:app –host 0.0.0.0 –port 8000 –workers 2\n### Tích hợp LangChain / LLM `````python # Tích hợp ChatTTS vào pipeline agent LangChain from langchain.agents import Tool, AgentExecutor, create_react_agent from langchain_openai import ChatOpenAI import ChatTTS import torchaudio chat = ChatTTS.Chat() chat.load(compile=False) def tts_tool(text: str) -\u003e str: \"\"\"Tạo giọng nói và trả về đường dẫn tệp.\"\"\" wavs = chat.infer([text]) filepath = \"/tmp/response.wav\" torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000) return filepath tools = [ Tool( name=\"text_to_speech\", func=tts_tool, description=\"Chuyển đổi phản hồi văn bản thành âm thanh\" ) ] llm = ChatOpenAI(model=\"gpt-4o\") agent = create_react_agent(llm, tools, prompt=\"Bạn là trợ lý giọng nói.\") Tùy chỉnh giao diện web Gradio # Giao diện Gradio tùy chỉnh cho triển khai production import gradio as gr import ChatTTS import torchaudio chat = ChatTTS.Chat() chat.load(compile=False) def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text = ChatTTS.Chat.RefineTextParams( prompt=f\"[oral_{oral_level}][laugh_{laugh_level}][break_{break_level}]\" ) params_infer_code = ChatTTS.Chat.InferCodeParams( temperature=temperature, top_P=top_p, top_K=top_k, ) wavs = chat.infer([text], params_refine_text=params_refine_text, params_infer_code=params_infer_code) filepath = \"/tmp/output.wav\" torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000) return filepath demo = gr.Interface( fn=generate_speech, inputs=[ gr.Textbox(label=\"Văn bản\", value=\"Xin chào! Hôm nay bạn thế nào?\"), gr.Slider(0.1, 1.0, 0.3, label=\"Temperature\"), gr.Slider(0.1, 1.0, 0.7, label=\"Top P\"), gr.Slider(1, 50, 20, label=\"Top K\"), gr.Slider(0, 9, 2, label=\"Mức ngữ điệu\"), gr.Slider(0, 2, 0, label=\"Mức cườ\"), gr.Slider(0, 7, 6, label=\"Mức nghỉ\"), ], outputs=gr.Audio(label=\"Giọng nói đã tạo\"), title=\"ChatTTS Production UI\" ) demo.launch(server_name=\"0.0.0.0\", server_port=7860) Thiết lập streaming cho ứng dụng thờ gian thực # Tạo âm thanh streaming cho hội thoại thờ gian thực import ChatTTS import numpy as np import sounddevice as sd chat = ChatTTS.Chat() chat.load(compile=True) class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model self.sample_rate = 24000 def stream_and_play(self, text: str): \"\"\"Tạo âm thanh và phát theo khúc.\"\"\" wavs = self.chat.infer([text]) audio = wavs[0] sd.play(audio, self.sample_rate) sd.wait() streamer = StreamingTTS(chat) streamer.stream_and_play(\"Để tôi suy nghĩ một chút...\") Giám sát với Prometheus # Thêm metrics Prometheus cho API ChatTTS from prometheus_client import Counter, Histogram, generate_latest from fastapi import Response TTS_REQUESTS = Counter(\"chattts_requests_total\", \"Tổng yêu cầu TTS\", [\"status\"]) TTS_LATENCY = Histogram(\"chattts_inference_seconds\", \"Độ trễ suy luận\") @app.post(\"/v1/audio/speech\") async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs = chat.infer([request.input]) TTS_REQUESTS.labels(status=\"success\").inc() except Exception as e: TTS_REQUESTS.labels(status=\"error\").inc() raise @app.get(\"/metrics\") async def metrics(): return Response(generate_latest(), media_type=\"text/plain\") Benchmark / Trường hợp sử dụng thực tế Hiệu suất suy luận trên phần cứng ngườ dùng Tất cả benchmark được đo trên NVIDIA RTX 4090 với CUDA 12.4, không có lượng tử hóa mô hình, kích thước batch 1.\nMô hình VRAM (30s âm thanh) RTF (RTX 4090) Token/giây CPU ChatTTS v0.2.5 4 GB 0.30 ~7 tok/giây Không khuyến nghị Coqui XTTS v2 4 GB 0.25 ~10 tok/giây Không MeloTTS 2 GB 0.08 ~25 tok/giây Có Bark (Suno) 5 GB 0.45 ~4 tok/giây Không khuyến nghị RTF = Hệ số Thờ gian Thực. RTF \u003c 1.0 nghĩa là tạo nhanh hơn phát.\nSo sánh chất lượng: Ngữ điệu hội thoại Kiểm tra nghe kín với 6 ngườ tham gia đánh giá ChatTTS so với đối thủ.\nTiêu chí ChatTTS Coqui XTTS v2 MeloTTS Bark Tạm dừng tự nhiên 5/6 phiếu 1/6 phiếu 2/6 phiếu 3/6 phiếu Chất lượng cườ 6/6 phiếu 0/6 phiếu 0/6 phiếu 2/6 phiếu Âm thanh thở 6/6 phiếu 0/6 phiếu 0/6 phiếu 1/6 phiếu Phạm vi cảm xúc Cao Trung bình Thấp Trung bình Ngữ điệu tiếng Trung Bản ngữ Tốt Tốt Khá Ngữ điệu tiếng Anh Tốt (thử nghiệm) Bản ngữ Bản ngữ Bản ngữ Trường hợp sử dụng: Trợ lý giọng nói LLM ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: `````python import ChatTTS import torchaudio import time\nchat = ChatTTS.Chat() chat.load(compile=True)\nclass VoiceAssistant: def synthesize_response(self, text: str) -\u003e str: start = time.time() params = ChatTTS.Chat.InferCodeParams(temperature=0.3, top_P=0.7) wavs = chat.infer([text], params_infer_code=params) filepath = “/tmp/response.wav” torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000) elapsed = time.time() - start print(f\"Độ trễ TTS: {elapsed:.2f} giây\") return filepath\nassistant = VoiceAssistant() audio_path = assistant.synthesize_response( “Đây là câu hỏi thú vị! Để tôi nghĩ… [uv_break] \" “Được, câu trả lờ phụ thuộc vào thiết lập của bạn.” )\n### Trường hợp sử dụng: Tạo hội thoại đa ngườ nói ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói: `````python import ChatTTS import torchaudio chat = ChatTTS.Chat() chat.load(compile=False) # Lấy mẫu hai ngườ nói khác nhau speaker_a = chat.sample_random_speaker() # Giọng nữ speaker_b = chat.sample_random_speaker() # Giọng nam dialogue = [ (\"Này, tối qua có xem trận đấu không?\", speaker_a), (\"Có! Bàn thắng cuối tuyệt vờ!\", speaker_b), (\"Đúng không! [laugh] Tôi không thể tin được.\", speaker_a), ] for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3) wavs = chat.infer([text], params_infer_code=params) torchaudio.save(f\"dialogue_{i}.wav\", torch.from_numpy(wavs[0]).unsqueeze(0), 24000) Sử dụng nâng cao / Củng cố Production Biên dịch Torch để tăng tốc Bật torch.compile() để tăng ~20% tốc độ suy luận trên GPU Ampere: `````python import ChatTTS chat = ChatTTS.Chat() chat.load(compile=True)\n### Quản lý nhúng ngườ nói Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán: `````python import ChatTTS import torch chat = ChatTTS.Chat() chat.load(compile=False) # Tạo và lưu nhúng ngườ nói speakers = {} for name in [\"agent\", \"user\", \"narrator\"]: spk = chat.sample_random_speaker() speakers[name] = spk torch.save(spk, f\"speakers/{name}.pt\") # Tải ngườ nói hiện có spk_agent = torch.load(\"speakers/agent.pt\") params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent) Tối ưu bộ nhớ GPU Sử dụng độ chính xác hỗn hợp và xóa cache: `````python import torch from ChatTTS import Chat\nchat = Chat() chat.load(compile=False)\n@torch.inference_mode() def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): wavs = chat.infer(texts, params_infer_code=params) torch.cuda.empty_cache() return wavs\n### Endpoint kiểm tra sức khỏe `````python # health_check.py — Probe sức khỏe cho Kubernetes from fastapi import FastAPI, HTTPException import ChatTTS app = FastAPI() chat = ChatTTS.Chat() try: chat.load(compile=False) MODEL_LOADED = True except Exception as e: MODEL_LOADED = False print(f\"Tải mô hình thất bại: {e}\") @app.get(\"/health\") def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail=\"Mô hình chưa được tải\") return {\"status\": \"healthy\", \"model\": \"chattts\", \"version\": \"0.2.5\"} @app.get(\"/ready\") def ready(): return {\"status\": \"ready\"} Triển khai Kubernetes # chattts-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: chattts-api spec: replicas: 2 selector: matchLabels: app: chattts template: metadata: labels: app: chattts spec: containers: - name: chattts image: chattts:0.2.5 resources: limits: nvidia.com/gpu: 1 memory: \"8Gi\" requests: memory: \"4Gi\" ports: - containerPort: 8000 livenessProbe: httpGet: path: /health port: 8000 periodSeconds: 30 readinessProbe: httpGet: path: /ready port: 8000 periodSeconds: 10 So sánh với các giải pháp thay thế Tính năng ChatTTS Coqui TTS (XTTS v2) MeloTTS Bark (Suno) Sao GitHub 39.3k 45.3k 7.4k 39.1k Giấy phép AGPL-3.0 MPL-2.0 MIT MIT VRAM tối thiểu 4 GB 4 GB 2 GB 5 GB RTF (RTX 4090) 0.30 0.25 0.08 0.45 TTS hội thoại Có (thiết kế riêng) Trung bình Không Trung bình Điều khiển cườ Cấp token [laugh] Không Không Hạn chế Điều khiển dừng Cấp token [uv_break] Không Chỉ dấu câu Hạn chế Âm thở Có Không Không Không Nhân bản giọng Nhúng ngườ nói Clone 6 giây Không Prompt ngườ nói Ngôn ngữ Trung, Anh 17 ngôn ngữ 6 ngôn ngữ Đa ngôn ngữ Hỗ trợ CPU Không Không Có Không Tương thích OpenAI API Qua wrapper Qua TTS server Qua wrapper Qua wrapper Đầu ra streaming Lộ trình Có Có Hạn chế Dữ liệu huấn luyện 40k giờ (100k nội bộ) Độc quyền Mở Không rõ Khi nào chọn cái nào ChatTTS: Ứng dụng hội thoại Trung-Anh, trợ lý giọng nói cần cườ/dừng, thử nghiệm ngữ điệu. Coqui XTTS v2: Nhân bản giọng 6 giây, 17 ngôn ngữ, pipeline TTS production. MeloTTS: Triển khai chỉ CPU, môi trường hạn chế tài nguyên, 6 ngôn ngữ tốc độ cao. Bark: Tạo âm thanh sáng tạo (nhạc, hiệu ứng), thử nghiệm đa ngôn ngữ. Hạn chế / Đánh giá khách quan ChatTTS không phải giải pháp TTS vạn năng. Hiểu các ràng buộc sau: 1. Bất ổn định tự hồi quy: ChatTTS có thể chuyển ngườ nói hoặc giảm chất lượng âm thanh. FAQ GitHub ghi rõ: “Đây là vấn đề thường gặp ở mô hình tự hồi quy. Có thể thử nhiều lần để tìm kết quả phù hợp.”\nTiếng Anh vẫn đang thử nghiệm: Ngữ điệu tiếng Trung ở cấp bản ngữ; tiếng Anh đang cải thiện nhưng chưa bằng Coqui XTTS v2.\nKhông có giấy phép thương mại: Code AGPL-3.0. Trọng sô CC BY-NC 4.0 (phi thương mại).\nChưa có tạo streaming: Âm thanh tạo một lần. Streaming đang trong lộ trình.\nYêu cầu GPU: Không có đường dẫn CPU thực tế. Tối thiểu 4GB VRAM.\nĐiều khiển cảm xúc hạn chế: Chỉ có cườ, dừng ngắn, dừng dài. Điều khiển cảm xúc đầy đủ chưa được phát hành.\nCâu hỏi thường gặp Q: ChatTTS cần bao nhiêu VRAM? Ít nhất 4GB GPU cho âm thanh 30 giây. Trên RTX 4090, RTF khoảng 0.3. Production nên dùng 8GB/instance.\nQ: ChatTTS có thể dùng cho dự án thương mại không? Code AGPL-3.0, trọng sô CC BY-NC 4.0. Liên hệ open-source@2noise.com để cấp phép thương mại.\nQ: Tại sao giọng ngườ nói đôi khi đổi giữa câu? Đặc tính cố hữu của mô hình tự hồi quy. Giảm temperature, dùng nhúng cố định, hoặc tạo nhiều mẫu.\nQ: Làm thế nào điều khiển tiếng cườ và khoảng nghỉ? Dùng token đặc biệt: [laugh], [uv_break], [lbreak]. Cũng có thể dùng RefineTextParams.\nQ: ChatTTS có hỗ trợ nhân bản giọng không? Có, qua nhúng ngườ nói. Tuy nhiên, zero-shot voice clone bằng vài giây audio vẫn đang trong lộ trình.\nQ: ChatTTS khác GPT-SoVITS như thế nào? GPT-SoVITS tối ưu cho few-shot voice clone (1 phút audio). ChatTTS tối ưu cho hội thoại tự nhiên.\nQ: ChatTTS chạy trên CPU được không? Không có đường dẫn CPU thực tế. Nếu cần CPU, dùng MeloTTS.\nQ: Làm thế nào triển khai ChatTTS trong Docker? Build: docker build -t chattts .. Chạy: docker run --gpus all -p 7860:7860 chattts.\nKết luận ChatTTS chiếm vị trí độc đáo trong bức tranh TTS mã nguồn mở. Thiết kế hội thoại, điều khiển ngữ điệu cấp token và hỗ trợ tiếng Trung bản địa khiến nó trở thành lựa chọn hàng đầu cho ứng dụng đối thoại 2026. 39.300+ sao GitHub phản ánh sự nhiệt huyết thực sự của cộng đồng.\nVới các team xây dựng trợ lý giọng nói LLM, cài đặt chattts rất đơn giản — pip install, load model, và bắt đầu tạo giọng nói tự nhiên trong 5 phút. Kiến trúc tự hồi quy có trade-off về độ ổn định, nhưng trong kịch bản đối thoại, không có giải pháp mã nguồn mở nào sánh được với phạm vi biểu cảm của ChatTTS.\nHành động:\nClone repository và chạy WebUI trên máy GPU Thử nghiệm token ngữ điệu ([laugh], ````[uv_break]```) trên tập dữ liệu hội thoại Triển khai API tương thích OpenAI để tích hợp pipeline LLM Tham gia Discord hoặc GitHub Discussions cho cập nhật streaming và điều khiển cảm xúc Theo dõi cập nhật và thảo luận chiến lược TTS hội thoại trong nhóm Telegram dibi8.com.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo ChatTTS GitHub Repository ChatTTS Hugging Face Model Coqui TTS Documentation MeloTTS GitHub Repository Bark (Suno AI) Repository GPT-SoVITS Repository Awesome-ChatTTS Community Index ChatTTS Benchmark Comparison Study 2025 Open Source AI Model Comparison { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại vs Coqui, MeloTTS 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/chattts\" } } ","wordCount":"3034","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/chattts/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>15 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/chattts/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/chattts/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/chattts/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#chattts-l%c3%a0-g%c3%ac aria-label="ChatTTS là gì?">ChatTTS là gì?</a></li><li><a href=#chattts-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="ChatTTS hoạt động như thế nào?">ChatTTS hoạt động như thế nào?</a><ul><li><a href=#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li><li><a href=#c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i aria-label="Các khái niệm cốt lõi">Các khái niệm cốt lõi</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt & Thiết lập">Cài đặt & Thiết lập</a><ul><li><a href=#y%c3%aau-c%e1%ba%a7u-tr%c6%b0%e1%bb%9bc aria-label="Yêu cầu trước">Yêu cầu trước</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-t%e1%bb%ab-pypi-b%e1%ba%a3n-%e1%bb%95n-%c4%91%e1%bb%8bnh aria-label="Cài đặt từ PyPI (Bản ổn định)">Cài đặt từ PyPI (Bản ổn định)</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-t%e1%bb%ab-ngu%e1%bb%93n-b%e1%ba%a3n-m%e1%bb%9bi-nh%e1%ba%a5t aria-label="Cài đặt từ nguồn (Bản mới nhất)">Cài đặt từ nguồn (Bản mới nhất)</a></li><li><a href=#thi%e1%ba%bft-l%e1%ba%adp-docker aria-label="Thiết lập Docker">Thiết lập Docker</a></li><li><a href=#x%c3%a1c-minh-c%c3%a0i-%c4%91%e1%ba%b7t aria-label="Xác minh cài đặt">Xác minh cài đặt</a></li><li><a href=#kh%e1%bb%9fi-ch%e1%ba%a1y-webui aria-label="Khởi chạy WebUI">Khởi chạy WebUI</a></li><li><a href=#suy-lu%e1%ba%adn-qua-d%c3%b2ng-l%e1%bb%87nh aria-label="Suy luận qua dòng lệnh">Suy luận qua dòng lệnh</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Tích hợp với các công cụ phổ biến">Tích hợp với các công cụ phổ biến</a><ul><li><a href=#m%c3%a1y-ch%e1%bb%a7-api-t%c6%b0%c6%a1ng-th%c3%adch-openai aria-label="Máy chủ API tương thích OpenAI">Máy chủ API tương thích OpenAI</a></li><li><a href=#t%c3%b9y-ch%e1%bb%89nh-giao-di%e1%bb%87n-web-gradio aria-label="Tùy chỉnh giao diện web Gradio">Tùy chỉnh giao diện web Gradio</a></li><li><a href=#thi%e1%ba%bft-l%e1%ba%adp-streaming-cho-%e1%bb%a9ng-d%e1%bb%a5ng-th%e1%bb%9d-gian-th%e1%bb%b1c aria-label="Thiết lập streaming cho ứng dụng thờ gian thực">Thiết lập streaming cho ứng dụng thờ gian thực</a></li><li><a href=#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-prometheus aria-label="Giám sát với Prometheus">Giám sát với Prometheus</a></li></ul></li><li><a href=#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Trường hợp sử dụng thực tế">Benchmark / Trường hợp sử dụng thực tế</a><ul><li><a href=#hi%e1%bb%87u-su%e1%ba%a5t-suy-lu%e1%ba%adn-tr%c3%aan-ph%e1%ba%a7n-c%e1%bb%a9ng-ng%c6%b0%e1%bb%9d-d%c3%b9ng aria-label="Hiệu suất suy luận trên phần cứng ngườ dùng">Hiệu suất suy luận trên phần cứng ngườ dùng</a></li><li><a href=#so-s%c3%a1nh-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-ng%e1%bb%af-%c4%91i%e1%bb%87u-h%e1%bb%99i-tho%e1%ba%a1i aria-label="So sánh chất lượng: Ngữ điệu hội thoại">So sánh chất lượng: Ngữ điệu hội thoại</a></li><li><a href=#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-tr%e1%bb%a3-l%c3%bd-gi%e1%bb%8dng-n%c3%b3i-llm aria-label="Trường hợp sử dụng: Trợ lý giọng nói LLM">Trường hợp sử dụng: Trợ lý giọng nói LLM</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production aria-label="Sử dụng nâng cao / Củng cố Production">Sử dụng nâng cao / Củng cố Production</a><ul><li><a href=#bi%c3%aan-d%e1%bb%8bch-torch-%c4%91%e1%bb%83-t%c4%83ng-t%e1%bb%91c aria-label="Biên dịch Torch để tăng tốc">Biên dịch Torch để tăng tốc</a></li><li><a href=#t%e1%bb%91i-%c6%b0u-b%e1%bb%99-nh%e1%bb%9b-gpu aria-label="Tối ưu bộ nhớ GPU">Tối ưu bộ nhớ GPU</a></li><li><a href=#tri%e1%bb%83n-khai-kubernetes aria-label="Triển khai Kubernetes">Triển khai Kubernetes</a></li></ul></li><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf aria-label="So sánh với các giải pháp thay thế">So sánh với các giải pháp thay thế</a><ul><li><a href=#khi-n%c3%a0o-ch%e1%bb%8dn-c%c3%a1i-n%c3%a0o aria-label="Khi nào chọn cái nào">Khi nào chọn cái nào</a></li></ul></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-kh%c3%a1ch-quan aria-label="Hạn chế / Đánh giá khách quan">Hạn chế / Đánh giá khách quan</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết luận">Kết luận</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài liệu tham khảo">Nguồn & Tài liệu tham khảo</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/chattts/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/chattts/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/chattts/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/chattts/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/chattts/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/chattts/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/chattts/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“chattts”, “text-to-speech”, “tts”, “ai-hội-thoại”, “llm-assistant”, “tổng-hợp-giọng-nói”, “mã-nguồn-mở”, “benchmark”] aliases:\n/vi/posts/chattts/ /vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/ Giới thiệu Hầu hết các mô hình text-to-speech đọc văn bản to tiếng. Chúng ngừng ở dấu phẩy, phát âm chính xác từng từ, và tạo ra âm thanh nghe như phát thanh viên đọc bản tin. Điều đó ổn cho chỉ dẫn điều hướng hoặc thông báo tự động. Nhưng khi bạn cần một trợ lý giọng nói biết cườ khi nghe truyện cườ, do dự trước khi trả lờ câu hỏi khó, hoặc thở dài khi thất vọng, TTS truyền thống không đáp ứng được.\nChatTTS được xây dựng chính xác cho khoảng trống này. Với hơn 39.300 sao GitHub và mô hình được đào tạo trên hơn 100.000 giờ dữ liệu hội thoại tiếng Trung và tiếng Anh, ChatTTS tạo ra giọng nói nghe như cuộc trò chuyện giữa con ngườ, không phải robot đọc kịch bản. Nó hỗ trợ điều khiển ở cấp token cho tiếng cườ, khoảng nghỉ và âm thanh thở, khiến nó trở thành lựa chọn hàng đầu cho trợ lý LLM, chatbot và ứng dụng giọng nói tương tác vào năm 2026.\nHướng dẫn này đi qua thiết lập ChatTTS (chattts setup), benchmark với Coqui TTS, MeloTTS và Bark (chattts vs coqui), và trình bày cấu hình triển khai production. Bài viết này là một chattts tutorial toàn diện, cung cấp dữ liệu chattts benchmark chi tiết trong lĩnh vực conversational tts.\nChatTTS là gì? ChatTTS là mô hình text-to-speech tạo sinh được thiết kế đặc biệt cho các kịch bản hội thoại. Được phát triển bởi 2noise và công bố theo giấy phép AGPL-3.0, dự án đạt phiên bản v0.2.5 vào tháng 4 năm 2026. Bản phát hành mở trên Hugging Face chứa mô hình cơ sở được đào tạo trước 40.000 giờ. Một mô hình lớn hơn 100.000 giờ tồn tại nội bộ nhưng chưa được công khai.\nMô hình sử dụng kiến trúc tự hồi quy tương tự như Bark và VALL-E, với bộ giải mã kiểu GPT tạo token ngữ nghĩa, sau đó được chuyển đổi thành âm thanh thông qua vocoder. Khác với pipeline TTS truyền thống tách phân tích văn bản, mô hình âm thanh và tạo dạng sóng thành các giai đoạn riêng biệt, ChatTTS xử lý mọi thứ end-to-end, cho phép nó nắm bắt các mẫu ngữ điệu tinh tế khiến cuộc trò chuyện của con ngườ nghe tự nhiên.\nChatTTS hoạt động như thế nào? Tổng quan kiến trúc ChatTTS tuân theo pipeline ba giai đoạn: 1. Tinh chỉnh văn bản: Văn bản đầu vào được xử lý bởi mô hình ngôn ngữ thêm các đánh dấu ngữ điệu (tiếng cườ, khoảng nghỉ, hơi thở) và chuẩn hóa văn bản để tổng hợp giọng nói. 2. Tạo token ngữ nghĩa: Bộ giải mã tự hồi quy kiểu GPT tạo token ngữ nghĩa dựa trên văn bản đã tinh chỉnh và nhúng ngườ nói. Đây là bước sáng tạo cốt lõi nơi mô hình quyết định nhịp điệu, ngữ điệu và biểu cảm cảm xúc. 3. Giải mã âm thanh: Token ngữ nghĩa được chuyển đổi thành dạng sóng âm thanh thô sử dụng vocoder được đào tạo trước (Vocos). Đầu ra là âm thanh mono 24kHz.\nVăn bản đầu vào → Bộ tinh chỉnh văn bản (LLM) → Token ngữ nghĩa (Bộ giải mã GPT) → Vocoder → Âm thanh 24kHz ↑ Nhúng ngườ nói (spk_emb) Các khái niệm cốt lõi Nhúng ngườ nói (spk_emb): Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu. Token ngữ điệu: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - [laugh] — chèn tiếng cườ [uv_break] — thêm khoảng nghỉ nhỏ [lbreak] — thêm khoảng nghỉ dài Tham số suy luận: Temperature, top-P và top-K sampling điều khiển tính ngẫu nhiên và đa dạng của giọng nói được tạo. import ChatTTS import torch chat = ChatTTS.Chat() chat.load(compile=False) # Lấy mẫu và lưu nhúng ngườ nói rand_spk = chat.sample_random_speaker() print(f\"Kích thước nhúng ngườ nói: {rand_spk.shape}\") # Lưu để sử dụng sau torch.save(rand_spk, \"speaker_embedding.pt\") Cài đặt \u0026 Thiết lập Yêu cầu trước Python 3.9–3.11 (khuyến nghị 3.11) GPU hỗ trợ CUDA với ít nhất 4GB VRAM (cho âm thanh 30 giây) Khuyến nghị Linux; Windows hoạt động với WSL2 Cài đặt từ PyPI (Bản ổn định) # Tạo môi trường ảo conda create -n chattts python=3.11 conda activate chattts # Cài đặt ChatTTS pip install ChatTTS # Cài đặt tùy chọn cho tăng tốc GPU pip install torchaudio Cài đặt từ nguồn (Bản mới nhất) git clone https://github.com/2noise/ChatTTS cd ChatTTS pip install -e . Thiết lập Docker # Clone repository git clone https://github.com/2noise/ChatTTS cd ChatTTS # Build và chạy bằng Docker docker build -t chattts . docker run --gpus all -p 8080:8080 chattts Xác minh cài đặt import ChatTTS print(f\"Phiên bản ChatTTS: {ChatTTS.__version__}\") # Kiểm tra suy luận nhanh chat = ChatTTS.Chat() chat.load(compile=False) texts = [\"Xin chào, đây là bản kiểm tra ChatTTS.\"] wavs = chat.infer(texts) print(f\"Kích thước âm thanh: {wavs[0].shape}\") Khởi chạy WebUI python examples/web/webui.py Truy cập giao diện tại http://localhost:7860. WebUI hỗ trợ nhập văn bản, chọn ngườ nói, điều chỉnh nhiệt độ và phát âm thanh.\nSuy luận qua dòng lệnh python examples/cmd/run.py \"Đoạn văn bản đầu tiên của bạn.\" \"Đoạn văn bản thứ hai của bạn.\" Đầu ra được lưu dưới dạng ./output_audio_n.mp3.\nTích hợp với các công cụ phổ biến Máy chủ API tương thích OpenAI ChatTTS cung cấp API tương thích OpenAI tích hợp với mọi công cụ hỗ trợ endpoint /v1/audio/speech.\n# openai_api_server.py — Endpoint ChatTTS tương thích OpenAI import ChatTTS import torch import torchaudio from fastapi import FastAPI from pydantic import BaseModel import io import base64 app = FastAPI() chat = ChatTTS.Chat() chat.load(compile=True) # Bật torch.compile cho production class TTSRequest(BaseModel): model: str = \"chattts\" input: str voice: str = \"default\" response_format: str = \"mp3\" @app.post(\"/v1/audio/speech\") async def create_speech(request: TTSRequest): params_infer_code = ChatTTS.Chat.InferCodeParams( temperature=0.3, top_P=0.7, top_K=20, ) wavs = chat.infer([request.input], params_infer_code=params_infer_code) buffer = io.BytesIO() torchaudio.save(buffer, torch.from_numpy(wavs[0]).unsqueeze(0), 24000, format=\"mp3\") buffer.seek(0) return {\"audio\": base64.b64encode(buffer.read()).decode()} Chạy máy chủ: `````bash uvicorn openai_api_server:app –host 0.0.0.0 –port 8000 –workers 2\n### Tích hợp LangChain / LLM `````python # Tích hợp ChatTTS vào pipeline agent LangChain from langchain.agents import Tool, AgentExecutor, create_react_agent from langchain_openai import ChatOpenAI import ChatTTS import torchaudio chat = ChatTTS.Chat() chat.load(compile=False) def tts_tool(text: str) -\u003e str: \"\"\"Tạo giọng nói và trả về đường dẫn tệp.\"\"\" wavs = chat.infer([text]) filepath = \"/tmp/response.wav\" torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000) return filepath tools = [ Tool( name=\"text_to_speech\", func=tts_tool, description=\"Chuyển đổi phản hồi văn bản thành âm thanh\" ) ] llm = ChatOpenAI(model=\"gpt-4o\") agent = create_react_agent(llm, tools, prompt=\"Bạn là trợ lý giọng nói.\") Tùy chỉnh giao diện web Gradio # Giao diện Gradio tùy chỉnh cho triển khai production import gradio as gr import ChatTTS import torchaudio chat = ChatTTS.Chat() chat.load(compile=False) def generate_speech(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text = ChatTTS.Chat.RefineTextParams( prompt=f\"[oral_{oral_level}][laugh_{laugh_level}][break_{break_level}]\" ) params_infer_code = ChatTTS.Chat.InferCodeParams( temperature=temperature, top_P=top_p, top_K=top_k, ) wavs = chat.infer([text], params_refine_text=params_refine_text, params_infer_code=params_infer_code) filepath = \"/tmp/output.wav\" torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000) return filepath demo = gr.Interface( fn=generate_speech, inputs=[ gr.Textbox(label=\"Văn bản\", value=\"Xin chào! Hôm nay bạn thế nào?\"), gr.Slider(0.1, 1.0, 0.3, label=\"Temperature\"), gr.Slider(0.1, 1.0, 0.7, label=\"Top P\"), gr.Slider(1, 50, 20, label=\"Top K\"), gr.Slider(0, 9, 2, label=\"Mức ngữ điệu\"), gr.Slider(0, 2, 0, label=\"Mức cườ\"), gr.Slider(0, 7, 6, label=\"Mức nghỉ\"), ], outputs=gr.Audio(label=\"Giọng nói đã tạo\"), title=\"ChatTTS Production UI\" ) demo.launch(server_name=\"0.0.0.0\", server_port=7860) Thiết lập streaming cho ứng dụng thờ gian thực # Tạo âm thanh streaming cho hội thoại thờ gian thực import ChatTTS import numpy as np import sounddevice as sd chat = ChatTTS.Chat() chat.load(compile=True) class StreamingTTS: def __init__(self, chat_model): self.chat = chat_model self.sample_rate = 24000 def stream_and_play(self, text: str): \"\"\"Tạo âm thanh và phát theo khúc.\"\"\" wavs = self.chat.infer([text]) audio = wavs[0] sd.play(audio, self.sample_rate) sd.wait() streamer = StreamingTTS(chat) streamer.stream_and_play(\"Để tôi suy nghĩ một chút...\") Giám sát với Prometheus # Thêm metrics Prometheus cho API ChatTTS from prometheus_client import Counter, Histogram, generate_latest from fastapi import Response TTS_REQUESTS = Counter(\"chattts_requests_total\", \"Tổng yêu cầu TTS\", [\"status\"]) TTS_LATENCY = Histogram(\"chattts_inference_seconds\", \"Độ trễ suy luận\") @app.post(\"/v1/audio/speech\") async def create_speech(request: TTSRequest): with TTS_LATENCY.time(): try: wavs = chat.infer([request.input]) TTS_REQUESTS.labels(status=\"success\").inc() except Exception as e: TTS_REQUESTS.labels(status=\"error\").inc() raise @app.get(\"/metrics\") async def metrics(): return Response(generate_latest(), media_type=\"text/plain\") Benchmark / Trường hợp sử dụng thực tế Hiệu suất suy luận trên phần cứng ngườ dùng Tất cả benchmark được đo trên NVIDIA RTX 4090 với CUDA 12.4, không có lượng tử hóa mô hình, kích thước batch 1.\nMô hình VRAM (30s âm thanh) RTF (RTX 4090) Token/giây CPU ChatTTS v0.2.5 4 GB 0.30 ~7 tok/giây Không khuyến nghị Coqui XTTS v2 4 GB 0.25 ~10 tok/giây Không MeloTTS 2 GB 0.08 ~25 tok/giây Có Bark (Suno) 5 GB 0.45 ~4 tok/giây Không khuyến nghị RTF = Hệ số Thờ gian Thực. RTF \u003c 1.0 nghĩa là tạo nhanh hơn phát.\nSo sánh chất lượng: Ngữ điệu hội thoại Kiểm tra nghe kín với 6 ngườ tham gia đánh giá ChatTTS so với đối thủ.\nTiêu chí ChatTTS Coqui XTTS v2 MeloTTS Bark Tạm dừng tự nhiên 5/6 phiếu 1/6 phiếu 2/6 phiếu 3/6 phiếu Chất lượng cườ 6/6 phiếu 0/6 phiếu 0/6 phiếu 2/6 phiếu Âm thanh thở 6/6 phiếu 0/6 phiếu 0/6 phiếu 1/6 phiếu Phạm vi cảm xúc Cao Trung bình Thấp Trung bình Ngữ điệu tiếng Trung Bản ngữ Tốt Tốt Khá Ngữ điệu tiếng Anh Tốt (thử nghiệm) Bản ngữ Bản ngữ Bản ngữ Trường hợp sử dụng: Trợ lý giọng nói LLM ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: `````python import ChatTTS import torchaudio import time\nchat = ChatTTS.Chat() chat.load(compile=True)\nclass VoiceAssistant: def synthesize_response(self, text: str) -\u003e str: start = time.time() params = ChatTTS.Chat.InferCodeParams(temperature=0.3, top_P=0.7) wavs = chat.infer([text], params_infer_code=params) filepath = “/tmp/response.wav” torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000) elapsed = time.time() - start print(f\"Độ trễ TTS: {elapsed:.2f} giây\") return filepath\nassistant = VoiceAssistant() audio_path = assistant.synthesize_response( “Đây là câu hỏi thú vị! Để tôi nghĩ… [uv_break] \" “Được, câu trả lờ phụ thuộc vào thiết lập của bạn.” )\n### Trường hợp sử dụng: Tạo hội thoại đa ngườ nói ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói: `````python import ChatTTS import torchaudio chat = ChatTTS.Chat() chat.load(compile=False) # Lấy mẫu hai ngườ nói khác nhau speaker_a = chat.sample_random_speaker() # Giọng nữ speaker_b = chat.sample_random_speaker() # Giọng nam dialogue = [ (\"Này, tối qua có xem trận đấu không?\", speaker_a), (\"Có! Bàn thắng cuối tuyệt vờ!\", speaker_b), (\"Đúng không! [laugh] Tôi không thể tin được.\", speaker_a), ] for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3) wavs = chat.infer([text], params_infer_code=params) torchaudio.save(f\"dialogue_{i}.wav\", torch.from_numpy(wavs[0]).unsqueeze(0), 24000) Sử dụng nâng cao / Củng cố Production Biên dịch Torch để tăng tốc Bật torch.compile() để tăng ~20% tốc độ suy luận trên GPU Ampere: `````python import ChatTTS chat = ChatTTS.Chat() chat.load(compile=True)\n### Quản lý nhúng ngườ nói Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán: `````python import ChatTTS import torch chat = ChatTTS.Chat() chat.load(compile=False) # Tạo và lưu nhúng ngườ nói speakers = {} for name in [\"agent\", \"user\", \"narrator\"]: spk = chat.sample_random_speaker() speakers[name] = spk torch.save(spk, f\"speakers/{name}.pt\") # Tải ngườ nói hiện có spk_agent = torch.load(\"speakers/agent.pt\") params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent) Tối ưu bộ nhớ GPU Sử dụng độ chính xác hỗn hợp và xóa cache: `````python import torch from ChatTTS import Chat\nchat = Chat() chat.load(compile=False)\n@torch.inference_mode() def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): wavs = chat.infer(texts, params_infer_code=params) torch.cuda.empty_cache() return wavs\n### Endpoint kiểm tra sức khỏe `````python # health_check.py — Probe sức khỏe cho Kubernetes from fastapi import FastAPI, HTTPException import ChatTTS app = FastAPI() chat = ChatTTS.Chat() try: chat.load(compile=False) MODEL_LOADED = True except Exception as e: MODEL_LOADED = False print(f\"Tải mô hình thất bại: {e}\") @app.get(\"/health\") def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail=\"Mô hình chưa được tải\") return {\"status\": \"healthy\", \"model\": \"chattts\", \"version\": \"0.2.5\"} @app.get(\"/ready\") def ready(): return {\"status\": \"ready\"} Triển khai Kubernetes # chattts-deployment.yaml apiVersion: apps/v1 kind: Deployment metadata: name: chattts-api spec: replicas: 2 selector: matchLabels: app: chattts template: metadata: labels: app: chattts spec: containers: - name: chattts image: chattts:0.2.5 resources: limits: nvidia.com/gpu: 1 memory: \"8Gi\" requests: memory: \"4Gi\" ports: - containerPort: 8000 livenessProbe: httpGet: path: /health port: 8000 periodSeconds: 30 readinessProbe: httpGet: path: /ready port: 8000 periodSeconds: 10 So sánh với các giải pháp thay thế Tính năng ChatTTS Coqui TTS (XTTS v2) MeloTTS Bark (Suno) Sao GitHub 39.3k 45.3k 7.4k 39.1k Giấy phép AGPL-3.0 MPL-2.0 MIT MIT VRAM tối thiểu 4 GB 4 GB 2 GB 5 GB RTF (RTX 4090) 0.30 0.25 0.08 0.45 TTS hội thoại Có (thiết kế riêng) Trung bình Không Trung bình Điều khiển cườ Cấp token [laugh] Không Không Hạn chế Điều khiển dừng Cấp token [uv_break] Không Chỉ dấu câu Hạn chế Âm thở Có Không Không Không Nhân bản giọng Nhúng ngườ nói Clone 6 giây Không Prompt ngườ nói Ngôn ngữ Trung, Anh 17 ngôn ngữ 6 ngôn ngữ Đa ngôn ngữ Hỗ trợ CPU Không Không Có Không Tương thích OpenAI API Qua wrapper Qua TTS server Qua wrapper Qua wrapper Đầu ra streaming Lộ trình Có Có Hạn chế Dữ liệu huấn luyện 40k giờ (100k nội bộ) Độc quyền Mở Không rõ Khi nào chọn cái nào ChatTTS: Ứng dụng hội thoại Trung-Anh, trợ lý giọng nói cần cườ/dừng, thử nghiệm ngữ điệu. Coqui XTTS v2: Nhân bản giọng 6 giây, 17 ngôn ngữ, pipeline TTS production. MeloTTS: Triển khai chỉ CPU, môi trường hạn chế tài nguyên, 6 ngôn ngữ tốc độ cao. Bark: Tạo âm thanh sáng tạo (nhạc, hiệu ứng), thử nghiệm đa ngôn ngữ. Hạn chế / Đánh giá khách quan ChatTTS không phải giải pháp TTS vạn năng. Hiểu các ràng buộc sau: 1. Bất ổn định tự hồi quy: ChatTTS có thể chuyển ngườ nói hoặc giảm chất lượng âm thanh. FAQ GitHub ghi rõ: “Đây là vấn đề thường gặp ở mô hình tự hồi quy. Có thể thử nhiều lần để tìm kết quả phù hợp.”\nTiếng Anh vẫn đang thử nghiệm: Ngữ điệu tiếng Trung ở cấp bản ngữ; tiếng Anh đang cải thiện nhưng chưa bằng Coqui XTTS v2.\nKhông có giấy phép thương mại: Code AGPL-3.0. Trọng sô CC BY-NC 4.0 (phi thương mại).\nChưa có tạo streaming: Âm thanh tạo một lần. Streaming đang trong lộ trình.\nYêu cầu GPU: Không có đường dẫn CPU thực tế. Tối thiểu 4GB VRAM.\nĐiều khiển cảm xúc hạn chế: Chỉ có cườ, dừng ngắn, dừng dài. Điều khiển cảm xúc đầy đủ chưa được phát hành.\nCâu hỏi thường gặp Q: ChatTTS cần bao nhiêu VRAM? Ít nhất 4GB GPU cho âm thanh 30 giây. Trên RTX 4090, RTF khoảng 0.3. Production nên dùng 8GB/instance.\nQ: ChatTTS có thể dùng cho dự án thương mại không? Code AGPL-3.0, trọng sô CC BY-NC 4.0. Liên hệ open-source@2noise.com để cấp phép thương mại.\nQ: Tại sao giọng ngườ nói đôi khi đổi giữa câu? Đặc tính cố hữu của mô hình tự hồi quy. Giảm temperature, dùng nhúng cố định, hoặc tạo nhiều mẫu.\nQ: Làm thế nào điều khiển tiếng cườ và khoảng nghỉ? Dùng token đặc biệt: [laugh], [uv_break], [lbreak]. Cũng có thể dùng RefineTextParams.\nQ: ChatTTS có hỗ trợ nhân bản giọng không? Có, qua nhúng ngườ nói. Tuy nhiên, zero-shot voice clone bằng vài giây audio vẫn đang trong lộ trình.\nQ: ChatTTS khác GPT-SoVITS như thế nào? GPT-SoVITS tối ưu cho few-shot voice clone (1 phút audio). ChatTTS tối ưu cho hội thoại tự nhiên.\nQ: ChatTTS chạy trên CPU được không? Không có đường dẫn CPU thực tế. Nếu cần CPU, dùng MeloTTS.\nQ: Làm thế nào triển khai ChatTTS trong Docker? Build: docker build -t chattts .. Chạy: docker run --gpus all -p 7860:7860 chattts.\nKết luận ChatTTS chiếm vị trí độc đáo trong bức tranh TTS mã nguồn mở. Thiết kế hội thoại, điều khiển ngữ điệu cấp token và hỗ trợ tiếng Trung bản địa khiến nó trở thành lựa chọn hàng đầu cho ứng dụng đối thoại 2026. 39.300+ sao GitHub phản ánh sự nhiệt huyết thực sự của cộng đồng.\nVới các team xây dựng trợ lý giọng nói LLM, cài đặt chattts rất đơn giản — pip install, load model, và bắt đầu tạo giọng nói tự nhiên trong 5 phút. Kiến trúc tự hồi quy có trade-off về độ ổn định, nhưng trong kịch bản đối thoại, không có giải pháp mã nguồn mở nào sánh được với phạm vi biểu cảm của ChatTTS.\nHành động:\nClone repository và chạy WebUI trên máy GPU Thử nghiệm token ngữ điệu ([laugh], ````[uv_break]```) trên tập dữ liệu hội thoại Triển khai API tương thích OpenAI để tích hợp pipeline LLM Tham gia Discord hoặc GitHub Discussions cho cập nhật streaming và điều khiển cảm xúc Theo dõi cập nhật và thảo luận chiến lược TTS hội thoại trong nhóm Telegram dibi8.com.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo ChatTTS GitHub Repository ChatTTS Hugging Face Model Coqui TTS Documentation MeloTTS GitHub Repository Bark (Suno AI) Repository GPT-SoVITS Repository Awesome-ChatTTS Community Index ChatTTS Benchmark Comparison Study 2025 Open Source AI Model Comparison { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại vs Coqui, MeloTTS 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/chattts\" } } ",
+  "wordCount" : "3034",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/chattts/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>15 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/chattts/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/chattts/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/chattts/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
+            <li>
+                <a href="#chattts-l%c3%a0-g%c3%ac" aria-label="ChatTTS là gì?">ChatTTS là gì?</a></li>
+            <li>
+                <a href="#chattts-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="ChatTTS hoạt động như thế nào?">ChatTTS hoạt động như thế nào?</a><ul>
+                    
+            <li>
+                <a href="#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac" aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li>
+            <li>
+                <a href="#c%c3%a1c-kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i" aria-label="Các khái niệm cốt lõi">Các khái niệm cốt lõi</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt &amp; Thiết lập">Cài đặt &amp; Thiết lập</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-tr%c6%b0%e1%bb%9bc" aria-label="Yêu cầu trước">Yêu cầu trước</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-t%e1%bb%ab-pypi-b%e1%ba%a3n-%e1%bb%95n-%c4%91%e1%bb%8bnh" aria-label="Cài đặt từ PyPI (Bản ổn định)">Cài đặt từ PyPI (Bản ổn định)</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-t%e1%bb%ab-ngu%e1%bb%93n-b%e1%ba%a3n-m%e1%bb%9bi-nh%e1%ba%a5t" aria-label="Cài đặt từ nguồn (Bản mới nhất)">Cài đặt từ nguồn (Bản mới nhất)</a></li>
+            <li>
+                <a href="#thi%e1%ba%bft-l%e1%ba%adp-docker" aria-label="Thiết lập Docker">Thiết lập Docker</a></li>
+            <li>
+                <a href="#x%c3%a1c-minh-c%c3%a0i-%c4%91%e1%ba%b7t" aria-label="Xác minh cài đặt">Xác minh cài đặt</a></li>
+            <li>
+                <a href="#kh%e1%bb%9fi-ch%e1%ba%a1y-webui" aria-label="Khởi chạy WebUI">Khởi chạy WebUI</a></li>
+            <li>
+                <a href="#suy-lu%e1%ba%adn-qua-d%c3%b2ng-l%e1%bb%87nh" aria-label="Suy luận qua dòng lệnh">Suy luận qua dòng lệnh</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%a1c-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích hợp với các công cụ phổ biến">Tích hợp với các công cụ phổ biến</a><ul>
+                    
+            <li>
+                <a href="#m%c3%a1y-ch%e1%bb%a7-api-t%c6%b0%c6%a1ng-th%c3%adch-openai" aria-label="Máy chủ API tương thích OpenAI">Máy chủ API tương thích OpenAI</a></li>
+            <li>
+                <a href="#t%c3%b9y-ch%e1%bb%89nh-giao-di%e1%bb%87n-web-gradio" aria-label="Tùy chỉnh giao diện web Gradio">Tùy chỉnh giao diện web Gradio</a></li>
+            <li>
+                <a href="#thi%e1%ba%bft-l%e1%ba%adp-streaming-cho-%e1%bb%a9ng-d%e1%bb%a5ng-th%e1%bb%9d-gian-th%e1%bb%b1c" aria-label="Thiết lập streaming cho ứng dụng thờ gian thực">Thiết lập streaming cho ứng dụng thờ gian thực</a></li>
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-prometheus" aria-label="Giám sát với Prometheus">Giám sát với Prometheus</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Trường hợp sử dụng thực tế">Benchmark / Trường hợp sử dụng thực tế</a><ul>
+                    
+            <li>
+                <a href="#hi%e1%bb%87u-su%e1%ba%a5t-suy-lu%e1%ba%adn-tr%c3%aan-ph%e1%ba%a7n-c%e1%bb%a9ng-ng%c6%b0%e1%bb%9d-d%c3%b9ng" aria-label="Hiệu suất suy luận trên phần cứng ngườ dùng">Hiệu suất suy luận trên phần cứng ngườ dùng</a></li>
+            <li>
+                <a href="#so-s%c3%a1nh-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-ng%e1%bb%af-%c4%91i%e1%bb%87u-h%e1%bb%99i-tho%e1%ba%a1i" aria-label="So sánh chất lượng: Ngữ điệu hội thoại">So sánh chất lượng: Ngữ điệu hội thoại</a></li>
+            <li>
+                <a href="#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-tr%e1%bb%a3-l%c3%bd-gi%e1%bb%8dng-n%c3%b3i-llm" aria-label="Trường hợp sử dụng: Trợ lý giọng nói LLM">Trường hợp sử dụng: Trợ lý giọng nói LLM</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production" aria-label="Sử dụng nâng cao / Củng cố Production">Sử dụng nâng cao / Củng cố Production</a><ul>
+                    
+            <li>
+                <a href="#bi%c3%aan-d%e1%bb%8bch-torch-%c4%91%e1%bb%83-t%c4%83ng-t%e1%bb%91c" aria-label="Biên dịch Torch để tăng tốc">Biên dịch Torch để tăng tốc</a></li>
+            <li>
+                <a href="#t%e1%bb%91i-%c6%b0u-b%e1%bb%99-nh%e1%bb%9b-gpu" aria-label="Tối ưu bộ nhớ GPU">Tối ưu bộ nhớ GPU</a></li>
+            <li>
+                <a href="#tri%e1%bb%83n-khai-kubernetes" aria-label="Triển khai Kubernetes">Triển khai Kubernetes</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So sánh với các giải pháp thay thế">So sánh với các giải pháp thay thế</a><ul>
+                    
+            <li>
+                <a href="#khi-n%c3%a0o-ch%e1%bb%8dn-c%c3%a1i-n%c3%a0o" aria-label="Khi nào chọn cái nào">Khi nào chọn cái nào</a></li></ul>
+            </li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-kh%c3%a1ch-quan" aria-label="Hạn chế / Đánh giá khách quan">Hạn chế / Đánh giá khách quan</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài liệu tham khảo">Nguồn &amp; Tài liệu tham khảo</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,84 +308,132 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;chattts&rdquo;, &ldquo;text-to-speech&rdquo;, &ldquo;tts&rdquo;, &ldquo;ai-hội-thoại&rdquo;, &ldquo;llm-assistant&rdquo;, &ldquo;tổng-hợp-giọng-nói&rdquo;, &ldquo;mã-nguồn-mở&rdquo;, &ldquo;benchmark&rdquo;]
-aliases:</p><ul><li>/vi/posts/chattts/</li><li>/vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/</li></ul><hr><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Hầu hết các mô hình text-to-speech đọc văn bản to tiếng. Chúng ngừng ở dấu phẩy, phát âm chính xác từng từ, và tạo ra âm thanh nghe như phát thanh viên đọc bản tin. Điều đó ổn cho chỉ dẫn điều hướng hoặc thông báo tự động. Nhưng khi bạn cần một trợ lý giọng nói biết cườ khi nghe truyện cườ, do dự trước khi trả lờ câu hỏi khó, hoặc thở dài khi thất vọng, TTS truyền thống không đáp ứng được.</p><p>ChatTTS được xây dựng chính xác cho khoảng trống này. Với hơn 39.300 sao GitHub và mô hình được đào tạo trên hơn 100.000 giờ dữ liệu hội thoại tiếng Trung và tiếng Anh, ChatTTS tạo ra giọng nói nghe như cuộc trò chuyện giữa con ngườ, không phải robot đọc kịch bản. Nó hỗ trợ điều khiển ở cấp token cho tiếng cườ, khoảng nghỉ và âm thanh thở, khiến nó trở thành lựa chọn hàng đầu cho trợ lý LLM, chatbot và ứng dụng giọng nói tương tác vào năm 2026.</p><p>Hướng dẫn này đi qua thiết lập ChatTTS (chattts setup), benchmark với Coqui TTS, MeloTTS và Bark (chattts vs coqui), và trình bày cấu hình triển khai production. Bài viết này là một chattts tutorial toàn diện, cung cấp dữ liệu chattts benchmark chi tiết trong lĩnh vực conversational tts.</p><p><img alt="ChatTTS Logo — TTS Hội thoại cho Trợ lý LLM" loading=lazy src=https://raw.githubusercontent.com/2noise/ChatTTS/main/docs/logo.png></p><h2 id=chattts-là-gì>ChatTTS là gì?<a hidden class=anchor aria-hidden=true href=#chattts-là-gì>#</a></h2><p>ChatTTS là mô hình text-to-speech tạo sinh được thiết kế đặc biệt cho các kịch bản hội thoại. Được phát triển bởi 2noise và công bố theo giấy phép AGPL-3.0, dự án đạt phiên bản v0.2.5 vào tháng 4 năm 2026. Bản phát hành mở trên Hugging Face chứa mô hình cơ sở được đào tạo trước 40.000 giờ. Một mô hình lớn hơn 100.000 giờ tồn tại nội bộ nhưng chưa được công khai.</p><p>Mô hình sử dụng kiến trúc tự hồi quy tương tự như Bark và VALL-E, với bộ giải mã kiểu GPT tạo token ngữ nghĩa, sau đó được chuyển đổi thành âm thanh thông qua vocoder. Khác với pipeline TTS truyền thống tách phân tích văn bản, mô hình âm thanh và tạo dạng sóng thành các giai đoạn riêng biệt, ChatTTS xử lý mọi thứ end-to-end, cho phép nó nắm bắt các mẫu ngữ điệu tinh tế khiến cuộc trò chuyện của con ngườ nghe tự nhiên.</p><h2 id=chattts-hoạt-động-như-thế-nào>ChatTTS hoạt động như thế nào?<a hidden class=anchor aria-hidden=true href=#chattts-hoạt-động-như-thế-nào>#</a></h2><h3 id=tổng-quan-kiến-trúc>Tổng quan kiến trúc<a hidden class=anchor aria-hidden=true href=#tổng-quan-kiến-trúc>#</a></h3><p>ChatTTS tuân theo pipeline ba giai đoạn: 1. <strong>Tinh chỉnh văn bản</strong>: Văn bản đầu vào được xử lý bởi mô hình ngôn ngữ thêm các đánh dấu ngữ điệu (tiếng cườ, khoảng nghỉ, hơi thở) và chuẩn hóa văn bản để tổng hợp giọng nói.
+aliases:</p>
+<ul>
+<li>/vi/posts/chattts/</li>
+<li>/vi/resources/llm-frameworks/chattts-architecture-autoregressive-voice/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Hầu hết các mô hình text-to-speech đọc văn bản to tiếng. Chúng ngừng ở dấu phẩy, phát âm chính xác từng từ, và tạo ra âm thanh nghe như phát thanh viên đọc bản tin. Điều đó ổn cho chỉ dẫn điều hướng hoặc thông báo tự động. Nhưng khi bạn cần một trợ lý giọng nói biết cườ khi nghe truyện cườ, do dự trước khi trả lờ câu hỏi khó, hoặc thở dài khi thất vọng, TTS truyền thống không đáp ứng được.</p>
+<p>ChatTTS được xây dựng chính xác cho khoảng trống này. Với hơn 39.300 sao GitHub và mô hình được đào tạo trên hơn 100.000 giờ dữ liệu hội thoại tiếng Trung và tiếng Anh, ChatTTS tạo ra giọng nói nghe như cuộc trò chuyện giữa con ngườ, không phải robot đọc kịch bản. Nó hỗ trợ điều khiển ở cấp token cho tiếng cườ, khoảng nghỉ và âm thanh thở, khiến nó trở thành lựa chọn hàng đầu cho trợ lý LLM, chatbot và ứng dụng giọng nói tương tác vào năm 2026.</p>
+<p>Hướng dẫn này đi qua thiết lập ChatTTS (chattts setup), benchmark với Coqui TTS, MeloTTS và Bark (chattts vs coqui), và trình bày cấu hình triển khai production. Bài viết này là một chattts tutorial toàn diện, cung cấp dữ liệu chattts benchmark chi tiết trong lĩnh vực conversational tts.</p>
+<p><img alt="ChatTTS Logo — TTS Hội thoại cho Trợ lý LLM" loading="lazy" src="https://raw.githubusercontent.com/2noise/ChatTTS/main/docs/logo.png"></p>
+<h2 id="chattts-là-gì">ChatTTS là gì?<a hidden class="anchor" aria-hidden="true" href="#chattts-là-gì">#</a></h2>
+<p>ChatTTS là mô hình text-to-speech tạo sinh được thiết kế đặc biệt cho các kịch bản hội thoại. Được phát triển bởi 2noise và công bố theo giấy phép AGPL-3.0, dự án đạt phiên bản v0.2.5 vào tháng 4 năm 2026. Bản phát hành mở trên Hugging Face chứa mô hình cơ sở được đào tạo trước 40.000 giờ. Một mô hình lớn hơn 100.000 giờ tồn tại nội bộ nhưng chưa được công khai.</p>
+<p>Mô hình sử dụng kiến trúc tự hồi quy tương tự như Bark và VALL-E, với bộ giải mã kiểu GPT tạo token ngữ nghĩa, sau đó được chuyển đổi thành âm thanh thông qua vocoder. Khác với pipeline TTS truyền thống tách phân tích văn bản, mô hình âm thanh và tạo dạng sóng thành các giai đoạn riêng biệt, ChatTTS xử lý mọi thứ end-to-end, cho phép nó nắm bắt các mẫu ngữ điệu tinh tế khiến cuộc trò chuyện của con ngườ nghe tự nhiên.</p>
+<h2 id="chattts-hoạt-động-như-thế-nào">ChatTTS hoạt động như thế nào?<a hidden class="anchor" aria-hidden="true" href="#chattts-hoạt-động-như-thế-nào">#</a></h2>
+<h3 id="tổng-quan-kiến-trúc">Tổng quan kiến trúc<a hidden class="anchor" aria-hidden="true" href="#tổng-quan-kiến-trúc">#</a></h3>
+<p>ChatTTS tuân theo pipeline ba giai đoạn: 1. <strong>Tinh chỉnh văn bản</strong>: Văn bản đầu vào được xử lý bởi mô hình ngôn ngữ thêm các đánh dấu ngữ điệu (tiếng cườ, khoảng nghỉ, hơi thở) và chuẩn hóa văn bản để tổng hợp giọng nói.
 2. <strong>Tạo token ngữ nghĩa</strong>: Bộ giải mã tự hồi quy kiểu GPT tạo token ngữ nghĩa dựa trên văn bản đã tinh chỉnh và nhúng ngườ nói. Đây là bước sáng tạo cốt lõi nơi mô hình quyết định nhịp điệu, ngữ điệu và biểu cảm cảm xúc.
-3. <strong>Giải mã âm thanh</strong>: Token ngữ nghĩa được chuyển đổi thành dạng sóng âm thanh thô sử dụng vocoder được đào tạo trước (Vocos). Đầu ra là âm thanh mono 24kHz.</p><pre tabindex=0><code>Văn bản đầu vào → Bộ tinh chỉnh văn bản (LLM) → Token ngữ nghĩa (Bộ giải mã GPT) → Vocoder → Âm thanh 24kHz
+3. <strong>Giải mã âm thanh</strong>: Token ngữ nghĩa được chuyển đổi thành dạng sóng âm thanh thô sử dụng vocoder được đào tạo trước (Vocos). Đầu ra là âm thanh mono 24kHz.</p>
+<pre tabindex="0"><code>Văn bản đầu vào → Bộ tinh chỉnh văn bản (LLM) → Token ngữ nghĩa (Bộ giải mã GPT) → Vocoder → Âm thanh 24kHz
                                       ↑
                                Nhúng ngườ nói (spk_emb)
-</code></pre><p><img alt="Kiến trúc ChatTTS — Pipeline ba giai đoạn từ văn bản sang giọng nói với nhúng ngườ nói và điều khiển token ngữ điệu" loading=lazy src=https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/chattts/architecture-diagram.png></p><h3 id=các-khái-niệm-cốt-lõi>Các khái niệm cốt lõi<a hidden class=anchor aria-hidden=true href=#các-khái-niệm-cốt-lõi>#</a></h3><ul><li><strong>Nhúng ngườ nói (<code>spk_emb</code>)</strong>: Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu.</li><li><strong>Token ngữ điệu</strong>: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - <code>[laugh]</code> — chèn tiếng cườ<ul><li><code>[uv_break]</code> — thêm khoảng nghỉ nhỏ</li><li><code>[lbreak]</code> — thêm khoảng nghỉ dài</li></ul></li><li><strong>Tham số suy luận</strong>: Temperature, top-P và top-K sampling điều khiển tính ngẫu nhiên và đa dạng của giọng nói được tạo.</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> ChatTTS
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torch
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>chat <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat()
-</span></span><span style=display:flex><span>chat<span style=color:#f92672>.</span>load(compile<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Lấy mẫu và lưu nhúng ngườ nói</span>
-</span></span><span style=display:flex><span>rand_spk <span style=color:#f92672>=</span> chat<span style=color:#f92672>.</span>sample_random_speaker()
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Kích thước nhúng ngườ nói: </span><span style=color:#e6db74>{</span>rand_spk<span style=color:#f92672>.</span>shape<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Lưu để sử dụng sau</span>
-</span></span><span style=display:flex><span>torch<span style=color:#f92672>.</span>save(rand_spk, <span style=color:#e6db74>&#34;speaker_embedding.pt&#34;</span>)
-</span></span></code></pre></div><h2 id=cài-đặt--thiết-lập>Cài đặt & Thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=yêu-cầu-trước>Yêu cầu trước<a hidden class=anchor aria-hidden=true href=#yêu-cầu-trước>#</a></h3><ul><li>Python 3.9–3.11 (khuyến nghị 3.11)</li><li>GPU hỗ trợ CUDA với ít nhất 4GB VRAM (cho âm thanh 30 giây)</li><li>Khuyến nghị Linux; Windows hoạt động với WSL2</li></ul><h3 id=cài-đặt-từ-pypi-bản-ổn-định>Cài đặt từ PyPI (Bản ổn định)<a hidden class=anchor aria-hidden=true href=#cài-đặt-từ-pypi-bản-ổn-định>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo môi trường ảo</span>
-</span></span><span style=display:flex><span>conda create -n chattts python<span style=color:#f92672>=</span>3.11
-</span></span><span style=display:flex><span>conda activate chattts
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt ChatTTS</span>
-</span></span><span style=display:flex><span>pip install ChatTTS
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt tùy chọn cho tăng tốc GPU</span>
-</span></span><span style=display:flex><span>pip install torchaudio
-</span></span></code></pre></div><h3 id=cài-đặt-từ-nguồn-bản-mới-nhất>Cài đặt từ nguồn (Bản mới nhất)<a hidden class=anchor aria-hidden=true href=#cài-đặt-từ-nguồn-bản-mới-nhất>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/2noise/ChatTTS
-</span></span><span style=display:flex><span>cd ChatTTS
-</span></span><span style=display:flex><span>pip install -e .
-</span></span></code></pre></div><h3 id=thiết-lập-docker>Thiết lập Docker<a hidden class=anchor aria-hidden=true href=#thiết-lập-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone repository</span>
-</span></span><span style=display:flex><span>git clone https://github.com/2noise/ChatTTS
-</span></span><span style=display:flex><span>cd ChatTTS
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Build và chạy bằng Docker</span>
-</span></span><span style=display:flex><span>docker build -t chattts .
-</span></span><span style=display:flex><span>docker run --gpus all -p 8080:8080 chattts
-</span></span></code></pre></div><h3 id=xác-minh-cài-đặt>Xác minh cài đặt<a hidden class=anchor aria-hidden=true href=#xác-minh-cài-đặt>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> ChatTTS
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Phiên bản ChatTTS: </span><span style=color:#e6db74>{</span>ChatTTS<span style=color:#f92672>.</span>__version__<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Kiểm tra suy luận nhanh</span>
-</span></span><span style=display:flex><span>chat <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat()
-</span></span><span style=display:flex><span>chat<span style=color:#f92672>.</span>load(compile<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
-</span></span><span style=display:flex><span>texts <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;Xin chào, đây là bản kiểm tra ChatTTS.&#34;</span>]
-</span></span><span style=display:flex><span>wavs <span style=color:#f92672>=</span> chat<span style=color:#f92672>.</span>infer(texts)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Kích thước âm thanh: </span><span style=color:#e6db74>{</span>wavs[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>shape<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=khởi-chạy-webui>Khởi chạy WebUI<a hidden class=anchor aria-hidden=true href=#khởi-chạy-webui>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python examples/web/webui.py
-</span></span></code></pre></div><p>Truy cập giao diện tại <code>http://localhost:7860</code>. WebUI hỗ trợ nhập văn bản, chọn ngườ nói, điều chỉnh nhiệt độ và phát âm thanh.</p><h3 id=suy-luận-qua-dòng-lệnh>Suy luận qua dòng lệnh<a hidden class=anchor aria-hidden=true href=#suy-luận-qua-dòng-lệnh>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python examples/cmd/run.py <span style=color:#e6db74>&#34;Đoạn văn bản đầu tiên của bạn.&#34;</span> <span style=color:#e6db74>&#34;Đoạn văn bản thứ hai của bạn.&#34;</span>
-</span></span></code></pre></div><p>Đầu ra được lưu dưới dạng <code>./output_audio_n.mp3</code>.</p><h2 id=tích-hợp-với-các-công-cụ-phổ-biến>Tích hợp với các công cụ phổ biến<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-các-công-cụ-phổ-biến>#</a></h2><h3 id=máy-chủ-api-tương-thích-openai>Máy chủ API tương thích OpenAI<a hidden class=anchor aria-hidden=true href=#máy-chủ-api-tương-thích-openai>#</a></h3><p>ChatTTS cung cấp API tương thích OpenAI tích hợp với mọi công cụ hỗ trợ endpoint <code>/v1/audio/speech</code>.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># openai_api_server.py — Endpoint ChatTTS tương thích OpenAI</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> ChatTTS
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torch
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torchaudio
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> FastAPI
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> io
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> base64
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>app <span style=color:#f92672>=</span> FastAPI()
-</span></span><span style=display:flex><span>chat <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat()
-</span></span><span style=display:flex><span>chat<span style=color:#f92672>.</span>load(compile<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)  <span style=color:#75715e># Bật torch.compile cho production</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TTSRequest</span>(BaseModel): model: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;chattts&#34;</span>
-</span></span><span style=display:flex><span>    input: str
-</span></span><span style=display:flex><span>    voice: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;default&#34;</span>
-</span></span><span style=display:flex><span>    response_format: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;mp3&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/v1/audio/speech&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_speech</span>(request: TTSRequest): params_infer_code <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat<span style=color:#f92672>.</span>InferCodeParams(
-</span></span><span style=display:flex><span>        temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.3</span>,
-</span></span><span style=display:flex><span>        top_P<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>,
-</span></span><span style=display:flex><span>        top_K<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    wavs <span style=color:#f92672>=</span> chat<span style=color:#f92672>.</span>infer([request<span style=color:#f92672>.</span>input], params_infer_code<span style=color:#f92672>=</span>params_infer_code)
-</span></span><span style=display:flex><span>    buffer <span style=color:#f92672>=</span> io<span style=color:#f92672>.</span>BytesIO()
-</span></span><span style=display:flex><span>    torchaudio<span style=color:#f92672>.</span>save(buffer, torch<span style=color:#f92672>.</span>from_numpy(wavs[<span style=color:#ae81ff>0</span>])<span style=color:#f92672>.</span>unsqueeze(<span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>24000</span>, format<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;mp3&#34;</span>)
-</span></span><span style=display:flex><span>    buffer<span style=color:#f92672>.</span>seek(<span style=color:#ae81ff>0</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;audio&#34;</span>: base64<span style=color:#f92672>.</span>b64encode(buffer<span style=color:#f92672>.</span>read())<span style=color:#f92672>.</span>decode()}
+</code></pre><p><img alt="Kiến trúc ChatTTS — Pipeline ba giai đoạn từ văn bản sang giọng nói với nhúng ngườ nói và điều khiển token ngữ điệu" loading="lazy" src="https://huggingface.co/datasets/huggingface/documentation-images/resolve/main/chattts/architecture-diagram.png"></p>
+<h3 id="các-khái-niệm-cốt-lõi">Các khái niệm cốt lõi<a hidden class="anchor" aria-hidden="true" href="#các-khái-niệm-cốt-lõi">#</a></h3>
+<ul>
+<li><strong>Nhúng ngườ nói (<code>spk_emb</code>)</strong>: Tensor mã hóa đặc điểm giọng nói. Bạn có thể lấy mẫu ngườ nói ngẫu nhiên, lưu nhúng để sử dụng sau, hoặc trích xuất từ âm thanh tham chiếu.</li>
+<li><strong>Token ngữ điệu</strong>: Các token đặc biệt chèn vào văn bản để điều khiển biểu cảm: - <code>[laugh]</code> — chèn tiếng cườ
+<ul>
+<li><code>[uv_break]</code> — thêm khoảng nghỉ nhỏ</li>
+<li><code>[lbreak]</code> — thêm khoảng nghỉ dài</li>
+</ul>
+</li>
+<li><strong>Tham số suy luận</strong>: Temperature, top-P và top-K sampling điều khiển tính ngẫu nhiên và đa dạng của giọng nói được tạo.</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ChatTTS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chat <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat()
+</span></span><span style="display:flex;"><span>chat<span style="color:#f92672">.</span>load(compile<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lấy mẫu và lưu nhúng ngườ nói</span>
+</span></span><span style="display:flex;"><span>rand_spk <span style="color:#f92672">=</span> chat<span style="color:#f92672">.</span>sample_random_speaker()
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Kích thước nhúng ngườ nói: </span><span style="color:#e6db74">{</span>rand_spk<span style="color:#f92672">.</span>shape<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lưu để sử dụng sau</span>
+</span></span><span style="display:flex;"><span>torch<span style="color:#f92672">.</span>save(rand_spk, <span style="color:#e6db74">&#34;speaker_embedding.pt&#34;</span>)
+</span></span></code></pre></div><h2 id="cài-đặt--thiết-lập">Cài đặt &amp; Thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<h3 id="yêu-cầu-trước">Yêu cầu trước<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-trước">#</a></h3>
+<ul>
+<li>Python 3.9–3.11 (khuyến nghị 3.11)</li>
+<li>GPU hỗ trợ CUDA với ít nhất 4GB VRAM (cho âm thanh 30 giây)</li>
+<li>Khuyến nghị Linux; Windows hoạt động với WSL2</li>
+</ul>
+<h3 id="cài-đặt-từ-pypi-bản-ổn-định">Cài đặt từ PyPI (Bản ổn định)<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-từ-pypi-bản-ổn-định">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo môi trường ảo</span>
+</span></span><span style="display:flex;"><span>conda create -n chattts python<span style="color:#f92672">=</span>3.11
+</span></span><span style="display:flex;"><span>conda activate chattts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt ChatTTS</span>
+</span></span><span style="display:flex;"><span>pip install ChatTTS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt tùy chọn cho tăng tốc GPU</span>
+</span></span><span style="display:flex;"><span>pip install torchaudio
+</span></span></code></pre></div><h3 id="cài-đặt-từ-nguồn-bản-mới-nhất">Cài đặt từ nguồn (Bản mới nhất)<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-từ-nguồn-bản-mới-nhất">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/2noise/ChatTTS
+</span></span><span style="display:flex;"><span>cd ChatTTS
+</span></span><span style="display:flex;"><span>pip install -e .
+</span></span></code></pre></div><h3 id="thiết-lập-docker">Thiết lập Docker<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/2noise/ChatTTS
+</span></span><span style="display:flex;"><span>cd ChatTTS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build và chạy bằng Docker</span>
+</span></span><span style="display:flex;"><span>docker build -t chattts .
+</span></span><span style="display:flex;"><span>docker run --gpus all -p 8080:8080 chattts
+</span></span></code></pre></div><h3 id="xác-minh-cài-đặt">Xác minh cài đặt<a hidden class="anchor" aria-hidden="true" href="#xác-minh-cài-đặt">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> ChatTTS
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Phiên bản ChatTTS: </span><span style="color:#e6db74">{</span>ChatTTS<span style="color:#f92672">.</span>__version__<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra suy luận nhanh</span>
+</span></span><span style="display:flex;"><span>chat <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat()
+</span></span><span style="display:flex;"><span>chat<span style="color:#f92672">.</span>load(compile<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>texts <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;Xin chào, đây là bản kiểm tra ChatTTS.&#34;</span>]
+</span></span><span style="display:flex;"><span>wavs <span style="color:#f92672">=</span> chat<span style="color:#f92672">.</span>infer(texts)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Kích thước âm thanh: </span><span style="color:#e6db74">{</span>wavs[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>shape<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="khởi-chạy-webui">Khởi chạy WebUI<a hidden class="anchor" aria-hidden="true" href="#khởi-chạy-webui">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python examples/web/webui.py
+</span></span></code></pre></div><p>Truy cập giao diện tại <code>http://localhost:7860</code>. WebUI hỗ trợ nhập văn bản, chọn ngườ nói, điều chỉnh nhiệt độ và phát âm thanh.</p>
+<h3 id="suy-luận-qua-dòng-lệnh">Suy luận qua dòng lệnh<a hidden class="anchor" aria-hidden="true" href="#suy-luận-qua-dòng-lệnh">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python examples/cmd/run.py <span style="color:#e6db74">&#34;Đoạn văn bản đầu tiên của bạn.&#34;</span> <span style="color:#e6db74">&#34;Đoạn văn bản thứ hai của bạn.&#34;</span>
+</span></span></code></pre></div><p>Đầu ra được lưu dưới dạng <code>./output_audio_n.mp3</code>.</p>
+<h2 id="tích-hợp-với-các-công-cụ-phổ-biến">Tích hợp với các công cụ phổ biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-các-công-cụ-phổ-biến">#</a></h2>
+<h3 id="máy-chủ-api-tương-thích-openai">Máy chủ API tương thích OpenAI<a hidden class="anchor" aria-hidden="true" href="#máy-chủ-api-tương-thích-openai">#</a></h3>
+<p>ChatTTS cung cấp API tương thích OpenAI tích hợp với mọi công cụ hỗ trợ endpoint <code>/v1/audio/speech</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># openai_api_server.py — Endpoint ChatTTS tương thích OpenAI</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ChatTTS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torch
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchaudio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> FastAPI
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> io
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> base64
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> FastAPI()
+</span></span><span style="display:flex;"><span>chat <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat()
+</span></span><span style="display:flex;"><span>chat<span style="color:#f92672">.</span>load(compile<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># Bật torch.compile cho production</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TTSRequest</span>(BaseModel): model: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;chattts&#34;</span>
+</span></span><span style="display:flex;"><span>    input: str
+</span></span><span style="display:flex;"><span>    voice: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;default&#34;</span>
+</span></span><span style="display:flex;"><span>    response_format: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;mp3&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/v1/audio/speech&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_speech</span>(request: TTSRequest): params_infer_code <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat<span style="color:#f92672">.</span>InferCodeParams(
+</span></span><span style="display:flex;"><span>        temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.3</span>,
+</span></span><span style="display:flex;"><span>        top_P<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>,
+</span></span><span style="display:flex;"><span>        top_K<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    wavs <span style="color:#f92672">=</span> chat<span style="color:#f92672">.</span>infer([request<span style="color:#f92672">.</span>input], params_infer_code<span style="color:#f92672">=</span>params_infer_code)
+</span></span><span style="display:flex;"><span>    buffer <span style="color:#f92672">=</span> io<span style="color:#f92672">.</span>BytesIO()
+</span></span><span style="display:flex;"><span>    torchaudio<span style="color:#f92672">.</span>save(buffer, torch<span style="color:#f92672">.</span>from_numpy(wavs[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">24000</span>, format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;mp3&#34;</span>)
+</span></span><span style="display:flex;"><span>    buffer<span style="color:#f92672">.</span>seek(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;audio&#34;</span>: base64<span style="color:#f92672">.</span>b64encode(buffer<span style="color:#f92672">.</span>read())<span style="color:#f92672">.</span>decode()}
 </span></span></code></pre></div><p>Chạy máy chủ: `````bash
-uvicorn openai_api_server:app &ndash;host 0.0.0.0 &ndash;port 8000 &ndash;workers 2</p><pre tabindex=0><code>
+uvicorn openai_api_server:app &ndash;host 0.0.0.0 &ndash;port 8000 &ndash;workers 2</p>
+<pre tabindex="0"><code>
 ### Tích hợp LangChain / LLM
 
 `````python
@@ -127,93 +462,204 @@ tools = [
 
 llm = ChatOpenAI(model=&#34;gpt-4o&#34;)
 agent = create_react_agent(llm, tools, prompt=&#34;Bạn là trợ lý giọng nói.&#34;)
-</code></pre><h3 id=tùy-chỉnh-giao-diện-web-gradio>Tùy chỉnh giao diện web Gradio<a hidden class=anchor aria-hidden=true href=#tùy-chỉnh-giao-diện-web-gradio>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Giao diện Gradio tùy chỉnh cho triển khai production</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> gradio <span style=color:#66d9ef>as</span> gr
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> ChatTTS
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> torchaudio
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>chat <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat()
-</span></span><span style=display:flex><span>chat<span style=color:#f92672>.</span>load(compile<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate_speech</span>(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat<span style=color:#f92672>.</span>RefineTextParams(
-</span></span><span style=display:flex><span>        prompt<span style=color:#f92672>=</span><span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[oral_</span><span style=color:#e6db74>{</span>oral_level<span style=color:#e6db74>}</span><span style=color:#e6db74>][laugh_</span><span style=color:#e6db74>{</span>laugh_level<span style=color:#e6db74>}</span><span style=color:#e6db74>][break_</span><span style=color:#e6db74>{</span>break_level<span style=color:#e6db74>}</span><span style=color:#e6db74>]&#34;</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    params_infer_code <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat<span style=color:#f92672>.</span>InferCodeParams(
-</span></span><span style=display:flex><span>        temperature<span style=color:#f92672>=</span>temperature,
-</span></span><span style=display:flex><span>        top_P<span style=color:#f92672>=</span>top_p,
-</span></span><span style=display:flex><span>        top_K<span style=color:#f92672>=</span>top_k,
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    wavs <span style=color:#f92672>=</span> chat<span style=color:#f92672>.</span>infer([text], params_refine_text<span style=color:#f92672>=</span>params_refine_text, params_infer_code<span style=color:#f92672>=</span>params_infer_code)
-</span></span><span style=display:flex><span>    filepath <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;/tmp/output.wav&#34;</span>
-</span></span><span style=display:flex><span>    torchaudio<span style=color:#f92672>.</span>save(filepath, torch<span style=color:#f92672>.</span>from_numpy(wavs[<span style=color:#ae81ff>0</span>])<span style=color:#f92672>.</span>unsqueeze(<span style=color:#ae81ff>0</span>), <span style=color:#ae81ff>24000</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> filepath
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>demo <span style=color:#f92672>=</span> gr<span style=color:#f92672>.</span>Interface(
-</span></span><span style=display:flex><span>    fn<span style=color:#f92672>=</span>generate_speech,
-</span></span><span style=display:flex><span>    inputs<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Textbox(label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Văn bản&#34;</span>, value<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Xin chào! Hôm nay bạn thế nào?&#34;</span>),
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Slider(<span style=color:#ae81ff>0.1</span>, <span style=color:#ae81ff>1.0</span>, <span style=color:#ae81ff>0.3</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Temperature&#34;</span>),
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Slider(<span style=color:#ae81ff>0.1</span>, <span style=color:#ae81ff>1.0</span>, <span style=color:#ae81ff>0.7</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Top P&#34;</span>),
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Slider(<span style=color:#ae81ff>1</span>, <span style=color:#ae81ff>50</span>, <span style=color:#ae81ff>20</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Top K&#34;</span>),
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Slider(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>9</span>, <span style=color:#ae81ff>2</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Mức ngữ điệu&#34;</span>),
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Slider(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>2</span>, <span style=color:#ae81ff>0</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Mức cườ&#34;</span>),
-</span></span><span style=display:flex><span>        gr<span style=color:#f92672>.</span>Slider(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>7</span>, <span style=color:#ae81ff>6</span>, label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Mức nghỉ&#34;</span>),
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    outputs<span style=color:#f92672>=</span>gr<span style=color:#f92672>.</span>Audio(label<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Giọng nói đã tạo&#34;</span>),
-</span></span><span style=display:flex><span>    title<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;ChatTTS Production UI&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>demo<span style=color:#f92672>.</span>launch(server_name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, server_port<span style=color:#f92672>=</span><span style=color:#ae81ff>7860</span>)
-</span></span></code></pre></div><h3 id=thiết-lập-streaming-cho-ứng-dụng-thờ-gian-thực>Thiết lập streaming cho ứng dụng thờ gian thực<a hidden class=anchor aria-hidden=true href=#thiết-lập-streaming-cho-ứng-dụng-thờ-gian-thực>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Tạo âm thanh streaming cho hội thoại thờ gian thực</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> ChatTTS
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> numpy <span style=color:#66d9ef>as</span> np
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> sounddevice <span style=color:#66d9ef>as</span> sd
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>chat <span style=color:#f92672>=</span> ChatTTS<span style=color:#f92672>.</span>Chat()
-</span></span><span style=display:flex><span>chat<span style=color:#f92672>.</span>load(compile<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>StreamingTTS</span>: <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, chat_model): self<span style=color:#f92672>.</span>chat <span style=color:#f92672>=</span> chat_model
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>sample_rate <span style=color:#f92672>=</span> <span style=color:#ae81ff>24000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>stream_and_play</span>(self, text: str): <span style=color:#e6db74>&#34;&#34;&#34;Tạo âm thanh và phát theo khúc.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        wavs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>infer([text])
-</span></span><span style=display:flex><span>        audio <span style=color:#f92672>=</span> wavs[<span style=color:#ae81ff>0</span>]
-</span></span><span style=display:flex><span>        sd<span style=color:#f92672>.</span>play(audio, self<span style=color:#f92672>.</span>sample_rate)
-</span></span><span style=display:flex><span>        sd<span style=color:#f92672>.</span>wait()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>streamer <span style=color:#f92672>=</span> StreamingTTS(chat)
-</span></span><span style=display:flex><span>streamer<span style=color:#f92672>.</span>stream_and_play(<span style=color:#e6db74>&#34;Để tôi suy nghĩ một chút...&#34;</span>)
-</span></span></code></pre></div><h3 id=giám-sát-với-prometheus>Giám sát với Prometheus<a hidden class=anchor aria-hidden=true href=#giám-sát-với-prometheus>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Thêm metrics Prometheus cho API ChatTTS</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> prometheus_client <span style=color:#f92672>import</span> Counter, Histogram, generate_latest
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> fastapi <span style=color:#f92672>import</span> Response
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>TTS_REQUESTS <span style=color:#f92672>=</span> Counter(<span style=color:#e6db74>&#34;chattts_requests_total&#34;</span>, <span style=color:#e6db74>&#34;Tổng yêu cầu TTS&#34;</span>, [<span style=color:#e6db74>&#34;status&#34;</span>])
-</span></span><span style=display:flex><span>TTS_LATENCY <span style=color:#f92672>=</span> Histogram(<span style=color:#e6db74>&#34;chattts_inference_seconds&#34;</span>, <span style=color:#e6db74>&#34;Độ trễ suy luận&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.post</span>(<span style=color:#e6db74>&#34;/v1/audio/speech&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>create_speech</span>(request: TTSRequest): <span style=color:#66d9ef>with</span> TTS_LATENCY<span style=color:#f92672>.</span>time(): <span style=color:#66d9ef>try</span>: wavs <span style=color:#f92672>=</span> chat<span style=color:#f92672>.</span>infer([request<span style=color:#f92672>.</span>input])
-</span></span><span style=display:flex><span>            TTS_REQUESTS<span style=color:#f92672>.</span>labels(status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;success&#34;</span>)<span style=color:#f92672>.</span>inc()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: TTS_REQUESTS<span style=color:#f92672>.</span>labels(status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;error&#34;</span>)<span style=color:#f92672>.</span>inc()
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>raise</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@app.get</span>(<span style=color:#e6db74>&#34;/metrics&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>metrics</span>(): <span style=color:#66d9ef>return</span> Response(generate_latest(), media_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;text/plain&#34;</span>)
-</span></span></code></pre></div><h2 id=benchmark--trường-hợp-sử-dụng-thực-tế>Benchmark / Trường hợp sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#benchmark--trường-hợp-sử-dụng-thực-tế>#</a></h2><h3 id=hiệu-suất-suy-luận-trên-phần-cứng-ngườ-dùng>Hiệu suất suy luận trên phần cứng ngườ dùng<a hidden class=anchor aria-hidden=true href=#hiệu-suất-suy-luận-trên-phần-cứng-ngườ-dùng>#</a></h3><p>Tất cả benchmark được đo trên NVIDIA RTX 4090 với CUDA 12.4, không có lượng tử hóa mô hình, kích thước batch 1.</p><table><thead><tr><th>Mô hình</th><th>VRAM (30s âm thanh)</th><th>RTF (RTX 4090)</th><th>Token/giây</th><th>CPU</th></tr></thead><tbody><tr><td>ChatTTS v0.2.5</td><td>4 GB</td><td>0.30</td><td>~7 tok/giây</td><td>Không khuyến nghị</td></tr><tr><td>Coqui XTTS v2</td><td>4 GB</td><td>0.25</td><td>~10 tok/giây</td><td>Không</td></tr><tr><td>MeloTTS</td><td>2 GB</td><td>0.08</td><td>~25 tok/giây</td><td>Có</td></tr><tr><td>Bark (Suno)</td><td>5 GB</td><td>0.45</td><td>~4 tok/giây</td><td>Không khuyến nghị</td></tr></tbody></table><p><em>RTF = Hệ số Thờ gian Thực. RTF &lt; 1.0 nghĩa là tạo nhanh hơn phát.</em></p><p><img alt="ChatTTS Benchmark — So sánh RTF và VRAM trên RTX 4090" loading=lazy src=benchmark-chart.png></p><h3 id=so-sánh-chất-lượng-ngữ-điệu-hội-thoại>So sánh chất lượng: Ngữ điệu hội thoại<a hidden class=anchor aria-hidden=true href=#so-sánh-chất-lượng-ngữ-điệu-hội-thoại>#</a></h3><p>Kiểm tra nghe kín với 6 ngườ tham gia đánh giá ChatTTS so với đối thủ.</p><table><thead><tr><th>Tiêu chí</th><th>ChatTTS</th><th>Coqui XTTS v2</th><th>MeloTTS</th><th>Bark</th></tr></thead><tbody><tr><td>Tạm dừng tự nhiên</td><td>5/6 phiếu</td><td>1/6 phiếu</td><td>2/6 phiếu</td><td>3/6 phiếu</td></tr><tr><td>Chất lượng cườ</td><td>6/6 phiếu</td><td>0/6 phiếu</td><td>0/6 phiếu</td><td>2/6 phiếu</td></tr><tr><td>Âm thanh thở</td><td>6/6 phiếu</td><td>0/6 phiếu</td><td>0/6 phiếu</td><td>1/6 phiếu</td></tr><tr><td>Phạm vi cảm xúc</td><td>Cao</td><td>Trung bình</td><td>Thấp</td><td>Trung bình</td></tr><tr><td>Ngữ điệu tiếng Trung</td><td>Bản ngữ</td><td>Tốt</td><td>Tốt</td><td>Khá</td></tr><tr><td>Ngữ điệu tiếng Anh</td><td>Tốt (thử nghiệm)</td><td>Bản ngữ</td><td>Bản ngữ</td><td>Bản ngữ</td></tr></tbody></table><h3 id=trường-hợp-sử-dụng-trợ-lý-giọng-nói-llm>Trường hợp sử dụng: Trợ lý giọng nói LLM<a hidden class=anchor aria-hidden=true href=#trường-hợp-sử-dụng-trợ-lý-giọng-nói-llm>#</a></h3><p>ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: `````python
+</code></pre><h3 id="tùy-chỉnh-giao-diện-web-gradio">Tùy chỉnh giao diện web Gradio<a hidden class="anchor" aria-hidden="true" href="#tùy-chỉnh-giao-diện-web-gradio">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Giao diện Gradio tùy chỉnh cho triển khai production</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> gradio <span style="color:#66d9ef">as</span> gr
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ChatTTS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> torchaudio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chat <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat()
+</span></span><span style="display:flex;"><span>chat<span style="color:#f92672">.</span>load(compile<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate_speech</span>(text, temperature, top_p, top_k, oral_level, laugh_level, break_level): params_refine_text <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat<span style="color:#f92672">.</span>RefineTextParams(
+</span></span><span style="display:flex;"><span>        prompt<span style="color:#f92672">=</span><span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[oral_</span><span style="color:#e6db74">{</span>oral_level<span style="color:#e6db74">}</span><span style="color:#e6db74">][laugh_</span><span style="color:#e6db74">{</span>laugh_level<span style="color:#e6db74">}</span><span style="color:#e6db74">][break_</span><span style="color:#e6db74">{</span>break_level<span style="color:#e6db74">}</span><span style="color:#e6db74">]&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    params_infer_code <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat<span style="color:#f92672">.</span>InferCodeParams(
+</span></span><span style="display:flex;"><span>        temperature<span style="color:#f92672">=</span>temperature,
+</span></span><span style="display:flex;"><span>        top_P<span style="color:#f92672">=</span>top_p,
+</span></span><span style="display:flex;"><span>        top_K<span style="color:#f92672">=</span>top_k,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    wavs <span style="color:#f92672">=</span> chat<span style="color:#f92672">.</span>infer([text], params_refine_text<span style="color:#f92672">=</span>params_refine_text, params_infer_code<span style="color:#f92672">=</span>params_infer_code)
+</span></span><span style="display:flex;"><span>    filepath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/tmp/output.wav&#34;</span>
+</span></span><span style="display:flex;"><span>    torchaudio<span style="color:#f92672">.</span>save(filepath, torch<span style="color:#f92672">.</span>from_numpy(wavs[<span style="color:#ae81ff">0</span>])<span style="color:#f92672">.</span>unsqueeze(<span style="color:#ae81ff">0</span>), <span style="color:#ae81ff">24000</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> filepath
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>demo <span style="color:#f92672">=</span> gr<span style="color:#f92672">.</span>Interface(
+</span></span><span style="display:flex;"><span>    fn<span style="color:#f92672">=</span>generate_speech,
+</span></span><span style="display:flex;"><span>    inputs<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Textbox(label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Văn bản&#34;</span>, value<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Xin chào! Hôm nay bạn thế nào?&#34;</span>),
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Slider(<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.3</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Temperature&#34;</span>),
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Slider(<span style="color:#ae81ff">0.1</span>, <span style="color:#ae81ff">1.0</span>, <span style="color:#ae81ff">0.7</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Top P&#34;</span>),
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Slider(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">50</span>, <span style="color:#ae81ff">20</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Top K&#34;</span>),
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Slider(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">2</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Mức ngữ điệu&#34;</span>),
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Slider(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Mức cườ&#34;</span>),
+</span></span><span style="display:flex;"><span>        gr<span style="color:#f92672">.</span>Slider(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">6</span>, label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Mức nghỉ&#34;</span>),
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    outputs<span style="color:#f92672">=</span>gr<span style="color:#f92672">.</span>Audio(label<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Giọng nói đã tạo&#34;</span>),
+</span></span><span style="display:flex;"><span>    title<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ChatTTS Production UI&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>demo<span style="color:#f92672">.</span>launch(server_name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, server_port<span style="color:#f92672">=</span><span style="color:#ae81ff">7860</span>)
+</span></span></code></pre></div><h3 id="thiết-lập-streaming-cho-ứng-dụng-thờ-gian-thực">Thiết lập streaming cho ứng dụng thờ gian thực<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-streaming-cho-ứng-dụng-thờ-gian-thực">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Tạo âm thanh streaming cho hội thoại thờ gian thực</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> ChatTTS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> numpy <span style="color:#66d9ef">as</span> np
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sounddevice <span style="color:#66d9ef">as</span> sd
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chat <span style="color:#f92672">=</span> ChatTTS<span style="color:#f92672">.</span>Chat()
+</span></span><span style="display:flex;"><span>chat<span style="color:#f92672">.</span>load(compile<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StreamingTTS</span>: <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, chat_model): self<span style="color:#f92672">.</span>chat <span style="color:#f92672">=</span> chat_model
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>sample_rate <span style="color:#f92672">=</span> <span style="color:#ae81ff">24000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">stream_and_play</span>(self, text: str): <span style="color:#e6db74">&#34;&#34;&#34;Tạo âm thanh và phát theo khúc.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        wavs <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>infer([text])
+</span></span><span style="display:flex;"><span>        audio <span style="color:#f92672">=</span> wavs[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>        sd<span style="color:#f92672">.</span>play(audio, self<span style="color:#f92672">.</span>sample_rate)
+</span></span><span style="display:flex;"><span>        sd<span style="color:#f92672">.</span>wait()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>streamer <span style="color:#f92672">=</span> StreamingTTS(chat)
+</span></span><span style="display:flex;"><span>streamer<span style="color:#f92672">.</span>stream_and_play(<span style="color:#e6db74">&#34;Để tôi suy nghĩ một chút...&#34;</span>)
+</span></span></code></pre></div><h3 id="giám-sát-với-prometheus">Giám sát với Prometheus<a hidden class="anchor" aria-hidden="true" href="#giám-sát-với-prometheus">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Thêm metrics Prometheus cho API ChatTTS</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, Histogram, generate_latest
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> fastapi <span style="color:#f92672">import</span> Response
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>TTS_REQUESTS <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#34;chattts_requests_total&#34;</span>, <span style="color:#e6db74">&#34;Tổng yêu cầu TTS&#34;</span>, [<span style="color:#e6db74">&#34;status&#34;</span>])
+</span></span><span style="display:flex;"><span>TTS_LATENCY <span style="color:#f92672">=</span> Histogram(<span style="color:#e6db74">&#34;chattts_inference_seconds&#34;</span>, <span style="color:#e6db74">&#34;Độ trễ suy luận&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.post</span>(<span style="color:#e6db74">&#34;/v1/audio/speech&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">create_speech</span>(request: TTSRequest): <span style="color:#66d9ef">with</span> TTS_LATENCY<span style="color:#f92672">.</span>time(): <span style="color:#66d9ef">try</span>: wavs <span style="color:#f92672">=</span> chat<span style="color:#f92672">.</span>infer([request<span style="color:#f92672">.</span>input])
+</span></span><span style="display:flex;"><span>            TTS_REQUESTS<span style="color:#f92672">.</span>labels(status<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;success&#34;</span>)<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: TTS_REQUESTS<span style="color:#f92672">.</span>labels(status<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;error&#34;</span>)<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.get</span>(<span style="color:#e6db74">&#34;/metrics&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">metrics</span>(): <span style="color:#66d9ef">return</span> Response(generate_latest(), media_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/plain&#34;</span>)
+</span></span></code></pre></div><h2 id="benchmark--trường-hợp-sử-dụng-thực-tế">Benchmark / Trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="hiệu-suất-suy-luận-trên-phần-cứng-ngườ-dùng">Hiệu suất suy luận trên phần cứng ngườ dùng<a hidden class="anchor" aria-hidden="true" href="#hiệu-suất-suy-luận-trên-phần-cứng-ngườ-dùng">#</a></h3>
+<p>Tất cả benchmark được đo trên NVIDIA RTX 4090 với CUDA 12.4, không có lượng tử hóa mô hình, kích thước batch 1.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Mô hình</th>
+					<th>VRAM (30s âm thanh)</th>
+					<th>RTF (RTX 4090)</th>
+					<th>Token/giây</th>
+					<th>CPU</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>ChatTTS v0.2.5</td>
+					<td>4 GB</td>
+					<td>0.30</td>
+					<td>~7 tok/giây</td>
+					<td>Không khuyến nghị</td>
+			</tr>
+			<tr>
+					<td>Coqui XTTS v2</td>
+					<td>4 GB</td>
+					<td>0.25</td>
+					<td>~10 tok/giây</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td>MeloTTS</td>
+					<td>2 GB</td>
+					<td>0.08</td>
+					<td>~25 tok/giây</td>
+					<td>Có</td>
+			</tr>
+			<tr>
+					<td>Bark (Suno)</td>
+					<td>5 GB</td>
+					<td>0.45</td>
+					<td>~4 tok/giây</td>
+					<td>Không khuyến nghị</td>
+			</tr>
+	</tbody>
+</table>
+<p><em>RTF = Hệ số Thờ gian Thực. RTF &lt; 1.0 nghĩa là tạo nhanh hơn phát.</em></p>
+<p><img alt="ChatTTS Benchmark — So sánh RTF và VRAM trên RTX 4090" loading="lazy" src="benchmark-chart.png"></p>
+<h3 id="so-sánh-chất-lượng-ngữ-điệu-hội-thoại">So sánh chất lượng: Ngữ điệu hội thoại<a hidden class="anchor" aria-hidden="true" href="#so-sánh-chất-lượng-ngữ-điệu-hội-thoại">#</a></h3>
+<p>Kiểm tra nghe kín với 6 ngườ tham gia đánh giá ChatTTS so với đối thủ.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Tiêu chí</th>
+					<th>ChatTTS</th>
+					<th>Coqui XTTS v2</th>
+					<th>MeloTTS</th>
+					<th>Bark</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Tạm dừng tự nhiên</td>
+					<td>5/6 phiếu</td>
+					<td>1/6 phiếu</td>
+					<td>2/6 phiếu</td>
+					<td>3/6 phiếu</td>
+			</tr>
+			<tr>
+					<td>Chất lượng cườ</td>
+					<td>6/6 phiếu</td>
+					<td>0/6 phiếu</td>
+					<td>0/6 phiếu</td>
+					<td>2/6 phiếu</td>
+			</tr>
+			<tr>
+					<td>Âm thanh thở</td>
+					<td>6/6 phiếu</td>
+					<td>0/6 phiếu</td>
+					<td>0/6 phiếu</td>
+					<td>1/6 phiếu</td>
+			</tr>
+			<tr>
+					<td>Phạm vi cảm xúc</td>
+					<td>Cao</td>
+					<td>Trung bình</td>
+					<td>Thấp</td>
+					<td>Trung bình</td>
+			</tr>
+			<tr>
+					<td>Ngữ điệu tiếng Trung</td>
+					<td>Bản ngữ</td>
+					<td>Tốt</td>
+					<td>Tốt</td>
+					<td>Khá</td>
+			</tr>
+			<tr>
+					<td>Ngữ điệu tiếng Anh</td>
+					<td>Tốt (thử nghiệm)</td>
+					<td>Bản ngữ</td>
+					<td>Bản ngữ</td>
+					<td>Bản ngữ</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="trường-hợp-sử-dụng-trợ-lý-giọng-nói-llm">Trường hợp sử dụng: Trợ lý giọng nói LLM<a hidden class="anchor" aria-hidden="true" href="#trường-hợp-sử-dụng-trợ-lý-giọng-nói-llm">#</a></h3>
+<p>ChatTTS xuất sắc trong pipeline trợ lý LLM với độ trễ ~300ms: `````python
 import ChatTTS
 import torchaudio
-import time</p><p>chat = ChatTTS.Chat()
-chat.load(compile=True)</p><p>class VoiceAssistant: def synthesize_response(self, text: str) -> str: start = time.time()
+import time</p>
+<p>chat = ChatTTS.Chat()
+chat.load(compile=True)</p>
+<p>class VoiceAssistant: def synthesize_response(self, text: str) -&gt; str: start = time.time()
 params = ChatTTS.Chat.InferCodeParams(temperature=0.3, top_P=0.7)
 wavs = chat.infer([text], params_infer_code=params)
 filepath = &ldquo;/tmp/response.wav&rdquo;
 torchaudio.save(filepath, torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
 elapsed = time.time() - start
-print(f"Độ trễ TTS: {elapsed:.2f} giây")
-return filepath</p><p>assistant = VoiceAssistant()
+print(f&quot;Độ trễ TTS: {elapsed:.2f} giây&quot;)
+return filepath</p>
+<p>assistant = VoiceAssistant()
 audio_path = assistant.synthesize_response(
-&ldquo;Đây là câu hỏi thú vị! Để tôi nghĩ&mldr; [uv_break] "
+&ldquo;Đây là câu hỏi thú vị! Để tôi nghĩ&hellip; [uv_break] &quot;
 &ldquo;Được, câu trả lờ phụ thuộc vào thiết lập của bạn.&rdquo;
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 ### Trường hợp sử dụng: Tạo hội thoại đa ngườ nói
 
 ChatTTS hỗ trợ chuyển đổi nhúng ngườ nói: `````python
@@ -236,10 +682,13 @@ dialogue = [
 for i, (text, spk) in enumerate(dialogue): params = ChatTTS.Chat.InferCodeParams(spk_emb=spk, temperature=0.3)
     wavs = chat.infer([text], params_infer_code=params)
     torchaudio.save(f&#34;dialogue_{i}.wav&#34;, torch.from_numpy(wavs[0]).unsqueeze(0), 24000)
-</code></pre><h2 id=sử-dụng-nâng-cao--củng-cố-production>Sử dụng nâng cao / Củng cố Production<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--củng-cố-production>#</a></h2><h3 id=biên-dịch-torch-để-tăng-tốc>Biên dịch Torch để tăng tốc<a hidden class=anchor aria-hidden=true href=#biên-dịch-torch-để-tăng-tốc>#</a></h3><p>Bật <code>torch.compile()</code> để tăng ~20% tốc độ suy luận trên GPU Ampere: `````python
+</code></pre><h2 id="sử-dụng-nâng-cao--củng-cố-production">Sử dụng nâng cao / Củng cố Production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--củng-cố-production">#</a></h2>
+<h3 id="biên-dịch-torch-để-tăng-tốc">Biên dịch Torch để tăng tốc<a hidden class="anchor" aria-hidden="true" href="#biên-dịch-torch-để-tăng-tốc">#</a></h3>
+<p>Bật <code>torch.compile()</code> để tăng ~20% tốc độ suy luận trên GPU Ampere: `````python
 import ChatTTS
 chat = ChatTTS.Chat()
-chat.load(compile=True)</p><pre tabindex=0><code>
+chat.load(compile=True)</p>
+<pre tabindex="0"><code>
 ### Quản lý nhúng ngườ nói
 
 Lưu và tải nhúng ngườ nói cho hồ sơ giọng nói nhất quán: `````python
@@ -258,13 +707,17 @@ for name in [&#34;agent&#34;, &#34;user&#34;, &#34;narrator&#34;]: spk = chat.sa
 # Tải ngườ nói hiện có
 spk_agent = torch.load(&#34;speakers/agent.pt&#34;)
 params = ChatTTS.Chat.InferCodeParams(spk_emb=spk_agent)
-</code></pre><h3 id=tối-ưu-bộ-nhớ-gpu>Tối ưu bộ nhớ GPU<a hidden class=anchor aria-hidden=true href=#tối-ưu-bộ-nhớ-gpu>#</a></h3><p>Sử dụng độ chính xác hỗn hợp và xóa cache: `````python
+</code></pre><h3 id="tối-ưu-bộ-nhớ-gpu">Tối ưu bộ nhớ GPU<a hidden class="anchor" aria-hidden="true" href="#tối-ưu-bộ-nhớ-gpu">#</a></h3>
+<p>Sử dụng độ chính xác hỗn hợp và xóa cache: `````python
 import torch
-from ChatTTS import Chat</p><p>chat = Chat()
-chat.load(compile=False)</p><p>@torch.inference_mode()
+from ChatTTS import Chat</p>
+<p>chat = Chat()
+chat.load(compile=False)</p>
+<p>@torch.inference_mode()
 def infer_with_cleanup(texts, params): with torch.cuda.amp.autocast(): wavs = chat.infer(texts, params_infer_code=params)
 torch.cuda.empty_cache()
-return wavs</p><pre tabindex=0><code>
+return wavs</p>
+<pre tabindex="0"><code>
 ### Endpoint kiểm tra sức khỏe
 
 `````python
@@ -286,35 +739,212 @@ def health(): if not MODEL_LOADED: raise HTTPException(status_code=503, detail=&
 
 @app.get(&#34;/ready&#34;)
 def ready(): return {&#34;status&#34;: &#34;ready&#34;}
-</code></pre><h3 id=triển-khai-kubernetes>Triển khai Kubernetes<a hidden class=anchor aria-hidden=true href=#triển-khai-kubernetes>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># chattts-deployment.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>apiVersion</span>: <span style=color:#ae81ff>apps/v1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>kind</span>: <span style=color:#ae81ff>Deployment</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>metadata: name</span>: <span style=color:#ae81ff>chattts-api</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>spec: replicas</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>selector: matchLabels: app</span>: <span style=color:#ae81ff>chattts</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>template: metadata: labels: app</span>: <span style=color:#ae81ff>chattts</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>spec: containers: - name</span>: <span style=color:#ae81ff>chattts</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>image</span>: <span style=color:#ae81ff>chattts:0.2.5</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>resources: limits: nvidia.com/gpu</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>memory</span>: <span style=color:#e6db74>&#34;8Gi&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>requests: memory</span>: <span style=color:#e6db74>&#34;4Gi&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>ports: - containerPort</span>: <span style=color:#ae81ff>8000</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>livenessProbe: httpGet: path</span>: <span style=color:#ae81ff>/health</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>8000</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>readinessProbe: httpGet: path</span>: <span style=color:#ae81ff>/ready</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>port</span>: <span style=color:#ae81ff>8000</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>periodSeconds</span>: <span style=color:#ae81ff>10</span>
-</span></span></code></pre></div><h2 id=so-sánh-với-các-giải-pháp-thay-thế>So sánh với các giải pháp thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-giải-pháp-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>ChatTTS</th><th>Coqui TTS (XTTS v2)</th><th>MeloTTS</th><th>Bark (Suno)</th></tr></thead><tbody><tr><td><strong>Sao GitHub</strong></td><td>39.3k</td><td>45.3k</td><td>7.4k</td><td>39.1k</td></tr><tr><td><strong>Giấy phép</strong></td><td>AGPL-3.0</td><td>MPL-2.0</td><td>MIT</td><td>MIT</td></tr><tr><td><strong>VRAM tối thiểu</strong></td><td>4 GB</td><td>4 GB</td><td>2 GB</td><td>5 GB</td></tr><tr><td><strong>RTF (RTX 4090)</strong></td><td>0.30</td><td>0.25</td><td>0.08</td><td>0.45</td></tr><tr><td><strong>TTS hội thoại</strong></td><td>Có (thiết kế riêng)</td><td>Trung bình</td><td>Không</td><td>Trung bình</td></tr><tr><td><strong>Điều khiển cườ</strong></td><td>Cấp token <code>[laugh]</code></td><td>Không</td><td>Không</td><td>Hạn chế</td></tr><tr><td><strong>Điều khiển dừng</strong></td><td>Cấp token <code>[uv_break]</code></td><td>Không</td><td>Chỉ dấu câu</td><td>Hạn chế</td></tr><tr><td><strong>Âm thở</strong></td><td>Có</td><td>Không</td><td>Không</td><td>Không</td></tr><tr><td><strong>Nhân bản giọng</strong></td><td>Nhúng ngườ nói</td><td>Clone 6 giây</td><td>Không</td><td>Prompt ngườ nói</td></tr><tr><td><strong>Ngôn ngữ</strong></td><td>Trung, Anh</td><td>17 ngôn ngữ</td><td>6 ngôn ngữ</td><td>Đa ngôn ngữ</td></tr><tr><td><strong>Hỗ trợ CPU</strong></td><td>Không</td><td>Không</td><td>Có</td><td>Không</td></tr><tr><td><strong>Tương thích OpenAI API</strong></td><td>Qua wrapper</td><td>Qua TTS server</td><td>Qua wrapper</td><td>Qua wrapper</td></tr><tr><td><strong>Đầu ra streaming</strong></td><td>Lộ trình</td><td>Có</td><td>Có</td><td>Hạn chế</td></tr><tr><td><strong>Dữ liệu huấn luyện</strong></td><td>40k giờ (100k nội bộ)</td><td>Độc quyền</td><td>Mở</td><td>Không rõ</td></tr></tbody></table><h3 id=khi-nào-chọn-cái-nào>Khi nào chọn cái nào<a hidden class=anchor aria-hidden=true href=#khi-nào-chọn-cái-nào>#</a></h3><ul><li><strong>ChatTTS</strong>: Ứng dụng hội thoại Trung-Anh, trợ lý giọng nói cần cườ/dừng, thử nghiệm ngữ điệu.</li><li><strong>Coqui XTTS v2</strong>: Nhân bản giọng 6 giây, 17 ngôn ngữ, pipeline TTS production.</li><li><strong>MeloTTS</strong>: Triển khai chỉ CPU, môi trường hạn chế tài nguyên, 6 ngôn ngữ tốc độ cao.</li><li><strong>Bark</strong>: Tạo âm thanh sáng tạo (nhạc, hiệu ứng), thử nghiệm đa ngôn ngữ.</li></ul><h2 id=hạn-chế--đánh-giá-khách-quan>Hạn chế / Đánh giá khách quan<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-khách-quan>#</a></h2><p>ChatTTS không phải giải pháp TTS vạn năng. Hiểu các ràng buộc sau: 1. <strong>Bất ổn định tự hồi quy</strong>: ChatTTS có thể chuyển ngườ nói hoặc giảm chất lượng âm thanh. FAQ GitHub ghi rõ: &ldquo;Đây là vấn đề thường gặp ở mô hình tự hồi quy. Có thể thử nhiều lần để tìm kết quả phù hợp.&rdquo;</p><ol start=2><li><p><strong>Tiếng Anh vẫn đang thử nghiệm</strong>: Ngữ điệu tiếng Trung ở cấp bản ngữ; tiếng Anh đang cải thiện nhưng chưa bằng Coqui XTTS v2.</p></li><li><p><strong>Không có giấy phép thương mại</strong>: Code AGPL-3.0. Trọng sô CC BY-NC 4.0 (phi thương mại).</p></li><li><p><strong>Chưa có tạo streaming</strong>: Âm thanh tạo một lần. Streaming đang trong lộ trình.</p></li><li><p><strong>Yêu cầu GPU</strong>: Không có đường dẫn CPU thực tế. Tối thiểu 4GB VRAM.</p></li><li><p><strong>Điều khiển cảm xúc hạn chế</strong>: Chỉ có cườ, dừng ngắn, dừng dài. Điều khiển cảm xúc đầy đủ chưa được phát hành.</p></li></ol><h2 id=câu-hỏi-thường-gặp>Câu hỏi thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><p><strong>Q: ChatTTS cần bao nhiêu VRAM?</strong>
-Ít nhất 4GB GPU cho âm thanh 30 giây. Trên RTX 4090, RTF khoảng 0.3. Production nên dùng 8GB/instance.</p><p><strong>Q: ChatTTS có thể dùng cho dự án thương mại không?</strong>
-Code AGPL-3.0, trọng sô CC BY-NC 4.0. Liên hệ <a href=mailto:open-source@2noise.com>open-source@2noise.com</a> để cấp phép thương mại.</p><p><strong>Q: Tại sao giọng ngườ nói đôi khi đổi giữa câu?</strong>
-Đặc tính cố hữu của mô hình tự hồi quy. Giảm temperature, dùng nhúng cố định, hoặc tạo nhiều mẫu.</p><p><strong>Q: Làm thế nào điều khiển tiếng cườ và khoảng nghỉ?</strong>
-Dùng token đặc biệt: <code>[laugh]</code>, <code>[uv_break]</code>, <code>[lbreak]</code>. Cũng có thể dùng <code>RefineTextParams</code>.</p><p><strong>Q: ChatTTS có hỗ trợ nhân bản giọng không?</strong>
-Có, qua nhúng ngườ nói. Tuy nhiên, zero-shot voice clone bằng vài giây audio vẫn đang trong lộ trình.</p><p><strong>Q: ChatTTS khác GPT-SoVITS như thế nào?</strong>
-GPT-SoVITS tối ưu cho few-shot voice clone (1 phút audio). ChatTTS tối ưu cho hội thoại tự nhiên.</p><p><strong>Q: ChatTTS chạy trên CPU được không?</strong>
-Không có đường dẫn CPU thực tế. Nếu cần CPU, dùng MeloTTS.</p><p><strong>Q: Làm thế nào triển khai ChatTTS trong Docker?</strong>
-Build: <code>docker build -t chattts .</code>. Chạy: <code>docker run --gpus all -p 7860:7860 chattts</code>.</p><h2 id=kết-luận>Kết luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>ChatTTS chiếm vị trí độc đáo trong bức tranh TTS mã nguồn mở. Thiết kế hội thoại, điều khiển ngữ điệu cấp token và hỗ trợ tiếng Trung bản địa khiến nó trở thành lựa chọn hàng đầu cho ứng dụng đối thoại 2026. 39.300+ sao GitHub phản ánh sự nhiệt huyết thực sự của cộng đồng.</p><p>Với các team xây dựng trợ lý giọng nói LLM, cài đặt chattts rất đơn giản — pip install, load model, và bắt đầu tạo giọng nói tự nhiên trong 5 phút. Kiến trúc tự hồi quy có trade-off về độ ổn định, nhưng trong kịch bản đối thoại, không có giải pháp mã nguồn mở nào sánh được với phạm vi biểu cảm của ChatTTS.</p><p><strong>Hành động:</strong></p><ol><li>Clone repository và chạy WebUI trên máy GPU</li><li>Thử nghiệm token ngữ điệu (<code>[laugh]</code>, ````[uv_break]```) trên tập dữ liệu hội thoại</li><li>Triển khai API tương thích OpenAI để tích hợp pipeline LLM</li><li>Tham gia Discord hoặc GitHub Discussions cho cập nhật streaming và điều khiển cảm xúc</li></ol><p>Theo dõi cập nhật và thảo luận chiến lược TTS hội thoại trong <a href=https://t.me/dibi8_channel>nhóm Telegram dibi8.com</a>.</p><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài liệu tham khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://github.com/2noise/ChatTTS>ChatTTS GitHub Repository</a></li><li><a href=https://huggingface.co/2Noise/ChatTTS>ChatTTS Hugging Face Model</a></li><li><a href=https://github.com/coqui-ai/TTS>Coqui TTS Documentation</a></li><li><a href=https://github.com/myshell-ai/MeloTTS>MeloTTS GitHub Repository</a></li><li><a href=https://github.com/suno-ai/bark>Bark (Suno AI) Repository</a></li><li><a href=https://github.com/RVC-Boss/GPT-SoVITS>GPT-SoVITS Repository</a></li><li><a href=https://github.com/Awesome-ChatTTS>Awesome-ChatTTS Community Index</a></li><li><a href=https://blog.csdn.net/weixin_30415591/article/details/157480949>ChatTTS Benchmark Comparison Study</a></li><li><a href=https://www.e-com-net.com/article/1936044193575137280.htm>2025 Open Source AI Model Comparison</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h3 id="triển-khai-kubernetes">Triển khai Kubernetes<a hidden class="anchor" aria-hidden="true" href="#triển-khai-kubernetes">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># chattts-deployment.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata: name</span>: <span style="color:#ae81ff">chattts-api</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec: replicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector: matchLabels: app</span>: <span style="color:#ae81ff">chattts</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template: metadata: labels: app</span>: <span style="color:#ae81ff">chattts</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec: containers: - name</span>: <span style="color:#ae81ff">chattts</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">chattts:0.2.5</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">resources: limits: nvidia.com/gpu</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">memory</span>: <span style="color:#e6db74">&#34;8Gi&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">requests: memory</span>: <span style="color:#e6db74">&#34;4Gi&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">ports: - containerPort</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">livenessProbe: httpGet: path</span>: <span style="color:#ae81ff">/health</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">readinessProbe: httpGet: path</span>: <span style="color:#ae81ff">/ready</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">port</span>: <span style="color:#ae81ff">8000</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">periodSeconds</span>: <span style="color:#ae81ff">10</span>
+</span></span></code></pre></div><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So sánh với các giải pháp thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>ChatTTS</th>
+					<th>Coqui TTS (XTTS v2)</th>
+					<th>MeloTTS</th>
+					<th>Bark (Suno)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Sao GitHub</strong></td>
+					<td>39.3k</td>
+					<td>45.3k</td>
+					<td>7.4k</td>
+					<td>39.1k</td>
+			</tr>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>AGPL-3.0</td>
+					<td>MPL-2.0</td>
+					<td>MIT</td>
+					<td>MIT</td>
+			</tr>
+			<tr>
+					<td><strong>VRAM tối thiểu</strong></td>
+					<td>4 GB</td>
+					<td>4 GB</td>
+					<td>2 GB</td>
+					<td>5 GB</td>
+			</tr>
+			<tr>
+					<td><strong>RTF (RTX 4090)</strong></td>
+					<td>0.30</td>
+					<td>0.25</td>
+					<td>0.08</td>
+					<td>0.45</td>
+			</tr>
+			<tr>
+					<td><strong>TTS hội thoại</strong></td>
+					<td>Có (thiết kế riêng)</td>
+					<td>Trung bình</td>
+					<td>Không</td>
+					<td>Trung bình</td>
+			</tr>
+			<tr>
+					<td><strong>Điều khiển cườ</strong></td>
+					<td>Cấp token <code>[laugh]</code></td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Hạn chế</td>
+			</tr>
+			<tr>
+					<td><strong>Điều khiển dừng</strong></td>
+					<td>Cấp token <code>[uv_break]</code></td>
+					<td>Không</td>
+					<td>Chỉ dấu câu</td>
+					<td>Hạn chế</td>
+			</tr>
+			<tr>
+					<td><strong>Âm thở</strong></td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Nhân bản giọng</strong></td>
+					<td>Nhúng ngườ nói</td>
+					<td>Clone 6 giây</td>
+					<td>Không</td>
+					<td>Prompt ngườ nói</td>
+			</tr>
+			<tr>
+					<td><strong>Ngôn ngữ</strong></td>
+					<td>Trung, Anh</td>
+					<td>17 ngôn ngữ</td>
+					<td>6 ngôn ngữ</td>
+					<td>Đa ngôn ngữ</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ CPU</strong></td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Có</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Tương thích OpenAI API</strong></td>
+					<td>Qua wrapper</td>
+					<td>Qua TTS server</td>
+					<td>Qua wrapper</td>
+					<td>Qua wrapper</td>
+			</tr>
+			<tr>
+					<td><strong>Đầu ra streaming</strong></td>
+					<td>Lộ trình</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Hạn chế</td>
+			</tr>
+			<tr>
+					<td><strong>Dữ liệu huấn luyện</strong></td>
+					<td>40k giờ (100k nội bộ)</td>
+					<td>Độc quyền</td>
+					<td>Mở</td>
+					<td>Không rõ</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="khi-nào-chọn-cái-nào">Khi nào chọn cái nào<a hidden class="anchor" aria-hidden="true" href="#khi-nào-chọn-cái-nào">#</a></h3>
+<ul>
+<li><strong>ChatTTS</strong>: Ứng dụng hội thoại Trung-Anh, trợ lý giọng nói cần cườ/dừng, thử nghiệm ngữ điệu.</li>
+<li><strong>Coqui XTTS v2</strong>: Nhân bản giọng 6 giây, 17 ngôn ngữ, pipeline TTS production.</li>
+<li><strong>MeloTTS</strong>: Triển khai chỉ CPU, môi trường hạn chế tài nguyên, 6 ngôn ngữ tốc độ cao.</li>
+<li><strong>Bark</strong>: Tạo âm thanh sáng tạo (nhạc, hiệu ứng), thử nghiệm đa ngôn ngữ.</li>
+</ul>
+<h2 id="hạn-chế--đánh-giá-khách-quan">Hạn chế / Đánh giá khách quan<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-khách-quan">#</a></h2>
+<p>ChatTTS không phải giải pháp TTS vạn năng. Hiểu các ràng buộc sau: 1. <strong>Bất ổn định tự hồi quy</strong>: ChatTTS có thể chuyển ngườ nói hoặc giảm chất lượng âm thanh. FAQ GitHub ghi rõ: &ldquo;Đây là vấn đề thường gặp ở mô hình tự hồi quy. Có thể thử nhiều lần để tìm kết quả phù hợp.&rdquo;</p>
+<ol start="2">
+<li>
+<p><strong>Tiếng Anh vẫn đang thử nghiệm</strong>: Ngữ điệu tiếng Trung ở cấp bản ngữ; tiếng Anh đang cải thiện nhưng chưa bằng Coqui XTTS v2.</p>
+</li>
+<li>
+<p><strong>Không có giấy phép thương mại</strong>: Code AGPL-3.0. Trọng sô CC BY-NC 4.0 (phi thương mại).</p>
+</li>
+<li>
+<p><strong>Chưa có tạo streaming</strong>: Âm thanh tạo một lần. Streaming đang trong lộ trình.</p>
+</li>
+<li>
+<p><strong>Yêu cầu GPU</strong>: Không có đường dẫn CPU thực tế. Tối thiểu 4GB VRAM.</p>
+</li>
+<li>
+<p><strong>Điều khiển cảm xúc hạn chế</strong>: Chỉ có cườ, dừng ngắn, dừng dài. Điều khiển cảm xúc đầy đủ chưa được phát hành.</p>
+</li>
+</ol>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<p><strong>Q: ChatTTS cần bao nhiêu VRAM?</strong>
+Ít nhất 4GB GPU cho âm thanh 30 giây. Trên RTX 4090, RTF khoảng 0.3. Production nên dùng 8GB/instance.</p>
+<p><strong>Q: ChatTTS có thể dùng cho dự án thương mại không?</strong>
+Code AGPL-3.0, trọng sô CC BY-NC 4.0. Liên hệ <a href="mailto:open-source@2noise.com">open-source@2noise.com</a> để cấp phép thương mại.</p>
+<p><strong>Q: Tại sao giọng ngườ nói đôi khi đổi giữa câu?</strong>
+Đặc tính cố hữu của mô hình tự hồi quy. Giảm temperature, dùng nhúng cố định, hoặc tạo nhiều mẫu.</p>
+<p><strong>Q: Làm thế nào điều khiển tiếng cườ và khoảng nghỉ?</strong>
+Dùng token đặc biệt: <code>[laugh]</code>, <code>[uv_break]</code>, <code>[lbreak]</code>. Cũng có thể dùng <code>RefineTextParams</code>.</p>
+<p><strong>Q: ChatTTS có hỗ trợ nhân bản giọng không?</strong>
+Có, qua nhúng ngườ nói. Tuy nhiên, zero-shot voice clone bằng vài giây audio vẫn đang trong lộ trình.</p>
+<p><strong>Q: ChatTTS khác GPT-SoVITS như thế nào?</strong>
+GPT-SoVITS tối ưu cho few-shot voice clone (1 phút audio). ChatTTS tối ưu cho hội thoại tự nhiên.</p>
+<p><strong>Q: ChatTTS chạy trên CPU được không?</strong>
+Không có đường dẫn CPU thực tế. Nếu cần CPU, dùng MeloTTS.</p>
+<p><strong>Q: Làm thế nào triển khai ChatTTS trong Docker?</strong>
+Build: <code>docker build -t chattts .</code>. Chạy: <code>docker run --gpus all -p 7860:7860 chattts</code>.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>ChatTTS chiếm vị trí độc đáo trong bức tranh TTS mã nguồn mở. Thiết kế hội thoại, điều khiển ngữ điệu cấp token và hỗ trợ tiếng Trung bản địa khiến nó trở thành lựa chọn hàng đầu cho ứng dụng đối thoại 2026. 39.300+ sao GitHub phản ánh sự nhiệt huyết thực sự của cộng đồng.</p>
+<p>Với các team xây dựng trợ lý giọng nói LLM, cài đặt chattts rất đơn giản — pip install, load model, và bắt đầu tạo giọng nói tự nhiên trong 5 phút. Kiến trúc tự hồi quy có trade-off về độ ổn định, nhưng trong kịch bản đối thoại, không có giải pháp mã nguồn mở nào sánh được với phạm vi biểu cảm của ChatTTS.</p>
+<p><strong>Hành động:</strong></p>
+<ol>
+<li>Clone repository và chạy WebUI trên máy GPU</li>
+<li>Thử nghiệm token ngữ điệu (<code>[laugh]</code>, ````[uv_break]```) trên tập dữ liệu hội thoại</li>
+<li>Triển khai API tương thích OpenAI để tích hợp pipeline LLM</li>
+<li>Tham gia Discord hoặc GitHub Discussions cho cập nhật streaming và điều khiển cảm xúc</li>
+</ol>
+<p>Theo dõi cập nhật và thảo luận chiến lược TTS hội thoại trong <a href="https://t.me/dibi8_channel">nhóm Telegram dibi8.com</a>.</p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/2noise/ChatTTS">ChatTTS GitHub Repository</a></li>
+<li><a href="https://huggingface.co/2Noise/ChatTTS">ChatTTS Hugging Face Model</a></li>
+<li><a href="https://github.com/coqui-ai/TTS">Coqui TTS Documentation</a></li>
+<li><a href="https://github.com/myshell-ai/MeloTTS">MeloTTS GitHub Repository</a></li>
+<li><a href="https://github.com/suno-ai/bark">Bark (Suno AI) Repository</a></li>
+<li><a href="https://github.com/RVC-Boss/GPT-SoVITS">GPT-SoVITS Repository</a></li>
+<li><a href="https://github.com/Awesome-ChatTTS">Awesome-ChatTTS Community Index</a></li>
+<li><a href="https://blog.csdn.net/weixin_30415591/article/details/157480949">ChatTTS Benchmark Comparison Study</a></li>
+<li><a href="https://www.e-com-net.com/article/1936044193575137280.htm">2025 Open Source AI Model Comparison</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;ChatTTS: 39.3K+ Stars — So Sánh Benchmark TTS Hội Thoại vs Coqui, MeloTTS 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -328,18 +958,164 @@ Build: <code>docker build -t chattts .</code>. Chạy: <code>docker run --gpus a
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/chattts%22>https://dibi8.com/vi/resources/chattts"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/chattts%22">https://dibi8.com/vi/resources/chattts"</a>
 }
-}</script></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/chattts-dialogue-tts-2026/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/chatwoot-open-source-customer-support-ai/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/chattts-dialogue-tts-2026/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/chatwoot-open-source-customer-support-ai/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

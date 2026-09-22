@@ -1,10 +1,313 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/flowise/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/flowise/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/flowise/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/flowise/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/flowise/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/flowise/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/flowise/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“flowise”, “langchain”, “ai agent”, “rag”, “docker”, “大语言模型”, “开源”, “无代码”] aliases:\n/zh/posts/flowise/ /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/- 引言 开发基于大语言模型（LLM）的应用曾经意味着需要编写数百行 Python 代码，手动连接模型、向量数据库、检索链和记忆模块。Flowise 的出现彻底改变了这一局面。凭借 52,948 个 GitHub Stars 和活跃的开发者社区，Flowise 是一款开源可视化构建工具，让你通过拖拽节点、连接组件的方式构建 AI Agent 和 RAG 流水线 —— 完全不需要编写代码。无论你是想快速搭建一个客服机器人原型，还是在 $5/月的 VPS 上部署文档问答系统，本指南将带你从零开始，在五分钟内完成生产级 Flowise 环境搭建。\nFlowise 是什么？ Flowise 是一款基于 LangChain 的开源可视化 LLM 工作流与 AI Agent 构建工具。它提供了一个节点式画布，每个组件（聊天模型、Embedding、向量数据库、工具、Agent、Chain）都被封装成一个可拖拽的节点，通过连线即可形成可执行的流水线。Flowise 支持超过 200 个 LangChain 集成，包括 OpenAI、Anthropic、Ollama、Qdrant、Weaviate 和 Chroma，是目前集成能力最丰富的可视化 AI 构建工具之一。\nFlowise 的工作原理 Flowise 采用模块化架构，可视化节点与 LangChain 类一一映射。理解这个架构能帮助你构建更复杂的流程并更快定位问题。\nFlowise 可视化画布中连接的 LLM 节点 —— 每个节点对应一个 LangChain 类\nFlowise 拖拽式界面实战 —— 不写一行代码即可构建 RAG 流水线\n核心组件 聊天模型（Chat Models） —— LLM 引擎（OpenAI GPT-4o、Claude、Ollama 本地模型、Hugging Face、Bedrock、Gemini） Embedding —— 将文本转换为向量以实现语义搜索（OpenAI、HuggingFace、Cohere） 向量数据库（Vector Stores） —— 持久化存储 Embedding 以供检索（Chroma、Qdrant、Weaviate、Pinecone、pgvector） 文档加载器（Document Loaders） —— 从 PDF、网页、文本文件、Notion、Confluence 导入数据 Chains —— 编排多步骤 LLM 操作（对话检索 QA、LLM Chain） Agents —— 自主选择工具的自主推理系统（ReAct、OpenAI Functions） Memory —— 在多轮对话中保持上下文（Buffer Memory、Window Buffer、Redis-backed） 三种构建模式 Flowise 提供三种可视化构建器：\nAssistant —— 面向初学者的聊天机器人构建器，支持 RAG。上传文档、配置回复并部署。 Chatflow —— 完整节点式画布，可精确控制每个组件的自定义对话式 AI。 Agentflow —— 多步骤 Agent 工作流，支持条件逻辑、循环、工具调用和人工审批。 每个构建的 Flow 都会自动暴露 REST API 端点和可嵌入的聊天组件，实现一键部署。\n安装与配置 Flowise 提供四种安装方式，分别适合不同的环境和技能水平。\n方式一：NPM（本地开发最快） 需要 Node.js v18.15.0 或 v20+。这是从安装到运行最快的路径。\n# 全局安装 Flowise npm install -g flowise # 或安装指定版本 npm install -g flowise@3.1.2 # 启动 Flowise npx flowise start 在浏览器中打开 http://localhost:3000。首次启动会在 ~/.flowise 自动创建 SQLite 数据库。\n方式二：Docker（推荐用于生产环境） 这是最可靠的部署方式。Flowise 在 Docker Hub 提供官方镜像，支持多架构。\n# 拉取并运行官方镜像 docker run -d -p 3000:3000 \\ --name flowise \\ -e FLOWISE_USERNAME=admin \\ -e FLOWISE_PASSWORD=secure-password \\ flowiseai/flowise:latest 访问 http://localhost:3000，使用你设置的凭据登录。\n方式三：Docker Compose（生产级，带数据库） 对于需要持久化的部署环境，使用 Docker Compose 配合 PostgreSQL 和卷挂载。\n# docker-compose.yml version: '3.8' services: flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - DATABASE_TYPE=postgres - DATABASE_HOST=postgres - DATABASE_PORT=5432 - DATABASE_NAME=flowise - DATABASE_USER=flowise - DATABASE_PASSWORD=${DB_PASSWORD:-changeme} - FLOWISE_USERNAME=${FLOWISE_USER:-admin} - FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme} - SECRETKEY_PATH=/root/.flowise - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod} - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret} volumes: - flowise_data:/root/.flowise depends_on: - postgres restart: unless-stopped postgres: image: postgres:16-alpine environment: - POSTGRES_USER=flowise - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme} - POSTGRES_DB=flowise volumes: - postgres_data:/var/lib/postgresql/data restart: unless-stopped volumes: flowise_data: postgres_data: ````` 启动命令： `````bash docker compose up -d 方式四：部署到 DigitalOcean 云服务器 如果你想在可靠的云 VPS 上托管 Flowise，可以在几分钟内部署到 DigitalOcean。\n# 在全新的 Ubuntu 24.04 服务器上（2 vCPU / 2GB RAM / $12/月） apt update \u0026\u0026 apt install -y docker.io docker-compose # 克隆 Flowise 仓库 git clone https://github.com/FlowiseAI/Flowise.git cd Flowise/docker # 复制环境变量模板 cp .env.example .env # 编辑配置文件 nano .env DigitalOcean 部署的 .env 示例：\nPORT=3000 DATABASE_TYPE=sqlite DATABASE_PATH=/root/.flowise SECRETKEY_PATH=/root/.flowise LOG_PATH=/root/.flowise/logs BLOB_STORAGE_PATH=/root/.flowise/storage FLOWISE_USERNAME=admin FLOWISE_PASSWORD=your-secure-password-here JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32) 启动服务：\ndocker compose up -d 环境变量参考表 | 变量 | 说明 | 默认值 | |\n|\n|\n| | PORT | HTTP 服务端口 | 3000 | | DATABASE_TYPE | 数据库引擎（sqlite, postgres） | sqlite | | DATABASE_PATH | SQLite 文件路径 | ~/.flowise | | FLOWISE_USERNAME | 管理员用户名 | — | | FLOWISE_PASSWORD | 管理员密码 | — | | JWT_AUTH_TOKEN_SECRET | 访问令牌密钥 | 自动生成 | | JWT_REFRESH_TOKEN_SECRET | 刷新令牌密钥 | 自动生成 | | BLOB_STORAGE_PATH | 文件上传存储路径 | ~/.flowise/storage | | DISABLE_FLOWISE_TELEMETRY | 关闭匿名遥测 | false |\n与主流工具集成 OpenAI 集成 大多数用户从 OpenAI 模型开始。在 Flowise UI 的 Credentials 中配置 API Key，然后在 Flow 中使用 ChatOpenAI 节点。\n# 可选：将 OpenAI API Key 设置为环境变量 export OPENAI_API_KEY=sk-your-key-here Ollama（本地大模型） 使用 Ollama 运行本地模型可以消除 API 费用并确保数据不出服务器。此方案非常适合对隐私敏感的部署场景。\n# docker-compose-ollama.yml version: '3.8' services: ollama: image: ollama/ollama:latest ports: - \"11434:11434\" volumes: - ollama_data:/root/.ollama restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - OLLAMA_BASE_URL=http://ollama:11434 depends_on: - ollama restart: unless-stopped volumes: ollama_data: ````` 拉取模型并开始使用： `````bash # 拉取轻量级测试模型 docker exec -it ollama ollama pull qwen2:7b # 或拉取 Llama 3 docker exec -it ollama ollama pull llama3.1:8b 在 Flowise 画布中，选择 ChatOllama 节点，将模型名设置为 qwen2:7b 或 llama3.1:8b。\nChroma 向量数据库（RAG 设置） 对于生产级 RAG 流水线，Chroma 提供了一个轻量级向量数据库，与 Flowise 无缝协作。\n# 添加到 docker-compose.yml chroma: image: chromadb/chroma:latest ports: - \"8000:8000\" volumes: - chroma_data:/chroma/chroma restart: unless-stopped 在 Flowise 中构建 RAG 流水线：\n拖拽 PDF Loader 或 Text File 节点 连接到 Text Splitter 节点（chunk size 设为 1000，overlap 设为 200） 连接到 OpenAI Embeddings（或 Ollama Embeddings）节点 连接到 Chroma 向量数据库节点 添加 Conversational Retrieval QA Chain 节点 将 Chat Model（ChatOpenAI 或 ChatOllama）连接到 Chain 点击 Save 和 Run Qdrant（可扩展向量搜索） 对于高吞吐量的混合搜索 RAG 场景，Qdrant 的性能优于内存存储。\n# 在 compose 文件中添加 Qdrant qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_data:/qdrant/storage restart: unless-stopped 在 Flowise 中使用 Qdrant 向量数据库节点，host 设置为 http://qdrant:6333。\nWeaviate（企业级向量数据库） weaviate: image: semitechnologies/weaviate:latest ports: - \"8080:8080\" environment: QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true PERSISTENCE_DATA_PATH: '/var/lib/weaviate' volumes: - weaviate_data:/var/lib/weaviate restart: unless-stopped API 部署 每个 Flow 都会自动暴露 REST API。导出你的 Chatflow 并在任意地方集成。\n# 使用 curl 测试已部署的 Flow curl -X POST \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"question\": \"退货政策是什么？\", \"overrideConfig\": { \"sessionId\": \"user_001\" } }' 响应示例：\n{ \"text\": \"根据我们的文档，退货政策允许在购买后 30 天内凭原始收据退货。\", \"sourceDocuments\": [ { \"pageContent\": \"购买后 30 天内接受退货...\", \"metadata\": { \"source\": \"return-policy.pdf\", \"page\": 3 } } ] } Python SDK 示例：\nimport requests FLOWISE_API = \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" def ask(question, session_id=\"user_001\"): resp = requests.post(FLOWISE_API, json={ \"question\": question, \"overrideConfig\": {\"sessionId\": session_id} }) return resp.json()[\"text\"] answer = ask(\"你们有哪些配送方式？\") print(answer) 嵌入网站 Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任意 HTML 页面即可：\n可自定义主题的嵌入聊天组件 —— 一个 script 标签即可部署到任意网站\nimport Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js'; Chatbot.init({ chatflowid: 'your-chatflow-id', apiHost: 'https://your-flowise-server.com', theme: { button: { backgroundColor: '#3B81F6', right: 20, bottom: 20, size: medium }, chatWindow: { title: \"AI Tool Guide\" welcomeMessage: '你好！有什么可以帮您的？', backgroundColor: '#ffffff', height: 700, width: 400 } } }); \u003c/script\u003e 基准测试 / 实际应用场景 根据社区报告和我们的实际测试，Flowise 的性能表现如下：\n| 指标 | 数值 | 说明 | |\n|\n|\n| | Docker 冷启动时间 | 3-5 秒 | 在 2 vCPU VPS 上 | | 首响延迟 | 1.5-3 秒 | 使用 GPT-4o，取决于 prompt | | RAG 查询端到端延迟 | 2-4 秒 | Chroma 向量库，1K chunks | | 并发用户数 | 50-200 | SQLite 后端；更大规模请使用 PostgreSQL | | 内存占用（空闲） | ~180 MB | 单容器 | | 内存占用（活跃） | 300-600 MB | 取决于模型和上下文 | | RAG Flow 搭建时间 | 10-15 分钟 | 从空白画布到可用聊天机器人 | | 最低 VPS 配置 | 1 vCPU / 1 GB RAM | $4-5/月的 VPS 即可运行 | | 推荐生产配置 | 2 vCPU / 4 GB RAM | 配合 PostgreSQL 使用 |\n对比：Flowise vs 替代方案 | 特性 | Flowise | Dify | n8n | LangChain | |\n|\n|\n|\n|\n| | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ | | 许可证 | MIT | Apache-2.0 | Fair-code | MIT | | 可视化构建器 | 拖拽画布 | 应用中心式 UI | 工作流编辑器 | 纯代码 | | 主要场景 | LLM 聊天机器人 \u0026 RAG | 全栈 AI 应用 | 工作流自动化 | 代码优先 SDK | | LangChain 原生 | 是（直接映射） | 自定义抽象层 | 通过 AI 节点 | 它就是 LangChain | | LLM 支持 | 200+（全部 LangChain） | 50+ | 70+ AI 节点 | 所有提供商 | | 向量数据库 | Chroma, Qdrant, Weaviate, Pinecone, pgvector | 内置知识库 | 通过 LangChain 节点 | 全部 | | 本地 LLM (Ollama) | 原生节点 | 原生集成 | 通过 HTTP 请求 | 原生 | | 可嵌入聊天组件 | 是（自动生成） | 是 | 通过 webhook | 需手动构建 | | REST API（自动生成） | 是 | 是 | 是 | 需手动构建 | | 多 Agent 工作流 | Agentflow（顺序） | 工作流编排 | 是（AI 节点） | LangGraph | | 调度/触发器 | 有限 | 有限 | 完整（cron、webhook） | 手动 | | 自托管复杂度 | 低（单容器） | 中等（多服务） | 低-中等 | N/A（库） | | 最低内存 | ~1 GB | 4 GB | 300 MB | N/A | | 云版起步价 | $35/月 | $59/月 | ~$24/月 | N/A | | 非技术用户体验 | 良好 | 优秀 | 良好 | 需要编程 |\n如何选择 Flowise：适合构建对话式 AI（聊天机器人、RAG）的团队，追求从原型到部署的最快路径，同时保持完整的 LangChain 兼容性。 Dify：当你需要全栈 AI 应用平台，内置知识管理、Prompt 版本控制和团队协作时选择。 n8n：当你的 AI Agent 是更广泛自动化流水线的一部分，需要 400+ SaaS 集成、调度和错误处理时选择。 LangChain：当你需要完全的代码控制、Prompt 版本管理和 CI/CD 集成时直接使用。 高级用法 / 生产环境加固 安全检查清单 在将 Flowise 暴露到公网之前，请完成以下步骤：\n# 1. 启用身份验证（必须） FLOWISE_USERNAME=admin FLOWISE_PASSWORD=$(openssl rand -base64 24) # 2. 设置强 JWT 密钥 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64) # 3. 使用反向代理启用 HTTPS # Nginx 配置片段： server { listen 443 ssl http2; server_name flowise.yourdomain.com; ssl_certificate /path/to/cert.pem; ssl_certificate_key /path/to/key.pem; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } # 4. 如需要可关闭遥测 DISABLE_FLOWISE_TELEMETRY=true # 5. 为嵌入组件设置 CORS CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com 队列模式扩展 对于高流量部署，Flowise 支持基于 Redis 的队列处理与工作进程。\n# docker-compose-queue.yml version: '3.8' services: redis: image: redis:alpine restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped flowise-worker: image: flowiseai/flowise-worker:latest environment: - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped 水平扩展工作进程：\ndocker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3 备份策略 # 备份 SQLite 数据库 docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz # 备份 PostgreSQL docker exec flowise-postgres pg_dump -U flowise flowise \u003e flowise-db-$(date +%Y%m%d).sql # 通过 cron 实现每日自动备份（添加到 crontab） 0 2 * * * /usr/local/bin/backup-flowise.sh \u003e\u003e /var/log/flowise-backup.log 2\u003e\u00261 Docker 监控 # 查看实时日志 docker compose logs -f flowise # 检查资源使用 docker stats flowise # 健康检查端点 curl http://localhost:3000/api/v1/ping 局限性 / 客观评估 Flowise 并非适用于所有 AI 项目。以下情况不建议使用 Flowise：\n复杂多 Agent 编排：Flowise Agentflow 支持顺序 Agent，但循环式多 Agent 模式（如 LangGraph 或 AutoGen 中的模式）需要变通方案。构建研究型 Agent 或辩论式多 Agent 系统的团队应考虑直接使用 LangGraph。\n非聊天类工作流：Flowise 针对对话式 AI 优化。批量文档处理、ETL 流水线或定时数据转换更适合由 n8n 或 Python 脚本处理。\n版本控制：可视化 Flow 无法像代码一样在 Git 中进行 diff 比较。大型团队协作需要手动导出和版本化 JSON Flow 定义。\n高级调试：虽然 Flowise 显示执行日志，但缺乏 Dify 原生提供的节点级时间分解和 token 使用量追踪。调试复杂的检索失败需要阅读原始日志。\n企业治理：RBAC 存在于 Pro 版本中，但审计追踪、合规框架（ISO 42001、欧盟 AI 法案）和集群管理并非一等功能。受监管行业可能需要额外的治理层。\nLangChain 依赖：Flowise 继承了 LangChain 的限制。如果 LangChain 停止支持某个模型或引入破坏性变更，Flowise 也会受到影响。对于 LangChain 用户这是优势，对其他人则是约束。\n常见问题 没有 Node.js 的服务器如何安装 Flowise？ 使用 Docker。官方 flowiseai/flowise 镜像已打包所有依赖。一条 docker run 命令即可运行，无需在宿主机上安装 Node.js、pnpm 或任何构建工具。\nFlowise 能否与 Llama 或 Qwen 等本地大模型配合工作？ 可以。Flowise 原生集成 Ollama。启动 Ollama 容器（或本地实例），拉取任意 GGUF 模型，然后在 Flowise 画布中选择 ChatOllama 节点。你的数据永远不会离开服务器 —— 无需 API Key。\n构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？ Flowise 搭建更快（单容器，无需数据库），并对每个 LangChain 组件提供精确控制。Dify 的知识库 UI 更精致，自动分块且调试体验更好。追求速度和 LangChain 兼容性选 Flowise；追求团队协作和内置知识管理选 Dify。\nFlowise 可以免费商用吗？ 可以。Flowise 采用 MIT 许可证发布。你可以自托管、修改、嵌入商业产品、销售基于它的服务 —— 全部无需支付许可费。云托管版本有付费套餐，起步价 $35/月。\nFlowise 生产环境的最低服务器配置是什么？ $5/月的 VPS（1 vCPU / 1 GB RAM）配合 SQLite 即可处理中小型工作负载。生产环境配合 PostgreSQL 和多用户并发，建议分配 2 vCPU 和 4 GB RAM。Flowise 容器本身空闲时占用约 180 MB；通过 Ollama 自托管的 LLM 消耗资源最多。\n可以将 Flowise 聊天机器人导出为 API 吗？ 每个 Chatflow 和 Agentflow 都会自动获得 REST API 端点，路径为 /api/v1/prediction/{flow-id}。UI 会生成 curl、Python 和 JavaScript 代码片段。你也可以一键导出可嵌入的聊天组件。\n如何将 Flowise 升级到新版本？ Docker 部署：拉取最新镜像并重启：\ndocker pull flowiseai/flowise:latest docker compose up -d NPM 安装：运行 npm update -g flowise。升级前始终备份 ~/.flowise 目录。\n部分链接为联盟链接。我们可能获得佣金，但你无需支付额外费用。我们只推荐我们实际使用过的工具和服务。\n结论 Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个 GitHub Stars、MIT 许可证以及与 LangChain 组件模型直接映射的可视化画布，它是开发者的务实选择 —— 在不编写样板代码的前提下交付 LLM 驱动的聊天机器人和 RAG 系统。\n从 npx flowise start 开始本地原型。使用 Docker Compose 配合 PostgreSQL 进入生产。连接 Ollama 实现完全私有、无需 API Key 的部署。需要扩展时，添加 Redis 队列工作进程和水平工作副本。\n本周行动清单：\n使用 Docker 本地部署 Flowise（````docker run -p 3000:3000 flowiseai/flowise```） 使用 PDF 加载器、文本分割器和 Chroma 向量库构建你的第一条 RAG 流水线 导出 REST API 并在测试页面嵌入聊天组件 加入 FlowiseAI Telegram 群组 获取社区支持和每周技巧 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 Flowise 官方文档 —— 安装、配置和 API 参考的完整文档 Flowise GitHub 仓库 —— 源代码、Issues 和 Releases Flowise 云版定价 —— 云托管套餐和企业功能 LangChain 文档 —— Flowise 底层框架 Ollama 下载 —— 私有化 LLM 运行时 Chroma 数据库 —— 开源向量数据库 Qdrant 向量数据库 —— 高性能向量搜索 Flowise vs Dify 对比 —— ToolHalla 详细对比 Flowise 嵌入组件文档 —— 嵌入聊天机器人的 NPM 包 DigitalOcean Docker 部署指南 —— Ubuntu 服务器 Docker 安装教程 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/flowise\" } } Related Articles 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents 2026-06-15-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1792","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/flowise/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/flowise/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/flowise/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/flowise/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bc%95%e8%a8%80 aria-label=引言>引言</a></li><li><a href=#flowise-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Flowise 是什么？">Flowise 是什么？</a></li><li><a href=#flowise-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="Flowise 的工作原理">Flowise 的工作原理</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6 aria-label=核心组件>核心组件</a></li><li><a href=#%e4%b8%89%e7%a7%8d%e6%9e%84%e5%bb%ba%e6%a8%a1%e5%bc%8f aria-label=三种构建模式>三种构建模式</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae aria-label=安装与配置>安装与配置</a><ul><li><a href=#%e6%96%b9%e5%bc%8f%e4%b8%80npm%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e6%9c%80%e5%bf%ab aria-label=方式一：NPM（本地开发最快）>方式一：NPM（本地开发最快）</a></li><li><a href=#%e6%96%b9%e5%bc%8f%e4%ba%8cdocker%e6%8e%a8%e8%8d%90%e7%94%a8%e4%ba%8e%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83 aria-label=方式二：Docker（推荐用于生产环境）>方式二：Docker（推荐用于生产环境）</a></li><li><a href=#%e6%96%b9%e5%bc%8f%e4%b8%89docker-compose%e7%94%9f%e4%ba%a7%e7%ba%a7%e5%b8%a6%e6%95%b0%e6%8d%ae%e5%ba%93 aria-label="方式三：Docker Compose（生产级，带数据库）">方式三：Docker Compose（生产级，带数据库）</a></li><li><a href=#%e6%96%b9%e5%bc%8f%e5%9b%9b%e9%83%a8%e7%bd%b2%e5%88%b0-digitalocean-%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label="方式四：部署到 DigitalOcean 云服务器">方式四：部署到 DigitalOcean 云服务器</a></li><li><a href=#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e5%8f%82%e8%80%83%e8%a1%a8 aria-label=环境变量参考表>环境变量参考表</a></li></ul></li><li><a href=#%e4%b8%8e%e4%b8%bb%e6%b5%81%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90 aria-label=与主流工具集成>与主流工具集成</a><ul><li><a href=#openai-%e9%9b%86%e6%88%90 aria-label="OpenAI 集成">OpenAI 集成</a></li><li><a href=#ollama%e6%9c%ac%e5%9c%b0%e5%a4%a7%e6%a8%a1%e5%9e%8b aria-label=Ollama（本地大模型）>Ollama（本地大模型）</a></li><li><a href=#chroma-%e5%90%91%e9%87%8f%e6%95%b0%e6%8d%ae%e5%ba%93rag-%e8%ae%be%e7%bd%ae aria-label="Chroma 向量数据库（RAG 设置）">Chroma 向量数据库（RAG 设置）</a></li><li><a href=#qdrant%e5%8f%af%e6%89%a9%e5%b1%95%e5%90%91%e9%87%8f%e6%90%9c%e7%b4%a2 aria-label=Qdrant（可扩展向量搜索）>Qdrant（可扩展向量搜索）</a></li><li><a href=#weaviate%e4%bc%81%e4%b8%9a%e7%ba%a7%e5%90%91%e9%87%8f%e6%95%b0%e6%8d%ae%e5%ba%93 aria-label=Weaviate（企业级向量数据库）>Weaviate（企业级向量数据库）</a></li><li><a href=#api-%e9%83%a8%e7%bd%b2 aria-label="API 部署">API 部署</a></li><li><a href=#%e5%b5%8c%e5%85%a5%e7%bd%91%e7%ab%99 aria-label=嵌入网站>嵌入网站</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af aria-label="基准测试 / 实际应用场景">基准测试 / 实际应用场景</a><ul><li><a href=#%e5%af%b9%e6%af%94flowise-vs-%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88 aria-label="对比：Flowise vs 替代方案">对比：Flowise vs 替代方案</a></li><li><a href=#%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9 aria-label=如何选择>如何选择</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba aria-label="高级用法 / 生产环境加固">高级用法 / 生产环境加固</a><ul><li><a href=#%e5%ae%89%e5%85%a8%e6%a3%80%e6%9f%a5%e6%b8%85%e5%8d%95 aria-label=安全检查清单>安全检查清单</a></li><li><a href=#%e9%98%9f%e5%88%97%e6%a8%a1%e5%bc%8f%e6%89%a9%e5%b1%95 aria-label=队列模式扩展>队列模式扩展</a></li><li><a href=#%e5%a4%87%e4%bb%bd%e7%ad%96%e7%95%a5 aria-label=备份策略>备份策略</a></li><li><a href=#docker-%e7%9b%91%e6%8e%a7 aria-label="Docker 监控">Docker 监控</a></li></ul></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7--%e5%ae%a2%e8%a7%82%e8%af%84%e4%bc%b0 aria-label="局限性 / 客观评估">局限性 / 客观评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a><ul><li><a href=#%e6%b2%a1%e6%9c%89-nodejs-%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%a6%82%e4%bd%95%e5%ae%89%e8%a3%85-flowise aria-label="没有 Node.js 的服务器如何安装 Flowise？">没有 Node.js 的服务器如何安装 Flowise？</a></li><li><a href=#flowise-%e8%83%bd%e5%90%a6%e4%b8%8e-llama-%e6%88%96-qwen-%e7%ad%89%e6%9c%ac%e5%9c%b0%e5%a4%a7%e6%a8%a1%e5%9e%8b%e9%85%8d%e5%90%88%e5%b7%a5%e4%bd%9c aria-label="Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？">Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？</a></li><li><a href=#%e6%9e%84%e5%bb%ba-rag-%e8%81%8a%e5%a4%a9%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%97%b6flowise-%e4%b8%8e-dify-%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9 aria-label="构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？">构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？</a></li><li><a href=#flowise-%e5%8f%af%e4%bb%a5%e5%85%8d%e8%b4%b9%e5%95%86%e7%94%a8%e5%90%97 aria-label="Flowise 可以免费商用吗？">Flowise 可以免费商用吗？</a></li><li><a href=#flowise-%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e7%9a%84%e6%9c%80%e4%bd%8e%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Flowise 生产环境的最低服务器配置是什么？">Flowise 生产环境的最低服务器配置是什么？</a></li><li><a href=#%e5%8f%af%e4%bb%a5%e5%b0%86-flowise-%e8%81%8a%e5%a4%a9%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%af%bc%e5%87%ba%e4%b8%ba-api-%e5%90%97 aria-label="可以将 Flowise 聊天机器人导出为 API 吗？">可以将 Flowise 聊天机器人导出为 API 吗？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e5%b0%86-flowise-%e5%8d%87%e7%ba%a7%e5%88%b0%e6%96%b0%e7%89%88%e6%9c%ac aria-label="如何将 Flowise 升级到新版本？">如何将 Flowise 升级到新版本？</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/flowise/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/flowise/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/flowise/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/flowise/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/flowise/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/flowise/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/flowise/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“flowise”, “langchain”, “ai agent”, “rag”, “docker”, “大语言模型”, “开源”, “无代码”] aliases:\n/zh/posts/flowise/ /zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/- 引言 开发基于大语言模型（LLM）的应用曾经意味着需要编写数百行 Python 代码，手动连接模型、向量数据库、检索链和记忆模块。Flowise 的出现彻底改变了这一局面。凭借 52,948 个 GitHub Stars 和活跃的开发者社区，Flowise 是一款开源可视化构建工具，让你通过拖拽节点、连接组件的方式构建 AI Agent 和 RAG 流水线 —— 完全不需要编写代码。无论你是想快速搭建一个客服机器人原型，还是在 $5/月的 VPS 上部署文档问答系统，本指南将带你从零开始，在五分钟内完成生产级 Flowise 环境搭建。\nFlowise 是什么？ Flowise 是一款基于 LangChain 的开源可视化 LLM 工作流与 AI Agent 构建工具。它提供了一个节点式画布，每个组件（聊天模型、Embedding、向量数据库、工具、Agent、Chain）都被封装成一个可拖拽的节点，通过连线即可形成可执行的流水线。Flowise 支持超过 200 个 LangChain 集成，包括 OpenAI、Anthropic、Ollama、Qdrant、Weaviate 和 Chroma，是目前集成能力最丰富的可视化 AI 构建工具之一。\nFlowise 的工作原理 Flowise 采用模块化架构，可视化节点与 LangChain 类一一映射。理解这个架构能帮助你构建更复杂的流程并更快定位问题。\nFlowise 可视化画布中连接的 LLM 节点 —— 每个节点对应一个 LangChain 类\nFlowise 拖拽式界面实战 —— 不写一行代码即可构建 RAG 流水线\n核心组件 聊天模型（Chat Models） —— LLM 引擎（OpenAI GPT-4o、Claude、Ollama 本地模型、Hugging Face、Bedrock、Gemini） Embedding —— 将文本转换为向量以实现语义搜索（OpenAI、HuggingFace、Cohere） 向量数据库（Vector Stores） —— 持久化存储 Embedding 以供检索（Chroma、Qdrant、Weaviate、Pinecone、pgvector） 文档加载器（Document Loaders） —— 从 PDF、网页、文本文件、Notion、Confluence 导入数据 Chains —— 编排多步骤 LLM 操作（对话检索 QA、LLM Chain） Agents —— 自主选择工具的自主推理系统（ReAct、OpenAI Functions） Memory —— 在多轮对话中保持上下文（Buffer Memory、Window Buffer、Redis-backed） 三种构建模式 Flowise 提供三种可视化构建器：\nAssistant —— 面向初学者的聊天机器人构建器，支持 RAG。上传文档、配置回复并部署。 Chatflow —— 完整节点式画布，可精确控制每个组件的自定义对话式 AI。 Agentflow —— 多步骤 Agent 工作流，支持条件逻辑、循环、工具调用和人工审批。 每个构建的 Flow 都会自动暴露 REST API 端点和可嵌入的聊天组件，实现一键部署。\n安装与配置 Flowise 提供四种安装方式，分别适合不同的环境和技能水平。\n方式一：NPM（本地开发最快） 需要 Node.js v18.15.0 或 v20+。这是从安装到运行最快的路径。\n# 全局安装 Flowise npm install -g flowise # 或安装指定版本 npm install -g flowise@3.1.2 # 启动 Flowise npx flowise start 在浏览器中打开 http://localhost:3000。首次启动会在 ~/.flowise 自动创建 SQLite 数据库。\n方式二：Docker（推荐用于生产环境） 这是最可靠的部署方式。Flowise 在 Docker Hub 提供官方镜像，支持多架构。\n# 拉取并运行官方镜像 docker run -d -p 3000:3000 \\ --name flowise \\ -e FLOWISE_USERNAME=admin \\ -e FLOWISE_PASSWORD=secure-password \\ flowiseai/flowise:latest 访问 http://localhost:3000，使用你设置的凭据登录。\n方式三：Docker Compose（生产级，带数据库） 对于需要持久化的部署环境，使用 Docker Compose 配合 PostgreSQL 和卷挂载。\n# docker-compose.yml version: '3.8' services: flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - DATABASE_TYPE=postgres - DATABASE_HOST=postgres - DATABASE_PORT=5432 - DATABASE_NAME=flowise - DATABASE_USER=flowise - DATABASE_PASSWORD=${DB_PASSWORD:-changeme} - FLOWISE_USERNAME=${FLOWISE_USER:-admin} - FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme} - SECRETKEY_PATH=/root/.flowise - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod} - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret} volumes: - flowise_data:/root/.flowise depends_on: - postgres restart: unless-stopped postgres: image: postgres:16-alpine environment: - POSTGRES_USER=flowise - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme} - POSTGRES_DB=flowise volumes: - postgres_data:/var/lib/postgresql/data restart: unless-stopped volumes: flowise_data: postgres_data: ````` 启动命令： `````bash docker compose up -d 方式四：部署到 DigitalOcean 云服务器 如果你想在可靠的云 VPS 上托管 Flowise，可以在几分钟内部署到 DigitalOcean。\n# 在全新的 Ubuntu 24.04 服务器上（2 vCPU / 2GB RAM / $12/月） apt update \u0026\u0026 apt install -y docker.io docker-compose # 克隆 Flowise 仓库 git clone https://github.com/FlowiseAI/Flowise.git cd Flowise/docker # 复制环境变量模板 cp .env.example .env # 编辑配置文件 nano .env DigitalOcean 部署的 .env 示例：\nPORT=3000 DATABASE_TYPE=sqlite DATABASE_PATH=/root/.flowise SECRETKEY_PATH=/root/.flowise LOG_PATH=/root/.flowise/logs BLOB_STORAGE_PATH=/root/.flowise/storage FLOWISE_USERNAME=admin FLOWISE_PASSWORD=your-secure-password-here JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32) 启动服务：\ndocker compose up -d 环境变量参考表 | 变量 | 说明 | 默认值 | |\n|\n|\n| | PORT | HTTP 服务端口 | 3000 | | DATABASE_TYPE | 数据库引擎（sqlite, postgres） | sqlite | | DATABASE_PATH | SQLite 文件路径 | ~/.flowise | | FLOWISE_USERNAME | 管理员用户名 | — | | FLOWISE_PASSWORD | 管理员密码 | — | | JWT_AUTH_TOKEN_SECRET | 访问令牌密钥 | 自动生成 | | JWT_REFRESH_TOKEN_SECRET | 刷新令牌密钥 | 自动生成 | | BLOB_STORAGE_PATH | 文件上传存储路径 | ~/.flowise/storage | | DISABLE_FLOWISE_TELEMETRY | 关闭匿名遥测 | false |\n与主流工具集成 OpenAI 集成 大多数用户从 OpenAI 模型开始。在 Flowise UI 的 Credentials 中配置 API Key，然后在 Flow 中使用 ChatOpenAI 节点。\n# 可选：将 OpenAI API Key 设置为环境变量 export OPENAI_API_KEY=sk-your-key-here Ollama（本地大模型） 使用 Ollama 运行本地模型可以消除 API 费用并确保数据不出服务器。此方案非常适合对隐私敏感的部署场景。\n# docker-compose-ollama.yml version: '3.8' services: ollama: image: ollama/ollama:latest ports: - \"11434:11434\" volumes: - ollama_data:/root/.ollama restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - OLLAMA_BASE_URL=http://ollama:11434 depends_on: - ollama restart: unless-stopped volumes: ollama_data: ````` 拉取模型并开始使用： `````bash # 拉取轻量级测试模型 docker exec -it ollama ollama pull qwen2:7b # 或拉取 Llama 3 docker exec -it ollama ollama pull llama3.1:8b 在 Flowise 画布中，选择 ChatOllama 节点，将模型名设置为 qwen2:7b 或 llama3.1:8b。\nChroma 向量数据库（RAG 设置） 对于生产级 RAG 流水线，Chroma 提供了一个轻量级向量数据库，与 Flowise 无缝协作。\n# 添加到 docker-compose.yml chroma: image: chromadb/chroma:latest ports: - \"8000:8000\" volumes: - chroma_data:/chroma/chroma restart: unless-stopped 在 Flowise 中构建 RAG 流水线：\n拖拽 PDF Loader 或 Text File 节点 连接到 Text Splitter 节点（chunk size 设为 1000，overlap 设为 200） 连接到 OpenAI Embeddings（或 Ollama Embeddings）节点 连接到 Chroma 向量数据库节点 添加 Conversational Retrieval QA Chain 节点 将 Chat Model（ChatOpenAI 或 ChatOllama）连接到 Chain 点击 Save 和 Run Qdrant（可扩展向量搜索） 对于高吞吐量的混合搜索 RAG 场景，Qdrant 的性能优于内存存储。\n# 在 compose 文件中添加 Qdrant qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_data:/qdrant/storage restart: unless-stopped 在 Flowise 中使用 Qdrant 向量数据库节点，host 设置为 http://qdrant:6333。\nWeaviate（企业级向量数据库） weaviate: image: semitechnologies/weaviate:latest ports: - \"8080:8080\" environment: QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true PERSISTENCE_DATA_PATH: '/var/lib/weaviate' volumes: - weaviate_data:/var/lib/weaviate restart: unless-stopped API 部署 每个 Flow 都会自动暴露 REST API。导出你的 Chatflow 并在任意地方集成。\n# 使用 curl 测试已部署的 Flow curl -X POST \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"question\": \"退货政策是什么？\", \"overrideConfig\": { \"sessionId\": \"user_001\" } }' 响应示例：\n{ \"text\": \"根据我们的文档，退货政策允许在购买后 30 天内凭原始收据退货。\", \"sourceDocuments\": [ { \"pageContent\": \"购买后 30 天内接受退货...\", \"metadata\": { \"source\": \"return-policy.pdf\", \"page\": 3 } } ] } Python SDK 示例：\nimport requests FLOWISE_API = \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" def ask(question, session_id=\"user_001\"): resp = requests.post(FLOWISE_API, json={ \"question\": question, \"overrideConfig\": {\"sessionId\": session_id} }) return resp.json()[\"text\"] answer = ask(\"你们有哪些配送方式？\") print(answer) 嵌入网站 Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任意 HTML 页面即可：\n可自定义主题的嵌入聊天组件 —— 一个 script 标签即可部署到任意网站\nimport Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js'; Chatbot.init({ chatflowid: 'your-chatflow-id', apiHost: 'https://your-flowise-server.com', theme: { button: { backgroundColor: '#3B81F6', right: 20, bottom: 20, size: medium }, chatWindow: { title: \"AI Tool Guide\" welcomeMessage: '你好！有什么可以帮您的？', backgroundColor: '#ffffff', height: 700, width: 400 } } }); \u003c/script\u003e 基准测试 / 实际应用场景 根据社区报告和我们的实际测试，Flowise 的性能表现如下：\n| 指标 | 数值 | 说明 | |\n|\n|\n| | Docker 冷启动时间 | 3-5 秒 | 在 2 vCPU VPS 上 | | 首响延迟 | 1.5-3 秒 | 使用 GPT-4o，取决于 prompt | | RAG 查询端到端延迟 | 2-4 秒 | Chroma 向量库，1K chunks | | 并发用户数 | 50-200 | SQLite 后端；更大规模请使用 PostgreSQL | | 内存占用（空闲） | ~180 MB | 单容器 | | 内存占用（活跃） | 300-600 MB | 取决于模型和上下文 | | RAG Flow 搭建时间 | 10-15 分钟 | 从空白画布到可用聊天机器人 | | 最低 VPS 配置 | 1 vCPU / 1 GB RAM | $4-5/月的 VPS 即可运行 | | 推荐生产配置 | 2 vCPU / 4 GB RAM | 配合 PostgreSQL 使用 |\n对比：Flowise vs 替代方案 | 特性 | Flowise | Dify | n8n | LangChain | |\n|\n|\n|\n|\n| | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ | | 许可证 | MIT | Apache-2.0 | Fair-code | MIT | | 可视化构建器 | 拖拽画布 | 应用中心式 UI | 工作流编辑器 | 纯代码 | | 主要场景 | LLM 聊天机器人 \u0026 RAG | 全栈 AI 应用 | 工作流自动化 | 代码优先 SDK | | LangChain 原生 | 是（直接映射） | 自定义抽象层 | 通过 AI 节点 | 它就是 LangChain | | LLM 支持 | 200+（全部 LangChain） | 50+ | 70+ AI 节点 | 所有提供商 | | 向量数据库 | Chroma, Qdrant, Weaviate, Pinecone, pgvector | 内置知识库 | 通过 LangChain 节点 | 全部 | | 本地 LLM (Ollama) | 原生节点 | 原生集成 | 通过 HTTP 请求 | 原生 | | 可嵌入聊天组件 | 是（自动生成） | 是 | 通过 webhook | 需手动构建 | | REST API（自动生成） | 是 | 是 | 是 | 需手动构建 | | 多 Agent 工作流 | Agentflow（顺序） | 工作流编排 | 是（AI 节点） | LangGraph | | 调度/触发器 | 有限 | 有限 | 完整（cron、webhook） | 手动 | | 自托管复杂度 | 低（单容器） | 中等（多服务） | 低-中等 | N/A（库） | | 最低内存 | ~1 GB | 4 GB | 300 MB | N/A | | 云版起步价 | $35/月 | $59/月 | ~$24/月 | N/A | | 非技术用户体验 | 良好 | 优秀 | 良好 | 需要编程 |\n如何选择 Flowise：适合构建对话式 AI（聊天机器人、RAG）的团队，追求从原型到部署的最快路径，同时保持完整的 LangChain 兼容性。 Dify：当你需要全栈 AI 应用平台，内置知识管理、Prompt 版本控制和团队协作时选择。 n8n：当你的 AI Agent 是更广泛自动化流水线的一部分，需要 400+ SaaS 集成、调度和错误处理时选择。 LangChain：当你需要完全的代码控制、Prompt 版本管理和 CI/CD 集成时直接使用。 高级用法 / 生产环境加固 安全检查清单 在将 Flowise 暴露到公网之前，请完成以下步骤：\n# 1. 启用身份验证（必须） FLOWISE_USERNAME=admin FLOWISE_PASSWORD=$(openssl rand -base64 24) # 2. 设置强 JWT 密钥 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64) # 3. 使用反向代理启用 HTTPS # Nginx 配置片段： server { listen 443 ssl http2; server_name flowise.yourdomain.com; ssl_certificate /path/to/cert.pem; ssl_certificate_key /path/to/key.pem; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } } # 4. 如需要可关闭遥测 DISABLE_FLOWISE_TELEMETRY=true # 5. 为嵌入组件设置 CORS CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com 队列模式扩展 对于高流量部署，Flowise 支持基于 Redis 的队列处理与工作进程。\n# docker-compose-queue.yml version: '3.8' services: redis: image: redis:alpine restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped flowise-worker: image: flowiseai/flowise-worker:latest environment: - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped 水平扩展工作进程：\ndocker compose -f docker-compose-queue.yml up -d --scale flowise-worker=3 备份策略 # 备份 SQLite 数据库 docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz # 备份 PostgreSQL docker exec flowise-postgres pg_dump -U flowise flowise \u003e flowise-db-$(date +%Y%m%d).sql # 通过 cron 实现每日自动备份（添加到 crontab） 0 2 * * * /usr/local/bin/backup-flowise.sh \u003e\u003e /var/log/flowise-backup.log 2\u003e\u00261 Docker 监控 # 查看实时日志 docker compose logs -f flowise # 检查资源使用 docker stats flowise # 健康检查端点 curl http://localhost:3000/api/v1/ping 局限性 / 客观评估 Flowise 并非适用于所有 AI 项目。以下情况不建议使用 Flowise：\n复杂多 Agent 编排：Flowise Agentflow 支持顺序 Agent，但循环式多 Agent 模式（如 LangGraph 或 AutoGen 中的模式）需要变通方案。构建研究型 Agent 或辩论式多 Agent 系统的团队应考虑直接使用 LangGraph。\n非聊天类工作流：Flowise 针对对话式 AI 优化。批量文档处理、ETL 流水线或定时数据转换更适合由 n8n 或 Python 脚本处理。\n版本控制：可视化 Flow 无法像代码一样在 Git 中进行 diff 比较。大型团队协作需要手动导出和版本化 JSON Flow 定义。\n高级调试：虽然 Flowise 显示执行日志，但缺乏 Dify 原生提供的节点级时间分解和 token 使用量追踪。调试复杂的检索失败需要阅读原始日志。\n企业治理：RBAC 存在于 Pro 版本中，但审计追踪、合规框架（ISO 42001、欧盟 AI 法案）和集群管理并非一等功能。受监管行业可能需要额外的治理层。\nLangChain 依赖：Flowise 继承了 LangChain 的限制。如果 LangChain 停止支持某个模型或引入破坏性变更，Flowise 也会受到影响。对于 LangChain 用户这是优势，对其他人则是约束。\n常见问题 没有 Node.js 的服务器如何安装 Flowise？ 使用 Docker。官方 flowiseai/flowise 镜像已打包所有依赖。一条 docker run 命令即可运行，无需在宿主机上安装 Node.js、pnpm 或任何构建工具。\nFlowise 能否与 Llama 或 Qwen 等本地大模型配合工作？ 可以。Flowise 原生集成 Ollama。启动 Ollama 容器（或本地实例），拉取任意 GGUF 模型，然后在 Flowise 画布中选择 ChatOllama 节点。你的数据永远不会离开服务器 —— 无需 API Key。\n构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？ Flowise 搭建更快（单容器，无需数据库），并对每个 LangChain 组件提供精确控制。Dify 的知识库 UI 更精致，自动分块且调试体验更好。追求速度和 LangChain 兼容性选 Flowise；追求团队协作和内置知识管理选 Dify。\nFlowise 可以免费商用吗？ 可以。Flowise 采用 MIT 许可证发布。你可以自托管、修改、嵌入商业产品、销售基于它的服务 —— 全部无需支付许可费。云托管版本有付费套餐，起步价 $35/月。\nFlowise 生产环境的最低服务器配置是什么？ $5/月的 VPS（1 vCPU / 1 GB RAM）配合 SQLite 即可处理中小型工作负载。生产环境配合 PostgreSQL 和多用户并发，建议分配 2 vCPU 和 4 GB RAM。Flowise 容器本身空闲时占用约 180 MB；通过 Ollama 自托管的 LLM 消耗资源最多。\n可以将 Flowise 聊天机器人导出为 API 吗？ 每个 Chatflow 和 Agentflow 都会自动获得 REST API 端点，路径为 /api/v1/prediction/{flow-id}。UI 会生成 curl、Python 和 JavaScript 代码片段。你也可以一键导出可嵌入的聊天组件。\n如何将 Flowise 升级到新版本？ Docker 部署：拉取最新镜像并重启：\ndocker pull flowiseai/flowise:latest docker compose up -d NPM 安装：运行 npm update -g flowise。升级前始终备份 ~/.flowise 目录。\n部分链接为联盟链接。我们可能获得佣金，但你无需支付额外费用。我们只推荐我们实际使用过的工具和服务。\n结论 Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个 GitHub Stars、MIT 许可证以及与 LangChain 组件模型直接映射的可视化画布，它是开发者的务实选择 —— 在不编写样板代码的前提下交付 LLM 驱动的聊天机器人和 RAG 系统。\n从 npx flowise start 开始本地原型。使用 Docker Compose 配合 PostgreSQL 进入生产。连接 Ollama 实现完全私有、无需 API Key 的部署。需要扩展时，添加 Redis 队列工作进程和水平工作副本。\n本周行动清单：\n使用 Docker 本地部署 Flowise（````docker run -p 3000:3000 flowiseai/flowise```） 使用 PDF 加载器、文本分割器和 Chroma 向量库构建你的第一条 RAG 流水线 导出 REST API 并在测试页面嵌入聊天组件 加入 FlowiseAI Telegram 群组 获取社区支持和每周技巧 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 Flowise 官方文档 —— 安装、配置和 API 参考的完整文档 Flowise GitHub 仓库 —— 源代码、Issues 和 Releases Flowise 云版定价 —— 云托管套餐和企业功能 LangChain 文档 —— Flowise 底层框架 Ollama 下载 —— 私有化 LLM 运行时 Chroma 数据库 —— 开源向量数据库 Qdrant 向量数据库 —— 高性能向量搜索 Flowise vs Dify 对比 —— ToolHalla 详细对比 Flowise 嵌入组件文档 —— 嵌入聊天机器人的 NPM 包 DigitalOcean Docker 部署指南 —— Ubuntu 服务器 Docker 安装教程 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/flowise\" } } Related Articles 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents 2026-06-15-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1792",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/flowise/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/flowise/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/flowise/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/flowise/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+            <li>
+                <a href="#flowise-%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Flowise 是什么？">Flowise 是什么？</a></li>
+            <li>
+                <a href="#flowise-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="Flowise 的工作原理">Flowise 的工作原理</a><ul>
+                    
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e7%bb%84%e4%bb%b6" aria-label="核心组件">核心组件</a></li>
+            <li>
+                <a href="#%e4%b8%89%e7%a7%8d%e6%9e%84%e5%bb%ba%e6%a8%a1%e5%bc%8f" aria-label="三种构建模式">三种构建模式</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" aria-label="安装与配置">安装与配置</a><ul>
+                    
+            <li>
+                <a href="#%e6%96%b9%e5%bc%8f%e4%b8%80npm%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e6%9c%80%e5%bf%ab" aria-label="方式一：NPM（本地开发最快）">方式一：NPM（本地开发最快）</a></li>
+            <li>
+                <a href="#%e6%96%b9%e5%bc%8f%e4%ba%8cdocker%e6%8e%a8%e8%8d%90%e7%94%a8%e4%ba%8e%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83" aria-label="方式二：Docker（推荐用于生产环境）">方式二：Docker（推荐用于生产环境）</a></li>
+            <li>
+                <a href="#%e6%96%b9%e5%bc%8f%e4%b8%89docker-compose%e7%94%9f%e4%ba%a7%e7%ba%a7%e5%b8%a6%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="方式三：Docker Compose（生产级，带数据库）">方式三：Docker Compose（生产级，带数据库）</a></li>
+            <li>
+                <a href="#%e6%96%b9%e5%bc%8f%e5%9b%9b%e9%83%a8%e7%bd%b2%e5%88%b0-digitalocean-%e4%ba%91%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="方式四：部署到 DigitalOcean 云服务器">方式四：部署到 DigitalOcean 云服务器</a></li>
+            <li>
+                <a href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f%e5%8f%82%e8%80%83%e8%a1%a8" aria-label="环境变量参考表">环境变量参考表</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e4%b8%bb%e6%b5%81%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90" aria-label="与主流工具集成">与主流工具集成</a><ul>
+                    
+            <li>
+                <a href="#openai-%e9%9b%86%e6%88%90" aria-label="OpenAI 集成">OpenAI 集成</a></li>
+            <li>
+                <a href="#ollama%e6%9c%ac%e5%9c%b0%e5%a4%a7%e6%a8%a1%e5%9e%8b" aria-label="Ollama（本地大模型）">Ollama（本地大模型）</a></li>
+            <li>
+                <a href="#chroma-%e5%90%91%e9%87%8f%e6%95%b0%e6%8d%ae%e5%ba%93rag-%e8%ae%be%e7%bd%ae" aria-label="Chroma 向量数据库（RAG 设置）">Chroma 向量数据库（RAG 设置）</a></li>
+            <li>
+                <a href="#qdrant%e5%8f%af%e6%89%a9%e5%b1%95%e5%90%91%e9%87%8f%e6%90%9c%e7%b4%a2" aria-label="Qdrant（可扩展向量搜索）">Qdrant（可扩展向量搜索）</a></li>
+            <li>
+                <a href="#weaviate%e4%bc%81%e4%b8%9a%e7%ba%a7%e5%90%91%e9%87%8f%e6%95%b0%e6%8d%ae%e5%ba%93" aria-label="Weaviate（企业级向量数据库）">Weaviate（企业级向量数据库）</a></li>
+            <li>
+                <a href="#api-%e9%83%a8%e7%bd%b2" aria-label="API 部署">API 部署</a></li>
+            <li>
+                <a href="#%e5%b5%8c%e5%85%a5%e7%bd%91%e7%ab%99" aria-label="嵌入网站">嵌入网站</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="基准测试 / 实际应用场景">基准测试 / 实际应用场景</a><ul>
+                    
+            <li>
+                <a href="#%e5%af%b9%e6%af%94flowise-vs-%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88" aria-label="对比：Flowise vs 替代方案">对比：Flowise vs 替代方案</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9" aria-label="如何选择">如何选择</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba" aria-label="高级用法 / 生产环境加固">高级用法 / 生产环境加固</a><ul>
+                    
+            <li>
+                <a href="#%e5%ae%89%e5%85%a8%e6%a3%80%e6%9f%a5%e6%b8%85%e5%8d%95" aria-label="安全检查清单">安全检查清单</a></li>
+            <li>
+                <a href="#%e9%98%9f%e5%88%97%e6%a8%a1%e5%bc%8f%e6%89%a9%e5%b1%95" aria-label="队列模式扩展">队列模式扩展</a></li>
+            <li>
+                <a href="#%e5%a4%87%e4%bb%bd%e7%ad%96%e7%95%a5" aria-label="备份策略">备份策略</a></li>
+            <li>
+                <a href="#docker-%e7%9b%91%e6%8e%a7" aria-label="Docker 监控">Docker 监控</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7--%e5%ae%a2%e8%a7%82%e8%af%84%e4%bc%b0" aria-label="局限性 / 客观评估">局限性 / 客观评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98" aria-label="常见问题">常见问题</a><ul>
+                    
+            <li>
+                <a href="#%e6%b2%a1%e6%9c%89-nodejs-%e7%9a%84%e6%9c%8d%e5%8a%a1%e5%99%a8%e5%a6%82%e4%bd%95%e5%ae%89%e8%a3%85-flowise" aria-label="没有 Node.js 的服务器如何安装 Flowise？">没有 Node.js 的服务器如何安装 Flowise？</a></li>
+            <li>
+                <a href="#flowise-%e8%83%bd%e5%90%a6%e4%b8%8e-llama-%e6%88%96-qwen-%e7%ad%89%e6%9c%ac%e5%9c%b0%e5%a4%a7%e6%a8%a1%e5%9e%8b%e9%85%8d%e5%90%88%e5%b7%a5%e4%bd%9c" aria-label="Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？">Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？</a></li>
+            <li>
+                <a href="#%e6%9e%84%e5%bb%ba-rag-%e8%81%8a%e5%a4%a9%e6%9c%ba%e5%99%a8%e4%ba%ba%e6%97%b6flowise-%e4%b8%8e-dify-%e5%a6%82%e4%bd%95%e9%80%89%e6%8b%a9" aria-label="构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？">构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？</a></li>
+            <li>
+                <a href="#flowise-%e5%8f%af%e4%bb%a5%e5%85%8d%e8%b4%b9%e5%95%86%e7%94%a8%e5%90%97" aria-label="Flowise 可以免费商用吗？">Flowise 可以免费商用吗？</a></li>
+            <li>
+                <a href="#flowise-%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e7%9a%84%e6%9c%80%e4%bd%8e%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%85%8d%e7%bd%ae%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Flowise 生产环境的最低服务器配置是什么？">Flowise 生产环境的最低服务器配置是什么？</a></li>
+            <li>
+                <a href="#%e5%8f%af%e4%bb%a5%e5%b0%86-flowise-%e8%81%8a%e5%a4%a9%e6%9c%ba%e5%99%a8%e4%ba%ba%e5%af%bc%e5%87%ba%e4%b8%ba-api-%e5%90%97" aria-label="可以将 Flowise 聊天机器人导出为 API 吗？">可以将 Flowise 聊天机器人导出为 API 吗？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e5%b0%86-flowise-%e5%8d%87%e7%ba%a7%e5%88%b0%e6%96%b0%e7%89%88%e6%9c%ac" aria-label="如何将 Flowise 升级到新版本？">如何将 Flowise 升级到新版本？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="来源与延伸阅读">来源与延伸阅读</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,80 +324,133 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;flowise&rdquo;, &ldquo;langchain&rdquo;, &ldquo;ai agent&rdquo;, &ldquo;rag&rdquo;, &ldquo;docker&rdquo;, &ldquo;大语言模型&rdquo;, &ldquo;开源&rdquo;, &ldquo;无代码&rdquo;]
-aliases:</p><ul><li>/zh/posts/flowise/</li><li>/zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-</li></ul><hr><h2 id=引言>引言<a hidden class=anchor aria-hidden=true href=#引言>#</a></h2><p>开发基于大语言模型（LLM）的应用曾经意味着需要编写数百行 Python 代码，手动连接模型、向量数据库、检索链和记忆模块。Flowise 的出现彻底改变了这一局面。凭借 52,948 个 GitHub Stars 和活跃的开发者社区，Flowise 是一款开源可视化构建工具，让你通过拖拽节点、连接组件的方式构建 AI Agent 和 RAG 流水线 —— 完全不需要编写代码。无论你是想快速搭建一个客服机器人原型，还是在 $5/月的 VPS 上部署文档问答系统，本指南将带你从零开始，在五分钟内完成生产级 Flowise 环境搭建。</p><h2 id=flowise-是什么>Flowise 是什么？<a hidden class=anchor aria-hidden=true href=#flowise-是什么>#</a></h2><p>Flowise 是一款基于 LangChain 的开源可视化 LLM 工作流与 AI Agent 构建工具。它提供了一个节点式画布，每个组件（聊天模型、Embedding、向量数据库、工具、Agent、Chain）都被封装成一个可拖拽的节点，通过连线即可形成可执行的流水线。Flowise 支持超过 200 个 LangChain 集成，包括 OpenAI、Anthropic、Ollama、Qdrant、Weaviate 和 Chroma，是目前集成能力最丰富的可视化 AI 构建工具之一。</p><h2 id=flowise-的工作原理>Flowise 的工作原理<a hidden class=anchor aria-hidden=true href=#flowise-的工作原理>#</a></h2><p>Flowise 采用模块化架构，可视化节点与 LangChain 类一一映射。理解这个架构能帮助你构建更复杂的流程并更快定位问题。</p><p><img alt="Flowise 架构图" loading=lazy src=https://raw.githubusercontent.com/FlowiseAI/Flowise/main/images/flowise.png>
-<em>Flowise 可视化画布中连接的 LLM 节点 —— 每个节点对应一个 LangChain 类</em></p><p><img alt="Flowise 画布演示" loading=lazy src="https://docs.flowiseai.com/~gitbook/image?url=https%3A%2F%2F823733684-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F00tYLwhz5RyR7fJEhrWy%252Fuploads%252FDOgMs2ywc1bdE09oa10c%252FFlowiseIntro.gif%3Falt%3Dmedia%26token%3D55bbcbc6-e586-4a79-8923-20c2b39e7bf9&width=768&dpr=3&quality=100&sign=c6ac7b1&sv=2">
-<em>Flowise 拖拽式界面实战 —— 不写一行代码即可构建 RAG 流水线</em></p><h3 id=核心组件>核心组件<a hidden class=anchor aria-hidden=true href=#核心组件>#</a></h3><ol><li><strong>聊天模型（Chat Models）</strong> —— LLM 引擎（OpenAI GPT-4o、Claude、Ollama 本地模型、Hugging Face、Bedrock、Gemini）</li><li><strong>Embedding</strong> —— 将文本转换为向量以实现语义搜索（OpenAI、HuggingFace、Cohere）</li><li><strong>向量数据库（Vector Stores）</strong> —— 持久化存储 Embedding 以供检索（Chroma、Qdrant、Weaviate、Pinecone、pgvector）</li><li><strong>文档加载器（Document Loaders）</strong> —— 从 PDF、网页、文本文件、Notion、Confluence 导入数据</li><li><strong>Chains</strong> —— 编排多步骤 LLM 操作（对话检索 QA、LLM Chain）</li><li><strong>Agents</strong> —— 自主选择工具的自主推理系统（ReAct、OpenAI Functions）</li><li><strong>Memory</strong> —— 在多轮对话中保持上下文（Buffer Memory、Window Buffer、Redis-backed）</li></ol><h3 id=三种构建模式>三种构建模式<a hidden class=anchor aria-hidden=true href=#三种构建模式>#</a></h3><p>Flowise 提供三种可视化构建器：</p><ul><li><strong>Assistant</strong> —— 面向初学者的聊天机器人构建器，支持 RAG。上传文档、配置回复并部署。</li><li><strong>Chatflow</strong> —— 完整节点式画布，可精确控制每个组件的自定义对话式 AI。</li><li><strong>Agentflow</strong> —— 多步骤 Agent 工作流，支持条件逻辑、循环、工具调用和人工审批。</li></ul><p>每个构建的 Flow 都会自动暴露 REST API 端点和可嵌入的聊天组件，实现一键部署。</p><h2 id=安装与配置>安装与配置<a hidden class=anchor aria-hidden=true href=#安装与配置>#</a></h2><p>Flowise 提供四种安装方式，分别适合不同的环境和技能水平。</p><h3 id=方式一npm本地开发最快>方式一：NPM（本地开发最快）<a hidden class=anchor aria-hidden=true href=#方式一npm本地开发最快>#</a></h3><p>需要 Node.js v18.15.0 或 v20+。这是从安装到运行最快的路径。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 全局安装 Flowise</span>
-</span></span><span style=display:flex><span>npm install -g flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或安装指定版本</span>
-</span></span><span style=display:flex><span>npm install -g flowise@3.1.2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动 Flowise</span>
-</span></span><span style=display:flex><span>npx flowise start
-</span></span></code></pre></div><p>在浏览器中打开 <code>http://localhost:3000</code>。首次启动会在 <code>~/.flowise</code> 自动创建 SQLite 数据库。</p><h3 id=方式二docker推荐用于生产环境>方式二：Docker（推荐用于生产环境）<a hidden class=anchor aria-hidden=true href=#方式二docker推荐用于生产环境>#</a></h3><p>这是最可靠的部署方式。Flowise 在 Docker Hub 提供官方镜像，支持多架构。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 拉取并运行官方镜像</span>
-</span></span><span style=display:flex><span>docker run -d -p 3000:3000 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name flowise <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e FLOWISE_USERNAME<span style=color:#f92672>=</span>admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e FLOWISE_PASSWORD<span style=color:#f92672>=</span>secure-password <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  flowiseai/flowise:latest
-</span></span></code></pre></div><p>访问 <code>http://localhost:3000</code>，使用你设置的凭据登录。</p><h3 id=方式三docker-compose生产级带数据库>方式三：Docker Compose（生产级，带数据库）<a hidden class=anchor aria-hidden=true href=#方式三docker-compose生产级带数据库>#</a></h3><p>对于需要持久化的部署环境，使用 Docker Compose 配合 PostgreSQL 和卷挂载。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_TYPE=postgres</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_HOST=postgres</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PORT=5432</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_NAME=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_USER=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PASSWORD=${DB_PASSWORD:-changeme}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_USERNAME=${FLOWISE_USER:-admin}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>SECRETKEY_PATH=/root/.flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>flowise_data:/root/.flowise</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>postgres</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>postgres: image</span>: <span style=color:#ae81ff>postgres:16-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>POSTGRES_USER=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_DB=flowise</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>postgres_data:/var/lib/postgresql/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: flowise_data: postgres_data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>启动命令：</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker compose up -d</span>
-</span></span></code></pre></div><h3 id=方式四部署到-digitalocean-云服务器>方式四：部署到 DigitalOcean 云服务器<a hidden class=anchor aria-hidden=true href=#方式四部署到-digitalocean-云服务器>#</a></h3><p>如果你想在可靠的云 VPS 上托管 Flowise，可以在几分钟内部署到 DigitalOcean。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在全新的 Ubuntu 24.04 服务器上（2 vCPU / 2GB RAM / $12/月）</span>
-</span></span><span style=display:flex><span>apt update <span style=color:#f92672>&amp;&amp;</span> apt install -y docker.io docker-compose
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 克隆 Flowise 仓库</span>
-</span></span><span style=display:flex><span>git clone https://github.com/FlowiseAI/Flowise.git
-</span></span><span style=display:flex><span>cd Flowise/docker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 复制环境变量模板</span>
-</span></span><span style=display:flex><span>cp .env.example .env
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 编辑配置文件</span>
-</span></span><span style=display:flex><span>nano .env
-</span></span></code></pre></div><p>DigitalOcean 部署的 <code>.env</code> 示例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>PORT<span style=color:#f92672>=</span><span style=color:#ae81ff>3000</span>
-</span></span><span style=display:flex><span>DATABASE_TYPE<span style=color:#f92672>=</span>sqlite
-</span></span><span style=display:flex><span>DATABASE_PATH<span style=color:#f92672>=</span>/root/.flowise
-</span></span><span style=display:flex><span>SECRETKEY_PATH<span style=color:#f92672>=</span>/root/.flowise
-</span></span><span style=display:flex><span>LOG_PATH<span style=color:#f92672>=</span>/root/.flowise/logs
-</span></span><span style=display:flex><span>BLOB_STORAGE_PATH<span style=color:#f92672>=</span>/root/.flowise/storage
-</span></span><span style=display:flex><span>FLOWISE_USERNAME<span style=color:#f92672>=</span>admin
-</span></span><span style=display:flex><span>FLOWISE_PASSWORD<span style=color:#f92672>=</span>your-secure-password-here
-</span></span><span style=display:flex><span>JWT_AUTH_TOKEN_SECRET<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -hex 32<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>JWT_REFRESH_TOKEN_SECRET<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -hex 32<span style=color:#66d9ef>)</span>
-</span></span></code></pre></div><p>启动服务：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker compose up -d
-</span></span></code></pre></div><h3 id=环境变量参考表>环境变量参考表<a hidden class=anchor aria-hidden=true href=#环境变量参考表>#</a></h3><p>| 变量 | 说明 | 默认值 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/zh/posts/flowise/</li>
+<li>/zh/resources/ai-tools/flowise-ai-workflow-builder-lowcode/-</li>
+</ul>
+<hr>
+<h2 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p>开发基于大语言模型（LLM）的应用曾经意味着需要编写数百行 Python 代码，手动连接模型、向量数据库、检索链和记忆模块。Flowise 的出现彻底改变了这一局面。凭借 52,948 个 GitHub Stars 和活跃的开发者社区，Flowise 是一款开源可视化构建工具，让你通过拖拽节点、连接组件的方式构建 AI Agent 和 RAG 流水线 —— 完全不需要编写代码。无论你是想快速搭建一个客服机器人原型，还是在 $5/月的 VPS 上部署文档问答系统，本指南将带你从零开始，在五分钟内完成生产级 Flowise 环境搭建。</p>
+<h2 id="flowise-是什么">Flowise 是什么？<a hidden class="anchor" aria-hidden="true" href="#flowise-是什么">#</a></h2>
+<p>Flowise 是一款基于 LangChain 的开源可视化 LLM 工作流与 AI Agent 构建工具。它提供了一个节点式画布，每个组件（聊天模型、Embedding、向量数据库、工具、Agent、Chain）都被封装成一个可拖拽的节点，通过连线即可形成可执行的流水线。Flowise 支持超过 200 个 LangChain 集成，包括 OpenAI、Anthropic、Ollama、Qdrant、Weaviate 和 Chroma，是目前集成能力最丰富的可视化 AI 构建工具之一。</p>
+<h2 id="flowise-的工作原理">Flowise 的工作原理<a hidden class="anchor" aria-hidden="true" href="#flowise-的工作原理">#</a></h2>
+<p>Flowise 采用模块化架构，可视化节点与 LangChain 类一一映射。理解这个架构能帮助你构建更复杂的流程并更快定位问题。</p>
+<p><img alt="Flowise 架构图" loading="lazy" src="https://raw.githubusercontent.com/FlowiseAI/Flowise/main/images/flowise.png">
+<em>Flowise 可视化画布中连接的 LLM 节点 —— 每个节点对应一个 LangChain 类</em></p>
+<p><img alt="Flowise 画布演示" loading="lazy" src="https://docs.flowiseai.com/~gitbook/image?url=https%3A%2F%2F823733684-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F00tYLwhz5RyR7fJEhrWy%252Fuploads%252FDOgMs2ywc1bdE09oa10c%252FFlowiseIntro.gif%3Falt%3Dmedia%26token%3D55bbcbc6-e586-4a79-8923-20c2b39e7bf9&width=768&dpr=3&quality=100&sign=c6ac7b1&sv=2">
+<em>Flowise 拖拽式界面实战 —— 不写一行代码即可构建 RAG 流水线</em></p>
+<h3 id="核心组件">核心组件<a hidden class="anchor" aria-hidden="true" href="#核心组件">#</a></h3>
+<ol>
+<li><strong>聊天模型（Chat Models）</strong> —— LLM 引擎（OpenAI GPT-4o、Claude、Ollama 本地模型、Hugging Face、Bedrock、Gemini）</li>
+<li><strong>Embedding</strong> —— 将文本转换为向量以实现语义搜索（OpenAI、HuggingFace、Cohere）</li>
+<li><strong>向量数据库（Vector Stores）</strong> —— 持久化存储 Embedding 以供检索（Chroma、Qdrant、Weaviate、Pinecone、pgvector）</li>
+<li><strong>文档加载器（Document Loaders）</strong> —— 从 PDF、网页、文本文件、Notion、Confluence 导入数据</li>
+<li><strong>Chains</strong> —— 编排多步骤 LLM 操作（对话检索 QA、LLM Chain）</li>
+<li><strong>Agents</strong> —— 自主选择工具的自主推理系统（ReAct、OpenAI Functions）</li>
+<li><strong>Memory</strong> —— 在多轮对话中保持上下文（Buffer Memory、Window Buffer、Redis-backed）</li>
+</ol>
+<h3 id="三种构建模式">三种构建模式<a hidden class="anchor" aria-hidden="true" href="#三种构建模式">#</a></h3>
+<p>Flowise 提供三种可视化构建器：</p>
+<ul>
+<li><strong>Assistant</strong> —— 面向初学者的聊天机器人构建器，支持 RAG。上传文档、配置回复并部署。</li>
+<li><strong>Chatflow</strong> —— 完整节点式画布，可精确控制每个组件的自定义对话式 AI。</li>
+<li><strong>Agentflow</strong> —— 多步骤 Agent 工作流，支持条件逻辑、循环、工具调用和人工审批。</li>
+</ul>
+<p>每个构建的 Flow 都会自动暴露 REST API 端点和可嵌入的聊天组件，实现一键部署。</p>
+<h2 id="安装与配置">安装与配置<a hidden class="anchor" aria-hidden="true" href="#安装与配置">#</a></h2>
+<p>Flowise 提供四种安装方式，分别适合不同的环境和技能水平。</p>
+<h3 id="方式一npm本地开发最快">方式一：NPM（本地开发最快）<a hidden class="anchor" aria-hidden="true" href="#方式一npm本地开发最快">#</a></h3>
+<p>需要 Node.js v18.15.0 或 v20+。这是从安装到运行最快的路径。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 全局安装 Flowise</span>
+</span></span><span style="display:flex;"><span>npm install -g flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或安装指定版本</span>
+</span></span><span style="display:flex;"><span>npm install -g flowise@3.1.2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动 Flowise</span>
+</span></span><span style="display:flex;"><span>npx flowise start
+</span></span></code></pre></div><p>在浏览器中打开 <code>http://localhost:3000</code>。首次启动会在 <code>~/.flowise</code> 自动创建 SQLite 数据库。</p>
+<h3 id="方式二docker推荐用于生产环境">方式二：Docker（推荐用于生产环境）<a hidden class="anchor" aria-hidden="true" href="#方式二docker推荐用于生产环境">#</a></h3>
+<p>这是最可靠的部署方式。Flowise 在 Docker Hub 提供官方镜像，支持多架构。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 拉取并运行官方镜像</span>
+</span></span><span style="display:flex;"><span>docker run -d -p 3000:3000 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name flowise <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e FLOWISE_USERNAME<span style="color:#f92672">=</span>admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e FLOWISE_PASSWORD<span style="color:#f92672">=</span>secure-password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  flowiseai/flowise:latest
+</span></span></code></pre></div><p>访问 <code>http://localhost:3000</code>，使用你设置的凭据登录。</p>
+<h3 id="方式三docker-compose生产级带数据库">方式三：Docker Compose（生产级，带数据库）<a hidden class="anchor" aria-hidden="true" href="#方式三docker-compose生产级带数据库">#</a></h3>
+<p>对于需要持久化的部署环境，使用 Docker Compose 配合 PostgreSQL 和卷挂载。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_TYPE=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_HOST=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PORT=5432</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_NAME=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_USER=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PASSWORD=${DB_PASSWORD:-changeme}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_USERNAME=${FLOWISE_USER:-admin}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SECRETKEY_PATH=/root/.flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">flowise_data:/root/.flowise</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres: image</span>: <span style="color:#ae81ff">postgres:16-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">POSTGRES_USER=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POSTGRES_DB=flowise</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">postgres_data:/var/lib/postgresql/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: flowise_data: postgres_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">启动命令：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker compose up -d</span>
+</span></span></code></pre></div><h3 id="方式四部署到-digitalocean-云服务器">方式四：部署到 DigitalOcean 云服务器<a hidden class="anchor" aria-hidden="true" href="#方式四部署到-digitalocean-云服务器">#</a></h3>
+<p>如果你想在可靠的云 VPS 上托管 Flowise，可以在几分钟内部署到 DigitalOcean。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在全新的 Ubuntu 24.04 服务器上（2 vCPU / 2GB RAM / $12/月）</span>
+</span></span><span style="display:flex;"><span>apt update <span style="color:#f92672">&amp;&amp;</span> apt install -y docker.io docker-compose
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 克隆 Flowise 仓库</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/FlowiseAI/Flowise.git
+</span></span><span style="display:flex;"><span>cd Flowise/docker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 复制环境变量模板</span>
+</span></span><span style="display:flex;"><span>cp .env.example .env
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 编辑配置文件</span>
+</span></span><span style="display:flex;"><span>nano .env
+</span></span></code></pre></div><p>DigitalOcean 部署的 <code>.env</code> 示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>PORT<span style="color:#f92672">=</span><span style="color:#ae81ff">3000</span>
+</span></span><span style="display:flex;"><span>DATABASE_TYPE<span style="color:#f92672">=</span>sqlite
+</span></span><span style="display:flex;"><span>DATABASE_PATH<span style="color:#f92672">=</span>/root/.flowise
+</span></span><span style="display:flex;"><span>SECRETKEY_PATH<span style="color:#f92672">=</span>/root/.flowise
+</span></span><span style="display:flex;"><span>LOG_PATH<span style="color:#f92672">=</span>/root/.flowise/logs
+</span></span><span style="display:flex;"><span>BLOB_STORAGE_PATH<span style="color:#f92672">=</span>/root/.flowise/storage
+</span></span><span style="display:flex;"><span>FLOWISE_USERNAME<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>FLOWISE_PASSWORD<span style="color:#f92672">=</span>your-secure-password-here
+</span></span><span style="display:flex;"><span>JWT_AUTH_TOKEN_SECRET<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -hex 32<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>JWT_REFRESH_TOKEN_SECRET<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -hex 32<span style="color:#66d9ef">)</span>
+</span></span></code></pre></div><p>启动服务：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><h3 id="环境变量参考表">环境变量参考表<a hidden class="anchor" aria-hidden="true" href="#环境变量参考表">#</a></h3>
+<p>| 变量 | 说明 | 默认值 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>PORT</code> | HTTP 服务端口 | 3000 |
 | <code>DATABASE_TYPE</code> | 数据库引擎（sqlite, postgres） | sqlite |
 | <code>DATABASE_PATH</code> | SQLite 文件路径 | ~/.flowise |
@@ -103,104 +459,142 @@ aliases:</p><ul><li>/zh/posts/flowise/</li><li>/zh/resources/ai-tools/flowise-ai
 | <code>JWT_AUTH_TOKEN_SECRET</code> | 访问令牌密钥 | 自动生成 |
 | <code>JWT_REFRESH_TOKEN_SECRET</code> | 刷新令牌密钥 | 自动生成 |
 | <code>BLOB_STORAGE_PATH</code> | 文件上传存储路径 | ~/.flowise/storage |
-| <code>DISABLE_FLOWISE_TELEMETRY</code> | 关闭匿名遥测 | false |</p><h2 id=与主流工具集成>与主流工具集成<a hidden class=anchor aria-hidden=true href=#与主流工具集成>#</a></h2><h3 id=openai-集成>OpenAI 集成<a hidden class=anchor aria-hidden=true href=#openai-集成>#</a></h3><p>大多数用户从 OpenAI 模型开始。在 Flowise UI 的 Credentials 中配置 API Key，然后在 Flow 中使用 <code>ChatOpenAI</code> 节点。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 可选：将 OpenAI API Key 设置为环境变量</span>
-</span></span><span style=display:flex><span>export OPENAI_API_KEY<span style=color:#f92672>=</span>sk-your-key-here
-</span></span></code></pre></div><h3 id=ollama本地大模型>Ollama（本地大模型）<a hidden class=anchor aria-hidden=true href=#ollama本地大模型>#</a></h3><p>使用 Ollama 运行本地模型可以消除 API 费用并确保数据不出服务器。此方案非常适合对隐私敏感的部署场景。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose-ollama.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: ollama: image</span>: <span style=color:#ae81ff>ollama/ollama:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;11434:11434&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>ollama_data:/root/.ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OLLAMA_BASE_URL=http://ollama:11434</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: ollama_data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>拉取模型并开始使用：</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 拉取轻量级测试模型</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker exec -it ollama ollama pull qwen2:7b</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或拉取 Llama 3</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker exec -it ollama ollama pull llama3.1:8b</span>
-</span></span></code></pre></div><p>在 Flowise 画布中，选择 <code>ChatOllama</code> 节点，将模型名设置为 <code>qwen2:7b</code> 或 <code>llama3.1:8b</code>。</p><h3 id=chroma-向量数据库rag-设置>Chroma 向量数据库（RAG 设置）<a hidden class=anchor aria-hidden=true href=#chroma-向量数据库rag-设置>#</a></h3><p>对于生产级 RAG 流水线，Chroma 提供了一个轻量级向量数据库，与 Flowise 无缝协作。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 添加到 docker-compose.yml</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>chroma: image</span>: <span style=color:#ae81ff>chromadb/chroma:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>chroma_data:/chroma/chroma</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><p>在 Flowise 中构建 RAG 流水线：</p><ol><li>拖拽 <strong>PDF Loader</strong> 或 <strong>Text File</strong> 节点</li><li>连接到 <strong>Text Splitter</strong> 节点（chunk size 设为 1000，overlap 设为 200）</li><li>连接到 <strong>OpenAI Embeddings</strong>（或 <strong>Ollama Embeddings</strong>）节点</li><li>连接到 <strong>Chroma</strong> 向量数据库节点</li><li>添加 <strong>Conversational Retrieval QA Chain</strong> 节点</li><li>将 <strong>Chat Model</strong>（ChatOpenAI 或 ChatOllama）连接到 Chain</li><li>点击 <strong>Save</strong> 和 <strong>Run</strong></li></ol><h3 id=qdrant可扩展向量搜索>Qdrant（可扩展向量搜索）<a hidden class=anchor aria-hidden=true href=#qdrant可扩展向量搜索>#</a></h3><p>对于高吞吐量的混合搜索 RAG 场景，Qdrant 的性能优于内存存储。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># 在 compose 文件中添加 Qdrant</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>qdrant: image</span>: <span style=color:#ae81ff>qdrant/qdrant:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;6333:6333&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;6334:6334&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>qdrant_data:/qdrant/storage</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><p>在 Flowise 中使用 <code>Qdrant</code> 向量数据库节点，host 设置为 <code>http://qdrant:6333</code>。</p><h3 id=weaviate企业级向量数据库>Weaviate（企业级向量数据库）<a hidden class=anchor aria-hidden=true href=#weaviate企业级向量数据库>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>  <span style=color:#f92672>weaviate: image</span>: <span style=color:#ae81ff>semitechnologies/weaviate:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8080:8080&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: QUERY_DEFAULTS_LIMIT</span>: <span style=color:#ae81ff>25</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>PERSISTENCE_DATA_PATH</span>: <span style=color:#e6db74>&#39;/var/lib/weaviate&#39;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>weaviate_data:/var/lib/weaviate</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><h3 id=api-部署>API 部署<a hidden class=anchor aria-hidden=true href=#api-部署>#</a></h3><p>每个 Flow 都会自动暴露 REST API。导出你的 Chatflow 并在任意地方集成。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 使用 curl 测试已部署的 Flow</span>
-</span></span><span style=display:flex><span>curl -X POST <span style=color:#e6db74>&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;question&#34;: &#34;退货政策是什么？&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;overrideConfig&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;sessionId&#34;: &#34;user_001&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><p>响应示例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;根据我们的文档，退货政策允许在购买后 30 天内凭原始收据退货。&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;sourceDocuments&#34;</span>: [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;pageContent&#34;</span>: <span style=color:#e6db74>&#34;购买后 30 天内接受退货...&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;metadata&#34;</span>: { <span style=color:#f92672>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;return-policy.pdf&#34;</span>, <span style=color:#f92672>&#34;page&#34;</span>: <span style=color:#ae81ff>3</span> }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  ]
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>Python SDK 示例：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>FLOWISE_API <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>ask</span>(question, session_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_001&#34;</span>): resp <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>post(FLOWISE_API, json<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;question&#34;</span>: question,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;overrideConfig&#34;</span>: {<span style=color:#e6db74>&#34;sessionId&#34;</span>: session_id}
-</span></span><span style=display:flex><span>    })
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> resp<span style=color:#f92672>.</span>json()[<span style=color:#e6db74>&#34;text&#34;</span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>answer <span style=color:#f92672>=</span> ask(<span style=color:#e6db74>&#34;你们有哪些配送方式？&#34;</span>)
-</span></span><span style=display:flex><span>print(answer)
-</span></span></code></pre></div><h3 id=嵌入网站>嵌入网站<a hidden class=anchor aria-hidden=true href=#嵌入网站>#</a></h3><p>Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任意 HTML 页面即可：</p><p><img alt="Flowise 嵌入组件" loading=lazy src=https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png>
-<em>可自定义主题的嵌入聊天组件 —— 一个 script 标签即可部署到任意网站</em></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>import Chatbot from &#39;https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js&#39;;
-</span></span><span style=display:flex><span>  Chatbot.init({
-</span></span><span style=display:flex><span>    chatflowid: &#39;your-chatflow-id&#39;,
-</span></span><span style=display:flex><span>    apiHost: &#39;https://your-flowise-server.com&#39;,
-</span></span><span style=display:flex><span>    theme: {
-</span></span><span style=display:flex><span>      button: {
-</span></span><span style=display:flex><span>        backgroundColor: &#39;#3B81F6&#39;,
-</span></span><span style=display:flex><span>        right: 20,
-</span></span><span style=display:flex><span>        bottom: 20,
-</span></span><span style=display:flex><span>        size: medium
-</span></span><span style=display:flex><span>      },
-</span></span><span style=display:flex><span>      chatWindow: {
-</span></span><span style=display:flex><span>title: &#34;AI Tool Guide&#34;
-</span></span><span style=display:flex><span>        welcomeMessage: &#39;你好！有什么可以帮您的？&#39;,
-</span></span><span style=display:flex><span>        backgroundColor: &#39;#ffffff&#39;,
-</span></span><span style=display:flex><span>        height: 700,
-</span></span><span style=display:flex><span>        width: 400
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
-</span></span></code></pre></div><h2 id=基准测试--实际应用场景>基准测试 / 实际应用场景<a hidden class=anchor aria-hidden=true href=#基准测试--实际应用场景>#</a></h2><p>根据社区报告和我们的实际测试，Flowise 的性能表现如下：</p><p>| 指标 | 数值 | 说明 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <code>DISABLE_FLOWISE_TELEMETRY</code> | 关闭匿名遥测 | false |</p>
+<h2 id="与主流工具集成">与主流工具集成<a hidden class="anchor" aria-hidden="true" href="#与主流工具集成">#</a></h2>
+<h3 id="openai-集成">OpenAI 集成<a hidden class="anchor" aria-hidden="true" href="#openai-集成">#</a></h3>
+<p>大多数用户从 OpenAI 模型开始。在 Flowise UI 的 Credentials 中配置 API Key，然后在 Flow 中使用 <code>ChatOpenAI</code> 节点。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 可选：将 OpenAI API Key 设置为环境变量</span>
+</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span>sk-your-key-here
+</span></span></code></pre></div><h3 id="ollama本地大模型">Ollama（本地大模型）<a hidden class="anchor" aria-hidden="true" href="#ollama本地大模型">#</a></h3>
+<p>使用 Ollama 运行本地模型可以消除 API 费用并确保数据不出服务器。此方案非常适合对隐私敏感的部署场景。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose-ollama.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: ollama: image</span>: <span style="color:#ae81ff">ollama/ollama:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;11434:11434&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">ollama_data:/root/.ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">OLLAMA_BASE_URL=http://ollama:11434</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: ollama_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">拉取模型并开始使用：</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 拉取轻量级测试模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker exec -it ollama ollama pull qwen2:7b</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或拉取 Llama 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker exec -it ollama ollama pull llama3.1:8b</span>
+</span></span></code></pre></div><p>在 Flowise 画布中，选择 <code>ChatOllama</code> 节点，将模型名设置为 <code>qwen2:7b</code> 或 <code>llama3.1:8b</code>。</p>
+<h3 id="chroma-向量数据库rag-设置">Chroma 向量数据库（RAG 设置）<a hidden class="anchor" aria-hidden="true" href="#chroma-向量数据库rag-设置">#</a></h3>
+<p>对于生产级 RAG 流水线，Chroma 提供了一个轻量级向量数据库，与 Flowise 无缝协作。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 添加到 docker-compose.yml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">chroma: image</span>: <span style="color:#ae81ff">chromadb/chroma:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">chroma_data:/chroma/chroma</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><p>在 Flowise 中构建 RAG 流水线：</p>
+<ol>
+<li>拖拽 <strong>PDF Loader</strong> 或 <strong>Text File</strong> 节点</li>
+<li>连接到 <strong>Text Splitter</strong> 节点（chunk size 设为 1000，overlap 设为 200）</li>
+<li>连接到 <strong>OpenAI Embeddings</strong>（或 <strong>Ollama Embeddings</strong>）节点</li>
+<li>连接到 <strong>Chroma</strong> 向量数据库节点</li>
+<li>添加 <strong>Conversational Retrieval QA Chain</strong> 节点</li>
+<li>将 <strong>Chat Model</strong>（ChatOpenAI 或 ChatOllama）连接到 Chain</li>
+<li>点击 <strong>Save</strong> 和 <strong>Run</strong></li>
+</ol>
+<h3 id="qdrant可扩展向量搜索">Qdrant（可扩展向量搜索）<a hidden class="anchor" aria-hidden="true" href="#qdrant可扩展向量搜索">#</a></h3>
+<p>对于高吞吐量的混合搜索 RAG 场景，Qdrant 的性能优于内存存储。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># 在 compose 文件中添加 Qdrant</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">qdrant: image</span>: <span style="color:#ae81ff">qdrant/qdrant:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;6333:6333&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6334:6334&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">qdrant_data:/qdrant/storage</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><p>在 Flowise 中使用 <code>Qdrant</code> 向量数据库节点，host 设置为 <code>http://qdrant:6333</code>。</p>
+<h3 id="weaviate企业级向量数据库">Weaviate（企业级向量数据库）<a hidden class="anchor" aria-hidden="true" href="#weaviate企业级向量数据库">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">weaviate: image</span>: <span style="color:#ae81ff">semitechnologies/weaviate:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: QUERY_DEFAULTS_LIMIT</span>: <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PERSISTENCE_DATA_PATH</span>: <span style="color:#e6db74">&#39;/var/lib/weaviate&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">weaviate_data:/var/lib/weaviate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><h3 id="api-部署">API 部署<a hidden class="anchor" aria-hidden="true" href="#api-部署">#</a></h3>
+<p>每个 Flow 都会自动暴露 REST API。导出你的 Chatflow 并在任意地方集成。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 使用 curl 测试已部署的 Flow</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;question&#34;: &#34;退货政策是什么？&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;overrideConfig&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;sessionId&#34;: &#34;user_001&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><p>响应示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;根据我们的文档，退货政策允许在购买后 30 天内凭原始收据退货。&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;sourceDocuments&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;pageContent&#34;</span>: <span style="color:#e6db74">&#34;购买后 30 天内接受退货...&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;metadata&#34;</span>: { <span style="color:#f92672">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;return-policy.pdf&#34;</span>, <span style="color:#f92672">&#34;page&#34;</span>: <span style="color:#ae81ff">3</span> }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Python SDK 示例：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>FLOWISE_API <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">ask</span>(question, session_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_001&#34;</span>): resp <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(FLOWISE_API, json<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;question&#34;</span>: question,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;overrideConfig&#34;</span>: {<span style="color:#e6db74">&#34;sessionId&#34;</span>: session_id}
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> resp<span style="color:#f92672">.</span>json()[<span style="color:#e6db74">&#34;text&#34;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>answer <span style="color:#f92672">=</span> ask(<span style="color:#e6db74">&#34;你们有哪些配送方式？&#34;</span>)
+</span></span><span style="display:flex;"><span>print(answer)
+</span></span></code></pre></div><h3 id="嵌入网站">嵌入网站<a hidden class="anchor" aria-hidden="true" href="#嵌入网站">#</a></h3>
+<p>Flowise 为任意 Chatflow 生成 JavaScript 嵌入代码。将其粘贴到任意 HTML 页面即可：</p>
+<p><img alt="Flowise 嵌入组件" loading="lazy" src="https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png">
+<em>可自定义主题的嵌入聊天组件 —— 一个 script 标签即可部署到任意网站</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>import Chatbot from &#39;https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js&#39;;
+</span></span><span style="display:flex;"><span>  Chatbot.init({
+</span></span><span style="display:flex;"><span>    chatflowid: &#39;your-chatflow-id&#39;,
+</span></span><span style="display:flex;"><span>    apiHost: &#39;https://your-flowise-server.com&#39;,
+</span></span><span style="display:flex;"><span>    theme: {
+</span></span><span style="display:flex;"><span>      button: {
+</span></span><span style="display:flex;"><span>        backgroundColor: &#39;#3B81F6&#39;,
+</span></span><span style="display:flex;"><span>        right: 20,
+</span></span><span style="display:flex;"><span>        bottom: 20,
+</span></span><span style="display:flex;"><span>        size: medium
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      chatWindow: {
+</span></span><span style="display:flex;"><span>title: &#34;AI Tool Guide&#34;
+</span></span><span style="display:flex;"><span>        welcomeMessage: &#39;你好！有什么可以帮您的？&#39;,
+</span></span><span style="display:flex;"><span>        backgroundColor: &#39;#ffffff&#39;,
+</span></span><span style="display:flex;"><span>        height: 700,
+</span></span><span style="display:flex;"><span>        width: 400
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h2 id="基准测试--实际应用场景">基准测试 / 实际应用场景<a hidden class="anchor" aria-hidden="true" href="#基准测试--实际应用场景">#</a></h2>
+<p>根据社区报告和我们的实际测试，Flowise 的性能表现如下：</p>
+<p>| 指标 | 数值 | 说明 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Docker 冷启动时间 | 3-5 秒 | 在 2 vCPU VPS 上 |
 | 首响延迟 | 1.5-3 秒 | 使用 GPT-4o，取决于 prompt |
 | RAG 查询端到端延迟 | 2-4 秒 | Chroma 向量库，1K chunks |
@@ -209,12 +603,24 @@ aliases:</p><ul><li>/zh/posts/flowise/</li><li>/zh/resources/ai-tools/flowise-ai
 | 内存占用（活跃） | 300-600 MB | 取决于模型和上下文 |
 | RAG Flow 搭建时间 | 10-15 分钟 | 从空白画布到可用聊天机器人 |
 | 最低 VPS 配置 | 1 vCPU / 1 GB RAM | $4-5/月的 VPS 即可运行 |
-| 推荐生产配置 | 2 vCPU / 4 GB RAM | 配合 PostgreSQL 使用 |</p><h3 id=对比flowise-vs-替代方案>对比：Flowise vs 替代方案<a hidden class=anchor aria-hidden=true href=#对比flowise-vs-替代方案>#</a></h3><p>| 特性 | Flowise | Dify | n8n | LangChain |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 推荐生产配置 | 2 vCPU / 4 GB RAM | 配合 PostgreSQL 使用 |</p>
+<h3 id="对比flowise-vs-替代方案">对比：Flowise vs 替代方案<a hidden class="anchor" aria-hidden="true" href="#对比flowise-vs-替代方案">#</a></h3>
+<p>| 特性 | Flowise | Dify | n8n | LangChain |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | GitHub Stars | 52,948 | 50,000+ | 49,500 | 110,000+ |
 | 许可证 | MIT | Apache-2.0 | Fair-code | MIT |
 | 可视化构建器 | 拖拽画布 | 应用中心式 UI | 工作流编辑器 | 纯代码 |
-| 主要场景 | LLM 聊天机器人 & RAG | 全栈 AI 应用 | 工作流自动化 | 代码优先 SDK |
+| 主要场景 | LLM 聊天机器人 &amp; RAG | 全栈 AI 应用 | 工作流自动化 | 代码优先 SDK |
 | LangChain 原生 | 是（直接映射） | 自定义抽象层 | 通过 AI 节点 | 它就是 LangChain |
 | LLM 支持 | 200+（全部 LangChain） | 50+ | 70+ AI 节点 | 所有提供商 |
 | 向量数据库 | Chroma, Qdrant, Weaviate, Pinecone, pgvector | 内置知识库 | 通过 LangChain 节点 | 全部 |
@@ -226,76 +632,161 @@ aliases:</p><ul><li>/zh/posts/flowise/</li><li>/zh/resources/ai-tools/flowise-ai
 | 自托管复杂度 | 低（单容器） | 中等（多服务） | 低-中等 | N/A（库） |
 | 最低内存 | ~1 GB | 4 GB | 300 MB | N/A |
 | 云版起步价 | $35/月 | $59/月 | ~$24/月 | N/A |
-| 非技术用户体验 | 良好 | 优秀 | 良好 | 需要编程 |</p><h3 id=如何选择>如何选择<a hidden class=anchor aria-hidden=true href=#如何选择>#</a></h3><ul><li><strong>Flowise</strong>：适合构建对话式 AI（聊天机器人、RAG）的团队，追求从原型到部署的最快路径，同时保持完整的 LangChain 兼容性。</li><li><strong>Dify</strong>：当你需要全栈 AI 应用平台，内置知识管理、Prompt 版本控制和团队协作时选择。</li><li><strong>n8n</strong>：当你的 AI Agent 是更广泛自动化流水线的一部分，需要 400+ SaaS 集成、调度和错误处理时选择。</li><li><strong>LangChain</strong>：当你需要完全的代码控制、Prompt 版本管理和 CI/CD 集成时直接使用。</li></ul><h2 id=高级用法--生产环境加固>高级用法 / 生产环境加固<a hidden class=anchor aria-hidden=true href=#高级用法--生产环境加固>#</a></h2><h3 id=安全检查清单>安全检查清单<a hidden class=anchor aria-hidden=true href=#安全检查清单>#</a></h3><p>在将 Flowise 暴露到公网之前，请完成以下步骤：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. 启用身份验证（必须）</span>
-</span></span><span style=display:flex><span>FLOWISE_USERNAME<span style=color:#f92672>=</span>admin
-</span></span><span style=display:flex><span>FLOWISE_PASSWORD<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -base64 24<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. 设置强 JWT 密钥</span>
-</span></span><span style=display:flex><span>JWT_AUTH_TOKEN_SECRET<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -hex 64<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>JWT_REFRESH_TOKEN_SECRET<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -hex 64<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. 使用反向代理启用 HTTPS</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Nginx 配置片段：</span>
-</span></span><span style=display:flex><span>server <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    listen <span style=color:#ae81ff>443</span> ssl http2;
-</span></span><span style=display:flex><span>    server_name flowise.yourdomain.com;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    ssl_certificate /path/to/cert.pem;
-</span></span><span style=display:flex><span>    ssl_certificate_key /path/to/key.pem;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    location / <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        proxy_pass http://localhost:3000;
-</span></span><span style=display:flex><span>        proxy_http_version 1.1;
-</span></span><span style=display:flex><span>        proxy_set_header Upgrade $http_upgrade;
-</span></span><span style=display:flex><span>        proxy_set_header Connection <span style=color:#e6db74>&#34;upgrade&#34;</span>;
-</span></span><span style=display:flex><span>        proxy_set_header Host $host;
-</span></span><span style=display:flex><span>        proxy_set_header X-Real-IP $remote_addr;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. 如需要可关闭遥测</span>
-</span></span><span style=display:flex><span>DISABLE_FLOWISE_TELEMETRY<span style=color:#f92672>=</span>true
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 5. 为嵌入组件设置 CORS</span>
-</span></span><span style=display:flex><span>CORS_ORIGINS<span style=color:#f92672>=</span>https://yourdomain.com,https://app.yourdomain.com
-</span></span></code></pre></div><h3 id=队列模式扩展>队列模式扩展<a hidden class=anchor aria-hidden=true href=#队列模式扩展>#</a></h3><p>对于高流量部署，Flowise 支持基于 Redis 的队列处理与工作进程。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose-queue.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: redis: image</span>: <span style=color:#ae81ff>redis:alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QUEUE_NAME=flowise-queue</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QUEUE_REDIS_URL=redis://redis:6379</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise-worker: image</span>: <span style=color:#ae81ff>flowiseai/flowise-worker:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>QUEUE_NAME=flowise-queue</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>QUEUE_REDIS_URL=redis://redis:6379</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><p>水平扩展工作进程：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker compose -f docker-compose-queue.yml up -d --scale flowise-worker<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>
-</span></span></code></pre></div><h3 id=备份策略>备份策略<a hidden class=anchor aria-hidden=true href=#备份策略>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 备份 SQLite 数据库</span>
-</span></span><span style=display:flex><span>docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise
-</span></span><span style=display:flex><span>docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.tar.gz
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 备份 PostgreSQL</span>
-</span></span><span style=display:flex><span>docker exec flowise-postgres pg_dump -U flowise flowise &gt; flowise-db-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.sql
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 通过 cron 实现每日自动备份（添加到 crontab）</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>0</span> <span style=color:#ae81ff>2</span> * * * /usr/local/bin/backup-flowise.sh &gt;&gt; /var/log/flowise-backup.log 2&gt;&amp;<span style=color:#ae81ff>1</span>
-</span></span></code></pre></div><h3 id=docker-监控>Docker 监控<a hidden class=anchor aria-hidden=true href=#docker-监控>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 查看实时日志</span>
-</span></span><span style=display:flex><span>docker compose logs -f flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查资源使用</span>
-</span></span><span style=display:flex><span>docker stats flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 健康检查端点</span>
-</span></span><span style=display:flex><span>curl http://localhost:3000/api/v1/ping
-</span></span></code></pre></div><h2 id=局限性--客观评估>局限性 / 客观评估<a hidden class=anchor aria-hidden=true href=#局限性--客观评估>#</a></h2><p>Flowise 并非适用于所有 AI 项目。以下情况不建议使用 Flowise：</p><ol><li><p><strong>复杂多 Agent 编排</strong>：Flowise Agentflow 支持顺序 Agent，但循环式多 Agent 模式（如 LangGraph 或 AutoGen 中的模式）需要变通方案。构建研究型 Agent 或辩论式多 Agent 系统的团队应考虑直接使用 LangGraph。</p></li><li><p><strong>非聊天类工作流</strong>：Flowise 针对对话式 AI 优化。批量文档处理、ETL 流水线或定时数据转换更适合由 n8n 或 Python 脚本处理。</p></li><li><p><strong>版本控制</strong>：可视化 Flow 无法像代码一样在 Git 中进行 diff 比较。大型团队协作需要手动导出和版本化 JSON Flow 定义。</p></li><li><p><strong>高级调试</strong>：虽然 Flowise 显示执行日志，但缺乏 Dify 原生提供的节点级时间分解和 token 使用量追踪。调试复杂的检索失败需要阅读原始日志。</p></li><li><p><strong>企业治理</strong>：RBAC 存在于 Pro 版本中，但审计追踪、合规框架（ISO 42001、欧盟 AI 法案）和集群管理并非一等功能。受监管行业可能需要额外的治理层。</p></li><li><p><strong>LangChain 依赖</strong>：Flowise 继承了 LangChain 的限制。如果 LangChain 停止支持某个模型或引入破坏性变更，Flowise 也会受到影响。对于 LangChain 用户这是优势，对其他人则是约束。</p></li></ol><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><h3 id=没有-nodejs-的服务器如何安装-flowise>没有 Node.js 的服务器如何安装 Flowise？<a hidden class=anchor aria-hidden=true href=#没有-nodejs-的服务器如何安装-flowise>#</a></h3><p>使用 Docker。官方 <code>flowiseai/flowise</code> 镜像已打包所有依赖。一条 <code>docker run</code> 命令即可运行，无需在宿主机上安装 Node.js、pnpm 或任何构建工具。</p><h3 id=flowise-能否与-llama-或-qwen-等本地大模型配合工作>Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？<a hidden class=anchor aria-hidden=true href=#flowise-能否与-llama-或-qwen-等本地大模型配合工作>#</a></h3><p>可以。Flowise 原生集成 Ollama。启动 Ollama 容器（或本地实例），拉取任意 GGUF 模型，然后在 Flowise 画布中选择 <code>ChatOllama</code> 节点。你的数据永远不会离开服务器 —— 无需 API Key。</p><h3 id=构建-rag-聊天机器人时flowise-与-dify-如何选择>构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？<a hidden class=anchor aria-hidden=true href=#构建-rag-聊天机器人时flowise-与-dify-如何选择>#</a></h3><p>Flowise 搭建更快（单容器，无需数据库），并对每个 LangChain 组件提供精确控制。Dify 的知识库 UI 更精致，自动分块且调试体验更好。追求速度和 LangChain 兼容性选 Flowise；追求团队协作和内置知识管理选 Dify。</p><h3 id=flowise-可以免费商用吗>Flowise 可以免费商用吗？<a hidden class=anchor aria-hidden=true href=#flowise-可以免费商用吗>#</a></h3><p>可以。Flowise 采用 MIT 许可证发布。你可以自托管、修改、嵌入商业产品、销售基于它的服务 —— 全部无需支付许可费。云托管版本有付费套餐，起步价 $35/月。</p><h3 id=flowise-生产环境的最低服务器配置是什么>Flowise 生产环境的最低服务器配置是什么？<a hidden class=anchor aria-hidden=true href=#flowise-生产环境的最低服务器配置是什么>#</a></h3><p>$5/月的 VPS（1 vCPU / 1 GB RAM）配合 SQLite 即可处理中小型工作负载。生产环境配合 PostgreSQL 和多用户并发，建议分配 2 vCPU 和 4 GB RAM。Flowise 容器本身空闲时占用约 180 MB；通过 Ollama 自托管的 LLM 消耗资源最多。</p><h3 id=可以将-flowise-聊天机器人导出为-api-吗>可以将 Flowise 聊天机器人导出为 API 吗？<a hidden class=anchor aria-hidden=true href=#可以将-flowise-聊天机器人导出为-api-吗>#</a></h3><p>每个 Chatflow 和 Agentflow 都会自动获得 REST API 端点，路径为 <code>/api/v1/prediction/{flow-id}</code>。UI 会生成 curl、Python 和 JavaScript 代码片段。你也可以一键导出可嵌入的聊天组件。</p><h3 id=如何将-flowise-升级到新版本>如何将 Flowise 升级到新版本？<a hidden class=anchor aria-hidden=true href=#如何将-flowise-升级到新版本>#</a></h3><p>Docker 部署：拉取最新镜像并重启：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker pull flowiseai/flowise:latest
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span></code></pre></div><p>NPM 安装：运行 <code>npm update -g flowise</code>。升级前始终备份 <code>~/.flowise</code> 目录。</p><p><em>部分链接为联盟链接。我们可能获得佣金，但你无需支付额外费用。我们只推荐我们实际使用过的工具和服务。</em></p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个 GitHub Stars、MIT 许可证以及与 LangChain 组件模型直接映射的可视化画布，它是开发者的务实选择 —— 在不编写样板代码的前提下交付 LLM 驱动的聊天机器人和 RAG 系统。</p><p>从 <code>npx flowise start</code> 开始本地原型。使用 Docker Compose 配合 PostgreSQL 进入生产。连接 Ollama 实现完全私有、无需 API Key 的部署。需要扩展时，添加 Redis 队列工作进程和水平工作副本。</p><p><strong>本周行动清单：</strong></p><ol><li>使用 Docker 本地部署 Flowise（````docker run -p 3000:3000 flowiseai/flowise```）</li><li>使用 PDF 加载器、文本分割器和 Chroma 向量库构建你的第一条 RAG 流水线</li><li>导出 REST API 并在测试页面嵌入聊天组件</li><li>加入 <a href=https://t.me/flowiseai>FlowiseAI Telegram 群组</a> 获取社区支持和每周技巧</li></ol><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h2><ol><li><a href=https://docs.flowiseai.com/>Flowise 官方文档</a> —— 安装、配置和 API 参考的完整文档</li><li><a href=https://github.com/FlowiseAI/Flowise>Flowise GitHub 仓库</a> —— 源代码、Issues 和 Releases</li><li><a href=https://flowiseai.com/pricing>Flowise 云版定价</a> —— 云托管套餐和企业功能</li><li><a href=https://js.langchain.com/>LangChain 文档</a> —— Flowise 底层框架</li><li><a href=https://ollama.com/download>Ollama 下载</a> —— 私有化 LLM 运行时</li><li><a href=https://www.trychroma.com/>Chroma 数据库</a> —— 开源向量数据库</li><li><a href=https://qdrant.tech/>Qdrant 向量数据库</a> —— 高性能向量搜索</li><li><a href=https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026>Flowise vs Dify 对比</a> —— ToolHalla 详细对比</li><li><a href=https://www.npmjs.com/package/flowise-embed>Flowise 嵌入组件文档</a> —— 嵌入聊天机器人的 NPM 包</li><li><a href=https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04>DigitalOcean Docker 部署指南</a> —— Ubuntu 服务器 Docker 安装教程</li></ol><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 非技术用户体验 | 良好 | 优秀 | 良好 | 需要编程 |</p>
+<h3 id="如何选择">如何选择<a hidden class="anchor" aria-hidden="true" href="#如何选择">#</a></h3>
+<ul>
+<li><strong>Flowise</strong>：适合构建对话式 AI（聊天机器人、RAG）的团队，追求从原型到部署的最快路径，同时保持完整的 LangChain 兼容性。</li>
+<li><strong>Dify</strong>：当你需要全栈 AI 应用平台，内置知识管理、Prompt 版本控制和团队协作时选择。</li>
+<li><strong>n8n</strong>：当你的 AI Agent 是更广泛自动化流水线的一部分，需要 400+ SaaS 集成、调度和错误处理时选择。</li>
+<li><strong>LangChain</strong>：当你需要完全的代码控制、Prompt 版本管理和 CI/CD 集成时直接使用。</li>
+</ul>
+<h2 id="高级用法--生产环境加固">高级用法 / 生产环境加固<a hidden class="anchor" aria-hidden="true" href="#高级用法--生产环境加固">#</a></h2>
+<h3 id="安全检查清单">安全检查清单<a hidden class="anchor" aria-hidden="true" href="#安全检查清单">#</a></h3>
+<p>在将 Flowise 暴露到公网之前，请完成以下步骤：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. 启用身份验证（必须）</span>
+</span></span><span style="display:flex;"><span>FLOWISE_USERNAME<span style="color:#f92672">=</span>admin
+</span></span><span style="display:flex;"><span>FLOWISE_PASSWORD<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -base64 24<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 设置强 JWT 密钥</span>
+</span></span><span style="display:flex;"><span>JWT_AUTH_TOKEN_SECRET<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -hex 64<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>JWT_REFRESH_TOKEN_SECRET<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -hex 64<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 使用反向代理启用 HTTPS</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Nginx 配置片段：</span>
+</span></span><span style="display:flex;"><span>server <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    listen <span style="color:#ae81ff">443</span> ssl http2;
+</span></span><span style="display:flex;"><span>    server_name flowise.yourdomain.com;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    ssl_certificate /path/to/cert.pem;
+</span></span><span style="display:flex;"><span>    ssl_certificate_key /path/to/key.pem;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    location / <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        proxy_pass http://localhost:3000;
+</span></span><span style="display:flex;"><span>        proxy_http_version 1.1;
+</span></span><span style="display:flex;"><span>        proxy_set_header Upgrade $http_upgrade;
+</span></span><span style="display:flex;"><span>        proxy_set_header Connection <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>        proxy_set_header Host $host;
+</span></span><span style="display:flex;"><span>        proxy_set_header X-Real-IP $remote_addr;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 如需要可关闭遥测</span>
+</span></span><span style="display:flex;"><span>DISABLE_FLOWISE_TELEMETRY<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. 为嵌入组件设置 CORS</span>
+</span></span><span style="display:flex;"><span>CORS_ORIGINS<span style="color:#f92672">=</span>https://yourdomain.com,https://app.yourdomain.com
+</span></span></code></pre></div><h3 id="队列模式扩展">队列模式扩展<a hidden class="anchor" aria-hidden="true" href="#队列模式扩展">#</a></h3>
+<p>对于高流量部署，Flowise 支持基于 Redis 的队列处理与工作进程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose-queue.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: redis: image</span>: <span style="color:#ae81ff">redis:alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QUEUE_NAME=flowise-queue</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QUEUE_REDIS_URL=redis://redis:6379</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise-worker: image</span>: <span style="color:#ae81ff">flowiseai/flowise-worker:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">QUEUE_NAME=flowise-queue</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">QUEUE_REDIS_URL=redis://redis:6379</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><p>水平扩展工作进程：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose -f docker-compose-queue.yml up -d --scale flowise-worker<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span></code></pre></div><h3 id="备份策略">备份策略<a hidden class="anchor" aria-hidden="true" href="#备份策略">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 备份 SQLite 数据库</span>
+</span></span><span style="display:flex;"><span>docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise
+</span></span><span style="display:flex;"><span>docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-<span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span>.tar.gz
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 备份 PostgreSQL</span>
+</span></span><span style="display:flex;"><span>docker exec flowise-postgres pg_dump -U flowise flowise &gt; flowise-db-<span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span>.sql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 通过 cron 实现每日自动备份（添加到 crontab）</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span> * * * /usr/local/bin/backup-flowise.sh &gt;&gt; /var/log/flowise-backup.log 2&gt;&amp;<span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><h3 id="docker-监控">Docker 监控<a hidden class="anchor" aria-hidden="true" href="#docker-监控">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查看实时日志</span>
+</span></span><span style="display:flex;"><span>docker compose logs -f flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查资源使用</span>
+</span></span><span style="display:flex;"><span>docker stats flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 健康检查端点</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:3000/api/v1/ping
+</span></span></code></pre></div><h2 id="局限性--客观评估">局限性 / 客观评估<a hidden class="anchor" aria-hidden="true" href="#局限性--客观评估">#</a></h2>
+<p>Flowise 并非适用于所有 AI 项目。以下情况不建议使用 Flowise：</p>
+<ol>
+<li>
+<p><strong>复杂多 Agent 编排</strong>：Flowise Agentflow 支持顺序 Agent，但循环式多 Agent 模式（如 LangGraph 或 AutoGen 中的模式）需要变通方案。构建研究型 Agent 或辩论式多 Agent 系统的团队应考虑直接使用 LangGraph。</p>
+</li>
+<li>
+<p><strong>非聊天类工作流</strong>：Flowise 针对对话式 AI 优化。批量文档处理、ETL 流水线或定时数据转换更适合由 n8n 或 Python 脚本处理。</p>
+</li>
+<li>
+<p><strong>版本控制</strong>：可视化 Flow 无法像代码一样在 Git 中进行 diff 比较。大型团队协作需要手动导出和版本化 JSON Flow 定义。</p>
+</li>
+<li>
+<p><strong>高级调试</strong>：虽然 Flowise 显示执行日志，但缺乏 Dify 原生提供的节点级时间分解和 token 使用量追踪。调试复杂的检索失败需要阅读原始日志。</p>
+</li>
+<li>
+<p><strong>企业治理</strong>：RBAC 存在于 Pro 版本中，但审计追踪、合规框架（ISO 42001、欧盟 AI 法案）和集群管理并非一等功能。受监管行业可能需要额外的治理层。</p>
+</li>
+<li>
+<p><strong>LangChain 依赖</strong>：Flowise 继承了 LangChain 的限制。如果 LangChain 停止支持某个模型或引入破坏性变更，Flowise 也会受到影响。对于 LangChain 用户这是优势，对其他人则是约束。</p>
+</li>
+</ol>
+<h2 id="常见问题">常见问题<a hidden class="anchor" aria-hidden="true" href="#常见问题">#</a></h2>
+<h3 id="没有-nodejs-的服务器如何安装-flowise">没有 Node.js 的服务器如何安装 Flowise？<a hidden class="anchor" aria-hidden="true" href="#没有-nodejs-的服务器如何安装-flowise">#</a></h3>
+<p>使用 Docker。官方 <code>flowiseai/flowise</code> 镜像已打包所有依赖。一条 <code>docker run</code> 命令即可运行，无需在宿主机上安装 Node.js、pnpm 或任何构建工具。</p>
+<h3 id="flowise-能否与-llama-或-qwen-等本地大模型配合工作">Flowise 能否与 Llama 或 Qwen 等本地大模型配合工作？<a hidden class="anchor" aria-hidden="true" href="#flowise-能否与-llama-或-qwen-等本地大模型配合工作">#</a></h3>
+<p>可以。Flowise 原生集成 Ollama。启动 Ollama 容器（或本地实例），拉取任意 GGUF 模型，然后在 Flowise 画布中选择 <code>ChatOllama</code> 节点。你的数据永远不会离开服务器 —— 无需 API Key。</p>
+<h3 id="构建-rag-聊天机器人时flowise-与-dify-如何选择">构建 RAG 聊天机器人时，Flowise 与 Dify 如何选择？<a hidden class="anchor" aria-hidden="true" href="#构建-rag-聊天机器人时flowise-与-dify-如何选择">#</a></h3>
+<p>Flowise 搭建更快（单容器，无需数据库），并对每个 LangChain 组件提供精确控制。Dify 的知识库 UI 更精致，自动分块且调试体验更好。追求速度和 LangChain 兼容性选 Flowise；追求团队协作和内置知识管理选 Dify。</p>
+<h3 id="flowise-可以免费商用吗">Flowise 可以免费商用吗？<a hidden class="anchor" aria-hidden="true" href="#flowise-可以免费商用吗">#</a></h3>
+<p>可以。Flowise 采用 MIT 许可证发布。你可以自托管、修改、嵌入商业产品、销售基于它的服务 —— 全部无需支付许可费。云托管版本有付费套餐，起步价 $35/月。</p>
+<h3 id="flowise-生产环境的最低服务器配置是什么">Flowise 生产环境的最低服务器配置是什么？<a hidden class="anchor" aria-hidden="true" href="#flowise-生产环境的最低服务器配置是什么">#</a></h3>
+<p>$5/月的 VPS（1 vCPU / 1 GB RAM）配合 SQLite 即可处理中小型工作负载。生产环境配合 PostgreSQL 和多用户并发，建议分配 2 vCPU 和 4 GB RAM。Flowise 容器本身空闲时占用约 180 MB；通过 Ollama 自托管的 LLM 消耗资源最多。</p>
+<h3 id="可以将-flowise-聊天机器人导出为-api-吗">可以将 Flowise 聊天机器人导出为 API 吗？<a hidden class="anchor" aria-hidden="true" href="#可以将-flowise-聊天机器人导出为-api-吗">#</a></h3>
+<p>每个 Chatflow 和 Agentflow 都会自动获得 REST API 端点，路径为 <code>/api/v1/prediction/{flow-id}</code>。UI 会生成 curl、Python 和 JavaScript 代码片段。你也可以一键导出可嵌入的聊天组件。</p>
+<h3 id="如何将-flowise-升级到新版本">如何将 Flowise 升级到新版本？<a hidden class="anchor" aria-hidden="true" href="#如何将-flowise-升级到新版本">#</a></h3>
+<p>Docker 部署：拉取最新镜像并重启：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker pull flowiseai/flowise:latest
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p>NPM 安装：运行 <code>npm update -g flowise</code>。升级前始终备份 <code>~/.flowise</code> 目录。</p>
+<p><em>部分链接为联盟链接。我们可能获得佣金，但你无需支付额外费用。我们只推荐我们实际使用过的工具和服务。</em></p>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>Flowise 消除了从想法到部署 AI Agent 之间的障碍。凭借 52,948 个 GitHub Stars、MIT 许可证以及与 LangChain 组件模型直接映射的可视化画布，它是开发者的务实选择 —— 在不编写样板代码的前提下交付 LLM 驱动的聊天机器人和 RAG 系统。</p>
+<p>从 <code>npx flowise start</code> 开始本地原型。使用 Docker Compose 配合 PostgreSQL 进入生产。连接 Ollama 实现完全私有、无需 API Key 的部署。需要扩展时，添加 Redis 队列工作进程和水平工作副本。</p>
+<p><strong>本周行动清单：</strong></p>
+<ol>
+<li>使用 Docker 本地部署 Flowise（````docker run -p 3000:3000 flowiseai/flowise```）</li>
+<li>使用 PDF 加载器、文本分割器和 Chroma 向量库构建你的第一条 RAG 流水线</li>
+<li>导出 REST API 并在测试页面嵌入聊天组件</li>
+<li>加入 <a href="https://t.me/flowiseai">FlowiseAI Telegram 群组</a> 获取社区支持和每周技巧</li>
+</ol>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="来源与延伸阅读">来源与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#来源与延伸阅读">#</a></h2>
+<ol>
+<li><a href="https://docs.flowiseai.com/">Flowise 官方文档</a> —— 安装、配置和 API 参考的完整文档</li>
+<li><a href="https://github.com/FlowiseAI/Flowise">Flowise GitHub 仓库</a> —— 源代码、Issues 和 Releases</li>
+<li><a href="https://flowiseai.com/pricing">Flowise 云版定价</a> —— 云托管套餐和企业功能</li>
+<li><a href="https://js.langchain.com/">LangChain 文档</a> —— Flowise 底层框架</li>
+<li><a href="https://ollama.com/download">Ollama 下载</a> —— 私有化 LLM 运行时</li>
+<li><a href="https://www.trychroma.com/">Chroma 数据库</a> —— 开源向量数据库</li>
+<li><a href="https://qdrant.tech/">Qdrant 向量数据库</a> —— 高性能向量搜索</li>
+<li><a href="https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026">Flowise vs Dify 对比</a> —— ToolHalla 详细对比</li>
+<li><a href="https://www.npmjs.com/package/flowise-embed">Flowise 嵌入组件文档</a> —— 嵌入聊天机器人的 NPM 包</li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04">DigitalOcean Docker 部署指南</a> —— Ubuntu 服务器 Docker 安装教程</li>
+</ol>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Flowise: 52K+ Stars 可视化拖拽构建 AI Agent — 2026 5分钟快速上手指南&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -309,18 +800,186 @@ aliases:</p><ul><li>/zh/posts/flowise/</li><li>/zh/resources/ai-tools/flowise-ai
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/flowise%22>https://dibi8.com/zh/resources/flowise"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/flowise%22">https://dibi8.com/zh/resources/flowise"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/flowise/>12-factor-agents</a></li><li><a href=/zh/ai-coding-agents/flowise/>2026-05-25-trending-ai-agents</a></li><li><a href=/zh/ai-coding-agents/flowise/>2026-06-01-trending-ai-agents</a></li><li><a href=/zh/ai-coding-agents/flowise/>2026-06-08-trending-ai-agents</a></li><li><a href=/zh/ai-coding-agents/flowise/>2026-06-15-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/flowise-ai-workflow-builder-lowcode/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/free-llm-api-resources-ai-development/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/flowise/">12-factor-agents</a></li>
+<li><a href="/zh/ai-coding-agents/flowise/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/zh/ai-coding-agents/flowise/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/zh/ai-coding-agents/flowise/">2026-06-08-trending-ai-agents</a></li>
+<li><a href="/zh/ai-coding-agents/flowise/">2026-06-15-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/free-llm-api-resources-ai-development/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

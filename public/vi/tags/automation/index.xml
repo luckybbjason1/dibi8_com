@@ -1,1 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Automation on Dibi8</title><link>https://dibi8.com/vi/tags/automation/</link><description>Recent content in Automation on Dibi8</description><generator>Hugo</generator><language>vi</language><lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/vi/tags/automation/index.xml" rel="self" type="application/rss+xml"/><item><title>n8n: Nền Tảng Tự Động Hóa Workflow 2026 (205K Stars)</title><link>https://dibi8.com/vi/n8n-workflow-automation/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/n8n-workflow-automation/</guid><description>n8n là nền tảng tự động hóa workflow fair-code với khả năng AI native. 400+ tích hợp, self-hostable, hỗ trợ visual building + custom code. Đạt 205K GitHub stars.</description></item><item><title>Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)</title><link>https://dibi8.com/vi/agent-reach-internet-access-for-ai-agents-2026/</link><pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/agent-reach-internet-access-for-ai-agents-2026/</guid><description>Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.</description></item><item><title>DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide</title><link>https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026/</link><pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026/</guid><description>DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K+ GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Automation on Dibi8</title>
+    <link>https://dibi8.com/vi/tags/automation/</link>
+    <description>Recent content in Automation on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/vi/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>n8n: Nền Tảng Tự Động Hóa Workflow 2026 (205K Stars)</title>
+      <link>https://dibi8.com/vi/n8n-workflow-automation/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/n8n-workflow-automation/</guid>
+      <description>n8n là nền tảng tự động hóa workflow fair-code với khả năng AI native. 400&#43; tích hợp, self-hostable, hỗ trợ visual building &#43; custom code. Đạt 205K GitHub stars.</description>
+    </item>
+    <item>
+      <title>Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)</title>
+      <link>https://dibi8.com/vi/agent-reach-internet-access-for-ai-agents-2026/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/agent-reach-internet-access-for-ai-agents-2026/</guid>
+      <description>Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.</description>
+    </item>
+    <item>
+      <title>DeepSeek Harness: 229K-Star Plugin Ecosystem That Makes Everything Extendable — Complete 2026 Setup Guide</title>
+      <link>https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/deepseek-harness-plugin-ecosystem-2026/</guid>
+      <description>DeepSeek Harness (DSH) is the fastest-growing AI agent framework in 2026 with 229K&#43; GitHub stars. Learn how to build custom plugins, integrate with Claude Code/Cursor/Codex, and ship production agents in minutes.</description>
+    </item>
+  </channel>
+</rss>

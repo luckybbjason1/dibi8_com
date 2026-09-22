@@ -1,10 +1,249 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/reading-explain-analyze-postgres/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/reading-explain-analyze-postgres/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” bottleneck detection, and database performance optimization. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - AI application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases:\n/vi/posts/reading-explain-analyze-postgres/ faqs: - q: ‘Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có nghĩa là gì?’ a: ‘Giá trị actual time thứ hai của node ngoài cùng là thời gian thực tế (tính bằng mili giây) mà toàn bộ truy vấn tiêu tốn cho một lần thực thi node đó. Tất cả các node bên dưới phân tích chi tiết thời gian tổng đó đã được sử dụng ở đâu.’ q: ‘Làm thế nào để phát hiện query plan có vấn đề qua số lượng hàng trong EXPLAIN ANALYZE?’ a: ‘So sánh rows= ước tính của planner (trong phần cost=) với rows= thực tế (trong phần actual time=). Khi hai giá trị này chênh lệch 10 lần trở lên, planner đã dùng thống kê lỗi thời, và mọi node phía trên đều được chọn dựa trên giả định sai — đây gần như chắc chắn là lỗi cần tìm.’ q: ‘Làm thế nào để tính thời gian chỉ của riêng một node trong EXPLAIN ANALYZE?’ a: ‘Với các node có loops=1, thời gian tự thân xấp xỉ bằng thời gian hàng cuối của node đó (B) trừ đi tổng thời gian hàng cuối của các node con. Với node có loops=N lớn, thời gian được báo cáo là thời gian mỗi vòng lặp, vì vậy cần nhân với loops để ra tổng thời gian.’ q: ‘Sự khác biệt giữa shared hit và shared read trong EXPLAIN (ANALYZE, BUFFERS) là gì?’ a: ‘shared hit đếm các trang đã có sẵn trong buffer cache của Postgres, chi phí thấp; còn shared read đếm các trang phải lấy từ OS hoặc đĩa, chi phí cao. Nếu read chiếm ưu thế, dữ liệu đơn giản là chưa được cache — hãy chạy truy vấn hai lần, vì lần chạy thứ hai phản ánh trạng thái ổn định hơn.’ q: ’temp written xuất hiện trên node Sort hoặc Hash trong query plan có nghĩa là gì?' a: ‘Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.’ Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc {\u003c/* resource-info */\u003e}\nĐầu ra EXPLAIN ANALYZE trông đáng sợ cho đến khi bạn biết ba con số thực sự quan trọng. Đây là thứ tự tôi đọc chúng, và các mẫu chỉ ra các lỗi cụ thể.\nBa con số thực sự quan trọng 1. Tổng thời gian thực thi (Total Execution Time) Total runtime: 1234.567 ms Đây là chỉ số quan trọng nhất. Nếu truy vấn chậm, nó sẽ cho bạn biết ở đây.\n2. Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows) Seq Scan on users (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1) Sự khác biệt lớn cho thấy trình lập kế hoạch đã đưa ra giả định sai.\n3. Tỷ lệ trúng bộ đệm (Buffer Hit Ratio) Buffers: shared hit=1000 read=50 Tỷ lệ trúng cao = sử dụng bộ đệm tốt, tỷ lệ trúng thấp = vấn đề I/O đĩa.\nThứ tự đọc Bắt đầu từ dưới - tổng thời gian thực thi Làm việc lên trên - tìm nút có chi phí cao nhất Kiểm tra ước tính hàng - thực tế vs ước tính Xem thống kê bộ đệm - mẫu I/O Mẫu vấn đề phổ biến Quét tuần tự khi nên quét chỉ mục Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32) Giải pháp: Thêm chỉ mục phù hợp\nVòng lồng khi nên kết nối băm Nested Loop (cost=1000.00..100000.00 rows=1000 width=64) -\u003e Seq Scan on users -\u003e Index Scan on orders Giải pháp: Tăng work_mem hoặc viết lại truy vấn\nQuá nhiều bộ đệm không trúng Buffers: shared hit=10 read=1000 Giải pháp: Tăng shared_buffers hoặc cải thiện truy vấn\nSắp xếp tràn ra đĩa Sort Method: external merge Disk: 16384kB ```` **Giải pháp**: Tăng work_mem ## Ứng dụng thực tế Những hiểu biết này giúp tôi xác định và sửa chữa: - Chỉ mục bị thiếu - Thứ tự kết nối không hiệu quả - Vấn đề thiếu bộ nhớ - Bộ đệm không trúng Hãy nhớ: EXPLAIN ANALYZE là trình gỡ lỗi hiệu suất truy vấn của bạn. Học cách đọc nó sẽ tiết kiệm cho bạn vô số giờ đoán mò. * * * ## Công Cụ Đề Xuất Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload. - **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức. - **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam. *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/reading-explain-analyze-postgres\" } } ## Why This Matters Understanding đọc đầu ra explain analyze trong postgres mà không bị lạc is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Trading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | |-----|----------|----------|------|------------| | **Freqtrade** | Multi | Custom | Free | Medium | | **Hummingbot** | DEX/CEX | Market making | Free | Hard | | **Jesse** | Crypto | Backtesting | Free | Medium | | **Velocimeter** | Hyperliquid | Perps | Free | Easy | ","wordCount":"1192","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>6 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/reading-explain-analyze-postgres/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/reading-explain-analyze-postgres/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#%c4%91%e1%bb%8dc-%c4%91%e1%ba%a7u-ra-explain-analyze-trong-postgres-m%c3%a0-kh%c3%b4ng-b%e1%bb%8b-l%e1%ba%a1c aria-label="Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc">Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc</a><ul><li><a href=#ba-con-s%e1%bb%91-th%e1%bb%b1c-s%e1%bb%b1-quan-tr%e1%bb%8dng aria-label="Ba con số thực sự quan trọng">Ba con số thực sự quan trọng</a><ul><li><a href=#1-t%e1%bb%95ng-th%e1%bb%9di-gian-th%e1%bb%b1c-thi-total-execution-time aria-label="1. Tổng thời gian thực thi (Total Execution Time)">1. Tổng thời gian thực thi (Total Execution Time)</a></li><li><a href=#2-s%e1%bb%91-h%c3%a0ng-th%e1%bb%b1c-t%e1%ba%bf-vs-s%e1%bb%91-h%c3%a0ng-%c6%b0%e1%bb%9bc-t%c3%adnh-actual-vs-estimated-rows aria-label="2. Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)">2. Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)</a></li><li><a href=#3-t%e1%bb%b7-l%e1%bb%87-tr%c3%bang-b%e1%bb%99-%c4%91%e1%bb%87m-buffer-hit-ratio aria-label="3. Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)">3. Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)</a></li></ul></li><li><a href=#th%e1%bb%a9-t%e1%bb%b1-%c4%91%e1%bb%8dc aria-label="Thứ tự đọc">Thứ tự đọc</a></li><li><a href=#m%e1%ba%abu-v%e1%ba%a5n-%c4%91%e1%bb%81-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Mẫu vấn đề phổ biến">Mẫu vấn đề phổ biến</a><ul><li><a href=#qu%c3%a9t-tu%e1%ba%a7n-t%e1%bb%b1-khi-n%c3%aan-qu%c3%a9t-ch%e1%bb%89-m%e1%bb%a5c aria-label="Quét tuần tự khi nên quét chỉ mục">Quét tuần tự khi nên quét chỉ mục</a></li><li><a href=#v%c3%b2ng-l%e1%bb%93ng-khi-n%c3%aan-k%e1%ba%bft-n%e1%bb%91i-b%c4%83m aria-label="Vòng lồng khi nên kết nối băm">Vòng lồng khi nên kết nối băm</a></li><li><a href=#qu%c3%a1-nhi%e1%bb%81u-b%e1%bb%99-%c4%91%e1%bb%87m-kh%c3%b4ng-tr%c3%bang aria-label="Quá nhiều bộ đệm không trúng">Quá nhiều bộ đệm không trúng</a></li><li><a href=#s%e1%ba%afp-x%e1%ba%bfp-tr%c3%a0n-ra-%c4%91%c4%a9a aria-label="Sắp xếp tràn ra đĩa">Sắp xếp tràn ra đĩa</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/reading-explain-analyze-postgres/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/reading-explain-analyze-postgres/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” bottleneck detection, and database performance optimization. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - AI application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases:\n/vi/posts/reading-explain-analyze-postgres/ faqs: - q: ‘Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có nghĩa là gì?’ a: ‘Giá trị actual time thứ hai của node ngoài cùng là thời gian thực tế (tính bằng mili giây) mà toàn bộ truy vấn tiêu tốn cho một lần thực thi node đó. Tất cả các node bên dưới phân tích chi tiết thời gian tổng đó đã được sử dụng ở đâu.’ q: ‘Làm thế nào để phát hiện query plan có vấn đề qua số lượng hàng trong EXPLAIN ANALYZE?’ a: ‘So sánh rows= ước tính của planner (trong phần cost=) với rows= thực tế (trong phần actual time=). Khi hai giá trị này chênh lệch 10 lần trở lên, planner đã dùng thống kê lỗi thời, và mọi node phía trên đều được chọn dựa trên giả định sai — đây gần như chắc chắn là lỗi cần tìm.’ q: ‘Làm thế nào để tính thời gian chỉ của riêng một node trong EXPLAIN ANALYZE?’ a: ‘Với các node có loops=1, thời gian tự thân xấp xỉ bằng thời gian hàng cuối của node đó (B) trừ đi tổng thời gian hàng cuối của các node con. Với node có loops=N lớn, thời gian được báo cáo là thời gian mỗi vòng lặp, vì vậy cần nhân với loops để ra tổng thời gian.’ q: ‘Sự khác biệt giữa shared hit và shared read trong EXPLAIN (ANALYZE, BUFFERS) là gì?’ a: ‘shared hit đếm các trang đã có sẵn trong buffer cache của Postgres, chi phí thấp; còn shared read đếm các trang phải lấy từ OS hoặc đĩa, chi phí cao. Nếu read chiếm ưu thế, dữ liệu đơn giản là chưa được cache — hãy chạy truy vấn hai lần, vì lần chạy thứ hai phản ánh trạng thái ổn định hơn.’ q: ’temp written xuất hiện trên node Sort hoặc Hash trong query plan có nghĩa là gì?' a: ‘Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.’ Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc {\u003c/* resource-info */\u003e}\nĐầu ra EXPLAIN ANALYZE trông đáng sợ cho đến khi bạn biết ba con số thực sự quan trọng. Đây là thứ tự tôi đọc chúng, và các mẫu chỉ ra các lỗi cụ thể.\nBa con số thực sự quan trọng 1. Tổng thời gian thực thi (Total Execution Time) Total runtime: 1234.567 ms Đây là chỉ số quan trọng nhất. Nếu truy vấn chậm, nó sẽ cho bạn biết ở đây.\n2. Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows) Seq Scan on users (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1) Sự khác biệt lớn cho thấy trình lập kế hoạch đã đưa ra giả định sai.\n3. Tỷ lệ trúng bộ đệm (Buffer Hit Ratio) Buffers: shared hit=1000 read=50 Tỷ lệ trúng cao = sử dụng bộ đệm tốt, tỷ lệ trúng thấp = vấn đề I/O đĩa.\nThứ tự đọc Bắt đầu từ dưới - tổng thời gian thực thi Làm việc lên trên - tìm nút có chi phí cao nhất Kiểm tra ước tính hàng - thực tế vs ước tính Xem thống kê bộ đệm - mẫu I/O Mẫu vấn đề phổ biến Quét tuần tự khi nên quét chỉ mục Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32) Giải pháp: Thêm chỉ mục phù hợp\nVòng lồng khi nên kết nối băm Nested Loop (cost=1000.00..100000.00 rows=1000 width=64) -\u003e Seq Scan on users -\u003e Index Scan on orders Giải pháp: Tăng work_mem hoặc viết lại truy vấn\nQuá nhiều bộ đệm không trúng Buffers: shared hit=10 read=1000 Giải pháp: Tăng shared_buffers hoặc cải thiện truy vấn\nSắp xếp tràn ra đĩa Sort Method: external merge Disk: 16384kB ```` **Giải pháp**: Tăng work_mem ## Ứng dụng thực tế Những hiểu biết này giúp tôi xác định và sửa chữa: - Chỉ mục bị thiếu - Thứ tự kết nối không hiệu quả - Vấn đề thiếu bộ nhớ - Bộ đệm không trúng Hãy nhớ: EXPLAIN ANALYZE là trình gỡ lỗi hiệu suất truy vấn của bạn. Học cách đọc nó sẽ tiết kiệm cho bạn vô số giờ đoán mò. * * * ## Công Cụ Đề Xuất Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload. - **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức. - **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam. *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/reading-explain-analyze-postgres\" } } ## Why This Matters Understanding đọc đầu ra explain analyze trong postgres mà không bị lạc is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Trading Bot Comparison | Bot | Exchange | Strategy | Cost | Difficulty | |-----|----------|----------|------|------------| | **Freqtrade** | Multi | Custom | Free | Medium | | **Hummingbot** | DEX/CEX | Market making | Free | Hard | | **Jesse** | Crypto | Backtesting | Free | Medium | | **Velocimeter** | Hyperliquid | Perps | Free | Easy | ",
+  "wordCount" : "1192",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/reading-explain-analyze-postgres/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>6 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/reading-explain-analyze-postgres/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/reading-explain-analyze-postgres/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/reading-explain-analyze-postgres/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%c4%91%e1%bb%8dc-%c4%91%e1%ba%a7u-ra-explain-analyze-trong-postgres-m%c3%a0-kh%c3%b4ng-b%e1%bb%8b-l%e1%ba%a1c" aria-label="Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc">Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc</a><ul>
+                    
+            <li>
+                <a href="#ba-con-s%e1%bb%91-th%e1%bb%b1c-s%e1%bb%b1-quan-tr%e1%bb%8dng" aria-label="Ba con số thực sự quan trọng">Ba con số thực sự quan trọng</a><ul>
+                    
+            <li>
+                <a href="#1-t%e1%bb%95ng-th%e1%bb%9di-gian-th%e1%bb%b1c-thi-total-execution-time" aria-label="1. Tổng thời gian thực thi (Total Execution Time)">1. Tổng thời gian thực thi (Total Execution Time)</a></li>
+            <li>
+                <a href="#2-s%e1%bb%91-h%c3%a0ng-th%e1%bb%b1c-t%e1%ba%bf-vs-s%e1%bb%91-h%c3%a0ng-%c6%b0%e1%bb%9bc-t%c3%adnh-actual-vs-estimated-rows" aria-label="2. Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)">2. Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)</a></li>
+            <li>
+                <a href="#3-t%e1%bb%b7-l%e1%bb%87-tr%c3%bang-b%e1%bb%99-%c4%91%e1%bb%87m-buffer-hit-ratio" aria-label="3. Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)">3. Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)</a></li></ul>
+            </li>
+            <li>
+                <a href="#th%e1%bb%a9-t%e1%bb%b1-%c4%91%e1%bb%8dc" aria-label="Thứ tự đọc">Thứ tự đọc</a></li>
+            <li>
+                <a href="#m%e1%ba%abu-v%e1%ba%a5n-%c4%91%e1%bb%81-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Mẫu vấn đề phổ biến">Mẫu vấn đề phổ biến</a><ul>
+                    
+            <li>
+                <a href="#qu%c3%a9t-tu%e1%ba%a7n-t%e1%bb%b1-khi-n%c3%aan-qu%c3%a9t-ch%e1%bb%89-m%e1%bb%a5c" aria-label="Quét tuần tự khi nên quét chỉ mục">Quét tuần tự khi nên quét chỉ mục</a></li>
+            <li>
+                <a href="#v%c3%b2ng-l%e1%bb%93ng-khi-n%c3%aan-k%e1%ba%bft-n%e1%bb%91i-b%c4%83m" aria-label="Vòng lồng khi nên kết nối băm">Vòng lồng khi nên kết nối băm</a></li>
+            <li>
+                <a href="#qu%c3%a1-nhi%e1%bb%81u-b%e1%bb%99-%c4%91%e1%bb%87m-kh%c3%b4ng-tr%c3%bang" aria-label="Quá nhiều bộ đệm không trúng">Quá nhiều bộ đệm không trúng</a></li>
+            <li>
+                <a href="#s%e1%ba%afp-x%e1%ba%bfp-tr%c3%a0n-ra-%c4%91%c4%a9a" aria-label="Sắp xếp tràn ra đĩa">Sắp xếp tràn ra đĩa</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 bottleneck detection, and database performance optimization.
 date: 2026-05-15T04:20:25+09:00
@@ -20,21 +259,55 @@ download_url: &rsquo;'
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</p><ul><li>/vi/posts/reading-explain-analyze-postgres/
+aliases:</p>
+<ul>
+<li>/vi/posts/reading-explain-analyze-postgres/
 faqs: - q: &lsquo;Dòng đầu tiên trong output EXPLAIN ANALYZE, actual time có nghĩa là gì?&rsquo;
-a: &lsquo;Giá trị actual time thứ hai của node ngoài cùng là thời gian thực tế (tính bằng mili giây) mà toàn bộ truy vấn tiêu tốn cho một lần thực thi node đó. Tất cả các node bên dưới phân tích chi tiết thời gian tổng đó đã được sử dụng ở đâu.&rsquo;</li><li>q: &lsquo;Làm thế nào để phát hiện query plan có vấn đề qua số lượng hàng trong EXPLAIN ANALYZE?&rsquo;
-a: &lsquo;So sánh rows= ước tính của planner (trong phần cost=) với rows= thực tế (trong phần actual time=). Khi hai giá trị này chênh lệch 10 lần trở lên, planner đã dùng thống kê lỗi thời, và mọi node phía trên đều được chọn dựa trên giả định sai — đây gần như chắc chắn là lỗi cần tìm.&rsquo;</li><li>q: &lsquo;Làm thế nào để tính thời gian chỉ của riêng một node trong EXPLAIN ANALYZE?&rsquo;
-a: &lsquo;Với các node có loops=1, thời gian tự thân xấp xỉ bằng thời gian hàng cuối của node đó (B) trừ đi tổng thời gian hàng cuối của các node con. Với node có loops=N lớn, thời gian được báo cáo là thời gian mỗi vòng lặp, vì vậy cần nhân với loops để ra tổng thời gian.&rsquo;</li><li>q: &lsquo;Sự khác biệt giữa shared hit và shared read trong EXPLAIN (ANALYZE, BUFFERS) là gì?&rsquo;
-a: &lsquo;shared hit đếm các trang đã có sẵn trong buffer cache của Postgres, chi phí thấp; còn shared read đếm các trang phải lấy từ OS hoặc đĩa, chi phí cao. Nếu read chiếm ưu thế, dữ liệu đơn giản là chưa được cache — hãy chạy truy vấn hai lần, vì lần chạy thứ hai phản ánh trạng thái ổn định hơn.&rsquo;</li><li>q: &rsquo;temp written xuất hiện trên node Sort hoặc Hash trong query plan có nghĩa là gì?'
-a: &lsquo;Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.&rsquo;</li></ul><hr><h1 id=đọc-đầu-ra-explain-analyze-trong-postgres-mà-không-bị-lạc>Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc<a hidden class=anchor aria-hidden=true href=#đọc-đầu-ra-explain-analyze-trong-postgres-mà-không-bị-lạc>#</a></h1><p>{&lt;/* resource-info */>}</p><p>Đầu ra EXPLAIN ANALYZE trông đáng sợ cho đến khi bạn biết ba con số thực sự quan trọng. Đây là thứ tự tôi đọc chúng, và các mẫu chỉ ra các lỗi cụ thể.</p><h2 id=ba-con-số-thực-sự-quan-trọng>Ba con số thực sự quan trọng<a hidden class=anchor aria-hidden=true href=#ba-con-số-thực-sự-quan-trọng>#</a></h2><h3 id=1-tổng-thời-gian-thực-thi-total-execution-time>1. <strong>Tổng thời gian thực thi (Total Execution Time)</strong><a hidden class=anchor aria-hidden=true href=#1-tổng-thời-gian-thực-thi-total-execution-time>#</a></h3><pre tabindex=0><code>Total runtime: 1234.567 ms
-</code></pre><p>Đây là chỉ số quan trọng nhất. Nếu truy vấn chậm, nó sẽ cho bạn biết ở đây.</p><h3 id=2-số-hàng-thực-tế-vs-số-hàng-ước-tính-actual-vs-estimated-rows>2. <strong>Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)</strong><a hidden class=anchor aria-hidden=true href=#2-số-hàng-thực-tế-vs-số-hàng-ước-tính-actual-vs-estimated-rows>#</a></h3><pre tabindex=0><code>Seq Scan on users  (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1)
-</code></pre><p>Sự khác biệt lớn cho thấy trình lập kế hoạch đã đưa ra giả định sai.</p><h3 id=3-tỷ-lệ-trúng-bộ-đệm-buffer-hit-ratio>3. <strong>Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)</strong><a hidden class=anchor aria-hidden=true href=#3-tỷ-lệ-trúng-bộ-đệm-buffer-hit-ratio>#</a></h3><pre tabindex=0><code>Buffers: shared hit=1000 read=50
-</code></pre><p>Tỷ lệ trúng cao = sử dụng bộ đệm tốt, tỷ lệ trúng thấp = vấn đề I/O đĩa.</p><h2 id=thứ-tự-đọc>Thứ tự đọc<a hidden class=anchor aria-hidden=true href=#thứ-tự-đọc>#</a></h2><ol><li><strong>Bắt đầu từ dưới</strong> - tổng thời gian thực thi</li><li><strong>Làm việc lên trên</strong> - tìm nút có chi phí cao nhất</li><li><strong>Kiểm tra ước tính hàng</strong> - thực tế vs ước tính</li><li><strong>Xem thống kê bộ đệm</strong> - mẫu I/O</li></ol><h2 id=mẫu-vấn-đề-phổ-biến>Mẫu vấn đề phổ biến<a hidden class=anchor aria-hidden=true href=#mẫu-vấn-đề-phổ-biến>#</a></h2><h3 id=quét-tuần-tự-khi-nên-quét-chỉ-mục><strong>Quét tuần tự khi nên quét chỉ mục</strong><a hidden class=anchor aria-hidden=true href=#quét-tuần-tự-khi-nên-quét-chỉ-mục>#</a></h3><pre tabindex=0><code>Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32)
-</code></pre><p><strong>Giải pháp</strong>: Thêm chỉ mục phù hợp</p><h3 id=vòng-lồng-khi-nên-kết-nối-băm><strong>Vòng lồng khi nên kết nối băm</strong><a hidden class=anchor aria-hidden=true href=#vòng-lồng-khi-nên-kết-nối-băm>#</a></h3><pre tabindex=0><code>Nested Loop (cost=1000.00..100000.00 rows=1000 width=64)
+a: &lsquo;Giá trị actual time thứ hai của node ngoài cùng là thời gian thực tế (tính bằng mili giây) mà toàn bộ truy vấn tiêu tốn cho một lần thực thi node đó. Tất cả các node bên dưới phân tích chi tiết thời gian tổng đó đã được sử dụng ở đâu.&rsquo;</li>
+<li>q: &lsquo;Làm thế nào để phát hiện query plan có vấn đề qua số lượng hàng trong EXPLAIN ANALYZE?&rsquo;
+a: &lsquo;So sánh rows= ước tính của planner (trong phần cost=) với rows= thực tế (trong phần actual time=). Khi hai giá trị này chênh lệch 10 lần trở lên, planner đã dùng thống kê lỗi thời, và mọi node phía trên đều được chọn dựa trên giả định sai — đây gần như chắc chắn là lỗi cần tìm.&rsquo;</li>
+<li>q: &lsquo;Làm thế nào để tính thời gian chỉ của riêng một node trong EXPLAIN ANALYZE?&rsquo;
+a: &lsquo;Với các node có loops=1, thời gian tự thân xấp xỉ bằng thời gian hàng cuối của node đó (B) trừ đi tổng thời gian hàng cuối của các node con. Với node có loops=N lớn, thời gian được báo cáo là thời gian mỗi vòng lặp, vì vậy cần nhân với loops để ra tổng thời gian.&rsquo;</li>
+<li>q: &lsquo;Sự khác biệt giữa shared hit và shared read trong EXPLAIN (ANALYZE, BUFFERS) là gì?&rsquo;
+a: &lsquo;shared hit đếm các trang đã có sẵn trong buffer cache của Postgres, chi phí thấp; còn shared read đếm các trang phải lấy từ OS hoặc đĩa, chi phí cao. Nếu read chiếm ưu thế, dữ liệu đơn giản là chưa được cache — hãy chạy truy vấn hai lần, vì lần chạy thứ hai phản ánh trạng thái ổn định hơn.&rsquo;</li>
+<li>q: &rsquo;temp written xuất hiện trên node Sort hoặc Hash trong query plan có nghĩa là gì?'
+a: &lsquo;Điều đó có nghĩa là thao tác sắp xếp hoặc băm không vừa trong work_mem và đã tràn ra đĩa, khiến thời gian của node đó có thể tăng gấp 10 lần. Cách khắc phục là tăng work_mem cho phiên đó và chạy lại EXPLAIN.&rsquo;</li>
+</ul>
+<hr>
+<h1 id="đọc-đầu-ra-explain-analyze-trong-postgres-mà-không-bị-lạc">Đọc đầu ra EXPLAIN ANALYZE trong Postgres mà không bị lạc<a hidden class="anchor" aria-hidden="true" href="#đọc-đầu-ra-explain-analyze-trong-postgres-mà-không-bị-lạc">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>Đầu ra EXPLAIN ANALYZE trông đáng sợ cho đến khi bạn biết ba con số thực sự quan trọng. Đây là thứ tự tôi đọc chúng, và các mẫu chỉ ra các lỗi cụ thể.</p>
+<h2 id="ba-con-số-thực-sự-quan-trọng">Ba con số thực sự quan trọng<a hidden class="anchor" aria-hidden="true" href="#ba-con-số-thực-sự-quan-trọng">#</a></h2>
+<h3 id="1-tổng-thời-gian-thực-thi-total-execution-time">1. <strong>Tổng thời gian thực thi (Total Execution Time)</strong><a hidden class="anchor" aria-hidden="true" href="#1-tổng-thời-gian-thực-thi-total-execution-time">#</a></h3>
+<pre tabindex="0"><code>Total runtime: 1234.567 ms
+</code></pre><p>Đây là chỉ số quan trọng nhất. Nếu truy vấn chậm, nó sẽ cho bạn biết ở đây.</p>
+<h3 id="2-số-hàng-thực-tế-vs-số-hàng-ước-tính-actual-vs-estimated-rows">2. <strong>Số hàng thực tế vs số hàng ước tính (Actual vs Estimated Rows)</strong><a hidden class="anchor" aria-hidden="true" href="#2-số-hàng-thực-tế-vs-số-hàng-ước-tính-actual-vs-estimated-rows">#</a></h3>
+<pre tabindex="0"><code>Seq Scan on users  (cost=0.00..123.45 rows=1000 width=32) (actual time=1.234..567.890 rows=50000 loops=1)
+</code></pre><p>Sự khác biệt lớn cho thấy trình lập kế hoạch đã đưa ra giả định sai.</p>
+<h3 id="3-tỷ-lệ-trúng-bộ-đệm-buffer-hit-ratio">3. <strong>Tỷ lệ trúng bộ đệm (Buffer Hit Ratio)</strong><a hidden class="anchor" aria-hidden="true" href="#3-tỷ-lệ-trúng-bộ-đệm-buffer-hit-ratio">#</a></h3>
+<pre tabindex="0"><code>Buffers: shared hit=1000 read=50
+</code></pre><p>Tỷ lệ trúng cao = sử dụng bộ đệm tốt, tỷ lệ trúng thấp = vấn đề I/O đĩa.</p>
+<h2 id="thứ-tự-đọc">Thứ tự đọc<a hidden class="anchor" aria-hidden="true" href="#thứ-tự-đọc">#</a></h2>
+<ol>
+<li><strong>Bắt đầu từ dưới</strong> - tổng thời gian thực thi</li>
+<li><strong>Làm việc lên trên</strong> - tìm nút có chi phí cao nhất</li>
+<li><strong>Kiểm tra ước tính hàng</strong> - thực tế vs ước tính</li>
+<li><strong>Xem thống kê bộ đệm</strong> - mẫu I/O</li>
+</ol>
+<h2 id="mẫu-vấn-đề-phổ-biến">Mẫu vấn đề phổ biến<a hidden class="anchor" aria-hidden="true" href="#mẫu-vấn-đề-phổ-biến">#</a></h2>
+<h3 id="quét-tuần-tự-khi-nên-quét-chỉ-mục"><strong>Quét tuần tự khi nên quét chỉ mục</strong><a hidden class="anchor" aria-hidden="true" href="#quét-tuần-tự-khi-nên-quét-chỉ-mục">#</a></h3>
+<pre tabindex="0"><code>Seq Scan on large_table (cost=1000.00..2000.00 rows=100000 width=32)
+</code></pre><p><strong>Giải pháp</strong>: Thêm chỉ mục phù hợp</p>
+<h3 id="vòng-lồng-khi-nên-kết-nối-băm"><strong>Vòng lồng khi nên kết nối băm</strong><a hidden class="anchor" aria-hidden="true" href="#vòng-lồng-khi-nên-kết-nối-băm">#</a></h3>
+<pre tabindex="0"><code>Nested Loop (cost=1000.00..100000.00 rows=1000 width=64)
   -&gt; Seq Scan on users
   -&gt; Index Scan on orders
-</code></pre><p><strong>Giải pháp</strong>: Tăng work_mem hoặc viết lại truy vấn</p><h3 id=quá-nhiều-bộ-đệm-không-trúng><strong>Quá nhiều bộ đệm không trúng</strong><a hidden class=anchor aria-hidden=true href=#quá-nhiều-bộ-đệm-không-trúng>#</a></h3><pre tabindex=0><code>Buffers: shared hit=10 read=1000
-</code></pre><p><strong>Giải pháp</strong>: Tăng shared_buffers hoặc cải thiện truy vấn</p><h3 id=sắp-xếp-tràn-ra-đĩa><strong>Sắp xếp tràn ra đĩa</strong><a hidden class=anchor aria-hidden=true href=#sắp-xếp-tràn-ra-đĩa>#</a></h3><pre tabindex=0><code>Sort Method: external merge  Disk: 16384kB
+</code></pre><p><strong>Giải pháp</strong>: Tăng work_mem hoặc viết lại truy vấn</p>
+<h3 id="quá-nhiều-bộ-đệm-không-trúng"><strong>Quá nhiều bộ đệm không trúng</strong><a hidden class="anchor" aria-hidden="true" href="#quá-nhiều-bộ-đệm-không-trúng">#</a></h3>
+<pre tabindex="0"><code>Buffers: shared hit=10 read=1000
+</code></pre><p><strong>Giải pháp</strong>: Tăng shared_buffers hoặc cải thiện truy vấn</p>
+<h3 id="sắp-xếp-tràn-ra-đĩa"><strong>Sắp xếp tràn ra đĩa</strong><a hidden class="anchor" aria-hidden="true" href="#sắp-xếp-tràn-ra-đĩa">#</a></h3>
+<pre tabindex="0"><code>Sort Method: external merge  Disk: 16384kB
 ````
 **Giải pháp**: Tăng work_mem
 
@@ -133,11 +406,155 @@ For the latest updates and community discussions, join our Telegram channel: htt
 | **Hummingbot** | DEX/CEX | Market making | Free | Hard |
 | **Jesse** | Crypto | Backtesting | Free | Medium |
 | **Velocimeter** | Hyperliquid | Perps | Free | Easy |
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/ragflow/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/repomix-pack-repo-for-llm-context-2026/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/ragflow/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/repomix-pack-repo-for-llm-context-2026/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

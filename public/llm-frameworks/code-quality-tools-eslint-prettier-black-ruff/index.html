@@ -1,11 +1,338 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Code Quality Tools Guide: ESLint, Prettier, Black, Ruff \u0026 More {\u003c/* resource-info */\u003e}\nCode quality tools are not optional in professional software development. They catch bugs before they reach production, enforce consistency across team members, and eliminate entire categories of code review debates about formatting and style. A project without automated quality enforcement drifts into inconsistency. A project with the right tools maintains readability and reliability with minimal ongoing effort.\nThis guide covers the essential linting and formatting tools for JavaScript, TypeScript, Python, Go, and Rust. You will find complete setup instructions, configuration examples, CI/CD integration patterns, and pre-commit hook configurations for each language.\nWhy Code Quality Tools Are Essential The Cost of Inconsistent Code Inconsistent code is expensive to maintain. A 2023 study by Stripe estimated that developers spend 31% of their time dealing with technical debt — much of it caused by inconsistent patterns that make code harder to understand and modify. When every file in a project uses different formatting, naming conventions, and style patterns, developers must context-switch constantly. Cognitive load increases. Bugs hide in the confusion.\nLinting vs Formatting: Understanding the Difference Linting and formatting serve different purposes: - Linting analyzes code for potential errors, bugs, and anti-patterns. It catches unused variables, unreachable code, type mismatches, and security vulnerabilities. Linters enforce correctness.\nFormatting concerns code presentation — indentation, line length, quote style, trailing commas. Formatters enforce consistency. These tools are complementary. ESLint catches the bug. Prettier makes the fix look uniform. Both run in your editor and CI pipeline.\nHow Quality Tools Reduce Bugs and Review Time Automated quality tools reduce pull request review time by eliminating style debates. When Prettier handles formatting, reviewers focus on logic and architecture. When ESLint catches common mistakes, fewer bugs reach human review. A well-configured tool suite catches 30-50% of issues that would otherwise require manual review.\nJavaScript/TypeScript: ESLint Deep Dive What Is ESLint and How It Works ESLint is a static analysis tool for JavaScript and TypeScript. It parses your code into an abstract syntax tree (AST), then applies rules that detect patterns ranging from stylistic preferences to potential runtime errors. With over 300 built-in rules and thousands of third-party rules, ESLint is the most configurable linter in any language ecosystem.\nSetting Up ESLint 9 (Flat Config) ESLint 9, released in April 2024, introduced the flat config format (```eslint.config.js) which replaces the legacy .eslintrc```` files. Flat config is more explicit, easier to debug, and supports JavaScript configuration natively.\nInstall ESLint 9: `````bash npm install –save-dev eslint @eslint/js\nCreate ``eslint.config.js``: `````javascript import js from '@eslint/js'; export default [ js.configs.recommended, { files: ['**/*.js', '**/*.jsx'], languageOptions: { ecmaVersion: 2024, sourceType: 'module', globals: { console: 'readonly', process: 'readonly', }, }, rules: { 'no-unused-vars': 'error', 'no-console': 'warn', 'eqeqeq': 'error', }, }, ]; Run ESLint: `````bash npx eslint .\n### Recommended Rules and Configurations Start with ````js.configs.recommended```` and add rules incrementally. Common additions include: | Rule | Purpose | Severity | | * * * | * * * | * * * | | ````no-unused-vars```` | Catch declared but unused variables | Error | | ````no-undef```` | Catch undeclared variables | Error | | ````eqeqeq```` | Require strict equality (````===````) | Error | | ````curly```` | Require braces for all control statements | Warn | | ````no-throw-literal```` | Require Error objects for throw | Error | ### Integrating With TypeScript (@typescript-eslint) For TypeScript projects, add the TypeScript parser and plugin: `````bash npm install --save-dev typescript-eslint Update eslint.config.js: `````javascript import js from ‘@eslint/js’; import tseslint from ’typescript-eslint’;\nexport default [ js.configs.recommended, …tseslint.configs.recommended, { files: [’/*.ts’, ‘/*.tsx’], languageOptions: { parser: tseslint.parser, parserOptions: { project: ‘./tsconfig.json’, }, }, }, ];\n### Popular Shareable Configs: Airbnb, Standard, XO Several organizations publish shareable ESLint configurations: - **Airbnb** (````eslint-config-airbnb````) — The most popular preset, enforcing 400+ rules. Comprehensive but strict. - **Standard** (````eslint-config-standard````) — Enforces the JavaScript Standard Style. No semicolons, 2-space indentation. - **XO** (````eslint-config-xo````) — Opinionated with sensible defaults. Good middle ground between Airbnb and minimal. ### ESLint Stylistic for Formatting Rules ESLint Stylistic (``@stylistic/eslint-plugin``) provides formatting rules extracted from the core ESLint project. Use it for projects that want linting and basic formatting in a single tool: `````javascript import stylistic from '@stylistic/eslint-plugin'; export default [ { plugins: { '@stylistic': stylistic, }, rules: { '@stylistic/indent': ['error', 2], '@stylistic/quotes': ['error', 'single'], '@stylistic/semi': ['error', 'always'], }, }, ]; JavaScript/TypeScript: Prettier Setup What Is Prettier: Opinionated Code Formatter Prettier is an opinionated code formatter that supports JavaScript, TypeScript, JSON, CSS, HTML, Markdown, and more. It removes all formatting decisions from developers by enforcing a single consistent style. Unlike configurable formatters, Prettier intentionally limits options to prevent bikeshedding.\nInstalling and Configuring .prettierrc Install Prettier: `````bash npm install –save-dev –save-exact prettier\nCreate ``.prettierrc``: `````json { \"semi\": true, \"singleQuote\": true, \"tabWidth\": 2, \"trailingComma\": \"es5\", \"printWidth\": 100 } Create .prettierignore: ````` node_modules dist build coverage *.min.js\n### Prettier vs ESLint: Complementary, Not Competing ESLint and Prettier have overlapping territory — both can enforce formatting. The recommended approach is: - **ESLint** handles code quality rules (correctness, best practices) - **Prettier** handles formatting rules (indentation, quotes, line breaks) Use ``eslint-config-prettier`` to disable ESLint rules that conflict with Prettier: `````bash npm install --save-dev eslint-config-prettier Add to eslint.config.js: `````javascript import prettier from ’eslint-config-prettier’;\nexport default [ // … other configs prettier, ];\n### Editor Integration (VS Code, Vim, JetBrains) Install the Prettier extension for your editor and enable \"Format on Save.\" In VS Code, add to ``settings.json``: `````json { \"editor.defaultFormatter\": \"esbenp.prettier-vscode\", \"editor.formatOnSave\": true } ESLint + Prettier: Complete Integration Step-by-Step Setup for New Projects Install dependencies: `````bash npm install –save-dev eslint prettier eslint-config-prettier typescript-eslint 2. Create ``eslint.config.js``: `````javascript import js from '@eslint/js'; import tseslint from 'typescript-eslint'; import prettier from 'eslint-config-prettier'; export default [ js.configs.recommended, ...tseslint.configs.recommended, { files: ['**/*.ts', '**/*.tsx'], languageOptions: { parser: tseslint.parser, }, rules: { '@typescript-eslint/no-unused-vars': 'error', '@typescript-eslint/explicit-function-return-type': 'warn', }, }, prettier, ]; Create .prettierrc with your formatting preferences.\nAdd package.json scripts: `````json { “scripts”: { “lint”: “eslint .”, “lint:fix”: “eslint . –fix”, “format”: “prettier –write .”, “format:check”: “prettier –check .” } }\n### Migrating From ESLint Legacy Config to Flat Config To migrate from ````.eslintrc.json```` to ````eslint.config.js````: 1. Run ````npx @eslint/migrate-config .eslintrc.json```` to generate a starter flat config 2. Review and adjust the generated file 3. Rename or delete ````.eslintrc.json```` 4. Test with ````npx eslint .```` ### CI/CD Integration for Automated Checks Add a GitHub Actions workflow: `````yaml name: Code Quality on: [pull_request] jobs: lint-and-format: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-node@v4 with: node-version: '20' cache: 'npm' - run: npm ci - run: npm run lint - run: npm run format:check Python: Black — The Uncompromising Formatter Philosophy: One Way to Format Python Black is Python’s most popular code formatter. Its philosophy is simple: there is one correct way to format Python code, and Black decides what that is. With only a handful of configurable options, Black eliminates all formatting debates.\nInstallation and Basic Usage pip install black black . Black formats all Python files in place. Use black --check . in CI to verify formatting without modifying files.\npyproject.toml Configuration [tool.black] line-length = 88 target-version = [py311] include = '\\.pyi?$' extend-exclude = ''' /( migrations )/ ''' Black With Jupyter Notebooks Black supports Jupyter notebooks via the black[jupyter] extra: `````bash pip install “black[jupyter]” black notebook.ipynb\n### Limitations and When to Use Alternatives Black's strictness is its strength and weakness. It will not format docstrings (use ````docformatter````), sort imports (use ````isort```` or ````ruff````), or handle specific team conventions. For teams needing more flexibility, Ruff's formatter provides Black-compatible output with additional options. ## Python: Ruff — The Ultra-Fast All-in-One Linter ### Why Ruff Is Replacing Flake8, Pylint, and isort [Ruff](https://docs.astral.sh/ruff), developed by Astral, is a Rust-based Python linter and formatter that replaces an entire toolchain. One tool handles linting (Flake8 + plugins), formatting (Black-compatible), import sorting (isort), and more. As of early 2025, Ruff implements over 800 lint rules and is actively adding new ones. The consolidation argument alone is compelling. Instead of configuring Flake8, Black, isort, pydocstyle, pyupgrade, and autoflake separately, you configure one tool. ### 10-100x Faster Than Alternatives Ruff's Rust implementation delivers extraordinary performance. Benchmarks on a typical Django codebase show: | Tool | Time | Files/sec | | * * * | * * * | * * * | | Flake8 | 12.4s | 180 | | Pylint | 45.2s | 49 | | Ruff | 0.3s | 7,400 | This speed enables running Ruff on every file save without noticeable delay. It also makes pre-commit hooks and CI checks significantly faster. ### Replacing Black With Ruff Format Ruff's formatter produces Black-compatible output in most cases. To switch: `````bash pip install ruff ruff format . # Replaces black . ruff check . # Replaces flake8 ruff check --fix . # Auto-fix issues Complete pyproject.toml Configuration [tool.ruff] target-version = \"py311\" line-length = 88 [tool.ruff.lint] select = [ \"E\", # pycodestyle errors \"F\", # Pyflakes \"I\", # isort \"N\", # pep8-naming \"W\", # pycodestyle warnings \"UP\", # pyupgrade \"B\", # flake8-bugbear \"C4\", # flake8-comprehensions \"SIM\", # flake8-simplify ] ignore = [\"E501\"] # Line too long (handled by formatter) [tool.ruff.lint.pydocstyle] convention = \"google\" [tool.ruff.format] quote-style = \"double\" indent-style = \"space\" Migration Guide From Flake8/Black to Ruff Remove Flake8, Black, isort, and related plugins from your dependencies Install Ruff: pip install ruff Convert .flake8 and pyproject.toml Black config to Ruff equivalents Run ruff check . and address any new violations Ruff detects Update pre-commit hooks and CI pipelines Run ruff format . to verify formatting matches expectations Go: gofmt and golangci-lint Built-In Formatting With gofmt Go includes gofmt in the standard toolchain. Every Go installation has it. Unlike other languages where formatting tools are third-party additions, Go treats formatting as a language feature. The Go proverb is explicit: “Gofmt’s style is no one’s favorite, yet gofmt is everyone’s favorite.”\nFormat Go code: `````bash gofmt -w .\nMost Go editors run gofmt on save by default. ### golangci-lint for Comprehensive Linting While gofmt handles formatting, linting requires [golangci-lint](https://golangci-lint.run), a meta-linter that runs 30+ individual linters in parallel: `````bash golangci-lint run Create .golangci.yml: `````yaml linters: enable: - errcheck - gosimple - govet - ineffassign - staticcheck - unused - gocritic - gosec\n### Configuration and CI Integration Add to GitHub Actions: `````yaml - name: golangci-lint uses: golangci/golangci-lint-action@v6 with: version: latest Rust: rustfmt and Clippy rustfmt for Consistent Formatting Rust’s official formatter, rustfmt, is installed with Rustup: `````bash rustfmt src/**/*.rs\nConfigure in ``rustfmt.toml``: `````toml max_width = 100 tab_spaces = 4 edition = \"2021\" Clippy Linting and Code Suggestions Clippy is Rust’s linter with over 650 lints ranging from style suggestions to performance improvements and bug detection: `````bash cargo clippy\nEnable all lints for maximum checking: `````bash cargo clippy -- -W clippy::all -W clippy::pedantic Cargo Integration Both rustfmt and clippy integrate directly with Cargo. Add aliases to .cargo/config.toml: `````toml [alias] lint = “clippy – -W clippy::all” checkfmt = “fmt – –check”\n## Pre-Commit Hooks: Automating Code Quality ### Introduction to Pre-Commit Framework The [pre-commit](https://pre-commit.com) framework manages Git pre-commit hooks across languages. It installs hooks that run automatically before each commit, blocking the commit if checks fail. This catches issues before they enter the repository. Install pre-commit: `````bash pip install pre-commit pre-commit install Setting Up .pre-commit-config.yaml Create .pre-commit-config.yaml: `````yaml repos: - repo: https://github.com/pre-commit/pre-commit-hooks rev: v4.6.0 hooks: - id: trailing-whitespace - id: end-of-file-fixer - id: check-yaml - id: check-added-large-files - id: check-merge-conflict\nrepo: https://github.com/astral-sh/ruff-pre-commit rev: v0.6.0 hooks: - id: ruff args: [–fix]\nid: ruff-format repo: https://github.com/pre-commit/mirrors-eslint rev: v9.0.0 hooks: - id: eslint additional_dependencies: - eslint@9.0.0 - eslint-config-prettier\nrepo: https://github.com/pre-commit/mirrors-prettier rev: v4.0.0-alpha.8 hooks: - id: prettier\nRun against all files: `````bash pre-commit run --all-files Popular Hooks: Trailing Whitespace, End-of-File Fixer The pre-commit-hooks repository provides language-agnostic checks that every project should use: - trailing-whitespace — Removes trailing whitespace\nend-of-file-fixer — Ensures files end with exactly one newline check-yaml — Validates YAML syntax check-added-large-files — Prevents committing files over a size threshold check-merge-conflict — Blocks commits with unresolved merge conflict markers Custom Hooks for Project-Specific Needs You can define custom hooks for project-specific checks: `````yaml repos: - repo: local hooks: - id: run-tests name: Run unit tests entry: pytest tests/ language: system types: [python] pass_filenames: false always_run: true\n### Husky for JavaScript/TypeScript Projects [Husky](https://github.com/typicode/husky) simplifies Git hooks for JavaScript projects. Install and configure: `````bash npx husky-init \u0026\u0026 npm install Edit .husky/pre-commit: `````bash npm run lint npm run format:check npm test\n## CI/CD Integration for Code Quality ### GitHub Actions Workflow for Linting A comprehensive quality workflow: `````yaml name: Quality Checks on: [pull_request, push] jobs: javascript: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-node@v4 with: node-version: '20' cache: 'npm' - run: npm ci - run: npm run lint - run: npm run format:check python: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-python@v5 with: python-version: '3.12' - run: pip install ruff - run: ruff check . - run: ruff format --check . GitLab CI Pipeline for Formatting Checks stages: - quality lint-js: stage: quality image: node:20 script: - npm ci - npm run lint - npm run format:check lint-python: stage: quality image: python:3.12 script: - pip install ruff - ruff check . - ruff format --check . Failing Builds on Lint Errors Configure your CI to fail on lint errors. Set the exit code of your lint command to non-zero when violations are found — all the tools in this guide do this by default. A red build status prevents merging code that violates quality standards.\nReporting Lint Results as PR Comments Tools like reviewdog post lint results as pull request comments. This puts feedback exactly where developers need it — in the review interface — rather than buried in CI logs. Reviewdog supports ESLint, Ruff, golangci-lint, and dozens of other tools.\nLanguage Comparison Table | Language | Formatter | Linter | Pre-Commit Hook | Config File | |\n|\n|\n|\n|\n| | JavaScript/TypeScript | Prettier | ESLint 9 | mirrors-prettier, mirrors-eslint | eslint.config.js, .prettierrc | | Python | Ruff format | Ruff | ruff-pre-commit | pyproject.toml | | Go | gofmt | golangci-lint | Custom (local) | .golangci.yml | | Rust | rustfmt | Clippy | Custom (cargo) | rustfmt.toml | | Multi-language | — | — | pre-commit-hooks | .pre-commit-config.yaml |\nConclusion Code quality tools are force multipliers for development teams. A well-configured toolchain catches bugs, enforces consistency, and eliminates style debates — all without ongoing manual effort. Start with one language, configure the formatter and linter, add pre-commit hooks, then expand to CI/CD integration. Within a week, your codebase will be more consistent, your reviews more focused, and your developers more productive.\nThe tools covered in this guide — ESLint 9 with flat config, Prettier, Ruff replacing the entire Python toolchain, golangci-lint, and Clippy — represent the state of the art in 2025. Invest the time to set them up correctly. The return on that investment compounds with every commit.\nFrequently Asked Questions Should I use ESLint and Prettier together? Yes. ESLint handles code quality (correctness, best practices) while Prettier handles formatting (indentation, line breaks, quotes). They are complementary. Use eslint-config-prettier to disable ESLint’s formatting rules and prevent conflicts. Configure your editor to run both on save.\nIs Ruff better than Black for Python? Ruff is faster and more comprehensive than Black. It replaces Black (formatting), Flake8 (linting), isort (import sorting), and numerous plugins in a single tool. Ruff\"s formatter produces Black-compatible output. For new projects, Ruff is the recommended choice. For existing Black users, switching to Ruff format is straightforward and yields significant performance improvements.\nHow do I set up pre-commit hooks? Install the pre-commit framework: pip install pre-commit. Create a .pre-commit-config.yaml file with your hooks. Run pre-commit install to activate the hooks in your Git repository. Run pre-commit run --all-files to test the configuration against existing files. For JavaScript projects, Husky provides a simpler alternative.\nCan I use one tool for multiple programming languages? Prettier handles JavaScript, TypeScript, JSON, CSS, HTML, Markdown, YAML, and more. Ruff handles Python exclusively. ESLint focuses on JavaScript/TypeScript with some JSON support. For multi-language projects, configure the pre-commit framework to run the appropriate tool for each file type. No single tool covers all languages well — use the best tool for each language.\nHow do I enforce code quality in CI/CD pipelines? Add lint and format check steps to your CI pipeline. Use exit codes to fail the build when violations are found. For GitHub Actions, the ````pull_request``` trigger runs checks on every PR. Combine with branch protection rules that require status checks to pass before merging. Tools like reviewdog can post results as PR comments for better visibility.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Code Quality Tools Guide: ESLint, Prettier, Black, Ruff \u0026 More”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff\" } } ","wordCount":"2856","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/vi/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#code-quality-tools-guide-eslint-prettier-black-ruff--more aria-label="Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More">Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More</a><ul><li><a href=#why-code-quality-tools-are-essential aria-label="Why Code Quality Tools Are Essential">Why Code Quality Tools Are Essential</a><ul><li><a href=#the-cost-of-inconsistent-code aria-label="The Cost of Inconsistent Code">The Cost of Inconsistent Code</a></li><li><a href=#linting-vs-formatting-understanding-the-difference aria-label="Linting vs Formatting: Understanding the Difference">Linting vs Formatting: Understanding the Difference</a></li><li><a href=#how-quality-tools-reduce-bugs-and-review-time aria-label="How Quality Tools Reduce Bugs and Review Time">How Quality Tools Reduce Bugs and Review Time</a></li></ul></li><li><a href=#javascripttypescript-eslint-deep-dive aria-label="JavaScript/TypeScript: ESLint Deep Dive">JavaScript/TypeScript: ESLint Deep Dive</a><ul><li><a href=#what-is-eslint-and-how-it-works aria-label="What Is ESLint and How It Works">What Is ESLint and How It Works</a></li><li><a href=#setting-up-eslint-9-flat-config aria-label="Setting Up ESLint 9 (Flat Config)">Setting Up ESLint 9 (Flat Config)</a></li></ul></li><li><a href=#javascripttypescript-prettier-setup aria-label="JavaScript/TypeScript: Prettier Setup">JavaScript/TypeScript: Prettier Setup</a><ul><li><a href=#what-is-prettier-opinionated-code-formatter aria-label="What Is Prettier: Opinionated Code Formatter">What Is Prettier: Opinionated Code Formatter</a></li><li><a href=#installing-and-configuring-prettierrc aria-label="Installing and Configuring .prettierrc">Installing and Configuring .prettierrc</a></li></ul></li><li><a href=#eslint--prettier-complete-integration aria-label="ESLint + Prettier: Complete Integration">ESLint + Prettier: Complete Integration</a><ul><li><a href=#step-by-step-setup-for-new-projects aria-label="Step-by-Step Setup for New Projects">Step-by-Step Setup for New Projects</a></li></ul></li><li><a href=#python-black--the-uncompromising-formatter aria-label="Python: Black — The Uncompromising Formatter">Python: Black — The Uncompromising Formatter</a><ul><li><a href=#philosophy-one-way-to-format-python aria-label="Philosophy: One Way to Format Python">Philosophy: One Way to Format Python</a></li><li><a href=#installation-and-basic-usage aria-label="Installation and Basic Usage">Installation and Basic Usage</a></li><li><a href=#pyprojecttoml-configuration aria-label="pyproject.toml Configuration">pyproject.toml Configuration</a></li><li><a href=#black-with-jupyter-notebooks aria-label="Black With Jupyter Notebooks">Black With Jupyter Notebooks</a></li><li><a href=#complete-pyprojecttoml-configuration aria-label="Complete pyproject.toml Configuration">Complete pyproject.toml Configuration</a></li><li><a href=#migration-guide-from-flake8black-to-ruff aria-label="Migration Guide From Flake8/Black to Ruff">Migration Guide From Flake8/Black to Ruff</a></li></ul></li><li><a href=#go-gofmt-and-golangci-lint aria-label="Go: gofmt and golangci-lint">Go: gofmt and golangci-lint</a><ul><li><a href=#built-in-formatting-with-gofmt aria-label="Built-In Formatting With gofmt">Built-In Formatting With gofmt</a></li></ul></li><li><a href=#rust-rustfmt-and-clippy aria-label="Rust: rustfmt and Clippy">Rust: rustfmt and Clippy</a><ul><li><a href=#rustfmt-for-consistent-formatting aria-label="rustfmt for Consistent Formatting">rustfmt for Consistent Formatting</a></li><li><a href=#clippy-linting-and-code-suggestions aria-label="Clippy Linting and Code Suggestions">Clippy Linting and Code Suggestions</a></li><li><a href=#cargo-integration aria-label="Cargo Integration">Cargo Integration</a></li><li><a href=#setting-up-pre-commit-configyaml aria-label="Setting Up .pre-commit-config.yaml">Setting Up .pre-commit-config.yaml</a></li><li><a href=#popular-hooks-trailing-whitespace-end-of-file-fixer aria-label="Popular Hooks: Trailing Whitespace, End-of-File Fixer">Popular Hooks: Trailing Whitespace, End-of-File Fixer</a></li><li><a href=#custom-hooks-for-project-specific-needs aria-label="Custom Hooks for Project-Specific Needs">Custom Hooks for Project-Specific Needs</a></li><li><a href=#gitlab-ci-pipeline-for-formatting-checks aria-label="GitLab CI Pipeline for Formatting Checks">GitLab CI Pipeline for Formatting Checks</a></li><li><a href=#failing-builds-on-lint-errors aria-label="Failing Builds on Lint Errors">Failing Builds on Lint Errors</a></li><li><a href=#reporting-lint-results-as-pr-comments aria-label="Reporting Lint Results as PR Comments">Reporting Lint Results as PR Comments</a></li></ul></li><li><a href=#language-comparison-table aria-label="Language Comparison Table">Language Comparison Table</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#should-i-use-eslint-and-prettier-together aria-label="Should I use ESLint and Prettier together?">Should I use ESLint and Prettier together?</a></li><li><a href=#is-ruff-better-than-black-for-python aria-label="Is Ruff better than Black for Python?">Is Ruff better than Black for Python?</a></li><li><a href=#how-do-i-set-up-pre-commit-hooks aria-label="How do I set up pre-commit hooks?">How do I set up pre-commit hooks?</a></li><li><a href=#can-i-use-one-tool-for-multiple-programming-languages aria-label="Can I use one tool for multiple programming languages?">Can I use one tool for multiple programming languages?</a></li><li><a href=#how-do-i-enforce-code-quality-in-cicd-pipelines aria-label="How do I enforce code quality in CI/CD pipelines?">How do I enforce code quality in CI/CD pipelines?</a></li></ul></li><li><a href=#recommended-infrastructure aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=code-quality-tools-guide-eslint-prettier-black-ruff--more>Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More<a hidden class=anchor aria-hidden=true href=#code-quality-tools-guide-eslint-prettier-black-ruff--more>#</a></h1><p>{&lt;/* resource-info */>}</p><p>Code quality tools are not optional in professional software development. They catch bugs before they reach production, enforce consistency across team members, and eliminate entire categories of code review debates about formatting and style. A project without automated quality enforcement drifts into inconsistency. A project with the right tools maintains readability and reliability with minimal ongoing effort.</p><p>This guide covers the essential linting and formatting tools for JavaScript, TypeScript, Python, Go, and Rust. You will find complete setup instructions, configuration examples, CI/CD integration patterns, and pre-commit hook configurations for each language.</p><h2 id=why-code-quality-tools-are-essential>Why Code Quality Tools Are Essential<a hidden class=anchor aria-hidden=true href=#why-code-quality-tools-are-essential>#</a></h2><h3 id=the-cost-of-inconsistent-code>The Cost of Inconsistent Code<a hidden class=anchor aria-hidden=true href=#the-cost-of-inconsistent-code>#</a></h3><p>Inconsistent code is expensive to maintain. A 2023 study by Stripe estimated that developers spend 31% of their time dealing with technical debt — much of it caused by inconsistent patterns that make code harder to understand and modify. When every file in a project uses different formatting, naming conventions, and style patterns, developers must context-switch constantly. Cognitive load increases. Bugs hide in the confusion.</p><h3 id=linting-vs-formatting-understanding-the-difference>Linting vs Formatting: Understanding the Difference<a hidden class=anchor aria-hidden=true href=#linting-vs-formatting-understanding-the-difference>#</a></h3><p>Linting and formatting serve different purposes: - <strong>Linting</strong> analyzes code for potential errors, bugs, and anti-patterns. It catches unused variables, unreachable code, type mismatches, and security vulnerabilities. Linters enforce <em>correctness</em>.</p><ul><li><strong>Formatting</strong> concerns code presentation — indentation, line length, quote style, trailing commas. Formatters enforce <em>consistency</em>.</li></ul><p>These tools are complementary. ESLint catches the bug. Prettier makes the fix look uniform. Both run in your editor and CI pipeline.</p><h3 id=how-quality-tools-reduce-bugs-and-review-time>How Quality Tools Reduce Bugs and Review Time<a hidden class=anchor aria-hidden=true href=#how-quality-tools-reduce-bugs-and-review-time>#</a></h3><p>Automated quality tools reduce pull request review time by eliminating style debates. When Prettier handles formatting, reviewers focus on logic and architecture. When ESLint catches common mistakes, fewer bugs reach human review. A well-configured tool suite catches 30-50% of issues that would otherwise require manual review.</p><h2 id=javascripttypescript-eslint-deep-dive>JavaScript/TypeScript: ESLint Deep Dive<a hidden class=anchor aria-hidden=true href=#javascripttypescript-eslint-deep-dive>#</a></h2><h3 id=what-is-eslint-and-how-it-works>What Is ESLint and How It Works<a hidden class=anchor aria-hidden=true href=#what-is-eslint-and-how-it-works>#</a></h3><p><a href=https://eslint.org>ESLint</a> is a static analysis tool for JavaScript and TypeScript. It parses your code into an abstract syntax tree (AST), then applies rules that detect patterns ranging from stylistic preferences to potential runtime errors. With over 300 built-in rules and thousands of third-party rules, ESLint is the most configurable linter in any language ecosystem.</p><h3 id=setting-up-eslint-9-flat-config>Setting Up ESLint 9 (Flat Config)<a hidden class=anchor aria-hidden=true href=#setting-up-eslint-9-flat-config>#</a></h3><p>ESLint 9, released in April 2024, introduced the flat config format (```eslint.config.js<code>) which replaces the legacy </code>.eslintrc```` files. Flat config is more explicit, easier to debug, and supports JavaScript configuration natively.</p><p>Install ESLint 9: `````bash
-npm install &ndash;save-dev eslint @eslint/js</p><pre tabindex=0><code>
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Code Quality Tools Guide: ESLint, Prettier, Black, Ruff \u0026 More {\u003c/* resource-info */\u003e}\nCode quality tools are not optional in professional software development. They catch bugs before they reach production, enforce consistency across team members, and eliminate entire categories of code review debates about formatting and style. A project without automated quality enforcement drifts into inconsistency. A project with the right tools maintains readability and reliability with minimal ongoing effort.\nThis guide covers the essential linting and formatting tools for JavaScript, TypeScript, Python, Go, and Rust. You will find complete setup instructions, configuration examples, CI/CD integration patterns, and pre-commit hook configurations for each language.\nWhy Code Quality Tools Are Essential The Cost of Inconsistent Code Inconsistent code is expensive to maintain. A 2023 study by Stripe estimated that developers spend 31% of their time dealing with technical debt — much of it caused by inconsistent patterns that make code harder to understand and modify. When every file in a project uses different formatting, naming conventions, and style patterns, developers must context-switch constantly. Cognitive load increases. Bugs hide in the confusion.\nLinting vs Formatting: Understanding the Difference Linting and formatting serve different purposes: - Linting analyzes code for potential errors, bugs, and anti-patterns. It catches unused variables, unreachable code, type mismatches, and security vulnerabilities. Linters enforce correctness.\nFormatting concerns code presentation — indentation, line length, quote style, trailing commas. Formatters enforce consistency. These tools are complementary. ESLint catches the bug. Prettier makes the fix look uniform. Both run in your editor and CI pipeline.\nHow Quality Tools Reduce Bugs and Review Time Automated quality tools reduce pull request review time by eliminating style debates. When Prettier handles formatting, reviewers focus on logic and architecture. When ESLint catches common mistakes, fewer bugs reach human review. A well-configured tool suite catches 30-50% of issues that would otherwise require manual review.\nJavaScript/TypeScript: ESLint Deep Dive What Is ESLint and How It Works ESLint is a static analysis tool for JavaScript and TypeScript. It parses your code into an abstract syntax tree (AST), then applies rules that detect patterns ranging from stylistic preferences to potential runtime errors. With over 300 built-in rules and thousands of third-party rules, ESLint is the most configurable linter in any language ecosystem.\nSetting Up ESLint 9 (Flat Config) ESLint 9, released in April 2024, introduced the flat config format (```eslint.config.js) which replaces the legacy .eslintrc```` files. Flat config is more explicit, easier to debug, and supports JavaScript configuration natively.\nInstall ESLint 9: `````bash npm install –save-dev eslint @eslint/js\nCreate ``eslint.config.js``: `````javascript import js from '@eslint/js'; export default [ js.configs.recommended, { files: ['**/*.js', '**/*.jsx'], languageOptions: { ecmaVersion: 2024, sourceType: 'module', globals: { console: 'readonly', process: 'readonly', }, }, rules: { 'no-unused-vars': 'error', 'no-console': 'warn', 'eqeqeq': 'error', }, }, ]; Run ESLint: `````bash npx eslint .\n### Recommended Rules and Configurations Start with ````js.configs.recommended```` and add rules incrementally. Common additions include: | Rule | Purpose | Severity | | * * * | * * * | * * * | | ````no-unused-vars```` | Catch declared but unused variables | Error | | ````no-undef```` | Catch undeclared variables | Error | | ````eqeqeq```` | Require strict equality (````===````) | Error | | ````curly```` | Require braces for all control statements | Warn | | ````no-throw-literal```` | Require Error objects for throw | Error | ### Integrating With TypeScript (@typescript-eslint) For TypeScript projects, add the TypeScript parser and plugin: `````bash npm install --save-dev typescript-eslint Update eslint.config.js: `````javascript import js from ‘@eslint/js’; import tseslint from ’typescript-eslint’;\nexport default [ js.configs.recommended, …tseslint.configs.recommended, { files: [’/*.ts’, ‘/*.tsx’], languageOptions: { parser: tseslint.parser, parserOptions: { project: ‘./tsconfig.json’, }, }, }, ];\n### Popular Shareable Configs: Airbnb, Standard, XO Several organizations publish shareable ESLint configurations: - **Airbnb** (````eslint-config-airbnb````) — The most popular preset, enforcing 400+ rules. Comprehensive but strict. - **Standard** (````eslint-config-standard````) — Enforces the JavaScript Standard Style. No semicolons, 2-space indentation. - **XO** (````eslint-config-xo````) — Opinionated with sensible defaults. Good middle ground between Airbnb and minimal. ### ESLint Stylistic for Formatting Rules ESLint Stylistic (``@stylistic/eslint-plugin``) provides formatting rules extracted from the core ESLint project. Use it for projects that want linting and basic formatting in a single tool: `````javascript import stylistic from '@stylistic/eslint-plugin'; export default [ { plugins: { '@stylistic': stylistic, }, rules: { '@stylistic/indent': ['error', 2], '@stylistic/quotes': ['error', 'single'], '@stylistic/semi': ['error', 'always'], }, }, ]; JavaScript/TypeScript: Prettier Setup What Is Prettier: Opinionated Code Formatter Prettier is an opinionated code formatter that supports JavaScript, TypeScript, JSON, CSS, HTML, Markdown, and more. It removes all formatting decisions from developers by enforcing a single consistent style. Unlike configurable formatters, Prettier intentionally limits options to prevent bikeshedding.\nInstalling and Configuring .prettierrc Install Prettier: `````bash npm install –save-dev –save-exact prettier\nCreate ``.prettierrc``: `````json { \"semi\": true, \"singleQuote\": true, \"tabWidth\": 2, \"trailingComma\": \"es5\", \"printWidth\": 100 } Create .prettierignore: ````` node_modules dist build coverage *.min.js\n### Prettier vs ESLint: Complementary, Not Competing ESLint and Prettier have overlapping territory — both can enforce formatting. The recommended approach is: - **ESLint** handles code quality rules (correctness, best practices) - **Prettier** handles formatting rules (indentation, quotes, line breaks) Use ``eslint-config-prettier`` to disable ESLint rules that conflict with Prettier: `````bash npm install --save-dev eslint-config-prettier Add to eslint.config.js: `````javascript import prettier from ’eslint-config-prettier’;\nexport default [ // … other configs prettier, ];\n### Editor Integration (VS Code, Vim, JetBrains) Install the Prettier extension for your editor and enable \"Format on Save.\" In VS Code, add to ``settings.json``: `````json { \"editor.defaultFormatter\": \"esbenp.prettier-vscode\", \"editor.formatOnSave\": true } ESLint + Prettier: Complete Integration Step-by-Step Setup for New Projects Install dependencies: `````bash npm install –save-dev eslint prettier eslint-config-prettier typescript-eslint 2. Create ``eslint.config.js``: `````javascript import js from '@eslint/js'; import tseslint from 'typescript-eslint'; import prettier from 'eslint-config-prettier'; export default [ js.configs.recommended, ...tseslint.configs.recommended, { files: ['**/*.ts', '**/*.tsx'], languageOptions: { parser: tseslint.parser, }, rules: { '@typescript-eslint/no-unused-vars': 'error', '@typescript-eslint/explicit-function-return-type': 'warn', }, }, prettier, ]; Create .prettierrc with your formatting preferences.\nAdd package.json scripts: `````json { “scripts”: { “lint”: “eslint .”, “lint:fix”: “eslint . –fix”, “format”: “prettier –write .”, “format:check”: “prettier –check .” } }\n### Migrating From ESLint Legacy Config to Flat Config To migrate from ````.eslintrc.json```` to ````eslint.config.js````: 1. Run ````npx @eslint/migrate-config .eslintrc.json```` to generate a starter flat config 2. Review and adjust the generated file 3. Rename or delete ````.eslintrc.json```` 4. Test with ````npx eslint .```` ### CI/CD Integration for Automated Checks Add a GitHub Actions workflow: `````yaml name: Code Quality on: [pull_request] jobs: lint-and-format: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-node@v4 with: node-version: '20' cache: 'npm' - run: npm ci - run: npm run lint - run: npm run format:check Python: Black — The Uncompromising Formatter Philosophy: One Way to Format Python Black is Python’s most popular code formatter. Its philosophy is simple: there is one correct way to format Python code, and Black decides what that is. With only a handful of configurable options, Black eliminates all formatting debates.\nInstallation and Basic Usage pip install black black . Black formats all Python files in place. Use black --check . in CI to verify formatting without modifying files.\npyproject.toml Configuration [tool.black] line-length = 88 target-version = [py311] include = '\\.pyi?$' extend-exclude = ''' /( migrations )/ ''' Black With Jupyter Notebooks Black supports Jupyter notebooks via the black[jupyter] extra: `````bash pip install “black[jupyter]” black notebook.ipynb\n### Limitations and When to Use Alternatives Black's strictness is its strength and weakness. It will not format docstrings (use ````docformatter````), sort imports (use ````isort```` or ````ruff````), or handle specific team conventions. For teams needing more flexibility, Ruff's formatter provides Black-compatible output with additional options. ## Python: Ruff — The Ultra-Fast All-in-One Linter ### Why Ruff Is Replacing Flake8, Pylint, and isort [Ruff](https://docs.astral.sh/ruff), developed by Astral, is a Rust-based Python linter and formatter that replaces an entire toolchain. One tool handles linting (Flake8 + plugins), formatting (Black-compatible), import sorting (isort), and more. As of early 2025, Ruff implements over 800 lint rules and is actively adding new ones. The consolidation argument alone is compelling. Instead of configuring Flake8, Black, isort, pydocstyle, pyupgrade, and autoflake separately, you configure one tool. ### 10-100x Faster Than Alternatives Ruff's Rust implementation delivers extraordinary performance. Benchmarks on a typical Django codebase show: | Tool | Time | Files/sec | | * * * | * * * | * * * | | Flake8 | 12.4s | 180 | | Pylint | 45.2s | 49 | | Ruff | 0.3s | 7,400 | This speed enables running Ruff on every file save without noticeable delay. It also makes pre-commit hooks and CI checks significantly faster. ### Replacing Black With Ruff Format Ruff's formatter produces Black-compatible output in most cases. To switch: `````bash pip install ruff ruff format . # Replaces black . ruff check . # Replaces flake8 ruff check --fix . # Auto-fix issues Complete pyproject.toml Configuration [tool.ruff] target-version = \"py311\" line-length = 88 [tool.ruff.lint] select = [ \"E\", # pycodestyle errors \"F\", # Pyflakes \"I\", # isort \"N\", # pep8-naming \"W\", # pycodestyle warnings \"UP\", # pyupgrade \"B\", # flake8-bugbear \"C4\", # flake8-comprehensions \"SIM\", # flake8-simplify ] ignore = [\"E501\"] # Line too long (handled by formatter) [tool.ruff.lint.pydocstyle] convention = \"google\" [tool.ruff.format] quote-style = \"double\" indent-style = \"space\" Migration Guide From Flake8/Black to Ruff Remove Flake8, Black, isort, and related plugins from your dependencies Install Ruff: pip install ruff Convert .flake8 and pyproject.toml Black config to Ruff equivalents Run ruff check . and address any new violations Ruff detects Update pre-commit hooks and CI pipelines Run ruff format . to verify formatting matches expectations Go: gofmt and golangci-lint Built-In Formatting With gofmt Go includes gofmt in the standard toolchain. Every Go installation has it. Unlike other languages where formatting tools are third-party additions, Go treats formatting as a language feature. The Go proverb is explicit: “Gofmt’s style is no one’s favorite, yet gofmt is everyone’s favorite.”\nFormat Go code: `````bash gofmt -w .\nMost Go editors run gofmt on save by default. ### golangci-lint for Comprehensive Linting While gofmt handles formatting, linting requires [golangci-lint](https://golangci-lint.run), a meta-linter that runs 30+ individual linters in parallel: `````bash golangci-lint run Create .golangci.yml: `````yaml linters: enable: - errcheck - gosimple - govet - ineffassign - staticcheck - unused - gocritic - gosec\n### Configuration and CI Integration Add to GitHub Actions: `````yaml - name: golangci-lint uses: golangci/golangci-lint-action@v6 with: version: latest Rust: rustfmt and Clippy rustfmt for Consistent Formatting Rust’s official formatter, rustfmt, is installed with Rustup: `````bash rustfmt src/**/*.rs\nConfigure in ``rustfmt.toml``: `````toml max_width = 100 tab_spaces = 4 edition = \"2021\" Clippy Linting and Code Suggestions Clippy is Rust’s linter with over 650 lints ranging from style suggestions to performance improvements and bug detection: `````bash cargo clippy\nEnable all lints for maximum checking: `````bash cargo clippy -- -W clippy::all -W clippy::pedantic Cargo Integration Both rustfmt and clippy integrate directly with Cargo. Add aliases to .cargo/config.toml: `````toml [alias] lint = “clippy – -W clippy::all” checkfmt = “fmt – –check”\n## Pre-Commit Hooks: Automating Code Quality ### Introduction to Pre-Commit Framework The [pre-commit](https://pre-commit.com) framework manages Git pre-commit hooks across languages. It installs hooks that run automatically before each commit, blocking the commit if checks fail. This catches issues before they enter the repository. Install pre-commit: `````bash pip install pre-commit pre-commit install Setting Up .pre-commit-config.yaml Create .pre-commit-config.yaml: `````yaml repos: - repo: https://github.com/pre-commit/pre-commit-hooks rev: v4.6.0 hooks: - id: trailing-whitespace - id: end-of-file-fixer - id: check-yaml - id: check-added-large-files - id: check-merge-conflict\nrepo: https://github.com/astral-sh/ruff-pre-commit rev: v0.6.0 hooks: - id: ruff args: [–fix]\nid: ruff-format repo: https://github.com/pre-commit/mirrors-eslint rev: v9.0.0 hooks: - id: eslint additional_dependencies: - eslint@9.0.0 - eslint-config-prettier\nrepo: https://github.com/pre-commit/mirrors-prettier rev: v4.0.0-alpha.8 hooks: - id: prettier\nRun against all files: `````bash pre-commit run --all-files Popular Hooks: Trailing Whitespace, End-of-File Fixer The pre-commit-hooks repository provides language-agnostic checks that every project should use: - trailing-whitespace — Removes trailing whitespace\nend-of-file-fixer — Ensures files end with exactly one newline check-yaml — Validates YAML syntax check-added-large-files — Prevents committing files over a size threshold check-merge-conflict — Blocks commits with unresolved merge conflict markers Custom Hooks for Project-Specific Needs You can define custom hooks for project-specific checks: `````yaml repos: - repo: local hooks: - id: run-tests name: Run unit tests entry: pytest tests/ language: system types: [python] pass_filenames: false always_run: true\n### Husky for JavaScript/TypeScript Projects [Husky](https://github.com/typicode/husky) simplifies Git hooks for JavaScript projects. Install and configure: `````bash npx husky-init \u0026\u0026 npm install Edit .husky/pre-commit: `````bash npm run lint npm run format:check npm test\n## CI/CD Integration for Code Quality ### GitHub Actions Workflow for Linting A comprehensive quality workflow: `````yaml name: Quality Checks on: [pull_request, push] jobs: javascript: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-node@v4 with: node-version: '20' cache: 'npm' - run: npm ci - run: npm run lint - run: npm run format:check python: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - uses: actions/setup-python@v5 with: python-version: '3.12' - run: pip install ruff - run: ruff check . - run: ruff format --check . GitLab CI Pipeline for Formatting Checks stages: - quality lint-js: stage: quality image: node:20 script: - npm ci - npm run lint - npm run format:check lint-python: stage: quality image: python:3.12 script: - pip install ruff - ruff check . - ruff format --check . Failing Builds on Lint Errors Configure your CI to fail on lint errors. Set the exit code of your lint command to non-zero when violations are found — all the tools in this guide do this by default. A red build status prevents merging code that violates quality standards.\nReporting Lint Results as PR Comments Tools like reviewdog post lint results as pull request comments. This puts feedback exactly where developers need it — in the review interface — rather than buried in CI logs. Reviewdog supports ESLint, Ruff, golangci-lint, and dozens of other tools.\nLanguage Comparison Table | Language | Formatter | Linter | Pre-Commit Hook | Config File | |\n|\n|\n|\n|\n| | JavaScript/TypeScript | Prettier | ESLint 9 | mirrors-prettier, mirrors-eslint | eslint.config.js, .prettierrc | | Python | Ruff format | Ruff | ruff-pre-commit | pyproject.toml | | Go | gofmt | golangci-lint | Custom (local) | .golangci.yml | | Rust | rustfmt | Clippy | Custom (cargo) | rustfmt.toml | | Multi-language | — | — | pre-commit-hooks | .pre-commit-config.yaml |\nConclusion Code quality tools are force multipliers for development teams. A well-configured toolchain catches bugs, enforces consistency, and eliminates style debates — all without ongoing manual effort. Start with one language, configure the formatter and linter, add pre-commit hooks, then expand to CI/CD integration. Within a week, your codebase will be more consistent, your reviews more focused, and your developers more productive.\nThe tools covered in this guide — ESLint 9 with flat config, Prettier, Ruff replacing the entire Python toolchain, golangci-lint, and Clippy — represent the state of the art in 2025. Invest the time to set them up correctly. The return on that investment compounds with every commit.\nFrequently Asked Questions Should I use ESLint and Prettier together? Yes. ESLint handles code quality (correctness, best practices) while Prettier handles formatting (indentation, line breaks, quotes). They are complementary. Use eslint-config-prettier to disable ESLint’s formatting rules and prevent conflicts. Configure your editor to run both on save.\nIs Ruff better than Black for Python? Ruff is faster and more comprehensive than Black. It replaces Black (formatting), Flake8 (linting), isort (import sorting), and numerous plugins in a single tool. Ruff\"s formatter produces Black-compatible output. For new projects, Ruff is the recommended choice. For existing Black users, switching to Ruff format is straightforward and yields significant performance improvements.\nHow do I set up pre-commit hooks? Install the pre-commit framework: pip install pre-commit. Create a .pre-commit-config.yaml file with your hooks. Run pre-commit install to activate the hooks in your Git repository. Run pre-commit run --all-files to test the configuration against existing files. For JavaScript projects, Husky provides a simpler alternative.\nCan I use one tool for multiple programming languages? Prettier handles JavaScript, TypeScript, JSON, CSS, HTML, Markdown, YAML, and more. Ruff handles Python exclusively. ESLint focuses on JavaScript/TypeScript with some JSON support. For multi-language projects, configure the pre-commit framework to run the appropriate tool for each file type. No single tool covers all languages well — use the best tool for each language.\nHow do I enforce code quality in CI/CD pipelines? Add lint and format check steps to your CI pipeline. Use exit codes to fail the build when violations are found. For GitHub Actions, the ````pull_request``` trigger runs checks on every PR. Combine with branch protection rules that require status checks to pass before merging. Tools like reviewdog can post results as PR comments for better visibility.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Code Quality Tools Guide: ESLint, Prettier, Black, Ruff \u0026 More”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff\" } } ",
+  "wordCount" : "2856",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ko/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/code-quality-tools-eslint-prettier-black-ruff/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#code-quality-tools-guide-eslint-prettier-black-ruff--more" aria-label="Code Quality Tools Guide: ESLint, Prettier, Black, Ruff &amp; More">Code Quality Tools Guide: ESLint, Prettier, Black, Ruff &amp; More</a><ul>
+                    
+            <li>
+                <a href="#why-code-quality-tools-are-essential" aria-label="Why Code Quality Tools Are Essential">Why Code Quality Tools Are Essential</a><ul>
+                    
+            <li>
+                <a href="#the-cost-of-inconsistent-code" aria-label="The Cost of Inconsistent Code">The Cost of Inconsistent Code</a></li>
+            <li>
+                <a href="#linting-vs-formatting-understanding-the-difference" aria-label="Linting vs Formatting: Understanding the Difference">Linting vs Formatting: Understanding the Difference</a></li>
+            <li>
+                <a href="#how-quality-tools-reduce-bugs-and-review-time" aria-label="How Quality Tools Reduce Bugs and Review Time">How Quality Tools Reduce Bugs and Review Time</a></li></ul>
+            </li>
+            <li>
+                <a href="#javascripttypescript-eslint-deep-dive" aria-label="JavaScript/TypeScript: ESLint Deep Dive">JavaScript/TypeScript: ESLint Deep Dive</a><ul>
+                    
+            <li>
+                <a href="#what-is-eslint-and-how-it-works" aria-label="What Is ESLint and How It Works">What Is ESLint and How It Works</a></li>
+            <li>
+                <a href="#setting-up-eslint-9-flat-config" aria-label="Setting Up ESLint 9 (Flat Config)">Setting Up ESLint 9 (Flat Config)</a></li></ul>
+            </li>
+            <li>
+                <a href="#javascripttypescript-prettier-setup" aria-label="JavaScript/TypeScript: Prettier Setup">JavaScript/TypeScript: Prettier Setup</a><ul>
+                    
+            <li>
+                <a href="#what-is-prettier-opinionated-code-formatter" aria-label="What Is Prettier: Opinionated Code Formatter">What Is Prettier: Opinionated Code Formatter</a></li>
+            <li>
+                <a href="#installing-and-configuring-prettierrc" aria-label="Installing and Configuring .prettierrc">Installing and Configuring .prettierrc</a></li></ul>
+            </li>
+            <li>
+                <a href="#eslint--prettier-complete-integration" aria-label="ESLint &#43; Prettier: Complete Integration">ESLint + Prettier: Complete Integration</a><ul>
+                    
+            <li>
+                <a href="#step-by-step-setup-for-new-projects" aria-label="Step-by-Step Setup for New Projects">Step-by-Step Setup for New Projects</a></li></ul>
+            </li>
+            <li>
+                <a href="#python-black--the-uncompromising-formatter" aria-label="Python: Black — The Uncompromising Formatter">Python: Black — The Uncompromising Formatter</a><ul>
+                    
+            <li>
+                <a href="#philosophy-one-way-to-format-python" aria-label="Philosophy: One Way to Format Python">Philosophy: One Way to Format Python</a></li>
+            <li>
+                <a href="#installation-and-basic-usage" aria-label="Installation and Basic Usage">Installation and Basic Usage</a></li>
+            <li>
+                <a href="#pyprojecttoml-configuration" aria-label="pyproject.toml Configuration">pyproject.toml Configuration</a></li>
+            <li>
+                <a href="#black-with-jupyter-notebooks" aria-label="Black With Jupyter Notebooks">Black With Jupyter Notebooks</a></li>
+            <li>
+                <a href="#complete-pyprojecttoml-configuration" aria-label="Complete pyproject.toml Configuration">Complete pyproject.toml Configuration</a></li>
+            <li>
+                <a href="#migration-guide-from-flake8black-to-ruff" aria-label="Migration Guide From Flake8/Black to Ruff">Migration Guide From Flake8/Black to Ruff</a></li></ul>
+            </li>
+            <li>
+                <a href="#go-gofmt-and-golangci-lint" aria-label="Go: gofmt and golangci-lint">Go: gofmt and golangci-lint</a><ul>
+                    
+            <li>
+                <a href="#built-in-formatting-with-gofmt" aria-label="Built-In Formatting With gofmt">Built-In Formatting With gofmt</a></li></ul>
+            </li>
+            <li>
+                <a href="#rust-rustfmt-and-clippy" aria-label="Rust: rustfmt and Clippy">Rust: rustfmt and Clippy</a><ul>
+                    
+            <li>
+                <a href="#rustfmt-for-consistent-formatting" aria-label="rustfmt for Consistent Formatting">rustfmt for Consistent Formatting</a></li>
+            <li>
+                <a href="#clippy-linting-and-code-suggestions" aria-label="Clippy Linting and Code Suggestions">Clippy Linting and Code Suggestions</a></li>
+            <li>
+                <a href="#cargo-integration" aria-label="Cargo Integration">Cargo Integration</a></li>
+            <li>
+                <a href="#setting-up-pre-commit-configyaml" aria-label="Setting Up .pre-commit-config.yaml">Setting Up .pre-commit-config.yaml</a></li>
+            <li>
+                <a href="#popular-hooks-trailing-whitespace-end-of-file-fixer" aria-label="Popular Hooks: Trailing Whitespace, End-of-File Fixer">Popular Hooks: Trailing Whitespace, End-of-File Fixer</a></li>
+            <li>
+                <a href="#custom-hooks-for-project-specific-needs" aria-label="Custom Hooks for Project-Specific Needs">Custom Hooks for Project-Specific Needs</a></li>
+            <li>
+                <a href="#gitlab-ci-pipeline-for-formatting-checks" aria-label="GitLab CI Pipeline for Formatting Checks">GitLab CI Pipeline for Formatting Checks</a></li>
+            <li>
+                <a href="#failing-builds-on-lint-errors" aria-label="Failing Builds on Lint Errors">Failing Builds on Lint Errors</a></li>
+            <li>
+                <a href="#reporting-lint-results-as-pr-comments" aria-label="Reporting Lint Results as PR Comments">Reporting Lint Results as PR Comments</a></li></ul>
+            </li>
+            <li>
+                <a href="#language-comparison-table" aria-label="Language Comparison Table">Language Comparison Table</a></li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#should-i-use-eslint-and-prettier-together" aria-label="Should I use ESLint and Prettier together?">Should I use ESLint and Prettier together?</a></li>
+            <li>
+                <a href="#is-ruff-better-than-black-for-python" aria-label="Is Ruff better than Black for Python?">Is Ruff better than Black for Python?</a></li>
+            <li>
+                <a href="#how-do-i-set-up-pre-commit-hooks" aria-label="How do I set up pre-commit hooks?">How do I set up pre-commit hooks?</a></li>
+            <li>
+                <a href="#can-i-use-one-tool-for-multiple-programming-languages" aria-label="Can I use one tool for multiple programming languages?">Can I use one tool for multiple programming languages?</a></li>
+            <li>
+                <a href="#how-do-i-enforce-code-quality-in-cicd-pipelines" aria-label="How do I enforce code quality in CI/CD pipelines?">How do I enforce code quality in CI/CD pipelines?</a></li></ul>
+            </li>
+            <li>
+                <a href="#recommended-infrastructure" aria-label="Recommended Infrastructure">Recommended Infrastructure</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="code-quality-tools-guide-eslint-prettier-black-ruff--more">Code Quality Tools Guide: ESLint, Prettier, Black, Ruff &amp; More<a hidden class="anchor" aria-hidden="true" href="#code-quality-tools-guide-eslint-prettier-black-ruff--more">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>Code quality tools are not optional in professional software development. They catch bugs before they reach production, enforce consistency across team members, and eliminate entire categories of code review debates about formatting and style. A project without automated quality enforcement drifts into inconsistency. A project with the right tools maintains readability and reliability with minimal ongoing effort.</p>
+<p>This guide covers the essential linting and formatting tools for JavaScript, TypeScript, Python, Go, and Rust. You will find complete setup instructions, configuration examples, CI/CD integration patterns, and pre-commit hook configurations for each language.</p>
+<h2 id="why-code-quality-tools-are-essential">Why Code Quality Tools Are Essential<a hidden class="anchor" aria-hidden="true" href="#why-code-quality-tools-are-essential">#</a></h2>
+<h3 id="the-cost-of-inconsistent-code">The Cost of Inconsistent Code<a hidden class="anchor" aria-hidden="true" href="#the-cost-of-inconsistent-code">#</a></h3>
+<p>Inconsistent code is expensive to maintain. A 2023 study by Stripe estimated that developers spend 31% of their time dealing with technical debt — much of it caused by inconsistent patterns that make code harder to understand and modify. When every file in a project uses different formatting, naming conventions, and style patterns, developers must context-switch constantly. Cognitive load increases. Bugs hide in the confusion.</p>
+<h3 id="linting-vs-formatting-understanding-the-difference">Linting vs Formatting: Understanding the Difference<a hidden class="anchor" aria-hidden="true" href="#linting-vs-formatting-understanding-the-difference">#</a></h3>
+<p>Linting and formatting serve different purposes: - <strong>Linting</strong> analyzes code for potential errors, bugs, and anti-patterns. It catches unused variables, unreachable code, type mismatches, and security vulnerabilities. Linters enforce <em>correctness</em>.</p>
+<ul>
+<li><strong>Formatting</strong> concerns code presentation — indentation, line length, quote style, trailing commas. Formatters enforce <em>consistency</em>.</li>
+</ul>
+<p>These tools are complementary. ESLint catches the bug. Prettier makes the fix look uniform. Both run in your editor and CI pipeline.</p>
+<h3 id="how-quality-tools-reduce-bugs-and-review-time">How Quality Tools Reduce Bugs and Review Time<a hidden class="anchor" aria-hidden="true" href="#how-quality-tools-reduce-bugs-and-review-time">#</a></h3>
+<p>Automated quality tools reduce pull request review time by eliminating style debates. When Prettier handles formatting, reviewers focus on logic and architecture. When ESLint catches common mistakes, fewer bugs reach human review. A well-configured tool suite catches 30-50% of issues that would otherwise require manual review.</p>
+<h2 id="javascripttypescript-eslint-deep-dive">JavaScript/TypeScript: ESLint Deep Dive<a hidden class="anchor" aria-hidden="true" href="#javascripttypescript-eslint-deep-dive">#</a></h2>
+<h3 id="what-is-eslint-and-how-it-works">What Is ESLint and How It Works<a hidden class="anchor" aria-hidden="true" href="#what-is-eslint-and-how-it-works">#</a></h3>
+<p><a href="https://eslint.org">ESLint</a> is a static analysis tool for JavaScript and TypeScript. It parses your code into an abstract syntax tree (AST), then applies rules that detect patterns ranging from stylistic preferences to potential runtime errors. With over 300 built-in rules and thousands of third-party rules, ESLint is the most configurable linter in any language ecosystem.</p>
+<h3 id="setting-up-eslint-9-flat-config">Setting Up ESLint 9 (Flat Config)<a hidden class="anchor" aria-hidden="true" href="#setting-up-eslint-9-flat-config">#</a></h3>
+<p>ESLint 9, released in April 2024, introduced the flat config format (```eslint.config.js<code>) which replaces the legacy </code>.eslintrc```` files. Flat config is more explicit, easier to debug, and supports JavaScript configuration natively.</p>
+<p>Install ESLint 9: `````bash
+npm install &ndash;save-dev eslint @eslint/js</p>
+<pre tabindex="0"><code>
 Create ``eslint.config.js``: `````javascript
 import js from &#39;@eslint/js&#39;;
 
@@ -29,7 +356,8 @@ export default [
   },
 ];
 </code></pre><p>Run ESLint: `````bash
-npx eslint .</p><pre tabindex=0><code>
+npx eslint .</p>
+<pre tabindex="0"><code>
 ### Recommended Rules and Configurations
 
 Start with ````js.configs.recommended```` and add rules incrementally. Common additions include: | Rule | Purpose | Severity |
@@ -52,9 +380,10 @@ For TypeScript projects, add the TypeScript parser and plugin: `````bash
 npm install --save-dev typescript-eslint
 </code></pre><p>Update <code>eslint.config.js</code>: `````javascript
 import js from &lsquo;@eslint/js&rsquo;;
-import tseslint from &rsquo;typescript-eslint&rsquo;;</p><p>export default [
+import tseslint from &rsquo;typescript-eslint&rsquo;;</p>
+<p>export default [
 js.configs.recommended,
-&mldr;tseslint.configs.recommended,
+&hellip;tseslint.configs.recommended,
 {
 files: [&rsquo;<strong>/*.ts&rsquo;, &lsquo;</strong>/*.tsx&rsquo;],
 languageOptions: {
@@ -64,7 +393,8 @@ project: &lsquo;./tsconfig.json&rsquo;,
 },
 },
 },
-];</p><pre tabindex=0><code>
+];</p>
+<pre tabindex="0"><code>
 ### Popular Shareable Configs: Airbnb, Standard, XO
 
 Several organizations publish shareable ESLint configurations: - **Airbnb** (````eslint-config-airbnb````) — The most popular preset, enforcing 400+ rules. Comprehensive but strict.
@@ -88,8 +418,13 @@ export default [
     },
   },
 ];
-</code></pre><h2 id=javascripttypescript-prettier-setup>JavaScript/TypeScript: Prettier Setup<a hidden class=anchor aria-hidden=true href=#javascripttypescript-prettier-setup>#</a></h2><h3 id=what-is-prettier-opinionated-code-formatter>What Is Prettier: Opinionated Code Formatter<a hidden class=anchor aria-hidden=true href=#what-is-prettier-opinionated-code-formatter>#</a></h3><p><a href=https://prettier.io>Prettier</a> is an opinionated code formatter that supports JavaScript, TypeScript, JSON, CSS, HTML, Markdown, and more. It removes all formatting decisions from developers by enforcing a single consistent style. Unlike configurable formatters, Prettier intentionally limits options to prevent bikeshedding.</p><h3 id=installing-and-configuring-prettierrc>Installing and Configuring .prettierrc<a hidden class=anchor aria-hidden=true href=#installing-and-configuring-prettierrc>#</a></h3><p>Install Prettier: `````bash
-npm install &ndash;save-dev &ndash;save-exact prettier</p><pre tabindex=0><code>
+</code></pre><h2 id="javascripttypescript-prettier-setup">JavaScript/TypeScript: Prettier Setup<a hidden class="anchor" aria-hidden="true" href="#javascripttypescript-prettier-setup">#</a></h2>
+<h3 id="what-is-prettier-opinionated-code-formatter">What Is Prettier: Opinionated Code Formatter<a hidden class="anchor" aria-hidden="true" href="#what-is-prettier-opinionated-code-formatter">#</a></h3>
+<p><a href="https://prettier.io">Prettier</a> is an opinionated code formatter that supports JavaScript, TypeScript, JSON, CSS, HTML, Markdown, and more. It removes all formatting decisions from developers by enforcing a single consistent style. Unlike configurable formatters, Prettier intentionally limits options to prevent bikeshedding.</p>
+<h3 id="installing-and-configuring-prettierrc">Installing and Configuring .prettierrc<a hidden class="anchor" aria-hidden="true" href="#installing-and-configuring-prettierrc">#</a></h3>
+<p>Install Prettier: `````bash
+npm install &ndash;save-dev &ndash;save-exact prettier</p>
+<pre tabindex="0"><code>
 Create ``.prettierrc``: `````json
 {
   &#34;semi&#34;: true,
@@ -103,7 +438,8 @@ node_modules
 dist
 build
 coverage
-*.min.js</p><pre tabindex=0><code>
+*.min.js</p>
+<pre tabindex="0"><code>
 ### Prettier vs ESLint: Complementary, Not Competing
 
 ESLint and Prettier have overlapping territory — both can enforce formatting. The recommended approach is: - **ESLint** handles code quality rules (correctness, best practices)
@@ -112,10 +448,12 @@ ESLint and Prettier have overlapping territory — both can enforce formatting. 
 Use ``eslint-config-prettier`` to disable ESLint rules that conflict with Prettier: `````bash
 npm install --save-dev eslint-config-prettier
 </code></pre><p>Add to <code>eslint.config.js</code>: `````javascript
-import prettier from &rsquo;eslint-config-prettier&rsquo;;</p><p>export default [
-// &mldr; other configs
+import prettier from &rsquo;eslint-config-prettier&rsquo;;</p>
+<p>export default [
+// &hellip; other configs
 prettier,
-];</p><pre tabindex=0><code>
+];</p>
+<pre tabindex="0"><code>
 ### Editor Integration (VS Code, Vim, JetBrains)
 
 Install the Prettier extension for your editor and enable &#34;Format on Save.&#34; In VS Code, add to ``settings.json``: `````json
@@ -123,8 +461,13 @@ Install the Prettier extension for your editor and enable &#34;Format on Save.&#
   &#34;editor.defaultFormatter&#34;: &#34;esbenp.prettier-vscode&#34;,
   &#34;editor.formatOnSave&#34;: true
 }
-</code></pre><h2 id=eslint--prettier-complete-integration>ESLint + Prettier: Complete Integration<a hidden class=anchor aria-hidden=true href=#eslint--prettier-complete-integration>#</a></h2><h3 id=step-by-step-setup-for-new-projects>Step-by-Step Setup for New Projects<a hidden class=anchor aria-hidden=true href=#step-by-step-setup-for-new-projects>#</a></h3><ol><li>Install dependencies: `````bash
-npm install &ndash;save-dev eslint prettier eslint-config-prettier typescript-eslint</li></ol><pre tabindex=0><code>
+</code></pre><h2 id="eslint--prettier-complete-integration">ESLint + Prettier: Complete Integration<a hidden class="anchor" aria-hidden="true" href="#eslint--prettier-complete-integration">#</a></h2>
+<h3 id="step-by-step-setup-for-new-projects">Step-by-Step Setup for New Projects<a hidden class="anchor" aria-hidden="true" href="#step-by-step-setup-for-new-projects">#</a></h3>
+<ol>
+<li>Install dependencies: `````bash
+npm install &ndash;save-dev eslint prettier eslint-config-prettier typescript-eslint</li>
+</ol>
+<pre tabindex="0"><code>
 2. Create ``eslint.config.js``: `````javascript
 import js from &#39;@eslint/js&#39;;
 import tseslint from &#39;typescript-eslint&#39;;
@@ -145,7 +488,12 @@ export default [
   },
   prettier,
 ];
-</code></pre><ol start=3><li><p>Create <code>.prettierrc</code> with your formatting preferences.</p></li><li><p>Add package.json scripts: `````json
+</code></pre><ol start="3">
+<li>
+<p>Create <code>.prettierrc</code> with your formatting preferences.</p>
+</li>
+<li>
+<p>Add package.json scripts: `````json
 {
 &ldquo;scripts&rdquo;: {
 &ldquo;lint&rdquo;: &ldquo;eslint .&rdquo;,
@@ -153,7 +501,10 @@ export default [
 &ldquo;format&rdquo;: &ldquo;prettier &ndash;write .&rdquo;,
 &ldquo;format:check&rdquo;: &ldquo;prettier &ndash;check .&rdquo;
 }
-}</p></li></ol><pre tabindex=0><code>
+}</p>
+</li>
+</ol>
+<pre tabindex="0"><code>
 ### Migrating From ESLint Legacy Config to Flat Config
 
 To migrate from ````.eslintrc.json```` to ````eslint.config.js````: 1. Run ````npx @eslint/migrate-config .eslintrc.json```` to generate a starter flat config
@@ -174,20 +525,28 @@ jobs: lint-and-format: runs-on: ubuntu-latest
       - run: npm ci
       - run: npm run lint
       - run: npm run format:check
-</code></pre><h2 id=python-black--the-uncompromising-formatter>Python: Black — The Uncompromising Formatter<a hidden class=anchor aria-hidden=true href=#python-black--the-uncompromising-formatter>#</a></h2><h3 id=philosophy-one-way-to-format-python>Philosophy: One Way to Format Python<a hidden class=anchor aria-hidden=true href=#philosophy-one-way-to-format-python>#</a></h3><p><a href=https://black.readthedocs.io>Black</a> is Python&rsquo;s most popular code formatter. Its philosophy is simple: there is one correct way to format Python code, and Black decides what that is. With only a handful of configurable options, Black eliminates all formatting debates.</p><h3 id=installation-and-basic-usage>Installation and Basic Usage<a hidden class=anchor aria-hidden=true href=#installation-and-basic-usage>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install black
-</span></span><span style=display:flex><span>black .
-</span></span></code></pre></div><p>Black formats all Python files in place. Use <code>black --check .</code> in CI to verify formatting without modifying files.</p><h3 id=pyprojecttoml-configuration>pyproject.toml Configuration<a hidden class=anchor aria-hidden=true href=#pyprojecttoml-configuration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>tool</span>.<span style=color:#a6e22e>black</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>line-length</span> = <span style=color:#ae81ff>88</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>target-version</span> = [<span style=color:#a6e22e>py311</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>include</span> = <span style=color:#e6db74>&#39;\.pyi?$&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>extend-exclude</span> = <span style=color:#e6db74>&#39;&#39;&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>/(
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  migrations
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>)/
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&#39;&#39;&#39;</span>
-</span></span></code></pre></div><h3 id=black-with-jupyter-notebooks>Black With Jupyter Notebooks<a hidden class=anchor aria-hidden=true href=#black-with-jupyter-notebooks>#</a></h3><p>Black supports Jupyter notebooks via the <code>black[jupyter]</code> extra: `````bash
+</code></pre><h2 id="python-black--the-uncompromising-formatter">Python: Black — The Uncompromising Formatter<a hidden class="anchor" aria-hidden="true" href="#python-black--the-uncompromising-formatter">#</a></h2>
+<h3 id="philosophy-one-way-to-format-python">Philosophy: One Way to Format Python<a hidden class="anchor" aria-hidden="true" href="#philosophy-one-way-to-format-python">#</a></h3>
+<p><a href="https://black.readthedocs.io">Black</a> is Python&rsquo;s most popular code formatter. Its philosophy is simple: there is one correct way to format Python code, and Black decides what that is. With only a handful of configurable options, Black eliminates all formatting debates.</p>
+<h3 id="installation-and-basic-usage">Installation and Basic Usage<a hidden class="anchor" aria-hidden="true" href="#installation-and-basic-usage">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install black
+</span></span><span style="display:flex;"><span>black .
+</span></span></code></pre></div><p>Black formats all Python files in place. Use <code>black --check .</code> in CI to verify formatting without modifying files.</p>
+<h3 id="pyprojecttoml-configuration">pyproject.toml Configuration<a hidden class="anchor" aria-hidden="true" href="#pyprojecttoml-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">black</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">line-length</span> = <span style="color:#ae81ff">88</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">target-version</span> = [<span style="color:#a6e22e">py311</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">include</span> = <span style="color:#e6db74">&#39;\.pyi?$&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">extend-exclude</span> = <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">/(
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  migrations
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">)/
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&#39;&#39;&#39;</span>
+</span></span></code></pre></div><h3 id="black-with-jupyter-notebooks">Black With Jupyter Notebooks<a hidden class="anchor" aria-hidden="true" href="#black-with-jupyter-notebooks">#</a></h3>
+<p>Black supports Jupyter notebooks via the <code>black[jupyter]</code> extra: `````bash
 pip install &ldquo;black[jupyter]&rdquo;
-black notebook.ipynb</p><pre tabindex=0><code>
+black notebook.ipynb</p>
+<pre tabindex="0"><code>
 ### Limitations and When to Use Alternatives
 
 Black&#39;s strictness is its strength and weakness. It will not format docstrings (use ````docformatter````), sort imports (use ````isort```` or ````ruff````), or handle specific team conventions. For teams needing more flexibility, Ruff&#39;s formatter provides Black-compatible output with additional options.
@@ -223,32 +582,46 @@ pip install ruff
 ruff format .       # Replaces black .
 ruff check .        # Replaces flake8
 ruff check --fix .  # Auto-fix issues
-</code></pre><h3 id=complete-pyprojecttoml-configuration>Complete pyproject.toml Configuration<a hidden class=anchor aria-hidden=true href=#complete-pyprojecttoml-configuration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-toml data-lang=toml><span style=display:flex><span>[<span style=color:#a6e22e>tool</span>.<span style=color:#a6e22e>ruff</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>target-version</span> = <span style=color:#e6db74>&#34;py311&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>line-length</span> = <span style=color:#ae81ff>88</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>tool</span>.<span style=color:#a6e22e>ruff</span>.<span style=color:#a6e22e>lint</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>select</span> = [
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;E&#34;</span>,   <span style=color:#75715e># pycodestyle errors</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;F&#34;</span>,   <span style=color:#75715e># Pyflakes</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;I&#34;</span>,   <span style=color:#75715e># isort</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;N&#34;</span>,   <span style=color:#75715e># pep8-naming</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;W&#34;</span>,   <span style=color:#75715e># pycodestyle warnings</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;UP&#34;</span>,  <span style=color:#75715e># pyupgrade</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;B&#34;</span>,   <span style=color:#75715e># flake8-bugbear</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;C4&#34;</span>,  <span style=color:#75715e># flake8-comprehensions</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;SIM&#34;</span>, <span style=color:#75715e># flake8-simplify</span>
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>ignore</span> = [<span style=color:#e6db74>&#34;E501&#34;</span>]  <span style=color:#75715e># Line too long (handled by formatter)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>tool</span>.<span style=color:#a6e22e>ruff</span>.<span style=color:#a6e22e>lint</span>.<span style=color:#a6e22e>pydocstyle</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>convention</span> = <span style=color:#e6db74>&#34;google&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>[<span style=color:#a6e22e>tool</span>.<span style=color:#a6e22e>ruff</span>.<span style=color:#a6e22e>format</span>]
-</span></span><span style=display:flex><span><span style=color:#a6e22e>quote-style</span> = <span style=color:#e6db74>&#34;double&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>indent-style</span> = <span style=color:#e6db74>&#34;space&#34;</span>
-</span></span></code></pre></div><h3 id=migration-guide-from-flake8black-to-ruff>Migration Guide From Flake8/Black to Ruff<a hidden class=anchor aria-hidden=true href=#migration-guide-from-flake8black-to-ruff>#</a></h3><ol><li>Remove Flake8, Black, isort, and related plugins from your dependencies</li><li>Install Ruff: <code>pip install ruff</code></li><li>Convert <code>.flake8</code> and <code>pyproject.toml</code> Black config to Ruff equivalents</li><li>Run <code>ruff check .</code> and address any new violations Ruff detects</li><li>Update pre-commit hooks and CI pipelines</li><li>Run <code>ruff format .</code> to verify formatting matches expectations</li></ol><h2 id=go-gofmt-and-golangci-lint>Go: gofmt and golangci-lint<a hidden class=anchor aria-hidden=true href=#go-gofmt-and-golangci-lint>#</a></h2><h3 id=built-in-formatting-with-gofmt>Built-In Formatting With gofmt<a hidden class=anchor aria-hidden=true href=#built-in-formatting-with-gofmt>#</a></h3><p>Go includes <code>gofmt</code> in the standard toolchain. Every Go installation has it. Unlike other languages where formatting tools are third-party additions, Go treats formatting as a language feature. The Go proverb is explicit: &ldquo;Gofmt&rsquo;s style is no one&rsquo;s favorite, yet gofmt is everyone&rsquo;s favorite.&rdquo;</p><p>Format Go code: `````bash
-gofmt -w .</p><pre tabindex=0><code>
+</code></pre><h3 id="complete-pyprojecttoml-configuration">Complete pyproject.toml Configuration<a hidden class="anchor" aria-hidden="true" href="#complete-pyprojecttoml-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-toml" data-lang="toml"><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">ruff</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">target-version</span> = <span style="color:#e6db74">&#34;py311&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">line-length</span> = <span style="color:#ae81ff">88</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">ruff</span>.<span style="color:#a6e22e">lint</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">select</span> = [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;E&#34;</span>,   <span style="color:#75715e"># pycodestyle errors</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;F&#34;</span>,   <span style="color:#75715e"># Pyflakes</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;I&#34;</span>,   <span style="color:#75715e"># isort</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;N&#34;</span>,   <span style="color:#75715e"># pep8-naming</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;W&#34;</span>,   <span style="color:#75715e"># pycodestyle warnings</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;UP&#34;</span>,  <span style="color:#75715e"># pyupgrade</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;B&#34;</span>,   <span style="color:#75715e"># flake8-bugbear</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;C4&#34;</span>,  <span style="color:#75715e"># flake8-comprehensions</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;SIM&#34;</span>, <span style="color:#75715e"># flake8-simplify</span>
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ignore</span> = [<span style="color:#e6db74">&#34;E501&#34;</span>]  <span style="color:#75715e"># Line too long (handled by formatter)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">ruff</span>.<span style="color:#a6e22e">lint</span>.<span style="color:#a6e22e">pydocstyle</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">convention</span> = <span style="color:#e6db74">&#34;google&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>[<span style="color:#a6e22e">tool</span>.<span style="color:#a6e22e">ruff</span>.<span style="color:#a6e22e">format</span>]
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">quote-style</span> = <span style="color:#e6db74">&#34;double&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">indent-style</span> = <span style="color:#e6db74">&#34;space&#34;</span>
+</span></span></code></pre></div><h3 id="migration-guide-from-flake8black-to-ruff">Migration Guide From Flake8/Black to Ruff<a hidden class="anchor" aria-hidden="true" href="#migration-guide-from-flake8black-to-ruff">#</a></h3>
+<ol>
+<li>Remove Flake8, Black, isort, and related plugins from your dependencies</li>
+<li>Install Ruff: <code>pip install ruff</code></li>
+<li>Convert <code>.flake8</code> and <code>pyproject.toml</code> Black config to Ruff equivalents</li>
+<li>Run <code>ruff check .</code> and address any new violations Ruff detects</li>
+<li>Update pre-commit hooks and CI pipelines</li>
+<li>Run <code>ruff format .</code> to verify formatting matches expectations</li>
+</ol>
+<h2 id="go-gofmt-and-golangci-lint">Go: gofmt and golangci-lint<a hidden class="anchor" aria-hidden="true" href="#go-gofmt-and-golangci-lint">#</a></h2>
+<h3 id="built-in-formatting-with-gofmt">Built-In Formatting With gofmt<a hidden class="anchor" aria-hidden="true" href="#built-in-formatting-with-gofmt">#</a></h3>
+<p>Go includes <code>gofmt</code> in the standard toolchain. Every Go installation has it. Unlike other languages where formatting tools are third-party additions, Go treats formatting as a language feature. The Go proverb is explicit: &ldquo;Gofmt&rsquo;s style is no one&rsquo;s favorite, yet gofmt is everyone&rsquo;s favorite.&rdquo;</p>
+<p>Format Go code: `````bash
+gofmt -w .</p>
+<pre tabindex="0"><code>
 Most Go editors run gofmt on save by default.
 
 ### golangci-lint for Comprehensive Linting
@@ -263,27 +636,35 @@ linters: enable: - errcheck
 - staticcheck
 - unused
 - gocritic
-- gosec</p><pre tabindex=0><code>
+- gosec</p>
+<pre tabindex="0"><code>
 ### Configuration and CI Integration
 
 Add to GitHub Actions: `````yaml
 - name: golangci-lint
   uses: golangci/golangci-lint-action@v6
   with: version: latest
-</code></pre><h2 id=rust-rustfmt-and-clippy>Rust: rustfmt and Clippy<a hidden class=anchor aria-hidden=true href=#rust-rustfmt-and-clippy>#</a></h2><h3 id=rustfmt-for-consistent-formatting>rustfmt for Consistent Formatting<a hidden class=anchor aria-hidden=true href=#rustfmt-for-consistent-formatting>#</a></h3><p>Rust&rsquo;s official formatter, <code>rustfmt</code>, is installed with Rustup: `````bash
-rustfmt src/**/*.rs</p><pre tabindex=0><code>
+</code></pre><h2 id="rust-rustfmt-and-clippy">Rust: rustfmt and Clippy<a hidden class="anchor" aria-hidden="true" href="#rust-rustfmt-and-clippy">#</a></h2>
+<h3 id="rustfmt-for-consistent-formatting">rustfmt for Consistent Formatting<a hidden class="anchor" aria-hidden="true" href="#rustfmt-for-consistent-formatting">#</a></h3>
+<p>Rust&rsquo;s official formatter, <code>rustfmt</code>, is installed with Rustup: `````bash
+rustfmt src/**/*.rs</p>
+<pre tabindex="0"><code>
 Configure in ``rustfmt.toml``: `````toml
 max_width = 100
 tab_spaces = 4
 edition = &#34;2021&#34;
-</code></pre><h3 id=clippy-linting-and-code-suggestions>Clippy Linting and Code Suggestions<a hidden class=anchor aria-hidden=true href=#clippy-linting-and-code-suggestions>#</a></h3><p><a href=https://doc.rust-lang.org/clippy>Clippy</a> is Rust&rsquo;s linter with over 650 lints ranging from style suggestions to performance improvements and bug detection: `````bash
-cargo clippy</p><pre tabindex=0><code>
+</code></pre><h3 id="clippy-linting-and-code-suggestions">Clippy Linting and Code Suggestions<a hidden class="anchor" aria-hidden="true" href="#clippy-linting-and-code-suggestions">#</a></h3>
+<p><a href="https://doc.rust-lang.org/clippy">Clippy</a> is Rust&rsquo;s linter with over 650 lints ranging from style suggestions to performance improvements and bug detection: `````bash
+cargo clippy</p>
+<pre tabindex="0"><code>
 Enable all lints for maximum checking: `````bash
 cargo clippy -- -W clippy::all -W clippy::pedantic
-</code></pre><h3 id=cargo-integration>Cargo Integration<a hidden class=anchor aria-hidden=true href=#cargo-integration>#</a></h3><p>Both <code>rustfmt</code> and <code>clippy</code> integrate directly with Cargo. Add aliases to <code>.cargo/config.toml</code>: `````toml
+</code></pre><h3 id="cargo-integration">Cargo Integration<a hidden class="anchor" aria-hidden="true" href="#cargo-integration">#</a></h3>
+<p>Both <code>rustfmt</code> and <code>clippy</code> integrate directly with Cargo. Add aliases to <code>.cargo/config.toml</code>: `````toml
 [alias]
 lint = &ldquo;clippy &ndash; -W clippy::all&rdquo;
-checkfmt = &ldquo;fmt &ndash; &ndash;check&rdquo;</p><pre tabindex=0><code>
+checkfmt = &ldquo;fmt &ndash; &ndash;check&rdquo;</p>
+<pre tabindex="0"><code>
 ## Pre-Commit Hooks: Automating Code Quality
 
 ### Introduction to Pre-Commit Framework
@@ -293,26 +674,51 @@ The [pre-commit](https://pre-commit.com) framework manages Git pre-commit hooks 
 Install pre-commit: `````bash
 pip install pre-commit
 pre-commit install
-</code></pre><h3 id=setting-up-pre-commit-configyaml>Setting Up .pre-commit-config.yaml<a hidden class=anchor aria-hidden=true href=#setting-up-pre-commit-configyaml>#</a></h3><p>Create <code>.pre-commit-config.yaml</code>: `````yaml
-repos: - repo: <a href=https://github.com/pre-commit/pre-commit-hooks>https://github.com/pre-commit/pre-commit-hooks</a>
+</code></pre><h3 id="setting-up-pre-commit-configyaml">Setting Up .pre-commit-config.yaml<a hidden class="anchor" aria-hidden="true" href="#setting-up-pre-commit-configyaml">#</a></h3>
+<p>Create <code>.pre-commit-config.yaml</code>: `````yaml
+repos: - repo: <a href="https://github.com/pre-commit/pre-commit-hooks">https://github.com/pre-commit/pre-commit-hooks</a>
 rev: v4.6.0
 hooks: - id: trailing-whitespace
 - id: end-of-file-fixer
 - id: check-yaml
 - id: check-added-large-files
-- id: check-merge-conflict</p><ul><li><p>repo: <a href=https://github.com/astral-sh/ruff-pre-commit>https://github.com/astral-sh/ruff-pre-commit</a>
+- id: check-merge-conflict</p>
+<ul>
+<li>
+<p>repo: <a href="https://github.com/astral-sh/ruff-pre-commit">https://github.com/astral-sh/ruff-pre-commit</a>
 rev: v0.6.0
 hooks: - id: ruff
-args: [&ndash;fix]</p><ul><li>id: ruff-format</li></ul></li><li><p>repo: <a href=https://github.com/pre-commit/mirrors-eslint>https://github.com/pre-commit/mirrors-eslint</a>
+args: [&ndash;fix]</p>
+<ul>
+<li>id: ruff-format</li>
+</ul>
+</li>
+<li>
+<p>repo: <a href="https://github.com/pre-commit/mirrors-eslint">https://github.com/pre-commit/mirrors-eslint</a>
 rev: v9.0.0
 hooks: - id: eslint
-additional_dependencies: - <a href=mailto:eslint@9.0.0>eslint@9.0.0</a>
-- eslint-config-prettier</p></li><li><p>repo: <a href=https://github.com/pre-commit/mirrors-prettier>https://github.com/pre-commit/mirrors-prettier</a>
+additional_dependencies: - <a href="mailto:eslint@9.0.0">eslint@9.0.0</a>
+- eslint-config-prettier</p>
+</li>
+<li>
+<p>repo: <a href="https://github.com/pre-commit/mirrors-prettier">https://github.com/pre-commit/mirrors-prettier</a>
 rev: v4.0.0-alpha.8
-hooks: - id: prettier</p></li></ul><pre tabindex=0><code>
+hooks: - id: prettier</p>
+</li>
+</ul>
+<pre tabindex="0"><code>
 Run against all files: `````bash
 pre-commit run --all-files
-</code></pre><h3 id=popular-hooks-trailing-whitespace-end-of-file-fixer>Popular Hooks: Trailing Whitespace, End-of-File Fixer<a hidden class=anchor aria-hidden=true href=#popular-hooks-trailing-whitespace-end-of-file-fixer>#</a></h3><p>The <code>pre-commit-hooks</code> repository provides language-agnostic checks that every project should use: - <code>trailing-whitespace</code> — Removes trailing whitespace</p><ul><li><code>end-of-file-fixer</code> — Ensures files end with exactly one newline</li><li><code>check-yaml</code> — Validates YAML syntax</li><li><code>check-added-large-files</code> — Prevents committing files over a size threshold</li><li><code>check-merge-conflict</code> — Blocks commits with unresolved merge conflict markers</li></ul><h3 id=custom-hooks-for-project-specific-needs>Custom Hooks for Project-Specific Needs<a hidden class=anchor aria-hidden=true href=#custom-hooks-for-project-specific-needs>#</a></h3><p>You can define custom hooks for project-specific checks: `````yaml
+</code></pre><h3 id="popular-hooks-trailing-whitespace-end-of-file-fixer">Popular Hooks: Trailing Whitespace, End-of-File Fixer<a hidden class="anchor" aria-hidden="true" href="#popular-hooks-trailing-whitespace-end-of-file-fixer">#</a></h3>
+<p>The <code>pre-commit-hooks</code> repository provides language-agnostic checks that every project should use: - <code>trailing-whitespace</code> — Removes trailing whitespace</p>
+<ul>
+<li><code>end-of-file-fixer</code> — Ensures files end with exactly one newline</li>
+<li><code>check-yaml</code> — Validates YAML syntax</li>
+<li><code>check-added-large-files</code> — Prevents committing files over a size threshold</li>
+<li><code>check-merge-conflict</code> — Blocks commits with unresolved merge conflict markers</li>
+</ul>
+<h3 id="custom-hooks-for-project-specific-needs">Custom Hooks for Project-Specific Needs<a hidden class="anchor" aria-hidden="true" href="#custom-hooks-for-project-specific-needs">#</a></h3>
+<p>You can define custom hooks for project-specific checks: `````yaml
 repos: - repo: local
 hooks: - id: run-tests
 name: Run unit tests
@@ -320,7 +726,8 @@ entry: pytest tests/
 language: system
 types: [python]
 pass_filenames: false
-always_run: true</p><pre tabindex=0><code>
+always_run: true</p>
+<pre tabindex="0"><code>
 ### Husky for JavaScript/TypeScript Projects
 
 [Husky](https://github.com/typicode/husky) simplifies Git hooks for JavaScript projects. Install and configure: `````bash
@@ -328,7 +735,8 @@ npx husky-init &amp;&amp; npm install
 </code></pre><p>Edit <code>.husky/pre-commit</code>: `````bash
 npm run lint
 npm run format:check
-npm test</p><pre tabindex=0><code>
+npm test</p>
+<pre tabindex="0"><code>
 ## CI/CD Integration for Code Quality
 
 ### GitHub Actions Workflow for Linting
@@ -352,29 +760,67 @@ jobs: javascript: runs-on: ubuntu-latest
       - run: pip install ruff
       - run: ruff check .
       - run: ruff format --check .
-</code></pre><h3 id=gitlab-ci-pipeline-for-formatting-checks>GitLab CI Pipeline for Formatting Checks<a hidden class=anchor aria-hidden=true href=#gitlab-ci-pipeline-for-formatting-checks>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>stages</span>: - <span style=color:#ae81ff>quality</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>lint-js: stage</span>: <span style=color:#ae81ff>quality</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>image</span>: <span style=color:#ae81ff>node:20</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>: - <span style=color:#ae81ff>npm ci</span>
-</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>npm run lint</span>
-</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>npm run format:check</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>lint-python: stage</span>: <span style=color:#ae81ff>quality</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>image</span>: <span style=color:#ae81ff>python:3.12</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>: - <span style=color:#ae81ff>pip install ruff</span>
-</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>ruff check .</span>
-</span></span><span style=display:flex><span>    - <span style=color:#ae81ff>ruff format --check .</span>
-</span></span></code></pre></div><h3 id=failing-builds-on-lint-errors>Failing Builds on Lint Errors<a hidden class=anchor aria-hidden=true href=#failing-builds-on-lint-errors>#</a></h3><p>Configure your CI to fail on lint errors. Set the exit code of your lint command to non-zero when violations are found — all the tools in this guide do this by default. A red build status prevents merging code that violates quality standards.</p><h3 id=reporting-lint-results-as-pr-comments>Reporting Lint Results as PR Comments<a hidden class=anchor aria-hidden=true href=#reporting-lint-results-as-pr-comments>#</a></h3><p>Tools like <a href=https://github.com/reviewdog/reviewdog>reviewdog</a> post lint results as pull request comments. This puts feedback exactly where developers need it — in the review interface — rather than buried in CI logs. Reviewdog supports ESLint, Ruff, golangci-lint, and dozens of other tools.</p><h2 id=language-comparison-table>Language Comparison Table<a hidden class=anchor aria-hidden=true href=#language-comparison-table>#</a></h2><p>| Language | Formatter | Linter | Pre-Commit Hook | Config File |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="gitlab-ci-pipeline-for-formatting-checks">GitLab CI Pipeline for Formatting Checks<a hidden class="anchor" aria-hidden="true" href="#gitlab-ci-pipeline-for-formatting-checks">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">stages</span>: - <span style="color:#ae81ff">quality</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">lint-js: stage</span>: <span style="color:#ae81ff">quality</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">node:20</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>: - <span style="color:#ae81ff">npm ci</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">npm run lint</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">npm run format:check</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">lint-python: stage</span>: <span style="color:#ae81ff">quality</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">python:3.12</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>: - <span style="color:#ae81ff">pip install ruff</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ruff check .</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">ruff format --check .</span>
+</span></span></code></pre></div><h3 id="failing-builds-on-lint-errors">Failing Builds on Lint Errors<a hidden class="anchor" aria-hidden="true" href="#failing-builds-on-lint-errors">#</a></h3>
+<p>Configure your CI to fail on lint errors. Set the exit code of your lint command to non-zero when violations are found — all the tools in this guide do this by default. A red build status prevents merging code that violates quality standards.</p>
+<h3 id="reporting-lint-results-as-pr-comments">Reporting Lint Results as PR Comments<a hidden class="anchor" aria-hidden="true" href="#reporting-lint-results-as-pr-comments">#</a></h3>
+<p>Tools like <a href="https://github.com/reviewdog/reviewdog">reviewdog</a> post lint results as pull request comments. This puts feedback exactly where developers need it — in the review interface — rather than buried in CI logs. Reviewdog supports ESLint, Ruff, golangci-lint, and dozens of other tools.</p>
+<h2 id="language-comparison-table">Language Comparison Table<a hidden class="anchor" aria-hidden="true" href="#language-comparison-table">#</a></h2>
+<p>| Language | Formatter | Linter | Pre-Commit Hook | Config File |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | JavaScript/TypeScript | Prettier | ESLint 9 | <code>mirrors-prettier</code>, <code>mirrors-eslint</code> | <code>eslint.config.js</code>, <code>.prettierrc</code> |
 | Python | Ruff format | Ruff | <code>ruff-pre-commit</code> | <code>pyproject.toml</code> |
 | Go | gofmt | golangci-lint | Custom (local) | <code>.golangci.yml</code> |
 | Rust | rustfmt | Clippy | Custom (cargo) | <code>rustfmt.toml</code> |
-| Multi-language | — | — | <code>pre-commit-hooks</code> | <code>.pre-commit-config.yaml</code> |</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Code quality tools are force multipliers for development teams. A well-configured toolchain catches bugs, enforces consistency, and eliminates style debates — all without ongoing manual effort. Start with one language, configure the formatter and linter, add pre-commit hooks, then expand to CI/CD integration. Within a week, your codebase will be more consistent, your reviews more focused, and your developers more productive.</p><p>The tools covered in this guide — ESLint 9 with flat config, Prettier, Ruff replacing the entire Python toolchain, golangci-lint, and Clippy — represent the state of the art in 2025. Invest the time to set them up correctly. The return on that investment compounds with every commit.</p><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=should-i-use-eslint-and-prettier-together>Should I use ESLint and Prettier together?<a hidden class=anchor aria-hidden=true href=#should-i-use-eslint-and-prettier-together>#</a></h3><p>Yes. ESLint handles code quality (correctness, best practices) while Prettier handles formatting (indentation, line breaks, quotes). They are complementary. Use <code>eslint-config-prettier</code> to disable ESLint&rsquo;s formatting rules and prevent conflicts. Configure your editor to run both on save.</p><h3 id=is-ruff-better-than-black-for-python>Is Ruff better than Black for Python?<a hidden class=anchor aria-hidden=true href=#is-ruff-better-than-black-for-python>#</a></h3><p>Ruff is faster and more comprehensive than Black. It replaces Black (formatting), Flake8 (linting), isort (import sorting), and numerous plugins in a single tool. Ruff"s formatter produces Black-compatible output. For new projects, Ruff is the recommended choice. For existing Black users, switching to Ruff format is straightforward and yields significant performance improvements.</p><h3 id=how-do-i-set-up-pre-commit-hooks>How do I set up pre-commit hooks?<a hidden class=anchor aria-hidden=true href=#how-do-i-set-up-pre-commit-hooks>#</a></h3><p>Install the pre-commit framework: <code>pip install pre-commit</code>. Create a <code>.pre-commit-config.yaml</code> file with your hooks. Run <code>pre-commit install</code> to activate the hooks in your Git repository. Run <code>pre-commit run --all-files</code> to test the configuration against existing files. For JavaScript projects, Husky provides a simpler alternative.</p><h3 id=can-i-use-one-tool-for-multiple-programming-languages>Can I use one tool for multiple programming languages?<a hidden class=anchor aria-hidden=true href=#can-i-use-one-tool-for-multiple-programming-languages>#</a></h3><p>Prettier handles JavaScript, TypeScript, JSON, CSS, HTML, Markdown, YAML, and more. Ruff handles Python exclusively. ESLint focuses on JavaScript/TypeScript with some JSON support. For multi-language projects, configure the pre-commit framework to run the appropriate tool for each file type. No single tool covers all languages well — use the best tool for each language.</p><h3 id=how-do-i-enforce-code-quality-in-cicd-pipelines>How do I enforce code quality in CI/CD pipelines?<a hidden class=anchor aria-hidden=true href=#how-do-i-enforce-code-quality-in-cicd-pipelines>#</a></h3><p>Add lint and format check steps to your CI pipeline. Use exit codes to fail the build when violations are found. For GitHub Actions, the ````pull_request``` trigger runs checks on every PR. Combine with branch protection rules that require status checks to pass before merging. Tools like reviewdog can post results as PR comments for better visibility.</p><hr><h2 id=recommended-infrastructure>Recommended Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-infrastructure>#</a></h2><p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li></ul><p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Multi-language | — | — | <code>pre-commit-hooks</code> | <code>.pre-commit-config.yaml</code> |</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Code quality tools are force multipliers for development teams. A well-configured toolchain catches bugs, enforces consistency, and eliminates style debates — all without ongoing manual effort. Start with one language, configure the formatter and linter, add pre-commit hooks, then expand to CI/CD integration. Within a week, your codebase will be more consistent, your reviews more focused, and your developers more productive.</p>
+<p>The tools covered in this guide — ESLint 9 with flat config, Prettier, Ruff replacing the entire Python toolchain, golangci-lint, and Clippy — represent the state of the art in 2025. Invest the time to set them up correctly. The return on that investment compounds with every commit.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="should-i-use-eslint-and-prettier-together">Should I use ESLint and Prettier together?<a hidden class="anchor" aria-hidden="true" href="#should-i-use-eslint-and-prettier-together">#</a></h3>
+<p>Yes. ESLint handles code quality (correctness, best practices) while Prettier handles formatting (indentation, line breaks, quotes). They are complementary. Use <code>eslint-config-prettier</code> to disable ESLint&rsquo;s formatting rules and prevent conflicts. Configure your editor to run both on save.</p>
+<h3 id="is-ruff-better-than-black-for-python">Is Ruff better than Black for Python?<a hidden class="anchor" aria-hidden="true" href="#is-ruff-better-than-black-for-python">#</a></h3>
+<p>Ruff is faster and more comprehensive than Black. It replaces Black (formatting), Flake8 (linting), isort (import sorting), and numerous plugins in a single tool. Ruff&quot;s formatter produces Black-compatible output. For new projects, Ruff is the recommended choice. For existing Black users, switching to Ruff format is straightforward and yields significant performance improvements.</p>
+<h3 id="how-do-i-set-up-pre-commit-hooks">How do I set up pre-commit hooks?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-set-up-pre-commit-hooks">#</a></h3>
+<p>Install the pre-commit framework: <code>pip install pre-commit</code>. Create a <code>.pre-commit-config.yaml</code> file with your hooks. Run <code>pre-commit install</code> to activate the hooks in your Git repository. Run <code>pre-commit run --all-files</code> to test the configuration against existing files. For JavaScript projects, Husky provides a simpler alternative.</p>
+<h3 id="can-i-use-one-tool-for-multiple-programming-languages">Can I use one tool for multiple programming languages?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-one-tool-for-multiple-programming-languages">#</a></h3>
+<p>Prettier handles JavaScript, TypeScript, JSON, CSS, HTML, Markdown, YAML, and more. Ruff handles Python exclusively. ESLint focuses on JavaScript/TypeScript with some JSON support. For multi-language projects, configure the pre-commit framework to run the appropriate tool for each file type. No single tool covers all languages well — use the best tool for each language.</p>
+<h3 id="how-do-i-enforce-code-quality-in-cicd-pipelines">How do I enforce code quality in CI/CD pipelines?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-enforce-code-quality-in-cicd-pipelines">#</a></h3>
+<p>Add lint and format check steps to your CI pipeline. Use exit codes to fail the build when violations are found. For GitHub Actions, the ````pull_request``` trigger runs checks on every PR. Combine with branch protection rules that require status checks to pass before merging. Tools like reviewdog can post results as PR comments for better visibility.</p>
+<hr>
+<h2 id="recommended-infrastructure">Recommended Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-infrastructure">#</a></h2>
+<p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li>
+</ul>
+<p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;Code Quality Tools Guide: ESLint, Prettier, Black, Ruff & More&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Code Quality Tools Guide: ESLint, Prettier, Black, Ruff &amp; More&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-18&rdquo;,
 &ldquo;author&rdquo;: {
@@ -386,15 +832,155 @@ jobs: javascript: runs-on: ubuntu-latest
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff%22>https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff%22">https://dibi8.com/resources/code-quality-tools-eslint-prettier-black-ruff"</a>
 }
-}</script></p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

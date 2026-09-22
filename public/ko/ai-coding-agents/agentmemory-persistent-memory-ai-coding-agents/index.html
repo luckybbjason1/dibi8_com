@@ -1,10 +1,305 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ AgentMemory 아키텍처 │ │ │ │ ┌────────────┐ ┌────────────┐ ┌──────────────┐ │ │ │ 세션 1 │ │ 세션 2 │ │ 세션 N │ │ │ │ (Claude) │ │ (Codex) │ │ (OpenCode) │ │ │ └─────┬──────┘ └─────┬──────┘ └──────┬───────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ 메모리 저장 레이어 │ │ │ │ • 벡터 DB (임베딩) │ │ │ │ • 그래프 DB (관계) │ │ │ │ • 키-값 (사실, 결정) │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 쿼리 및 검색 │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ 에이전트가 메모리에서 컨텍스트 획득 │ │ │ │ \"지난번에 인증 버그를 수정했죠...\" │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트\n서론 AI 코딩 에이전트는 세션 간에 모든 것을 잊어버립니다. 화요일에 버그를 고치고 수요일에 돌아오면, 에이전트가 코드베이스를 처음부터 다시 설명해달라고 합니다 — AgentMemory (22,038 GitHub stars)는 AI 코딩 에이전트에 persistente 메모리를 제공하여 이 문제를 해결합니다: 과거 세션, 핵심 결정, 버그 수정, 아키텍처 패턴을 며칠, 몇 주, 몇 달에 걸쳐 기억합니다. 실제 개발 워크플로우로 벤치마킹하여 에이전트 정확도를 34% 향상시키고 온보딩 시간을 60% 단축합니다. Claude Code, Codex CLI, OpenCode 및 도구 호출을 지원하는 모든 에이전트에서 작동합니다.\nAgentMemory란? AgentMemory는 AI 코딩 에이전트를 위한 persistente 메모리 시스템으로, 에이전트가 세션 간에 정보를 기억하고 검색할 수 있게 합니다. 벡터 임베딩, 지식 그래프, 구조화된 사실 저장을 조합하여 에이전트가 각 세션 시작 시 쿼리할 수 있는 검색 가능한 메모리를 생성합니다.\n핵심 기능: - 크로스 세션 메모리 — 과거 세션, 며칠 또는 몇 주 전에 일어난 일 기억\n멀티 에이전트 지원 — Claude Code, Codex, OpenCode 간 메모리 공유 구조화된 사실 — 결정, 버그 수정, 아키텍처 패턴을 구조화된 데이터로 저장 시맨틱 검색 — 임베딩 기반 검색으로 관련 과거 컨텍스트 찾기 자동 추출 — 수동 설정 없이 중요 사실 추출 및 저장 실제 벤치마크 — 500+ 실제 개발 세션에서 테스트됨 Python으로 구축되었으며, 벡터 저장을 위해 ChromaDB, 그래프 연산을 위해 networkx, 구조화된 데이터를 위해 SQLite를 사용합니다.\nAgentMemory 작동 방식 단계 1: 메모리 추출 # 메모리 저장소 초기화 agentmemory init --project ./my-project # 에이전트 세션 실행 — 메모리가 자동으로 캡처됨 # (Claude Code / Codex CLI에서 훅으로 통합) claude-code # 백그라운드: 모든 도구 호출, 결정, 코드 변경사항이 # 추출되어 메모리에 저장됨 # 메모리 저장 위치: ./my-project/.agentmemory/ # - facts.db (구조화된 사실) # - embeddings/ (벡터 저장소) # - graph.db (지식 그래프) 단계 2: 메모리 저장 # 메모리 추출 파이프라인 from agentmemory import MemoryExtractor extractor = MemoryExtractor( db_path=\"./my-project/.agentmemory/facts.db\", vector_store=\"chromadb\", vector_path=\"./my-project/.agentmemory/embeddings/\", graph_db=\"networkx\", ) # 세션 후 핵심 정보 추출 extractor.extract_from_session( session_dir=\"./sessions/session_20260608\", extract_types=[\"decisions\", \"fixes\", \"patterns\", \"config\"] ) # 결과: # - 47개 사실 추출 (버그 수정, 결정, 패턴) # - 12개 벡터 임베딩 저장 # - 지식 그래프에 89개 엣지 단계 3: 메모리 검색 # 새 세션을 위한 관련 메모리 검색 from agentmemory import MemoryRetriever retriever = MemoryRetriever( project_dir=\"./my-project\", top_k=10, min_relevance=0.6 ) # 현재 컨텍스트를 기반으로 메모리 쿼리 context = retriever.retrieve( query=\"Previous auth-related changes and decisions\", session_type=\"coding\" ) # 구조화된 메모리 컨텍스트 반환: # [ # {\"type\": \"fix\", \"date\": \"2026-06-05\", \"summary\": \"JWT token refresh 문제 수정\"}, # {\"type\": \"decision\", \"date\": \"2026-06-01\", \"summary\": \"비밀번호 해싱에 bcrypt 선택\"}, # ... # ] 설치 및 설정 빠른 시작 pip install agentmemory # 프로젝트를 위해 초기화 agentmemory init --project ./my-app # 메모리 활성화하여 실행 agentmemory run \\ --agent claude-code \\ --project ./my-app \\ --session-dir ./sessions Docker 배포 docker run -d \\ --name agentmemory \\ -v $(pwd)/project:/project \\ -p 9090:9090 \\ ghcr.io/rohitg00/agentmemory:latest \\ server --data /project/.agentmemory # API를 통해 메모리 쿼리 curl -X POST http://localhost:9090/query \\ -H \"Content-Type: application/json\" \\ -d '{\"query\": \"What bugs were fixed last week?\", \"top_k\": 5}\" | jq 메모리 저장 옵션 # 스토리지 백엔드 선택 config = { \"vector_store\": \"chromadb\", # \"chromadb\" | \"qdrant\" | \"weaviate\" | \"sqlite\" \"graph_store\": \"networkx\", # \"networkx\" | \"neo4j\" | \"rustfs\" \"fact_store\": \"sqlite\", # \"sqlite\" | \"postgres\" | \"mongo\" } # ChromaDB (기본값, 로컬, 제로 구성) agentmemory init --vector-store chromadb # Qdrant (분산, 프로덕션) agentmemory init --vector-store qdrant --qdrant-url http://qdrant:6333 # Neo4j (그래프 중심 사용 사례) agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687 Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합 AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다: ### Claude Code\n# AgentMemory Claude Code 플러그인 agentmemory install claude-code # 이제 모든 Claude Code 세션이 자동으로: # 1. 시작 시 관련 메모리 검색 # 2. 세션 중 새 사실 저장 # 3. 세션 종료 시 메모리 업데이트 Codex CLI # 메모리 프로젝트 설정 export AGENTMEMORY_PROJECT=./my-project # Codex CLI는 각 세션 전에 메모리를 읽고 # 완료 후 결과를 저장합니다 OpenCode # OpenCode 플러그인 agentmemory install opencode # 메모리 컨텍스트가 도구 호출로 주입됨: # agentmemory.query(\"auth-related changes\") # 관련 과거 컨텍스트를 구조화된 데이터로 반환 신뢰할 수 있는 호스팅을 위해 DigitalOcean droplet에서 팀 공유 메모리를 위해, 또는 HTStack에서 아시아-태평양 저지연을 위해 배포하세요.\n벤치마크 / 실제 사용 사례 메모리가 에이전트 성능에 미치는 영향 500개의 실제 개발 세션(버그 수정, 기능 구현, 리팩토링)에서 테스트: | 지표 | 메모리 없음 | AgentMemory 사용 | 개선률 | |——|———–|—————–|——–| | 컨텍스트 정확도 | 58% | 89% | +53% | | 버그 수정 완료 시간 | 42분 | 28분 | -33% | | 과거 실수 반복 | 23% | 7% | -70% | | 새 개발자 온보딩 | 5일 | 2일 | -60% |\n시간 경과에 따른 기억 보존 다른 시간 간격 동안 메모리 지속성: | 마지막 세션 이후 시간 | 정확도 | |———————|——–| | 같은 날 | 96% | | 1주 | 91% | | 1개월 | 84% | | 3개월 | 72% | | 6개월 | 61% |\n실제 사용 사례: 팀 개발 5인 개발팀이 AgentMemory 사용: `````bash\n개발자 A가 월요일에 인증 버그 수정 개발자 B가 화요일에 동일한 작업 처리 AgentMemory가 A의 수정 및 컨텍스트 검색 agentmemory query –project ./my-app –query “authentication bug fixes” –since “2026-06-02”\n반환: # - 2026-06-02에 dev-A가 적용한 수정 - 근본 원인: 만료된 JWT token - 해결책: token refresh middleware 추가 - 관련 파일: middleware/auth.py, services/jwt.js ## 고급 사용 / 프로덕션 견고화 ### 사용자 정의 메모리 스키마 `````python # 프로젝트를 위한 사용자 정의 메모리 스키마 정의 from agentmemory import SchemaBuilder schema = SchemaBuilder() schema.add_fact_type( name=\"code_review\", fields=[\"reviewer\", \"file\", \"changes\", \"decision\"], searchable=True ) schema.add_fact_type( name=\"architecture_decision\", fields=[\"decision\", \"rationale\", \"alternatives\", \"date\"], searchable=True ) schema.add_relationship( source=\"code_review\", target=\"architecture_decision\", relation=\"affects\" ) 팀 메모리 동기화 # 원격 저장소를 통해 팀원 간 메모리 동기화 agentmemory sync \\ --remote git@github.com:myorg/agentmemory-data.git \\ --branch memory \\ --interval 3600 # 각 개발자가 세션 전에 최신 메모리 pull agentmemory pull --project ./my-app 메모리 분석 # 메모리 통계 확인 agentmemory stats --project ./my-app # 출력: # 총 사실 수: 1,247 # 총 세션 수: 89 # 가장 흔한 사실 유형: \"bug_fix\" (34%) # 메모리 성장: 이번 주 +127 사실 # 상위 검색어: \"auth\", \"database\", \"API endpoint\" # 분석을 위해 메모리 내보내기 agentmemory export --format json --output ./memory-report.json 대체製品와의 비교 기능 AgentMemory Cursor Memories GitHub Copilot Chat 커스텀 RAG Persistent 메모리 예 예 (로컬 전용) 아니오 예 크로스 세션 예 아니오 아니오 예 멀티 에이전트 6+ 에이전트 Cursor 전용 Copilot 전용 커스텀 구조화된 사실 예 아니오 아니오 예 그래프 관계 예 아니오 아니오 예 실제 벤치마크 예 아니오 아니오 아니오 오픈소스 예 (MIT) 아니오 아니오 예 셀프 호스팅 예 예 아니오 예 GitHub stars 22,038 — — — 대체 제품 비교: AgentMemory vs. 전통적 에이전트 측면 AgentMemory 메모리 없는 에이전트 수동 컨텍스트 전달 컨텍스트 보존 세션 간 persistent 세션 종료 시 잊음 수동 복사 붙여넣기 필요 정보 검색 속도 밀리초 시맨틱 검색 N/A 분 단위 수동 검색 구조화 수준 높음 (사실+그래프+벡터) 없음 낮음 (순수 텍스트) 확장성 멀티 에이전트 공유 지원 단일 세션 단일 사용자 자동화 수준 완전 자동 추출 완전 수동 부분 자동 프라이버시 제어 로컬 저장, 감청 가능 N/A 도구에 의존 제한 / 솔직한 평가 AgentMemory는 모든 사람에게 적합하지 않습니다: 1. 소규모 개인 프로젝트 — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다. 2. 프라이버시 민감한 코드 — 메모리는 코드 패턴과 결정을 로컬에 저장합니다. 기업 코드베이스의 경우 추출 및 저장된 사실을 검토해야 합니다. 프로젝트에 프라이버시 컨트롤이 있지만 스키마를 신중히 검토하세요. 3. 콜드 스타트 기간 — 메모리는 구축에 시간이 필요합니다. 새 프로젝트는 빈 메모리로 시작하며, 시스템이 유용해지려면 10-20개의 세션이 필요합니다. 이 준비 기간을 계획하세요. 4. 메모리 드리프트 — 시간이 지남에 따라 오래된 사실이 에이전트를 혼란스럽게 할 수 있습니다. 정기적인 메모리 정리(월간 권장, agentmemory prune --older-than 90d 사용)를 구현하세요. 5. 벡터 DB 복잡성 — 여러 에이전트를 위한 프로덕션 배포의 경우, ChromaDB/Qdrant/Neo4j 관리는 운영 오버헤드를 추가합니다. 간단한 설정은 SQLite로 시작하세요.\n자주 묻는 질문 Q: AgentMemory는 프라이버시 안전한가요?\nA: 네. 모든 메모리는 기본적으로 로컬에 저장됩니다. 원격 동기화를 구성하지 않는 한 데이터가 머신을 떠나지 않습니다. 어떤 사실이 추출되고 저장되는지 통제할 수 있습니다. 이 프로젝트는 오픈소스(MIT)이므로 추출 로직을 감사할 수 있습니다.\nQ: 메모리는 얼마나 많은 저장 공간을 사용하나요?\nA: 일반적인 사용량: 중형 프로젝트(10K-100K 라인, 50-200 세션)에 5-50MB. 메모리는 복잡성에 따라 세션당 약 100-500KB씩 성장합니다.\nQ: AgentMemory는 로컬 LLM과 함께 작동하나요?\nA: 네. AgentMemory는 에이전트 비종속적이며 도구 호출을 지원하는 모든 에이전트와 작동합니다. Ollama와 같은 로컬 LLM을 사용하는 에이전트도 포함됩니다.\nQ: 오래된 메모리는 어떻게 정리하나요?\nA: agentmemory prune --older-than 90d를 사용하여 90일 이상된 사실을 제거합니다. 설정에서 자동 정리를 설정할 수도 있습니다: ````cleanup_threshold_days: 90```.\nQ: 비코딩 작업에 사용할 수 있나요?\nA: 코딩 에이전트를 위해 설계되었지만 메모리 시스템은 범용적입니다. 사용자 정의 사실 유형을 정의하여 어떤 에이전트 워크플로우에도 사용할 수 있습니다 — 데이터 과학, 연구, 자동화 등.\n출처 및 추가 자료 공식 문서: https://github.com/rohitg00/agentmemory GitHub 저장소: https://github.com/rohitg00/agentmemory 벤치마크 방법론: https://github.com/rohitg00/agentmemory/blob/main/docs/BENCHMARKS.md 프라이버시 가이드: https://github.com/rohitg00/agentmemory/blob/main/docs/PRIVACY.md 커뮤니티 토론: https://github.com/rohitg00/agentmemory/discussions 결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요 AgentMemory는 AI 코딩 에이전트를 단일 세션 도구에서 평생 협력자로 바꾸는 핵심 요소입니다. 과거 결정, 버그 수정, 패턴을 기억함으로써 에이전트는 모든 상호작용마다 더 똑똑하고 정확해집니다. 벤치마크는 실제입니다: 정확도 53% 향상, 온보딩 60% 가속, 실수 반복 70% 감소.\n매주 프로젝트에 돌아오는 개인 개발자이든, 코드 컨텍스트를 공유하는 팀이든, 프로덕션 AI 워크플로우를 구축하는 것이든, AgentMemory는 실제로 기억하는 에이전트를 위한 기반을 제공합니다.\ndibi8 한국어 텔레그램 그룹 dibi8 한국어 Telegram 그룹에 참여하여 AgentMemory 구성에 대해 논의하세요. 보완적인 AI 도구를 위해 headroom 토큰 압축 및 codegraph 지식 그래프 가이드를 확인하세요. 오늘 AgentMemory를 시작하세요 — 설치하고 몇 세션 동안 학습시키면 에이전트가 시간이 지남에 따라 더 똑똑해지는 것을 볼 수 있습니다.\n추천 도구:\nBinance: Binance으로 거래 시작. 등록 https://www.bsmkweb.cc/register?ref=DIBI8 OKX 거래소: OKX로 거래. 등록 https://www.promoohubly.com/join/12190433 WebShare: WebShare로 익명 브라우징. 시작하기 https://www.webshare.io/?referral_code=oa14d5f0wx4f DigitalOcean: DigitalOcean에 프로젝트 배포. 등록 https://m.do.co/c/eca87ac14ee0 HTStack: 클라우드 인프라 관리. 가입 https://my.htstack.com/aff.php?aff=27187 위 링크 중 일부는 제휴 링크입니다. 링크를 통해 등록하면 dibi8.com이 수수료를 받을 수 있으며, 이용자에게는 추가 비용이 없습니다. 이는 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/agentmemory-persistent-memory-ai-coding-agents\" } } Related Articles codebase-memory-mcp-high-performance-code-intelligence 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1806","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#agentmemory-ai-%ec%bd%94%eb%94%a9-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%a5%bc-%ec%9c%84%ed%95%9c-persistente-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%8b%9c%ec%8a%a4%ed%85%9c-1%ec%9c%84--22000-%ec%8a%a4%ed%83%80%ec%9d%98-%ec%8b%a4%ec%a0%9c-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--2026-%ec%8b%a4%ec%a0%84-%ea%b0%80%ec%9d%b4%eb%93%9c aria-label="AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드">AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드</a><ul><li><a href=#%ec%84%9c%eb%a1%a0 aria-label=서론>서론</a></li><li><a href=#agentmemory%eb%9e%80 aria-label=AgentMemory란?>AgentMemory란?</a></li><li><a href=#agentmemory-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="AgentMemory 작동 방식">AgentMemory 작동 방식</a><ul><li><a href=#%eb%8b%a8%ea%b3%84-1-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%b6%94%ec%b6%9c aria-label="단계 1: 메모리 추출">단계 1: 메모리 추출</a></li><li><a href=#%eb%8b%a8%ea%b3%84-2-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%a0%80%ec%9e%a5 aria-label="단계 2: 메모리 저장">단계 2: 메모리 저장</a></li><li><a href=#%eb%8b%a8%ea%b3%84-3-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b2%80%ec%83%89 aria-label="단계 3: 메모리 검색">단계 3: 메모리 검색</a></li></ul></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95 aria-label="설치 및 설정">설치 및 설정</a><ul><li><a href=#%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91 aria-label="빠른 시작">빠른 시작</a></li><li><a href=#docker-%eb%b0%b0%ed%8f%ac aria-label="Docker 배포">Docker 배포</a></li><li><a href=#%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%a0%80%ec%9e%a5-%ec%98%b5%ec%85%98 aria-label="메모리 저장 옵션">메모리 저장 옵션</a></li></ul></li><li><a href=#claude-code-codex-cli-opencode-gemini-cli%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9 aria-label="Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합">Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합</a><ul><li><a href=#codex-cli aria-label="Codex CLI">Codex CLI</a></li><li><a href=#opencode aria-label=OpenCode>OpenCode</a></li></ul></li><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul><li><a href=#%eb%a9%94%eb%aa%a8%eb%a6%ac%ea%b0%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%84%b1%eb%8a%a5%ec%97%90-%eb%af%b8%ec%b9%98%eb%8a%94-%ec%98%81%ed%96%a5 aria-label="메모리가 에이전트 성능에 미치는 영향">메모리가 에이전트 성능에 미치는 영향</a></li><li><a href=#%ec%8b%9c%ea%b0%84-%ea%b2%bd%ea%b3%bc%ec%97%90-%eb%94%b0%eb%a5%b8-%ea%b8%b0%ec%96%b5-%eb%b3%b4%ec%a1%b4 aria-label="시간 경과에 따른 기억 보존">시간 경과에 따른 기억 보존</a></li><li><a href=#%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-%ed%8c%80-%ea%b0%9c%eb%b0%9c aria-label="실제 사용 사례: 팀 개발">실제 사용 사례: 팀 개발</a></li></ul></li></ul></li><li><a href=#%ea%b0%9c%eb%b0%9c%ec%9e%90-a%ea%b0%80-%ec%9b%94%ec%9a%94%ec%9d%bc%ec%97%90-%ec%9d%b8%ec%a6%9d-%eb%b2%84%ea%b7%b8-%ec%88%98%ec%a0%95 aria-label="개발자 A가 월요일에 인증 버그 수정">개발자 A가 월요일에 인증 버그 수정</a></li><li><a href=#%ea%b0%9c%eb%b0%9c%ec%9e%90-b%ea%b0%80-%ed%99%94%ec%9a%94%ec%9d%bc%ec%97%90-%eb%8f%99%ec%9d%bc%ed%95%9c-%ec%9e%91%ec%97%85-%ec%b2%98%eb%a6%ac aria-label="개발자 B가 화요일에 동일한 작업 처리">개발자 B가 화요일에 동일한 작업 처리</a></li><li><a href=#agentmemory%ea%b0%80-a%ec%9d%98-%ec%88%98%ec%a0%95-%eb%b0%8f-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8-%ea%b2%80%ec%83%89 aria-label="AgentMemory가 A의 수정 및 컨텍스트 검색">AgentMemory가 A의 수정 및 컨텍스트 검색</a></li><li><a href=#%eb%b0%98%ed%99%98----2026-06-02%ec%97%90-dev-a%ea%b0%80-%ec%a0%81%ec%9a%a9%ed%95%9c-%ec%88%98%ec%a0%95 aria-label="반환: # - 2026-06-02에 dev-A가 적용한 수정">반환: # - 2026-06-02에 dev-A가 적용한 수정</a></li><li><a href=#--%ea%b7%bc%eb%b3%b8-%ec%9b%90%ec%9d%b8-%eb%a7%8c%eb%a3%8c%eb%90%9c-jwt-token aria-label="- 근본 원인: 만료된 JWT token">- 근본 원인: 만료된 JWT token</a></li><li><a href=#--%ed%95%b4%ea%b2%b0%ec%b1%85-token-refresh-middleware-%ec%b6%94%ea%b0%80 aria-label="- 해결책: token refresh middleware 추가">- 해결책: token refresh middleware 추가</a></li><li><a href=#--%ea%b4%80%eb%a0%a8-%ed%8c%8c%ec%9d%bc-middlewareauthpy-servicesjwtjs aria-label="- 관련 파일: middleware/auth.py, services/jwt.js">- 관련 파일: middleware/auth.py, services/jwt.js</a><ul><ul><li><a href=#%ed%8c%80-%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%8f%99%ea%b8%b0%ed%99%94 aria-label="팀 메모리 동기화">팀 메모리 동기화</a></li><li><a href=#%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%b6%84%ec%84%9d aria-label="메모리 분석">메모리 분석</a></li></ul><li><a href=#%eb%8c%80%ec%b2%b4%e8%a3%bd%e5%93%81%ec%99%80%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대체製品와의 비교">대체製品와의 비교</a></li><li><a href=#%eb%8c%80%ec%b2%b4-%ec%a0%9c%ed%92%88-%eb%b9%84%ea%b5%90-agentmemory-vs-%ec%a0%84%ed%86%b5%ec%a0%81-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8 aria-label="대체 제품 비교: AgentMemory vs. 전통적 에이전트">대체 제품 비교: AgentMemory vs. 전통적 에이전트</a></li><li><a href=#%ec%a0%9c%ed%95%9c--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="제한 / 솔직한 평가">제한 / 솔직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a></li><li><a href=#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li><li><a href=#%ea%b2%b0%eb%a1%a0-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ec%97%90-%eb%a9%94%eb%aa%a8%eb%a6%ac%eb%a5%bc-%ec%a0%9c%ea%b3%b5%ed%95%98%ec%84%b8%ec%9a%94--%ec%9e%90%ec%8b%a0%ec%9d%84-%eb%b0%98%eb%b3%b5%ed%95%98%eb%8a%94-%ea%b2%83%ec%9d%84-%eb%a9%88%ec%b6%94%ec%84%b8%ec%9a%94 aria-label="결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요">결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=agentmemory-ai-코딩-에이전트를-위한-persistente-메모리-시스템-1위--22000-스타의-실제-벤치마크--2026-실전-가이드>AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드<a hidden class=anchor aria-hidden=true href=#agentmemory-ai-코딩-에이전트를-위한-persistente-메모리-시스템-1위--22000-스타의-실제-벤치마크--2026-실전-가이드>#</a></h1><pre tabindex=0><code>┌──────────────────────────────────────────────────────┐
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ AgentMemory 아키텍처 │ │ │ │ ┌────────────┐ ┌────────────┐ ┌──────────────┐ │ │ │ 세션 1 │ │ 세션 2 │ │ 세션 N │ │ │ │ (Claude) │ │ (Codex) │ │ (OpenCode) │ │ │ └─────┬──────┘ └─────┬──────┘ └──────┬───────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ 메모리 저장 레이어 │ │ │ │ • 벡터 DB (임베딩) │ │ │ │ • 그래프 DB (관계) │ │ │ │ • 키-값 (사실, 결정) │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 쿼리 및 검색 │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ 에이전트가 메모리에서 컨텍스트 획득 │ │ │ │ \"지난번에 인증 버그를 수정했죠...\" │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트\n서론 AI 코딩 에이전트는 세션 간에 모든 것을 잊어버립니다. 화요일에 버그를 고치고 수요일에 돌아오면, 에이전트가 코드베이스를 처음부터 다시 설명해달라고 합니다 — AgentMemory (22,038 GitHub stars)는 AI 코딩 에이전트에 persistente 메모리를 제공하여 이 문제를 해결합니다: 과거 세션, 핵심 결정, 버그 수정, 아키텍처 패턴을 며칠, 몇 주, 몇 달에 걸쳐 기억합니다. 실제 개발 워크플로우로 벤치마킹하여 에이전트 정확도를 34% 향상시키고 온보딩 시간을 60% 단축합니다. Claude Code, Codex CLI, OpenCode 및 도구 호출을 지원하는 모든 에이전트에서 작동합니다.\nAgentMemory란? AgentMemory는 AI 코딩 에이전트를 위한 persistente 메모리 시스템으로, 에이전트가 세션 간에 정보를 기억하고 검색할 수 있게 합니다. 벡터 임베딩, 지식 그래프, 구조화된 사실 저장을 조합하여 에이전트가 각 세션 시작 시 쿼리할 수 있는 검색 가능한 메모리를 생성합니다.\n핵심 기능: - 크로스 세션 메모리 — 과거 세션, 며칠 또는 몇 주 전에 일어난 일 기억\n멀티 에이전트 지원 — Claude Code, Codex, OpenCode 간 메모리 공유 구조화된 사실 — 결정, 버그 수정, 아키텍처 패턴을 구조화된 데이터로 저장 시맨틱 검색 — 임베딩 기반 검색으로 관련 과거 컨텍스트 찾기 자동 추출 — 수동 설정 없이 중요 사실 추출 및 저장 실제 벤치마크 — 500+ 실제 개발 세션에서 테스트됨 Python으로 구축되었으며, 벡터 저장을 위해 ChromaDB, 그래프 연산을 위해 networkx, 구조화된 데이터를 위해 SQLite를 사용합니다.\nAgentMemory 작동 방식 단계 1: 메모리 추출 # 메모리 저장소 초기화 agentmemory init --project ./my-project # 에이전트 세션 실행 — 메모리가 자동으로 캡처됨 # (Claude Code / Codex CLI에서 훅으로 통합) claude-code # 백그라운드: 모든 도구 호출, 결정, 코드 변경사항이 # 추출되어 메모리에 저장됨 # 메모리 저장 위치: ./my-project/.agentmemory/ # - facts.db (구조화된 사실) # - embeddings/ (벡터 저장소) # - graph.db (지식 그래프) 단계 2: 메모리 저장 # 메모리 추출 파이프라인 from agentmemory import MemoryExtractor extractor = MemoryExtractor( db_path=\"./my-project/.agentmemory/facts.db\", vector_store=\"chromadb\", vector_path=\"./my-project/.agentmemory/embeddings/\", graph_db=\"networkx\", ) # 세션 후 핵심 정보 추출 extractor.extract_from_session( session_dir=\"./sessions/session_20260608\", extract_types=[\"decisions\", \"fixes\", \"patterns\", \"config\"] ) # 결과: # - 47개 사실 추출 (버그 수정, 결정, 패턴) # - 12개 벡터 임베딩 저장 # - 지식 그래프에 89개 엣지 단계 3: 메모리 검색 # 새 세션을 위한 관련 메모리 검색 from agentmemory import MemoryRetriever retriever = MemoryRetriever( project_dir=\"./my-project\", top_k=10, min_relevance=0.6 ) # 현재 컨텍스트를 기반으로 메모리 쿼리 context = retriever.retrieve( query=\"Previous auth-related changes and decisions\", session_type=\"coding\" ) # 구조화된 메모리 컨텍스트 반환: # [ # {\"type\": \"fix\", \"date\": \"2026-06-05\", \"summary\": \"JWT token refresh 문제 수정\"}, # {\"type\": \"decision\", \"date\": \"2026-06-01\", \"summary\": \"비밀번호 해싱에 bcrypt 선택\"}, # ... # ] 설치 및 설정 빠른 시작 pip install agentmemory # 프로젝트를 위해 초기화 agentmemory init --project ./my-app # 메모리 활성화하여 실행 agentmemory run \\ --agent claude-code \\ --project ./my-app \\ --session-dir ./sessions Docker 배포 docker run -d \\ --name agentmemory \\ -v $(pwd)/project:/project \\ -p 9090:9090 \\ ghcr.io/rohitg00/agentmemory:latest \\ server --data /project/.agentmemory # API를 통해 메모리 쿼리 curl -X POST http://localhost:9090/query \\ -H \"Content-Type: application/json\" \\ -d '{\"query\": \"What bugs were fixed last week?\", \"top_k\": 5}\" | jq 메모리 저장 옵션 # 스토리지 백엔드 선택 config = { \"vector_store\": \"chromadb\", # \"chromadb\" | \"qdrant\" | \"weaviate\" | \"sqlite\" \"graph_store\": \"networkx\", # \"networkx\" | \"neo4j\" | \"rustfs\" \"fact_store\": \"sqlite\", # \"sqlite\" | \"postgres\" | \"mongo\" } # ChromaDB (기본값, 로컬, 제로 구성) agentmemory init --vector-store chromadb # Qdrant (분산, 프로덕션) agentmemory init --vector-store qdrant --qdrant-url http://qdrant:6333 # Neo4j (그래프 중심 사용 사례) agentmemory init --graph-store neo4j --neo4j-url bolt://neo4j:7687 Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합 AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다: ### Claude Code\n# AgentMemory Claude Code 플러그인 agentmemory install claude-code # 이제 모든 Claude Code 세션이 자동으로: # 1. 시작 시 관련 메모리 검색 # 2. 세션 중 새 사실 저장 # 3. 세션 종료 시 메모리 업데이트 Codex CLI # 메모리 프로젝트 설정 export AGENTMEMORY_PROJECT=./my-project # Codex CLI는 각 세션 전에 메모리를 읽고 # 완료 후 결과를 저장합니다 OpenCode # OpenCode 플러그인 agentmemory install opencode # 메모리 컨텍스트가 도구 호출로 주입됨: # agentmemory.query(\"auth-related changes\") # 관련 과거 컨텍스트를 구조화된 데이터로 반환 신뢰할 수 있는 호스팅을 위해 DigitalOcean droplet에서 팀 공유 메모리를 위해, 또는 HTStack에서 아시아-태평양 저지연을 위해 배포하세요.\n벤치마크 / 실제 사용 사례 메모리가 에이전트 성능에 미치는 영향 500개의 실제 개발 세션(버그 수정, 기능 구현, 리팩토링)에서 테스트: | 지표 | 메모리 없음 | AgentMemory 사용 | 개선률 | |——|———–|—————–|——–| | 컨텍스트 정확도 | 58% | 89% | +53% | | 버그 수정 완료 시간 | 42분 | 28분 | -33% | | 과거 실수 반복 | 23% | 7% | -70% | | 새 개발자 온보딩 | 5일 | 2일 | -60% |\n시간 경과에 따른 기억 보존 다른 시간 간격 동안 메모리 지속성: | 마지막 세션 이후 시간 | 정확도 | |———————|——–| | 같은 날 | 96% | | 1주 | 91% | | 1개월 | 84% | | 3개월 | 72% | | 6개월 | 61% |\n실제 사용 사례: 팀 개발 5인 개발팀이 AgentMemory 사용: `````bash\n개발자 A가 월요일에 인증 버그 수정 개발자 B가 화요일에 동일한 작업 처리 AgentMemory가 A의 수정 및 컨텍스트 검색 agentmemory query –project ./my-app –query “authentication bug fixes” –since “2026-06-02”\n반환: # - 2026-06-02에 dev-A가 적용한 수정 - 근본 원인: 만료된 JWT token - 해결책: token refresh middleware 추가 - 관련 파일: middleware/auth.py, services/jwt.js ## 고급 사용 / 프로덕션 견고화 ### 사용자 정의 메모리 스키마 `````python # 프로젝트를 위한 사용자 정의 메모리 스키마 정의 from agentmemory import SchemaBuilder schema = SchemaBuilder() schema.add_fact_type( name=\"code_review\", fields=[\"reviewer\", \"file\", \"changes\", \"decision\"], searchable=True ) schema.add_fact_type( name=\"architecture_decision\", fields=[\"decision\", \"rationale\", \"alternatives\", \"date\"], searchable=True ) schema.add_relationship( source=\"code_review\", target=\"architecture_decision\", relation=\"affects\" ) 팀 메모리 동기화 # 원격 저장소를 통해 팀원 간 메모리 동기화 agentmemory sync \\ --remote git@github.com:myorg/agentmemory-data.git \\ --branch memory \\ --interval 3600 # 각 개발자가 세션 전에 최신 메모리 pull agentmemory pull --project ./my-app 메모리 분석 # 메모리 통계 확인 agentmemory stats --project ./my-app # 출력: # 총 사실 수: 1,247 # 총 세션 수: 89 # 가장 흔한 사실 유형: \"bug_fix\" (34%) # 메모리 성장: 이번 주 +127 사실 # 상위 검색어: \"auth\", \"database\", \"API endpoint\" # 분석을 위해 메모리 내보내기 agentmemory export --format json --output ./memory-report.json 대체製品와의 비교 기능 AgentMemory Cursor Memories GitHub Copilot Chat 커스텀 RAG Persistent 메모리 예 예 (로컬 전용) 아니오 예 크로스 세션 예 아니오 아니오 예 멀티 에이전트 6+ 에이전트 Cursor 전용 Copilot 전용 커스텀 구조화된 사실 예 아니오 아니오 예 그래프 관계 예 아니오 아니오 예 실제 벤치마크 예 아니오 아니오 아니오 오픈소스 예 (MIT) 아니오 아니오 예 셀프 호스팅 예 예 아니오 예 GitHub stars 22,038 — — — 대체 제품 비교: AgentMemory vs. 전통적 에이전트 측면 AgentMemory 메모리 없는 에이전트 수동 컨텍스트 전달 컨텍스트 보존 세션 간 persistent 세션 종료 시 잊음 수동 복사 붙여넣기 필요 정보 검색 속도 밀리초 시맨틱 검색 N/A 분 단위 수동 검색 구조화 수준 높음 (사실+그래프+벡터) 없음 낮음 (순수 텍스트) 확장성 멀티 에이전트 공유 지원 단일 세션 단일 사용자 자동화 수준 완전 자동 추출 완전 수동 부분 자동 프라이버시 제어 로컬 저장, 감청 가능 N/A 도구에 의존 제한 / 솔직한 평가 AgentMemory는 모든 사람에게 적합하지 않습니다: 1. 소규모 개인 프로젝트 — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다. 2. 프라이버시 민감한 코드 — 메모리는 코드 패턴과 결정을 로컬에 저장합니다. 기업 코드베이스의 경우 추출 및 저장된 사실을 검토해야 합니다. 프로젝트에 프라이버시 컨트롤이 있지만 스키마를 신중히 검토하세요. 3. 콜드 스타트 기간 — 메모리는 구축에 시간이 필요합니다. 새 프로젝트는 빈 메모리로 시작하며, 시스템이 유용해지려면 10-20개의 세션이 필요합니다. 이 준비 기간을 계획하세요. 4. 메모리 드리프트 — 시간이 지남에 따라 오래된 사실이 에이전트를 혼란스럽게 할 수 있습니다. 정기적인 메모리 정리(월간 권장, agentmemory prune --older-than 90d 사용)를 구현하세요. 5. 벡터 DB 복잡성 — 여러 에이전트를 위한 프로덕션 배포의 경우, ChromaDB/Qdrant/Neo4j 관리는 운영 오버헤드를 추가합니다. 간단한 설정은 SQLite로 시작하세요.\n자주 묻는 질문 Q: AgentMemory는 프라이버시 안전한가요?\nA: 네. 모든 메모리는 기본적으로 로컬에 저장됩니다. 원격 동기화를 구성하지 않는 한 데이터가 머신을 떠나지 않습니다. 어떤 사실이 추출되고 저장되는지 통제할 수 있습니다. 이 프로젝트는 오픈소스(MIT)이므로 추출 로직을 감사할 수 있습니다.\nQ: 메모리는 얼마나 많은 저장 공간을 사용하나요?\nA: 일반적인 사용량: 중형 프로젝트(10K-100K 라인, 50-200 세션)에 5-50MB. 메모리는 복잡성에 따라 세션당 약 100-500KB씩 성장합니다.\nQ: AgentMemory는 로컬 LLM과 함께 작동하나요?\nA: 네. AgentMemory는 에이전트 비종속적이며 도구 호출을 지원하는 모든 에이전트와 작동합니다. Ollama와 같은 로컬 LLM을 사용하는 에이전트도 포함됩니다.\nQ: 오래된 메모리는 어떻게 정리하나요?\nA: agentmemory prune --older-than 90d를 사용하여 90일 이상된 사실을 제거합니다. 설정에서 자동 정리를 설정할 수도 있습니다: ````cleanup_threshold_days: 90```.\nQ: 비코딩 작업에 사용할 수 있나요?\nA: 코딩 에이전트를 위해 설계되었지만 메모리 시스템은 범용적입니다. 사용자 정의 사실 유형을 정의하여 어떤 에이전트 워크플로우에도 사용할 수 있습니다 — 데이터 과학, 연구, 자동화 등.\n출처 및 추가 자료 공식 문서: https://github.com/rohitg00/agentmemory GitHub 저장소: https://github.com/rohitg00/agentmemory 벤치마크 방법론: https://github.com/rohitg00/agentmemory/blob/main/docs/BENCHMARKS.md 프라이버시 가이드: https://github.com/rohitg00/agentmemory/blob/main/docs/PRIVACY.md 커뮤니티 토론: https://github.com/rohitg00/agentmemory/discussions 결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요 AgentMemory는 AI 코딩 에이전트를 단일 세션 도구에서 평생 협력자로 바꾸는 핵심 요소입니다. 과거 결정, 버그 수정, 패턴을 기억함으로써 에이전트는 모든 상호작용마다 더 똑똑하고 정확해집니다. 벤치마크는 실제입니다: 정확도 53% 향상, 온보딩 60% 가속, 실수 반복 70% 감소.\n매주 프로젝트에 돌아오는 개인 개발자이든, 코드 컨텍스트를 공유하는 팀이든, 프로덕션 AI 워크플로우를 구축하는 것이든, AgentMemory는 실제로 기억하는 에이전트를 위한 기반을 제공합니다.\ndibi8 한국어 텔레그램 그룹 dibi8 한국어 Telegram 그룹에 참여하여 AgentMemory 구성에 대해 논의하세요. 보완적인 AI 도구를 위해 headroom 토큰 압축 및 codegraph 지식 그래프 가이드를 확인하세요. 오늘 AgentMemory를 시작하세요 — 설치하고 몇 세션 동안 학습시키면 에이전트가 시간이 지남에 따라 더 똑똑해지는 것을 볼 수 있습니다.\n추천 도구:\nBinance: Binance으로 거래 시작. 등록 https://www.bsmkweb.cc/register?ref=DIBI8 OKX 거래소: OKX로 거래. 등록 https://www.promoohubly.com/join/12190433 WebShare: WebShare로 익명 브라우징. 시작하기 https://www.webshare.io/?referral_code=oa14d5f0wx4f DigitalOcean: DigitalOcean에 프로젝트 배포. 등록 https://m.do.co/c/eca87ac14ee0 HTStack: 클라우드 인프라 관리. 가입 https://my.htstack.com/aff.php?aff=27187 위 링크 중 일부는 제휴 링크입니다. 링크를 통해 등록하면 dibi8.com이 수수료를 받을 수 있으며, 이용자에게는 추가 비용이 없습니다. 이는 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드”, “datePublished”: “2026-06-08”, “dateModified”: “2026-06-08”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/agentmemory-persistent-memory-ai-coding-agents\" } } Related Articles codebase-memory-mcp-high-performance-code-intelligence 12-factor-agents 2026-05-25-trending-ai-agents 2026-06-01-trending-ai-agents 2026-06-08-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1806",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#agentmemory-ai-%ec%bd%94%eb%94%a9-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%eb%a5%bc-%ec%9c%84%ed%95%9c-persistente-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%8b%9c%ec%8a%a4%ed%85%9c-1%ec%9c%84--22000-%ec%8a%a4%ed%83%80%ec%9d%98-%ec%8b%a4%ec%a0%9c-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--2026-%ec%8b%a4%ec%a0%84-%ea%b0%80%ec%9d%b4%eb%93%9c" aria-label="AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드">AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드</a><ul>
+                    
+            <li>
+                <a href="#%ec%84%9c%eb%a1%a0" aria-label="서론">서론</a></li>
+            <li>
+                <a href="#agentmemory%eb%9e%80" aria-label="AgentMemory란?">AgentMemory란?</a></li>
+            <li>
+                <a href="#agentmemory-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="AgentMemory 작동 방식">AgentMemory 작동 방식</a><ul>
+                    
+            <li>
+                <a href="#%eb%8b%a8%ea%b3%84-1-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%b6%94%ec%b6%9c" aria-label="단계 1: 메모리 추출">단계 1: 메모리 추출</a></li>
+            <li>
+                <a href="#%eb%8b%a8%ea%b3%84-2-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%a0%80%ec%9e%a5" aria-label="단계 2: 메모리 저장">단계 2: 메모리 저장</a></li>
+            <li>
+                <a href="#%eb%8b%a8%ea%b3%84-3-%eb%a9%94%eb%aa%a8%eb%a6%ac-%ea%b2%80%ec%83%89" aria-label="단계 3: 메모리 검색">단계 3: 메모리 검색</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                    
+            <li>
+                <a href="#%eb%b9%a0%eb%a5%b8-%ec%8b%9c%ec%9e%91" aria-label="빠른 시작">빠른 시작</a></li>
+            <li>
+                <a href="#docker-%eb%b0%b0%ed%8f%ac" aria-label="Docker 배포">Docker 배포</a></li>
+            <li>
+                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%ec%a0%80%ec%9e%a5-%ec%98%b5%ec%85%98" aria-label="메모리 저장 옵션">메모리 저장 옵션</a></li></ul>
+            </li>
+            <li>
+                <a href="#claude-code-codex-cli-opencode-gemini-cli%ec%99%80%ec%9d%98-%ed%86%b5%ed%95%a9" aria-label="Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합">Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합</a><ul>
+                    
+            <li>
+                <a href="#codex-cli" aria-label="Codex CLI">Codex CLI</a></li>
+            <li>
+                <a href="#opencode" aria-label="OpenCode">OpenCode</a></li></ul>
+            </li>
+            <li>
+                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul>
+                    
+            <li>
+                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac%ea%b0%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%84%b1%eb%8a%a5%ec%97%90-%eb%af%b8%ec%b9%98%eb%8a%94-%ec%98%81%ed%96%a5" aria-label="메모리가 에이전트 성능에 미치는 영향">메모리가 에이전트 성능에 미치는 영향</a></li>
+            <li>
+                <a href="#%ec%8b%9c%ea%b0%84-%ea%b2%bd%ea%b3%bc%ec%97%90-%eb%94%b0%eb%a5%b8-%ea%b8%b0%ec%96%b5-%eb%b3%b4%ec%a1%b4" aria-label="시간 경과에 따른 기억 보존">시간 경과에 따른 기억 보존</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80-%ed%8c%80-%ea%b0%9c%eb%b0%9c" aria-label="실제 사용 사례: 팀 개발">실제 사용 사례: 팀 개발</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b0%9c%eb%b0%9c%ec%9e%90-a%ea%b0%80-%ec%9b%94%ec%9a%94%ec%9d%bc%ec%97%90-%ec%9d%b8%ec%a6%9d-%eb%b2%84%ea%b7%b8-%ec%88%98%ec%a0%95" aria-label="개발자 A가 월요일에 인증 버그 수정">개발자 A가 월요일에 인증 버그 수정</a></li>
+            <li>
+                <a href="#%ea%b0%9c%eb%b0%9c%ec%9e%90-b%ea%b0%80-%ed%99%94%ec%9a%94%ec%9d%bc%ec%97%90-%eb%8f%99%ec%9d%bc%ed%95%9c-%ec%9e%91%ec%97%85-%ec%b2%98%eb%a6%ac" aria-label="개발자 B가 화요일에 동일한 작업 처리">개발자 B가 화요일에 동일한 작업 처리</a></li>
+            <li>
+                <a href="#agentmemory%ea%b0%80-a%ec%9d%98-%ec%88%98%ec%a0%95-%eb%b0%8f-%ec%bb%a8%ed%85%8d%ec%8a%a4%ed%8a%b8-%ea%b2%80%ec%83%89" aria-label="AgentMemory가 A의 수정 및 컨텍스트 검색">AgentMemory가 A의 수정 및 컨텍스트 검색</a></li>
+            <li>
+                <a href="#%eb%b0%98%ed%99%98----2026-06-02%ec%97%90-dev-a%ea%b0%80-%ec%a0%81%ec%9a%a9%ed%95%9c-%ec%88%98%ec%a0%95" aria-label="반환: # - 2026-06-02에 dev-A가 적용한 수정">반환: # - 2026-06-02에 dev-A가 적용한 수정</a></li>
+            <li>
+                <a href="#--%ea%b7%bc%eb%b3%b8-%ec%9b%90%ec%9d%b8-%eb%a7%8c%eb%a3%8c%eb%90%9c-jwt-token" aria-label="- 근본 원인: 만료된 JWT token">- 근본 원인: 만료된 JWT token</a></li>
+            <li>
+                <a href="#--%ed%95%b4%ea%b2%b0%ec%b1%85-token-refresh-middleware-%ec%b6%94%ea%b0%80" aria-label="- 해결책: token refresh middleware 추가">- 해결책: token refresh middleware 추가</a></li>
+            <li>
+                <a href="#--%ea%b4%80%eb%a0%a8-%ed%8c%8c%ec%9d%bc-middlewareauthpy-servicesjwtjs" aria-label="- 관련 파일: middleware/auth.py, services/jwt.js">- 관련 파일: middleware/auth.py, services/jwt.js</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#%ed%8c%80-%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%8f%99%ea%b8%b0%ed%99%94" aria-label="팀 메모리 동기화">팀 메모리 동기화</a></li>
+            <li>
+                <a href="#%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%b6%84%ec%84%9d" aria-label="메모리 분석">메모리 분석</a></li></ul>
+                
+            <li>
+                <a href="#%eb%8c%80%ec%b2%b4%e8%a3%bd%e5%93%81%ec%99%80%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대체製品와의 비교">대체製品와의 비교</a></li>
+            <li>
+                <a href="#%eb%8c%80%ec%b2%b4-%ec%a0%9c%ed%92%88-%eb%b9%84%ea%b5%90-agentmemory-vs-%ec%a0%84%ed%86%b5%ec%a0%81-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8" aria-label="대체 제품 비교: AgentMemory vs. 전통적 에이전트">대체 제품 비교: AgentMemory vs. 전통적 에이전트</a></li>
+            <li>
+                <a href="#%ec%a0%9c%ed%95%9c--%ec%86%94%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="제한 / 솔직한 평가">제한 / 솔직한 평가</a></li>
+            <li>
+                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a></li>
+            <li>
+                <a href="#%ec%b6%9c%ec%b2%98-%eb%b0%8f-%ec%b6%94%ea%b0%80-%ec%9e%90%eb%a3%8c" aria-label="출처 및 추가 자료">출처 및 추가 자료</a></li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0-ai-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8%ec%97%90-%eb%a9%94%eb%aa%a8%eb%a6%ac%eb%a5%bc-%ec%a0%9c%ea%b3%b5%ed%95%98%ec%84%b8%ec%9a%94--%ec%9e%90%ec%8b%a0%ec%9d%84-%eb%b0%98%eb%b3%b5%ed%95%98%eb%8a%94-%ea%b2%83%ec%9d%84-%eb%a9%88%ec%b6%94%ec%84%b8%ec%9a%94" aria-label="결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요">결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="agentmemory-ai-코딩-에이전트를-위한-persistente-메모리-시스템-1위--22000-스타의-실제-벤치마크--2026-실전-가이드">AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드<a hidden class="anchor" aria-hidden="true" href="#agentmemory-ai-코딩-에이전트를-위한-persistente-메모리-시스템-1위--22000-스타의-실제-벤치마크--2026-실전-가이드">#</a></h1>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────────┐
 │              AgentMemory 아키텍처                      │
 │                                                      │
 │  ┌────────────┐  ┌────────────┐  ┌──────────────┐   │
@@ -25,121 +320,166 @@
 │  │  &#34;지난번에 인증 버그를 수정했죠...&#34;              │   │
 │  └───────────────────────────────────────────────┘   │
 └──────────────────────────────────────────────────────┘
-</code></pre><p><em>AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트</em></p><h2 id=서론>서론<a hidden class=anchor aria-hidden=true href=#서론>#</a></h2><p>AI 코딩 에이전트는 세션 간에 모든 것을 잊어버립니다. 화요일에 버그를 고치고 수요일에 돌아오면, 에이전트가 코드베이스를 처음부터 다시 설명해달라고 합니다 — AgentMemory (22,038 GitHub stars)는 AI 코딩 에이전트에 persistente 메모리를 제공하여 이 문제를 해결합니다: 과거 세션, 핵심 결정, 버그 수정, 아키텍처 패턴을 며칠, 몇 주, 몇 달에 걸쳐 기억합니다. 실제 개발 워크플로우로 벤치마킹하여 에이전트 정확도를 34% 향상시키고 온보딩 시간을 60% 단축합니다. Claude Code, Codex CLI, OpenCode 및 도구 호출을 지원하는 모든 에이전트에서 작동합니다.</p><h2 id=agentmemory란>AgentMemory란?<a hidden class=anchor aria-hidden=true href=#agentmemory란>#</a></h2><p>AgentMemory는 <strong>AI 코딩 에이전트를 위한 persistente 메모리 시스템</strong>으로, 에이전트가 세션 간에 정보를 기억하고 검색할 수 있게 합니다. 벡터 임베딩, 지식 그래프, 구조화된 사실 저장을 조합하여 에이전트가 각 세션 시작 시 쿼리할 수 있는 검색 가능한 메모리를 생성합니다.</p><p>핵심 기능: - <strong>크로스 세션 메모리</strong> — 과거 세션, 며칠 또는 몇 주 전에 일어난 일 기억</p><ul><li><strong>멀티 에이전트 지원</strong> — Claude Code, Codex, OpenCode 간 메모리 공유</li><li><strong>구조화된 사실</strong> — 결정, 버그 수정, 아키텍처 패턴을 구조화된 데이터로 저장</li><li><strong>시맨틱 검색</strong> — 임베딩 기반 검색으로 관련 과거 컨텍스트 찾기</li><li><strong>자동 추출</strong> — 수동 설정 없이 중요 사실 추출 및 저장</li><li><strong>실제 벤치마크</strong> — 500+ 실제 개발 세션에서 테스트됨</li></ul><p>Python으로 구축되었으며, 벡터 저장을 위해 ChromaDB, 그래프 연산을 위해 networkx, 구조화된 데이터를 위해 SQLite를 사용합니다.</p><h2 id=agentmemory-작동-방식>AgentMemory 작동 방식<a hidden class=anchor aria-hidden=true href=#agentmemory-작동-방식>#</a></h2><h3 id=단계-1-메모리-추출>단계 1: 메모리 추출<a hidden class=anchor aria-hidden=true href=#단계-1-메모리-추출>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 메모리 저장소 초기화</span>
-</span></span><span style=display:flex><span>agentmemory init --project ./my-project
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 에이전트 세션 실행 — 메모리가 자동으로 캡처됨</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># (Claude Code / Codex CLI에서 훅으로 통합)</span>
-</span></span><span style=display:flex><span>claude-code
-</span></span><span style=display:flex><span><span style=color:#75715e># 백그라운드: 모든 도구 호출, 결정, 코드 변경사항이</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 추출되어 메모리에 저장됨</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 메모리 저장 위치: ./my-project/.agentmemory/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - facts.db (구조화된 사실)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - embeddings/ (벡터 저장소)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - graph.db (지식 그래프)</span>
-</span></span></code></pre></div><h3 id=단계-2-메모리-저장>단계 2: 메모리 저장<a hidden class=anchor aria-hidden=true href=#단계-2-메모리-저장>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 메모리 추출 파이프라인</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agentmemory <span style=color:#f92672>import</span> MemoryExtractor
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>extractor <span style=color:#f92672>=</span> MemoryExtractor(
-</span></span><span style=display:flex><span>    db_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./my-project/.agentmemory/facts.db&#34;</span>,
-</span></span><span style=display:flex><span>    vector_store<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;chromadb&#34;</span>,
-</span></span><span style=display:flex><span>    vector_path<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./my-project/.agentmemory/embeddings/&#34;</span>,
-</span></span><span style=display:flex><span>    graph_db<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;networkx&#34;</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 세션 후 핵심 정보 추출</span>
-</span></span><span style=display:flex><span>extractor<span style=color:#f92672>.</span>extract_from_session(
-</span></span><span style=display:flex><span>    session_dir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./sessions/session_20260608&#34;</span>,
-</span></span><span style=display:flex><span>    extract_types<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;decisions&#34;</span>, <span style=color:#e6db74>&#34;fixes&#34;</span>, <span style=color:#e6db74>&#34;patterns&#34;</span>, <span style=color:#e6db74>&#34;config&#34;</span>]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 결과: # - 47개 사실 추출 (버그 수정, 결정, 패턴)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 12개 벡터 임베딩 저장</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 지식 그래프에 89개 엣지</span>
-</span></span></code></pre></div><h3 id=단계-3-메모리-검색>단계 3: 메모리 검색<a hidden class=anchor aria-hidden=true href=#단계-3-메모리-검색>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 새 세션을 위한 관련 메모리 검색</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agentmemory <span style=color:#f92672>import</span> MemoryRetriever
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>retriever <span style=color:#f92672>=</span> MemoryRetriever(
-</span></span><span style=display:flex><span>    project_dir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./my-project&#34;</span>,
-</span></span><span style=display:flex><span>    top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    min_relevance<span style=color:#f92672>=</span><span style=color:#ae81ff>0.6</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 현재 컨텍스트를 기반으로 메모리 쿼리</span>
-</span></span><span style=display:flex><span>context <span style=color:#f92672>=</span> retriever<span style=color:#f92672>.</span>retrieve(
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Previous auth-related changes and decisions&#34;</span>,
-</span></span><span style=display:flex><span>    session_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;coding&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 구조화된 메모리 컨텍스트 반환: # [</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   {&#34;type&#34;: &#34;fix&#34;, &#34;date&#34;: &#34;2026-06-05&#34;, &#34;summary&#34;: &#34;JWT token refresh 문제 수정&#34;},</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   {&#34;type&#34;: &#34;decision&#34;, &#34;date&#34;: &#34;2026-06-01&#34;, &#34;summary&#34;: &#34;비밀번호 해싱에 bcrypt 선택&#34;},</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   ...</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ]</span>
-</span></span></code></pre></div><h2 id=설치-및-설정>설치 및 설정<a hidden class=anchor aria-hidden=true href=#설치-및-설정>#</a></h2><h3 id=빠른-시작>빠른 시작<a hidden class=anchor aria-hidden=true href=#빠른-시작>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install agentmemory
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 프로젝트를 위해 초기화</span>
-</span></span><span style=display:flex><span>agentmemory init --project ./my-app
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 메모리 활성화하여 실행</span>
-</span></span><span style=display:flex><span>agentmemory run <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --agent claude-code <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --project ./my-app <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --session-dir ./sessions
-</span></span></code></pre></div><h3 id=docker-배포>Docker 배포<a hidden class=anchor aria-hidden=true href=#docker-배포>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name agentmemory <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v <span style=color:#66d9ef>$(</span>pwd<span style=color:#66d9ef>)</span>/project:/project <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 9090:9090 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  ghcr.io/rohitg00/agentmemory:latest <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  server --data /project/.agentmemory
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># API를 통해 메모리 쿼리</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:9090/query <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#f92672>{</span><span style=color:#e6db74>&#34;query&#34;</span>: <span style=color:#e6db74>&#34;What bugs were fixed last week?&#34;</span>, <span style=color:#e6db74>&#34;top_k&#34;</span>: 5<span style=color:#f92672>}</span><span style=color:#e6db74>&#34; | jq
-</span></span></span></code></pre></div><h3 id=메모리-저장-옵션>메모리 저장 옵션<a hidden class=anchor aria-hidden=true href=#메모리-저장-옵션>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 스토리지 백엔드 선택</span>
-</span></span><span style=display:flex><span>config <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;vector_store&#34;</span>: <span style=color:#e6db74>&#34;chromadb&#34;</span>,  <span style=color:#75715e># &#34;chromadb&#34; | &#34;qdrant&#34; | &#34;weaviate&#34; | &#34;sqlite&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;graph_store&#34;</span>: <span style=color:#e6db74>&#34;networkx&#34;</span>,    <span style=color:#75715e># &#34;networkx&#34; | &#34;neo4j&#34; | &#34;rustfs&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fact_store&#34;</span>: <span style=color:#e6db74>&#34;sqlite&#34;</span>,       <span style=color:#75715e># &#34;sqlite&#34; | &#34;postgres&#34; | &#34;mongo&#34;</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ChromaDB (기본값, 로컬, 제로 구성)</span>
-</span></span><span style=display:flex><span>agentmemory init <span style=color:#f92672>--</span>vector<span style=color:#f92672>-</span>store chromadb
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Qdrant (분산, 프로덕션)</span>
-</span></span><span style=display:flex><span>agentmemory init <span style=color:#f92672>--</span>vector<span style=color:#f92672>-</span>store qdrant <span style=color:#f92672>--</span>qdrant<span style=color:#f92672>-</span>url http:<span style=color:#f92672>//</span>qdrant:<span style=color:#ae81ff>6333</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Neo4j (그래프 중심 사용 사례)</span>
-</span></span><span style=display:flex><span>agentmemory init <span style=color:#f92672>--</span>graph<span style=color:#f92672>-</span>store neo4j <span style=color:#f92672>--</span>neo4j<span style=color:#f92672>-</span>url bolt:<span style=color:#f92672>//</span>neo4j:<span style=color:#ae81ff>7687</span>
-</span></span></code></pre></div><h2 id=claude-code-codex-cli-opencode-gemini-cli와의-통합>Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합<a hidden class=anchor aria-hidden=true href=#claude-code-codex-cli-opencode-gemini-cli와의-통합>#</a></h2><p>AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다: ### Claude Code</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># AgentMemory Claude Code 플러그인</span>
-</span></span><span style=display:flex><span>agentmemory install claude-code
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 이제 모든 Claude Code 세션이 자동으로: # 1. 시작 시 관련 메모리 검색</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. 세션 중 새 사실 저장</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. 세션 종료 시 메모리 업데이트</span>
-</span></span></code></pre></div><h3 id=codex-cli>Codex CLI<a hidden class=anchor aria-hidden=true href=#codex-cli>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 메모리 프로젝트 설정</span>
-</span></span><span style=display:flex><span>export AGENTMEMORY_PROJECT<span style=color:#f92672>=</span>./my-project
-</span></span><span style=display:flex><span><span style=color:#75715e># Codex CLI는 각 세션 전에 메모리를 읽고</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 완료 후 결과를 저장합니다</span>
-</span></span></code></pre></div><h3 id=opencode>OpenCode<a hidden class=anchor aria-hidden=true href=#opencode>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># OpenCode 플러그인</span>
-</span></span><span style=display:flex><span>agentmemory install opencode
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 메모리 컨텍스트가 도구 호출로 주입됨: # agentmemory.query(&#34;auth-related changes&#34;)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 관련 과거 컨텍스트를 구조화된 데이터로 반환</span>
-</span></span></code></pre></div><p>신뢰할 수 있는 호스팅을 위해 <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> droplet에서 팀 공유 메모리를 위해, 또는 <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>에서 아시아-태평양 저지연을 위해 배포하세요.</p><h2 id=벤치마크--실제-사용-사례>벤치마크 / 실제 사용 사례<a hidden class=anchor aria-hidden=true href=#벤치마크--실제-사용-사례>#</a></h2><h3 id=메모리가-에이전트-성능에-미치는-영향>메모리가 에이전트 성능에 미치는 영향<a hidden class=anchor aria-hidden=true href=#메모리가-에이전트-성능에-미치는-영향>#</a></h3><p>500개의 실제 개발 세션(버그 수정, 기능 구현, 리팩토링)에서 테스트: | 지표 | 메모리 없음 | AgentMemory 사용 | 개선률 |
+</code></pre><p><em>AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트</em></p>
+<h2 id="서론">서론<a hidden class="anchor" aria-hidden="true" href="#서론">#</a></h2>
+<p>AI 코딩 에이전트는 세션 간에 모든 것을 잊어버립니다. 화요일에 버그를 고치고 수요일에 돌아오면, 에이전트가 코드베이스를 처음부터 다시 설명해달라고 합니다 — AgentMemory (22,038 GitHub stars)는 AI 코딩 에이전트에 persistente 메모리를 제공하여 이 문제를 해결합니다: 과거 세션, 핵심 결정, 버그 수정, 아키텍처 패턴을 며칠, 몇 주, 몇 달에 걸쳐 기억합니다. 실제 개발 워크플로우로 벤치마킹하여 에이전트 정확도를 34% 향상시키고 온보딩 시간을 60% 단축합니다. Claude Code, Codex CLI, OpenCode 및 도구 호출을 지원하는 모든 에이전트에서 작동합니다.</p>
+<h2 id="agentmemory란">AgentMemory란?<a hidden class="anchor" aria-hidden="true" href="#agentmemory란">#</a></h2>
+<p>AgentMemory는 <strong>AI 코딩 에이전트를 위한 persistente 메모리 시스템</strong>으로, 에이전트가 세션 간에 정보를 기억하고 검색할 수 있게 합니다. 벡터 임베딩, 지식 그래프, 구조화된 사실 저장을 조합하여 에이전트가 각 세션 시작 시 쿼리할 수 있는 검색 가능한 메모리를 생성합니다.</p>
+<p>핵심 기능: - <strong>크로스 세션 메모리</strong> — 과거 세션, 며칠 또는 몇 주 전에 일어난 일 기억</p>
+<ul>
+<li><strong>멀티 에이전트 지원</strong> — Claude Code, Codex, OpenCode 간 메모리 공유</li>
+<li><strong>구조화된 사실</strong> — 결정, 버그 수정, 아키텍처 패턴을 구조화된 데이터로 저장</li>
+<li><strong>시맨틱 검색</strong> — 임베딩 기반 검색으로 관련 과거 컨텍스트 찾기</li>
+<li><strong>자동 추출</strong> — 수동 설정 없이 중요 사실 추출 및 저장</li>
+<li><strong>실제 벤치마크</strong> — 500+ 실제 개발 세션에서 테스트됨</li>
+</ul>
+<p>Python으로 구축되었으며, 벡터 저장을 위해 ChromaDB, 그래프 연산을 위해 networkx, 구조화된 데이터를 위해 SQLite를 사용합니다.</p>
+<h2 id="agentmemory-작동-방식">AgentMemory 작동 방식<a hidden class="anchor" aria-hidden="true" href="#agentmemory-작동-방식">#</a></h2>
+<h3 id="단계-1-메모리-추출">단계 1: 메모리 추출<a hidden class="anchor" aria-hidden="true" href="#단계-1-메모리-추출">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 메모리 저장소 초기화</span>
+</span></span><span style="display:flex;"><span>agentmemory init --project ./my-project
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 에이전트 세션 실행 — 메모리가 자동으로 캡처됨</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># (Claude Code / Codex CLI에서 훅으로 통합)</span>
+</span></span><span style="display:flex;"><span>claude-code
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 백그라운드: 모든 도구 호출, 결정, 코드 변경사항이</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 추출되어 메모리에 저장됨</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 저장 위치: ./my-project/.agentmemory/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - facts.db (구조화된 사실)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - embeddings/ (벡터 저장소)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - graph.db (지식 그래프)</span>
+</span></span></code></pre></div><h3 id="단계-2-메모리-저장">단계 2: 메모리 저장<a hidden class="anchor" aria-hidden="true" href="#단계-2-메모리-저장">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 메모리 추출 파이프라인</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agentmemory <span style="color:#f92672">import</span> MemoryExtractor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>extractor <span style="color:#f92672">=</span> MemoryExtractor(
+</span></span><span style="display:flex;"><span>    db_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./my-project/.agentmemory/facts.db&#34;</span>,
+</span></span><span style="display:flex;"><span>    vector_store<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chromadb&#34;</span>,
+</span></span><span style="display:flex;"><span>    vector_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./my-project/.agentmemory/embeddings/&#34;</span>,
+</span></span><span style="display:flex;"><span>    graph_db<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;networkx&#34;</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 세션 후 핵심 정보 추출</span>
+</span></span><span style="display:flex;"><span>extractor<span style="color:#f92672">.</span>extract_from_session(
+</span></span><span style="display:flex;"><span>    session_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./sessions/session_20260608&#34;</span>,
+</span></span><span style="display:flex;"><span>    extract_types<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;decisions&#34;</span>, <span style="color:#e6db74">&#34;fixes&#34;</span>, <span style="color:#e6db74">&#34;patterns&#34;</span>, <span style="color:#e6db74">&#34;config&#34;</span>]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 결과: # - 47개 사실 추출 (버그 수정, 결정, 패턴)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 12개 벡터 임베딩 저장</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 지식 그래프에 89개 엣지</span>
+</span></span></code></pre></div><h3 id="단계-3-메모리-검색">단계 3: 메모리 검색<a hidden class="anchor" aria-hidden="true" href="#단계-3-메모리-검색">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 새 세션을 위한 관련 메모리 검색</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agentmemory <span style="color:#f92672">import</span> MemoryRetriever
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>retriever <span style="color:#f92672">=</span> MemoryRetriever(
+</span></span><span style="display:flex;"><span>    project_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./my-project&#34;</span>,
+</span></span><span style="display:flex;"><span>    top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    min_relevance<span style="color:#f92672">=</span><span style="color:#ae81ff">0.6</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 현재 컨텍스트를 기반으로 메모리 쿼리</span>
+</span></span><span style="display:flex;"><span>context <span style="color:#f92672">=</span> retriever<span style="color:#f92672">.</span>retrieve(
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Previous auth-related changes and decisions&#34;</span>,
+</span></span><span style="display:flex;"><span>    session_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;coding&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 구조화된 메모리 컨텍스트 반환: # [</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   {&#34;type&#34;: &#34;fix&#34;, &#34;date&#34;: &#34;2026-06-05&#34;, &#34;summary&#34;: &#34;JWT token refresh 문제 수정&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   {&#34;type&#34;: &#34;decision&#34;, &#34;date&#34;: &#34;2026-06-01&#34;, &#34;summary&#34;: &#34;비밀번호 해싱에 bcrypt 선택&#34;},</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   ...</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ]</span>
+</span></span></code></pre></div><h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
+<h3 id="빠른-시작">빠른 시작<a hidden class="anchor" aria-hidden="true" href="#빠른-시작">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install agentmemory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 프로젝트를 위해 초기화</span>
+</span></span><span style="display:flex;"><span>agentmemory init --project ./my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 활성화하여 실행</span>
+</span></span><span style="display:flex;"><span>agentmemory run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --agent claude-code <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --project ./my-app <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --session-dir ./sessions
+</span></span></code></pre></div><h3 id="docker-배포">Docker 배포<a hidden class="anchor" aria-hidden="true" href="#docker-배포">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name agentmemory <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v <span style="color:#66d9ef">$(</span>pwd<span style="color:#66d9ef">)</span>/project:/project <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 9090:9090 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  ghcr.io/rohitg00/agentmemory:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  server --data /project/.agentmemory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># API를 통해 메모리 쿼리</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:9090/query <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;What bugs were fixed last week?&#34;</span>, <span style="color:#e6db74">&#34;top_k&#34;</span>: 5<span style="color:#f92672">}</span><span style="color:#e6db74">&#34; | jq
+</span></span></span></code></pre></div><h3 id="메모리-저장-옵션">메모리 저장 옵션<a hidden class="anchor" aria-hidden="true" href="#메모리-저장-옵션">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 스토리지 백엔드 선택</span>
+</span></span><span style="display:flex;"><span>config <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;vector_store&#34;</span>: <span style="color:#e6db74">&#34;chromadb&#34;</span>,  <span style="color:#75715e"># &#34;chromadb&#34; | &#34;qdrant&#34; | &#34;weaviate&#34; | &#34;sqlite&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;graph_store&#34;</span>: <span style="color:#e6db74">&#34;networkx&#34;</span>,    <span style="color:#75715e"># &#34;networkx&#34; | &#34;neo4j&#34; | &#34;rustfs&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fact_store&#34;</span>: <span style="color:#e6db74">&#34;sqlite&#34;</span>,       <span style="color:#75715e"># &#34;sqlite&#34; | &#34;postgres&#34; | &#34;mongo&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ChromaDB (기본값, 로컬, 제로 구성)</span>
+</span></span><span style="display:flex;"><span>agentmemory init <span style="color:#f92672">--</span>vector<span style="color:#f92672">-</span>store chromadb
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Qdrant (분산, 프로덕션)</span>
+</span></span><span style="display:flex;"><span>agentmemory init <span style="color:#f92672">--</span>vector<span style="color:#f92672">-</span>store qdrant <span style="color:#f92672">--</span>qdrant<span style="color:#f92672">-</span>url http:<span style="color:#f92672">//</span>qdrant:<span style="color:#ae81ff">6333</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Neo4j (그래프 중심 사용 사례)</span>
+</span></span><span style="display:flex;"><span>agentmemory init <span style="color:#f92672">--</span>graph<span style="color:#f92672">-</span>store neo4j <span style="color:#f92672">--</span>neo4j<span style="color:#f92672">-</span>url bolt:<span style="color:#f92672">//</span>neo4j:<span style="color:#ae81ff">7687</span>
+</span></span></code></pre></div><h2 id="claude-code-codex-cli-opencode-gemini-cli와의-통합">Claude Code, Codex CLI, OpenCode, Gemini CLI와의 통합<a hidden class="anchor" aria-hidden="true" href="#claude-code-codex-cli-opencode-gemini-cli와의-통합">#</a></h2>
+<p>AgentMemory는 도구 호출을 지원하는 모든 에이전트에 훅/미들웨어로 통합됩니다: ### Claude Code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># AgentMemory Claude Code 플러그인</span>
+</span></span><span style="display:flex;"><span>agentmemory install claude-code
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이제 모든 Claude Code 세션이 자동으로: # 1. 시작 시 관련 메모리 검색</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 세션 중 새 사실 저장</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 세션 종료 시 메모리 업데이트</span>
+</span></span></code></pre></div><h3 id="codex-cli">Codex CLI<a hidden class="anchor" aria-hidden="true" href="#codex-cli">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 메모리 프로젝트 설정</span>
+</span></span><span style="display:flex;"><span>export AGENTMEMORY_PROJECT<span style="color:#f92672">=</span>./my-project
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Codex CLI는 각 세션 전에 메모리를 읽고</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 완료 후 결과를 저장합니다</span>
+</span></span></code></pre></div><h3 id="opencode">OpenCode<a hidden class="anchor" aria-hidden="true" href="#opencode">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># OpenCode 플러그인</span>
+</span></span><span style="display:flex;"><span>agentmemory install opencode
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 컨텍스트가 도구 호출로 주입됨: # agentmemory.query(&#34;auth-related changes&#34;)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 관련 과거 컨텍스트를 구조화된 데이터로 반환</span>
+</span></span></code></pre></div><p>신뢰할 수 있는 호스팅을 위해 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> droplet에서 팀 공유 메모리를 위해, 또는 <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a>에서 아시아-태평양 저지연을 위해 배포하세요.</p>
+<h2 id="벤치마크--실제-사용-사례">벤치마크 / 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크--실제-사용-사례">#</a></h2>
+<h3 id="메모리가-에이전트-성능에-미치는-영향">메모리가 에이전트 성능에 미치는 영향<a hidden class="anchor" aria-hidden="true" href="#메모리가-에이전트-성능에-미치는-영향">#</a></h3>
+<p>500개의 실제 개발 세션(버그 수정, 기능 구현, 리팩토링)에서 테스트: | 지표 | 메모리 없음 | AgentMemory 사용 | 개선률 |
 |&mdash;&mdash;|&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;|&mdash;&mdash;&ndash;|
 | 컨텍스트 정확도 | 58% | 89% | +53% |
 | 버그 수정 완료 시간 | 42분 | 28분 | -33% |
 | 과거 실수 반복 | 23% | 7% | -70% |
-| 새 개발자 온보딩 | 5일 | 2일 | -60% |</p><h3 id=시간-경과에-따른-기억-보존>시간 경과에 따른 기억 보존<a hidden class=anchor aria-hidden=true href=#시간-경과에-따른-기억-보존>#</a></h3><p>다른 시간 간격 동안 메모리 지속성: | 마지막 세션 이후 시간 | 정확도 |
+| 새 개발자 온보딩 | 5일 | 2일 | -60% |</p>
+<h3 id="시간-경과에-따른-기억-보존">시간 경과에 따른 기억 보존<a hidden class="anchor" aria-hidden="true" href="#시간-경과에-따른-기억-보존">#</a></h3>
+<p>다른 시간 간격 동안 메모리 지속성: | 마지막 세션 이후 시간 | 정확도 |
 |&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|&mdash;&mdash;&ndash;|
 | 같은 날 | 96% |
 | 1주 | 91% |
 | 1개월 | 84% |
 | 3개월 | 72% |
-| 6개월 | 61% |</p><h3 id=실제-사용-사례-팀-개발>실제 사용 사례: 팀 개발<a hidden class=anchor aria-hidden=true href=#실제-사용-사례-팀-개발>#</a></h3><p>5인 개발팀이 AgentMemory 사용: `````bash</p><h1 id=개발자-a가-월요일에-인증-버그-수정>개발자 A가 월요일에 인증 버그 수정<a hidden class=anchor aria-hidden=true href=#개발자-a가-월요일에-인증-버그-수정>#</a></h1><h1 id=개발자-b가-화요일에-동일한-작업-처리>개발자 B가 화요일에 동일한 작업 처리<a hidden class=anchor aria-hidden=true href=#개발자-b가-화요일에-동일한-작업-처리>#</a></h1><h1 id=agentmemory가-a의-수정-및-컨텍스트-검색>AgentMemory가 A의 수정 및 컨텍스트 검색<a hidden class=anchor aria-hidden=true href=#agentmemory가-a의-수정-및-컨텍스트-검색>#</a></h1><p>agentmemory query<br>&ndash;project ./my-app<br>&ndash;query &ldquo;authentication bug fixes&rdquo;<br>&ndash;since &ldquo;2026-06-02&rdquo;</p><h1 id=반환----2026-06-02에-dev-a가-적용한-수정>반환: # - 2026-06-02에 dev-A가 적용한 수정<a hidden class=anchor aria-hidden=true href=#반환----2026-06-02에-dev-a가-적용한-수정>#</a></h1><h1 id=--근본-원인-만료된-jwt-token>- 근본 원인: 만료된 JWT token<a hidden class=anchor aria-hidden=true href=#--근본-원인-만료된-jwt-token>#</a></h1><h1 id=--해결책-token-refresh-middleware-추가>- 해결책: token refresh middleware 추가<a hidden class=anchor aria-hidden=true href=#--해결책-token-refresh-middleware-추가>#</a></h1><h1 id=--관련-파일-middlewareauthpy-servicesjwtjs>- 관련 파일: middleware/auth.py, services/jwt.js<a hidden class=anchor aria-hidden=true href=#--관련-파일-middlewareauthpy-servicesjwtjs>#</a></h1><pre tabindex=0><code>
+| 6개월 | 61% |</p>
+<h3 id="실제-사용-사례-팀-개발">실제 사용 사례: 팀 개발<a hidden class="anchor" aria-hidden="true" href="#실제-사용-사례-팀-개발">#</a></h3>
+<p>5인 개발팀이 AgentMemory 사용: `````bash</p>
+<h1 id="개발자-a가-월요일에-인증-버그-수정">개발자 A가 월요일에 인증 버그 수정<a hidden class="anchor" aria-hidden="true" href="#개발자-a가-월요일에-인증-버그-수정">#</a></h1>
+<h1 id="개발자-b가-화요일에-동일한-작업-처리">개발자 B가 화요일에 동일한 작업 처리<a hidden class="anchor" aria-hidden="true" href="#개발자-b가-화요일에-동일한-작업-처리">#</a></h1>
+<h1 id="agentmemory가-a의-수정-및-컨텍스트-검색">AgentMemory가 A의 수정 및 컨텍스트 검색<a hidden class="anchor" aria-hidden="true" href="#agentmemory가-a의-수정-및-컨텍스트-검색">#</a></h1>
+<p>agentmemory query <br>
+&ndash;project ./my-app <br>
+&ndash;query &ldquo;authentication bug fixes&rdquo; <br>
+&ndash;since &ldquo;2026-06-02&rdquo;</p>
+<h1 id="반환----2026-06-02에-dev-a가-적용한-수정">반환: # - 2026-06-02에 dev-A가 적용한 수정<a hidden class="anchor" aria-hidden="true" href="#반환----2026-06-02에-dev-a가-적용한-수정">#</a></h1>
+<h1 id="--근본-원인-만료된-jwt-token">- 근본 원인: 만료된 JWT token<a hidden class="anchor" aria-hidden="true" href="#--근본-원인-만료된-jwt-token">#</a></h1>
+<h1 id="--해결책-token-refresh-middleware-추가">- 해결책: token refresh middleware 추가<a hidden class="anchor" aria-hidden="true" href="#--해결책-token-refresh-middleware-추가">#</a></h1>
+<h1 id="--관련-파일-middlewareauthpy-servicesjwtjs">- 관련 파일: middleware/auth.py, services/jwt.js<a hidden class="anchor" aria-hidden="true" href="#--관련-파일-middlewareauthpy-servicesjwtjs">#</a></h1>
+<pre tabindex="0"><code>
 ## 고급 사용 / 프로덕션 견고화
 
 ### 사용자 정의 메모리 스키마
@@ -164,31 +504,193 @@ schema.add_relationship(
     target=&#34;architecture_decision&#34;,
     relation=&#34;affects&#34;
 )
-</code></pre><h3 id=팀-메모리-동기화>팀 메모리 동기화<a hidden class=anchor aria-hidden=true href=#팀-메모리-동기화>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 원격 저장소를 통해 팀원 간 메모리 동기화</span>
-</span></span><span style=display:flex><span>agentmemory sync <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --remote git@github.com:myorg/agentmemory-data.git <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --branch memory <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --interval <span style=color:#ae81ff>3600</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 각 개발자가 세션 전에 최신 메모리 pull</span>
-</span></span><span style=display:flex><span>agentmemory pull --project ./my-app
-</span></span></code></pre></div><h3 id=메모리-분석>메모리 분석<a hidden class=anchor aria-hidden=true href=#메모리-분석>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 메모리 통계 확인</span>
-</span></span><span style=display:flex><span>agentmemory stats --project ./my-app
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 출력: # 총 사실 수: 1,247</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 총 세션 수: 89</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 가장 흔한 사실 유형: &#34;bug_fix&#34; (34%)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 메모리 성장: 이번 주 +127 사실</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 상위 검색어: &#34;auth&#34;, &#34;database&#34;, &#34;API endpoint&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 분석을 위해 메모리 내보내기</span>
-</span></span><span style=display:flex><span>agentmemory export --format json --output ./memory-report.json
-</span></span></code></pre></div><h2 id=대체製品와의-비교>대체製品와의 비교<a hidden class=anchor aria-hidden=true href=#대체製品와의-비교>#</a></h2><table><thead><tr><th>기능</th><th>AgentMemory</th><th>Cursor Memories</th><th>GitHub Copilot Chat</th><th>커스텀 RAG</th></tr></thead><tbody><tr><td>Persistent 메모리</td><td>예</td><td>예 (로컬 전용)</td><td>아니오</td><td>예</td></tr><tr><td>크로스 세션</td><td>예</td><td>아니오</td><td>아니오</td><td>예</td></tr><tr><td>멀티 에이전트</td><td>6+ 에이전트</td><td>Cursor 전용</td><td>Copilot 전용</td><td>커스텀</td></tr><tr><td>구조화된 사실</td><td>예</td><td>아니오</td><td>아니오</td><td>예</td></tr><tr><td>그래프 관계</td><td>예</td><td>아니오</td><td>아니오</td><td>예</td></tr><tr><td>실제 벤치마크</td><td>예</td><td>아니오</td><td>아니오</td><td>아니오</td></tr><tr><td>오픈소스</td><td>예 (MIT)</td><td>아니오</td><td>아니오</td><td>예</td></tr><tr><td>셀프 호스팅</td><td>예</td><td>예</td><td>아니오</td><td>예</td></tr><tr><td>GitHub stars</td><td>22,038</td><td>—</td><td>—</td><td>—</td></tr></tbody></table><h2 id=대체-제품-비교-agentmemory-vs-전통적-에이전트>대체 제품 비교: AgentMemory vs. 전통적 에이전트<a hidden class=anchor aria-hidden=true href=#대체-제품-비교-agentmemory-vs-전통적-에이전트>#</a></h2><table><thead><tr><th>측면</th><th>AgentMemory</th><th>메모리 없는 에이전트</th><th>수동 컨텍스트 전달</th></tr></thead><tbody><tr><td>컨텍스트 보존</td><td>세션 간 persistent</td><td>세션 종료 시 잊음</td><td>수동 복사 붙여넣기 필요</td></tr><tr><td>정보 검색 속도</td><td>밀리초 시맨틱 검색</td><td>N/A</td><td>분 단위 수동 검색</td></tr><tr><td>구조화 수준</td><td>높음 (사실+그래프+벡터)</td><td>없음</td><td>낮음 (순수 텍스트)</td></tr><tr><td>확장성</td><td>멀티 에이전트 공유 지원</td><td>단일 세션</td><td>단일 사용자</td></tr><tr><td>자동화 수준</td><td>완전 자동 추출</td><td>완전 수동</td><td>부분 자동</td></tr><tr><td>프라이버시 제어</td><td>로컬 저장, 감청 가능</td><td>N/A</td><td>도구에 의존</td></tr></tbody></table><h2 id=제한--솔직한-평가>제한 / 솔직한 평가<a hidden class=anchor aria-hidden=true href=#제한--솔직한-평가>#</a></h2><p>AgentMemory는 모든 사람에게 적합하지 않습니다: 1. <strong>소규모 개인 프로젝트</strong> — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다.
+</code></pre><h3 id="팀-메모리-동기화">팀 메모리 동기화<a hidden class="anchor" aria-hidden="true" href="#팀-메모리-동기화">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 원격 저장소를 통해 팀원 간 메모리 동기화</span>
+</span></span><span style="display:flex;"><span>agentmemory sync <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --remote git@github.com:myorg/agentmemory-data.git <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --branch memory <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --interval <span style="color:#ae81ff">3600</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 각 개발자가 세션 전에 최신 메모리 pull</span>
+</span></span><span style="display:flex;"><span>agentmemory pull --project ./my-app
+</span></span></code></pre></div><h3 id="메모리-분석">메모리 분석<a hidden class="anchor" aria-hidden="true" href="#메모리-분석">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 메모리 통계 확인</span>
+</span></span><span style="display:flex;"><span>agentmemory stats --project ./my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 출력: # 총 사실 수: 1,247</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 총 세션 수: 89</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 가장 흔한 사실 유형: &#34;bug_fix&#34; (34%)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 메모리 성장: 이번 주 +127 사실</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 상위 검색어: &#34;auth&#34;, &#34;database&#34;, &#34;API endpoint&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 분석을 위해 메모리 내보내기</span>
+</span></span><span style="display:flex;"><span>agentmemory export --format json --output ./memory-report.json
+</span></span></code></pre></div><h2 id="대체製品와의-비교">대체製品와의 비교<a hidden class="anchor" aria-hidden="true" href="#대체製品와의-비교">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>기능</th>
+					<th>AgentMemory</th>
+					<th>Cursor Memories</th>
+					<th>GitHub Copilot Chat</th>
+					<th>커스텀 RAG</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Persistent 메모리</td>
+					<td>예</td>
+					<td>예 (로컬 전용)</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>크로스 세션</td>
+					<td>예</td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>멀티 에이전트</td>
+					<td>6+ 에이전트</td>
+					<td>Cursor 전용</td>
+					<td>Copilot 전용</td>
+					<td>커스텀</td>
+			</tr>
+			<tr>
+					<td>구조화된 사실</td>
+					<td>예</td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>그래프 관계</td>
+					<td>예</td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>실제 벤치마크</td>
+					<td>예</td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>아니오</td>
+			</tr>
+			<tr>
+					<td>오픈소스</td>
+					<td>예 (MIT)</td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>셀프 호스팅</td>
+					<td>예</td>
+					<td>예</td>
+					<td>아니오</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td>GitHub stars</td>
+					<td>22,038</td>
+					<td>—</td>
+					<td>—</td>
+					<td>—</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="대체-제품-비교-agentmemory-vs-전통적-에이전트">대체 제품 비교: AgentMemory vs. 전통적 에이전트<a hidden class="anchor" aria-hidden="true" href="#대체-제품-비교-agentmemory-vs-전통적-에이전트">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>측면</th>
+					<th>AgentMemory</th>
+					<th>메모리 없는 에이전트</th>
+					<th>수동 컨텍스트 전달</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>컨텍스트 보존</td>
+					<td>세션 간 persistent</td>
+					<td>세션 종료 시 잊음</td>
+					<td>수동 복사 붙여넣기 필요</td>
+			</tr>
+			<tr>
+					<td>정보 검색 속도</td>
+					<td>밀리초 시맨틱 검색</td>
+					<td>N/A</td>
+					<td>분 단위 수동 검색</td>
+			</tr>
+			<tr>
+					<td>구조화 수준</td>
+					<td>높음 (사실+그래프+벡터)</td>
+					<td>없음</td>
+					<td>낮음 (순수 텍스트)</td>
+			</tr>
+			<tr>
+					<td>확장성</td>
+					<td>멀티 에이전트 공유 지원</td>
+					<td>단일 세션</td>
+					<td>단일 사용자</td>
+			</tr>
+			<tr>
+					<td>자동화 수준</td>
+					<td>완전 자동 추출</td>
+					<td>완전 수동</td>
+					<td>부분 자동</td>
+			</tr>
+			<tr>
+					<td>프라이버시 제어</td>
+					<td>로컬 저장, 감청 가능</td>
+					<td>N/A</td>
+					<td>도구에 의존</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="제한--솔직한-평가">제한 / 솔직한 평가<a hidden class="anchor" aria-hidden="true" href="#제한--솔직한-평가">#</a></h2>
+<p>AgentMemory는 모든 사람에게 적합하지 않습니다: 1. <strong>소규모 개인 프로젝트</strong> — 유일한 개발자이고 단일 세션에서 작업한다면 메모리가 제공하는 가치가 제한적입니다. 에이전트는 메모리 없이도 작은 코드베이스를 충분히 빠르게 처리할 수 있습니다.
 2. <strong>프라이버시 민감한 코드</strong> — 메모리는 코드 패턴과 결정을 로컬에 저장합니다. 기업 코드베이스의 경우 추출 및 저장된 사실을 검토해야 합니다. 프로젝트에 프라이버시 컨트롤이 있지만 스키마를 신중히 검토하세요.
 3. <strong>콜드 스타트 기간</strong> — 메모리는 구축에 시간이 필요합니다. 새 프로젝트는 빈 메모리로 시작하며, 시스템이 유용해지려면 10-20개의 세션이 필요합니다. 이 준비 기간을 계획하세요.
 4. <strong>메모리 드리프트</strong> — 시간이 지남에 따라 오래된 사실이 에이전트를 혼란스럽게 할 수 있습니다. 정기적인 메모리 정리(월간 권장, <code>agentmemory prune --older-than 90d</code> 사용)를 구현하세요.
-5. <strong>벡터 DB 복잡성</strong> — 여러 에이전트를 위한 프로덕션 배포의 경우, ChromaDB/Qdrant/Neo4j 관리는 운영 오버헤드를 추가합니다. 간단한 설정은 SQLite로 시작하세요.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><p><strong>Q: AgentMemory는 프라이버시 안전한가요?</strong></p><p>A: 네. 모든 메모리는 기본적으로 로컬에 저장됩니다. 원격 동기화를 구성하지 않는 한 데이터가 머신을 떠나지 않습니다. 어떤 사실이 추출되고 저장되는지 통제할 수 있습니다. 이 프로젝트는 오픈소스(MIT)이므로 추출 로직을 감사할 수 있습니다.</p><p><strong>Q: 메모리는 얼마나 많은 저장 공간을 사용하나요?</strong></p><p>A: 일반적인 사용량: 중형 프로젝트(10K-100K 라인, 50-200 세션)에 5-50MB. 메모리는 복잡성에 따라 세션당 약 100-500KB씩 성장합니다.</p><p><strong>Q: AgentMemory는 로컬 LLM과 함께 작동하나요?</strong></p><p>A: 네. AgentMemory는 에이전트 비종속적이며 도구 호출을 지원하는 모든 에이전트와 작동합니다. Ollama와 같은 로컬 LLM을 사용하는 에이전트도 포함됩니다.</p><p><strong>Q: 오래된 메모리는 어떻게 정리하나요?</strong></p><p>A: <code>agentmemory prune --older-than 90d</code>를 사용하여 90일 이상된 사실을 제거합니다. 설정에서 자동 정리를 설정할 수도 있습니다: ````cleanup_threshold_days: 90```.</p><p><strong>Q: 비코딩 작업에 사용할 수 있나요?</strong></p><p>A: 코딩 에이전트를 위해 설계되었지만 메모리 시스템은 범용적입니다. 사용자 정의 사실 유형을 정의하여 어떤 에이전트 워크플로우에도 사용할 수 있습니다 — 데이터 과학, 연구, 자동화 등.</p><h2 id=출처-및-추가-자료>출처 및 추가 자료<a hidden class=anchor aria-hidden=true href=#출처-및-추가-자료>#</a></h2><ul><li>공식 문서: <a href=https://github.com/rohitg00/agentmemory>https://github.com/rohitg00/agentmemory</a></li><li>GitHub 저장소: <a href=https://github.com/rohitg00/agentmemory>https://github.com/rohitg00/agentmemory</a></li><li>벤치마크 방법론: <a href=https://github.com/rohitg00/agentmemory/blob/main/docs/BENCHMARKS.md>https://github.com/rohitg00/agentmemory/blob/main/docs/BENCHMARKS.md</a></li><li>프라이버시 가이드: <a href=https://github.com/rohitg00/agentmemory/blob/main/docs/PRIVACY.md>https://github.com/rohitg00/agentmemory/blob/main/docs/PRIVACY.md</a></li><li>커뮤니티 토론: <a href=https://github.com/rohitg00/agentmemory/discussions>https://github.com/rohitg00/agentmemory/discussions</a></li></ul><h2 id=결론-ai-에이전트에-메모리를-제공하세요--자신을-반복하는-것을-멈추세요>결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요<a hidden class=anchor aria-hidden=true href=#결론-ai-에이전트에-메모리를-제공하세요--자신을-반복하는-것을-멈추세요>#</a></h2><p>AgentMemory는 AI 코딩 에이전트를 단일 세션 도구에서 평생 협력자로 바꾸는 핵심 요소입니다. 과거 결정, 버그 수정, 패턴을 기억함으로써 에이전트는 모든 상호작용마다 더 똑똑하고 정확해집니다. 벤치마크는 실제입니다: 정확도 53% 향상, 온보딩 60% 가속, 실수 반복 70% 감소.</p><p>매주 프로젝트에 돌아오는 개인 개발자이든, 코드 컨텍스트를 공유하는 팀이든, 프로덕션 AI 워크플로우를 구축하는 것이든, AgentMemory는 실제로 기억하는 에이전트를 위한 기반을 제공합니다.</p><p>dibi8 한국어 텔레그램 그룹 <a href=https://t.me/DIBI8_Group/9>dibi8 한국어 Telegram 그룹</a>에 참여하여 AgentMemory 구성에 대해 논의하세요. 보완적인 AI 도구를 위해 <a href=dibi8-internal-link>headroom 토큰 압축</a> 및 <a href=dibi8-internal-link>codegraph 지식 그래프</a> 가이드를 확인하세요. 오늘 AgentMemory를 시작하세요 — 설치하고 몇 세션 동안 학습시키면 에이전트가 시간이 지남에 따라 더 똑똑해지는 것을 볼 수 있습니다.</p><p><strong>추천 도구:</strong></p><ul><li>Binance: Binance으로 거래 시작. 등록 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">https://www.bsmkweb.cc/register?ref=DIBI8</a></li><li>OKX 거래소: OKX로 거래. 등록 <a href=https://www.promoohubly.com/join/12190433>https://www.promoohubly.com/join/12190433</a></li><li>WebShare: WebShare로 익명 브라우징. 시작하기 <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">https://www.webshare.io/?referral_code=oa14d5f0wx4f</a></li><li>DigitalOcean: DigitalOcean에 프로젝트 배포. 등록 <a href=https://m.do.co/c/eca87ac14ee0>https://m.do.co/c/eca87ac14ee0</a></li><li>HTStack: 클라우드 인프라 관리. 가입 <a href="https://my.htstack.com/aff.php?aff=27187">https://my.htstack.com/aff.php?aff=27187</a></li></ul><p>위 링크 중 일부는 제휴 링크입니다. 링크를 통해 등록하면 dibi8.com이 수수료를 받을 수 있으며, 이용자에게는 추가 비용이 없습니다. 이는 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+5. <strong>벡터 DB 복잡성</strong> — 여러 에이전트를 위한 프로덕션 배포의 경우, ChromaDB/Qdrant/Neo4j 관리는 운영 오버헤드를 추가합니다. 간단한 설정은 SQLite로 시작하세요.</p>
+<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
+<p><strong>Q: AgentMemory는 프라이버시 안전한가요?</strong></p>
+<p>A: 네. 모든 메모리는 기본적으로 로컬에 저장됩니다. 원격 동기화를 구성하지 않는 한 데이터가 머신을 떠나지 않습니다. 어떤 사실이 추출되고 저장되는지 통제할 수 있습니다. 이 프로젝트는 오픈소스(MIT)이므로 추출 로직을 감사할 수 있습니다.</p>
+<p><strong>Q: 메모리는 얼마나 많은 저장 공간을 사용하나요?</strong></p>
+<p>A: 일반적인 사용량: 중형 프로젝트(10K-100K 라인, 50-200 세션)에 5-50MB. 메모리는 복잡성에 따라 세션당 약 100-500KB씩 성장합니다.</p>
+<p><strong>Q: AgentMemory는 로컬 LLM과 함께 작동하나요?</strong></p>
+<p>A: 네. AgentMemory는 에이전트 비종속적이며 도구 호출을 지원하는 모든 에이전트와 작동합니다. Ollama와 같은 로컬 LLM을 사용하는 에이전트도 포함됩니다.</p>
+<p><strong>Q: 오래된 메모리는 어떻게 정리하나요?</strong></p>
+<p>A: <code>agentmemory prune --older-than 90d</code>를 사용하여 90일 이상된 사실을 제거합니다. 설정에서 자동 정리를 설정할 수도 있습니다: ````cleanup_threshold_days: 90```.</p>
+<p><strong>Q: 비코딩 작업에 사용할 수 있나요?</strong></p>
+<p>A: 코딩 에이전트를 위해 설계되었지만 메모리 시스템은 범용적입니다. 사용자 정의 사실 유형을 정의하여 어떤 에이전트 워크플로우에도 사용할 수 있습니다 — 데이터 과학, 연구, 자동화 등.</p>
+<h2 id="출처-및-추가-자료">출처 및 추가 자료<a hidden class="anchor" aria-hidden="true" href="#출처-및-추가-자료">#</a></h2>
+<ul>
+<li>공식 문서: <a href="https://github.com/rohitg00/agentmemory">https://github.com/rohitg00/agentmemory</a></li>
+<li>GitHub 저장소: <a href="https://github.com/rohitg00/agentmemory">https://github.com/rohitg00/agentmemory</a></li>
+<li>벤치마크 방법론: <a href="https://github.com/rohitg00/agentmemory/blob/main/docs/BENCHMARKS.md">https://github.com/rohitg00/agentmemory/blob/main/docs/BENCHMARKS.md</a></li>
+<li>프라이버시 가이드: <a href="https://github.com/rohitg00/agentmemory/blob/main/docs/PRIVACY.md">https://github.com/rohitg00/agentmemory/blob/main/docs/PRIVACY.md</a></li>
+<li>커뮤니티 토론: <a href="https://github.com/rohitg00/agentmemory/discussions">https://github.com/rohitg00/agentmemory/discussions</a></li>
+</ul>
+<h2 id="결론-ai-에이전트에-메모리를-제공하세요--자신을-반복하는-것을-멈추세요">결론: AI 에이전트에 메모리를 제공하세요 — 자신을 반복하는 것을 멈추세요<a hidden class="anchor" aria-hidden="true" href="#결론-ai-에이전트에-메모리를-제공하세요--자신을-반복하는-것을-멈추세요">#</a></h2>
+<p>AgentMemory는 AI 코딩 에이전트를 단일 세션 도구에서 평생 협력자로 바꾸는 핵심 요소입니다. 과거 결정, 버그 수정, 패턴을 기억함으로써 에이전트는 모든 상호작용마다 더 똑똑하고 정확해집니다. 벤치마크는 실제입니다: 정확도 53% 향상, 온보딩 60% 가속, 실수 반복 70% 감소.</p>
+<p>매주 프로젝트에 돌아오는 개인 개발자이든, 코드 컨텍스트를 공유하는 팀이든, 프로덕션 AI 워크플로우를 구축하는 것이든, AgentMemory는 실제로 기억하는 에이전트를 위한 기반을 제공합니다.</p>
+<p>dibi8 한국어 텔레그램 그룹 <a href="https://t.me/DIBI8_Group/9">dibi8 한국어 Telegram 그룹</a>에 참여하여 AgentMemory 구성에 대해 논의하세요. 보완적인 AI 도구를 위해 <a href="dibi8-internal-link">headroom 토큰 압축</a> 및 <a href="dibi8-internal-link">codegraph 지식 그래프</a> 가이드를 확인하세요. 오늘 AgentMemory를 시작하세요 — 설치하고 몇 세션 동안 학습시키면 에이전트가 시간이 지남에 따라 더 똑똑해지는 것을 볼 수 있습니다.</p>
+<p><strong>추천 도구:</strong></p>
+<ul>
+<li>Binance: Binance으로 거래 시작. 등록 <a href="https://www.bsmkweb.cc/register?ref=DIBI8">https://www.bsmkweb.cc/register?ref=DIBI8</a></li>
+<li>OKX 거래소: OKX로 거래. 등록 <a href="https://www.promoohubly.com/join/12190433">https://www.promoohubly.com/join/12190433</a></li>
+<li>WebShare: WebShare로 익명 브라우징. 시작하기 <a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">https://www.webshare.io/?referral_code=oa14d5f0wx4f</a></li>
+<li>DigitalOcean: DigitalOcean에 프로젝트 배포. 등록 <a href="https://m.do.co/c/eca87ac14ee0">https://m.do.co/c/eca87ac14ee0</a></li>
+<li>HTStack: 클라우드 인프라 관리. 가입 <a href="https://my.htstack.com/aff.php?aff=27187">https://my.htstack.com/aff.php?aff=27187</a></li>
+</ul>
+<p>위 링크 중 일부는 제휴 링크입니다. 링크를 통해 등록하면 dibi8.com이 수수료를 받을 수 있으며, 이용자에게는 추가 비용이 없습니다. 이는 사이트 운영과 콘텐츠 무료 제공에 도움이 됩니다.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-08&rdquo;,
@@ -202,18 +704,186 @@ schema.add_relationship(
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/agentmemory-persistent-memory-ai-coding-agents%22>https://dibi8.com/kr/resources/agentmemory-persistent-memory-ai-coding-agents"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/agentmemory-persistent-memory-ai-coding-agents%22">https://dibi8.com/kr/resources/agentmemory-persistent-memory-ai-coding-agents"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>codebase-memory-mcp-high-performance-code-intelligence</a></li><li><a href=/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>12-factor-agents</a></li><li><a href=/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>2026-05-25-trending-ai-agents</a></li><li><a href=/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>2026-06-01-trending-ai-agents</a></li><li><a href=/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/>2026-06-08-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/agno/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">codebase-memory-mcp-high-performance-code-intelligence</a></li>
+<li><a href="/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">12-factor-agents</a></li>
+<li><a href="/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">2026-05-25-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">2026-06-01-trending-ai-agents</a></li>
+<li><a href="/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">2026-06-08-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/agno/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

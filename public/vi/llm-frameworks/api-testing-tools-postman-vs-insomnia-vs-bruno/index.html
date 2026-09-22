@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/vi/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025 {\u003c/* resource-info */\u003e}\nAPI testing is no longer an afterthought in software development. It is a core practice embedded in CI/CD pipelines, code reviews, and daily developer workflows. Choosing the right API client affects how quickly you debug endpoints, how well your team collaborates, and whether your API collections survive employee turnover.\nIn 2025, three tools dominate the conversation: Postman, the established market leader; Insomnia, the developer-friendly alternative; and Bruno, the Git-native challenger that has gained remarkable traction among teams who treat APIs as code.\nThis comparison examines each tool across dimensions that matter to working developers: features, pricing, protocol support, Git integration, CLI capabilities, and workflow fit.\nThe API Testing Tool Landscape in 2025 Why API Testing Matters in Modern Development Microservices architectures mean a typical application communicates with 10-50 internal and external APIs. Each endpoint is a contract that can break silently. API testing catches these breaks before they reach production, where they impact users and revenue.\nBeyond correctness, API testing documents behavior. A well-maintained collection serves as living documentation that stays current because it executes against real endpoints. New developers understand the system by reading and running existing API tests rather than digging through scattered documentation.\nThe Shift From Postman Dominance to Diverse Alternatives Postman held uncontested market leadership through the late 2010s. Its collection format became the de facto standard. However, several factors opened space for alternatives in 2023-2025: 1. Cloud-only mandates — Postman pushed users toward cloud-synced workspaces, creating concerns for teams working with sensitive APIs 2. Pricing changes — The free tier became increasingly restricted, pushing team features behind paywalls 3. Performance issues — The Electron-based application grew heavier with each release 4. Developer preference shift — A movement toward Git-friendly, offline-capable tools gained momentum\nThese pressures created the market conditions that allowed Insomnia to grow and Bruno to launch successfully.\nPostman: The Established Leader Core Features: Collections, Environments, and Tests Postman’s feature set remains the deepest in the industry. Collections organize API requests into folders with variables, pre-request scripts, and test assertions. Environments manage variable sets for development, staging, and production. The testing framework supports Chai.js assertions and can validate response status, headers, body content, and schema compliance.\nPostman also includes: - Mock servers — Simulate API responses before the backend exists\nMonitors — Schedule collection runs and alert on failures API documentation — Auto-generated docs from collections with custom domains Postman Flows — Visual programming for chaining requests and building workflows Forking and versioning — Collection version control within Postman’s ecosystem Collaboration and Team Workspaces Postman’s team workspaces enable real-time collaboration on collections. Comments, change history, and role-based access control support team workflows. However, collaboration requires cloud synchronization — there is no first-class offline team mode. This is the primary pain point driving teams to evaluate alternatives.\nPricing Changes and Cloud-Only Concerns Postman’s pricing has evolved significantly: | Plan | Price | Key Limitations | |\n|\n|\n| | Free | $0 | 3 team members, limited shared requests, no SAML | | Basic | $14/user/month | Up to 10 team members, basic collaboration | | Professional | $29/user/month | Unlimited team, advanced reporting, extended history | | Enterprise | Contact sales | SAML, governance, priority support |\nThe Free plan’s three-member limit makes it impractical for real teams. The mandatory cloud sync for collaboration raises concerns when testing internal APIs that should not leave your network.\nStrengths: Ecosystem, Integrations, Enterprise Support Postman’s biggest advantage is its ecosystem. Thousands of public API collections are available in the Postman API Network. Enterprise support includes dedicated customer success managers, SLA guarantees, and training programs. For large organizations with established Postman workflows, switching costs are high.\nInsomnia: The Developer-Friendly Alternative Clean UI and Streamlined Workflow Insomnia’s interface prioritizes speed. The request builder loads quickly, keyboard shortcuts are intuitive, and the layout minimizes clicks to execute a request. Developers switching from Postman consistently praise Insomnia’s snappier performance and cleaner visual design.\nSupport for REST, GraphQL, gRPC, and WebSocket Insomnia natively supports multiple protocols in a single application. You can test REST endpoints, execute GraphQL queries with schema introspection, send gRPC requests with protobuf definitions, and open WebSocket connections. This multi-protocol support eliminates the need for separate tools when your stack uses multiple communication patterns.\nKong Acquisition and Product Evolution Kong acquired Insomnia in 2019 and has invested in deeper integration with Kong Gateway. Insomnia now includes Kong-specific features like plugin configuration and gateway connectivity. While this benefits Kong users, developers using other gateway products may find these additions irrelevant.\nPlugin Ecosystem and Extensibility Insomnia supports plugins through a JavaScript-based extension API. The plugin directory includes tools for JWT generation, data import/export, and custom themes. The ecosystem is smaller than Postman’s but growing steadily.\nBruno: The Git-Native Revolution What Is Bruno and Why It Is Different Bruno launched in 2022 as a deliberate reaction against cloud-locked API clients. Its core innovation is storing API collections as plain text files using a custom format called Bru. These files live in your repository alongside your code, diff cleanly in pull requests, and require no cloud service to share across a team.\nThis approach treats API collections as code. Reviewers see API changes in Git diffs. CI pipelines execute collections using the Bruno CLI. There is no separate account to manage, no workspace to configure, and no vendor lock-in.\nGit-Friendly Collection Format (Bru Files) A Bru file is human-readable plain text. Here is a simple example: ```` meta { name: Get User type: http seq: 1 }\nget { url: /users/ body: none auth: bearer }\nheaders { Content-Type: application/json }\nvars:pre-request { userId: 123 }\ntests { expect(res.status).to.equal(200); expect(res.body).to.have.property(‘id’); }\nThis format is simple enough to edit by hand, structured enough to parse programmatically, and readable enough to review in GitHub's diff view. ### Offline-First, No Cloud Lock-In Bruno requires no account creation. No data leaves your machine unless you choose to store collections in Git. For teams working with sensitive internal APIs, regulated industries, or air-gapped environments, this is a decisive advantage. ### Open-Source and Community-Driven Bruno is released under the MIT license. The [GitHub repository](https://github.com/usebruno/bruno) has over 27,000 stars and is actively maintained by a core team with community contributions. The open-source nature means the tool evolves based on user needs rather than investor priorities. ### Scripting With JavaScript and CLI Support Bruno uses JavaScript for scripting assertions, pre-request logic, and post-response processing. This is familiar to most developers and more flexible than proprietary scripting languages. The Bruno CLI (````bru run````) enables collection execution in CI/CD pipelines, making API testing part of your automated deployment process. ## Head-to-Head Comparison ### Feature Comparison Table | Feature | Postman | Insomnia | Bruno | | * * * | * * * | * * * | * * * | | REST API testing | Yes | Yes | Yes | | GraphQL support | Yes | Yes | No (planned) | | gRPC support | Yes | Yes | No | | WebSocket support | Yes | Yes | No | | Collection format | JSON (proprietary) | JSON (proprietary) | Bru (plain text) | | Git-friendly collections | Export only | Export only | Native | | CLI for CI/CD | Newman | Inso | Built-in (````bru````) | | Offline mode | Limited | Yes | Full | | Cloud sync | Required for teams | Optional | Not available | | Open source | No | No | Yes (MIT) | | Mock servers | Yes | No | No | | API documentation generation | Yes | Yes | No | | Environment variables | Yes | Yes | Yes | | Scripting language | JavaScript | JavaScript | JavaScript | | Plugin/extensions | Extensive | Moderate | Limited | ### Pricing Comparison | Plan | Postman | Insomnia | Bruno | | * * * | * * * | * * * | * * * | | Free tier | 3 users, limited | Unlimited personal use | Fully free (open source) | | Paid tier | $14-29/user/month | $8/user/month | $19/user/month (Golden Edition) | | Enterprise | Custom pricing | Custom pricing | N/A | | Self-hosted | No | No | Yes (Golden Edition) | Bruno's paid Golden Edition adds team collaboration features like sync, SSO, and centralized license management. The core application remains fully free and open-source. ### Platform Availability All three tools support Windows, macOS, and Linux. Postman and Insomnia distribute through their websites and package managers. Bruno is available via GitHub releases, Homebrew, Snap, and Chocolatey. ## Other Notable API Testing Tools ### HTTPie Desktop: Human-Friendly HTTP Client [HTTPie](https://httpie.io) started as a command-line tool known for its readable syntax and colored output. The desktop application brings that same philosophy to a GUI format. It is excellent for quick manual testing but lacks the collection management and CI integration of the three main tools. ### Hoppscotch: Browser-Based, Open-Source [Hoppscotch](https://hoppscotch.io) runs entirely in the browser, requiring no installation. It supports REST, GraphQL, WebSocket, and MQTT. Self-hosted deployment is available for teams that need internal access. The browser-based approach means instant availability but limited offline capability. ### Thunder Client: Lightweight VS Code Extension Thunder Client embeds API testing directly inside VS Code. With over 7 million installations, it is one of the most popular VS Code extensions. It is ideal for developers who want to test APIs without leaving their editor. The lightweight approach means fewer features than dedicated applications, but the convenience factor is significant. ## Git Integration and Version Control ### Why Git-Friendly API Collections Matter When API collections live outside version control, they drift out of sync with the codebase. A developer updates an endpoint but forgets to update the shared collection. Three months later, a new team member wastes hours trying to use the stale collection. Git-friendly collections solve this by making API definitions part of the code review process. When you modify an endpoint, the collection change appears in the same pull request. Reviewers verify that the API test matches the implementation. CI runs the collection to confirm nothing breaks. ### Bruno's Approach: Collections as Code Bruno is purpose-built for this workflow. Bru files live in a ````collections/```` directory inside your repository. Changes are reviewed, approved, and merged alongside code changes. The CLI runs collections in CI without additional export steps. ### Postman's Export and Version Control Workaround Postman collections can be exported to JSON and committed to Git. However, the exported JSON is verbose and includes metadata that creates noisy diffs. The workflow is manual: edit in Postman, export, commit, then other developers import to see changes. This friction discourages frequent updates. ### Code Review Workflows for API Changes With Bruno, API changes appear in Git diffs as readable text. Reviewers see exactly what changed: a new header, modified URL, or updated assertion. This transparency improves code review quality and catches API-breaking changes before they merge. ## CLI and Automation Capabilities ### Bruno CLI for CI/CD Pipelines The Bruno CLI installs via npm (``npm install -g @usebruno/cli``) and runs collections with a single command: `````bash bru run collection-name --env production Output formats include JUnit XML and HTML reports, integrating directly with CI dashboards. A GitHub Actions example: `````yaml\nname: Run API Tests run: | npm install -g @usebruno/cli bru run collections/ –env staging –output results.xml ### Newman (Postman CLI) for Test Automation Postman's Newman CLI has been the standard for API test automation for years. It runs exported Postman collections and supports HTML, JUnit, and JSON reporters. The limitation is the export step — collections must be manually exported from Postman before CI can run them. ### Integrating API Tests in GitHub Actions Both Bruno and Newman integrate cleanly with GitHub Actions. Bruno's advantage is that collections are already in the repository, so no export step is needed. This makes the CI pipeline simpler and less prone to the collection being out of date. ## Choosing the Right Tool for Your Workflow ### Individual Developers: Bruno or Insomnia For personal projects, Bruno offers zero-cost, offline-capable API testing with Git integration. Insomnia provides a polished UI with multi-protocol support if you work with GraphQL or gRPC. Both are fast and free. ### Teams Prioritizing Collaboration: Postman If your team values shared workspaces, real-time collaboration, and extensive integrations, Postman remains the strongest option. The cost is justified for teams that use advanced features like mock servers, monitors, and API documentation generation. Just be prepared for the cloud-sync requirement. ### Git-First Teams: Bruno If your team already practices infrastructure-as-code and treats configuration as version-controlled artifacts, Bruno is the natural choice. The Bru format, CLI-first design, and open-source license align with DevOps principles. The learning curve is minimal — the UI is intuitive and the documentation is thorough. ### Enterprise Environments: Postman Enterprise Large enterprises with governance requirements, SSO integration needs, and dedicated support contracts should evaluate Postman Enterprise. The admin dashboards, usage analytics, and compliance certifications (SOC 2, ISO 27001) satisfy procurement requirements that smaller tools cannot match. ### VS Code Users: Thunder Client or REST Client If you rarely test APIs and want minimal context switching, the Thunder Client or REST Client VS Code extensions handle basic testing without leaving your editor. These are not replacements for dedicated API clients but cover 80% of daily use cases for many developers. ## Migration Guide: Switching Between Tools ### Exporting From Postman to Bruno/Insomnia Bruno includes a Postman collection importer. Export your Postman collection as JSON v2.1, then use Bruno's import dialog or CLI command: `````bash bru import collection postman-export.json The importer handles requests, headers, environment variables, and basic test scripts. Complex Postman-specific scripts may need manual adjustment.\nConverting Collections and Environments Environment variables export from Postman as JSON and can be converted to Bruno’s environment format using the CLI or manual editing. The variable substitution syntax (````````) is identical between both tools, so no changes are needed in request definitions.\nMaintaining Test Scripts During Migration Postman’s test scripts use the pm.* API for assertions and variable access. Bruno uses standard JavaScript with Chai assertions. A typical Postman test: `````javascript pm.test(“Status is 200”, () =\u003e { pm.response.to.have.status(200); });\nBecomes in Bruno: `````javascript expect(res.status).to.equal(200); The conversion is mechanical and can be automated with a simple script for large collections.\nFrequently Asked Questions Is Bruno better than Postman? Bruno is better than Postman for teams who prioritize Git integration, offline usage, and open-source tooling. Postman remains superior for teams that need collaboration features, mock servers, API documentation generation, and enterprise support. The right choice depends on your workflow priorities.\nWhat is the best free API testing tool? For completely free, unlimited API testing with no account required, Bruno is the best option. For multi-protocol support (GraphQL, gRPC) in a free tool, Insomnia’s personal tier is excellent. For access to the largest API collection network, Postman’s free tier works for individuals or very small teams.\nCan I use API testing tools offline? Bruno works fully offline with no account creation required. Insomnia works offline but requires a free account for some features. Postman’s desktop application works offline for local collections, but cloud features and team collaboration require internet access.\nHow do I migrate from Postman to Bruno? Export your Postman collections as JSON v2.1, then use Bruno’s import feature or the CLI bru import command. Environment variables export separately and convert to Bruno\"s format. Review test scripts and convert ````pm.*``` syntax to standard JavaScript assertions.\nWhich API client supports GraphQL and gRPC? Postman and Insomnia both support GraphQL and gRPC natively. Bruno currently focuses on REST API testing with GraphQL support planned. For WebSocket testing, Postman and Insomnia both offer native support. If multi-protocol testing is essential, Insomnia provides the best balance of features and performance.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno\" } } ",
+  "wordCount" : "2748",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/llm-frameworks/api-testing-tools-postman-vs-insomnia-vs-bruno/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#postman-vs-insomnia-vs-bruno-best-api-testing-tool-in-2025" aria-label="Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025">Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025</a><ul>
+                    
+            <li>
+                <a href="#the-api-testing-tool-landscape-in-2025" aria-label="The API Testing Tool Landscape in 2025">The API Testing Tool Landscape in 2025</a><ul>
+                    
+            <li>
+                <a href="#why-api-testing-matters-in-modern-development" aria-label="Why API Testing Matters in Modern Development">Why API Testing Matters in Modern Development</a></li>
+            <li>
+                <a href="#the-shift-from-postman-dominance-to-diverse-alternatives" aria-label="The Shift From Postman Dominance to Diverse Alternatives">The Shift From Postman Dominance to Diverse Alternatives</a></li></ul>
+            </li>
+            <li>
+                <a href="#postman-the-established-leader" aria-label="Postman: The Established Leader">Postman: The Established Leader</a><ul>
+                    
+            <li>
+                <a href="#core-features-collections-environments-and-tests" aria-label="Core Features: Collections, Environments, and Tests">Core Features: Collections, Environments, and Tests</a></li>
+            <li>
+                <a href="#collaboration-and-team-workspaces" aria-label="Collaboration and Team Workspaces">Collaboration and Team Workspaces</a></li>
+            <li>
+                <a href="#pricing-changes-and-cloud-only-concerns" aria-label="Pricing Changes and Cloud-Only Concerns">Pricing Changes and Cloud-Only Concerns</a></li>
+            <li>
+                <a href="#strengths-ecosystem-integrations-enterprise-support" aria-label="Strengths: Ecosystem, Integrations, Enterprise Support">Strengths: Ecosystem, Integrations, Enterprise Support</a></li></ul>
+            </li>
+            <li>
+                <a href="#insomnia-the-developer-friendly-alternative" aria-label="Insomnia: The Developer-Friendly Alternative">Insomnia: The Developer-Friendly Alternative</a><ul>
+                    
+            <li>
+                <a href="#clean-ui-and-streamlined-workflow" aria-label="Clean UI and Streamlined Workflow">Clean UI and Streamlined Workflow</a></li>
+            <li>
+                <a href="#support-for-rest-graphql-grpc-and-websocket" aria-label="Support for REST, GraphQL, gRPC, and WebSocket">Support for REST, GraphQL, gRPC, and WebSocket</a></li>
+            <li>
+                <a href="#kong-acquisition-and-product-evolution" aria-label="Kong Acquisition and Product Evolution">Kong Acquisition and Product Evolution</a></li>
+            <li>
+                <a href="#plugin-ecosystem-and-extensibility" aria-label="Plugin Ecosystem and Extensibility">Plugin Ecosystem and Extensibility</a></li></ul>
+            </li>
+            <li>
+                <a href="#bruno-the-git-native-revolution" aria-label="Bruno: The Git-Native Revolution">Bruno: The Git-Native Revolution</a><ul>
+                    
+            <li>
+                <a href="#what-is-bruno-and-why-it-is-different" aria-label="What Is Bruno and Why It Is Different">What Is Bruno and Why It Is Different</a></li>
+            <li>
+                <a href="#git-friendly-collection-format-bru-files" aria-label="Git-Friendly Collection Format (Bru Files)">Git-Friendly Collection Format (Bru Files)</a></li>
+            <li>
+                <a href="#converting-collections-and-environments" aria-label="Converting Collections and Environments">Converting Collections and Environments</a></li>
+            <li>
+                <a href="#maintaining-test-scripts-during-migration" aria-label="Maintaining Test Scripts During Migration">Maintaining Test Scripts During Migration</a></li></ul>
+            </li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#is-bruno-better-than-postman" aria-label="Is Bruno better than Postman?">Is Bruno better than Postman?</a></li>
+            <li>
+                <a href="#what-is-the-best-free-api-testing-tool" aria-label="What is the best free API testing tool?">What is the best free API testing tool?</a></li>
+            <li>
+                <a href="#can-i-use-api-testing-tools-offline" aria-label="Can I use API testing tools offline?">Can I use API testing tools offline?</a></li>
+            <li>
+                <a href="#how-do-i-migrate-from-postman-to-bruno" aria-label="How do I migrate from Postman to Bruno?">How do I migrate from Postman to Bruno?</a></li>
+            <li>
+                <a href="#which-api-client-supports-graphql-and-grpc" aria-label="Which API client supports GraphQL and gRPC?">Which API client supports GraphQL and gRPC?</a></li></ul>
+            </li>
+            <li>
+                <a href="#recommended-infrastructure" aria-label="Recommended Infrastructure">Recommended Infrastructure</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="postman-vs-insomnia-vs-bruno-best-api-testing-tool-in-2025">Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025<a hidden class="anchor" aria-hidden="true" href="#postman-vs-insomnia-vs-bruno-best-api-testing-tool-in-2025">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>API testing is no longer an afterthought in software development. It is a core practice embedded in CI/CD pipelines, code reviews, and daily developer workflows. Choosing the right API client affects how quickly you debug endpoints, how well your team collaborates, and whether your API collections survive employee turnover.</p>
+<p>In 2025, three tools dominate the conversation: <a href="https://www.postman.com">Postman</a>, the established market leader; <a href="https://insomnia.rest">Insomnia</a>, the developer-friendly alternative; and <a href="https://www.usebruno.com">Bruno</a>, the Git-native challenger that has gained remarkable traction among teams who treat APIs as code.</p>
+<p>This comparison examines each tool across dimensions that matter to working developers: features, pricing, protocol support, Git integration, CLI capabilities, and workflow fit.</p>
+<h2 id="the-api-testing-tool-landscape-in-2025">The API Testing Tool Landscape in 2025<a hidden class="anchor" aria-hidden="true" href="#the-api-testing-tool-landscape-in-2025">#</a></h2>
+<h3 id="why-api-testing-matters-in-modern-development">Why API Testing Matters in Modern Development<a hidden class="anchor" aria-hidden="true" href="#why-api-testing-matters-in-modern-development">#</a></h3>
+<p>Microservices architectures mean a typical application communicates with 10-50 internal and external APIs. Each endpoint is a contract that can break silently. API testing catches these breaks before they reach production, where they impact users and revenue.</p>
+<p>Beyond correctness, API testing documents behavior. A well-maintained collection serves as living documentation that stays current because it executes against real endpoints. New developers understand the system by reading and running existing API tests rather than digging through scattered documentation.</p>
+<h3 id="the-shift-from-postman-dominance-to-diverse-alternatives">The Shift From Postman Dominance to Diverse Alternatives<a hidden class="anchor" aria-hidden="true" href="#the-shift-from-postman-dominance-to-diverse-alternatives">#</a></h3>
+<p>Postman held uncontested market leadership through the late 2010s. Its collection format became the de facto standard. However, several factors opened space for alternatives in 2023-2025: 1. <strong>Cloud-only mandates</strong> — Postman pushed users toward cloud-synced workspaces, creating concerns for teams working with sensitive APIs
+2. <strong>Pricing changes</strong> — The free tier became increasingly restricted, pushing team features behind paywalls
+3. <strong>Performance issues</strong> — The Electron-based application grew heavier with each release
+4. <strong>Developer preference shift</strong> — A movement toward Git-friendly, offline-capable tools gained momentum</p>
+<p>These pressures created the market conditions that allowed Insomnia to grow and Bruno to launch successfully.</p>
+<h2 id="postman-the-established-leader">Postman: The Established Leader<a hidden class="anchor" aria-hidden="true" href="#postman-the-established-leader">#</a></h2>
+<h3 id="core-features-collections-environments-and-tests">Core Features: Collections, Environments, and Tests<a hidden class="anchor" aria-hidden="true" href="#core-features-collections-environments-and-tests">#</a></h3>
+<p>Postman&rsquo;s feature set remains the deepest in the industry. Collections organize API requests into folders with variables, pre-request scripts, and test assertions. Environments manage variable sets for development, staging, and production. The testing framework supports Chai.js assertions and can validate response status, headers, body content, and schema compliance.</p>
+<p>Postman also includes: - <strong>Mock servers</strong> — Simulate API responses before the backend exists</p>
+<ul>
+<li><strong>Monitors</strong> — Schedule collection runs and alert on failures</li>
+<li><strong>API documentation</strong> — Auto-generated docs from collections with custom domains</li>
+<li><strong>Postman Flows</strong> — Visual programming for chaining requests and building workflows</li>
+<li><strong>Forking and versioning</strong> — Collection version control within Postman&rsquo;s ecosystem</li>
+</ul>
+<h3 id="collaboration-and-team-workspaces">Collaboration and Team Workspaces<a hidden class="anchor" aria-hidden="true" href="#collaboration-and-team-workspaces">#</a></h3>
+<p>Postman&rsquo;s team workspaces enable real-time collaboration on collections. Comments, change history, and role-based access control support team workflows. However, collaboration requires cloud synchronization — there is no first-class offline team mode. This is the primary pain point driving teams to evaluate alternatives.</p>
+<h3 id="pricing-changes-and-cloud-only-concerns">Pricing Changes and Cloud-Only Concerns<a hidden class="anchor" aria-hidden="true" href="#pricing-changes-and-cloud-only-concerns">#</a></h3>
+<p>Postman&rsquo;s pricing has evolved significantly: | Plan | Price | Key Limitations |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| Free | $0 | 3 team members, limited shared requests, no SAML |
+| Basic | $14/user/month | Up to 10 team members, basic collaboration |
+| Professional | $29/user/month | Unlimited team, advanced reporting, extended history |
+| Enterprise | Contact sales | SAML, governance, priority support |</p>
+<p>The Free plan&rsquo;s three-member limit makes it impractical for real teams. The mandatory cloud sync for collaboration raises concerns when testing internal APIs that should not leave your network.</p>
+<h3 id="strengths-ecosystem-integrations-enterprise-support">Strengths: Ecosystem, Integrations, Enterprise Support<a hidden class="anchor" aria-hidden="true" href="#strengths-ecosystem-integrations-enterprise-support">#</a></h3>
+<p>Postman&rsquo;s biggest advantage is its ecosystem. Thousands of public API collections are available in the Postman API Network. Enterprise support includes dedicated customer success managers, SLA guarantees, and training programs. For large organizations with established Postman workflows, switching costs are high.</p>
+<h2 id="insomnia-the-developer-friendly-alternative">Insomnia: The Developer-Friendly Alternative<a hidden class="anchor" aria-hidden="true" href="#insomnia-the-developer-friendly-alternative">#</a></h2>
+<h3 id="clean-ui-and-streamlined-workflow">Clean UI and Streamlined Workflow<a hidden class="anchor" aria-hidden="true" href="#clean-ui-and-streamlined-workflow">#</a></h3>
+<p>Insomnia&rsquo;s interface prioritizes speed. The request builder loads quickly, keyboard shortcuts are intuitive, and the layout minimizes clicks to execute a request. Developers switching from Postman consistently praise Insomnia&rsquo;s snappier performance and cleaner visual design.</p>
+<h3 id="support-for-rest-graphql-grpc-and-websocket">Support for REST, GraphQL, gRPC, and WebSocket<a hidden class="anchor" aria-hidden="true" href="#support-for-rest-graphql-grpc-and-websocket">#</a></h3>
+<p>Insomnia natively supports multiple protocols in a single application. You can test REST endpoints, execute GraphQL queries with schema introspection, send gRPC requests with protobuf definitions, and open WebSocket connections. This multi-protocol support eliminates the need for separate tools when your stack uses multiple communication patterns.</p>
+<h3 id="kong-acquisition-and-product-evolution">Kong Acquisition and Product Evolution<a hidden class="anchor" aria-hidden="true" href="#kong-acquisition-and-product-evolution">#</a></h3>
+<p>Kong acquired Insomnia in 2019 and has invested in deeper integration with Kong Gateway. Insomnia now includes Kong-specific features like plugin configuration and gateway connectivity. While this benefits Kong users, developers using other gateway products may find these additions irrelevant.</p>
+<h3 id="plugin-ecosystem-and-extensibility">Plugin Ecosystem and Extensibility<a hidden class="anchor" aria-hidden="true" href="#plugin-ecosystem-and-extensibility">#</a></h3>
+<p>Insomnia supports plugins through a JavaScript-based extension API. The plugin directory includes tools for JWT generation, data import/export, and custom themes. The ecosystem is smaller than Postman&rsquo;s but growing steadily.</p>
+<h2 id="bruno-the-git-native-revolution">Bruno: The Git-Native Revolution<a hidden class="anchor" aria-hidden="true" href="#bruno-the-git-native-revolution">#</a></h2>
+<h3 id="what-is-bruno-and-why-it-is-different">What Is Bruno and Why It Is Different<a hidden class="anchor" aria-hidden="true" href="#what-is-bruno-and-why-it-is-different">#</a></h3>
+<p>Bruno launched in 2022 as a deliberate reaction against cloud-locked API clients. Its core innovation is storing API collections as plain text files using a custom format called Bru. These files live in your repository alongside your code, diff cleanly in pull requests, and require no cloud service to share across a team.</p>
+<p>This approach treats API collections as code. Reviewers see API changes in Git diffs. CI pipelines execute collections using the Bruno CLI. There is no separate account to manage, no workspace to configure, and no vendor lock-in.</p>
+<h3 id="git-friendly-collection-format-bru-files">Git-Friendly Collection Format (Bru Files)<a hidden class="anchor" aria-hidden="true" href="#git-friendly-collection-format-bru-files">#</a></h3>
+<p>A Bru file is human-readable plain text. Here is a simple example: ````
+meta {
+name: Get User
+type: http
+seq: 1
+}</p>
+<p>get {
+url: /users/
+body: none
+auth: bearer
+}</p>
+<p>headers {
+Content-Type: application/json
+}</p>
+<p>vars:pre-request {
+userId: 123
+}</p>
+<p>tests {
+expect(res.status).to.equal(200);
+expect(res.body).to.have.property(&lsquo;id&rsquo;);
+}</p>
+<pre tabindex="0"><code>
+This format is simple enough to edit by hand, structured enough to parse programmatically, and readable enough to review in GitHub&#39;s diff view.
+
+### Offline-First, No Cloud Lock-In
+
+Bruno requires no account creation. No data leaves your machine unless you choose to store collections in Git. For teams working with sensitive internal APIs, regulated industries, or air-gapped environments, this is a decisive advantage.
+
+### Open-Source and Community-Driven
+
+Bruno is released under the MIT license. The [GitHub repository](https://github.com/usebruno/bruno) has over 27,000 stars and is actively maintained by a core team with community contributions. The open-source nature means the tool evolves based on user needs rather than investor priorities.
+
+### Scripting With JavaScript and CLI Support
+
+Bruno uses JavaScript for scripting assertions, pre-request logic, and post-response processing. This is familiar to most developers and more flexible than proprietary scripting languages. The Bruno CLI (````bru run````) enables collection execution in CI/CD pipelines, making API testing part of your automated deployment process.
+
+## Head-to-Head Comparison
+
+### Feature Comparison Table
+
+| Feature | Postman | Insomnia | Bruno |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| REST API testing | Yes | Yes | Yes |
+| GraphQL support | Yes | Yes | No (planned) |
+| gRPC support | Yes | Yes | No |
+| WebSocket support | Yes | Yes | No |
+| Collection format | JSON (proprietary) | JSON (proprietary) | Bru (plain text) |
+| Git-friendly collections | Export only | Export only | Native |
+| CLI for CI/CD | Newman | Inso | Built-in (````bru````) |
+| Offline mode | Limited | Yes | Full |
+| Cloud sync | Required for teams | Optional | Not available |
+| Open source | No | No | Yes (MIT) |
+| Mock servers | Yes | No | No |
+| API documentation generation | Yes | Yes | No |
+| Environment variables | Yes | Yes | Yes |
+| Scripting language | JavaScript | JavaScript | JavaScript |
+| Plugin/extensions | Extensive | Moderate | Limited |
+
+### Pricing Comparison
+
+| Plan | Postman | Insomnia | Bruno |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Free tier | 3 users, limited | Unlimited personal use | Fully free (open source) |
+| Paid tier | $14-29/user/month | $8/user/month | $19/user/month (Golden Edition) |
+| Enterprise | Custom pricing | Custom pricing | N/A |
+| Self-hosted | No | No | Yes (Golden Edition) |
+
+Bruno&#39;s paid Golden Edition adds team collaboration features like sync, SSO, and centralized license management. The core application remains fully free and open-source.
+
+### Platform Availability
+
+All three tools support Windows, macOS, and Linux. Postman and Insomnia distribute through their websites and package managers. Bruno is available via GitHub releases, Homebrew, Snap, and Chocolatey.
+
+## Other Notable API Testing Tools
+
+### HTTPie Desktop: Human-Friendly HTTP Client
+
+[HTTPie](https://httpie.io) started as a command-line tool known for its readable syntax and colored output. The desktop application brings that same philosophy to a GUI format. It is excellent for quick manual testing but lacks the collection management and CI integration of the three main tools.
+
+### Hoppscotch: Browser-Based, Open-Source
+
+[Hoppscotch](https://hoppscotch.io) runs entirely in the browser, requiring no installation. It supports REST, GraphQL, WebSocket, and MQTT. Self-hosted deployment is available for teams that need internal access. The browser-based approach means instant availability but limited offline capability.
+
+### Thunder Client: Lightweight VS Code Extension
+
+Thunder Client embeds API testing directly inside VS Code. With over 7 million installations, it is one of the most popular VS Code extensions. It is ideal for developers who want to test APIs without leaving their editor. The lightweight approach means fewer features than dedicated applications, but the convenience factor is significant.
+
+## Git Integration and Version Control
+
+### Why Git-Friendly API Collections Matter
+
+When API collections live outside version control, they drift out of sync with the codebase. A developer updates an endpoint but forgets to update the shared collection. Three months later, a new team member wastes hours trying to use the stale collection.
+
+Git-friendly collections solve this by making API definitions part of the code review process. When you modify an endpoint, the collection change appears in the same pull request. Reviewers verify that the API test matches the implementation. CI runs the collection to confirm nothing breaks.
+
+### Bruno&#39;s Approach: Collections as Code
+
+Bruno is purpose-built for this workflow. Bru files live in a ````collections/```` directory inside your repository. Changes are reviewed, approved, and merged alongside code changes. The CLI runs collections in CI without additional export steps.
+
+### Postman&#39;s Export and Version Control Workaround
+
+Postman collections can be exported to JSON and committed to Git. However, the exported JSON is verbose and includes metadata that creates noisy diffs. The workflow is manual: edit in Postman, export, commit, then other developers import to see changes. This friction discourages frequent updates.
+
+### Code Review Workflows for API Changes
+
+With Bruno, API changes appear in Git diffs as readable text. Reviewers see exactly what changed: a new header, modified URL, or updated assertion. This transparency improves code review quality and catches API-breaking changes before they merge.
+
+## CLI and Automation Capabilities
+
+### Bruno CLI for CI/CD Pipelines
+
+The Bruno CLI installs via npm (``npm install -g @usebruno/cli``) and runs collections with a single command: `````bash
+bru run collection-name --env production
+</code></pre><p>Output formats include JUnit XML and HTML reports, integrating directly with CI dashboards. A GitHub Actions example: `````yaml</p>
+<ul>
+<li>name: Run API Tests
+run: |
+npm install -g @usebruno/cli
+bru run collections/ &ndash;env staging &ndash;output results.xml</li>
+</ul>
+<pre tabindex="0"><code>
+### Newman (Postman CLI) for Test Automation
+
+Postman&#39;s Newman CLI has been the standard for API test automation for years. It runs exported Postman collections and supports HTML, JUnit, and JSON reporters. The limitation is the export step — collections must be manually exported from Postman before CI can run them.
+
+### Integrating API Tests in GitHub Actions
+
+Both Bruno and Newman integrate cleanly with GitHub Actions. Bruno&#39;s advantage is that collections are already in the repository, so no export step is needed. This makes the CI pipeline simpler and less prone to the collection being out of date.
+
+## Choosing the Right Tool for Your Workflow
+
+### Individual Developers: Bruno or Insomnia
+
+For personal projects, Bruno offers zero-cost, offline-capable API testing with Git integration. Insomnia provides a polished UI with multi-protocol support if you work with GraphQL or gRPC. Both are fast and free.
+
+### Teams Prioritizing Collaboration: Postman
+
+If your team values shared workspaces, real-time collaboration, and extensive integrations, Postman remains the strongest option. The cost is justified for teams that use advanced features like mock servers, monitors, and API documentation generation. Just be prepared for the cloud-sync requirement.
+
+### Git-First Teams: Bruno
+
+If your team already practices infrastructure-as-code and treats configuration as version-controlled artifacts, Bruno is the natural choice. The Bru format, CLI-first design, and open-source license align with DevOps principles. The learning curve is minimal — the UI is intuitive and the documentation is thorough.
+
+### Enterprise Environments: Postman Enterprise
+
+Large enterprises with governance requirements, SSO integration needs, and dedicated support contracts should evaluate Postman Enterprise. The admin dashboards, usage analytics, and compliance certifications (SOC 2, ISO 27001) satisfy procurement requirements that smaller tools cannot match.
+
+### VS Code Users: Thunder Client or REST Client
+
+If you rarely test APIs and want minimal context switching, the Thunder Client or REST Client VS Code extensions handle basic testing without leaving your editor. These are not replacements for dedicated API clients but cover 80% of daily use cases for many developers.
+
+## Migration Guide: Switching Between Tools
+
+### Exporting From Postman to Bruno/Insomnia
+
+Bruno includes a Postman collection importer. Export your Postman collection as JSON v2.1, then use Bruno&#39;s import dialog or CLI command: `````bash
+bru import collection postman-export.json
+</code></pre><p>The importer handles requests, headers, environment variables, and basic test scripts. Complex Postman-specific scripts may need manual adjustment.</p>
+<h3 id="converting-collections-and-environments">Converting Collections and Environments<a hidden class="anchor" aria-hidden="true" href="#converting-collections-and-environments">#</a></h3>
+<p>Environment variables export from Postman as JSON and can be converted to Bruno&rsquo;s environment format using the CLI or manual editing. The variable substitution syntax (````````) is identical between both tools, so no changes are needed in request definitions.</p>
+<h3 id="maintaining-test-scripts-during-migration">Maintaining Test Scripts During Migration<a hidden class="anchor" aria-hidden="true" href="#maintaining-test-scripts-during-migration">#</a></h3>
+<p>Postman&rsquo;s test scripts use the <code>pm.*</code> API for assertions and variable access. Bruno uses standard JavaScript with Chai assertions. A typical Postman test: `````javascript
+pm.test(&ldquo;Status is 200&rdquo;, () =&gt; {
+pm.response.to.have.status(200);
+});</p>
+<pre tabindex="0"><code>
+Becomes in Bruno: `````javascript
+expect(res.status).to.equal(200);
+</code></pre><p>The conversion is mechanical and can be automated with a simple script for large collections.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="is-bruno-better-than-postman">Is Bruno better than Postman?<a hidden class="anchor" aria-hidden="true" href="#is-bruno-better-than-postman">#</a></h3>
+<p>Bruno is better than Postman for teams who prioritize Git integration, offline usage, and open-source tooling. Postman remains superior for teams that need collaboration features, mock servers, API documentation generation, and enterprise support. The right choice depends on your workflow priorities.</p>
+<h3 id="what-is-the-best-free-api-testing-tool">What is the best free API testing tool?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-best-free-api-testing-tool">#</a></h3>
+<p>For completely free, unlimited API testing with no account required, Bruno is the best option. For multi-protocol support (GraphQL, gRPC) in a free tool, Insomnia&rsquo;s personal tier is excellent. For access to the largest API collection network, Postman&rsquo;s free tier works for individuals or very small teams.</p>
+<h3 id="can-i-use-api-testing-tools-offline">Can I use API testing tools offline?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-api-testing-tools-offline">#</a></h3>
+<p>Bruno works fully offline with no account creation required. Insomnia works offline but requires a free account for some features. Postman&rsquo;s desktop application works offline for local collections, but cloud features and team collaboration require internet access.</p>
+<h3 id="how-do-i-migrate-from-postman-to-bruno">How do I migrate from Postman to Bruno?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-migrate-from-postman-to-bruno">#</a></h3>
+<p>Export your Postman collections as JSON v2.1, then use Bruno&rsquo;s import feature or the CLI <code>bru import</code> command. Environment variables export separately and convert to Bruno&quot;s format. Review test scripts and convert ````pm.*``` syntax to standard JavaScript assertions.</p>
+<h3 id="which-api-client-supports-graphql-and-grpc">Which API client supports GraphQL and gRPC?<a hidden class="anchor" aria-hidden="true" href="#which-api-client-supports-graphql-and-grpc">#</a></h3>
+<p>Postman and Insomnia both support GraphQL and gRPC natively. Bruno currently focuses on REST API testing with GraphQL support planned. For WebSocket testing, Postman and Insomnia both offer native support. If multi-protocol testing is essential, Insomnia provides the best balance of features and performance.</p>
+<hr>
+<h2 id="recommended-infrastructure">Recommended Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-infrastructure">#</a></h2>
+<p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li>
+</ul>
+<p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
+&ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;Postman vs Insomnia vs Bruno: Best API Testing Tool in 2025&rdquo;,
+&ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
+&ldquo;dateModified&rdquo;: &ldquo;2026-05-18&rdquo;,
+&ldquo;author&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;
+},
+&ldquo;publisher&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;Organization&rdquo;,
+&ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
+&ldquo;logo&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
+}
+},
+&ldquo;mainEntityOfPage&rdquo;: {
+&ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno%22">https://dibi8.com/resources/api-testing-tools-postman-vs-insomnia-vs-bruno"</a>
+}
+}
+</script></p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Architecture on Dibi8</title>
+    <link>https://dibi8.com/vi/tags/architecture/</link>
+    <description>Recent content in Architecture on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/vi/tags/architecture/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Archify: Tạo Architecture Diagrams Production-Ready Trong 2026</title>
+      <link>https://dibi8.com/vi/archify-diagrams/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/archify-diagrams/</guid>
+      <description>Công cụ tự động sinh kiến trúc diagram từ codebase. Tích hợp AI coding agents, workflow thực tế cho dev teams. 59,700 stars GitHub.</description>
+    </item>
+  </channel>
+</rss>

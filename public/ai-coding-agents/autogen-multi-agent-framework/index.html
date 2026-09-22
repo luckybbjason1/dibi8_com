@@ -1,17 +1,375 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/autogen-multi-agent-framework/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/autogen-multi-agent-framework/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/autogen-multi-agent-framework/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"{\u003c/* resource-info */\u003e}\nSingle LLM calls can write emails and summarize articles. But real-world problems require collaboration: a researcher gathers data, an analyst crunches numbers, a writer drafts a report, and an editor polishes the output. AutoGen, Microsoft’s open-source multi-agent framework, automates this kind of teamwork with AI agents.\nFirst released by Microsoft Research in October 2023, AutoGen has rapidly evolved into the most capable framework for building conversational multi-agent systems. With over 34,000 GitHub stars and active development from both Microsoft and the open-source community, it represents a paradigm shift from single-prompt AI to collaborative agent networks.\nThis tutorial walks you through building your first multi-agent system, then scales up to advanced patterns you can deploy in production.\nWhat is AutoGen? AutoGen is a Python framework for building applications where multiple AI agents converse with each other and with humans to accomplish tasks. Unlike single-shot LLM APIs, AutoGen agents can write code, execute it, call external tools, and ask each other clarifying questions — all through a unified conversation interface.\nThe framework’s central innovation is the conversable agent — an abstraction that wraps an LLM, tools, and optional human input into an entity that can send and receive messages. When multiple conversable agents chat in a group, they form a multi-agent system capable of complex problem-solving.\nIntroduction to Microsoft’s AutoGen Framework AutoGen emerged from Microsoft Research’s work on making LLMs more capable through collaboration. The insight is simple: one LLM can write buggy code, but two LLMs — one writing and one reviewing — produce better results. Three LLMs — a planner, a coder, and a tester — perform even better.\nThe framework handles conversation routing, code execution, human feedback integration, and error recovery automatically. You define the agents and their roles; AutoGen orchestrates the collaboration.\nCore Concept: Conversable Agents Every AutoGen agent is “conversable” — it participates in structured conversations through a standardized message protocol. Agents do not just exchange text; they share structured messages containing code, execution results, tool calls, and reasoning steps. This structured communication enables agents to actually collaborate rather than just take turns talking.\nAutoGen vs Other Agent Frameworks | Framework | Agent Model | Best For | Learning Curve | |\n|\n|\n|\n| | AutoGen | Conversational collaboration | Code generation, data analysis, research | Moderate | | CrewAI | Role-based teams | Business workflows, content creation | Low | | LangGraph | Stateful DAG graphs | Deterministic workflows, human-in-the-loop | High | | MetaGPT | Software engineering simulation | Code generation, system design | Moderate |\nAutoGen differentiates itself through native code execution and deep multi-agent conversation support. While CrewAI offers simpler role definitions and LangGraph provides more precise control over execution flow, AutoGen excels when agents need to actually do things — write code, run queries, iterate on solutions.\nAutoGen Architecture and Key Concepts ConversableAgent: The Base Agent Class Every agent in AutoGen extends ```ConversableAgent````. This base class provides: - LLM backend configuration: Connect to OpenAI, Azure, or local models\nSystem messages: Define agent personality and role Code execution: Run Python code in Docker or local environments Tool registration: Attach callable functions to the agent Human proxy mode: Pause for human input when needed UserProxyAgent: Human-in-the-Loop The UserProxyAgent represents a human user in the conversation. It can execute code locally, make decisions about conversation flow, and prompt for human input when configured. Typically, one UserProxyAgent initiates the task and receives the final result.\nAssistantAgent: Code-Writing Agent The AssistantAgent is a pre-configured agent optimized for writing code and following instructions. It cannot execute code directly — it proposes code and the UserProxyAgent (or another executor agent) runs it. This separation of writing and execution is a deliberate security design.\nGroupChat: Multi-Agent Collaboration GroupChat enables three or more agents to collaborate. The GroupChatManager handles conversation routing, deciding which agent speaks next based on the conversation history and configured selection strategy.\nChat History and Memory Management AutoGen maintains full conversation history automatically. Agents can reference previous messages, and the framework handles context window management. For long-running tasks, conversation history can be summarized to stay within model token limits.\nInstallation and Setup Installing AutoGen pip install pyautogen For the latest development features: `````bash pip install pyautogen –pre\n### Configuring LLM Endpoints AutoGen supports multiple LLM backends through a configuration list: `````python import autogen config_list = [ { \"model\": \"gpt-4o\", \"api_key\": \"your-openai-key\", } ] # For local models via Ollama or LM Studio local_config = [ { \"model\": \"llama3.1\", \"base_url\": \"http://localhost:11434/v1\", \"api_key\": \"not-needed\", } ] Setting Up Your First Agent Configuration from autogen import AssistantAgent, UserProxyAgent assistant = AssistantAgent( name=\"assistant\", llm_config={\"config_list\": config_list} ) user_proxy = UserProxyAgent( name=\"user_proxy\", human_input_mode=\"NEVER\", max_consecutive_auto_reply=10, code_execution_config={\"work_dir\": \"coding\", \"use_docker\": False} ) Building Your First Multi-Agent System Creating a Simple Two-Agent Conversation The simplest AutoGen application pairs an assistant with a user proxy: `````python\nInitiate the conversation user_proxy.initiate_chat( assistant, message=“Write a Python function that calculates the Fibonacci sequence up to n terms, then test it with n=10.” )\nThe assistant writes the code. The user proxy executes it. If the output is wrong, the assistant sees the error and fixes it. This loop continues until the task succeeds or max replies are reached. ### Enabling Code Execution Code execution is AutoGen's killer feature. Configure it carefully: `````python code_execution_config = { \"work_dir\": \"coding_workspace\", # Where code files are saved \"use_docker\": True, # Isolate execution in Docker (recommended) \"timeout\": 60, # Seconds before killing a runaway script \"last_n_messages\": 3, # How many recent messages to check for code } Always use Docker for untrusted code. The container isolation prevents agents from accidentally (or maliciously) damaging your system.\nSetting Termination Conditions Prevent infinite conversations with termination conditions: `````python user_proxy = UserProxyAgent( name=“user_proxy”, is_termination_msg=lambda msg: “TERMINATE” in msg.get(“content”, “”), human_input_mode=“NEVER” )\nThe assistant is instructed to include \"TERMINATE\" in its final message when the task is complete. ### Running and Observing Agent Interactions When you run the conversation, AutoGen prints each exchange with clear role indicators. The conversation typically follows this pattern: 1. **Human** sends the task 2. **Assistant** writes code 3. **UserProxy** executes code, returns output 4. **Assistant** reviews output, fixes if needed 5. Repeat until success 6. **Assistant** sends TERMINATE ## Advanced Agent Patterns ### GroupChat with Multiple Agents GroupChat extends beyond two-agent collaboration: `````python from autogen import GroupChat, GroupChatManager # Define specialized agents planner = AssistantAgent(name=\"planner\", system_prompt=\"You break down tasks into steps.\") coder = AssistantAgent(name=\"coder\", system_prompt=\"You write Python code.\") reviewer = AssistantAgent(name=\"reviewer\", system_prompt=\"You review code for bugs.\") user_proxy = UserProxyAgent(name=\"user_proxy\", code_execution_config={\"use_docker\": True}) groupchat = GroupChat( agents=[user_proxy, planner, coder, reviewer], messages=[], max_round=12 ) manager = GroupChatManager(groupchat=groupchat, llm_config={\"config_list\": config_list}) user_proxy.initiate_chat(manager, message=\"Build a web scraper that extracts titles from Hacker News.\") Sequential Chat Workflows For deterministic multi-step processes, use sequential chats: `````python\nStep 1: Planning chat_result1 = user_proxy.initiate_chat(planner, message=“Plan a data analysis of sales.csv”, clear_history=True)\nStep 2: Execution (pass plan as context) summary = chat_result1.summary chat_result2 = user_proxy.initiate_chat(coder, message=f\"Execute this plan: {summary}\", clear_history=True)\n### Nested Chat Patterns Nested chats let agents delegate subtasks to other agents internally. A manager agent might spin up a research sub-conversation, collect results, and incorporate them into its main response. This pattern creates hierarchical agent organizations. ### Human-in-the-Loop and Approval Modes For sensitive operations, require human approval: `````python user_proxy = UserProxyAgent( name=\"user_proxy\", human_input_mode=\"ALWAYS\" # Prompt for every message ) # Or use \"TERMINATE\" mode for approval only before termination Custom Agent Classes and Behaviors Extend ConversableAgent for custom behaviors: `````python class DataAnalystAgent(AssistantAgent): def init(self, **kwargs): super().init( name=“data_analyst”, system_prompt=“You are an expert data analyst. Always validate data before analysis.”, **kwargs )\ndef generate_reply(self, messages, sender, config): # Custom logic before generating reply return super().generate_reply(messages, sender, config) ## AutoGen with Local and Open-Source Models ### Using Ollama with AutoGen AutoGen works with any OpenAI-compatible API, including Ollama: `````python config_list = [{ \"model\": \"llama3.1:8b\", \"base_url\": \"http://localhost:11434/v1\", \"api_key\": \"ollama\", \"price\": [0, 0], # Local models are free }] Note that smaller models struggle with complex multi-agent coordination. For reliable results with local models, use models with at least 7 billion parameters and strong instruction-following capabilities like Llama 3.1 or Qwen 2.5.\nIntegrating vLLM and LM Studio vLLM provides high-throughput local serving for open-source models. Configure AutoGen to point at your vLLM endpoint: `````python vllm_config = [{ “model”: “mistralai/Mistral-7B-Instruct-v0.3”, “base_url”: “http://localhost:8000/v1”, “api_key”: “not-needed”, }]\n### Cost Optimization Strategies Multi-agent systems consume significant API tokens. Optimize costs: - **Use cheaper models for simple tasks**: GPT-4o-mini for planning, GPT-4o only for complex reasoning - **Limit max_round**: Prevent runaway conversations - **Cache LLM responses**: AutoGen supports caching to avoid redundant API calls - **Use local models for code execution feedback**: You do not need GPT-4 to tell you a script ran successfully ## Real-World Use Cases ### Automated Data Analysis Pipeline A three-agent system can automate exploratory data analysis: 1. **Planner** agent outlines analysis steps 2. **Coder** agent writes pandas and matplotlib code 3. **Reporter** agent summarizes findings in natural language This pipeline turns raw CSV files into documented insights without human intervention. ### Multi-Agent Code Review System Simulate a development team: 1. **Developer** writes the initial implementation 2. **Reviewer** checks for bugs, performance issues, and style violations 3. **Tester** writes and runs unit tests 4. **Architect** verifies design patterns and consistency The system iterates until all agents approve or max rounds are reached. ### Research Assistant with Web Search Combine AutoGen with search tools: `````python from autogen.register_function import register_function def web_search(query: str) -\u003e str: \"\"\"Search the web for information.\"\"\" # Implementation using DuckDuckGo or similar return results register_function(web_search, caller=assistant, executor=user_proxy) The research agent searches, synthesizes, and cites sources — useful for literature reviews and competitive analysis.\nContent Creation Workflow A content team simulation: 1. Strategist defines topic and angle 2. Writer produces the draft 3. Editor improves clarity and grammar 4. SEO specialist optimizes keywords and structure\nAutoGen + LangGraph: When to Choose What AutoGen for Conversational Multi-Agent Choose AutoGen when your agents need to have open-ended conversations, write and execute code, and collaborate dynamically. AutoGen excels at creative problem-solving where the path to the solution is not known in advance.\nLangGraph for Stateful DAG Workflows Choose LangGraph when you need precise control over execution flow — specific branching logic, guaranteed checkpoints, and reproducible state transitions. LangGraph represents workflows as graphs, making it better for regulated environments where every decision must be auditable.\nIntegration Possibilities You can combine both frameworks. Use LangGraph to define the high-level workflow (data ingestion → processing → validation → output), and AutoGen for the processing step where multiple agents collaborate on the actual analysis.\nBest Practices and Production Tips Managing Token Costs Multi-agent conversations multiply token usage. A single task might involve 20+ LLM calls across multiple agents. Strategies to control costs: - Set max_consecutive_auto_reply low (5-10)\nUse the cheapest model that handles the task Enable the built-in cache: autogen.Cache.disk_cache_root = \"./cache\" Monitor usage with ChatResult.cost after each conversation Error Handling and Retries Agent conversations can derail. Implement safeguards: - Set max_round on GroupChat to prevent infinite loops\nUse is_termination_msg to detect natural conversation endings Wrap agent calls in try-except blocks for production applications Log all conversations for debugging Security Considerations for Code Execution Never enable code execution without Docker isolation on production systems. Even benign-looking code can access environment variables, network resources, and the file system. Best practices: - Always set use_docker: True\nMount only necessary directories as volumes Set reasonable timeouts (30-60 seconds) Review and whitelist allowed Python packages Debugging Agent Conversations When agents fail to cooperate: 1. Check the system prompt — unclear roles cause confusion 2. Reduce agent count — start with two agents, add more gradually 3. Review the conversation log — identify where it derailed 4. Adjust the GroupChat speaker selection strategy 5. Use stronger models — GPT-4o significantly outperforms GPT-4o-mini for agent coordination\nFrequently Asked Questions What is AutoGen used for? AutoGen builds multi-agent AI systems where multiple LLM instances collaborate to solve complex tasks. Common use cases include automated data analysis, code generation and review, research synthesis, content creation workflows, and simulation of expert teams (development, marketing, research). Any problem that benefits from multiple perspectives or specialized roles is a good fit for AutoGen.\nIs AutoGen free and open source? Yes, AutoGen is open-source under the MIT license and free to use. You can install it with pip install pyautogen. You pay only for the LLM API calls your agents make — OpenAI, Azure, or your local compute. Microsoft Research maintains the core framework with active community contributions.\nAutoGen vs CrewAI: What is the difference? CrewAI emphasizes role-based agent definitions with a simpler API — you define agents, tasks, and crews declaratively. AutoGen focuses on conversational collaboration with native code execution and more flexible conversation patterns. Choose CrewAI for straightforward business workflows with clear task sequences. Choose AutoGen for problems requiring code generation, iterative debugging, and open-ended agent conversations.\nCan AutoGen run with local LLMs? Yes, AutoGen works with any OpenAI-compatible API endpoint. Configure it to use Ollama, LM Studio, vLLM, or any local inference server. However, multi-agent coordination requires strong instruction-following capabilities. Models below 7 billion parameters often struggle with complex agent interactions. For best results, use strong local models like Llama 3.1 8B, Qwen 2.5 7B, or Mistral 7B.\nHow does AutoGen handle code execution security? AutoGen separates code generation from execution. The AssistantAgent writes code; the UserProxyAgent executes it. By default, AutoGen runs code in a Docker container, isolating it from the host system. Always enable Docker isolation (use_docker: True) in production. Set timeouts, limit file system access, and whitelist packages to minimize security risks.\nConclusion and Getting Started Resources AutoGen represents a fundamental shift in how we build AI applications — from single-model prompts to collaborative agent networks. The framework\"s native support for code execution, flexible conversation patterns, and human-in-the-loop integration makes it uniquely capable for tasks that require actual problem-solving rather than just text generation.\nStart with a simple two-agent setup: a UserProxyAgent and an AssistantAgent. Give them a coding task and observe the collaboration loop. Then experiment with ````GroupChat``` for multi-agent scenarios, add custom tools for domain-specific capabilities, and configure local models to control costs.\nFor production deployments, always use Docker isolation, implement termination conditions, and monitor token usage. The framework is powerful but requires careful configuration to prevent runaway conversations and unexpected API bills.\nThe future of AI is multi-agent. AutoGen gives you the tools to build that future today.\nFor more resources, visit the official AutoGen documentation and explore examples in the GitHub repository.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AutoGen Tutorial 2025: Building Multi-Agent AI Systems Made Easy”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/autogen-multi-agent-framework\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"2526","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/autogen-multi-agent-framework/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/autogen-multi-agent-framework/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/autogen-multi-agent-framework/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#what-is-autogen aria-label="What is AutoGen?">What is AutoGen?</a><ul><li><a href=#introduction-to-microsofts-autogen-framework aria-label="Introduction to Microsoft&rsquo;s AutoGen Framework">Introduction to Microsoft&rsquo;s AutoGen Framework</a></li><li><a href=#core-concept-conversable-agents aria-label="Core Concept: Conversable Agents">Core Concept: Conversable Agents</a></li><li><a href=#autogen-vs-other-agent-frameworks aria-label="AutoGen vs Other Agent Frameworks">AutoGen vs Other Agent Frameworks</a></li></ul></li><li><a href=#autogen-architecture-and-key-concepts aria-label="AutoGen Architecture and Key Concepts">AutoGen Architecture and Key Concepts</a><ul><li><a href=#conversableagent-the-base-agent-class aria-label="ConversableAgent: The Base Agent Class">ConversableAgent: The Base Agent Class</a></li><li><a href=#userproxyagent-human-in-the-loop aria-label="UserProxyAgent: Human-in-the-Loop">UserProxyAgent: Human-in-the-Loop</a></li><li><a href=#assistantagent-code-writing-agent aria-label="AssistantAgent: Code-Writing Agent">AssistantAgent: Code-Writing Agent</a></li><li><a href=#groupchat-multi-agent-collaboration aria-label="GroupChat: Multi-Agent Collaboration">GroupChat: Multi-Agent Collaboration</a></li><li><a href=#chat-history-and-memory-management aria-label="Chat History and Memory Management">Chat History and Memory Management</a></li></ul></li><li><a href=#installation-and-setup aria-label="Installation and Setup">Installation and Setup</a><ul><li><a href=#installing-autogen aria-label="Installing AutoGen">Installing AutoGen</a></li><li><a href=#setting-up-your-first-agent-configuration aria-label="Setting Up Your First Agent Configuration">Setting Up Your First Agent Configuration</a></li></ul></li><li><a href=#building-your-first-multi-agent-system aria-label="Building Your First Multi-Agent System">Building Your First Multi-Agent System</a><ul><li><a href=#creating-a-simple-two-agent-conversation aria-label="Creating a Simple Two-Agent Conversation">Creating a Simple Two-Agent Conversation</a></li></ul></li></ul><li><a href=#initiate-the-conversation aria-label="Initiate the conversation">Initiate the conversation</a><ul><ul><li><a href=#setting-termination-conditions aria-label="Setting Termination Conditions">Setting Termination Conditions</a></li><li><a href=#sequential-chat-workflows aria-label="Sequential Chat Workflows">Sequential Chat Workflows</a></li></ul></ul></li><li><a href=#step-1-planning aria-label="Step 1: Planning">Step 1: Planning</a></li><li><a href=#step-2-execution-pass-plan-as-context aria-label="Step 2: Execution (pass plan as context)">Step 2: Execution (pass plan as context)</a><ul><ul><li><a href=#custom-agent-classes-and-behaviors aria-label="Custom Agent Classes and Behaviors">Custom Agent Classes and Behaviors</a></li><li><a href=#integrating-vllm-and-lm-studio aria-label="Integrating vLLM and LM Studio">Integrating vLLM and LM Studio</a></li><li><a href=#content-creation-workflow aria-label="Content Creation Workflow">Content Creation Workflow</a></li></ul><li><a href=#autogen--langgraph-when-to-choose-what aria-label="AutoGen + LangGraph: When to Choose What">AutoGen + LangGraph: When to Choose What</a><ul><li><a href=#autogen-for-conversational-multi-agent aria-label="AutoGen for Conversational Multi-Agent">AutoGen for Conversational Multi-Agent</a></li><li><a href=#langgraph-for-stateful-dag-workflows aria-label="LangGraph for Stateful DAG Workflows">LangGraph for Stateful DAG Workflows</a></li><li><a href=#integration-possibilities aria-label="Integration Possibilities">Integration Possibilities</a></li></ul></li><li><a href=#best-practices-and-production-tips aria-label="Best Practices and Production Tips">Best Practices and Production Tips</a><ul><li><a href=#managing-token-costs aria-label="Managing Token Costs">Managing Token Costs</a></li><li><a href=#error-handling-and-retries aria-label="Error Handling and Retries">Error Handling and Retries</a></li><li><a href=#security-considerations-for-code-execution aria-label="Security Considerations for Code Execution">Security Considerations for Code Execution</a></li><li><a href=#debugging-agent-conversations aria-label="Debugging Agent Conversations">Debugging Agent Conversations</a></li></ul></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#what-is-autogen-used-for aria-label="What is AutoGen used for?">What is AutoGen used for?</a></li><li><a href=#is-autogen-free-and-open-source aria-label="Is AutoGen free and open source?">Is AutoGen free and open source?</a></li><li><a href=#autogen-vs-crewai-what-is-the-difference aria-label="AutoGen vs CrewAI: What is the difference?">AutoGen vs CrewAI: What is the difference?</a></li><li><a href=#can-autogen-run-with-local-llms aria-label="Can AutoGen run with local LLMs?">Can AutoGen run with local LLMs?</a></li><li><a href=#how-does-autogen-handle-code-execution-security aria-label="How does AutoGen handle code execution security?">How does AutoGen handle code execution security?</a></li></ul></li><li><a href=#conclusion-and-getting-started-resources aria-label="Conclusion and Getting Started Resources">Conclusion and Getting Started Resources</a></li><li><a href=#recommended-infrastructure aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>{&lt;/* resource-info */>}</p><p>Single LLM calls can write emails and summarize articles. But real-world problems require collaboration: a researcher gathers data, an analyst crunches numbers, a writer drafts a report, and an editor polishes the output. AutoGen, Microsoft&rsquo;s open-source multi-agent framework, automates this kind of teamwork with AI agents.</p><p>First released by Microsoft Research in October 2023, AutoGen has rapidly evolved into the most capable framework for building conversational multi-agent systems. With over 34,000 GitHub stars and active development from both Microsoft and the open-source community, it represents a paradigm shift from single-prompt AI to collaborative agent networks.</p><p>This tutorial walks you through building your first multi-agent system, then scales up to advanced patterns you can deploy in production.</p><h2 id=what-is-autogen>What is AutoGen?<a hidden class=anchor aria-hidden=true href=#what-is-autogen>#</a></h2><p>AutoGen is a Python framework for building applications where multiple AI agents converse with each other and with humans to accomplish tasks. Unlike single-shot LLM APIs, AutoGen agents can write code, execute it, call external tools, and ask each other clarifying questions — all through a unified conversation interface.</p><p>The framework&rsquo;s central innovation is the <strong>conversable agent</strong> — an abstraction that wraps an LLM, tools, and optional human input into an entity that can send and receive messages. When multiple conversable agents chat in a group, they form a multi-agent system capable of complex problem-solving.</p><h3 id=introduction-to-microsofts-autogen-framework>Introduction to Microsoft&rsquo;s AutoGen Framework<a hidden class=anchor aria-hidden=true href=#introduction-to-microsofts-autogen-framework>#</a></h3><p>AutoGen emerged from Microsoft Research&rsquo;s work on making LLMs more capable through collaboration. The insight is simple: one LLM can write buggy code, but two LLMs — one writing and one reviewing — produce better results. Three LLMs — a planner, a coder, and a tester — perform even better.</p><p>The framework handles conversation routing, code execution, human feedback integration, and error recovery automatically. You define the agents and their roles; AutoGen orchestrates the collaboration.</p><h3 id=core-concept-conversable-agents>Core Concept: Conversable Agents<a hidden class=anchor aria-hidden=true href=#core-concept-conversable-agents>#</a></h3><p>Every AutoGen agent is &ldquo;conversable&rdquo; — it participates in structured conversations through a standardized message protocol. Agents do not just exchange text; they share structured messages containing code, execution results, tool calls, and reasoning steps. This structured communication enables agents to actually collaborate rather than just take turns talking.</p><h3 id=autogen-vs-other-agent-frameworks>AutoGen vs Other Agent Frameworks<a hidden class=anchor aria-hidden=true href=#autogen-vs-other-agent-frameworks>#</a></h3><p>| Framework | Agent Model | Best For | Learning Curve |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/autogen-multi-agent-framework/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/autogen-multi-agent-framework/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/autogen-multi-agent-framework/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "{\u003c/* resource-info */\u003e}\nSingle LLM calls can write emails and summarize articles. But real-world problems require collaboration: a researcher gathers data, an analyst crunches numbers, a writer drafts a report, and an editor polishes the output. AutoGen, Microsoft’s open-source multi-agent framework, automates this kind of teamwork with AI agents.\nFirst released by Microsoft Research in October 2023, AutoGen has rapidly evolved into the most capable framework for building conversational multi-agent systems. With over 34,000 GitHub stars and active development from both Microsoft and the open-source community, it represents a paradigm shift from single-prompt AI to collaborative agent networks.\nThis tutorial walks you through building your first multi-agent system, then scales up to advanced patterns you can deploy in production.\nWhat is AutoGen? AutoGen is a Python framework for building applications where multiple AI agents converse with each other and with humans to accomplish tasks. Unlike single-shot LLM APIs, AutoGen agents can write code, execute it, call external tools, and ask each other clarifying questions — all through a unified conversation interface.\nThe framework’s central innovation is the conversable agent — an abstraction that wraps an LLM, tools, and optional human input into an entity that can send and receive messages. When multiple conversable agents chat in a group, they form a multi-agent system capable of complex problem-solving.\nIntroduction to Microsoft’s AutoGen Framework AutoGen emerged from Microsoft Research’s work on making LLMs more capable through collaboration. The insight is simple: one LLM can write buggy code, but two LLMs — one writing and one reviewing — produce better results. Three LLMs — a planner, a coder, and a tester — perform even better.\nThe framework handles conversation routing, code execution, human feedback integration, and error recovery automatically. You define the agents and their roles; AutoGen orchestrates the collaboration.\nCore Concept: Conversable Agents Every AutoGen agent is “conversable” — it participates in structured conversations through a standardized message protocol. Agents do not just exchange text; they share structured messages containing code, execution results, tool calls, and reasoning steps. This structured communication enables agents to actually collaborate rather than just take turns talking.\nAutoGen vs Other Agent Frameworks | Framework | Agent Model | Best For | Learning Curve | |\n|\n|\n|\n| | AutoGen | Conversational collaboration | Code generation, data analysis, research | Moderate | | CrewAI | Role-based teams | Business workflows, content creation | Low | | LangGraph | Stateful DAG graphs | Deterministic workflows, human-in-the-loop | High | | MetaGPT | Software engineering simulation | Code generation, system design | Moderate |\nAutoGen differentiates itself through native code execution and deep multi-agent conversation support. While CrewAI offers simpler role definitions and LangGraph provides more precise control over execution flow, AutoGen excels when agents need to actually do things — write code, run queries, iterate on solutions.\nAutoGen Architecture and Key Concepts ConversableAgent: The Base Agent Class Every agent in AutoGen extends ```ConversableAgent````. This base class provides: - LLM backend configuration: Connect to OpenAI, Azure, or local models\nSystem messages: Define agent personality and role Code execution: Run Python code in Docker or local environments Tool registration: Attach callable functions to the agent Human proxy mode: Pause for human input when needed UserProxyAgent: Human-in-the-Loop The UserProxyAgent represents a human user in the conversation. It can execute code locally, make decisions about conversation flow, and prompt for human input when configured. Typically, one UserProxyAgent initiates the task and receives the final result.\nAssistantAgent: Code-Writing Agent The AssistantAgent is a pre-configured agent optimized for writing code and following instructions. It cannot execute code directly — it proposes code and the UserProxyAgent (or another executor agent) runs it. This separation of writing and execution is a deliberate security design.\nGroupChat: Multi-Agent Collaboration GroupChat enables three or more agents to collaborate. The GroupChatManager handles conversation routing, deciding which agent speaks next based on the conversation history and configured selection strategy.\nChat History and Memory Management AutoGen maintains full conversation history automatically. Agents can reference previous messages, and the framework handles context window management. For long-running tasks, conversation history can be summarized to stay within model token limits.\nInstallation and Setup Installing AutoGen pip install pyautogen For the latest development features: `````bash pip install pyautogen –pre\n### Configuring LLM Endpoints AutoGen supports multiple LLM backends through a configuration list: `````python import autogen config_list = [ { \"model\": \"gpt-4o\", \"api_key\": \"your-openai-key\", } ] # For local models via Ollama or LM Studio local_config = [ { \"model\": \"llama3.1\", \"base_url\": \"http://localhost:11434/v1\", \"api_key\": \"not-needed\", } ] Setting Up Your First Agent Configuration from autogen import AssistantAgent, UserProxyAgent assistant = AssistantAgent( name=\"assistant\", llm_config={\"config_list\": config_list} ) user_proxy = UserProxyAgent( name=\"user_proxy\", human_input_mode=\"NEVER\", max_consecutive_auto_reply=10, code_execution_config={\"work_dir\": \"coding\", \"use_docker\": False} ) Building Your First Multi-Agent System Creating a Simple Two-Agent Conversation The simplest AutoGen application pairs an assistant with a user proxy: `````python\nInitiate the conversation user_proxy.initiate_chat( assistant, message=“Write a Python function that calculates the Fibonacci sequence up to n terms, then test it with n=10.” )\nThe assistant writes the code. The user proxy executes it. If the output is wrong, the assistant sees the error and fixes it. This loop continues until the task succeeds or max replies are reached. ### Enabling Code Execution Code execution is AutoGen's killer feature. Configure it carefully: `````python code_execution_config = { \"work_dir\": \"coding_workspace\", # Where code files are saved \"use_docker\": True, # Isolate execution in Docker (recommended) \"timeout\": 60, # Seconds before killing a runaway script \"last_n_messages\": 3, # How many recent messages to check for code } Always use Docker for untrusted code. The container isolation prevents agents from accidentally (or maliciously) damaging your system.\nSetting Termination Conditions Prevent infinite conversations with termination conditions: `````python user_proxy = UserProxyAgent( name=“user_proxy”, is_termination_msg=lambda msg: “TERMINATE” in msg.get(“content”, “”), human_input_mode=“NEVER” )\nThe assistant is instructed to include \"TERMINATE\" in its final message when the task is complete. ### Running and Observing Agent Interactions When you run the conversation, AutoGen prints each exchange with clear role indicators. The conversation typically follows this pattern: 1. **Human** sends the task 2. **Assistant** writes code 3. **UserProxy** executes code, returns output 4. **Assistant** reviews output, fixes if needed 5. Repeat until success 6. **Assistant** sends TERMINATE ## Advanced Agent Patterns ### GroupChat with Multiple Agents GroupChat extends beyond two-agent collaboration: `````python from autogen import GroupChat, GroupChatManager # Define specialized agents planner = AssistantAgent(name=\"planner\", system_prompt=\"You break down tasks into steps.\") coder = AssistantAgent(name=\"coder\", system_prompt=\"You write Python code.\") reviewer = AssistantAgent(name=\"reviewer\", system_prompt=\"You review code for bugs.\") user_proxy = UserProxyAgent(name=\"user_proxy\", code_execution_config={\"use_docker\": True}) groupchat = GroupChat( agents=[user_proxy, planner, coder, reviewer], messages=[], max_round=12 ) manager = GroupChatManager(groupchat=groupchat, llm_config={\"config_list\": config_list}) user_proxy.initiate_chat(manager, message=\"Build a web scraper that extracts titles from Hacker News.\") Sequential Chat Workflows For deterministic multi-step processes, use sequential chats: `````python\nStep 1: Planning chat_result1 = user_proxy.initiate_chat(planner, message=“Plan a data analysis of sales.csv”, clear_history=True)\nStep 2: Execution (pass plan as context) summary = chat_result1.summary chat_result2 = user_proxy.initiate_chat(coder, message=f\"Execute this plan: {summary}\", clear_history=True)\n### Nested Chat Patterns Nested chats let agents delegate subtasks to other agents internally. A manager agent might spin up a research sub-conversation, collect results, and incorporate them into its main response. This pattern creates hierarchical agent organizations. ### Human-in-the-Loop and Approval Modes For sensitive operations, require human approval: `````python user_proxy = UserProxyAgent( name=\"user_proxy\", human_input_mode=\"ALWAYS\" # Prompt for every message ) # Or use \"TERMINATE\" mode for approval only before termination Custom Agent Classes and Behaviors Extend ConversableAgent for custom behaviors: `````python class DataAnalystAgent(AssistantAgent): def init(self, **kwargs): super().init( name=“data_analyst”, system_prompt=“You are an expert data analyst. Always validate data before analysis.”, **kwargs )\ndef generate_reply(self, messages, sender, config): # Custom logic before generating reply return super().generate_reply(messages, sender, config) ## AutoGen with Local and Open-Source Models ### Using Ollama with AutoGen AutoGen works with any OpenAI-compatible API, including Ollama: `````python config_list = [{ \"model\": \"llama3.1:8b\", \"base_url\": \"http://localhost:11434/v1\", \"api_key\": \"ollama\", \"price\": [0, 0], # Local models are free }] Note that smaller models struggle with complex multi-agent coordination. For reliable results with local models, use models with at least 7 billion parameters and strong instruction-following capabilities like Llama 3.1 or Qwen 2.5.\nIntegrating vLLM and LM Studio vLLM provides high-throughput local serving for open-source models. Configure AutoGen to point at your vLLM endpoint: `````python vllm_config = [{ “model”: “mistralai/Mistral-7B-Instruct-v0.3”, “base_url”: “http://localhost:8000/v1”, “api_key”: “not-needed”, }]\n### Cost Optimization Strategies Multi-agent systems consume significant API tokens. Optimize costs: - **Use cheaper models for simple tasks**: GPT-4o-mini for planning, GPT-4o only for complex reasoning - **Limit max_round**: Prevent runaway conversations - **Cache LLM responses**: AutoGen supports caching to avoid redundant API calls - **Use local models for code execution feedback**: You do not need GPT-4 to tell you a script ran successfully ## Real-World Use Cases ### Automated Data Analysis Pipeline A three-agent system can automate exploratory data analysis: 1. **Planner** agent outlines analysis steps 2. **Coder** agent writes pandas and matplotlib code 3. **Reporter** agent summarizes findings in natural language This pipeline turns raw CSV files into documented insights without human intervention. ### Multi-Agent Code Review System Simulate a development team: 1. **Developer** writes the initial implementation 2. **Reviewer** checks for bugs, performance issues, and style violations 3. **Tester** writes and runs unit tests 4. **Architect** verifies design patterns and consistency The system iterates until all agents approve or max rounds are reached. ### Research Assistant with Web Search Combine AutoGen with search tools: `````python from autogen.register_function import register_function def web_search(query: str) -\u003e str: \"\"\"Search the web for information.\"\"\" # Implementation using DuckDuckGo or similar return results register_function(web_search, caller=assistant, executor=user_proxy) The research agent searches, synthesizes, and cites sources — useful for literature reviews and competitive analysis.\nContent Creation Workflow A content team simulation: 1. Strategist defines topic and angle 2. Writer produces the draft 3. Editor improves clarity and grammar 4. SEO specialist optimizes keywords and structure\nAutoGen + LangGraph: When to Choose What AutoGen for Conversational Multi-Agent Choose AutoGen when your agents need to have open-ended conversations, write and execute code, and collaborate dynamically. AutoGen excels at creative problem-solving where the path to the solution is not known in advance.\nLangGraph for Stateful DAG Workflows Choose LangGraph when you need precise control over execution flow — specific branching logic, guaranteed checkpoints, and reproducible state transitions. LangGraph represents workflows as graphs, making it better for regulated environments where every decision must be auditable.\nIntegration Possibilities You can combine both frameworks. Use LangGraph to define the high-level workflow (data ingestion → processing → validation → output), and AutoGen for the processing step where multiple agents collaborate on the actual analysis.\nBest Practices and Production Tips Managing Token Costs Multi-agent conversations multiply token usage. A single task might involve 20+ LLM calls across multiple agents. Strategies to control costs: - Set max_consecutive_auto_reply low (5-10)\nUse the cheapest model that handles the task Enable the built-in cache: autogen.Cache.disk_cache_root = \"./cache\" Monitor usage with ChatResult.cost after each conversation Error Handling and Retries Agent conversations can derail. Implement safeguards: - Set max_round on GroupChat to prevent infinite loops\nUse is_termination_msg to detect natural conversation endings Wrap agent calls in try-except blocks for production applications Log all conversations for debugging Security Considerations for Code Execution Never enable code execution without Docker isolation on production systems. Even benign-looking code can access environment variables, network resources, and the file system. Best practices: - Always set use_docker: True\nMount only necessary directories as volumes Set reasonable timeouts (30-60 seconds) Review and whitelist allowed Python packages Debugging Agent Conversations When agents fail to cooperate: 1. Check the system prompt — unclear roles cause confusion 2. Reduce agent count — start with two agents, add more gradually 3. Review the conversation log — identify where it derailed 4. Adjust the GroupChat speaker selection strategy 5. Use stronger models — GPT-4o significantly outperforms GPT-4o-mini for agent coordination\nFrequently Asked Questions What is AutoGen used for? AutoGen builds multi-agent AI systems where multiple LLM instances collaborate to solve complex tasks. Common use cases include automated data analysis, code generation and review, research synthesis, content creation workflows, and simulation of expert teams (development, marketing, research). Any problem that benefits from multiple perspectives or specialized roles is a good fit for AutoGen.\nIs AutoGen free and open source? Yes, AutoGen is open-source under the MIT license and free to use. You can install it with pip install pyautogen. You pay only for the LLM API calls your agents make — OpenAI, Azure, or your local compute. Microsoft Research maintains the core framework with active community contributions.\nAutoGen vs CrewAI: What is the difference? CrewAI emphasizes role-based agent definitions with a simpler API — you define agents, tasks, and crews declaratively. AutoGen focuses on conversational collaboration with native code execution and more flexible conversation patterns. Choose CrewAI for straightforward business workflows with clear task sequences. Choose AutoGen for problems requiring code generation, iterative debugging, and open-ended agent conversations.\nCan AutoGen run with local LLMs? Yes, AutoGen works with any OpenAI-compatible API endpoint. Configure it to use Ollama, LM Studio, vLLM, or any local inference server. However, multi-agent coordination requires strong instruction-following capabilities. Models below 7 billion parameters often struggle with complex agent interactions. For best results, use strong local models like Llama 3.1 8B, Qwen 2.5 7B, or Mistral 7B.\nHow does AutoGen handle code execution security? AutoGen separates code generation from execution. The AssistantAgent writes code; the UserProxyAgent executes it. By default, AutoGen runs code in a Docker container, isolating it from the host system. Always enable Docker isolation (use_docker: True) in production. Set timeouts, limit file system access, and whitelist packages to minimize security risks.\nConclusion and Getting Started Resources AutoGen represents a fundamental shift in how we build AI applications — from single-model prompts to collaborative agent networks. The framework\"s native support for code execution, flexible conversation patterns, and human-in-the-loop integration makes it uniquely capable for tasks that require actual problem-solving rather than just text generation.\nStart with a simple two-agent setup: a UserProxyAgent and an AssistantAgent. Give them a coding task and observe the collaboration loop. Then experiment with ````GroupChat``` for multi-agent scenarios, add custom tools for domain-specific capabilities, and configure local models to control costs.\nFor production deployments, always use Docker isolation, implement termination conditions, and monitor token usage. The framework is powerful but requires careful configuration to prevent runaway conversations and unexpected API bills.\nThe future of AI is multi-agent. AutoGen gives you the tools to build that future today.\nFor more resources, visit the official AutoGen documentation and explore examples in the GitHub repository.\nRecommended Infrastructure To run any of the tools above reliably 24/7, infrastructure matters: - DigitalOcean — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.\nHTStack — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven. Affiliate links — no extra cost to you, helps keep dibi8.com running.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “AutoGen Tutorial 2025: Building Multi-Agent AI Systems Made Easy”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/autogen-multi-agent-framework\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2526",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/autogen-multi-agent-framework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/autogen-multi-agent-framework/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/autogen-multi-agent-framework/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/autogen-multi-agent-framework/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#what-is-autogen" aria-label="What is AutoGen?">What is AutoGen?</a><ul>
+                    
+            <li>
+                <a href="#introduction-to-microsofts-autogen-framework" aria-label="Introduction to Microsoft&rsquo;s AutoGen Framework">Introduction to Microsoft&rsquo;s AutoGen Framework</a></li>
+            <li>
+                <a href="#core-concept-conversable-agents" aria-label="Core Concept: Conversable Agents">Core Concept: Conversable Agents</a></li>
+            <li>
+                <a href="#autogen-vs-other-agent-frameworks" aria-label="AutoGen vs Other Agent Frameworks">AutoGen vs Other Agent Frameworks</a></li></ul>
+            </li>
+            <li>
+                <a href="#autogen-architecture-and-key-concepts" aria-label="AutoGen Architecture and Key Concepts">AutoGen Architecture and Key Concepts</a><ul>
+                    
+            <li>
+                <a href="#conversableagent-the-base-agent-class" aria-label="ConversableAgent: The Base Agent Class">ConversableAgent: The Base Agent Class</a></li>
+            <li>
+                <a href="#userproxyagent-human-in-the-loop" aria-label="UserProxyAgent: Human-in-the-Loop">UserProxyAgent: Human-in-the-Loop</a></li>
+            <li>
+                <a href="#assistantagent-code-writing-agent" aria-label="AssistantAgent: Code-Writing Agent">AssistantAgent: Code-Writing Agent</a></li>
+            <li>
+                <a href="#groupchat-multi-agent-collaboration" aria-label="GroupChat: Multi-Agent Collaboration">GroupChat: Multi-Agent Collaboration</a></li>
+            <li>
+                <a href="#chat-history-and-memory-management" aria-label="Chat History and Memory Management">Chat History and Memory Management</a></li></ul>
+            </li>
+            <li>
+                <a href="#installation-and-setup" aria-label="Installation and Setup">Installation and Setup</a><ul>
+                    
+            <li>
+                <a href="#installing-autogen" aria-label="Installing AutoGen">Installing AutoGen</a></li>
+            <li>
+                <a href="#setting-up-your-first-agent-configuration" aria-label="Setting Up Your First Agent Configuration">Setting Up Your First Agent Configuration</a></li></ul>
+            </li>
+            <li>
+                <a href="#building-your-first-multi-agent-system" aria-label="Building Your First Multi-Agent System">Building Your First Multi-Agent System</a><ul>
+                    
+            <li>
+                <a href="#creating-a-simple-two-agent-conversation" aria-label="Creating a Simple Two-Agent Conversation">Creating a Simple Two-Agent Conversation</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#initiate-the-conversation" aria-label="Initiate the conversation">Initiate the conversation</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#setting-termination-conditions" aria-label="Setting Termination Conditions">Setting Termination Conditions</a></li>
+            <li>
+                <a href="#sequential-chat-workflows" aria-label="Sequential Chat Workflows">Sequential Chat Workflows</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#step-1-planning" aria-label="Step 1: Planning">Step 1: Planning</a></li>
+            <li>
+                <a href="#step-2-execution-pass-plan-as-context" aria-label="Step 2: Execution (pass plan as context)">Step 2: Execution (pass plan as context)</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#custom-agent-classes-and-behaviors" aria-label="Custom Agent Classes and Behaviors">Custom Agent Classes and Behaviors</a></li>
+            <li>
+                <a href="#integrating-vllm-and-lm-studio" aria-label="Integrating vLLM and LM Studio">Integrating vLLM and LM Studio</a></li>
+            <li>
+                <a href="#content-creation-workflow" aria-label="Content Creation Workflow">Content Creation Workflow</a></li></ul>
+                
+            <li>
+                <a href="#autogen--langgraph-when-to-choose-what" aria-label="AutoGen &#43; LangGraph: When to Choose What">AutoGen + LangGraph: When to Choose What</a><ul>
+                    
+            <li>
+                <a href="#autogen-for-conversational-multi-agent" aria-label="AutoGen for Conversational Multi-Agent">AutoGen for Conversational Multi-Agent</a></li>
+            <li>
+                <a href="#langgraph-for-stateful-dag-workflows" aria-label="LangGraph for Stateful DAG Workflows">LangGraph for Stateful DAG Workflows</a></li>
+            <li>
+                <a href="#integration-possibilities" aria-label="Integration Possibilities">Integration Possibilities</a></li></ul>
+            </li>
+            <li>
+                <a href="#best-practices-and-production-tips" aria-label="Best Practices and Production Tips">Best Practices and Production Tips</a><ul>
+                    
+            <li>
+                <a href="#managing-token-costs" aria-label="Managing Token Costs">Managing Token Costs</a></li>
+            <li>
+                <a href="#error-handling-and-retries" aria-label="Error Handling and Retries">Error Handling and Retries</a></li>
+            <li>
+                <a href="#security-considerations-for-code-execution" aria-label="Security Considerations for Code Execution">Security Considerations for Code Execution</a></li>
+            <li>
+                <a href="#debugging-agent-conversations" aria-label="Debugging Agent Conversations">Debugging Agent Conversations</a></li></ul>
+            </li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#what-is-autogen-used-for" aria-label="What is AutoGen used for?">What is AutoGen used for?</a></li>
+            <li>
+                <a href="#is-autogen-free-and-open-source" aria-label="Is AutoGen free and open source?">Is AutoGen free and open source?</a></li>
+            <li>
+                <a href="#autogen-vs-crewai-what-is-the-difference" aria-label="AutoGen vs CrewAI: What is the difference?">AutoGen vs CrewAI: What is the difference?</a></li>
+            <li>
+                <a href="#can-autogen-run-with-local-llms" aria-label="Can AutoGen run with local LLMs?">Can AutoGen run with local LLMs?</a></li>
+            <li>
+                <a href="#how-does-autogen-handle-code-execution-security" aria-label="How does AutoGen handle code execution security?">How does AutoGen handle code execution security?</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion-and-getting-started-resources" aria-label="Conclusion and Getting Started Resources">Conclusion and Getting Started Resources</a></li>
+            <li>
+                <a href="#recommended-infrastructure" aria-label="Recommended Infrastructure">Recommended Infrastructure</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+<p>Single LLM calls can write emails and summarize articles. But real-world problems require collaboration: a researcher gathers data, an analyst crunches numbers, a writer drafts a report, and an editor polishes the output. AutoGen, Microsoft&rsquo;s open-source multi-agent framework, automates this kind of teamwork with AI agents.</p>
+<p>First released by Microsoft Research in October 2023, AutoGen has rapidly evolved into the most capable framework for building conversational multi-agent systems. With over 34,000 GitHub stars and active development from both Microsoft and the open-source community, it represents a paradigm shift from single-prompt AI to collaborative agent networks.</p>
+<p>This tutorial walks you through building your first multi-agent system, then scales up to advanced patterns you can deploy in production.</p>
+<h2 id="what-is-autogen">What is AutoGen?<a hidden class="anchor" aria-hidden="true" href="#what-is-autogen">#</a></h2>
+<p>AutoGen is a Python framework for building applications where multiple AI agents converse with each other and with humans to accomplish tasks. Unlike single-shot LLM APIs, AutoGen agents can write code, execute it, call external tools, and ask each other clarifying questions — all through a unified conversation interface.</p>
+<p>The framework&rsquo;s central innovation is the <strong>conversable agent</strong> — an abstraction that wraps an LLM, tools, and optional human input into an entity that can send and receive messages. When multiple conversable agents chat in a group, they form a multi-agent system capable of complex problem-solving.</p>
+<h3 id="introduction-to-microsofts-autogen-framework">Introduction to Microsoft&rsquo;s AutoGen Framework<a hidden class="anchor" aria-hidden="true" href="#introduction-to-microsofts-autogen-framework">#</a></h3>
+<p>AutoGen emerged from Microsoft Research&rsquo;s work on making LLMs more capable through collaboration. The insight is simple: one LLM can write buggy code, but two LLMs — one writing and one reviewing — produce better results. Three LLMs — a planner, a coder, and a tester — perform even better.</p>
+<p>The framework handles conversation routing, code execution, human feedback integration, and error recovery automatically. You define the agents and their roles; AutoGen orchestrates the collaboration.</p>
+<h3 id="core-concept-conversable-agents">Core Concept: Conversable Agents<a hidden class="anchor" aria-hidden="true" href="#core-concept-conversable-agents">#</a></h3>
+<p>Every AutoGen agent is &ldquo;conversable&rdquo; — it participates in structured conversations through a standardized message protocol. Agents do not just exchange text; they share structured messages containing code, execution results, tool calls, and reasoning steps. This structured communication enables agents to actually collaborate rather than just take turns talking.</p>
+<h3 id="autogen-vs-other-agent-frameworks">AutoGen vs Other Agent Frameworks<a hidden class="anchor" aria-hidden="true" href="#autogen-vs-other-agent-frameworks">#</a></h3>
+<p>| Framework | Agent Model | Best For | Learning Curve |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>AutoGen</strong> | Conversational collaboration | Code generation, data analysis, research | Moderate |
 | <strong>CrewAI</strong> | Role-based teams | Business workflows, content creation | Low |
 | <strong>LangGraph</strong> | Stateful DAG graphs | Deterministic workflows, human-in-the-loop | High |
-| <strong>MetaGPT</strong> | Software engineering simulation | Code generation, system design | Moderate |</p><p>AutoGen differentiates itself through native code execution and deep multi-agent conversation support. While CrewAI offers simpler role definitions and LangGraph provides more precise control over execution flow, AutoGen excels when agents need to actually do things — write code, run queries, iterate on solutions.</p><h2 id=autogen-architecture-and-key-concepts>AutoGen Architecture and Key Concepts<a hidden class=anchor aria-hidden=true href=#autogen-architecture-and-key-concepts>#</a></h2><h3 id=conversableagent-the-base-agent-class>ConversableAgent: The Base Agent Class<a hidden class=anchor aria-hidden=true href=#conversableagent-the-base-agent-class>#</a></h3><p>Every agent in AutoGen extends ```ConversableAgent````. This base class provides: - <strong>LLM backend configuration</strong>: Connect to OpenAI, Azure, or local models</p><ul><li><strong>System messages</strong>: Define agent personality and role</li><li><strong>Code execution</strong>: Run Python code in Docker or local environments</li><li><strong>Tool registration</strong>: Attach callable functions to the agent</li><li><strong>Human proxy mode</strong>: Pause for human input when needed</li></ul><h3 id=userproxyagent-human-in-the-loop>UserProxyAgent: Human-in-the-Loop<a hidden class=anchor aria-hidden=true href=#userproxyagent-human-in-the-loop>#</a></h3><p>The <code>UserProxyAgent</code> represents a human user in the conversation. It can execute code locally, make decisions about conversation flow, and prompt for human input when configured. Typically, one <code>UserProxyAgent</code> initiates the task and receives the final result.</p><h3 id=assistantagent-code-writing-agent>AssistantAgent: Code-Writing Agent<a hidden class=anchor aria-hidden=true href=#assistantagent-code-writing-agent>#</a></h3><p>The <code>AssistantAgent</code> is a pre-configured agent optimized for writing code and following instructions. It cannot execute code directly — it proposes code and the <code>UserProxyAgent</code> (or another executor agent) runs it. This separation of writing and execution is a deliberate security design.</p><h3 id=groupchat-multi-agent-collaboration>GroupChat: Multi-Agent Collaboration<a hidden class=anchor aria-hidden=true href=#groupchat-multi-agent-collaboration>#</a></h3><p><code>GroupChat</code> enables three or more agents to collaborate. The <code>GroupChatManager</code> handles conversation routing, deciding which agent speaks next based on the conversation history and configured selection strategy.</p><h3 id=chat-history-and-memory-management>Chat History and Memory Management<a hidden class=anchor aria-hidden=true href=#chat-history-and-memory-management>#</a></h3><p>AutoGen maintains full conversation history automatically. Agents can reference previous messages, and the framework handles context window management. For long-running tasks, conversation history can be summarized to stay within model token limits.</p><h2 id=installation-and-setup>Installation and Setup<a hidden class=anchor aria-hidden=true href=#installation-and-setup>#</a></h2><h3 id=installing-autogen>Installing AutoGen<a hidden class=anchor aria-hidden=true href=#installing-autogen>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install pyautogen
+| <strong>MetaGPT</strong> | Software engineering simulation | Code generation, system design | Moderate |</p>
+<p>AutoGen differentiates itself through native code execution and deep multi-agent conversation support. While CrewAI offers simpler role definitions and LangGraph provides more precise control over execution flow, AutoGen excels when agents need to actually do things — write code, run queries, iterate on solutions.</p>
+<h2 id="autogen-architecture-and-key-concepts">AutoGen Architecture and Key Concepts<a hidden class="anchor" aria-hidden="true" href="#autogen-architecture-and-key-concepts">#</a></h2>
+<h3 id="conversableagent-the-base-agent-class">ConversableAgent: The Base Agent Class<a hidden class="anchor" aria-hidden="true" href="#conversableagent-the-base-agent-class">#</a></h3>
+<p>Every agent in AutoGen extends ```ConversableAgent````. This base class provides: - <strong>LLM backend configuration</strong>: Connect to OpenAI, Azure, or local models</p>
+<ul>
+<li><strong>System messages</strong>: Define agent personality and role</li>
+<li><strong>Code execution</strong>: Run Python code in Docker or local environments</li>
+<li><strong>Tool registration</strong>: Attach callable functions to the agent</li>
+<li><strong>Human proxy mode</strong>: Pause for human input when needed</li>
+</ul>
+<h3 id="userproxyagent-human-in-the-loop">UserProxyAgent: Human-in-the-Loop<a hidden class="anchor" aria-hidden="true" href="#userproxyagent-human-in-the-loop">#</a></h3>
+<p>The <code>UserProxyAgent</code> represents a human user in the conversation. It can execute code locally, make decisions about conversation flow, and prompt for human input when configured. Typically, one <code>UserProxyAgent</code> initiates the task and receives the final result.</p>
+<h3 id="assistantagent-code-writing-agent">AssistantAgent: Code-Writing Agent<a hidden class="anchor" aria-hidden="true" href="#assistantagent-code-writing-agent">#</a></h3>
+<p>The <code>AssistantAgent</code> is a pre-configured agent optimized for writing code and following instructions. It cannot execute code directly — it proposes code and the <code>UserProxyAgent</code> (or another executor agent) runs it. This separation of writing and execution is a deliberate security design.</p>
+<h3 id="groupchat-multi-agent-collaboration">GroupChat: Multi-Agent Collaboration<a hidden class="anchor" aria-hidden="true" href="#groupchat-multi-agent-collaboration">#</a></h3>
+<p><code>GroupChat</code> enables three or more agents to collaborate. The <code>GroupChatManager</code> handles conversation routing, deciding which agent speaks next based on the conversation history and configured selection strategy.</p>
+<h3 id="chat-history-and-memory-management">Chat History and Memory Management<a hidden class="anchor" aria-hidden="true" href="#chat-history-and-memory-management">#</a></h3>
+<p>AutoGen maintains full conversation history automatically. Agents can reference previous messages, and the framework handles context window management. For long-running tasks, conversation history can be summarized to stay within model token limits.</p>
+<h2 id="installation-and-setup">Installation and Setup<a hidden class="anchor" aria-hidden="true" href="#installation-and-setup">#</a></h2>
+<h3 id="installing-autogen">Installing AutoGen<a hidden class="anchor" aria-hidden="true" href="#installing-autogen">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install pyautogen
 </span></span></code></pre></div><p>For the latest development features: `````bash
-pip install pyautogen &ndash;pre</p><pre tabindex=0><code>
+pip install pyautogen &ndash;pre</p>
+<pre tabindex="0"><code>
 ### Configuring LLM Endpoints
 
 AutoGen supports multiple LLM backends through a configuration list: `````python
@@ -32,23 +390,29 @@ local_config = [
         &#34;api_key&#34;: &#34;not-needed&#34;,
     }
 ]
-</code></pre><h3 id=setting-up-your-first-agent-configuration>Setting Up Your First Agent Configuration<a hidden class=anchor aria-hidden=true href=#setting-up-your-first-agent-configuration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> autogen <span style=color:#f92672>import</span> AssistantAgent, UserProxyAgent
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>assistant <span style=color:#f92672>=</span> AssistantAgent(
-</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;assistant&#34;</span>,
-</span></span><span style=display:flex><span>    llm_config<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;config_list&#34;</span>: config_list}
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>user_proxy <span style=color:#f92672>=</span> UserProxyAgent(
-</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_proxy&#34;</span>,
-</span></span><span style=display:flex><span>    human_input_mode<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;NEVER&#34;</span>,
-</span></span><span style=display:flex><span>    max_consecutive_auto_reply<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    code_execution_config<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;work_dir&#34;</span>: <span style=color:#e6db74>&#34;coding&#34;</span>, <span style=color:#e6db74>&#34;use_docker&#34;</span>: <span style=color:#66d9ef>False</span>}
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h2 id=building-your-first-multi-agent-system>Building Your First Multi-Agent System<a hidden class=anchor aria-hidden=true href=#building-your-first-multi-agent-system>#</a></h2><h3 id=creating-a-simple-two-agent-conversation>Creating a Simple Two-Agent Conversation<a hidden class=anchor aria-hidden=true href=#creating-a-simple-two-agent-conversation>#</a></h3><p>The simplest AutoGen application pairs an assistant with a user proxy: `````python</p><h1 id=initiate-the-conversation>Initiate the conversation<a hidden class=anchor aria-hidden=true href=#initiate-the-conversation>#</a></h1><p>user_proxy.initiate_chat(
+</code></pre><h3 id="setting-up-your-first-agent-configuration">Setting Up Your First Agent Configuration<a hidden class="anchor" aria-hidden="true" href="#setting-up-your-first-agent-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> autogen <span style="color:#f92672">import</span> AssistantAgent, UserProxyAgent
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>assistant <span style="color:#f92672">=</span> AssistantAgent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;assistant&#34;</span>,
+</span></span><span style="display:flex;"><span>    llm_config<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;config_list&#34;</span>: config_list}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>user_proxy <span style="color:#f92672">=</span> UserProxyAgent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_proxy&#34;</span>,
+</span></span><span style="display:flex;"><span>    human_input_mode<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;NEVER&#34;</span>,
+</span></span><span style="display:flex;"><span>    max_consecutive_auto_reply<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    code_execution_config<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;work_dir&#34;</span>: <span style="color:#e6db74">&#34;coding&#34;</span>, <span style="color:#e6db74">&#34;use_docker&#34;</span>: <span style="color:#66d9ef">False</span>}
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h2 id="building-your-first-multi-agent-system">Building Your First Multi-Agent System<a hidden class="anchor" aria-hidden="true" href="#building-your-first-multi-agent-system">#</a></h2>
+<h3 id="creating-a-simple-two-agent-conversation">Creating a Simple Two-Agent Conversation<a hidden class="anchor" aria-hidden="true" href="#creating-a-simple-two-agent-conversation">#</a></h3>
+<p>The simplest AutoGen application pairs an assistant with a user proxy: `````python</p>
+<h1 id="initiate-the-conversation">Initiate the conversation<a hidden class="anchor" aria-hidden="true" href="#initiate-the-conversation">#</a></h1>
+<p>user_proxy.initiate_chat(
 assistant,
 message=&ldquo;Write a Python function that calculates the Fibonacci sequence up to n terms, then test it with n=10.&rdquo;
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 The assistant writes the code. The user proxy executes it. If the output is wrong, the assistant sees the error and fixes it. This loop continues until the task succeeds or max replies are reached.
 
 ### Enabling Code Execution
@@ -60,12 +424,15 @@ code_execution_config = {
     &#34;timeout&#34;: 60,  # Seconds before killing a runaway script
     &#34;last_n_messages&#34;: 3,  # How many recent messages to check for code
 }
-</code></pre><p>Always use Docker for untrusted code. The container isolation prevents agents from accidentally (or maliciously) damaging your system.</p><h3 id=setting-termination-conditions>Setting Termination Conditions<a hidden class=anchor aria-hidden=true href=#setting-termination-conditions>#</a></h3><p>Prevent infinite conversations with termination conditions: `````python
+</code></pre><p>Always use Docker for untrusted code. The container isolation prevents agents from accidentally (or maliciously) damaging your system.</p>
+<h3 id="setting-termination-conditions">Setting Termination Conditions<a hidden class="anchor" aria-hidden="true" href="#setting-termination-conditions">#</a></h3>
+<p>Prevent infinite conversations with termination conditions: `````python
 user_proxy = UserProxyAgent(
 name=&ldquo;user_proxy&rdquo;,
 is_termination_msg=lambda msg: &ldquo;TERMINATE&rdquo; in msg.get(&ldquo;content&rdquo;, &ldquo;&rdquo;),
 human_input_mode=&ldquo;NEVER&rdquo;
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 The assistant is instructed to include &#34;TERMINATE&#34; in its final message when the task is complete.
 
 ### Running and Observing Agent Interactions
@@ -100,8 +467,14 @@ groupchat = GroupChat(
 manager = GroupChatManager(groupchat=groupchat, llm_config={&#34;config_list&#34;: config_list})
 
 user_proxy.initiate_chat(manager, message=&#34;Build a web scraper that extracts titles from Hacker News.&#34;)
-</code></pre><h3 id=sequential-chat-workflows>Sequential Chat Workflows<a hidden class=anchor aria-hidden=true href=#sequential-chat-workflows>#</a></h3><p>For deterministic multi-step processes, use sequential chats: `````python</p><h1 id=step-1-planning>Step 1: Planning<a hidden class=anchor aria-hidden=true href=#step-1-planning>#</a></h1><p>chat_result1 = user_proxy.initiate_chat(planner, message=&ldquo;Plan a data analysis of sales.csv&rdquo;, clear_history=True)</p><h1 id=step-2-execution-pass-plan-as-context>Step 2: Execution (pass plan as context)<a hidden class=anchor aria-hidden=true href=#step-2-execution-pass-plan-as-context>#</a></h1><p>summary = chat_result1.summary
-chat_result2 = user_proxy.initiate_chat(coder, message=f"Execute this plan: {summary}", clear_history=True)</p><pre tabindex=0><code>
+</code></pre><h3 id="sequential-chat-workflows">Sequential Chat Workflows<a hidden class="anchor" aria-hidden="true" href="#sequential-chat-workflows">#</a></h3>
+<p>For deterministic multi-step processes, use sequential chats: `````python</p>
+<h1 id="step-1-planning">Step 1: Planning<a hidden class="anchor" aria-hidden="true" href="#step-1-planning">#</a></h1>
+<p>chat_result1 = user_proxy.initiate_chat(planner, message=&ldquo;Plan a data analysis of sales.csv&rdquo;, clear_history=True)</p>
+<h1 id="step-2-execution-pass-plan-as-context">Step 2: Execution (pass plan as context)<a hidden class="anchor" aria-hidden="true" href="#step-2-execution-pass-plan-as-context">#</a></h1>
+<p>summary = chat_result1.summary
+chat_result2 = user_proxy.initiate_chat(coder, message=f&quot;Execute this plan: {summary}&quot;, clear_history=True)</p>
+<pre tabindex="0"><code>
 ### Nested Chat Patterns
 
 Nested chats let agents delegate subtasks to other agents internally. A manager agent might spin up a research sub-conversation, collect results, and incorporate them into its main response. This pattern creates hierarchical agent organizations.
@@ -115,14 +488,17 @@ user_proxy = UserProxyAgent(
 )
 
 # Or use &#34;TERMINATE&#34; mode for approval only before termination
-</code></pre><h3 id=custom-agent-classes-and-behaviors>Custom Agent Classes and Behaviors<a hidden class=anchor aria-hidden=true href=#custom-agent-classes-and-behaviors>#</a></h3><p>Extend <code>ConversableAgent</code> for custom behaviors: `````python
+</code></pre><h3 id="custom-agent-classes-and-behaviors">Custom Agent Classes and Behaviors<a hidden class="anchor" aria-hidden="true" href="#custom-agent-classes-and-behaviors">#</a></h3>
+<p>Extend <code>ConversableAgent</code> for custom behaviors: `````python
 class DataAnalystAgent(AssistantAgent): def <strong>init</strong>(self, **kwargs): super().<strong>init</strong>(
 name=&ldquo;data_analyst&rdquo;,
 system_prompt=&ldquo;You are an expert data analyst. Always validate data before analysis.&rdquo;,
 **kwargs
-)</p><pre><code>def generate_reply(self, messages, sender, config): # Custom logic before generating reply
+)</p>
+<pre><code>def generate_reply(self, messages, sender, config): # Custom logic before generating reply
     return super().generate_reply(messages, sender, config)
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 ## AutoGen with Local and Open-Source Models
 
 ### Using Ollama with AutoGen
@@ -134,12 +510,15 @@ config_list = [{
     &#34;api_key&#34;: &#34;ollama&#34;,
     &#34;price&#34;: [0, 0],  # Local models are free
 }]
-</code></pre><p>Note that smaller models struggle with complex multi-agent coordination. For reliable results with local models, use models with at least 7 billion parameters and strong instruction-following capabilities like Llama 3.1 or Qwen 2.5.</p><h3 id=integrating-vllm-and-lm-studio>Integrating vLLM and LM Studio<a hidden class=anchor aria-hidden=true href=#integrating-vllm-and-lm-studio>#</a></h3><p>vLLM provides high-throughput local serving for open-source models. Configure AutoGen to point at your vLLM endpoint: `````python
+</code></pre><p>Note that smaller models struggle with complex multi-agent coordination. For reliable results with local models, use models with at least 7 billion parameters and strong instruction-following capabilities like Llama 3.1 or Qwen 2.5.</p>
+<h3 id="integrating-vllm-and-lm-studio">Integrating vLLM and LM Studio<a hidden class="anchor" aria-hidden="true" href="#integrating-vllm-and-lm-studio">#</a></h3>
+<p>vLLM provides high-throughput local serving for open-source models. Configure AutoGen to point at your vLLM endpoint: `````python
 vllm_config = [{
 &ldquo;model&rdquo;: &ldquo;mistralai/Mistral-7B-Instruct-v0.3&rdquo;,
 &ldquo;base_url&rdquo;: &ldquo;http://localhost:8000/v1&rdquo;,
 &ldquo;api_key&rdquo;: &ldquo;not-needed&rdquo;,
-}]</p><pre tabindex=0><code>
+}]</p>
+<pre tabindex="0"><code>
 ### Cost Optimization Strategies
 
 Multi-agent systems consume significant API tokens. Optimize costs: - **Use cheaper models for simple tasks**: GPT-4o-mini for planning, GPT-4o only for complex reasoning
@@ -176,15 +555,73 @@ def web_search(query: str) -&gt; str: &#34;&#34;&#34;Search the web for informat
     return results
 
 register_function(web_search, caller=assistant, executor=user_proxy)
-</code></pre><p>The research agent searches, synthesizes, and cites sources — useful for literature reviews and competitive analysis.</p><h3 id=content-creation-workflow>Content Creation Workflow<a hidden class=anchor aria-hidden=true href=#content-creation-workflow>#</a></h3><p>A content team simulation: 1. <strong>Strategist</strong> defines topic and angle
+</code></pre><p>The research agent searches, synthesizes, and cites sources — useful for literature reviews and competitive analysis.</p>
+<h3 id="content-creation-workflow">Content Creation Workflow<a hidden class="anchor" aria-hidden="true" href="#content-creation-workflow">#</a></h3>
+<p>A content team simulation: 1. <strong>Strategist</strong> defines topic and angle
 2. <strong>Writer</strong> produces the draft
 3. <strong>Editor</strong> improves clarity and grammar
-4. <strong>SEO specialist</strong> optimizes keywords and structure</p><h2 id=autogen--langgraph-when-to-choose-what>AutoGen + LangGraph: When to Choose What<a hidden class=anchor aria-hidden=true href=#autogen--langgraph-when-to-choose-what>#</a></h2><h3 id=autogen-for-conversational-multi-agent>AutoGen for Conversational Multi-Agent<a hidden class=anchor aria-hidden=true href=#autogen-for-conversational-multi-agent>#</a></h3><p>Choose AutoGen when your agents need to have open-ended conversations, write and execute code, and collaborate dynamically. AutoGen excels at creative problem-solving where the path to the solution is not known in advance.</p><h3 id=langgraph-for-stateful-dag-workflows>LangGraph for Stateful DAG Workflows<a hidden class=anchor aria-hidden=true href=#langgraph-for-stateful-dag-workflows>#</a></h3><p>Choose LangGraph when you need precise control over execution flow — specific branching logic, guaranteed checkpoints, and reproducible state transitions. LangGraph represents workflows as graphs, making it better for regulated environments where every decision must be auditable.</p><h3 id=integration-possibilities>Integration Possibilities<a hidden class=anchor aria-hidden=true href=#integration-possibilities>#</a></h3><p>You can combine both frameworks. Use LangGraph to define the high-level workflow (data ingestion → processing → validation → output), and AutoGen for the processing step where multiple agents collaborate on the actual analysis.</p><h2 id=best-practices-and-production-tips>Best Practices and Production Tips<a hidden class=anchor aria-hidden=true href=#best-practices-and-production-tips>#</a></h2><h3 id=managing-token-costs>Managing Token Costs<a hidden class=anchor aria-hidden=true href=#managing-token-costs>#</a></h3><p>Multi-agent conversations multiply token usage. A single task might involve 20+ LLM calls across multiple agents. Strategies to control costs: - Set <code>max_consecutive_auto_reply</code> low (5-10)</p><ul><li>Use the cheapest model that handles the task</li><li>Enable the built-in cache: <code>autogen.Cache.disk_cache_root = "./cache"</code></li><li>Monitor usage with <code>ChatResult.cost</code> after each conversation</li></ul><h3 id=error-handling-and-retries>Error Handling and Retries<a hidden class=anchor aria-hidden=true href=#error-handling-and-retries>#</a></h3><p>Agent conversations can derail. Implement safeguards: - Set <code>max_round</code> on GroupChat to prevent infinite loops</p><ul><li>Use <code>is_termination_msg</code> to detect natural conversation endings</li><li>Wrap agent calls in try-except blocks for production applications</li><li>Log all conversations for debugging</li></ul><h3 id=security-considerations-for-code-execution>Security Considerations for Code Execution<a hidden class=anchor aria-hidden=true href=#security-considerations-for-code-execution>#</a></h3><p><strong>Never</strong> enable code execution without Docker isolation on production systems. Even benign-looking code can access environment variables, network resources, and the file system. Best practices: - Always set <code>use_docker: True</code></p><ul><li>Mount only necessary directories as volumes</li><li>Set reasonable timeouts (30-60 seconds)</li><li>Review and whitelist allowed Python packages</li></ul><h3 id=debugging-agent-conversations>Debugging Agent Conversations<a hidden class=anchor aria-hidden=true href=#debugging-agent-conversations>#</a></h3><p>When agents fail to cooperate: 1. Check the system prompt — unclear roles cause confusion
+4. <strong>SEO specialist</strong> optimizes keywords and structure</p>
+<h2 id="autogen--langgraph-when-to-choose-what">AutoGen + LangGraph: When to Choose What<a hidden class="anchor" aria-hidden="true" href="#autogen--langgraph-when-to-choose-what">#</a></h2>
+<h3 id="autogen-for-conversational-multi-agent">AutoGen for Conversational Multi-Agent<a hidden class="anchor" aria-hidden="true" href="#autogen-for-conversational-multi-agent">#</a></h3>
+<p>Choose AutoGen when your agents need to have open-ended conversations, write and execute code, and collaborate dynamically. AutoGen excels at creative problem-solving where the path to the solution is not known in advance.</p>
+<h3 id="langgraph-for-stateful-dag-workflows">LangGraph for Stateful DAG Workflows<a hidden class="anchor" aria-hidden="true" href="#langgraph-for-stateful-dag-workflows">#</a></h3>
+<p>Choose LangGraph when you need precise control over execution flow — specific branching logic, guaranteed checkpoints, and reproducible state transitions. LangGraph represents workflows as graphs, making it better for regulated environments where every decision must be auditable.</p>
+<h3 id="integration-possibilities">Integration Possibilities<a hidden class="anchor" aria-hidden="true" href="#integration-possibilities">#</a></h3>
+<p>You can combine both frameworks. Use LangGraph to define the high-level workflow (data ingestion → processing → validation → output), and AutoGen for the processing step where multiple agents collaborate on the actual analysis.</p>
+<h2 id="best-practices-and-production-tips">Best Practices and Production Tips<a hidden class="anchor" aria-hidden="true" href="#best-practices-and-production-tips">#</a></h2>
+<h3 id="managing-token-costs">Managing Token Costs<a hidden class="anchor" aria-hidden="true" href="#managing-token-costs">#</a></h3>
+<p>Multi-agent conversations multiply token usage. A single task might involve 20+ LLM calls across multiple agents. Strategies to control costs: - Set <code>max_consecutive_auto_reply</code> low (5-10)</p>
+<ul>
+<li>Use the cheapest model that handles the task</li>
+<li>Enable the built-in cache: <code>autogen.Cache.disk_cache_root = &quot;./cache&quot;</code></li>
+<li>Monitor usage with <code>ChatResult.cost</code> after each conversation</li>
+</ul>
+<h3 id="error-handling-and-retries">Error Handling and Retries<a hidden class="anchor" aria-hidden="true" href="#error-handling-and-retries">#</a></h3>
+<p>Agent conversations can derail. Implement safeguards: - Set <code>max_round</code> on GroupChat to prevent infinite loops</p>
+<ul>
+<li>Use <code>is_termination_msg</code> to detect natural conversation endings</li>
+<li>Wrap agent calls in try-except blocks for production applications</li>
+<li>Log all conversations for debugging</li>
+</ul>
+<h3 id="security-considerations-for-code-execution">Security Considerations for Code Execution<a hidden class="anchor" aria-hidden="true" href="#security-considerations-for-code-execution">#</a></h3>
+<p><strong>Never</strong> enable code execution without Docker isolation on production systems. Even benign-looking code can access environment variables, network resources, and the file system. Best practices: - Always set <code>use_docker: True</code></p>
+<ul>
+<li>Mount only necessary directories as volumes</li>
+<li>Set reasonable timeouts (30-60 seconds)</li>
+<li>Review and whitelist allowed Python packages</li>
+</ul>
+<h3 id="debugging-agent-conversations">Debugging Agent Conversations<a hidden class="anchor" aria-hidden="true" href="#debugging-agent-conversations">#</a></h3>
+<p>When agents fail to cooperate: 1. Check the system prompt — unclear roles cause confusion
 2. Reduce agent count — start with two agents, add more gradually
 3. Review the conversation log — identify where it derailed
 4. Adjust the GroupChat speaker selection strategy
-5. Use stronger models — GPT-4o significantly outperforms GPT-4o-mini for agent coordination</p><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=what-is-autogen-used-for>What is AutoGen used for?<a hidden class=anchor aria-hidden=true href=#what-is-autogen-used-for>#</a></h3><p>AutoGen builds multi-agent AI systems where multiple LLM instances collaborate to solve complex tasks. Common use cases include automated data analysis, code generation and review, research synthesis, content creation workflows, and simulation of expert teams (development, marketing, research). Any problem that benefits from multiple perspectives or specialized roles is a good fit for AutoGen.</p><h3 id=is-autogen-free-and-open-source>Is AutoGen free and open source?<a hidden class=anchor aria-hidden=true href=#is-autogen-free-and-open-source>#</a></h3><p>Yes, AutoGen is open-source under the MIT license and free to use. You can install it with <code>pip install pyautogen</code>. You pay only for the LLM API calls your agents make — OpenAI, Azure, or your local compute. Microsoft Research maintains the core framework with active community contributions.</p><h3 id=autogen-vs-crewai-what-is-the-difference>AutoGen vs CrewAI: What is the difference?<a hidden class=anchor aria-hidden=true href=#autogen-vs-crewai-what-is-the-difference>#</a></h3><p>CrewAI emphasizes role-based agent definitions with a simpler API — you define agents, tasks, and crews declaratively. AutoGen focuses on conversational collaboration with native code execution and more flexible conversation patterns. Choose CrewAI for straightforward business workflows with clear task sequences. Choose AutoGen for problems requiring code generation, iterative debugging, and open-ended agent conversations.</p><h3 id=can-autogen-run-with-local-llms>Can AutoGen run with local LLMs?<a hidden class=anchor aria-hidden=true href=#can-autogen-run-with-local-llms>#</a></h3><p>Yes, AutoGen works with any OpenAI-compatible API endpoint. Configure it to use Ollama, LM Studio, vLLM, or any local inference server. However, multi-agent coordination requires strong instruction-following capabilities. Models below 7 billion parameters often struggle with complex agent interactions. For best results, use strong local models like Llama 3.1 8B, Qwen 2.5 7B, or Mistral 7B.</p><h3 id=how-does-autogen-handle-code-execution-security>How does AutoGen handle code execution security?<a hidden class=anchor aria-hidden=true href=#how-does-autogen-handle-code-execution-security>#</a></h3><p>AutoGen separates code generation from execution. The <code>AssistantAgent</code> writes code; the <code>UserProxyAgent</code> executes it. By default, AutoGen runs code in a Docker container, isolating it from the host system. Always enable Docker isolation (<code>use_docker: True</code>) in production. Set timeouts, limit file system access, and whitelist packages to minimize security risks.</p><h2 id=conclusion-and-getting-started-resources>Conclusion and Getting Started Resources<a hidden class=anchor aria-hidden=true href=#conclusion-and-getting-started-resources>#</a></h2><p>AutoGen represents a fundamental shift in how we build AI applications — from single-model prompts to collaborative agent networks. The framework"s native support for code execution, flexible conversation patterns, and human-in-the-loop integration makes it uniquely capable for tasks that require actual problem-solving rather than just text generation.</p><p>Start with a simple two-agent setup: a <code>UserProxyAgent</code> and an <code>AssistantAgent</code>. Give them a coding task and observe the collaboration loop. Then experiment with ````GroupChat``` for multi-agent scenarios, add custom tools for domain-specific capabilities, and configure local models to control costs.</p><p>For production deployments, always use Docker isolation, implement termination conditions, and monitor token usage. The framework is powerful but requires careful configuration to prevent runaway conversations and unexpected API bills.</p><p>The future of AI is multi-agent. AutoGen gives you the tools to build that future today.</p><p>For more resources, visit the <a href=https://microsoft.github.io/autogen/>official AutoGen documentation</a> and explore examples in the <a href=https://github.com/microsoft/autogen>GitHub repository</a>.</p><hr><h2 id=recommended-infrastructure>Recommended Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-infrastructure>#</a></h2><p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li></ul><p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+5. Use stronger models — GPT-4o significantly outperforms GPT-4o-mini for agent coordination</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="what-is-autogen-used-for">What is AutoGen used for?<a hidden class="anchor" aria-hidden="true" href="#what-is-autogen-used-for">#</a></h3>
+<p>AutoGen builds multi-agent AI systems where multiple LLM instances collaborate to solve complex tasks. Common use cases include automated data analysis, code generation and review, research synthesis, content creation workflows, and simulation of expert teams (development, marketing, research). Any problem that benefits from multiple perspectives or specialized roles is a good fit for AutoGen.</p>
+<h3 id="is-autogen-free-and-open-source">Is AutoGen free and open source?<a hidden class="anchor" aria-hidden="true" href="#is-autogen-free-and-open-source">#</a></h3>
+<p>Yes, AutoGen is open-source under the MIT license and free to use. You can install it with <code>pip install pyautogen</code>. You pay only for the LLM API calls your agents make — OpenAI, Azure, or your local compute. Microsoft Research maintains the core framework with active community contributions.</p>
+<h3 id="autogen-vs-crewai-what-is-the-difference">AutoGen vs CrewAI: What is the difference?<a hidden class="anchor" aria-hidden="true" href="#autogen-vs-crewai-what-is-the-difference">#</a></h3>
+<p>CrewAI emphasizes role-based agent definitions with a simpler API — you define agents, tasks, and crews declaratively. AutoGen focuses on conversational collaboration with native code execution and more flexible conversation patterns. Choose CrewAI for straightforward business workflows with clear task sequences. Choose AutoGen for problems requiring code generation, iterative debugging, and open-ended agent conversations.</p>
+<h3 id="can-autogen-run-with-local-llms">Can AutoGen run with local LLMs?<a hidden class="anchor" aria-hidden="true" href="#can-autogen-run-with-local-llms">#</a></h3>
+<p>Yes, AutoGen works with any OpenAI-compatible API endpoint. Configure it to use Ollama, LM Studio, vLLM, or any local inference server. However, multi-agent coordination requires strong instruction-following capabilities. Models below 7 billion parameters often struggle with complex agent interactions. For best results, use strong local models like Llama 3.1 8B, Qwen 2.5 7B, or Mistral 7B.</p>
+<h3 id="how-does-autogen-handle-code-execution-security">How does AutoGen handle code execution security?<a hidden class="anchor" aria-hidden="true" href="#how-does-autogen-handle-code-execution-security">#</a></h3>
+<p>AutoGen separates code generation from execution. The <code>AssistantAgent</code> writes code; the <code>UserProxyAgent</code> executes it. By default, AutoGen runs code in a Docker container, isolating it from the host system. Always enable Docker isolation (<code>use_docker: True</code>) in production. Set timeouts, limit file system access, and whitelist packages to minimize security risks.</p>
+<h2 id="conclusion-and-getting-started-resources">Conclusion and Getting Started Resources<a hidden class="anchor" aria-hidden="true" href="#conclusion-and-getting-started-resources">#</a></h2>
+<p>AutoGen represents a fundamental shift in how we build AI applications — from single-model prompts to collaborative agent networks. The framework&quot;s native support for code execution, flexible conversation patterns, and human-in-the-loop integration makes it uniquely capable for tasks that require actual problem-solving rather than just text generation.</p>
+<p>Start with a simple two-agent setup: a <code>UserProxyAgent</code> and an <code>AssistantAgent</code>. Give them a coding task and observe the collaboration loop. Then experiment with ````GroupChat``` for multi-agent scenarios, add custom tools for domain-specific capabilities, and configure local models to control costs.</p>
+<p>For production deployments, always use Docker isolation, implement termination conditions, and monitor token usage. The framework is powerful but requires careful configuration to prevent runaway conversations and unexpected API bills.</p>
+<p>The future of AI is multi-agent. AutoGen gives you the tools to build that future today.</p>
+<p>For more resources, visit the <a href="https://microsoft.github.io/autogen/">official AutoGen documentation</a> and explore examples in the <a href="https://github.com/microsoft/autogen">GitHub repository</a>.</p>
+<hr>
+<h2 id="recommended-infrastructure">Recommended Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-infrastructure">#</a></h2>
+<p>To run any of the tools above reliably 24/7, infrastructure matters: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit, 14+ global regions, one-click droplets for AI/dev workloads.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low latency for mainland China access. This is the same IDC hosting dibi8.com — production-proven.</li>
+</ul>
+<p><em>Affiliate links — no extra cost to you, helps keep dibi8.com running.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;AutoGen Tutorial 2025: Building Multi-Agent AI Systems Made Easy&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
@@ -198,18 +635,176 @@ register_function(web_search, caller=assistant, executor=user_proxy)
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/autogen-multi-agent-framework%22>https://dibi8.com/resources/autogen-multi-agent-framework"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/autogen-multi-agent-framework%22">https://dibi8.com/resources/autogen-multi-agent-framework"</a>
 }
-}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p><hr></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/auto-gpt-autonomous-agent-2026/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/autogen/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<hr>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/auto-gpt-autonomous-agent-2026/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/autogen/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

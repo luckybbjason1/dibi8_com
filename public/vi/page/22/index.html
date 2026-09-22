@@ -1,26 +1,379 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/vi/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="vi"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/vi/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [MCP, Security, ‘Claude Code’, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “security”, “audit”, “claude-code”, “supply-chain”, “agent-security”, “2026”] aliases:
-/vi/posts/mcp-server-security-audit-2026-real-cases/ faq: - q: “MCP server do Anthropic bảo trì có an toàn hơn server cộng đồng không?” a: “Có, đáng kể. Các server tham chiếu của Anthropic (filesystem, git, github, fetch, sequentialthinking) đều được review nội bộ, có release đã ký, và có security model rõ ràng. Server cộng đồng thì khác nhau rất nhiều — một số được kiểm toán, đa số thì không. Ưu tiên Anthropic khi có phiên bản tương ứng; coi các lựa chọn cộng đồng là mã nguồn không tin cậy với quyền local đầy đủ cho đến khi bạn chứng minh được điều ngược lại.” q: “Mẫu tấn công MCP thực tế lớn nhất năm 2026 là gì?” a: “Ba mẫu đồng hạng nhất: (1) Typosquatting — package giả như github-mcp-server-v2 đánh cắp token. (2) Chuyển giao maintainer + telemetry — một server cộng đồng phổ biến đổi chủ, thêm analytics rò rỉ đường dẫn file hoặc biến môi trường. (3) Prompt injection qua nội dung được fetch — server fetch kéo về markdown thù địch, agent sau đó rò rỉ ~/.ssh/id_rsa vì prompt đã đánh lừa nó.” q: “Một lần kiểm toán trước cài đặt đúng chuẩn mất bao lâu?” a: “Năm phút nếu bạn biết phải tìm gì. Checklist 8 điểm trong bài này bao quát độ tươi của maintainer, cây dependency, các lệnh gọi mạng, phạm vi file system, cách xử lý secret, dấu vết chuỗi cung ứng, lịch sử lỗ hổng, và tương thích sandbox. Hầu hết server cộng đồng đều rớt ít nhất 2 trên 8.” q: “Có nên dùng fine-grained GitHub PAT với MCP server không?” a: “Luôn luôn. Server MCP github chỉ cần scope cho các repo và thao tác cụ thể mà bạn cấp. Đừng bao giờ cho nó full-access PAT — chỉ một lần prompt injection có thể xoá repo, rò rỉ mã nguồn private, hoặc tạo PR giả. Token fine-grained với danh sách repo + scope rõ ràng giới hạn bán kính ảnh hưởng từ bất kỳ vụ rò rỉ nào.” q: “Chạy MCP server trong container có đáng chi phí setup không?” a: “Với server rủi ro cao (bất kỳ thứ gì chạm tới mạng, credential, hoặc nội dung không tin cậy như fetch) — có. Cách ly container hoặc firejail ngăn một MCP server bị xâm nhập đọc SSH key, file .env, hoặc cookie trình duyệt. Với các server stdio Anthropic tin cậy chỉ hoạt động trên thư mục có giới hạn, overhead không đáng.” q: “Tín hiệu ‘chim hoàng yến trong mỏ than’ báo một MCP server độc hại là gì?” a: “Các cuộc gọi mạng không giải thích được trong phân tích dependency. Server MCP filesystem hoặc git nên có 0 cuộc gọi HTTP. Server fetch hoặc github có endpoint xác định rõ. Bất kỳ thứ gì gọi ra domain bạn không nhận ra (đặc biệt qua subdomain ngẫu nhiên hoặc địa chỉ IP literal) là cờ đỏ — và là cách phổ biến nhất server cộng đồng đánh cắp dữ liệu.” Kiểm Toán Bảo Mật MCP Server 2026: Đánh Giá 5 Server Cộng Đồng Thực Tế + Mẫu Bẫy Meta Description: Đã kiểm toán 5 MCP server cộng đồng phổ biến trong production. Lỗ hổng cụ thể, hướng dẫn khai thác, và checklist 8 điểm mỗi server mất 5 phút.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>10 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/mcp-server-security-audit-2026-real-cases/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “developer-tools”, “integration”, “2026”] aliases:
-/vi/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “MCP là gì và tại sao quan trọng năm 2026?” a: “Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026.” q: “Nên dùng stdio, HTTP hay SSE-based MCP servers?” a: “stdio cho servers chỉ local (filesystem, git, databases localhost) — latency thấp nhất, network zero. HTTP/SSE cho remote SaaS integrations (GitHub, Linear, Notion) nơi server hosted bởi bên thứ ba. MCP 2025-06 spec mới thêm OAuth bridge cho credential-managed servers. Hầu hết setup production dùng mix: 80% stdio local, 20% HTTP for SaaS.” q: “Rủi ro bảo mật khi cài community MCP servers là gì?” a: “Đáng kể. MCP servers chạy với full local permissions của bạn — có thể đọc files, exec commands, network calls. Anthropic-maintained reference servers được audit. Community servers khác nhau: luôn đọc source, ưu tiên servers với active maintainers và recent commits, không bao giờ cấp credentials bạn không dám paste plain text.” q: “Developers chuyên nghiệp thực sự dùng MCP servers nào?” a: “Dựa trên usage telemetry từ major MCP registries (giữa 2026): filesystem, github, git, postgres, sqlite top local stdio category. Cho SaaS: linear, slack, sentry, supabase. Cho specialized: playwright, puppeteer, brave-search, fetch. Long tail 900+ community servers cover niche integrations nhưng hầu hết developers dùng 5-10 core servers.” q: “Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?” a: “Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take >500ms initialize, nó đang slow mọi agent session.” MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn Meta Description: Hệ sinh thái MCP vượt 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30, trade-off kiến trúc stdio/HTTP-SSE/OAuth, cây quyết định lựa chọn.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>7 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“melotts”, “chuyen-van-ban-thanh-giong-noi”, “tts”, “da-ngon-ngu”, “python”, “tong-hop-giong-noi”, “mo-nguon”, “suy-luan-cpu”] aliases:
-/vi/posts/melotts/ Hầu hết các thư viện TTS mã nguồn mở đều buộc bạn phải lựa chọn: chất lượng cao đòi hỏi GPU, còn tùy chọn thân thiện với CPU nghe như robot. MeloTTS, được phát triển bởi các nhà nghiên cứu từ MIT và MyShell.ai, phá vỡ sự đánh đổi này. Với hơn 7.400 GitHub Stars và giấy phép MIT, nó cung cấp tổng hợp giọng nói đa ngôn ngữ thờ gian thực trên CPU với 6 ngôn ngữ và nhiều giọng Anh khác nhau. Hướng dẫn này sẽ đi qua toàn bộ quá trình thiết lập MeloTTS, đánh giá hiệu năng so với Coqui TTS, ChatTTS và Bark, và cung cấp cấu hình triển khai production-ready.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/melotts/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“mem0”, “ai-agent-memory”, “bộ-nhớ-liên-tục”, “langchain”, “vector-store”, “tinh-chỉnh-bộ-nhớ”, “hướng-dẫn-mem0”, “mem0-vs-langchain”, “crewai”, “mã-nguồn-mở”] aliases:
-/vi/posts/mem0/ Giới thiệu Mỗi nhà phát triển AI agent đều gặp phải một vấn đề chung: agent quên. Ngườ dùng nói với chatbot họ là ngườ ăn chay và dị ứng với các loại hạt trong một phiên, và hai giờ sau agent lại gợi ý món cà ri đậu phộng. Đây không phải là vấn đề về prompt engineering — đây là vấn đề về kiến trúc bộ nhớ. LLM không có trạng thái không có cơ chế tích hợp để duy trì sự kiện xuyên suốt các phiên. Mem0 (mem0ai/mem0) giải quyết vấn đề này bằng một lớp bộ nhớ plug-and-play với 56.205+ GitHub Stars và 90.000+ nhà phát triển đã áp dụng. Hướng dẫn này bao gồm cấu hình mem0 đầy đủ từ cài đặt đến tinh chỉnh production với benchmark thực, cấu hình vector store và mã tích hợp cho agent LangChain, CrewAI và OpenAI.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>20 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/mem0/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” source_version: "" licensing_model: “Open Source” license_type: “MIT” file_size: "" file_md5: "" download_url: "" backup_url: "" last_maintained: “2026-05-15” draft: false aliases:
-/vi/posts/mempalace-guide/ faqs: - q: ‘Làm thế nào để thêm bộ nhớ lâu dài vào Claude Code?’ a: ‘Chạy MemPalace cục bộ và kết nối endpoint MCP của nó với Claude Code bằng cách cấu hình claude_code_config.json trỏ đến http://localhost:8787/mcp với quyền đọc/ghi. Sau đó Claude sẽ truy vấn MemPalace như một cơ sở dữ liệu vector ngữ nghĩa bất cứ khi nào cần ngữ cảnh lịch sử.’ q: ‘Bộ nhớ của Claude Code có được duy trì qua các phiên làm việc và sau khi khởi động lại không?’ a: ‘Có. Vì MemPalace ghi dữ liệu vào instance SQLite/ChromaDB trên đĩa cục bộ, bộ nhớ của AI được duy trì qua các lần khởi động lại, sự cố và các phiên terminal hoàn toàn mới, thay vì bị mất khi đóng terminal.’ q: ‘MemPalace đạt tỷ lệ recall bao nhiêu trên benchmark LongMemEval?’ a: ‘MemPalace đạt tỷ lệ recall 96.6% trên benchmark LongMemEval, so với 81.2% của thiết lập Pinecone trên đám mây và 0% của Claude Code thuần túy — vốn quên sạch mọi thứ khi thoát.’ q: ‘Dữ liệu MemPalace được lưu trữ cục bộ hay gửi lên đám mây?’ a: ‘MemPalace lưu trữ dữ liệu 100% cục bộ bằng ChromaDB, vì vậy không có ngữ cảnh dự án nào được gửi đến máy chủ đám mây bên ngoài. Điều này khác với Pinecone, vốn gửi dữ liệu lên máy chủ đám mây.’ q: ‘MemPalace có miễn phí sử dụng không?’ a: ‘Có. MemPalace là mã nguồn mở theo giấy phép MIT và hoàn toàn miễn phí $0, không có phí API hay phí đăng ký, khác với Pinecone vốn tính phí theo gói đăng ký hoặc theo mức sử dụng.’ {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>6 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/mempalace-guide/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>MemPalace: Hệ thống bộ nhớ AI mã nguồn mở được benchmark tốt nhất, tiết kiệm 96.6% R@5 trên LongMemEval — Không gọi API Tóm tắt MemPalace là hệ thống bộ nhớ AI ưu tiên cục bộ, lưu trữ lịch sử cuộc trò chuyện dưới dạng văn bản nguyên bản và truy xuất bằng tìm kiếm ngữ nghĩa. Nó đạt 96.6% R@5 raw trên LongMemEval — điểm benchmark tốt nhất cho bất kỳ hệ thống bộ nhớ mã nguồn mở nào — với không gọi API. Nó được xây dựng cho các nhà phát triển muốn agent AI của họ nhớ mọi thứ mà không gửi dữ liệu đến bất kỳ dịch vụ bên ngoài nào.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/mempalace-open-source-ai-memory-system/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker
-Python application_domain: “Ai Tools” source_version: "" licensing_model: “Open Source” license_type: “MIT” file_size: "" file_md5: "" download_url: “https://github.com/MemPalace/mempalace" backup_url: "” last_maintained: “2026-05-15” draft: false aliases: /vi/posts/mempalace/ faqs: - q: ‘MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?’ a: ‘MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.’ q: ‘Cách cài đặt MemPalace như thế nào?’ a: ‘MemPalace là công cụ Python, có thể cài qua uv（uv tool install mempalace）hoặc pip（pip install mempalace）. Sau khi cài xong, chạy mempalace init ~/projects/myapp để khởi tạo cho dự án của bạn.’ q: ‘MemPalace so với Mem0 về độ chính xác khi truy xuất ra sao?’ a: ‘Trên bộ kiểm chuẩn LongMemEval, MemPalace đạt tỷ lệ truy xuất 96.6%, trong khi Mem0 chỉ đạt 89.2%. MemPalace chạy hoàn toàn cục bộ mà không cần bất kỳ lần gọi API nào, còn Mem0 yêu cầu OpenAI API trả phí.’ q: ‘MemPalace tổ chức bộ nhớ được lưu trữ như thế nào?’ a: ‘MemPalace sử dụng ẩn dụ cung điện với ba cấp độ: Wings dành cho người và dự án, Rooms dành cho các chủ đề trong từng dự án, và Drawers lưu nội dung gốc dưới dạng nguyên văn. Cấu trúc này cho phép bạn thu hẹp tìm kiếm vào một wing dự án hoặc room chủ đề cụ thể, thay vì truy vấn toàn bộ cơ sở dữ liệu vector phẳng.’ q: ‘MemPalace có tương thích với Claude Code và các công cụ AI khác không?’ a: ‘Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.’ {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/mempalace/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“metabase”, “bi”, “business-intelligence”, “open-source”, “tableau”, “dashboards”, “sql”, “docker”, “self-hosted”, “analytics”, “data-visualization”, “apache-superset”, “tri-tue-kinh-doanh”, “phan-tich-du-lieu”, “ma-nguon-mo”] aliases:
-/vi/posts/metabase-business-intelligence-open/ Giới Thiệu: Vấn Đề Hóa Đơn Tableau $50,000 Startup của bạn vừa hoàn thành Series A. Team data có năm ngườừ. Rồi hóa đơn gia hạn Tableau xuất hiện trong hộp thư: $47,000 cho 20 giấy phép Creator, $15,000 cho 100 giấy phép Explorer, cộng $8,000 bảo trì server. $70,000 mỗi năm cho dashboard mà nửa team không dám chạm vào vì giao diện đòi hỏi khóa chứng chỉ.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/metabase-business-intelligence-open/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Giới thiệu Trong thế giới dựa trên dữ liệu ngày nay, khả năng chuyển đổi tài liệu sang các định dạng có cấu trúc, dễ đọc và di động quan trọng hơn bao giờ hết. Dù bạn đang xây dựng pipeline Retrieval-Augmented Generation (RAG), nhập tài liệu vào cơ sở kiến thức AI, hoặc đơn giản là muốn trích xuất văn bản sạch từ các PDF phức tạp, việc có một công cụ đáng tin cậy chuyển đổi mọi định dạng tệp sang Markdown là vô cùng giá trị. Microsoft MarkItDown là một công cụ Python mã nguồn mở được xây dựng đúng cho mục đích này — nó biến PDF, tài liệu Word, bản trình bày PowerPoint, hình ảnh, trang HTML, bảng tính và kho lưu trữ ZIP thành đầu ra Markdown sạch sẽ, nhất quán.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Minara Đánh Giá 2026: Nền Tảng Giao Dịch AI trên Hyperliquid Nén Cả Bloomberg Terminal Vào Một Cửa Sổ Chat Meta Description: Minara là nền tảng giao dịch AI-native trên Hyperliquid cho phép hỏi đáp, phân tích thị trường thời gian thực, và giao dịch crypto/cổ phiếu/hàng hóa trong một giao diện chat. Đánh giá 2 tuần: đăng ký, 5 use case, giá cả, và mô hình hoa hồng + Spark rebate.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/minara-ai-trading-hyperliquid-review-2026/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/vi/page/21/>«&nbsp;Trang trước&nbsp;
-</a><a class=next href=https://dibi8.com/vi/page/23/>Trang tiếp theo&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/vi/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/vi/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>JuiceFS: Cloud Storage, Local Speed Imagine your team needs to share massive datasets across 50&#43; workers for AI training. Each worker expects a standard Linux filesystem — but your data lives in S3. Mounting S3 as a local filesystem has been frustrating: slow, unreliable, or both. JuiceFS solves this by combining the best of both worlds.
+With 13,900&#43; GitHub stars and backing from major cloud providers, JuiceFS has become one of the most popular cloud storage solutions in 2026. It gives you the infinite capacity of object storage with the performance characteristics of a local disk.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>12 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/juicefs-distributed-posix-file-system-redis-s3-cloud-storage/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Top Jupyter Notebook Alternatives in 2024: JupyterLab vs Google Colab vs Deepnote vs Hex Compared {&lt;/* resource-info */&gt;}
+The classic Jupyter Notebook has been the backbone of interactive data science since its debut in 2014. Over 10 million users rely on its cell-based execution model for exploratory data analysis, machine learning prototyping, and research reproducibility. But the data science workflow has changed dramatically in the past decade — teams are distributed, datasets live in cloud warehouses, and stakeholders expect interactive dashboards, not static notebooks. Classic Jupyter Notebook, with its file-based ```.ipynb```` format and single-user design, struggles to keep pace.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>12 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/jupyter-notebook-alternatives-comparison/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - JavaScript
+Python TypeScript application_domain: “Ai Tools” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “50.9 MB” file_md5: &#34;&#34; download_url: “https://github.com/vasu-devs/JustHireMe.git&#34; backup_url: &#34;” last_maintained: “2026-05-15” draft: false aliases: /vi/posts/justhireme-ai-job-search-workbench/ faqs: - q: ‘JustHireMe có miễn phí và mã nguồn mở không?’ a: ‘Có. JustHireMe là phần mềm mã nguồn mở theo giấy phép MIT, không có phí đăng ký hay chi phí ẩn. Bạn là chủ sở hữu toàn bộ hồ sơ và dữ liệu của mình, và thuật toán chấm điểm hoàn toàn minh bạch.’ q: ‘JustHireMe có yêu cầu API key AI hoặc gửi dữ liệu của tôi lên đám mây không?’ a: ‘Không. JustHireMe hoạt động theo nguyên tắc ưu tiên cục bộ: toàn bộ tính toán AI chạy ngay trên máy của bạn mà không cần API key, và dữ liệu được lưu trữ trong cơ sở dữ liệu SQLite trên máy tính của bạn thay vì tải lên đám mây.’ q: ‘JustHireMe có thể thu thập tin tuyển dụng từ những nền tảng nào?’ a: ‘Nó tự động tổng hợp việc làm từ LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, trang tuyển dụng của các công ty và các mục việc làm từ xa. Thuật toán loại trùng sẽ tự động gộp cùng một vị trí khi nó xuất hiện trên nhiều nền tảng khác nhau.’ q: ‘Điểm số khớp việc làm của JustHireMe hoạt động như thế nào?’ a: ‘Công cụ sử dụng khả năng hiểu ngữ nghĩa thay vì so khớp từ khóa, đối chiếu kỹ năng, kinh nghiệm, kỳ vọng lương và mục tiêu nghề nghiệp của bạn với yêu cầu của từng vị trí. Mỗi tin tuyển dụng nhận điểm từ 0-100, giúp bạn tập trung vào các vị trí đạt trên 80 điểm.’ q: ‘JustHireMe được xây dựng trên nền tảng công nghệ nào?’ a: ‘Ứng dụng desktop sử dụng Tauri 2 kết hợp React 19 và TypeScript; phần backend chạy Python 3.13 với FastAPI và WebSockets; dữ liệu được lưu trong SQLite cùng cơ sở dữ liệu đồ thị Kuzu và kho vector LanceDB; và Playwright đảm nhiệm tự động hóa trình duyệt cho việc thu thập dữ liệu và nộp đơn.’ {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>8 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/justhireme-ai-job-search-workbench/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: - Docker
+Python PostgreSQL Redis application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“knowledge base”, “rag”, “bộ não thứ hai”, “stack”, “collection”] aliases: /posts/knowledge-base-stack/ Bạn có 500 PDF, 2,000 ghi chú, 10 năm email, và AI trong editor không biết chúng tồn tại. Notion AI tốn $10/seat/tháng và không thấy file local. Glean tốn tối thiểu $30k/năm. Mem.ai tuyệt nhưng là SaaS — “bộ não thứ hai” của bạn sống trên phần cứng người khác.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>11 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/knowledge-base-stack/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TL;DR Knowledge Work Plugins là hệ sinh thái plugin chính thức của Anthropic, mở rộng khả năng của Claude với các cuộc gọi công cụ có cấu trúc cho chỉnh sửa tài liệu, phân tích mã, duyệt web và thao tác tệp. Với 20.728 sao, nó đại diện cho tiêu chuẩn vàng cho tích hợp công cụ tác nhân AI.
+TL;DR: 20.728 sao — hệ sinh thái plugin được sao nhiều nhất của Anthropic.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/knowledge-work-plugins/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” duyệt&#39; description: “Technical guide and comparison.” Không phụ thuộc Chrome, không ảnh hưởng doanh nghiệp, mã nguồn mở thuần túy. date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - C&#43;&#43;
+Docker Java JavaScript application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: “436.4 MB” file_md5: ’&#39; download_url: https://github.com/LadybirdBrowser/ladybird backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases: /vi/posts/ladybird-independent-web-browser/ faqs: - q: ‘Trình duyệt Ladybird là gì?’ a: ‘Ladybird là một trình duyệt web hoàn toàn độc lập, được xây dựng từ đầu mà không dựa trên Chromium, Firefox hay bất kỳ engine trình duyệt hiện có nào. Nó sử dụng engine kết xuất riêng (LibWeb) và engine JavaScript riêng (LibJS), được viết bằng C&#43;&#43;.’ q: ‘Ai là người tạo ra trình duyệt Ladybird?’ a: ‘Ladybird được tạo ra bởi Andreas Kling — người cũng là cha đẻ của SerenityOS và từng là kỹ sư Apple Safari. Dự án hiện được phát triển bởi cộng đồng toàn cầu với hơn 100 nhà đóng góp mã nguồn mở.’ q: ‘Ladybird đã sẵn sàng để sử dụng hàng ngày chưa?’ a: ‘Chưa. Ladybird vẫn đang trong giai đoạn phát triển tích cực và chưa sẵn sàng cho việc sử dụng hàng ngày. HTML/CSS cơ bản, JavaScript, biểu mẫu, hình ảnh, bảng và Flexbox đã hoạt động được, nhưng các tính năng như WebGL, video và WebAssembly vẫn chưa được hỗ trợ.’ q: ‘Tại sao một engine trình duyệt độc lập như Ladybird lại quan trọng?’ a: ‘Khoảng 73% trình duyệt hiện nay sử dụng engine Chromium của Google, trao cho Google ảnh hưởng lớn đối với các tiêu chuẩn web. Một engine độc lập giúp tăng tính đa dạng, giảm nguy cơ điểm thất bại đơn lẻ, đồng thời hỗ trợ quyền riêng tư thực sự — không có dữ liệu đo từ xa hay theo dõi từ doanh nghiệp.’ q: ‘Làm thế nào để cài đặt hoặc trải nghiệm Ladybird?’ a: ‘Bạn tự build Ladybird từ mã nguồn bằng cách clone repository GitHub về, cài đặt các gói phụ thuộc (build-essential, cmake, ninja-build trên Ubuntu/Debian), sau đó build bằng CMake và Ninja rồi chạy ./bin/Ladybird. Ngoài ra cũng có một Docker image thử nghiệm để bạn lựa chọn.’ {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/ladybird-independent-web-browser/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
+Khi large language models (LLMs) như GPT-4, Claude 3.5 và Llama 3.1 ngày càng trở nên phổ biến, các nhà phát triển đối mặt với một thách thức thực tế: làm sao kết nối mô hình ngôn ngữ với dữ liệu bên ngoài, công cụ và quy trình làm việc phức tạp? LangChain ra đờinhằm giải quyết đúng vấn đề này. Đến tháng 5 năm 2025, framework này đã đạt hơn 95.000 stars trên GitHub và trở thành lựa chọn hàng đầu cho việc xây dựng ứng dụng AI production-grade. Bài viết này sẽ đưa bạn từ những khái niệm cơ bản nhất đến các pattern nâng cao, cùng với hướng dẫn triển khai thực tế.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “LangChain: 3 Cach Trien Khai AI Agent San Sang Productio… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“langchain”, “llm”, “ai-agent”, “rag”, “production-deployment”, “docker”, “python”, “openai”, “langsmith”, “langgraph”] aliases:
+/vi/posts/langchain/ /vi/resources/llm-frameworks/langchain-complete-guide/ Gioi thieu Hau het cac demo LLM chet trong notebook Jupyter. Khoang cach giua mot prototype hoat dong va mot AI agent san sang production la noi cac team dot tien engineering: dau ra khong nhat quan, loi khong the truy vet, chi phi API vuot tam kiem soat, va cac ban trien khai sup do khi tai tang. LangChain, framework ung dung LLM duoc su dung rong rai nhat voi hon 137.000 sao GitHub va hon 3.900 nguoi dong gop, ton tai de thu hep khoang cach do. Tutorial nay cho ban thay cach cai dat LangChain, xay dung agent co the trien khai, va chay no trong production voi Docker, Kubernetes, va cong cu quan sat — trong vong duoi 30 phut.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>19 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/langchain/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Langflow: 148k sao cho các quy trình làm việc LLM trực quan – Phân tích chuyên sâu kỹ thuật 2026 {: .hero-image .rounded-lg .shadow-lg .mb-6 alt=“Langflow: Huy hiệu trung tâm mã nguồn AI”}
+Giới thiệu Trong bối cảnh phát triển nhanh chóng của các ứng dụng Mô hình Ngôn ngữ Lớn (LLM), sự phức tạp của việc điều phối các thành phần khác nhau—từ tạo mẫu prompt và gọi mô hình đến sử dụng công cụ và suy luận của tác nhân—có thể nhanh chóng trở thành nút thắt cổ chai. Các nhà phát triển thường phải vật lộn với mã dài dòng, gỡ lỗi các chuỗi phức tạp và gặp khó khăn trong việc hình dung luồng dữ liệu và logic.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>30 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: - Python
+TypeScript PostgreSQL Redis application_domain: Llm Frameworks source_version: “1.2.1” licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“langgraph”, “agent”, “có trạng thái”, “orchestration”, “langchain”, “production”] aliases: /posts/langgraph-stateful-agent-orchestration-2026/ Nếu bạn xây agent LLM đơn giản và thấy nó quên mọi thứ khi process restart, mất nửa tiến độ khi một tool call timeout, hoặc lặng lẽ làm hỏng trạng thái khi hai event xảy ra đồng thời — bạn đụng tường mà LangGraph thiết kế để phá vỡ.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>8 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/langgraph-stateful-agent-orchestration-2026/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/vi/page/21/">
+      «&nbsp;Trang trước&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/vi/page/23/">Trang tiếp theo&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,1 +1,47 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Tools on Dibi8</title><link>https://dibi8.com/vi/tools/</link><description>Recent content in Tools on Dibi8</description><generator>Hugo</generator><language>vi</language><lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/vi/tools/index.xml" rel="self" type="application/rss+xml"/><item><title>Cron Generator &amp; Tester — Dịch Cron 2 Chiều + 5 Lần Chạy Kế Tiếp + Cú Pháp Đa Nền Tảng</title><link>https://dibi8.com/vi/tools/cron-generator/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/tools/cron-generator/</guid><description>Công cụ tạo và kiểm tra cron expression trực tuyến miễn phí. Chuyển cron sang mô tả dễ đọc, hiển thị 5 lần chạy tiếp theo, tạo cú pháp sẵn sàng dán cho Linux crontab / GitHub Actions / Vercel / Kubernetes CronJob / AWS EventBridge / node-cron. Cũng chuyển ngôn ngữ tự nhiên (như &amp;#39;every 5 minutes&amp;#39;, &amp;#39;weekdays at 9am&amp;#39;) thành cron hợp lệ. 100% phía client.</description></item><item><title>JWT Decoder &amp; Validator — Giải Mã Header/Payload + Xác Minh Chữ Ký HS256/RS256 Phía Client</title><link>https://dibi8.com/vi/tools/jwt-decoder/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/tools/jwt-decoder/</guid><description>Công cụ giải mã JWT và xác minh chữ ký miễn phí trực tuyến. Giải mã header và payload, tô sáng claim đã đăng ký (iss/sub/aud/exp/iat/nbf/jti), kiểm tra hết hạn theo thời gian thực, xác minh chữ ký HS256/HS384/HS512 với secret, hoặc RS256/384/512 với PEM public key. 100% phía client — token không rời trình duyệt. Dùng Web Crypto API.</description></item><item><title>LLM Model Recommender 2026 — Chọn LLM Phù Hợp Theo Use Case, Ngân Sách, Context, Quyền Riêng Tư</title><link>https://dibi8.com/vi/tools/llm-recommender/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/tools/llm-recommender/</guid><description>Engine quyết định miễn phí để chọn LLM phù hợp năm 2026. Trả lời 5 câu hỏi (use case / ngân sách / context / quyền riêng tư / ưu tiên) và xếp hạng top 5 từ 12 mô hình chính thống — GPT-5, Claude Sonnet 4.6, Gemini 3 Pro, DeepSeek V4, Llama 4, Mistral, Qwen 3, Kimi K2 — kèm giá thực tế, điểm mạnh, đánh đổi. Phía client, không API.</description></item><item><title>MCP Tool Builder — Tạo Định Nghĩa Model Context Protocol Từ Hàm Python / TypeScript</title><link>https://dibi8.com/vi/tools/mcp-tool-builder/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/tools/mcp-tool-builder/</guid><description>Công cụ tạo MCP Tool Definition trực tuyến miễn phí. Dán signature hàm Python hoặc TypeScript, nhận ngay tool JSON chuẩn MCP, server boilerplate Python (FastMCP) và TypeScript (@modelcontextprotocol/sdk) đầy đủ, cùng lệnh cURL test sẵn sàng dùng. Hoàn toàn phía client, code không lên cloud.</description></item><item><title>Prompt Optimizer — Tái Cấu Trúc 5 Phần, Bỏ Từ Thừa, Tiết Kiệm Token (GPT / Claude / Gemini / DeepSeek)</title><link>https://dibi8.com/vi/tools/prompt-optimizer/</link><pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/tools/prompt-optimizer/</guid><description>Công cụ tối ưu Prompt trực tuyến miễn phí. Phát hiện từ thừa, tái cấu trúc theo khung 5 phần (Vai trò / Nhiệm vụ / Bối cảnh / Ràng buộc / Ví dụ / Định dạng), so sánh token GPT-4o / Claude Sonnet / Gemini / DeepSeek V4 — hoàn toàn phía client, prompt không lên cloud.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Tools on Dibi8</title>
+    <link>https://dibi8.com/vi/tools/</link>
+    <description>Recent content in Tools on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Tue, 19 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/vi/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Cron Generator &amp; Tester — Dịch Cron 2 Chiều &#43; 5 Lần Chạy Kế Tiếp &#43; Cú Pháp Đa Nền Tảng</title>
+      <link>https://dibi8.com/vi/tools/cron-generator/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/tools/cron-generator/</guid>
+      <description>Công cụ tạo và kiểm tra cron expression trực tuyến miễn phí. Chuyển cron sang mô tả dễ đọc, hiển thị 5 lần chạy tiếp theo, tạo cú pháp sẵn sàng dán cho Linux crontab / GitHub Actions / Vercel / Kubernetes CronJob / AWS EventBridge / node-cron. Cũng chuyển ngôn ngữ tự nhiên (như &amp;#39;every 5 minutes&amp;#39;, &amp;#39;weekdays at 9am&amp;#39;) thành cron hợp lệ. 100% phía client.</description>
+    </item>
+    <item>
+      <title>JWT Decoder &amp; Validator — Giải Mã Header/Payload &#43; Xác Minh Chữ Ký HS256/RS256 Phía Client</title>
+      <link>https://dibi8.com/vi/tools/jwt-decoder/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/tools/jwt-decoder/</guid>
+      <description>Công cụ giải mã JWT và xác minh chữ ký miễn phí trực tuyến. Giải mã header và payload, tô sáng claim đã đăng ký (iss/sub/aud/exp/iat/nbf/jti), kiểm tra hết hạn theo thời gian thực, xác minh chữ ký HS256/HS384/HS512 với secret, hoặc RS256/384/512 với PEM public key. 100% phía client — token không rời trình duyệt. Dùng Web Crypto API.</description>
+    </item>
+    <item>
+      <title>LLM Model Recommender 2026 — Chọn LLM Phù Hợp Theo Use Case, Ngân Sách, Context, Quyền Riêng Tư</title>
+      <link>https://dibi8.com/vi/tools/llm-recommender/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/tools/llm-recommender/</guid>
+      <description>Engine quyết định miễn phí để chọn LLM phù hợp năm 2026. Trả lời 5 câu hỏi (use case / ngân sách / context / quyền riêng tư / ưu tiên) và xếp hạng top 5 từ 12 mô hình chính thống — GPT-5, Claude Sonnet 4.6, Gemini 3 Pro, DeepSeek V4, Llama 4, Mistral, Qwen 3, Kimi K2 — kèm giá thực tế, điểm mạnh, đánh đổi. Phía client, không API.</description>
+    </item>
+    <item>
+      <title>MCP Tool Builder — Tạo Định Nghĩa Model Context Protocol Từ Hàm Python / TypeScript</title>
+      <link>https://dibi8.com/vi/tools/mcp-tool-builder/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/tools/mcp-tool-builder/</guid>
+      <description>Công cụ tạo MCP Tool Definition trực tuyến miễn phí. Dán signature hàm Python hoặc TypeScript, nhận ngay tool JSON chuẩn MCP, server boilerplate Python (FastMCP) và TypeScript (@modelcontextprotocol/sdk) đầy đủ, cùng lệnh cURL test sẵn sàng dùng. Hoàn toàn phía client, code không lên cloud.</description>
+    </item>
+    <item>
+      <title>Prompt Optimizer — Tái Cấu Trúc 5 Phần, Bỏ Từ Thừa, Tiết Kiệm Token (GPT / Claude / Gemini / DeepSeek)</title>
+      <link>https://dibi8.com/vi/tools/prompt-optimizer/</link>
+      <pubDate>Tue, 19 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/tools/prompt-optimizer/</guid>
+      <description>Công cụ tối ưu Prompt trực tuyến miễn phí. Phát hiện từ thừa, tái cấu trúc theo khung 5 phần (Vai trò / Nhiệm vụ / Bối cảnh / Ràng buộc / Ví dụ / Định dạng), so sánh token GPT-4o / Claude Sonnet / Gemini / DeepSeek V4 — hoàn toàn phía client, prompt không lên cloud.</description>
+    </item>
+  </channel>
+</rss>

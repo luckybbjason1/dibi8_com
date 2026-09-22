@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/llm-frameworks/roboflow-supervision/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/roboflow-supervision/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/roboflow-supervision/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/roboflow-supervision/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/roboflow-supervision/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/ko/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/llm-frameworks/roboflow-supervision/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Introduction Computer vision has become one of the most impactful applications of machine learning, powering everything from autonomous vehicles and quality inspection systems to medical imaging and retail analytics. But building production-grade CV systems requires more than just training models — it demands robust tools for data annotation, evaluation, visualization, and debugging.\nSupervision by Roboflow is the answer to this need. With 42,819 GitHub stars, it has become the go-to toolkit for computer vision practitioners who need reusable, well-designed Python tools. Their tagline says it all: “We write your reusable computer vision tools.”\nDisclosure: This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. Disclosure Policy\nDigitalOcean - Reliable cloud infrastructure for your CV deployments. HTStack - High-performance server hosting. WebShare - Premium proxy services for AI data pipelines.\nArchitecture overview (source: dibi8.com)\nWhat Is Supervision? Supervision is a Python library that provides a comprehensive set of tools for computer vision tasks. It covers the entire CV pipeline — from annotating training data and evaluating model outputs to visualizing detection results and processing video streams.\nThe library is built around a simple philosophy: make the most common CV operations trivially easy while keeping the door open for custom workflows. Whether you are annotating images for object detection, evaluating segmentation model outputs, or visualizing tracking results in a video, Supervision has you covered.\nFeature Image:\nCore Features Supervision provides tools across the entire computer vision lifecycle: ### Data Annotation\nSupervision provides utilities for creating, manipulating, and converting annotation formats. It supports COCO, YOLO, Pascal VOC, and custom formats, making it easy to work with different ML frameworks and pipelines.\n# Import supervision from supervision import * # Load existing annotations annotations = load_annotations(\"annotations/coco_format.json\") # Convert between annotation formats coco_to_yolo( input_path=\"annotations/coco_format.json\", output_path=\"annotations/yolo_format.txt\", class_map={\"person\": 0, \"car\": 1, \"dog\": 2} ) # Inspect annotation statistics stats = get_annotation_stats(annotations) print(f\"Total objects: {stats.total_objects}\") print(f\"Classes: {stats.classes}\") print(f\"Images: {stats.total_images}\") Detection Processing Supervision provides powerful tools for processing detection model outputs, including confidence filtering, non-maximum suppression, and result visualization.\nimport supervision as sv import cv2 # Load a detection model (works with YOLO, Detectron, etc.) detections = sv.Detections.from_yolo_output( prediction, # model output tensor original_image_size, # image dimensions confidence_threshold=0.5, class_id=0 # filter by class ) # Apply non-maximum suppression detections = sv.NMS(detections, iou_threshold=0.45) # Filter by confidence detections = detections[detections.confidence \u003e 0.6] Visualization and Annotation Drawing One of Supervision’s strengths is its visualization toolkit. Drawing bounding boxes, segmentation masks, keypoints, and tracking IDs on images and video frames is straightforward: `````python\nCreate annotation context for drawing annotation_context = sv.BoxAnnotator( thickness=2, color_lookup=sv.ColorLookup.INDEX )\nLoad image image = cv2.imread(“scene.jpg”)\nDraw bounding boxes annotated_image = annotation_context.annotate( scene=image, detections=detections )\nDraw segmentation masks mask_annotator = sv.MaskAnnotator( opacity=0.5, color_lookup=sv.ColorLookup.INDEX ) annotated_image = mask_annotator.annotate( scene=annotated_image, detections=detections )\nDraw class labels with confidence label_annotator = sv.LabelAnnotator( text_scale=0.5, text_thickness=1, color_lookup=sv.ColorLookup.INDEX ) annotated_image = label_annotator.annotate( scene=annotated_image, detections=detections )\nSave result cv2.imwrite(“annotated_scene.jpg”, annotated_image)\n### Tracking Support Supervision has first-class support for object tracking, with built-in integration for popular tracking algorithms: `````python # Initialize a tracker tracker = sv.Tracker( tracker_type=\"ocsort\", # or \"bytetrack\" max_age=30, min_hits=3, iou_threshold=0.3 ) # Track objects across video frames video_path = \"traffic_camera.mp4\" for frame_number, frame in enumerate( sv.VideoInfo.from_video_path(video_path).iter_frames() ): detections = detect_objects(frame) # your detection model detections = tracker.update_with_detections(detections) # Annotated frame with tracking IDs annotated_frame = draw_tracking_ids(frame, detections) Metric Computation Supervision provides tools for computing common CV evaluation metrics: `````python\nCompute confusion matrix confusion_matrix = sv.ConfusionMatrix( num_classes=10, task=“multiclass” ) confusion_matrix.compute( predictions=predicted_labels, targets=ground_truth_labels )\nDisplay the confusion matrix confusion_matrix.plot(title=“Model Performance”)\nGet precision, recall, and F1 per class for class_name, metrics in confusion_matrix.class_metrics().items(): print(f\"{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}\")\n## How It Works Supervision operates through a clean, consistent API that follows a few core design patterns: ### Detections as Data Structures The heart of Supervision is the ````Detections```` class, which provides a unified representation for all types of object detection outputs — bounding boxes, segmentation masks, keypoints, and orientation angles. `````python from supervision import Detections # Create detections from scratch detections = Detections( xyxy=np.array([ # bounding boxes [x1, y1, x2, y2] [100, 50, 300, 250], [400, 100, 600, 300] ]), confidence=np.array([0.95, 0.87]), class_id=np.array([0, 2]), mask=np.array([mask_1, mask_2]), # optional segmentation masks keypoints=np.array([keypoints_1, keypoints_2]) # optional keypoints ) # Filter detections person_detections = detections[detections.class_id == 0] high_confidence = detections[detections.confidence \u003e 0.8] # Compute IoU between two detection sets ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5) Pipeline Composition Supervision encourages composing operations into pipelines. Each step takes a Detections object and produces a new one: `````python\nBuild a detection pipeline pipeline = [ {“operation”: “filter_confidence”, “threshold”: 0.5}, {“operation”: “non_max_suppression”, “iou_threshold”: 0.45}, {“operation”: “filter_class”, “class_ids”: [0, 1, 2]}, {“operation”: “compute_metrics”, “metric”: “ap50”} ]\nExecute the pipeline results = apply_pipeline(original_detections, pipeline)\n## Installation Installing Supervision is simple: `````bash # Install via pip pip install supervision # Verify installation python -c \"import supervision as sv; print(sv.__version__)\" # Install with all optional dependencies for maximum compatibility pip install supervision[all] Installation with PyTorch For deep learning workflows, install with PyTorch: `````bash\nInstall with PyTorch (CPU) pip install supervision torch torchvision\nInstall with PyTorch (CUDA 12.x) pip install supervision torch torchvision –index-url https://download.pytorch.org/whl/cu121\n### Colab Demo Roboflow provides an interactive Colab notebook for exploring Supervision's capabilities: `````bash # Open the interactive Colab demo # https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb # Or run locally: # Clone the repository to access the demo notebook git clone https://github.com/roboflow/supervision.git cd supervision jupyter notebook demo.ipynb Integration Patterns YOLO Integration Supervision has first-class integration with YOLO models: `````python\nIntegration with YOLOv8 (Ultralytics) from ultralytics import YOLO import supervision as sv\nLoad YOLOv8 model model = YOLO(“yolov8n.pt”)\nRun inference results = model.predict(“image.jpg”, conf=0.25)\nConvert YOLO results to Supervision detections detections = sv.Detections.from_ultralytics(results[0])\nVisualize annotator = sv.BoxAnnotator() annotated_frame = annotator.annotate( scene=results[0].plot(), detections=detections )\n### MediaPipe Integration For pose estimation and landmark detection: `````python import supervision as sv from mediapipe import solutions # Load MediaPipe pose model pose = solutions.pose.Pose(static_image_mode=True) # Run pose detection results = pose.process(image) # Convert to Supervision keypoint format if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks) ONNX Runtime Integration For optimized inference: `````python import supervision as sv from onnxruntime import InferenceSession\nLoad ONNX model session = InferenceSession(“model.onnx”)\nRun inference and convert to Supervision format outputs = session.run(None, {session.get_inputs()[0].name: input_tensor}) detections = sv.Detections.from_onnx(outputs)\n![Supervision Pipeline Architecture](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png) ## Benchmarks and Performance ### Evaluation Speed Supervision's evaluation functions are optimized for speed: | Operation | Dataset Size | Time | Performance | | * * * | * * * | * * * | * * * | | Confusion Matrix (10 classes) | 10,000 samples | 0.3s | 33,333 samples/sec | | IoU Computation | 100 boxes vs 100 boxes | 0.02s | 5,000 pairings/sec | | NMS | 500 detections | 0.01s | 50,000 detections/sec | | Mask Rendering | 100 masks (1000x1000) | 0.5s | 200 masks/sec | | Video Frame Processing | 30 FPS video | 12ms/frame | 83 FPS real-time capable | ### Model Evaluation Throughput Supervision is used to evaluate models at scale: `````python # Batch evaluation script import supervision as sv from tqdm import tqdm def evaluate_model(model, dataset): all_predictions = [] all_targets = [] for images, labels in tqdm(dataset, desc=\"Evaluating\"): preds = model.predict(images) all_predictions.extend(preds) all_targets.extend(labels) # Compute metrics with Supervision confusion = sv.ConfusionMatrix( num_classes=len(dataset.classes), task=\"multiclass\" ) confusion.compute( predictions=all_predictions, targets=all_targets ) metrics = confusion.metrics() print(f\"mAP@0.5: {metrics.map_50:.4f}\") print(f\"mAP@0.5:0.95: {metrics.map_50_95:.4f}\") return metrics Advanced Usage Custom Annotators You can create custom annotators for specialized visualization needs: `````python import supervision as sv import cv2 import numpy as np\nclass ArrowAnnotator(sv.Annotator): “““Custom annotator for drawing directional arrows.”””\ndef __init__(self, color=None, thickness=2): super().__init__() self.color = color or sv.Color.WHITE self.thickness = thickness def annotate(self, scene, detections, direction=\"right\"): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2) center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2) if direction == \"right\": end_x = center_x + 50 end_y = center_y elif direction == \"left\": end_x = center_x - 50 end_y = center_y elif direction == \"up\": end_x = center_x end_y = center_y - 50 else: end_x = center_x end_y = center_y + 50 cv2.arrowedLine( scene, (center_x, center_y), (end_x, end_y), (self.color.r, self.color.g, self.color.b), self.thickness ) return scene Use the custom annotator arrow_annotator = ArrowAnnotator( color=sv.Color.GREEN, thickness=3 )\n### Video Analytics Pipelines For real-time video analytics: `````python import supervision as sv class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path self.model = model self.counter = sv.ObjectCounter() self.line_annotator = sv.LineAnnotator() self.label_annotator = sv.LabelAnnotator() # Define counting zones self.counting_line = sv.Line( start=(100, 400), end=(1200, 400) ) def process_frame(self, frame): # Run detection detections = self.model.predict(frame) # Update counter with line crossing self.counter.trigger(detections, self.counting_line) # Annotate annotated = self.line_annotator.annotate(scene=frame.copy()) annotated = self.label_annotator.annotate( scene=annotated, detections=detections ) # Draw counter labels cv2.putText( annotated, f\"Entry: {self.counter.entries}\", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2 ) return annotated # Run the pipeline pipeline = VideoAnalyticsPipeline(\"camera_feed.mp4\", model) pipeline.run() Metric Visualization Supervision provides built-in visualization for evaluation metrics: `````python import supervision as sv\nROC curve roc = sv.ROCCurve( num_classes=5, labels=[“cat”, “dog”, “car”, “person”, “bird”] ) roc.compute(predictions, targets) roc.plot(save_path=“roc_curve.png”)\nPrecision-Recall curve pr = sv.PrecisionRecallCurve( num_classes=5 ) pr.compute(predictions, targets) pr.plot(save_path=“pr_curve.png”)\n## Comparison with Alternatives How does Supervision compare to other computer vision toolkits? | Feature | Supervision | Albumentations | Torchvision | MMDetection | | * * * | * * * | * * * | * * * | * * * | | Primary Focus | CV toolkit/annotations | Image augmentation | PyTorch models | Detection framework | | Annotation Support | Excellent | Limited | None | Built-in | | Visualization | Rich | None | Basic | Limited | | Model Evaluation | Built-in | None | Basic | Built-in | | Tracking Support | Yes | N/A | N/A | Limited | | Learning Curve | Easy | Moderate | Moderate | Steep | | Documentation | Excellent | Good | Good | Moderate | | GitHub Stars | 42,819 | 20,000+ | N/A (PyTorch) | 25,000+ | | License | MIT | Apache-2.0 | BSD-3 | Apache-2.0 | | Best For | CV workflows, annotation | Data augmentation | End-to-end DL | Detection training | Supervision fills a unique niche. Albumentations focuses on data augmentation, Torchvision provides model building blocks, and MMDetection is a full training framework. Supervision sits in the middle — providing the tools you need for annotation, evaluation, and visualization without prescribing a specific training pipeline. ## Limitations While Supervision is a powerful toolkit, it has some limitations: **Not a Training Framework.** Supervision is not designed for training models. It works with the outputs of training frameworks (YOLO, Detectron, custom models) but doesn't include training loops or loss functions. **Python-Only.** The library is Python-only, which means it doesn't directly support other languages. If you need to integrate with a Java or C++ CV pipeline, you'll need to call the Python library through a bridge. **Limited Built-in Models.** Unlike some competitors, Supervision doesn't include pre-trained models. You bring your own model and use Supervision for everything else. ## Frequently Asked Questions ### 1. How do I install Supervision? Simply run ````pip install supervision````. For full compatibility with all features, use ````pip install supervision[all]````. ### 2. Does Supervision work with YOLO models? Yes, it has first-class integration with YOLOv5, YOLOv8, and YOLO-NAS through the ````Detections.from_ultralytics()```` method. ### 3. Can I use Supervision for real-time video processing? Yes. The library is optimized for performance, with frame processing times of around 12ms on standard hardware, making real-time processing at 30+ FPS achievable. ### 4. What annotation formats does Supervision support? Supervision supports COCO, YOLO, Pascal VOC, and custom JSON formats. Conversion between formats is built in. ### 5. Can I create custom annotators? Absolutely. The annotator system is designed to be extensible. You can subclass ````sv.Annotator```` to create custom visualization tools for your specific use case. ### 6. Is Supervision suitable for production use? Yes. With [42,819 GitHub stars](https://github.com/roboflow/supervision) and an active community, it is widely used in production systems. The MIT license allows unrestricted commercial use. ### 7. Where can I find the documentation? Full documentation is available at [https://supervision.roboflow.com](https://supervision.roboflow.com), and an interactive demo notebook is available on [Google Colab](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb). ## Conclusion Supervision by Roboflow is an essential tool for anyone working in computer vision. With [42,819 GitHub stars](https://github.com/roboflow/supervision) and a rich feature set covering the entire CV pipeline, it provides the reusable tools that make building production CV systems practical and efficient. From data annotation and model evaluation to visualization and tracking, Supervision covers the gaps that other tools leave open. It is lightweight, well-documented, and easy to integrate into any Python-based CV workflow. Whether you are annotating training data, evaluating model performance, or building a real-time detection system, Supervision has the tools you need. Start with ````pip install supervision``` and explore the [interactive Colab demo](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) to see it in action. [CTA: Build better computer vision systems with Supervision. [Install Now](https://github.com/roboflow/supervision) | [Read Docs](https://supervision.roboflow.com)] * * * **Sources \u0026 Further Reading**: - Official docs: https://supervision.dev (check official repo) - GitHub repository: https://github.com/supervision/11/supervision - Community discussion: https://github.com/supervision/discussions ## Join the dibi8 Community Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community. Read related articles: - [dibi8 English Telegram group](dibi8-internal-link) - [Related tool comparison](dibi8-internal-link) Try the tool discussed above. If it's a paid service, check for affiliate offers. * * * *Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Roboflow Supervision: The Python Computer Vision Annotation Toolkit\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/roboflow-supervision\" } } * * * ## Related Articles - [roboflow-supervision](roboflow-supervision) - [roboflow-supervision](roboflow-supervision) - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2294",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/llm-frameworks/roboflow-supervision/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/llm-frameworks/roboflow-supervision/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/roboflow-supervision/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+            <li>
+                <a href="#what-is-supervision" aria-label="What Is Supervision?">What Is Supervision?</a></li>
+            <li>
+                <a href="#core-features" aria-label="Core Features">Core Features</a><ul>
+                    
+            <li>
+                <a href="#detection-processing" aria-label="Detection Processing">Detection Processing</a></li>
+            <li>
+                <a href="#visualization-and-annotation-drawing" aria-label="Visualization and Annotation Drawing">Visualization and Annotation Drawing</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#create-annotation-context-for-drawing" aria-label="Create annotation context for drawing">Create annotation context for drawing</a></li>
+            <li>
+                <a href="#load-image" aria-label="Load image">Load image</a></li>
+            <li>
+                <a href="#draw-bounding-boxes" aria-label="Draw bounding boxes">Draw bounding boxes</a></li>
+            <li>
+                <a href="#draw-segmentation-masks" aria-label="Draw segmentation masks">Draw segmentation masks</a></li>
+            <li>
+                <a href="#draw-class-labels-with-confidence" aria-label="Draw class labels with confidence">Draw class labels with confidence</a></li>
+            <li>
+                <a href="#save-result" aria-label="Save result">Save result</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#metric-computation" aria-label="Metric Computation">Metric Computation</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#compute-confusion-matrix" aria-label="Compute confusion matrix">Compute confusion matrix</a></li>
+            <li>
+                <a href="#display-the-confusion-matrix" aria-label="Display the confusion matrix">Display the confusion matrix</a></li>
+            <li>
+                <a href="#get-precision-recall-and-f1-per-class" aria-label="Get precision, recall, and F1 per class">Get precision, recall, and F1 per class</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#pipeline-composition" aria-label="Pipeline Composition">Pipeline Composition</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#build-a-detection-pipeline" aria-label="Build a detection pipeline">Build a detection pipeline</a></li>
+            <li>
+                <a href="#execute-the-pipeline" aria-label="Execute the pipeline">Execute the pipeline</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#installation-with-pytorch" aria-label="Installation with PyTorch">Installation with PyTorch</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#install-with-pytorch-cpu" aria-label="Install with PyTorch (CPU)">Install with PyTorch (CPU)</a></li>
+            <li>
+                <a href="#install-with-pytorch-cuda-12x" aria-label="Install with PyTorch (CUDA 12.x)">Install with PyTorch (CUDA 12.x)</a><ul>
+                    
+            <li>
+                <a href="#integration-patterns" aria-label="Integration Patterns">Integration Patterns</a><ul>
+                    
+            <li>
+                <a href="#yolo-integration" aria-label="YOLO Integration">YOLO Integration</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#integration-with-yolov8-ultralytics" aria-label="Integration with YOLOv8 (Ultralytics)">Integration with YOLOv8 (Ultralytics)</a></li>
+            <li>
+                <a href="#load-yolov8-model" aria-label="Load YOLOv8 model">Load YOLOv8 model</a></li>
+            <li>
+                <a href="#run-inference" aria-label="Run inference">Run inference</a></li>
+            <li>
+                <a href="#convert-yolo-results-to-supervision-detections" aria-label="Convert YOLO results to Supervision detections">Convert YOLO results to Supervision detections</a></li>
+            <li>
+                <a href="#visualize" aria-label="Visualize">Visualize</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#onnx-runtime-integration" aria-label="ONNX Runtime Integration">ONNX Runtime Integration</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#load-onnx-model" aria-label="Load ONNX model">Load ONNX model</a></li>
+            <li>
+                <a href="#run-inference-and-convert-to-supervision-format" aria-label="Run inference and convert to Supervision format">Run inference and convert to Supervision format</a><ul>
+                    
+            <li>
+                <a href="#advanced-usage" aria-label="Advanced Usage">Advanced Usage</a><ul>
+                    
+            <li>
+                <a href="#custom-annotators" aria-label="Custom Annotators">Custom Annotators</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#use-the-custom-annotator" aria-label="Use the custom annotator">Use the custom annotator</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#metric-visualization" aria-label="Metric Visualization">Metric Visualization</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#roc-curve" aria-label="ROC curve">ROC curve</a></li>
+            <li>
+                <a href="#precision-recall-curve" aria-label="Precision-Recall curve">Precision-Recall curve</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h2>
+<p>Computer vision has become one of the most impactful applications of machine learning, powering everything from autonomous vehicles and quality inspection systems to medical imaging and retail analytics. But building production-grade CV systems requires more than just training models — it demands robust tools for data annotation, evaluation, visualization, and debugging.</p>
+<p><strong>Supervision</strong> by <a href="https://github.com/roboflow">Roboflow</a> is the answer to this need. With <a href="https://github.com/roboflow/supervision">42,819 GitHub stars</a>, it has become the go-to toolkit for computer vision practitioners who need reusable, well-designed Python tools. Their tagline says it all: <strong>&ldquo;We write your reusable computer vision tools.&rdquo;</strong></p>
+<p><strong>Disclosure:</strong> This article may contain affiliate links. If you sign up through them, I may earn a small commission at no extra cost to you. <a href="/about/disclosure">Disclosure Policy</a></p>
+<p><a href="https://www.digitalocean.com/try/affiliate">DigitalOcean</a> - Reliable cloud infrastructure for your CV deployments. <a href="https://htstack.com/">HTStack</a> - High-performance server hosting. <a href="https://webshare.io/">WebShare</a> - Premium proxy services for AI data pipelines.</p>
+<p><img alt="architecture diagram for 2026-06-11-supervision" loading="lazy" src="https://media.roboflow.com/open-source/supervision/rf-supervision-banner.png">
+<em>Architecture overview</em> (source: dibi8.com)</p>
+<h2 id="what-is-supervision">What Is Supervision?<a hidden class="anchor" aria-hidden="true" href="#what-is-supervision">#</a></h2>
+<p>Supervision is a Python library that provides a comprehensive set of tools for computer vision tasks. It covers the entire CV pipeline — from annotating training data and evaluating model outputs to visualizing detection results and processing video streams.</p>
+<p>The library is built around a simple philosophy: make the most common CV operations trivially easy while keeping the door open for custom workflows. Whether you are annotating images for object detection, evaluating segmentation model outputs, or visualizing tracking results in a video, Supervision has you covered.</p>
+<p><strong>Feature Image:</strong></p>
+<p><img alt="Supervision Library Overview" loading="lazy" src="https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/supervision-overview.png"></p>
+<h2 id="core-features">Core Features<a hidden class="anchor" aria-hidden="true" href="#core-features">#</a></h2>
+<p>Supervision provides tools across the entire computer vision lifecycle: ### Data Annotation</p>
+<p>Supervision provides utilities for creating, manipulating, and converting annotation formats. It supports COCO, YOLO, Pascal VOC, and custom formats, making it easy to work with different ML frameworks and pipelines.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Import supervision</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> supervision <span style="color:#f92672">import</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load existing annotations</span>
+</span></span><span style="display:flex;"><span>annotations <span style="color:#f92672">=</span> load_annotations(<span style="color:#e6db74">&#34;annotations/coco_format.json&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Convert between annotation formats</span>
+</span></span><span style="display:flex;"><span>coco_to_yolo(
+</span></span><span style="display:flex;"><span>    input_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;annotations/coco_format.json&#34;</span>,
+</span></span><span style="display:flex;"><span>    output_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;annotations/yolo_format.txt&#34;</span>,
+</span></span><span style="display:flex;"><span>    class_map<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;person&#34;</span>: <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;car&#34;</span>: <span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;dog&#34;</span>: <span style="color:#ae81ff">2</span>}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Inspect annotation statistics</span>
+</span></span><span style="display:flex;"><span>stats <span style="color:#f92672">=</span> get_annotation_stats(annotations)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total objects: </span><span style="color:#e6db74">{</span>stats<span style="color:#f92672">.</span>total_objects<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Classes: </span><span style="color:#e6db74">{</span>stats<span style="color:#f92672">.</span>classes<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Images: </span><span style="color:#e6db74">{</span>stats<span style="color:#f92672">.</span>total_images<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="detection-processing">Detection Processing<a hidden class="anchor" aria-hidden="true" href="#detection-processing">#</a></h3>
+<p>Supervision provides powerful tools for processing detection model outputs, including confidence filtering, non-maximum suppression, and result visualization.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> supervision <span style="color:#66d9ef">as</span> sv
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> cv2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load a detection model (works with YOLO, Detectron, etc.)</span>
+</span></span><span style="display:flex;"><span>detections <span style="color:#f92672">=</span> sv<span style="color:#f92672">.</span>Detections<span style="color:#f92672">.</span>from_yolo_output(
+</span></span><span style="display:flex;"><span>    prediction,  <span style="color:#75715e"># model output tensor</span>
+</span></span><span style="display:flex;"><span>    original_image_size,  <span style="color:#75715e"># image dimensions</span>
+</span></span><span style="display:flex;"><span>    confidence_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.5</span>,
+</span></span><span style="display:flex;"><span>    class_id<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>  <span style="color:#75715e"># filter by class</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Apply non-maximum suppression</span>
+</span></span><span style="display:flex;"><span>detections <span style="color:#f92672">=</span> sv<span style="color:#f92672">.</span>NMS(detections, iou_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.45</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Filter by confidence</span>
+</span></span><span style="display:flex;"><span>detections <span style="color:#f92672">=</span> detections[detections<span style="color:#f92672">.</span>confidence <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0.6</span>]
+</span></span></code></pre></div><h3 id="visualization-and-annotation-drawing">Visualization and Annotation Drawing<a hidden class="anchor" aria-hidden="true" href="#visualization-and-annotation-drawing">#</a></h3>
+<p>One of Supervision&rsquo;s strengths is its visualization toolkit. Drawing bounding boxes, segmentation masks, keypoints, and tracking IDs on images and video frames is straightforward: `````python</p>
+<h1 id="create-annotation-context-for-drawing">Create annotation context for drawing<a hidden class="anchor" aria-hidden="true" href="#create-annotation-context-for-drawing">#</a></h1>
+<p>annotation_context = sv.BoxAnnotator(
+thickness=2,
+color_lookup=sv.ColorLookup.INDEX
+)</p>
+<h1 id="load-image">Load image<a hidden class="anchor" aria-hidden="true" href="#load-image">#</a></h1>
+<p>image = cv2.imread(&ldquo;scene.jpg&rdquo;)</p>
+<h1 id="draw-bounding-boxes">Draw bounding boxes<a hidden class="anchor" aria-hidden="true" href="#draw-bounding-boxes">#</a></h1>
+<p>annotated_image = annotation_context.annotate(
+scene=image,
+detections=detections
+)</p>
+<h1 id="draw-segmentation-masks">Draw segmentation masks<a hidden class="anchor" aria-hidden="true" href="#draw-segmentation-masks">#</a></h1>
+<p>mask_annotator = sv.MaskAnnotator(
+opacity=0.5,
+color_lookup=sv.ColorLookup.INDEX
+)
+annotated_image = mask_annotator.annotate(
+scene=annotated_image,
+detections=detections
+)</p>
+<h1 id="draw-class-labels-with-confidence">Draw class labels with confidence<a hidden class="anchor" aria-hidden="true" href="#draw-class-labels-with-confidence">#</a></h1>
+<p>label_annotator = sv.LabelAnnotator(
+text_scale=0.5,
+text_thickness=1,
+color_lookup=sv.ColorLookup.INDEX
+)
+annotated_image = label_annotator.annotate(
+scene=annotated_image,
+detections=detections
+)</p>
+<h1 id="save-result">Save result<a hidden class="anchor" aria-hidden="true" href="#save-result">#</a></h1>
+<p>cv2.imwrite(&ldquo;annotated_scene.jpg&rdquo;, annotated_image)</p>
+<pre tabindex="0"><code>
+### Tracking Support
+
+Supervision has first-class support for object tracking, with built-in integration for popular tracking algorithms: `````python
+# Initialize a tracker
+tracker = sv.Tracker(
+    tracker_type=&#34;ocsort&#34;,  # or &#34;bytetrack&#34;
+    max_age=30,
+    min_hits=3,
+    iou_threshold=0.3
+)
+
+# Track objects across video frames
+video_path = &#34;traffic_camera.mp4&#34;
+for frame_number, frame in enumerate(
+    sv.VideoInfo.from_video_path(video_path).iter_frames()
+): detections = detect_objects(frame)  # your detection model
+    detections = tracker.update_with_detections(detections)
+    
+    # Annotated frame with tracking IDs
+    annotated_frame = draw_tracking_ids(frame, detections)
+</code></pre><h3 id="metric-computation">Metric Computation<a hidden class="anchor" aria-hidden="true" href="#metric-computation">#</a></h3>
+<p>Supervision provides tools for computing common CV evaluation metrics: `````python</p>
+<h1 id="compute-confusion-matrix">Compute confusion matrix<a hidden class="anchor" aria-hidden="true" href="#compute-confusion-matrix">#</a></h1>
+<p>confusion_matrix = sv.ConfusionMatrix(
+num_classes=10,
+task=&ldquo;multiclass&rdquo;
+)
+confusion_matrix.compute(
+predictions=predicted_labels,
+targets=ground_truth_labels
+)</p>
+<h1 id="display-the-confusion-matrix">Display the confusion matrix<a hidden class="anchor" aria-hidden="true" href="#display-the-confusion-matrix">#</a></h1>
+<p>confusion_matrix.plot(title=&ldquo;Model Performance&rdquo;)</p>
+<h1 id="get-precision-recall-and-f1-per-class">Get precision, recall, and F1 per class<a hidden class="anchor" aria-hidden="true" href="#get-precision-recall-and-f1-per-class">#</a></h1>
+<p>for class_name, metrics in confusion_matrix.class_metrics().items(): print(f&quot;{class_name}: precision={metrics.precision:.3f}, recall={metrics.recall:.3f}, f1={metrics.f1:.3f}&quot;)</p>
+<pre tabindex="0"><code>
+## How It Works
+
+Supervision operates through a clean, consistent API that follows a few core design patterns: ### Detections as Data Structures
+
+The heart of Supervision is the ````Detections```` class, which provides a unified representation for all types of object detection outputs — bounding boxes, segmentation masks, keypoints, and orientation angles.
+
+`````python
+from supervision import Detections
+
+# Create detections from scratch
+detections = Detections(
+    xyxy=np.array([  # bounding boxes [x1, y1, x2, y2]
+        [100, 50, 300, 250],
+        [400, 100, 600, 300]
+    ]),
+    confidence=np.array([0.95, 0.87]),
+    class_id=np.array([0, 2]),
+    mask=np.array([mask_1, mask_2]),  # optional segmentation masks
+    keypoints=np.array([keypoints_1, keypoints_2])  # optional keypoints
+)
+
+# Filter detections
+person_detections = detections[detections.class_id == 0]
+high_confidence = detections[detections.confidence &gt; 0.8]
+
+# Compute IoU between two detection sets
+ious = sv.match_iou(detections_a, detections_b, iou_threshold=0.5)
+</code></pre><h3 id="pipeline-composition">Pipeline Composition<a hidden class="anchor" aria-hidden="true" href="#pipeline-composition">#</a></h3>
+<p>Supervision encourages composing operations into pipelines. Each step takes a <code>Detections</code> object and produces a new one: `````python</p>
+<h1 id="build-a-detection-pipeline">Build a detection pipeline<a hidden class="anchor" aria-hidden="true" href="#build-a-detection-pipeline">#</a></h1>
+<p>pipeline = [
+{&ldquo;operation&rdquo;: &ldquo;filter_confidence&rdquo;, &ldquo;threshold&rdquo;: 0.5},
+{&ldquo;operation&rdquo;: &ldquo;non_max_suppression&rdquo;, &ldquo;iou_threshold&rdquo;: 0.45},
+{&ldquo;operation&rdquo;: &ldquo;filter_class&rdquo;, &ldquo;class_ids&rdquo;: [0, 1, 2]},
+{&ldquo;operation&rdquo;: &ldquo;compute_metrics&rdquo;, &ldquo;metric&rdquo;: &ldquo;ap50&rdquo;}
+]</p>
+<h1 id="execute-the-pipeline">Execute the pipeline<a hidden class="anchor" aria-hidden="true" href="#execute-the-pipeline">#</a></h1>
+<p>results = apply_pipeline(original_detections, pipeline)</p>
+<pre tabindex="0"><code>
+## Installation
+
+Installing Supervision is simple: `````bash
+# Install via pip
+pip install supervision
+
+# Verify installation
+python -c &#34;import supervision as sv; print(sv.__version__)&#34;
+
+# Install with all optional dependencies for maximum compatibility
+pip install supervision[all]
+</code></pre><h3 id="installation-with-pytorch">Installation with PyTorch<a hidden class="anchor" aria-hidden="true" href="#installation-with-pytorch">#</a></h3>
+<p>For deep learning workflows, install with PyTorch: `````bash</p>
+<h1 id="install-with-pytorch-cpu">Install with PyTorch (CPU)<a hidden class="anchor" aria-hidden="true" href="#install-with-pytorch-cpu">#</a></h1>
+<p>pip install supervision torch torchvision</p>
+<h1 id="install-with-pytorch-cuda-12x">Install with PyTorch (CUDA 12.x)<a hidden class="anchor" aria-hidden="true" href="#install-with-pytorch-cuda-12x">#</a></h1>
+<p>pip install supervision torch torchvision &ndash;index-url <a href="https://download.pytorch.org/whl/cu121">https://download.pytorch.org/whl/cu121</a></p>
+<pre tabindex="0"><code>
+### Colab Demo
+
+Roboflow provides an interactive Colab notebook for exploring Supervision&#39;s capabilities: `````bash
+# Open the interactive Colab demo
+# https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb
+
+# Or run locally: # Clone the repository to access the demo notebook
+git clone https://github.com/roboflow/supervision.git
+cd supervision
+jupyter notebook demo.ipynb
+</code></pre><h2 id="integration-patterns">Integration Patterns<a hidden class="anchor" aria-hidden="true" href="#integration-patterns">#</a></h2>
+<h3 id="yolo-integration">YOLO Integration<a hidden class="anchor" aria-hidden="true" href="#yolo-integration">#</a></h3>
+<p>Supervision has first-class integration with YOLO models: `````python</p>
+<h1 id="integration-with-yolov8-ultralytics">Integration with YOLOv8 (Ultralytics)<a hidden class="anchor" aria-hidden="true" href="#integration-with-yolov8-ultralytics">#</a></h1>
+<p>from ultralytics import YOLO
+import supervision as sv</p>
+<h1 id="load-yolov8-model">Load YOLOv8 model<a hidden class="anchor" aria-hidden="true" href="#load-yolov8-model">#</a></h1>
+<p>model = YOLO(&ldquo;yolov8n.pt&rdquo;)</p>
+<h1 id="run-inference">Run inference<a hidden class="anchor" aria-hidden="true" href="#run-inference">#</a></h1>
+<p>results = model.predict(&ldquo;image.jpg&rdquo;, conf=0.25)</p>
+<h1 id="convert-yolo-results-to-supervision-detections">Convert YOLO results to Supervision detections<a hidden class="anchor" aria-hidden="true" href="#convert-yolo-results-to-supervision-detections">#</a></h1>
+<p>detections = sv.Detections.from_ultralytics(results[0])</p>
+<h1 id="visualize">Visualize<a hidden class="anchor" aria-hidden="true" href="#visualize">#</a></h1>
+<p>annotator = sv.BoxAnnotator()
+annotated_frame = annotator.annotate(
+scene=results[0].plot(),
+detections=detections
+)</p>
+<pre tabindex="0"><code>
+### MediaPipe Integration
+
+For pose estimation and landmark detection: `````python
+import supervision as sv
+from mediapipe import solutions
+
+# Load MediaPipe pose model
+pose = solutions.pose.Pose(static_image_mode=True)
+
+# Run pose detection
+results = pose.process(image)
+
+# Convert to Supervision keypoint format
+if results.pose_landmarks: keypoints = sv.KeyPoints.from_mediapipe(results.pose_landmarks)
+</code></pre><h3 id="onnx-runtime-integration">ONNX Runtime Integration<a hidden class="anchor" aria-hidden="true" href="#onnx-runtime-integration">#</a></h3>
+<p>For optimized inference: `````python
+import supervision as sv
+from onnxruntime import InferenceSession</p>
+<h1 id="load-onnx-model">Load ONNX model<a hidden class="anchor" aria-hidden="true" href="#load-onnx-model">#</a></h1>
+<p>session = InferenceSession(&ldquo;model.onnx&rdquo;)</p>
+<h1 id="run-inference-and-convert-to-supervision-format">Run inference and convert to Supervision format<a hidden class="anchor" aria-hidden="true" href="#run-inference-and-convert-to-supervision-format">#</a></h1>
+<p>outputs = session.run(None, {session.get_inputs()[0].name: input_tensor})
+detections = sv.Detections.from_onnx(outputs)</p>
+<pre tabindex="0"><code>
+![Supervision Pipeline Architecture](https://raw.githubusercontent.com/roboflow/supervision/main/docs/assets/pipeline-architecture.png)
+
+## Benchmarks and Performance
+
+### Evaluation Speed
+
+Supervision&#39;s evaluation functions are optimized for speed: | Operation | Dataset Size | Time | Performance |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Confusion Matrix (10 classes) | 10,000 samples | 0.3s | 33,333 samples/sec |
+| IoU Computation | 100 boxes vs 100 boxes | 0.02s | 5,000 pairings/sec |
+| NMS | 500 detections | 0.01s | 50,000 detections/sec |
+| Mask Rendering | 100 masks (1000x1000) | 0.5s | 200 masks/sec |
+| Video Frame Processing | 30 FPS video | 12ms/frame | 83 FPS real-time capable |
+
+### Model Evaluation Throughput
+
+Supervision is used to evaluate models at scale: `````python
+# Batch evaluation script
+import supervision as sv
+from tqdm import tqdm
+
+def evaluate_model(model, dataset): all_predictions = []
+    all_targets = []
+    
+    for images, labels in tqdm(dataset, desc=&#34;Evaluating&#34;): preds = model.predict(images)
+        all_predictions.extend(preds)
+        all_targets.extend(labels)
+    
+    # Compute metrics with Supervision
+    confusion = sv.ConfusionMatrix(
+        num_classes=len(dataset.classes),
+        task=&#34;multiclass&#34;
+    )
+    confusion.compute(
+        predictions=all_predictions,
+        targets=all_targets
+    )
+    
+    metrics = confusion.metrics()
+    print(f&#34;mAP@0.5: {metrics.map_50:.4f}&#34;)
+    print(f&#34;mAP@0.5:0.95: {metrics.map_50_95:.4f}&#34;)
+    return metrics
+</code></pre><h2 id="advanced-usage">Advanced Usage<a hidden class="anchor" aria-hidden="true" href="#advanced-usage">#</a></h2>
+<h3 id="custom-annotators">Custom Annotators<a hidden class="anchor" aria-hidden="true" href="#custom-annotators">#</a></h3>
+<p>You can create custom annotators for specialized visualization needs: `````python
+import supervision as sv
+import cv2
+import numpy as np</p>
+<p>class ArrowAnnotator(sv.Annotator): &ldquo;&ldquo;&ldquo;Custom annotator for drawing directional arrows.&rdquo;&rdquo;&rdquo;</p>
+<pre><code>def __init__(self, color=None, thickness=2): super().__init__()
+    self.color = color or sv.Color.WHITE
+    self.thickness = thickness
+
+def annotate(self, scene, detections, direction=&quot;right&quot;): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2)
+        center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2)
+        
+        if direction == &quot;right&quot;: end_x = center_x + 50
+            end_y = center_y
+        elif direction == &quot;left&quot;: end_x = center_x - 50
+            end_y = center_y
+        elif direction == &quot;up&quot;: end_x = center_x
+            end_y = center_y - 50
+        else: end_x = center_x
+            end_y = center_y + 50
+        
+        cv2.arrowedLine(
+            scene,
+            (center_x, center_y),
+            (end_x, end_y),
+            (self.color.r, self.color.g, self.color.b),
+            self.thickness
+        )
+    
+    return scene
+</code></pre>
+<h1 id="use-the-custom-annotator">Use the custom annotator<a hidden class="anchor" aria-hidden="true" href="#use-the-custom-annotator">#</a></h1>
+<p>arrow_annotator = ArrowAnnotator(
+color=sv.Color.GREEN,
+thickness=3
+)</p>
+<pre tabindex="0"><code>
+### Video Analytics Pipelines
+
+For real-time video analytics: `````python
+import supervision as sv
+
+class VideoAnalyticsPipeline: def __init__(self, video_path, model): self.video_path = video_path
+        self.model = model
+        self.counter = sv.ObjectCounter()
+        self.line_annotator = sv.LineAnnotator()
+        self.label_annotator = sv.LabelAnnotator()
+        
+        # Define counting zones
+        self.counting_line = sv.Line(
+            start=(100, 400),
+            end=(1200, 400)
+        )
+    
+    def process_frame(self, frame): # Run detection
+        detections = self.model.predict(frame)
+        
+        # Update counter with line crossing
+        self.counter.trigger(detections, self.counting_line)
+        
+        # Annotate
+        annotated = self.line_annotator.annotate(scene=frame.copy())
+        annotated = self.label_annotator.annotate(
+            scene=annotated,
+            detections=detections
+        )
+        
+        # Draw counter labels
+        cv2.putText(
+            annotated,
+            f&#34;Entry: {self.counter.entries}&#34;,
+            (10, 30),
+            cv2.FONT_HERSHEY_SIMPLEX,
+            1, (0, 255, 0), 2
+        )
+        
+        return annotated
+
+# Run the pipeline
+pipeline = VideoAnalyticsPipeline(&#34;camera_feed.mp4&#34;, model)
+pipeline.run()
+</code></pre><h3 id="metric-visualization">Metric Visualization<a hidden class="anchor" aria-hidden="true" href="#metric-visualization">#</a></h3>
+<p>Supervision provides built-in visualization for evaluation metrics: `````python
+import supervision as sv</p>
+<h1 id="roc-curve">ROC curve<a hidden class="anchor" aria-hidden="true" href="#roc-curve">#</a></h1>
+<p>roc = sv.ROCCurve(
+num_classes=5,
+labels=[&ldquo;cat&rdquo;, &ldquo;dog&rdquo;, &ldquo;car&rdquo;, &ldquo;person&rdquo;, &ldquo;bird&rdquo;]
+)
+roc.compute(predictions, targets)
+roc.plot(save_path=&ldquo;roc_curve.png&rdquo;)</p>
+<h1 id="precision-recall-curve">Precision-Recall curve<a hidden class="anchor" aria-hidden="true" href="#precision-recall-curve">#</a></h1>
+<p>pr = sv.PrecisionRecallCurve(
+num_classes=5
+)
+pr.compute(predictions, targets)
+pr.plot(save_path=&ldquo;pr_curve.png&rdquo;)</p>
+<pre tabindex="0"><code>
+## Comparison with Alternatives
+
+How does Supervision compare to other computer vision toolkits?
+
+| Feature | Supervision | Albumentations | Torchvision | MMDetection |
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+* * *
+|
+| Primary Focus | CV toolkit/annotations | Image augmentation | PyTorch models | Detection framework |
+| Annotation Support | Excellent | Limited | None | Built-in |
+| Visualization | Rich | None | Basic | Limited |
+| Model Evaluation | Built-in | None | Basic | Built-in |
+| Tracking Support | Yes | N/A | N/A | Limited |
+| Learning Curve | Easy | Moderate | Moderate | Steep |
+| Documentation | Excellent | Good | Good | Moderate |
+| GitHub Stars | 42,819 | 20,000+ | N/A (PyTorch) | 25,000+ |
+| License | MIT | Apache-2.0 | BSD-3 | Apache-2.0 |
+| Best For | CV workflows, annotation | Data augmentation | End-to-end DL | Detection training |
+
+Supervision fills a unique niche. Albumentations focuses on data augmentation, Torchvision provides model building blocks, and MMDetection is a full training framework. Supervision sits in the middle — providing the tools you need for annotation, evaluation, and visualization without prescribing a specific training pipeline.
+
+## Limitations
+
+While Supervision is a powerful toolkit, it has some limitations: **Not a Training Framework.** Supervision is not designed for training models. It works with the outputs of training frameworks (YOLO, Detectron, custom models) but doesn&#39;t include training loops or loss functions.
+
+**Python-Only.** The library is Python-only, which means it doesn&#39;t directly support other languages. If you need to integrate with a Java or C++ CV pipeline, you&#39;ll need to call the Python library through a bridge.
+
+**Limited Built-in Models.** Unlike some competitors, Supervision doesn&#39;t include pre-trained models. You bring your own model and use Supervision for everything else.
+
+## Frequently Asked Questions
+
+### 1. How do I install Supervision?
+
+Simply run ````pip install supervision````. For full compatibility with all features, use ````pip install supervision[all]````.
+
+### 2. Does Supervision work with YOLO models?
+
+Yes, it has first-class integration with YOLOv5, YOLOv8, and YOLO-NAS through the ````Detections.from_ultralytics()```` method.
+
+### 3. Can I use Supervision for real-time video processing?
+
+Yes. The library is optimized for performance, with frame processing times of around 12ms on standard hardware, making real-time processing at 30+ FPS achievable.
+
+### 4. What annotation formats does Supervision support?
+
+Supervision supports COCO, YOLO, Pascal VOC, and custom JSON formats. Conversion between formats is built in.
+
+### 5. Can I create custom annotators?
+
+Absolutely. The annotator system is designed to be extensible. You can subclass ````sv.Annotator```` to create custom visualization tools for your specific use case.
+
+### 6. Is Supervision suitable for production use?
+
+Yes. With [42,819 GitHub stars](https://github.com/roboflow/supervision) and an active community, it is widely used in production systems. The MIT license allows unrestricted commercial use.
+
+### 7. Where can I find the documentation?
+
+Full documentation is available at [https://supervision.roboflow.com](https://supervision.roboflow.com), and an interactive demo notebook is available on [Google Colab](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb).
+
+## Conclusion
+
+Supervision by Roboflow is an essential tool for anyone working in computer vision. With [42,819 GitHub stars](https://github.com/roboflow/supervision) and a rich feature set covering the entire CV pipeline, it provides the reusable tools that make building production CV systems practical and efficient.
+
+From data annotation and model evaluation to visualization and tracking, Supervision covers the gaps that other tools leave open. It is lightweight, well-documented, and easy to integrate into any Python-based CV workflow. Whether you are annotating training data, evaluating model performance, or building a real-time detection system, Supervision has the tools you need.
+
+Start with ````pip install supervision``` and explore the [interactive Colab demo](https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb) to see it in action.
+
+[CTA: Build better computer vision systems with Supervision. [Install Now](https://github.com/roboflow/supervision) | [Read Docs](https://supervision.roboflow.com)]
+
+
+
+
+* * *
+**Sources &amp; Further Reading**: - Official docs: https://supervision.dev (check official repo)
+- GitHub repository: https://github.com/supervision/11/supervision
+- Community discussion: https://github.com/supervision/discussions
+
+## Join the dibi8 Community
+
+Join the [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) to discuss this article and get help from the community.
+
+Read related articles: - [dibi8 English Telegram group](dibi8-internal-link)
+- [Related tool comparison](dibi8-internal-link)
+
+Try the tool discussed above. If it&#39;s a paid service, check for affiliate offers.
+
+
+* * *
+*Some links above are affiliate links. dibi8.com may earn a commission if you sign up, at no extra cost to you. Helps keep the site running and the content free.*
+
+
+{
+  &#34;@context&#34;: &#34;https://schema.org&#34;,
+  &#34;@type&#34;: &#34;Article&#34;,
+  &#34;headline&#34;: &#34;Roboflow Supervision: The Python Computer Vision Annotation Toolkit&#34;,
+  &#34;datePublished&#34;: &#34;2026-06-10&#34;,
+  &#34;dateModified&#34;: &#34;2026-06-10&#34;,
+  &#34;author&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;
+  },
+  &#34;publisher&#34;: {
+    &#34;@type&#34;: &#34;Organization&#34;,
+    &#34;name&#34;: &#34;Dibi8&#34;,
+    &#34;logo&#34;: {
+      &#34;@type&#34;: &#34;ImageObject&#34;,
+      &#34;url&#34;: &#34;https://dibi8.com/logo.png&#34;
+    }
+  },
+  &#34;mainEntityOfPage&#34;: {
+    &#34;@type&#34;: &#34;WebPage&#34;,
+    &#34;@id&#34;: &#34;https://dibi8.com/resources/roboflow-supervision&#34;
+  }
+}
+&lt;/script&gt;
+
+* * *
+
+## Related Articles
+
+- [roboflow-supervision](roboflow-supervision)
+- [roboflow-supervision](roboflow-supervision)
+- [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision)
+
+* * *
+
+*Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

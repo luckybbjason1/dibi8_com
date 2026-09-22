@@ -1,10 +1,277 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 引言 当你要求一个 AI 编程代理构建一个登录页面时，它会生成一些可用的东西——但很少美观。问题不在于模型的能力，而在于缺乏共同的设计语言。每个提示都是从零开始，每次生成都会偏离上一次，而且没有对“我们的设计”实际样子持续的记忆。\nDESIGN.md 由 Google Labs Code 解决了这个问题。它是一个开源的格式规范，为 AI 编码代理提供对你的设计系统的持久、结构化理解——将 YAML 颜色标记、排版规范和间距规则，与描述每个数值背后意图的自然语言内容结合起来。凭借超过 20,800 个 GitHub 星标以及单日新增 2,319 个星标，它目前是 GitHub 上最热门的设计工具。\n什么是 DESIGN.md？ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来源。它的设计是为了让 AI 编码代理（Claude、ChatGPT、Codex、Cursor 等）阅读，以便它们生成与您的品牌一致的 UI —— 无需每次都重新解释您的设计系统。\n该格式有两个互补的层次：\n┌──────────────────────────────────────────────────┐ │ DESIGN.md Structure │ ├──────────────────────────────────────────────────┤ │ │ │ --- │ │ name: My Brand │ │ --- │ │ │ │ ## Colors │ │ `````yaml │ │ colors: │ │ paper: '#F4F0E4' │ │ ink: '#1E1A14' │ │ accent: '#C3402A' │ │ ````` │ │ │ │ A warm paper-and-ink system with a single │ │ vermilion accent for diagrams only. │ │ │ │ ## Typography │ │ `````yaml │ │ typography: │ │ heading: 'Playfair Display' │ │ body: 'Source Serif 4' │ │ mono: 'JetBrains Mono' │ │ ````` │ │ │ │ ## Spacing │ │ `````yaml │ │ spacing: │ │ unit: 8px │ │ scale: [4, 8, 16, 24, 32, 48, 64] │ │ ````` │ │ │ │ ## Do's and Don'ts │ │ - **Do** use the accent color only in charts │ │ - **Don't** add gradients or glass effects │ │ │ └──────────────────────────────────────────────────┘ YAML 令牌提供可被机器读取的数值。散文提供可被人类理解的上下文——解释为什么一个颜色是 #F4F0E4（暖色复印纸，从不纯白），而不仅仅是说明十六进制代码。这种区别正是使 DESIGN.md 与设计令牌 JSON 文件根本不同的原因。\n为什么散文比代币更重要 DESIGN.md 背后的设计师做出了一个深思熟虑的选择：文字部分是规范中最重要的部分。他们的理念文档对此解释得非常清楚：\n“\u003e “一个引用‘1970年代老牌大学毕业讲座讲义风格’的设计唤起了一个完整的世界：单色墨水、宽裕的页边距、以可阅读大小排版的衬线字体，以及没有装饰的设计。仅这一句话就包含的信息，比一打指标数值更有用。”\n这是关于人工智能辅助开发的深刻见解。当你告诉一个大型语言模型“使用温暖、高端的编辑美学”时，它会生成一些普通内容。而当你告诉它“一个1970年代的毕业讲座讲义”时，它会理解整个文化背景——纸张质感、克制的排版、缺乏装饰元素。模型会从它的训练数据中填补所有空白。\nDESIGN.md 将这一原则形式化。令牌是上下文，而不是指令。文本承载了创意意图。两者结合，为代理提供了精确性与想象力。\n背后的工作原理 DESIGN.md 仓库被构建为一个使用 Turbo 进行编排的 Bun 单体仓库：\ndesign.md/ ├── packages/ │ └── cli/ # @google/design.md CLI toolkit │ ├── src/ # TypeScript source │ └── scripts/ # Build scripts ├── docs/ # Specification documentation ├── examples/ # Example DESIGN.md files ├── .agents/skills/ # Agent skill definitions ├── package.json # Bun workspace config ├── turbo.json # Turbo build orchestration ├── tsconfig.base.json # Shared TypeScript config └── PHILOSOPHY.md # Design philosophy manifesto CLI 工具（@google/design.md）提供：\nLinting（代码检查）：根据规范模式验证 DESIGN.md 文件 令牌提取：将 YAML 块解析为结构化数据 代理整合：作为 Claude、ChatGPT 和其他编程代理的 .agents/skills/ 定义提供 该代码检查器强制要求存在必需的部分（名称、颜色、排版、间距、圆角、组件），同时允许为运动、图标、层次以及每个项目特定的其他设计维度添加任意自定义部分。\n入门 1. 安装 CLI bun install -g @google/design.md 或者直接使用 npx：\nnpx @google/design.md lint DESIGN.md 2. 创建你的第一个 DESIGN.md 从最基本的必要结构开始：\n* * * name: My Project Design * * * ## Colors `````yaml colors: primary: '#2563EB' background: '#FFFFFF' text: '#111827' A clean blue-and-white system for a professional SaaS product.\nTypography typography: heading: 'Inter' body: 'Inter' mono: 'JetBrains Mono' Single-family typography system for consistency.\nSpacing spacing: unit: 4px scale: [4, 8, 16, 24, 32, 48, 64] 4px base grid, 8px for larger elements.\n### 3. Ship It to Your Coding Agents Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: ````` System: Read the DESIGN.md file in the project root. All UI components must follow the design specifications defined there. The agent will now consistently apply your design system across every generation.\nReal-World Examples The repository includes several example DESIGN.md files demonstrating different aesthetic approaches: Graduate Lecture Handout: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies “A graduate-level computer science lecture handout in the tradition of an old established university” — instantly communicating margins, serif fonts, and restraint.\nMotion Design System: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes “Nothing bounces, nothing overshoots, nothing lingers” — giving agents a clear temporal aesthetic.\nCustom Design Dimensions: The format accepts any section name. One team defines motion tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.\nWhy This Matters for AI-Assisted Development DESIGN.md addresses a fundamental bottleneck in AI-assisted development: design consistency at scale.\nWithout a design specification, every AI-generated page, component, or screen is a fresh creative exercise. The agent doesn’t know your brand colors beyond what’s in the prompt, doesn’t understand your spacing philosophy, and has no memory of what “done” looks like for your project.\nWith DESIGN.md: - Agents have persistent design memory — the file lives in your repo, version-controlled and reviewed\nMultiple agents stay consistent — Claude, ChatGPT, and Codex all read the same file Design reviews become automated — the linter catches violations before they reach production New developers onboard instantly — the file is the design system documentation The format is particularly powerful for teams using multiple AI coding tools. Instead of each tool having its own implicit understanding of your design, everyone reads the same authoritative source.\nLimitations and Trade-offs DESIGN.md is not a silver bullet. Several considerations: 1. Agent-dependent quality: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.\nNo visual rendering: DESIGN.md is a specification, not a rendering engine. You still need the agent (or a human designer) to translate the specs into actual code.\nLearning curve: Writing good prose descriptions requires design thinking. Teams without a designated designer may struggle to articulate their aesthetic intent clearly.\nNot a replacement for Figma: DESIGN.md complements design tools rather than replacing them. The ideal workflow uses Figma for visual design and DESIGN.md for agent communication.\nStill young: At 20.8k stars and 2 months old, the format is evolving rapidly. Breaking changes between versions are possible.\nCommunity and Adoption DESIGN.md is developed by Google Labs Code and has attracted significant attention: - 20,800+ stars on GitHub (2,319 gained in a single day)\n1,700+ forks with active community contributions 40+ commits in 2 months with rapid iteration 18 issues and 17 pull requests showing active development 4 published tags with semantic versioning The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.\nConclusion DESIGN.md represents a fundamental shift in how we communicate design to AI. Rather than trying to encode every visual decision into rigid tokens, it embraces the strength of natural language — letting prose carry the creative intent while YAML provides the machine-readable scaffolding.\nFor teams building AI-assisted design workflows, it’s worth trying. Create a DESIGN.md for your next project, add it to your coding agent’s context, and see how much more consistent your generated UI becomes. The format is simple enough to start with today and flexible enough to grow with your design system.\nIn a landscape where every developer now has access to AI coding agents, DESIGN.md provides the missing piece: a shared language between human design intent and machine execution. That’s why it’s currently the hottest project on GitHub — and why it’s likely to become a standard practice in AI-assisted development.\nFor teams deploying infrastructure at scale: try HTStack for high-performance cloud hosting that integrates seamlessly with design system workflows.\nFor production-ready AI coding workflows: check out Binance for enterprise-grade API trading infrastructure.\nFor financial AI applications: OKX offers robust trading APIs and market data feeds.\nCheck out internal guides on AI Coding Agent Comparison and Developer Tooling Best Practices for deeper dives into building a complete AI-assisted development workflow.\nJoin the DIBI8 community on Telegram for daily discussions on AI tools, dev utilities, and open-source projects.\nSources \u0026 Further Reading: - Official repository: https://github.com/google-labs-code/design.md\nDESIGN.md philosophy: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md CLI toolkit: https://github.com/google-labs-code/design.md/tree/main/packages/cli Example DESIGN.md files: https://github.com/google-labs-code/design.md/tree/main/examples Agent skill definitions: https://github.com/google-labs-code/design.md/tree/main/.agents/skills Contributing guidelines: https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md Disclosure: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式”, “datePublished”: “2026-06-27”, “dateModified”: “2026-06-27”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems\" } } Why This Matters Understanding design.md：谷歌用于为 ai 编码代理提供设计系统的开源格式 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles ai-engineering-from-scratch compound-engineering-multi-agent-coding-claude-codex-cursor design-md-google-open-source-format-ai-coding-agents-design-systems personal-ai-infrastructure-daniel-miessler prompts-chat Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1461","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#designmd%e8%b0%b7%e6%ad%8c%e7%94%a8%e4%ba%8e%e4%b8%ba-ai-%e7%bc%96%e7%a0%81%e4%bb%a3%e7%90%86%e6%8f%90%e4%be%9b%e8%ae%be%e8%ae%a1%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%bc%80%e6%ba%90%e6%a0%bc%e5%bc%8f aria-label="DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式">DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式</a><ul><li><a href=#%e5%bc%95%e8%a8%80 aria-label=引言>引言</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-designmd aria-label="什么是 DESIGN.md？">什么是 DESIGN.md？</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%95%a3%e6%96%87%e6%af%94%e4%bb%a3%e5%b8%81%e6%9b%b4%e9%87%8d%e8%a6%81 aria-label=为什么散文比代币更重要>为什么散文比代币更重要</a></li><li><a href=#%e8%83%8c%e5%90%8e%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label=背后的工作原理>背后的工作原理</a></li><li><a href=#%e5%85%a5%e9%97%a8 aria-label=入门>入门</a><ul><li><a href=#1-%e5%ae%89%e8%a3%85-cli aria-label="1. 安装 CLI">1. 安装 CLI</a></li><li><a href=#2-%e5%88%9b%e5%bb%ba%e4%bd%a0%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa-designmd aria-label="2. 创建你的第一个 DESIGN.md">2. 创建你的第一个 DESIGN.md</a></li></ul></li><li><a href=#typography aria-label=Typography>Typography</a></li><li><a href=#spacing aria-label=Spacing>Spacing</a></li><li><a href=#real-world-examples aria-label="Real-World Examples">Real-World Examples</a></li><li><a href=#why-this-matters-for-ai-assisted-development aria-label="Why This Matters for AI-Assisted Development">Why This Matters for AI-Assisted Development</a></li><li><a href=#limitations-and-trade-offs aria-label="Limitations and Trade-offs">Limitations and Trade-offs</a></li><li><a href=#community-and-adoption aria-label="Community and Adoption">Community and Adoption</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion-1 aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=designmd谷歌用于为-ai-编码代理提供设计系统的开源格式>DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式<a hidden class=anchor aria-hidden=true href=#designmd谷歌用于为-ai-编码代理提供设计系统的开源格式>#</a></h1><p><img alt="DESIGN.md Format Specification" loading=lazy src=https://opengraph.github.com/github/google-labs-code/design.md></p><p><img alt="DESIGN.md Philosophy Document" loading=lazy src=https://raw.githubusercontent.com/google-labs-code/design.md/main/PHILOSOPHY.md></p><h2 id=引言>引言<a hidden class=anchor aria-hidden=true href=#引言>#</a></h2><p>当你要求一个 AI 编程代理构建一个登录页面时，它会生成一些可用的东西——但很少美观。问题不在于模型的能力，而在于缺乏共同的设计语言。每个提示都是从零开始，每次生成都会偏离上一次，而且没有对“我们的设计”实际样子持续的记忆。</p><p><strong>DESIGN.md</strong> 由 Google Labs Code 解决了这个问题。它是一个开源的格式规范，为 AI 编码代理提供对你的设计系统的持久、结构化理解——将 YAML 颜色标记、排版规范和间距规则，与描述每个数值背后<em>意图</em>的自然语言内容结合起来。凭借超过 20,800 个 GitHub 星标以及单日新增 2,319 个星标，它目前是 GitHub 上最热门的设计工具。</p><h2 id=什么是-designmd>什么是 DESIGN.md？<a hidden class=anchor aria-hidden=true href=#什么是-designmd>#</a></h2><p>DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来源。它的设计是为了让 AI 编码代理（Claude、ChatGPT、Codex、Cursor 等）阅读，以便它们生成与您的品牌一致的 UI —— 无需每次都重新解释您的设计系统。</p><p>该格式有两个互补的层次：</p><pre tabindex=0><code>┌──────────────────────────────────────────────────┐
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 引言 当你要求一个 AI 编程代理构建一个登录页面时，它会生成一些可用的东西——但很少美观。问题不在于模型的能力，而在于缺乏共同的设计语言。每个提示都是从零开始，每次生成都会偏离上一次，而且没有对“我们的设计”实际样子持续的记忆。\nDESIGN.md 由 Google Labs Code 解决了这个问题。它是一个开源的格式规范，为 AI 编码代理提供对你的设计系统的持久、结构化理解——将 YAML 颜色标记、排版规范和间距规则，与描述每个数值背后意图的自然语言内容结合起来。凭借超过 20,800 个 GitHub 星标以及单日新增 2,319 个星标，它目前是 GitHub 上最热门的设计工具。\n什么是 DESIGN.md？ DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来源。它的设计是为了让 AI 编码代理（Claude、ChatGPT、Codex、Cursor 等）阅读，以便它们生成与您的品牌一致的 UI —— 无需每次都重新解释您的设计系统。\n该格式有两个互补的层次：\n┌──────────────────────────────────────────────────┐ │ DESIGN.md Structure │ ├──────────────────────────────────────────────────┤ │ │ │ --- │ │ name: My Brand │ │ --- │ │ │ │ ## Colors │ │ `````yaml │ │ colors: │ │ paper: '#F4F0E4' │ │ ink: '#1E1A14' │ │ accent: '#C3402A' │ │ ````` │ │ │ │ A warm paper-and-ink system with a single │ │ vermilion accent for diagrams only. │ │ │ │ ## Typography │ │ `````yaml │ │ typography: │ │ heading: 'Playfair Display' │ │ body: 'Source Serif 4' │ │ mono: 'JetBrains Mono' │ │ ````` │ │ │ │ ## Spacing │ │ `````yaml │ │ spacing: │ │ unit: 8px │ │ scale: [4, 8, 16, 24, 32, 48, 64] │ │ ````` │ │ │ │ ## Do's and Don'ts │ │ - **Do** use the accent color only in charts │ │ - **Don't** add gradients or glass effects │ │ │ └──────────────────────────────────────────────────┘ YAML 令牌提供可被机器读取的数值。散文提供可被人类理解的上下文——解释为什么一个颜色是 #F4F0E4（暖色复印纸，从不纯白），而不仅仅是说明十六进制代码。这种区别正是使 DESIGN.md 与设计令牌 JSON 文件根本不同的原因。\n为什么散文比代币更重要 DESIGN.md 背后的设计师做出了一个深思熟虑的选择：文字部分是规范中最重要的部分。他们的理念文档对此解释得非常清楚：\n“\u003e “一个引用‘1970年代老牌大学毕业讲座讲义风格’的设计唤起了一个完整的世界：单色墨水、宽裕的页边距、以可阅读大小排版的衬线字体，以及没有装饰的设计。仅这一句话就包含的信息，比一打指标数值更有用。”\n这是关于人工智能辅助开发的深刻见解。当你告诉一个大型语言模型“使用温暖、高端的编辑美学”时，它会生成一些普通内容。而当你告诉它“一个1970年代的毕业讲座讲义”时，它会理解整个文化背景——纸张质感、克制的排版、缺乏装饰元素。模型会从它的训练数据中填补所有空白。\nDESIGN.md 将这一原则形式化。令牌是上下文，而不是指令。文本承载了创意意图。两者结合，为代理提供了精确性与想象力。\n背后的工作原理 DESIGN.md 仓库被构建为一个使用 Turbo 进行编排的 Bun 单体仓库：\ndesign.md/ ├── packages/ │ └── cli/ # @google/design.md CLI toolkit │ ├── src/ # TypeScript source │ └── scripts/ # Build scripts ├── docs/ # Specification documentation ├── examples/ # Example DESIGN.md files ├── .agents/skills/ # Agent skill definitions ├── package.json # Bun workspace config ├── turbo.json # Turbo build orchestration ├── tsconfig.base.json # Shared TypeScript config └── PHILOSOPHY.md # Design philosophy manifesto CLI 工具（@google/design.md）提供：\nLinting（代码检查）：根据规范模式验证 DESIGN.md 文件 令牌提取：将 YAML 块解析为结构化数据 代理整合：作为 Claude、ChatGPT 和其他编程代理的 .agents/skills/ 定义提供 该代码检查器强制要求存在必需的部分（名称、颜色、排版、间距、圆角、组件），同时允许为运动、图标、层次以及每个项目特定的其他设计维度添加任意自定义部分。\n入门 1. 安装 CLI bun install -g @google/design.md 或者直接使用 npx：\nnpx @google/design.md lint DESIGN.md 2. 创建你的第一个 DESIGN.md 从最基本的必要结构开始：\n* * * name: My Project Design * * * ## Colors `````yaml colors: primary: '#2563EB' background: '#FFFFFF' text: '#111827' A clean blue-and-white system for a professional SaaS product.\nTypography typography: heading: 'Inter' body: 'Inter' mono: 'JetBrains Mono' Single-family typography system for consistency.\nSpacing spacing: unit: 4px scale: [4, 8, 16, 24, 32, 48, 64] 4px base grid, 8px for larger elements.\n### 3. Ship It to Your Coding Agents Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: ````` System: Read the DESIGN.md file in the project root. All UI components must follow the design specifications defined there. The agent will now consistently apply your design system across every generation.\nReal-World Examples The repository includes several example DESIGN.md files demonstrating different aesthetic approaches: Graduate Lecture Handout: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies “A graduate-level computer science lecture handout in the tradition of an old established university” — instantly communicating margins, serif fonts, and restraint.\nMotion Design System: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes “Nothing bounces, nothing overshoots, nothing lingers” — giving agents a clear temporal aesthetic.\nCustom Design Dimensions: The format accepts any section name. One team defines motion tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.\nWhy This Matters for AI-Assisted Development DESIGN.md addresses a fundamental bottleneck in AI-assisted development: design consistency at scale.\nWithout a design specification, every AI-generated page, component, or screen is a fresh creative exercise. The agent doesn’t know your brand colors beyond what’s in the prompt, doesn’t understand your spacing philosophy, and has no memory of what “done” looks like for your project.\nWith DESIGN.md: - Agents have persistent design memory — the file lives in your repo, version-controlled and reviewed\nMultiple agents stay consistent — Claude, ChatGPT, and Codex all read the same file Design reviews become automated — the linter catches violations before they reach production New developers onboard instantly — the file is the design system documentation The format is particularly powerful for teams using multiple AI coding tools. Instead of each tool having its own implicit understanding of your design, everyone reads the same authoritative source.\nLimitations and Trade-offs DESIGN.md is not a silver bullet. Several considerations: 1. Agent-dependent quality: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.\nNo visual rendering: DESIGN.md is a specification, not a rendering engine. You still need the agent (or a human designer) to translate the specs into actual code.\nLearning curve: Writing good prose descriptions requires design thinking. Teams without a designated designer may struggle to articulate their aesthetic intent clearly.\nNot a replacement for Figma: DESIGN.md complements design tools rather than replacing them. The ideal workflow uses Figma for visual design and DESIGN.md for agent communication.\nStill young: At 20.8k stars and 2 months old, the format is evolving rapidly. Breaking changes between versions are possible.\nCommunity and Adoption DESIGN.md is developed by Google Labs Code and has attracted significant attention: - 20,800+ stars on GitHub (2,319 gained in a single day)\n1,700+ forks with active community contributions 40+ commits in 2 months with rapid iteration 18 issues and 17 pull requests showing active development 4 published tags with semantic versioning The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.\nConclusion DESIGN.md represents a fundamental shift in how we communicate design to AI. Rather than trying to encode every visual decision into rigid tokens, it embraces the strength of natural language — letting prose carry the creative intent while YAML provides the machine-readable scaffolding.\nFor teams building AI-assisted design workflows, it’s worth trying. Create a DESIGN.md for your next project, add it to your coding agent’s context, and see how much more consistent your generated UI becomes. The format is simple enough to start with today and flexible enough to grow with your design system.\nIn a landscape where every developer now has access to AI coding agents, DESIGN.md provides the missing piece: a shared language between human design intent and machine execution. That’s why it’s currently the hottest project on GitHub — and why it’s likely to become a standard practice in AI-assisted development.\nFor teams deploying infrastructure at scale: try HTStack for high-performance cloud hosting that integrates seamlessly with design system workflows.\nFor production-ready AI coding workflows: check out Binance for enterprise-grade API trading infrastructure.\nFor financial AI applications: OKX offers robust trading APIs and market data feeds.\nCheck out internal guides on AI Coding Agent Comparison and Developer Tooling Best Practices for deeper dives into building a complete AI-assisted development workflow.\nJoin the DIBI8 community on Telegram for daily discussions on AI tools, dev utilities, and open-source projects.\nSources \u0026 Further Reading: - Official repository: https://github.com/google-labs-code/design.md\nDESIGN.md philosophy: https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md CLI toolkit: https://github.com/google-labs-code/design.md/tree/main/packages/cli Example DESIGN.md files: https://github.com/google-labs-code/design.md/tree/main/examples Agent skill definitions: https://github.com/google-labs-code/design.md/tree/main/.agents/skills Contributing guidelines: https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md Disclosure: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式”, “datePublished”: “2026-06-27”, “dateModified”: “2026-06-27”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems\" } } Why This Matters Understanding design.md：谷歌用于为 ai 编码代理提供设计系统的开源格式 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles ai-engineering-from-scratch compound-engineering-multi-agent-coding-claude-codex-cursor design-md-google-open-source-format-ai-coding-agents-design-systems personal-ai-infrastructure-daniel-miessler prompts-chat Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1461",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#designmd%e8%b0%b7%e6%ad%8c%e7%94%a8%e4%ba%8e%e4%b8%ba-ai-%e7%bc%96%e7%a0%81%e4%bb%a3%e7%90%86%e6%8f%90%e4%be%9b%e8%ae%be%e8%ae%a1%e7%b3%bb%e7%bb%9f%e7%9a%84%e5%bc%80%e6%ba%90%e6%a0%bc%e5%bc%8f" aria-label="DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式">DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式</a><ul>
+                    
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af-designmd" aria-label="什么是 DESIGN.md？">什么是 DESIGN.md？</a></li>
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%95%a3%e6%96%87%e6%af%94%e4%bb%a3%e5%b8%81%e6%9b%b4%e9%87%8d%e8%a6%81" aria-label="为什么散文比代币更重要">为什么散文比代币更重要</a></li>
+            <li>
+                <a href="#%e8%83%8c%e5%90%8e%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="背后的工作原理">背后的工作原理</a></li>
+            <li>
+                <a href="#%e5%85%a5%e9%97%a8" aria-label="入门">入门</a><ul>
+                    
+            <li>
+                <a href="#1-%e5%ae%89%e8%a3%85-cli" aria-label="1. 安装 CLI">1. 安装 CLI</a></li>
+            <li>
+                <a href="#2-%e5%88%9b%e5%bb%ba%e4%bd%a0%e7%9a%84%e7%ac%ac%e4%b8%80%e4%b8%aa-designmd" aria-label="2. 创建你的第一个 DESIGN.md">2. 创建你的第一个 DESIGN.md</a></li></ul>
+            </li>
+            <li>
+                <a href="#typography" aria-label="Typography">Typography</a></li>
+            <li>
+                <a href="#spacing" aria-label="Spacing">Spacing</a></li>
+            <li>
+                <a href="#real-world-examples" aria-label="Real-World Examples">Real-World Examples</a></li>
+            <li>
+                <a href="#why-this-matters-for-ai-assisted-development" aria-label="Why This Matters for AI-Assisted Development">Why This Matters for AI-Assisted Development</a></li>
+            <li>
+                <a href="#limitations-and-trade-offs" aria-label="Limitations and Trade-offs">Limitations and Trade-offs</a></li>
+            <li>
+                <a href="#community-and-adoption" aria-label="Community and Adoption">Community and Adoption</a></li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion-1" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="designmd谷歌用于为-ai-编码代理提供设计系统的开源格式">DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式<a hidden class="anchor" aria-hidden="true" href="#designmd谷歌用于为-ai-编码代理提供设计系统的开源格式">#</a></h1>
+<p><img alt="DESIGN.md Format Specification" loading="lazy" src="https://opengraph.github.com/github/google-labs-code/design.md"></p>
+<p><img alt="DESIGN.md Philosophy Document" loading="lazy" src="https://raw.githubusercontent.com/google-labs-code/design.md/main/PHILOSOPHY.md"></p>
+<h2 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p>当你要求一个 AI 编程代理构建一个登录页面时，它会生成一些可用的东西——但很少美观。问题不在于模型的能力，而在于缺乏共同的设计语言。每个提示都是从零开始，每次生成都会偏离上一次，而且没有对“我们的设计”实际样子持续的记忆。</p>
+<p><strong>DESIGN.md</strong> 由 Google Labs Code 解决了这个问题。它是一个开源的格式规范，为 AI 编码代理提供对你的设计系统的持久、结构化理解——将 YAML 颜色标记、排版规范和间距规则，与描述每个数值背后<em>意图</em>的自然语言内容结合起来。凭借超过 20,800 个 GitHub 星标以及单日新增 2,319 个星标，它目前是 GitHub 上最热门的设计工具。</p>
+<h2 id="什么是-designmd">什么是 DESIGN.md？<a hidden class="anchor" aria-hidden="true" href="#什么是-designmd">#</a></h2>
+<p>DESIGN.md 是一个 Markdown 文件，作为项目视觉识别的唯一真实来源。它的设计是为了让 AI 编码代理（Claude、ChatGPT、Codex、Cursor 等）阅读，以便它们生成与您的品牌一致的 UI —— 无需每次都重新解释您的设计系统。</p>
+<p>该格式有两个互补的层次：</p>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────┐
 │              DESIGN.md Structure                  │
 ├──────────────────────────────────────────────────┤
 │                                                  │
@@ -43,7 +310,15 @@
 │  - **Don&#39;t** add gradients or glass effects    │
 │                                                  │
 └──────────────────────────────────────────────────┘
-</code></pre><p>YAML 令牌提供可被机器读取的数值。散文提供可被人类理解的<em>上下文</em>——解释为什么一个颜色是 <code>#F4F0E4</code>（暖色复印纸，从不纯白），而不仅仅是说明十六进制代码。这种区别正是使 DESIGN.md 与设计令牌 JSON 文件根本不同的原因。</p><h2 id=为什么散文比代币更重要>为什么散文比代币更重要<a hidden class=anchor aria-hidden=true href=#为什么散文比代币更重要>#</a></h2><p>DESIGN.md 背后的设计师做出了一个深思熟虑的选择：<strong>文字部分是规范中最重要的部分</strong>。他们的理念文档对此解释得非常清楚：</p><p>&ldquo;> <em>“一个引用‘1970年代老牌大学毕业讲座讲义风格’的设计唤起了一个完整的世界：单色墨水、宽裕的页边距、以可阅读大小排版的衬线字体，以及没有装饰的设计。仅这一句话就包含的信息，比一打指标数值更有用。”</em></p><p>这是关于人工智能辅助开发的深刻见解。当你告诉一个大型语言模型“使用温暖、高端的编辑美学”时，它会生成一些普通内容。而当你告诉它“一个1970年代的毕业讲座讲义”时，它会理解整个文化背景——纸张质感、克制的排版、缺乏装饰元素。模型会从它的训练数据中填补所有空白。</p><p>DESIGN.md 将这一原则形式化。令牌是上下文，而不是指令。文本承载了创意意图。两者结合，为代理提供了精确性与想象力。</p><h2 id=背后的工作原理>背后的工作原理<a hidden class=anchor aria-hidden=true href=#背后的工作原理>#</a></h2><p>DESIGN.md 仓库被构建为一个使用 Turbo 进行编排的 Bun 单体仓库：</p><pre tabindex=0><code>design.md/
+</code></pre><p>YAML 令牌提供可被机器读取的数值。散文提供可被人类理解的<em>上下文</em>——解释为什么一个颜色是 <code>#F4F0E4</code>（暖色复印纸，从不纯白），而不仅仅是说明十六进制代码。这种区别正是使 DESIGN.md 与设计令牌 JSON 文件根本不同的原因。</p>
+<h2 id="为什么散文比代币更重要">为什么散文比代币更重要<a hidden class="anchor" aria-hidden="true" href="#为什么散文比代币更重要">#</a></h2>
+<p>DESIGN.md 背后的设计师做出了一个深思熟虑的选择：<strong>文字部分是规范中最重要的部分</strong>。他们的理念文档对此解释得非常清楚：</p>
+<p>&ldquo;&gt; <em>“一个引用‘1970年代老牌大学毕业讲座讲义风格’的设计唤起了一个完整的世界：单色墨水、宽裕的页边距、以可阅读大小排版的衬线字体，以及没有装饰的设计。仅这一句话就包含的信息，比一打指标数值更有用。”</em></p>
+<p>这是关于人工智能辅助开发的深刻见解。当你告诉一个大型语言模型“使用温暖、高端的编辑美学”时，它会生成一些普通内容。而当你告诉它“一个1970年代的毕业讲座讲义”时，它会理解整个文化背景——纸张质感、克制的排版、缺乏装饰元素。模型会从它的训练数据中填补所有空白。</p>
+<p>DESIGN.md 将这一原则形式化。令牌是上下文，而不是指令。文本承载了创意意图。两者结合，为代理提供了精确性与想象力。</p>
+<h2 id="背后的工作原理">背后的工作原理<a hidden class="anchor" aria-hidden="true" href="#背后的工作原理">#</a></h2>
+<p>DESIGN.md 仓库被构建为一个使用 Turbo 进行编排的 Bun 单体仓库：</p>
+<pre tabindex="0"><code>design.md/
 ├── packages/
 │   └── cli/                    # @google/design.md CLI toolkit
 │       ├── src/                # TypeScript source
@@ -55,32 +330,108 @@
 ├── turbo.json                  # Turbo build orchestration
 ├── tsconfig.base.json          # Shared TypeScript config
 └── PHILOSOPHY.md               # Design philosophy manifesto
-</code></pre><p>CLI 工具（<code>@google/design.md</code>）提供：</p><ul><li><strong>Linting（代码检查）</strong>：根据规范模式验证 DESIGN.md 文件</li><li><strong>令牌提取</strong>：将 YAML 块解析为结构化数据</li><li><strong>代理整合</strong>：作为 Claude、ChatGPT 和其他编程代理的 <code>.agents/skills/</code> 定义提供</li></ul><p>该代码检查器强制要求存在必需的部分（名称、颜色、排版、间距、圆角、组件），同时允许为运动、图标、层次以及每个项目特定的其他设计维度添加任意自定义部分。</p><h2 id=入门>入门<a hidden class=anchor aria-hidden=true href=#入门>#</a></h2><h3 id=1-安装-cli>1. 安装 CLI<a hidden class=anchor aria-hidden=true href=#1-安装-cli>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>bun install -g @google/design.md
-</span></span></code></pre></div><p>或者直接使用 npx：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npx @google/design.md lint DESIGN.md
-</span></span></code></pre></div><h3 id=2-创建你的第一个-designmd>2. 创建你的第一个 DESIGN.md<a hidden class=anchor aria-hidden=true href=#2-创建你的第一个-designmd>#</a></h3><p>从最基本的必要结构开始：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> * *
-</span></span><span style=display:flex><span>name: My Project Design
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>*</span> * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## Colors
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>`````yaml
-</span></span><span style=display:flex><span>colors: primary: &#39;#2563EB&#39;
-</span></span><span style=display:flex><span>  background: &#39;#FFFFFF&#39;
-</span></span><span style=display:flex><span>  text: &#39;#111827&#39;
-</span></span></code></pre></div><p>A clean blue-and-white system for a professional SaaS product.</p><h2 id=typography>Typography<a hidden class=anchor aria-hidden=true href=#typography>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>typography: heading</span>: <span style=color:#e6db74>&#39;Inter&#39;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>body</span>: <span style=color:#e6db74>&#39;Inter&#39;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>mono</span>: <span style=color:#e6db74>&#39;JetBrains Mono&#39;</span>
-</span></span></code></pre></div><p>Single-family typography system for consistency.</p><h2 id=spacing>Spacing<a hidden class=anchor aria-hidden=true href=#spacing>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>spacing: unit</span>: <span style=color:#ae81ff>4px</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>scale</span>: [<span style=color:#ae81ff>4</span>, <span style=color:#ae81ff>8</span>, <span style=color:#ae81ff>16</span>, <span style=color:#ae81ff>24</span>, <span style=color:#ae81ff>32</span>, <span style=color:#ae81ff>48</span>, <span style=color:#ae81ff>64</span>]
-</span></span></code></pre></div><p>4px base grid, 8px for larger elements.</p><pre tabindex=0><code>
+</code></pre><p>CLI 工具（<code>@google/design.md</code>）提供：</p>
+<ul>
+<li><strong>Linting（代码检查）</strong>：根据规范模式验证 DESIGN.md 文件</li>
+<li><strong>令牌提取</strong>：将 YAML 块解析为结构化数据</li>
+<li><strong>代理整合</strong>：作为 Claude、ChatGPT 和其他编程代理的 <code>.agents/skills/</code> 定义提供</li>
+</ul>
+<p>该代码检查器强制要求存在必需的部分（名称、颜色、排版、间距、圆角、组件），同时允许为运动、图标、层次以及每个项目特定的其他设计维度添加任意自定义部分。</p>
+<h2 id="入门">入门<a hidden class="anchor" aria-hidden="true" href="#入门">#</a></h2>
+<h3 id="1-安装-cli">1. 安装 CLI<a hidden class="anchor" aria-hidden="true" href="#1-安装-cli">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>bun install -g @google/design.md
+</span></span></code></pre></div><p>或者直接使用 npx：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx @google/design.md lint DESIGN.md
+</span></span></code></pre></div><h3 id="2-创建你的第一个-designmd">2. 创建你的第一个 DESIGN.md<a hidden class="anchor" aria-hidden="true" href="#2-创建你的第一个-designmd">#</a></h3>
+<p>从最基本的必要结构开始：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> * *
+</span></span><span style="display:flex;"><span>name: My Project Design
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Colors
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>`````yaml
+</span></span><span style="display:flex;"><span>colors: primary: &#39;#2563EB&#39;
+</span></span><span style="display:flex;"><span>  background: &#39;#FFFFFF&#39;
+</span></span><span style="display:flex;"><span>  text: &#39;#111827&#39;
+</span></span></code></pre></div><p>A clean blue-and-white system for a professional SaaS product.</p>
+<h2 id="typography">Typography<a hidden class="anchor" aria-hidden="true" href="#typography">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">typography: heading</span>: <span style="color:#e6db74">&#39;Inter&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">body</span>: <span style="color:#e6db74">&#39;Inter&#39;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">mono</span>: <span style="color:#e6db74">&#39;JetBrains Mono&#39;</span>
+</span></span></code></pre></div><p>Single-family typography system for consistency.</p>
+<h2 id="spacing">Spacing<a hidden class="anchor" aria-hidden="true" href="#spacing">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">spacing: unit</span>: <span style="color:#ae81ff">4px</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">scale</span>: [<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">16</span>, <span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">32</span>, <span style="color:#ae81ff">48</span>, <span style="color:#ae81ff">64</span>]
+</span></span></code></pre></div><p>4px base grid, 8px for larger elements.</p>
+<pre tabindex="0"><code>
 ### 3. Ship It to Your Coding Agents
 
 Add DESIGN.md to your project repository. When working with any coding agent, reference the file in your system prompt: `````
 System: Read the DESIGN.md file in the project root.
 All UI components must follow the design specifications defined there.
-</code></pre><p>The agent will now consistently apply your design system across every generation.</p><h2 id=real-world-examples>Real-World Examples<a hidden class=anchor aria-hidden=true href=#real-world-examples>#</a></h2><p>The repository includes several example DESIGN.md files demonstrating different aesthetic approaches: <strong>Graduate Lecture Handout</strong>: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies &ldquo;A graduate-level computer science lecture handout in the tradition of an old established university&rdquo; — instantly communicating margins, serif fonts, and restraint.</p><p><strong>Motion Design System</strong>: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes &ldquo;Nothing bounces, nothing overshoots, nothing lingers&rdquo; — giving agents a clear temporal aesthetic.</p><p><strong>Custom Design Dimensions</strong>: The format accepts any section name. One team defines <code>motion</code> tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.</p><h2 id=why-this-matters-for-ai-assisted-development>Why This Matters for AI-Assisted Development<a hidden class=anchor aria-hidden=true href=#why-this-matters-for-ai-assisted-development>#</a></h2><p>DESIGN.md addresses a fundamental bottleneck in AI-assisted development: <strong>design consistency at scale</strong>.</p><p>Without a design specification, every AI-generated page, component, or screen is a fresh creative exercise. The agent doesn&rsquo;t know your brand colors beyond what&rsquo;s in the prompt, doesn&rsquo;t understand your spacing philosophy, and has no memory of what &ldquo;done&rdquo; looks like for your project.</p><p>With DESIGN.md: - <strong>Agents have persistent design memory</strong> — the file lives in your repo, version-controlled and reviewed</p><ul><li><strong>Multiple agents stay consistent</strong> — Claude, ChatGPT, and Codex all read the same file</li><li><strong>Design reviews become automated</strong> — the linter catches violations before they reach production</li><li><strong>New developers onboard instantly</strong> — the file <em>is</em> the design system documentation</li></ul><p>The format is particularly powerful for teams using multiple AI coding tools. Instead of each tool having its own implicit understanding of your design, everyone reads the same authoritative source.</p><h2 id=limitations-and-trade-offs>Limitations and Trade-offs<a hidden class=anchor aria-hidden=true href=#limitations-and-trade-offs>#</a></h2><p>DESIGN.md is not a silver bullet. Several considerations: 1. <strong>Agent-dependent quality</strong>: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.</p><ol start=2><li><p><strong>No visual rendering</strong>: DESIGN.md is a specification, not a rendering engine. You still need the agent (or a human designer) to translate the specs into actual code.</p></li><li><p><strong>Learning curve</strong>: Writing good prose descriptions requires design thinking. Teams without a designated designer may struggle to articulate their aesthetic intent clearly.</p></li><li><p><strong>Not a replacement for Figma</strong>: DESIGN.md complements design tools rather than replacing them. The ideal workflow uses Figma for visual design and DESIGN.md for agent communication.</p></li><li><p><strong>Still young</strong>: At 20.8k stars and 2 months old, the format is evolving rapidly. Breaking changes between versions are possible.</p></li></ol><h2 id=community-and-adoption>Community and Adoption<a hidden class=anchor aria-hidden=true href=#community-and-adoption>#</a></h2><p>DESIGN.md is developed by Google Labs Code and has attracted significant attention: - <strong>20,800+ stars</strong> on GitHub (2,319 gained in a single day)</p><ul><li><strong>1,700+ forks</strong> with active community contributions</li><li><strong>40+ commits</strong> in 2 months with rapid iteration</li><li><strong>18 issues</strong> and <strong>17 pull requests</strong> showing active development</li><li><strong>4 published tags</strong> with semantic versioning</li></ul><p>The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>DESIGN.md represents a fundamental shift in how we communicate design to AI. Rather than trying to encode every visual decision into rigid tokens, it embraces the strength of natural language — letting prose carry the creative intent while YAML provides the machine-readable scaffolding.</p><p>For teams building AI-assisted design workflows, it&rsquo;s worth trying. Create a DESIGN.md for your next project, add it to your coding agent&rsquo;s context, and see how much more consistent your generated UI becomes. The format is simple enough to start with today and flexible enough to grow with your design system.</p><p>In a landscape where every developer now has access to AI coding agents, DESIGN.md provides the missing piece: a shared language between human design intent and machine execution. That&rsquo;s why it&rsquo;s currently the hottest project on GitHub — and why it&rsquo;s likely to become a standard practice in AI-assisted development.</p><p>For teams deploying infrastructure at scale: try <a href=https://www.htstack.com/>HTStack</a> for high-performance cloud hosting that integrates seamlessly with design system workflows.</p><p>For production-ready AI coding workflows: check out <a href=https://bsmkweb.cc>Binance</a> for enterprise-grade API trading infrastructure.</p><p>For financial AI applications: <a href=https://promoohubly.com>OKX</a> offers robust trading APIs and market data feeds.</p><p>Check out internal guides on AI Coding Agent Comparison and Developer Tooling Best Practices for deeper dives into building a complete AI-assisted development workflow.</p><p>Join the DIBI8 community on <a href=https://t.me/DIBI8_Group>Telegram</a> for daily discussions on AI tools, dev utilities, and open-source projects.</p><hr><p><strong>Sources & Further Reading</strong>: - Official repository: <a href=https://github.com/google-labs-code/design.md>https://github.com/google-labs-code/design.md</a></p><ul><li>DESIGN.md philosophy: <a href=https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md>https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md</a></li><li>CLI toolkit: <a href=https://github.com/google-labs-code/design.md/tree/main/packages/cli>https://github.com/google-labs-code/design.md/tree/main/packages/cli</a></li><li>Example DESIGN.md files: <a href=https://github.com/google-labs-code/design.md/tree/main/examples>https://github.com/google-labs-code/design.md/tree/main/examples</a></li><li>Agent skill definitions: <a href=https://github.com/google-labs-code/design.md/tree/main/.agents/skills>https://github.com/google-labs-code/design.md/tree/main/.agents/skills</a></li><li>Contributing guidelines: <a href=https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md>https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md</a></li></ul><p><strong>Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><p>The agent will now consistently apply your design system across every generation.</p>
+<h2 id="real-world-examples">Real-World Examples<a hidden class="anchor" aria-hidden="true" href="#real-world-examples">#</a></h2>
+<p>The repository includes several example DESIGN.md files demonstrating different aesthetic approaches: <strong>Graduate Lecture Handout</strong>: A warm paper canvas with single-ink typography and vermilion accents limited to diagrams. The prose specifies &ldquo;A graduate-level computer science lecture handout in the tradition of an old established university&rdquo; — instantly communicating margins, serif fonts, and restraint.</p>
+<p><strong>Motion Design System</strong>: Defines timing constants for UI feedback (120ms for hover/press, 250ms for content transitions) with a mechanical easing curve. The prose emphasizes &ldquo;Nothing bounces, nothing overshoots, nothing lingers&rdquo; — giving agents a clear temporal aesthetic.</p>
+<p><strong>Custom Design Dimensions</strong>: The format accepts any section name. One team defines <code>motion</code> tokens as CSS animation curves; another uses audio-domain time constants measured in buffer blocks. The spec standardizes where consistency helps and leaves flexibility where it matters more.</p>
+<h2 id="why-this-matters-for-ai-assisted-development">Why This Matters for AI-Assisted Development<a hidden class="anchor" aria-hidden="true" href="#why-this-matters-for-ai-assisted-development">#</a></h2>
+<p>DESIGN.md addresses a fundamental bottleneck in AI-assisted development: <strong>design consistency at scale</strong>.</p>
+<p>Without a design specification, every AI-generated page, component, or screen is a fresh creative exercise. The agent doesn&rsquo;t know your brand colors beyond what&rsquo;s in the prompt, doesn&rsquo;t understand your spacing philosophy, and has no memory of what &ldquo;done&rdquo; looks like for your project.</p>
+<p>With DESIGN.md: - <strong>Agents have persistent design memory</strong> — the file lives in your repo, version-controlled and reviewed</p>
+<ul>
+<li><strong>Multiple agents stay consistent</strong> — Claude, ChatGPT, and Codex all read the same file</li>
+<li><strong>Design reviews become automated</strong> — the linter catches violations before they reach production</li>
+<li><strong>New developers onboard instantly</strong> — the file <em>is</em> the design system documentation</li>
+</ul>
+<p>The format is particularly powerful for teams using multiple AI coding tools. Instead of each tool having its own implicit understanding of your design, everyone reads the same authoritative source.</p>
+<h2 id="limitations-and-trade-offs">Limitations and Trade-offs<a hidden class="anchor" aria-hidden="true" href="#limitations-and-trade-offs">#</a></h2>
+<p>DESIGN.md is not a silver bullet. Several considerations: 1. <strong>Agent-dependent quality</strong>: The effectiveness depends on how well each agent reads and follows the prose. Some agents may parse the YAML but ignore the narrative descriptions.</p>
+<ol start="2">
+<li>
+<p><strong>No visual rendering</strong>: DESIGN.md is a specification, not a rendering engine. You still need the agent (or a human designer) to translate the specs into actual code.</p>
+</li>
+<li>
+<p><strong>Learning curve</strong>: Writing good prose descriptions requires design thinking. Teams without a designated designer may struggle to articulate their aesthetic intent clearly.</p>
+</li>
+<li>
+<p><strong>Not a replacement for Figma</strong>: DESIGN.md complements design tools rather than replacing them. The ideal workflow uses Figma for visual design and DESIGN.md for agent communication.</p>
+</li>
+<li>
+<p><strong>Still young</strong>: At 20.8k stars and 2 months old, the format is evolving rapidly. Breaking changes between versions are possible.</p>
+</li>
+</ol>
+<h2 id="community-and-adoption">Community and Adoption<a hidden class="anchor" aria-hidden="true" href="#community-and-adoption">#</a></h2>
+<p>DESIGN.md is developed by Google Labs Code and has attracted significant attention: - <strong>20,800+ stars</strong> on GitHub (2,319 gained in a single day)</p>
+<ul>
+<li><strong>1,700+ forks</strong> with active community contributions</li>
+<li><strong>40+ commits</strong> in 2 months with rapid iteration</li>
+<li><strong>18 issues</strong> and <strong>17 pull requests</strong> showing active development</li>
+<li><strong>4 published tags</strong> with semantic versioning</li>
+</ul>
+<p>The format has inspired derivative projects and integrations across the AI coding agent ecosystem. Multiple agent skill definitions have emerged, and the ````.agents/skills/``` directory provides ready-to-use configurations for popular coding agents.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>DESIGN.md represents a fundamental shift in how we communicate design to AI. Rather than trying to encode every visual decision into rigid tokens, it embraces the strength of natural language — letting prose carry the creative intent while YAML provides the machine-readable scaffolding.</p>
+<p>For teams building AI-assisted design workflows, it&rsquo;s worth trying. Create a DESIGN.md for your next project, add it to your coding agent&rsquo;s context, and see how much more consistent your generated UI becomes. The format is simple enough to start with today and flexible enough to grow with your design system.</p>
+<p>In a landscape where every developer now has access to AI coding agents, DESIGN.md provides the missing piece: a shared language between human design intent and machine execution. That&rsquo;s why it&rsquo;s currently the hottest project on GitHub — and why it&rsquo;s likely to become a standard practice in AI-assisted development.</p>
+<p>For teams deploying infrastructure at scale: try <a href="https://www.htstack.com/">HTStack</a> for high-performance cloud hosting that integrates seamlessly with design system workflows.</p>
+<p>For production-ready AI coding workflows: check out <a href="https://bsmkweb.cc">Binance</a> for enterprise-grade API trading infrastructure.</p>
+<p>For financial AI applications: <a href="https://promoohubly.com">OKX</a> offers robust trading APIs and market data feeds.</p>
+<p>Check out internal guides on AI Coding Agent Comparison and Developer Tooling Best Practices for deeper dives into building a complete AI-assisted development workflow.</p>
+<p>Join the DIBI8 community on <a href="https://t.me/DIBI8_Group">Telegram</a> for daily discussions on AI tools, dev utilities, and open-source projects.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official repository: <a href="https://github.com/google-labs-code/design.md">https://github.com/google-labs-code/design.md</a></p>
+<ul>
+<li>DESIGN.md philosophy: <a href="https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md">https://github.com/google-labs-code/design.md/blob/main/PHILOSOPHY.md</a></li>
+<li>CLI toolkit: <a href="https://github.com/google-labs-code/design.md/tree/main/packages/cli">https://github.com/google-labs-code/design.md/tree/main/packages/cli</a></li>
+<li>Example DESIGN.md files: <a href="https://github.com/google-labs-code/design.md/tree/main/examples">https://github.com/google-labs-code/design.md/tree/main/examples</a></li>
+<li>Agent skill definitions: <a href="https://github.com/google-labs-code/design.md/tree/main/.agents/skills">https://github.com/google-labs-code/design.md/tree/main/.agents/skills</a></li>
+<li>Contributing guidelines: <a href="https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md">https://github.com/google-labs-code/design.md/blob/main/CONTRIBUTING.md</a></li>
+</ul>
+<p><strong>Disclosure</strong>: This article contains affiliate links. If you sign up through our links, we may earn a small commission at no additional cost to you. This helps support independent tech journalism and keeps resources like dibi8.com free and ad-free.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-27&rdquo;,
@@ -94,22 +445,230 @@ All UI components must follow the design specifications defined there.
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems%22>https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems%22">https://dibi8.com/zh/resources/design-md-google-open-source-format-ai-coding-agents-design-systems"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding design.md：谷歌用于为 ai 编码代理提供设计系统的开源格式 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding design.md：谷歌用于为 ai 编码代理提供设计系统的开源格式 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion-1>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion-1>#</a></h2><p>DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>ai-engineering-from-scratch</a></li><li><a href=/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>compound-engineering-multi-agent-coding-claude-codex-cursor</a></li><li><a href=/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>design-md-google-open-source-format-ai-coding-agents-design-systems</a></li><li><a href=/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>personal-ai-infrastructure-daniel-miessler</a></li><li><a href=/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/>prompts-chat</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/deepseek-v3-vs-claude-sonnet/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/devtoys/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion-1">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion-1">#</a></h2>
+<p>DESIGN.md：谷歌用于为 AI 编码代理提供设计系统的开源格式 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">ai-engineering-from-scratch</a></li>
+<li><a href="/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">compound-engineering-multi-agent-coding-claude-codex-cursor</a></li>
+<li><a href="/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">design-md-google-open-source-format-ai-coding-agents-design-systems</a></li>
+<li><a href="/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">personal-ai-infrastructure-daniel-miessler</a></li>
+<li><a href="/zh/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems/">prompts-chat</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/deepseek-v3-vs-claude-sonnet/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/devtoys/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

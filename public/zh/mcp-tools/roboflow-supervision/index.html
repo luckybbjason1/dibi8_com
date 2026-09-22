@@ -1,11 +1,266 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/mcp-tools/roboflow-supervision/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/mcp-tools/roboflow-supervision/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/mcp-tools/roboflow-supervision/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/mcp-tools/roboflow-supervision/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/zh/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/mcp-tools/roboflow-supervision/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness: 1. Introduction Section: - Consider including a brief overview of what makes Supervision unique compared to other CV toolkits.\nAdd a mention of the community support or active development status. Installation Section: - Include an example command for installing with all dependencies: ```pip install supervision[all]````\nModel Integration: - Explicitly state that while Supervision works well with YOLO, it supports other models through custom Detections objects.\nProvide a sample code snippet to create a custom Detections object from different model outputs. Real-time Processing: - Add more details on the performance metrics and how to optimize for real-time processing (e.g., using OpenCV for frame capture).\nCustom Annotators: - Provide an example of creating a custom annotator with specific use cases, like highlighting certain regions of interest.\nProduction Use: - Include references to case studies or examples where Supervision has been used in production environments.\nFurther Reading and Support: - Add links to the official Roboflow blog posts about Supervision and any upcoming features.\nFAQ Section: - Expand on frequently asked questions, especially those related to deployment and integration with other tools.\nHere’s a revised version of the Introduction section with these adjustments: —\nIntroduction Supervision by Roboflow is an essential tool for anyone working in computer vision (CV). With over 42,819 GitHub stars, it has become one of the most popular libraries for CV tasks. Supervision covers the entire pipeline from annotation to model evaluation and visualization, making it a versatile choice for both research and production environments.\nSupervision stands out because: - Comprehensive Feature Set: It includes tools for data annotation, model evaluation, real-time analytics, and more.\nActive Community Support: Regular updates and a supportive community make it easy to find help or contribute. Extensibility: Custom annotators and visualizers can be easily created to meet specific needs. Get started with pip install supervision[all] and explore the interactive Colab demo to see it in action.\nInstallation To install Supervision along with all dependencies, run: `````bash pip install supervision[all]\nThis command ensures that you have all the necessary tools for advanced usage, including image processing and visualization libraries. * * * ### Model Integration Supervision works seamlessly with popular models like YOLO. Here's an example of how to integrate a custom model: 1. **Load Model Output**: Assume your model outputs predictions in a structured format. 2. **Create Custom Detections Object**: `````python from supervision.detection.core import Detections # Example: Converting a list of detections into a Detections object boxes = [[x, y, width, height] for (x, y, width, height) in model_outputs] labels = [label for label in model_outputs] custom_detections = Detections( xyxy=boxes, class_id=[0]*len(boxes), # Assuming a single class confidence=[conf*100.0 for conf in model_outputs] # Converting to percentages ) Process and Annotate: `````python import cv2 from supervision.video.core import VideoFrameGenerator\nvideo_generator = VideoFrameGenerator(source=“camera_feed.mp4”)\nfor frame in video_generator.frames(): detections = custom_detections # Replace with your model’s predictions\nannotated_frame = draw_detections(frame, detections) cv2.imshow(\"Annotated Frame\", annotated_frame) if cv2.waitKey(1) \u0026 0xFF == ord('q'): break cv2.destroyAllWindows()\nReal-time Processing For real-time video processing, Supervision is optimized for performance. Here are some tips to achieve high frame rates: - Use OpenCV for Frame Capture: Ensure smooth integration with OpenCV.\nOptimize Model Inference: Use efficient inference engines like TensorFlow Lite or ONNX Runtime. Custom Annotators Supervision allows you to create custom annotators for specialized use cases. Here’s an example of a custom annotator that draws arrows: `````python import supervision as sv\nclass ArrowAnnotator(sv.Annotator): “““Custom annotator for drawing directional arrows.”””\ndef __init__(self, color=None, thickness=2): super().__init__() self.color = color or sv.Color.WHITE self.thickness = thickness def annotate(self, scene, detections, direction=\"right\"): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2) center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2) if direction == \"right\": end_x = center_x + 50 end_y = center_y elif direction == \"left\": end_x = center_x - 50 end_y = center_y elif direction == \"up\": end_x = center_x end_y = center_y - 50 else: end_x = center_x end_y = center_y + 50 cv2.arrowedLine( scene, (center_x, center_y), (end_x, end_y), (self.color.r, self.color.g, self.color.b), self.thickness ) return scene Use the custom annotator arrow_annotator = ArrowAnnotator( color=sv.Color.GREEN, thickness=3 )\n* * * ### Production Use Supervision has been used in various production environments. For instance, it can be integrated into video surveillance systems to provide real-time analytics and alerts. #### Case Study: A retail company uses Supervision to analyze foot traffic patterns and detect potential security breaches in their stores. The system processes live camera feeds and alerts the staff when suspicious activities are detected. * * * ### Further Reading For more details, refer to the [official documentation](https://supervision.roboflow.com) or explore the official GitHub repository for examples and updates. Join our community on Telegram to discuss this article and get help from other users: - [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) Read related articles: - [dibi8 English Telegram group](dibi8-internal-link) - [Related tool comparison](dibi8-internal-link) Try Supervision today! If you find it useful, consider supporting the project by contributing or leaving a star on GitHub. * * * Feel free to integrate these changes into your guide. Let me know if you need any further assistance! { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Roboflow 监督：Python计算机视觉标注工具包\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/roboflow-supervision\" } } ## Why This Matters Understanding roboflow 监督：python计算机视觉标注工具包 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Roboflow 监督：Python计算机视觉标注工具包 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [roboflow-supervision](roboflow-supervision) - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"1104","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/mcp-tools/roboflow-supervision/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/mcp-tools/>MCP Tools - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ko/mcp-tools/roboflow-supervision/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><ul><ul><li><a href=#introduction aria-label=Introduction>Introduction</a></li><li><a href=#installation aria-label=Installation>Installation</a></li><li><a href=#real-time-processing aria-label="Real-time Processing">Real-time Processing</a></li><li><a href=#custom-annotators aria-label="Custom Annotators">Custom Annotators</a></li></ul></ul><li><a href=#use-the-custom-annotator aria-label="Use the custom annotator">Use the custom annotator</a></li></ul></div></details><div class="post-content md-content"><p>Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness: 1. <strong>Introduction Section</strong>: - Consider including a brief overview of what makes Supervision unique compared to other CV toolkits.</p><ul><li>Add a mention of the community support or active development status.</li></ul><ol start=2><li><p><strong>Installation Section</strong>: - Include an example command for installing with all dependencies: ```pip install supervision[all]````</p></li><li><p><strong>Model Integration</strong>: - Explicitly state that while Supervision works well with YOLO, it supports other models through custom Detections objects.</p><ul><li>Provide a sample code snippet to create a custom Detections object from different model outputs.</li></ul></li><li><p><strong>Real-time Processing</strong>: - Add more details on the performance metrics and how to optimize for real-time processing (e.g., using OpenCV for frame capture).</p></li><li><p><strong>Custom Annotators</strong>: - Provide an example of creating a custom annotator with specific use cases, like highlighting certain regions of interest.</p></li><li><p><strong>Production Use</strong>: - Include references to case studies or examples where Supervision has been used in production environments.</p></li><li><p><strong>Further Reading and Support</strong>: - Add links to the official Roboflow blog posts about Supervision and any upcoming features.</p></li><li><p><strong>FAQ Section</strong>: - Expand on frequently asked questions, especially those related to deployment and integration with other tools.</p></li></ol><p>Here’s a revised version of the Introduction section with these adjustments: &mdash;</p><h3 id=introduction>Introduction<a hidden class=anchor aria-hidden=true href=#introduction>#</a></h3><p>Supervision by Roboflow is an essential tool for anyone working in computer vision (CV). With over 42,819 GitHub stars, it has become one of the most popular libraries for CV tasks. Supervision covers the entire pipeline from annotation to model evaluation and visualization, making it a versatile choice for both research and production environments.</p><p>Supervision stands out because: - <strong>Comprehensive Feature Set</strong>: It includes tools for data annotation, model evaluation, real-time analytics, and more.</p><ul><li><strong>Active Community Support</strong>: Regular updates and a supportive community make it easy to find help or contribute.</li><li><strong>Extensibility</strong>: Custom annotators and visualizers can be easily created to meet specific needs.</li></ul><p>Get started with <code>pip install supervision[all]</code> and explore the <a href=https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb>interactive Colab demo</a> to see it in action.</p><hr><h3 id=installation>Installation<a hidden class=anchor aria-hidden=true href=#installation>#</a></h3><p>To install Supervision along with all dependencies, run: `````bash
-pip install supervision[all]</p><pre tabindex=0><code>
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/mcp-tools/roboflow-supervision/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tools/roboflow-supervision/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/mcp-tools/roboflow-supervision/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/mcp-tools/roboflow-supervision/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/zh/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/mcp-tools/roboflow-supervision/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness: 1. Introduction Section: - Consider including a brief overview of what makes Supervision unique compared to other CV toolkits.\nAdd a mention of the community support or active development status. Installation Section: - Include an example command for installing with all dependencies: ```pip install supervision[all]````\nModel Integration: - Explicitly state that while Supervision works well with YOLO, it supports other models through custom Detections objects.\nProvide a sample code snippet to create a custom Detections object from different model outputs. Real-time Processing: - Add more details on the performance metrics and how to optimize for real-time processing (e.g., using OpenCV for frame capture).\nCustom Annotators: - Provide an example of creating a custom annotator with specific use cases, like highlighting certain regions of interest.\nProduction Use: - Include references to case studies or examples where Supervision has been used in production environments.\nFurther Reading and Support: - Add links to the official Roboflow blog posts about Supervision and any upcoming features.\nFAQ Section: - Expand on frequently asked questions, especially those related to deployment and integration with other tools.\nHere’s a revised version of the Introduction section with these adjustments: —\nIntroduction Supervision by Roboflow is an essential tool for anyone working in computer vision (CV). With over 42,819 GitHub stars, it has become one of the most popular libraries for CV tasks. Supervision covers the entire pipeline from annotation to model evaluation and visualization, making it a versatile choice for both research and production environments.\nSupervision stands out because: - Comprehensive Feature Set: It includes tools for data annotation, model evaluation, real-time analytics, and more.\nActive Community Support: Regular updates and a supportive community make it easy to find help or contribute. Extensibility: Custom annotators and visualizers can be easily created to meet specific needs. Get started with pip install supervision[all] and explore the interactive Colab demo to see it in action.\nInstallation To install Supervision along with all dependencies, run: `````bash pip install supervision[all]\nThis command ensures that you have all the necessary tools for advanced usage, including image processing and visualization libraries. * * * ### Model Integration Supervision works seamlessly with popular models like YOLO. Here's an example of how to integrate a custom model: 1. **Load Model Output**: Assume your model outputs predictions in a structured format. 2. **Create Custom Detections Object**: `````python from supervision.detection.core import Detections # Example: Converting a list of detections into a Detections object boxes = [[x, y, width, height] for (x, y, width, height) in model_outputs] labels = [label for label in model_outputs] custom_detections = Detections( xyxy=boxes, class_id=[0]*len(boxes), # Assuming a single class confidence=[conf*100.0 for conf in model_outputs] # Converting to percentages ) Process and Annotate: `````python import cv2 from supervision.video.core import VideoFrameGenerator\nvideo_generator = VideoFrameGenerator(source=“camera_feed.mp4”)\nfor frame in video_generator.frames(): detections = custom_detections # Replace with your model’s predictions\nannotated_frame = draw_detections(frame, detections) cv2.imshow(\"Annotated Frame\", annotated_frame) if cv2.waitKey(1) \u0026 0xFF == ord('q'): break cv2.destroyAllWindows()\nReal-time Processing For real-time video processing, Supervision is optimized for performance. Here are some tips to achieve high frame rates: - Use OpenCV for Frame Capture: Ensure smooth integration with OpenCV.\nOptimize Model Inference: Use efficient inference engines like TensorFlow Lite or ONNX Runtime. Custom Annotators Supervision allows you to create custom annotators for specialized use cases. Here’s an example of a custom annotator that draws arrows: `````python import supervision as sv\nclass ArrowAnnotator(sv.Annotator): “““Custom annotator for drawing directional arrows.”””\ndef __init__(self, color=None, thickness=2): super().__init__() self.color = color or sv.Color.WHITE self.thickness = thickness def annotate(self, scene, detections, direction=\"right\"): for i, detection in enumerate(detections): center_x = int((detection.xyxy[0] + detection.xyxy[2]) / 2) center_y = int((detection.xyxy[1] + detection.xyxy[3]) / 2) if direction == \"right\": end_x = center_x + 50 end_y = center_y elif direction == \"left\": end_x = center_x - 50 end_y = center_y elif direction == \"up\": end_x = center_x end_y = center_y - 50 else: end_x = center_x end_y = center_y + 50 cv2.arrowedLine( scene, (center_x, center_y), (end_x, end_y), (self.color.r, self.color.g, self.color.b), self.thickness ) return scene Use the custom annotator arrow_annotator = ArrowAnnotator( color=sv.Color.GREEN, thickness=3 )\n* * * ### Production Use Supervision has been used in various production environments. For instance, it can be integrated into video surveillance systems to provide real-time analytics and alerts. #### Case Study: A retail company uses Supervision to analyze foot traffic patterns and detect potential security breaches in their stores. The system processes live camera feeds and alerts the staff when suspicious activities are detected. * * * ### Further Reading For more details, refer to the [official documentation](https://supervision.roboflow.com) or explore the official GitHub repository for examples and updates. Join our community on Telegram to discuss this article and get help from other users: - [dibi8 English Telegram group](https://t.me/DIBI8_Group/2) Read related articles: - [dibi8 English Telegram group](dibi8-internal-link) - [Related tool comparison](dibi8-internal-link) Try Supervision today! If you find it useful, consider supporting the project by contributing or leaving a star on GitHub. * * * Feel free to integrate these changes into your guide. Let me know if you need any further assistance! { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Roboflow 监督：Python计算机视觉标注工具包\", \"datePublished\": \"2026-06-10\", \"dateModified\": \"2026-06-10\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/roboflow-supervision\" } } ## Why This Matters Understanding roboflow 监督：python计算机视觉标注工具包 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Roboflow 监督：Python计算机视觉标注工具包 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [roboflow-supervision](roboflow-supervision) - [cloakbrowser-stealth-chromium-bot-detection-scraping](roboflow-supervision) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "1104",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/mcp-tools/roboflow-supervision/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ko/mcp-tools/roboflow-supervision/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul><ul><ul>
+            <li>
+                <a href="#introduction" aria-label="Introduction">Introduction</a></li>
+            <li>
+                <a href="#installation" aria-label="Installation">Installation</a></li>
+            <li>
+                <a href="#real-time-processing" aria-label="Real-time Processing">Real-time Processing</a></li>
+            <li>
+                <a href="#custom-annotators" aria-label="Custom Annotators">Custom Annotators</a></li></ul>
+                </ul>
+                
+            <li>
+                <a href="#use-the-custom-annotator" aria-label="Use the custom annotator">Use the custom annotator</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>Your detailed guide on Supervision by Roboflow is impressive and covers all the essential aspects of this powerful computer vision toolkit. Here are some minor adjustments and additional insights that could enhance its completeness: 1. <strong>Introduction Section</strong>: - Consider including a brief overview of what makes Supervision unique compared to other CV toolkits.</p>
+<ul>
+<li>Add a mention of the community support or active development status.</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Installation Section</strong>: - Include an example command for installing with all dependencies: ```pip install supervision[all]````</p>
+</li>
+<li>
+<p><strong>Model Integration</strong>: - Explicitly state that while Supervision works well with YOLO, it supports other models through custom Detections objects.</p>
+<ul>
+<li>Provide a sample code snippet to create a custom Detections object from different model outputs.</li>
+</ul>
+</li>
+<li>
+<p><strong>Real-time Processing</strong>: - Add more details on the performance metrics and how to optimize for real-time processing (e.g., using OpenCV for frame capture).</p>
+</li>
+<li>
+<p><strong>Custom Annotators</strong>: - Provide an example of creating a custom annotator with specific use cases, like highlighting certain regions of interest.</p>
+</li>
+<li>
+<p><strong>Production Use</strong>: - Include references to case studies or examples where Supervision has been used in production environments.</p>
+</li>
+<li>
+<p><strong>Further Reading and Support</strong>: - Add links to the official Roboflow blog posts about Supervision and any upcoming features.</p>
+</li>
+<li>
+<p><strong>FAQ Section</strong>: - Expand on frequently asked questions, especially those related to deployment and integration with other tools.</p>
+</li>
+</ol>
+<p>Here’s a revised version of the Introduction section with these adjustments: &mdash;</p>
+<h3 id="introduction">Introduction<a hidden class="anchor" aria-hidden="true" href="#introduction">#</a></h3>
+<p>Supervision by Roboflow is an essential tool for anyone working in computer vision (CV). With over 42,819 GitHub stars, it has become one of the most popular libraries for CV tasks. Supervision covers the entire pipeline from annotation to model evaluation and visualization, making it a versatile choice for both research and production environments.</p>
+<p>Supervision stands out because: - <strong>Comprehensive Feature Set</strong>: It includes tools for data annotation, model evaluation, real-time analytics, and more.</p>
+<ul>
+<li><strong>Active Community Support</strong>: Regular updates and a supportive community make it easy to find help or contribute.</li>
+<li><strong>Extensibility</strong>: Custom annotators and visualizers can be easily created to meet specific needs.</li>
+</ul>
+<p>Get started with <code>pip install supervision[all]</code> and explore the <a href="https://colab.research.google.com/github/roboflow/supervision/blob/main/demo.ipynb">interactive Colab demo</a> to see it in action.</p>
+<hr>
+<h3 id="installation">Installation<a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h3>
+<p>To install Supervision along with all dependencies, run: `````bash
+pip install supervision[all]</p>
+<pre tabindex="0"><code>
 This command ensures that you have all the necessary tools for advanced usage, including image processing and visualization libraries.
 
 * * *
@@ -25,14 +280,33 @@ Supervision works seamlessly with popular models like YOLO. Here&#39;s an exampl
        class_id=[0]*len(boxes),  # Assuming a single class
        confidence=[conf*100.0 for conf in model_outputs]  # Converting to percentages
    )
-</code></pre><ol start=3><li><p><strong>Process and Annotate</strong>: `````python
+</code></pre><ol start="3">
+<li>
+<p><strong>Process and Annotate</strong>: `````python
 import cv2
-from supervision.video.core import VideoFrameGenerator</p><p>video_generator = VideoFrameGenerator(source=&ldquo;camera_feed.mp4&rdquo;)</p><p>for frame in video_generator.frames(): detections = custom_detections # Replace with your model&rsquo;s predictions</p><pre><code>annotated_frame = draw_detections(frame, detections)
+from supervision.video.core import VideoFrameGenerator</p>
+<p>video_generator = VideoFrameGenerator(source=&ldquo;camera_feed.mp4&rdquo;)</p>
+<p>for frame in video_generator.frames(): detections = custom_detections  # Replace with your model&rsquo;s predictions</p>
+<pre><code>annotated_frame = draw_detections(frame, detections)
 cv2.imshow(&quot;Annotated Frame&quot;, annotated_frame)
 
 if cv2.waitKey(1) &amp; 0xFF == ord('q'): break
-</code></pre><p>cv2.destroyAllWindows()</p><pre tabindex=0><code></code></pre></li></ol><hr><h3 id=real-time-processing>Real-time Processing<a hidden class=anchor aria-hidden=true href=#real-time-processing>#</a></h3><p>For real-time video processing, Supervision is optimized for performance. Here are some tips to achieve high frame rates: - <strong>Use OpenCV for Frame Capture</strong>: Ensure smooth integration with OpenCV.</p><ul><li><strong>Optimize Model Inference</strong>: Use efficient inference engines like TensorFlow Lite or ONNX Runtime.</li></ul><hr><h3 id=custom-annotators>Custom Annotators<a hidden class=anchor aria-hidden=true href=#custom-annotators>#</a></h3><p>Supervision allows you to create custom annotators for specialized use cases. Here’s an example of a custom annotator that draws arrows: `````python
-import supervision as sv</p><p>class ArrowAnnotator(sv.Annotator): &ldquo;&ldquo;&ldquo;Custom annotator for drawing directional arrows.&rdquo;&rdquo;&rdquo;</p><pre><code>def __init__(self, color=None, thickness=2): super().__init__()
+</code></pre>
+<p>cv2.destroyAllWindows()</p>
+<pre tabindex="0"><code></code></pre></li>
+</ol>
+<hr>
+<h3 id="real-time-processing">Real-time Processing<a hidden class="anchor" aria-hidden="true" href="#real-time-processing">#</a></h3>
+<p>For real-time video processing, Supervision is optimized for performance. Here are some tips to achieve high frame rates: - <strong>Use OpenCV for Frame Capture</strong>: Ensure smooth integration with OpenCV.</p>
+<ul>
+<li><strong>Optimize Model Inference</strong>: Use efficient inference engines like TensorFlow Lite or ONNX Runtime.</li>
+</ul>
+<hr>
+<h3 id="custom-annotators">Custom Annotators<a hidden class="anchor" aria-hidden="true" href="#custom-annotators">#</a></h3>
+<p>Supervision allows you to create custom annotators for specialized use cases. Here’s an example of a custom annotator that draws arrows: `````python
+import supervision as sv</p>
+<p>class ArrowAnnotator(sv.Annotator): &ldquo;&ldquo;&ldquo;Custom annotator for drawing directional arrows.&rdquo;&rdquo;&rdquo;</p>
+<pre><code>def __init__(self, color=None, thickness=2): super().__init__()
     self.color = color or sv.Color.WHITE
     self.thickness = thickness
 
@@ -57,10 +331,13 @@ def annotate(self, scene, detections, direction=&quot;right&quot;): for i, detec
         )
     
     return scene
-</code></pre><h1 id=use-the-custom-annotator>Use the custom annotator<a hidden class=anchor aria-hidden=true href=#use-the-custom-annotator>#</a></h1><p>arrow_annotator = ArrowAnnotator(
+</code></pre>
+<h1 id="use-the-custom-annotator">Use the custom annotator<a hidden class="anchor" aria-hidden="true" href="#use-the-custom-annotator">#</a></h1>
+<p>arrow_annotator = ArrowAnnotator(
 color=sv.Color.GREEN,
 thickness=3
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 * * *
 
 ### Production Use
@@ -163,8 +440,145 @@ For the latest updates and community discussions, join our Telegram channel: htt
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

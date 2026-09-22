@@ -1,33 +1,334 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/deepseek-ds4-vs-openai-api/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/deepseek-ds4-vs-openai-api/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/deepseek-ds4-vs-openai-api/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - AI application_domain: “Llm Frameworks” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: \"\" backup_url: \"\" last_maintained: “2026-05-15” draft: false faqs: - q: ‘在本地运行 DeepSeek 真的比使用 GPT-4o API 更便宜吗？’ a: ‘对于每天生成 2-3 million tokens 的重度 AI 编码工作流来说，GPT-4o 每天要花 $30+（每月约 $1,000），而通过一次性购买一台 128GB Mac 在本地运行 DeepSeek，可以让你的边际成本实际降到零（仅电费）。文章估算本地方案一年成本约 $4,000，而持续付费的 API 则要 $20,000+。’\nq: ‘我能在没有网络连接的情况下在本地运行 AI 编码工具吗？’ a: ‘可以。一旦你下载好 DeepSeek V4 GGUF 文件并把它加载到本地推理引擎中，这台机器就能完全离线运行。这使它非常适合数据不能离开基础设施的物理隔离（air-gapped）、合规要求严格的企业环境。’ q: ‘为什么 OpenAI API 在处理长项目上下文时很慢？’ a: ‘每次你发送带有大上下文（比如 100K tokens）的请求时，OpenAI 的服务器都必须为该上下文重新计算 KV Cache 数学状态，并且每次都对输入 tokens 重新计费。这种重新计算会给每一次请求都增加延迟。’ q: ‘基于磁盘的 KV 缓存是如何让本地推理更快的？’ a: ‘本地推理方案只计算一次 KV Cache，并直接把它保存到你的 NVMe SSD 上。在后续查询时，上下文会被即时恢复，而不是重新计算，这使得本地推理在长时间运行的迭代任务上比云端 API 更快。’ q: ‘相比云端 API，本地 LLM 推理在数据隐私方面有哪些优势？’ a: ‘本地推理可以做到 100% 物理隔离（air-gapped），意味着你的数据永远不会离开你自己的基础设施。而使用像 OpenAI 这样的云端 API 时，你的请求数据会离开你的环境，并在提供商的服务器上被处理。’— {\u003c/* resource-info */\u003e}\n彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API 如果在 2026 年你的公司还在重度依赖自动写代码的 AI 智能体，那你一定体会过每个月看 OpenAI API 账单时的肉痛感。动辄几千美元的“云端过路费”正在榨干你的利润。租借大脑的时代结束了！通过使用 DwarfStar 4 (DS4) 在本地满血运行 DeepSeek V4 Flash，你可以将这笔天价账单彻底清零。\n这是一场极其血腥的降维打击，让我们从财务和架构两个维度，看看本地推理是如何干翻云端 API 的。\n算账时刻：DS4 本地推理 vs OpenAI API 能买断的资产，为什么要一直付租金？看看那些每天高强度跑 Agent 的开发团队面临的真实数据：\n维度 / 架构方案 DS4 跑 DeepSeek V4 Flash (本地) OpenAI GPT-4o API 每百万 Token 成本 $0 (仅需耗点微薄电费) $5.00 输入 / $15.00 输出 一年重度使用总成本 约 3万人民币 (买断顶配 Mac) 15万人民币以上 (无底洞) 超长上下文恢复速度 瞬间秒开 (KV Cache 直接存盘) 每次都要重新排队和运算 (极慢) 核心代码安全 100% 物理断网可用 商业机密全部传送到境外服务器 KV Cache 固化：本地碾压云端的核心杀招 当你用 OpenAI API 传给它 10 万字的项目源码时，它每次都要重新阅读并计算这些代码的状态矩阵（这被称为 KV Cache）。你不仅要忍受极长的计算延迟，还要每次都为这些“重复阅读”付高昂的 Token 费。而 DS4 的架构简直是作弊：它只要计算一次，就会把整个 KV Cache 直接塞进你的固态硬盘里。你明天再聊这个项目，几十万字的记忆瞬间恢复！在处理连续的大型任务时，DS4 的本地响应速度甚至比云端 API 还要快！\nFAQ Q: 本地跑 DeepSeek 和调用 GPT-4o API 哪个成本低？ (DeepSeek local vs GPT-4o API cost) A: 天壤之别。一个重度依赖 AI 编程的开发者每天能消耗 200 万 Token。用 GPT-4o 意味着每天烧掉至少 200 块钱，一年就是 7 万。而买一台跑得动 DS4 的高配 Mac 只要一次性投入，两三个月就能回本，之后全是纯赚。\nQ: 拔掉网线还能用 AI 写代码吗？ (Local AI coding without internet) A: 完全可以。用 DS4 挂载好 DeepSeek V4 的本地模型后，你的电脑就是一个完全私有化的超算中心。这对那些对代码有极其严苛保密要求、甚至禁止联网的军工或金融级开发环境来说，是绝杀。\n推荐工具 跑或部署开源 AI 工具时，推荐：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。 推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/deepseek-ds4-vs-openai-api\" } } Why This Matters Understanding 彻底消灭 token 账单：ds4 本地跑 deepseek 极限替代 openai api is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\nWhen deploying AI agents in production, follow these best practices: 1. Start Small: Begin with a single tool and simple prompt, then gradually add complexity 2. Implement Guardrails: Use permission prompts and approval workflows for dangerous operations 3. Monitor Everything: Log all agent actions for debugging and compliance 4. Handle Failures Gracefully: Implement retry logic and fallback mechanisms 5. Test Thoroughly: Create comprehensive test suites before deploying to production\nSecurity Considerations AI agents have access to sensitive systems. Always: - Use least-privilege principles\nImplement audit logging Encrypt sensitive data at rest and in transit Regular security assessments When deploying AI agents in production, follow these best practices: 1. Start Small: Begin with a single tool and simple prompt, then gradually add complexity 2. Implement Guardrails: Use permission prompts and approval workflows for dangerous operations 3. Monitor Everything: Log all agent actions for debugging and compliance 4. Handle Failures Gracefully: Implement retry logic and fallback mechanisms 5. Test Thoroughly: Create comprehensive test suites before deploying to production\nSecurity Considerations AI agents have access to sensitive systems. Always: - Use least-privilege principles\nImplement audit logging Encrypt sensitive data at rest and in transit Regular security assessments Framework Comparison | Framework | Primary Use | Learning Curve | Community | Production Ready | |\n|\n|\n|\n|\n| | LangChain | General-purpose | Medium | Large | ✅ Yes | | LlamaIndex | RAG/Retrieval | Low | Growing | ✅ Yes | | Haystack | Document processing | Medium | Medium | ✅ Yes | | LangGraph | Stateful agents | High | Growing | ✅ Yes |\n","wordCount":"785","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/deepseek-ds4-vs-openai-api/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/deepseek-ds4-vs-openai-api/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/deepseek-ds4-vs-openai-api/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bd%bb%e5%ba%95%e6%b6%88%e7%81%ad-token-%e8%b4%a6%e5%8d%95ds4-%e6%9c%ac%e5%9c%b0%e8%b7%91-deepseek-%e6%9e%81%e9%99%90%e6%9b%bf%e4%bb%a3-openai-api aria-label="彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API">彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API</a><ul><li><a href=#%e7%ae%97%e8%b4%a6%e6%97%b6%e5%88%bbds4-%e6%9c%ac%e5%9c%b0%e6%8e%a8%e7%90%86-vs-openai-api aria-label="算账时刻：DS4 本地推理 vs OpenAI API">算账时刻：DS4 本地推理 vs OpenAI API</a><ul><li><a href=#kv-cache-%e5%9b%ba%e5%8c%96%e6%9c%ac%e5%9c%b0%e7%a2%be%e5%8e%8b%e4%ba%91%e7%ab%af%e7%9a%84%e6%a0%b8%e5%bf%83%e6%9d%80%e6%8b%9b aria-label="KV Cache 固化：本地碾压云端的核心杀招">KV Cache 固化：本地碾压云端的核心杀招</a></li></ul></li><li><a href=#faq aria-label=FAQ>FAQ</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e5%b7%a5%e5%85%b7 aria-label=推荐工具>推荐工具</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a><ul><li><a href=#security-considerations aria-label="Security Considerations">Security Considerations</a></li><li><a href=#security-considerations-1 aria-label="Security Considerations">Security Considerations</a></li></ul></li><li><a href=#framework-comparison aria-label="Framework Comparison">Framework Comparison</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/deepseek-ds4-vs-openai-api/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/deepseek-ds4-vs-openai-api/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/deepseek-ds4-vs-openai-api/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - AI application_domain: “Llm Frameworks” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: \"\" backup_url: \"\" last_maintained: “2026-05-15” draft: false faqs: - q: ‘在本地运行 DeepSeek 真的比使用 GPT-4o API 更便宜吗？’ a: ‘对于每天生成 2-3 million tokens 的重度 AI 编码工作流来说，GPT-4o 每天要花 $30+（每月约 $1,000），而通过一次性购买一台 128GB Mac 在本地运行 DeepSeek，可以让你的边际成本实际降到零（仅电费）。文章估算本地方案一年成本约 $4,000，而持续付费的 API 则要 $20,000+。’\nq: ‘我能在没有网络连接的情况下在本地运行 AI 编码工具吗？’ a: ‘可以。一旦你下载好 DeepSeek V4 GGUF 文件并把它加载到本地推理引擎中，这台机器就能完全离线运行。这使它非常适合数据不能离开基础设施的物理隔离（air-gapped）、合规要求严格的企业环境。’ q: ‘为什么 OpenAI API 在处理长项目上下文时很慢？’ a: ‘每次你发送带有大上下文（比如 100K tokens）的请求时，OpenAI 的服务器都必须为该上下文重新计算 KV Cache 数学状态，并且每次都对输入 tokens 重新计费。这种重新计算会给每一次请求都增加延迟。’ q: ‘基于磁盘的 KV 缓存是如何让本地推理更快的？’ a: ‘本地推理方案只计算一次 KV Cache，并直接把它保存到你的 NVMe SSD 上。在后续查询时，上下文会被即时恢复，而不是重新计算，这使得本地推理在长时间运行的迭代任务上比云端 API 更快。’ q: ‘相比云端 API，本地 LLM 推理在数据隐私方面有哪些优势？’ a: ‘本地推理可以做到 100% 物理隔离（air-gapped），意味着你的数据永远不会离开你自己的基础设施。而使用像 OpenAI 这样的云端 API 时，你的请求数据会离开你的环境，并在提供商的服务器上被处理。’— {\u003c/* resource-info */\u003e}\n彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API 如果在 2026 年你的公司还在重度依赖自动写代码的 AI 智能体，那你一定体会过每个月看 OpenAI API 账单时的肉痛感。动辄几千美元的“云端过路费”正在榨干你的利润。租借大脑的时代结束了！通过使用 DwarfStar 4 (DS4) 在本地满血运行 DeepSeek V4 Flash，你可以将这笔天价账单彻底清零。\n这是一场极其血腥的降维打击，让我们从财务和架构两个维度，看看本地推理是如何干翻云端 API 的。\n算账时刻：DS4 本地推理 vs OpenAI API 能买断的资产，为什么要一直付租金？看看那些每天高强度跑 Agent 的开发团队面临的真实数据：\n维度 / 架构方案 DS4 跑 DeepSeek V4 Flash (本地) OpenAI GPT-4o API 每百万 Token 成本 $0 (仅需耗点微薄电费) $5.00 输入 / $15.00 输出 一年重度使用总成本 约 3万人民币 (买断顶配 Mac) 15万人民币以上 (无底洞) 超长上下文恢复速度 瞬间秒开 (KV Cache 直接存盘) 每次都要重新排队和运算 (极慢) 核心代码安全 100% 物理断网可用 商业机密全部传送到境外服务器 KV Cache 固化：本地碾压云端的核心杀招 当你用 OpenAI API 传给它 10 万字的项目源码时，它每次都要重新阅读并计算这些代码的状态矩阵（这被称为 KV Cache）。你不仅要忍受极长的计算延迟，还要每次都为这些“重复阅读”付高昂的 Token 费。而 DS4 的架构简直是作弊：它只要计算一次，就会把整个 KV Cache 直接塞进你的固态硬盘里。你明天再聊这个项目，几十万字的记忆瞬间恢复！在处理连续的大型任务时，DS4 的本地响应速度甚至比云端 API 还要快！\nFAQ Q: 本地跑 DeepSeek 和调用 GPT-4o API 哪个成本低？ (DeepSeek local vs GPT-4o API cost) A: 天壤之别。一个重度依赖 AI 编程的开发者每天能消耗 200 万 Token。用 GPT-4o 意味着每天烧掉至少 200 块钱，一年就是 7 万。而买一台跑得动 DS4 的高配 Mac 只要一次性投入，两三个月就能回本，之后全是纯赚。\nQ: 拔掉网线还能用 AI 写代码吗？ (Local AI coding without internet) A: 完全可以。用 DS4 挂载好 DeepSeek V4 的本地模型后，你的电脑就是一个完全私有化的超算中心。这对那些对代码有极其严苛保密要求、甚至禁止联网的军工或金融级开发环境来说，是绝杀。\n推荐工具 跑或部署开源 AI 工具时，推荐：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 **** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。 推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/deepseek-ds4-vs-openai-api\" } } Why This Matters Understanding 彻底消灭 token 账单：ds4 本地跑 deepseek 极限替代 openai api is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion 彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\nWhen deploying AI agents in production, follow these best practices: 1. Start Small: Begin with a single tool and simple prompt, then gradually add complexity 2. Implement Guardrails: Use permission prompts and approval workflows for dangerous operations 3. Monitor Everything: Log all agent actions for debugging and compliance 4. Handle Failures Gracefully: Implement retry logic and fallback mechanisms 5. Test Thoroughly: Create comprehensive test suites before deploying to production\nSecurity Considerations AI agents have access to sensitive systems. Always: - Use least-privilege principles\nImplement audit logging Encrypt sensitive data at rest and in transit Regular security assessments When deploying AI agents in production, follow these best practices: 1. Start Small: Begin with a single tool and simple prompt, then gradually add complexity 2. Implement Guardrails: Use permission prompts and approval workflows for dangerous operations 3. Monitor Everything: Log all agent actions for debugging and compliance 4. Handle Failures Gracefully: Implement retry logic and fallback mechanisms 5. Test Thoroughly: Create comprehensive test suites before deploying to production\nSecurity Considerations AI agents have access to sensitive systems. Always: - Use least-privilege principles\nImplement audit logging Encrypt sensitive data at rest and in transit Regular security assessments Framework Comparison | Framework | Primary Use | Learning Curve | Community | Production Ready | |\n|\n|\n|\n|\n| | LangChain | General-purpose | Medium | Large | ✅ Yes | | LlamaIndex | RAG/Retrieval | Low | Growing | ✅ Yes | | Haystack | Document processing | Medium | Medium | ✅ Yes | | LangGraph | Stateful agents | High | Growing | ✅ Yes |\n",
+  "wordCount" : "785",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/deepseek-ds4-vs-openai-api/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/deepseek-ds4-vs-openai-api/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/deepseek-ds4-vs-openai-api/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/deepseek-ds4-vs-openai-api/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bd%bb%e5%ba%95%e6%b6%88%e7%81%ad-token-%e8%b4%a6%e5%8d%95ds4-%e6%9c%ac%e5%9c%b0%e8%b7%91-deepseek-%e6%9e%81%e9%99%90%e6%9b%bf%e4%bb%a3-openai-api" aria-label="彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API">彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API</a><ul>
+                    
+            <li>
+                <a href="#%e7%ae%97%e8%b4%a6%e6%97%b6%e5%88%bbds4-%e6%9c%ac%e5%9c%b0%e6%8e%a8%e7%90%86-vs-openai-api" aria-label="算账时刻：DS4 本地推理 vs OpenAI API">算账时刻：DS4 本地推理 vs OpenAI API</a><ul>
+                    
+            <li>
+                <a href="#kv-cache-%e5%9b%ba%e5%8c%96%e6%9c%ac%e5%9c%b0%e7%a2%be%e5%8e%8b%e4%ba%91%e7%ab%af%e7%9a%84%e6%a0%b8%e5%bf%83%e6%9d%80%e6%8b%9b" aria-label="KV Cache 固化：本地碾压云端的核心杀招">KV Cache 固化：本地碾压云端的核心杀招</a></li></ul>
+            </li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e5%b7%a5%e5%85%b7" aria-label="推荐工具">推荐工具</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a><ul>
+                    
+            <li>
+                <a href="#security-considerations" aria-label="Security Considerations">Security Considerations</a></li>
+            <li>
+                <a href="#security-considerations-1" aria-label="Security Considerations">Security Considerations</a></li></ul>
+            </li>
+            <li>
+                <a href="#framework-comparison" aria-label="Framework Comparison">Framework Comparison</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - AI
 application_domain: &ldquo;Llm Frameworks&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
-file_size: ""
-file_md5: ""
-download_url: ""
-backup_url: ""
+file_size: &quot;&quot;
+file_md5: &quot;&quot;
+download_url: &quot;&quot;
+backup_url: &quot;&quot;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
 faqs: - q: &lsquo;在本地运行 DeepSeek 真的比使用 GPT-4o API 更便宜吗？&rsquo;
-a: &lsquo;对于每天生成 2-3 million tokens 的重度 AI 编码工作流来说，GPT-4o 每天要花 $30+（每月约 $1,000），而通过一次性购买一台 128GB Mac 在本地运行 DeepSeek，可以让你的边际成本实际降到零（仅电费）。文章估算本地方案一年成本约 $4,000，而持续付费的 API 则要 $20,000+。&rsquo;</p><ul><li>q: &lsquo;我能在没有网络连接的情况下在本地运行 AI 编码工具吗？&rsquo;
-a: &lsquo;可以。一旦你下载好 DeepSeek V4 GGUF 文件并把它加载到本地推理引擎中，这台机器就能完全离线运行。这使它非常适合数据不能离开基础设施的物理隔离（air-gapped）、合规要求严格的企业环境。&rsquo;</li><li>q: &lsquo;为什么 OpenAI API 在处理长项目上下文时很慢？&rsquo;
-a: &lsquo;每次你发送带有大上下文（比如 100K tokens）的请求时，OpenAI 的服务器都必须为该上下文重新计算 KV Cache 数学状态，并且每次都对输入 tokens 重新计费。这种重新计算会给每一次请求都增加延迟。&rsquo;</li><li>q: &lsquo;基于磁盘的 KV 缓存是如何让本地推理更快的？&rsquo;
-a: &lsquo;本地推理方案只计算一次 KV Cache，并直接把它保存到你的 NVMe SSD 上。在后续查询时，上下文会被即时恢复，而不是重新计算，这使得本地推理在长时间运行的迭代任务上比云端 API 更快。&rsquo;</li><li>q: &lsquo;相比云端 API，本地 LLM 推理在数据隐私方面有哪些优势？&rsquo;
-a: &lsquo;本地推理可以做到 100% 物理隔离（air-gapped），意味着你的数据永远不会离开你自己的基础设施。而使用像 OpenAI 这样的云端 API 时，你的请求数据会离开你的环境，并在提供商的服务器上被处理。&rsquo;&mdash;</li></ul><p>{&lt;/* resource-info */>}</p><h1 id=彻底消灭-token-账单ds4-本地跑-deepseek-极限替代-openai-api>彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API<a hidden class=anchor aria-hidden=true href=#彻底消灭-token-账单ds4-本地跑-deepseek-极限替代-openai-api>#</a></h1><p>如果在 2026 年你的公司还在重度依赖自动写代码的 AI 智能体，那你一定体会过每个月看 OpenAI API 账单时的肉痛感。动辄几千美元的“云端过路费”正在榨干你的利润。租借大脑的时代结束了！通过使用 <strong>DwarfStar 4 (DS4)</strong> 在本地满血运行 DeepSeek V4 Flash，你可以将这笔天价账单彻底清零。</p><p>这是一场极其血腥的降维打击，让我们从财务和架构两个维度，看看本地推理是如何干翻云端 API 的。</p><h2 id=算账时刻ds4-本地推理-vs-openai-api>算账时刻：DS4 本地推理 vs OpenAI API<a hidden class=anchor aria-hidden=true href=#算账时刻ds4-本地推理-vs-openai-api>#</a></h2><p>能买断的资产，为什么要一直付租金？看看那些每天高强度跑 Agent 的开发团队面临的真实数据：</p><table><thead><tr><th style=text-align:left>维度 / 架构方案</th><th style=text-align:left>DS4 跑 DeepSeek V4 Flash (本地)</th><th style=text-align:left>OpenAI GPT-4o API</th></tr></thead><tbody><tr><td style=text-align:left><strong>每百万 Token 成本</strong></td><td style=text-align:left><strong>$0 (仅需耗点微薄电费)</strong></td><td style=text-align:left>$5.00 输入 / $15.00 输出</td></tr><tr><td style=text-align:left><strong>一年重度使用总成本</strong></td><td style=text-align:left><strong>约 3万人民币 (买断顶配 Mac)</strong></td><td style=text-align:left>15万人民币以上 (无底洞)</td></tr><tr><td style=text-align:left><strong>超长上下文恢复速度</strong></td><td style=text-align:left><strong>瞬间秒开 (KV Cache 直接存盘)</strong></td><td style=text-align:left>每次都要重新排队和运算 (极慢)</td></tr><tr><td style=text-align:left><strong>核心代码安全</strong></td><td style=text-align:left><strong>100% 物理断网可用</strong></td><td style=text-align:left>商业机密全部传送到境外服务器</td></tr></tbody></table><h3 id=kv-cache-固化本地碾压云端的核心杀招>KV Cache 固化：本地碾压云端的核心杀招<a hidden class=anchor aria-hidden=true href=#kv-cache-固化本地碾压云端的核心杀招>#</a></h3><p>当你用 OpenAI API 传给它 10 万字的项目源码时，它每次都要重新阅读并计算这些代码的状态矩阵（这被称为 KV Cache）。你不仅要忍受极长的计算延迟，还要每次都为这些“重复阅读”付高昂的 Token 费。而 DS4 的架构简直是作弊：它只要计算一次，就会把整个 KV Cache 直接塞进你的固态硬盘里。你明天再聊这个项目，几十万字的记忆瞬间恢复！在处理连续的大型任务时，DS4 的本地响应速度甚至比云端 API 还要快！</p><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><p><strong>Q: 本地跑 DeepSeek 和调用 GPT-4o API 哪个成本低？ (DeepSeek local vs GPT-4o API cost)</strong>
-A: 天壤之别。一个重度依赖 AI 编程的开发者每天能消耗 200 万 Token。用 GPT-4o 意味着每天烧掉至少 200 块钱，一年就是 7 万。而买一台跑得动 DS4 的高配 Mac 只要一次性投入，两三个月就能回本，之后全是纯赚。</p><p><strong>Q: 拔掉网线还能用 AI 写代码吗？ (Local AI coding without internet)</strong>
-A: 完全可以。用 DS4 挂载好 DeepSeek V4 的本地模型后，你的电脑就是一个完全私有化的超算中心。这对那些对代码有极其严苛保密要求、甚至禁止联网的军工或金融级开发环境来说，是绝杀。</p><hr><h2 id=推荐工具>推荐工具<a hidden class=anchor aria-hidden=true href=#推荐工具>#</a></h2><p>跑或部署开源 AI 工具时，推荐：</p><ul><li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。</li><li>**** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。</li></ul><p><em>推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+a: &lsquo;对于每天生成 2-3 million tokens 的重度 AI 编码工作流来说，GPT-4o 每天要花 $30+（每月约 $1,000），而通过一次性购买一台 128GB Mac 在本地运行 DeepSeek，可以让你的边际成本实际降到零（仅电费）。文章估算本地方案一年成本约 $4,000，而持续付费的 API 则要 $20,000+。&rsquo;</p>
+<ul>
+<li>q: &lsquo;我能在没有网络连接的情况下在本地运行 AI 编码工具吗？&rsquo;
+a: &lsquo;可以。一旦你下载好 DeepSeek V4 GGUF 文件并把它加载到本地推理引擎中，这台机器就能完全离线运行。这使它非常适合数据不能离开基础设施的物理隔离（air-gapped）、合规要求严格的企业环境。&rsquo;</li>
+<li>q: &lsquo;为什么 OpenAI API 在处理长项目上下文时很慢？&rsquo;
+a: &lsquo;每次你发送带有大上下文（比如 100K tokens）的请求时，OpenAI 的服务器都必须为该上下文重新计算 KV Cache 数学状态，并且每次都对输入 tokens 重新计费。这种重新计算会给每一次请求都增加延迟。&rsquo;</li>
+<li>q: &lsquo;基于磁盘的 KV 缓存是如何让本地推理更快的？&rsquo;
+a: &lsquo;本地推理方案只计算一次 KV Cache，并直接把它保存到你的 NVMe SSD 上。在后续查询时，上下文会被即时恢复，而不是重新计算，这使得本地推理在长时间运行的迭代任务上比云端 API 更快。&rsquo;</li>
+<li>q: &lsquo;相比云端 API，本地 LLM 推理在数据隐私方面有哪些优势？&rsquo;
+a: &lsquo;本地推理可以做到 100% 物理隔离（air-gapped），意味着你的数据永远不会离开你自己的基础设施。而使用像 OpenAI 这样的云端 API 时，你的请求数据会离开你的环境，并在提供商的服务器上被处理。&rsquo;&mdash;</li>
+</ul>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h1 id="彻底消灭-token-账单ds4-本地跑-deepseek-极限替代-openai-api">彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API<a hidden class="anchor" aria-hidden="true" href="#彻底消灭-token-账单ds4-本地跑-deepseek-极限替代-openai-api">#</a></h1>
+<p>如果在 2026 年你的公司还在重度依赖自动写代码的 AI 智能体，那你一定体会过每个月看 OpenAI API 账单时的肉痛感。动辄几千美元的“云端过路费”正在榨干你的利润。租借大脑的时代结束了！通过使用 <strong>DwarfStar 4 (DS4)</strong> 在本地满血运行 DeepSeek V4 Flash，你可以将这笔天价账单彻底清零。</p>
+<p>这是一场极其血腥的降维打击，让我们从财务和架构两个维度，看看本地推理是如何干翻云端 API 的。</p>
+<h2 id="算账时刻ds4-本地推理-vs-openai-api">算账时刻：DS4 本地推理 vs OpenAI API<a hidden class="anchor" aria-hidden="true" href="#算账时刻ds4-本地推理-vs-openai-api">#</a></h2>
+<p>能买断的资产，为什么要一直付租金？看看那些每天高强度跑 Agent 的开发团队面临的真实数据：</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">维度 / 架构方案</th>
+					<th style="text-align: left">DS4 跑 DeepSeek V4 Flash (本地)</th>
+					<th style="text-align: left">OpenAI GPT-4o API</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>每百万 Token 成本</strong></td>
+					<td style="text-align: left"><strong>$0 (仅需耗点微薄电费)</strong></td>
+					<td style="text-align: left">$5.00 输入 / $15.00 输出</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>一年重度使用总成本</strong></td>
+					<td style="text-align: left"><strong>约 3万人民币 (买断顶配 Mac)</strong></td>
+					<td style="text-align: left">15万人民币以上 (无底洞)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>超长上下文恢复速度</strong></td>
+					<td style="text-align: left"><strong>瞬间秒开 (KV Cache 直接存盘)</strong></td>
+					<td style="text-align: left">每次都要重新排队和运算 (极慢)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>核心代码安全</strong></td>
+					<td style="text-align: left"><strong>100% 物理断网可用</strong></td>
+					<td style="text-align: left">商业机密全部传送到境外服务器</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="kv-cache-固化本地碾压云端的核心杀招">KV Cache 固化：本地碾压云端的核心杀招<a hidden class="anchor" aria-hidden="true" href="#kv-cache-固化本地碾压云端的核心杀招">#</a></h3>
+<p>当你用 OpenAI API 传给它 10 万字的项目源码时，它每次都要重新阅读并计算这些代码的状态矩阵（这被称为 KV Cache）。你不仅要忍受极长的计算延迟，还要每次都为这些“重复阅读”付高昂的 Token 费。而 DS4 的架构简直是作弊：它只要计算一次，就会把整个 KV Cache 直接塞进你的固态硬盘里。你明天再聊这个项目，几十万字的记忆瞬间恢复！在处理连续的大型任务时，DS4 的本地响应速度甚至比云端 API 还要快！</p>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<p><strong>Q: 本地跑 DeepSeek 和调用 GPT-4o API 哪个成本低？ (DeepSeek local vs GPT-4o API cost)</strong>
+A: 天壤之别。一个重度依赖 AI 编程的开发者每天能消耗 200 万 Token。用 GPT-4o 意味着每天烧掉至少 200 块钱，一年就是 7 万。而买一台跑得动 DS4 的高配 Mac 只要一次性投入，两三个月就能回本，之后全是纯赚。</p>
+<p><strong>Q: 拔掉网线还能用 AI 写代码吗？ (Local AI coding without internet)</strong>
+A: 完全可以。用 DS4 挂载好 DeepSeek V4 的本地模型后，你的电脑就是一个完全私有化的超算中心。这对那些对代码有极其严苛保密要求、甚至禁止联网的军工或金融级开发环境来说，是绝杀。</p>
+<hr>
+<h2 id="推荐工具">推荐工具<a hidden class="anchor" aria-hidden="true" href="#推荐工具">#</a></h2>
+<p>跑或部署开源 AI 工具时，推荐：</p>
+<ul>
+<li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。</li>
+<li>**** — Claude / OpenAI / DeepSeek API 中转。一个 key 同时访问多家顶级模型, 价格约官方 30%; 跨模型对比或国内/受限地区直连不通时尤其管用。</li>
+</ul>
+<p><em>推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -41,35 +342,260 @@ A: 完全可以。用 DS4 挂载好 DeepSeek V4 的本地模型后，你的电�
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/deepseek-ds4-vs-openai-api%22>https://dibi8.com/zh/resources/deepseek-ds4-vs-openai-api"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/deepseek-ds4-vs-openai-api%22">https://dibi8.com/zh/resources/deepseek-ds4-vs-openai-api"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding 彻底消灭 token 账单：ds4 本地跑 deepseek 极限替代 openai api is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding 彻底消灭 token 账单：ds4 本地跑 deepseek 极限替代 openai api is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p><p>When deploying AI agents in production, follow these best practices: 1. <strong>Start Small</strong>: Begin with a single tool and simple prompt, then gradually add complexity
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>彻底消灭 Token 账单：DS4 本地跑 DeepSeek 极限替代 OpenAI API represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+<p>When deploying AI agents in production, follow these best practices: 1. <strong>Start Small</strong>: Begin with a single tool and simple prompt, then gradually add complexity
 2. <strong>Implement Guardrails</strong>: Use permission prompts and approval workflows for dangerous operations
 3. <strong>Monitor Everything</strong>: Log all agent actions for debugging and compliance
 4. <strong>Handle Failures Gracefully</strong>: Implement retry logic and fallback mechanisms
-5. <strong>Test Thoroughly</strong>: Create comprehensive test suites before deploying to production</p><h3 id=security-considerations>Security Considerations<a hidden class=anchor aria-hidden=true href=#security-considerations>#</a></h3><p>AI agents have access to sensitive systems. Always: - Use least-privilege principles</p><ul><li>Implement audit logging</li><li>Encrypt sensitive data at rest and in transit</li><li>Regular security assessments</li></ul><p>When deploying AI agents in production, follow these best practices: 1. <strong>Start Small</strong>: Begin with a single tool and simple prompt, then gradually add complexity
+5. <strong>Test Thoroughly</strong>: Create comprehensive test suites before deploying to production</p>
+<h3 id="security-considerations">Security Considerations<a hidden class="anchor" aria-hidden="true" href="#security-considerations">#</a></h3>
+<p>AI agents have access to sensitive systems. Always: - Use least-privilege principles</p>
+<ul>
+<li>Implement audit logging</li>
+<li>Encrypt sensitive data at rest and in transit</li>
+<li>Regular security assessments</li>
+</ul>
+<p>When deploying AI agents in production, follow these best practices: 1. <strong>Start Small</strong>: Begin with a single tool and simple prompt, then gradually add complexity
 2. <strong>Implement Guardrails</strong>: Use permission prompts and approval workflows for dangerous operations
 3. <strong>Monitor Everything</strong>: Log all agent actions for debugging and compliance
 4. <strong>Handle Failures Gracefully</strong>: Implement retry logic and fallback mechanisms
-5. <strong>Test Thoroughly</strong>: Create comprehensive test suites before deploying to production</p><h3 id=security-considerations-1>Security Considerations<a hidden class=anchor aria-hidden=true href=#security-considerations-1>#</a></h3><p>AI agents have access to sensitive systems. Always: - Use least-privilege principles</p><ul><li>Implement audit logging</li><li>Encrypt sensitive data at rest and in transit</li><li>Regular security assessments</li></ul><h2 id=framework-comparison>Framework Comparison<a hidden class=anchor aria-hidden=true href=#framework-comparison>#</a></h2><p>| Framework | Primary Use | Learning Curve | Community | Production Ready |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+5. <strong>Test Thoroughly</strong>: Create comprehensive test suites before deploying to production</p>
+<h3 id="security-considerations-1">Security Considerations<a hidden class="anchor" aria-hidden="true" href="#security-considerations-1">#</a></h3>
+<p>AI agents have access to sensitive systems. Always: - Use least-privilege principles</p>
+<ul>
+<li>Implement audit logging</li>
+<li>Encrypt sensitive data at rest and in transit</li>
+<li>Regular security assessments</li>
+</ul>
+<h2 id="framework-comparison">Framework Comparison<a hidden class="anchor" aria-hidden="true" href="#framework-comparison">#</a></h2>
+<p>| Framework | Primary Use | Learning Curve | Community | Production Ready |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>LangChain</strong> | General-purpose | Medium | Large | ✅ Yes |
 | <strong>LlamaIndex</strong> | RAG/Retrieval | Low | Growing | ✅ Yes |
 | <strong>Haystack</strong> | Document processing | Medium | Medium | ✅ Yes |
-| <strong>LangGraph</strong> | Stateful agents | High | Growing | ✅ Yes |</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| <strong>LangGraph</strong> | Stateful agents | High | Growing | ✅ Yes |</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/daily-stock-analysis-llm-powered-multi-market-stock-intelligence/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

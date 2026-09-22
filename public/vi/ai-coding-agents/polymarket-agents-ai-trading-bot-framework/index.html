@@ -1,33 +1,387 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nPython TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: “107 KB” file_md5: ’' download_url: https://github.com/Polymarket/agents backup_url: ’' last_maintained: “2024-11-05” draft: false aliases: /vi/posts/polymarket-agents-ai-trading-bot-framework/ faqs: - q: ‘Polymarket Agents là gì?’ a: ‘Polymarket Agents là một framework dành cho nhà phát triển, mã nguồn mở và được cấp phép MIT, dùng để xây dựng các AI agent giao dịch tự động trên thị trường dự đoán Polymarket. Nó cung cấp các tiện ích để phân tích thị trường, tích hợp với Polymarket API để lấy dữ liệu thời gian thực và tự động thực hiện giao dịch.’ q: ‘Tôi cần thiết lập những gì trước khi chạy Polymarket Agents?’ a: ‘Bạn cần private key của ví Polygon và một OpenAI API key được thiết lập trong file .env, cùng với một môi trường ảo Python 3.9 đã cài các dependency từ requirements.txt. Bạn cũng phải nạp USDC vào ví Polygon của mình, vì các giao dịch trên Polymarket được thanh toán bằng USDC.’ q: ‘Polymarket Agents sử dụng RAG cho các quyết định giao dịch như thế nào?’ a: ‘Nó dùng cơ sở dữ liệu vector Chroma để lưu trữ các bài báo và dữ liệu thị trường, chuyển văn bản thành embeddings để tìm kiếm ngữ nghĩa, truy xuất thông tin liên quan dựa trên bối cảnh thị trường hiện tại, và để LLM tổng hợp dữ liệu được truy xuất đó thành một quyết định giao dịch.’ q: ‘Polymarket Agents hỗ trợ những chiến lược giao dịch nào?’ a: ‘Framework này hỗ trợ giao dịch dựa trên tin tức (LLM phân tích cảm xúc về các sự kiện), phát hiện chênh lệch giá (arbitrage) giữa các thị trường liên quan, giao dịch theo xu hướng dựa trên khối lượng và biến động giá, cùng phân tích cơ bản sử dụng RAG để truy vấn dữ liệu lịch sử.’ q: ‘Làm thế nào để thực hiện một giao dịch bằng Polymarket Agents CLI?’ a: ‘Chạy lệnh CLI ‘‘python scripts/python/cli.py trade –market-id –side buy –size ’’. Bạn cũng có thể liệt kê các thị trường bằng ‘‘get-all-markets –sort-by volume’’ hoặc xem một thị trường cụ thể bằng ‘‘get-market –market-id ’’.\" {\u003c/* resource-info */\u003e}\nPolymarket Agents CLI — ảnh chính thức từ github.com/Polymarket/agents\nPolymarket Agents là gì? Polymarket Agents là một khung phát triển mã nguồn mở và bộ tiện ích để xây dựng các tác nhân AI giao dịch tự động trên Polymarket — nền tảng thị trường dự đoán lớn nhất thế giới.\nKhung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI phân tích thị trường và thực hiện giao dịch tự động\n📊 Tích hợp với API Polymarket để có dữ liệu thị trường thời gian thực 🔍 Sử dụng RAG (Tạo sinh Tăng cường Truy xuất) để đưa ra quyết định giao dịch sáng suốt 📰 Thu thập dữ liệu từ dịch vụ cá cược, nhà cung cấp tin tức và tìm kiếm web 🧠 Tận dụng các công cụ LLM toàn diện để kỹ thuật lời nhắc và phân tích thị trường 🔗 GitHub: https://github.com/Polymarket/agents\nPolymarket là gì? Polymarket là một nền tảng thị trường dự đoán phi tập trung nơi người dùng có thể giao dịch về kết quả của các sự kiện thế giới thực: - Chính trị — Kết quả bầu cử, quyết định chính sách\nTiền mã hóa — Dự đoán giá Bitcoin, phê duyệt ETF Thể thao — Kết quả trận đấu, nhà vô địch Khoa học — Đột phá nghiên cứu, sứ mệnh không gian Giải trí — Người chiến thắng giải thưởng, doanh thu phòng vé Các nhà giao dịch mua cổ phiếu “Có” hoặc “Không” dựa trên dự đoán của họ, với giá phản ánh xác suất đồng thuận của thị trường.\nTính năng chính Tính năng Mô tả Tích hợp API Polymarket Truy cập đầy đủ dữ liệu thị trường, sổ lệnh và thực hiện giao dịch Tiện ích tác nhân AI Công cụ xây dựng tác nhân giao dịch tự động RAG cục bộ và từ xa Hỗ trợ cơ sở dữ liệu vector cho tin tức và dữ liệu thị trường Dữ liệu đa nguồn Tích hợp dịch vụ cá cược, API tin tức, tìm kiếm web Kỹ thuật lời nhắc LLM Công cụ toàn diện cho suy luận nhận biết ngữ cảnh Giao diện CLI Công cụ dòng lệnh để phân tích thị trường và giao dịch Hỗ trợ Docker Triển khai container hóa để dễ dàng thiết lập Giấy phép MIT Miễn phí và mã nguồn mở Kiến trúc Polymarket Agents có các thành phần mô-đun có thể được duy trì và mở rộng bởi cộng đồng: ### API cốt lõi\nThành phần Mục đích Chroma.py Cơ sở dữ liệu vector cho nguồn tin tức và dữ liệu API Gamma.py Khách hàng API Polymarket Gamma để lấy siêu dữ liệu thị trường Polymarket.py Lớp API chính cho dữ liệu thị trường và thực hiện giao dịch Objects.py Mô hình dữ liệu Pydantic cho giao dịch, thị trường, sự kiện Lệnh CLI Giao diện người dùng chính để tương tác với Polymarket: ````bash\nLấy tất cả thị trường được sắp xếp theo khối lượng python scripts/python/cli.py get-all-markets –limit 10 –sort-by volume\nLấy chi tiết thị trường cụ thể python scripts/python/cli.py get-market –market-id Thực hiện giao dịch python scripts/python/cli.py trade –market-id –side buy –size * * * ## Bắt đầu nhanh ### 1. Clone kho lưu trữ `````bash git clone https://github.com/polymarket/agents.git cd agents 2. Thiết lập môi trường # Tạo môi trường ảo virtualenv --python=python3.9 .venv source .venv/bin/activate # Cài đặt phụ thuộc pip install -r requirements.txt 3. Cấu hình khóa API Tạo tệp .env: `````env POLYGON_WALLET_PRIVATE_KEY=“khóa riêng tư ví của bạn” OPENAI_API_KEY=“khóa API OpenAI của bạn”\n### 4. Nạp USDC vào ví Chuyển USDC vào ví Polygon của bạn để giao dịch. ### 5. Chạy CLI `````bash # Đặt đường dẫn Python export PYTHONPATH=\".\" # Chạy CLI python scripts/python/cli.py Hoặc thực hiện giao dịch trực tiếp: `````bash python agents/application/trade.py\n### 6. Lựa chọn Docker `````bash ./scripts/bash/build-docker.sh ./scripts/bash/run-docker-dev.sh ```` * * * ## Chiến lược giao dịch Polymarket Agents hỗ trợ nhiều chiến lược giao dịch dựa trên AI: ### 1. Giao dịch dựa trên tin tức - Theo dõi nguồn tin tức để biết diễn biến sự kiện - Sử dụng LLM để phân tích tình cảm và tác động - Thực hiện giao dịch dựa trên kết quả dự đoán ### 2. Phát hiện chênh lệch giá - So sánh giá trên các thị trường liên quan - Xác định xác suất định giá sai - Thực hiện giao dịch chênh lệch giá không rủi ro ### 3. Theo dõi xu hướng - Phân tích khối lượng giao dịch và biến động giá - Xác định đà trên các thị trường cụ thể - Đi theo xu hướng để có lợi nhuận ### 4. Phân tích cơ bản - Nghiên cứu bối cảnh và các yếu tố của sự kiện - Sử dụng RAG để truy vấn dữ liệu lịch sử - Đưa ra dự đoán sáng suốt * * * ## Nguồn dữ liệu Khung này tích hợp nhiều nguồn dữ liệu: | Nguồn | Loại | Trường hợp sử dụng | |-------|------|-------------------| | **API tin tức** | Tin tức thời gian thực | Theo dõi sự kiện | | **Tìm kiếm web** | Thông tin chung | Nghiên cứu nền tảng | | **Dịch vụ cá cược** | So sánh tỷ lệ cược | Phát hiện giá | | **Mạng xã hội** | Phân tích tình cảm | Phát hiện xu hướng | | **Dữ liệu on-chain** | Dữ liệu giao dịch | Tình báo thị trường | * * * ## Triển khai RAG Tạo sinh tăng cường truy xuất để giao dịch sáng suốt: 1. **Cơ sở dữ liệu vector** — Chroma DB lưu trữ bài báo tin tức và dữ liệu thị trường 2. **Nhúng** — Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa 3. **Truy xuất** — Truy vấn thông tin liên quan dựa trên ngữ cảnh thị trường 4. **Tạo sinh** — LLM tổng hợp dữ liệu đã truy xuất thành quyết định giao dịch * * * ## Quản lý rủi ro Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm thiểu | |--------|-----------| | **Rủi ro thị trường** | Quy mô vị thế, cắt lỗ | | **Rủi ro thanh khoản** | Giao dịch trên thị trường có khối lượng cao | | **Rủi ro mô hình** | Kiểm tra lại chiến lược trước khi giao dịch thực | | **Rủi ro vận hành** | Theo dõi hiệu suất bot thường xuyên | | **Rủi ro quy định** | Tuân thủ quy định địa phương | * * * ## So sánh với các công cụ khác | Tính năng | Polymarket Agents | Bot tùy chỉnh | Giao dịch thủ công | |-----------|------------------|---------------|-------------------| | **Mã nguồn mở** | ✅ | Khác nhau | Không áp dụng | | **Tích hợp AI** | ✅ | Tùy chọn | ❌ | | **Hỗ trợ RAG** | ✅ | Hiếm | ❌ | | **Dữ liệu đa nguồn** | ✅ | Tùy chọn | ❌ | | **Giao diện CLI** | ✅ | Khác nhau | Không áp dụng | | **Cộng đồng** | ✅ | Khác nhau | ❌ | | **Tốc độ** | Nhanh | Nhanh | Chậm | | **Không cảm xúc** | ✅ | ✅ | ❌ | * * * ## Trường hợp sử dụng ### 1. Giao dịch sự kiện chính trị - Kết quả bầu cử - Quyết định chính sách - Bỏ phiếu lập pháp ### 2. Dự đoán thị trường tiền mã hóa - Biến động giá Bitcoin - Phê duyệt ETF - Quyết định quy định ### 3. Cá cược thể thao - Kết quả trận đấu - Nhà vô địch - Hiệu suất cầu thủ ### 4. Thị trường giải trí - Người chiến thắng giải thưởng - Dự đoán doanh thu phòng vé - Kết quả chương trình truyền hình thực tế * * * ## Kho lưu trữ liên quan | Kho lưu trữ | Mục đích | |-------------|----------| | [py-clob-client](https://github.com/Polymarket/py-clob-client) | Khách hàng Python cho Polymarket CLOB | | [python-order-utils](https://github.com/Polymarket/python-order-utils) | Tạo và ký đơn hàng | | [clob-client](https://github.com/Polymarket/clob-client) | Khách hàng TypeScript cho CLOB | | [Langchain](https://github.com/langchain-ai/langchain) | Suy luận nhận biết ngữ cảnh | | [Chroma](https://docs.trychroma.com) | Cơ sở dữ liệu vector | * * * ## Tài nguyên đọc - [Thị trường dự đoán: Điểm nghẽn và Giải pháp Tiếp theo](https://mirror.xyz/1kx.eth/jnQhA56Kx9p3RODKiGzqzHGGEODpbskivUUNdd7hwh0) - [Tiền mã hóa + Ứng dụng AI](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) của Vitalik Buterin - [Siêu dự đoán](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment) * * * ## Bài viết liên quan - [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/vi/resources/dev-utils/polymarket-trading-bot-stack/) — Kiến trúc bot giao dịch hoàn chỉnh - [Free Claude Code: Công Cụ Proxy Mã Nguồn Mở Để Sử Dụng Claude Code CLI Miễn Phí](/vi/resources/ai-tools/free-claude-code-open-source-proxy/) — Trợ lý lập trình AI * * * ## Kết luận **Polymarket Agents** cung cấp một nền tảng vững chắc để xây dựng bot giao dịch dựa trên AI trên các thị trường dự đoán. Kiến trúc mô-đun, tích hợp API toàn diện và khả năng RAG làm cho nó phù hợp cho cả người mới bắt đầu và nhà phát triển có kinh nghiệm. **Phù hợp nhất cho**: Nhà phát triển quan tâm đến giao dịch thuật toán, thị trường dự đoán và ra quyết định dựa trên AI **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents) * * * * * * ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập. - **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây. - **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên. *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.* *Cập nhật lần cuối: 2026-05-06* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trường Dự Đoán\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/polymarket-agents-ai-trading-bot-framework\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"2154","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>11 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#polymarket-agents-l%c3%a0-g%c3%ac aria-label="Polymarket Agents là gì?">Polymarket Agents là gì?</a></li><li><a href=#polymarket-l%c3%a0-g%c3%ac aria-label="Polymarket là gì?">Polymarket là gì?</a></li><li><a href=#t%c3%adnh-n%c4%83ng-ch%c3%adnh aria-label="Tính năng chính">Tính năng chính</a></li><li><a href=#ki%e1%ba%bfn-tr%c3%bac aria-label="Kiến trúc">Kiến trúc</a><ul><li><a href=#l%e1%bb%87nh-cli aria-label="Lệnh CLI">Lệnh CLI</a></li></ul></li></ul><li><a href=#l%e1%ba%a5y-t%e1%ba%a5t-c%e1%ba%a3-th%e1%bb%8b-tr%c6%b0%e1%bb%9dng-%c4%91%c6%b0%e1%bb%a3c-s%e1%ba%afp-x%e1%ba%bfp-theo-kh%e1%bb%91i-l%c6%b0%e1%bb%a3ng aria-label="Lấy tất cả thị trường được sắp xếp theo khối lượng">Lấy tất cả thị trường được sắp xếp theo khối lượng</a></li><li><a href=#l%e1%ba%a5y-chi-ti%e1%ba%bft-th%e1%bb%8b-tr%c6%b0%e1%bb%9dng-c%e1%bb%a5-th%e1%bb%83 aria-label="Lấy chi tiết thị trường cụ thể">Lấy chi tiết thị trường cụ thể</a></li><li><a href=#th%e1%bb%b1c-hi%e1%bb%87n-giao-d%e1%bb%8bch aria-label="Thực hiện giao dịch">Thực hiện giao dịch</a><ul><ul><li><a href=#2-thi%e1%ba%bft-l%e1%ba%adp-m%c3%b4i-tr%c6%b0%e1%bb%9dng aria-label="2. Thiết lập môi trường">2. Thiết lập môi trường</a></li><li><a href=#3-c%e1%ba%a5u-h%c3%acnh-kh%c3%b3a-api aria-label="3. Cấu hình khóa API">3. Cấu hình khóa API</a></li></ul></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nPython TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: “107 KB” file_md5: ’' download_url: https://github.com/Polymarket/agents backup_url: ’' last_maintained: “2024-11-05” draft: false aliases: /vi/posts/polymarket-agents-ai-trading-bot-framework/ faqs: - q: ‘Polymarket Agents là gì?’ a: ‘Polymarket Agents là một framework dành cho nhà phát triển, mã nguồn mở và được cấp phép MIT, dùng để xây dựng các AI agent giao dịch tự động trên thị trường dự đoán Polymarket. Nó cung cấp các tiện ích để phân tích thị trường, tích hợp với Polymarket API để lấy dữ liệu thời gian thực và tự động thực hiện giao dịch.’ q: ‘Tôi cần thiết lập những gì trước khi chạy Polymarket Agents?’ a: ‘Bạn cần private key của ví Polygon và một OpenAI API key được thiết lập trong file .env, cùng với một môi trường ảo Python 3.9 đã cài các dependency từ requirements.txt. Bạn cũng phải nạp USDC vào ví Polygon của mình, vì các giao dịch trên Polymarket được thanh toán bằng USDC.’ q: ‘Polymarket Agents sử dụng RAG cho các quyết định giao dịch như thế nào?’ a: ‘Nó dùng cơ sở dữ liệu vector Chroma để lưu trữ các bài báo và dữ liệu thị trường, chuyển văn bản thành embeddings để tìm kiếm ngữ nghĩa, truy xuất thông tin liên quan dựa trên bối cảnh thị trường hiện tại, và để LLM tổng hợp dữ liệu được truy xuất đó thành một quyết định giao dịch.’ q: ‘Polymarket Agents hỗ trợ những chiến lược giao dịch nào?’ a: ‘Framework này hỗ trợ giao dịch dựa trên tin tức (LLM phân tích cảm xúc về các sự kiện), phát hiện chênh lệch giá (arbitrage) giữa các thị trường liên quan, giao dịch theo xu hướng dựa trên khối lượng và biến động giá, cùng phân tích cơ bản sử dụng RAG để truy vấn dữ liệu lịch sử.’ q: ‘Làm thế nào để thực hiện một giao dịch bằng Polymarket Agents CLI?’ a: ‘Chạy lệnh CLI ‘‘python scripts/python/cli.py trade –market-id –side buy –size ’’. Bạn cũng có thể liệt kê các thị trường bằng ‘‘get-all-markets –sort-by volume’’ hoặc xem một thị trường cụ thể bằng ‘‘get-market –market-id ’’.\" {\u003c/* resource-info */\u003e}\nPolymarket Agents CLI — ảnh chính thức từ github.com/Polymarket/agents\nPolymarket Agents là gì? Polymarket Agents là một khung phát triển mã nguồn mở và bộ tiện ích để xây dựng các tác nhân AI giao dịch tự động trên Polymarket — nền tảng thị trường dự đoán lớn nhất thế giới.\nKhung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI phân tích thị trường và thực hiện giao dịch tự động\n📊 Tích hợp với API Polymarket để có dữ liệu thị trường thời gian thực 🔍 Sử dụng RAG (Tạo sinh Tăng cường Truy xuất) để đưa ra quyết định giao dịch sáng suốt 📰 Thu thập dữ liệu từ dịch vụ cá cược, nhà cung cấp tin tức và tìm kiếm web 🧠 Tận dụng các công cụ LLM toàn diện để kỹ thuật lời nhắc và phân tích thị trường 🔗 GitHub: https://github.com/Polymarket/agents\nPolymarket là gì? Polymarket là một nền tảng thị trường dự đoán phi tập trung nơi người dùng có thể giao dịch về kết quả của các sự kiện thế giới thực: - Chính trị — Kết quả bầu cử, quyết định chính sách\nTiền mã hóa — Dự đoán giá Bitcoin, phê duyệt ETF Thể thao — Kết quả trận đấu, nhà vô địch Khoa học — Đột phá nghiên cứu, sứ mệnh không gian Giải trí — Người chiến thắng giải thưởng, doanh thu phòng vé Các nhà giao dịch mua cổ phiếu “Có” hoặc “Không” dựa trên dự đoán của họ, với giá phản ánh xác suất đồng thuận của thị trường.\nTính năng chính Tính năng Mô tả Tích hợp API Polymarket Truy cập đầy đủ dữ liệu thị trường, sổ lệnh và thực hiện giao dịch Tiện ích tác nhân AI Công cụ xây dựng tác nhân giao dịch tự động RAG cục bộ và từ xa Hỗ trợ cơ sở dữ liệu vector cho tin tức và dữ liệu thị trường Dữ liệu đa nguồn Tích hợp dịch vụ cá cược, API tin tức, tìm kiếm web Kỹ thuật lời nhắc LLM Công cụ toàn diện cho suy luận nhận biết ngữ cảnh Giao diện CLI Công cụ dòng lệnh để phân tích thị trường và giao dịch Hỗ trợ Docker Triển khai container hóa để dễ dàng thiết lập Giấy phép MIT Miễn phí và mã nguồn mở Kiến trúc Polymarket Agents có các thành phần mô-đun có thể được duy trì và mở rộng bởi cộng đồng: ### API cốt lõi\nThành phần Mục đích Chroma.py Cơ sở dữ liệu vector cho nguồn tin tức và dữ liệu API Gamma.py Khách hàng API Polymarket Gamma để lấy siêu dữ liệu thị trường Polymarket.py Lớp API chính cho dữ liệu thị trường và thực hiện giao dịch Objects.py Mô hình dữ liệu Pydantic cho giao dịch, thị trường, sự kiện Lệnh CLI Giao diện người dùng chính để tương tác với Polymarket: ````bash\nLấy tất cả thị trường được sắp xếp theo khối lượng python scripts/python/cli.py get-all-markets –limit 10 –sort-by volume\nLấy chi tiết thị trường cụ thể python scripts/python/cli.py get-market –market-id Thực hiện giao dịch python scripts/python/cli.py trade –market-id –side buy –size * * * ## Bắt đầu nhanh ### 1. Clone kho lưu trữ `````bash git clone https://github.com/polymarket/agents.git cd agents 2. Thiết lập môi trường # Tạo môi trường ảo virtualenv --python=python3.9 .venv source .venv/bin/activate # Cài đặt phụ thuộc pip install -r requirements.txt 3. Cấu hình khóa API Tạo tệp .env: `````env POLYGON_WALLET_PRIVATE_KEY=“khóa riêng tư ví của bạn” OPENAI_API_KEY=“khóa API OpenAI của bạn”\n### 4. Nạp USDC vào ví Chuyển USDC vào ví Polygon của bạn để giao dịch. ### 5. Chạy CLI `````bash # Đặt đường dẫn Python export PYTHONPATH=\".\" # Chạy CLI python scripts/python/cli.py Hoặc thực hiện giao dịch trực tiếp: `````bash python agents/application/trade.py\n### 6. Lựa chọn Docker `````bash ./scripts/bash/build-docker.sh ./scripts/bash/run-docker-dev.sh ```` * * * ## Chiến lược giao dịch Polymarket Agents hỗ trợ nhiều chiến lược giao dịch dựa trên AI: ### 1. Giao dịch dựa trên tin tức - Theo dõi nguồn tin tức để biết diễn biến sự kiện - Sử dụng LLM để phân tích tình cảm và tác động - Thực hiện giao dịch dựa trên kết quả dự đoán ### 2. Phát hiện chênh lệch giá - So sánh giá trên các thị trường liên quan - Xác định xác suất định giá sai - Thực hiện giao dịch chênh lệch giá không rủi ro ### 3. Theo dõi xu hướng - Phân tích khối lượng giao dịch và biến động giá - Xác định đà trên các thị trường cụ thể - Đi theo xu hướng để có lợi nhuận ### 4. Phân tích cơ bản - Nghiên cứu bối cảnh và các yếu tố của sự kiện - Sử dụng RAG để truy vấn dữ liệu lịch sử - Đưa ra dự đoán sáng suốt * * * ## Nguồn dữ liệu Khung này tích hợp nhiều nguồn dữ liệu: | Nguồn | Loại | Trường hợp sử dụng | |-------|------|-------------------| | **API tin tức** | Tin tức thời gian thực | Theo dõi sự kiện | | **Tìm kiếm web** | Thông tin chung | Nghiên cứu nền tảng | | **Dịch vụ cá cược** | So sánh tỷ lệ cược | Phát hiện giá | | **Mạng xã hội** | Phân tích tình cảm | Phát hiện xu hướng | | **Dữ liệu on-chain** | Dữ liệu giao dịch | Tình báo thị trường | * * * ## Triển khai RAG Tạo sinh tăng cường truy xuất để giao dịch sáng suốt: 1. **Cơ sở dữ liệu vector** — Chroma DB lưu trữ bài báo tin tức và dữ liệu thị trường 2. **Nhúng** — Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa 3. **Truy xuất** — Truy vấn thông tin liên quan dựa trên ngữ cảnh thị trường 4. **Tạo sinh** — LLM tổng hợp dữ liệu đã truy xuất thành quyết định giao dịch * * * ## Quản lý rủi ro Các cân nhắc quan trọng cho giao dịch tự động: | Rủi ro | Giảm thiểu | |--------|-----------| | **Rủi ro thị trường** | Quy mô vị thế, cắt lỗ | | **Rủi ro thanh khoản** | Giao dịch trên thị trường có khối lượng cao | | **Rủi ro mô hình** | Kiểm tra lại chiến lược trước khi giao dịch thực | | **Rủi ro vận hành** | Theo dõi hiệu suất bot thường xuyên | | **Rủi ro quy định** | Tuân thủ quy định địa phương | * * * ## So sánh với các công cụ khác | Tính năng | Polymarket Agents | Bot tùy chỉnh | Giao dịch thủ công | |-----------|------------------|---------------|-------------------| | **Mã nguồn mở** | ✅ | Khác nhau | Không áp dụng | | **Tích hợp AI** | ✅ | Tùy chọn | ❌ | | **Hỗ trợ RAG** | ✅ | Hiếm | ❌ | | **Dữ liệu đa nguồn** | ✅ | Tùy chọn | ❌ | | **Giao diện CLI** | ✅ | Khác nhau | Không áp dụng | | **Cộng đồng** | ✅ | Khác nhau | ❌ | | **Tốc độ** | Nhanh | Nhanh | Chậm | | **Không cảm xúc** | ✅ | ✅ | ❌ | * * * ## Trường hợp sử dụng ### 1. Giao dịch sự kiện chính trị - Kết quả bầu cử - Quyết định chính sách - Bỏ phiếu lập pháp ### 2. Dự đoán thị trường tiền mã hóa - Biến động giá Bitcoin - Phê duyệt ETF - Quyết định quy định ### 3. Cá cược thể thao - Kết quả trận đấu - Nhà vô địch - Hiệu suất cầu thủ ### 4. Thị trường giải trí - Người chiến thắng giải thưởng - Dự đoán doanh thu phòng vé - Kết quả chương trình truyền hình thực tế * * * ## Kho lưu trữ liên quan | Kho lưu trữ | Mục đích | |-------------|----------| | [py-clob-client](https://github.com/Polymarket/py-clob-client) | Khách hàng Python cho Polymarket CLOB | | [python-order-utils](https://github.com/Polymarket/python-order-utils) | Tạo và ký đơn hàng | | [clob-client](https://github.com/Polymarket/clob-client) | Khách hàng TypeScript cho CLOB | | [Langchain](https://github.com/langchain-ai/langchain) | Suy luận nhận biết ngữ cảnh | | [Chroma](https://docs.trychroma.com) | Cơ sở dữ liệu vector | * * * ## Tài nguyên đọc - [Thị trường dự đoán: Điểm nghẽn và Giải pháp Tiếp theo](https://mirror.xyz/1kx.eth/jnQhA56Kx9p3RODKiGzqzHGGEODpbskivUUNdd7hwh0) - [Tiền mã hóa + Ứng dụng AI](https://vitalik.eth.limo/general/2024/01/30/cryptoai.html) của Vitalik Buterin - [Siêu dự đoán](https://hbr.org/2016/05/superforecasting-how-to-upgrade-your-companys-judgment) * * * ## Bài viết liên quan - [28 Tools Behind a $1M Polymarket Trading Bot: Full Stack Breakdown](/vi/resources/dev-utils/polymarket-trading-bot-stack/) — Kiến trúc bot giao dịch hoàn chỉnh - [Free Claude Code: Công Cụ Proxy Mã Nguồn Mở Để Sử Dụng Claude Code CLI Miễn Phí](/vi/resources/ai-tools/free-claude-code-open-source-proxy/) — Trợ lý lập trình AI * * * ## Kết luận **Polymarket Agents** cung cấp một nền tảng vững chắc để xây dựng bot giao dịch dựa trên AI trên các thị trường dự đoán. Kiến trúc mô-đun, tích hợp API toàn diện và khả năng RAG làm cho nó phù hợp cho cả người mới bắt đầu và nhà phát triển có kinh nghiệm. **Phù hợp nhất cho**: Nhà phát triển quan tâm đến giao dịch thuật toán, thị trường dự đoán và ra quyết định dựa trên AI **GitHub**: [https://github.com/Polymarket/agents](https://github.com/Polymarket/agents) * * * * * * ## Hạ Tầng Đề Xuất Cho Tự Lưu Trữ Để chạy stack này 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - **** — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu. Lựa chọn mặc định cho developer độc lập. - **** — VPS Hong Kong, độ trễ thấp với người dùng Việt Nam. dibi8.com cũng được host ở đây. - **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam, giảm 60% gói đầu tiên. *Đây là affiliate link, không phát sinh chi phí thêm cho bạn nhưng giúp dibi8.com duy trì hoạt động.* *Cập nhật lần cuối: 2026-05-06* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Polymarket Agents: Xây Dựng Bot Giao Dịch AI cho Thị Trường Dự Đoán\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/polymarket-agents-ai-trading-bot-framework\" } } ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2154",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>11 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/polymarket-agents-ai-trading-bot-framework/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#polymarket-agents-l%c3%a0-g%c3%ac" aria-label="Polymarket Agents là gì?">Polymarket Agents là gì?</a></li>
+            <li>
+                <a href="#polymarket-l%c3%a0-g%c3%ac" aria-label="Polymarket là gì?">Polymarket là gì?</a></li>
+            <li>
+                <a href="#t%c3%adnh-n%c4%83ng-ch%c3%adnh" aria-label="Tính năng chính">Tính năng chính</a></li>
+            <li>
+                <a href="#ki%e1%ba%bfn-tr%c3%bac" aria-label="Kiến trúc">Kiến trúc</a><ul>
+                    
+            <li>
+                <a href="#l%e1%bb%87nh-cli" aria-label="Lệnh CLI">Lệnh CLI</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#l%e1%ba%a5y-t%e1%ba%a5t-c%e1%ba%a3-th%e1%bb%8b-tr%c6%b0%e1%bb%9dng-%c4%91%c6%b0%e1%bb%a3c-s%e1%ba%afp-x%e1%ba%bfp-theo-kh%e1%bb%91i-l%c6%b0%e1%bb%a3ng" aria-label="Lấy tất cả thị trường được sắp xếp theo khối lượng">Lấy tất cả thị trường được sắp xếp theo khối lượng</a></li>
+            <li>
+                <a href="#l%e1%ba%a5y-chi-ti%e1%ba%bft-th%e1%bb%8b-tr%c6%b0%e1%bb%9dng-c%e1%bb%a5-th%e1%bb%83" aria-label="Lấy chi tiết thị trường cụ thể">Lấy chi tiết thị trường cụ thể</a></li>
+            <li>
+                <a href="#th%e1%bb%b1c-hi%e1%bb%87n-giao-d%e1%bb%8bch" aria-label="Thực hiện giao dịch">Thực hiện giao dịch</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#2-thi%e1%ba%bft-l%e1%ba%adp-m%c3%b4i-tr%c6%b0%e1%bb%9dng" aria-label="2. Thiết lập môi trường">2. Thiết lập môi trường</a></li>
+            <li>
+                <a href="#3-c%e1%ba%a5u-h%c3%acnh-kh%c3%b3a-api" aria-label="3. Cấu hình khóa API">3. Cấu hình khóa API</a>
+            </li>
+        </ul>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 tác nhân AI giao dịch tự động trên thị trường dự đoán Polymarket.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker</p><ul><li>Python</li><li>TypeScript
+tech_stack: - Docker</p>
+<ul>
+<li>Python</li>
+<li>TypeScript
 application_domain: Llm Frameworks
 source_version: &rsquo;'
 licensing_model: Open Source
 license_type: MIT
 file_size: &ldquo;107 KB&rdquo;
 file_md5: &rsquo;'
-download_url: <a href=https://github.com/Polymarket/agents>https://github.com/Polymarket/agents</a>
+download_url: <a href="https://github.com/Polymarket/agents">https://github.com/Polymarket/agents</a>
 backup_url: &rsquo;'
 last_maintained: &ldquo;2024-11-05&rdquo;
 draft: false
-aliases:<ul><li>/vi/posts/polymarket-agents-ai-trading-bot-framework/
+aliases:
+<ul>
+<li>/vi/posts/polymarket-agents-ai-trading-bot-framework/
 faqs: - q: &lsquo;Polymarket Agents là gì?&rsquo;
-a: &lsquo;Polymarket Agents là một framework dành cho nhà phát triển, mã nguồn mở và được cấp phép MIT, dùng để xây dựng các AI agent giao dịch tự động trên thị trường dự đoán Polymarket. Nó cung cấp các tiện ích để phân tích thị trường, tích hợp với Polymarket API để lấy dữ liệu thời gian thực và tự động thực hiện giao dịch.&rsquo;</li><li>q: &lsquo;Tôi cần thiết lập những gì trước khi chạy Polymarket Agents?&rsquo;
-a: &lsquo;Bạn cần private key của ví Polygon và một OpenAI API key được thiết lập trong file .env, cùng với một môi trường ảo Python 3.9 đã cài các dependency từ requirements.txt. Bạn cũng phải nạp USDC vào ví Polygon của mình, vì các giao dịch trên Polymarket được thanh toán bằng USDC.&rsquo;</li><li>q: &lsquo;Polymarket Agents sử dụng RAG cho các quyết định giao dịch như thế nào?&rsquo;
-a: &lsquo;Nó dùng cơ sở dữ liệu vector Chroma để lưu trữ các bài báo và dữ liệu thị trường, chuyển văn bản thành embeddings để tìm kiếm ngữ nghĩa, truy xuất thông tin liên quan dựa trên bối cảnh thị trường hiện tại, và để LLM tổng hợp dữ liệu được truy xuất đó thành một quyết định giao dịch.&rsquo;</li><li>q: &lsquo;Polymarket Agents hỗ trợ những chiến lược giao dịch nào?&rsquo;
-a: &lsquo;Framework này hỗ trợ giao dịch dựa trên tin tức (LLM phân tích cảm xúc về các sự kiện), phát hiện chênh lệch giá (arbitrage) giữa các thị trường liên quan, giao dịch theo xu hướng dựa trên khối lượng và biến động giá, cùng phân tích cơ bản sử dụng RAG để truy vấn dữ liệu lịch sử.&rsquo;</li><li>q: &lsquo;Làm thế nào để thực hiện một giao dịch bằng Polymarket Agents CLI?&rsquo;
-a: &lsquo;Chạy lệnh CLI &lsquo;&lsquo;python scripts/python/cli.py trade &ndash;market-id &lt;MARKET_ID> &ndash;side buy &ndash;size <size>&rsquo;&rsquo;. Bạn cũng có thể liệt kê các thị trường bằng &lsquo;&lsquo;get-all-markets &ndash;sort-by volume&rsquo;&rsquo; hoặc xem một thị trường cụ thể bằng &lsquo;&lsquo;get-market &ndash;market-id &lt;MARKET_ID>&rsquo;&rsquo;."</li></ul></li></ul><hr><p>{&lt;/* resource-info */>}</p><p><img alt="Polymarket Agents CLI hiển thị các lệnh" loading=lazy src=/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png>
-<em>Polymarket Agents CLI — ảnh chính thức từ <a href=https://github.com/Polymarket/agents>github.com/Polymarket/agents</a></em></p><h2 id=polymarket-agents-là-gì>Polymarket Agents là gì?<a hidden class=anchor aria-hidden=true href=#polymarket-agents-là-gì>#</a></h2><p><strong>Polymarket Agents</strong> là một khung phát triển mã nguồn mở và bộ tiện ích để xây dựng các tác nhân AI giao dịch tự động trên <strong>Polymarket</strong> — nền tảng thị trường dự đoán lớn nhất thế giới.</p><p>Khung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI phân tích thị trường và thực hiện giao dịch tự động</p><ul><li>📊 Tích hợp với API Polymarket để có dữ liệu thị trường thời gian thực</li><li>🔍 Sử dụng RAG (Tạo sinh Tăng cường Truy xuất) để đưa ra quyết định giao dịch sáng suốt</li><li>📰 Thu thập dữ liệu từ dịch vụ cá cược, nhà cung cấp tin tức và tìm kiếm web</li><li>🧠 Tận dụng các công cụ LLM toàn diện để kỹ thuật lời nhắc và phân tích thị trường</li></ul><p>🔗 <strong>GitHub</strong>: <a href=https://github.com/Polymarket/agents>https://github.com/Polymarket/agents</a></p><hr><h2 id=polymarket-là-gì>Polymarket là gì?<a hidden class=anchor aria-hidden=true href=#polymarket-là-gì>#</a></h2><p><strong>Polymarket</strong> là một nền tảng thị trường dự đoán phi tập trung nơi người dùng có thể giao dịch về kết quả của các sự kiện thế giới thực: - <strong>Chính trị</strong> — Kết quả bầu cử, quyết định chính sách</p><ul><li><strong>Tiền mã hóa</strong> — Dự đoán giá Bitcoin, phê duyệt ETF</li><li><strong>Thể thao</strong> — Kết quả trận đấu, nhà vô địch</li><li><strong>Khoa học</strong> — Đột phá nghiên cứu, sứ mệnh không gian</li><li><strong>Giải trí</strong> — Người chiến thắng giải thưởng, doanh thu phòng vé</li></ul><p>Các nhà giao dịch mua cổ phiếu &ldquo;Có&rdquo; hoặc &ldquo;Không&rdquo; dựa trên dự đoán của họ, với giá phản ánh xác suất đồng thuận của thị trường.</p><hr><h2 id=tính-năng-chính>Tính năng chính<a hidden class=anchor aria-hidden=true href=#tính-năng-chính>#</a></h2><table><thead><tr><th>Tính năng</th><th>Mô tả</th></tr></thead><tbody><tr><td><strong>Tích hợp API Polymarket</strong></td><td>Truy cập đầy đủ dữ liệu thị trường, sổ lệnh và thực hiện giao dịch</td></tr><tr><td><strong>Tiện ích tác nhân AI</strong></td><td>Công cụ xây dựng tác nhân giao dịch tự động</td></tr><tr><td><strong>RAG cục bộ và từ xa</strong></td><td>Hỗ trợ cơ sở dữ liệu vector cho tin tức và dữ liệu thị trường</td></tr><tr><td><strong>Dữ liệu đa nguồn</strong></td><td>Tích hợp dịch vụ cá cược, API tin tức, tìm kiếm web</td></tr><tr><td><strong>Kỹ thuật lời nhắc LLM</strong></td><td>Công cụ toàn diện cho suy luận nhận biết ngữ cảnh</td></tr><tr><td><strong>Giao diện CLI</strong></td><td>Công cụ dòng lệnh để phân tích thị trường và giao dịch</td></tr><tr><td><strong>Hỗ trợ Docker</strong></td><td>Triển khai container hóa để dễ dàng thiết lập</td></tr><tr><td><strong>Giấy phép MIT</strong></td><td>Miễn phí và mã nguồn mở</td></tr></tbody></table><hr><h2 id=kiến-trúc>Kiến trúc<a hidden class=anchor aria-hidden=true href=#kiến-trúc>#</a></h2><p>Polymarket Agents có các thành phần mô-đun có thể được duy trì và mở rộng bởi cộng đồng: ### API cốt lõi</p><table><thead><tr><th>Thành phần</th><th>Mục đích</th></tr></thead><tbody><tr><td><strong>Chroma.py</strong></td><td>Cơ sở dữ liệu vector cho nguồn tin tức và dữ liệu API</td></tr><tr><td><strong>Gamma.py</strong></td><td>Khách hàng API Polymarket Gamma để lấy siêu dữ liệu thị trường</td></tr><tr><td><strong>Polymarket.py</strong></td><td>Lớp API chính cho dữ liệu thị trường và thực hiện giao dịch</td></tr><tr><td><strong>Objects.py</strong></td><td>Mô hình dữ liệu Pydantic cho giao dịch, thị trường, sự kiện</td></tr></tbody></table><h3 id=lệnh-cli>Lệnh CLI<a hidden class=anchor aria-hidden=true href=#lệnh-cli>#</a></h3><p>Giao diện người dùng chính để tương tác với Polymarket: ````bash</p><h1 id=lấy-tất-cả-thị-trường-được-sắp-xếp-theo-khối-lượng>Lấy tất cả thị trường được sắp xếp theo khối lượng<a hidden class=anchor aria-hidden=true href=#lấy-tất-cả-thị-trường-được-sắp-xếp-theo-khối-lượng>#</a></h1><p>python scripts/python/cli.py get-all-markets &ndash;limit 10 &ndash;sort-by volume</p><h1 id=lấy-chi-tiết-thị-trường-cụ-thể>Lấy chi tiết thị trường cụ thể<a hidden class=anchor aria-hidden=true href=#lấy-chi-tiết-thị-trường-cụ-thể>#</a></h1><p>python scripts/python/cli.py get-market &ndash;market-id &lt;MARKET_ID></p><h1 id=thực-hiện-giao-dịch>Thực hiện giao dịch<a hidden class=anchor aria-hidden=true href=#thực-hiện-giao-dịch>#</a></h1><p>python scripts/python/cli.py trade &ndash;market-id &lt;MARKET_ID> &ndash;side buy &ndash;size <size></p><pre tabindex=0><code>
+a: &lsquo;Polymarket Agents là một framework dành cho nhà phát triển, mã nguồn mở và được cấp phép MIT, dùng để xây dựng các AI agent giao dịch tự động trên thị trường dự đoán Polymarket. Nó cung cấp các tiện ích để phân tích thị trường, tích hợp với Polymarket API để lấy dữ liệu thời gian thực và tự động thực hiện giao dịch.&rsquo;</li>
+<li>q: &lsquo;Tôi cần thiết lập những gì trước khi chạy Polymarket Agents?&rsquo;
+a: &lsquo;Bạn cần private key của ví Polygon và một OpenAI API key được thiết lập trong file .env, cùng với một môi trường ảo Python 3.9 đã cài các dependency từ requirements.txt. Bạn cũng phải nạp USDC vào ví Polygon của mình, vì các giao dịch trên Polymarket được thanh toán bằng USDC.&rsquo;</li>
+<li>q: &lsquo;Polymarket Agents sử dụng RAG cho các quyết định giao dịch như thế nào?&rsquo;
+a: &lsquo;Nó dùng cơ sở dữ liệu vector Chroma để lưu trữ các bài báo và dữ liệu thị trường, chuyển văn bản thành embeddings để tìm kiếm ngữ nghĩa, truy xuất thông tin liên quan dựa trên bối cảnh thị trường hiện tại, và để LLM tổng hợp dữ liệu được truy xuất đó thành một quyết định giao dịch.&rsquo;</li>
+<li>q: &lsquo;Polymarket Agents hỗ trợ những chiến lược giao dịch nào?&rsquo;
+a: &lsquo;Framework này hỗ trợ giao dịch dựa trên tin tức (LLM phân tích cảm xúc về các sự kiện), phát hiện chênh lệch giá (arbitrage) giữa các thị trường liên quan, giao dịch theo xu hướng dựa trên khối lượng và biến động giá, cùng phân tích cơ bản sử dụng RAG để truy vấn dữ liệu lịch sử.&rsquo;</li>
+<li>q: &lsquo;Làm thế nào để thực hiện một giao dịch bằng Polymarket Agents CLI?&rsquo;
+a: &lsquo;Chạy lệnh CLI &lsquo;&lsquo;python scripts/python/cli.py trade &ndash;market-id &lt;MARKET_ID&gt; &ndash;side buy &ndash;size <SIZE>&rsquo;&rsquo;. Bạn cũng có thể liệt kê các thị trường bằng &lsquo;&lsquo;get-all-markets &ndash;sort-by volume&rsquo;&rsquo; hoặc xem một thị trường cụ thể bằng &lsquo;&lsquo;get-market &ndash;market-id &lt;MARKET_ID&gt;&rsquo;&rsquo;.&quot;</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p><img alt="Polymarket Agents CLI hiển thị các lệnh" loading="lazy" src="/images/articles/polymarket-agents-ai-trading-bot-framework/cli.png">
+<em>Polymarket Agents CLI — ảnh chính thức từ <a href="https://github.com/Polymarket/agents">github.com/Polymarket/agents</a></em></p>
+<h2 id="polymarket-agents-là-gì">Polymarket Agents là gì?<a hidden class="anchor" aria-hidden="true" href="#polymarket-agents-là-gì">#</a></h2>
+<p><strong>Polymarket Agents</strong> là một khung phát triển mã nguồn mở và bộ tiện ích để xây dựng các tác nhân AI giao dịch tự động trên <strong>Polymarket</strong> — nền tảng thị trường dự đoán lớn nhất thế giới.</p>
+<p>Khung này cho phép nhà phát triển: - 🤖 Xây dựng các tác nhân AI phân tích thị trường và thực hiện giao dịch tự động</p>
+<ul>
+<li>📊 Tích hợp với API Polymarket để có dữ liệu thị trường thời gian thực</li>
+<li>🔍 Sử dụng RAG (Tạo sinh Tăng cường Truy xuất) để đưa ra quyết định giao dịch sáng suốt</li>
+<li>📰 Thu thập dữ liệu từ dịch vụ cá cược, nhà cung cấp tin tức và tìm kiếm web</li>
+<li>🧠 Tận dụng các công cụ LLM toàn diện để kỹ thuật lời nhắc và phân tích thị trường</li>
+</ul>
+<p>🔗 <strong>GitHub</strong>: <a href="https://github.com/Polymarket/agents">https://github.com/Polymarket/agents</a></p>
+<hr>
+<h2 id="polymarket-là-gì">Polymarket là gì?<a hidden class="anchor" aria-hidden="true" href="#polymarket-là-gì">#</a></h2>
+<p><strong>Polymarket</strong> là một nền tảng thị trường dự đoán phi tập trung nơi người dùng có thể giao dịch về kết quả của các sự kiện thế giới thực: - <strong>Chính trị</strong> — Kết quả bầu cử, quyết định chính sách</p>
+<ul>
+<li><strong>Tiền mã hóa</strong> — Dự đoán giá Bitcoin, phê duyệt ETF</li>
+<li><strong>Thể thao</strong> — Kết quả trận đấu, nhà vô địch</li>
+<li><strong>Khoa học</strong> — Đột phá nghiên cứu, sứ mệnh không gian</li>
+<li><strong>Giải trí</strong> — Người chiến thắng giải thưởng, doanh thu phòng vé</li>
+</ul>
+<p>Các nhà giao dịch mua cổ phiếu &ldquo;Có&rdquo; hoặc &ldquo;Không&rdquo; dựa trên dự đoán của họ, với giá phản ánh xác suất đồng thuận của thị trường.</p>
+<hr>
+<h2 id="tính-năng-chính">Tính năng chính<a hidden class="anchor" aria-hidden="true" href="#tính-năng-chính">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Mô tả</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Tích hợp API Polymarket</strong></td>
+					<td>Truy cập đầy đủ dữ liệu thị trường, sổ lệnh và thực hiện giao dịch</td>
+			</tr>
+			<tr>
+					<td><strong>Tiện ích tác nhân AI</strong></td>
+					<td>Công cụ xây dựng tác nhân giao dịch tự động</td>
+			</tr>
+			<tr>
+					<td><strong>RAG cục bộ và từ xa</strong></td>
+					<td>Hỗ trợ cơ sở dữ liệu vector cho tin tức và dữ liệu thị trường</td>
+			</tr>
+			<tr>
+					<td><strong>Dữ liệu đa nguồn</strong></td>
+					<td>Tích hợp dịch vụ cá cược, API tin tức, tìm kiếm web</td>
+			</tr>
+			<tr>
+					<td><strong>Kỹ thuật lời nhắc LLM</strong></td>
+					<td>Công cụ toàn diện cho suy luận nhận biết ngữ cảnh</td>
+			</tr>
+			<tr>
+					<td><strong>Giao diện CLI</strong></td>
+					<td>Công cụ dòng lệnh để phân tích thị trường và giao dịch</td>
+			</tr>
+			<tr>
+					<td><strong>Hỗ trợ Docker</strong></td>
+					<td>Triển khai container hóa để dễ dàng thiết lập</td>
+			</tr>
+			<tr>
+					<td><strong>Giấy phép MIT</strong></td>
+					<td>Miễn phí và mã nguồn mở</td>
+			</tr>
+	</tbody>
+</table>
+<hr>
+<h2 id="kiến-trúc">Kiến trúc<a hidden class="anchor" aria-hidden="true" href="#kiến-trúc">#</a></h2>
+<p>Polymarket Agents có các thành phần mô-đun có thể được duy trì và mở rộng bởi cộng đồng: ### API cốt lõi</p>
+<table>
+	<thead>
+			<tr>
+					<th>Thành phần</th>
+					<th>Mục đích</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Chroma.py</strong></td>
+					<td>Cơ sở dữ liệu vector cho nguồn tin tức và dữ liệu API</td>
+			</tr>
+			<tr>
+					<td><strong>Gamma.py</strong></td>
+					<td>Khách hàng API Polymarket Gamma để lấy siêu dữ liệu thị trường</td>
+			</tr>
+			<tr>
+					<td><strong>Polymarket.py</strong></td>
+					<td>Lớp API chính cho dữ liệu thị trường và thực hiện giao dịch</td>
+			</tr>
+			<tr>
+					<td><strong>Objects.py</strong></td>
+					<td>Mô hình dữ liệu Pydantic cho giao dịch, thị trường, sự kiện</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="lệnh-cli">Lệnh CLI<a hidden class="anchor" aria-hidden="true" href="#lệnh-cli">#</a></h3>
+<p>Giao diện người dùng chính để tương tác với Polymarket: ````bash</p>
+<h1 id="lấy-tất-cả-thị-trường-được-sắp-xếp-theo-khối-lượng">Lấy tất cả thị trường được sắp xếp theo khối lượng<a hidden class="anchor" aria-hidden="true" href="#lấy-tất-cả-thị-trường-được-sắp-xếp-theo-khối-lượng">#</a></h1>
+<p>python scripts/python/cli.py get-all-markets &ndash;limit 10 &ndash;sort-by volume</p>
+<h1 id="lấy-chi-tiết-thị-trường-cụ-thể">Lấy chi tiết thị trường cụ thể<a hidden class="anchor" aria-hidden="true" href="#lấy-chi-tiết-thị-trường-cụ-thể">#</a></h1>
+<p>python scripts/python/cli.py get-market &ndash;market-id &lt;MARKET_ID&gt;</p>
+<h1 id="thực-hiện-giao-dịch">Thực hiện giao dịch<a hidden class="anchor" aria-hidden="true" href="#thực-hiện-giao-dịch">#</a></h1>
+<p>python scripts/python/cli.py trade &ndash;market-id &lt;MARKET_ID&gt; &ndash;side buy &ndash;size <SIZE></p>
+<pre tabindex="0"><code>
 * * *
 
 ## Bắt đầu nhanh
@@ -37,15 +391,18 @@ a: &lsquo;Chạy lệnh CLI &lsquo;&lsquo;python scripts/python/cli.py trade &nd
 `````bash
 git clone https://github.com/polymarket/agents.git
 cd agents
-</code></pre><h3 id=2-thiết-lập-môi-trường>2. Thiết lập môi trường<a hidden class=anchor aria-hidden=true href=#2-thiết-lập-môi-trường>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo môi trường ảo</span>
-</span></span><span style=display:flex><span>virtualenv --python<span style=color:#f92672>=</span>python3.9 .venv
-</span></span><span style=display:flex><span>source .venv/bin/activate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt phụ thuộc</span>
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span></code></pre></div><h3 id=3-cấu-hình-khóa-api>3. Cấu hình khóa API<a hidden class=anchor aria-hidden=true href=#3-cấu-hình-khóa-api>#</a></h3><p>Tạo tệp <code>.env</code>: `````env
+</code></pre><h3 id="2-thiết-lập-môi-trường">2. Thiết lập môi trường<a hidden class="anchor" aria-hidden="true" href="#2-thiết-lập-môi-trường">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo môi trường ảo</span>
+</span></span><span style="display:flex;"><span>virtualenv --python<span style="color:#f92672">=</span>python3.9 .venv
+</span></span><span style="display:flex;"><span>source .venv/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt phụ thuộc</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span></code></pre></div><h3 id="3-cấu-hình-khóa-api">3. Cấu hình khóa API<a hidden class="anchor" aria-hidden="true" href="#3-cấu-hình-khóa-api">#</a></h3>
+<p>Tạo tệp <code>.env</code>: `````env
 POLYGON_WALLET_PRIVATE_KEY=&ldquo;khóa riêng tư ví của bạn&rdquo;
-OPENAI_API_KEY=&ldquo;khóa API OpenAI của bạn&rdquo;</p><pre tabindex=0><code>
+OPENAI_API_KEY=&ldquo;khóa API OpenAI của bạn&rdquo;</p>
+<pre tabindex="0"><code>
 ### 4. Nạp USDC vào ví
 
 Chuyển USDC vào ví Polygon của bạn để giao dịch.
@@ -59,7 +416,8 @@ export PYTHONPATH=&#34;.&#34;
 # Chạy CLI
 python scripts/python/cli.py
 </code></pre><p>Hoặc thực hiện giao dịch trực tiếp: `````bash
-python agents/application/trade.py</p><pre tabindex=0><code>
+python agents/application/trade.py</p>
+<pre tabindex="0"><code>
 ### 6. Lựa chọn Docker
 
 `````bash
@@ -261,11 +619,155 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/pm-skills-68-product-management-skills-ai-agents/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/polymarket-trading-bot-stack/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/pm-skills-68-product-management-skills-ai-agents/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/polymarket-trading-bot-stack/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

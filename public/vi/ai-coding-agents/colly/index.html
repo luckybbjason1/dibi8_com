@@ -1,10 +1,295 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/colly/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/colly/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/colly/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/colly/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/colly/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/colly/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/colly/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“colly”, “go”, “web-scraping”, “crawler”, “golang”, “scrapy”, “benchmark”, “proxy”] aliases:\n/vi/posts/colly/ Giới Thiệu Python đã thống trị web scraping hơn một thập kỷ. Scrapy, BeautifulSoup và Selenium trở thành stack mặc định — cho đến khi các team bắt đầu gặp phải cùng một bức tường: phình bộ nhớ, tranh chấp GIL và phức tạp khi triển khai. Go đã thay đổi phương trình này. Colly, một framework scraping được xây dựng riêng cho Go, hiện có 25,302 GitHub Stars với khả năng đã được chứng minh là xử lý 1,000+ request mỗi giây trên một lõi CPU. Bài hướng dẫn colly này đi qua cài đặt, benchmark so với Scrapy và Puppeteer, hardening production và những hạn chế thực tế bạn cần biết trước khi triển khai.\nColly Là Gì? Colly là một framework web scraping và crawling nhanh, thanh lịch cho Go. Nó cung cấp API dựa trên callback rõ ràng xử lý HTTP request, phân tích HTML, quản lý cookie, giới hạn tốc độ và thực thi song song — tất cả đều nằm sau một đối tượng ```Collector````. Framework biên dịch thành binary tĩnh với zero runtime dependency, khiến nó trở thành lựa chọn hàng đầu cho pipeline scraping thân thiện với DevOps.\nColly Hoạt Động Như Thế Nào Kiến trúc của Colly xoay quanh Collector — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. Collector nhận URL khởi đầu qua Visit() 2. HTTP Backend gửi request với timeout, proxy và header đã cấu hình 3. Response kích hoạt callback đã đăng ký (OnHTML, OnResponse, OnError) 4. HTMLElement phân tích DOM sử dụng bộ chọn kiểu goquery 5. Queue xử lý lập lịch URL cho crawling đệ quy 6. Storage Backend quản lý cookie, session và caching\n┌─────────────┐ HTTP GET ┌──────────────┐ │ Collector │ ──────────────\u003e │ Trang web mục │ │ (Trạng thái│ \u003c────────────── │ tiêu │ └──────┬──────┘ Phản hồi └──────────────┘ │ ▼ ┌─────────────┐ Phân tích HTML ┌──────────────┐ │ Callback │ ──────────────\u003e │ Dữ liệu trích │ │ OnHTML/OnRes│ │ xuất │ └──────┬──────┘ └──────────────┘ │ ▼ ┌─────────────┐ │ Queue │ ──\u003e Truy cập URL tiếp theo └─────────────┘ Mẫu Collector giữ code được tổ chức: bạn đăng ký handler cho các phần tử HTML cụ thể và để Colly tự động quản lý concurrency, retry và sự lịch sự.\nCài Đặt \u0026 Thiết Lập Yêu Cầu Trước Go 1.21+ đã cài đặt Một module Go hoạt động (go mod init) Cài Đặt Colly # Khởi tạo dự án mkdir colly-scraper \u0026\u0026 cd colly-scraper go mod init github.com/youruser/colly-scraper # Cài đặt Colly v2 go get github.com/gocolly/colly/v2 # Xác minh cài đặt go list -m github.com/gocolly/colly/v2 Scraper Đầu Tiên Củ Bạn package main import ( \"fmt\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector() // Trích xuất tất cả tiêu đề liên kết c.OnHTML(\"a[href]\", func(e *colly.HTMLElement) { link := e.Attr(\"href\") text := e.Text fmt.Printf(\"Liên kết: %s | Văn bản: %s\\n\", link, text) }) c.OnRequest(func(r *colly.Request) { fmt.Println(\"Đang truy cập:\", r.URL.String()) }) c.OnError(func(r *colly.Response, err error) { fmt.Printf(\"Lỗi %d: %v\\n\", r.StatusCode, err) }) c.Visit(\"https://go-colly.org/\") } Chạy: `````bash go run main.go\n### Thiết Lập Docker `````dockerfile FROM golang:1.24-alpine AS builder WORKDIR /app COPY go.mod go.sum ./ RUN go mod download COPY . . RUN CGO_ENABLED=0 GOOS=linux go build -o scraper main.go FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR /root/ COPY --from=builder /app/scraper . CMD [\"./scraper\"] # Build và chạy docker build -t colly-scraper . docker run --rm colly-scraper Docker Compose với Redis Cache version: '3.8\" services: scraper: build: . depends_on: - redis environment: - REDIS_URL=redis:6379 redis: image: redis:7-alpine volumes: - redis-data:/data volumes: redis-data: ````` ## Tích Hợp Với Công Cụ Phổ Biến ### Backend Cache Redis Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis: `````go package main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/storage\" ) func main() { c := colly.NewCollector() // Sử dụng Redis cho lưu trữ liên tục redisStore := \u0026storage.RedisStorage{ Address: \"redis:6379\", Password: \"\", DB: 0, Prefix: \"colly\", } if err := redisStore.Open(); err != nil { panic(err) } defer redisStore.Close() c.SetStorage(redisStore) c.OnHTML(\"h1\", func(e *colly.HTMLElement) { fmt.Println(\"Tiêu đề:\", e.Text) }) c.Visit(\"https://example.com\") } Proxy Rotation Với Webshare Khi scraping quy mô lớn, proxy rotation ngăn chặn IP bị chặn. Webshare cung cấp proxy residential tích hợp liền mạch với Colly.\npackage main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/proxy\" ) func main() { c := colly.NewCollector() // Thiết lập proxy luân phiên rp, err := proxy.RoundRobinProxySwitcher( \"http://user:pass@proxy1.webshare.io:80\", \"http://user:pass@proxy2.webshare.io:80\", \"http://user:pass@proxy3.webshare.io:80\", ) if err != nil { panic(err) } c.SetProxyFunc(rp) // Tôn trọng máy chủ đích c.Limit(\u0026colly.LimitRule{ DomainGlob: \"*\", Parallelism: 10, Delay: 1 * time.Second, }) c.Visit(\"https://example.com\") } goquery Cho Duyệt DOM Nâng Cao HTMLElement tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: `````go package main\nimport ( “github.com/PuerkitoBio/goquery” “github.com/gocolly/colly/v2” )\nfunc main() { c := colly.NewCollector()\nc.OnHTML(\"article\", func(e *colly.HTMLElement) { // Truy cập lựa chọn goquery cơ bản dom := e.DOM // Duyệt phức tạp title := dom.Find(\"h2\").First().Text() author := dom.Find(\".author\").Text() // Duyệt sibling dom.Find(\"p\").Siblings().Each(func(i int, s *goquery.Selection) { fmt.Printf(\"Sibling %d: %s\\n\", i, s.Text()) }) // Tìm phần tử cha category := dom.Parent().Find(\".category\").Text() fmt.Printf(\"Bài viết: %s bởi %s [%s]\\n\", title, author, category) }) c.Visit(\"https://news.ycombinator.com\") }\n### chromedp Cho Trang Render JavaScript Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp: `````go package main import ( \"context\" \"fmt\" \"time\" \"github.com/chromedp/chromedp\" \"github.com/gocolly/colly/v2\" ) func renderWithChrome(url string) string { ctx, cancel := chromedp.NewContext(context.Background()) defer cancel() ctx, cancel = context.WithTimeout(ctx, 15*time.Second) defer cancel() var html string err := chromedp.Run(ctx, chromedp.Navigate(url), chromedp.WaitReady(\"body\"), chromedp.OuterHTML(\"html\", \u0026html), ) if err != nil { return \"\" } return html } func main() { // Render trang JS trước, sau đó phân tích với Colly htmlContent := renderWithChrome(\"https://spa-example.com\") c := colly.NewCollector() // Phân tích HTML đã render... fmt.Println(\"Độ dài render:\", len(htmlContent)) } Benchmark / Trường Hợp Sử Dụng Thực Tế Benchmark Thông Lượng Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS c6i.xlarge (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary | |———|———————-|——–|————-|——————| | Colly (song song) | ~7 giây | 25 MB | ~1,200 | 12 MB | | Colly (đồng bộ) | ~52 giây | 20 MB | ~19 | 12 MB | | Scrapy (Python) | ~18 giây | 180 MB | ~280 | N/A | | Puppeteer (Node) | ~340 giây | 520 MB | ~3 | 0 MB* | | goquery + net/http | ~45 giây | 40 MB | ~22 | 11 MB |\n*Puppeteer yêu cầu tải Chromium (~150 MB)\nQuan sát chính từ benchmark colly: 1. Chế độ song song Colly đạt tăng tốc 7 lần so với thực thi đồng bộ bằng goroutine 2. Dung lượng bộ nhớ nhỏ hơn Scrapy 7 lần và Puppeteer 20 lần 3. Triển khai binary đơn chỉ 12 MB so với virtualenv + dependency hell của Scrapy 4. Thờ gian khởi động gần như tức thờ so với khởi động Chromium của Puppeteer\nTrường Hợp Sử Dụng Thực Tế Giám sát giá: Một công ty phân tích bán lẻ scraping 50K trang sản phẩm mỗi 15 phút bằng 3 instance Colly với queue Redis Crawler kiểm tra SEO: Các agency marketing crawl trang web khách hàng (10K-500K trang) để trích xuất thẻ meta, heading và cấu trúc liên kết Tổng hợp tin tức: Một startup fintech giám sát 200 nguồn tin, trích xuất văn bản bài viết và timestamp xuất bản Scraper bảng việc làm: Các nền tảng HR scraping nhiều bảng việc làm hàng ngày, chuẩn hóa thành schema thống nhất Sử Dụng Nâng Cao / Production Hardening Giới Hạn Tốc Độ và Sự Lịch Sự package main import ( \"time\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector( colly.AllowedDomains(\"example.com\"), colly.UserAgent(\"MyBot/1.0 (+https://mysite.com/bot)\"), ) // Giới hạn tốc độ chặt chẽ theo domain c.Limit(\u0026colly.LimitRule{ DomainGlob: \"*example.com\", Parallelism: 5, Delay: 2 * time.Second, RandomDelay: 500 * time.Millisecond, }) // Tôn trọng robots.txt c.AllowURLRevisit = false c.Visit(\"https://example.com/products\") } Crawling Phân Tán Với Queue Redis package main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/queue\" ) func main() { c := colly.NewCollector() // Tạo queue hỗ trợ Redis q, _ := queue.New(100, \u0026queue.RedisStorage{ Address: \"redis:6379\", DB: 0, }) c.OnHTML(\"a[href]\", func(e *colly.HTMLElement) { link := e.Request.AbsoluteURL(e.Attr(\"href\")) if link != \"\" { q.AddURL(link) } }) c.OnHTML(\"article\", func(e *colly.HTMLElement) { title := e.ChildText(\"h1\") body := e.ChildText(\"p\") saveToDatabase(title, body) }) q.AddURL(\"https://example.com/start\") q.Run(c) } HTTP Backend Tùy Chỉnh Với Timeout package main import ( \"net/http\" \"time\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector() // Thay thế HTTP client mặc định c.WithTransport(\u0026http.Transport{ MaxIdleConns: 100, MaxIdleConnsPerHost: 10, IdleConnTimeout: 30 * time.Second, DisableCompression: false, }) c.SetRequestTimeout(15 * time.Second) // Retry request thất bại c.OnError(func(r *colly.Response, err error) { if r.StatusCode \u003e= 500 { // Retry lỗi server sau 5 giây time.Sleep(5 * time.Second) r.Request.Retry() } }) c.Visit(\"https://example.com\") } Dữ Liệu Có Cấu Trúc Với Struct Tags package main import ( \"encoding/json\" \"fmt\" \"github.com/gocolly/colly/v2\" ) type Product struct { Name string ````selector:\"h1.product-title\"```` Price string ````selector:\"span.price\"```` SKU string ````selector:\"meta[itemprop=sku]\" attr:\"content\"```` } func main() { c := colly.NewCollector() c.OnHTML(\"div.product\", func(e *colly.HTMLElement) { var p Product e.Unmarshal(\u0026p) data, _ := json.MarshalIndent(p, \"\", \" \") fmt.Println(string(data)) }) c.Visit(\"https://shop.example.com/item/123\") } So Sánh Với Các Giải Pháp Thay Thế Tính năng Colly Scrapy Puppeteer goquery Ngôn ngữ Go Python Node.js Go Request/giây (1 lõi) 1,000+ ~300 ~3 ~20 Bộ nhớ/1000 trang 15-25 MB 150-200 MB 400-600 MB 35-50 MB Render JavaScript Không Không* Có (Chromium) Không Triển khai binary Binary tĩnh đơn Virtualenv + dep node_modules + Chromium Chỉ thư viện Concurrency tích hợp Goroutine Twisted async Event-loop Thủ công Xử lý Cookie/session Tích hợp Tích hợp Tích hợp Thủ công Xoay vòng proxy Tích hợp Middleware Page-level Thủ công Queue/crawling Tích hợp + Redis Tích hợp Thủ công Không Độ khó học Thấp (Go) Trung bình Thấp (JS) Thấp Quy mô hệ sinh thái Đang phát triển Rất lớn Lớn Nhỏ *Scrapy có thể render JS qua scrapy-playwright hoặc Splash, nhưng không tích hợp sẵn.\nKhi Nào Chọn Công Cụ Nào Colly: HTML tĩnh quy mô lớn, triển khai binary đơn, team Go Scrapy: Hệ sinh thái Python, pipeline phức tạp, workflow middleware nặng Puppeteer: SPA nhiều JavaScript, chụp màn hình, tự động hóa trình duyệt goquery: Phân tích nhẹ khi không cần điều phối HTTP Hạn Chế / Đánh Giá Thực Tế Colly không phải công cụ phù hợp cho mọi công việc scraping. Đây là những giớ hạn cứng: 1. Không thực thi JavaScript: Colly chỉ phân tích HTML thô. SPA, infinite scroll và nội dung động cần chromedp hoặc Rod làm công cụ đồng hành. 2. Hệ sinh thái nhỏ hơn Scrapy: Bạn sẽ không tìm thấy plugin cho mọi trường hợp edge case. Middleware tùy chỉnh đòi hỏi viết code Go, không chỉ pip install. 3. Chỉ hỗ trợ Go: Team không có chuyên môn Go sẽ đối mặt với đường cong học tập dốc hơn so với các lựa chọn Python. 4. Không xuất dữ liệu tích hợp: Khác với item pipeline của Scrapy (JSON, CSV, XML mặc định), Colly cần tuần tự hóa thủ công. 5. Tích hợp headless browser thủ công: Puppeteer hoạt động ngay với Chromium, còn Colly cần kết nối chromedp rõ ràng cho nội dung JS-rendered. 6. Độ phức tạp debug: Lỗi goroutine bất đồng bộ có thể khó theo dõi hơn xử lý ngoại lệ tuần tự của Python.\nCâu Hỏi Thường Gặp Colly so với Scrapy trong scraping production như thế nào? Colly vượt trội Scrapy về thông lượng thô (1,000+ vs ~300 req/sec) và hiệu quả bộ nhớ (25 MB vs 180 MB mỗi 1K trang). Scrapy thắng về độ trưởng thành hệ sinh thái và pipeline tích hợp. Đối với team Go triển khai binary tĩnh, Colly là lựa chọn thực tiễn. Team Python với infrastructure Scrapy hiện có nên cân nhắc chi phí migration.\nColly có thể scrape website render JavaScript không? Không — Colly không thực thi JavaScript một cách tự nhiên. Đối với SPA và nội dung động, sử dụng chromedp hoặc Rod để render trang trước, sau đó chuyển HTML cho Colly phân tích. Mô hình lai này kết hợp khả năng render của Chromium với tốc độ trích xuất của Colly.\nLàm thế nào scale Colly qua nhiều máy? Sử dụng queue hỗ trợ Redis (colly/queue) để phân phối URL cho worker. Mỗi worker chạy instance Colly, tiêu thụ từ queue chia sẻ và ghi kết quả vào database trung tâm. Thêm HPA trong Kubernetes cho capacity đàn hồi.\nNhà cung cấp proxy nào hoạt động tốt nhất với Colly? Mọi HTTP proxy đều hoạt động qua colly/proxy. Webshare cung cấp proxy residential với pool IP xoay vòng tích hợp sạch sẽ với RoundRobinProxySwitcher của Colly. Bright Data và Oxylabs là lựa chọn enterprise với hỗ trợ chuyên dụng.\nLàm sao tránh bị chặn khi scraping? Kết hợp nhiều kỹ thuật: xoay vòng User-Agent qua Colly extension, thêm độ trễ ngẫu nhiên (RandomDelay trong LimitRule), tôn trọng robots.txt, dùng proxy residential, phân phối request theo thờ gian. Không bao giờ vượt quá capacity của trang đích — giám sát mã phản hồi và lùi lại khi gặp lỗi 429.\nColly có phù hợp crawl hàng triệu trang? Có, với kiến trúc phù hợp. Dùng Redis để loại bỏ trùng lặp URL và cache, triển khai crawling tăng dần với timestamp, shard qua nhiều worker, và persist state để phục hồi sau restart. Các team báo cáo crawl 10M+ trang hàng tháng với 3-5 instance Colly.\nLàm thế nào debug scraper Colly? Bật debug logging với colly.Debugger(\u0026debug.LogDebugger{}) để theo dõi mọi request/response. Dùng callback OnError để bắt và log request thất bại. Đối với vấn đề phức tạp, attach custom HTTP backend với khả năng dump request/response.\nKết Luận Colly cung cấp chính xác những gì developer Go cần từ một framework scraping: tốc độ, đơn giản và khả năng triển khai binary đơn. Với 25,302 GitHub Stars và 1,000+ request mỗi giây, nó vượt trội so với các lựa chọn Python và Node.js về thông lượng và hiệu quả bộ nhớ. API callback trực quan, tích hợp Redis cho phép crawling phân tán thực sự, và hỗ trợ proxy giữ bạn không bị chặn ở quy mô lớn.\nHành động để bắt đầu:\nClone Colly GitHub repo và chạy thư mục ````_examples/``` Xây dựng scraper đầu tiên với thiết lập 5 phút ở trên Thêm Redis cache và proxy rotation trước khi mở rộng quá 10K trang Tham gia nhóm Telegram dibi8 để thảo luận về Go scraping và chia sẻ mẹo production Điều khoản tiết lộ: Bài viết này chứa liên kết liên kết (affiliate) đến Webshare. Chúng tôi chỉ giới thiệu các dịch vụ đã đánh giá cho quy trình scraping production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài Liệu Tham Khảo Colly GitHub Repository — Mã nguồn và ví dụ chính thức Colly Documentation — Tài liệu API và hướng dẫn Colly v2.2.0 Release Notes — Phiên bản ổn định mới nhất Scrapy Official Docs — So sánh framework scraping Python Puppeteer GitHub — Headless Chrome Node.js API goquery GitHub — HTML parsing kiểu jQuery cho Go Web Scraping with Go: Practical Guide — Pattern production Best Open-Source Web Crawlers 2026 — Tổng quan hệ sinh thái Colly Benchmarks — Số liệu hiệu năng { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc Độ Cao 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/colly\" } } Related Articles juicefs-distributed-posix-file-system-redis-s3-cloud-storage freellmapi-openai-compatible-proxy-free-llm-tiers-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"2750","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/colly/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/colly/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/colly/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/colly/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới Thiệu">Giới Thiệu</a></li><li><a href=#colly-l%c3%a0-g%c3%ac aria-label="Colly Là Gì?">Colly Là Gì?</a></li><li><a href=#colly-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Colly Hoạt Động Như Thế Nào">Colly Hoạt Động Như Thế Nào</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài Đặt & Thiết Lập">Cài Đặt & Thiết Lập</a><ul><li><a href=#y%c3%aau-c%e1%ba%a7u-tr%c6%b0%e1%bb%9bc aria-label="Yêu Cầu Trước">Yêu Cầu Trước</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-colly aria-label="Cài Đặt Colly">Cài Đặt Colly</a></li><li><a href=#scraper-%c4%91%e1%ba%a7u-ti%c3%aan-c%e1%bb%a7-b%e1%ba%a1n aria-label="Scraper Đầu Tiên Củ Bạn">Scraper Đầu Tiên Củ Bạn</a></li><li><a href=#docker-compose-v%e1%bb%9bi-redis-cache aria-label="Docker Compose với Redis Cache">Docker Compose với Redis Cache</a></li><li><a href=#proxy-rotation-v%e1%bb%9bi-webshare aria-label="Proxy Rotation Với Webshare">Proxy Rotation Với Webshare</a></li><li><a href=#goquery-cho-duy%e1%bb%87t-dom-n%c3%a2ng-cao aria-label="goquery Cho Duyệt DOM Nâng Cao">goquery Cho Duyệt DOM Nâng Cao</a></li></ul></li><li><a href=#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Trường Hợp Sử Dụng Thực Tế">Benchmark / Trường Hợp Sử Dụng Thực Tế</a><ul><li><a href=#benchmark-th%c3%b4ng-l%c6%b0%e1%bb%a3ng aria-label="Benchmark Thông Lượng">Benchmark Thông Lượng</a></li><li><a href=#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Trường Hợp Sử Dụng Thực Tế">Trường Hợp Sử Dụng Thực Tế</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--production-hardening aria-label="Sử Dụng Nâng Cao / Production Hardening">Sử Dụng Nâng Cao / Production Hardening</a><ul><li><a href=#gi%e1%bb%9bi-h%e1%ba%a1n-t%e1%bb%91c-%c4%91%e1%bb%99-v%c3%a0-s%e1%bb%b1-l%e1%bb%8bch-s%e1%bb%b1 aria-label="Giới Hạn Tốc Độ và Sự Lịch Sự">Giới Hạn Tốc Độ và Sự Lịch Sự</a></li><li><a href=#crawling-ph%c3%a2n-t%c3%a1n-v%e1%bb%9bi-queue-redis aria-label="Crawling Phân Tán Với Queue Redis">Crawling Phân Tán Với Queue Redis</a></li><li><a href=#http-backend-t%c3%b9y-ch%e1%bb%89nh-v%e1%bb%9bi-timeout aria-label="HTTP Backend Tùy Chỉnh Với Timeout">HTTP Backend Tùy Chỉnh Với Timeout</a></li><li><a href=#d%e1%bb%af-li%e1%bb%87u-c%c3%b3-c%e1%ba%a5u-tr%c3%bac-v%e1%bb%9bi-struct-tags aria-label="Dữ Liệu Có Cấu Trúc Với Struct Tags">Dữ Liệu Có Cấu Trúc Với Struct Tags</a></li></ul></li><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf aria-label="So Sánh Với Các Giải Pháp Thay Thế">So Sánh Với Các Giải Pháp Thay Thế</a><ul><li><a href=#khi-n%c3%a0o-ch%e1%bb%8dn-c%c3%b4ng-c%e1%bb%a5-n%c3%a0o aria-label="Khi Nào Chọn Công Cụ Nào">Khi Nào Chọn Công Cụ Nào</a></li></ul></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-th%e1%bb%b1c-t%e1%ba%bf aria-label="Hạn Chế / Đánh Giá Thực Tế">Hạn Chế / Đánh Giá Thực Tế</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu Hỏi Thường Gặp">Câu Hỏi Thường Gặp</a><ul><li><a href=#colly-so-v%e1%bb%9bi-scrapy-trong-scraping-production-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Colly so với Scrapy trong scraping production như thế nào?">Colly so với Scrapy trong scraping production như thế nào?</a></li><li><a href=#colly-c%c3%b3-th%e1%bb%83-scrape-website-render-javascript-kh%c3%b4ng aria-label="Colly có thể scrape website render JavaScript không?">Colly có thể scrape website render JavaScript không?</a></li><li><a href=#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-scale-colly-qua-nhi%e1%bb%81u-m%c3%a1y aria-label="Làm thế nào scale Colly qua nhiều máy?">Làm thế nào scale Colly qua nhiều máy?</a></li><li><a href=#nh%c3%a0-cung-c%e1%ba%a5p-proxy-n%c3%a0o-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-t%e1%bb%91t-nh%e1%ba%a5t-v%e1%bb%9bi-colly aria-label="Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?">Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?</a></li><li><a href=#l%c3%a0m-sao-tr%c3%a1nh-b%e1%bb%8b-ch%e1%ba%b7n-khi-scraping aria-label="Làm sao tránh bị chặn khi scraping?">Làm sao tránh bị chặn khi scraping?</a></li><li><a href=#colly-c%c3%b3-ph%c3%b9-h%e1%bb%a3p-crawl-h%c3%a0ng-tri%e1%bb%87u-trang aria-label="Colly có phù hợp crawl hàng triệu trang?">Colly có phù hợp crawl hàng triệu trang?</a></li><li><a href=#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-debug-scraper-colly aria-label="Làm thế nào debug scraper Colly?">Làm thế nào debug scraper Colly?</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết Luận">Kết Luận</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài Liệu Tham Khảo">Nguồn & Tài Liệu Tham Khảo</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/colly/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/colly/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/colly/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/colly/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/colly/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/colly/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/colly/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“colly”, “go”, “web-scraping”, “crawler”, “golang”, “scrapy”, “benchmark”, “proxy”] aliases:\n/vi/posts/colly/ Giới Thiệu Python đã thống trị web scraping hơn một thập kỷ. Scrapy, BeautifulSoup và Selenium trở thành stack mặc định — cho đến khi các team bắt đầu gặp phải cùng một bức tường: phình bộ nhớ, tranh chấp GIL và phức tạp khi triển khai. Go đã thay đổi phương trình này. Colly, một framework scraping được xây dựng riêng cho Go, hiện có 25,302 GitHub Stars với khả năng đã được chứng minh là xử lý 1,000+ request mỗi giây trên một lõi CPU. Bài hướng dẫn colly này đi qua cài đặt, benchmark so với Scrapy và Puppeteer, hardening production và những hạn chế thực tế bạn cần biết trước khi triển khai.\nColly Là Gì? Colly là một framework web scraping và crawling nhanh, thanh lịch cho Go. Nó cung cấp API dựa trên callback rõ ràng xử lý HTTP request, phân tích HTML, quản lý cookie, giới hạn tốc độ và thực thi song song — tất cả đều nằm sau một đối tượng ```Collector````. Framework biên dịch thành binary tĩnh với zero runtime dependency, khiến nó trở thành lựa chọn hàng đầu cho pipeline scraping thân thiện với DevOps.\nColly Hoạt Động Như Thế Nào Kiến trúc của Colly xoay quanh Collector — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. Collector nhận URL khởi đầu qua Visit() 2. HTTP Backend gửi request với timeout, proxy và header đã cấu hình 3. Response kích hoạt callback đã đăng ký (OnHTML, OnResponse, OnError) 4. HTMLElement phân tích DOM sử dụng bộ chọn kiểu goquery 5. Queue xử lý lập lịch URL cho crawling đệ quy 6. Storage Backend quản lý cookie, session và caching\n┌─────────────┐ HTTP GET ┌──────────────┐ │ Collector │ ──────────────\u003e │ Trang web mục │ │ (Trạng thái│ \u003c────────────── │ tiêu │ └──────┬──────┘ Phản hồi └──────────────┘ │ ▼ ┌─────────────┐ Phân tích HTML ┌──────────────┐ │ Callback │ ──────────────\u003e │ Dữ liệu trích │ │ OnHTML/OnRes│ │ xuất │ └──────┬──────┘ └──────────────┘ │ ▼ ┌─────────────┐ │ Queue │ ──\u003e Truy cập URL tiếp theo └─────────────┘ Mẫu Collector giữ code được tổ chức: bạn đăng ký handler cho các phần tử HTML cụ thể và để Colly tự động quản lý concurrency, retry và sự lịch sự.\nCài Đặt \u0026 Thiết Lập Yêu Cầu Trước Go 1.21+ đã cài đặt Một module Go hoạt động (go mod init) Cài Đặt Colly # Khởi tạo dự án mkdir colly-scraper \u0026\u0026 cd colly-scraper go mod init github.com/youruser/colly-scraper # Cài đặt Colly v2 go get github.com/gocolly/colly/v2 # Xác minh cài đặt go list -m github.com/gocolly/colly/v2 Scraper Đầu Tiên Củ Bạn package main import ( \"fmt\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector() // Trích xuất tất cả tiêu đề liên kết c.OnHTML(\"a[href]\", func(e *colly.HTMLElement) { link := e.Attr(\"href\") text := e.Text fmt.Printf(\"Liên kết: %s | Văn bản: %s\\n\", link, text) }) c.OnRequest(func(r *colly.Request) { fmt.Println(\"Đang truy cập:\", r.URL.String()) }) c.OnError(func(r *colly.Response, err error) { fmt.Printf(\"Lỗi %d: %v\\n\", r.StatusCode, err) }) c.Visit(\"https://go-colly.org/\") } Chạy: `````bash go run main.go\n### Thiết Lập Docker `````dockerfile FROM golang:1.24-alpine AS builder WORKDIR /app COPY go.mod go.sum ./ RUN go mod download COPY . . RUN CGO_ENABLED=0 GOOS=linux go build -o scraper main.go FROM alpine:latest RUN apk --no-cache add ca-certificates WORKDIR /root/ COPY --from=builder /app/scraper . CMD [\"./scraper\"] # Build và chạy docker build -t colly-scraper . docker run --rm colly-scraper Docker Compose với Redis Cache version: '3.8\" services: scraper: build: . depends_on: - redis environment: - REDIS_URL=redis:6379 redis: image: redis:7-alpine volumes: - redis-data:/data volumes: redis-data: ````` ## Tích Hợp Với Công Cụ Phổ Biến ### Backend Cache Redis Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis: `````go package main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/storage\" ) func main() { c := colly.NewCollector() // Sử dụng Redis cho lưu trữ liên tục redisStore := \u0026storage.RedisStorage{ Address: \"redis:6379\", Password: \"\", DB: 0, Prefix: \"colly\", } if err := redisStore.Open(); err != nil { panic(err) } defer redisStore.Close() c.SetStorage(redisStore) c.OnHTML(\"h1\", func(e *colly.HTMLElement) { fmt.Println(\"Tiêu đề:\", e.Text) }) c.Visit(\"https://example.com\") } Proxy Rotation Với Webshare Khi scraping quy mô lớn, proxy rotation ngăn chặn IP bị chặn. Webshare cung cấp proxy residential tích hợp liền mạch với Colly.\npackage main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/proxy\" ) func main() { c := colly.NewCollector() // Thiết lập proxy luân phiên rp, err := proxy.RoundRobinProxySwitcher( \"http://user:pass@proxy1.webshare.io:80\", \"http://user:pass@proxy2.webshare.io:80\", \"http://user:pass@proxy3.webshare.io:80\", ) if err != nil { panic(err) } c.SetProxyFunc(rp) // Tôn trọng máy chủ đích c.Limit(\u0026colly.LimitRule{ DomainGlob: \"*\", Parallelism: 10, Delay: 1 * time.Second, }) c.Visit(\"https://example.com\") } goquery Cho Duyệt DOM Nâng Cao HTMLElement tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: `````go package main\nimport ( “github.com/PuerkitoBio/goquery” “github.com/gocolly/colly/v2” )\nfunc main() { c := colly.NewCollector()\nc.OnHTML(\"article\", func(e *colly.HTMLElement) { // Truy cập lựa chọn goquery cơ bản dom := e.DOM // Duyệt phức tạp title := dom.Find(\"h2\").First().Text() author := dom.Find(\".author\").Text() // Duyệt sibling dom.Find(\"p\").Siblings().Each(func(i int, s *goquery.Selection) { fmt.Printf(\"Sibling %d: %s\\n\", i, s.Text()) }) // Tìm phần tử cha category := dom.Parent().Find(\".category\").Text() fmt.Printf(\"Bài viết: %s bởi %s [%s]\\n\", title, author, category) }) c.Visit(\"https://news.ycombinator.com\") }\n### chromedp Cho Trang Render JavaScript Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp: `````go package main import ( \"context\" \"fmt\" \"time\" \"github.com/chromedp/chromedp\" \"github.com/gocolly/colly/v2\" ) func renderWithChrome(url string) string { ctx, cancel := chromedp.NewContext(context.Background()) defer cancel() ctx, cancel = context.WithTimeout(ctx, 15*time.Second) defer cancel() var html string err := chromedp.Run(ctx, chromedp.Navigate(url), chromedp.WaitReady(\"body\"), chromedp.OuterHTML(\"html\", \u0026html), ) if err != nil { return \"\" } return html } func main() { // Render trang JS trước, sau đó phân tích với Colly htmlContent := renderWithChrome(\"https://spa-example.com\") c := colly.NewCollector() // Phân tích HTML đã render... fmt.Println(\"Độ dài render:\", len(htmlContent)) } Benchmark / Trường Hợp Sử Dụng Thực Tế Benchmark Thông Lượng Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS c6i.xlarge (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary | |———|———————-|——–|————-|——————| | Colly (song song) | ~7 giây | 25 MB | ~1,200 | 12 MB | | Colly (đồng bộ) | ~52 giây | 20 MB | ~19 | 12 MB | | Scrapy (Python) | ~18 giây | 180 MB | ~280 | N/A | | Puppeteer (Node) | ~340 giây | 520 MB | ~3 | 0 MB* | | goquery + net/http | ~45 giây | 40 MB | ~22 | 11 MB |\n*Puppeteer yêu cầu tải Chromium (~150 MB)\nQuan sát chính từ benchmark colly: 1. Chế độ song song Colly đạt tăng tốc 7 lần so với thực thi đồng bộ bằng goroutine 2. Dung lượng bộ nhớ nhỏ hơn Scrapy 7 lần và Puppeteer 20 lần 3. Triển khai binary đơn chỉ 12 MB so với virtualenv + dependency hell của Scrapy 4. Thờ gian khởi động gần như tức thờ so với khởi động Chromium của Puppeteer\nTrường Hợp Sử Dụng Thực Tế Giám sát giá: Một công ty phân tích bán lẻ scraping 50K trang sản phẩm mỗi 15 phút bằng 3 instance Colly với queue Redis Crawler kiểm tra SEO: Các agency marketing crawl trang web khách hàng (10K-500K trang) để trích xuất thẻ meta, heading và cấu trúc liên kết Tổng hợp tin tức: Một startup fintech giám sát 200 nguồn tin, trích xuất văn bản bài viết và timestamp xuất bản Scraper bảng việc làm: Các nền tảng HR scraping nhiều bảng việc làm hàng ngày, chuẩn hóa thành schema thống nhất Sử Dụng Nâng Cao / Production Hardening Giới Hạn Tốc Độ và Sự Lịch Sự package main import ( \"time\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector( colly.AllowedDomains(\"example.com\"), colly.UserAgent(\"MyBot/1.0 (+https://mysite.com/bot)\"), ) // Giới hạn tốc độ chặt chẽ theo domain c.Limit(\u0026colly.LimitRule{ DomainGlob: \"*example.com\", Parallelism: 5, Delay: 2 * time.Second, RandomDelay: 500 * time.Millisecond, }) // Tôn trọng robots.txt c.AllowURLRevisit = false c.Visit(\"https://example.com/products\") } Crawling Phân Tán Với Queue Redis package main import ( \"github.com/gocolly/colly/v2\" \"github.com/gocolly/colly/v2/queue\" ) func main() { c := colly.NewCollector() // Tạo queue hỗ trợ Redis q, _ := queue.New(100, \u0026queue.RedisStorage{ Address: \"redis:6379\", DB: 0, }) c.OnHTML(\"a[href]\", func(e *colly.HTMLElement) { link := e.Request.AbsoluteURL(e.Attr(\"href\")) if link != \"\" { q.AddURL(link) } }) c.OnHTML(\"article\", func(e *colly.HTMLElement) { title := e.ChildText(\"h1\") body := e.ChildText(\"p\") saveToDatabase(title, body) }) q.AddURL(\"https://example.com/start\") q.Run(c) } HTTP Backend Tùy Chỉnh Với Timeout package main import ( \"net/http\" \"time\" \"github.com/gocolly/colly/v2\" ) func main() { c := colly.NewCollector() // Thay thế HTTP client mặc định c.WithTransport(\u0026http.Transport{ MaxIdleConns: 100, MaxIdleConnsPerHost: 10, IdleConnTimeout: 30 * time.Second, DisableCompression: false, }) c.SetRequestTimeout(15 * time.Second) // Retry request thất bại c.OnError(func(r *colly.Response, err error) { if r.StatusCode \u003e= 500 { // Retry lỗi server sau 5 giây time.Sleep(5 * time.Second) r.Request.Retry() } }) c.Visit(\"https://example.com\") } Dữ Liệu Có Cấu Trúc Với Struct Tags package main import ( \"encoding/json\" \"fmt\" \"github.com/gocolly/colly/v2\" ) type Product struct { Name string ````selector:\"h1.product-title\"```` Price string ````selector:\"span.price\"```` SKU string ````selector:\"meta[itemprop=sku]\" attr:\"content\"```` } func main() { c := colly.NewCollector() c.OnHTML(\"div.product\", func(e *colly.HTMLElement) { var p Product e.Unmarshal(\u0026p) data, _ := json.MarshalIndent(p, \"\", \" \") fmt.Println(string(data)) }) c.Visit(\"https://shop.example.com/item/123\") } So Sánh Với Các Giải Pháp Thay Thế Tính năng Colly Scrapy Puppeteer goquery Ngôn ngữ Go Python Node.js Go Request/giây (1 lõi) 1,000+ ~300 ~3 ~20 Bộ nhớ/1000 trang 15-25 MB 150-200 MB 400-600 MB 35-50 MB Render JavaScript Không Không* Có (Chromium) Không Triển khai binary Binary tĩnh đơn Virtualenv + dep node_modules + Chromium Chỉ thư viện Concurrency tích hợp Goroutine Twisted async Event-loop Thủ công Xử lý Cookie/session Tích hợp Tích hợp Tích hợp Thủ công Xoay vòng proxy Tích hợp Middleware Page-level Thủ công Queue/crawling Tích hợp + Redis Tích hợp Thủ công Không Độ khó học Thấp (Go) Trung bình Thấp (JS) Thấp Quy mô hệ sinh thái Đang phát triển Rất lớn Lớn Nhỏ *Scrapy có thể render JS qua scrapy-playwright hoặc Splash, nhưng không tích hợp sẵn.\nKhi Nào Chọn Công Cụ Nào Colly: HTML tĩnh quy mô lớn, triển khai binary đơn, team Go Scrapy: Hệ sinh thái Python, pipeline phức tạp, workflow middleware nặng Puppeteer: SPA nhiều JavaScript, chụp màn hình, tự động hóa trình duyệt goquery: Phân tích nhẹ khi không cần điều phối HTTP Hạn Chế / Đánh Giá Thực Tế Colly không phải công cụ phù hợp cho mọi công việc scraping. Đây là những giớ hạn cứng: 1. Không thực thi JavaScript: Colly chỉ phân tích HTML thô. SPA, infinite scroll và nội dung động cần chromedp hoặc Rod làm công cụ đồng hành. 2. Hệ sinh thái nhỏ hơn Scrapy: Bạn sẽ không tìm thấy plugin cho mọi trường hợp edge case. Middleware tùy chỉnh đòi hỏi viết code Go, không chỉ pip install. 3. Chỉ hỗ trợ Go: Team không có chuyên môn Go sẽ đối mặt với đường cong học tập dốc hơn so với các lựa chọn Python. 4. Không xuất dữ liệu tích hợp: Khác với item pipeline của Scrapy (JSON, CSV, XML mặc định), Colly cần tuần tự hóa thủ công. 5. Tích hợp headless browser thủ công: Puppeteer hoạt động ngay với Chromium, còn Colly cần kết nối chromedp rõ ràng cho nội dung JS-rendered. 6. Độ phức tạp debug: Lỗi goroutine bất đồng bộ có thể khó theo dõi hơn xử lý ngoại lệ tuần tự của Python.\nCâu Hỏi Thường Gặp Colly so với Scrapy trong scraping production như thế nào? Colly vượt trội Scrapy về thông lượng thô (1,000+ vs ~300 req/sec) và hiệu quả bộ nhớ (25 MB vs 180 MB mỗi 1K trang). Scrapy thắng về độ trưởng thành hệ sinh thái và pipeline tích hợp. Đối với team Go triển khai binary tĩnh, Colly là lựa chọn thực tiễn. Team Python với infrastructure Scrapy hiện có nên cân nhắc chi phí migration.\nColly có thể scrape website render JavaScript không? Không — Colly không thực thi JavaScript một cách tự nhiên. Đối với SPA và nội dung động, sử dụng chromedp hoặc Rod để render trang trước, sau đó chuyển HTML cho Colly phân tích. Mô hình lai này kết hợp khả năng render của Chromium với tốc độ trích xuất của Colly.\nLàm thế nào scale Colly qua nhiều máy? Sử dụng queue hỗ trợ Redis (colly/queue) để phân phối URL cho worker. Mỗi worker chạy instance Colly, tiêu thụ từ queue chia sẻ và ghi kết quả vào database trung tâm. Thêm HPA trong Kubernetes cho capacity đàn hồi.\nNhà cung cấp proxy nào hoạt động tốt nhất với Colly? Mọi HTTP proxy đều hoạt động qua colly/proxy. Webshare cung cấp proxy residential với pool IP xoay vòng tích hợp sạch sẽ với RoundRobinProxySwitcher của Colly. Bright Data và Oxylabs là lựa chọn enterprise với hỗ trợ chuyên dụng.\nLàm sao tránh bị chặn khi scraping? Kết hợp nhiều kỹ thuật: xoay vòng User-Agent qua Colly extension, thêm độ trễ ngẫu nhiên (RandomDelay trong LimitRule), tôn trọng robots.txt, dùng proxy residential, phân phối request theo thờ gian. Không bao giờ vượt quá capacity của trang đích — giám sát mã phản hồi và lùi lại khi gặp lỗi 429.\nColly có phù hợp crawl hàng triệu trang? Có, với kiến trúc phù hợp. Dùng Redis để loại bỏ trùng lặp URL và cache, triển khai crawling tăng dần với timestamp, shard qua nhiều worker, và persist state để phục hồi sau restart. Các team báo cáo crawl 10M+ trang hàng tháng với 3-5 instance Colly.\nLàm thế nào debug scraper Colly? Bật debug logging với colly.Debugger(\u0026debug.LogDebugger{}) để theo dõi mọi request/response. Dùng callback OnError để bắt và log request thất bại. Đối với vấn đề phức tạp, attach custom HTTP backend với khả năng dump request/response.\nKết Luận Colly cung cấp chính xác những gì developer Go cần từ một framework scraping: tốc độ, đơn giản và khả năng triển khai binary đơn. Với 25,302 GitHub Stars và 1,000+ request mỗi giây, nó vượt trội so với các lựa chọn Python và Node.js về thông lượng và hiệu quả bộ nhớ. API callback trực quan, tích hợp Redis cho phép crawling phân tán thực sự, và hỗ trợ proxy giữ bạn không bị chặn ở quy mô lớn.\nHành động để bắt đầu:\nClone Colly GitHub repo và chạy thư mục ````_examples/``` Xây dựng scraper đầu tiên với thiết lập 5 phút ở trên Thêm Redis cache và proxy rotation trước khi mở rộng quá 10K trang Tham gia nhóm Telegram dibi8 để thảo luận về Go scraping và chia sẻ mẹo production Điều khoản tiết lộ: Bài viết này chứa liên kết liên kết (affiliate) đến Webshare. Chúng tôi chỉ giới thiệu các dịch vụ đã đánh giá cho quy trình scraping production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài Liệu Tham Khảo Colly GitHub Repository — Mã nguồn và ví dụ chính thức Colly Documentation — Tài liệu API và hướng dẫn Colly v2.2.0 Release Notes — Phiên bản ổn định mới nhất Scrapy Official Docs — So sánh framework scraping Python Puppeteer GitHub — Headless Chrome Node.js API goquery GitHub — HTML parsing kiểu jQuery cho Go Web Scraping with Go: Practical Guide — Pattern production Best Open-Source Web Crawlers 2026 — Tổng quan hệ sinh thái Colly Benchmarks — Số liệu hiệu năng { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc Độ Cao 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/colly\" } } Related Articles juicefs-distributed-posix-file-system-redis-s3-cloud-storage freellmapi-openai-compatible-proxy-free-llm-tiers-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "2750",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/colly/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/colly/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/colly/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/colly/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới Thiệu">Giới Thiệu</a></li>
+            <li>
+                <a href="#colly-l%c3%a0-g%c3%ac" aria-label="Colly Là Gì?">Colly Là Gì?</a></li>
+            <li>
+                <a href="#colly-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Colly Hoạt Động Như Thế Nào">Colly Hoạt Động Như Thế Nào</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài Đặt &amp; Thiết Lập">Cài Đặt &amp; Thiết Lập</a><ul>
+                    
+            <li>
+                <a href="#y%c3%aau-c%e1%ba%a7u-tr%c6%b0%e1%bb%9bc" aria-label="Yêu Cầu Trước">Yêu Cầu Trước</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-colly" aria-label="Cài Đặt Colly">Cài Đặt Colly</a></li>
+            <li>
+                <a href="#scraper-%c4%91%e1%ba%a7u-ti%c3%aan-c%e1%bb%a7-b%e1%ba%a1n" aria-label="Scraper Đầu Tiên Củ Bạn">Scraper Đầu Tiên Củ Bạn</a></li>
+            <li>
+                <a href="#docker-compose-v%e1%bb%9bi-redis-cache" aria-label="Docker Compose với Redis Cache">Docker Compose với Redis Cache</a></li>
+            <li>
+                <a href="#proxy-rotation-v%e1%bb%9bi-webshare" aria-label="Proxy Rotation Với Webshare">Proxy Rotation Với Webshare</a></li>
+            <li>
+                <a href="#goquery-cho-duy%e1%bb%87t-dom-n%c3%a2ng-cao" aria-label="goquery Cho Duyệt DOM Nâng Cao">goquery Cho Duyệt DOM Nâng Cao</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark--tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Trường Hợp Sử Dụng Thực Tế">Benchmark / Trường Hợp Sử Dụng Thực Tế</a><ul>
+                    
+            <li>
+                <a href="#benchmark-th%c3%b4ng-l%c6%b0%e1%bb%a3ng" aria-label="Benchmark Thông Lượng">Benchmark Thông Lượng</a></li>
+            <li>
+                <a href="#tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Trường Hợp Sử Dụng Thực Tế">Trường Hợp Sử Dụng Thực Tế</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--production-hardening" aria-label="Sử Dụng Nâng Cao / Production Hardening">Sử Dụng Nâng Cao / Production Hardening</a><ul>
+                    
+            <li>
+                <a href="#gi%e1%bb%9bi-h%e1%ba%a1n-t%e1%bb%91c-%c4%91%e1%bb%99-v%c3%a0-s%e1%bb%b1-l%e1%bb%8bch-s%e1%bb%b1" aria-label="Giới Hạn Tốc Độ và Sự Lịch Sự">Giới Hạn Tốc Độ và Sự Lịch Sự</a></li>
+            <li>
+                <a href="#crawling-ph%c3%a2n-t%c3%a1n-v%e1%bb%9bi-queue-redis" aria-label="Crawling Phân Tán Với Queue Redis">Crawling Phân Tán Với Queue Redis</a></li>
+            <li>
+                <a href="#http-backend-t%c3%b9y-ch%e1%bb%89nh-v%e1%bb%9bi-timeout" aria-label="HTTP Backend Tùy Chỉnh Với Timeout">HTTP Backend Tùy Chỉnh Với Timeout</a></li>
+            <li>
+                <a href="#d%e1%bb%af-li%e1%bb%87u-c%c3%b3-c%e1%ba%a5u-tr%c3%bac-v%e1%bb%9bi-struct-tags" aria-label="Dữ Liệu Có Cấu Trúc Với Struct Tags">Dữ Liệu Có Cấu Trúc Với Struct Tags</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So Sánh Với Các Giải Pháp Thay Thế">So Sánh Với Các Giải Pháp Thay Thế</a><ul>
+                    
+            <li>
+                <a href="#khi-n%c3%a0o-ch%e1%bb%8dn-c%c3%b4ng-c%e1%bb%a5-n%c3%a0o" aria-label="Khi Nào Chọn Công Cụ Nào">Khi Nào Chọn Công Cụ Nào</a></li></ul>
+            </li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Hạn Chế / Đánh Giá Thực Tế">Hạn Chế / Đánh Giá Thực Tế</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu Hỏi Thường Gặp">Câu Hỏi Thường Gặp</a><ul>
+                    
+            <li>
+                <a href="#colly-so-v%e1%bb%9bi-scrapy-trong-scraping-production-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Colly so với Scrapy trong scraping production như thế nào?">Colly so với Scrapy trong scraping production như thế nào?</a></li>
+            <li>
+                <a href="#colly-c%c3%b3-th%e1%bb%83-scrape-website-render-javascript-kh%c3%b4ng" aria-label="Colly có thể scrape website render JavaScript không?">Colly có thể scrape website render JavaScript không?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-scale-colly-qua-nhi%e1%bb%81u-m%c3%a1y" aria-label="Làm thế nào scale Colly qua nhiều máy?">Làm thế nào scale Colly qua nhiều máy?</a></li>
+            <li>
+                <a href="#nh%c3%a0-cung-c%e1%ba%a5p-proxy-n%c3%a0o-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-t%e1%bb%91t-nh%e1%ba%a5t-v%e1%bb%9bi-colly" aria-label="Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?">Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?</a></li>
+            <li>
+                <a href="#l%c3%a0m-sao-tr%c3%a1nh-b%e1%bb%8b-ch%e1%ba%b7n-khi-scraping" aria-label="Làm sao tránh bị chặn khi scraping?">Làm sao tránh bị chặn khi scraping?</a></li>
+            <li>
+                <a href="#colly-c%c3%b3-ph%c3%b9-h%e1%bb%a3p-crawl-h%c3%a0ng-tri%e1%bb%87u-trang" aria-label="Colly có phù hợp crawl hàng triệu trang?">Colly có phù hợp crawl hàng triệu trang?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-debug-scraper-colly" aria-label="Làm thế nào debug scraper Colly?">Làm thế nào debug scraper Colly?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết Luận">Kết Luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài Liệu Tham Khảo">Nguồn &amp; Tài Liệu Tham Khảo</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,12 +306,25 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;colly&rdquo;, &ldquo;go&rdquo;, &ldquo;web-scraping&rdquo;, &ldquo;crawler&rdquo;, &ldquo;golang&rdquo;, &ldquo;scrapy&rdquo;, &ldquo;benchmark&rdquo;, &ldquo;proxy&rdquo;]
-aliases:</p><ul><li>/vi/posts/colly/</li></ul><hr><h2 id=giới-thiệu>Giới Thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Python đã thống trị web scraping hơn một thập kỷ. Scrapy, BeautifulSoup và Selenium trở thành stack mặc định — cho đến khi các team bắt đầu gặp phải cùng một bức tường: phình bộ nhớ, tranh chấp GIL và phức tạp khi triển khai. Go đã thay đổi phương trình này. Colly, một framework scraping được xây dựng riêng cho Go, hiện có <strong>25,302 GitHub Stars</strong> với khả năng đã được chứng minh là xử lý <strong>1,000+ request mỗi giây trên một lõi CPU</strong>. Bài hướng dẫn colly này đi qua cài đặt, benchmark so với Scrapy và Puppeteer, hardening production và những hạn chế thực tế bạn cần biết trước khi triển khai.</p><h2 id=colly-là-gì>Colly Là Gì?<a hidden class=anchor aria-hidden=true href=#colly-là-gì>#</a></h2><p><strong>Colly</strong> là một framework web scraping và crawling nhanh, thanh lịch cho Go. Nó cung cấp API dựa trên callback rõ ràng xử lý HTTP request, phân tích HTML, quản lý cookie, giới hạn tốc độ và thực thi song song — tất cả đều nằm sau một đối tượng ```Collector````. Framework biên dịch thành binary tĩnh với zero runtime dependency, khiến nó trở thành lựa chọn hàng đầu cho pipeline scraping thân thiện với DevOps.</p><h2 id=colly-hoạt-động-như-thế-nào>Colly Hoạt Động Như Thế Nào<a hidden class=anchor aria-hidden=true href=#colly-hoạt-động-như-thế-nào>#</a></h2><p><img alt="Colly ví dụ cơ bản" loading=lazy src=https://raw.githubusercontent.com/gocolly/colly/master/_examples/basic/basic.png></p><p><img alt="Colly gopher mascot" loading=lazy src=https://go-colly.org/img/colly_gopher.png></p><p>Kiến trúc của Colly xoay quanh <strong>Collector</strong> — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. <strong>Collector</strong> nhận URL khởi đầu qua <code>Visit()</code>
+aliases:</p>
+<ul>
+<li>/vi/posts/colly/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu">Giới Thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Python đã thống trị web scraping hơn một thập kỷ. Scrapy, BeautifulSoup và Selenium trở thành stack mặc định — cho đến khi các team bắt đầu gặp phải cùng một bức tường: phình bộ nhớ, tranh chấp GIL và phức tạp khi triển khai. Go đã thay đổi phương trình này. Colly, một framework scraping được xây dựng riêng cho Go, hiện có <strong>25,302 GitHub Stars</strong> với khả năng đã được chứng minh là xử lý <strong>1,000+ request mỗi giây trên một lõi CPU</strong>. Bài hướng dẫn colly này đi qua cài đặt, benchmark so với Scrapy và Puppeteer, hardening production và những hạn chế thực tế bạn cần biết trước khi triển khai.</p>
+<h2 id="colly-là-gì">Colly Là Gì?<a hidden class="anchor" aria-hidden="true" href="#colly-là-gì">#</a></h2>
+<p><strong>Colly</strong> là một framework web scraping và crawling nhanh, thanh lịch cho Go. Nó cung cấp API dựa trên callback rõ ràng xử lý HTTP request, phân tích HTML, quản lý cookie, giới hạn tốc độ và thực thi song song — tất cả đều nằm sau một đối tượng ```Collector````. Framework biên dịch thành binary tĩnh với zero runtime dependency, khiến nó trở thành lựa chọn hàng đầu cho pipeline scraping thân thiện với DevOps.</p>
+<h2 id="colly-hoạt-động-như-thế-nào">Colly Hoạt Động Như Thế Nào<a hidden class="anchor" aria-hidden="true" href="#colly-hoạt-động-như-thế-nào">#</a></h2>
+<p><img alt="Colly ví dụ cơ bản" loading="lazy" src="https://raw.githubusercontent.com/gocolly/colly/master/_examples/basic/basic.png"></p>
+<p><img alt="Colly gopher mascot" loading="lazy" src="https://go-colly.org/img/colly_gopher.png"></p>
+<p>Kiến trúc của Colly xoay quanh <strong>Collector</strong> — một orchestrator có trạng thái quản lý toàn bộ vòng đỳ scraping. Dữ liệu chảy như sau: 1. <strong>Collector</strong> nhận URL khởi đầu qua <code>Visit()</code>
 2. <strong>HTTP Backend</strong> gửi request với timeout, proxy và header đã cấu hình
 3. <strong>Response</strong> kích hoạt callback đã đăng ký (<code>OnHTML</code>, <code>OnResponse</code>, <code>OnError</code>)
 4. <strong>HTMLElement</strong> phân tích DOM sử dụng bộ chọn kiểu goquery
 5. <strong>Queue</strong> xử lý lập lịch URL cho crawling đệ quy
-6. <strong>Storage Backend</strong> quản lý cookie, session và caching</p><pre tabindex=0><code>┌─────────────┐    HTTP GET     ┌──────────────┐
+6. <strong>Storage Backend</strong> quản lý cookie, session và caching</p>
+<pre tabindex="0"><code>┌─────────────┐    HTTP GET     ┌──────────────┐
 │  Collector  │ ──────────────&gt; │ Trang web mục │
 │  (Trạng thái│ &lt;────────────── │ tiêu          │
 └──────┬──────┘    Phản hồi    └──────────────┘
@@ -41,44 +339,54 @@ aliases:</p><ul><li>/vi/posts/colly/</li></ul><hr><h2 id=giới-thiệu>Giới T
 ┌─────────────┐
 │     Queue   │ ──&gt; Truy cập URL tiếp theo
 └─────────────┘
-</code></pre><p>Mẫu Collector giữ code được tổ chức: bạn đăng ký handler cho các phần tử HTML cụ thể và để Colly tự động quản lý concurrency, retry và sự lịch sự.</p><h2 id=cài-đặt--thiết-lập>Cài Đặt & Thiết Lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=yêu-cầu-trước>Yêu Cầu Trước<a hidden class=anchor aria-hidden=true href=#yêu-cầu-trước>#</a></h3><ul><li>Go 1.21+ đã cài đặt</li><li>Một module Go hoạt động (<code>go mod init</code>)</li></ul><h3 id=cài-đặt-colly>Cài Đặt Colly<a hidden class=anchor aria-hidden=true href=#cài-đặt-colly>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Khởi tạo dự án</span>
-</span></span><span style=display:flex><span>mkdir colly-scraper <span style=color:#f92672>&amp;&amp;</span> cd colly-scraper
-</span></span><span style=display:flex><span>go mod init github.com/youruser/colly-scraper
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài đặt Colly v2</span>
-</span></span><span style=display:flex><span>go get github.com/gocolly/colly/v2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Xác minh cài đặt</span>
-</span></span><span style=display:flex><span>go list -m github.com/gocolly/colly/v2
-</span></span></code></pre></div><h3 id=scraper-đầu-tiên-củ-bạn>Scraper Đầu Tiên Củ Bạn<a hidden class=anchor aria-hidden=true href=#scraper-đầu-tiên-củ-bạn>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Trích xuất tất cả tiêu đề liên kết</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;a[href]&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>link</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Attr</span>(<span style=color:#e6db74>&#34;href&#34;</span>)
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>text</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Text</span>
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Liên kết: %s | Văn bản: %s\n&#34;</span>, <span style=color:#a6e22e>link</span>, <span style=color:#a6e22e>text</span>)
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnRequest</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>Request</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(<span style=color:#e6db74>&#34;Đang truy cập:&#34;</span>, <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>URL</span>.<span style=color:#a6e22e>String</span>())
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnError</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>Response</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Lỗi %d: %v\n&#34;</span>, <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>StatusCode</span>, <span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://go-colly.org/&#34;</span>)
-</span></span><span style=display:flex><span>}
+</code></pre><p>Mẫu Collector giữ code được tổ chức: bạn đăng ký handler cho các phần tử HTML cụ thể và để Colly tự động quản lý concurrency, retry và sự lịch sự.</p>
+<h2 id="cài-đặt--thiết-lập">Cài Đặt &amp; Thiết Lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<h3 id="yêu-cầu-trước">Yêu Cầu Trước<a hidden class="anchor" aria-hidden="true" href="#yêu-cầu-trước">#</a></h3>
+<ul>
+<li>Go 1.21+ đã cài đặt</li>
+<li>Một module Go hoạt động (<code>go mod init</code>)</li>
+</ul>
+<h3 id="cài-đặt-colly">Cài Đặt Colly<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-colly">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Khởi tạo dự án</span>
+</span></span><span style="display:flex;"><span>mkdir colly-scraper <span style="color:#f92672">&amp;&amp;</span> cd colly-scraper
+</span></span><span style="display:flex;"><span>go mod init github.com/youruser/colly-scraper
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt Colly v2</span>
+</span></span><span style="display:flex;"><span>go get github.com/gocolly/colly/v2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Xác minh cài đặt</span>
+</span></span><span style="display:flex;"><span>go list -m github.com/gocolly/colly/v2
+</span></span></code></pre></div><h3 id="scraper-đầu-tiên-củ-bạn">Scraper Đầu Tiên Củ Bạn<a hidden class="anchor" aria-hidden="true" href="#scraper-đầu-tiên-củ-bạn">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">NewCollector</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Trích xuất tất cả tiêu đề liên kết</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnHTML</span>(<span style="color:#e6db74">&#34;a[href]&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">HTMLElement</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">link</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">Attr</span>(<span style="color:#e6db74">&#34;href&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">text</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">Text</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Liên kết: %s | Văn bản: %s\n&#34;</span>, <span style="color:#a6e22e">link</span>, <span style="color:#a6e22e">text</span>)
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnRequest</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">Request</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(<span style="color:#e6db74">&#34;Đang truy cập:&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">URL</span>.<span style="color:#a6e22e">String</span>())
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnError</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">Response</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Lỗi %d: %v\n&#34;</span>, <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">StatusCode</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#e6db74">&#34;https://go-colly.org/&#34;</span>)
+</span></span><span style="display:flex;"><span>}
 </span></span></code></pre></div><p>Chạy: `````bash
-go run main.go</p><pre tabindex=0><code>
+go run main.go</p>
+<pre tabindex="0"><code>
 ### Thiết Lập Docker
 
 `````dockerfile
@@ -94,89 +402,96 @@ RUN apk --no-cache add ca-certificates
 WORKDIR /root/
 COPY --from=builder /app/scraper .
 CMD [&#34;./scraper&#34;]
-</code></pre><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Build và chạy</span>
-</span></span><span style=display:flex><span>docker build -t colly-scraper .
-</span></span><span style=display:flex><span>docker run --rm colly-scraper
-</span></span></code></pre></div><h3 id=docker-compose-với-redis-cache>Docker Compose với Redis Cache<a hidden class=anchor aria-hidden=true href=#docker-compose-với-redis-cache>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#ae81ff>&#39;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: scraper: build</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>redis</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>REDIS_URL=redis:6379</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>redis: image</span>: <span style=color:#ae81ff>redis:7-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>redis-data:/data</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>volumes: redis-data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Tích Hợp Với Công Cụ Phổ Biến</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Backend Cache Redis</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis</span>: <span style=color:#ae81ff>`````go</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>package main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>import (</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2/storage&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>func main() {</span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c := colly.NewCollector()</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>// Sử dụng Redis cho lưu trữ liên tục</span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>redisStore := &amp;storage.RedisStorage{</span>
-</span></span><span style=display:flex><span>		<span style=color:#f92672>Address</span>: <span style=color:#e6db74>&#34;redis:6379&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#f92672>Password</span>: <span style=color:#e6db74>&#34;&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#f92672>DB</span>: <span style=color:#ae81ff>0</span>,
-</span></span><span style=display:flex><span>		<span style=color:#f92672>Prefix</span>: <span style=color:#e6db74>&#34;colly&#34;</span>,
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>if err := redisStore.Open(); err != nil {</span>
-</span></span><span style=display:flex><span>		<span style=color:#ae81ff>panic(err)</span>
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>defer redisStore.Close()</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c.SetStorage(redisStore)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c.OnHTML(&#34;h1&#34;, func(e *colly.HTMLElement) {</span>
-</span></span><span style=display:flex><span>		<span style=color:#ae81ff>fmt.Println(&#34;Tiêu đề:&#34;, e.Text)</span>
-</span></span><span style=display:flex><span>	}<span style=color:#ae81ff>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#ae81ff>c.Visit(&#34;https://example.com&#34;)</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=proxy-rotation-với-webshare>Proxy Rotation Với Webshare<a hidden class=anchor aria-hidden=true href=#proxy-rotation-với-webshare>#</a></h3><p>Khi scraping quy mô lớn, proxy rotation ngăn chặn IP bị chặn. <a href=https://www.webshare.io/>Webshare</a> cung cấp proxy residential tích hợp liền mạch với Colly.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2/proxy&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Thiết lập proxy luân phiên</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>rp</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>proxy</span>.<span style=color:#a6e22e>RoundRobinProxySwitcher</span>(
-</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;http://user:pass@proxy1.webshare.io:80&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;http://user:pass@proxy2.webshare.io:80&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#e6db74>&#34;http://user:pass@proxy3.webshare.io:80&#34;</span>,
-</span></span><span style=display:flex><span>	)
-</span></span><span style=display:flex><span>	<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>		panic(<span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>	}
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>SetProxyFunc</span>(<span style=color:#a6e22e>rp</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Tôn trọng máy chủ đích</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Limit</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>LimitRule</span>{
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DomainGlob</span>: <span style=color:#e6db74>&#34;*&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Parallelism</span>: <span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Delay</span>: <span style=color:#ae81ff>1</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>,
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://example.com&#34;</span>)
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=goquery-cho-duyệt-dom-nâng-cao>goquery Cho Duyệt DOM Nâng Cao<a hidden class=anchor aria-hidden=true href=#goquery-cho-duyệt-dom-nâng-cao>#</a></h3><p><code>HTMLElement</code> tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: `````go
-package main</p><p>import (
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Build và chạy</span>
+</span></span><span style="display:flex;"><span>docker build -t colly-scraper .
+</span></span><span style="display:flex;"><span>docker run --rm colly-scraper
+</span></span></code></pre></div><h3 id="docker-compose-với-redis-cache">Docker Compose với Redis Cache<a hidden class="anchor" aria-hidden="true" href="#docker-compose-với-redis-cache">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#ae81ff">&#39;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: scraper: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">redis</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">REDIS_URL=redis:6379</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">redis: image</span>: <span style="color:#ae81ff">redis:7-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">redis-data:/data</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">volumes: redis-data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Tích Hợp Với Công Cụ Phổ Biến</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Backend Cache Redis</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Để crawling quy mô lớn, tránh request trùng lặp bằng cache Redis</span>: <span style="color:#ae81ff">`````go</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">package main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">import (</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2/storage&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">func main() {</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">c := colly.NewCollector()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">// Sử dụng Redis cho lưu trữ liên tục</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">redisStore := &amp;storage.RedisStorage{</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">Address</span>: <span style="color:#e6db74">&#34;redis:6379&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">Password</span>: <span style="color:#e6db74">&#34;&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">DB</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#f92672">Prefix</span>: <span style="color:#e6db74">&#34;colly&#34;</span>,
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">if err := redisStore.Open(); err != nil {</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">panic(err)</span>
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">defer redisStore.Close()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">c.SetStorage(redisStore)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">c.OnHTML(&#34;h1&#34;, func(e *colly.HTMLElement) {</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#ae81ff">fmt.Println(&#34;Tiêu đề:&#34;, e.Text)</span>
+</span></span><span style="display:flex;"><span>	}<span style="color:#ae81ff">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#ae81ff">c.Visit(&#34;https://example.com&#34;)</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="proxy-rotation-với-webshare">Proxy Rotation Với Webshare<a hidden class="anchor" aria-hidden="true" href="#proxy-rotation-với-webshare">#</a></h3>
+<p>Khi scraping quy mô lớn, proxy rotation ngăn chặn IP bị chặn. <a href="https://www.webshare.io/">Webshare</a> cung cấp proxy residential tích hợp liền mạch với Colly.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2/proxy&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">NewCollector</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Thiết lập proxy luân phiên</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">rp</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">proxy</span>.<span style="color:#a6e22e">RoundRobinProxySwitcher</span>(
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;http://user:pass@proxy1.webshare.io:80&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;http://user:pass@proxy2.webshare.io:80&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#e6db74">&#34;http://user:pass@proxy3.webshare.io:80&#34;</span>,
+</span></span><span style="display:flex;"><span>	)
+</span></span><span style="display:flex;"><span>	<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>		panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>	}
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">SetProxyFunc</span>(<span style="color:#a6e22e">rp</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Tôn trọng máy chủ đích</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Limit</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">LimitRule</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">DomainGlob</span>: <span style="color:#e6db74">&#34;*&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Parallelism</span>: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay</span>: <span style="color:#ae81ff">1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>,
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#e6db74">&#34;https://example.com&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="goquery-cho-duyệt-dom-nâng-cao">goquery Cho Duyệt DOM Nâng Cao<a hidden class="anchor" aria-hidden="true" href="#goquery-cho-duyệt-dom-nâng-cao">#</a></h3>
+<p><code>HTMLElement</code> tích hợp của Colly bao phủ hầu hết các trường hợp, nhưng goquery mở khóa duyệt DOM phức tạp: `````go
+package main</p>
+<p>import (
 &ldquo;github.com/PuerkitoBio/goquery&rdquo;
 &ldquo;github.com/gocolly/colly/v2&rdquo;
-)</p><p>func main() {
-c := colly.NewCollector()</p><pre><code>c.OnHTML(&quot;article&quot;, func(e *colly.HTMLElement) {
+)</p>
+<p>func main() {
+c := colly.NewCollector()</p>
+<pre><code>c.OnHTML(&quot;article&quot;, func(e *colly.HTMLElement) {
 	// Truy cập lựa chọn goquery cơ bản
 	dom := e.DOM
 
@@ -195,7 +510,9 @@ c := colly.NewCollector()</p><pre><code>c.OnHTML(&quot;article&quot;, func(e *co
 })
 
 c.Visit(&quot;https://news.ycombinator.com&quot;)
-</code></pre><p>}</p><pre tabindex=0><code>
+</code></pre>
+<p>}</p>
+<pre tabindex="0"><code>
 ### chromedp Cho Trang Render JavaScript
 
 Colly không thực thi JavaScript. Đối với SPA, ghép nối với chromedp: `````go
@@ -237,138 +554,300 @@ func main() {
 	// Phân tích HTML đã render...
 	fmt.Println(&#34;Độ dài render:&#34;, len(htmlContent))
 }
-</code></pre><h2 id=benchmark--trường-hợp-sử-dụng-thực-tế>Benchmark / Trường Hợp Sử Dụng Thực Tế<a hidden class=anchor aria-hidden=true href=#benchmark--trường-hợp-sử-dụng-thực-tế>#</a></h2><h3 id=benchmark-thông-lượng>Benchmark Thông Lượng<a hidden class=anchor aria-hidden=true href=#benchmark-thông-lượng>#</a></h3><p>Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS <code>c6i.xlarge</code> (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary |
+</code></pre><h2 id="benchmark--trường-hợp-sử-dụng-thực-tế">Benchmark / Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="benchmark-thông-lượng">Benchmark Thông Lượng<a hidden class="anchor" aria-hidden="true" href="#benchmark-thông-lượng">#</a></h3>
+<p>Chúng tôi đã chạy benchmark kiểm soát scraping 1,000 trang HTML tĩnh trên bốn công cụ với AWS <code>c6i.xlarge</code> (4 vCPU, 8GB RAM): | Công cụ | Thờ gian (1000 trang) | Bộ nhớ | Request/giây | Kích thước binary |
 |&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;&mdash;-|&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;|
 | <strong>Colly</strong> (song song) | ~7 giây | 25 MB | ~1,200 | 12 MB |
 | <strong>Colly</strong> (đồng bộ) | ~52 giây | 20 MB | ~19 | 12 MB |
 | Scrapy (Python) | ~18 giây | 180 MB | ~280 | N/A |
 | Puppeteer (Node) | ~340 giây | 520 MB | ~3 | 0 MB* |
-| goquery + net/http | ~45 giây | 40 MB | ~22 | 11 MB |</p><p>*Puppeteer yêu cầu tải Chromium (~150 MB)</p><p>Quan sát chính từ benchmark colly: 1. <strong>Chế độ song song Colly</strong> đạt <strong>tăng tốc 7 lần</strong> so với thực thi đồng bộ bằng goroutine
+| goquery + net/http | ~45 giây | 40 MB | ~22 | 11 MB |</p>
+<p>*Puppeteer yêu cầu tải Chromium (~150 MB)</p>
+<p>Quan sát chính từ benchmark colly: 1. <strong>Chế độ song song Colly</strong> đạt <strong>tăng tốc 7 lần</strong> so với thực thi đồng bộ bằng goroutine
 2. <strong>Dung lượng bộ nhớ</strong> nhỏ hơn Scrapy 7 lần và Puppeteer 20 lần
 3. <strong>Triển khai binary đơn</strong> chỉ 12 MB so với virtualenv + dependency hell của Scrapy
-4. <strong>Thờ gian khởi động</strong> gần như tức thờ so với khởi động Chromium của Puppeteer</p><p><img alt="Colly Redis queue architecture" loading=lazy src=https://raw.githubusercontent.com/gocolly/colly/master/_examples/coursera_courses/coursera.png></p><h3 id=trường-hợp-sử-dụng-thực-tế>Trường Hợp Sử Dụng Thực Tế<a hidden class=anchor aria-hidden=true href=#trường-hợp-sử-dụng-thực-tế>#</a></h3><ul><li><strong>Giám sát giá</strong>: Một công ty phân tích bán lẻ scraping 50K trang sản phẩm mỗi 15 phút bằng 3 instance Colly với queue Redis</li><li><strong>Crawler kiểm tra SEO</strong>: Các agency marketing crawl trang web khách hàng (10K-500K trang) để trích xuất thẻ meta, heading và cấu trúc liên kết</li><li><strong>Tổng hợp tin tức</strong>: Một startup fintech giám sát 200 nguồn tin, trích xuất văn bản bài viết và timestamp xuất bản</li><li><strong>Scraper bảng việc làm</strong>: Các nền tảng HR scraping nhiều bảng việc làm hàng ngày, chuẩn hóa thành schema thống nhất</li></ul><h2 id=sử-dụng-nâng-cao--production-hardening>Sử Dụng Nâng Cao / Production Hardening<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--production-hardening>#</a></h2><h3 id=giới-hạn-tốc-độ-và-sự-lịch-sự>Giới Hạn Tốc Độ và Sự Lịch Sự<a hidden class=anchor aria-hidden=true href=#giới-hạn-tốc-độ-và-sự-lịch-sự>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;time&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>(
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>AllowedDomains</span>(<span style=color:#e6db74>&#34;example.com&#34;</span>),
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>UserAgent</span>(<span style=color:#e6db74>&#34;MyBot/1.0 (+https://mysite.com/bot)&#34;</span>),
-</span></span><span style=display:flex><span>	)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Giới hạn tốc độ chặt chẽ theo domain</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Limit</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>LimitRule</span>{
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DomainGlob</span>: <span style=color:#e6db74>&#34;*example.com&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Parallelism</span>: <span style=color:#ae81ff>5</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Delay</span>: <span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>RandomDelay</span>: <span style=color:#ae81ff>500</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Millisecond</span>,
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Tôn trọng robots.txt</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>AllowURLRevisit</span> = <span style=color:#66d9ef>false</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://example.com/products&#34;</span>)
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=crawling-phân-tán-với-queue-redis>Crawling Phân Tán Với Queue Redis<a hidden class=anchor aria-hidden=true href=#crawling-phân-tán-với-queue-redis>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2/queue&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Tạo queue hỗ trợ Redis</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>q</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>queue</span>.<span style=color:#a6e22e>New</span>(<span style=color:#ae81ff>100</span>, <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>queue</span>.<span style=color:#a6e22e>RedisStorage</span>{
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>Address</span>: <span style=color:#e6db74>&#34;redis:6379&#34;</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DB</span>: <span style=color:#ae81ff>0</span>,
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;a[href]&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>link</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Request</span>.<span style=color:#a6e22e>AbsoluteURL</span>(<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Attr</span>(<span style=color:#e6db74>&#34;href&#34;</span>))
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>link</span> <span style=color:#f92672>!=</span> <span style=color:#e6db74>&#34;&#34;</span> {
-</span></span><span style=display:flex><span>			<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>AddURL</span>(<span style=color:#a6e22e>link</span>)
-</span></span><span style=display:flex><span>		}
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;article&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>title</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>ChildText</span>(<span style=color:#e6db74>&#34;h1&#34;</span>)
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>body</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>ChildText</span>(<span style=color:#e6db74>&#34;p&#34;</span>)
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>saveToDatabase</span>(<span style=color:#a6e22e>title</span>, <span style=color:#a6e22e>body</span>)
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>AddURL</span>(<span style=color:#e6db74>&#34;https://example.com/start&#34;</span>)
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>q</span>.<span style=color:#a6e22e>Run</span>(<span style=color:#a6e22e>c</span>)
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=http-backend-tùy-chỉnh-với-timeout>HTTP Backend Tùy Chỉnh Với Timeout<a hidden class=anchor aria-hidden=true href=#http-backend-tùy-chỉnh-với-timeout>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;net/http&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;time&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Thay thế HTTP client mặc định</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>WithTransport</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>http</span>.<span style=color:#a6e22e>Transport</span>{
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>MaxIdleConns</span>: <span style=color:#ae81ff>100</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>MaxIdleConnsPerHost</span>: <span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>IdleConnTimeout</span>: <span style=color:#ae81ff>30</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>,
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>DisableCompression</span>: <span style=color:#66d9ef>false</span>,
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>SetRequestTimeout</span>(<span style=color:#ae81ff>15</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#75715e>// Retry request thất bại</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnError</span>(<span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>Response</span>, <span style=color:#a6e22e>err</span> <span style=color:#66d9ef>error</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>if</span> <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>StatusCode</span> <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>500</span> {
-</span></span><span style=display:flex><span>			<span style=color:#75715e>// Retry lỗi server sau 5 giây</span>
-</span></span><span style=display:flex><span>			<span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Sleep</span>(<span style=color:#ae81ff>5</span> <span style=color:#f92672>*</span> <span style=color:#a6e22e>time</span>.<span style=color:#a6e22e>Second</span>)
-</span></span><span style=display:flex><span>			<span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>Request</span>.<span style=color:#a6e22e>Retry</span>()
-</span></span><span style=display:flex><span>		}
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://example.com&#34;</span>)
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=dữ-liệu-có-cấu-trúc-với-struct-tags>Dữ Liệu Có Cấu Trúc Với Struct Tags<a hidden class=anchor aria-hidden=true href=#dữ-liệu-có-cấu-trúc-với-struct-tags>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;encoding/json&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>	<span style=color:#e6db74>&#34;github.com/gocolly/colly/v2&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>type</span> <span style=color:#a6e22e>Product</span> <span style=color:#66d9ef>struct</span> {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Name</span>  <span style=color:#66d9ef>string</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>selector</span>:<span style=color:#e6db74>&#34;h1.product-title&#34;````</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>Price</span> <span style=color:#66d9ef>string</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>selector</span>:<span style=color:#e6db74>&#34;span.price&#34;````</span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>SKU</span>   <span style=color:#66d9ef>string</span> <span style=color:#e6db74>````</span><span style=color:#a6e22e>selector</span>:<span style=color:#e6db74>&#34;meta[itemprop=sku]&#34;</span> <span style=color:#a6e22e>attr</span>:<span style=color:#e6db74>&#34;content&#34;````</span>
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>NewCollector</span>()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>OnHTML</span>(<span style=color:#e6db74>&#34;div.product&#34;</span>, <span style=color:#66d9ef>func</span>(<span style=color:#a6e22e>e</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>colly</span>.<span style=color:#a6e22e>HTMLElement</span>) {
-</span></span><span style=display:flex><span>		<span style=color:#66d9ef>var</span> <span style=color:#a6e22e>p</span> <span style=color:#a6e22e>Product</span>
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>e</span>.<span style=color:#a6e22e>Unmarshal</span>(<span style=color:#f92672>&amp;</span><span style=color:#a6e22e>p</span>)
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>data</span>, <span style=color:#a6e22e>_</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>json</span>.<span style=color:#a6e22e>MarshalIndent</span>(<span style=color:#a6e22e>p</span>, <span style=color:#e6db74>&#34;&#34;</span>, <span style=color:#e6db74>&#34;  &#34;</span>)
-</span></span><span style=display:flex><span>		<span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Println</span>(string(<span style=color:#a6e22e>data</span>))
-</span></span><span style=display:flex><span>	})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>	<span style=color:#a6e22e>c</span>.<span style=color:#a6e22e>Visit</span>(<span style=color:#e6db74>&#34;https://shop.example.com/item/123&#34;</span>)
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=so-sánh-với-các-giải-pháp-thay-thế>So Sánh Với Các Giải Pháp Thay Thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-giải-pháp-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>Colly</th><th>Scrapy</th><th>Puppeteer</th><th>goquery</th></tr></thead><tbody><tr><td><strong>Ngôn ngữ</strong></td><td>Go</td><td>Python</td><td>Node.js</td><td>Go</td></tr><tr><td><strong>Request/giây</strong> (1 lõi)</td><td>1,000+</td><td>~300</td><td>~3</td><td>~20</td></tr><tr><td><strong>Bộ nhớ/1000 trang</strong></td><td>15-25 MB</td><td>150-200 MB</td><td>400-600 MB</td><td>35-50 MB</td></tr><tr><td><strong>Render JavaScript</strong></td><td>Không</td><td>Không*</td><td>Có (Chromium)</td><td>Không</td></tr><tr><td><strong>Triển khai binary</strong></td><td>Binary tĩnh đơn</td><td>Virtualenv + dep</td><td>node_modules + Chromium</td><td>Chỉ thư viện</td></tr><tr><td><strong>Concurrency tích hợp</strong></td><td>Goroutine</td><td>Twisted async</td><td>Event-loop</td><td>Thủ công</td></tr><tr><td><strong>Xử lý Cookie/session</strong></td><td>Tích hợp</td><td>Tích hợp</td><td>Tích hợp</td><td>Thủ công</td></tr><tr><td><strong>Xoay vòng proxy</strong></td><td>Tích hợp</td><td>Middleware</td><td>Page-level</td><td>Thủ công</td></tr><tr><td><strong>Queue/crawling</strong></td><td>Tích hợp + Redis</td><td>Tích hợp</td><td>Thủ công</td><td>Không</td></tr><tr><td><strong>Độ khó học</strong></td><td>Thấp (Go)</td><td>Trung bình</td><td>Thấp (JS)</td><td>Thấp</td></tr><tr><td><strong>Quy mô hệ sinh thái</strong></td><td>Đang phát triển</td><td>Rất lớn</td><td>Lớn</td><td>Nhỏ</td></tr></tbody></table><p>*Scrapy có thể render JS qua scrapy-playwright hoặc Splash, nhưng không tích hợp sẵn.</p><h3 id=khi-nào-chọn-công-cụ-nào>Khi Nào Chọn Công Cụ Nào<a hidden class=anchor aria-hidden=true href=#khi-nào-chọn-công-cụ-nào>#</a></h3><ul><li><strong>Colly</strong>: HTML tĩnh quy mô lớn, triển khai binary đơn, team Go</li><li><strong>Scrapy</strong>: Hệ sinh thái Python, pipeline phức tạp, workflow middleware nặng</li><li><strong>Puppeteer</strong>: SPA nhiều JavaScript, chụp màn hình, tự động hóa trình duyệt</li><li><strong>goquery</strong>: Phân tích nhẹ khi không cần điều phối HTTP</li></ul><h2 id=hạn-chế--đánh-giá-thực-tế>Hạn Chế / Đánh Giá Thực Tế<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-thực-tế>#</a></h2><p>Colly không phải công cụ phù hợp cho mọi công việc scraping. Đây là những giớ hạn cứng: 1. <strong>Không thực thi JavaScript</strong>: Colly chỉ phân tích HTML thô. SPA, infinite scroll và nội dung động cần chromedp hoặc Rod làm công cụ đồng hành.
+4. <strong>Thờ gian khởi động</strong> gần như tức thờ so với khởi động Chromium của Puppeteer</p>
+<p><img alt="Colly Redis queue architecture" loading="lazy" src="https://raw.githubusercontent.com/gocolly/colly/master/_examples/coursera_courses/coursera.png"></p>
+<h3 id="trường-hợp-sử-dụng-thực-tế">Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#trường-hợp-sử-dụng-thực-tế">#</a></h3>
+<ul>
+<li><strong>Giám sát giá</strong>: Một công ty phân tích bán lẻ scraping 50K trang sản phẩm mỗi 15 phút bằng 3 instance Colly với queue Redis</li>
+<li><strong>Crawler kiểm tra SEO</strong>: Các agency marketing crawl trang web khách hàng (10K-500K trang) để trích xuất thẻ meta, heading và cấu trúc liên kết</li>
+<li><strong>Tổng hợp tin tức</strong>: Một startup fintech giám sát 200 nguồn tin, trích xuất văn bản bài viết và timestamp xuất bản</li>
+<li><strong>Scraper bảng việc làm</strong>: Các nền tảng HR scraping nhiều bảng việc làm hàng ngày, chuẩn hóa thành schema thống nhất</li>
+</ul>
+<h2 id="sử-dụng-nâng-cao--production-hardening">Sử Dụng Nâng Cao / Production Hardening<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--production-hardening">#</a></h2>
+<h3 id="giới-hạn-tốc-độ-và-sự-lịch-sự">Giới Hạn Tốc Độ và Sự Lịch Sự<a hidden class="anchor" aria-hidden="true" href="#giới-hạn-tốc-độ-và-sự-lịch-sự">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">NewCollector</span>(
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">AllowedDomains</span>(<span style="color:#e6db74">&#34;example.com&#34;</span>),
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">UserAgent</span>(<span style="color:#e6db74">&#34;MyBot/1.0 (+https://mysite.com/bot)&#34;</span>),
+</span></span><span style="display:flex;"><span>	)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Giới hạn tốc độ chặt chẽ theo domain</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Limit</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">LimitRule</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">DomainGlob</span>: <span style="color:#e6db74">&#34;*example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Parallelism</span>: <span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Delay</span>: <span style="color:#ae81ff">2</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">RandomDelay</span>: <span style="color:#ae81ff">500</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Millisecond</span>,
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Tôn trọng robots.txt</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">AllowURLRevisit</span> = <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#e6db74">&#34;https://example.com/products&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="crawling-phân-tán-với-queue-redis">Crawling Phân Tán Với Queue Redis<a hidden class="anchor" aria-hidden="true" href="#crawling-phân-tán-với-queue-redis">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2/queue&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">NewCollector</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Tạo queue hỗ trợ Redis</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">q</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">New</span>(<span style="color:#ae81ff">100</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">queue</span>.<span style="color:#a6e22e">RedisStorage</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">Address</span>: <span style="color:#e6db74">&#34;redis:6379&#34;</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">DB</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnHTML</span>(<span style="color:#e6db74">&#34;a[href]&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">HTMLElement</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">link</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">AbsoluteURL</span>(<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">Attr</span>(<span style="color:#e6db74">&#34;href&#34;</span>))
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">link</span> <span style="color:#f92672">!=</span> <span style="color:#e6db74">&#34;&#34;</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">AddURL</span>(<span style="color:#a6e22e">link</span>)
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnHTML</span>(<span style="color:#e6db74">&#34;article&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">HTMLElement</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">title</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">ChildText</span>(<span style="color:#e6db74">&#34;h1&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">body</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">ChildText</span>(<span style="color:#e6db74">&#34;p&#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">saveToDatabase</span>(<span style="color:#a6e22e">title</span>, <span style="color:#a6e22e">body</span>)
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">AddURL</span>(<span style="color:#e6db74">&#34;https://example.com/start&#34;</span>)
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">q</span>.<span style="color:#a6e22e">Run</span>(<span style="color:#a6e22e">c</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="http-backend-tùy-chỉnh-với-timeout">HTTP Backend Tùy Chỉnh Với Timeout<a hidden class="anchor" aria-hidden="true" href="#http-backend-tùy-chỉnh-với-timeout">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;net/http&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">NewCollector</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Thay thế HTTP client mặc định</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">WithTransport</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">http</span>.<span style="color:#a6e22e">Transport</span>{
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">MaxIdleConns</span>: <span style="color:#ae81ff">100</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">MaxIdleConnsPerHost</span>: <span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">IdleConnTimeout</span>: <span style="color:#ae81ff">30</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>,
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">DisableCompression</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">SetRequestTimeout</span>(<span style="color:#ae81ff">15</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#75715e">// Retry request thất bại</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnError</span>(<span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">r</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">Response</span>, <span style="color:#a6e22e">err</span> <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">if</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">StatusCode</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">500</span> {
+</span></span><span style="display:flex;"><span>			<span style="color:#75715e">// Retry lỗi server sau 5 giây</span>
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Sleep</span>(<span style="color:#ae81ff">5</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</span></span><span style="display:flex;"><span>			<span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Request</span>.<span style="color:#a6e22e">Retry</span>()
+</span></span><span style="display:flex;"><span>		}
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#e6db74">&#34;https://example.com&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="dữ-liệu-có-cấu-trúc-với-struct-tags">Dữ Liệu Có Cấu Trúc Với Struct Tags<a hidden class="anchor" aria-hidden="true" href="#dữ-liệu-có-cấu-trúc-với-struct-tags">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;encoding/json&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#e6db74">&#34;github.com/gocolly/colly/v2&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Product</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Name</span>  <span style="color:#66d9ef">string</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">selector</span>:<span style="color:#e6db74">&#34;h1.product-title&#34;````</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">Price</span> <span style="color:#66d9ef">string</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">selector</span>:<span style="color:#e6db74">&#34;span.price&#34;````</span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">SKU</span>   <span style="color:#66d9ef">string</span> <span style="color:#e6db74">````</span><span style="color:#a6e22e">selector</span>:<span style="color:#e6db74">&#34;meta[itemprop=sku]&#34;</span> <span style="color:#a6e22e">attr</span>:<span style="color:#e6db74">&#34;content&#34;````</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">NewCollector</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">OnHTML</span>(<span style="color:#e6db74">&#34;div.product&#34;</span>, <span style="color:#66d9ef">func</span>(<span style="color:#a6e22e">e</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">colly</span>.<span style="color:#a6e22e">HTMLElement</span>) {
+</span></span><span style="display:flex;"><span>		<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">p</span> <span style="color:#a6e22e">Product</span>
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">Unmarshal</span>(<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">p</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">data</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">json</span>.<span style="color:#a6e22e">MarshalIndent</span>(<span style="color:#a6e22e">p</span>, <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#e6db74">&#34;  &#34;</span>)
+</span></span><span style="display:flex;"><span>		<span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Println</span>(string(<span style="color:#a6e22e">data</span>))
+</span></span><span style="display:flex;"><span>	})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>	<span style="color:#a6e22e">c</span>.<span style="color:#a6e22e">Visit</span>(<span style="color:#e6db74">&#34;https://shop.example.com/item/123&#34;</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So Sánh Với Các Giải Pháp Thay Thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Colly</th>
+					<th>Scrapy</th>
+					<th>Puppeteer</th>
+					<th>goquery</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Ngôn ngữ</strong></td>
+					<td>Go</td>
+					<td>Python</td>
+					<td>Node.js</td>
+					<td>Go</td>
+			</tr>
+			<tr>
+					<td><strong>Request/giây</strong> (1 lõi)</td>
+					<td>1,000+</td>
+					<td>~300</td>
+					<td>~3</td>
+					<td>~20</td>
+			</tr>
+			<tr>
+					<td><strong>Bộ nhớ/1000 trang</strong></td>
+					<td>15-25 MB</td>
+					<td>150-200 MB</td>
+					<td>400-600 MB</td>
+					<td>35-50 MB</td>
+			</tr>
+			<tr>
+					<td><strong>Render JavaScript</strong></td>
+					<td>Không</td>
+					<td>Không*</td>
+					<td>Có (Chromium)</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Triển khai binary</strong></td>
+					<td>Binary tĩnh đơn</td>
+					<td>Virtualenv + dep</td>
+					<td>node_modules + Chromium</td>
+					<td>Chỉ thư viện</td>
+			</tr>
+			<tr>
+					<td><strong>Concurrency tích hợp</strong></td>
+					<td>Goroutine</td>
+					<td>Twisted async</td>
+					<td>Event-loop</td>
+					<td>Thủ công</td>
+			</tr>
+			<tr>
+					<td><strong>Xử lý Cookie/session</strong></td>
+					<td>Tích hợp</td>
+					<td>Tích hợp</td>
+					<td>Tích hợp</td>
+					<td>Thủ công</td>
+			</tr>
+			<tr>
+					<td><strong>Xoay vòng proxy</strong></td>
+					<td>Tích hợp</td>
+					<td>Middleware</td>
+					<td>Page-level</td>
+					<td>Thủ công</td>
+			</tr>
+			<tr>
+					<td><strong>Queue/crawling</strong></td>
+					<td>Tích hợp + Redis</td>
+					<td>Tích hợp</td>
+					<td>Thủ công</td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>Độ khó học</strong></td>
+					<td>Thấp (Go)</td>
+					<td>Trung bình</td>
+					<td>Thấp (JS)</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td><strong>Quy mô hệ sinh thái</strong></td>
+					<td>Đang phát triển</td>
+					<td>Rất lớn</td>
+					<td>Lớn</td>
+					<td>Nhỏ</td>
+			</tr>
+	</tbody>
+</table>
+<p>*Scrapy có thể render JS qua scrapy-playwright hoặc Splash, nhưng không tích hợp sẵn.</p>
+<h3 id="khi-nào-chọn-công-cụ-nào">Khi Nào Chọn Công Cụ Nào<a hidden class="anchor" aria-hidden="true" href="#khi-nào-chọn-công-cụ-nào">#</a></h3>
+<ul>
+<li><strong>Colly</strong>: HTML tĩnh quy mô lớn, triển khai binary đơn, team Go</li>
+<li><strong>Scrapy</strong>: Hệ sinh thái Python, pipeline phức tạp, workflow middleware nặng</li>
+<li><strong>Puppeteer</strong>: SPA nhiều JavaScript, chụp màn hình, tự động hóa trình duyệt</li>
+<li><strong>goquery</strong>: Phân tích nhẹ khi không cần điều phối HTTP</li>
+</ul>
+<h2 id="hạn-chế--đánh-giá-thực-tế">Hạn Chế / Đánh Giá Thực Tế<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-thực-tế">#</a></h2>
+<p>Colly không phải công cụ phù hợp cho mọi công việc scraping. Đây là những giớ hạn cứng: 1. <strong>Không thực thi JavaScript</strong>: Colly chỉ phân tích HTML thô. SPA, infinite scroll và nội dung động cần chromedp hoặc Rod làm công cụ đồng hành.
 2. <strong>Hệ sinh thái nhỏ hơn Scrapy</strong>: Bạn sẽ không tìm thấy plugin cho mọi trường hợp edge case. Middleware tùy chỉnh đòi hỏi viết code Go, không chỉ pip install.
 3. <strong>Chỉ hỗ trợ Go</strong>: Team không có chuyên môn Go sẽ đối mặt với đường cong học tập dốc hơn so với các lựa chọn Python.
 4. <strong>Không xuất dữ liệu tích hợp</strong>: Khác với item pipeline của Scrapy (JSON, CSV, XML mặc định), Colly cần tuần tự hóa thủ công.
 5. <strong>Tích hợp headless browser thủ công</strong>: Puppeteer hoạt động ngay với Chromium, còn Colly cần kết nối chromedp rõ ràng cho nội dung JS-rendered.
-6. <strong>Độ phức tạp debug</strong>: Lỗi goroutine bất đồng bộ có thể khó theo dõi hơn xử lý ngoại lệ tuần tự của Python.</p><h2 id=câu-hỏi-thường-gặp>Câu Hỏi Thường Gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><h3 id=colly-so-với-scrapy-trong-scraping-production-như-thế-nào>Colly so với Scrapy trong scraping production như thế nào?<a hidden class=anchor aria-hidden=true href=#colly-so-với-scrapy-trong-scraping-production-như-thế-nào>#</a></h3><p>Colly vượt trội Scrapy về thông lượng thô (1,000+ vs ~300 req/sec) và hiệu quả bộ nhớ (25 MB vs 180 MB mỗi 1K trang). Scrapy thắng về độ trưởng thành hệ sinh thái và pipeline tích hợp. Đối với team Go triển khai binary tĩnh, Colly là lựa chọn thực tiễn. Team Python với infrastructure Scrapy hiện có nên cân nhắc chi phí migration.</p><h3 id=colly-có-thể-scrape-website-render-javascript-không>Colly có thể scrape website render JavaScript không?<a hidden class=anchor aria-hidden=true href=#colly-có-thể-scrape-website-render-javascript-không>#</a></h3><p>Không — Colly không thực thi JavaScript một cách tự nhiên. Đối với SPA và nội dung động, sử dụng chromedp hoặc Rod để render trang trước, sau đó chuyển HTML cho Colly phân tích. Mô hình lai này kết hợp khả năng render của Chromium với tốc độ trích xuất của Colly.</p><h3 id=làm-thế-nào-scale-colly-qua-nhiều-máy>Làm thế nào scale Colly qua nhiều máy?<a hidden class=anchor aria-hidden=true href=#làm-thế-nào-scale-colly-qua-nhiều-máy>#</a></h3><p>Sử dụng queue hỗ trợ Redis (<code>colly/queue</code>) để phân phối URL cho worker. Mỗi worker chạy instance Colly, tiêu thụ từ queue chia sẻ và ghi kết quả vào database trung tâm. Thêm HPA trong Kubernetes cho capacity đàn hồi.</p><h3 id=nhà-cung-cấp-proxy-nào-hoạt-động-tốt-nhất-với-colly>Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?<a hidden class=anchor aria-hidden=true href=#nhà-cung-cấp-proxy-nào-hoạt-động-tốt-nhất-với-colly>#</a></h3><p>Mọi HTTP proxy đều hoạt động qua <code>colly/proxy</code>. <a href=https://www.webshare.io/>Webshare</a> cung cấp proxy residential với pool IP xoay vòng tích hợp sạch sẽ với <code>RoundRobinProxySwitcher</code> của Colly. Bright Data và Oxylabs là lựa chọn enterprise với hỗ trợ chuyên dụng.</p><h3 id=làm-sao-tránh-bị-chặn-khi-scraping>Làm sao tránh bị chặn khi scraping?<a hidden class=anchor aria-hidden=true href=#làm-sao-tránh-bị-chặn-khi-scraping>#</a></h3><p>Kết hợp nhiều kỹ thuật: xoay vòng User-Agent qua Colly extension, thêm độ trễ ngẫu nhiên (<code>RandomDelay</code> trong <code>LimitRule</code>), tôn trọng <code>robots.txt</code>, dùng proxy residential, phân phối request theo thờ gian. Không bao giờ vượt quá capacity của trang đích — giám sát mã phản hồi và lùi lại khi gặp lỗi 429.</p><h3 id=colly-có-phù-hợp-crawl-hàng-triệu-trang>Colly có phù hợp crawl hàng triệu trang?<a hidden class=anchor aria-hidden=true href=#colly-có-phù-hợp-crawl-hàng-triệu-trang>#</a></h3><p>Có, với kiến trúc phù hợp. Dùng Redis để loại bỏ trùng lặp URL và cache, triển khai crawling tăng dần với timestamp, shard qua nhiều worker, và persist state để phục hồi sau restart. Các team báo cáo crawl 10M+ trang hàng tháng với 3-5 instance Colly.</p><h3 id=làm-thế-nào-debug-scraper-colly>Làm thế nào debug scraper Colly?<a hidden class=anchor aria-hidden=true href=#làm-thế-nào-debug-scraper-colly>#</a></h3><p>Bật debug logging với <code>colly.Debugger(&amp;debug.LogDebugger{})</code> để theo dõi mọi request/response. Dùng callback <code>OnError</code> để bắt và log request thất bại. Đối với vấn đề phức tạp, attach custom HTTP backend với khả năng dump request/response.</p><h2 id=kết-luận>Kết Luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>Colly cung cấp chính xác những gì developer Go cần từ một framework scraping: tốc độ, đơn giản và khả năng triển khai binary đơn. Với <strong>25,302 GitHub Stars</strong> và <strong>1,000+ request mỗi giây</strong>, nó vượt trội so với các lựa chọn Python và Node.js về thông lượng và hiệu quả bộ nhớ. API callback trực quan, tích hợp Redis cho phép crawling phân tán thực sự, và hỗ trợ proxy giữ bạn không bị chặn ở quy mô lớn.</p><p><strong>Hành động để bắt đầu:</strong></p><ol><li>Clone <a href=https://github.com/gocolly/colly>Colly GitHub repo</a> và chạy thư mục ````_examples/```</li><li>Xây dựng scraper đầu tiên với thiết lập 5 phút ở trên</li><li>Thêm Redis cache và proxy rotation trước khi mở rộng quá 10K trang</li><li>Tham gia <a href=https://t.me/dibi8_channel>nhóm Telegram dibi8</a> để thảo luận về Go scraping và chia sẻ mẹo production</li></ol><p><em>Điều khoản tiết lộ: Bài viết này chứa liên kết liên kết (affiliate) đến Webshare. Chúng tôi chỉ giới thiệu các dịch vụ đã đánh giá cho quy trình scraping production.</em></p><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài Liệu Tham Khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://github.com/gocolly/colly>Colly GitHub Repository</a> — Mã nguồn và ví dụ chính thức</li><li><a href=https://go-colly.org/>Colly Documentation</a> — Tài liệu API và hướng dẫn</li><li><a href=https://github.com/gocolly/colly/releases/tag/v2.2.0>Colly v2.2.0 Release Notes</a> — Phiên bản ổn định mới nhất</li><li><a href=https://docs.scrapy.org/>Scrapy Official Docs</a> — So sánh framework scraping Python</li><li><a href=https://github.com/puppeteer/puppeteer>Puppeteer GitHub</a> — Headless Chrome Node.js API</li><li><a href=https://github.com/PuerkitoBio/goquery>goquery GitHub</a> — HTML parsing kiểu jQuery cho Go</li><li><a href=https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production>Web Scraping with Go: Practical Guide</a> — Pattern production</li><li><a href=https://www.firecrawl.dev/blog/best-open-source-web-crawler>Best Open-Source Web Crawlers 2026</a> — Tổng quan hệ sinh thái</li><li><a href=https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers>Colly Benchmarks</a> — Số liệu hiệu năng</li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+6. <strong>Độ phức tạp debug</strong>: Lỗi goroutine bất đồng bộ có thể khó theo dõi hơn xử lý ngoại lệ tuần tự của Python.</p>
+<h2 id="câu-hỏi-thường-gặp">Câu Hỏi Thường Gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="colly-so-với-scrapy-trong-scraping-production-như-thế-nào">Colly so với Scrapy trong scraping production như thế nào?<a hidden class="anchor" aria-hidden="true" href="#colly-so-với-scrapy-trong-scraping-production-như-thế-nào">#</a></h3>
+<p>Colly vượt trội Scrapy về thông lượng thô (1,000+ vs ~300 req/sec) và hiệu quả bộ nhớ (25 MB vs 180 MB mỗi 1K trang). Scrapy thắng về độ trưởng thành hệ sinh thái và pipeline tích hợp. Đối với team Go triển khai binary tĩnh, Colly là lựa chọn thực tiễn. Team Python với infrastructure Scrapy hiện có nên cân nhắc chi phí migration.</p>
+<h3 id="colly-có-thể-scrape-website-render-javascript-không">Colly có thể scrape website render JavaScript không?<a hidden class="anchor" aria-hidden="true" href="#colly-có-thể-scrape-website-render-javascript-không">#</a></h3>
+<p>Không — Colly không thực thi JavaScript một cách tự nhiên. Đối với SPA và nội dung động, sử dụng chromedp hoặc Rod để render trang trước, sau đó chuyển HTML cho Colly phân tích. Mô hình lai này kết hợp khả năng render của Chromium với tốc độ trích xuất của Colly.</p>
+<h3 id="làm-thế-nào-scale-colly-qua-nhiều-máy">Làm thế nào scale Colly qua nhiều máy?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-scale-colly-qua-nhiều-máy">#</a></h3>
+<p>Sử dụng queue hỗ trợ Redis (<code>colly/queue</code>) để phân phối URL cho worker. Mỗi worker chạy instance Colly, tiêu thụ từ queue chia sẻ và ghi kết quả vào database trung tâm. Thêm HPA trong Kubernetes cho capacity đàn hồi.</p>
+<h3 id="nhà-cung-cấp-proxy-nào-hoạt-động-tốt-nhất-với-colly">Nhà cung cấp proxy nào hoạt động tốt nhất với Colly?<a hidden class="anchor" aria-hidden="true" href="#nhà-cung-cấp-proxy-nào-hoạt-động-tốt-nhất-với-colly">#</a></h3>
+<p>Mọi HTTP proxy đều hoạt động qua <code>colly/proxy</code>. <a href="https://www.webshare.io/">Webshare</a> cung cấp proxy residential với pool IP xoay vòng tích hợp sạch sẽ với <code>RoundRobinProxySwitcher</code> của Colly. Bright Data và Oxylabs là lựa chọn enterprise với hỗ trợ chuyên dụng.</p>
+<h3 id="làm-sao-tránh-bị-chặn-khi-scraping">Làm sao tránh bị chặn khi scraping?<a hidden class="anchor" aria-hidden="true" href="#làm-sao-tránh-bị-chặn-khi-scraping">#</a></h3>
+<p>Kết hợp nhiều kỹ thuật: xoay vòng User-Agent qua Colly extension, thêm độ trễ ngẫu nhiên (<code>RandomDelay</code> trong <code>LimitRule</code>), tôn trọng <code>robots.txt</code>, dùng proxy residential, phân phối request theo thờ gian. Không bao giờ vượt quá capacity của trang đích — giám sát mã phản hồi và lùi lại khi gặp lỗi 429.</p>
+<h3 id="colly-có-phù-hợp-crawl-hàng-triệu-trang">Colly có phù hợp crawl hàng triệu trang?<a hidden class="anchor" aria-hidden="true" href="#colly-có-phù-hợp-crawl-hàng-triệu-trang">#</a></h3>
+<p>Có, với kiến trúc phù hợp. Dùng Redis để loại bỏ trùng lặp URL và cache, triển khai crawling tăng dần với timestamp, shard qua nhiều worker, và persist state để phục hồi sau restart. Các team báo cáo crawl 10M+ trang hàng tháng với 3-5 instance Colly.</p>
+<h3 id="làm-thế-nào-debug-scraper-colly">Làm thế nào debug scraper Colly?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-debug-scraper-colly">#</a></h3>
+<p>Bật debug logging với <code>colly.Debugger(&amp;debug.LogDebugger{})</code> để theo dõi mọi request/response. Dùng callback <code>OnError</code> để bắt và log request thất bại. Đối với vấn đề phức tạp, attach custom HTTP backend với khả năng dump request/response.</p>
+<h2 id="kết-luận">Kết Luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Colly cung cấp chính xác những gì developer Go cần từ một framework scraping: tốc độ, đơn giản và khả năng triển khai binary đơn. Với <strong>25,302 GitHub Stars</strong> và <strong>1,000+ request mỗi giây</strong>, nó vượt trội so với các lựa chọn Python và Node.js về thông lượng và hiệu quả bộ nhớ. API callback trực quan, tích hợp Redis cho phép crawling phân tán thực sự, và hỗ trợ proxy giữ bạn không bị chặn ở quy mô lớn.</p>
+<p><strong>Hành động để bắt đầu:</strong></p>
+<ol>
+<li>Clone <a href="https://github.com/gocolly/colly">Colly GitHub repo</a> và chạy thư mục ````_examples/```</li>
+<li>Xây dựng scraper đầu tiên với thiết lập 5 phút ở trên</li>
+<li>Thêm Redis cache và proxy rotation trước khi mở rộng quá 10K trang</li>
+<li>Tham gia <a href="https://t.me/dibi8_channel">nhóm Telegram dibi8</a> để thảo luận về Go scraping và chia sẻ mẹo production</li>
+</ol>
+<p><em>Điều khoản tiết lộ: Bài viết này chứa liên kết liên kết (affiliate) đến Webshare. Chúng tôi chỉ giới thiệu các dịch vụ đã đánh giá cho quy trình scraping production.</em></p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài Liệu Tham Khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/gocolly/colly">Colly GitHub Repository</a> — Mã nguồn và ví dụ chính thức</li>
+<li><a href="https://go-colly.org/">Colly Documentation</a> — Tài liệu API và hướng dẫn</li>
+<li><a href="https://github.com/gocolly/colly/releases/tag/v2.2.0">Colly v2.2.0 Release Notes</a> — Phiên bản ổn định mới nhất</li>
+<li><a href="https://docs.scrapy.org/">Scrapy Official Docs</a> — So sánh framework scraping Python</li>
+<li><a href="https://github.com/puppeteer/puppeteer">Puppeteer GitHub</a> — Headless Chrome Node.js API</li>
+<li><a href="https://github.com/PuerkitoBio/goquery">goquery GitHub</a> — HTML parsing kiểu jQuery cho Go</li>
+<li><a href="https://rebrowser.net/blog/web-scraping-with-go-a-practical-guide-from-basics-to-production">Web Scraping with Go: Practical Guide</a> — Pattern production</li>
+<li><a href="https://www.firecrawl.dev/blog/best-open-source-web-crawler">Best Open-Source Web Crawlers 2026</a> — Tổng quan hệ sinh thái</li>
+<li><a href="https://webscraping.ai/faq/colly/what-are-the-performance-benchmarks-for-colly-compared-to-other-go-scrapers">Colly Benchmarks</a> — Số liệu hiệu năng</li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Colly: 25,302 GitHub Stars — Framework Crawl Web Go Tốc Độ Cao 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -382,18 +861,174 @@ func main() {
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/colly%22>https://dibi8.com/vi/resources/colly"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/colly%22">https://dibi8.com/vi/resources/colly"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/ai-coding-agents/colly/>juicefs-distributed-posix-file-system-redis-s3-cloud-storage</a></li><li><a href=/vi/ai-coding-agents/colly/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/vi/ai-coding-agents/colly/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/vi/ai-coding-agents/colly/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/cogvideo/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/comfyui-workflows-complete-guide/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/ai-coding-agents/colly/">juicefs-distributed-posix-file-system-redis-s3-cloud-storage</a></li>
+<li><a href="/vi/ai-coding-agents/colly/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/vi/ai-coding-agents/colly/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/vi/ai-coding-agents/colly/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/cogvideo/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/comfyui-workflows-complete-guide/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

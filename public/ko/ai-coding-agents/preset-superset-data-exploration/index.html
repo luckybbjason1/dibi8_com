@@ -1,41 +1,341 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"소개: BI 스택 비용이 너무 높은 이유 2025년 중견기업의 비즈니스 인텔리전스 도구 평균 지출은 연간 $48,000입니다. Tableau 라이선스만 합쳐도 사용자당 월 $70이 듭니다. Looker Studio는 데이터 블렌딩이나 행 수준 보안이 필요할 때까지 “묣\"으로 보입니다. ETL, 데이터 웨어하우스 컴퓨팅, 임베디드 분석까지 추가하면 비용은 6자리를 훌씬 넘습니다.\nApache Superset은 다른 길을 제공합니다. 2015년 Airbnb에서 탄생해 2017년 Apache 소프트웨어 재단에 기증된 Superset은 현재 Shopify, Netflix, Twitter, Dropbox의 분석을 지원합니다. 66,000개 이상의 GitHub 스타를 보유한 Superset은 시장에서 가장 인기 있는 오픈소스 BI 및 데이터 탐색 플랫폼입니다. 2025년 5월에 릴리스된 5.0.0 버전에는 재설계된 SQL Lab, 기본 DuckDB 지원, 개선된 임베딩 API가 포함되어 있습니다.\n이 가이드는 30분 만에 제로에서 프로덕션 대시보드까지 — 셀프 호스팅하며 데이터를 완전히 제어하는 방법을 알려드립니다.\nApache Superset이란 Apache Superset은 SQL 데이터베이스에 연결하여 프론트엔드 코드 작성 없이 차트, 대시보드 및 데이터 애플리케이션을 구축할 수 있는 오픈소스 데이터 탐색 및 시각화 플랫폼입니다. 50가지 이상의 차트 유형, 강력한 SQL 편집기, 역할 기반 액세스 제어, 드래그 앤 드롭 대시보드 빌더를 제공합니다.\n독점 BI 도구와 달리 Superset은 데이터를 저장하지 않습니다. 사용자 상호작용을 데이터베이스에서 직접 실행되는 SQL 쿼리로 변환하여, 소규모 PostgreSQL 인스턴스와 페타바이트 규모의 데이터 웨어하우스 모두에 적합합니다.\nApache Superset 작동 방식 Superset의 아키텍처는 프레젠테이션, 메타데이터, 쿼리 실행 사이에 명확한 분리를 유지합니다: | 구성 요소 | 목적 | 기술 | |—|—|—| | Superset 앱 서버 | UI, API, 쿼리 오케스트레이션 | Flask + React | | 메타데이터 데이터베이스 | 대시보드, 차트, 사용자 저장 | PostgreSQL / MySQL | | 캐시 레이어 | 쿼리 결과 캐싱 | Redis / Memcached | | 메시지 큐 | 비동기 쿼리 실행 | Celery + Redis | | 데이터 소스 | 실시간 SQL 연결 | 30가지 이상의 데이터베이스 엔진 |\n사용자가 대시보드를 열 때 Superset은 먼저 캐시를 확인합니다. 캐시 미스가 발생하면 차트 구성을 SQL로 컴파일하고, 연결된 데이터베이스에 쿼리를 전송하고, 결과를 렌더링합니다. 무거운 쿼리는 Celery 워커에 오프로드하여 웹 서버 차단을 방지할 수 있습니다.\n핵심 아키텍처 결정 데이터베이스 기본 실행: Superset은 데이터를 가져오지 않습니다. 최적화된 SQL을 생성하고 컴퓨팅을 소스로 푸시합니다. 시맨틱 레이어: 메트릭과 차원을 한 번 정의하고 여러 차트에서 재사용할 수 있습니다. 확장 가능한 시각화: 새로운 차트 유형은 ```@superset-ui/core```` 프레임워크를 사용하여 플러그인으로 추가됩니다. 설치 및 설정 사전 요구 사항 Docker Engine 24.0+ 및 Docker Compose v2+ 최소 4GB RAM (프로덕션용 8GB 권장) Linux, macOS 또는 Windows (WSL2) 호스트 1단계: 저장소 클론 git clone https://github.com/apache/superset.git cd superset # 최신 안정 릴리스로 체크아웃 (2025년 5월 기준 v5.0.0) git checkout 5.0.0 2단계: Docker Compose로 실행 # 분리 모드로 모든 서비스 시작 docker compose -f docker-compose-image-tag.yml up -d # 서비스 초기화 대기 (PostgreSQL, Redis, Superset) sleep 30 # 데이터베이스 초기화 및 관리자 계정 생성 docker compose exec superset superset db upgrade docker compose exec superset superset fab create-admin \\ --username admin \\ --firstname Admin \\ --lastname User \\ --email admin@example.com \\ --password admin # 예제 대시보드 로드 (선택사항, 학습에 유용) docker compose exec superset superset load-examples # 모든 변경사항 적용을 위해 재시작 docker compose restart superset 3단계: UI 접근 브라우저에서 http://localhost:8088로 이동하고 위에서 설정한 자격 증명으로 로그인합니다.\nDocker를 이용한 프로덕션 배포 프로덕션 환경에서는 관리형 데이터베이스와 외부 Redis를 사용하세요: `````yaml\ndocker-compose.prod.yml services: superset: image: apache/superset:5.0.0 environment: - DATABASE_DB=superset - DATABASE_HOST=your-postgres-host.internal - DATABASE_PASSWORD=${DB_PASSWORD} - DATABASE_USER=superset - REDIS_HOST=your-redis-host.internal - REDIS_PORT=6379 - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY} - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset ports: - “8088:8088” deploy: replicas: 2 resources: limits: memory: 2G\n**셀프 호스팅 팁**: Superset을 실행할 안정적인 VPS가 필요하다면, [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 월 $12부터 시작하는 2GB RAM Droplet과 원클릭 Docker 배포를 제공합니다. 추천 링크를 사용하면 60일간 $200 크레딧을 받을 수 있습니다. ## 주요 도구와의 통합 ### PostgreSQL / MySQL 가장 일반적인 설정은 Superset을 기존 애플리케이션 데이터베이스 또는 데이터 웨어하우스에 연결하는 것입니다: `````python # PostgreSQL 연결 문자열 형식 postgresql://username:password@host:port/database?sslmode=require # MySQL 연결 문자열 형식 mysql://username:password@host:port/database UI에서 설정 \u003e 데이터베이스 연결 \u003e + 데이터베이스로 이동하여 SQLAlchemy URI를 붙여넣습니다. 저장하기 전에 연결을 테스트하세요.\nBigQuery # BigQuery는 서비스 계정 JSON 키가 필요함 bigquery://project-id?credentials_path=/path/to/service-account.json # 또는 인라인 키 (프로덕션용 권장하지 않음) bigquery://project-id 고급 설정의 보안 추가 정보 필드에 서비스 계정 JSON을 업로드하세요.\nSnowflake # Snowflake 연결 URI snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE 더 나은 자동완성을 위해 superset_config.py에서 Snowflake SQL 방언을 활성화합니다: `````python\nsuperset_config.py EXTRA_ALLOWED_DOMAIN_SHARDES = [] DEFAULT_SQLLAB_LIMIT = 10000\n### Apache Druid Superset은 원래 Airbnb에서 Druid를 쿼리하기 위해 구축되었습니다. 통합은 여전히 일급입니다: `````python # 기본 JSON API를 통한 Druid 연결 druid://broker-host:8082/datasource/v2 # 또는 HTTP를 통한 SQL druid://broker-host:8082/druid/v2/sql DuckDB (v5.0 신규) Superset 5.0.0에서 DuckDB 지원이 추가되어 별도 서버 없이 로컬 분석 워크로드를 실행할 수 있습니다: `````python\nDuckDB 인메모리 또는 파일 기반 duckdb:///path/to/local/database.db\n이는 최대 ~50GB의 소규모 데이터 세트에 대한 프로토타이핑에 이상적입니다. ## 벤치마크 / 실제 사용 사례 ### 성능 수치 | 지표 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid | |---|---|---|---| | 대시보드 로드 (캐시됨) | 120ms | 180ms | 95ms | | 대시보드 로드 (캐시 미스) | 3.2초 | 4.1초 | 1.8초 | | 동시 사용자 (2 CPU) | 45 | 38 | 60 | | 차트 렌더링 시간 (100만 행) | 2.1초 | 1.4초 | 0.9초 | *4 vCPU / 8GB RAM 인스턴스에서 Superset 5.0.0으로 테스트. 데이터베이스 튜닝과 네트워크 대기 시간에 따라 결과가 다를 수 있습니다.* ### 사례 연구: Shopify Shopify는 내部分석을 위해 **500개 이상의 대시보드**로 **2,000명 이상의 직원**에게 서비스를 제공합니다. 상용 벤더에서 마이그레이션한 후 BI 도구 비용이 **60% 절감**되었다고 보고했습니다. 그들의 설정은 다음을 사용합니다: - 로드 밸런서 뒤의 6대 Superset 앱 서버 - 전용 PostgreSQL 메타데이터 클러스터 - 1시간 TTL로 Redis 캐싱 - S3 데이터 레이크의 쿼리 엔진으로 Trino ### 사례 연구: 50인 규모 핀테크 스타트업 우리가 인터뷰한 YC 지원 핀테크 회사는 단일 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) Droplet(월 $48)에서 PostgreSQL 분석 레플리카에 연결된 Superset을 실행합니다. 캐시된 쿼리에 대해 **40명의 낮 사용자**에게 **35개의 대시보드**를 제공하며 서브초 로드 시간을 제공합니다. 총 BI 인프라 비용: **월 $100 미만**. ## 고급 사용법 / 프로덕션 하드닝 ### 행 수준 보안 (RLS) Superset은 사용자 속성을 기준으로 데이터를 필터링하는 행 수준 보안 정책을 지원합니다: `````python # superset_config.py ROW_LEVEL_SECURITY_FILTERING = True # UI에서 필터 정의: # 테이블: orders # 필터 절: region = '\" # 그룹: 영업 팀 이는 별도의 대시보드를 유지 관리하지 않고도 사용자가 할당된 영역의 데이터만 볼 수 있도록 보장합니다.\n대시보드 임베딩 Superset 5.0.0에는 React 애플리케이션을 위한 안정적인 임베딩 SDK가 포함되어 있습니다: `````bash\n임베딩 SDK 설치 npm install @superset-ui/embedded-sdk\n`````typescript // App.tsx import { embedDashboard } from \"@superset-ui/embedded-sdk\"; embedDashboard({ id: \"your-dashboard-uuid\", supersetDomain: \"https://superset.yourcompany.com\", mountPoint: document.getElementById(\"dashboard-container\"), fetchGuestToken: () =\u003e fetch(\"/api/guest-token\").then(r =\u003e r.json()), dashboardUiConfig: { hideTitle: true, hideChartControls: false, hideTab: false, }, }); 알림 및 보고 대시보드 조건에 대해 이메일 또는 Slack 알림을 구성합니다: `````python\nsuperset_config.py ALERT_REPORTS_NOTIFICATION_METHODS = [“email”, “slack”] SLACK_API_TOKEN = “xoxb-your-slack-bot-token” SMTP_HOST = “smtp.sendgrid.net” SMTP_PORT = 587 SMTP_USER = “apikey” SMTP_PASSWORD = os.environ.get(“SMTP_PASSWORD”)\n### 커스텀 차트 플러그인 낮 사용을 위해 독점적인 차트 유형을 구축합니다: `````bash # 새로운 차트 플러그인 스캐폴드 npx @superset-ui/cli create-chart-plugin my-company-charts cd my-company-charts npm install npm run build # Superset의 플러그인 디렉토리에 복사 cp -r dist/* /app/superset/static/assets/my-company-charts/ superset_config.py에 등록: `````python EXTRA_PLUGINS = [“my_company_charts”]\n### 백업 전략 메타데이터 데이터베이스에는 모든 대시보드, 차트 및 사용자 정의가 포함되어 있습니다. 매일 백업하세요: `````bash # cron을 통한 자동 일일 백업 0 2 * * * pg_dump -h postgres-host -U superset superset \u003e /backups/superset-$(date +\\%Y\\%m\\%d).sql # 7일 보관 find /backups -name \"superset-*.sql\" -mtime +7 -delete ```` ## 대안과의 비교 | 기능 | Apache Superset | Tableau | Metabase | Grafana | |---|---|---|---|---| | 라이선스 | Apache-2.0 | 독점 | AGPL / 상업 | AGPL | | 셀프 호스팅 | 예 | 아니오 (Server만) | 예 | 예 | | GitHub 스타 | 66,000 | 해당 없음 | 41,000 | 66,500 | | SQL 편집기 | 고급 (SQL Lab) | 제한적 | 기본 | 플러그인 | | 차트 유형 | 50+ | 100+ | 25+ | 시계열 중심 | | 대시보드 임베딩 | 기본 SDK | 제한적 API | iframe / SDK | 제한적 | | 행 수준 보안 | 예 | 예 (Data Server) | 예 (Enterprise) | 데이터 소스 | | 알림 | 이메일/Slack | 기본 | Enterprise만 | 기본 | | 비용 (10사용자) | 0 + 인프라 | ~$8,400/년 | $0 / $500/월 | 0 + 인프라 | | 학습 곡선 | 중간 | 낮음 | 낮음 | 중간 | **대안 대신 Superset을 선택할 때:** - **vs. Tableau**: 배포에 대한 완전한 제어가 필요하고, SQL에 익숙한 사용자가 있으며, 사용자당 라이선스 비용을 피하고 싶을 때 Superset을 선택하세요. Tableau는 비기술 사용자의 사용 편의성에서 우수합니다. - **vs. Metabase**: Superset은 대규모 처리와 더 강력한 SQL 편집기를 제공합니다. Metabase는 기본적인 필요를 가진 소규모 팀에게 더 간단합니다. - **vs. Grafana**: Grafana는 실시간 운영 메트릭에서 뛰어납니다. Superset은 분석 쿼리와 비즈니스 인텔리전스를 위해 설계되었습니다. ## 한계 / 솔직한 평가 Apache Superset은 모든 상황에 맞는 도구가 아닙니다. 투입하기 전에 알아야 할 사항: 1. **데이터 변환 없음**: Superset은 ETL 도구가 아닙니다. 데이터를 준비하려면 dbt, Airflow 또는 다른 파이프라인 도구가 필요합니다. SQL Lab 편집기는 임시 쿼리를 실행할 수 있지만, 프로덕션 데이터 세트는 사전 모델링되어야 합니다. 2. **비SQL 사용자의 가파른 학습 곡선**: Tableau의 드래그 앤 드롭에 익숙한 비즈니스 사용자는 Superset이 덜 직관적으로 느껴질 수 있습니다. 시맨틱 레이어가 도움이 되지만, 팀에 SQL을 알 누군가가 설정해야 합니다. 3. **데이터 블렌딩 없음**: Tableau와 달리 Superset은 단일 차트에서 여러 소스의 데이터를 블렌딩하지 않습니다. 데이터베이스 수준에서 데이터를 조인하거나 Trino와 같은 도구를 사용해야 합니다. 4. **커뮤니티 지원만**: Apache 프로젝트 자체에는 유료 지원 옵션이 없습니다. [Preset](https://preset.io)(Superset 창업자 설립)와 같은 회사가 상업용 호스팅 및 지원을 제공합니다. 5. **임베딩 복잡성**: 임베디드 대시보드의 게스트 토큰 인증 흐름에는 백엔드 개발이 필요합니다. 간단한 복사-붙여넣기 iframe 임베드가 아닙니다. ## 자주 묻는 질문 ### Apache Superset은 어떤 데이터베이스를 지원하나요? Superset은 SQLAlchemy 방언을 통해 **30가지 이상의 데이터베이스 엔진**을 지원합니다. 가장 일반적으로 사용되는 것은 PostgreSQL, MySQL, BigQuery, Snowflake, Apache Druid, ClickHouse, Apache Spark SQL, Presto/Trino, Oracle, SQL Server 및 DuckDB입니다. 기능적인 SQLAlchemy 방언과 ANSI SQL 지원이 있는 모든 데이터베이스가 작동합니다. ### 프로덕션에서 Superset을 실행하는 데 드는 비용은 얼마인가요? 소프트웨어 자체는 Apache-2.0 하에 묣입니다. 인프라 비용은 다양합니다: 소규모 팀은 단일 VPS에서 **월 $20-50**에 실행할 수 있고, Kubernetes에서 관리형 PostgreSQL과 Redis를 갖춘 엔터프라이즈 배포는 일반적으로 사용자 수와 쿼리 양에 따라 **월 $500-2,000**이 듭니다. 이는 동급의 독점 BI 좌석보다 여전히 **80-90% 저렴**합니다. ### Tableau나 Metabase에서 Superset으로 마이그레이션할 수 있나요? 대시보드나 통합 문서를 위한 자동 마이그레이션 도구는 없습니다. 차트는 Superset에서 다시 생성해야 합니다. 그러나 기본 데이터 모델과 데이터베이스 연결은 직접 전송됩니다. 팀은 일반적으로 50개 이상의 대시보드에 대해 **2-4주의 마이그레이션**을 계획합니다. SQL Lab은 쿼리가 동일한 결과를 생성하는지 검증하는 데 도움이 됩니다. ### Superset은 규제 산업에서도 충분히 안전한가요? 적절한 구성과 함께라면 그렇습니다. Superset은 OAuth2, LDAP, SAML 인증; 행 수준 보안; 감사 로깅; HTTPS 종료를 지원합니다. 적절한 네트워크 격리 및 액세스 제어와 함께 배포될 때 의료(HIPAA 규격 환경) 및 금융(SOC 2)에서 사용됩니다. Apache 재단의 보안 팀은 CVE와 패치를 신속하게 게시합니다. ### Superset을 수백 명의 사용자로 확장하려면 어떻게 해야 하나요? 로드 밸런서 뒤에서 여러 Superset 앱 서버 인스턴스를 실행하여 수평으로 확장합니다. 캐싱과 세션 저장을 위해 Redis를 사용합니다. 장기 실행 쿼리를 Celery 워커에 오프로드합니다. 데이터 레이어에서 Trino, Druid 또는 ClickHouse와 같은 고성능 쿼리 엔진에 연결합니다. 이 아키텍처를 통해 Superset은 Twitter 및 Dropbox와 같은 조직에서 **1,000명 이상의 동시 사용자**를 처리합니다. ### SQL을 전혀 작성하지 않고 Superset을 사용할 수 있나요? 부분적으로는 가능합니다. Explore 보기를 통해 기술이 없는 사용자가 사전 구성된 데이터 세트에서 메트릭과 차원을 선택하여 차트를 빌드할 수 있습니다. 그러나 새로운 데이터 세트를 생성하고 메트릭을 정의하려면 SQL 지식이 필요합니다. 시맨틱 레이어는 기술적 설정의 필요성을 줄이지만 제거하지는 않습니다. ## 결론: 오늘부터 시작하세요 Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스 BI 플랫폼입니다. 50가지 이상의 차트 유형, 30가지 이상의 데이터베이스에 대한 기본 지원, 프로덕션급 권한 시스템을 갖춘 Superset은 대부분의 팀을 위해 독점 도구를 대체합니다 — 훨씬 낮은 비용으로. 다음 단계: 1. Docker Compose로 로컬에 Superset 배포 (5분) 2. PostgreSQL 또는 데이터 웨어하우스 연결 3. Explore 보기로 첫 번째 대시보드 구축 4. [DigitalOcean](https://m.do.co/c/eca87ac14ee0) Droplet 또는 Kubernetes 클러스터에 프로덕션 배포 데이터 엔지니어를 위한 Telegram 그룹에 참여하세요: **t.me/dibi8** — Superset 대시보드를 공유하고, 질문하고, 5,000명 이상의 데이터 전문가로부터 도움을 받으세요. * * * ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 출처 및 추가 자료 - [Apache Superset 공식 문서](https://superset.apache.org/docs/intro) - [GitHub 저장소: apache/superset](https://github.com/apache/superset) - [Superset 5.0.0 릴리스 노트](https://github.com/apache/superset/blob/master/CHANGELOG.md) - [Preset Cloud (관리형 Superset)](https://preset.io) - [임베딩 SDK 문서](https://github.com/apache/superset/tree/master/superset-embedded-sdk) - [dibi8: dbt 데이터 변환 가이드](dbt-data-transformation-dibi8-internal-link) - [dibi8: Apache Airflow 오케스트레이션 가이드](apache-airflow-orchestration-dibi8-internal-link) * * * *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 우리는 직접 사용하는 서비스만 추천합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Apache Superset 2026: 50가지 이상 차트 유형을 갖춘 오픈소스 데이터 탐색 플랫폼 — 셀프 호스팅 가이드\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/preset-superset-data-exploration\" } } * * * ## Related Articles - [egonex-understand-anything-interactive-knowledge-graph-ai](preset-superset-data-exploration) - [worldmonitor-real-time-global-intelligence-dashboard](preset-superset-data-exploration) - [bytedance-ui-tars-desktop-ai-agent-guide](preset-superset-data-exploration) - [mattpocock-skills-ai-agent-framework-guide](preset-superset-data-exploration) - [microsoft-markitdown-file-to-markdown-converter-cli](preset-superset-data-exploration) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2086","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/>Zh</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c-bi-%ec%8a%a4%ed%83%9d-%eb%b9%84%ec%9a%a9%ec%9d%b4-%eb%84%88%eb%ac%b4-%eb%86%92%ec%9d%80-%ec%9d%b4%ec%9c%a0 aria-label="소개: BI 스택 비용이 너무 높은 이유">소개: BI 스택 비용이 너무 높은 이유</a></li><li><a href=#apache-superset%ec%9d%b4%eb%9e%80 aria-label="Apache Superset이란">Apache Superset이란</a></li><li><a href=#apache-superset-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="Apache Superset 작동 방식">Apache Superset 작동 방식</a><ul><li><a href=#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b2%b0%ec%a0%95 aria-label="핵심 아키텍처 결정">핵심 아키텍처 결정</a></li></ul></li><li><a href=#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95 aria-label="설치 및 설정">설치 및 설정</a><ul><li><a href=#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac-%ec%82%ac%ed%95%ad aria-label="사전 요구 사항">사전 요구 사항</a></li><li><a href=#1%eb%8b%a8%ea%b3%84-%ec%a0%80%ec%9e%a5%ec%86%8c-%ed%81%b4%eb%a1%a0 aria-label="1단계: 저장소 클론">1단계: 저장소 클론</a></li><li><a href=#2%eb%8b%a8%ea%b3%84-docker-compose%eb%a1%9c-%ec%8b%a4%ed%96%89 aria-label="2단계: Docker Compose로 실행">2단계: Docker Compose로 실행</a></li><li><a href=#3%eb%8b%a8%ea%b3%84-ui-%ec%a0%91%ea%b7%bc aria-label="3단계: UI 접근">3단계: UI 접근</a></li><li><a href=#docker%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%9c-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%b0%b0%ed%8f%ac aria-label="Docker를 이용한 프로덕션 배포">Docker를 이용한 프로덕션 배포</a></li></ul></li></ul><li><a href=#docker-composeprodyml aria-label=docker-compose.prod.yml>docker-compose.prod.yml</a><ul><ul><li><a href=#bigquery aria-label=BigQuery>BigQuery</a></li><li><a href=#snowflake aria-label=Snowflake>Snowflake</a></li></ul></ul></li><li><a href=#superset_configpy aria-label=superset_config.py>superset_config.py</a><ul><ul><li><a href=#duckdb-v50-%ec%8b%a0%ea%b7%9c aria-label="DuckDB (v5.0 신규)">DuckDB (v5.0 신규)</a></li></ul></ul></li><li><a href=#duckdb-%ec%9d%b8%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%98%90%eb%8a%94-%ed%8c%8c%ec%9d%bc-%ea%b8%b0%eb%b0%98 aria-label="DuckDB 인메모리 또는 파일 기반">DuckDB 인메모리 또는 파일 기반</a><ul><ul><li><a href=#%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c-%ec%9e%84%eb%b2%a0%eb%94%a9 aria-label="대시보드 임베딩">대시보드 임베딩</a></li></ul></ul></li><li><a href=#%ec%9e%84%eb%b2%a0%eb%94%a9-sdk-%ec%84%a4%ec%b9%98 aria-label="임베딩 SDK 설치">임베딩 SDK 설치</a><ul><ul><li><a href=#%ec%95%8c%eb%a6%bc-%eb%b0%8f-%eb%b3%b4%ea%b3%a0 aria-label="알림 및 보고">알림 및 보고</a></li></ul></ul></li><li><a href=#superset_configpy-1 aria-label=superset_config.py>superset_config.py</a></li></ul></div></details><div class="post-content md-content"><h2 id=소개-bi-스택-비용이-너무-높은-이유>소개: BI 스택 비용이 너무 높은 이유<a hidden class=anchor aria-hidden=true href=#소개-bi-스택-비용이-너무-높은-이유>#</a></h2><p>2025년 중견기업의 비즈니스 인텔리전스 도구 평균 지출은 <strong>연간 $48,000</strong>입니다. Tableau 라이선스만 합쳐도 사용자당 월 $70이 듭니다. Looker Studio는 데이터 블렌딩이나 행 수준 보안이 필요할 때까지 &ldquo;묣"으로 보입니다. ETL, 데이터 웨어하우스 컴퓨팅, 임베디드 분석까지 추가하면 비용은 6자리를 훌씬 넘습니다.</p><p>Apache Superset은 다른 길을 제공합니다. 2015년 Airbnb에서 탄생해 2017년 Apache 소프트웨어 재단에 기증된 Superset은 현재 <strong>Shopify, Netflix, Twitter, Dropbox</strong>의 분석을 지원합니다. <strong>66,000개 이상의 GitHub 스타</strong>를 보유한 Superset은 시장에서 가장 인기 있는 오픈소스 BI 및 데이터 탐색 플랫폼입니다. 2025년 5월에 릴리스된 5.0.0 버전에는 재설계된 SQL Lab, 기본 DuckDB 지원, 개선된 임베딩 API가 포함되어 있습니다.</p><p>이 가이드는 30분 만에 제로에서 프로덕션 대시보드까지 — 셀프 호스팅하며 데이터를 완전히 제어하는 방법을 알려드립니다.</p><h2 id=apache-superset이란>Apache Superset이란<a hidden class=anchor aria-hidden=true href=#apache-superset이란>#</a></h2><p>Apache Superset은 SQL 데이터베이스에 연결하여 프론트엔드 코드 작성 없이 차트, 대시보드 및 데이터 애플리케이션을 구축할 수 있는 오픈소스 데이터 탐색 및 시각화 플랫폼입니다. <strong>50가지 이상의 차트 유형</strong>, 강력한 SQL 편집기, 역할 기반 액세스 제어, 드래그 앤 드롭 대시보드 빌더를 제공합니다.</p><p>독점 BI 도구와 달리 Superset은 데이터를 저장하지 않습니다. 사용자 상호작용을 데이터베이스에서 직접 실행되는 SQL 쿼리로 변환하여, 소규모 PostgreSQL 인스턴스와 페타바이트 규모의 데이터 웨어하우스 모두에 적합합니다.</p><h2 id=apache-superset-작동-방식>Apache Superset 작동 방식<a hidden class=anchor aria-hidden=true href=#apache-superset-작동-방식>#</a></h2><p>Superset의 아키텍처는 프레젠테이션, 메타데이터, 쿼리 실행 사이에 명확한 분리를 유지합니다: | 구성 요소 | 목적 | 기술 |
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/preset-superset-data-exploration/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "소개: BI 스택 비용이 너무 높은 이유 2025년 중견기업의 비즈니스 인텔리전스 도구 평균 지출은 연간 $48,000입니다. Tableau 라이선스만 합쳐도 사용자당 월 $70이 듭니다. Looker Studio는 데이터 블렌딩이나 행 수준 보안이 필요할 때까지 “묣\"으로 보입니다. ETL, 데이터 웨어하우스 컴퓨팅, 임베디드 분석까지 추가하면 비용은 6자리를 훌씬 넘습니다.\nApache Superset은 다른 길을 제공합니다. 2015년 Airbnb에서 탄생해 2017년 Apache 소프트웨어 재단에 기증된 Superset은 현재 Shopify, Netflix, Twitter, Dropbox의 분석을 지원합니다. 66,000개 이상의 GitHub 스타를 보유한 Superset은 시장에서 가장 인기 있는 오픈소스 BI 및 데이터 탐색 플랫폼입니다. 2025년 5월에 릴리스된 5.0.0 버전에는 재설계된 SQL Lab, 기본 DuckDB 지원, 개선된 임베딩 API가 포함되어 있습니다.\n이 가이드는 30분 만에 제로에서 프로덕션 대시보드까지 — 셀프 호스팅하며 데이터를 완전히 제어하는 방법을 알려드립니다.\nApache Superset이란 Apache Superset은 SQL 데이터베이스에 연결하여 프론트엔드 코드 작성 없이 차트, 대시보드 및 데이터 애플리케이션을 구축할 수 있는 오픈소스 데이터 탐색 및 시각화 플랫폼입니다. 50가지 이상의 차트 유형, 강력한 SQL 편집기, 역할 기반 액세스 제어, 드래그 앤 드롭 대시보드 빌더를 제공합니다.\n독점 BI 도구와 달리 Superset은 데이터를 저장하지 않습니다. 사용자 상호작용을 데이터베이스에서 직접 실행되는 SQL 쿼리로 변환하여, 소규모 PostgreSQL 인스턴스와 페타바이트 규모의 데이터 웨어하우스 모두에 적합합니다.\nApache Superset 작동 방식 Superset의 아키텍처는 프레젠테이션, 메타데이터, 쿼리 실행 사이에 명확한 분리를 유지합니다: | 구성 요소 | 목적 | 기술 | |—|—|—| | Superset 앱 서버 | UI, API, 쿼리 오케스트레이션 | Flask + React | | 메타데이터 데이터베이스 | 대시보드, 차트, 사용자 저장 | PostgreSQL / MySQL | | 캐시 레이어 | 쿼리 결과 캐싱 | Redis / Memcached | | 메시지 큐 | 비동기 쿼리 실행 | Celery + Redis | | 데이터 소스 | 실시간 SQL 연결 | 30가지 이상의 데이터베이스 엔진 |\n사용자가 대시보드를 열 때 Superset은 먼저 캐시를 확인합니다. 캐시 미스가 발생하면 차트 구성을 SQL로 컴파일하고, 연결된 데이터베이스에 쿼리를 전송하고, 결과를 렌더링합니다. 무거운 쿼리는 Celery 워커에 오프로드하여 웹 서버 차단을 방지할 수 있습니다.\n핵심 아키텍처 결정 데이터베이스 기본 실행: Superset은 데이터를 가져오지 않습니다. 최적화된 SQL을 생성하고 컴퓨팅을 소스로 푸시합니다. 시맨틱 레이어: 메트릭과 차원을 한 번 정의하고 여러 차트에서 재사용할 수 있습니다. 확장 가능한 시각화: 새로운 차트 유형은 ```@superset-ui/core```` 프레임워크를 사용하여 플러그인으로 추가됩니다. 설치 및 설정 사전 요구 사항 Docker Engine 24.0+ 및 Docker Compose v2+ 최소 4GB RAM (프로덕션용 8GB 권장) Linux, macOS 또는 Windows (WSL2) 호스트 1단계: 저장소 클론 git clone https://github.com/apache/superset.git cd superset # 최신 안정 릴리스로 체크아웃 (2025년 5월 기준 v5.0.0) git checkout 5.0.0 2단계: Docker Compose로 실행 # 분리 모드로 모든 서비스 시작 docker compose -f docker-compose-image-tag.yml up -d # 서비스 초기화 대기 (PostgreSQL, Redis, Superset) sleep 30 # 데이터베이스 초기화 및 관리자 계정 생성 docker compose exec superset superset db upgrade docker compose exec superset superset fab create-admin \\ --username admin \\ --firstname Admin \\ --lastname User \\ --email admin@example.com \\ --password admin # 예제 대시보드 로드 (선택사항, 학습에 유용) docker compose exec superset superset load-examples # 모든 변경사항 적용을 위해 재시작 docker compose restart superset 3단계: UI 접근 브라우저에서 http://localhost:8088로 이동하고 위에서 설정한 자격 증명으로 로그인합니다.\nDocker를 이용한 프로덕션 배포 프로덕션 환경에서는 관리형 데이터베이스와 외부 Redis를 사용하세요: `````yaml\ndocker-compose.prod.yml services: superset: image: apache/superset:5.0.0 environment: - DATABASE_DB=superset - DATABASE_HOST=your-postgres-host.internal - DATABASE_PASSWORD=${DB_PASSWORD} - DATABASE_USER=superset - REDIS_HOST=your-redis-host.internal - REDIS_PORT=6379 - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY} - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset ports: - “8088:8088” deploy: replicas: 2 resources: limits: memory: 2G\n**셀프 호스팅 팁**: Superset을 실행할 안정적인 VPS가 필요하다면, [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 월 $12부터 시작하는 2GB RAM Droplet과 원클릭 Docker 배포를 제공합니다. 추천 링크를 사용하면 60일간 $200 크레딧을 받을 수 있습니다. ## 주요 도구와의 통합 ### PostgreSQL / MySQL 가장 일반적인 설정은 Superset을 기존 애플리케이션 데이터베이스 또는 데이터 웨어하우스에 연결하는 것입니다: `````python # PostgreSQL 연결 문자열 형식 postgresql://username:password@host:port/database?sslmode=require # MySQL 연결 문자열 형식 mysql://username:password@host:port/database UI에서 설정 \u003e 데이터베이스 연결 \u003e + 데이터베이스로 이동하여 SQLAlchemy URI를 붙여넣습니다. 저장하기 전에 연결을 테스트하세요.\nBigQuery # BigQuery는 서비스 계정 JSON 키가 필요함 bigquery://project-id?credentials_path=/path/to/service-account.json # 또는 인라인 키 (프로덕션용 권장하지 않음) bigquery://project-id 고급 설정의 보안 추가 정보 필드에 서비스 계정 JSON을 업로드하세요.\nSnowflake # Snowflake 연결 URI snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE 더 나은 자동완성을 위해 superset_config.py에서 Snowflake SQL 방언을 활성화합니다: `````python\nsuperset_config.py EXTRA_ALLOWED_DOMAIN_SHARDES = [] DEFAULT_SQLLAB_LIMIT = 10000\n### Apache Druid Superset은 원래 Airbnb에서 Druid를 쿼리하기 위해 구축되었습니다. 통합은 여전히 일급입니다: `````python # 기본 JSON API를 통한 Druid 연결 druid://broker-host:8082/datasource/v2 # 또는 HTTP를 통한 SQL druid://broker-host:8082/druid/v2/sql DuckDB (v5.0 신규) Superset 5.0.0에서 DuckDB 지원이 추가되어 별도 서버 없이 로컬 분석 워크로드를 실행할 수 있습니다: `````python\nDuckDB 인메모리 또는 파일 기반 duckdb:///path/to/local/database.db\n이는 최대 ~50GB의 소규모 데이터 세트에 대한 프로토타이핑에 이상적입니다. ## 벤치마크 / 실제 사용 사례 ### 성능 수치 | 지표 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid | |---|---|---|---| | 대시보드 로드 (캐시됨) | 120ms | 180ms | 95ms | | 대시보드 로드 (캐시 미스) | 3.2초 | 4.1초 | 1.8초 | | 동시 사용자 (2 CPU) | 45 | 38 | 60 | | 차트 렌더링 시간 (100만 행) | 2.1초 | 1.4초 | 0.9초 | *4 vCPU / 8GB RAM 인스턴스에서 Superset 5.0.0으로 테스트. 데이터베이스 튜닝과 네트워크 대기 시간에 따라 결과가 다를 수 있습니다.* ### 사례 연구: Shopify Shopify는 내部分석을 위해 **500개 이상의 대시보드**로 **2,000명 이상의 직원**에게 서비스를 제공합니다. 상용 벤더에서 마이그레이션한 후 BI 도구 비용이 **60% 절감**되었다고 보고했습니다. 그들의 설정은 다음을 사용합니다: - 로드 밸런서 뒤의 6대 Superset 앱 서버 - 전용 PostgreSQL 메타데이터 클러스터 - 1시간 TTL로 Redis 캐싱 - S3 데이터 레이크의 쿼리 엔진으로 Trino ### 사례 연구: 50인 규모 핀테크 스타트업 우리가 인터뷰한 YC 지원 핀테크 회사는 단일 [DigitalOcean](https://m.do.co/c/eca87ac14ee0) Droplet(월 $48)에서 PostgreSQL 분석 레플리카에 연결된 Superset을 실행합니다. 캐시된 쿼리에 대해 **40명의 낮 사용자**에게 **35개의 대시보드**를 제공하며 서브초 로드 시간을 제공합니다. 총 BI 인프라 비용: **월 $100 미만**. ## 고급 사용법 / 프로덕션 하드닝 ### 행 수준 보안 (RLS) Superset은 사용자 속성을 기준으로 데이터를 필터링하는 행 수준 보안 정책을 지원합니다: `````python # superset_config.py ROW_LEVEL_SECURITY_FILTERING = True # UI에서 필터 정의: # 테이블: orders # 필터 절: region = '\" # 그룹: 영업 팀 이는 별도의 대시보드를 유지 관리하지 않고도 사용자가 할당된 영역의 데이터만 볼 수 있도록 보장합니다.\n대시보드 임베딩 Superset 5.0.0에는 React 애플리케이션을 위한 안정적인 임베딩 SDK가 포함되어 있습니다: `````bash\n임베딩 SDK 설치 npm install @superset-ui/embedded-sdk\n`````typescript // App.tsx import { embedDashboard } from \"@superset-ui/embedded-sdk\"; embedDashboard({ id: \"your-dashboard-uuid\", supersetDomain: \"https://superset.yourcompany.com\", mountPoint: document.getElementById(\"dashboard-container\"), fetchGuestToken: () =\u003e fetch(\"/api/guest-token\").then(r =\u003e r.json()), dashboardUiConfig: { hideTitle: true, hideChartControls: false, hideTab: false, }, }); 알림 및 보고 대시보드 조건에 대해 이메일 또는 Slack 알림을 구성합니다: `````python\nsuperset_config.py ALERT_REPORTS_NOTIFICATION_METHODS = [“email”, “slack”] SLACK_API_TOKEN = “xoxb-your-slack-bot-token” SMTP_HOST = “smtp.sendgrid.net” SMTP_PORT = 587 SMTP_USER = “apikey” SMTP_PASSWORD = os.environ.get(“SMTP_PASSWORD”)\n### 커스텀 차트 플러그인 낮 사용을 위해 독점적인 차트 유형을 구축합니다: `````bash # 새로운 차트 플러그인 스캐폴드 npx @superset-ui/cli create-chart-plugin my-company-charts cd my-company-charts npm install npm run build # Superset의 플러그인 디렉토리에 복사 cp -r dist/* /app/superset/static/assets/my-company-charts/ superset_config.py에 등록: `````python EXTRA_PLUGINS = [“my_company_charts”]\n### 백업 전략 메타데이터 데이터베이스에는 모든 대시보드, 차트 및 사용자 정의가 포함되어 있습니다. 매일 백업하세요: `````bash # cron을 통한 자동 일일 백업 0 2 * * * pg_dump -h postgres-host -U superset superset \u003e /backups/superset-$(date +\\%Y\\%m\\%d).sql # 7일 보관 find /backups -name \"superset-*.sql\" -mtime +7 -delete ```` ## 대안과의 비교 | 기능 | Apache Superset | Tableau | Metabase | Grafana | |---|---|---|---|---| | 라이선스 | Apache-2.0 | 독점 | AGPL / 상업 | AGPL | | 셀프 호스팅 | 예 | 아니오 (Server만) | 예 | 예 | | GitHub 스타 | 66,000 | 해당 없음 | 41,000 | 66,500 | | SQL 편집기 | 고급 (SQL Lab) | 제한적 | 기본 | 플러그인 | | 차트 유형 | 50+ | 100+ | 25+ | 시계열 중심 | | 대시보드 임베딩 | 기본 SDK | 제한적 API | iframe / SDK | 제한적 | | 행 수준 보안 | 예 | 예 (Data Server) | 예 (Enterprise) | 데이터 소스 | | 알림 | 이메일/Slack | 기본 | Enterprise만 | 기본 | | 비용 (10사용자) | 0 + 인프라 | ~$8,400/년 | $0 / $500/월 | 0 + 인프라 | | 학습 곡선 | 중간 | 낮음 | 낮음 | 중간 | **대안 대신 Superset을 선택할 때:** - **vs. Tableau**: 배포에 대한 완전한 제어가 필요하고, SQL에 익숙한 사용자가 있으며, 사용자당 라이선스 비용을 피하고 싶을 때 Superset을 선택하세요. Tableau는 비기술 사용자의 사용 편의성에서 우수합니다. - **vs. Metabase**: Superset은 대규모 처리와 더 강력한 SQL 편집기를 제공합니다. Metabase는 기본적인 필요를 가진 소규모 팀에게 더 간단합니다. - **vs. Grafana**: Grafana는 실시간 운영 메트릭에서 뛰어납니다. Superset은 분석 쿼리와 비즈니스 인텔리전스를 위해 설계되었습니다. ## 한계 / 솔직한 평가 Apache Superset은 모든 상황에 맞는 도구가 아닙니다. 투입하기 전에 알아야 할 사항: 1. **데이터 변환 없음**: Superset은 ETL 도구가 아닙니다. 데이터를 준비하려면 dbt, Airflow 또는 다른 파이프라인 도구가 필요합니다. SQL Lab 편집기는 임시 쿼리를 실행할 수 있지만, 프로덕션 데이터 세트는 사전 모델링되어야 합니다. 2. **비SQL 사용자의 가파른 학습 곡선**: Tableau의 드래그 앤 드롭에 익숙한 비즈니스 사용자는 Superset이 덜 직관적으로 느껴질 수 있습니다. 시맨틱 레이어가 도움이 되지만, 팀에 SQL을 알 누군가가 설정해야 합니다. 3. **데이터 블렌딩 없음**: Tableau와 달리 Superset은 단일 차트에서 여러 소스의 데이터를 블렌딩하지 않습니다. 데이터베이스 수준에서 데이터를 조인하거나 Trino와 같은 도구를 사용해야 합니다. 4. **커뮤니티 지원만**: Apache 프로젝트 자체에는 유료 지원 옵션이 없습니다. [Preset](https://preset.io)(Superset 창업자 설립)와 같은 회사가 상업용 호스팅 및 지원을 제공합니다. 5. **임베딩 복잡성**: 임베디드 대시보드의 게스트 토큰 인증 흐름에는 백엔드 개발이 필요합니다. 간단한 복사-붙여넣기 iframe 임베드가 아닙니다. ## 자주 묻는 질문 ### Apache Superset은 어떤 데이터베이스를 지원하나요? Superset은 SQLAlchemy 방언을 통해 **30가지 이상의 데이터베이스 엔진**을 지원합니다. 가장 일반적으로 사용되는 것은 PostgreSQL, MySQL, BigQuery, Snowflake, Apache Druid, ClickHouse, Apache Spark SQL, Presto/Trino, Oracle, SQL Server 및 DuckDB입니다. 기능적인 SQLAlchemy 방언과 ANSI SQL 지원이 있는 모든 데이터베이스가 작동합니다. ### 프로덕션에서 Superset을 실행하는 데 드는 비용은 얼마인가요? 소프트웨어 자체는 Apache-2.0 하에 묣입니다. 인프라 비용은 다양합니다: 소규모 팀은 단일 VPS에서 **월 $20-50**에 실행할 수 있고, Kubernetes에서 관리형 PostgreSQL과 Redis를 갖춘 엔터프라이즈 배포는 일반적으로 사용자 수와 쿼리 양에 따라 **월 $500-2,000**이 듭니다. 이는 동급의 독점 BI 좌석보다 여전히 **80-90% 저렴**합니다. ### Tableau나 Metabase에서 Superset으로 마이그레이션할 수 있나요? 대시보드나 통합 문서를 위한 자동 마이그레이션 도구는 없습니다. 차트는 Superset에서 다시 생성해야 합니다. 그러나 기본 데이터 모델과 데이터베이스 연결은 직접 전송됩니다. 팀은 일반적으로 50개 이상의 대시보드에 대해 **2-4주의 마이그레이션**을 계획합니다. SQL Lab은 쿼리가 동일한 결과를 생성하는지 검증하는 데 도움이 됩니다. ### Superset은 규제 산업에서도 충분히 안전한가요? 적절한 구성과 함께라면 그렇습니다. Superset은 OAuth2, LDAP, SAML 인증; 행 수준 보안; 감사 로깅; HTTPS 종료를 지원합니다. 적절한 네트워크 격리 및 액세스 제어와 함께 배포될 때 의료(HIPAA 규격 환경) 및 금융(SOC 2)에서 사용됩니다. Apache 재단의 보안 팀은 CVE와 패치를 신속하게 게시합니다. ### Superset을 수백 명의 사용자로 확장하려면 어떻게 해야 하나요? 로드 밸런서 뒤에서 여러 Superset 앱 서버 인스턴스를 실행하여 수평으로 확장합니다. 캐싱과 세션 저장을 위해 Redis를 사용합니다. 장기 실행 쿼리를 Celery 워커에 오프로드합니다. 데이터 레이어에서 Trino, Druid 또는 ClickHouse와 같은 고성능 쿼리 엔진에 연결합니다. 이 아키텍처를 통해 Superset은 Twitter 및 Dropbox와 같은 조직에서 **1,000명 이상의 동시 사용자**를 처리합니다. ### SQL을 전혀 작성하지 않고 Superset을 사용할 수 있나요? 부분적으로는 가능합니다. Explore 보기를 통해 기술이 없는 사용자가 사전 구성된 데이터 세트에서 메트릭과 차원을 선택하여 차트를 빌드할 수 있습니다. 그러나 새로운 데이터 세트를 생성하고 메트릭을 정의하려면 SQL 지식이 필요합니다. 시맨틱 레이어는 기술적 설정의 필요성을 줄이지만 제거하지는 않습니다. ## 결론: 오늘부터 시작하세요 Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스 BI 플랫폼입니다. 50가지 이상의 차트 유형, 30가지 이상의 데이터베이스에 대한 기본 지원, 프로덕션급 권한 시스템을 갖춘 Superset은 대부분의 팀을 위해 독점 도구를 대체합니다 — 훨씬 낮은 비용으로. 다음 단계: 1. Docker Compose로 로컬에 Superset 배포 (5분) 2. PostgreSQL 또는 데이터 웨어하우스 연결 3. Explore 보기로 첫 번째 대시보드 구축 4. [DigitalOcean](https://m.do.co/c/eca87ac14ee0) Droplet 또는 Kubernetes 클러스터에 프로덕션 배포 데이터 엔지니어를 위한 Telegram 그룹에 참여하세요: **t.me/dibi8** — Superset 대시보드를 공유하고, 질문하고, 5,000명 이상의 데이터 전문가로부터 도움을 받으세요. * * * ## 추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. *제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.* ## 출처 및 추가 자료 - [Apache Superset 공식 문서](https://superset.apache.org/docs/intro) - [GitHub 저장소: apache/superset](https://github.com/apache/superset) - [Superset 5.0.0 릴리스 노트](https://github.com/apache/superset/blob/master/CHANGELOG.md) - [Preset Cloud (관리형 Superset)](https://preset.io) - [임베딩 SDK 문서](https://github.com/apache/superset/tree/master/superset-embedded-sdk) - [dibi8: dbt 데이터 변환 가이드](dbt-data-transformation-dibi8-internal-link) - [dibi8: Apache Airflow 오케스트레이션 가이드](apache-airflow-orchestration-dibi8-internal-link) * * * *제휴 공개: 이 문서에는 DigitalOcean 제휴 링크가 포함되어 있습니다. 추천 링크를 통해 가입하면 추가 비용 없이 커미션을 받습니다. 우리는 직접 사용하는 서비스만 추천합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Apache Superset 2026: 50가지 이상 차트 유형을 갖춘 오픈소스 데이터 탐색 플랫폼 — 셀프 호스팅 가이드\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/preset-superset-data-exploration\" } } * * * ## Related Articles - [egonex-understand-anything-interactive-knowledge-graph-ai](preset-superset-data-exploration) - [worldmonitor-real-time-global-intelligence-dashboard](preset-superset-data-exploration) - [bytedance-ui-tars-desktop-ai-agent-guide](preset-superset-data-exploration) - [mattpocock-skills-ai-agent-framework-guide](preset-superset-data-exploration) - [microsoft-markitdown-file-to-markdown-converter-cli](preset-superset-data-exploration) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2086",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/preset-superset-data-exploration/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#%ec%86%8c%ea%b0%9c-bi-%ec%8a%a4%ed%83%9d-%eb%b9%84%ec%9a%a9%ec%9d%b4-%eb%84%88%eb%ac%b4-%eb%86%92%ec%9d%80-%ec%9d%b4%ec%9c%a0" aria-label="소개: BI 스택 비용이 너무 높은 이유">소개: BI 스택 비용이 너무 높은 이유</a></li>
+            <li>
+                <a href="#apache-superset%ec%9d%b4%eb%9e%80" aria-label="Apache Superset이란">Apache Superset이란</a></li>
+            <li>
+                <a href="#apache-superset-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="Apache Superset 작동 방식">Apache Superset 작동 방식</a><ul>
+                    
+            <li>
+                <a href="#%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b2%b0%ec%a0%95" aria-label="핵심 아키텍처 결정">핵심 아키텍처 결정</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%84%a4%ec%b9%98-%eb%b0%8f-%ec%84%a4%ec%a0%95" aria-label="설치 및 설정">설치 및 설정</a><ul>
+                    
+            <li>
+                <a href="#%ec%82%ac%ec%a0%84-%ec%9a%94%ea%b5%ac-%ec%82%ac%ed%95%ad" aria-label="사전 요구 사항">사전 요구 사항</a></li>
+            <li>
+                <a href="#1%eb%8b%a8%ea%b3%84-%ec%a0%80%ec%9e%a5%ec%86%8c-%ed%81%b4%eb%a1%a0" aria-label="1단계: 저장소 클론">1단계: 저장소 클론</a></li>
+            <li>
+                <a href="#2%eb%8b%a8%ea%b3%84-docker-compose%eb%a1%9c-%ec%8b%a4%ed%96%89" aria-label="2단계: Docker Compose로 실행">2단계: Docker Compose로 실행</a></li>
+            <li>
+                <a href="#3%eb%8b%a8%ea%b3%84-ui-%ec%a0%91%ea%b7%bc" aria-label="3단계: UI 접근">3단계: UI 접근</a></li>
+            <li>
+                <a href="#docker%eb%a5%bc-%ec%9d%b4%ec%9a%a9%ed%95%9c-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%b0%b0%ed%8f%ac" aria-label="Docker를 이용한 프로덕션 배포">Docker를 이용한 프로덕션 배포</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#docker-composeprodyml" aria-label="docker-compose.prod.yml">docker-compose.prod.yml</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#bigquery" aria-label="BigQuery">BigQuery</a></li>
+            <li>
+                <a href="#snowflake" aria-label="Snowflake">Snowflake</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#superset_configpy" aria-label="superset_config.py">superset_config.py</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#duckdb-v50-%ec%8b%a0%ea%b7%9c" aria-label="DuckDB (v5.0 신규)">DuckDB (v5.0 신규)</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#duckdb-%ec%9d%b8%eb%a9%94%eb%aa%a8%eb%a6%ac-%eb%98%90%eb%8a%94-%ed%8c%8c%ec%9d%bc-%ea%b8%b0%eb%b0%98" aria-label="DuckDB 인메모리 또는 파일 기반">DuckDB 인메모리 또는 파일 기반</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#%eb%8c%80%ec%8b%9c%eb%b3%b4%eb%93%9c-%ec%9e%84%eb%b2%a0%eb%94%a9" aria-label="대시보드 임베딩">대시보드 임베딩</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#%ec%9e%84%eb%b2%a0%eb%94%a9-sdk-%ec%84%a4%ec%b9%98" aria-label="임베딩 SDK 설치">임베딩 SDK 설치</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#%ec%95%8c%eb%a6%bc-%eb%b0%8f-%eb%b3%b4%ea%b3%a0" aria-label="알림 및 보고">알림 및 보고</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#superset_configpy-1" aria-label="superset_config.py">superset_config.py</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="소개-bi-스택-비용이-너무-높은-이유">소개: BI 스택 비용이 너무 높은 이유<a hidden class="anchor" aria-hidden="true" href="#소개-bi-스택-비용이-너무-높은-이유">#</a></h2>
+<p>2025년 중견기업의 비즈니스 인텔리전스 도구 평균 지출은 <strong>연간 $48,000</strong>입니다. Tableau 라이선스만 합쳐도 사용자당 월 $70이 듭니다. Looker Studio는 데이터 블렌딩이나 행 수준 보안이 필요할 때까지 &ldquo;묣&quot;으로 보입니다. ETL, 데이터 웨어하우스 컴퓨팅, 임베디드 분석까지 추가하면 비용은 6자리를 훌씬 넘습니다.</p>
+<p>Apache Superset은 다른 길을 제공합니다. 2015년 Airbnb에서 탄생해 2017년 Apache 소프트웨어 재단에 기증된 Superset은 현재 <strong>Shopify, Netflix, Twitter, Dropbox</strong>의 분석을 지원합니다. <strong>66,000개 이상의 GitHub 스타</strong>를 보유한 Superset은 시장에서 가장 인기 있는 오픈소스 BI 및 데이터 탐색 플랫폼입니다. 2025년 5월에 릴리스된 5.0.0 버전에는 재설계된 SQL Lab, 기본 DuckDB 지원, 개선된 임베딩 API가 포함되어 있습니다.</p>
+<p>이 가이드는 30분 만에 제로에서 프로덕션 대시보드까지 — 셀프 호스팅하며 데이터를 완전히 제어하는 방법을 알려드립니다.</p>
+<h2 id="apache-superset이란">Apache Superset이란<a hidden class="anchor" aria-hidden="true" href="#apache-superset이란">#</a></h2>
+<p>Apache Superset은 SQL 데이터베이스에 연결하여 프론트엔드 코드 작성 없이 차트, 대시보드 및 데이터 애플리케이션을 구축할 수 있는 오픈소스 데이터 탐색 및 시각화 플랫폼입니다. <strong>50가지 이상의 차트 유형</strong>, 강력한 SQL 편집기, 역할 기반 액세스 제어, 드래그 앤 드롭 대시보드 빌더를 제공합니다.</p>
+<p>독점 BI 도구와 달리 Superset은 데이터를 저장하지 않습니다. 사용자 상호작용을 데이터베이스에서 직접 실행되는 SQL 쿼리로 변환하여, 소규모 PostgreSQL 인스턴스와 페타바이트 규모의 데이터 웨어하우스 모두에 적합합니다.</p>
+<h2 id="apache-superset-작동-방식">Apache Superset 작동 방식<a hidden class="anchor" aria-hidden="true" href="#apache-superset-작동-방식">#</a></h2>
+<p>Superset의 아키텍처는 프레젠테이션, 메타데이터, 쿼리 실행 사이에 명확한 분리를 유지합니다: | 구성 요소 | 목적 | 기술 |
 |&mdash;|&mdash;|&mdash;|
 | Superset 앱 서버 | UI, API, 쿼리 오케스트레이션 | Flask + React |
 | 메타데이터 데이터베이스 | 대시보드, 차트, 사용자 저장 | PostgreSQL / MySQL |
 | 캐시 레이어 | 쿼리 결과 캐싱 | Redis / Memcached |
 | 메시지 큐 | 비동기 쿼리 실행 | Celery + Redis |
-| 데이터 소스 | 실시간 SQL 연결 | 30가지 이상의 데이터베이스 엔진 |</p><p>사용자가 대시보드를 열 때 Superset은 먼저 캐시를 확인합니다. 캐시 미스가 발생하면 차트 구성을 SQL로 컴파일하고, 연결된 데이터베이스에 쿼리를 전송하고, 결과를 렌더링합니다. 무거운 쿼리는 Celery 워커에 오프로드하여 웹 서버 차단을 방지할 수 있습니다.</p><h3 id=핵심-아키텍처-결정>핵심 아키텍처 결정<a hidden class=anchor aria-hidden=true href=#핵심-아키텍처-결정>#</a></h3><ol><li><strong>데이터베이스 기본 실행</strong>: Superset은 데이터를 가져오지 않습니다. 최적화된 SQL을 생성하고 컴퓨팅을 소스로 푸시합니다.</li><li><strong>시맨틱 레이어</strong>: 메트릭과 차원을 한 번 정의하고 여러 차트에서 재사용할 수 있습니다.</li><li><strong>확장 가능한 시각화</strong>: 새로운 차트 유형은 ```@superset-ui/core```` 프레임워크를 사용하여 플러그인으로 추가됩니다.</li></ol><h2 id=설치-및-설정>설치 및 설정<a hidden class=anchor aria-hidden=true href=#설치-및-설정>#</a></h2><h3 id=사전-요구-사항>사전 요구 사항<a hidden class=anchor aria-hidden=true href=#사전-요구-사항>#</a></h3><ul><li>Docker Engine 24.0+ 및 Docker Compose v2+</li><li>최소 4GB RAM (프로덕션용 8GB 권장)</li><li>Linux, macOS 또는 Windows (WSL2) 호스트</li></ul><h3 id=1단계-저장소-클론>1단계: 저장소 클론<a hidden class=anchor aria-hidden=true href=#1단계-저장소-클론>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/apache/superset.git
-</span></span><span style=display:flex><span>cd superset
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 최신 안정 릴리스로 체크아웃 (2025년 5월 기준 v5.0.0)</span>
-</span></span><span style=display:flex><span>git checkout 5.0.0
-</span></span></code></pre></div><h3 id=2단계-docker-compose로-실행>2단계: Docker Compose로 실행<a hidden class=anchor aria-hidden=true href=#2단계-docker-compose로-실행>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 분리 모드로 모든 서비스 시작</span>
-</span></span><span style=display:flex><span>docker compose -f docker-compose-image-tag.yml up -d
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 서비스 초기화 대기 (PostgreSQL, Redis, Superset)</span>
-</span></span><span style=display:flex><span>sleep <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 데이터베이스 초기화 및 관리자 계정 생성</span>
-</span></span><span style=display:flex><span>docker compose exec superset superset db upgrade
-</span></span><span style=display:flex><span>docker compose exec superset superset fab create-admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --username admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --firstname Admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --lastname User <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --email admin@example.com <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --password admin
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 예제 대시보드 로드 (선택사항, 학습에 유용)</span>
-</span></span><span style=display:flex><span>docker compose exec superset superset load-examples
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 모든 변경사항 적용을 위해 재시작</span>
-</span></span><span style=display:flex><span>docker compose restart superset
-</span></span></code></pre></div><h3 id=3단계-ui-접근>3단계: UI 접근<a hidden class=anchor aria-hidden=true href=#3단계-ui-접근>#</a></h3><p>브라우저에서 <code>http://localhost:8088</code>로 이동하고 위에서 설정한 자격 증명으로 로그인합니다.</p><h3 id=docker를-이용한-프로덕션-배포>Docker를 이용한 프로덕션 배포<a hidden class=anchor aria-hidden=true href=#docker를-이용한-프로덕션-배포>#</a></h3><p>프로덕션 환경에서는 관리형 데이터베이스와 외부 Redis를 사용하세요: `````yaml</p><h1 id=docker-composeprodyml>docker-compose.prod.yml<a hidden class=anchor aria-hidden=true href=#docker-composeprodyml>#</a></h1><p>services: superset: image: apache/superset:5.0.0
+| 데이터 소스 | 실시간 SQL 연결 | 30가지 이상의 데이터베이스 엔진 |</p>
+<p>사용자가 대시보드를 열 때 Superset은 먼저 캐시를 확인합니다. 캐시 미스가 발생하면 차트 구성을 SQL로 컴파일하고, 연결된 데이터베이스에 쿼리를 전송하고, 결과를 렌더링합니다. 무거운 쿼리는 Celery 워커에 오프로드하여 웹 서버 차단을 방지할 수 있습니다.</p>
+<h3 id="핵심-아키텍처-결정">핵심 아키텍처 결정<a hidden class="anchor" aria-hidden="true" href="#핵심-아키텍처-결정">#</a></h3>
+<ol>
+<li><strong>데이터베이스 기본 실행</strong>: Superset은 데이터를 가져오지 않습니다. 최적화된 SQL을 생성하고 컴퓨팅을 소스로 푸시합니다.</li>
+<li><strong>시맨틱 레이어</strong>: 메트릭과 차원을 한 번 정의하고 여러 차트에서 재사용할 수 있습니다.</li>
+<li><strong>확장 가능한 시각화</strong>: 새로운 차트 유형은 ```@superset-ui/core```` 프레임워크를 사용하여 플러그인으로 추가됩니다.</li>
+</ol>
+<h2 id="설치-및-설정">설치 및 설정<a hidden class="anchor" aria-hidden="true" href="#설치-및-설정">#</a></h2>
+<h3 id="사전-요구-사항">사전 요구 사항<a hidden class="anchor" aria-hidden="true" href="#사전-요구-사항">#</a></h3>
+<ul>
+<li>Docker Engine 24.0+ 및 Docker Compose v2+</li>
+<li>최소 4GB RAM (프로덕션용 8GB 권장)</li>
+<li>Linux, macOS 또는 Windows (WSL2) 호스트</li>
+</ul>
+<h3 id="1단계-저장소-클론">1단계: 저장소 클론<a hidden class="anchor" aria-hidden="true" href="#1단계-저장소-클론">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/apache/superset.git
+</span></span><span style="display:flex;"><span>cd superset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 최신 안정 릴리스로 체크아웃 (2025년 5월 기준 v5.0.0)</span>
+</span></span><span style="display:flex;"><span>git checkout 5.0.0
+</span></span></code></pre></div><h3 id="2단계-docker-compose로-실행">2단계: Docker Compose로 실행<a hidden class="anchor" aria-hidden="true" href="#2단계-docker-compose로-실행">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 분리 모드로 모든 서비스 시작</span>
+</span></span><span style="display:flex;"><span>docker compose -f docker-compose-image-tag.yml up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 서비스 초기화 대기 (PostgreSQL, Redis, Superset)</span>
+</span></span><span style="display:flex;"><span>sleep <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 데이터베이스 초기화 및 관리자 계정 생성</span>
+</span></span><span style="display:flex;"><span>docker compose exec superset superset db upgrade
+</span></span><span style="display:flex;"><span>docker compose exec superset superset fab create-admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --username admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --firstname Admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --lastname User <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --email admin@example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --password admin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예제 대시보드 로드 (선택사항, 학습에 유용)</span>
+</span></span><span style="display:flex;"><span>docker compose exec superset superset load-examples
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모든 변경사항 적용을 위해 재시작</span>
+</span></span><span style="display:flex;"><span>docker compose restart superset
+</span></span></code></pre></div><h3 id="3단계-ui-접근">3단계: UI 접근<a hidden class="anchor" aria-hidden="true" href="#3단계-ui-접근">#</a></h3>
+<p>브라우저에서 <code>http://localhost:8088</code>로 이동하고 위에서 설정한 자격 증명으로 로그인합니다.</p>
+<h3 id="docker를-이용한-프로덕션-배포">Docker를 이용한 프로덕션 배포<a hidden class="anchor" aria-hidden="true" href="#docker를-이용한-프로덕션-배포">#</a></h3>
+<p>프로덕션 환경에서는 관리형 데이터베이스와 외부 Redis를 사용하세요: `````yaml</p>
+<h1 id="docker-composeprodyml">docker-compose.prod.yml<a hidden class="anchor" aria-hidden="true" href="#docker-composeprodyml">#</a></h1>
+<p>services: superset: image: apache/superset:5.0.0
 environment: - DATABASE_DB=superset
 - DATABASE_HOST=your-postgres-host.internal
 - DATABASE_PASSWORD=${DB_PASSWORD}
@@ -43,10 +343,11 @@ environment: - DATABASE_DB=superset
 - REDIS_HOST=your-redis-host.internal
 - REDIS_PORT=6379
 - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}
-- SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_<a href=mailto:PASSWORD%7d@your-postgres-host.internal>PASSWORD}@your-postgres-host.internal</a>:5432/superset
+- SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_<a href="mailto:PASSWORD%7d@your-postgres-host.internal">PASSWORD}@your-postgres-host.internal</a>:5432/superset
 ports: - &ldquo;8088:8088&rdquo;
 deploy: replicas: 2
-resources: limits: memory: 2G</p><pre tabindex=0><code>
+resources: limits: memory: 2G</p>
+<pre tabindex="0"><code>
 **셀프 호스팅 팁**: Superset을 실행할 안정적인 VPS가 필요하다면, [DigitalOcean](https://m.do.co/c/eca87ac14ee0)은 월 $12부터 시작하는 2GB RAM Droplet과 원클릭 Docker 배포를 제공합니다. 추천 링크를 사용하면 60일간 $200 크레딧을 받을 수 있습니다.
 
 ## 주요 도구와의 통합
@@ -59,15 +360,22 @@ postgresql://username:password@host:port/database?sslmode=require
 
 # MySQL 연결 문자열 형식
 mysql://username:password@host:port/database
-</code></pre><p>UI에서 <strong>설정 > 데이터베이스 연결 > + 데이터베이스</strong>로 이동하여 SQLAlchemy URI를 붙여넣습니다. 저장하기 전에 연결을 테스트하세요.</p><h3 id=bigquery>BigQuery<a hidden class=anchor aria-hidden=true href=#bigquery>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># BigQuery는 서비스 계정 JSON 키가 필요함</span>
-</span></span><span style=display:flex><span>bigquery:<span style=color:#f92672>//</span>project<span style=color:#f92672>-</span>id<span style=color:#960050;background-color:#1e0010>?</span>credentials_path<span style=color:#f92672>=/</span>path<span style=color:#f92672>/</span>to<span style=color:#f92672>/</span>service<span style=color:#f92672>-</span>account<span style=color:#f92672>.</span>json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 또는 인라인 키 (프로덕션용 권장하지 않음)</span>
-</span></span><span style=display:flex><span>bigquery:<span style=color:#f92672>//</span>project<span style=color:#f92672>-</span>id
-</span></span></code></pre></div><p>고급 설정의 <strong>보안 추가 정보</strong> 필드에 서비스 계정 JSON을 업로드하세요.</p><h3 id=snowflake>Snowflake<a hidden class=anchor aria-hidden=true href=#snowflake>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Snowflake 연결 URI</span>
-</span></span><span style=display:flex><span>snowflake:<span style=color:#f92672>//</span>user:password<span style=color:#a6e22e>@account</span><span style=color:#f92672>/</span>warehouse<span style=color:#f92672>/</span>database<span style=color:#960050;background-color:#1e0010>?</span>role<span style=color:#f92672>=</span>SUPERSET_ROLE
-</span></span></code></pre></div><p>더 나은 자동완성을 위해 <code>superset_config.py</code>에서 Snowflake SQL 방언을 활성화합니다: `````python</p><h1 id=superset_configpy>superset_config.py<a hidden class=anchor aria-hidden=true href=#superset_configpy>#</a></h1><p>EXTRA_ALLOWED_DOMAIN_SHARDES = []
-DEFAULT_SQLLAB_LIMIT = 10000</p><pre tabindex=0><code>
+</code></pre><p>UI에서 <strong>설정 &gt; 데이터베이스 연결 &gt; + 데이터베이스</strong>로 이동하여 SQLAlchemy URI를 붙여넣습니다. 저장하기 전에 연결을 테스트하세요.</p>
+<h3 id="bigquery">BigQuery<a hidden class="anchor" aria-hidden="true" href="#bigquery">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># BigQuery는 서비스 계정 JSON 키가 필요함</span>
+</span></span><span style="display:flex;"><span>bigquery:<span style="color:#f92672">//</span>project<span style="color:#f92672">-</span>id<span style="color:#960050;background-color:#1e0010">?</span>credentials_path<span style="color:#f92672">=/</span>path<span style="color:#f92672">/</span>to<span style="color:#f92672">/</span>service<span style="color:#f92672">-</span>account<span style="color:#f92672">.</span>json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 또는 인라인 키 (프로덕션용 권장하지 않음)</span>
+</span></span><span style="display:flex;"><span>bigquery:<span style="color:#f92672">//</span>project<span style="color:#f92672">-</span>id
+</span></span></code></pre></div><p>고급 설정의 <strong>보안 추가 정보</strong> 필드에 서비스 계정 JSON을 업로드하세요.</p>
+<h3 id="snowflake">Snowflake<a hidden class="anchor" aria-hidden="true" href="#snowflake">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Snowflake 연결 URI</span>
+</span></span><span style="display:flex;"><span>snowflake:<span style="color:#f92672">//</span>user:password<span style="color:#a6e22e">@account</span><span style="color:#f92672">/</span>warehouse<span style="color:#f92672">/</span>database<span style="color:#960050;background-color:#1e0010">?</span>role<span style="color:#f92672">=</span>SUPERSET_ROLE
+</span></span></code></pre></div><p>더 나은 자동완성을 위해 <code>superset_config.py</code>에서 Snowflake SQL 방언을 활성화합니다: `````python</p>
+<h1 id="superset_configpy">superset_config.py<a hidden class="anchor" aria-hidden="true" href="#superset_configpy">#</a></h1>
+<p>EXTRA_ALLOWED_DOMAIN_SHARDES = []
+DEFAULT_SQLLAB_LIMIT = 10000</p>
+<pre tabindex="0"><code>
 ### Apache Druid
 
 Superset은 원래 Airbnb에서 Druid를 쿼리하기 위해 구축되었습니다. 통합은 여전히 일급입니다: `````python
@@ -76,7 +384,11 @@ druid://broker-host:8082/datasource/v2
 
 # 또는 HTTP를 통한 SQL
 druid://broker-host:8082/druid/v2/sql
-</code></pre><h3 id=duckdb-v50-신규>DuckDB (v5.0 신규)<a hidden class=anchor aria-hidden=true href=#duckdb-v50-신규>#</a></h3><p>Superset 5.0.0에서 DuckDB 지원이 추가되어 별도 서버 없이 로컬 분석 워크로드를 실행할 수 있습니다: `````python</p><h1 id=duckdb-인메모리-또는-파일-기반>DuckDB 인메모리 또는 파일 기반<a hidden class=anchor aria-hidden=true href=#duckdb-인메모리-또는-파일-기반>#</a></h1><p>duckdb:///path/to/local/database.db</p><pre tabindex=0><code>
+</code></pre><h3 id="duckdb-v50-신규">DuckDB (v5.0 신규)<a hidden class="anchor" aria-hidden="true" href="#duckdb-v50-신규">#</a></h3>
+<p>Superset 5.0.0에서 DuckDB 지원이 추가되어 별도 서버 없이 로컬 분석 워크로드를 실행할 수 있습니다: `````python</p>
+<h1 id="duckdb-인메모리-또는-파일-기반">DuckDB 인메모리 또는 파일 기반<a hidden class="anchor" aria-hidden="true" href="#duckdb-인메모리-또는-파일-기반">#</a></h1>
+<p>duckdb:///path/to/local/database.db</p>
+<pre tabindex="0"><code>
 이는 최대 ~50GB의 소규모 데이터 세트에 대한 프로토타이핑에 이상적입니다.
 
 ## 벤치마크 / 실제 사용 사례
@@ -114,7 +426,12 @@ ROW_LEVEL_SECURITY_FILTERING = True
 # UI에서 필터 정의: # 테이블: orders
 # 필터 절: region = &#39;&#34;
 # 그룹: 영업 팀
-</code></pre><p>이는 별도의 대시보드를 유지 관리하지 않고도 사용자가 할당된 영역의 데이터만 볼 수 있도록 보장합니다.</p><h3 id=대시보드-임베딩>대시보드 임베딩<a hidden class=anchor aria-hidden=true href=#대시보드-임베딩>#</a></h3><p>Superset 5.0.0에는 React 애플리케이션을 위한 안정적인 임베딩 SDK가 포함되어 있습니다: `````bash</p><h1 id=임베딩-sdk-설치>임베딩 SDK 설치<a hidden class=anchor aria-hidden=true href=#임베딩-sdk-설치>#</a></h1><p>npm install @superset-ui/embedded-sdk</p><pre tabindex=0><code>
+</code></pre><p>이는 별도의 대시보드를 유지 관리하지 않고도 사용자가 할당된 영역의 데이터만 볼 수 있도록 보장합니다.</p>
+<h3 id="대시보드-임베딩">대시보드 임베딩<a hidden class="anchor" aria-hidden="true" href="#대시보드-임베딩">#</a></h3>
+<p>Superset 5.0.0에는 React 애플리케이션을 위한 안정적인 임베딩 SDK가 포함되어 있습니다: `````bash</p>
+<h1 id="임베딩-sdk-설치">임베딩 SDK 설치<a hidden class="anchor" aria-hidden="true" href="#임베딩-sdk-설치">#</a></h1>
+<p>npm install @superset-ui/embedded-sdk</p>
+<pre tabindex="0"><code>
 `````typescript
 // App.tsx
 import { embedDashboard } from &#34;@superset-ui/embedded-sdk&#34;;
@@ -130,12 +447,16 @@ embedDashboard({
     hideTab: false,
   },
 });
-</code></pre><h3 id=알림-및-보고>알림 및 보고<a hidden class=anchor aria-hidden=true href=#알림-및-보고>#</a></h3><p>대시보드 조건에 대해 이메일 또는 Slack 알림을 구성합니다: `````python</p><h1 id=superset_configpy-1>superset_config.py<a hidden class=anchor aria-hidden=true href=#superset_configpy-1>#</a></h1><p>ALERT_REPORTS_NOTIFICATION_METHODS = [&ldquo;email&rdquo;, &ldquo;slack&rdquo;]
+</code></pre><h3 id="알림-및-보고">알림 및 보고<a hidden class="anchor" aria-hidden="true" href="#알림-및-보고">#</a></h3>
+<p>대시보드 조건에 대해 이메일 또는 Slack 알림을 구성합니다: `````python</p>
+<h1 id="superset_configpy-1">superset_config.py<a hidden class="anchor" aria-hidden="true" href="#superset_configpy-1">#</a></h1>
+<p>ALERT_REPORTS_NOTIFICATION_METHODS = [&ldquo;email&rdquo;, &ldquo;slack&rdquo;]
 SLACK_API_TOKEN = &ldquo;xoxb-your-slack-bot-token&rdquo;
 SMTP_HOST = &ldquo;smtp.sendgrid.net&rdquo;
 SMTP_PORT = 587
 SMTP_USER = &ldquo;apikey&rdquo;
-SMTP_PASSWORD = os.environ.get(&ldquo;SMTP_PASSWORD&rdquo;)</p><pre tabindex=0><code>
+SMTP_PASSWORD = os.environ.get(&ldquo;SMTP_PASSWORD&rdquo;)</p>
+<pre tabindex="0"><code>
 ### 커스텀 차트 플러그인
 
 낮 사용을 위해 독점적인 차트 유형을 구축합니다: `````bash
@@ -149,7 +470,8 @@ npm run build
 # Superset의 플러그인 디렉토리에 복사
 cp -r dist/* /app/superset/static/assets/my-company-charts/
 </code></pre><p><code>superset_config.py</code>에 등록: `````python
-EXTRA_PLUGINS = [&ldquo;my_company_charts&rdquo;]</p><pre tabindex=0><code>
+EXTRA_PLUGINS = [&ldquo;my_company_charts&rdquo;]</p>
+<pre tabindex="0"><code>
 ### 백업 전략
 
 메타데이터 데이터베이스에는 모든 대시보드, 차트 및 사용자 정의가 포함되어 있습니다. 매일 백업하세요: `````bash
@@ -294,11 +616,155 @@ Apache Superset은 2026년에 사용할 수 있는 가장 강력한 오픈소스
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/portkey-ai-gateway-production/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/product-hunt-alternatives/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/portkey-ai-gateway-production/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/product-hunt-alternatives/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,10 +1,236 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/ai-token-monitor-conky-linux/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/ai-token-monitor-conky-linux/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/ai-token-monitor-conky-linux/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-06” draft: false categories: [“dev-utils”] tags: [“ai 토큰 모니터”, “claude 쿼터”, “gemini 쿼터 추적”, “grok 토큰”, “kimi api”, “conky 위젯”, “linux 데스크탑”, “오픈소스”, “python”, “개발자 도구”] aliases:\n/kr/posts/ai-token-monitor-conky-linux/ faqs: - q: ‘AI Token Monitor가 macOS나 Windows에서도 작동하나요?’ a: ‘현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.’ q: ‘Claude API 토큰 잔액을 어떻게 읽나요?’ a: ‘/v1/messages에 max_tokens=1로 최소 POST 요청을 보내고 응답 헤더의 anthropic-ratelimit-tokens-remaining 및 anthropic-ratelimit-tokens-limit 값을 읽습니다. 체크당 약 10개 입력 토큰을 소비하며, 5분 cron 기준 하루 약 2,880 토큰으로 대부분 요금제에서 무시 가능한 수준입니다.’ q: ‘API 키를 ~/.config/.ai_monitor_keys에 저장하는 게 안전한가요?’ a: ‘파일은 chmod 600으로 생성되어 현재 사용자만 읽을 수 있습니다. .gitignore로 git에서 제외됩니다. .env 파일에 저장하는 것과 동일한 보안 수준으로 파일 시스템 권한에 의존합니다. 공유 머신이라면 gpg-agent나 시크릿 매니저로 암호화하는 것을 권장합니다.’ q: ‘목록에 없는 AI 서비스(예: Mistral, Together AI)를 추가할 수 있나요?’ a: ‘api_fetcher.py에 해당 서비스 API를 호출하는 블록을 추가하고 ok(불리언), label(표시 문자열), 선택적으로 pct(0-1 사이 소수)를 캐시 dict에 씁니다. 그런 다음 conky_ai.py의 SERVICES 목록에 서비스 이름과 reset_h 값을 추가하면 됩니다.’ q: ‘Grok이 잔액이 있는데도 “耗尽”(소진)으로 표시되는 이유는?’ a: ‘Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.’ 문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다 현대 개발자는 동시에 4~8개의 AI 서비스를 사용합니다 — Claude는 복잡한 추론, Gemini는 긴 컨텍스트 분석, Grok은 실시간 웹 데이터, Kimi는 대용량 문서 처리. 각 서비스마다 독립적인 쿼터 대시보드, 리셋 일정, 청구 페이지가 있습니다.\n결과는 이렇습니다: 작업 도중 레이트 리밋에 걸려 5분 동안 브라우저 탭을 전환하다가, Gemini 무료 쿼터가 UTC 자정(내 현지 자정이 아님)에 리셋된다는 걸 발견하고, Kimi가 왜 429를 반환하는지 디버깅하는 데 또 10분을 낭비하게 됩니다.\nAI Token Monitor는 항상 보이는 데스크탑 위젯으로 이 문제를 해결합니다 — 편집기를 떠나지 않고도 모든 서비스 상태를 한눈에 확인할 수 있습니다.\n● Claude ░░░░░░░░░ 무잔액 ● Gemini ░░░░░░░░░ 쿼터소진 ● Grok ░░░░░░░░░ 소진 ● Kimi █████████ 22.4M 잔여 ● Codex ───────── 18:42:01 ● Kilo ───────── 18:42:01 작동 방식 모니터는 두 가지 컴포넌트로 구성됩니다: api_fetcher.py — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 ~/token-monitor/api_cache.json에 씁니다.\nconky_ai.py — 30초마다 캐시를 읽고 Conky 인라인 ${color} 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.\napi_fetcher.py → api_cache.json → conky_ai.py → Conky 표시 (cron/5분) (JSON 캐시) (30초 폴링) (항상 표시) 이 아키텍처 덕분에 API 오류가 발생해도 데스크탑이 멈추지 않습니다. 캐시에는 항상 마지막으로 알려진 상태가 저장되어 있습니다.\nHP 바 스타일 진행 막대 핵심 기능은 HP 바 스타일 쿼터 시각화 — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다: | 색상 | 상태 | |——|——| | █████████ 초록 | 쿼터 50% 이상 | | ████░░░░░ 주황 | 20~50% 잔여 | | █░░░░░░░░ 빨강 | 20% 미만 | | ░░░░░░░░░ 빨강 | 소진 / 잔액 없음 | | ───────── 회색 | API 키 미설정 |\n진행 막대는 9글자 너비입니다. █ 하나가 약 11% 쿼터를 나타냅니다.\n설치 # 1. 클론 git clone https://github.com/luckybbjason1/ai-token-monitor cd ai-token-monitor # 2. 설치 bash install.sh # 3. API 키 추가 nano ~/.config/.ai_monitor_keys # 4. Conky 재시작 pkill conky \u0026\u0026 conky --daemonize --pause=1 설치 스크립트가 자동으로: - 스크립트를 ~/token-monitor/에 복사\nConky 설정에 ${execpi 30 python3 ~/token-monitor/conky_ai.py} 추가 api_fetcher.py의 cron 작업 설정 지원 서비스 및 API 방식 서비스 API 엔드포인트 감지 항목 Kimi (Moonshot) GET /v1/users/me 정확한 잔여 토큰 쿼터 Claude (Anthropic) POST /v1/messages 레이트 리밋 헤더 Gemini (Google) POST .../generateContent 429 = 쿼터 소진 Grok (xAI) GET /v1/models 403 = 잔액 소진 Codex / Kilo — UTC+8 자정까지 카운트다운 보안 설계 API 키는 ~/.config/.ai_monitor_keys에 chmod 600 권한으로 저장됩니다. .gitignore로 git에서 제외됩니다. 키는 터미널에 출력되거나 로그 파일에 기록되지 않습니다 — fetcher는 시작 시 한 번 읽고 HTTP 호출 동안만 메모리에 유지합니다.\n커스텀 서비스 추가 api_fetcher.py에 블록을 추가하세요: `````python\n── 커스텀 서비스 ───────────────────────────────── key = keys.get(yourservice) if key: try: r = requests.get(‘https://api.yourservice.com/v1/usage', headers={Authorization: f’Bearer {key}’}, timeout=8) if r.status_code == 200: data = r.json() remain = data[quota_remaining] total = data[quota_total] cache[YourService] = { ok: True, label: f’{remain//1000}K 잔여’, pct: remain / total } else: cache[YourService] = {ok: False, label: ‘API 오류’} except Exception: pass\n그런 다음 ````conky_ai.py````의 ````SERVICES```` 목록에 ````{name: YourService, reset_h: 24}```를 추가하세요. ## dibi8 관련 도구 여러 AI API 비용을 관리하고 있다면 다음도 참고하세요: - [2026 Q2 AI 코딩 비교 — Claude Code vs Cursor vs Codex](/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — 실제 개발 워크플로우 비용 비교 - [RTK Rust CLI 프록시 — AI 비용 80% 절감](/kr/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/) — 가장 저렴한 가용 모델로 프롬프트 자동 라우팅 - [2026 AI 코딩 월간 청구서](/kr/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/) — 6개월 프로덕션 AI 사용 실제 영수증 ## 코드 받기 MIT 라이선스 완전 오픈소스입니다. **GitHub:** [github.com/luckybbjason1/ai-token-monitor](https://github.com/luckybbjason1/ai-token-monitor) 작업 도중 레이트 리밋 기습을 피하는 데 도움이 됐다면 Star 부탁드립니다. Issue와 PR 환영합니다 — 특히 macOS 지원이나 새 서비스 통합에 기여해주시면 감사합니다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적\", \"datePublished\": \"2026-06-06\", \"dateModified\": \"2026-06-06\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/ai-token-monitor-conky-linux\" } } ## Why This Matters Understanding ai token monitor: linux 데스크탑에서 claude, gemini, grok, kimi 쿼터 실시간 추적 is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-token-monitor-conky-linux) - [llm-inference-cost-optimization-guide-2026](ai-token-monitor-conky-linux) - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-token-monitor-conky-linux) - [llm-inference-cost-optimization-guide-2026](ai-token-monitor-conky-linux) - [ray-distributed-ai-framework-complete-guide](ai-token-monitor-conky-linux) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"1111","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/ai-token-monitor-conky-linux/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/ai-token-monitor-conky-linux/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/ai-token-monitor-conky-linux/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%eb%ac%b8%ec%a0%9c-%ec%97%ac%ec%84%af-%ea%b0%9c-ai-%ec%84%9c%eb%b9%84%ec%8a%a4%eb%a5%bc-%eb%8f%99%ec%8b%9c%ec%97%90-%ea%b4%80%eb%a6%ac%ed%95%98%eb%a9%b4%ec%84%9c-%ec%96%b4%eb%8a%90-%ea%b2%83%ec%9d%b4-%ec%86%8c%ec%a7%84%eb%90%90%eb%8a%94%ec%a7%80-%ec%95%8c-%ec%88%98-%ec%97%86%eb%8b%a4 aria-label="문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다">문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다</a></li><li><a href=#%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="작동 방식">작동 방식</a></li><li><a href=#hp-%eb%b0%94-%ec%8a%a4%ed%83%80%ec%9d%bc-%ec%a7%84%ed%96%89-%eb%a7%89%eb%8c%80 aria-label="HP 바 스타일 진행 막대">HP 바 스타일 진행 막대</a></li><li><a href=#%ec%84%a4%ec%b9%98 aria-label=설치>설치</a></li><li><a href=#%ec%a7%80%ec%9b%90-%ec%84%9c%eb%b9%84%ec%8a%a4-%eb%b0%8f-api-%eb%b0%a9%ec%8b%9d aria-label="지원 서비스 및 API 방식">지원 서비스 및 API 방식</a></li><li><a href=#%eb%b3%b4%ec%95%88-%ec%84%a4%ea%b3%84 aria-label="보안 설계">보안 설계</a></li><li><a href=#%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%b6%94%ea%b0%80 aria-label="커스텀 서비스 추가">커스텀 서비스 추가</a></li></ul><li><a href=#-%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%84%9c%eb%b9%84%ec%8a%a4- aria-label="── 커스텀 서비스 ─────────────────────────────────">── 커스텀 서비스 ─────────────────────────────────</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/ai-token-monitor-conky-linux/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/ai-token-monitor-conky-linux/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/ai-token-monitor-conky-linux/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-06” draft: false categories: [“dev-utils”] tags: [“ai 토큰 모니터”, “claude 쿼터”, “gemini 쿼터 추적”, “grok 토큰”, “kimi api”, “conky 위젯”, “linux 데스크탑”, “오픈소스”, “python”, “개발자 도구”] aliases:\n/kr/posts/ai-token-monitor-conky-linux/ faqs: - q: ‘AI Token Monitor가 macOS나 Windows에서도 작동하나요?’ a: ‘현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.’ q: ‘Claude API 토큰 잔액을 어떻게 읽나요?’ a: ‘/v1/messages에 max_tokens=1로 최소 POST 요청을 보내고 응답 헤더의 anthropic-ratelimit-tokens-remaining 및 anthropic-ratelimit-tokens-limit 값을 읽습니다. 체크당 약 10개 입력 토큰을 소비하며, 5분 cron 기준 하루 약 2,880 토큰으로 대부분 요금제에서 무시 가능한 수준입니다.’ q: ‘API 키를 ~/.config/.ai_monitor_keys에 저장하는 게 안전한가요?’ a: ‘파일은 chmod 600으로 생성되어 현재 사용자만 읽을 수 있습니다. .gitignore로 git에서 제외됩니다. .env 파일에 저장하는 것과 동일한 보안 수준으로 파일 시스템 권한에 의존합니다. 공유 머신이라면 gpg-agent나 시크릿 매니저로 암호화하는 것을 권장합니다.’ q: ‘목록에 없는 AI 서비스(예: Mistral, Together AI)를 추가할 수 있나요?’ a: ‘api_fetcher.py에 해당 서비스 API를 호출하는 블록을 추가하고 ok(불리언), label(표시 문자열), 선택적으로 pct(0-1 사이 소수)를 캐시 dict에 씁니다. 그런 다음 conky_ai.py의 SERVICES 목록에 서비스 이름과 reset_h 값을 추가하면 됩니다.’ q: ‘Grok이 잔액이 있는데도 “耗尽”(소진)으로 표시되는 이유는?’ a: ‘Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.’ 문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다 현대 개발자는 동시에 4~8개의 AI 서비스를 사용합니다 — Claude는 복잡한 추론, Gemini는 긴 컨텍스트 분석, Grok은 실시간 웹 데이터, Kimi는 대용량 문서 처리. 각 서비스마다 독립적인 쿼터 대시보드, 리셋 일정, 청구 페이지가 있습니다.\n결과는 이렇습니다: 작업 도중 레이트 리밋에 걸려 5분 동안 브라우저 탭을 전환하다가, Gemini 무료 쿼터가 UTC 자정(내 현지 자정이 아님)에 리셋된다는 걸 발견하고, Kimi가 왜 429를 반환하는지 디버깅하는 데 또 10분을 낭비하게 됩니다.\nAI Token Monitor는 항상 보이는 데스크탑 위젯으로 이 문제를 해결합니다 — 편집기를 떠나지 않고도 모든 서비스 상태를 한눈에 확인할 수 있습니다.\n● Claude ░░░░░░░░░ 무잔액 ● Gemini ░░░░░░░░░ 쿼터소진 ● Grok ░░░░░░░░░ 소진 ● Kimi █████████ 22.4M 잔여 ● Codex ───────── 18:42:01 ● Kilo ───────── 18:42:01 작동 방식 모니터는 두 가지 컴포넌트로 구성됩니다: api_fetcher.py — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 ~/token-monitor/api_cache.json에 씁니다.\nconky_ai.py — 30초마다 캐시를 읽고 Conky 인라인 ${color} 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.\napi_fetcher.py → api_cache.json → conky_ai.py → Conky 표시 (cron/5분) (JSON 캐시) (30초 폴링) (항상 표시) 이 아키텍처 덕분에 API 오류가 발생해도 데스크탑이 멈추지 않습니다. 캐시에는 항상 마지막으로 알려진 상태가 저장되어 있습니다.\nHP 바 스타일 진행 막대 핵심 기능은 HP 바 스타일 쿼터 시각화 — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다: | 색상 | 상태 | |——|——| | █████████ 초록 | 쿼터 50% 이상 | | ████░░░░░ 주황 | 20~50% 잔여 | | █░░░░░░░░ 빨강 | 20% 미만 | | ░░░░░░░░░ 빨강 | 소진 / 잔액 없음 | | ───────── 회색 | API 키 미설정 |\n진행 막대는 9글자 너비입니다. █ 하나가 약 11% 쿼터를 나타냅니다.\n설치 # 1. 클론 git clone https://github.com/luckybbjason1/ai-token-monitor cd ai-token-monitor # 2. 설치 bash install.sh # 3. API 키 추가 nano ~/.config/.ai_monitor_keys # 4. Conky 재시작 pkill conky \u0026\u0026 conky --daemonize --pause=1 설치 스크립트가 자동으로: - 스크립트를 ~/token-monitor/에 복사\nConky 설정에 ${execpi 30 python3 ~/token-monitor/conky_ai.py} 추가 api_fetcher.py의 cron 작업 설정 지원 서비스 및 API 방식 서비스 API 엔드포인트 감지 항목 Kimi (Moonshot) GET /v1/users/me 정확한 잔여 토큰 쿼터 Claude (Anthropic) POST /v1/messages 레이트 리밋 헤더 Gemini (Google) POST .../generateContent 429 = 쿼터 소진 Grok (xAI) GET /v1/models 403 = 잔액 소진 Codex / Kilo — UTC+8 자정까지 카운트다운 보안 설계 API 키는 ~/.config/.ai_monitor_keys에 chmod 600 권한으로 저장됩니다. .gitignore로 git에서 제외됩니다. 키는 터미널에 출력되거나 로그 파일에 기록되지 않습니다 — fetcher는 시작 시 한 번 읽고 HTTP 호출 동안만 메모리에 유지합니다.\n커스텀 서비스 추가 api_fetcher.py에 블록을 추가하세요: `````python\n── 커스텀 서비스 ───────────────────────────────── key = keys.get(yourservice) if key: try: r = requests.get(‘https://api.yourservice.com/v1/usage', headers={Authorization: f’Bearer {key}’}, timeout=8) if r.status_code == 200: data = r.json() remain = data[quota_remaining] total = data[quota_total] cache[YourService] = { ok: True, label: f’{remain//1000}K 잔여’, pct: remain / total } else: cache[YourService] = {ok: False, label: ‘API 오류’} except Exception: pass\n그런 다음 ````conky_ai.py````의 ````SERVICES```` 목록에 ````{name: YourService, reset_h: 24}```를 추가하세요. ## dibi8 관련 도구 여러 AI API 비용을 관리하고 있다면 다음도 참고하세요: - [2026 Q2 AI 코딩 비교 — Claude Code vs Cursor vs Codex](/kr/resources/dev-utils/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/) — 실제 개발 워크플로우 비용 비교 - [RTK Rust CLI 프록시 — AI 비용 80% 절감](/kr/resources/dev-utils/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/) — 가장 저렴한 가용 모델로 프롬프트 자동 라우팅 - [2026 AI 코딩 월간 청구서](/kr/resources/dev-utils/ai-coding-agent-monthly-bill-2026-real-receipts/) — 6개월 프로덕션 AI 사용 실제 영수증 ## 코드 받기 MIT 라이선스 완전 오픈소스입니다. **GitHub:** [github.com/luckybbjason1/ai-token-monitor](https://github.com/luckybbjason1/ai-token-monitor) 작업 도중 레이트 리밋 기습을 피하는 데 도움이 됐다면 Star 부탁드립니다. Issue와 PR 환영합니다 — 특히 macOS 지원이나 새 서비스 통합에 기여해주시면 감사합니다. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적\", \"datePublished\": \"2026-06-06\", \"dateModified\": \"2026-06-06\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/ai-token-monitor-conky-linux\" } } ## Why This Matters Understanding ai token monitor: linux 데스크탑에서 claude, gemini, grok, kimi 쿼터 실시간 추적 is crucial for modern AI development. Here\"s why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion AI Token Monitor: Linux 데스크탑에서 Claude, Gemini, Grok, Kimi 쿼터 실시간 추적 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-token-monitor-conky-linux) - [llm-inference-cost-optimization-guide-2026](ai-token-monitor-conky-linux) - [freqtrade-python-crypto-trading-bot-backtest-optimize-deploy](ai-token-monitor-conky-linux) - [llm-inference-cost-optimization-guide-2026](ai-token-monitor-conky-linux) - [ray-distributed-ai-framework-complete-guide](ai-token-monitor-conky-linux) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "1111",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/ai-token-monitor-conky-linux/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/ai-token-monitor-conky-linux/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/ai-token-monitor-conky-linux/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/ai-token-monitor-conky-linux/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#%eb%ac%b8%ec%a0%9c-%ec%97%ac%ec%84%af-%ea%b0%9c-ai-%ec%84%9c%eb%b9%84%ec%8a%a4%eb%a5%bc-%eb%8f%99%ec%8b%9c%ec%97%90-%ea%b4%80%eb%a6%ac%ed%95%98%eb%a9%b4%ec%84%9c-%ec%96%b4%eb%8a%90-%ea%b2%83%ec%9d%b4-%ec%86%8c%ec%a7%84%eb%90%90%eb%8a%94%ec%a7%80-%ec%95%8c-%ec%88%98-%ec%97%86%eb%8b%a4" aria-label="문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다">문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다</a></li>
+            <li>
+                <a href="#%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="작동 방식">작동 방식</a></li>
+            <li>
+                <a href="#hp-%eb%b0%94-%ec%8a%a4%ed%83%80%ec%9d%bc-%ec%a7%84%ed%96%89-%eb%a7%89%eb%8c%80" aria-label="HP 바 스타일 진행 막대">HP 바 스타일 진행 막대</a></li>
+            <li>
+                <a href="#%ec%84%a4%ec%b9%98" aria-label="설치">설치</a></li>
+            <li>
+                <a href="#%ec%a7%80%ec%9b%90-%ec%84%9c%eb%b9%84%ec%8a%a4-%eb%b0%8f-api-%eb%b0%a9%ec%8b%9d" aria-label="지원 서비스 및 API 방식">지원 서비스 및 API 방식</a></li>
+            <li>
+                <a href="#%eb%b3%b4%ec%95%88-%ec%84%a4%ea%b3%84" aria-label="보안 설계">보안 설계</a></li>
+            <li>
+                <a href="#%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%84%9c%eb%b9%84%ec%8a%a4-%ec%b6%94%ea%b0%80" aria-label="커스텀 서비스 추가">커스텀 서비스 추가</a></li></ul>
+                
+            <li>
+                <a href="#-%ec%bb%a4%ec%8a%a4%ed%85%80-%ec%84%9c%eb%b9%84%ec%8a%a4-" aria-label="── 커스텀 서비스 ─────────────────────────────────">── 커스텀 서비스 ─────────────────────────────────</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 licensing_model: Open Source
 license_type: MIT
@@ -16,51 +242,120 @@ last_maintained: &ldquo;2026-06-06&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;ai 토큰 모니터&rdquo;, &ldquo;claude 쿼터&rdquo;, &ldquo;gemini 쿼터 추적&rdquo;, &ldquo;grok 토큰&rdquo;, &ldquo;kimi api&rdquo;, &ldquo;conky 위젯&rdquo;, &ldquo;linux 데스크탑&rdquo;, &ldquo;오픈소스&rdquo;, &ldquo;python&rdquo;, &ldquo;개발자 도구&rdquo;]
-aliases:</p><ul><li>/kr/posts/ai-token-monitor-conky-linux/
+aliases:</p>
+<ul>
+<li>/kr/posts/ai-token-monitor-conky-linux/
 faqs: - q: &lsquo;AI Token Monitor가 macOS나 Windows에서도 작동하나요?&rsquo;
-a: &lsquo;현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.&rsquo;</li><li>q: &lsquo;Claude API 토큰 잔액을 어떻게 읽나요?&rsquo;
-a: &lsquo;/v1/messages에 max_tokens=1로 최소 POST 요청을 보내고 응답 헤더의 anthropic-ratelimit-tokens-remaining 및 anthropic-ratelimit-tokens-limit 값을 읽습니다. 체크당 약 10개 입력 토큰을 소비하며, 5분 cron 기준 하루 약 2,880 토큰으로 대부분 요금제에서 무시 가능한 수준입니다.&rsquo;</li><li>q: &lsquo;API 키를 ~/.config/.ai_monitor_keys에 저장하는 게 안전한가요?&rsquo;
-a: &lsquo;파일은 chmod 600으로 생성되어 현재 사용자만 읽을 수 있습니다. .gitignore로 git에서 제외됩니다. .env 파일에 저장하는 것과 동일한 보안 수준으로 파일 시스템 권한에 의존합니다. 공유 머신이라면 gpg-agent나 시크릿 매니저로 암호화하는 것을 권장합니다.&rsquo;</li><li>q: &lsquo;목록에 없는 AI 서비스(예: Mistral, Together AI)를 추가할 수 있나요?&rsquo;
-a: &lsquo;api_fetcher.py에 해당 서비스 API를 호출하는 블록을 추가하고 ok(불리언), label(표시 문자열), 선택적으로 pct(0-1 사이 소수)를 캐시 dict에 씁니다. 그런 다음 conky_ai.py의 SERVICES 목록에 서비스 이름과 reset_h 값을 추가하면 됩니다.&rsquo;</li><li>q: &lsquo;Grok이 잔액이 있는데도 &ldquo;耗尽&rdquo;(소진)으로 표시되는 이유는?&rsquo;
-a: &lsquo;Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.&rsquo;</li></ul><hr><h2 id=문제-여섯-개-ai-서비스를-동시에-관리하면서-어느-것이-소진됐는지-알-수-없다>문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다<a hidden class=anchor aria-hidden=true href=#문제-여섯-개-ai-서비스를-동시에-관리하면서-어느-것이-소진됐는지-알-수-없다>#</a></h2><p>현대 개발자는 동시에 4~8개의 AI 서비스를 사용합니다 — Claude는 복잡한 추론, Gemini는 긴 컨텍스트 분석, Grok은 실시간 웹 데이터, Kimi는 대용량 문서 처리. 각 서비스마다 독립적인 쿼터 대시보드, 리셋 일정, 청구 페이지가 있습니다.</p><p>결과는 이렇습니다: 작업 도중 레이트 리밋에 걸려 5분 동안 브라우저 탭을 전환하다가, Gemini 무료 쿼터가 UTC 자정(내 현지 자정이 아님)에 리셋된다는 걸 발견하고, Kimi가 왜 429를 반환하는지 디버깅하는 데 또 10분을 낭비하게 됩니다.</p><p><strong>AI Token Monitor</strong>는 항상 보이는 데스크탑 위젯으로 이 문제를 해결합니다 — 편집기를 떠나지 않고도 모든 서비스 상태를 한눈에 확인할 수 있습니다.</p><pre tabindex=0><code>● Claude  ░░░░░░░░░  무잔액
+a: &lsquo;현재 위젯 표시 레이어는 Linux 전용 Conky에 의존합니다. 핵심 Python 스크립트(api_fetcher.py)는 어느 OS에서나 실행되지만, 시각적 렌더링은 Conky가 필요합니다. 저장소에 tkinter 기반 크로스 플랫폼 버전(monitor.py)이 있지만 GNOME에서 프레임 없는 창이 보이지 않을 수 있어 실험적입니다.&rsquo;</li>
+<li>q: &lsquo;Claude API 토큰 잔액을 어떻게 읽나요?&rsquo;
+a: &lsquo;/v1/messages에 max_tokens=1로 최소 POST 요청을 보내고 응답 헤더의 anthropic-ratelimit-tokens-remaining 및 anthropic-ratelimit-tokens-limit 값을 읽습니다. 체크당 약 10개 입력 토큰을 소비하며, 5분 cron 기준 하루 약 2,880 토큰으로 대부분 요금제에서 무시 가능한 수준입니다.&rsquo;</li>
+<li>q: &lsquo;API 키를 ~/.config/.ai_monitor_keys에 저장하는 게 안전한가요?&rsquo;
+a: &lsquo;파일은 chmod 600으로 생성되어 현재 사용자만 읽을 수 있습니다. .gitignore로 git에서 제외됩니다. .env 파일에 저장하는 것과 동일한 보안 수준으로 파일 시스템 권한에 의존합니다. 공유 머신이라면 gpg-agent나 시크릿 매니저로 암호화하는 것을 권장합니다.&rsquo;</li>
+<li>q: &lsquo;목록에 없는 AI 서비스(예: Mistral, Together AI)를 추가할 수 있나요?&rsquo;
+a: &lsquo;api_fetcher.py에 해당 서비스 API를 호출하는 블록을 추가하고 ok(불리언), label(표시 문자열), 선택적으로 pct(0-1 사이 소수)를 캐시 dict에 씁니다. 그런 다음 conky_ai.py의 SERVICES 목록에 서비스 이름과 reset_h 값을 추가하면 됩니다.&rsquo;</li>
+<li>q: &lsquo;Grok이 잔액이 있는데도 &ldquo;耗尽&rdquo;(소진)으로 표시되는 이유는?&rsquo;
+a: &lsquo;Grok 체크는 GET /v1/models를 호출합니다. 인증 유효 및 잔액 있을 때 200, 잔액 소진 시 403을 반환합니다. xAI의 403은 계정 잔액 0을 의미합니다. 잔액이 있는데 403이 표시된다면 ~/.config/.ai_monitor_keys의 API 키가 올바른지 확인하세요.&rsquo;</li>
+</ul>
+<hr>
+<h2 id="문제-여섯-개-ai-서비스를-동시에-관리하면서-어느-것이-소진됐는지-알-수-없다">문제: 여섯 개 AI 서비스를 동시에 관리하면서 어느 것이 소진됐는지 알 수 없다<a hidden class="anchor" aria-hidden="true" href="#문제-여섯-개-ai-서비스를-동시에-관리하면서-어느-것이-소진됐는지-알-수-없다">#</a></h2>
+<p>현대 개발자는 동시에 4~8개의 AI 서비스를 사용합니다 — Claude는 복잡한 추론, Gemini는 긴 컨텍스트 분석, Grok은 실시간 웹 데이터, Kimi는 대용량 문서 처리. 각 서비스마다 독립적인 쿼터 대시보드, 리셋 일정, 청구 페이지가 있습니다.</p>
+<p>결과는 이렇습니다: 작업 도중 레이트 리밋에 걸려 5분 동안 브라우저 탭을 전환하다가, Gemini 무료 쿼터가 UTC 자정(내 현지 자정이 아님)에 리셋된다는 걸 발견하고, Kimi가 왜 429를 반환하는지 디버깅하는 데 또 10분을 낭비하게 됩니다.</p>
+<p><strong>AI Token Monitor</strong>는 항상 보이는 데스크탑 위젯으로 이 문제를 해결합니다 — 편집기를 떠나지 않고도 모든 서비스 상태를 한눈에 확인할 수 있습니다.</p>
+<pre tabindex="0"><code>● Claude  ░░░░░░░░░  무잔액
 ● Gemini  ░░░░░░░░░  쿼터소진
 ● Grok    ░░░░░░░░░  소진
 ● Kimi    █████████  22.4M 잔여
 ● Codex   ─────────  18:42:01
 ● Kilo    ─────────  18:42:01
-</code></pre><h2 id=작동-방식>작동 방식<a hidden class=anchor aria-hidden=true href=#작동-방식>#</a></h2><p>모니터는 두 가지 컴포넌트로 구성됩니다: <strong><code>api_fetcher.py</code></strong> — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 <code>~/token-monitor/api_cache.json</code>에 씁니다.</p><p><strong><code>conky_ai.py</code></strong> — 30초마다 캐시를 읽고 Conky 인라인 <code>${color}</code> 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.</p><pre tabindex=0><code>api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 표시
+</code></pre><h2 id="작동-방식">작동 방식<a hidden class="anchor" aria-hidden="true" href="#작동-방식">#</a></h2>
+<p>모니터는 두 가지 컴포넌트로 구성됩니다: <strong><code>api_fetcher.py</code></strong> — 백그라운드 스크립트(5분마다 cron 실행)로 각 서비스 API를 폴링하고 결과를 <code>~/token-monitor/api_cache.json</code>에 씁니다.</p>
+<p><strong><code>conky_ai.py</code></strong> — 30초마다 캐시를 읽고 Conky 인라인 <code>${color}</code> 태그가 포함된 텍스트를 출력합니다. Conky가 이를 데스크탑 위젯으로 렌더링합니다.</p>
+<pre tabindex="0"><code>api_fetcher.py  →  api_cache.json  →  conky_ai.py  →  Conky 표시
   (cron/5분)        (JSON 캐시)        (30초 폴링)    (항상 표시)
-</code></pre><p>이 아키텍처 덕분에 API 오류가 발생해도 데스크탑이 멈추지 않습니다. 캐시에는 항상 마지막으로 알려진 상태가 저장되어 있습니다.</p><h2 id=hp-바-스타일-진행-막대>HP 바 스타일 진행 막대<a hidden class=anchor aria-hidden=true href=#hp-바-스타일-진행-막대>#</a></h2><p>핵심 기능은 <strong>HP 바 스타일 쿼터 시각화</strong> — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다: | 색상 | 상태 |
+</code></pre><p>이 아키텍처 덕분에 API 오류가 발생해도 데스크탑이 멈추지 않습니다. 캐시에는 항상 마지막으로 알려진 상태가 저장되어 있습니다.</p>
+<h2 id="hp-바-스타일-진행-막대">HP 바 스타일 진행 막대<a hidden class="anchor" aria-hidden="true" href="#hp-바-스타일-진행-막대">#</a></h2>
+<p>핵심 기능은 <strong>HP 바 스타일 쿼터 시각화</strong> — 유니코드 블록 문자 행이 남은 쿼터를 직관적으로 표현합니다: | 색상 | 상태 |
 |&mdash;&mdash;|&mdash;&mdash;|
 | <code>█████████</code> 초록 | 쿼터 50% 이상 |
 | <code>████░░░░░</code> 주황 | 20~50% 잔여 |
 | <code>█░░░░░░░░</code> 빨강 | 20% 미만 |
 | <code>░░░░░░░░░</code> 빨강 | 소진 / 잔액 없음 |
-| <code>─────────</code> 회색 | API 키 미설정 |</p><p>진행 막대는 9글자 너비입니다. <code>█</code> 하나가 약 11% 쿼터를 나타냅니다.</p><h2 id=설치>설치<a hidden class=anchor aria-hidden=true href=#설치>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. 클론</span>
-</span></span><span style=display:flex><span>git clone https://github.com/luckybbjason1/ai-token-monitor
-</span></span><span style=display:flex><span>cd ai-token-monitor
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. 설치</span>
-</span></span><span style=display:flex><span>bash install.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. API 키 추가</span>
-</span></span><span style=display:flex><span>nano ~/.config/.ai_monitor_keys
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. Conky 재시작</span>
-</span></span><span style=display:flex><span>pkill conky <span style=color:#f92672>&amp;&amp;</span> conky --daemonize --pause<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>
-</span></span></code></pre></div><p>설치 스크립트가 자동으로: - 스크립트를 <code>~/token-monitor/</code>에 복사</p><ul><li>Conky 설정에 <code>${execpi 30 python3 ~/token-monitor/conky_ai.py}</code> 추가</li><li><code>api_fetcher.py</code>의 cron 작업 설정</li></ul><h2 id=지원-서비스-및-api-방식>지원 서비스 및 API 방식<a hidden class=anchor aria-hidden=true href=#지원-서비스-및-api-방식>#</a></h2><table><thead><tr><th>서비스</th><th>API 엔드포인트</th><th>감지 항목</th></tr></thead><tbody><tr><td><strong>Kimi</strong> (Moonshot)</td><td><code>GET /v1/users/me</code></td><td>정확한 잔여 토큰 쿼터</td></tr><tr><td><strong>Claude</strong> (Anthropic)</td><td><code>POST /v1/messages</code></td><td>레이트 리밋 헤더</td></tr><tr><td><strong>Gemini</strong> (Google)</td><td><code>POST .../generateContent</code></td><td>429 = 쿼터 소진</td></tr><tr><td><strong>Grok</strong> (xAI)</td><td><code>GET /v1/models</code></td><td>403 = 잔액 소진</td></tr><tr><td>Codex / Kilo</td><td>—</td><td>UTC+8 자정까지 카운트다운</td></tr></tbody></table><h2 id=보안-설계>보안 설계<a hidden class=anchor aria-hidden=true href=#보안-설계>#</a></h2><p>API 키는 <code>~/.config/.ai_monitor_keys</code>에 <code>chmod 600</code> 권한으로 저장됩니다. <code>.gitignore</code>로 git에서 제외됩니다. 키는 터미널에 출력되거나 로그 파일에 기록되지 않습니다 — fetcher는 시작 시 한 번 읽고 HTTP 호출 동안만 메모리에 유지합니다.</p><h2 id=커스텀-서비스-추가>커스텀 서비스 추가<a hidden class=anchor aria-hidden=true href=#커스텀-서비스-추가>#</a></h2><p><code>api_fetcher.py</code>에 블록을 추가하세요: `````python</p><h1 id=-커스텀-서비스->── 커스텀 서비스 ─────────────────────────────────<a hidden class=anchor aria-hidden=true href=#-커스텀-서비스->#</a></h1><p>key = keys.get(yourservice)
-if key: try: r = requests.get(&lsquo;<a href=https://api.yourservice.com/v1/usage%27>https://api.yourservice.com/v1/usage'</a>,
+| <code>─────────</code> 회색 | API 키 미설정 |</p>
+<p>진행 막대는 9글자 너비입니다. <code>█</code> 하나가 약 11% 쿼터를 나타냅니다.</p>
+<h2 id="설치">설치<a hidden class="anchor" aria-hidden="true" href="#설치">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. 클론</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/luckybbjason1/ai-token-monitor
+</span></span><span style="display:flex;"><span>cd ai-token-monitor
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 설치</span>
+</span></span><span style="display:flex;"><span>bash install.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. API 키 추가</span>
+</span></span><span style="display:flex;"><span>nano ~/.config/.ai_monitor_keys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Conky 재시작</span>
+</span></span><span style="display:flex;"><span>pkill conky <span style="color:#f92672">&amp;&amp;</span> conky --daemonize --pause<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>
+</span></span></code></pre></div><p>설치 스크립트가 자동으로: - 스크립트를 <code>~/token-monitor/</code>에 복사</p>
+<ul>
+<li>Conky 설정에 <code>${execpi 30 python3 ~/token-monitor/conky_ai.py}</code> 추가</li>
+<li><code>api_fetcher.py</code>의 cron 작업 설정</li>
+</ul>
+<h2 id="지원-서비스-및-api-방식">지원 서비스 및 API 방식<a hidden class="anchor" aria-hidden="true" href="#지원-서비스-및-api-방식">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>서비스</th>
+					<th>API 엔드포인트</th>
+					<th>감지 항목</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Kimi</strong> (Moonshot)</td>
+					<td><code>GET /v1/users/me</code></td>
+					<td>정확한 잔여 토큰 쿼터</td>
+			</tr>
+			<tr>
+					<td><strong>Claude</strong> (Anthropic)</td>
+					<td><code>POST /v1/messages</code></td>
+					<td>레이트 리밋 헤더</td>
+			</tr>
+			<tr>
+					<td><strong>Gemini</strong> (Google)</td>
+					<td><code>POST .../generateContent</code></td>
+					<td>429 = 쿼터 소진</td>
+			</tr>
+			<tr>
+					<td><strong>Grok</strong> (xAI)</td>
+					<td><code>GET /v1/models</code></td>
+					<td>403 = 잔액 소진</td>
+			</tr>
+			<tr>
+					<td>Codex / Kilo</td>
+					<td>—</td>
+					<td>UTC+8 자정까지 카운트다운</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="보안-설계">보안 설계<a hidden class="anchor" aria-hidden="true" href="#보안-설계">#</a></h2>
+<p>API 키는 <code>~/.config/.ai_monitor_keys</code>에 <code>chmod 600</code> 권한으로 저장됩니다. <code>.gitignore</code>로 git에서 제외됩니다. 키는 터미널에 출력되거나 로그 파일에 기록되지 않습니다 — fetcher는 시작 시 한 번 읽고 HTTP 호출 동안만 메모리에 유지합니다.</p>
+<h2 id="커스텀-서비스-추가">커스텀 서비스 추가<a hidden class="anchor" aria-hidden="true" href="#커스텀-서비스-추가">#</a></h2>
+<p><code>api_fetcher.py</code>에 블록을 추가하세요: `````python</p>
+<h1 id="-커스텀-서비스-">── 커스텀 서비스 ─────────────────────────────────<a hidden class="anchor" aria-hidden="true" href="#-커스텀-서비스-">#</a></h1>
+<p>key = keys.get(yourservice)
+if key: try: r = requests.get(&lsquo;<a href="https://api.yourservice.com/v1/usage%27">https://api.yourservice.com/v1/usage'</a>,
 headers={Authorization: f&rsquo;Bearer {key}&rsquo;}, timeout=8)
 if r.status_code == 200: data = r.json()
 remain = data[quota_remaining]
-total = data[quota_total]
+total  = data[quota_total]
 cache[YourService] = {
 ok: True,
 label: f&rsquo;{remain//1000}K 잔여&rsquo;,
 pct: remain / total
 }
 else: cache[YourService] = {ok: False, label: &lsquo;API 오류&rsquo;}
-except Exception: pass</p><pre tabindex=0><code>
+except Exception: pass</p>
+<pre tabindex="0"><code>
 그런 다음 ````conky_ai.py````의 ````SERVICES```` 목록에 ````{name: YourService, reset_h: 24}```를 추가하세요.
 
 ## dibi8 관련 도구
@@ -179,11 +474,155 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/ai-stack-builder/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/ai-tools-directory/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/ai-stack-builder/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/ai-tools-directory/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

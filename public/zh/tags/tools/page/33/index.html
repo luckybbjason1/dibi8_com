@@ -1,49 +1,398 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Tools | Dibi8</title><meta name=keywords content><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/tags/tools/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/zh/tags/tools/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/tags/tools/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/tags/tools/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/tags/tools/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/tags/tools/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/tags/tools/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Tools"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Tools"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><header class=page-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/tags/>Tags</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>Tools</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>引言：为什么 AI 应用开发者正从 Firebase 转向 Supabase 2026 年 1 月，一家位于旧金山的 AI 初创公司在构建法律文档分析工具时遇到了瓶颈。他们需要针对 230 万 PDF 嵌入进行向量搜索，为注释团队提供实时协作功能，以及 OAuth 登录——所有这些都要在一个后端内完成。Firebase 的 Firestore 没有原生向量搜索，而连接 Algolia + Firebase Auth + Cloud Functions 意味着三个独立的服务，定价层级互不兼容。他们迁移到 Supabase，在 不到 3 小时 内就让 RAG 流水线运行起来，并将后端基础设施成本削减了 62%。
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Tools | Dibi8</title>
+<meta name="keywords" content="">
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/tags/tools/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/zh/tags/tools/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/tags/tools/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tags/tools/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/tags/tools/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tags/tools/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/tags/tools/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Tools">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tools">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/tags/">Tags</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Tools
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>引言：为什么 AI 应用开发者正从 Firebase 转向 Supabase 2026 年 1 月，一家位于旧金山的 AI 初创公司在构建法律文档分析工具时遇到了瓶颈。他们需要针对 230 万 PDF 嵌入进行向量搜索，为注释团队提供实时协作功能，以及 OAuth 登录——所有这些都要在一个后端内完成。Firebase 的 Firestore 没有原生向量搜索，而连接 Algolia &#43; Firebase Auth &#43; Cloud Functions 意味着三个独立的服务，定价层级互不兼容。他们迁移到 Supabase，在 不到 3 小时 内就让 RAG 流水线运行起来，并将后端基础设施成本削减了 62%。
 截至 2026 年 5 月，Supabase 已突破 80,000 GitHub 星，为 超过 100 万个活跃项目 提供支持。它是一个基于 PostgreSQL 16 构建的开源 Firebase 替代品，内置 ```pgvector```` 用于向量相似性搜索。与 Firebase 的专有文档存储不同，Supabase 让你拥有完整的 SQL 能力、ACID 事务和经过实战检验的关系型数据库——同时仍然提供自动生成 API、实时订阅和内置认证的便利。
 本指南涵盖从本地设置和向量搜索配置到 RAG 流水线集成、Edge 函数、通过 Docker 自托管部署以及生产级加固的所有内容。无论你是构建下一个 AI SaaS 还是为现有应用添加语义搜索，Supabase 都是你技术栈中想要的后端。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/supabase-postgres-vector-ai-apps/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Introduction：没人谈论的部署鸿沟 你用 Python 写了一个 AI Agent。它在笔记本上运行良好，能回答问题、调用工具、甚至记住上下文。然后你尝试部署它。突然间，你陷入了向量数据库连接、API 路由处理、身份认证、SSE 流式响应和监控的泥潭——这些都跟你的 Agent 逻辑毫无关系。
-这是 AI Agent 项目的隐形杀手。Gradient Flow 2025 年的一项调查发现，67% 的 AI 原型从未进入生产环境，部署复杂性是工程团队提及的首要原因。从"本地能跑"到"线上可用"之间的鸿沟依然惊人地宽广。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/supabase-postgres-vector-ai-apps/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction：没人谈论的部署鸿沟 你用 Python 写了一个 AI Agent。它在笔记本上运行良好，能回答问题、调用工具、甚至记住上下文。然后你尝试部署它。突然间，你陷入了向量数据库连接、API 路由处理、身份认证、SSE 流式响应和监控的泥潭——这些都跟你的 Agent 逻辑毫无关系。
+这是 AI Agent 项目的隐形杀手。Gradient Flow 2025 年的一项调查发现，67% 的 AI 原型从未进入生产环境，部署复杂性是工程团队提及的首要原因。从&#34;本地能跑&#34;到&#34;线上可用&#34;之间的鸿沟依然惊人地宽广。
 Superagent（v0.4.x，MIT 许可证，GitHub 约 6,100 Stars）正是为填补这一鸿沟而生。由 superagent-ai 团队创建、Y Combinator 背书，它是一个开源框架，让你可以定义 AI Agent、连接数据源、并将其部署到 REST API 后面——通常只需一条 CLI 命令。本文将带你完成 5 分钟完整搭建、集成模式、生产加固，以及诚实的局限性分析。
-前置要求： Python 3.10+、Node.js 18+（用于 Web UI）、OpenAI API Key 或等效凭证。
+前置要求： Python 3.10&#43;、Node.js 18&#43;（用于 Web UI）、OpenAI API Key 或等效凭证。
 What Is Superagent? Superagent 是一个用于构建、管理和规模化部署 AI Agent 的开源框架。它提供了大多数团队最终都会自行搭建的基础设施层：内存管理、向量数据库连接、工具编排、流式响应和 REST API——全部封装在简洁的 Python/TypeScript SDK 和 CLI 之后。
 与庞大的一体化无代码平台不同，Superagent 坚持开发者优先。你编写 Python 代码定义 Agent 行为，选择 LLM 提供商，连接 Pinecone 或 Weaviate 等向量存储，并通过自动生成的 API 端点暴露一切。框架处理样板代码，让你专注于 Agent 逻辑。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/superagent-ai-agent-framework/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>超级记忆：用于构建记住一切的 LLM 应用的最快开源 AI 内存 API { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Supermemory：构建具有全持久记忆能力的 LLM 应用的最快开源 AI 记忆 API”, “datePublished”: “2026-06-10”, “dateModified”: “2026-06-10”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/supermemory-open-source-ai-memory-api" } } Why This Matters Understanding supermemory：构建具有全持久记忆能力的 llm 应用的最快开源 ai 记忆 api is crucial for modern AI development. Here’s why: ### Key Benefits
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/supermemory-open-source-ai-memory-api/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Superpowers: 200000+ Stars – Agentic Skills Framework &… description: “Technical guide and comparison.” date: 2026-05-23 lastmod: 2026-05-23 slug: “superpowers” category: “llm-frameworks” tags: [“agentic-ai”, “llm-frameworks”, “shell-scripting”, “software-development”, “ai-agents”, “developer-tools”]
-{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘Superpowers: 200000+ Stars – Agentic Skills Framework &…”, “description”: “‘探索 Superpowers，这个拥有 200k+ star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。’”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/tools/superpowers/" }, “url”: “https://dibi8.com/zh/tools/superpowers/", “image”: “https://picsum.photos/seed/superpowers/1200x630", “keywords”: “agentic-ai,llm-frameworks,shell-scripting,software-development,ai-agents,developer-tools”, “articleSection”: “Technology” } ...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/superpowers/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: “v2.0.0” licensing_model: Open Source license_type: MIT (code) / OpenRAIL-M (model) file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-01-06” draft: false categories: [“ai-tools”] tags: [“supertonic”, “text-to-speech”, “tts”, “on-device-ai”, “onnx”, “multilingual”, “open-source-tts”, “edge-ai”, “korean-tts”, “japanese-tts”] aliases:
-/zh/posts/supertonic-on-device-multilingual-tts-2026/- Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026） 本地 TTS 的真问题 过去很多年，“好用的多语种 TTS"基本等价于调别人家的云 API——Google Cloud TTS、Amazon Polly、ElevenLabs、OpenAI Voice。声音自然，宽带下延迟可以接受，按字符计费的单价小到没人在意，直到月底账单出来。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>GitHub Copilot 将你的专有代码发送到微软云端。对于处理敏感知识产权的团队——金融科技、医疗保健、国防、企业 SaaS——这是无法接受的。Tabby 是开源解决方案：一个完全在你自己硬件上运行的自托管 AI 编程助手，零外部数据泄露。凭借 33,530+ GitHub Stars 和活跃的发版节奏（v0.32.0 于 2026 年 1 月发布），Tabby 已从实验性项目成长为生产级的 Copilot 替代品。本指南涵盖完整的 Tabby 设置，从 Docker 部署到 IDE 集成和生产环境加固。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/superagent-ai-agent-framework/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>超级记忆：用于构建记住一切的 LLM 应用的最快开源 AI 内存 API { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Supermemory：构建具有全持久记忆能力的 LLM 应用的最快开源 AI 记忆 API”, “datePublished”: “2026-06-10”, “dateModified”: “2026-06-10”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/supermemory-open-source-ai-memory-api&#34; } } Why This Matters Understanding supermemory：构建具有全持久记忆能力的 llm 应用的最快开源 ai 记忆 api is crucial for modern AI development. Here’s why: ### Key Benefits
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/supermemory-open-source-ai-memory-api/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Superpowers: 200000&#43; Stars – Agentic Skills Framework &amp;… description: “Technical guide and comparison.” date: 2026-05-23 lastmod: 2026-05-23 slug: “superpowers” category: “llm-frameworks” tags: [“agentic-ai”, “llm-frameworks”, “shell-scripting”, “software-development”, “ai-agents”, “developer-tools”]
+{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “‘Superpowers: 200000&#43; Stars – Agentic Skills Framework &amp;…”, “description”: “‘探索 Superpowers，这个拥有 200k&#43; star 的 agentic skills 框架。可在几分钟内设置，提供基准测试，并已为生产环境做好准备。与 LangChain, LlamaIndex 和 AutoGen 进行比较。’”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/tools/superpowers/&#34; }, “url”: “https://dibi8.com/zh/tools/superpowers/&#34;, “image”: “https://picsum.photos/seed/superpowers/1200x630&#34;, “keywords”: “agentic-ai,llm-frameworks,shell-scripting,software-development,ai-agents,developer-tools”, “articleSection”: “Technology” } ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/superpowers/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00&#43;08:00 lastmod: 2026-05-23T00:00:00&#43;08:00 tech_stack: [] application_domain: AI Tools source_version: “v2.0.0” licensing_model: Open Source license_type: MIT (code) / OpenRAIL-M (model) file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-01-06” draft: false categories: [“ai-tools”] tags: [“supertonic”, “text-to-speech”, “tts”, “on-device-ai”, “onnx”, “multilingual”, “open-source-tts”, “edge-ai”, “korean-tts”, “japanese-tts”] aliases:
+/zh/posts/supertonic-on-device-multilingual-tts-2026/- Supertonic 评测：99M 参数本地 TTS，31 语言、ONNX 跑 CPU（2026） 本地 TTS 的真问题 过去很多年，“好用的多语种 TTS&#34;基本等价于调别人家的云 API——Google Cloud TTS、Amazon Polly、ElevenLabs、OpenAI Voice。声音自然，宽带下延迟可以接受，按字符计费的单价小到没人在意，直到月底账单出来。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/supertonic-on-device-multilingual-tts-2026/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>GitHub Copilot 将你的专有代码发送到微软云端。对于处理敏感知识产权的团队——金融科技、医疗保健、国防、企业 SaaS——这是无法接受的。Tabby 是开源解决方案：一个完全在你自己硬件上运行的自托管 AI 编程助手，零外部数据泄露。凭借 33,530&#43; GitHub Stars 和活跃的发版节奏（v0.32.0 于 2026 年 1 月发布），Tabby 已从实验性项目成长为生产级的 Copilot 替代品。本指南涵盖完整的 Tabby 设置，从 Docker 部署到 IDE 集成和生产环境加固。
 Tabby 是什么？ Tabby 是一款自托管 AI 编程助手，也是 GitHub Copilot 的开源替代品。它提供实时代码补全、代码问题解答引擎和内联聊天功能——全部运行在你掌控的基础设施上。Tabby 使用 Rust 编写（代码库中占 92.9%），为速度而生，可在消费级 GPU、Apple Silicon 甚至纯 CPU 服务器上运行。
 Tabby 的工作原理 Tabby 由三个核心组件组成：
 推理服务器：基于 Rust 的 HTTP 服务器，加载编程专用 LLM 并通过 OpenAPI 兼容端点提供补全服务。负责模型推理、提示词模板和流式响应。
 IDE 扩展：适用于 VS Code、JetBrains IDE、Vim/Neovim 和 Emacs 的原生扩展，负责捕获编辑器上下文并将补全请求转发至推理服务器。
 管理面板：内置 Web UI，用于用户管理、API 令牌生成、代码仓库索引和使用分析。无需外部数据库——Tabby 使用嵌入式 SQLite 存储。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/tabby/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: “279.1 MB” file_md5: ’' download_url: https://github.com/PriorLabs/TabPFN backup_url: ’' last_maintained: “2026-05-15” draft: false aliases:
-/zh/posts/tabpfn-foundation-model-tabular-data/ faqs: - q: ‘TabPFN 是什么？’ a: ‘TabPFN 是由 PriorLabs 开发的一款表格数据基础模型，能够分析电子表格、数据库和 CSV 文件等结构化表格。它基于在数百万合成数据集上预训练的 Prior-Fitted Networks，彻底消除了超参数调优的需求。’ q: ‘TabPFN 需要做超参数调优吗？’ a: ‘不需要。TabPFN 无需任何超参数调优、网格搜索或模型选择。只需用默认设置调用 fit() 和 predict()，即可在几秒内得到结果——这得益于它采用上下文学习（in-context learning），而非针对每个数据集单独训练。’ q: ‘TabPFN 与 XGBoost 和 Random Forest 相比精度如何？’ a: ‘根据文章的基准测试，TabPFN 在两者上均表现更优：Adult Income 数据集上得分 87.9%，XGBoost 为 86.8%；Heart Disease 数据集上为 88.1% vs 85.7%；Credit Default 数据集上为 84.6% vs 81.2%。其训练时间实际上为零，推理仅需 0.5–2 秒。’ q: ‘TabPFN 有哪些局限性？’ a: ‘TabPFN 最适合行数不超过 10,000、特征数少于 100 的数据集，推理时建议使用 GPU（CPU 模式可用但速度较慢）。目前仅支持分类任务，回归功能正在开发中。’ q: ‘如何在 Python 中安装和使用 TabPFN？’ a: ‘通过 ‘‘pip install tabpfn’’ 安装后，从 tabpfn 包中导入 TabPFNClassifier，依次调用 clf.fit(X_train, y_train) 和 clf.predict(X_test) 即可。它会自动识别特征类型，并处理缺失值和类别型特征。’— {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/tabpfn-foundation-model-tabular-data/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-15 lastmod: 2026-06-15 slug: taste-skill category: dev-utils tags: [“ai 设计”, “agent 技能”, “反平庸”, “前端”, “codex”, “cursor”, “claude code”, “提示词工程”] image: “https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png" 快速概览 Taste Skill 为你的 AI 代理装上了"设计大脑”。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/tabby/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Python application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: “279.1 MB” file_md5: ’&#39; download_url: https://github.com/PriorLabs/TabPFN backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases:
+/zh/posts/tabpfn-foundation-model-tabular-data/ faqs: - q: ‘TabPFN 是什么？’ a: ‘TabPFN 是由 PriorLabs 开发的一款表格数据基础模型，能够分析电子表格、数据库和 CSV 文件等结构化表格。它基于在数百万合成数据集上预训练的 Prior-Fitted Networks，彻底消除了超参数调优的需求。’ q: ‘TabPFN 需要做超参数调优吗？’ a: ‘不需要。TabPFN 无需任何超参数调优、网格搜索或模型选择。只需用默认设置调用 fit() 和 predict()，即可在几秒内得到结果——这得益于它采用上下文学习（in-context learning），而非针对每个数据集单独训练。’ q: ‘TabPFN 与 XGBoost 和 Random Forest 相比精度如何？’ a: ‘根据文章的基准测试，TabPFN 在两者上均表现更优：Adult Income 数据集上得分 87.9%，XGBoost 为 86.8%；Heart Disease 数据集上为 88.1% vs 85.7%；Credit Default 数据集上为 84.6% vs 81.2%。其训练时间实际上为零，推理仅需 0.5–2 秒。’ q: ‘TabPFN 有哪些局限性？’ a: ‘TabPFN 最适合行数不超过 10,000、特征数少于 100 的数据集，推理时建议使用 GPU（CPU 模式可用但速度较慢）。目前仅支持分类任务，回归功能正在开发中。’ q: ‘如何在 Python 中安装和使用 TabPFN？’ a: ‘通过 ‘‘pip install tabpfn’’ 安装后，从 tabpfn 包中导入 TabPFNClassifier，依次调用 clf.fit(X_train, y_train) 和 clf.predict(X_test) 即可。它会自动识别特征类型，并处理缺失值和类别型特征。’— {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/tabpfn-foundation-model-tabular-data/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-15 lastmod: 2026-06-15 slug: taste-skill category: dev-utils tags: [“ai 设计”, “agent 技能”, “反平庸”, “前端”, “codex”, “cursor”, “claude code”, “提示词工程”] image: “https://raw.githubusercontent.com/Leonxlnx/taste-skill/main/assets/readme-banner.png&#34; 快速概览 Taste Skill 为你的 AI 代理装上了&#34;设计大脑”。它不再产出千篇一律的中心对齐、死板无聊的 UI，而是强制实现更丰富的布局变化、有意识的动效设计和高级视觉密度。它以可移植的 SKILL.md 文件形式交付，可无缝对接 Codex、Cursor、Claude Code 和 ChatGPT Images。
 快速概览：44,229 颗星——GitHub 上星标最高的反平庸技能项目。
 Taste Skill 是什么？ Taste Skill 是一套可移植的 Agent 技能集合，专为升级 AI 生成的前端输出而设计。每个技能只专注一件事：强制执行特定的设计规则、生成参考图片，或者应用某种特定的视觉风格。该框架不绑定任何单一的编程 Agent 或框架——它跨 React、Vue、Svelte 和静态 HTML 全面适用。
 其核心理念很简单：AI 模型都在同一个互联网数据上训练，因此生成的布局大同小异。Taste Skill 通过提供明确的设计约束来打破这一困局，强制产生差异化。三个可调参数控制着输出效果：
-DESIGN_VARIANCE（1-10）： 布局实验程度——低值偏向中心对齐/清爽风格，高值偏向非对称/现代风格 MOTION_INTENSITY（1-10）： 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画 VISUAL_DENSITY（1-10）： 信息密度——低值适合宽敞布局，高值适合密集的数据面板 # 一次性安装全部技能 npx skills add https://github.com/Leonxlnx/taste-skill # 按名称安装单个技能 npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend" # 锁定到 v1（原始行为） npx skills add https://github.com/Leonxlnx/taste-skill --skill "design-taste-frontend-v1" 默认技能现在是 v2（实验性），对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/taste-skill/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Temporal 是什么？ Temporal 是用于以规模运行容错工作流的开源分布式系统。其核心提供持久化执行——你的代码在 Temporal 管理的基础设施中运行，它自动处理故障、重试、检查点和状态持久化。
+DESIGN_VARIANCE（1-10）： 布局实验程度——低值偏向中心对齐/清爽风格，高值偏向非对称/现代风格 MOTION_INTENSITY（1-10）： 动画深度——低值仅包含悬停效果，高值则涵盖滚动/磁性动画 VISUAL_DENSITY（1-10）： 信息密度——低值适合宽敞布局，高值适合密集的数据面板 # 一次性安装全部技能 npx skills add https://github.com/Leonxlnx/taste-skill # 按名称安装单个技能 npx skills add https://github.com/Leonxlnx/taste-skill --skill &#34;design-taste-frontend&#34; # 锁定到 v1（原始行为） npx skills add https://github.com/Leonxlnx/taste-skill --skill &#34;design-taste-frontend-v1&#34; 默认技能现在是 v2（实验性），对原版进行了大幅重写。它包括简要推理、设计系统映射、严格禁止使用破折号、GSAP 代码骨架模板以及重设计审核协议。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/taste-skill/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Temporal 是什么？ Temporal 是用于以规模运行容错工作流的开源分布式系统。其核心提供持久化执行——你的代码在 Temporal 管理的基础设施中运行，它自动处理故障、重试、检查点和状态持久化。
 对于 AI 工作负载，这意味着：
 因限流而失败的 LLM 推理调用会自动重试并退避 多步微调流水线在容器崩溃后仍能存活且不会丢失进度 Agent 编排中每一步的输出都被持久化并可检查 训练任务在 GPU 故障后从上次检查点恢复 传统 AI 编排的问题 考虑一个典型的 AI 流水线：
 [加载数据] → [预处理] → [文档嵌入] → [向量库索引] → [测试检索] → [通知团队] 使用传统工具（Airflow、Celery、cron 脚本），每个步骤都需要：
 网络超时的自定义错误处理 故障恢复的手动检查点 分布式 worker 间的状态管理 调试的可观测性仪表板 Temporal 通过让你的 Python 代码天然可恢复来消除所有这些。如果第 3 步崩溃，Temporal 仅重启第 3 步并使用完全相同的输入——第 1-2 步从历史记录重放。
-Temporal vs 替代方案 | 特性 | Temporal | Airflow | Celery + Redis | Kubernetes CronJob | |
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/temporal-ai-workflow-orchestration/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [“tensortrade”, “强化学习”, “算法交易”, “openai gym”, “stable baselines3”, “投资组合管理”, “python”, “机器学习”, “加密货币交易”, “量化金融”] aliases:
+Temporal vs 替代方案 | 特性 | Temporal | Airflow | Celery &#43; Redis | Kubernetes CronJob | |
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/temporal-ai-workflow-orchestration/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Trading source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-trading”] tags: [“tensortrade”, “强化学习”, “算法交易”, “openai gym”, “stable baselines3”, “投资组合管理”, “python”, “机器学习”, “加密货币交易”, “量化金融”] aliases:
 /zh/posts/tensortrade-rl-trading/- 引言：为什么大多数交易机器人会失败（强化学习如何改变游戏规则） 2025年，香港一家量化基金的团队花了14个月手工精心打造了一个BTC/USDT均值回归策略。回测显示年化收益率 34%。实盘部署？6周内亏损12%。问题不在于策略思路本身——而在于市场发生了转变，静态规则无法适应。
 这是基于规则的交易的根本缺陷：市场制度的变化速度远快于参数调整速度。强化学习（RL）提供了一种不同的范式——一个通过与市场本身互动获得奖励来自主适应的智能体。TensorTrade是一个基于OpenAI Gym接口的开源框架，为训练、评估和部署RL交易智能体提供了基础设施，无需从零开始构建。
-凭借 4300+ GitHub stars、Apache-2.0许可证以及与Python机器学习生态系统的深度集成，TensorTrade已成为希望使用RL驱动投资组合管理的从业者的首选框架。本指南涵盖了从5分钟快速上手到2026年Q1真实基准测试数据的生产部署全过程。
+凭借 4300&#43; GitHub stars、Apache-2.0许可证以及与Python机器学习生态系统的深度集成，TensorTrade已成为希望使用RL驱动投资组合管理的从业者的首选框架。本指南涵盖了从5分钟快速上手到2026年Q1真实基准测试数据的生产部署全过程。
 什么是 TensorTrade？ TensorTrade是一个开源Python框架，用于使用标准OpenAI Gym环境来训练、评估和部署强化学习交易智能体。 它将市场模拟、投资组合跟踪和策略组合的复杂性抽象在一个简洁的API之后，可与Stable Baselines3、Ray RLlib以及自定义RL实现集成。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/tensortrade-rl-trading/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/zh/tags/tools/page/32/>«&nbsp;上一页&nbsp;
-</a><a class=next href=https://dibi8.com/zh/tags/tools/page/34/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/tensortrade-rl-trading/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/zh/tags/tools/page/32/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/zh/tags/tools/page/34/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

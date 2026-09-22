@@ -1,17 +1,301 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/ds4-deepseek-flash-local-inference/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/ds4-deepseek-flash-local-inference/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/ds4-deepseek-flash-local-inference/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe… 128GB Mac' description: “Technical guide and comparison.” DeepSeek V4 Flash. Learn installation, benchmarks vs Ollama/llama.cpp, code examples, and how to run a 1M-context LLM locally on macOS and Linux. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - C++\nGo Python application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases: /posts/ds4-deepseek-flash-local-inference/ /posts/ds4-open-source-deepseek-alternative-2026/ faqs: - q: ‘What is DS4 (DwarfStar 4) and who created it?’ a: ‘DS4 (DwarfStar 4) is a small, native inference engine purpose-built to run the DeepSeek V4 Flash model locally on Apple Metal and NVIDIA CUDA hardware. It was created by Salvatore Sanfilippo (antirez), the Italian programmer who created Redis.’ q: ‘How much RAM do you need to run DeepSeek V4 Flash with DS4?’ a: ‘For the 2-bit (q2) weights you need a minimum of 96GB RAM, with 128GB recommended. The 4-bit (q4) weights require 256GB or more, which excludes most consumer laptops.’ q: ‘How does DS4 compare to Ollama and llama.cpp for DeepSeek V4 Flash?’ a: ‘Because DS4 focuses on a single model, its asymmetric quantization, compressed KV cache, and custom Metal kernels typically deliver 20-40% better prefill throughput than Ollama on equivalent Apple Silicon. Unlike Ollama, it also persists the KV cache to disk, whereas Ollama wipes context on exit. It openly builds on llama.cpp and GGML but skips generic GGUF support to hardcode optimal layouts.’ q: ‘What is DS4’’s disk KV cache and why does it matter?’ a: ‘DS4 treats the KV cache as a first-class disk citizen, writing checkpoints to fast SSDs instead of keeping all state in RAM. This enables 100K-1M token context windows on RAM-limited machines and lets agent workflows resume a long conversation instantly without reprocessing the prompt.’ q: ‘Does DS4 provide an OpenAI-compatible API server?’ a: ‘Yes. Building DS4 produces a ds4-server binary that exposes an OpenAI- and Anthropic-compatible HTTP API on http://127.0.0.1:8000, with endpoints including /v1/chat/completions, /v1/completions, and /v1/messages. It supports OpenAI-style function calling and works with agent frameworks like OpenCode, Pi, and Claude Code.’— {\u003c/* resource-info */\u003e}\nDS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal \u0026 CUDA — The Complete Guide When Salvatore Sanfilippo — the legendary creator of Redis — turns his attention to local large language model inference, the developer community takes notice. His latest open-source project, DS4 (DwarfStar 4), has already amassed 8,318 GitHub stars and is rapidly becoming the go-to inference engine for running DeepSeek V4 Flash locally on high-end consumer hardware.\nUnlike generic GGUF runners or wrappers around other runtimes, DS4 takes a deliberately narrow approach: it is a model-specific inference engine built from the ground up to squeeze every ounce of performance out of DeepSeek V4 Flash on Apple Metal and NVIDIA CUDA. If you have a MacBook Pro with 128GB of unified memory or a Linux workstation with a powerful GPU, DS4 could be the most exciting local LLM project you’ve encountered this year.\nIn this comprehensive guide, we explore what makes DS4 special, how its technical architecture differs from alternatives like Ollama and llama.cpp, and provide step-by-step installation instructions, performance benchmarks, code examples, and real-world use cases.\nDeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp Running a massive model like DeepSeek V4 Flash requires hardcore optimization. Here is how DS4 obliterates the competition on an M-series Mac: | Framework | 2-bit Quantization Speed | KV Cache Persistence | Hardware Optimization | Setup Difficulty | | :— | :— | :— | :— | :— | | DwarfStar 4 (DS4) | Ultra-Fast (35+ t/s) | Yes (Disk-backed) | Native Metal / CUDA | Moderate | | Ollama | Slow | No (RAM wipe on exit)| Generic cross-platform | Very Easy | | llama.cpp | Medium | Partial | Manual compilation req. | Hard |\nWhat Is DS4 and Who Created It? DS4 stands for DwarfStar 4, a small native inference engine purpose-built for DeepSeek V4 Flash. It was created by Salvatore Sanfilippo (antirez), the Italian programmer famous for creating Redis, one of the most widely used in-memory data stores in the world.\nSanfilippo’s approach with DS4 is characteristically opinionated: instead of building yet another generic model loader, he chose to focus entirely on making one model — DeepSeek V4 Flash — run exceptionally well on local hardware. The project is not a framework, not a wrapper, and not a universal GGUF runner. It is a DeepSeek V4 Flash-specific Metal and CUDA graph executor with custom loading, prompt rendering, KV state management, and server API glue.\n“This project would not exist without llama.cpp and GGML,” Sanfilippo acknowledges, giving full credit to Georgi Gerganov and the llama.cpp community. DS4 borrows quantization formats, kernel ideas, and GGUF ecosystem knowledge from that project, but implements its own optimized execution path.\nWhy DeepSeek V4 Flash? Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local deployment. Here is why: 1. Speed through efficiency: With fewer active parameters during inference, it outperforms many smaller dense models in raw throughput. 2. Proportional thinking: In thinking mode, its reasoning section length adapts to problem complexity — often using only 1/5 the thinking tokens of comparable models. This makes it practical for real-world agent workflows where other models would stall. 3. 1 million token context window: One of the largest context windows available in any open-weights model, enabling entire codebases, books, or long conversation histories to fit in a single prompt. 4. Knowledge depth: At 284B parameters, it knows significantly more than 27B or 35B models at the edges of knowledge. 5. Superior writing quality: Users report it “feels like a quasi-frontier model” in English, Italian, and other languages. 6. Compressed KV cache: Enables long-context inference on local machines and supports on-disk KV cache persistence — a game-changer for agent workflows. 7. 2-bit quantization viability: When quantized asymmetrically (routed experts only), 2-bit weights run surprisingly well, fitting into 96-128GB MacBooks.\nTechnical Architecture: Metal vs. CUDA Optimizations DS4’s architecture reflects a clear design philosophy: maximize performance for the target hardware, even if that means sacrificing generality. The project maintains three build targets: | Build Target | Platform | Use Case | |\n|\n|\n| | ```make| macOS | Metal-optimized production build | |make cuda-spark| Linux (DGX Spark / GB10) | CUDA for NVIDIA GB10 systems | |make cuda-generic| Linux (other CUDA GPUs) | General CUDA GPU support | |make cpu```` | Any | Reference/debug build only |\nMetal on macOS The Metal backend is DS4’s primary optimization target for macOS. It leverages Apple’s unified memory architecture to eliminate the PCIe transfer bottleneck that plagues discrete GPU setups. On a Mac Studio M3 Ultra with 512GB RAM, DS4 achieves: - 468 tokens/second prefill on long prompts (11,709 tokens)\n36.86 tokens/second generation with q2 quantization 448 tokens/second prefill and 35.5 tokens/second generation with q4 These numbers are competitive with — and in some cases exceed — what users achieve with llama.cpp or Ollama on equivalent hardware, particularly for long-context workloads where DS4’s compressed KV cache and chunked prefill shine.\nCUDA on Linux For Linux workstations, DS4 offers two CUDA build paths. The cuda-spark target is tuned for NVIDIA’s DGX Spark (GB10) platform, while cuda-generic supports a broader range of local CUDA GPUs. On a DGX Spark GB10 with 128GB RAM, the engine reaches 343 tokens/second prefill and 13.75 tokens/second generation with q2 weights.\nThe CUDA path shares the same graph execution engine, KV cache compression, and API server as the Metal build, ensuring consistent behavior across platforms.\nCPU Path: Diagnostics Only DS4 includes a CPU backend, but Sanfilippo is explicit: “Do not treat the CPU path as the production target.” It exists for correctness validation, tokenizer diagnostics, and regression testing. In fact, on current macOS versions, the CPU path can trigger a kernel bug in the virtual memory implementation that crashes the system — a stark reminder that this is alpha-quality software.\nKey Architectural Innovations Asymmetric 2-bit quantization: Unlike uniform quantization that degrades all layers equally, DS4’s q2 quants apply IQ2_XXS to routed MoE up/gate projections and Q2_K to down projections, while leaving shared experts, projections, and routing layers untouched. This preserves quality where it matters most.\nCompressed KV cache with disk persistence: DS4 treats the KV cache as a “first-class disk citizen.” Rather than assuming KV state must live in RAM, it writes checkpoints to fast SSDs. This enables 100K-300K (and even 1M) context windows on machines with limited RAM.\nExact DSML tool-call replay: For agent integration, DS4 remembers the exact DSML text the model generated for each tool call, keyed by unguessable IDs. When stateless clients resend tool results, the server replays the exact bytes, avoiding prefix mismatch and expensive recomputation.\nModel-specific graph executor: By not trying to support every GGUF file in existence, DS4 eliminates the overhead of generic tensor dispatch and can hardcode optimal memory layouts and kernel fusion strategies for DeepSeek V4 Flash’s MoE architecture.\nInstallation Guide for macOS and Linux Prerequisites macOS:\nmacOS 14+ (Sonoma or later) Apple Silicon Mac (M1/M2/M3/M4 or Ultra variants) 96GB RAM minimum for q2 weights; 128GB recommended 256GB+ RAM for q4 weights Xcode Command Line Tools Linux (CUDA):\nUbuntu 22.04+ or compatible distribution NVIDIA GPU with CUDA support CUDA Toolkit 12.x+ 96GB+ system RAM for q2; 256GB+ for q4 build-essential, curl, git Step 1: Clone the Repository git clone https://github.com/antirez/ds4.git cd ds4 Step 2: Download Model Weights DS4 only works with its own specially-crafted GGUF files. Use the provided download script: `````bash\nFor 96-128GB RAM machines (recommended) ./download_model.sh q2-imatrix\nFor 256GB+ RAM machines ./download_model.sh q4-imatrix\nOptional: speculative decoding support ./download_model.sh mtp\nThe script fetches from Hugging Face (````antirez/deepseek-v4-gguf````), stores files under ````./gguf/````, and creates a symlink at ````./ds4flash.gguf````. ### Step 3: Build the Engine **macOS (Metal):** `````bash make Linux (CUDA — DGX Spark / GB10):\nmake cuda-spark Linux (CUDA — generic GPU):\nmake cuda-generic CPU-only (diagnostics only):\nmake cpu This produces two binaries: - ./ds4 — Interactive CLI\n./ds4-server — OpenAI/Anthropic-compatible HTTP API server Step 4: Verify Installation # Quick one-shot test ./ds4 -p \"Explain the CAP theorem in one paragraph.\" # Check all options ./ds4 --help ./ds4-server --help Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp Benchmarking LLM inference is notoriously tricky — numbers vary by prompt length, quantization, batch size, and hardware. That said, DS4’s published numbers reveal impressive performance, particularly for long-context prefill.\nDS4 Official Benchmarks (Metal, --ctx 32768, greedy decoding, -n 256) | Machine | Quant | Prompt | Prefill | Generation | |\n|\n|\n|\n|\n| | MacBook Pro M3 Max, 128GB | q2 | short | 58.52 t/s | 26.68 t/s | | MacBook Pro M3 Max, 128GB | q2 | 11,709 tokens | 250.11 t/s | 21.47 t/s | | Mac Studio M3 Ultra, 512GB | q2 | short | 84.43 t/s | 36.86 t/s | | Mac Studio M3 Ultra, 512GB | q2 | 11,709 tokens | 468.03 t/s | 27.39 t/s | | Mac Studio M3 Ultra, 512GB | q4 | short | 78.95 t/s | 35.50 t/s | | DGX Spark GB10, 128GB | q2 | 7,047 tokens | 343.81 t/s | 13.75 t/s |\nHow DS4 Compares vs. Ollama: Ollama is excellent for getting started quickly and supports hundreds of models. However, as a general-purpose runner, it cannot apply the model-specific optimizations that DS4 uses. For DeepSeek V4 Flash specifically, DS4’s asymmetric quantization mix, compressed KV cache, and custom Metal kernels typically deliver 20-40% better prefill throughput on equivalent Apple Silicon hardware.\nvs. llama.cpp: llama.cpp is the foundational project that made local LLM inference possible. DS4 openly acknowledges its debt to llama.cpp and GGML. Where DS4 diverges is in its single-model focus: by not supporting arbitrary GGUF files, DS4 can hardcode tensor layouts, eliminate generic dispatch overhead, and validate correctness against official DeepSeek API logits. For users who only care about DeepSeek V4 Flash, DS4 offers a more “finished” experience with built-in server APIs, disk KV caching, and agent integration.\nThe Verdict: If you want a Swiss Army knife for many models, Ollama or llama.cpp are better choices. If you want DeepSeek V4 Flash to run as fast and reliably as possible on your Mac Studio or CUDA workstation, DS4 is purpose-built for that exact job.\nCode Examples for Running Inference One-Shot CLI Prompt ./ds4 -p \"Write a Python function to implement merge sort.\" Interactive Chat Session ./ds4 This starts a multi-turn chat with persistent KV state. Useful commands: - /help — Show available commands\n/think — Enable thinking mode (default) /think-max — Maximum reasoning effort /nothink — Disable thinking for faster responses /ctx 100000 — Set context window size /read FILE — Include file contents in context /quit — Exit Server Mode with OpenAI-Compatible API ./ds4-server \\ --ctx 100000 \\ --kv-disk-dir /tmp/ds4-kv \\ --kv-disk-space-mb 8192 The server starts on http://127.0.0.1:8000 with these endpoints: - GET /v1/models\nPOST /v1/chat/completions POST /v1/completions POST /v1/messages (Anthropic-compatible) cURL Example (Chat Completions) curl http://127.0.0.1:8000/v1/chat/completions \\ -H 'Content-Type: application/json' \\ -d '{ \"model\": \"deepseek-v4-flash\", \"messages\": [ {\"role\": \"user\", \"content\": \"List three Redis design principles.\"} ], \"stream\": true }' Python Client Example import openai client = openai.OpenAI( base_url=\"http://127.0.0.1:8000/v1\", api_key=\"dsv4-local\" ) response = client.chat.completions.create( model=\"deepseek-v4-flash\", messages=[ {\"role\": \"system\", \"content\": \"You are a helpful coding assistant.\"}, {\"role\": \"user\", \"content\": \"Refactor this function to use list comprehensions.\"} ], stream=True, temperature=0.7 ) for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end=\"\") Tool Use Example DS4 supports OpenAI-style function calling. The server converts tool schemas to DeepSeek’s DSML format and maps results back automatically: `````bash curl http://127.0.0.1:8000/v1/chat/completions -H ‘Content-Type: application/json’ -d ‘{ “model”: “deepseek-v4-flash”, “messages”: [{“role”: “user”, “content”: “What is the weather in Tokyo?”}], “tools”: [{ “type”: “function”, “function”: { “name”: “get_weather”, “parameters”: { “type”: “object”, “properties”: { “location”: {“type”: “string”} }, “required”: [“location”] } } }], “tool_choice”: “auto” }’\n* * * ## Use Cases: Where DS4 Excels ### 1. Local AI Development \u0026 Coding Agents DS4 is explicitly designed for **coding agent workflows**. Its OpenAI-compatible server API works with popular agent frameworks like **OpenCode**, **Pi**, and **Claude Code**. The disk KV cache means that after an expensive initial prefill (often 25K+ tokens for agent setups), subsequent turns reuse the cached prefix instead of recomputing from scratch. ### 2. Privacy-First LLM Deployment For organizations handling sensitive data — legal documents, medical records, proprietary source code — running DeepSeek V4 Flash locally with DS4 ensures **zero data leaves your machine**. There are no API keys to manage, no rate limits, and no vendor lock-in. ### 3. Edge Deployment With 2-bit quantization enabling operation on 96GB systems and compressed KV caches that spill to disk, DS4 brings frontier-class LLM capabilities to **edge hardware** that would previously require cloud APIs. A Mac Studio in a secure facility can now process million-token contexts without internet connectivity. ### 4. Long-Context Research \u0026 Analysis The 1 million token context window opens possibilities that were impractical before: - Analyze entire legal case files in a single pass - Review complete git repository histories with full diff context - Process books, research papers, and multi-document corpora - Maintain months-long conversation histories without truncation ### 5. Cost Optimization At zero dollars per token, local inference with DS4 eliminates API costs for high-volume workflows. The upfront hardware investment (a high-end Mac or workstation) pays for itself quickly when processing millions of tokens per month. * * * ## Limitations You Should Know DS4 is powerful, but it is important to understand its constraints: 1. **Alpha quality**: Sanfilippo is explicit that the code is alpha quality. It has existed for only a short time and will take months to mature. Expect bugs and rough edges. 2. **Single model support**: DS4 only runs DeepSeek V4 Flash GGUFs created specifically for this project. You cannot load arbitrary GGUF files or other models. 3. **High memory requirements**: Realistic operation requires 96-128GB RAM for q2 weights and 256GB+ for q4. This excludes most consumer laptops. 4. **CPU path is broken on macOS**: A macOS kernel VM bug causes crashes when running CPU inference. Metal is the only viable macOS path. 5. **No request batching**: The server processes one inference request at a time. Concurrent requests queue and wait their turn. 6. **MTP speculative decoding is experimental**: The optional MTP path provides at most slight speedups currently, not meaningful generation gains. 7. **AI-assisted development**: The codebase was built with heavy assistance from GPT-5.5. If you are uncomfortable with AI-generated code, DS4 may not be for you. 8. **Platform scope**: Optimized for Metal (macOS) and CUDA (Linux). Windows and AMD GPU support are not current priorities. * * * - * * * ## Related Articles - [AI Tools Directory 2024](/resources/dev-utils/ai-tools-directory/) - Complete guide - [Hermes Agent: Self-Improving AI](/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) - AI with memory - [Free Claude Code](/resources/ai-tools/free-claude-code-open-source-proxy/) - Free AI coding - MemPalace: AI Memory - Perfect memory - Product Hunt Alternatives - Launch platforms ## Conclusion DS4 represents a bold bet on the future of local LLM inference: **doing one thing exceptionally well** rather than many things adequately. By focusing exclusively on DeepSeek V4 Flash, Salvatore Sanfilippo has created an engine that outperforms generic alternatives on the specific model it targets, while delivering production-ready features like disk KV caching, exact tool-call replay, and OpenAI-compatible APIs. For developers with the hardware to run it — a high-end Mac Studio or a CUDA-equipped Linux workstation — DS4 offers a compelling path to **private, fast, and cost-free inference** with one of the most capable open-weights models available today. The 1 million token context window, intelligent thinking modes, and compressed KV architecture make it particularly well-suited for coding agents, long-document analysis, and privacy-critical deployments. As the project matures from alpha to stable, DS4 could become the definitive way to run DeepSeek V4 Flash locally. If you have the hardware and the use case, it is absolutely worth evaluating alongside Ollama and llama.cpp. * * * **Ready to try DS4?** Head to [github.com/antirez/ds4](https://github.com/antirez/ds4), clone the repository, download the q2-imatrix weights, and experience frontier-class local inference today. * * * - * * * ## Recommended Infrastructure for Self-Hosting If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.* *Published by the dibi8 Tech Team. For more guides on AI tools, developer resources, and open-source software, visit [dibi8.com](https://dibi8.com).* ## FAQ: Pushing the Limits with DS4 **Q: Can I run DeepSeek V4 Flash on an M3 MacBook Pro?** A: Absolutely. Thanks to Metal optimization and 2-bit quantization, you can run it smoothly on an M3 Max with 128GB RAM. Smaller models fit on 64GB versions. **Q: DS4 local inference vs DeepSeek API cost comparison?** A: If you are running coding agents 24/7, API costs can exceed $1,000/month. Local inference with DS4 is a one-time hardware investment with zero recurring API fees. **Q: How does disk KV cache work in DS4?** A: Unlike Ollama which dumps context, DS4 saves the KV cache to your SSD. You can resume a 100K token conversation instantly without waiting for prompt reprocessing! ## References \u0026 Sources - [DS4 (DwarfStar 4)](https://github.com/antirez/ds4) - [antirez (Salvatore Sanfilippo)](https://github.com/antirez) - [Redis](https://github.com/redis/redis) - [llama.cpp](https://github.com/ggml-org/llama.cpp) - [GGML](https://github.com/ggml-org/ggml) - [Ollama](https://github.com/ollama/ollama) - [Claude Code](https://github.com/anthropics/claude-code) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Inference Benchmark on\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/ds4-deepseek-flash-local-inference\" } } ","wordCount":"3281","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>16 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/ds4-deepseek-flash-local-inference/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/ds4-deepseek-flash-local-inference/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/ds4-deepseek-flash-local-inference/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#ds4-dwarfstar-4-running-deepseek-v4-flash-locally-with-metal--cuda--the-complete-guide aria-label="DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal & CUDA — The Complete Guide">DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal & CUDA — The Complete Guide</a><ul><li><a href=#deepseek-v4-flash-local-inference-ds4-vs-ollama-vs-llamacpp aria-label="DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp">DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp</a></li><li><a href=#what-is-ds4-and-who-created-it aria-label="What Is DS4 and Who Created It?">What Is DS4 and Who Created It?</a><ul><li><a href=#why-deepseek-v4-flash aria-label="Why DeepSeek V4 Flash?">Why DeepSeek V4 Flash?</a></li></ul></li><li><a href=#technical-architecture-metal-vs-cuda-optimizations aria-label="Technical Architecture: Metal vs. CUDA Optimizations">Technical Architecture: Metal vs. CUDA Optimizations</a><ul><li><a href=#metal-on-macos aria-label="Metal on macOS">Metal on macOS</a></li><li><a href=#cuda-on-linux aria-label="CUDA on Linux">CUDA on Linux</a></li><li><a href=#cpu-path-diagnostics-only aria-label="CPU Path: Diagnostics Only">CPU Path: Diagnostics Only</a></li><li><a href=#key-architectural-innovations aria-label="Key Architectural Innovations">Key Architectural Innovations</a></li></ul></li><li><a href=#installation-guide-for-macos-and-linux aria-label="Installation Guide for macOS and Linux">Installation Guide for macOS and Linux</a><ul><li><a href=#prerequisites aria-label=Prerequisites>Prerequisites</a></li><li><a href=#step-1-clone-the-repository aria-label="Step 1: Clone the Repository">Step 1: Clone the Repository</a></li><li><a href=#step-2-download-model-weights aria-label="Step 2: Download Model Weights">Step 2: Download Model Weights</a></li></ul></li></ul></li><li><a href=#for-96-128gb-ram-machines-recommended aria-label="For 96-128GB RAM machines (recommended)">For 96-128GB RAM machines (recommended)</a></li><li><a href=#for-256gb-ram-machines aria-label="For 256GB+ RAM machines">For 256GB+ RAM machines</a></li><li><a href=#optional-speculative-decoding-support aria-label="Optional: speculative decoding support">Optional: speculative decoding support</a><ul><ul><li><a href=#step-4-verify-installation aria-label="Step 4: Verify Installation">Step 4: Verify Installation</a></li></ul><li><a href=#performance-benchmarks-ds4-vs-ollama-vs-llamacpp aria-label="Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp">Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp</a><ul><li><a href=#ds4-official-benchmarks-metal---ctx-32768-greedy-decoding--n-256 aria-label="DS4 Official Benchmarks (Metal, --ctx 32768, greedy decoding, -n 256)">DS4 Official Benchmarks (Metal, --ctx 32768, greedy decoding, -n 256)</a></li><li><a href=#how-ds4-compares aria-label="How DS4 Compares">How DS4 Compares</a></li></ul></li><li><a href=#code-examples-for-running-inference aria-label="Code Examples for Running Inference">Code Examples for Running Inference</a><ul><li><a href=#one-shot-cli-prompt aria-label="One-Shot CLI Prompt">One-Shot CLI Prompt</a></li><li><a href=#interactive-chat-session aria-label="Interactive Chat Session">Interactive Chat Session</a></li><li><a href=#server-mode-with-openai-compatible-api aria-label="Server Mode with OpenAI-Compatible API">Server Mode with OpenAI-Compatible API</a></li><li><a href=#curl-example-chat-completions aria-label="cURL Example (Chat Completions)">cURL Example (Chat Completions)</a></li><li><a href=#python-client-example aria-label="Python Client Example">Python Client Example</a></li><li><a href=#tool-use-example aria-label="Tool Use Example">Tool Use Example</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe&mldr;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/ds4-deepseek-flash-local-inference/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/ds4-deepseek-flash-local-inference/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/ds4-deepseek-flash-local-inference/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe… 128GB Mac' description: “Technical guide and comparison.” DeepSeek V4 Flash. Learn installation, benchmarks vs Ollama/llama.cpp, code examples, and how to run a 1M-context LLM locally on macOS and Linux. date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - C++\nGo Python application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases: /posts/ds4-deepseek-flash-local-inference/ /posts/ds4-open-source-deepseek-alternative-2026/ faqs: - q: ‘What is DS4 (DwarfStar 4) and who created it?’ a: ‘DS4 (DwarfStar 4) is a small, native inference engine purpose-built to run the DeepSeek V4 Flash model locally on Apple Metal and NVIDIA CUDA hardware. It was created by Salvatore Sanfilippo (antirez), the Italian programmer who created Redis.’ q: ‘How much RAM do you need to run DeepSeek V4 Flash with DS4?’ a: ‘For the 2-bit (q2) weights you need a minimum of 96GB RAM, with 128GB recommended. The 4-bit (q4) weights require 256GB or more, which excludes most consumer laptops.’ q: ‘How does DS4 compare to Ollama and llama.cpp for DeepSeek V4 Flash?’ a: ‘Because DS4 focuses on a single model, its asymmetric quantization, compressed KV cache, and custom Metal kernels typically deliver 20-40% better prefill throughput than Ollama on equivalent Apple Silicon. Unlike Ollama, it also persists the KV cache to disk, whereas Ollama wipes context on exit. It openly builds on llama.cpp and GGML but skips generic GGUF support to hardcode optimal layouts.’ q: ‘What is DS4’’s disk KV cache and why does it matter?’ a: ‘DS4 treats the KV cache as a first-class disk citizen, writing checkpoints to fast SSDs instead of keeping all state in RAM. This enables 100K-1M token context windows on RAM-limited machines and lets agent workflows resume a long conversation instantly without reprocessing the prompt.’ q: ‘Does DS4 provide an OpenAI-compatible API server?’ a: ‘Yes. Building DS4 produces a ds4-server binary that exposes an OpenAI- and Anthropic-compatible HTTP API on http://127.0.0.1:8000, with endpoints including /v1/chat/completions, /v1/completions, and /v1/messages. It supports OpenAI-style function calling and works with agent frameworks like OpenCode, Pi, and Claude Code.’— {\u003c/* resource-info */\u003e}\nDS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal \u0026 CUDA — The Complete Guide When Salvatore Sanfilippo — the legendary creator of Redis — turns his attention to local large language model inference, the developer community takes notice. His latest open-source project, DS4 (DwarfStar 4), has already amassed 8,318 GitHub stars and is rapidly becoming the go-to inference engine for running DeepSeek V4 Flash locally on high-end consumer hardware.\nUnlike generic GGUF runners or wrappers around other runtimes, DS4 takes a deliberately narrow approach: it is a model-specific inference engine built from the ground up to squeeze every ounce of performance out of DeepSeek V4 Flash on Apple Metal and NVIDIA CUDA. If you have a MacBook Pro with 128GB of unified memory or a Linux workstation with a powerful GPU, DS4 could be the most exciting local LLM project you’ve encountered this year.\nIn this comprehensive guide, we explore what makes DS4 special, how its technical architecture differs from alternatives like Ollama and llama.cpp, and provide step-by-step installation instructions, performance benchmarks, code examples, and real-world use cases.\nDeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp Running a massive model like DeepSeek V4 Flash requires hardcore optimization. Here is how DS4 obliterates the competition on an M-series Mac: | Framework | 2-bit Quantization Speed | KV Cache Persistence | Hardware Optimization | Setup Difficulty | | :— | :— | :— | :— | :— | | DwarfStar 4 (DS4) | Ultra-Fast (35+ t/s) | Yes (Disk-backed) | Native Metal / CUDA | Moderate | | Ollama | Slow | No (RAM wipe on exit)| Generic cross-platform | Very Easy | | llama.cpp | Medium | Partial | Manual compilation req. | Hard |\nWhat Is DS4 and Who Created It? DS4 stands for DwarfStar 4, a small native inference engine purpose-built for DeepSeek V4 Flash. It was created by Salvatore Sanfilippo (antirez), the Italian programmer famous for creating Redis, one of the most widely used in-memory data stores in the world.\nSanfilippo’s approach with DS4 is characteristically opinionated: instead of building yet another generic model loader, he chose to focus entirely on making one model — DeepSeek V4 Flash — run exceptionally well on local hardware. The project is not a framework, not a wrapper, and not a universal GGUF runner. It is a DeepSeek V4 Flash-specific Metal and CUDA graph executor with custom loading, prompt rendering, KV state management, and server API glue.\n“This project would not exist without llama.cpp and GGML,” Sanfilippo acknowledges, giving full credit to Georgi Gerganov and the llama.cpp community. DS4 borrows quantization formats, kernel ideas, and GGUF ecosystem knowledge from that project, but implements its own optimized execution path.\nWhy DeepSeek V4 Flash? Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local deployment. Here is why: 1. Speed through efficiency: With fewer active parameters during inference, it outperforms many smaller dense models in raw throughput. 2. Proportional thinking: In thinking mode, its reasoning section length adapts to problem complexity — often using only 1/5 the thinking tokens of comparable models. This makes it practical for real-world agent workflows where other models would stall. 3. 1 million token context window: One of the largest context windows available in any open-weights model, enabling entire codebases, books, or long conversation histories to fit in a single prompt. 4. Knowledge depth: At 284B parameters, it knows significantly more than 27B or 35B models at the edges of knowledge. 5. Superior writing quality: Users report it “feels like a quasi-frontier model” in English, Italian, and other languages. 6. Compressed KV cache: Enables long-context inference on local machines and supports on-disk KV cache persistence — a game-changer for agent workflows. 7. 2-bit quantization viability: When quantized asymmetrically (routed experts only), 2-bit weights run surprisingly well, fitting into 96-128GB MacBooks.\nTechnical Architecture: Metal vs. CUDA Optimizations DS4’s architecture reflects a clear design philosophy: maximize performance for the target hardware, even if that means sacrificing generality. The project maintains three build targets: | Build Target | Platform | Use Case | |\n|\n|\n| | ```make| macOS | Metal-optimized production build | |make cuda-spark| Linux (DGX Spark / GB10) | CUDA for NVIDIA GB10 systems | |make cuda-generic| Linux (other CUDA GPUs) | General CUDA GPU support | |make cpu```` | Any | Reference/debug build only |\nMetal on macOS The Metal backend is DS4’s primary optimization target for macOS. It leverages Apple’s unified memory architecture to eliminate the PCIe transfer bottleneck that plagues discrete GPU setups. On a Mac Studio M3 Ultra with 512GB RAM, DS4 achieves: - 468 tokens/second prefill on long prompts (11,709 tokens)\n36.86 tokens/second generation with q2 quantization 448 tokens/second prefill and 35.5 tokens/second generation with q4 These numbers are competitive with — and in some cases exceed — what users achieve with llama.cpp or Ollama on equivalent hardware, particularly for long-context workloads where DS4’s compressed KV cache and chunked prefill shine.\nCUDA on Linux For Linux workstations, DS4 offers two CUDA build paths. The cuda-spark target is tuned for NVIDIA’s DGX Spark (GB10) platform, while cuda-generic supports a broader range of local CUDA GPUs. On a DGX Spark GB10 with 128GB RAM, the engine reaches 343 tokens/second prefill and 13.75 tokens/second generation with q2 weights.\nThe CUDA path shares the same graph execution engine, KV cache compression, and API server as the Metal build, ensuring consistent behavior across platforms.\nCPU Path: Diagnostics Only DS4 includes a CPU backend, but Sanfilippo is explicit: “Do not treat the CPU path as the production target.” It exists for correctness validation, tokenizer diagnostics, and regression testing. In fact, on current macOS versions, the CPU path can trigger a kernel bug in the virtual memory implementation that crashes the system — a stark reminder that this is alpha-quality software.\nKey Architectural Innovations Asymmetric 2-bit quantization: Unlike uniform quantization that degrades all layers equally, DS4’s q2 quants apply IQ2_XXS to routed MoE up/gate projections and Q2_K to down projections, while leaving shared experts, projections, and routing layers untouched. This preserves quality where it matters most.\nCompressed KV cache with disk persistence: DS4 treats the KV cache as a “first-class disk citizen.” Rather than assuming KV state must live in RAM, it writes checkpoints to fast SSDs. This enables 100K-300K (and even 1M) context windows on machines with limited RAM.\nExact DSML tool-call replay: For agent integration, DS4 remembers the exact DSML text the model generated for each tool call, keyed by unguessable IDs. When stateless clients resend tool results, the server replays the exact bytes, avoiding prefix mismatch and expensive recomputation.\nModel-specific graph executor: By not trying to support every GGUF file in existence, DS4 eliminates the overhead of generic tensor dispatch and can hardcode optimal memory layouts and kernel fusion strategies for DeepSeek V4 Flash’s MoE architecture.\nInstallation Guide for macOS and Linux Prerequisites macOS:\nmacOS 14+ (Sonoma or later) Apple Silicon Mac (M1/M2/M3/M4 or Ultra variants) 96GB RAM minimum for q2 weights; 128GB recommended 256GB+ RAM for q4 weights Xcode Command Line Tools Linux (CUDA):\nUbuntu 22.04+ or compatible distribution NVIDIA GPU with CUDA support CUDA Toolkit 12.x+ 96GB+ system RAM for q2; 256GB+ for q4 build-essential, curl, git Step 1: Clone the Repository git clone https://github.com/antirez/ds4.git cd ds4 Step 2: Download Model Weights DS4 only works with its own specially-crafted GGUF files. Use the provided download script: `````bash\nFor 96-128GB RAM machines (recommended) ./download_model.sh q2-imatrix\nFor 256GB+ RAM machines ./download_model.sh q4-imatrix\nOptional: speculative decoding support ./download_model.sh mtp\nThe script fetches from Hugging Face (````antirez/deepseek-v4-gguf````), stores files under ````./gguf/````, and creates a symlink at ````./ds4flash.gguf````. ### Step 3: Build the Engine **macOS (Metal):** `````bash make Linux (CUDA — DGX Spark / GB10):\nmake cuda-spark Linux (CUDA — generic GPU):\nmake cuda-generic CPU-only (diagnostics only):\nmake cpu This produces two binaries: - ./ds4 — Interactive CLI\n./ds4-server — OpenAI/Anthropic-compatible HTTP API server Step 4: Verify Installation # Quick one-shot test ./ds4 -p \"Explain the CAP theorem in one paragraph.\" # Check all options ./ds4 --help ./ds4-server --help Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp Benchmarking LLM inference is notoriously tricky — numbers vary by prompt length, quantization, batch size, and hardware. That said, DS4’s published numbers reveal impressive performance, particularly for long-context prefill.\nDS4 Official Benchmarks (Metal, --ctx 32768, greedy decoding, -n 256) | Machine | Quant | Prompt | Prefill | Generation | |\n|\n|\n|\n|\n| | MacBook Pro M3 Max, 128GB | q2 | short | 58.52 t/s | 26.68 t/s | | MacBook Pro M3 Max, 128GB | q2 | 11,709 tokens | 250.11 t/s | 21.47 t/s | | Mac Studio M3 Ultra, 512GB | q2 | short | 84.43 t/s | 36.86 t/s | | Mac Studio M3 Ultra, 512GB | q2 | 11,709 tokens | 468.03 t/s | 27.39 t/s | | Mac Studio M3 Ultra, 512GB | q4 | short | 78.95 t/s | 35.50 t/s | | DGX Spark GB10, 128GB | q2 | 7,047 tokens | 343.81 t/s | 13.75 t/s |\nHow DS4 Compares vs. Ollama: Ollama is excellent for getting started quickly and supports hundreds of models. However, as a general-purpose runner, it cannot apply the model-specific optimizations that DS4 uses. For DeepSeek V4 Flash specifically, DS4’s asymmetric quantization mix, compressed KV cache, and custom Metal kernels typically deliver 20-40% better prefill throughput on equivalent Apple Silicon hardware.\nvs. llama.cpp: llama.cpp is the foundational project that made local LLM inference possible. DS4 openly acknowledges its debt to llama.cpp and GGML. Where DS4 diverges is in its single-model focus: by not supporting arbitrary GGUF files, DS4 can hardcode tensor layouts, eliminate generic dispatch overhead, and validate correctness against official DeepSeek API logits. For users who only care about DeepSeek V4 Flash, DS4 offers a more “finished” experience with built-in server APIs, disk KV caching, and agent integration.\nThe Verdict: If you want a Swiss Army knife for many models, Ollama or llama.cpp are better choices. If you want DeepSeek V4 Flash to run as fast and reliably as possible on your Mac Studio or CUDA workstation, DS4 is purpose-built for that exact job.\nCode Examples for Running Inference One-Shot CLI Prompt ./ds4 -p \"Write a Python function to implement merge sort.\" Interactive Chat Session ./ds4 This starts a multi-turn chat with persistent KV state. Useful commands: - /help — Show available commands\n/think — Enable thinking mode (default) /think-max — Maximum reasoning effort /nothink — Disable thinking for faster responses /ctx 100000 — Set context window size /read FILE — Include file contents in context /quit — Exit Server Mode with OpenAI-Compatible API ./ds4-server \\ --ctx 100000 \\ --kv-disk-dir /tmp/ds4-kv \\ --kv-disk-space-mb 8192 The server starts on http://127.0.0.1:8000 with these endpoints: - GET /v1/models\nPOST /v1/chat/completions POST /v1/completions POST /v1/messages (Anthropic-compatible) cURL Example (Chat Completions) curl http://127.0.0.1:8000/v1/chat/completions \\ -H 'Content-Type: application/json' \\ -d '{ \"model\": \"deepseek-v4-flash\", \"messages\": [ {\"role\": \"user\", \"content\": \"List three Redis design principles.\"} ], \"stream\": true }' Python Client Example import openai client = openai.OpenAI( base_url=\"http://127.0.0.1:8000/v1\", api_key=\"dsv4-local\" ) response = client.chat.completions.create( model=\"deepseek-v4-flash\", messages=[ {\"role\": \"system\", \"content\": \"You are a helpful coding assistant.\"}, {\"role\": \"user\", \"content\": \"Refactor this function to use list comprehensions.\"} ], stream=True, temperature=0.7 ) for chunk in response: if chunk.choices[0].delta.content: print(chunk.choices[0].delta.content, end=\"\") Tool Use Example DS4 supports OpenAI-style function calling. The server converts tool schemas to DeepSeek’s DSML format and maps results back automatically: `````bash curl http://127.0.0.1:8000/v1/chat/completions -H ‘Content-Type: application/json’ -d ‘{ “model”: “deepseek-v4-flash”, “messages”: [{“role”: “user”, “content”: “What is the weather in Tokyo?”}], “tools”: [{ “type”: “function”, “function”: { “name”: “get_weather”, “parameters”: { “type”: “object”, “properties”: { “location”: {“type”: “string”} }, “required”: [“location”] } } }], “tool_choice”: “auto” }’\n* * * ## Use Cases: Where DS4 Excels ### 1. Local AI Development \u0026 Coding Agents DS4 is explicitly designed for **coding agent workflows**. Its OpenAI-compatible server API works with popular agent frameworks like **OpenCode**, **Pi**, and **Claude Code**. The disk KV cache means that after an expensive initial prefill (often 25K+ tokens for agent setups), subsequent turns reuse the cached prefix instead of recomputing from scratch. ### 2. Privacy-First LLM Deployment For organizations handling sensitive data — legal documents, medical records, proprietary source code — running DeepSeek V4 Flash locally with DS4 ensures **zero data leaves your machine**. There are no API keys to manage, no rate limits, and no vendor lock-in. ### 3. Edge Deployment With 2-bit quantization enabling operation on 96GB systems and compressed KV caches that spill to disk, DS4 brings frontier-class LLM capabilities to **edge hardware** that would previously require cloud APIs. A Mac Studio in a secure facility can now process million-token contexts without internet connectivity. ### 4. Long-Context Research \u0026 Analysis The 1 million token context window opens possibilities that were impractical before: - Analyze entire legal case files in a single pass - Review complete git repository histories with full diff context - Process books, research papers, and multi-document corpora - Maintain months-long conversation histories without truncation ### 5. Cost Optimization At zero dollars per token, local inference with DS4 eliminates API costs for high-volume workflows. The upfront hardware investment (a high-end Mac or workstation) pays for itself quickly when processing millions of tokens per month. * * * ## Limitations You Should Know DS4 is powerful, but it is important to understand its constraints: 1. **Alpha quality**: Sanfilippo is explicit that the code is alpha quality. It has existed for only a short time and will take months to mature. Expect bugs and rough edges. 2. **Single model support**: DS4 only runs DeepSeek V4 Flash GGUFs created specifically for this project. You cannot load arbitrary GGUF files or other models. 3. **High memory requirements**: Realistic operation requires 96-128GB RAM for q2 weights and 256GB+ for q4. This excludes most consumer laptops. 4. **CPU path is broken on macOS**: A macOS kernel VM bug causes crashes when running CPU inference. Metal is the only viable macOS path. 5. **No request batching**: The server processes one inference request at a time. Concurrent requests queue and wait their turn. 6. **MTP speculative decoding is experimental**: The optional MTP path provides at most slight speedups currently, not meaningful generation gains. 7. **AI-assisted development**: The codebase was built with heavy assistance from GPT-5.5. If you are uncomfortable with AI-generated code, DS4 may not be for you. 8. **Platform scope**: Optimized for Metal (macOS) and CUDA (Linux). Windows and AMD GPU support are not current priorities. * * * - * * * ## Related Articles - [AI Tools Directory 2024](/resources/dev-utils/ai-tools-directory/) - Complete guide - [Hermes Agent: Self-Improving AI](/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) - AI with memory - [Free Claude Code](/resources/ai-tools/free-claude-code-open-source-proxy/) - Free AI coding - MemPalace: AI Memory - Perfect memory - Product Hunt Alternatives - Launch platforms ## Conclusion DS4 represents a bold bet on the future of local LLM inference: **doing one thing exceptionally well** rather than many things adequately. By focusing exclusively on DeepSeek V4 Flash, Salvatore Sanfilippo has created an engine that outperforms generic alternatives on the specific model it targets, while delivering production-ready features like disk KV caching, exact tool-call replay, and OpenAI-compatible APIs. For developers with the hardware to run it — a high-end Mac Studio or a CUDA-equipped Linux workstation — DS4 offers a compelling path to **private, fast, and cost-free inference** with one of the most capable open-weights models available today. The 1 million token context window, intelligent thinking modes, and compressed KV architecture make it particularly well-suited for coding agents, long-document analysis, and privacy-critical deployments. As the project matures from alpha to stable, DS4 could become the definitive way to run DeepSeek V4 Flash locally. If you have the hardware and the use case, it is absolutely worth evaluating alongside Ollama and llama.cpp. * * * **Ready to try DS4?** Head to [github.com/antirez/ds4](https://github.com/antirez/ds4), clone the repository, download the q2-imatrix weights, and experience frontier-class local inference today. * * * - * * * ## Recommended Infrastructure for Self-Hosting If you want to run this stack reliably 24/7, infrastructure choice matters: - **** — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools. - **** — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. *Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.* *Published by the dibi8 Tech Team. For more guides on AI tools, developer resources, and open-source software, visit [dibi8.com](https://dibi8.com).* ## FAQ: Pushing the Limits with DS4 **Q: Can I run DeepSeek V4 Flash on an M3 MacBook Pro?** A: Absolutely. Thanks to Metal optimization and 2-bit quantization, you can run it smoothly on an M3 Max with 128GB RAM. Smaller models fit on 64GB versions. **Q: DS4 local inference vs DeepSeek API cost comparison?** A: If you are running coding agents 24/7, API costs can exceed $1,000/month. Local inference with DS4 is a one-time hardware investment with zero recurring API fees. **Q: How does disk KV cache work in DS4?** A: Unlike Ollama which dumps context, DS4 saves the KV cache to your SSD. You can resume a 100K token conversation instantly without waiting for prompt reprocessing! ## References \u0026 Sources - [DS4 (DwarfStar 4)](https://github.com/antirez/ds4) - [antirez (Salvatore Sanfilippo)](https://github.com/antirez) - [Redis](https://github.com/redis/redis) - [llama.cpp](https://github.com/ggml-org/llama.cpp) - [GGML](https://github.com/ggml-org/ggml) - [Ollama](https://github.com/ollama/ollama) - [Claude Code](https://github.com/anthropics/claude-code) { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Inference Benchmark on\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/ds4-deepseek-flash-local-inference\" } } ",
+  "wordCount" : "3281",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/ds4-deepseek-flash-local-inference/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>16 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/ds4-deepseek-flash-local-inference/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/ds4-deepseek-flash-local-inference/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/ds4-deepseek-flash-local-inference/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#ds4-dwarfstar-4-running-deepseek-v4-flash-locally-with-metal--cuda--the-complete-guide" aria-label="DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal &amp; CUDA — The Complete Guide">DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal &amp; CUDA — The Complete Guide</a><ul>
+                    
+            <li>
+                <a href="#deepseek-v4-flash-local-inference-ds4-vs-ollama-vs-llamacpp" aria-label="DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp">DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp</a></li>
+            <li>
+                <a href="#what-is-ds4-and-who-created-it" aria-label="What Is DS4 and Who Created It?">What Is DS4 and Who Created It?</a><ul>
+                    
+            <li>
+                <a href="#why-deepseek-v4-flash" aria-label="Why DeepSeek V4 Flash?">Why DeepSeek V4 Flash?</a></li></ul>
+            </li>
+            <li>
+                <a href="#technical-architecture-metal-vs-cuda-optimizations" aria-label="Technical Architecture: Metal vs. CUDA Optimizations">Technical Architecture: Metal vs. CUDA Optimizations</a><ul>
+                    
+            <li>
+                <a href="#metal-on-macos" aria-label="Metal on macOS">Metal on macOS</a></li>
+            <li>
+                <a href="#cuda-on-linux" aria-label="CUDA on Linux">CUDA on Linux</a></li>
+            <li>
+                <a href="#cpu-path-diagnostics-only" aria-label="CPU Path: Diagnostics Only">CPU Path: Diagnostics Only</a></li>
+            <li>
+                <a href="#key-architectural-innovations" aria-label="Key Architectural Innovations">Key Architectural Innovations</a></li></ul>
+            </li>
+            <li>
+                <a href="#installation-guide-for-macos-and-linux" aria-label="Installation Guide for macOS and Linux">Installation Guide for macOS and Linux</a><ul>
+                    
+            <li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+            <li>
+                <a href="#step-1-clone-the-repository" aria-label="Step 1: Clone the Repository">Step 1: Clone the Repository</a></li>
+            <li>
+                <a href="#step-2-download-model-weights" aria-label="Step 2: Download Model Weights">Step 2: Download Model Weights</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#for-96-128gb-ram-machines-recommended" aria-label="For 96-128GB RAM machines (recommended)">For 96-128GB RAM machines (recommended)</a></li>
+            <li>
+                <a href="#for-256gb-ram-machines" aria-label="For 256GB&#43; RAM machines">For 256GB+ RAM machines</a></li>
+            <li>
+                <a href="#optional-speculative-decoding-support" aria-label="Optional: speculative decoding support">Optional: speculative decoding support</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#step-4-verify-installation" aria-label="Step 4: Verify Installation">Step 4: Verify Installation</a></li></ul>
+                
+            <li>
+                <a href="#performance-benchmarks-ds4-vs-ollama-vs-llamacpp" aria-label="Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp">Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp</a><ul>
+                    
+            <li>
+                <a href="#ds4-official-benchmarks-metal---ctx-32768-greedy-decoding--n-256" aria-label="DS4 Official Benchmarks (Metal, --ctx 32768, greedy decoding, -n 256)">DS4 Official Benchmarks (Metal, --ctx 32768, greedy decoding, -n 256)</a></li>
+            <li>
+                <a href="#how-ds4-compares" aria-label="How DS4 Compares">How DS4 Compares</a></li></ul>
+            </li>
+            <li>
+                <a href="#code-examples-for-running-inference" aria-label="Code Examples for Running Inference">Code Examples for Running Inference</a><ul>
+                    
+            <li>
+                <a href="#one-shot-cli-prompt" aria-label="One-Shot CLI Prompt">One-Shot CLI Prompt</a></li>
+            <li>
+                <a href="#interactive-chat-session" aria-label="Interactive Chat Session">Interactive Chat Session</a></li>
+            <li>
+                <a href="#server-mode-with-openai-compatible-api" aria-label="Server Mode with OpenAI-Compatible API">Server Mode with OpenAI-Compatible API</a></li>
+            <li>
+                <a href="#curl-example-chat-completions" aria-label="cURL Example (Chat Completions)">cURL Example (Chat Completions)</a></li>
+            <li>
+                <a href="#python-client-example" aria-label="Python Client Example">Python Client Example</a></li>
+            <li>
+                <a href="#tool-use-example" aria-label="Tool Use Example">Tool Use Example</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;DS4 vs Ollama vs llama.cpp: DeepSeek V4 Flash Local Infe&hellip;
 128GB Mac'
 description: &ldquo;Technical guide and comparison.&rdquo;
 DeepSeek V4 Flash. Learn installation, benchmarks vs Ollama/llama.cpp, code examples,
 and how to run a 1M-context LLM locally on macOS and Linux.
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - C++</p><ul><li>Go</li><li>Python
+tech_stack: - C++</p>
+<ul>
+<li>Go</li>
+<li>Python
 application_domain: Ai Tools
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -22,27 +306,121 @@ download_url: &rsquo;'
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:<ul><li>/posts/ds4-deepseek-flash-local-inference/</li></ul></li><li>/posts/ds4-open-source-deepseek-alternative-2026/
+aliases:
+<ul>
+<li>/posts/ds4-deepseek-flash-local-inference/</li>
+</ul>
+</li>
+<li>/posts/ds4-open-source-deepseek-alternative-2026/
 faqs: - q: &lsquo;What is DS4 (DwarfStar 4) and who created it?&rsquo;
-a: &lsquo;DS4 (DwarfStar 4) is a small, native inference engine purpose-built to run the DeepSeek V4 Flash model locally on Apple Metal and NVIDIA CUDA hardware. It was created by Salvatore Sanfilippo (antirez), the Italian programmer who created Redis.&rsquo;<ul><li>q: &lsquo;How much RAM do you need to run DeepSeek V4 Flash with DS4?&rsquo;
-a: &lsquo;For the 2-bit (q2) weights you need a minimum of 96GB RAM, with 128GB recommended. The 4-bit (q4) weights require 256GB or more, which excludes most consumer laptops.&rsquo;</li><li>q: &lsquo;How does DS4 compare to Ollama and llama.cpp for DeepSeek V4 Flash?&rsquo;
-a: &lsquo;Because DS4 focuses on a single model, its asymmetric quantization, compressed KV cache, and custom Metal kernels typically deliver 20-40% better prefill throughput than Ollama on equivalent Apple Silicon. Unlike Ollama, it also persists the KV cache to disk, whereas Ollama wipes context on exit. It openly builds on llama.cpp and GGML but skips generic GGUF support to hardcode optimal layouts.&rsquo;</li><li>q: &lsquo;What is DS4&rsquo;&rsquo;s disk KV cache and why does it matter?&rsquo;
-a: &lsquo;DS4 treats the KV cache as a first-class disk citizen, writing checkpoints to fast SSDs instead of keeping all state in RAM. This enables 100K-1M token context windows on RAM-limited machines and lets agent workflows resume a long conversation instantly without reprocessing the prompt.&rsquo;</li><li>q: &lsquo;Does DS4 provide an OpenAI-compatible API server?&rsquo;
-a: &lsquo;Yes. Building DS4 produces a ds4-server binary that exposes an OpenAI- and Anthropic-compatible HTTP API on http://127.0.0.1:8000, with endpoints including /v1/chat/completions, /v1/completions, and /v1/messages. It supports OpenAI-style function calling and works with agent frameworks like OpenCode, Pi, and Claude Code.&rsquo;&mdash;</li></ul></li></ul><p>{&lt;/* resource-info */>}</p><h1 id=ds4-dwarfstar-4-running-deepseek-v4-flash-locally-with-metal--cuda--the-complete-guide>DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal & CUDA — The Complete Guide<a hidden class=anchor aria-hidden=true href=#ds4-dwarfstar-4-running-deepseek-v4-flash-locally-with-metal--cuda--the-complete-guide>#</a></h1><p>When <strong>Salvatore Sanfilippo</strong> — the legendary creator of <strong>Redis</strong> — turns his attention to local large language model inference, the developer community takes notice. His latest open-source project, <strong>DS4</strong> (DwarfStar 4), has already amassed <strong>8,318 GitHub stars</strong> and is rapidly becoming the go-to inference engine for running <strong>DeepSeek V4 Flash</strong> locally on high-end consumer hardware.</p><p>Unlike generic GGUF runners or wrappers around other runtimes, DS4 takes a deliberately narrow approach: it is a <strong>model-specific inference engine</strong> built from the ground up to squeeze every ounce of performance out of DeepSeek V4 Flash on <strong>Apple Metal</strong> and <strong>NVIDIA CUDA</strong>. If you have a MacBook Pro with 128GB of unified memory or a Linux workstation with a powerful GPU, DS4 could be the most exciting local LLM project you&rsquo;ve encountered this year.</p><p>In this comprehensive guide, we explore what makes DS4 special, how its technical architecture differs from alternatives like Ollama and llama.cpp, and provide step-by-step installation instructions, performance benchmarks, code examples, and real-world use cases.</p><hr><h2 id=deepseek-v4-flash-local-inference-ds4-vs-ollama-vs-llamacpp>DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp<a hidden class=anchor aria-hidden=true href=#deepseek-v4-flash-local-inference-ds4-vs-ollama-vs-llamacpp>#</a></h2><p>Running a massive model like DeepSeek V4 Flash requires hardcore optimization. Here is how DS4 obliterates the competition on an M-series Mac: | Framework | 2-bit Quantization Speed | KV Cache Persistence | Hardware Optimization | Setup Difficulty |
+a: &lsquo;DS4 (DwarfStar 4) is a small, native inference engine purpose-built to run the DeepSeek V4 Flash model locally on Apple Metal and NVIDIA CUDA hardware. It was created by Salvatore Sanfilippo (antirez), the Italian programmer who created Redis.&rsquo;
+<ul>
+<li>q: &lsquo;How much RAM do you need to run DeepSeek V4 Flash with DS4?&rsquo;
+a: &lsquo;For the 2-bit (q2) weights you need a minimum of 96GB RAM, with 128GB recommended. The 4-bit (q4) weights require 256GB or more, which excludes most consumer laptops.&rsquo;</li>
+<li>q: &lsquo;How does DS4 compare to Ollama and llama.cpp for DeepSeek V4 Flash?&rsquo;
+a: &lsquo;Because DS4 focuses on a single model, its asymmetric quantization, compressed KV cache, and custom Metal kernels typically deliver 20-40% better prefill throughput than Ollama on equivalent Apple Silicon. Unlike Ollama, it also persists the KV cache to disk, whereas Ollama wipes context on exit. It openly builds on llama.cpp and GGML but skips generic GGUF support to hardcode optimal layouts.&rsquo;</li>
+<li>q: &lsquo;What is DS4&rsquo;&rsquo;s disk KV cache and why does it matter?&rsquo;
+a: &lsquo;DS4 treats the KV cache as a first-class disk citizen, writing checkpoints to fast SSDs instead of keeping all state in RAM. This enables 100K-1M token context windows on RAM-limited machines and lets agent workflows resume a long conversation instantly without reprocessing the prompt.&rsquo;</li>
+<li>q: &lsquo;Does DS4 provide an OpenAI-compatible API server?&rsquo;
+a: &lsquo;Yes. Building DS4 produces a ds4-server binary that exposes an OpenAI- and Anthropic-compatible HTTP API on http://127.0.0.1:8000, with endpoints including /v1/chat/completions, /v1/completions, and /v1/messages. It supports OpenAI-style function calling and works with agent frameworks like OpenCode, Pi, and Claude Code.&rsquo;&mdash;</li>
+</ul>
+</li>
+</ul>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h1 id="ds4-dwarfstar-4-running-deepseek-v4-flash-locally-with-metal--cuda--the-complete-guide">DS4 (DwarfStar 4): Running DeepSeek V4 Flash Locally with Metal &amp; CUDA — The Complete Guide<a hidden class="anchor" aria-hidden="true" href="#ds4-dwarfstar-4-running-deepseek-v4-flash-locally-with-metal--cuda--the-complete-guide">#</a></h1>
+<p>When <strong>Salvatore Sanfilippo</strong> — the legendary creator of <strong>Redis</strong> — turns his attention to local large language model inference, the developer community takes notice. His latest open-source project, <strong>DS4</strong> (DwarfStar 4), has already amassed <strong>8,318 GitHub stars</strong> and is rapidly becoming the go-to inference engine for running <strong>DeepSeek V4 Flash</strong> locally on high-end consumer hardware.</p>
+<p>Unlike generic GGUF runners or wrappers around other runtimes, DS4 takes a deliberately narrow approach: it is a <strong>model-specific inference engine</strong> built from the ground up to squeeze every ounce of performance out of DeepSeek V4 Flash on <strong>Apple Metal</strong> and <strong>NVIDIA CUDA</strong>. If you have a MacBook Pro with 128GB of unified memory or a Linux workstation with a powerful GPU, DS4 could be the most exciting local LLM project you&rsquo;ve encountered this year.</p>
+<p>In this comprehensive guide, we explore what makes DS4 special, how its technical architecture differs from alternatives like Ollama and llama.cpp, and provide step-by-step installation instructions, performance benchmarks, code examples, and real-world use cases.</p>
+<hr>
+<h2 id="deepseek-v4-flash-local-inference-ds4-vs-ollama-vs-llamacpp">DeepSeek V4 Flash Local Inference: DS4 vs Ollama vs llama.cpp<a hidden class="anchor" aria-hidden="true" href="#deepseek-v4-flash-local-inference-ds4-vs-ollama-vs-llamacpp">#</a></h2>
+<p>Running a massive model like DeepSeek V4 Flash requires hardcore optimization. Here is how DS4 obliterates the competition on an M-series Mac: | Framework | 2-bit Quantization Speed | KV Cache Persistence | Hardware Optimization | Setup Difficulty |
 | :&mdash; | :&mdash; | :&mdash; | :&mdash; | :&mdash; |
 | <strong>DwarfStar 4 (DS4)</strong> | <strong>Ultra-Fast (35+ t/s)</strong> | <strong>Yes (Disk-backed)</strong> | Native Metal / CUDA | Moderate |
 | <strong>Ollama</strong> | Slow | No (RAM wipe on exit)| Generic cross-platform | Very Easy |
-| <strong>llama.cpp</strong> | Medium | Partial | Manual compilation req. | Hard |</p><h2 id=what-is-ds4-and-who-created-it>What Is DS4 and Who Created It?<a hidden class=anchor aria-hidden=true href=#what-is-ds4-and-who-created-it>#</a></h2><p><strong>DS4</strong> stands for <strong>DwarfStar 4</strong>, a small native inference engine purpose-built for <strong>DeepSeek V4 Flash</strong>. It was created by <strong>Salvatore Sanfilippo</strong> (<a href=https://github.com/antirez>antirez</a>), the Italian programmer famous for creating <strong>Redis</strong>, one of the most widely used in-memory data stores in the world.</p><p>Sanfilippo&rsquo;s approach with DS4 is characteristically opinionated: instead of building yet another generic model loader, he chose to focus entirely on making <strong>one model</strong> — DeepSeek V4 Flash — run exceptionally well on local hardware. The project is not a framework, not a wrapper, and not a universal GGUF runner. It is a <strong>DeepSeek V4 Flash-specific Metal and CUDA graph executor</strong> with custom loading, prompt rendering, KV state management, and server API glue.</p><blockquote><p>&ldquo;This project would not exist without llama.cpp and GGML,&rdquo; Sanfilippo acknowledges, giving full credit to Georgi Gerganov and the llama.cpp community. DS4 borrows quantization formats, kernel ideas, and GGUF ecosystem knowledge from that project, but implements its own optimized execution path.</p></blockquote><h3 id=why-deepseek-v4-flash>Why DeepSeek V4 Flash?<a hidden class=anchor aria-hidden=true href=#why-deepseek-v4-flash>#</a></h3><p>Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local deployment. Here is why: 1. <strong>Speed through efficiency</strong>: With fewer active parameters during inference, it outperforms many smaller dense models in raw throughput.
+| <strong>llama.cpp</strong> | Medium | Partial | Manual compilation req. | Hard |</p>
+<h2 id="what-is-ds4-and-who-created-it">What Is DS4 and Who Created It?<a hidden class="anchor" aria-hidden="true" href="#what-is-ds4-and-who-created-it">#</a></h2>
+<p><strong>DS4</strong> stands for <strong>DwarfStar 4</strong>, a small native inference engine purpose-built for <strong>DeepSeek V4 Flash</strong>. It was created by <strong>Salvatore Sanfilippo</strong> (<a href="https://github.com/antirez">antirez</a>), the Italian programmer famous for creating <strong>Redis</strong>, one of the most widely used in-memory data stores in the world.</p>
+<p>Sanfilippo&rsquo;s approach with DS4 is characteristically opinionated: instead of building yet another generic model loader, he chose to focus entirely on making <strong>one model</strong> — DeepSeek V4 Flash — run exceptionally well on local hardware. The project is not a framework, not a wrapper, and not a universal GGUF runner. It is a <strong>DeepSeek V4 Flash-specific Metal and CUDA graph executor</strong> with custom loading, prompt rendering, KV state management, and server API glue.</p>
+<blockquote>
+<p>&ldquo;This project would not exist without llama.cpp and GGML,&rdquo; Sanfilippo acknowledges, giving full credit to Georgi Gerganov and the llama.cpp community. DS4 borrows quantization formats, kernel ideas, and GGUF ecosystem knowledge from that project, but implements its own optimized execution path.</p>
+</blockquote>
+<h3 id="why-deepseek-v4-flash">Why DeepSeek V4 Flash?<a hidden class="anchor" aria-hidden="true" href="#why-deepseek-v4-flash">#</a></h3>
+<p>Sanfilippo believes DeepSeek V4 Flash is a uniquely compelling model for local deployment. Here is why: 1. <strong>Speed through efficiency</strong>: With fewer active parameters during inference, it outperforms many smaller dense models in raw throughput.
 2. <strong>Proportional thinking</strong>: In thinking mode, its reasoning section length adapts to problem complexity — often using only 1/5 the thinking tokens of comparable models. This makes it practical for real-world agent workflows where other models would stall.
 3. <strong>1 million token context window</strong>: One of the largest context windows available in any open-weights model, enabling entire codebases, books, or long conversation histories to fit in a single prompt.
 4. <strong>Knowledge depth</strong>: At 284B parameters, it knows significantly more than 27B or 35B models at the edges of knowledge.
 5. <strong>Superior writing quality</strong>: Users report it &ldquo;feels like a quasi-frontier model&rdquo; in English, Italian, and other languages.
 6. <strong>Compressed KV cache</strong>: Enables long-context inference on local machines and supports <strong>on-disk KV cache persistence</strong> — a game-changer for agent workflows.
-7. <strong>2-bit quantization viability</strong>: When quantized asymmetrically (routed experts only), 2-bit weights run surprisingly well, fitting into 96-128GB MacBooks.</p><hr><h2 id=technical-architecture-metal-vs-cuda-optimizations>Technical Architecture: Metal vs. CUDA Optimizations<a hidden class=anchor aria-hidden=true href=#technical-architecture-metal-vs-cuda-optimizations>#</a></h2><p>DS4&rsquo;s architecture reflects a clear design philosophy: <strong>maximize performance for the target hardware</strong>, even if that means sacrificing generality. The project maintains three build targets: | Build Target | Platform | Use Case |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
-| ```make<code>| macOS | Metal-optimized production build | |</code>make cuda-spark<code>| Linux (DGX Spark / GB10) | CUDA for NVIDIA GB10 systems | |</code>make cuda-generic<code>| Linux (other CUDA GPUs) | General CUDA GPU support | |</code>make cpu```` | Any | Reference/debug build only |</p><h3 id=metal-on-macos>Metal on macOS<a hidden class=anchor aria-hidden=true href=#metal-on-macos>#</a></h3><p>The Metal backend is DS4&rsquo;s <strong>primary optimization target</strong> for macOS. It leverages Apple&rsquo;s unified memory architecture to eliminate the PCIe transfer bottleneck that plagues discrete GPU setups. On a Mac Studio M3 Ultra with 512GB RAM, DS4 achieves: - <strong>468 tokens/second prefill</strong> on long prompts (11,709 tokens)</p><ul><li><strong>36.86 tokens/second generation</strong> with q2 quantization</li><li><strong>448 tokens/second prefill</strong> and <strong>35.5 tokens/second generation</strong> with q4</li></ul><p>These numbers are competitive with — and in some cases exceed — what users achieve with llama.cpp or Ollama on equivalent hardware, particularly for long-context workloads where DS4&rsquo;s compressed KV cache and chunked prefill shine.</p><h3 id=cuda-on-linux>CUDA on Linux<a hidden class=anchor aria-hidden=true href=#cuda-on-linux>#</a></h3><p>For Linux workstations, DS4 offers two CUDA build paths. The <code>cuda-spark</code> target is tuned for NVIDIA&rsquo;s DGX Spark (GB10) platform, while <code>cuda-generic</code> supports a broader range of local CUDA GPUs. On a DGX Spark GB10 with 128GB RAM, the engine reaches <strong>343 tokens/second prefill</strong> and <strong>13.75 tokens/second generation</strong> with q2 weights.</p><p>The CUDA path shares the same graph execution engine, KV cache compression, and API server as the Metal build, ensuring consistent behavior across platforms.</p><h3 id=cpu-path-diagnostics-only>CPU Path: Diagnostics Only<a hidden class=anchor aria-hidden=true href=#cpu-path-diagnostics-only>#</a></h3><p>DS4 includes a CPU backend, but Sanfilippo is explicit: <strong>&ldquo;Do not treat the CPU path as the production target.&rdquo;</strong> It exists for correctness validation, tokenizer diagnostics, and regression testing. In fact, on current macOS versions, the CPU path can trigger a kernel bug in the virtual memory implementation that crashes the system — a stark reminder that this is alpha-quality software.</p><h3 id=key-architectural-innovations>Key Architectural Innovations<a hidden class=anchor aria-hidden=true href=#key-architectural-innovations>#</a></h3><ol><li><p><strong>Asymmetric 2-bit quantization</strong>: Unlike uniform quantization that degrades all layers equally, DS4&rsquo;s q2 quants apply <code>IQ2_XXS</code> to routed MoE up/gate projections and <code>Q2_K</code> to down projections, while leaving shared experts, projections, and routing layers untouched. This preserves quality where it matters most.</p></li><li><p><strong>Compressed KV cache with disk persistence</strong>: DS4 treats the KV cache as a &ldquo;first-class disk citizen.&rdquo; Rather than assuming KV state must live in RAM, it writes checkpoints to fast SSDs. This enables 100K-300K (and even 1M) context windows on machines with limited RAM.</p></li><li><p><strong>Exact DSML tool-call replay</strong>: For agent integration, DS4 remembers the exact DSML text the model generated for each tool call, keyed by unguessable IDs. When stateless clients resend tool results, the server replays the exact bytes, avoiding prefix mismatch and expensive recomputation.</p></li><li><p><strong>Model-specific graph executor</strong>: By not trying to support every GGUF file in existence, DS4 eliminates the overhead of generic tensor dispatch and can hardcode optimal memory layouts and kernel fusion strategies for DeepSeek V4 Flash&rsquo;s MoE architecture.</p></li></ol><hr><h2 id=installation-guide-for-macos-and-linux>Installation Guide for macOS and Linux<a hidden class=anchor aria-hidden=true href=#installation-guide-for-macos-and-linux>#</a></h2><h3 id=prerequisites>Prerequisites<a hidden class=anchor aria-hidden=true href=#prerequisites>#</a></h3><p><strong>macOS:</strong></p><ul><li>macOS 14+ (Sonoma or later)</li><li>Apple Silicon Mac (M1/M2/M3/M4 or Ultra variants)</li><li><strong>96GB RAM minimum</strong> for q2 weights; <strong>128GB recommended</strong></li><li><strong>256GB+ RAM</strong> for q4 weights</li><li>Xcode Command Line Tools</li></ul><p><strong>Linux (CUDA):</strong></p><ul><li>Ubuntu 22.04+ or compatible distribution</li><li>NVIDIA GPU with CUDA support</li><li>CUDA Toolkit 12.x+</li><li><strong>96GB+ system RAM</strong> for q2; <strong>256GB+</strong> for q4</li><li><code>build-essential</code>, <code>curl</code>, <code>git</code></li></ul><h3 id=step-1-clone-the-repository>Step 1: Clone the Repository<a hidden class=anchor aria-hidden=true href=#step-1-clone-the-repository>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/antirez/ds4.git
-</span></span><span style=display:flex><span>cd ds4
-</span></span></code></pre></div><h3 id=step-2-download-model-weights>Step 2: Download Model Weights<a hidden class=anchor aria-hidden=true href=#step-2-download-model-weights>#</a></h3><p>DS4 only works with its own specially-crafted GGUF files. Use the provided download script: `````bash</p><h1 id=for-96-128gb-ram-machines-recommended>For 96-128GB RAM machines (recommended)<a hidden class=anchor aria-hidden=true href=#for-96-128gb-ram-machines-recommended>#</a></h1><p>./download_model.sh q2-imatrix</p><h1 id=for-256gb-ram-machines>For 256GB+ RAM machines<a hidden class=anchor aria-hidden=true href=#for-256gb-ram-machines>#</a></h1><p>./download_model.sh q4-imatrix</p><h1 id=optional-speculative-decoding-support>Optional: speculative decoding support<a hidden class=anchor aria-hidden=true href=#optional-speculative-decoding-support>#</a></h1><p>./download_model.sh mtp</p><pre tabindex=0><code>
+7. <strong>2-bit quantization viability</strong>: When quantized asymmetrically (routed experts only), 2-bit weights run surprisingly well, fitting into 96-128GB MacBooks.</p>
+<hr>
+<h2 id="technical-architecture-metal-vs-cuda-optimizations">Technical Architecture: Metal vs. CUDA Optimizations<a hidden class="anchor" aria-hidden="true" href="#technical-architecture-metal-vs-cuda-optimizations">#</a></h2>
+<p>DS4&rsquo;s architecture reflects a clear design philosophy: <strong>maximize performance for the target hardware</strong>, even if that means sacrificing generality. The project maintains three build targets: | Build Target | Platform | Use Case |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
+| ```make<code>| macOS | Metal-optimized production build | |</code>make cuda-spark<code>| Linux (DGX Spark / GB10) | CUDA for NVIDIA GB10 systems | |</code>make cuda-generic<code>| Linux (other CUDA GPUs) | General CUDA GPU support | |</code>make cpu```` | Any | Reference/debug build only |</p>
+<h3 id="metal-on-macos">Metal on macOS<a hidden class="anchor" aria-hidden="true" href="#metal-on-macos">#</a></h3>
+<p>The Metal backend is DS4&rsquo;s <strong>primary optimization target</strong> for macOS. It leverages Apple&rsquo;s unified memory architecture to eliminate the PCIe transfer bottleneck that plagues discrete GPU setups. On a Mac Studio M3 Ultra with 512GB RAM, DS4 achieves: - <strong>468 tokens/second prefill</strong> on long prompts (11,709 tokens)</p>
+<ul>
+<li><strong>36.86 tokens/second generation</strong> with q2 quantization</li>
+<li><strong>448 tokens/second prefill</strong> and <strong>35.5 tokens/second generation</strong> with q4</li>
+</ul>
+<p>These numbers are competitive with — and in some cases exceed — what users achieve with llama.cpp or Ollama on equivalent hardware, particularly for long-context workloads where DS4&rsquo;s compressed KV cache and chunked prefill shine.</p>
+<h3 id="cuda-on-linux">CUDA on Linux<a hidden class="anchor" aria-hidden="true" href="#cuda-on-linux">#</a></h3>
+<p>For Linux workstations, DS4 offers two CUDA build paths. The <code>cuda-spark</code> target is tuned for NVIDIA&rsquo;s DGX Spark (GB10) platform, while <code>cuda-generic</code> supports a broader range of local CUDA GPUs. On a DGX Spark GB10 with 128GB RAM, the engine reaches <strong>343 tokens/second prefill</strong> and <strong>13.75 tokens/second generation</strong> with q2 weights.</p>
+<p>The CUDA path shares the same graph execution engine, KV cache compression, and API server as the Metal build, ensuring consistent behavior across platforms.</p>
+<h3 id="cpu-path-diagnostics-only">CPU Path: Diagnostics Only<a hidden class="anchor" aria-hidden="true" href="#cpu-path-diagnostics-only">#</a></h3>
+<p>DS4 includes a CPU backend, but Sanfilippo is explicit: <strong>&ldquo;Do not treat the CPU path as the production target.&rdquo;</strong> It exists for correctness validation, tokenizer diagnostics, and regression testing. In fact, on current macOS versions, the CPU path can trigger a kernel bug in the virtual memory implementation that crashes the system — a stark reminder that this is alpha-quality software.</p>
+<h3 id="key-architectural-innovations">Key Architectural Innovations<a hidden class="anchor" aria-hidden="true" href="#key-architectural-innovations">#</a></h3>
+<ol>
+<li>
+<p><strong>Asymmetric 2-bit quantization</strong>: Unlike uniform quantization that degrades all layers equally, DS4&rsquo;s q2 quants apply <code>IQ2_XXS</code> to routed MoE up/gate projections and <code>Q2_K</code> to down projections, while leaving shared experts, projections, and routing layers untouched. This preserves quality where it matters most.</p>
+</li>
+<li>
+<p><strong>Compressed KV cache with disk persistence</strong>: DS4 treats the KV cache as a &ldquo;first-class disk citizen.&rdquo; Rather than assuming KV state must live in RAM, it writes checkpoints to fast SSDs. This enables 100K-300K (and even 1M) context windows on machines with limited RAM.</p>
+</li>
+<li>
+<p><strong>Exact DSML tool-call replay</strong>: For agent integration, DS4 remembers the exact DSML text the model generated for each tool call, keyed by unguessable IDs. When stateless clients resend tool results, the server replays the exact bytes, avoiding prefix mismatch and expensive recomputation.</p>
+</li>
+<li>
+<p><strong>Model-specific graph executor</strong>: By not trying to support every GGUF file in existence, DS4 eliminates the overhead of generic tensor dispatch and can hardcode optimal memory layouts and kernel fusion strategies for DeepSeek V4 Flash&rsquo;s MoE architecture.</p>
+</li>
+</ol>
+<hr>
+<h2 id="installation-guide-for-macos-and-linux">Installation Guide for macOS and Linux<a hidden class="anchor" aria-hidden="true" href="#installation-guide-for-macos-and-linux">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
+<p><strong>macOS:</strong></p>
+<ul>
+<li>macOS 14+ (Sonoma or later)</li>
+<li>Apple Silicon Mac (M1/M2/M3/M4 or Ultra variants)</li>
+<li><strong>96GB RAM minimum</strong> for q2 weights; <strong>128GB recommended</strong></li>
+<li><strong>256GB+ RAM</strong> for q4 weights</li>
+<li>Xcode Command Line Tools</li>
+</ul>
+<p><strong>Linux (CUDA):</strong></p>
+<ul>
+<li>Ubuntu 22.04+ or compatible distribution</li>
+<li>NVIDIA GPU with CUDA support</li>
+<li>CUDA Toolkit 12.x+</li>
+<li><strong>96GB+ system RAM</strong> for q2; <strong>256GB+</strong> for q4</li>
+<li><code>build-essential</code>, <code>curl</code>, <code>git</code></li>
+</ul>
+<h3 id="step-1-clone-the-repository">Step 1: Clone the Repository<a hidden class="anchor" aria-hidden="true" href="#step-1-clone-the-repository">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/antirez/ds4.git
+</span></span><span style="display:flex;"><span>cd ds4
+</span></span></code></pre></div><h3 id="step-2-download-model-weights">Step 2: Download Model Weights<a hidden class="anchor" aria-hidden="true" href="#step-2-download-model-weights">#</a></h3>
+<p>DS4 only works with its own specially-crafted GGUF files. Use the provided download script: `````bash</p>
+<h1 id="for-96-128gb-ram-machines-recommended">For 96-128GB RAM machines (recommended)<a hidden class="anchor" aria-hidden="true" href="#for-96-128gb-ram-machines-recommended">#</a></h1>
+<p>./download_model.sh q2-imatrix</p>
+<h1 id="for-256gb-ram-machines">For 256GB+ RAM machines<a hidden class="anchor" aria-hidden="true" href="#for-256gb-ram-machines">#</a></h1>
+<p>./download_model.sh q4-imatrix</p>
+<h1 id="optional-speculative-decoding-support">Optional: speculative decoding support<a hidden class="anchor" aria-hidden="true" href="#optional-speculative-decoding-support">#</a></h1>
+<p>./download_model.sh mtp</p>
+<pre tabindex="0"><code>
 The script fetches from Hugging Face (````antirez/deepseek-v4-gguf````), stores files under ````./gguf/````, and creates a symlink at ````./ds4flash.gguf````.
 
 ### Step 3: Build the Engine
@@ -50,59 +428,111 @@ The script fetches from Hugging Face (````antirez/deepseek-v4-gguf````), stores 
 **macOS (Metal):**
 `````bash
 make
-</code></pre><p><strong>Linux (CUDA — DGX Spark / GB10):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>make cuda-spark
-</span></span></code></pre></div><p><strong>Linux (CUDA — generic GPU):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>make cuda-generic
-</span></span></code></pre></div><p><strong>CPU-only (diagnostics only):</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>make cpu
-</span></span></code></pre></div><p>This produces two binaries: - <code>./ds4</code> — Interactive CLI</p><ul><li><code>./ds4-server</code> — OpenAI/Anthropic-compatible HTTP API server</li></ul><h3 id=step-4-verify-installation>Step 4: Verify Installation<a hidden class=anchor aria-hidden=true href=#step-4-verify-installation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Quick one-shot test</span>
-</span></span><span style=display:flex><span>./ds4 -p <span style=color:#e6db74>&#34;Explain the CAP theorem in one paragraph.&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Check all options</span>
-</span></span><span style=display:flex><span>./ds4 --help
-</span></span><span style=display:flex><span>./ds4-server --help
-</span></span></code></pre></div><hr><h2 id=performance-benchmarks-ds4-vs-ollama-vs-llamacpp>Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp<a hidden class=anchor aria-hidden=true href=#performance-benchmarks-ds4-vs-ollama-vs-llamacpp>#</a></h2><p>Benchmarking LLM inference is notoriously tricky — numbers vary by prompt length, quantization, batch size, and hardware. That said, DS4&rsquo;s published numbers reveal impressive performance, particularly for <strong>long-context prefill</strong>.</p><h3 id=ds4-official-benchmarks-metal---ctx-32768-greedy-decoding--n-256>DS4 Official Benchmarks (Metal, <code>--ctx 32768</code>, greedy decoding, <code>-n 256</code>)<a hidden class=anchor aria-hidden=true href=#ds4-official-benchmarks-metal---ctx-32768-greedy-decoding--n-256>#</a></h3><p>| Machine | Quant | Prompt | Prefill | Generation |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>Linux (CUDA — DGX Spark / GB10):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make cuda-spark
+</span></span></code></pre></div><p><strong>Linux (CUDA — generic GPU):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make cuda-generic
+</span></span></code></pre></div><p><strong>CPU-only (diagnostics only):</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>make cpu
+</span></span></code></pre></div><p>This produces two binaries: - <code>./ds4</code> — Interactive CLI</p>
+<ul>
+<li><code>./ds4-server</code> — OpenAI/Anthropic-compatible HTTP API server</li>
+</ul>
+<h3 id="step-4-verify-installation">Step 4: Verify Installation<a hidden class="anchor" aria-hidden="true" href="#step-4-verify-installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Quick one-shot test</span>
+</span></span><span style="display:flex;"><span>./ds4 -p <span style="color:#e6db74">&#34;Explain the CAP theorem in one paragraph.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Check all options</span>
+</span></span><span style="display:flex;"><span>./ds4 --help
+</span></span><span style="display:flex;"><span>./ds4-server --help
+</span></span></code></pre></div><hr>
+<h2 id="performance-benchmarks-ds4-vs-ollama-vs-llamacpp">Performance Benchmarks: DS4 vs. Ollama vs. llama.cpp<a hidden class="anchor" aria-hidden="true" href="#performance-benchmarks-ds4-vs-ollama-vs-llamacpp">#</a></h2>
+<p>Benchmarking LLM inference is notoriously tricky — numbers vary by prompt length, quantization, batch size, and hardware. That said, DS4&rsquo;s published numbers reveal impressive performance, particularly for <strong>long-context prefill</strong>.</p>
+<h3 id="ds4-official-benchmarks-metal---ctx-32768-greedy-decoding--n-256">DS4 Official Benchmarks (Metal, <code>--ctx 32768</code>, greedy decoding, <code>-n 256</code>)<a hidden class="anchor" aria-hidden="true" href="#ds4-official-benchmarks-metal---ctx-32768-greedy-decoding--n-256">#</a></h3>
+<p>| Machine | Quant | Prompt | Prefill | Generation |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | MacBook Pro M3 Max, 128GB | q2 | short | 58.52 t/s | 26.68 t/s |
 | MacBook Pro M3 Max, 128GB | q2 | 11,709 tokens | <strong>250.11 t/s</strong> | 21.47 t/s |
 | Mac Studio M3 Ultra, 512GB | q2 | short | 84.43 t/s | 36.86 t/s |
 | Mac Studio M3 Ultra, 512GB | q2 | 11,709 tokens | <strong>468.03 t/s</strong> | 27.39 t/s |
 | Mac Studio M3 Ultra, 512GB | q4 | short | 78.95 t/s | 35.50 t/s |
-| DGX Spark GB10, 128GB | q2 | 7,047 tokens | 343.81 t/s | 13.75 t/s |</p><h3 id=how-ds4-compares>How DS4 Compares<a hidden class=anchor aria-hidden=true href=#how-ds4-compares>#</a></h3><p><strong>vs. Ollama:</strong>
-Ollama is excellent for getting started quickly and supports hundreds of models. However, as a general-purpose runner, it cannot apply the model-specific optimizations that DS4 uses. For DeepSeek V4 Flash specifically, DS4&rsquo;s asymmetric quantization mix, compressed KV cache, and custom Metal kernels typically deliver <strong>20-40% better prefill throughput</strong> on equivalent Apple Silicon hardware.</p><p><strong>vs. llama.cpp:</strong>
-llama.cpp is the foundational project that made local LLM inference possible. DS4 openly acknowledges its debt to llama.cpp and GGML. Where DS4 diverges is in its <strong>single-model focus</strong>: by not supporting arbitrary GGUF files, DS4 can hardcode tensor layouts, eliminate generic dispatch overhead, and validate correctness against official DeepSeek API logits. For users who only care about DeepSeek V4 Flash, DS4 offers a more &ldquo;finished&rdquo; experience with built-in server APIs, disk KV caching, and agent integration.</p><p><strong>The Verdict:</strong> If you want a Swiss Army knife for many models, Ollama or llama.cpp are better choices. If you want DeepSeek V4 Flash to run as fast and reliably as possible on your Mac Studio or CUDA workstation, DS4 is purpose-built for that exact job.</p><hr><h2 id=code-examples-for-running-inference>Code Examples for Running Inference<a hidden class=anchor aria-hidden=true href=#code-examples-for-running-inference>#</a></h2><h3 id=one-shot-cli-prompt>One-Shot CLI Prompt<a hidden class=anchor aria-hidden=true href=#one-shot-cli-prompt>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>./ds4 -p <span style=color:#e6db74>&#34;Write a Python function to implement merge sort.&#34;</span>
-</span></span></code></pre></div><h3 id=interactive-chat-session>Interactive Chat Session<a hidden class=anchor aria-hidden=true href=#interactive-chat-session>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>./ds4
-</span></span></code></pre></div><p>This starts a multi-turn chat with persistent KV state. Useful commands: - <code>/help</code> — Show available commands</p><ul><li><code>/think</code> — Enable thinking mode (default)</li><li><code>/think-max</code> — Maximum reasoning effort</li><li><code>/nothink</code> — Disable thinking for faster responses</li><li><code>/ctx 100000</code> — Set context window size</li><li><code>/read FILE</code> — Include file contents in context</li><li><code>/quit</code> — Exit</li></ul><h3 id=server-mode-with-openai-compatible-api>Server Mode with OpenAI-Compatible API<a hidden class=anchor aria-hidden=true href=#server-mode-with-openai-compatible-api>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>./ds4-server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --ctx <span style=color:#ae81ff>100000</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --kv-disk-dir /tmp/ds4-kv <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --kv-disk-space-mb <span style=color:#ae81ff>8192</span>
-</span></span></code></pre></div><p>The server starts on <code>http://127.0.0.1:8000</code> with these endpoints: - <code>GET /v1/models</code></p><ul><li><code>POST /v1/chat/completions</code></li><li><code>POST /v1/completions</code></li><li><code>POST /v1/messages</code> (Anthropic-compatible)</li></ul><h3 id=curl-example-chat-completions>cURL Example (Chat Completions)<a hidden class=anchor aria-hidden=true href=#curl-example-chat-completions>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl http://127.0.0.1:8000/v1/chat/completions <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#39;Content-Type: application/json&#39;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;model&#34;: &#34;deepseek-v4-flash&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;messages&#34;: [
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;List three Redis design principles.&#34;}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    ],
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;stream&#34;: true
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><h3 id=python-client-example>Python Client Example<a hidden class=anchor aria-hidden=true href=#python-client-example>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> openai
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> openai<span style=color:#f92672>.</span>OpenAI(
-</span></span><span style=display:flex><span>    base_url<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;http://127.0.0.1:8000/v1&#34;</span>,
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;dsv4-local&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>chat<span style=color:#f92672>.</span>completions<span style=color:#f92672>.</span>create(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;deepseek-v4-flash&#34;</span>,
-</span></span><span style=display:flex><span>    messages<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;system&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;You are a helpful coding assistant.&#34;</span>},
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;Refactor this function to use list comprehensions.&#34;</span>}
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    temperature<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> chunk <span style=color:#f92672>in</span> response: <span style=color:#66d9ef>if</span> chunk<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>delta<span style=color:#f92672>.</span>content: print(chunk<span style=color:#f92672>.</span>choices[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>delta<span style=color:#f92672>.</span>content, end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>)
-</span></span></code></pre></div><h3 id=tool-use-example>Tool Use Example<a hidden class=anchor aria-hidden=true href=#tool-use-example>#</a></h3><p>DS4 supports OpenAI-style function calling. The server converts tool schemas to DeepSeek&rsquo;s DSML format and maps results back automatically: `````bash
-curl http://127.0.0.1:8000/v1/chat/completions<br>-H &lsquo;Content-Type: application/json&rsquo;<br>-d &lsquo;{
+| DGX Spark GB10, 128GB | q2 | 7,047 tokens | 343.81 t/s | 13.75 t/s |</p>
+<h3 id="how-ds4-compares">How DS4 Compares<a hidden class="anchor" aria-hidden="true" href="#how-ds4-compares">#</a></h3>
+<p><strong>vs. Ollama:</strong>
+Ollama is excellent for getting started quickly and supports hundreds of models. However, as a general-purpose runner, it cannot apply the model-specific optimizations that DS4 uses. For DeepSeek V4 Flash specifically, DS4&rsquo;s asymmetric quantization mix, compressed KV cache, and custom Metal kernels typically deliver <strong>20-40% better prefill throughput</strong> on equivalent Apple Silicon hardware.</p>
+<p><strong>vs. llama.cpp:</strong>
+llama.cpp is the foundational project that made local LLM inference possible. DS4 openly acknowledges its debt to llama.cpp and GGML. Where DS4 diverges is in its <strong>single-model focus</strong>: by not supporting arbitrary GGUF files, DS4 can hardcode tensor layouts, eliminate generic dispatch overhead, and validate correctness against official DeepSeek API logits. For users who only care about DeepSeek V4 Flash, DS4 offers a more &ldquo;finished&rdquo; experience with built-in server APIs, disk KV caching, and agent integration.</p>
+<p><strong>The Verdict:</strong> If you want a Swiss Army knife for many models, Ollama or llama.cpp are better choices. If you want DeepSeek V4 Flash to run as fast and reliably as possible on your Mac Studio or CUDA workstation, DS4 is purpose-built for that exact job.</p>
+<hr>
+<h2 id="code-examples-for-running-inference">Code Examples for Running Inference<a hidden class="anchor" aria-hidden="true" href="#code-examples-for-running-inference">#</a></h2>
+<h3 id="one-shot-cli-prompt">One-Shot CLI Prompt<a hidden class="anchor" aria-hidden="true" href="#one-shot-cli-prompt">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./ds4 -p <span style="color:#e6db74">&#34;Write a Python function to implement merge sort.&#34;</span>
+</span></span></code></pre></div><h3 id="interactive-chat-session">Interactive Chat Session<a hidden class="anchor" aria-hidden="true" href="#interactive-chat-session">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./ds4
+</span></span></code></pre></div><p>This starts a multi-turn chat with persistent KV state. Useful commands: - <code>/help</code> — Show available commands</p>
+<ul>
+<li><code>/think</code> — Enable thinking mode (default)</li>
+<li><code>/think-max</code> — Maximum reasoning effort</li>
+<li><code>/nothink</code> — Disable thinking for faster responses</li>
+<li><code>/ctx 100000</code> — Set context window size</li>
+<li><code>/read FILE</code> — Include file contents in context</li>
+<li><code>/quit</code> — Exit</li>
+</ul>
+<h3 id="server-mode-with-openai-compatible-api">Server Mode with OpenAI-Compatible API<a hidden class="anchor" aria-hidden="true" href="#server-mode-with-openai-compatible-api">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./ds4-server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --ctx <span style="color:#ae81ff">100000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --kv-disk-dir /tmp/ds4-kv <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --kv-disk-space-mb <span style="color:#ae81ff">8192</span>
+</span></span></code></pre></div><p>The server starts on <code>http://127.0.0.1:8000</code> with these endpoints: - <code>GET /v1/models</code></p>
+<ul>
+<li><code>POST /v1/chat/completions</code></li>
+<li><code>POST /v1/completions</code></li>
+<li><code>POST /v1/messages</code> (Anthropic-compatible)</li>
+</ul>
+<h3 id="curl-example-chat-completions">cURL Example (Chat Completions)<a hidden class="anchor" aria-hidden="true" href="#curl-example-chat-completions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://127.0.0.1:8000/v1/chat/completions <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#39;Content-Type: application/json&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;model&#34;: &#34;deepseek-v4-flash&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;messages&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {&#34;role&#34;: &#34;user&#34;, &#34;content&#34;: &#34;List three Redis design principles.&#34;}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;stream&#34;: true
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="python-client-example">Python Client Example<a hidden class="anchor" aria-hidden="true" href="#python-client-example">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> openai<span style="color:#f92672">.</span>OpenAI(
+</span></span><span style="display:flex;"><span>    base_url<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://127.0.0.1:8000/v1&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;dsv4-local&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>chat<span style="color:#f92672">.</span>completions<span style="color:#f92672">.</span>create(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;deepseek-v4-flash&#34;</span>,
+</span></span><span style="display:flex;"><span>    messages<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;system&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;You are a helpful coding assistant.&#34;</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;Refactor this function to use list comprehensions.&#34;</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    temperature<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> response: <span style="color:#66d9ef">if</span> chunk<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>delta<span style="color:#f92672">.</span>content: print(chunk<span style="color:#f92672">.</span>choices[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>delta<span style="color:#f92672">.</span>content, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span></code></pre></div><h3 id="tool-use-example">Tool Use Example<a hidden class="anchor" aria-hidden="true" href="#tool-use-example">#</a></h3>
+<p>DS4 supports OpenAI-style function calling. The server converts tool schemas to DeepSeek&rsquo;s DSML format and maps results back automatically: `````bash
+curl http://127.0.0.1:8000/v1/chat/completions <br>
+-H &lsquo;Content-Type: application/json&rsquo; <br>
+-d &lsquo;{
 &ldquo;model&rdquo;: &ldquo;deepseek-v4-flash&rdquo;,
 &ldquo;messages&rdquo;: [{&ldquo;role&rdquo;: &ldquo;user&rdquo;, &ldquo;content&rdquo;: &ldquo;What is the weather in Tokyo?&rdquo;}],
 &ldquo;tools&rdquo;: [{
@@ -119,7 +549,8 @@ curl http://127.0.0.1:8000/v1/chat/completions<br>-H &lsquo;Content-Type: applic
 }
 }],
 &ldquo;tool_choice&rdquo;: &ldquo;auto&rdquo;
-}&rsquo;</p><pre tabindex=0><code>
+}&rsquo;</p>
+<pre tabindex="0"><code>
 * * *
 
 ## Use Cases: Where DS4 Excels
@@ -254,11 +685,155 @@ A: Unlike Ollama which dumps context, DS4 saves the KV cache to your SSD. You ca
   }
 }
 &lt;/script&gt;
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/ds4-deepseek-4-flash-local-inference-engine/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/ds4-open-source-deepseek-alternative-2026/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/ds4-deepseek-4-flash-local-inference-engine/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/ds4-open-source-deepseek-alternative-2026/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

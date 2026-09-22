@@ -1,10 +1,271 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“opencode”, “ai-coding-agent”, “claude-code-alternative”, “open-source”] aliases:\n/vi/posts/opencode-open-source-claude-code-alternative-2026/ {\u003c/* resource-info */\u003e}\nTóm tắt một câu: OpenCode là AI coding agent mã nguồn mở đạt 160.000+ sao GitHub năm 2026, hỗ trợ 75+ mô hình AI, không phí thuê bao, giúp lập trình viên viết code nhanh hơn 3-5 lần ngay trong terminal.\nTại Sao OpenCode Bùng Nổ Năm 2026? Thị trường công cụ lập trình AI năm 2026 đang chia làm hai phe rõ rệt: trả phí đóng hộp và miễn phí mở. Claude Code của Anthropic thu phí $20-$200/tháng, Cursor lấy $20/tháng, trong khi OpenCode xuất hiện với giá $0 và giờ đây đã vượt mặt tất cả với 160.000+ sao GitHub.\nSự bùng nổ này đến từ ba lý do rất thực tế với lập trình viên Việt Nam và khu vực Đông Nam Á: 1. Không mất tiền thuê bao hàng tháng: Phần mềm miễn phí 100% (MIT License). Bạn chỉ trả tiền API nếu dùng mô hình cloud—hoặc không trả đồng nào nếu chạy model local qua Ollama. 2. Tự do chọn mô hình: Claude Code chỉ dùng Anthropic, Copilot chỉ dùng OpenAI. OpenCode hỗ trợ 75+ nhà cung cấp bao gồm GPT-5.5, Gemini 3.1 Pro, DeepSeek-V4, và cả model miễn phí local. 3. Chạy được trên máy cũ: Không cần MacBook Pro hay GPU RTX 4090. Với Ollama + Gemma 4 9B, bạn có thể chạy OpenCode trên laptop có 16GB RAM—phù hợp điều kiện phổ biến tại Việt Nam.\nOpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả OpenCode không phải là plugin gợi ý code như GitHub Copilot. Nó là một “lập trình viên AI” sống trong terminal, hiểu toàn bộ dự án của bạn, chạy lệnh shell, quản lý Git, và thậm chí kết nối với công cụ bên ngoài qua giao thức MCP.\nCấu Trúc Kỹ Thuật Thành phần Công nghệ Tác dụng Giao diện OpenTUI (TypeScript + Zig) Terminal đẹp, hiển thị diff màu, cuộn mượt Định tuyến model Models.dev Kết nối 75+ nhà cung cấp LLM Hiểu code LSP (Language Server Protocol) Nhảy đến hàm/symbol trong 50ms, không phải tìm text Thực thi Shell sandbox + Git native Chạy lệnh an toàn, tự động commit Mở rộng MCP Protocol Kết nối database, browser, GitHub, Slack… Điểm mạnh kỹ thuật quan trọng nhất: OpenCode dùng LSP thay vì tìm kiếm text thuần túy. Trên dự án lớn, các công cụ khác mất 45 giây để “đọc” code—OpenCode chỉ cần 50 phần nghìn giây. Đây là lý do nó hoạt động tốt trên cả dự án doanh nghiệp.\nCài Đặt OpenCode Trong 5 Phút Cách 1: Cài Nhanh Nhất (macOS / Linux) curl -fsSL https://opencode.ai/install | bash Lệnh này tự động phát hiện hệ điều hành, cài đặt phụ thuộc, và thiết lập binary toàn cục. Thời gian cài đặt trung bình: dưới 60 giây.\nCách 2: Các Trình Quản Lý Gói Nền tảng Lệnh npm / bun / pnpm npm install -g opencode-ai Homebrew (macOS) brew install anomalyco/tap/opencode Arch Linux sudo pacman -S opencode Windows (Scoop) scoop install opencode Windows (Chocolatey) choco install opencode Docker docker run -it --rm ghcr.io/anomalyco/opencode Lưu ý cho Windows: Cài WSL2 để dùng TUI terminal. Nếu không, tải Desktop App tại opencode.ai/download.\nKết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam Chạy opencode để vào giao diện TUI, sau đó gõ /connect.\nLựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt Nếu bạn đã có tài khoản OpenAI, Anthropic, hoặc Google: - Nhập API key trực tiếp\nMẹo tiết kiệm: Dùng DeepSeek-V4 hoặc Gemini 2.0 Flash cho tác vụ thường ngày—giá rẻ hơn Claude 5-10 lần, chất lượng tương đương 90%. Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API Nạp trước từ $20 (khoảng 500.000 VNĐ). OpenCode Zen là dịch vụ do chính team OpenCode vận hành, chọn lọc các model tốt nhất cho lập trình. Không phí thuê bao, trừ tiền theo token dùng thực tế.\nLựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy # 1. Cài Ollama (ollama.com) # 2. Tải model coding miễn phí ollama pull gemma4:9b ollama pull qwen3:14b # 3. Trong OpenCode, chọn ollama://gemma4:9b Ưu điểm: Không tốn đồng nào cho API. Không lo dữ liệu code nhạy cảm bị gửi lên server nước ngoài. Phù hợp freelancer làm dự án khách hàng có NDA, hoặc công ty khởi nghiệp muốn giữ bí mật sản phẩm.\nNhược điểm: Model local nhẹ (9B-14B tham số) không mạnh bằng Claude Opus hay GPT-5.5. Nên dùng cho tác vụ đơn giản (refactor, viết test, sửa lỗi cú pháp). Tác vụ phức tạp (thiết kế kiến trúc, audit bảo mật) thì chuyển sang model cloud.\nKhởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào? Sau khi cài đặt, di chuyển vào thư mục dự án và chạy: `````bash cd du-an-cua-ban opencode /init\nLệnh ````/init```` sẽ quét code của bạn và tạo file ````AGENTS.md````. File này là **\"bản hướng dẫn nội bộ\"** giúp OpenCode hiểu dự án: - Dùng framework gì (React, Laravel, Django...) - Cấu trúc thư mục thế nào - Quy ước đặt tên, coding style - File quan trọng không được động vào **Ví dụ AGENTS.md cho dự án Node.js:** `````markdown # Dự án: Hệ thống quản lý đơn hàng ## Công nghệ - Node.js 20 + Express - PostgreSQL + Prisma ORM - Redis (session + cache) - Docker Compose cho môi trường dev ## Quy tắc - Tất cả API đặt trong ````src/routes/api/v1/```` - Không được sửa trực tiếp file migration trong ````prisma/migrations/```` - Dùng ````winston```` cho log, cấm ````console.log```` trong production - Lỗi phải wrap bằng class ````AppError```` Lưu ý quan trọng: Thêm AGENTS.md vào Git. Khi đồng nghiệp clone dự án và chạy OpenCode, họ được hưởng cùng ngữ cảnh—AI hiểu dự án nhất quán cho cả nhóm.\nHai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code OpenCode có thiết kế rất thông minh: hai chế độ chuyển đổi bằng phím Tab.\nPlan Mode (Chế Độ Lập Kế Hoạch) Bạn mô tả yêu cầu. OpenCode phân tích code, đưa ra kế hoạch chi tiết—sửa file nào, tại sao sửa, rủi ro gì—nhưng chưa động vào file nào cả. Bạn xem xét, yêu cầu điều chỉnh, rồi mới chuyển sang Build mode.\nVí dụ thực tế: \u003e “Thêm tính năng đăng nhập bằng Google OAuth2 vào hệ thống hiện tại. Dùng Passport.js, JWT làm session. Cập nhật Prisma schema thêm bảng User và Account.”\nPlan mode sẽ liệt kê: 1. Tạo src/auth/google.ts — xử lý OAuth callback 2. Sửa prisma/schema.prisma — thêm model User, Account, Session 3. Thêm src/middleware/requireAuth.ts — bảo vệ route 4. Cập nhật .env.example — thêm GOOGLE_CLIENT_ID 5. Viết test trong tests/auth.test.ts\nBạn đọc, đồng ý, bấm Tab.\nBuild Mode (Chế Độ Thực Thi) OpenCode tự động viết code, chạy migration, thực thi test. Nếu test lỗi, nó tự sửa và chạy lại—cho đến khi xanh hết hoặc báo cáo vấn đề không giải quyết được.\nHướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro Bối cảnh: Bạn có một dự án Express + Prisma, muốn thêm module quản lý sản phẩm (CRUD + phân trang + tìm kiếm).\nBước 1: Khởi động và chọn model phù hợp\ncd my-express-app opencode /connect # Chọn Google → Gemini 3.1 Pro (1M token context, nuốt trọn cả dự án lớn) Bước 2: Plan mode — mô tả yêu cầu bằng tiếng Việt hoặc tiếng Anh\n\u003e Thêm module Product với CRUD đầy đủ. Schema Prisma gồm name, price, \u003e stock, category, createdAt. API có phân trang (cursor-based), \u003e tìm kiếm theo tên và category. Viết unit test cho tất cả endpoint. OpenCode phân tích xong liệt kê: - prisma/schema.prisma: model Product\nsrc/routes/products.ts: 5 endpoint (GET list, GET detail, POST, PUT, DELETE) src/services/productService.ts: business logic + validation src/tests/products.test.ts: test với supertest + jest Migration file tự động tạo Bước 3: Bấm Tab → Build mode. OpenCode làm việc trong 2-3 phút.\nBước 4: Kiểm tra kết quả\ngit diff # Xem AI đã sửa gì npm test # Chạy test để xác nhận Bước 5: Chia sẻ session cho đồng nghiệp\n\u003e /share Tạo link chỉ đọc. Đồng nghiệp xem được toàn bộ quá trình AI “suy nghĩ” và sửa code như thế nào.\nChiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model Đây là bí kíp quan trọng nhất để dùng OpenCode hiệu quả về kinh tế. Đừng dùng một model đắt tiền cho mọi việc.\nLoại tác vụ Model phù hợp Chi phí ước tính Format code, sửa lint, refactor đơn giản Gemma 4 local (Ollama) $0 Viết tính năng thông thường DeepSeek-V4 API ~$0.5-2/task Thiết kế kiến trúc phức tạp Gemini 3.1 Pro ~$2-5/task Kiểm tra bảo mật, tìm lỗ hổng Claude Sonnet 4.6 ~$1-3/task Chuyển đổi code legacy (PHP → Node) Claude Opus 4.7 ~$5-10/task Ví dụ thực tế: Một freelancer Việt Nam làm 20 task/tuần, nếu dùng Claude Code Pro ($20/tháng + giới hạn) có thể hết quota giữa tuần. Với OpenCode + chiến lược phân model, tuần đó hết khoảng $3-8 API fee—tháng chỉ tốn $12-32, rẻ hơn 60-80%.\nMở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý MCP (Model Context Protocol) cho phép OpenCode nói chuyện với thế giới bên ngoài.\nVí dụ: Kết Nối PostgreSQL Thêm vào file ~/.config/opencode/opencode.json: `````json { “mcpServers”: { “database”: { “command”: [“npx”, “-y”, “@modelcontextprotocol/server-postgres”], “env”: { “DATABASE_URL”: “postgresql://user:pass@localhost/dbname” } } } }\nGiờ bạn có thể hỏi: \u003e \"Cho tôi xem schema bảng orders. Query nào trong ````src/reports/quarterly.ts```` chậm? Gợi ý index tối ưu.\" OpenCode sẽ query trực tiếp database, đọc file code, và đề xuất ````CREATE INDEX```` kèm lệnh ````EXPLAIN ANALYZE```` kiểm chứng. ### Các MCP Phổ Biến Khác | MCP Server | Khả năng | |-----------|----------| | Postgres | Xem schema, tối ưu query | | Browser | Crawl web, test UI visually | | GitHub | Tự động tạo issue, review PR | | Slack | Thông báo build status | * * * ## So Sánh Nhanh: OpenCode vs Claude Code vs Cursor | Tiêu chí | OpenCode | Claude Code | Cursor | |----------|----------|-------------|--------| | **Giá phần mềm** | Miễn phí | $20-$200/tháng | $20/tháng | | **Mã nguồn** | Mở (MIT) | Đóng | Đóng | | **Chọn model** | 75+ nhà cung cấp | Chỉ Anthropic | Hạn chế | | **Chạy offline** | ✅ Ollama | ❌ | ❌ | | **Tốc độ hiểu code** | ~50ms (LSP) | ~45 giây | Theo VS Code | | **Hỗ trợ tiếng Việt** | ✅ Prompt tiếng Việt OK | ✅ | ✅ | | **Phù hợp máy yếu** | ✅ Model local nhẹ | ❌ Cần cloud | ❌ Cần IDE nặng | **Chọn cái nào?** - **Freelancer / startup Việt Nam / sinh viên**: OpenCode—miễn phí, linh hoạt, chạy trên laptop bình thường. - **Doanh nghiệp lớn cần SOC2 / Agent Teams**: Claude Code. - **Thích giao diện đồ họa, kéo thả**: Cursor. * * * ## Mẹo Nâng Cao Cho Lập Trình Viên Việt Nam ### 1. Dùng OpenCode Học Lập Trình Sinh viên có thể dùng OpenCode để: - Giải thích đoạn code khó hiểu: \"````@src/algorithms/dijkstra.ts```` giải thích thuật toán này bằng tiếng Việt\" - Tạo bài tập luyện tập: \"Tạo 5 bài test về async/await, có đáp án chi tiết\" - Review code bài tập: \"Review đoạn code này, chỉ lỗi logic và cách sửa\" ### 2. Tích Hợp Model Giá Rẻ Châu Á Qua OpenRouter, OpenCode có thể kết nối: - **DeepSeek-V4**: Giá rẻ, chất lượng cao cho coding - **Qwen3 14B/32B** (Alibaba): Rất tốt cho tiếng Trung và tiếng Việt - **GLM-4.7** (Zhipu AI): Phù hợp dự án có tài liệu tiếng Trung ### 3. Lập Trình Game/App Mobile Bằng OpenCode + Local Model Với laptop có GPU tầm trung (GTX 1660 trở lên): `````bash ollama pull codellama:13b # Trong OpenCode chọn ollama://codellama:13b Viết code Unity (C#), React Native, hoặc Flutter hoàn toàn miễn phí.\nXử Lý Lỗi Thường Gặp “Context too large” — AI không đọc hết code\nTắt MCP server không dùng trong opencode.json Chuyển sang Gemini 3.1 Pro (context window 1M+ token) Thêm .opencodeignore giống .gitignore để bỏ qua node_modules/, dist/ Model local phản hồi chậm\nKiểm tra Ollama đang chạy: curl http://localhost:11434/api/tags Giảm model size: thay Qwen3 32B bằng Gemma 4 9B Đóng ứng dụng khác để giải phóng RAM OpenCode không nhận lệnh tiếng Việt tốt\nCác lệnh kỹ thuật bằng tiếng Anh cho chính xác hơn Miêu tả business logic bằng tiếng Việt vẫn OK AGENTS.md viết bằng tiếng Việt cũng được, AI hiểu Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nKết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI Năm 2026, các model AI lớn đang đồng nhất hóa—GPT-5.5, Claude Sonnet 4.6, Gemini 3.1 Pro cho kết quả coding gần như tương đương. Sự khác biệt nằm ở lớp điều phối (orchestration layer)—công cụ giúp bạn chuyển đổi giữa các model, quản lý ngữ cảnh, và tích hợp vào quy trình làm việc.\nOpenCode với 160.000 sao chứng minh rằng lập trình viên muốn sở hữu công cụ của mình. Không bị khóa vào một nhà cung cấp. Không trả tiền cho tính năng không dùng. Không gửi code nhạy cảm lên server nước ngoài khi không cần thiết.\nNếu bạn là lập trình viên Việt Nam—dù là sinh viên, freelancer, hay dev công ty—OpenCode mang lại giá trị thực tế: giảm chi phí, tăng tốc độ, giữ quyền kiểm soát.\nMở terminal lên. Cài đặt trong 60 giây. Bắt đầu với một dự án nhỏ. 5 phút sau, bạn sẽ hiểu tại sao 160.000 lập trình viên khác đã chọn công cụ này.\ncurl -fsSL https://opencode.ai/install | bash ```` * * * **Tài Nguyên Tham Khảo** - GitHub: https://github.com/anomalyco/opencode - Tài liệu chính thức: https://opencode.ai/docs - MCP Protocol: https://modelcontextprotocol.io - Models.dev: https://models.dev *Bài viết cập nhật lần cuối: 2026-05-19. Công cụ AI thay đổi nhanh—luôn kiểm tra tài liệu chính thức để có thông tin mới nhất.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn Mở Miễn Phí Thay Thế Claude Code — Cài Đặt Chi Tiết và Thủ Thuật Nâng Cao\", \"datePublished\": \"2026-05-20\", \"dateModified\": \"2026-05-20\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/opencode-open-source-claude-code-alternative-2026\" } } * * * ## Related Articles - [2026-05-25-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-01-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-08-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-15-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-22-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"2602","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#t%e1%ba%a1i-sao-opencode-b%c3%b9ng-n%e1%bb%95-n%c4%83m-2026 aria-label="Tại Sao OpenCode Bùng Nổ Năm 2026?">Tại Sao OpenCode Bùng Nổ Năm 2026?</a></li><li><a href=#opencode-l%c3%a0-g%c3%ac-hi%e1%bb%83u-%c4%91%c3%bang-%c4%91%e1%bb%83-d%c3%b9ng-hi%e1%bb%87u-qu%e1%ba%a3 aria-label="OpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả">OpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả</a><ul><li><a href=#c%e1%ba%a5u-tr%c3%bac-k%e1%bb%b9-thu%e1%ba%adt aria-label="Cấu Trúc Kỹ Thuật">Cấu Trúc Kỹ Thuật</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-opencode-trong-5-ph%c3%bat aria-label="Cài Đặt OpenCode Trong 5 Phút">Cài Đặt OpenCode Trong 5 Phút</a><ul><li><a href=#c%c3%a1ch-1-c%c3%a0i-nhanh-nh%e1%ba%a5t-macos--linux aria-label="Cách 1: Cài Nhanh Nhất (macOS / Linux)">Cách 1: Cài Nhanh Nhất (macOS / Linux)</a></li><li><a href=#c%c3%a1ch-2-c%c3%a1c-tr%c3%acnh-qu%e1%ba%a3n-l%c3%bd-g%c3%b3i aria-label="Cách 2: Các Trình Quản Lý Gói">Cách 2: Các Trình Quản Lý Gói</a></li></ul></li><li><a href=#k%e1%ba%bft-n%e1%bb%91i-model-ai-ba-l%e1%bb%b1a-ch%e1%bb%8dn-ph%c3%b9-h%e1%bb%a3p-ng%c3%a2n-s%c3%a1ch-vi%e1%bb%87t-nam aria-label="Kết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam">Kết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam</a><ul><li><a href=#l%e1%bb%b1a-ch%e1%bb%8dn-1-api-key-ri%c3%aang-byok--linh-ho%e1%ba%a1t aria-label="Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt">Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt</a></li><li><a href=#l%e1%bb%b1a-ch%e1%bb%8dn-2-opencode-zen--%c4%91%c6%a1n-gi%e1%ba%a3n-kh%c3%b4ng-c%e1%ba%a7n-qu%e1%ba%a3n-l%c3%bd-nhi%e1%bb%81u-api aria-label="Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API">Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API</a></li><li><a href=#l%e1%bb%b1a-ch%e1%bb%8dn-3-ch%e1%ba%a1y-local-b%e1%ba%b1ng-ollama--mi%e1%bb%85n-ph%c3%ad-100-d%e1%bb%af-li%e1%bb%87u-kh%c3%b4ng-ra-kh%e1%bb%8fi-m%c3%a1y aria-label="Lựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy">Lựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy</a></li></ul></li><li><a href=#kh%e1%bb%9fi-t%e1%ba%a1o-d%e1%bb%b1-%c3%a1n-file-agentsmd-quan-tr%e1%bb%8dng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?">Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?</a></li><li><a href=#hai-ch%e1%ba%bf-%c4%91%e1%bb%99-l%c3%a0m-vi%e1%bb%87c-plan-v%c3%a0-build--kh%c3%b4ng-s%e1%bb%a3-ai-ph%c3%a1-code aria-label="Hai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code">Hai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code</a><ul><li><a href=#plan-mode-ch%e1%ba%bf-%c4%91%e1%bb%99-l%e1%ba%adp-k%e1%ba%bf-ho%e1%ba%a1ch aria-label="Plan Mode (Chế Độ Lập Kế Hoạch)">Plan Mode (Chế Độ Lập Kế Hoạch)</a></li><li><a href=#build-mode-ch%e1%ba%bf-%c4%91%e1%bb%99-th%e1%bb%b1c-thi aria-label="Build Mode (Chế Độ Thực Thi)">Build Mode (Chế Độ Thực Thi)</a></li></ul></li><li><a href=#h%c6%b0%e1%bb%9bng-d%e1%ba%abn-th%e1%bb%b1c-h%c3%a0nh-x%c3%a2y-d%e1%bb%b1ng-api-rest-v%e1%bb%9bi-opencode--gemini-31-pro aria-label="Hướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro">Hướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro</a></li><li><a href=#chi%e1%ba%bfn-l%c6%b0%e1%bb%a3c-ti%e1%ba%bft-ki%e1%bb%87m-chi-ph%c3%ad-m%e1%bb%97i-t%c3%a1c-v%e1%bb%a5-m%e1%bb%99t-model aria-label="Chiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model">Chiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model</a></li><li><a href=#m%e1%bb%9f-r%e1%bb%99ng-s%e1%bb%a9c-m%e1%ba%a1nh-v%e1%bb%9bi-mcp-bi%e1%ba%bfn-opencode-th%c3%a0nh-si%c3%aau-tr%e1%bb%a3-l%c3%bd aria-label="Mở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý">Mở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý</a><ul><li><a href=#v%c3%ad-d%e1%bb%a5-k%e1%ba%bft-n%e1%bb%91i-postgresql aria-label="Ví dụ: Kết Nối PostgreSQL">Ví dụ: Kết Nối PostgreSQL</a></li></ul></li><li><a href=#x%e1%bb%ad-l%c3%bd-l%e1%bb%97i-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Xử Lý Lỗi Thường Gặp">Xử Lý Lỗi Thường Gặp</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn-opencode-l%c3%a0-t%c6%b0%c6%a1ng-lai-m%e1%bb%9f-c%e1%bb%a7a-l%e1%ba%adp-tr%c3%acnh-ai aria-label="Kết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI">Kết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“opencode”, “ai-coding-agent”, “claude-code-alternative”, “open-source”] aliases:\n/vi/posts/opencode-open-source-claude-code-alternative-2026/ {\u003c/* resource-info */\u003e}\nTóm tắt một câu: OpenCode là AI coding agent mã nguồn mở đạt 160.000+ sao GitHub năm 2026, hỗ trợ 75+ mô hình AI, không phí thuê bao, giúp lập trình viên viết code nhanh hơn 3-5 lần ngay trong terminal.\nTại Sao OpenCode Bùng Nổ Năm 2026? Thị trường công cụ lập trình AI năm 2026 đang chia làm hai phe rõ rệt: trả phí đóng hộp và miễn phí mở. Claude Code của Anthropic thu phí $20-$200/tháng, Cursor lấy $20/tháng, trong khi OpenCode xuất hiện với giá $0 và giờ đây đã vượt mặt tất cả với 160.000+ sao GitHub.\nSự bùng nổ này đến từ ba lý do rất thực tế với lập trình viên Việt Nam và khu vực Đông Nam Á: 1. Không mất tiền thuê bao hàng tháng: Phần mềm miễn phí 100% (MIT License). Bạn chỉ trả tiền API nếu dùng mô hình cloud—hoặc không trả đồng nào nếu chạy model local qua Ollama. 2. Tự do chọn mô hình: Claude Code chỉ dùng Anthropic, Copilot chỉ dùng OpenAI. OpenCode hỗ trợ 75+ nhà cung cấp bao gồm GPT-5.5, Gemini 3.1 Pro, DeepSeek-V4, và cả model miễn phí local. 3. Chạy được trên máy cũ: Không cần MacBook Pro hay GPU RTX 4090. Với Ollama + Gemma 4 9B, bạn có thể chạy OpenCode trên laptop có 16GB RAM—phù hợp điều kiện phổ biến tại Việt Nam.\nOpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả OpenCode không phải là plugin gợi ý code như GitHub Copilot. Nó là một “lập trình viên AI” sống trong terminal, hiểu toàn bộ dự án của bạn, chạy lệnh shell, quản lý Git, và thậm chí kết nối với công cụ bên ngoài qua giao thức MCP.\nCấu Trúc Kỹ Thuật Thành phần Công nghệ Tác dụng Giao diện OpenTUI (TypeScript + Zig) Terminal đẹp, hiển thị diff màu, cuộn mượt Định tuyến model Models.dev Kết nối 75+ nhà cung cấp LLM Hiểu code LSP (Language Server Protocol) Nhảy đến hàm/symbol trong 50ms, không phải tìm text Thực thi Shell sandbox + Git native Chạy lệnh an toàn, tự động commit Mở rộng MCP Protocol Kết nối database, browser, GitHub, Slack… Điểm mạnh kỹ thuật quan trọng nhất: OpenCode dùng LSP thay vì tìm kiếm text thuần túy. Trên dự án lớn, các công cụ khác mất 45 giây để “đọc” code—OpenCode chỉ cần 50 phần nghìn giây. Đây là lý do nó hoạt động tốt trên cả dự án doanh nghiệp.\nCài Đặt OpenCode Trong 5 Phút Cách 1: Cài Nhanh Nhất (macOS / Linux) curl -fsSL https://opencode.ai/install | bash Lệnh này tự động phát hiện hệ điều hành, cài đặt phụ thuộc, và thiết lập binary toàn cục. Thời gian cài đặt trung bình: dưới 60 giây.\nCách 2: Các Trình Quản Lý Gói Nền tảng Lệnh npm / bun / pnpm npm install -g opencode-ai Homebrew (macOS) brew install anomalyco/tap/opencode Arch Linux sudo pacman -S opencode Windows (Scoop) scoop install opencode Windows (Chocolatey) choco install opencode Docker docker run -it --rm ghcr.io/anomalyco/opencode Lưu ý cho Windows: Cài WSL2 để dùng TUI terminal. Nếu không, tải Desktop App tại opencode.ai/download.\nKết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam Chạy opencode để vào giao diện TUI, sau đó gõ /connect.\nLựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt Nếu bạn đã có tài khoản OpenAI, Anthropic, hoặc Google: - Nhập API key trực tiếp\nMẹo tiết kiệm: Dùng DeepSeek-V4 hoặc Gemini 2.0 Flash cho tác vụ thường ngày—giá rẻ hơn Claude 5-10 lần, chất lượng tương đương 90%. Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API Nạp trước từ $20 (khoảng 500.000 VNĐ). OpenCode Zen là dịch vụ do chính team OpenCode vận hành, chọn lọc các model tốt nhất cho lập trình. Không phí thuê bao, trừ tiền theo token dùng thực tế.\nLựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy # 1. Cài Ollama (ollama.com) # 2. Tải model coding miễn phí ollama pull gemma4:9b ollama pull qwen3:14b # 3. Trong OpenCode, chọn ollama://gemma4:9b Ưu điểm: Không tốn đồng nào cho API. Không lo dữ liệu code nhạy cảm bị gửi lên server nước ngoài. Phù hợp freelancer làm dự án khách hàng có NDA, hoặc công ty khởi nghiệp muốn giữ bí mật sản phẩm.\nNhược điểm: Model local nhẹ (9B-14B tham số) không mạnh bằng Claude Opus hay GPT-5.5. Nên dùng cho tác vụ đơn giản (refactor, viết test, sửa lỗi cú pháp). Tác vụ phức tạp (thiết kế kiến trúc, audit bảo mật) thì chuyển sang model cloud.\nKhởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào? Sau khi cài đặt, di chuyển vào thư mục dự án và chạy: `````bash cd du-an-cua-ban opencode /init\nLệnh ````/init```` sẽ quét code của bạn và tạo file ````AGENTS.md````. File này là **\"bản hướng dẫn nội bộ\"** giúp OpenCode hiểu dự án: - Dùng framework gì (React, Laravel, Django...) - Cấu trúc thư mục thế nào - Quy ước đặt tên, coding style - File quan trọng không được động vào **Ví dụ AGENTS.md cho dự án Node.js:** `````markdown # Dự án: Hệ thống quản lý đơn hàng ## Công nghệ - Node.js 20 + Express - PostgreSQL + Prisma ORM - Redis (session + cache) - Docker Compose cho môi trường dev ## Quy tắc - Tất cả API đặt trong ````src/routes/api/v1/```` - Không được sửa trực tiếp file migration trong ````prisma/migrations/```` - Dùng ````winston```` cho log, cấm ````console.log```` trong production - Lỗi phải wrap bằng class ````AppError```` Lưu ý quan trọng: Thêm AGENTS.md vào Git. Khi đồng nghiệp clone dự án và chạy OpenCode, họ được hưởng cùng ngữ cảnh—AI hiểu dự án nhất quán cho cả nhóm.\nHai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code OpenCode có thiết kế rất thông minh: hai chế độ chuyển đổi bằng phím Tab.\nPlan Mode (Chế Độ Lập Kế Hoạch) Bạn mô tả yêu cầu. OpenCode phân tích code, đưa ra kế hoạch chi tiết—sửa file nào, tại sao sửa, rủi ro gì—nhưng chưa động vào file nào cả. Bạn xem xét, yêu cầu điều chỉnh, rồi mới chuyển sang Build mode.\nVí dụ thực tế: \u003e “Thêm tính năng đăng nhập bằng Google OAuth2 vào hệ thống hiện tại. Dùng Passport.js, JWT làm session. Cập nhật Prisma schema thêm bảng User và Account.”\nPlan mode sẽ liệt kê: 1. Tạo src/auth/google.ts — xử lý OAuth callback 2. Sửa prisma/schema.prisma — thêm model User, Account, Session 3. Thêm src/middleware/requireAuth.ts — bảo vệ route 4. Cập nhật .env.example — thêm GOOGLE_CLIENT_ID 5. Viết test trong tests/auth.test.ts\nBạn đọc, đồng ý, bấm Tab.\nBuild Mode (Chế Độ Thực Thi) OpenCode tự động viết code, chạy migration, thực thi test. Nếu test lỗi, nó tự sửa và chạy lại—cho đến khi xanh hết hoặc báo cáo vấn đề không giải quyết được.\nHướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro Bối cảnh: Bạn có một dự án Express + Prisma, muốn thêm module quản lý sản phẩm (CRUD + phân trang + tìm kiếm).\nBước 1: Khởi động và chọn model phù hợp\ncd my-express-app opencode /connect # Chọn Google → Gemini 3.1 Pro (1M token context, nuốt trọn cả dự án lớn) Bước 2: Plan mode — mô tả yêu cầu bằng tiếng Việt hoặc tiếng Anh\n\u003e Thêm module Product với CRUD đầy đủ. Schema Prisma gồm name, price, \u003e stock, category, createdAt. API có phân trang (cursor-based), \u003e tìm kiếm theo tên và category. Viết unit test cho tất cả endpoint. OpenCode phân tích xong liệt kê: - prisma/schema.prisma: model Product\nsrc/routes/products.ts: 5 endpoint (GET list, GET detail, POST, PUT, DELETE) src/services/productService.ts: business logic + validation src/tests/products.test.ts: test với supertest + jest Migration file tự động tạo Bước 3: Bấm Tab → Build mode. OpenCode làm việc trong 2-3 phút.\nBước 4: Kiểm tra kết quả\ngit diff # Xem AI đã sửa gì npm test # Chạy test để xác nhận Bước 5: Chia sẻ session cho đồng nghiệp\n\u003e /share Tạo link chỉ đọc. Đồng nghiệp xem được toàn bộ quá trình AI “suy nghĩ” và sửa code như thế nào.\nChiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model Đây là bí kíp quan trọng nhất để dùng OpenCode hiệu quả về kinh tế. Đừng dùng một model đắt tiền cho mọi việc.\nLoại tác vụ Model phù hợp Chi phí ước tính Format code, sửa lint, refactor đơn giản Gemma 4 local (Ollama) $0 Viết tính năng thông thường DeepSeek-V4 API ~$0.5-2/task Thiết kế kiến trúc phức tạp Gemini 3.1 Pro ~$2-5/task Kiểm tra bảo mật, tìm lỗ hổng Claude Sonnet 4.6 ~$1-3/task Chuyển đổi code legacy (PHP → Node) Claude Opus 4.7 ~$5-10/task Ví dụ thực tế: Một freelancer Việt Nam làm 20 task/tuần, nếu dùng Claude Code Pro ($20/tháng + giới hạn) có thể hết quota giữa tuần. Với OpenCode + chiến lược phân model, tuần đó hết khoảng $3-8 API fee—tháng chỉ tốn $12-32, rẻ hơn 60-80%.\nMở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý MCP (Model Context Protocol) cho phép OpenCode nói chuyện với thế giới bên ngoài.\nVí dụ: Kết Nối PostgreSQL Thêm vào file ~/.config/opencode/opencode.json: `````json { “mcpServers”: { “database”: { “command”: [“npx”, “-y”, “@modelcontextprotocol/server-postgres”], “env”: { “DATABASE_URL”: “postgresql://user:pass@localhost/dbname” } } } }\nGiờ bạn có thể hỏi: \u003e \"Cho tôi xem schema bảng orders. Query nào trong ````src/reports/quarterly.ts```` chậm? Gợi ý index tối ưu.\" OpenCode sẽ query trực tiếp database, đọc file code, và đề xuất ````CREATE INDEX```` kèm lệnh ````EXPLAIN ANALYZE```` kiểm chứng. ### Các MCP Phổ Biến Khác | MCP Server | Khả năng | |-----------|----------| | Postgres | Xem schema, tối ưu query | | Browser | Crawl web, test UI visually | | GitHub | Tự động tạo issue, review PR | | Slack | Thông báo build status | * * * ## So Sánh Nhanh: OpenCode vs Claude Code vs Cursor | Tiêu chí | OpenCode | Claude Code | Cursor | |----------|----------|-------------|--------| | **Giá phần mềm** | Miễn phí | $20-$200/tháng | $20/tháng | | **Mã nguồn** | Mở (MIT) | Đóng | Đóng | | **Chọn model** | 75+ nhà cung cấp | Chỉ Anthropic | Hạn chế | | **Chạy offline** | ✅ Ollama | ❌ | ❌ | | **Tốc độ hiểu code** | ~50ms (LSP) | ~45 giây | Theo VS Code | | **Hỗ trợ tiếng Việt** | ✅ Prompt tiếng Việt OK | ✅ | ✅ | | **Phù hợp máy yếu** | ✅ Model local nhẹ | ❌ Cần cloud | ❌ Cần IDE nặng | **Chọn cái nào?** - **Freelancer / startup Việt Nam / sinh viên**: OpenCode—miễn phí, linh hoạt, chạy trên laptop bình thường. - **Doanh nghiệp lớn cần SOC2 / Agent Teams**: Claude Code. - **Thích giao diện đồ họa, kéo thả**: Cursor. * * * ## Mẹo Nâng Cao Cho Lập Trình Viên Việt Nam ### 1. Dùng OpenCode Học Lập Trình Sinh viên có thể dùng OpenCode để: - Giải thích đoạn code khó hiểu: \"````@src/algorithms/dijkstra.ts```` giải thích thuật toán này bằng tiếng Việt\" - Tạo bài tập luyện tập: \"Tạo 5 bài test về async/await, có đáp án chi tiết\" - Review code bài tập: \"Review đoạn code này, chỉ lỗi logic và cách sửa\" ### 2. Tích Hợp Model Giá Rẻ Châu Á Qua OpenRouter, OpenCode có thể kết nối: - **DeepSeek-V4**: Giá rẻ, chất lượng cao cho coding - **Qwen3 14B/32B** (Alibaba): Rất tốt cho tiếng Trung và tiếng Việt - **GLM-4.7** (Zhipu AI): Phù hợp dự án có tài liệu tiếng Trung ### 3. Lập Trình Game/App Mobile Bằng OpenCode + Local Model Với laptop có GPU tầm trung (GTX 1660 trở lên): `````bash ollama pull codellama:13b # Trong OpenCode chọn ollama://codellama:13b Viết code Unity (C#), React Native, hoặc Flutter hoàn toàn miễn phí.\nXử Lý Lỗi Thường Gặp “Context too large” — AI không đọc hết code\nTắt MCP server không dùng trong opencode.json Chuyển sang Gemini 3.1 Pro (context window 1M+ token) Thêm .opencodeignore giống .gitignore để bỏ qua node_modules/, dist/ Model local phản hồi chậm\nKiểm tra Ollama đang chạy: curl http://localhost:11434/api/tags Giảm model size: thay Qwen3 32B bằng Gemma 4 9B Đóng ứng dụng khác để giải phóng RAM OpenCode không nhận lệnh tiếng Việt tốt\nCác lệnh kỹ thuật bằng tiếng Anh cho chính xác hơn Miêu tả business logic bằng tiếng Việt vẫn OK AGENTS.md viết bằng tiếng Việt cũng được, AI hiểu Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nKết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI Năm 2026, các model AI lớn đang đồng nhất hóa—GPT-5.5, Claude Sonnet 4.6, Gemini 3.1 Pro cho kết quả coding gần như tương đương. Sự khác biệt nằm ở lớp điều phối (orchestration layer)—công cụ giúp bạn chuyển đổi giữa các model, quản lý ngữ cảnh, và tích hợp vào quy trình làm việc.\nOpenCode với 160.000 sao chứng minh rằng lập trình viên muốn sở hữu công cụ của mình. Không bị khóa vào một nhà cung cấp. Không trả tiền cho tính năng không dùng. Không gửi code nhạy cảm lên server nước ngoài khi không cần thiết.\nNếu bạn là lập trình viên Việt Nam—dù là sinh viên, freelancer, hay dev công ty—OpenCode mang lại giá trị thực tế: giảm chi phí, tăng tốc độ, giữ quyền kiểm soát.\nMở terminal lên. Cài đặt trong 60 giây. Bắt đầu với một dự án nhỏ. 5 phút sau, bạn sẽ hiểu tại sao 160.000 lập trình viên khác đã chọn công cụ này.\ncurl -fsSL https://opencode.ai/install | bash ```` * * * **Tài Nguyên Tham Khảo** - GitHub: https://github.com/anomalyco/opencode - Tài liệu chính thức: https://opencode.ai/docs - MCP Protocol: https://modelcontextprotocol.io - Models.dev: https://models.dev *Bài viết cập nhật lần cuối: 2026-05-19. Công cụ AI thay đổi nhanh—luôn kiểm tra tài liệu chính thức để có thông tin mới nhất.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn Mở Miễn Phí Thay Thế Claude Code — Cài Đặt Chi Tiết và Thủ Thuật Nâng Cao\", \"datePublished\": \"2026-05-20\", \"dateModified\": \"2026-05-20\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/opencode-open-source-claude-code-alternative-2026\" } } * * * ## Related Articles - [2026-05-25-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-01-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-08-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-15-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) - [2026-06-22-trending-ai-agents](opencode-open-source-claude-code-alternative-2026) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "2602",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/opencode-open-source-claude-code-alternative-2026/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#t%e1%ba%a1i-sao-opencode-b%c3%b9ng-n%e1%bb%95-n%c4%83m-2026" aria-label="Tại Sao OpenCode Bùng Nổ Năm 2026?">Tại Sao OpenCode Bùng Nổ Năm 2026?</a></li>
+            <li>
+                <a href="#opencode-l%c3%a0-g%c3%ac-hi%e1%bb%83u-%c4%91%c3%bang-%c4%91%e1%bb%83-d%c3%b9ng-hi%e1%bb%87u-qu%e1%ba%a3" aria-label="OpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả">OpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả</a><ul>
+                    
+            <li>
+                <a href="#c%e1%ba%a5u-tr%c3%bac-k%e1%bb%b9-thu%e1%ba%adt" aria-label="Cấu Trúc Kỹ Thuật">Cấu Trúc Kỹ Thuật</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-opencode-trong-5-ph%c3%bat" aria-label="Cài Đặt OpenCode Trong 5 Phút">Cài Đặt OpenCode Trong 5 Phút</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a1ch-1-c%c3%a0i-nhanh-nh%e1%ba%a5t-macos--linux" aria-label="Cách 1: Cài Nhanh Nhất (macOS / Linux)">Cách 1: Cài Nhanh Nhất (macOS / Linux)</a></li>
+            <li>
+                <a href="#c%c3%a1ch-2-c%c3%a1c-tr%c3%acnh-qu%e1%ba%a3n-l%c3%bd-g%c3%b3i" aria-label="Cách 2: Các Trình Quản Lý Gói">Cách 2: Các Trình Quản Lý Gói</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-n%e1%bb%91i-model-ai-ba-l%e1%bb%b1a-ch%e1%bb%8dn-ph%c3%b9-h%e1%bb%a3p-ng%c3%a2n-s%c3%a1ch-vi%e1%bb%87t-nam" aria-label="Kết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam">Kết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam</a><ul>
+                    
+            <li>
+                <a href="#l%e1%bb%b1a-ch%e1%bb%8dn-1-api-key-ri%c3%aang-byok--linh-ho%e1%ba%a1t" aria-label="Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt">Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt</a></li>
+            <li>
+                <a href="#l%e1%bb%b1a-ch%e1%bb%8dn-2-opencode-zen--%c4%91%c6%a1n-gi%e1%ba%a3n-kh%c3%b4ng-c%e1%ba%a7n-qu%e1%ba%a3n-l%c3%bd-nhi%e1%bb%81u-api" aria-label="Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API">Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API</a></li>
+            <li>
+                <a href="#l%e1%bb%b1a-ch%e1%bb%8dn-3-ch%e1%ba%a1y-local-b%e1%ba%b1ng-ollama--mi%e1%bb%85n-ph%c3%ad-100-d%e1%bb%af-li%e1%bb%87u-kh%c3%b4ng-ra-kh%e1%bb%8fi-m%c3%a1y" aria-label="Lựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy">Lựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy</a></li></ul>
+            </li>
+            <li>
+                <a href="#kh%e1%bb%9fi-t%e1%ba%a1o-d%e1%bb%b1-%c3%a1n-file-agentsmd-quan-tr%e1%bb%8dng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?">Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?</a></li>
+            <li>
+                <a href="#hai-ch%e1%ba%bf-%c4%91%e1%bb%99-l%c3%a0m-vi%e1%bb%87c-plan-v%c3%a0-build--kh%c3%b4ng-s%e1%bb%a3-ai-ph%c3%a1-code" aria-label="Hai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code">Hai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code</a><ul>
+                    
+            <li>
+                <a href="#plan-mode-ch%e1%ba%bf-%c4%91%e1%bb%99-l%e1%ba%adp-k%e1%ba%bf-ho%e1%ba%a1ch" aria-label="Plan Mode (Chế Độ Lập Kế Hoạch)">Plan Mode (Chế Độ Lập Kế Hoạch)</a></li>
+            <li>
+                <a href="#build-mode-ch%e1%ba%bf-%c4%91%e1%bb%99-th%e1%bb%b1c-thi" aria-label="Build Mode (Chế Độ Thực Thi)">Build Mode (Chế Độ Thực Thi)</a></li></ul>
+            </li>
+            <li>
+                <a href="#h%c6%b0%e1%bb%9bng-d%e1%ba%abn-th%e1%bb%b1c-h%c3%a0nh-x%c3%a2y-d%e1%bb%b1ng-api-rest-v%e1%bb%9bi-opencode--gemini-31-pro" aria-label="Hướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode &#43; Gemini 3.1 Pro">Hướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro</a></li>
+            <li>
+                <a href="#chi%e1%ba%bfn-l%c6%b0%e1%bb%a3c-ti%e1%ba%bft-ki%e1%bb%87m-chi-ph%c3%ad-m%e1%bb%97i-t%c3%a1c-v%e1%bb%a5-m%e1%bb%99t-model" aria-label="Chiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model">Chiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model</a></li>
+            <li>
+                <a href="#m%e1%bb%9f-r%e1%bb%99ng-s%e1%bb%a9c-m%e1%ba%a1nh-v%e1%bb%9bi-mcp-bi%e1%ba%bfn-opencode-th%c3%a0nh-si%c3%aau-tr%e1%bb%a3-l%c3%bd" aria-label="Mở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý">Mở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý</a><ul>
+                    
+            <li>
+                <a href="#v%c3%ad-d%e1%bb%a5-k%e1%ba%bft-n%e1%bb%91i-postgresql" aria-label="Ví dụ: Kết Nối PostgreSQL">Ví dụ: Kết Nối PostgreSQL</a></li></ul>
+            </li>
+            <li>
+                <a href="#x%e1%bb%ad-l%c3%bd-l%e1%bb%97i-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Xử Lý Lỗi Thường Gặp">Xử Lý Lỗi Thường Gặp</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn-opencode-l%c3%a0-t%c6%b0%c6%a1ng-lai-m%e1%bb%9f-c%e1%bb%a7a-l%e1%ba%adp-tr%c3%acnh-ai" aria-label="Kết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI">Kết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
@@ -21,19 +282,129 @@ last_maintained: &ldquo;2026-05-20&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;opencode&rdquo;, &ldquo;ai-coding-agent&rdquo;, &ldquo;claude-code-alternative&rdquo;, &ldquo;open-source&rdquo;]
-aliases:</p><ul><li>/vi/posts/opencode-open-source-claude-code-alternative-2026/</li></ul><hr><p>{&lt;/* resource-info */>}</p><blockquote><p><strong>Tóm tắt một câu</strong>: OpenCode là AI coding agent mã nguồn mở đạt 160.000+ sao GitHub năm 2026, hỗ trợ 75+ mô hình AI, không phí thuê bao, giúp lập trình viên viết code nhanh hơn 3-5 lần ngay trong terminal.</p></blockquote><hr><h2 id=tại-sao-opencode-bùng-nổ-năm-2026>Tại Sao OpenCode Bùng Nổ Năm 2026?<a hidden class=anchor aria-hidden=true href=#tại-sao-opencode-bùng-nổ-năm-2026>#</a></h2><p>Thị trường công cụ lập trình AI năm 2026 đang chia làm hai phe rõ rệt: <strong>trả phí đóng hộp</strong> và <strong>miễn phí mở</strong>. Claude Code của Anthropic thu phí $20-$200/tháng, Cursor lấy $20/tháng, trong khi <strong>OpenCode</strong> xuất hiện với giá <strong>$0</strong> và giờ đây đã vượt mặt tất cả với <strong>160.000+ sao GitHub</strong>.</p><p>Sự bùng nổ này đến từ ba lý do rất thực tế với lập trình viên Việt Nam và khu vực Đông Nam Á: 1. <strong>Không mất tiền thuê bao hàng tháng</strong>: Phần mềm miễn phí 100% (MIT License). Bạn chỉ trả tiền API nếu dùng mô hình cloud—hoặc <strong>không trả đồng nào</strong> nếu chạy model local qua Ollama.
+aliases:</p>
+<ul>
+<li>/vi/posts/opencode-open-source-claude-code-alternative-2026/</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<blockquote>
+<p><strong>Tóm tắt một câu</strong>: OpenCode là AI coding agent mã nguồn mở đạt 160.000+ sao GitHub năm 2026, hỗ trợ 75+ mô hình AI, không phí thuê bao, giúp lập trình viên viết code nhanh hơn 3-5 lần ngay trong terminal.</p>
+</blockquote>
+<hr>
+<h2 id="tại-sao-opencode-bùng-nổ-năm-2026">Tại Sao OpenCode Bùng Nổ Năm 2026?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-opencode-bùng-nổ-năm-2026">#</a></h2>
+<p>Thị trường công cụ lập trình AI năm 2026 đang chia làm hai phe rõ rệt: <strong>trả phí đóng hộp</strong> và <strong>miễn phí mở</strong>. Claude Code của Anthropic thu phí $20-$200/tháng, Cursor lấy $20/tháng, trong khi <strong>OpenCode</strong> xuất hiện với giá <strong>$0</strong> và giờ đây đã vượt mặt tất cả với <strong>160.000+ sao GitHub</strong>.</p>
+<p>Sự bùng nổ này đến từ ba lý do rất thực tế với lập trình viên Việt Nam và khu vực Đông Nam Á: 1. <strong>Không mất tiền thuê bao hàng tháng</strong>: Phần mềm miễn phí 100% (MIT License). Bạn chỉ trả tiền API nếu dùng mô hình cloud—hoặc <strong>không trả đồng nào</strong> nếu chạy model local qua Ollama.
 2. <strong>Tự do chọn mô hình</strong>: Claude Code chỉ dùng Anthropic, Copilot chỉ dùng OpenAI. OpenCode hỗ trợ <strong>75+ nhà cung cấp</strong> bao gồm GPT-5.5, Gemini 3.1 Pro, DeepSeek-V4, và cả model miễn phí local.
-3. <strong>Chạy được trên máy cũ</strong>: Không cần MacBook Pro hay GPU RTX 4090. Với Ollama + Gemma 4 9B, bạn có thể chạy OpenCode trên laptop có 16GB RAM—phù hợp điều kiện phổ biến tại Việt Nam.</p><hr><h2 id=opencode-là-gì-hiểu-đúng-để-dùng-hiệu-quả>OpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả<a hidden class=anchor aria-hidden=true href=#opencode-là-gì-hiểu-đúng-để-dùng-hiệu-quả>#</a></h2><p>OpenCode không phải là plugin gợi ý code như GitHub Copilot. Nó là một <strong>&ldquo;lập trình viên AI&rdquo;</strong> sống trong terminal, hiểu toàn bộ dự án của bạn, chạy lệnh shell, quản lý Git, và thậm chí kết nối với công cụ bên ngoài qua giao thức MCP.</p><h3 id=cấu-trúc-kỹ-thuật>Cấu Trúc Kỹ Thuật<a hidden class=anchor aria-hidden=true href=#cấu-trúc-kỹ-thuật>#</a></h3><table><thead><tr><th>Thành phần</th><th>Công nghệ</th><th>Tác dụng</th></tr></thead><tbody><tr><td>Giao diện</td><td>OpenTUI (TypeScript + Zig)</td><td>Terminal đẹp, hiển thị diff màu, cuộn mượt</td></tr><tr><td>Định tuyến model</td><td>Models.dev</td><td>Kết nối 75+ nhà cung cấp LLM</td></tr><tr><td>Hiểu code</td><td>LSP (Language Server Protocol)</td><td>Nhảy đến hàm/symbol trong <strong>50ms</strong>, không phải tìm text</td></tr><tr><td>Thực thi</td><td>Shell sandbox + Git native</td><td>Chạy lệnh an toàn, tự động commit</td></tr><tr><td>Mở rộng</td><td>MCP Protocol</td><td>Kết nối database, browser, GitHub, Slack&mldr;</td></tr></tbody></table><p><strong>Điểm mạnh kỹ thuật quan trọng nhất</strong>: OpenCode dùng LSP thay vì tìm kiếm text thuần túy. Trên dự án lớn, các công cụ khác mất 45 giây để &ldquo;đọc&rdquo; code—OpenCode chỉ cần <strong>50 phần nghìn giây</strong>. Đây là lý do nó hoạt động tốt trên cả dự án doanh nghiệp.</p><hr><h2 id=cài-đặt-opencode-trong-5-phút>Cài Đặt OpenCode Trong 5 Phút<a hidden class=anchor aria-hidden=true href=#cài-đặt-opencode-trong-5-phút>#</a></h2><h3 id=cách-1-cài-nhanh-nhất-macos--linux>Cách 1: Cài Nhanh Nhất (macOS / Linux)<a hidden class=anchor aria-hidden=true href=#cách-1-cài-nhanh-nhất-macos--linux>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -fsSL https://opencode.ai/install | bash
-</span></span></code></pre></div><p>Lệnh này tự động phát hiện hệ điều hành, cài đặt phụ thuộc, và thiết lập binary toàn cục. Thời gian cài đặt trung bình: <strong>dưới 60 giây</strong>.</p><h3 id=cách-2-các-trình-quản-lý-gói>Cách 2: Các Trình Quản Lý Gói<a hidden class=anchor aria-hidden=true href=#cách-2-các-trình-quản-lý-gói>#</a></h3><table><thead><tr><th>Nền tảng</th><th>Lệnh</th></tr></thead><tbody><tr><td>npm / bun / pnpm</td><td><code>npm install -g opencode-ai</code></td></tr><tr><td>Homebrew (macOS)</td><td><code>brew install anomalyco/tap/opencode</code></td></tr><tr><td>Arch Linux</td><td><code>sudo pacman -S opencode</code></td></tr><tr><td>Windows (Scoop)</td><td><code>scoop install opencode</code></td></tr><tr><td>Windows (Chocolatey)</td><td><code>choco install opencode</code></td></tr><tr><td>Docker</td><td><code>docker run -it --rm ghcr.io/anomalyco/opencode</code></td></tr></tbody></table><p><strong>Lưu ý cho Windows</strong>: Cài WSL2 để dùng TUI terminal. Nếu không, tải Desktop App tại <a href=https://opencode.ai/download>opencode.ai/download</a>.</p><hr><h2 id=kết-nối-model-ai-ba-lựa-chọn-phù-hợp-ngân-sách-việt-nam>Kết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam<a hidden class=anchor aria-hidden=true href=#kết-nối-model-ai-ba-lựa-chọn-phù-hợp-ngân-sách-việt-nam>#</a></h2><p>Chạy <code>opencode</code> để vào giao diện TUI, sau đó gõ <code>/connect</code>.</p><h3 id=lựa-chọn-1-api-key-riêng-byok--linh-hoạt>Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt<a hidden class=anchor aria-hidden=true href=#lựa-chọn-1-api-key-riêng-byok--linh-hoạt>#</a></h3><p>Nếu bạn đã có tài khoản OpenAI, Anthropic, hoặc Google: - Nhập API key trực tiếp</p><ul><li><strong>Mẹo tiết kiệm</strong>: Dùng DeepSeek-V4 hoặc Gemini 2.0 Flash cho tác vụ thường ngày—giá rẻ hơn Claude 5-10 lần, chất lượng tương đương 90%.</li></ul><h3 id=lựa-chọn-2-opencode-zen--đơn-giản-không-cần-quản-lý-nhiều-api>Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API<a hidden class=anchor aria-hidden=true href=#lựa-chọn-2-opencode-zen--đơn-giản-không-cần-quản-lý-nhiều-api>#</a></h3><p>Nạp trước từ <strong>$20</strong> (khoảng 500.000 VNĐ). OpenCode Zen là dịch vụ do chính team OpenCode vận hành, chọn lọc các model tốt nhất cho lập trình. Không phí thuê bao, trừ tiền theo token dùng thực tế.</p><h3 id=lựa-chọn-3-chạy-local-bằng-ollama--miễn-phí-100-dữ-liệu-không-ra-khỏi-máy>Lựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy<a hidden class=anchor aria-hidden=true href=#lựa-chọn-3-chạy-local-bằng-ollama--miễn-phí-100-dữ-liệu-không-ra-khỏi-máy>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. Cài Ollama (ollama.com)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Tải model coding miễn phí</span>
-</span></span><span style=display:flex><span>ollama pull gemma4:9b
-</span></span><span style=display:flex><span>ollama pull qwen3:14b
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Trong OpenCode, chọn ollama://gemma4:9b</span>
-</span></span></code></pre></div><p><strong>Ưu điểm</strong>: Không tốn đồng nào cho API. Không lo dữ liệu code nhạy cảm bị gửi lên server nước ngoài. Phù hợp freelancer làm dự án khách hàng có NDA, hoặc công ty khởi nghiệp muốn giữ bí mật sản phẩm.</p><p><strong>Nhược điểm</strong>: Model local nhẹ (9B-14B tham số) không mạnh bằng Claude Opus hay GPT-5.5. Nên dùng cho tác vụ đơn giản (refactor, viết test, sửa lỗi cú pháp). Tác vụ phức tạp (thiết kế kiến trúc, audit bảo mật) thì chuyển sang model cloud.</p><hr><h2 id=khởi-tạo-dự-án-file-agentsmd-quan-trọng-như-thế-nào>Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?<a hidden class=anchor aria-hidden=true href=#khởi-tạo-dự-án-file-agentsmd-quan-trọng-như-thế-nào>#</a></h2><p>Sau khi cài đặt, di chuyển vào thư mục dự án và chạy: `````bash
+3. <strong>Chạy được trên máy cũ</strong>: Không cần MacBook Pro hay GPU RTX 4090. Với Ollama + Gemma 4 9B, bạn có thể chạy OpenCode trên laptop có 16GB RAM—phù hợp điều kiện phổ biến tại Việt Nam.</p>
+<hr>
+<h2 id="opencode-là-gì-hiểu-đúng-để-dùng-hiệu-quả">OpenCode Là Gì? Hiểu Đúng Để Dùng Hiệu Quả<a hidden class="anchor" aria-hidden="true" href="#opencode-là-gì-hiểu-đúng-để-dùng-hiệu-quả">#</a></h2>
+<p>OpenCode không phải là plugin gợi ý code như GitHub Copilot. Nó là một <strong>&ldquo;lập trình viên AI&rdquo;</strong> sống trong terminal, hiểu toàn bộ dự án của bạn, chạy lệnh shell, quản lý Git, và thậm chí kết nối với công cụ bên ngoài qua giao thức MCP.</p>
+<h3 id="cấu-trúc-kỹ-thuật">Cấu Trúc Kỹ Thuật<a hidden class="anchor" aria-hidden="true" href="#cấu-trúc-kỹ-thuật">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Thành phần</th>
+					<th>Công nghệ</th>
+					<th>Tác dụng</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Giao diện</td>
+					<td>OpenTUI (TypeScript + Zig)</td>
+					<td>Terminal đẹp, hiển thị diff màu, cuộn mượt</td>
+			</tr>
+			<tr>
+					<td>Định tuyến model</td>
+					<td>Models.dev</td>
+					<td>Kết nối 75+ nhà cung cấp LLM</td>
+			</tr>
+			<tr>
+					<td>Hiểu code</td>
+					<td>LSP (Language Server Protocol)</td>
+					<td>Nhảy đến hàm/symbol trong <strong>50ms</strong>, không phải tìm text</td>
+			</tr>
+			<tr>
+					<td>Thực thi</td>
+					<td>Shell sandbox + Git native</td>
+					<td>Chạy lệnh an toàn, tự động commit</td>
+			</tr>
+			<tr>
+					<td>Mở rộng</td>
+					<td>MCP Protocol</td>
+					<td>Kết nối database, browser, GitHub, Slack&hellip;</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Điểm mạnh kỹ thuật quan trọng nhất</strong>: OpenCode dùng LSP thay vì tìm kiếm text thuần túy. Trên dự án lớn, các công cụ khác mất 45 giây để &ldquo;đọc&rdquo; code—OpenCode chỉ cần <strong>50 phần nghìn giây</strong>. Đây là lý do nó hoạt động tốt trên cả dự án doanh nghiệp.</p>
+<hr>
+<h2 id="cài-đặt-opencode-trong-5-phút">Cài Đặt OpenCode Trong 5 Phút<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-opencode-trong-5-phút">#</a></h2>
+<h3 id="cách-1-cài-nhanh-nhất-macos--linux">Cách 1: Cài Nhanh Nhất (macOS / Linux)<a hidden class="anchor" aria-hidden="true" href="#cách-1-cài-nhanh-nhất-macos--linux">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://opencode.ai/install | bash
+</span></span></code></pre></div><p>Lệnh này tự động phát hiện hệ điều hành, cài đặt phụ thuộc, và thiết lập binary toàn cục. Thời gian cài đặt trung bình: <strong>dưới 60 giây</strong>.</p>
+<h3 id="cách-2-các-trình-quản-lý-gói">Cách 2: Các Trình Quản Lý Gói<a hidden class="anchor" aria-hidden="true" href="#cách-2-các-trình-quản-lý-gói">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Nền tảng</th>
+					<th>Lệnh</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>npm / bun / pnpm</td>
+					<td><code>npm install -g opencode-ai</code></td>
+			</tr>
+			<tr>
+					<td>Homebrew (macOS)</td>
+					<td><code>brew install anomalyco/tap/opencode</code></td>
+			</tr>
+			<tr>
+					<td>Arch Linux</td>
+					<td><code>sudo pacman -S opencode</code></td>
+			</tr>
+			<tr>
+					<td>Windows (Scoop)</td>
+					<td><code>scoop install opencode</code></td>
+			</tr>
+			<tr>
+					<td>Windows (Chocolatey)</td>
+					<td><code>choco install opencode</code></td>
+			</tr>
+			<tr>
+					<td>Docker</td>
+					<td><code>docker run -it --rm ghcr.io/anomalyco/opencode</code></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Lưu ý cho Windows</strong>: Cài WSL2 để dùng TUI terminal. Nếu không, tải Desktop App tại <a href="https://opencode.ai/download">opencode.ai/download</a>.</p>
+<hr>
+<h2 id="kết-nối-model-ai-ba-lựa-chọn-phù-hợp-ngân-sách-việt-nam">Kết Nối Model AI: Ba Lựa Chọn Phù Hợp Ngân Sách Việt Nam<a hidden class="anchor" aria-hidden="true" href="#kết-nối-model-ai-ba-lựa-chọn-phù-hợp-ngân-sách-việt-nam">#</a></h2>
+<p>Chạy <code>opencode</code> để vào giao diện TUI, sau đó gõ <code>/connect</code>.</p>
+<h3 id="lựa-chọn-1-api-key-riêng-byok--linh-hoạt">Lựa Chọn 1: API Key Riêng (BYOK) — Linh Hoạt<a hidden class="anchor" aria-hidden="true" href="#lựa-chọn-1-api-key-riêng-byok--linh-hoạt">#</a></h3>
+<p>Nếu bạn đã có tài khoản OpenAI, Anthropic, hoặc Google: - Nhập API key trực tiếp</p>
+<ul>
+<li><strong>Mẹo tiết kiệm</strong>: Dùng DeepSeek-V4 hoặc Gemini 2.0 Flash cho tác vụ thường ngày—giá rẻ hơn Claude 5-10 lần, chất lượng tương đương 90%.</li>
+</ul>
+<h3 id="lựa-chọn-2-opencode-zen--đơn-giản-không-cần-quản-lý-nhiều-api">Lựa Chọn 2: OpenCode Zen — Đơn Giản, Không Cần Quản Lý Nhiều API<a hidden class="anchor" aria-hidden="true" href="#lựa-chọn-2-opencode-zen--đơn-giản-không-cần-quản-lý-nhiều-api">#</a></h3>
+<p>Nạp trước từ <strong>$20</strong> (khoảng 500.000 VNĐ). OpenCode Zen là dịch vụ do chính team OpenCode vận hành, chọn lọc các model tốt nhất cho lập trình. Không phí thuê bao, trừ tiền theo token dùng thực tế.</p>
+<h3 id="lựa-chọn-3-chạy-local-bằng-ollama--miễn-phí-100-dữ-liệu-không-ra-khỏi-máy">Lựa Chọn 3: Chạy Local Bằng Ollama — Miễn Phí 100%, Dữ Liệu Không Ra Khỏi Máy<a hidden class="anchor" aria-hidden="true" href="#lựa-chọn-3-chạy-local-bằng-ollama--miễn-phí-100-dữ-liệu-không-ra-khỏi-máy">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Cài Ollama (ollama.com)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Tải model coding miễn phí</span>
+</span></span><span style="display:flex;"><span>ollama pull gemma4:9b
+</span></span><span style="display:flex;"><span>ollama pull qwen3:14b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Trong OpenCode, chọn ollama://gemma4:9b</span>
+</span></span></code></pre></div><p><strong>Ưu điểm</strong>: Không tốn đồng nào cho API. Không lo dữ liệu code nhạy cảm bị gửi lên server nước ngoài. Phù hợp freelancer làm dự án khách hàng có NDA, hoặc công ty khởi nghiệp muốn giữ bí mật sản phẩm.</p>
+<p><strong>Nhược điểm</strong>: Model local nhẹ (9B-14B tham số) không mạnh bằng Claude Opus hay GPT-5.5. Nên dùng cho tác vụ đơn giản (refactor, viết test, sửa lỗi cú pháp). Tác vụ phức tạp (thiết kế kiến trúc, audit bảo mật) thì chuyển sang model cloud.</p>
+<hr>
+<h2 id="khởi-tạo-dự-án-file-agentsmd-quan-trọng-như-thế-nào">Khởi Tạo Dự Án: File AGENTS.md Quan Trọng Như Thế Nào?<a hidden class="anchor" aria-hidden="true" href="#khởi-tạo-dự-án-file-agentsmd-quan-trọng-như-thế-nào">#</a></h2>
+<p>Sau khi cài đặt, di chuyển vào thư mục dự án và chạy: `````bash
 cd du-an-cua-ban
 opencode
-/init</p><pre tabindex=0><code>
+/init</p>
+<pre tabindex="0"><code>
 Lệnh ````/init```` sẽ quét code của bạn và tạo file ````AGENTS.md````. File này là **&#34;bản hướng dẫn nội bộ&#34;** giúp OpenCode hiểu dự án: - Dùng framework gì (React, Laravel, Django...)
 - Cấu trúc thư mục thế nào
 - Quy ước đặt tên, coding style
@@ -55,20 +426,91 @@ Lệnh ````/init```` sẽ quét code của bạn và tạo file ````AGENTS.md```
 - Không được sửa trực tiếp file migration trong ````prisma/migrations/````
 - Dùng ````winston```` cho log, cấm ````console.log```` trong production
 - Lỗi phải wrap bằng class ````AppError````
-</code></pre><p><strong>Lưu ý quan trọng</strong>: Thêm <code>AGENTS.md</code> vào Git. Khi đồng nghiệp clone dự án và chạy OpenCode, họ được hưởng cùng ngữ cảnh—AI hiểu dự án nhất quán cho cả nhóm.</p><hr><h2 id=hai-chế-độ-làm-việc-plan-và-build--không-sợ-ai-phá-code>Hai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code<a hidden class=anchor aria-hidden=true href=#hai-chế-độ-làm-việc-plan-và-build--không-sợ-ai-phá-code>#</a></h2><p>OpenCode có thiết kế rất thông minh: <strong>hai chế độ</strong> chuyển đổi bằng phím Tab.</p><h3 id=plan-mode-chế-độ-lập-kế-hoạch>Plan Mode (Chế Độ Lập Kế Hoạch)<a hidden class=anchor aria-hidden=true href=#plan-mode-chế-độ-lập-kế-hoạch>#</a></h3><p>Bạn mô tả yêu cầu. OpenCode phân tích code, đưa ra kế hoạch chi tiết—sửa file nào, tại sao sửa, rủi ro gì—<strong>nhưng chưa động vào file nào cả</strong>. Bạn xem xét, yêu cầu điều chỉnh, rồi mới chuyển sang Build mode.</p><p><strong>Ví dụ thực tế</strong>: > &ldquo;Thêm tính năng đăng nhập bằng Google OAuth2 vào hệ thống hiện tại. Dùng Passport.js, JWT làm session. Cập nhật Prisma schema thêm bảng User và Account.&rdquo;</p><p>Plan mode sẽ liệt kê: 1. Tạo <code>src/auth/google.ts</code> — xử lý OAuth callback
+</code></pre><p><strong>Lưu ý quan trọng</strong>: Thêm <code>AGENTS.md</code> vào Git. Khi đồng nghiệp clone dự án và chạy OpenCode, họ được hưởng cùng ngữ cảnh—AI hiểu dự án nhất quán cho cả nhóm.</p>
+<hr>
+<h2 id="hai-chế-độ-làm-việc-plan-và-build--không-sợ-ai-phá-code">Hai Chế Độ Làm Việc: Plan Và Build — Không Sợ AI Phá Code<a hidden class="anchor" aria-hidden="true" href="#hai-chế-độ-làm-việc-plan-và-build--không-sợ-ai-phá-code">#</a></h2>
+<p>OpenCode có thiết kế rất thông minh: <strong>hai chế độ</strong> chuyển đổi bằng phím Tab.</p>
+<h3 id="plan-mode-chế-độ-lập-kế-hoạch">Plan Mode (Chế Độ Lập Kế Hoạch)<a hidden class="anchor" aria-hidden="true" href="#plan-mode-chế-độ-lập-kế-hoạch">#</a></h3>
+<p>Bạn mô tả yêu cầu. OpenCode phân tích code, đưa ra kế hoạch chi tiết—sửa file nào, tại sao sửa, rủi ro gì—<strong>nhưng chưa động vào file nào cả</strong>. Bạn xem xét, yêu cầu điều chỉnh, rồi mới chuyển sang Build mode.</p>
+<p><strong>Ví dụ thực tế</strong>: &gt; &ldquo;Thêm tính năng đăng nhập bằng Google OAuth2 vào hệ thống hiện tại. Dùng Passport.js, JWT làm session. Cập nhật Prisma schema thêm bảng User và Account.&rdquo;</p>
+<p>Plan mode sẽ liệt kê: 1. Tạo <code>src/auth/google.ts</code> — xử lý OAuth callback
 2. Sửa <code>prisma/schema.prisma</code> — thêm model User, Account, Session
 3. Thêm <code>src/middleware/requireAuth.ts</code> — bảo vệ route
 4. Cập nhật <code>.env.example</code> — thêm GOOGLE_CLIENT_ID
-5. Viết test trong <code>tests/auth.test.ts</code></p><p>Bạn đọc, đồng ý, bấm <strong>Tab</strong>.</p><h3 id=build-mode-chế-độ-thực-thi>Build Mode (Chế Độ Thực Thi)<a hidden class=anchor aria-hidden=true href=#build-mode-chế-độ-thực-thi>#</a></h3><p>OpenCode tự động viết code, chạy migration, thực thi test. Nếu test lỗi, nó tự sửa và chạy lại—cho đến khi xanh hết hoặc báo cáo vấn đề không giải quyết được.</p><hr><h2 id=hướng-dẫn-thực-hành-xây-dựng-api-rest-với-opencode--gemini-31-pro>Hướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro<a hidden class=anchor aria-hidden=true href=#hướng-dẫn-thực-hành-xây-dựng-api-rest-với-opencode--gemini-31-pro>#</a></h2><p><strong>Bối cảnh</strong>: Bạn có một dự án Express + Prisma, muốn thêm module quản lý sản phẩm (CRUD + phân trang + tìm kiếm).</p><p><strong>Bước 1</strong>: Khởi động và chọn model phù hợp</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>cd my-express-app
-</span></span><span style=display:flex><span>opencode
-</span></span><span style=display:flex><span>/connect  <span style=color:#75715e># Chọn Google → Gemini 3.1 Pro (1M token context, nuốt trọn cả dự án lớn)</span>
-</span></span></code></pre></div><p><strong>Bước 2</strong>: Plan mode — mô tả yêu cầu bằng tiếng Việt hoặc tiếng Anh</p><pre tabindex=0><code>&gt; Thêm module Product với CRUD đầy đủ. Schema Prisma gồm name, price,
+5. Viết test trong <code>tests/auth.test.ts</code></p>
+<p>Bạn đọc, đồng ý, bấm <strong>Tab</strong>.</p>
+<h3 id="build-mode-chế-độ-thực-thi">Build Mode (Chế Độ Thực Thi)<a hidden class="anchor" aria-hidden="true" href="#build-mode-chế-độ-thực-thi">#</a></h3>
+<p>OpenCode tự động viết code, chạy migration, thực thi test. Nếu test lỗi, nó tự sửa và chạy lại—cho đến khi xanh hết hoặc báo cáo vấn đề không giải quyết được.</p>
+<hr>
+<h2 id="hướng-dẫn-thực-hành-xây-dựng-api-rest-với-opencode--gemini-31-pro">Hướng Dẫn Thực Hành: Xây Dựng API REST Với OpenCode + Gemini 3.1 Pro<a hidden class="anchor" aria-hidden="true" href="#hướng-dẫn-thực-hành-xây-dựng-api-rest-với-opencode--gemini-31-pro">#</a></h2>
+<p><strong>Bối cảnh</strong>: Bạn có một dự án Express + Prisma, muốn thêm module quản lý sản phẩm (CRUD + phân trang + tìm kiếm).</p>
+<p><strong>Bước 1</strong>: Khởi động và chọn model phù hợp</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>cd my-express-app
+</span></span><span style="display:flex;"><span>opencode
+</span></span><span style="display:flex;"><span>/connect  <span style="color:#75715e"># Chọn Google → Gemini 3.1 Pro (1M token context, nuốt trọn cả dự án lớn)</span>
+</span></span></code></pre></div><p><strong>Bước 2</strong>: Plan mode — mô tả yêu cầu bằng tiếng Việt hoặc tiếng Anh</p>
+<pre tabindex="0"><code>&gt; Thêm module Product với CRUD đầy đủ. Schema Prisma gồm name, price,
 &gt; stock, category, createdAt. API có phân trang (cursor-based),
 &gt; tìm kiếm theo tên và category. Viết unit test cho tất cả endpoint.
-</code></pre><p>OpenCode phân tích xong liệt kê: - <code>prisma/schema.prisma</code>: model Product</p><ul><li><code>src/routes/products.ts</code>: 5 endpoint (GET list, GET detail, POST, PUT, DELETE)</li><li><code>src/services/productService.ts</code>: business logic + validation</li><li><code>src/tests/products.test.ts</code>: test với supertest + jest</li><li>Migration file tự động tạo</li></ul><p><strong>Bước 3</strong>: Bấm Tab → Build mode. OpenCode làm việc trong 2-3 phút.</p><p><strong>Bước 4</strong>: Kiểm tra kết quả</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git diff  <span style=color:#75715e># Xem AI đã sửa gì</span>
-</span></span><span style=display:flex><span>npm test  <span style=color:#75715e># Chạy test để xác nhận</span>
-</span></span></code></pre></div><p><strong>Bước 5</strong>: Chia sẻ session cho đồng nghiệp</p><pre tabindex=0><code>&gt; /share
-</code></pre><p>Tạo link chỉ đọc. Đồng nghiệp xem được toàn bộ quá trình AI &ldquo;suy nghĩ&rdquo; và sửa code như thế nào.</p><hr><h2 id=chiến-lược-tiết-kiệm-chi-phí-mỗi-tác-vụ-một-model>Chiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model<a hidden class=anchor aria-hidden=true href=#chiến-lược-tiết-kiệm-chi-phí-mỗi-tác-vụ-một-model>#</a></h2><p>Đây là <strong>bí kíp quan trọng nhất</strong> để dùng OpenCode hiệu quả về kinh tế. Đừng dùng một model đắt tiền cho mọi việc.</p><table><thead><tr><th>Loại tác vụ</th><th>Model phù hợp</th><th>Chi phí ước tính</th></tr></thead><tbody><tr><td>Format code, sửa lint, refactor đơn giản</td><td>Gemma 4 local (Ollama)</td><td><strong>$0</strong></td></tr><tr><td>Viết tính năng thông thường</td><td>DeepSeek-V4 API</td><td>~$0.5-2/task</td></tr><tr><td>Thiết kế kiến trúc phức tạp</td><td>Gemini 3.1 Pro</td><td>~$2-5/task</td></tr><tr><td>Kiểm tra bảo mật, tìm lỗ hổng</td><td>Claude Sonnet 4.6</td><td>~$1-3/task</td></tr><tr><td>Chuyển đổi code legacy (PHP → Node)</td><td>Claude Opus 4.7</td><td>~$5-10/task</td></tr></tbody></table><p><strong>Ví dụ thực tế</strong>: Một freelancer Việt Nam làm 20 task/tuần, nếu dùng Claude Code Pro ($20/tháng + giới hạn) có thể hết quota giữa tuần. Với OpenCode + chiến lược phân model, tuần đó hết khoảng <strong>$3-8 API fee</strong>—tháng chỉ tốn <strong>$12-32</strong>, rẻ hơn 60-80%.</p><hr><h2 id=mở-rộng-sức-mạnh-với-mcp-biến-opencode-thành-siêu-trợ-lý>Mở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý<a hidden class=anchor aria-hidden=true href=#mở-rộng-sức-mạnh-với-mcp-biến-opencode-thành-siêu-trợ-lý>#</a></h2><p>MCP (Model Context Protocol) cho phép OpenCode nói chuyện với thế giới bên ngoài.</p><h3 id=ví-dụ-kết-nối-postgresql>Ví dụ: Kết Nối PostgreSQL<a hidden class=anchor aria-hidden=true href=#ví-dụ-kết-nối-postgresql>#</a></h3><p>Thêm vào file <code>~/.config/opencode/opencode.json</code>: `````json
+</code></pre><p>OpenCode phân tích xong liệt kê: - <code>prisma/schema.prisma</code>: model Product</p>
+<ul>
+<li><code>src/routes/products.ts</code>: 5 endpoint (GET list, GET detail, POST, PUT, DELETE)</li>
+<li><code>src/services/productService.ts</code>: business logic + validation</li>
+<li><code>src/tests/products.test.ts</code>: test với supertest + jest</li>
+<li>Migration file tự động tạo</li>
+</ul>
+<p><strong>Bước 3</strong>: Bấm Tab → Build mode. OpenCode làm việc trong 2-3 phút.</p>
+<p><strong>Bước 4</strong>: Kiểm tra kết quả</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git diff  <span style="color:#75715e"># Xem AI đã sửa gì</span>
+</span></span><span style="display:flex;"><span>npm test  <span style="color:#75715e"># Chạy test để xác nhận</span>
+</span></span></code></pre></div><p><strong>Bước 5</strong>: Chia sẻ session cho đồng nghiệp</p>
+<pre tabindex="0"><code>&gt; /share
+</code></pre><p>Tạo link chỉ đọc. Đồng nghiệp xem được toàn bộ quá trình AI &ldquo;suy nghĩ&rdquo; và sửa code như thế nào.</p>
+<hr>
+<h2 id="chiến-lược-tiết-kiệm-chi-phí-mỗi-tác-vụ-một-model">Chiến Lược Tiết Kiệm Chi Phí: Mỗi Tác Vụ Một Model<a hidden class="anchor" aria-hidden="true" href="#chiến-lược-tiết-kiệm-chi-phí-mỗi-tác-vụ-một-model">#</a></h2>
+<p>Đây là <strong>bí kíp quan trọng nhất</strong> để dùng OpenCode hiệu quả về kinh tế. Đừng dùng một model đắt tiền cho mọi việc.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Loại tác vụ</th>
+					<th>Model phù hợp</th>
+					<th>Chi phí ước tính</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>Format code, sửa lint, refactor đơn giản</td>
+					<td>Gemma 4 local (Ollama)</td>
+					<td><strong>$0</strong></td>
+			</tr>
+			<tr>
+					<td>Viết tính năng thông thường</td>
+					<td>DeepSeek-V4 API</td>
+					<td>~$0.5-2/task</td>
+			</tr>
+			<tr>
+					<td>Thiết kế kiến trúc phức tạp</td>
+					<td>Gemini 3.1 Pro</td>
+					<td>~$2-5/task</td>
+			</tr>
+			<tr>
+					<td>Kiểm tra bảo mật, tìm lỗ hổng</td>
+					<td>Claude Sonnet 4.6</td>
+					<td>~$1-3/task</td>
+			</tr>
+			<tr>
+					<td>Chuyển đổi code legacy (PHP → Node)</td>
+					<td>Claude Opus 4.7</td>
+					<td>~$5-10/task</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Ví dụ thực tế</strong>: Một freelancer Việt Nam làm 20 task/tuần, nếu dùng Claude Code Pro ($20/tháng + giới hạn) có thể hết quota giữa tuần. Với OpenCode + chiến lược phân model, tuần đó hết khoảng <strong>$3-8 API fee</strong>—tháng chỉ tốn <strong>$12-32</strong>, rẻ hơn 60-80%.</p>
+<hr>
+<h2 id="mở-rộng-sức-mạnh-với-mcp-biến-opencode-thành-siêu-trợ-lý">Mở Rộng Sức Mạnh Với MCP: Biến OpenCode Thành Siêu Trợ Lý<a hidden class="anchor" aria-hidden="true" href="#mở-rộng-sức-mạnh-với-mcp-biến-opencode-thành-siêu-trợ-lý">#</a></h2>
+<p>MCP (Model Context Protocol) cho phép OpenCode nói chuyện với thế giới bên ngoài.</p>
+<h3 id="ví-dụ-kết-nối-postgresql">Ví dụ: Kết Nối PostgreSQL<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-kết-nối-postgresql">#</a></h3>
+<p>Thêm vào file <code>~/.config/opencode/opencode.json</code>: `````json
 {
 &ldquo;mcpServers&rdquo;: {
 &ldquo;database&rdquo;: {
@@ -76,7 +518,8 @@ Lệnh ````/init```` sẽ quét code của bạn và tạo file ````AGENTS.md```
 &ldquo;env&rdquo;: { &ldquo;DATABASE_URL&rdquo;: &ldquo;postgresql://user:pass@localhost/dbname&rdquo; }
 }
 }
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 Giờ bạn có thể hỏi: &gt; &#34;Cho tôi xem schema bảng orders. Query nào trong ````src/reports/quarterly.ts```` chậm? Gợi ý index tối ưu.&#34;
 
 OpenCode sẽ query trực tiếp database, đọc file code, và đề xuất ````CREATE INDEX```` kèm lệnh ````EXPLAIN ANALYZE```` kiểm chứng.
@@ -130,85 +573,262 @@ Qua OpenRouter, OpenCode có thể kết nối: - **DeepSeek-V4**: Giá rẻ, ch
 Với laptop có GPU tầm trung (GTX 1660 trở lên): `````bash
 ollama pull codellama:13b
 # Trong OpenCode chọn ollama://codellama:13b
-</code></pre><p>Viết code Unity (C#), React Native, hoặc Flutter hoàn toàn miễn phí.</p><hr><h2 id=xử-lý-lỗi-thường-gặp>Xử Lý Lỗi Thường Gặp<a hidden class=anchor aria-hidden=true href=#xử-lý-lỗi-thường-gặp>#</a></h2><p><strong>&ldquo;Context too large&rdquo; — AI không đọc hết code</strong></p><ul><li>Tắt MCP server không dùng trong <code>opencode.json</code></li><li>Chuyển sang Gemini 3.1 Pro (context window 1M+ token)</li><li>Thêm <code>.opencodeignore</code> giống <code>.gitignore</code> để bỏ qua <code>node_modules/</code>, <code>dist/</code></li></ul><p><strong>Model local phản hồi chậm</strong></p><ul><li>Kiểm tra Ollama đang chạy: <code>curl http://localhost:11434/api/tags</code></li><li>Giảm model size: thay Qwen3 32B bằng Gemma 4 9B</li><li>Đóng ứng dụng khác để giải phóng RAM</li></ul><p><strong>OpenCode không nhận lệnh tiếng Việt tốt</strong></p><ul><li>Các lệnh kỹ thuật bằng tiếng Anh cho chính xác hơn</li><li>Miêu tả business logic bằng tiếng Việt vẫn OK</li><li>AGENTS.md viết bằng tiếng Việt cũng được, AI hiểu</li></ul><hr><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=kết-luận-opencode-là-tương-lai-mở-của-lập-trình-ai>Kết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI<a hidden class=anchor aria-hidden=true href=#kết-luận-opencode-là-tương-lai-mở-của-lập-trình-ai>#</a></h2><p>Năm 2026, các model AI lớn đang đồng nhất hóa—GPT-5.5, Claude Sonnet 4.6, Gemini 3.1 Pro cho kết quả coding gần như tương đương. Sự khác biệt nằm ở <strong>lớp điều phối (orchestration layer)</strong>—công cụ giúp bạn chuyển đổi giữa các model, quản lý ngữ cảnh, và tích hợp vào quy trình làm việc.</p><p>OpenCode với 160.000 sao chứng minh rằng lập trình viên muốn <strong>sở hữu công cụ của mình</strong>. Không bị khóa vào một nhà cung cấp. Không trả tiền cho tính năng không dùng. Không gửi code nhạy cảm lên server nước ngoài khi không cần thiết.</p><p>Nếu bạn là lập trình viên Việt Nam—dù là sinh viên, freelancer, hay dev công ty—OpenCode mang lại giá trị thực tế: <strong>giảm chi phí, tăng tốc độ, giữ quyền kiểm soát</strong>.</p><p>Mở terminal lên. Cài đặt trong 60 giây. Bắt đầu với một dự án nhỏ. 5 phút sau, bạn sẽ hiểu tại sao 160.000 lập trình viên khác đã chọn công cụ này.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -fsSL https://opencode.ai/install | bash
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**Tài Nguyên Tham Khảo**
-</span></span><span style=display:flex><span>- GitHub: https://github.com/anomalyco/opencode
-</span></span><span style=display:flex><span>- Tài liệu chính thức: https://opencode.ai/docs
-</span></span><span style=display:flex><span>- MCP Protocol: https://modelcontextprotocol.io
-</span></span><span style=display:flex><span>- Models.dev: https://models.dev
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Bài viết cập nhật lần cuối: 2026-05-19. Công cụ AI thay đổi nhanh—luôn kiểm tra tài liệu chính thức để có thông tin mới nhất.*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn Mở Miễn Phí Thay Thế Claude Code — Cài Đặt Chi Tiết và Thủ Thuật Nâng Cao&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-05-20&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-05-20&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/vi/resources/opencode-open-source-claude-code-alternative-2026&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-05-25-trending-ai-agents<span style=color:#f92672>](</span>opencode-open-source-claude-code-alternative-2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-01-trending-ai-agents<span style=color:#f92672>](</span>opencode-open-source-claude-code-alternative-2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-08-trending-ai-agents<span style=color:#f92672>](</span>opencode-open-source-claude-code-alternative-2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-15-trending-ai-agents<span style=color:#f92672>](</span>opencode-open-source-claude-code-alternative-2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-22-trending-ai-agents<span style=color:#f92672>](</span>opencode-open-source-claude-code-alternative-2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/openclaw-self-hosted-ai-assistant-setup-guide-2026/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/openhands/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre><p>Viết code Unity (C#), React Native, hoặc Flutter hoàn toàn miễn phí.</p>
+<hr>
+<h2 id="xử-lý-lỗi-thường-gặp">Xử Lý Lỗi Thường Gặp<a hidden class="anchor" aria-hidden="true" href="#xử-lý-lỗi-thường-gặp">#</a></h2>
+<p><strong>&ldquo;Context too large&rdquo; — AI không đọc hết code</strong></p>
+<ul>
+<li>Tắt MCP server không dùng trong <code>opencode.json</code></li>
+<li>Chuyển sang Gemini 3.1 Pro (context window 1M+ token)</li>
+<li>Thêm <code>.opencodeignore</code> giống <code>.gitignore</code> để bỏ qua <code>node_modules/</code>, <code>dist/</code></li>
+</ul>
+<p><strong>Model local phản hồi chậm</strong></p>
+<ul>
+<li>Kiểm tra Ollama đang chạy: <code>curl http://localhost:11434/api/tags</code></li>
+<li>Giảm model size: thay Qwen3 32B bằng Gemma 4 9B</li>
+<li>Đóng ứng dụng khác để giải phóng RAM</li>
+</ul>
+<p><strong>OpenCode không nhận lệnh tiếng Việt tốt</strong></p>
+<ul>
+<li>Các lệnh kỹ thuật bằng tiếng Anh cho chính xác hơn</li>
+<li>Miêu tả business logic bằng tiếng Việt vẫn OK</li>
+<li>AGENTS.md viết bằng tiếng Việt cũng được, AI hiểu</li>
+</ul>
+<hr>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="kết-luận-opencode-là-tương-lai-mở-của-lập-trình-ai">Kết Luận: OpenCode Là Tương Lai Mở Của Lập Trình AI<a hidden class="anchor" aria-hidden="true" href="#kết-luận-opencode-là-tương-lai-mở-của-lập-trình-ai">#</a></h2>
+<p>Năm 2026, các model AI lớn đang đồng nhất hóa—GPT-5.5, Claude Sonnet 4.6, Gemini 3.1 Pro cho kết quả coding gần như tương đương. Sự khác biệt nằm ở <strong>lớp điều phối (orchestration layer)</strong>—công cụ giúp bạn chuyển đổi giữa các model, quản lý ngữ cảnh, và tích hợp vào quy trình làm việc.</p>
+<p>OpenCode với 160.000 sao chứng minh rằng lập trình viên muốn <strong>sở hữu công cụ của mình</strong>. Không bị khóa vào một nhà cung cấp. Không trả tiền cho tính năng không dùng. Không gửi code nhạy cảm lên server nước ngoài khi không cần thiết.</p>
+<p>Nếu bạn là lập trình viên Việt Nam—dù là sinh viên, freelancer, hay dev công ty—OpenCode mang lại giá trị thực tế: <strong>giảm chi phí, tăng tốc độ, giữ quyền kiểm soát</strong>.</p>
+<p>Mở terminal lên. Cài đặt trong 60 giây. Bắt đầu với một dự án nhỏ. 5 phút sau, bạn sẽ hiểu tại sao 160.000 lập trình viên khác đã chọn công cụ này.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://opencode.ai/install | bash
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Tài Nguyên Tham Khảo**
+</span></span><span style="display:flex;"><span>- GitHub: https://github.com/anomalyco/opencode
+</span></span><span style="display:flex;"><span>- Tài liệu chính thức: https://opencode.ai/docs
+</span></span><span style="display:flex;"><span>- MCP Protocol: https://modelcontextprotocol.io
+</span></span><span style="display:flex;"><span>- Models.dev: https://models.dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Bài viết cập nhật lần cuối: 2026-05-19. Công cụ AI thay đổi nhanh—luôn kiểm tra tài liệu chính thức để có thông tin mới nhất.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Hướng Dẫn OpenCode 2026: Công Cụ AI Lập Trình Mã Nguồn Mở Miễn Phí Thay Thế Claude Code — Cài Đặt Chi Tiết và Thủ Thuật Nâng Cao&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/vi/resources/opencode-open-source-claude-code-alternative-2026&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-05-25-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-01-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-08-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-15-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-22-trending-ai-agents<span style="color:#f92672">](</span>opencode-open-source-claude-code-alternative-2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/openclaw-self-hosted-ai-assistant-setup-guide-2026/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/openhands/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

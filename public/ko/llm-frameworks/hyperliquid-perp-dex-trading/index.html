@@ -1,10 +1,289 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/hyperliquid-perp-dex-trading/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/hyperliquid-perp-dex-trading/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/ko/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Proprietary file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“ai-trading”] tags: [“hyperliquid”, “perpetual dex”, “on-chain trading”, “leverage trading”, “trading bot”, “hyperevm”, “python sdk”, “websocket api”, “clob”, “defi trading”, “algorithmic trading”] aliases:\n/kr/posts/hyperliquid-perp-dex-trading/ 날짜: 2026-05-19\n카테고리: AI 트레이딩\n태그: Hyperliquid, 영구 DEX, 온체인 트레이딩, 레버리지 트레이딩, 트레이딩 봇, DeFi, HyperEVM\n읽는 시간: 18분\n소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유 2023년 이후 탈중앙화 영구 선물 트레이딩 환경은 대규모 변혁을 겪었으며, 이 변화의 중심에는 Hyperliquid가 있습니다 — 2026년 낂 낂 일일 거래량 $20억 이상을 꾸준히 처리하는 완전 온체인 오더북 기반 영구 DEX입니다. 유동성 풀에 의존하고 슬리피지 및 비영구적 손실에 취약한 기존 AMM 기반 DEX와 달리, Hyperliquid는 중앙화 거래소의 익숙한 CLOB(Central Limit Order Book) 경험을 블록체인으로 가져와 중앙화 거래소의 실행 품질과 DeFi의 자기 관리 및 투명성 이점을 결합합니다.\nHyperliquid는 중앙화와 탈중앙화 플랫폼 사이에서 트레이더가 직면하는 타협을 없애는 임무로 출시되어 현재 100개 이상의 거래 페어를 지원하는 종합 트레이딩 플랫폼으로 성장했으며, 선택한 시장에서 최대 50배 레버리지를 제공합니다. 플랫폼의 HyperEVM — 전용 EVM 호환 실행 레이어 — 과의 네이티브 통합은 정교한 트레이딩 전략, MEV 저항 실행 및 이전 영구 DEX에서 불가능했던 원활한 스마트 컨트랙트 조합성을 위한 게이트를 열었습니다.\n알고리즘 트레이더와 봇 개발자에게 Hyperliquid는 패러다임 전환을 나타냅니다. 플랫폼의 포괄적인 Python SDK는 고성능 REST 및 WebSocket API와 결합하여 1초 미만 주문 배치, 실시간 포지션 관리 및 완전 자동화된 전략 실행을 가능하게 합니다. 시장 메이킹 봇, 트렌드 팔로잉 시스템 또는 복잡한 멀티 거래소 차익 거래 전략을 구축하든, Hyperliquid는 탈중앙화를 희생하지 않고 기관급 트레이딩 볼륨을 처리할 수 있는 인프라 백본을 제공합니다.\n이 종합 가이드에서는 Hyperliquid의 핵심 아키텍처 이해부터 프로덕션 레디 트레이딩 봇 구축까지 2026년 Hyperliquid 트레이딩의 모든 측면을 살펴 보겠습니다.\nHyperliquid 핵심 아키텍처 이해 CLOB 이점: 영구 선물에 오더북이 중요한 이유 vAMM(가상 AMM)과 같은 AMM 모델을 기반으로 한 기존 영구 DEX는 고유한 한계가 있습니다: 현재 가격 주변의 집중된 유동성, 대규모 주문의 상당한 슬리피지, 유동성 제공자의 비영구적 손실 노출. Hyperliquid의 CLOB(Central Limit Order Book) 아키텍처는 이러한 문제를 완전히 제거합니다.\nCLOB 시스템에서 트레이더는 특정 가격에 지정가 주문을 배치하여 각 가격 수준에서 존재하는 유동성을 정확히 보여주는 가시적인 뎁스 차트를 만듭니다. 이를 통해 다음이 가능합니다: - 더 좁은 스프레드 — 시장 메이커가 직접 경쟁하여 입찰-ask 스프레드를 바이낸스 및 바이비트 수준으로 좁힘\n지정가 주문 제로 슬리피지 — 대규모 주문이 지정된 가격(또는 더 나은 가격)에서 정확히 체결됨 투명한 가격 발견 — 모든 주문이 온체인에서 가시적이어서 숨겨진 조작 방지 효율적인 자본 활용 — 유동성 풀에 자본을 잠글 필요 없음; 자본은 주문이 체결될 때만 사용됨 Hyperliquid의 오더북은 독점 L1 체인에서 완전히 결제되며, 1초 미만의 블록 시간과 초당 10,000건 이상의 트랜잭션을 지원합니다.\nHyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남 2024년 말 HyperEVM의 도입은 Hyperliquid의 획기적인 순간이었습니다. 이 EVM 호환 실행 레이어는 다음을 가능하게 합니다: - 스마트 컨트랙트 지갑 — 고급 액세스 제어 및 자동 실행을 위한 프로그래밍 가능한 계정 로직\n조합 가능한 DeFi 전략 — 대출 프로토콜, 수익 최적화기 및 기타 온체인 프리미티브와의 통합 사용자 정의 주문 유형 — 스마트 컨트랙트 자동화를 통한 조걶 주문, 추적 손절 및 TWAP 실행 가스 없는 트랜잭션 — 수수료를 어떤 토큰으로도 지불하거나 타사가 후원할 수 있는 메타 트랜잭션 지원 Hyperliquid 트레이딩 환경 설정 Python SDK 설치 # 가상 환경 생성 python -m venv hyperliquid-env source hyperliquid-env/bin/activate # 공식 SDK 설치 pip install hyperliquid-python-sdk # 추가 의존성 설치 pip install websockets aiohttp pandas numpy python-dotenv .env 파일 생성: `````bash\n.env — 절대 버전 관리에 커밋하지 마세요 PRIVATE_KEY=your_ethereum_private_key_here WALLET_ADDRESS=0x_your_wallet_address TESTNET=true\n### 기본 연결 및 인증 `````python import os from dotenv import load_dotenv from hyperliquid.exchange import Exchange from hyperliquid.info import Info from hyperliquid.utils import constants load_dotenv() class HyperliquidTrader: \"\"\"프로덕션 레디 Hyperliquid 트레이딩 클라이언트.\"\"\" def __init__(self, use_testnet=True): self.private_key = os.getenv(PRIVATE_KEY) self.wallet_address = os.getenv(WALLET_ADDRESS) self.base_url = constants.TESTNET_API_URL if use_testnet else constants.MAINNET_API_URL self.exchange = Exchange(self.wallet_address, self.private_key, self.base_url) self.info = Info(self.base_url) print(f\"Hyperliquid {테스트넷 if use_testnet else 메인넷}에 연결됨\") def get_account_summary(self): \"\"\"종합 계정 정보 조회.\"\"\" user_state = self.info.user_state(self.wallet_address) account_value = float(user_state[marginSummary][accountValue]) total_margin_used = float(user_state[marginSummary][totalMarginUsed]) print(f\"계정 가치: ${account_value:,.2f}\") print(f\"사용 마진: ${total_margin_used:,.2f}\") return user_state trader = HyperliquidTrader(use_testnet=True) trader.get_account_summary() 프로덕션 레디 트레이딩 봇 구축 WebSocket을 통한 실시간 시장 데이터 import json import websockets class HyperliquidWebSocketFeed: \"\"\"Hyperliquid용 고성능 WebSocket 데이터 피드.\"\"\" def __init__(self): self.ws_url = \"wss://api.hyperliquid.xyz/ws\" self.subscriptions = {} self.orderbook_cache = {} self.running = False async def connect(self): \"\"\"자동 재연결이 있는 WebSocket 연결 설정.\"\"\" while True: try: async with websockets.connect(self.ws_url) as ws: print(\"WebSocket 연결됨\") self.ws = ws self.running = True for sub in self.subscriptions.values(): await ws.send(json.dumps(sub)) await self._listen() except Exception as e: print(f\"WebSocket 오류: {e}. 5초 후 재연결...\") await asyncio.sleep(5) async def _listen(self): \"\"\"수신 메시지 처리.\"\"\" async for message in self.ws: msg = json.loads(message) if msg.get(\"channel\") == \"l2Book\": await self._handle_orderbook(msg[data]) elif msg.get(\"channel\") == \"trades\": await self._handle_trades(msg[data]) async def _handle_orderbook(self, data): \"\"\"L2 오더북 업데이트 처리.\"\"\" coin = data[coin] levels = data[levels] self.orderbook_cache[coin] = { bids: [{px: float(b[px]), sz: float(b[sz])} for b in levels[0]], asks: [{px: float(a[px]), sz: float(a[sz])} for a in levels[1]], } async def subscribe_orderbook(self, coin): \"\"\"특정 시장의 실시간 오더북 구독.\"\"\" sub = { \"method\": \"subscribe\", \"subscription\": {\"type\": \"l2Book\", \"coin\": coin} } self.subscriptions[f\"book_{coin}\"] = sub if self.running: await self.ws.send(json.dumps(sub)) print(f\"{coin} 오더북 구독됨\") async def subscribe_trades(self, coin): \"\"\"실시간 체결 내역 구독.\"\"\" sub = { \"method\": \"subscribe\", \"subscription\": {\"type\": \"trades\", \"coin\": coin} } self.subscriptions[f\"trades_{coin}\"] = sub if self.running: await self.ws.send(json.dumps(sub)) 주문 유형: 시장가, 지정가, 조걶 주문 def place_market_order(self, coin: str, is_buy: bool, sz: float): \"\"\"슬리피지 보호가 있는 시장가 주문 실행.\"\"\" order_type = {\"limit\": {\"tif\": \"Ioc\"}} # Immediate-or-Cancel result = self.exchange.order(coin, is_buy, sz, 0, order_type, reduce_only=False) print(f\"시장가 {매수 if is_buy else 매도} {sz} {coin}\") print(f\"상태: {result[status]}\") return result def place_limit_order(self, coin: str, is_buy: bool, sz: float, px: float, tif: str = \"Gtc\"): \"\"\"지정된 시간 유효 조건으로 지정가 주문 배치. TIF 옵션: - Gtc: Good-til-Cancelled (취소까지 유효) - Ioc: Immediate-or-Cancel (즉시 실행 또는 취소) - Fok: Fill-or-Kill (전량 체결 또는 취소) \"\"\" order_type = {\"limit\": {\"tif\": tif}} result = self.exchange.order(coin, is_buy, sz, px, order_type, reduce_only=False) print(f\"지정가 {매수 if is_buy else 매도} {sz} {coin} @ {px}\") return result def place_stop_loss_order(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float): \"\"\"트리거 가격이 있는 손절 주문 배치.\"\"\" order_type = { \"trigger\": { \"triggerPx\": str(trigger_px), \"isMarket\": True, \"tpsl\": \"sl\" } } result = self.exchange.order(coin, is_buy, sz, limit_px, order_type, reduce_only=True) print(f\"손절 {매수 if is_buy else 매도} {sz} {coin}\") return result def get_positions(self): \"\"\"손익 세부 정보가 포함된 모든 미결 포지션 조회.\"\"\" user_state = self.info.user_state(self.wallet_address) positions = user_state.get(assetPositions, []) active_positions = [] for pos in positions: position = pos[position] entry_px = float(position[entryPx]) current_px = float(position[markPx]) size = float(position[szi]) pnl = (current_px - entry_px) * size if size \u003e 0 else (entry_px - current_px) * abs(size) active_positions.append({ coin: position[coin], size: size, entry_price: entry_px, mark_price: current_px, unrealized_pnl: pnl, leverage: float(position[leverage][value]), liquidation_price: float(position.get(liquidationPx, 0)) }) return active_positions def close_position(self, coin: str): \"\"\"특정 시장의 전체 포지션 청산.\"\"\" positions = self.get_positions() for pos in positions: if pos[coin] == coin and pos[size] != 0: is_buy = pos[size] \u003c 0 sz = abs(pos[size]) return self.place_market_order(coin, is_buy, sz) print(f\"{coin}에 미결 포지션이 없습니다\") return None 완전한 트렌드 팔로잉 봇 예제 import time import pandas as pd from datetime import datetime, timedelta class TrendFollowingBot: \"\"\"Hyperliquid용 EMA 크로스오버 트렌드 팔로잉 봇.\"\"\" def __init__(self, trader: HyperliquidTrader, coin: str = \"BTC\"): self.trader = trader self.coin = coin self.fast_ema_period = 9 self.slow_ema_period = 21 self.risk_per_trade = 0.02 self.in_position = False self.position_side = None def check_signals(self) -\u003e str: \"\"\"EMA 크로스오버 신호 확인.\"\"\" candles = self.trader.info.candles( coin=self.coin, interval=\"5m\", startTime=int((datetime.now() - timedelta(hours=12)).timestamp() * 1000), endTime=int(datetime.now().timestamp() * 1000) ) closes = pd.Series([float(c[c]) for c in candles if c in c]) if len(closes) \u003c self.slow_ema_period + 5: return \"HOLD\" fast_ema = closes.ewm(span=self.fast_ema_period).mean() slow_ema = closes.ewm(span=self.slow_ema_period).mean() if fast_ema.iloc[-2] \u003c= slow_ema.iloc[-2] and fast_ema.iloc[-1] \u003e slow_ema.iloc[-1]: return \"BUY\" if fast_ema.iloc[-2] \u003e= slow_ema.iloc[-2] and fast_ema.iloc[-1] \u003c slow_ema.iloc[-1]: return \"SELL\" return \"HOLD\" def execute_signal(self, signal: str): \"\"\"적절한 위험 관리로 트레이딩 신호 실행.\"\"\" if signal == \"HOLD\": return if self.in_position: if (signal == \"BUY\" and self.position_side == \"SHORT\") or \\ (signal == \"SELL\" and self.position_side == \"LONG\"): self.trader.close_position(self.coin) self.in_position = False time.sleep(1) else: return mids = self.trader.info.all_mids() current_px = float(mids.get(self.coin, 0)) if current_px == 0: return account = self.trader.get_account_summary() account_value = float(account[marginSummary][accountValue]) sz = round(account_value * self.risk_per_trade / current_px, 4) if signal == \"BUY\": self.trader.place_market_order(self.coin, True, sz) self.position_side = \"LONG\" elif signal == \"SELL\": self.trader.place_market_order(self.coin, False, sz) self.position_side = \"SHORT\" self.in_position = True def run(self, check_interval: int = 60): \"\"\"메인 봇 루프.\"\"\" print(f\"{self.coin} 트렌드 봇 시작\") print(f\"Fast EMA: {self.fast_ema_period}, Slow EMA: {self.slow_ema_period}\") while True: try: signal = self.check_signals() print(f\"[{datetime.now()}] 신호: {signal}\") self.execute_signal(signal) positions = self.trader.get_positions() for pos in positions: print(f\" {pos[coin]}: {pos[size]} | PnL: ${pos[unrealized_pnl]:+.2f}\") time.sleep(check_interval) except Exception as e: print(f\"봇 루프 오류: {e}\") time.sleep(10) 고급 Hyperliquid API 통합 펀딩 비율 및 역사적 데이터 def get_funding_rates(self): \"\"\"모든 시장의 현재 펀딩 비율 조회.\"\"\" meta = self.info.meta() assets = meta[universe] funding_data = [] for asset in assets[:20]: name = asset[name] ctx = self.info.funding_history(name, 1) if ctx: funding_data.append({ coin: name, funding_rate: float(ctx[0].get(fundingRate, 0)), predicted_rate: float(ctx[0].get(predictedFundingRate, 0)) }) funding_data.sort(key=lambda x: abs(x[funding_rate]), reverse=True) print(\"\\n펀딩 비율 상위:\") for f in funding_data[:10]: print(f\" {f[coin]}: {f[funding_rate]*100:+.4f}%\") return funding_data 다중 자산 WebSocket 관리 class MultiAssetWebSocketManager: \"\"\"여러 자산에 대한 동시 WebSocket 연결 관리.\"\"\" def __init__(self, assets: list): self.assets = assets self.ws_url = \"wss://api.hyperliquid.xyz/ws\" self.handlers = {} self.data_cache = {asset: {mid: 0, spread: 0} for asset in assets} async def subscribe_all(self, ws): \"\"\"일괄로 모든 자산 구독.\"\"\" sub = {\"method\": \"subscribe\", \"subscription\": {\"type\": \"allMids\"}} await ws.send(json.dumps(sub)) for asset in self.assets: sub = {\"method\": \"subscribe\", \"subscription\": {\"type\": \"l2Book\", \"coin\": asset}} await ws.send(json.dumps(sub)) async def run(self): async with websockets.connect(self.ws_url) as ws: await self.subscribe_all(ws) async for message in ws: msg = json.loads(message) if msg.get(\"channel\") == \"allMids\": for asset, price in msg[data].items(): if asset in self.data_cache: self.data_cache[asset][mid] = float(price) elif msg.get(\"channel\") == \"l2Book\": coin = msg[data][coin] if coin in self.data_cache: bids = msg[data][levels][0] asks = msg[data][levels][1] if bids and asks: self.data_cache[coin][spread] = float(asks[0][px]) - float(bids[0][px]) Hyperliquid 리스크 관리 고립형 vs. 교차 마진 def set_cross_margin(self, coin: str): \"\"\"교차 마진 모드 활성화.\"\"\" result = self.exchange.update_isolated_margin(coin, False, None) print(f\"{coin} 교차 마진 활성화됨\") return result def set_isolated_margin(self, coin: str, leverage: int): \"\"\"특정 레버리지로 고립형 마진 활성화.\"\"\" result = self.exchange.update_isolated_margin(coin, True, leverage) print(f\"{coin} 고립형 마진 {leverage}x 활성화됨\") return result 자동화된 리스크 컨트롤 class RiskManager: \"\"\"Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템.\"\"\" def __init__(self, trader: HyperliquidTrader): self.trader = trader self.max_daily_loss = 0.05 self.max_position_size = 0.50 self.max_leverage = 25 self.daily_pnl = 0 self.last_reset = datetime.now().date() def check_daily_limit(self) -\u003e bool: \"\"\"일일 손실 한도 확인.\"\"\" today = datetime.now().date() if today != self.last_reset: self.daily_pnl = 0 self.last_reset = today account = self.trader.get_account_summary() account_value = float(account[marginSummary][accountValue]) loss_pct = abs(min(self.daily_pnl, 0)) / account_value if account_value \u003e 0 else 0 if loss_pct \u003e= self.max_daily_loss: print(f\"일일 손실 한도 도달: {loss_pct*100:.2f}%\") return False return True def emergency_close_all(self): \"\"\"모든 포지션 긴급 청산.\"\"\" print(\"모든 포지션 긴급 청산\") positions = self.trader.get_positions() for pos in positions: if pos[size] != 0: self.trader.close_position(pos[coin]) time.sleep(0.5) 자주 묻는 질문 (FAQ) Hyperliquid는 dYdX나 GMX와 어떻게 다른가요? Hyperliquid의 핵심 차별화 요소는 완전 온체인 CLOB 아키텍처와 트레이딩에 최적화된 독점 L1 체인의 결합입니다. dYdX v4는 Cosmos 앱체인에서, GMX는 AMM 모델을 사용하는 반면, Hyperliquid는 1초 미만의 블록 시간과 10,000+ TPS를 갖춘 진정한 오더북 매칭을 제공합니다. HyperEVM은 dYdX와 GMX가 일치할 수 없는 스마트 컨트랙트 조합성을 가능하게 합니다. 또한 Hyperliquid는 대부분의 경쟁 영구 DEX보다 더 높은 일일 거래량($2B+)을 유지합니다.\nHyperliquid에 자금을 입금하려면 어떻게 하나요? Arbitrum의 USDC가 필요합니다. Hyperliquid 거래 인터페이스에 접속하여 지갑을 연결하고, “입금\"을 클릭하고 USDC 금액을 지정한 다음 Arbitrum 트랜잭션을 확인합니다(일반적으로 5분 이내).\nHyperliquid의 거래 수수료는 얼마인가요? 메이커 수수료: -0.002% (네거티브 — 유동성 제공 리베이트) 테이커 수수료: 0.035% 영구 DEX 시장에서 가장 경쟁력 있는 수수료입니다.\nHyperliquid는 안전한가요? Hyperliquid는 비수탁형 거래소로 운영됩니다 — 자금은 귀하의 개인 키로 제어되는 스마트 컨트랙트에 남아 있습니다. 스마트 컨트랙트 리스크, 청산 리스크, 오라클 리스크, 브리지 리스크가 존재합니다. 누적 거래량 $500B+을 무사고로 처리했습니다.\n실전 투입 전 전략을 어떻게 백테스트하나요? Hyperliquid는 API를 통해 묣은 역사적 데이터를 제공합니다. fetch_historical_candles 메서드로 OHLCV 데이터를 가져와 ````BacktestEngine``` 클래스로 EMA 크로스오버 백테스트를 실행합니다.\n추천 도구 이 가이드와 함께 사용하기를 추천하는 제품: - Minara — AI-powered automated trading bot\nBinance — World\"s leading cryptocurrency exchange 제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.\n결론: 온체인 영구 트레이딩의 미래 Hyperliquid는 2026년 최고의 온체인 영구 선물 트레이딩 플랫폼으로 확고히 자리매김했습니다. $2B+ 일일 거래량, 100개 이상의 거래 페어, 최대 50배 레버리지, 강력한 HyperEVM 스마트 컨트랙트 레이어를 갖춘 Hyperliquid는 많은 면에서 중앙화 대안을 능가하는 종합 트레이딩 생태계를 제공합니다.\nPython SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 조합은 정교한 트레이딩 시스템을 구축하기 위한 최고의 환경을 만듭니다. 오늘부터 구축을 시작하고 Hyperliquid의 오더북을 통해 매일 수십억 달러의 거래량이 흐르는 이유를 경험해 보세요.\n면책 조항: 암호화폐 트레이딩에는 상당한 리스크가 따릅니다. 이 문서는 교육 목적으로만 작성되었으며 재무 조언을 구성하지 않습니다. 항상 자체 연구를 수행하고 절대 잃을 여유가 없는 자금으로 트레이딩하지 마세요.\n관련 리소스:\nMinara AI 트레이딩 봇 Binance 거래소 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통합 가이드”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading\" } } Related Articles cloakbrowser-stealth-chromium-bot-detection-scraping hkuds-ai-trader freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 freqtrade-python-crypto-trading-bot-backtest-optimize-deploy Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n","wordCount":"2138","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/>En</a></li><li><a href=https://dibi8.com/zh/llm-frameworks/hyperliquid-perp-dex-trading/>Zh</a></li><li><a href=https://dibi8.com/vi/llm-frameworks/hyperliquid-perp-dex-trading/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#%ec%86%8c%ea%b0%9c-hyperliquid%ea%b0%80-%ec%98%81%ea%b5%ac-dex-%ec%8b%9c%ec%9e%a5%ec%9d%84-%ec%a7%80%eb%b0%b0%ed%95%98%eb%8a%94-%ec%9d%b4%ec%9c%a0 aria-label="소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유">소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유</a></li><li><a href=#hyperliquid-%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ec%9d%b4%ed%95%b4 aria-label="Hyperliquid 핵심 아키텍처 이해">Hyperliquid 핵심 아키텍처 이해</a><ul><li><a href=#clob-%ec%9d%b4%ec%a0%90-%ec%98%81%ea%b5%ac-%ec%84%a0%eb%ac%bc%ec%97%90-%ec%98%a4%eb%8d%94%eb%b6%81%ec%9d%b4-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%9d%b4%ec%9c%a0 aria-label="CLOB 이점: 영구 선물에 오더북이 중요한 이유">CLOB 이점: 영구 선물에 오더북이 중요한 이유</a></li><li><a href=#hyperevm-%ec%8a%a4%eb%a7%88%ed%8a%b8-%ec%bb%a8%ed%8a%b8%eb%9e%99%ed%8a%b8%ec%99%80-%ea%b3%a0%eb%b9%88%eb%8f%84-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9%ec%9d%98-%eb%a7%8c%eb%82%a8 aria-label="HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남">HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남</a></li></ul></li><li><a href=#hyperliquid-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%ed%99%98%ea%b2%bd-%ec%84%a4%ec%a0%95 aria-label="Hyperliquid 트레이딩 환경 설정">Hyperliquid 트레이딩 환경 설정</a><ul><li><a href=#python-sdk-%ec%84%a4%ec%b9%98 aria-label="Python SDK 설치">Python SDK 설치</a></li></ul></li></ul><li><a href=#env--%ec%a0%88%eb%8c%80-%eb%b2%84%ec%a0%84-%ea%b4%80%eb%a6%ac%ec%97%90-%ec%bb%a4%eb%b0%8b%ed%95%98%ec%a7%80-%eb%a7%88%ec%84%b8%ec%9a%94 aria-label=".env — 절대 버전 관리에 커밋하지 마세요">.env — 절대 버전 관리에 커밋하지 마세요</a><ul><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%a0%88%eb%94%94-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%eb%b4%87-%ea%b5%ac%ec%b6%95 aria-label="프로덕션 레디 트레이딩 봇 구축">프로덕션 레디 트레이딩 봇 구축</a><ul><li><a href=#websocket%ec%9d%84-%ed%86%b5%ed%95%9c-%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%8b%9c%ec%9e%a5-%eb%8d%b0%ec%9d%b4%ed%84%b0 aria-label="WebSocket을 통한 실시간 시장 데이터">WebSocket을 통한 실시간 시장 데이터</a></li><li><a href=#%ec%a3%bc%eb%ac%b8-%ec%9c%a0%ed%98%95-%ec%8b%9c%ec%9e%a5%ea%b0%80-%ec%a7%80%ec%a0%95%ea%b0%80-%ec%a1%b0%ea%b1%b6-%ec%a3%bc%eb%ac%b8 aria-label="주문 유형: 시장가, 지정가, 조걶 주문">주문 유형: 시장가, 지정가, 조걶 주문</a></li><li><a href=#%ec%99%84%ec%a0%84%ed%95%9c-%ed%8a%b8%eb%a0%8c%eb%93%9c-%ed%8c%94%eb%a1%9c%ec%9e%89-%eb%b4%87-%ec%98%88%ec%a0%9c aria-label="완전한 트렌드 팔로잉 봇 예제">완전한 트렌드 팔로잉 봇 예제</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-hyperliquid-api-%ed%86%b5%ed%95%a9 aria-label="고급 Hyperliquid API 통합">고급 Hyperliquid API 통합</a><ul><li><a href=#%ed%8e%80%eb%94%a9-%eb%b9%84%ec%9c%a8-%eb%b0%8f-%ec%97%ad%ec%82%ac%ec%a0%81-%eb%8d%b0%ec%9d%b4%ed%84%b0 aria-label="펀딩 비율 및 역사적 데이터">펀딩 비율 및 역사적 데이터</a></li><li><a href=#%eb%8b%a4%ec%a4%91-%ec%9e%90%ec%82%b0-websocket-%ea%b4%80%eb%a6%ac aria-label="다중 자산 WebSocket 관리">다중 자산 WebSocket 관리</a></li></ul></li><li><a href=#hyperliquid-%eb%a6%ac%ec%8a%a4%ed%81%ac-%ea%b4%80%eb%a6%ac aria-label="Hyperliquid 리스크 관리">Hyperliquid 리스크 관리</a><ul><li><a href=#%ea%b3%a0%eb%a6%bd%ed%98%95-vs-%ea%b5%90%ec%b0%a8-%eb%a7%88%ec%a7%84 aria-label="고립형 vs. 교차 마진">고립형 vs. 교차 마진</a></li><li><a href=#%ec%9e%90%eb%8f%99%ed%99%94%eb%90%9c-%eb%a6%ac%ec%8a%a4%ed%81%ac-%ec%bb%a8%ed%8a%b8%eb%a1%a4 aria-label="자동화된 리스크 컨트롤">자동화된 리스크 컨트롤</a></li></ul></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq aria-label="자주 묻는 질문 (FAQ)">자주 묻는 질문 (FAQ)</a><ul><li><a href=#hyperliquid%eb%8a%94-dydx%eb%82%98-gmx%ec%99%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%8b%a4%eb%a5%b8%ea%b0%80%ec%9a%94 aria-label="Hyperliquid는 dYdX나 GMX와 어떻게 다른가요?">Hyperliquid는 dYdX나 GMX와 어떻게 다른가요?</a></li><li><a href=#hyperliquid%ec%97%90-%ec%9e%90%ea%b8%88%ec%9d%84-%ec%9e%85%ea%b8%88%ed%95%98%eb%a0%a4%eb%a9%b4-%ec%96%b4%eb%96%bb%ea%b2%8c-%ed%95%98%eb%82%98%ec%9a%94 aria-label="Hyperliquid에 자금을 입금하려면 어떻게 하나요?">Hyperliquid에 자금을 입금하려면 어떻게 하나요?</a></li><li><a href=#hyperliquid%ec%9d%98-%ea%b1%b0%eb%9e%98-%ec%88%98%ec%88%98%eb%a3%8c%eb%8a%94-%ec%96%bc%eb%a7%88%ec%9d%b8%ea%b0%80%ec%9a%94 aria-label="Hyperliquid의 거래 수수료는 얼마인가요?">Hyperliquid의 거래 수수료는 얼마인가요?</a></li><li><a href=#hyperliquid%eb%8a%94-%ec%95%88%ec%a0%84%ed%95%9c%ea%b0%80%ec%9a%94 aria-label="Hyperliquid는 안전한가요?">Hyperliquid는 안전한가요?</a></li><li><a href=#%ec%8b%a4%ec%a0%84-%ed%88%ac%ec%9e%85-%ec%a0%84-%ec%a0%84%eb%9e%b5%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%b0%b1%ed%85%8c%ec%8a%a4%ed%8a%b8%ed%95%98%eb%82%98%ec%9a%94 aria-label="실전 투입 전 전략을 어떻게 백테스트하나요?">실전 투입 전 전략을 어떻게 백테스트하나요?</a></li></ul></li><li><a href=#%ec%b6%94%ec%b2%9c-%eb%8f%84%ea%b5%ac aria-label="추천 도구">추천 도구</a></li><li><a href=#%ea%b2%b0%eb%a1%a0-%ec%98%a8%ec%b2%b4%ec%9d%b8-%ec%98%81%ea%b5%ac-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9%ec%9d%98-%eb%af%b8%eb%9e%98 aria-label="결론: 온체인 영구 트레이딩의 미래">결론: 온체인 영구 트레이딩의 미래</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-frameworks/hyperliquid-perp-dex-trading/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/hyperliquid-perp-dex-trading/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/ko/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: [] application_domain: Ai Trading source_version: ’' licensing_model: Open Source license_type: Proprietary file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“ai-trading”] tags: [“hyperliquid”, “perpetual dex”, “on-chain trading”, “leverage trading”, “trading bot”, “hyperevm”, “python sdk”, “websocket api”, “clob”, “defi trading”, “algorithmic trading”] aliases:\n/kr/posts/hyperliquid-perp-dex-trading/ 날짜: 2026-05-19\n카테고리: AI 트레이딩\n태그: Hyperliquid, 영구 DEX, 온체인 트레이딩, 레버리지 트레이딩, 트레이딩 봇, DeFi, HyperEVM\n읽는 시간: 18분\n소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유 2023년 이후 탈중앙화 영구 선물 트레이딩 환경은 대규모 변혁을 겪었으며, 이 변화의 중심에는 Hyperliquid가 있습니다 — 2026년 낂 낂 일일 거래량 $20억 이상을 꾸준히 처리하는 완전 온체인 오더북 기반 영구 DEX입니다. 유동성 풀에 의존하고 슬리피지 및 비영구적 손실에 취약한 기존 AMM 기반 DEX와 달리, Hyperliquid는 중앙화 거래소의 익숙한 CLOB(Central Limit Order Book) 경험을 블록체인으로 가져와 중앙화 거래소의 실행 품질과 DeFi의 자기 관리 및 투명성 이점을 결합합니다.\nHyperliquid는 중앙화와 탈중앙화 플랫폼 사이에서 트레이더가 직면하는 타협을 없애는 임무로 출시되어 현재 100개 이상의 거래 페어를 지원하는 종합 트레이딩 플랫폼으로 성장했으며, 선택한 시장에서 최대 50배 레버리지를 제공합니다. 플랫폼의 HyperEVM — 전용 EVM 호환 실행 레이어 — 과의 네이티브 통합은 정교한 트레이딩 전략, MEV 저항 실행 및 이전 영구 DEX에서 불가능했던 원활한 스마트 컨트랙트 조합성을 위한 게이트를 열었습니다.\n알고리즘 트레이더와 봇 개발자에게 Hyperliquid는 패러다임 전환을 나타냅니다. 플랫폼의 포괄적인 Python SDK는 고성능 REST 및 WebSocket API와 결합하여 1초 미만 주문 배치, 실시간 포지션 관리 및 완전 자동화된 전략 실행을 가능하게 합니다. 시장 메이킹 봇, 트렌드 팔로잉 시스템 또는 복잡한 멀티 거래소 차익 거래 전략을 구축하든, Hyperliquid는 탈중앙화를 희생하지 않고 기관급 트레이딩 볼륨을 처리할 수 있는 인프라 백본을 제공합니다.\n이 종합 가이드에서는 Hyperliquid의 핵심 아키텍처 이해부터 프로덕션 레디 트레이딩 봇 구축까지 2026년 Hyperliquid 트레이딩의 모든 측면을 살펴 보겠습니다.\nHyperliquid 핵심 아키텍처 이해 CLOB 이점: 영구 선물에 오더북이 중요한 이유 vAMM(가상 AMM)과 같은 AMM 모델을 기반으로 한 기존 영구 DEX는 고유한 한계가 있습니다: 현재 가격 주변의 집중된 유동성, 대규모 주문의 상당한 슬리피지, 유동성 제공자의 비영구적 손실 노출. Hyperliquid의 CLOB(Central Limit Order Book) 아키텍처는 이러한 문제를 완전히 제거합니다.\nCLOB 시스템에서 트레이더는 특정 가격에 지정가 주문을 배치하여 각 가격 수준에서 존재하는 유동성을 정확히 보여주는 가시적인 뎁스 차트를 만듭니다. 이를 통해 다음이 가능합니다: - 더 좁은 스프레드 — 시장 메이커가 직접 경쟁하여 입찰-ask 스프레드를 바이낸스 및 바이비트 수준으로 좁힘\n지정가 주문 제로 슬리피지 — 대규모 주문이 지정된 가격(또는 더 나은 가격)에서 정확히 체결됨 투명한 가격 발견 — 모든 주문이 온체인에서 가시적이어서 숨겨진 조작 방지 효율적인 자본 활용 — 유동성 풀에 자본을 잠글 필요 없음; 자본은 주문이 체결될 때만 사용됨 Hyperliquid의 오더북은 독점 L1 체인에서 완전히 결제되며, 1초 미만의 블록 시간과 초당 10,000건 이상의 트랜잭션을 지원합니다.\nHyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남 2024년 말 HyperEVM의 도입은 Hyperliquid의 획기적인 순간이었습니다. 이 EVM 호환 실행 레이어는 다음을 가능하게 합니다: - 스마트 컨트랙트 지갑 — 고급 액세스 제어 및 자동 실행을 위한 프로그래밍 가능한 계정 로직\n조합 가능한 DeFi 전략 — 대출 프로토콜, 수익 최적화기 및 기타 온체인 프리미티브와의 통합 사용자 정의 주문 유형 — 스마트 컨트랙트 자동화를 통한 조걶 주문, 추적 손절 및 TWAP 실행 가스 없는 트랜잭션 — 수수료를 어떤 토큰으로도 지불하거나 타사가 후원할 수 있는 메타 트랜잭션 지원 Hyperliquid 트레이딩 환경 설정 Python SDK 설치 # 가상 환경 생성 python -m venv hyperliquid-env source hyperliquid-env/bin/activate # 공식 SDK 설치 pip install hyperliquid-python-sdk # 추가 의존성 설치 pip install websockets aiohttp pandas numpy python-dotenv .env 파일 생성: `````bash\n.env — 절대 버전 관리에 커밋하지 마세요 PRIVATE_KEY=your_ethereum_private_key_here WALLET_ADDRESS=0x_your_wallet_address TESTNET=true\n### 기본 연결 및 인증 `````python import os from dotenv import load_dotenv from hyperliquid.exchange import Exchange from hyperliquid.info import Info from hyperliquid.utils import constants load_dotenv() class HyperliquidTrader: \"\"\"프로덕션 레디 Hyperliquid 트레이딩 클라이언트.\"\"\" def __init__(self, use_testnet=True): self.private_key = os.getenv(PRIVATE_KEY) self.wallet_address = os.getenv(WALLET_ADDRESS) self.base_url = constants.TESTNET_API_URL if use_testnet else constants.MAINNET_API_URL self.exchange = Exchange(self.wallet_address, self.private_key, self.base_url) self.info = Info(self.base_url) print(f\"Hyperliquid {테스트넷 if use_testnet else 메인넷}에 연결됨\") def get_account_summary(self): \"\"\"종합 계정 정보 조회.\"\"\" user_state = self.info.user_state(self.wallet_address) account_value = float(user_state[marginSummary][accountValue]) total_margin_used = float(user_state[marginSummary][totalMarginUsed]) print(f\"계정 가치: ${account_value:,.2f}\") print(f\"사용 마진: ${total_margin_used:,.2f}\") return user_state trader = HyperliquidTrader(use_testnet=True) trader.get_account_summary() 프로덕션 레디 트레이딩 봇 구축 WebSocket을 통한 실시간 시장 데이터 import json import websockets class HyperliquidWebSocketFeed: \"\"\"Hyperliquid용 고성능 WebSocket 데이터 피드.\"\"\" def __init__(self): self.ws_url = \"wss://api.hyperliquid.xyz/ws\" self.subscriptions = {} self.orderbook_cache = {} self.running = False async def connect(self): \"\"\"자동 재연결이 있는 WebSocket 연결 설정.\"\"\" while True: try: async with websockets.connect(self.ws_url) as ws: print(\"WebSocket 연결됨\") self.ws = ws self.running = True for sub in self.subscriptions.values(): await ws.send(json.dumps(sub)) await self._listen() except Exception as e: print(f\"WebSocket 오류: {e}. 5초 후 재연결...\") await asyncio.sleep(5) async def _listen(self): \"\"\"수신 메시지 처리.\"\"\" async for message in self.ws: msg = json.loads(message) if msg.get(\"channel\") == \"l2Book\": await self._handle_orderbook(msg[data]) elif msg.get(\"channel\") == \"trades\": await self._handle_trades(msg[data]) async def _handle_orderbook(self, data): \"\"\"L2 오더북 업데이트 처리.\"\"\" coin = data[coin] levels = data[levels] self.orderbook_cache[coin] = { bids: [{px: float(b[px]), sz: float(b[sz])} for b in levels[0]], asks: [{px: float(a[px]), sz: float(a[sz])} for a in levels[1]], } async def subscribe_orderbook(self, coin): \"\"\"특정 시장의 실시간 오더북 구독.\"\"\" sub = { \"method\": \"subscribe\", \"subscription\": {\"type\": \"l2Book\", \"coin\": coin} } self.subscriptions[f\"book_{coin}\"] = sub if self.running: await self.ws.send(json.dumps(sub)) print(f\"{coin} 오더북 구독됨\") async def subscribe_trades(self, coin): \"\"\"실시간 체결 내역 구독.\"\"\" sub = { \"method\": \"subscribe\", \"subscription\": {\"type\": \"trades\", \"coin\": coin} } self.subscriptions[f\"trades_{coin}\"] = sub if self.running: await self.ws.send(json.dumps(sub)) 주문 유형: 시장가, 지정가, 조걶 주문 def place_market_order(self, coin: str, is_buy: bool, sz: float): \"\"\"슬리피지 보호가 있는 시장가 주문 실행.\"\"\" order_type = {\"limit\": {\"tif\": \"Ioc\"}} # Immediate-or-Cancel result = self.exchange.order(coin, is_buy, sz, 0, order_type, reduce_only=False) print(f\"시장가 {매수 if is_buy else 매도} {sz} {coin}\") print(f\"상태: {result[status]}\") return result def place_limit_order(self, coin: str, is_buy: bool, sz: float, px: float, tif: str = \"Gtc\"): \"\"\"지정된 시간 유효 조건으로 지정가 주문 배치. TIF 옵션: - Gtc: Good-til-Cancelled (취소까지 유효) - Ioc: Immediate-or-Cancel (즉시 실행 또는 취소) - Fok: Fill-or-Kill (전량 체결 또는 취소) \"\"\" order_type = {\"limit\": {\"tif\": tif}} result = self.exchange.order(coin, is_buy, sz, px, order_type, reduce_only=False) print(f\"지정가 {매수 if is_buy else 매도} {sz} {coin} @ {px}\") return result def place_stop_loss_order(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float): \"\"\"트리거 가격이 있는 손절 주문 배치.\"\"\" order_type = { \"trigger\": { \"triggerPx\": str(trigger_px), \"isMarket\": True, \"tpsl\": \"sl\" } } result = self.exchange.order(coin, is_buy, sz, limit_px, order_type, reduce_only=True) print(f\"손절 {매수 if is_buy else 매도} {sz} {coin}\") return result def get_positions(self): \"\"\"손익 세부 정보가 포함된 모든 미결 포지션 조회.\"\"\" user_state = self.info.user_state(self.wallet_address) positions = user_state.get(assetPositions, []) active_positions = [] for pos in positions: position = pos[position] entry_px = float(position[entryPx]) current_px = float(position[markPx]) size = float(position[szi]) pnl = (current_px - entry_px) * size if size \u003e 0 else (entry_px - current_px) * abs(size) active_positions.append({ coin: position[coin], size: size, entry_price: entry_px, mark_price: current_px, unrealized_pnl: pnl, leverage: float(position[leverage][value]), liquidation_price: float(position.get(liquidationPx, 0)) }) return active_positions def close_position(self, coin: str): \"\"\"특정 시장의 전체 포지션 청산.\"\"\" positions = self.get_positions() for pos in positions: if pos[coin] == coin and pos[size] != 0: is_buy = pos[size] \u003c 0 sz = abs(pos[size]) return self.place_market_order(coin, is_buy, sz) print(f\"{coin}에 미결 포지션이 없습니다\") return None 완전한 트렌드 팔로잉 봇 예제 import time import pandas as pd from datetime import datetime, timedelta class TrendFollowingBot: \"\"\"Hyperliquid용 EMA 크로스오버 트렌드 팔로잉 봇.\"\"\" def __init__(self, trader: HyperliquidTrader, coin: str = \"BTC\"): self.trader = trader self.coin = coin self.fast_ema_period = 9 self.slow_ema_period = 21 self.risk_per_trade = 0.02 self.in_position = False self.position_side = None def check_signals(self) -\u003e str: \"\"\"EMA 크로스오버 신호 확인.\"\"\" candles = self.trader.info.candles( coin=self.coin, interval=\"5m\", startTime=int((datetime.now() - timedelta(hours=12)).timestamp() * 1000), endTime=int(datetime.now().timestamp() * 1000) ) closes = pd.Series([float(c[c]) for c in candles if c in c]) if len(closes) \u003c self.slow_ema_period + 5: return \"HOLD\" fast_ema = closes.ewm(span=self.fast_ema_period).mean() slow_ema = closes.ewm(span=self.slow_ema_period).mean() if fast_ema.iloc[-2] \u003c= slow_ema.iloc[-2] and fast_ema.iloc[-1] \u003e slow_ema.iloc[-1]: return \"BUY\" if fast_ema.iloc[-2] \u003e= slow_ema.iloc[-2] and fast_ema.iloc[-1] \u003c slow_ema.iloc[-1]: return \"SELL\" return \"HOLD\" def execute_signal(self, signal: str): \"\"\"적절한 위험 관리로 트레이딩 신호 실행.\"\"\" if signal == \"HOLD\": return if self.in_position: if (signal == \"BUY\" and self.position_side == \"SHORT\") or \\ (signal == \"SELL\" and self.position_side == \"LONG\"): self.trader.close_position(self.coin) self.in_position = False time.sleep(1) else: return mids = self.trader.info.all_mids() current_px = float(mids.get(self.coin, 0)) if current_px == 0: return account = self.trader.get_account_summary() account_value = float(account[marginSummary][accountValue]) sz = round(account_value * self.risk_per_trade / current_px, 4) if signal == \"BUY\": self.trader.place_market_order(self.coin, True, sz) self.position_side = \"LONG\" elif signal == \"SELL\": self.trader.place_market_order(self.coin, False, sz) self.position_side = \"SHORT\" self.in_position = True def run(self, check_interval: int = 60): \"\"\"메인 봇 루프.\"\"\" print(f\"{self.coin} 트렌드 봇 시작\") print(f\"Fast EMA: {self.fast_ema_period}, Slow EMA: {self.slow_ema_period}\") while True: try: signal = self.check_signals() print(f\"[{datetime.now()}] 신호: {signal}\") self.execute_signal(signal) positions = self.trader.get_positions() for pos in positions: print(f\" {pos[coin]}: {pos[size]} | PnL: ${pos[unrealized_pnl]:+.2f}\") time.sleep(check_interval) except Exception as e: print(f\"봇 루프 오류: {e}\") time.sleep(10) 고급 Hyperliquid API 통합 펀딩 비율 및 역사적 데이터 def get_funding_rates(self): \"\"\"모든 시장의 현재 펀딩 비율 조회.\"\"\" meta = self.info.meta() assets = meta[universe] funding_data = [] for asset in assets[:20]: name = asset[name] ctx = self.info.funding_history(name, 1) if ctx: funding_data.append({ coin: name, funding_rate: float(ctx[0].get(fundingRate, 0)), predicted_rate: float(ctx[0].get(predictedFundingRate, 0)) }) funding_data.sort(key=lambda x: abs(x[funding_rate]), reverse=True) print(\"\\n펀딩 비율 상위:\") for f in funding_data[:10]: print(f\" {f[coin]}: {f[funding_rate]*100:+.4f}%\") return funding_data 다중 자산 WebSocket 관리 class MultiAssetWebSocketManager: \"\"\"여러 자산에 대한 동시 WebSocket 연결 관리.\"\"\" def __init__(self, assets: list): self.assets = assets self.ws_url = \"wss://api.hyperliquid.xyz/ws\" self.handlers = {} self.data_cache = {asset: {mid: 0, spread: 0} for asset in assets} async def subscribe_all(self, ws): \"\"\"일괄로 모든 자산 구독.\"\"\" sub = {\"method\": \"subscribe\", \"subscription\": {\"type\": \"allMids\"}} await ws.send(json.dumps(sub)) for asset in self.assets: sub = {\"method\": \"subscribe\", \"subscription\": {\"type\": \"l2Book\", \"coin\": asset}} await ws.send(json.dumps(sub)) async def run(self): async with websockets.connect(self.ws_url) as ws: await self.subscribe_all(ws) async for message in ws: msg = json.loads(message) if msg.get(\"channel\") == \"allMids\": for asset, price in msg[data].items(): if asset in self.data_cache: self.data_cache[asset][mid] = float(price) elif msg.get(\"channel\") == \"l2Book\": coin = msg[data][coin] if coin in self.data_cache: bids = msg[data][levels][0] asks = msg[data][levels][1] if bids and asks: self.data_cache[coin][spread] = float(asks[0][px]) - float(bids[0][px]) Hyperliquid 리스크 관리 고립형 vs. 교차 마진 def set_cross_margin(self, coin: str): \"\"\"교차 마진 모드 활성화.\"\"\" result = self.exchange.update_isolated_margin(coin, False, None) print(f\"{coin} 교차 마진 활성화됨\") return result def set_isolated_margin(self, coin: str, leverage: int): \"\"\"특정 레버리지로 고립형 마진 활성화.\"\"\" result = self.exchange.update_isolated_margin(coin, True, leverage) print(f\"{coin} 고립형 마진 {leverage}x 활성화됨\") return result 자동화된 리스크 컨트롤 class RiskManager: \"\"\"Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템.\"\"\" def __init__(self, trader: HyperliquidTrader): self.trader = trader self.max_daily_loss = 0.05 self.max_position_size = 0.50 self.max_leverage = 25 self.daily_pnl = 0 self.last_reset = datetime.now().date() def check_daily_limit(self) -\u003e bool: \"\"\"일일 손실 한도 확인.\"\"\" today = datetime.now().date() if today != self.last_reset: self.daily_pnl = 0 self.last_reset = today account = self.trader.get_account_summary() account_value = float(account[marginSummary][accountValue]) loss_pct = abs(min(self.daily_pnl, 0)) / account_value if account_value \u003e 0 else 0 if loss_pct \u003e= self.max_daily_loss: print(f\"일일 손실 한도 도달: {loss_pct*100:.2f}%\") return False return True def emergency_close_all(self): \"\"\"모든 포지션 긴급 청산.\"\"\" print(\"모든 포지션 긴급 청산\") positions = self.trader.get_positions() for pos in positions: if pos[size] != 0: self.trader.close_position(pos[coin]) time.sleep(0.5) 자주 묻는 질문 (FAQ) Hyperliquid는 dYdX나 GMX와 어떻게 다른가요? Hyperliquid의 핵심 차별화 요소는 완전 온체인 CLOB 아키텍처와 트레이딩에 최적화된 독점 L1 체인의 결합입니다. dYdX v4는 Cosmos 앱체인에서, GMX는 AMM 모델을 사용하는 반면, Hyperliquid는 1초 미만의 블록 시간과 10,000+ TPS를 갖춘 진정한 오더북 매칭을 제공합니다. HyperEVM은 dYdX와 GMX가 일치할 수 없는 스마트 컨트랙트 조합성을 가능하게 합니다. 또한 Hyperliquid는 대부분의 경쟁 영구 DEX보다 더 높은 일일 거래량($2B+)을 유지합니다.\nHyperliquid에 자금을 입금하려면 어떻게 하나요? Arbitrum의 USDC가 필요합니다. Hyperliquid 거래 인터페이스에 접속하여 지갑을 연결하고, “입금\"을 클릭하고 USDC 금액을 지정한 다음 Arbitrum 트랜잭션을 확인합니다(일반적으로 5분 이내).\nHyperliquid의 거래 수수료는 얼마인가요? 메이커 수수료: -0.002% (네거티브 — 유동성 제공 리베이트) 테이커 수수료: 0.035% 영구 DEX 시장에서 가장 경쟁력 있는 수수료입니다.\nHyperliquid는 안전한가요? Hyperliquid는 비수탁형 거래소로 운영됩니다 — 자금은 귀하의 개인 키로 제어되는 스마트 컨트랙트에 남아 있습니다. 스마트 컨트랙트 리스크, 청산 리스크, 오라클 리스크, 브리지 리스크가 존재합니다. 누적 거래량 $500B+을 무사고로 처리했습니다.\n실전 투입 전 전략을 어떻게 백테스트하나요? Hyperliquid는 API를 통해 묣은 역사적 데이터를 제공합니다. fetch_historical_candles 메서드로 OHLCV 데이터를 가져와 ````BacktestEngine``` 클래스로 EMA 크로스오버 백테스트를 실행합니다.\n추천 도구 이 가이드와 함께 사용하기를 추천하는 제품: - Minara — AI-powered automated trading bot\nBinance — World\"s leading cryptocurrency exchange 제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.\n결론: 온체인 영구 트레이딩의 미래 Hyperliquid는 2026년 최고의 온체인 영구 선물 트레이딩 플랫폼으로 확고히 자리매김했습니다. $2B+ 일일 거래량, 100개 이상의 거래 페어, 최대 50배 레버리지, 강력한 HyperEVM 스마트 컨트랙트 레이어를 갖춘 Hyperliquid는 많은 면에서 중앙화 대안을 능가하는 종합 트레이딩 생태계를 제공합니다.\nPython SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 조합은 정교한 트레이딩 시스템을 구축하기 위한 최고의 환경을 만듭니다. 오늘부터 구축을 시작하고 Hyperliquid의 오더북을 통해 매일 수십억 달러의 거래량이 흐르는 이유를 경험해 보세요.\n면책 조항: 암호화폐 트레이딩에는 상당한 리스크가 따릅니다. 이 문서는 교육 목적으로만 작성되었으며 재무 조언을 구성하지 않습니다. 항상 자체 연구를 수행하고 절대 잃을 여유가 없는 자금으로 트레이딩하지 마세요.\n관련 리소스:\nMinara AI 트레이딩 봇 Binance 거래소 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통합 가이드”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading\" } } Related Articles cloakbrowser-stealth-chromium-bot-detection-scraping hkuds-ai-trader freqtrade-python-crypto-trading-bot-backtest-optimize-deploy llm-inference-cost-optimization-guide-2026 freqtrade-python-crypto-trading-bot-backtest-optimize-deploy Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：量化交易的风险有多大？\n取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。\n问：如何选择适合的交易策略？\n根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。\n问：回测结果可信吗？\n回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。\n问：需要编程基础吗？\n基础策略可使用低代码平台，高级策略需要Python/C++编程能力。\n问：交易系统的维护成本？\n包括服务器费用、数据订阅、算法更新、以及监控维护时间。\n",
+  "wordCount" : "2138",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/llm-frameworks/hyperliquid-perp-dex-trading/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>11 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/llm-frameworks/hyperliquid-perp-dex-trading/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/llm-frameworks/hyperliquid-perp-dex-trading/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/hyperliquid-perp-dex-trading/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#%ec%86%8c%ea%b0%9c-hyperliquid%ea%b0%80-%ec%98%81%ea%b5%ac-dex-%ec%8b%9c%ec%9e%a5%ec%9d%84-%ec%a7%80%eb%b0%b0%ed%95%98%eb%8a%94-%ec%9d%b4%ec%9c%a0" aria-label="소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유">소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유</a></li>
+            <li>
+                <a href="#hyperliquid-%ed%95%b5%ec%8b%ac-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ec%9d%b4%ed%95%b4" aria-label="Hyperliquid 핵심 아키텍처 이해">Hyperliquid 핵심 아키텍처 이해</a><ul>
+                    
+            <li>
+                <a href="#clob-%ec%9d%b4%ec%a0%90-%ec%98%81%ea%b5%ac-%ec%84%a0%eb%ac%bc%ec%97%90-%ec%98%a4%eb%8d%94%eb%b6%81%ec%9d%b4-%ec%a4%91%ec%9a%94%ed%95%9c-%ec%9d%b4%ec%9c%a0" aria-label="CLOB 이점: 영구 선물에 오더북이 중요한 이유">CLOB 이점: 영구 선물에 오더북이 중요한 이유</a></li>
+            <li>
+                <a href="#hyperevm-%ec%8a%a4%eb%a7%88%ed%8a%b8-%ec%bb%a8%ed%8a%b8%eb%9e%99%ed%8a%b8%ec%99%80-%ea%b3%a0%eb%b9%88%eb%8f%84-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9%ec%9d%98-%eb%a7%8c%eb%82%a8" aria-label="HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남">HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남</a></li></ul>
+            </li>
+            <li>
+                <a href="#hyperliquid-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%ed%99%98%ea%b2%bd-%ec%84%a4%ec%a0%95" aria-label="Hyperliquid 트레이딩 환경 설정">Hyperliquid 트레이딩 환경 설정</a><ul>
+                    
+            <li>
+                <a href="#python-sdk-%ec%84%a4%ec%b9%98" aria-label="Python SDK 설치">Python SDK 설치</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#env--%ec%a0%88%eb%8c%80-%eb%b2%84%ec%a0%84-%ea%b4%80%eb%a6%ac%ec%97%90-%ec%bb%a4%eb%b0%8b%ed%95%98%ec%a7%80-%eb%a7%88%ec%84%b8%ec%9a%94" aria-label=".env — 절대 버전 관리에 커밋하지 마세요">.env — 절대 버전 관리에 커밋하지 마세요</a><ul>
+                    
+            <li>
+                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%eb%a0%88%eb%94%94-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9-%eb%b4%87-%ea%b5%ac%ec%b6%95" aria-label="프로덕션 레디 트레이딩 봇 구축">프로덕션 레디 트레이딩 봇 구축</a><ul>
+                    
+            <li>
+                <a href="#websocket%ec%9d%84-%ed%86%b5%ed%95%9c-%ec%8b%a4%ec%8b%9c%ea%b0%84-%ec%8b%9c%ec%9e%a5-%eb%8d%b0%ec%9d%b4%ed%84%b0" aria-label="WebSocket을 통한 실시간 시장 데이터">WebSocket을 통한 실시간 시장 데이터</a></li>
+            <li>
+                <a href="#%ec%a3%bc%eb%ac%b8-%ec%9c%a0%ed%98%95-%ec%8b%9c%ec%9e%a5%ea%b0%80-%ec%a7%80%ec%a0%95%ea%b0%80-%ec%a1%b0%ea%b1%b6-%ec%a3%bc%eb%ac%b8" aria-label="주문 유형: 시장가, 지정가, 조걶 주문">주문 유형: 시장가, 지정가, 조걶 주문</a></li>
+            <li>
+                <a href="#%ec%99%84%ec%a0%84%ed%95%9c-%ed%8a%b8%eb%a0%8c%eb%93%9c-%ed%8c%94%eb%a1%9c%ec%9e%89-%eb%b4%87-%ec%98%88%ec%a0%9c" aria-label="완전한 트렌드 팔로잉 봇 예제">완전한 트렌드 팔로잉 봇 예제</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b3%a0%ea%b8%89-hyperliquid-api-%ed%86%b5%ed%95%a9" aria-label="고급 Hyperliquid API 통합">고급 Hyperliquid API 통합</a><ul>
+                    
+            <li>
+                <a href="#%ed%8e%80%eb%94%a9-%eb%b9%84%ec%9c%a8-%eb%b0%8f-%ec%97%ad%ec%82%ac%ec%a0%81-%eb%8d%b0%ec%9d%b4%ed%84%b0" aria-label="펀딩 비율 및 역사적 데이터">펀딩 비율 및 역사적 데이터</a></li>
+            <li>
+                <a href="#%eb%8b%a4%ec%a4%91-%ec%9e%90%ec%82%b0-websocket-%ea%b4%80%eb%a6%ac" aria-label="다중 자산 WebSocket 관리">다중 자산 WebSocket 관리</a></li></ul>
+            </li>
+            <li>
+                <a href="#hyperliquid-%eb%a6%ac%ec%8a%a4%ed%81%ac-%ea%b4%80%eb%a6%ac" aria-label="Hyperliquid 리스크 관리">Hyperliquid 리스크 관리</a><ul>
+                    
+            <li>
+                <a href="#%ea%b3%a0%eb%a6%bd%ed%98%95-vs-%ea%b5%90%ec%b0%a8-%eb%a7%88%ec%a7%84" aria-label="고립형 vs. 교차 마진">고립형 vs. 교차 마진</a></li>
+            <li>
+                <a href="#%ec%9e%90%eb%8f%99%ed%99%94%eb%90%9c-%eb%a6%ac%ec%8a%a4%ed%81%ac-%ec%bb%a8%ed%8a%b8%eb%a1%a4" aria-label="자동화된 리스크 컨트롤">자동화된 리스크 컨트롤</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8-faq" aria-label="자주 묻는 질문 (FAQ)">자주 묻는 질문 (FAQ)</a><ul>
+                    
+            <li>
+                <a href="#hyperliquid%eb%8a%94-dydx%eb%82%98-gmx%ec%99%80-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%8b%a4%eb%a5%b8%ea%b0%80%ec%9a%94" aria-label="Hyperliquid는 dYdX나 GMX와 어떻게 다른가요?">Hyperliquid는 dYdX나 GMX와 어떻게 다른가요?</a></li>
+            <li>
+                <a href="#hyperliquid%ec%97%90-%ec%9e%90%ea%b8%88%ec%9d%84-%ec%9e%85%ea%b8%88%ed%95%98%eb%a0%a4%eb%a9%b4-%ec%96%b4%eb%96%bb%ea%b2%8c-%ed%95%98%eb%82%98%ec%9a%94" aria-label="Hyperliquid에 자금을 입금하려면 어떻게 하나요?">Hyperliquid에 자금을 입금하려면 어떻게 하나요?</a></li>
+            <li>
+                <a href="#hyperliquid%ec%9d%98-%ea%b1%b0%eb%9e%98-%ec%88%98%ec%88%98%eb%a3%8c%eb%8a%94-%ec%96%bc%eb%a7%88%ec%9d%b8%ea%b0%80%ec%9a%94" aria-label="Hyperliquid의 거래 수수료는 얼마인가요?">Hyperliquid의 거래 수수료는 얼마인가요?</a></li>
+            <li>
+                <a href="#hyperliquid%eb%8a%94-%ec%95%88%ec%a0%84%ed%95%9c%ea%b0%80%ec%9a%94" aria-label="Hyperliquid는 안전한가요?">Hyperliquid는 안전한가요?</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%84-%ed%88%ac%ec%9e%85-%ec%a0%84-%ec%a0%84%eb%9e%b5%ec%9d%84-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%b0%b1%ed%85%8c%ec%8a%a4%ed%8a%b8%ed%95%98%eb%82%98%ec%9a%94" aria-label="실전 투입 전 전략을 어떻게 백테스트하나요?">실전 투입 전 전략을 어떻게 백테스트하나요?</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%b6%94%ec%b2%9c-%eb%8f%84%ea%b5%ac" aria-label="추천 도구">추천 도구</a></li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0-%ec%98%a8%ec%b2%b4%ec%9d%b8-%ec%98%81%ea%b5%ac-%ed%8a%b8%eb%a0%88%ec%9d%b4%eb%94%a9%ec%9d%98-%eb%af%b8%eb%9e%98" aria-label="결론: 온체인 영구 트레이딩의 미래">결론: 온체인 영구 트레이딩의 미래</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
@@ -21,18 +300,57 @@ last_maintained: &ldquo;2026-05-20&rdquo;
 draft: false
 categories: [&ldquo;ai-trading&rdquo;]
 tags: [&ldquo;hyperliquid&rdquo;, &ldquo;perpetual dex&rdquo;, &ldquo;on-chain trading&rdquo;, &ldquo;leverage trading&rdquo;, &ldquo;trading bot&rdquo;, &ldquo;hyperevm&rdquo;, &ldquo;python sdk&rdquo;, &ldquo;websocket api&rdquo;, &ldquo;clob&rdquo;, &ldquo;defi trading&rdquo;, &ldquo;algorithmic trading&rdquo;]
-aliases:</p><ul><li>/kr/posts/hyperliquid-perp-dex-trading/</li></ul><hr><p><strong>날짜:</strong> 2026-05-19<br><strong>카테고리:</strong> AI 트레이딩<br><strong>태그:</strong> Hyperliquid, 영구 DEX, 온체인 트레이딩, 레버리지 트레이딩, 트레이딩 봇, DeFi, HyperEVM<br><strong>읽는 시간:</strong> 18분</p><hr><h2 id=소개-hyperliquid가-영구-dex-시장을-지배하는-이유>소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유<a hidden class=anchor aria-hidden=true href=#소개-hyperliquid가-영구-dex-시장을-지배하는-이유>#</a></h2><p>2023년 이후 탈중앙화 영구 선물 트레이딩 환경은 대규모 변혁을 겪었으며, 이 변화의 중심에는 <strong>Hyperliquid</strong>가 있습니다 — 2026년 낂 낂 <strong>일일 거래량 $20억 이상</strong>을 꾸준히 처리하는 완전 온체인 오더북 기반 영구 DEX입니다. 유동성 풀에 의존하고 슬리피지 및 비영구적 손실에 취약한 기존 AMM 기반 DEX와 달리, Hyperliquid는 중앙화 거래소의 익숙한 CLOB(Central Limit Order Book) 경험을 블록체인으로 가져와 중앙화 거래소의 실행 품질과 DeFi의 자기 관리 및 투명성 이점을 결합합니다.</p><p>Hyperliquid는 중앙화와 탈중앙화 플랫폼 사이에서 트레이더가 직면하는 타협을 없애는 임무로 출시되어 현재 <strong>100개 이상의 거래 페어</strong>를 지원하는 종합 트레이딩 플랫폼으로 성장했으며, 선택한 시장에서 최대 <strong>50배 레버리지</strong>를 제공합니다. 플랫폼의 <strong>HyperEVM</strong> — 전용 EVM 호환 실행 레이어 — 과의 네이티브 통합은 정교한 트레이딩 전략, MEV 저항 실행 및 이전 영구 DEX에서 불가능했던 원활한 스마트 컨트랙트 조합성을 위한 게이트를 열었습니다.</p><p>알고리즘 트레이더와 봇 개발자에게 Hyperliquid는 패러다임 전환을 나타냅니다. 플랫폼의 포괄적인 <strong>Python SDK</strong>는 고성능 <strong>REST 및 WebSocket API</strong>와 결합하여 1초 미만 주문 배치, 실시간 포지션 관리 및 완전 자동화된 전략 실행을 가능하게 합니다. 시장 메이킹 봇, 트렌드 팔로잉 시스템 또는 복잡한 멀티 거래소 차익 거래 전략을 구축하든, Hyperliquid는 탈중앙화를 희생하지 않고 기관급 트레이딩 볼륨을 처리할 수 있는 인프라 백본을 제공합니다.</p><p>이 종합 가이드에서는 Hyperliquid의 핵심 아키텍처 이해부터 프로덕션 레디 트레이딩 봇 구축까지 2026년 Hyperliquid 트레이딩의 모든 측면을 살펴 보겠습니다.</p><hr><h2 id=hyperliquid-핵심-아키텍처-이해>Hyperliquid 핵심 아키텍처 이해<a hidden class=anchor aria-hidden=true href=#hyperliquid-핵심-아키텍처-이해>#</a></h2><h3 id=clob-이점-영구-선물에-오더북이-중요한-이유>CLOB 이점: 영구 선물에 오더북이 중요한 이유<a hidden class=anchor aria-hidden=true href=#clob-이점-영구-선물에-오더북이-중요한-이유>#</a></h3><p>vAMM(가상 AMM)과 같은 AMM 모델을 기반으로 한 기존 영구 DEX는 고유한 한계가 있습니다: 현재 가격 주변의 집중된 유동성, 대규모 주문의 상당한 슬리피지, 유동성 제공자의 비영구적 손실 노출. Hyperliquid의 <strong>CLOB(Central Limit Order Book)</strong> 아키텍처는 이러한 문제를 완전히 제거합니다.</p><p>CLOB 시스템에서 트레이더는 특정 가격에 지정가 주문을 배치하여 각 가격 수준에서 존재하는 유동성을 정확히 보여주는 가시적인 뎁스 차트를 만듭니다. 이를 통해 다음이 가능합니다: - <strong>더 좁은 스프레드</strong> — 시장 메이커가 직접 경쟁하여 입찰-ask 스프레드를 바이낸스 및 바이비트 수준으로 좁힘</p><ul><li><strong>지정가 주문 제로 슬리피지</strong> — 대규모 주문이 지정된 가격(또는 더 나은 가격)에서 정확히 체결됨</li><li><strong>투명한 가격 발견</strong> — 모든 주문이 온체인에서 가시적이어서 숨겨진 조작 방지</li><li><strong>효율적인 자본 활용</strong> — 유동성 풀에 자본을 잠글 필요 없음; 자본은 주문이 체결될 때만 사용됨</li></ul><p>Hyperliquid의 오더북은 독점 L1 체인에서 완전히 결제되며, <strong>1초 미만의 블록 시간</strong>과 <strong>초당 10,000건 이상의 트랜잭션</strong>을 지원합니다.</p><h3 id=hyperevm-스마트-컨트랙트와-고빈도-트레이딩의-만남>HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남<a hidden class=anchor aria-hidden=true href=#hyperevm-스마트-컨트랙트와-고빈도-트레이딩의-만남>#</a></h3><p>2024년 말 <strong>HyperEVM</strong>의 도입은 Hyperliquid의 획기적인 순간이었습니다. 이 EVM 호환 실행 레이어는 다음을 가능하게 합니다: - <strong>스마트 컨트랙트 지갑</strong> — 고급 액세스 제어 및 자동 실행을 위한 프로그래밍 가능한 계정 로직</p><ul><li><strong>조합 가능한 DeFi 전략</strong> — 대출 프로토콜, 수익 최적화기 및 기타 온체인 프리미티브와의 통합</li><li><strong>사용자 정의 주문 유형</strong> — 스마트 컨트랙트 자동화를 통한 조걶 주문, 추적 손절 및 TWAP 실행</li><li><strong>가스 없는 트랜잭션</strong> — 수수료를 어떤 토큰으로도 지불하거나 타사가 후원할 수 있는 메타 트랜잭션 지원</li></ul><hr><h2 id=hyperliquid-트레이딩-환경-설정>Hyperliquid 트레이딩 환경 설정<a hidden class=anchor aria-hidden=true href=#hyperliquid-트레이딩-환경-설정>#</a></h2><h3 id=python-sdk-설치>Python SDK 설치<a hidden class=anchor aria-hidden=true href=#python-sdk-설치>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 가상 환경 생성</span>
-</span></span><span style=display:flex><span>python -m venv hyperliquid-env
-</span></span><span style=display:flex><span>source hyperliquid-env/bin/activate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 공식 SDK 설치</span>
-</span></span><span style=display:flex><span>pip install hyperliquid-python-sdk
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 추가 의존성 설치</span>
-</span></span><span style=display:flex><span>pip install websockets aiohttp pandas numpy python-dotenv
-</span></span></code></pre></div><p><code>.env</code> 파일 생성: `````bash</p><h1 id=env--절대-버전-관리에-커밋하지-마세요>.env — 절대 버전 관리에 커밋하지 마세요<a hidden class=anchor aria-hidden=true href=#env--절대-버전-관리에-커밋하지-마세요>#</a></h1><p>PRIVATE_KEY=your_ethereum_private_key_here
+aliases:</p>
+<ul>
+<li>/kr/posts/hyperliquid-perp-dex-trading/</li>
+</ul>
+<hr>
+<p><strong>날짜:</strong> 2026-05-19<br>
+<strong>카테고리:</strong> AI 트레이딩<br>
+<strong>태그:</strong> Hyperliquid, 영구 DEX, 온체인 트레이딩, 레버리지 트레이딩, 트레이딩 봇, DeFi, HyperEVM<br>
+<strong>읽는 시간:</strong> 18분</p>
+<hr>
+<h2 id="소개-hyperliquid가-영구-dex-시장을-지배하는-이유">소개: Hyperliquid가 영구 DEX 시장을 지배하는 이유<a hidden class="anchor" aria-hidden="true" href="#소개-hyperliquid가-영구-dex-시장을-지배하는-이유">#</a></h2>
+<p>2023년 이후 탈중앙화 영구 선물 트레이딩 환경은 대규모 변혁을 겪었으며, 이 변화의 중심에는 <strong>Hyperliquid</strong>가 있습니다 — 2026년 낂 낂 <strong>일일 거래량 $20억 이상</strong>을 꾸준히 처리하는 완전 온체인 오더북 기반 영구 DEX입니다. 유동성 풀에 의존하고 슬리피지 및 비영구적 손실에 취약한 기존 AMM 기반 DEX와 달리, Hyperliquid는 중앙화 거래소의 익숙한 CLOB(Central Limit Order Book) 경험을 블록체인으로 가져와 중앙화 거래소의 실행 품질과 DeFi의 자기 관리 및 투명성 이점을 결합합니다.</p>
+<p>Hyperliquid는 중앙화와 탈중앙화 플랫폼 사이에서 트레이더가 직면하는 타협을 없애는 임무로 출시되어 현재 <strong>100개 이상의 거래 페어</strong>를 지원하는 종합 트레이딩 플랫폼으로 성장했으며, 선택한 시장에서 최대 <strong>50배 레버리지</strong>를 제공합니다. 플랫폼의 <strong>HyperEVM</strong> — 전용 EVM 호환 실행 레이어 — 과의 네이티브 통합은 정교한 트레이딩 전략, MEV 저항 실행 및 이전 영구 DEX에서 불가능했던 원활한 스마트 컨트랙트 조합성을 위한 게이트를 열었습니다.</p>
+<p>알고리즘 트레이더와 봇 개발자에게 Hyperliquid는 패러다임 전환을 나타냅니다. 플랫폼의 포괄적인 <strong>Python SDK</strong>는 고성능 <strong>REST 및 WebSocket API</strong>와 결합하여 1초 미만 주문 배치, 실시간 포지션 관리 및 완전 자동화된 전략 실행을 가능하게 합니다. 시장 메이킹 봇, 트렌드 팔로잉 시스템 또는 복잡한 멀티 거래소 차익 거래 전략을 구축하든, Hyperliquid는 탈중앙화를 희생하지 않고 기관급 트레이딩 볼륨을 처리할 수 있는 인프라 백본을 제공합니다.</p>
+<p>이 종합 가이드에서는 Hyperliquid의 핵심 아키텍처 이해부터 프로덕션 레디 트레이딩 봇 구축까지 2026년 Hyperliquid 트레이딩의 모든 측면을 살펴 보겠습니다.</p>
+<hr>
+<h2 id="hyperliquid-핵심-아키텍처-이해">Hyperliquid 핵심 아키텍처 이해<a hidden class="anchor" aria-hidden="true" href="#hyperliquid-핵심-아키텍처-이해">#</a></h2>
+<h3 id="clob-이점-영구-선물에-오더북이-중요한-이유">CLOB 이점: 영구 선물에 오더북이 중요한 이유<a hidden class="anchor" aria-hidden="true" href="#clob-이점-영구-선물에-오더북이-중요한-이유">#</a></h3>
+<p>vAMM(가상 AMM)과 같은 AMM 모델을 기반으로 한 기존 영구 DEX는 고유한 한계가 있습니다: 현재 가격 주변의 집중된 유동성, 대규모 주문의 상당한 슬리피지, 유동성 제공자의 비영구적 손실 노출. Hyperliquid의 <strong>CLOB(Central Limit Order Book)</strong> 아키텍처는 이러한 문제를 완전히 제거합니다.</p>
+<p>CLOB 시스템에서 트레이더는 특정 가격에 지정가 주문을 배치하여 각 가격 수준에서 존재하는 유동성을 정확히 보여주는 가시적인 뎁스 차트를 만듭니다. 이를 통해 다음이 가능합니다: - <strong>더 좁은 스프레드</strong> — 시장 메이커가 직접 경쟁하여 입찰-ask 스프레드를 바이낸스 및 바이비트 수준으로 좁힘</p>
+<ul>
+<li><strong>지정가 주문 제로 슬리피지</strong> — 대규모 주문이 지정된 가격(또는 더 나은 가격)에서 정확히 체결됨</li>
+<li><strong>투명한 가격 발견</strong> — 모든 주문이 온체인에서 가시적이어서 숨겨진 조작 방지</li>
+<li><strong>효율적인 자본 활용</strong> — 유동성 풀에 자본을 잠글 필요 없음; 자본은 주문이 체결될 때만 사용됨</li>
+</ul>
+<p>Hyperliquid의 오더북은 독점 L1 체인에서 완전히 결제되며, <strong>1초 미만의 블록 시간</strong>과 <strong>초당 10,000건 이상의 트랜잭션</strong>을 지원합니다.</p>
+<h3 id="hyperevm-스마트-컨트랙트와-고빈도-트레이딩의-만남">HyperEVM: 스마트 컨트랙트와 고빈도 트레이딩의 만남<a hidden class="anchor" aria-hidden="true" href="#hyperevm-스마트-컨트랙트와-고빈도-트레이딩의-만남">#</a></h3>
+<p>2024년 말 <strong>HyperEVM</strong>의 도입은 Hyperliquid의 획기적인 순간이었습니다. 이 EVM 호환 실행 레이어는 다음을 가능하게 합니다: - <strong>스마트 컨트랙트 지갑</strong> — 고급 액세스 제어 및 자동 실행을 위한 프로그래밍 가능한 계정 로직</p>
+<ul>
+<li><strong>조합 가능한 DeFi 전략</strong> — 대출 프로토콜, 수익 최적화기 및 기타 온체인 프리미티브와의 통합</li>
+<li><strong>사용자 정의 주문 유형</strong> — 스마트 컨트랙트 자동화를 통한 조걶 주문, 추적 손절 및 TWAP 실행</li>
+<li><strong>가스 없는 트랜잭션</strong> — 수수료를 어떤 토큰으로도 지불하거나 타사가 후원할 수 있는 메타 트랜잭션 지원</li>
+</ul>
+<hr>
+<h2 id="hyperliquid-트레이딩-환경-설정">Hyperliquid 트레이딩 환경 설정<a hidden class="anchor" aria-hidden="true" href="#hyperliquid-트레이딩-환경-설정">#</a></h2>
+<h3 id="python-sdk-설치">Python SDK 설치<a hidden class="anchor" aria-hidden="true" href="#python-sdk-설치">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 가상 환경 생성</span>
+</span></span><span style="display:flex;"><span>python -m venv hyperliquid-env
+</span></span><span style="display:flex;"><span>source hyperliquid-env/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 공식 SDK 설치</span>
+</span></span><span style="display:flex;"><span>pip install hyperliquid-python-sdk
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 추가 의존성 설치</span>
+</span></span><span style="display:flex;"><span>pip install websockets aiohttp pandas numpy python-dotenv
+</span></span></code></pre></div><p><code>.env</code> 파일 생성: `````bash</p>
+<h1 id="env--절대-버전-관리에-커밋하지-마세요">.env — 절대 버전 관리에 커밋하지 마세요<a hidden class="anchor" aria-hidden="true" href="#env--절대-버전-관리에-커밋하지-마세요">#</a></h1>
+<p>PRIVATE_KEY=your_ethereum_private_key_here
 WALLET_ADDRESS=0x_your_wallet_address
-TESTNET=true</p><pre tabindex=0><code>
+TESTNET=true</p>
+<pre tabindex="0"><code>
 ### 기본 연결 및 인증
 
 `````python
@@ -66,252 +384,299 @@ class HyperliquidTrader: &#34;&#34;&#34;프로덕션 레디 Hyperliquid 트레�
 
 trader = HyperliquidTrader(use_testnet=True)
 trader.get_account_summary()
-</code></pre><hr><h2 id=프로덕션-레디-트레이딩-봇-구축>프로덕션 레디 트레이딩 봇 구축<a hidden class=anchor aria-hidden=true href=#프로덕션-레디-트레이딩-봇-구축>#</a></h2><h3 id=websocket을-통한-실시간-시장-데이터>WebSocket을 통한 실시간 시장 데이터<a hidden class=anchor aria-hidden=true href=#websocket을-통한-실시간-시장-데이터>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> websockets
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>HyperliquidWebSocketFeed</span>: <span style=color:#e6db74>&#34;&#34;&#34;Hyperliquid용 고성능 WebSocket 데이터 피드.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self): self<span style=color:#f92672>.</span>ws_url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;wss://api.hyperliquid.xyz/ws&#34;</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>subscriptions <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>orderbook_cache <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>running <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>connect</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;자동 재연결이 있는 WebSocket 연결 설정.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>: <span style=color:#66d9ef>try</span>: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> websockets<span style=color:#f92672>.</span>connect(self<span style=color:#f92672>.</span>ws_url) <span style=color:#66d9ef>as</span> ws: print(<span style=color:#e6db74>&#34;WebSocket 연결됨&#34;</span>)
-</span></span><span style=display:flex><span>                    self<span style=color:#f92672>.</span>ws <span style=color:#f92672>=</span> ws
-</span></span><span style=display:flex><span>                    self<span style=color:#f92672>.</span>running <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>                    
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>for</span> sub <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>subscriptions<span style=color:#f92672>.</span>values(): <span style=color:#66d9ef>await</span> ws<span style=color:#f92672>.</span>send(json<span style=color:#f92672>.</span>dumps(sub))
-</span></span><span style=display:flex><span>                    
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>await</span> self<span style=color:#f92672>.</span>_listen()
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;WebSocket 오류: </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>. 5초 후 재연결...&#34;</span>)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>5</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>_listen</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;수신 메시지 처리.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> message <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>ws: msg <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span>loads(message)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> msg<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;channel&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;l2Book&#34;</span>: <span style=color:#66d9ef>await</span> self<span style=color:#f92672>.</span>_handle_orderbook(msg[data])
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>elif</span> msg<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;channel&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;trades&#34;</span>: <span style=color:#66d9ef>await</span> self<span style=color:#f92672>.</span>_handle_trades(msg[data])
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>_handle_orderbook</span>(self, data): <span style=color:#e6db74>&#34;&#34;&#34;L2 오더북 업데이트 처리.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        coin <span style=color:#f92672>=</span> data[coin]
-</span></span><span style=display:flex><span>        levels <span style=color:#f92672>=</span> data[levels]
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>orderbook_cache[coin] <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            bids: [{px: float(b[px]), sz: float(b[sz])} <span style=color:#66d9ef>for</span> b <span style=color:#f92672>in</span> levels[<span style=color:#ae81ff>0</span>]],
-</span></span><span style=display:flex><span>            asks: [{px: float(a[px]), sz: float(a[sz])} <span style=color:#66d9ef>for</span> a <span style=color:#f92672>in</span> levels[<span style=color:#ae81ff>1</span>]],
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>subscribe_orderbook</span>(self, coin): <span style=color:#e6db74>&#34;&#34;&#34;특정 시장의 실시간 오더북 구독.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        sub <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;subscribe&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;subscription&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;l2Book&#34;</span>, <span style=color:#e6db74>&#34;coin&#34;</span>: coin}
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>subscriptions[<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;book_</span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>] <span style=color:#f92672>=</span> sub
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>running: <span style=color:#66d9ef>await</span> self<span style=color:#f92672>.</span>ws<span style=color:#f92672>.</span>send(json<span style=color:#f92672>.</span>dumps(sub))
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74> 오더북 구독됨&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>subscribe_trades</span>(self, coin): <span style=color:#e6db74>&#34;&#34;&#34;실시간 체결 내역 구독.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        sub <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;subscribe&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;subscription&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;trades&#34;</span>, <span style=color:#e6db74>&#34;coin&#34;</span>: coin}
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>subscriptions[<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;trades_</span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>] <span style=color:#f92672>=</span> sub
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>running: <span style=color:#66d9ef>await</span> self<span style=color:#f92672>.</span>ws<span style=color:#f92672>.</span>send(json<span style=color:#f92672>.</span>dumps(sub))
-</span></span></code></pre></div><h3 id=주문-유형-시장가-지정가-조걶-주문>주문 유형: 시장가, 지정가, 조걶 주문<a hidden class=anchor aria-hidden=true href=#주문-유형-시장가-지정가-조걶-주문>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>place_market_order</span>(self, coin: str, is_buy: bool, sz: float): <span style=color:#e6db74>&#34;&#34;&#34;슬리피지 보호가 있는 시장가 주문 실행.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        order_type <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;limit&#34;</span>: {<span style=color:#e6db74>&#34;tif&#34;</span>: <span style=color:#e6db74>&#34;Ioc&#34;</span>}}  <span style=color:#75715e># Immediate-or-Cancel</span>
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>exchange<span style=color:#f92672>.</span>order(coin, is_buy, sz, <span style=color:#ae81ff>0</span>, order_type, reduce_only<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;시장가 </span><span style=color:#e6db74>{</span>매수 <span style=color:#66d9ef>if</span> is_buy <span style=color:#66d9ef>else</span> 매도<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>sz<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;상태: </span><span style=color:#e6db74>{</span>result[status]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>place_limit_order</span>(self, coin: str, is_buy: bool, sz: float, px: float, tif: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Gtc&#34;</span>): <span style=color:#e6db74>&#34;&#34;&#34;지정된 시간 유효 조건으로 지정가 주문 배치.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        TIF 옵션: - Gtc: Good-til-Cancelled (취소까지 유효)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        - Ioc: Immediate-or-Cancel (즉시 실행 또는 취소)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        - Fok: Fill-or-Kill (전량 체결 또는 취소)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        order_type <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;limit&#34;</span>: {<span style=color:#e6db74>&#34;tif&#34;</span>: tif}}
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>exchange<span style=color:#f92672>.</span>order(coin, is_buy, sz, px, order_type, reduce_only<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;지정가 </span><span style=color:#e6db74>{</span>매수 <span style=color:#66d9ef>if</span> is_buy <span style=color:#66d9ef>else</span> 매도<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>sz<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74> @ </span><span style=color:#e6db74>{</span>px<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>place_stop_loss_order</span>(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float): <span style=color:#e6db74>&#34;&#34;&#34;트리거 가격이 있는 손절 주문 배치.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        order_type <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;trigger&#34;</span>: {
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;triggerPx&#34;</span>: str(trigger_px),
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;isMarket&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>                <span style=color:#e6db74>&#34;tpsl&#34;</span>: <span style=color:#e6db74>&#34;sl&#34;</span>
-</span></span><span style=display:flex><span>            }
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>exchange<span style=color:#f92672>.</span>order(coin, is_buy, sz, limit_px, order_type, reduce_only<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;손절 </span><span style=color:#e6db74>{</span>매수 <span style=color:#66d9ef>if</span> is_buy <span style=color:#66d9ef>else</span> 매도<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>sz<span style=color:#e6db74>}</span><span style=color:#e6db74> </span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_positions</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;손익 세부 정보가 포함된 모든 미결 포지션 조회.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        user_state <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>info<span style=color:#f92672>.</span>user_state(self<span style=color:#f92672>.</span>wallet_address)
-</span></span><span style=display:flex><span>        positions <span style=color:#f92672>=</span> user_state<span style=color:#f92672>.</span>get(assetPositions, [])
-</span></span><span style=display:flex><span>        active_positions <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> pos <span style=color:#f92672>in</span> positions: position <span style=color:#f92672>=</span> pos[position]
-</span></span><span style=display:flex><span>            entry_px <span style=color:#f92672>=</span> float(position[entryPx])
-</span></span><span style=display:flex><span>            current_px <span style=color:#f92672>=</span> float(position[markPx])
-</span></span><span style=display:flex><span>            size <span style=color:#f92672>=</span> float(position[szi])
-</span></span><span style=display:flex><span>            pnl <span style=color:#f92672>=</span> (current_px <span style=color:#f92672>-</span> entry_px) <span style=color:#f92672>*</span> size <span style=color:#66d9ef>if</span> size <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> (entry_px <span style=color:#f92672>-</span> current_px) <span style=color:#f92672>*</span> abs(size)
-</span></span><span style=display:flex><span>            active_positions<span style=color:#f92672>.</span>append({
-</span></span><span style=display:flex><span>                coin: position[coin],
-</span></span><span style=display:flex><span>                size: size,
-</span></span><span style=display:flex><span>                entry_price: entry_px,
-</span></span><span style=display:flex><span>                mark_price: current_px,
-</span></span><span style=display:flex><span>                unrealized_pnl: pnl,
-</span></span><span style=display:flex><span>                leverage: float(position[leverage][value]),
-</span></span><span style=display:flex><span>                liquidation_price: float(position<span style=color:#f92672>.</span>get(liquidationPx, <span style=color:#ae81ff>0</span>))
-</span></span><span style=display:flex><span>            })
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> active_positions
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>close_position</span>(self, coin: str): <span style=color:#e6db74>&#34;&#34;&#34;특정 시장의 전체 포지션 청산.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        positions <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>get_positions()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> pos <span style=color:#f92672>in</span> positions: <span style=color:#66d9ef>if</span> pos[coin] <span style=color:#f92672>==</span> coin <span style=color:#f92672>and</span> pos[size] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>: is_buy <span style=color:#f92672>=</span> pos[size] <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>                sz <span style=color:#f92672>=</span> abs(pos[size])
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>place_market_order(coin, is_buy, sz)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74>에 미결 포지션이 없습니다&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span>
-</span></span></code></pre></div><h3 id=완전한-트렌드-팔로잉-봇-예제>완전한 트렌드 팔로잉 봇 예제<a hidden class=anchor aria-hidden=true href=#완전한-트렌드-팔로잉-봇-예제>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> time
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> pandas <span style=color:#66d9ef>as</span> pd
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> datetime <span style=color:#f92672>import</span> datetime, timedelta
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>TrendFollowingBot</span>: <span style=color:#e6db74>&#34;&#34;&#34;Hyperliquid용 EMA 크로스오버 트렌드 팔로잉 봇.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, trader: HyperliquidTrader, coin: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;BTC&#34;</span>): self<span style=color:#f92672>.</span>trader <span style=color:#f92672>=</span> trader
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>coin <span style=color:#f92672>=</span> coin
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>fast_ema_period <span style=color:#f92672>=</span> <span style=color:#ae81ff>9</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>slow_ema_period <span style=color:#f92672>=</span> <span style=color:#ae81ff>21</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>risk_per_trade <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.02</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>in_position <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>position_side <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_signals</span>(self) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;EMA 크로스오버 신호 확인.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        candles <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>info<span style=color:#f92672>.</span>candles(
-</span></span><span style=display:flex><span>            coin<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>coin, interval<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;5m&#34;</span>,
-</span></span><span style=display:flex><span>            startTime<span style=color:#f92672>=</span>int((datetime<span style=color:#f92672>.</span>now() <span style=color:#f92672>-</span> timedelta(hours<span style=color:#f92672>=</span><span style=color:#ae81ff>12</span>))<span style=color:#f92672>.</span>timestamp() <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>),
-</span></span><span style=display:flex><span>            endTime<span style=color:#f92672>=</span>int(datetime<span style=color:#f92672>.</span>now()<span style=color:#f92672>.</span>timestamp() <span style=color:#f92672>*</span> <span style=color:#ae81ff>1000</span>)
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        closes <span style=color:#f92672>=</span> pd<span style=color:#f92672>.</span>Series([float(c[c]) <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> candles <span style=color:#66d9ef>if</span> c <span style=color:#f92672>in</span> c])
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> len(closes) <span style=color:#f92672>&lt;</span> self<span style=color:#f92672>.</span>slow_ema_period <span style=color:#f92672>+</span> <span style=color:#ae81ff>5</span>: <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;HOLD&#34;</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        fast_ema <span style=color:#f92672>=</span> closes<span style=color:#f92672>.</span>ewm(span<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>fast_ema_period)<span style=color:#f92672>.</span>mean()
-</span></span><span style=display:flex><span>        slow_ema <span style=color:#f92672>=</span> closes<span style=color:#f92672>.</span>ewm(span<span style=color:#f92672>=</span>self<span style=color:#f92672>.</span>slow_ema_period)<span style=color:#f92672>.</span>mean()
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> fast_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>] <span style=color:#f92672>&lt;=</span> slow_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>] <span style=color:#f92672>and</span> fast_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>&gt;</span> slow_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]: <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;BUY&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> fast_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>] <span style=color:#f92672>&gt;=</span> slow_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>2</span>] <span style=color:#f92672>and</span> fast_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>] <span style=color:#f92672>&lt;</span> slow_ema<span style=color:#f92672>.</span>iloc[<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]: <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;SELL&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;HOLD&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>execute_signal</span>(self, signal: str): <span style=color:#e6db74>&#34;&#34;&#34;적절한 위험 관리로 트레이딩 신호 실행.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> signal <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;HOLD&#34;</span>: <span style=color:#66d9ef>return</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> self<span style=color:#f92672>.</span>in_position: <span style=color:#66d9ef>if</span> (signal <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;BUY&#34;</span> <span style=color:#f92672>and</span> self<span style=color:#f92672>.</span>position_side <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;SHORT&#34;</span>) <span style=color:#f92672>or</span> \
-</span></span><span style=display:flex><span>               (signal <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;SELL&#34;</span> <span style=color:#f92672>and</span> self<span style=color:#f92672>.</span>position_side <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;LONG&#34;</span>): self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>close_position(self<span style=color:#f92672>.</span>coin)
-</span></span><span style=display:flex><span>                self<span style=color:#f92672>.</span>in_position <span style=color:#f92672>=</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>                time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>else</span>: <span style=color:#66d9ef>return</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        mids <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>info<span style=color:#f92672>.</span>all_mids()
-</span></span><span style=display:flex><span>        current_px <span style=color:#f92672>=</span> float(mids<span style=color:#f92672>.</span>get(self<span style=color:#f92672>.</span>coin, <span style=color:#ae81ff>0</span>))
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> current_px <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: <span style=color:#66d9ef>return</span>
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        account <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>get_account_summary()
-</span></span><span style=display:flex><span>        account_value <span style=color:#f92672>=</span> float(account[marginSummary][accountValue])
-</span></span><span style=display:flex><span>        sz <span style=color:#f92672>=</span> round(account_value <span style=color:#f92672>*</span> self<span style=color:#f92672>.</span>risk_per_trade <span style=color:#f92672>/</span> current_px, <span style=color:#ae81ff>4</span>)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> signal <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;BUY&#34;</span>: self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>place_market_order(self<span style=color:#f92672>.</span>coin, <span style=color:#66d9ef>True</span>, sz)
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>position_side <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;LONG&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>elif</span> signal <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;SELL&#34;</span>: self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>place_market_order(self<span style=color:#f92672>.</span>coin, <span style=color:#66d9ef>False</span>, sz)
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>position_side <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;SHORT&#34;</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>in_position <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run</span>(self, check_interval: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>60</span>): <span style=color:#e6db74>&#34;&#34;&#34;메인 봇 루프.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>self<span style=color:#f92672>.</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74> 트렌드 봇 시작&#34;</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Fast EMA: </span><span style=color:#e6db74>{</span>self<span style=color:#f92672>.</span>fast_ema_period<span style=color:#e6db74>}</span><span style=color:#e6db74>, Slow EMA: </span><span style=color:#e6db74>{</span>self<span style=color:#f92672>.</span>slow_ema_period<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>while</span> <span style=color:#66d9ef>True</span>: <span style=color:#66d9ef>try</span>: signal <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>check_signals()
-</span></span><span style=display:flex><span>                print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>datetime<span style=color:#f92672>.</span>now()<span style=color:#e6db74>}</span><span style=color:#e6db74>] 신호: </span><span style=color:#e6db74>{</span>signal<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>                self<span style=color:#f92672>.</span>execute_signal(signal)
-</span></span><span style=display:flex><span>                
-</span></span><span style=display:flex><span>                positions <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>get_positions()
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>for</span> pos <span style=color:#f92672>in</span> positions: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>{</span>pos[coin]<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>pos[size]<span style=color:#e6db74>}</span><span style=color:#e6db74> | PnL: $</span><span style=color:#e6db74>{</span>pos[unrealized_pnl]<span style=color:#e6db74>:</span><span style=color:#e6db74>+.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>                
-</span></span><span style=display:flex><span>                time<span style=color:#f92672>.</span>sleep(check_interval)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;봇 루프 오류: </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>                time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>10</span>)
-</span></span></code></pre></div><hr><h2 id=고급-hyperliquid-api-통합>고급 Hyperliquid API 통합<a hidden class=anchor aria-hidden=true href=#고급-hyperliquid-api-통합>#</a></h2><h3 id=펀딩-비율-및-역사적-데이터>펀딩 비율 및 역사적 데이터<a hidden class=anchor aria-hidden=true href=#펀딩-비율-및-역사적-데이터>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_funding_rates</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;모든 시장의 현재 펀딩 비율 조회.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        meta <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>info<span style=color:#f92672>.</span>meta()
-</span></span><span style=display:flex><span>        assets <span style=color:#f92672>=</span> meta[universe]
-</span></span><span style=display:flex><span>        funding_data <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> asset <span style=color:#f92672>in</span> assets[:<span style=color:#ae81ff>20</span>]: name <span style=color:#f92672>=</span> asset[name]
-</span></span><span style=display:flex><span>            ctx <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>info<span style=color:#f92672>.</span>funding_history(name, <span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>if</span> ctx: funding_data<span style=color:#f92672>.</span>append({
-</span></span><span style=display:flex><span>                    coin: name,
-</span></span><span style=display:flex><span>                    funding_rate: float(ctx[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>get(fundingRate, <span style=color:#ae81ff>0</span>)),
-</span></span><span style=display:flex><span>                    predicted_rate: float(ctx[<span style=color:#ae81ff>0</span>]<span style=color:#f92672>.</span>get(predictedFundingRate, <span style=color:#ae81ff>0</span>))
-</span></span><span style=display:flex><span>                })
-</span></span><span style=display:flex><span>        funding_data<span style=color:#f92672>.</span>sort(key<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: abs(x[funding_rate]), reverse<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>펀딩 비율 상위:&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> f <span style=color:#f92672>in</span> funding_data[:<span style=color:#ae81ff>10</span>]: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>{</span>f[coin]<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>f[funding_rate]<span style=color:#f92672>*</span><span style=color:#ae81ff>100</span><span style=color:#e6db74>:</span><span style=color:#e6db74>+.4f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>%&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> funding_data
-</span></span></code></pre></div><h3 id=다중-자산-websocket-관리>다중 자산 WebSocket 관리<a hidden class=anchor aria-hidden=true href=#다중-자산-websocket-관리>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>MultiAssetWebSocketManager</span>: <span style=color:#e6db74>&#34;&#34;&#34;여러 자산에 대한 동시 WebSocket 연결 관리.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, assets: list): self<span style=color:#f92672>.</span>assets <span style=color:#f92672>=</span> assets
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>ws_url <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;wss://api.hyperliquid.xyz/ws&#34;</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>handlers <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>data_cache <span style=color:#f92672>=</span> {asset: {mid: <span style=color:#ae81ff>0</span>, spread: <span style=color:#ae81ff>0</span>} <span style=color:#66d9ef>for</span> asset <span style=color:#f92672>in</span> assets}
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>subscribe_all</span>(self, ws): <span style=color:#e6db74>&#34;&#34;&#34;일괄로 모든 자산 구독.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        sub <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;subscribe&#34;</span>, <span style=color:#e6db74>&#34;subscription&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;allMids&#34;</span>}}
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> ws<span style=color:#f92672>.</span>send(json<span style=color:#f92672>.</span>dumps(sub))
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> asset <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>assets: sub <span style=color:#f92672>=</span> {<span style=color:#e6db74>&#34;method&#34;</span>: <span style=color:#e6db74>&#34;subscribe&#34;</span>, <span style=color:#e6db74>&#34;subscription&#34;</span>: {<span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;l2Book&#34;</span>, <span style=color:#e6db74>&#34;coin&#34;</span>: asset}}
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>await</span> ws<span style=color:#f92672>.</span>send(json<span style=color:#f92672>.</span>dumps(sub))
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run</span>(self): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> websockets<span style=color:#f92672>.</span>connect(self<span style=color:#f92672>.</span>ws_url) <span style=color:#66d9ef>as</span> ws: <span style=color:#66d9ef>await</span> self<span style=color:#f92672>.</span>subscribe_all(ws)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> message <span style=color:#f92672>in</span> ws: msg <span style=color:#f92672>=</span> json<span style=color:#f92672>.</span>loads(message)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> msg<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;channel&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;allMids&#34;</span>: <span style=color:#66d9ef>for</span> asset, price <span style=color:#f92672>in</span> msg[data]<span style=color:#f92672>.</span>items(): <span style=color:#66d9ef>if</span> asset <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>data_cache: self<span style=color:#f92672>.</span>data_cache[asset][mid] <span style=color:#f92672>=</span> float(price)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>elif</span> msg<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;channel&#34;</span>) <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;l2Book&#34;</span>: coin <span style=color:#f92672>=</span> msg[data][coin]
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> coin <span style=color:#f92672>in</span> self<span style=color:#f92672>.</span>data_cache: bids <span style=color:#f92672>=</span> msg[data][levels][<span style=color:#ae81ff>0</span>]
-</span></span><span style=display:flex><span>                        asks <span style=color:#f92672>=</span> msg[data][levels][<span style=color:#ae81ff>1</span>]
-</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>if</span> bids <span style=color:#f92672>and</span> asks: self<span style=color:#f92672>.</span>data_cache[coin][spread] <span style=color:#f92672>=</span> float(asks[<span style=color:#ae81ff>0</span>][px]) <span style=color:#f92672>-</span> float(bids[<span style=color:#ae81ff>0</span>][px])
-</span></span></code></pre></div><hr><h2 id=hyperliquid-리스크-관리>Hyperliquid 리스크 관리<a hidden class=anchor aria-hidden=true href=#hyperliquid-리스크-관리>#</a></h2><h3 id=고립형-vs-교차-마진>고립형 vs. 교차 마진<a hidden class=anchor aria-hidden=true href=#고립형-vs-교차-마진>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>set_cross_margin</span>(self, coin: str): <span style=color:#e6db74>&#34;&#34;&#34;교차 마진 모드 활성화.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>exchange<span style=color:#f92672>.</span>update_isolated_margin(coin, <span style=color:#66d9ef>False</span>, <span style=color:#66d9ef>None</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74> 교차 마진 활성화됨&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>set_isolated_margin</span>(self, coin: str, leverage: int): <span style=color:#e6db74>&#34;&#34;&#34;특정 레버리지로 고립형 마진 활성화.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>exchange<span style=color:#f92672>.</span>update_isolated_margin(coin, <span style=color:#66d9ef>True</span>, leverage)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>coin<span style=color:#e6db74>}</span><span style=color:#e6db74> 고립형 마진 </span><span style=color:#e6db74>{</span>leverage<span style=color:#e6db74>}</span><span style=color:#e6db74>x 활성화됨&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> result
-</span></span></code></pre></div><h3 id=자동화된-리스크-컨트롤>자동화된 리스크 컨트롤<a hidden class=anchor aria-hidden=true href=#자동화된-리스크-컨트롤>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>RiskManager</span>: <span style=color:#e6db74>&#34;&#34;&#34;Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self, trader: HyperliquidTrader): self<span style=color:#f92672>.</span>trader <span style=color:#f92672>=</span> trader
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>max_daily_loss <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.05</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>max_position_size <span style=color:#f92672>=</span> <span style=color:#ae81ff>0.50</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>max_leverage <span style=color:#f92672>=</span> <span style=color:#ae81ff>25</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>daily_pnl <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>last_reset <span style=color:#f92672>=</span> datetime<span style=color:#f92672>.</span>now()<span style=color:#f92672>.</span>date()
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check_daily_limit</span>(self) <span style=color:#f92672>-&gt;</span> bool: <span style=color:#e6db74>&#34;&#34;&#34;일일 손실 한도 확인.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        today <span style=color:#f92672>=</span> datetime<span style=color:#f92672>.</span>now()<span style=color:#f92672>.</span>date()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> today <span style=color:#f92672>!=</span> self<span style=color:#f92672>.</span>last_reset: self<span style=color:#f92672>.</span>daily_pnl <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>            self<span style=color:#f92672>.</span>last_reset <span style=color:#f92672>=</span> today
-</span></span><span style=display:flex><span>        account <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>get_account_summary()
-</span></span><span style=display:flex><span>        account_value <span style=color:#f92672>=</span> float(account[marginSummary][accountValue])
-</span></span><span style=display:flex><span>        loss_pct <span style=color:#f92672>=</span> abs(min(self<span style=color:#f92672>.</span>daily_pnl, <span style=color:#ae81ff>0</span>)) <span style=color:#f92672>/</span> account_value <span style=color:#66d9ef>if</span> account_value <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span> <span style=color:#66d9ef>else</span> <span style=color:#ae81ff>0</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> loss_pct <span style=color:#f92672>&gt;=</span> self<span style=color:#f92672>.</span>max_daily_loss: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;일일 손실 한도 도달: </span><span style=color:#e6db74>{</span>loss_pct<span style=color:#f92672>*</span><span style=color:#ae81ff>100</span><span style=color:#e6db74>:</span><span style=color:#e6db74>.2f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>%&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>False</span>
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>emergency_close_all</span>(self): <span style=color:#e6db74>&#34;&#34;&#34;모든 포지션 긴급 청산.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;모든 포지션 긴급 청산&#34;</span>)
-</span></span><span style=display:flex><span>        positions <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>get_positions()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> pos <span style=color:#f92672>in</span> positions: <span style=color:#66d9ef>if</span> pos[size] <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>: self<span style=color:#f92672>.</span>trader<span style=color:#f92672>.</span>close_position(pos[coin])
-</span></span><span style=display:flex><span>                time<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>0.5</span>)
-</span></span></code></pre></div><hr><h2 id=자주-묻는-질문-faq>자주 묻는 질문 (FAQ)<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문-faq>#</a></h2><h3 id=hyperliquid는-dydx나-gmx와-어떻게-다른가요>Hyperliquid는 dYdX나 GMX와 어떻게 다른가요?<a hidden class=anchor aria-hidden=true href=#hyperliquid는-dydx나-gmx와-어떻게-다른가요>#</a></h3><p>Hyperliquid의 핵심 차별화 요소는 <strong>완전 온체인 CLOB 아키텍처</strong>와 트레이딩에 최적화된 독점 L1 체인의 결합입니다. dYdX v4는 Cosmos 앱체인에서, GMX는 AMM 모델을 사용하는 반면, Hyperliquid는 1초 미만의 블록 시간과 10,000+ TPS를 갖춘 진정한 오더북 매칭을 제공합니다. HyperEVM은 dYdX와 GMX가 일치할 수 없는 스마트 컨트랙트 조합성을 가능하게 합니다. 또한 Hyperliquid는 대부분의 경쟁 영구 DEX보다 더 높은 일일 거래량($2B+)을 유지합니다.</p><h3 id=hyperliquid에-자금을-입금하려면-어떻게-하나요>Hyperliquid에 자금을 입금하려면 어떻게 하나요?<a hidden class=anchor aria-hidden=true href=#hyperliquid에-자금을-입금하려면-어떻게-하나요>#</a></h3><p><strong>Arbitrum의 USDC</strong>가 필요합니다. Hyperliquid 거래 인터페이스에 접속하여 지갑을 연결하고, &ldquo;입금"을 클릭하고 USDC 금액을 지정한 다음 Arbitrum 트랜잭션을 확인합니다(일반적으로 5분 이내).</p><h3 id=hyperliquid의-거래-수수료는-얼마인가요>Hyperliquid의 거래 수수료는 얼마인가요?<a hidden class=anchor aria-hidden=true href=#hyperliquid의-거래-수수료는-얼마인가요>#</a></h3><ul><li><strong>메이커 수수료</strong>: -0.002% (네거티브 — 유동성 제공 리베이트)</li><li><strong>테이커 수수료</strong>: 0.035%</li></ul><p>영구 DEX 시장에서 가장 경쟁력 있는 수수료입니다.</p><h3 id=hyperliquid는-안전한가요>Hyperliquid는 안전한가요?<a hidden class=anchor aria-hidden=true href=#hyperliquid는-안전한가요>#</a></h3><p>Hyperliquid는 <strong>비수탁형 거래소</strong>로 운영됩니다 — 자금은 귀하의 개인 키로 제어되는 스마트 컨트랙트에 남아 있습니다. 스마트 컨트랙트 리스크, 청산 리스크, 오라클 리스크, 브리지 리스크가 존재합니다. 누적 거래량 $500B+을 무사고로 처리했습니다.</p><h3 id=실전-투입-전-전략을-어떻게-백테스트하나요>실전 투입 전 전략을 어떻게 백테스트하나요?<a hidden class=anchor aria-hidden=true href=#실전-투입-전-전략을-어떻게-백테스트하나요>#</a></h3><p>Hyperliquid는 API를 통해 <strong>묣은 역사적 데이터</strong>를 제공합니다. <code>fetch_historical_candles</code> 메서드로 OHLCV 데이터를 가져와 ````BacktestEngine``` 클래스로 EMA 크로스오버 백테스트를 실행합니다.</p><hr><h2 id=추천-도구>추천 도구<a hidden class=anchor aria-hidden=true href=#추천-도구>#</a></h2><p>이 가이드와 함께 사용하기를 추천하는 제품: - <strong><a href=https://minara.ai/r/OSXG4X>Minara</a></strong> — AI-powered automated trading bot</p><ul><li><strong><a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a></strong> — World"s leading cryptocurrency exchange</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.</em></p><h2 id=결론-온체인-영구-트레이딩의-미래>결론: 온체인 영구 트레이딩의 미래<a hidden class=anchor aria-hidden=true href=#결론-온체인-영구-트레이딩의-미래>#</a></h2><p>Hyperliquid는 2026년 최고의 온체인 영구 선물 트레이딩 플랫폼으로 확고히 자리매김했습니다. $2B+ 일일 거래량, 100개 이상의 거래 페어, 최대 50배 레버리지, 강력한 HyperEVM 스마트 컨트랙트 레이어를 갖춘 Hyperliquid는 많은 면에서 중앙화 대안을 능가하는 종합 트레이딩 생태계를 제공합니다.</p><p>Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 조합은 정교한 트레이딩 시스템을 구축하기 위한 최고의 환경을 만듭니다. 오늘부터 구축을 시작하고 Hyperliquid의 오더북을 통해 매일 수십억 달러의 거래량이 흐르는 이유를 경험해 보세요.</p><hr><p><em>면책 조항: 암호화폐 트레이딩에는 상당한 리스크가 따릅니다. 이 문서는 교육 목적으로만 작성되었으며 재무 조언을 구성하지 않습니다. 항상 자체 연구를 수행하고 절대 잃을 여유가 없는 자금으로 트레이딩하지 마세요.</em></p><hr><p><strong>관련 리소스:</strong></p><ul><li><a href=https://minara.ai/r/OSXG4X>Minara AI 트레이딩 봇</a></li><li><a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance 거래소</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><hr>
+<h2 id="프로덕션-레디-트레이딩-봇-구축">프로덕션 레디 트레이딩 봇 구축<a hidden class="anchor" aria-hidden="true" href="#프로덕션-레디-트레이딩-봇-구축">#</a></h2>
+<h3 id="websocket을-통한-실시간-시장-데이터">WebSocket을 통한 실시간 시장 데이터<a hidden class="anchor" aria-hidden="true" href="#websocket을-통한-실시간-시장-데이터">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> websockets
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HyperliquidWebSocketFeed</span>: <span style="color:#e6db74">&#34;&#34;&#34;Hyperliquid용 고성능 WebSocket 데이터 피드.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self): self<span style="color:#f92672">.</span>ws_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss://api.hyperliquid.xyz/ws&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>subscriptions <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>orderbook_cache <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>running <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">connect</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;자동 재연결이 있는 WebSocket 연결 설정.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>: <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> websockets<span style="color:#f92672">.</span>connect(self<span style="color:#f92672">.</span>ws_url) <span style="color:#66d9ef">as</span> ws: print(<span style="color:#e6db74">&#34;WebSocket 연결됨&#34;</span>)
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>ws <span style="color:#f92672">=</span> ws
+</span></span><span style="display:flex;"><span>                    self<span style="color:#f92672">.</span>running <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">for</span> sub <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>subscriptions<span style="color:#f92672">.</span>values(): <span style="color:#66d9ef">await</span> ws<span style="color:#f92672">.</span>send(json<span style="color:#f92672">.</span>dumps(sub))
+</span></span><span style="display:flex;"><span>                    
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>_listen()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;WebSocket 오류: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">. 5초 후 재연결...&#34;</span>)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">5</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_listen</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;수신 메시지 처리.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> message <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>ws: msg <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(message)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> msg<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;channel&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;l2Book&#34;</span>: <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>_handle_orderbook(msg[data])
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">elif</span> msg<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;channel&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;trades&#34;</span>: <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>_handle_trades(msg[data])
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">_handle_orderbook</span>(self, data): <span style="color:#e6db74">&#34;&#34;&#34;L2 오더북 업데이트 처리.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        coin <span style="color:#f92672">=</span> data[coin]
+</span></span><span style="display:flex;"><span>        levels <span style="color:#f92672">=</span> data[levels]
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>orderbook_cache[coin] <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            bids: [{px: float(b[px]), sz: float(b[sz])} <span style="color:#66d9ef">for</span> b <span style="color:#f92672">in</span> levels[<span style="color:#ae81ff">0</span>]],
+</span></span><span style="display:flex;"><span>            asks: [{px: float(a[px]), sz: float(a[sz])} <span style="color:#66d9ef">for</span> a <span style="color:#f92672">in</span> levels[<span style="color:#ae81ff">1</span>]],
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subscribe_orderbook</span>(self, coin): <span style="color:#e6db74">&#34;&#34;&#34;특정 시장의 실시간 오더북 구독.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        sub <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;subscribe&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;subscription&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;l2Book&#34;</span>, <span style="color:#e6db74">&#34;coin&#34;</span>: coin}
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>subscriptions[<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;book_</span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>] <span style="color:#f92672">=</span> sub
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>running: <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>ws<span style="color:#f92672">.</span>send(json<span style="color:#f92672">.</span>dumps(sub))
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74"> 오더북 구독됨&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subscribe_trades</span>(self, coin): <span style="color:#e6db74">&#34;&#34;&#34;실시간 체결 내역 구독.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        sub <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;subscribe&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;subscription&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;trades&#34;</span>, <span style="color:#e6db74">&#34;coin&#34;</span>: coin}
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>subscriptions[<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;trades_</span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>] <span style="color:#f92672">=</span> sub
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>running: <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>ws<span style="color:#f92672">.</span>send(json<span style="color:#f92672">.</span>dumps(sub))
+</span></span></code></pre></div><h3 id="주문-유형-시장가-지정가-조걶-주문">주문 유형: 시장가, 지정가, 조걶 주문<a hidden class="anchor" aria-hidden="true" href="#주문-유형-시장가-지정가-조걶-주문">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">place_market_order</span>(self, coin: str, is_buy: bool, sz: float): <span style="color:#e6db74">&#34;&#34;&#34;슬리피지 보호가 있는 시장가 주문 실행.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        order_type <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;limit&#34;</span>: {<span style="color:#e6db74">&#34;tif&#34;</span>: <span style="color:#e6db74">&#34;Ioc&#34;</span>}}  <span style="color:#75715e"># Immediate-or-Cancel</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>exchange<span style="color:#f92672">.</span>order(coin, is_buy, sz, <span style="color:#ae81ff">0</span>, order_type, reduce_only<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;시장가 </span><span style="color:#e6db74">{</span>매수 <span style="color:#66d9ef">if</span> is_buy <span style="color:#66d9ef">else</span> 매도<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>sz<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;상태: </span><span style="color:#e6db74">{</span>result[status]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">place_limit_order</span>(self, coin: str, is_buy: bool, sz: float, px: float, tif: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Gtc&#34;</span>): <span style="color:#e6db74">&#34;&#34;&#34;지정된 시간 유효 조건으로 지정가 주문 배치.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        TIF 옵션: - Gtc: Good-til-Cancelled (취소까지 유효)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - Ioc: Immediate-or-Cancel (즉시 실행 또는 취소)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        - Fok: Fill-or-Kill (전량 체결 또는 취소)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        order_type <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;limit&#34;</span>: {<span style="color:#e6db74">&#34;tif&#34;</span>: tif}}
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>exchange<span style="color:#f92672">.</span>order(coin, is_buy, sz, px, order_type, reduce_only<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;지정가 </span><span style="color:#e6db74">{</span>매수 <span style="color:#66d9ef">if</span> is_buy <span style="color:#66d9ef">else</span> 매도<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>sz<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74"> @ </span><span style="color:#e6db74">{</span>px<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">place_stop_loss_order</span>(self, coin: str, is_buy: bool, sz: float, trigger_px: float, limit_px: float): <span style="color:#e6db74">&#34;&#34;&#34;트리거 가격이 있는 손절 주문 배치.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        order_type <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;trigger&#34;</span>: {
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;triggerPx&#34;</span>: str(trigger_px),
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;isMarket&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;tpsl&#34;</span>: <span style="color:#e6db74">&#34;sl&#34;</span>
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>exchange<span style="color:#f92672">.</span>order(coin, is_buy, sz, limit_px, order_type, reduce_only<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;손절 </span><span style="color:#e6db74">{</span>매수 <span style="color:#66d9ef">if</span> is_buy <span style="color:#66d9ef">else</span> 매도<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>sz<span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_positions</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;손익 세부 정보가 포함된 모든 미결 포지션 조회.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        user_state <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>user_state(self<span style="color:#f92672">.</span>wallet_address)
+</span></span><span style="display:flex;"><span>        positions <span style="color:#f92672">=</span> user_state<span style="color:#f92672">.</span>get(assetPositions, [])
+</span></span><span style="display:flex;"><span>        active_positions <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> pos <span style="color:#f92672">in</span> positions: position <span style="color:#f92672">=</span> pos[position]
+</span></span><span style="display:flex;"><span>            entry_px <span style="color:#f92672">=</span> float(position[entryPx])
+</span></span><span style="display:flex;"><span>            current_px <span style="color:#f92672">=</span> float(position[markPx])
+</span></span><span style="display:flex;"><span>            size <span style="color:#f92672">=</span> float(position[szi])
+</span></span><span style="display:flex;"><span>            pnl <span style="color:#f92672">=</span> (current_px <span style="color:#f92672">-</span> entry_px) <span style="color:#f92672">*</span> size <span style="color:#66d9ef">if</span> size <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> (entry_px <span style="color:#f92672">-</span> current_px) <span style="color:#f92672">*</span> abs(size)
+</span></span><span style="display:flex;"><span>            active_positions<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                coin: position[coin],
+</span></span><span style="display:flex;"><span>                size: size,
+</span></span><span style="display:flex;"><span>                entry_price: entry_px,
+</span></span><span style="display:flex;"><span>                mark_price: current_px,
+</span></span><span style="display:flex;"><span>                unrealized_pnl: pnl,
+</span></span><span style="display:flex;"><span>                leverage: float(position[leverage][value]),
+</span></span><span style="display:flex;"><span>                liquidation_price: float(position<span style="color:#f92672">.</span>get(liquidationPx, <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>            })
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> active_positions
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">close_position</span>(self, coin: str): <span style="color:#e6db74">&#34;&#34;&#34;특정 시장의 전체 포지션 청산.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        positions <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>get_positions()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> pos <span style="color:#f92672">in</span> positions: <span style="color:#66d9ef">if</span> pos[coin] <span style="color:#f92672">==</span> coin <span style="color:#f92672">and</span> pos[size] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>: is_buy <span style="color:#f92672">=</span> pos[size] <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>                sz <span style="color:#f92672">=</span> abs(pos[size])
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>place_market_order(coin, is_buy, sz)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74">에 미결 포지션이 없습니다&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span></code></pre></div><h3 id="완전한-트렌드-팔로잉-봇-예제">완전한 트렌드 팔로잉 봇 예제<a hidden class="anchor" aria-hidden="true" href="#완전한-트렌드-팔로잉-봇-예제">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> time
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> pandas <span style="color:#66d9ef">as</span> pd
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> datetime <span style="color:#f92672">import</span> datetime, timedelta
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TrendFollowingBot</span>: <span style="color:#e6db74">&#34;&#34;&#34;Hyperliquid용 EMA 크로스오버 트렌드 팔로잉 봇.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, trader: HyperliquidTrader, coin: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;BTC&#34;</span>): self<span style="color:#f92672">.</span>trader <span style="color:#f92672">=</span> trader
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>coin <span style="color:#f92672">=</span> coin
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>fast_ema_period <span style="color:#f92672">=</span> <span style="color:#ae81ff">9</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>slow_ema_period <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>risk_per_trade <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.02</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>in_position <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>position_side <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_signals</span>(self) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;EMA 크로스오버 신호 확인.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        candles <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>candles(
+</span></span><span style="display:flex;"><span>            coin<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>coin, interval<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;5m&#34;</span>,
+</span></span><span style="display:flex;"><span>            startTime<span style="color:#f92672">=</span>int((datetime<span style="color:#f92672">.</span>now() <span style="color:#f92672">-</span> timedelta(hours<span style="color:#f92672">=</span><span style="color:#ae81ff">12</span>))<span style="color:#f92672">.</span>timestamp() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>),
+</span></span><span style="display:flex;"><span>            endTime<span style="color:#f92672">=</span>int(datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>timestamp() <span style="color:#f92672">*</span> <span style="color:#ae81ff">1000</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        closes <span style="color:#f92672">=</span> pd<span style="color:#f92672">.</span>Series([float(c[c]) <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> candles <span style="color:#66d9ef">if</span> c <span style="color:#f92672">in</span> c])
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> len(closes) <span style="color:#f92672">&lt;</span> self<span style="color:#f92672">.</span>slow_ema_period <span style="color:#f92672">+</span> <span style="color:#ae81ff">5</span>: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;HOLD&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        fast_ema <span style="color:#f92672">=</span> closes<span style="color:#f92672">.</span>ewm(span<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>fast_ema_period)<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>        slow_ema <span style="color:#f92672">=</span> closes<span style="color:#f92672">.</span>ewm(span<span style="color:#f92672">=</span>self<span style="color:#f92672">.</span>slow_ema_period)<span style="color:#f92672">.</span>mean()
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> fast_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&lt;=</span> slow_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">and</span> fast_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&gt;</span> slow_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;BUY&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> fast_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">&gt;=</span> slow_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>] <span style="color:#f92672">and</span> fast_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>] <span style="color:#f92672">&lt;</span> slow_ema<span style="color:#f92672">.</span>iloc[<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]: <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;SELL&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;HOLD&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">execute_signal</span>(self, signal: str): <span style="color:#e6db74">&#34;&#34;&#34;적절한 위험 관리로 트레이딩 신호 실행.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> signal <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;HOLD&#34;</span>: <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> self<span style="color:#f92672">.</span>in_position: <span style="color:#66d9ef">if</span> (signal <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;BUY&#34;</span> <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>position_side <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;SHORT&#34;</span>) <span style="color:#f92672">or</span> \
+</span></span><span style="display:flex;"><span>               (signal <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;SELL&#34;</span> <span style="color:#f92672">and</span> self<span style="color:#f92672">.</span>position_side <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;LONG&#34;</span>): self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>close_position(self<span style="color:#f92672">.</span>coin)
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>in_position <span style="color:#f92672">=</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>                time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">else</span>: <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        mids <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>all_mids()
+</span></span><span style="display:flex;"><span>        current_px <span style="color:#f92672">=</span> float(mids<span style="color:#f92672">.</span>get(self<span style="color:#f92672">.</span>coin, <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> current_px <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>: <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        account <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>get_account_summary()
+</span></span><span style="display:flex;"><span>        account_value <span style="color:#f92672">=</span> float(account[marginSummary][accountValue])
+</span></span><span style="display:flex;"><span>        sz <span style="color:#f92672">=</span> round(account_value <span style="color:#f92672">*</span> self<span style="color:#f92672">.</span>risk_per_trade <span style="color:#f92672">/</span> current_px, <span style="color:#ae81ff">4</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> signal <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;BUY&#34;</span>: self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>place_market_order(self<span style="color:#f92672">.</span>coin, <span style="color:#66d9ef">True</span>, sz)
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>position_side <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LONG&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">elif</span> signal <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;SELL&#34;</span>: self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>place_market_order(self<span style="color:#f92672">.</span>coin, <span style="color:#66d9ef">False</span>, sz)
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>position_side <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;SHORT&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>in_position <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self, check_interval: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">60</span>): <span style="color:#e6db74">&#34;&#34;&#34;메인 봇 루프.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74"> 트렌드 봇 시작&#34;</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Fast EMA: </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>fast_ema_period<span style="color:#e6db74">}</span><span style="color:#e6db74">, Slow EMA: </span><span style="color:#e6db74">{</span>self<span style="color:#f92672">.</span>slow_ema_period<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">True</span>: <span style="color:#66d9ef">try</span>: signal <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>check_signals()
+</span></span><span style="display:flex;"><span>                print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[</span><span style="color:#e6db74">{</span>datetime<span style="color:#f92672">.</span>now()<span style="color:#e6db74">}</span><span style="color:#e6db74">] 신호: </span><span style="color:#e6db74">{</span>signal<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>                self<span style="color:#f92672">.</span>execute_signal(signal)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                positions <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>get_positions()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">for</span> pos <span style="color:#f92672">in</span> positions: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  </span><span style="color:#e6db74">{</span>pos[coin]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>pos[size]<span style="color:#e6db74">}</span><span style="color:#e6db74"> | PnL: $</span><span style="color:#e6db74">{</span>pos[unrealized_pnl]<span style="color:#e6db74">:</span><span style="color:#e6db74">+.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>                
+</span></span><span style="display:flex;"><span>                time<span style="color:#f92672">.</span>sleep(check_interval)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;봇 루프 오류: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>                time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">10</span>)
+</span></span></code></pre></div><hr>
+<h2 id="고급-hyperliquid-api-통합">고급 Hyperliquid API 통합<a hidden class="anchor" aria-hidden="true" href="#고급-hyperliquid-api-통합">#</a></h2>
+<h3 id="펀딩-비율-및-역사적-데이터">펀딩 비율 및 역사적 데이터<a hidden class="anchor" aria-hidden="true" href="#펀딩-비율-및-역사적-데이터">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_funding_rates</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;모든 시장의 현재 펀딩 비율 조회.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        meta <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>meta()
+</span></span><span style="display:flex;"><span>        assets <span style="color:#f92672">=</span> meta[universe]
+</span></span><span style="display:flex;"><span>        funding_data <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> asset <span style="color:#f92672">in</span> assets[:<span style="color:#ae81ff">20</span>]: name <span style="color:#f92672">=</span> asset[name]
+</span></span><span style="display:flex;"><span>            ctx <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>info<span style="color:#f92672">.</span>funding_history(name, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> ctx: funding_data<span style="color:#f92672">.</span>append({
+</span></span><span style="display:flex;"><span>                    coin: name,
+</span></span><span style="display:flex;"><span>                    funding_rate: float(ctx[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>get(fundingRate, <span style="color:#ae81ff">0</span>)),
+</span></span><span style="display:flex;"><span>                    predicted_rate: float(ctx[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">.</span>get(predictedFundingRate, <span style="color:#ae81ff">0</span>))
+</span></span><span style="display:flex;"><span>                })
+</span></span><span style="display:flex;"><span>        funding_data<span style="color:#f92672">.</span>sort(key<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: abs(x[funding_rate]), reverse<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">펀딩 비율 상위:&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> funding_data[:<span style="color:#ae81ff">10</span>]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  </span><span style="color:#e6db74">{</span>f[coin]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>f[funding_rate]<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#e6db74">:</span><span style="color:#e6db74">+.4f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> funding_data
+</span></span></code></pre></div><h3 id="다중-자산-websocket-관리">다중 자산 WebSocket 관리<a hidden class="anchor" aria-hidden="true" href="#다중-자산-websocket-관리">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MultiAssetWebSocketManager</span>: <span style="color:#e6db74">&#34;&#34;&#34;여러 자산에 대한 동시 WebSocket 연결 관리.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, assets: list): self<span style="color:#f92672">.</span>assets <span style="color:#f92672">=</span> assets
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>ws_url <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;wss://api.hyperliquid.xyz/ws&#34;</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>handlers <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>data_cache <span style="color:#f92672">=</span> {asset: {mid: <span style="color:#ae81ff">0</span>, spread: <span style="color:#ae81ff">0</span>} <span style="color:#66d9ef">for</span> asset <span style="color:#f92672">in</span> assets}
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">subscribe_all</span>(self, ws): <span style="color:#e6db74">&#34;&#34;&#34;일괄로 모든 자산 구독.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        sub <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;subscribe&#34;</span>, <span style="color:#e6db74">&#34;subscription&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;allMids&#34;</span>}}
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> ws<span style="color:#f92672">.</span>send(json<span style="color:#f92672">.</span>dumps(sub))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> asset <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>assets: sub <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#34;method&#34;</span>: <span style="color:#e6db74">&#34;subscribe&#34;</span>, <span style="color:#e6db74">&#34;subscription&#34;</span>: {<span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;l2Book&#34;</span>, <span style="color:#e6db74">&#34;coin&#34;</span>: asset}}
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">await</span> ws<span style="color:#f92672">.</span>send(json<span style="color:#f92672">.</span>dumps(sub))
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run</span>(self): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> websockets<span style="color:#f92672">.</span>connect(self<span style="color:#f92672">.</span>ws_url) <span style="color:#66d9ef">as</span> ws: <span style="color:#66d9ef">await</span> self<span style="color:#f92672">.</span>subscribe_all(ws)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> message <span style="color:#f92672">in</span> ws: msg <span style="color:#f92672">=</span> json<span style="color:#f92672">.</span>loads(message)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> msg<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;channel&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;allMids&#34;</span>: <span style="color:#66d9ef">for</span> asset, price <span style="color:#f92672">in</span> msg[data]<span style="color:#f92672">.</span>items(): <span style="color:#66d9ef">if</span> asset <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>data_cache: self<span style="color:#f92672">.</span>data_cache[asset][mid] <span style="color:#f92672">=</span> float(price)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> msg<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;channel&#34;</span>) <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;l2Book&#34;</span>: coin <span style="color:#f92672">=</span> msg[data][coin]
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> coin <span style="color:#f92672">in</span> self<span style="color:#f92672">.</span>data_cache: bids <span style="color:#f92672">=</span> msg[data][levels][<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>                        asks <span style="color:#f92672">=</span> msg[data][levels][<span style="color:#ae81ff">1</span>]
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">if</span> bids <span style="color:#f92672">and</span> asks: self<span style="color:#f92672">.</span>data_cache[coin][spread] <span style="color:#f92672">=</span> float(asks[<span style="color:#ae81ff">0</span>][px]) <span style="color:#f92672">-</span> float(bids[<span style="color:#ae81ff">0</span>][px])
+</span></span></code></pre></div><hr>
+<h2 id="hyperliquid-리스크-관리">Hyperliquid 리스크 관리<a hidden class="anchor" aria-hidden="true" href="#hyperliquid-리스크-관리">#</a></h2>
+<h3 id="고립형-vs-교차-마진">고립형 vs. 교차 마진<a hidden class="anchor" aria-hidden="true" href="#고립형-vs-교차-마진">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set_cross_margin</span>(self, coin: str): <span style="color:#e6db74">&#34;&#34;&#34;교차 마진 모드 활성화.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>exchange<span style="color:#f92672">.</span>update_isolated_margin(coin, <span style="color:#66d9ef">False</span>, <span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74"> 교차 마진 활성화됨&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">set_isolated_margin</span>(self, coin: str, leverage: int): <span style="color:#e6db74">&#34;&#34;&#34;특정 레버리지로 고립형 마진 활성화.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>exchange<span style="color:#f92672">.</span>update_isolated_margin(coin, <span style="color:#66d9ef">True</span>, leverage)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>coin<span style="color:#e6db74">}</span><span style="color:#e6db74"> 고립형 마진 </span><span style="color:#e6db74">{</span>leverage<span style="color:#e6db74">}</span><span style="color:#e6db74">x 활성화됨&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> result
+</span></span></code></pre></div><h3 id="자동화된-리스크-컨트롤">자동화된 리스크 컨트롤<a hidden class="anchor" aria-hidden="true" href="#자동화된-리스크-컨트롤">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">RiskManager</span>: <span style="color:#e6db74">&#34;&#34;&#34;Hyperliquid 트레이딩을 위한 종합 리스크 관리 시스템.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self, trader: HyperliquidTrader): self<span style="color:#f92672">.</span>trader <span style="color:#f92672">=</span> trader
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>max_daily_loss <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.05</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>max_position_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.50</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>max_leverage <span style="color:#f92672">=</span> <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>daily_pnl <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>last_reset <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>date()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check_daily_limit</span>(self) <span style="color:#f92672">-&gt;</span> bool: <span style="color:#e6db74">&#34;&#34;&#34;일일 손실 한도 확인.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        today <span style="color:#f92672">=</span> datetime<span style="color:#f92672">.</span>now()<span style="color:#f92672">.</span>date()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> today <span style="color:#f92672">!=</span> self<span style="color:#f92672">.</span>last_reset: self<span style="color:#f92672">.</span>daily_pnl <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>            self<span style="color:#f92672">.</span>last_reset <span style="color:#f92672">=</span> today
+</span></span><span style="display:flex;"><span>        account <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>get_account_summary()
+</span></span><span style="display:flex;"><span>        account_value <span style="color:#f92672">=</span> float(account[marginSummary][accountValue])
+</span></span><span style="display:flex;"><span>        loss_pct <span style="color:#f92672">=</span> abs(min(self<span style="color:#f92672">.</span>daily_pnl, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">/</span> account_value <span style="color:#66d9ef">if</span> account_value <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">else</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> loss_pct <span style="color:#f92672">&gt;=</span> self<span style="color:#f92672">.</span>max_daily_loss: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;일일 손실 한도 도달: </span><span style="color:#e6db74">{</span>loss_pct<span style="color:#f92672">*</span><span style="color:#ae81ff">100</span><span style="color:#e6db74">:</span><span style="color:#e6db74">.2f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">False</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">emergency_close_all</span>(self): <span style="color:#e6db74">&#34;&#34;&#34;모든 포지션 긴급 청산.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;모든 포지션 긴급 청산&#34;</span>)
+</span></span><span style="display:flex;"><span>        positions <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>get_positions()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> pos <span style="color:#f92672">in</span> positions: <span style="color:#66d9ef">if</span> pos[size] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>: self<span style="color:#f92672">.</span>trader<span style="color:#f92672">.</span>close_position(pos[coin])
+</span></span><span style="display:flex;"><span>                time<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">0.5</span>)
+</span></span></code></pre></div><hr>
+<h2 id="자주-묻는-질문-faq">자주 묻는 질문 (FAQ)<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문-faq">#</a></h2>
+<h3 id="hyperliquid는-dydx나-gmx와-어떻게-다른가요">Hyperliquid는 dYdX나 GMX와 어떻게 다른가요?<a hidden class="anchor" aria-hidden="true" href="#hyperliquid는-dydx나-gmx와-어떻게-다른가요">#</a></h3>
+<p>Hyperliquid의 핵심 차별화 요소는 <strong>완전 온체인 CLOB 아키텍처</strong>와 트레이딩에 최적화된 독점 L1 체인의 결합입니다. dYdX v4는 Cosmos 앱체인에서, GMX는 AMM 모델을 사용하는 반면, Hyperliquid는 1초 미만의 블록 시간과 10,000+ TPS를 갖춘 진정한 오더북 매칭을 제공합니다. HyperEVM은 dYdX와 GMX가 일치할 수 없는 스마트 컨트랙트 조합성을 가능하게 합니다. 또한 Hyperliquid는 대부분의 경쟁 영구 DEX보다 더 높은 일일 거래량($2B+)을 유지합니다.</p>
+<h3 id="hyperliquid에-자금을-입금하려면-어떻게-하나요">Hyperliquid에 자금을 입금하려면 어떻게 하나요?<a hidden class="anchor" aria-hidden="true" href="#hyperliquid에-자금을-입금하려면-어떻게-하나요">#</a></h3>
+<p><strong>Arbitrum의 USDC</strong>가 필요합니다. Hyperliquid 거래 인터페이스에 접속하여 지갑을 연결하고, &ldquo;입금&quot;을 클릭하고 USDC 금액을 지정한 다음 Arbitrum 트랜잭션을 확인합니다(일반적으로 5분 이내).</p>
+<h3 id="hyperliquid의-거래-수수료는-얼마인가요">Hyperliquid의 거래 수수료는 얼마인가요?<a hidden class="anchor" aria-hidden="true" href="#hyperliquid의-거래-수수료는-얼마인가요">#</a></h3>
+<ul>
+<li><strong>메이커 수수료</strong>: -0.002% (네거티브 — 유동성 제공 리베이트)</li>
+<li><strong>테이커 수수료</strong>: 0.035%</li>
+</ul>
+<p>영구 DEX 시장에서 가장 경쟁력 있는 수수료입니다.</p>
+<h3 id="hyperliquid는-안전한가요">Hyperliquid는 안전한가요?<a hidden class="anchor" aria-hidden="true" href="#hyperliquid는-안전한가요">#</a></h3>
+<p>Hyperliquid는 <strong>비수탁형 거래소</strong>로 운영됩니다 — 자금은 귀하의 개인 키로 제어되는 스마트 컨트랙트에 남아 있습니다. 스마트 컨트랙트 리스크, 청산 리스크, 오라클 리스크, 브리지 리스크가 존재합니다. 누적 거래량 $500B+을 무사고로 처리했습니다.</p>
+<h3 id="실전-투입-전-전략을-어떻게-백테스트하나요">실전 투입 전 전략을 어떻게 백테스트하나요?<a hidden class="anchor" aria-hidden="true" href="#실전-투입-전-전략을-어떻게-백테스트하나요">#</a></h3>
+<p>Hyperliquid는 API를 통해 <strong>묣은 역사적 데이터</strong>를 제공합니다. <code>fetch_historical_candles</code> 메서드로 OHLCV 데이터를 가져와 ````BacktestEngine``` 클래스로 EMA 크로스오버 백테스트를 실행합니다.</p>
+<hr>
+<h2 id="추천-도구">추천 도구<a hidden class="anchor" aria-hidden="true" href="#추천-도구">#</a></h2>
+<p>이 가이드와 함께 사용하기를 추천하는 제품: - <strong><a href="https://minara.ai/r/OSXG4X">Minara</a></strong> — AI-powered automated trading bot</p>
+<ul>
+<li><strong><a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a></strong> — World&quot;s leading cryptocurrency exchange</li>
+</ul>
+<p><em>제휴 링크 — 추가 비용 없이 dibi8.com 운영을 지원합니다.</em></p>
+<h2 id="결론-온체인-영구-트레이딩의-미래">결론: 온체인 영구 트레이딩의 미래<a hidden class="anchor" aria-hidden="true" href="#결론-온체인-영구-트레이딩의-미래">#</a></h2>
+<p>Hyperliquid는 2026년 최고의 온체인 영구 선물 트레이딩 플랫폼으로 확고히 자리매김했습니다. $2B+ 일일 거래량, 100개 이상의 거래 페어, 최대 50배 레버리지, 강력한 HyperEVM 스마트 컨트랙트 레이어를 갖춘 Hyperliquid는 많은 면에서 중앙화 대안을 능가하는 종합 트레이딩 생태계를 제공합니다.</p>
+<p>Python SDK, 고성능 REST 및 WebSocket API, 완전한 온체인 투명성의 조합은 정교한 트레이딩 시스템을 구축하기 위한 최고의 환경을 만듭니다. 오늘부터 구축을 시작하고 Hyperliquid의 오더북을 통해 매일 수십억 달러의 거래량이 흐르는 이유를 경험해 보세요.</p>
+<hr>
+<p><em>면책 조항: 암호화폐 트레이딩에는 상당한 리스크가 따릅니다. 이 문서는 교육 목적으로만 작성되었으며 재무 조언을 구성하지 않습니다. 항상 자체 연구를 수행하고 절대 잃을 여유가 없는 자금으로 트레이딩하지 마세요.</em></p>
+<hr>
+<p><strong>관련 리소스:</strong></p>
+<ul>
+<li><a href="https://minara.ai/r/OSXG4X">Minara AI 트레이딩 봇</a></li>
+<li><a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance 거래소</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Hyperliquid 2026: 일일 거래량 $2B+ 처리하는 온체인 영구 DEX — 트레이딩 봇 통합 가이드&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
@@ -325,15 +690,176 @@ trader.get_account_summary()
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading%22>https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading%22">https://dibi8.com/kr/resources/hyperliquid-perp-dex-trading"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/llm-frameworks/hyperliquid-perp-dex-trading/>cloakbrowser-stealth-chromium-bot-detection-scraping</a></li><li><a href=/ko/llm-frameworks/hyperliquid-perp-dex-trading/>hkuds-ai-trader</a></li><li><a href=/ko/llm-frameworks/hyperliquid-perp-dex-trading/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li><li><a href=/ko/llm-frameworks/hyperliquid-perp-dex-trading/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/ko/llm-frameworks/hyperliquid-perp-dex-trading/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：量化交易的风险有多大？</strong></p><p>取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。</p><p><strong>问：如何选择适合的交易策略？</strong></p><p>根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。</p><p><strong>问：回测结果可信吗？</strong></p><p>回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。</p><p><strong>问：需要编程基础吗？</strong></p><p>基础策略可使用低代码平台，高级策略需要Python/C++编程能力。</p><p><strong>问：交易系统的维护成本？</strong></p><p>包括服务器费用、数据订阅、算法更新、以及监控维护时间。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/llm-frameworks/hyperliquid-perp-dex-trading/">cloakbrowser-stealth-chromium-bot-detection-scraping</a></li>
+<li><a href="/ko/llm-frameworks/hyperliquid-perp-dex-trading/">hkuds-ai-trader</a></li>
+<li><a href="/ko/llm-frameworks/hyperliquid-perp-dex-trading/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+<li><a href="/ko/llm-frameworks/hyperliquid-perp-dex-trading/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/ko/llm-frameworks/hyperliquid-perp-dex-trading/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：量化交易的风险有多大？</strong></p>
+<p>取决于策略设计、资金管理、市场波动。建议先用模拟账户测试。</p>
+<p><strong>问：如何选择适合的交易策略？</strong></p>
+<p>根据风险承受能力、时间投入、资金规模选择。高频需要技术，低频需要分析。</p>
+<p><strong>问：回测结果可信吗？</strong></p>
+<p>回测有局限性，需警惕过拟合、前视偏差、忽略滑点和手续费。</p>
+<p><strong>问：需要编程基础吗？</strong></p>
+<p>基础策略可使用低代码平台，高级策略需要Python/C++编程能力。</p>
+<p><strong>问：交易系统的维护成本？</strong></p>
+<p>包括服务器费用、数据订阅、算法更新、以及监控维护时间。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

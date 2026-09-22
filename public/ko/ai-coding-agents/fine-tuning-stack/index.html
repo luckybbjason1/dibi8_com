@@ -1,10 +1,251 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/fine-tuning-stack/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/fine-tuning-stack/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/fine-tuning-stack/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, PyTorch, CUDA, YAML] application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“fine-tuning”, “llm”, “스택”, “컬렉션”] aliases:\n/posts/fine-tuning-stack/ 2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 5컴포넌트 파이프라인 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.\n도메인 특화 모델 구축, 오픈 웨이트 베이스 모델 instruction-tuning, DPO/GRPO 정렬, 또는 프로덕션 파인튜닝 파이프라인 실행 중이라면 — 이 스택.\nTL;DR — 한눈에 보는 스택 # 컴포넌트 단계 역할 심층 가이드 1 Unsloth 실험 빠른 단일 GPU 파인튜닝, 2× 속도 + 70% 적은 VRAM Unsloth 2026 가이드 2 Axolotl 프로덕션 YAML 주도 멀티 GPU 프로덕션 파인튜닝 Axolotl 2026 가이드 3 HuggingFace datasets + Hub 데이터 데이터셋 버전, 팀과 공유, 훈련 가중치 push [HF docs] 4 Weights \u0026 Biases (또는 대안) Eval 손실 곡선, eval 점수, 하이퍼파라미터 sweep 추적 [W\u0026B docs] 5 vLLM 서빙 파인튜닝 모델 프로덕션 멀티테넌트 서빙 로컬 LLM 러너 비교 월 총 비용 (훈련 자본 제외): - 취미 (주당 GPU 10시간 임대): $30-60/월\n프로덕션 팀 (전용 GPU 1-2 + 모니터링): $200-400/월 작은 AI 랩 (8× H100 클러스터): $2000-5000/월 매니지드 파인튜닝 플랫폼 비교: Together 파인튜닝 ~$0.50/M 토큰 (큰 데이터셋엔 빠르게 쌓임), OpenAI 파인튜닝 $25/M 토큰 (스케일에서 미친). 셀프호스트가 의미 있는 볼륨에서 둘 다 이김 + 가중치 소유.\n1. 왜 2026에 “파인튜닝 스택” 정의 필요했나 스택 결정화한 3 변화: 1. Unsloth + Axolotl이 프로덕션 성숙 도달 — “빠른 실험 + 스케일 프로덕션” 분할이 이제 깔끔 2. GRPO가 기본 RL 파인튜닝됨 (DeepSeek-R1 이후) — 둘 다 네이티브 지원 3. 오픈 웨이트 베이스 모델이 GPT-4 클래스 도달 — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. 이들을 도메인용으로 파인튜닝이 이제 클로즈드 대안과 진짜 경쟁력\n결과: 파인튜닝이 연구 → 엔지니어링 실천으로 이동. 스택이 그것을 반영.\n2. 아키텍처 — 실험-프로덕션 파이프라인 ┌──────────────────────────────────────────────────┐ │ 데이터셋 (JSONL: prompt/response 또는 messages) │ │ → HuggingFace datasets 라이브러리 │ │ → HuggingFace Hub에 push (버전 관리) │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ 실험 단계 (단일 GPU, 빠른 반복) │ │ → 임대 RTX 4090 / H100에 Unsloth │ │ → 50+ 짧은 QLoRA 실행으로 위닝 레시피 발견 │ │ → W\u0026B가 손실 곡선 + eval 점수 로그 │ └────────────────┬─────────────────────────────────┘ │ (위닝 레시피 식별) ▼ ┌──────────────────────────────────────────────────┐ │ 프로덕션 단계 (멀티 GPU, 장시간 훈련) │ │ → Axolotl YAML config (git 추적) │ │ → 8× H100 클러스터로 full / 긴 컨텍스트 파인튜닝│ │ → W\u0026B가 최종 eval 로그 │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ 배포 단계 │ │ → LoRA + base 가중치 머지 │ │ → 머지된 모델 HuggingFace Hub에 push │ │ → LiteLLM 게이트웨이 뒤 vLLM이 모델 서빙 │ └──────────────────────────────────────────────────┘ 분할이 이걸 작동시키는 것 — Unsloth의 빠른 반복은 “무엇이 작동하는가” 탐색, Axolotl의 견고함은 “이제 스케일” 프로덕션 실행.\n3. 컴포넌트 1 — Unsloth (실험 단계) 역할: 파인튜닝 시간의 80% 보내는 곳. 데이터셋 포맷, 하이퍼파라미터, 베이스 모델 선택 반복. 각 실험 사이클: 단일 임대 GPU에 30분 - 3시간.\nUnsloth가 여기서 이기는 이유: HF TRL보다 2× 빠름 = 달러당 2× 실험. 70% 적은 VRAM = A100 필요 대신 $1500 RTX 4090에서 실험. Unsloth 심층 가이드 참조.\n빠른 설치: `````bash pip install unsloth\n**패턴**: Vast.ai에 RTX 4090 임대 ($0.40-0.60/시간) 또는 RunPod, 주말에 10-20 실험 실행, 위닝 레시피 발견, 팀 리뷰용 노트북에 캡처. ## 4. 컴포넌트 2 — Axolotl (프로덕션 단계) **역할**: 위닝 레시피 발견하면 스케일 업 — full 파인튜닝, 더 긴 컨텍스트, 멀티 epoch, 멀티 GPU. Axolotl 사용 YAML config는 git 추적 가능, ops 핸드오프 친화. **Axolotl이 여기서 이기는 이유**: 박스 밖에서 작동하는 멀티 노드 분산 훈련, 가장 넓은 방법 지원 (DPO/GRPO/KTO/ORPO/GDPO), 재현성용 config-as-code. [Axolotl 심층 가이드](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 참조. **빠른 설치**: `````bash pip install axolotl 패턴: Unsloth 위닝 레시피에서 하이퍼파라미터 가져옴 → Axolotl YAML 작성 → 8× H100 클러스터에서 실행 (Vast.ai ~$15-25/시간)으로 최종 6-12시간 프로덕션 실행 → 최종 가중치 HF Hub에 push.\n5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어) 역할: 데이터셋 버전. 팀 간 데이터셋 공유. 협업 테스트용 훈련 모델 가중치 push.\n왜 명백한 픽인가: HF가 AI 데이터셋 배포 레이어 이김 (코드의 GitHub처럼, 모델 + 데이터셋의 HF Hub). 모든 파인튜닝 도구가 네이티브 통합.\n빠른 설치: `````bash pip install datasets huggingface-cli login\n**패턴**: `````python from datasets import load_dataset, Dataset # 로컬 준비 + push data = Dataset.from_json(\"my_data.jsonl\") data.push_to_hub(\"yourname/my-finetune-dataset\", private=True) # 팀원 로드 data = load_dataset(\"yourname/my-finetune-dataset\") 민감한 데이터 (의료 / 금융 / 독점)는 HF Hub의 프라이빗 데이터셋 — 액세스 제어됨.\n6. 컴포넌트 4 — Weights \u0026 Biases (Eval 추적) 역할: 위닝 레시피 찾기 위해 50 실험 실행할 때 비교 방법 필요. W\u0026B가 사실상 선택 — 손실 곡선, eval 점수, 하이퍼파라미터, 하드웨어 활용 자동 로그.\n빠른 설치 (env var 통해 Unsloth와 Axolotl 모두 작동): `````bash pip install wandb wandb login export WANDB_PROJECT=“my-finetune-project”\n이제 모든 Unsloth / Axolotl 훈련 실행이 W\u0026B 대시보드에 자동 로그. **비용**: W\u0026B 무료 티어 관대 (단일 사용자, 무제한 공개 프로젝트). 팀 / 프라이빗 프로젝트: $50/사용자/월. 대안: **MLflow** (셀프호스트, 무료, 덜 정돈), **TensorBoard** (기본이지만 무료 + 로컬). ## 7. 컴포넌트 5 — vLLM (서빙 단계) **역할**: 모델 파인튜닝했으면 사용자에게 서빙. vLLM이 프로덕션 멀티테넌트 서빙 선택 — PagedAttention + continuous batching이 처리량 챔피언으로 만듦. vLLM이 프로덕션 멀티 사용자 서빙에서 Ollama / LM Studio / llama.cpp 이기는 이유 전체는 [로컬 LLM 러너 비교](/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/) 참조. **빠른 설치 + 파인튜닝 모델 서브**: `````bash pip install vllm vllm serve yourname/my-finetuned-llama \\ --enable-lora \\ --lora-modules my-lora=path/to/lora_weights \\ --port 8000 LiteLLM 게이트웨이 뒤에서 auth + rate limiting + 고객별 가상 키 = 본인 소유 인프라의 프로덕션 준비 멀티테넌트 LLM API.\n8. Day 1 파이프라인 셋업 (3-4시간) JSONL 포맷 데이터셋 (다양함) — train.jsonl과 eval.jsonl 준비, HF Hub 프라이빗에 push RTX 4090 GPU 임대 (10분) — 실험 단계용 Vast.ai 또는 3. Unsloth + W\u0026B 설치 (10분) — ````pip install unsloth wandb``` 첫 QLoRA 실행 (60분) — Unsloth 가이드 3절, Llama 3.2 8B 1 epoch 파인튜닝, W\u0026B 로그 나타남 확인 5-10 짧은 실험 반복 (~반나절) — 학습률, LoRA rank, 데이터셋 슬라이스 변경. 최고 eval 점수 레시피 찾기 레시피를 Axolotl YAML로 번역 (30분) — 같은 하이퍼파라미터 YAML 포맷, git commit 8× H100 클러스터 임대 프로덕션 실행용 (Vast.ai ~$15-20/시간 × 6-12시간 = $90-240), 데이터 + 모니터링 측은 8. Axolotl 프로덕션 훈련 실행 — 최종 가중치 HF Hub에 push vLLM 통해 배포 — 전용 24 GB GPU + LiteLLM 게이트웨이에서 파인튜닝 모델 서빙 베이스 모델 대비 eval — 파인튜닝이 실제로 eval 셋에서 베이스 이김? 아니면 반복 3-4시간 셋업 + 1-2주 실험 후, 본인의 파인튜닝 모델을 프로덕션에 배포.\n9. 비용 분석 항목 취미 프로덕션 팀 작은 AI 랩 실험 GPU (필요 시 임대) $30-60/월 $100-200/월 $300-500/월 프로덕션 훈련 (실행 시 임대) $0-50/월 $200-400/월 $1500-3000/월 전용 서빙 GPU (vLLM) $0 (Ollama 대신 사용) $200/월 (RTX 4090) $1000/월 (H100) HF Hub $0 (공개 + 1 GB까지 프라이빗 무료) $9/월 (Pro) $20/사용자/월 (엔터프라이즈) W\u0026B $0 (무료 티어) $50/사용자/월 $50/사용자/월 기타 스토리지 / 대역폭 $5 $20 $50 합계 ~$35-115/월 ~$580-880/월 ~$2870-4570/월 매니지드 비교: Together 파인튜닝 $0.50/M 토큰 × 100M 토큰 데이터셋 = 파인튜닝 실행당 $50 × 10 실험 = 실험만 $500/월. 셀프호스트가 월 ~10 파인튜닝 이상에서 이김.\n10. 업그레이드 경로 이 스택 벗어날 때: - 70B 모델 일상 파인튜닝 필요 — 임대 대신 H100 클러스터 구매 또는 장기 임대\n컴플라이언스 / 데이터 거주성 — Vast.ai에서 관할의 전용 베어 메탈로 이동 멀티테넌트 파인튜닝 SaaS — 사용자 격리 레이어 추가; LangSmith 또는 유사 매니지드 eval 고려 연속 파인튜닝 루프 — 프로덕션 모델 저하 시 자동 재훈련 트리거용 AI 에이전트 도구 체인과 페어 도메인 특화 RL — 보상 모델링 + GRPO 루프 추가 (둘 다 지원; 그냥 더 컴퓨트 헝그리) TL;DR — 레시피 프로덕션 LLM 파인튜닝용 5 컴포넌트, 취미부터 프로덕션 팀까지 $50-300/월: 1. Unsloth — 빠른 단일 GPU 실험 단계 2. Axolotl — 프로덕션 멀티 GPU 단계 3. HuggingFace datasets + Hub — 데이터 버전 관리 + 모델 배포 4. Weights \u0026 Biases — eval 추적 5. vLLM — 프로덕션 서빙\n실험용 임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.\n동반 컬렉션: 저렴한 LLM 스택 배포 후 추론 비용 측 커버. AI 에이전트 도구 체인 자동 파인튜닝 루프. 지식 베이스 스택 일부 케이스에서 RAG가 파인튜닝 대안.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/fine-tuning-stack\" } } Why This Matters Understanding fine-tuning stack 2026: 데이터셋에서 프로덕션 배포 llm까지 5컴포넌트 파이프라인 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~7 minutes\nRelated Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1577","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/fine-tuning-stack/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/fine-tuning-stack/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/fine-tuning-stack/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#tldr--%ed%95%9c%eb%88%88%ec%97%90-%eb%b3%b4%eb%8a%94-%ec%8a%a4%ed%83%9d aria-label="TL;DR — 한눈에 보는 스택">TL;DR — 한눈에 보는 스택</a></li><li><a href=#1-%ec%99%9c-2026%ec%97%90-%ed%8c%8c%ec%9d%b8%ed%8a%9c%eb%8b%9d-%ec%8a%a4%ed%83%9d-%ec%a0%95%ec%9d%98-%ed%95%84%ec%9a%94%ed%96%88%eb%82%98 aria-label="1. 왜 2026에 &ldquo;파인튜닝 스택&rdquo; 정의 필요했나">1. 왜 2026에 &ldquo;파인튜닝 스택&rdquo; 정의 필요했나</a></li><li><a href=#2-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98--%ec%8b%a4%ed%97%98-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8 aria-label="2. 아키텍처 — 실험-프로덕션 파이프라인">2. 아키텍처 — 실험-프로덕션 파이프라인</a></li><li><a href=#3-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-1--unsloth-%ec%8b%a4%ed%97%98-%eb%8b%a8%ea%b3%84 aria-label="3. 컴포넌트 1 — Unsloth (실험 단계)">3. 컴포넌트 1 — Unsloth (실험 단계)</a></li><li><a href=#5-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-3--huggingface-datasets--hub-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%a0%88%ec%9d%b4%ec%96%b4 aria-label="5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어)">5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어)</a></li><li><a href=#6-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-4--weights--biases-eval-%ec%b6%94%ec%a0%81 aria-label="6. 컴포넌트 4 — Weights & Biases (Eval 추적)">6. 컴포넌트 4 — Weights & Biases (Eval 추적)</a></li><li><a href=#8-day-1-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%85%8b%ec%97%85-3-4%ec%8b%9c%ea%b0%84 aria-label="8. Day 1 파이프라인 셋업 (3-4시간)">8. Day 1 파이프라인 셋업 (3-4시간)</a></li><li><a href=#9-%eb%b9%84%ec%9a%a9-%eb%b6%84%ec%84%9d aria-label="9. 비용 분석">9. 비용 분석</a></li><li><a href=#10-%ec%97%85%ea%b7%b8%eb%a0%88%ec%9d%b4%eb%93%9c-%ea%b2%bd%eb%a1%9c aria-label="10. 업그레이드 경로">10. 업그레이드 경로</a></li><li><a href=#tldr--%eb%a0%88%ec%8b%9c%ed%94%bc aria-label="TL;DR — 레시피">TL;DR — 레시피</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/fine-tuning-stack/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/fine-tuning-stack/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/fine-tuning-stack/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, PyTorch, CUDA, YAML] application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“fine-tuning”, “llm”, “스택”, “컬렉션”] aliases:\n/posts/fine-tuning-stack/ 2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 5컴포넌트 파이프라인 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.\n도메인 특화 모델 구축, 오픈 웨이트 베이스 모델 instruction-tuning, DPO/GRPO 정렬, 또는 프로덕션 파인튜닝 파이프라인 실행 중이라면 — 이 스택.\nTL;DR — 한눈에 보는 스택 # 컴포넌트 단계 역할 심층 가이드 1 Unsloth 실험 빠른 단일 GPU 파인튜닝, 2× 속도 + 70% 적은 VRAM Unsloth 2026 가이드 2 Axolotl 프로덕션 YAML 주도 멀티 GPU 프로덕션 파인튜닝 Axolotl 2026 가이드 3 HuggingFace datasets + Hub 데이터 데이터셋 버전, 팀과 공유, 훈련 가중치 push [HF docs] 4 Weights \u0026 Biases (또는 대안) Eval 손실 곡선, eval 점수, 하이퍼파라미터 sweep 추적 [W\u0026B docs] 5 vLLM 서빙 파인튜닝 모델 프로덕션 멀티테넌트 서빙 로컬 LLM 러너 비교 월 총 비용 (훈련 자본 제외): - 취미 (주당 GPU 10시간 임대): $30-60/월\n프로덕션 팀 (전용 GPU 1-2 + 모니터링): $200-400/월 작은 AI 랩 (8× H100 클러스터): $2000-5000/월 매니지드 파인튜닝 플랫폼 비교: Together 파인튜닝 ~$0.50/M 토큰 (큰 데이터셋엔 빠르게 쌓임), OpenAI 파인튜닝 $25/M 토큰 (스케일에서 미친). 셀프호스트가 의미 있는 볼륨에서 둘 다 이김 + 가중치 소유.\n1. 왜 2026에 “파인튜닝 스택” 정의 필요했나 스택 결정화한 3 변화: 1. Unsloth + Axolotl이 프로덕션 성숙 도달 — “빠른 실험 + 스케일 프로덕션” 분할이 이제 깔끔 2. GRPO가 기본 RL 파인튜닝됨 (DeepSeek-R1 이후) — 둘 다 네이티브 지원 3. 오픈 웨이트 베이스 모델이 GPT-4 클래스 도달 — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. 이들을 도메인용으로 파인튜닝이 이제 클로즈드 대안과 진짜 경쟁력\n결과: 파인튜닝이 연구 → 엔지니어링 실천으로 이동. 스택이 그것을 반영.\n2. 아키텍처 — 실험-프로덕션 파이프라인 ┌──────────────────────────────────────────────────┐ │ 데이터셋 (JSONL: prompt/response 또는 messages) │ │ → HuggingFace datasets 라이브러리 │ │ → HuggingFace Hub에 push (버전 관리) │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ 실험 단계 (단일 GPU, 빠른 반복) │ │ → 임대 RTX 4090 / H100에 Unsloth │ │ → 50+ 짧은 QLoRA 실행으로 위닝 레시피 발견 │ │ → W\u0026B가 손실 곡선 + eval 점수 로그 │ └────────────────┬─────────────────────────────────┘ │ (위닝 레시피 식별) ▼ ┌──────────────────────────────────────────────────┐ │ 프로덕션 단계 (멀티 GPU, 장시간 훈련) │ │ → Axolotl YAML config (git 추적) │ │ → 8× H100 클러스터로 full / 긴 컨텍스트 파인튜닝│ │ → W\u0026B가 최종 eval 로그 │ └────────────────┬─────────────────────────────────┘ │ ▼ ┌──────────────────────────────────────────────────┐ │ 배포 단계 │ │ → LoRA + base 가중치 머지 │ │ → 머지된 모델 HuggingFace Hub에 push │ │ → LiteLLM 게이트웨이 뒤 vLLM이 모델 서빙 │ └──────────────────────────────────────────────────┘ 분할이 이걸 작동시키는 것 — Unsloth의 빠른 반복은 “무엇이 작동하는가” 탐색, Axolotl의 견고함은 “이제 스케일” 프로덕션 실행.\n3. 컴포넌트 1 — Unsloth (실험 단계) 역할: 파인튜닝 시간의 80% 보내는 곳. 데이터셋 포맷, 하이퍼파라미터, 베이스 모델 선택 반복. 각 실험 사이클: 단일 임대 GPU에 30분 - 3시간.\nUnsloth가 여기서 이기는 이유: HF TRL보다 2× 빠름 = 달러당 2× 실험. 70% 적은 VRAM = A100 필요 대신 $1500 RTX 4090에서 실험. Unsloth 심층 가이드 참조.\n빠른 설치: `````bash pip install unsloth\n**패턴**: Vast.ai에 RTX 4090 임대 ($0.40-0.60/시간) 또는 RunPod, 주말에 10-20 실험 실행, 위닝 레시피 발견, 팀 리뷰용 노트북에 캡처. ## 4. 컴포넌트 2 — Axolotl (프로덕션 단계) **역할**: 위닝 레시피 발견하면 스케일 업 — full 파인튜닝, 더 긴 컨텍스트, 멀티 epoch, 멀티 GPU. Axolotl 사용 YAML config는 git 추적 가능, ops 핸드오프 친화. **Axolotl이 여기서 이기는 이유**: 박스 밖에서 작동하는 멀티 노드 분산 훈련, 가장 넓은 방법 지원 (DPO/GRPO/KTO/ORPO/GDPO), 재현성용 config-as-code. [Axolotl 심층 가이드](/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/) 참조. **빠른 설치**: `````bash pip install axolotl 패턴: Unsloth 위닝 레시피에서 하이퍼파라미터 가져옴 → Axolotl YAML 작성 → 8× H100 클러스터에서 실행 (Vast.ai ~$15-25/시간)으로 최종 6-12시간 프로덕션 실행 → 최종 가중치 HF Hub에 push.\n5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어) 역할: 데이터셋 버전. 팀 간 데이터셋 공유. 협업 테스트용 훈련 모델 가중치 push.\n왜 명백한 픽인가: HF가 AI 데이터셋 배포 레이어 이김 (코드의 GitHub처럼, 모델 + 데이터셋의 HF Hub). 모든 파인튜닝 도구가 네이티브 통합.\n빠른 설치: `````bash pip install datasets huggingface-cli login\n**패턴**: `````python from datasets import load_dataset, Dataset # 로컬 준비 + push data = Dataset.from_json(\"my_data.jsonl\") data.push_to_hub(\"yourname/my-finetune-dataset\", private=True) # 팀원 로드 data = load_dataset(\"yourname/my-finetune-dataset\") 민감한 데이터 (의료 / 금융 / 독점)는 HF Hub의 프라이빗 데이터셋 — 액세스 제어됨.\n6. 컴포넌트 4 — Weights \u0026 Biases (Eval 추적) 역할: 위닝 레시피 찾기 위해 50 실험 실행할 때 비교 방법 필요. W\u0026B가 사실상 선택 — 손실 곡선, eval 점수, 하이퍼파라미터, 하드웨어 활용 자동 로그.\n빠른 설치 (env var 통해 Unsloth와 Axolotl 모두 작동): `````bash pip install wandb wandb login export WANDB_PROJECT=“my-finetune-project”\n이제 모든 Unsloth / Axolotl 훈련 실행이 W\u0026B 대시보드에 자동 로그. **비용**: W\u0026B 무료 티어 관대 (단일 사용자, 무제한 공개 프로젝트). 팀 / 프라이빗 프로젝트: $50/사용자/월. 대안: **MLflow** (셀프호스트, 무료, 덜 정돈), **TensorBoard** (기본이지만 무료 + 로컬). ## 7. 컴포넌트 5 — vLLM (서빙 단계) **역할**: 모델 파인튜닝했으면 사용자에게 서빙. vLLM이 프로덕션 멀티테넌트 서빙 선택 — PagedAttention + continuous batching이 처리량 챔피언으로 만듦. vLLM이 프로덕션 멀티 사용자 서빙에서 Ollama / LM Studio / llama.cpp 이기는 이유 전체는 [로컬 LLM 러너 비교](/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/) 참조. **빠른 설치 + 파인튜닝 모델 서브**: `````bash pip install vllm vllm serve yourname/my-finetuned-llama \\ --enable-lora \\ --lora-modules my-lora=path/to/lora_weights \\ --port 8000 LiteLLM 게이트웨이 뒤에서 auth + rate limiting + 고객별 가상 키 = 본인 소유 인프라의 프로덕션 준비 멀티테넌트 LLM API.\n8. Day 1 파이프라인 셋업 (3-4시간) JSONL 포맷 데이터셋 (다양함) — train.jsonl과 eval.jsonl 준비, HF Hub 프라이빗에 push RTX 4090 GPU 임대 (10분) — 실험 단계용 Vast.ai 또는 3. Unsloth + W\u0026B 설치 (10분) — ````pip install unsloth wandb``` 첫 QLoRA 실행 (60분) — Unsloth 가이드 3절, Llama 3.2 8B 1 epoch 파인튜닝, W\u0026B 로그 나타남 확인 5-10 짧은 실험 반복 (~반나절) — 학습률, LoRA rank, 데이터셋 슬라이스 변경. 최고 eval 점수 레시피 찾기 레시피를 Axolotl YAML로 번역 (30분) — 같은 하이퍼파라미터 YAML 포맷, git commit 8× H100 클러스터 임대 프로덕션 실행용 (Vast.ai ~$15-20/시간 × 6-12시간 = $90-240), 데이터 + 모니터링 측은 8. Axolotl 프로덕션 훈련 실행 — 최종 가중치 HF Hub에 push vLLM 통해 배포 — 전용 24 GB GPU + LiteLLM 게이트웨이에서 파인튜닝 모델 서빙 베이스 모델 대비 eval — 파인튜닝이 실제로 eval 셋에서 베이스 이김? 아니면 반복 3-4시간 셋업 + 1-2주 실험 후, 본인의 파인튜닝 모델을 프로덕션에 배포.\n9. 비용 분석 항목 취미 프로덕션 팀 작은 AI 랩 실험 GPU (필요 시 임대) $30-60/월 $100-200/월 $300-500/월 프로덕션 훈련 (실행 시 임대) $0-50/월 $200-400/월 $1500-3000/월 전용 서빙 GPU (vLLM) $0 (Ollama 대신 사용) $200/월 (RTX 4090) $1000/월 (H100) HF Hub $0 (공개 + 1 GB까지 프라이빗 무료) $9/월 (Pro) $20/사용자/월 (엔터프라이즈) W\u0026B $0 (무료 티어) $50/사용자/월 $50/사용자/월 기타 스토리지 / 대역폭 $5 $20 $50 합계 ~$35-115/월 ~$580-880/월 ~$2870-4570/월 매니지드 비교: Together 파인튜닝 $0.50/M 토큰 × 100M 토큰 데이터셋 = 파인튜닝 실행당 $50 × 10 실험 = 실험만 $500/월. 셀프호스트가 월 ~10 파인튜닝 이상에서 이김.\n10. 업그레이드 경로 이 스택 벗어날 때: - 70B 모델 일상 파인튜닝 필요 — 임대 대신 H100 클러스터 구매 또는 장기 임대\n컴플라이언스 / 데이터 거주성 — Vast.ai에서 관할의 전용 베어 메탈로 이동 멀티테넌트 파인튜닝 SaaS — 사용자 격리 레이어 추가; LangSmith 또는 유사 매니지드 eval 고려 연속 파인튜닝 루프 — 프로덕션 모델 저하 시 자동 재훈련 트리거용 AI 에이전트 도구 체인과 페어 도메인 특화 RL — 보상 모델링 + GRPO 루프 추가 (둘 다 지원; 그냥 더 컴퓨트 헝그리) TL;DR — 레시피 프로덕션 LLM 파인튜닝용 5 컴포넌트, 취미부터 프로덕션 팀까지 $50-300/월: 1. Unsloth — 빠른 단일 GPU 실험 단계 2. Axolotl — 프로덕션 멀티 GPU 단계 3. HuggingFace datasets + Hub — 데이터 버전 관리 + 모델 배포 4. Weights \u0026 Biases — eval 추적 5. vLLM — 프로덕션 서빙\n실험용 임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.\n동반 컬렉션: 저렴한 LLM 스택 배포 후 추론 비용 측 커버. AI 에이전트 도구 체인 자동 파인튜닝 루프. 지식 베이스 스택 일부 케이스에서 RAG가 파인튜닝 대안.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인”, “datePublished”: “2026-05-21”, “dateModified”: “2026-05-21”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/fine-tuning-stack\" } } Why This Matters Understanding fine-tuning stack 2026: 데이터셋에서 프로덕션 배포 llm까지 5컴포넌트 파이프라인 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~7 minutes\nRelated Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1577",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/fine-tuning-stack/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/fine-tuning-stack/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/fine-tuning-stack/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/fine-tuning-stack/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#tldr--%ed%95%9c%eb%88%88%ec%97%90-%eb%b3%b4%eb%8a%94-%ec%8a%a4%ed%83%9d" aria-label="TL;DR — 한눈에 보는 스택">TL;DR — 한눈에 보는 스택</a></li>
+            <li>
+                <a href="#1-%ec%99%9c-2026%ec%97%90-%ed%8c%8c%ec%9d%b8%ed%8a%9c%eb%8b%9d-%ec%8a%a4%ed%83%9d-%ec%a0%95%ec%9d%98-%ed%95%84%ec%9a%94%ed%96%88%eb%82%98" aria-label="1. 왜 2026에 &ldquo;파인튜닝 스택&rdquo; 정의 필요했나">1. 왜 2026에 &ldquo;파인튜닝 스택&rdquo; 정의 필요했나</a></li>
+            <li>
+                <a href="#2-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98--%ec%8b%a4%ed%97%98-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8" aria-label="2. 아키텍처 — 실험-프로덕션 파이프라인">2. 아키텍처 — 실험-프로덕션 파이프라인</a></li>
+            <li>
+                <a href="#3-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-1--unsloth-%ec%8b%a4%ed%97%98-%eb%8b%a8%ea%b3%84" aria-label="3. 컴포넌트 1 — Unsloth (실험 단계)">3. 컴포넌트 1 — Unsloth (실험 단계)</a></li>
+            <li>
+                <a href="#5-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-3--huggingface-datasets--hub-%eb%8d%b0%ec%9d%b4%ed%84%b0-%eb%a0%88%ec%9d%b4%ec%96%b4" aria-label="5. 컴포넌트 3 — HuggingFace Datasets &#43; Hub (데이터 레이어)">5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어)</a></li>
+            <li>
+                <a href="#6-%ec%bb%b4%ed%8f%ac%eb%84%8c%ed%8a%b8-4--weights--biases-eval-%ec%b6%94%ec%a0%81" aria-label="6. 컴포넌트 4 — Weights &amp; Biases (Eval 추적)">6. 컴포넌트 4 — Weights &amp; Biases (Eval 추적)</a></li>
+            <li>
+                <a href="#8-day-1-%ed%8c%8c%ec%9d%b4%ed%94%84%eb%9d%bc%ec%9d%b8-%ec%85%8b%ec%97%85-3-4%ec%8b%9c%ea%b0%84" aria-label="8. Day 1 파이프라인 셋업 (3-4시간)">8. Day 1 파이프라인 셋업 (3-4시간)</a></li>
+            <li>
+                <a href="#9-%eb%b9%84%ec%9a%a9-%eb%b6%84%ec%84%9d" aria-label="9. 비용 분석">9. 비용 분석</a></li>
+            <li>
+                <a href="#10-%ec%97%85%ea%b7%b8%eb%a0%88%ec%9d%b4%eb%93%9c-%ea%b2%bd%eb%a1%9c" aria-label="10. 업그레이드 경로">10. 업그레이드 경로</a></li>
+            <li>
+                <a href="#tldr--%eb%a0%88%ec%8b%9c%ed%94%bc" aria-label="TL;DR — 레시피">TL;DR — 레시피</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-21T00:00:00+08:00
 lastmod: 2026-05-21T00:00:00+08:00
@@ -21,9 +262,75 @@ last_maintained: &ldquo;2026-05-21&rdquo;
 draft: false
 categories: [&ldquo;collections&rdquo;]
 tags: [&ldquo;fine-tuning&rdquo;, &ldquo;llm&rdquo;, &ldquo;스택&rdquo;, &ldquo;컬렉션&rdquo;]
-aliases:</p><ul><li>/posts/fine-tuning-stack/</li></ul><hr><p>2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 <strong>5컴포넌트 파이프라인</strong> 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.</p><p>도메인 특화 모델 구축, 오픈 웨이트 베이스 모델 instruction-tuning, DPO/GRPO 정렬, 또는 프로덕션 파인튜닝 파이프라인 실행 중이라면 — 이 스택.</p><h2 id=tldr--한눈에-보는-스택>TL;DR — 한눈에 보는 스택<a hidden class=anchor aria-hidden=true href=#tldr--한눈에-보는-스택>#</a></h2><table><thead><tr><th>#</th><th>컴포넌트</th><th>단계</th><th>역할</th><th>심층 가이드</th></tr></thead><tbody><tr><td>1</td><td><strong>Unsloth</strong></td><td>실험</td><td>빠른 단일 GPU 파인튜닝, 2× 속도 + 70% 적은 VRAM</td><td><a href=/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/>Unsloth 2026 가이드</a></td></tr><tr><td>2</td><td><strong>Axolotl</strong></td><td>프로덕션</td><td>YAML 주도 멀티 GPU 프로덕션 파인튜닝</td><td><a href=/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/>Axolotl 2026 가이드</a></td></tr><tr><td>3</td><td><strong>HuggingFace datasets + Hub</strong></td><td>데이터</td><td>데이터셋 버전, 팀과 공유, 훈련 가중치 push</td><td>[HF docs]</td></tr><tr><td>4</td><td><strong>Weights & Biases</strong> (또는 대안)</td><td>Eval</td><td>손실 곡선, eval 점수, 하이퍼파라미터 sweep 추적</td><td>[W&amp;B docs]</td></tr><tr><td>5</td><td><strong>vLLM</strong></td><td>서빙</td><td>파인튜닝 모델 프로덕션 멀티테넌트 서빙</td><td><a href=/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/>로컬 LLM 러너 비교</a></td></tr></tbody></table><p><strong>월 총 비용</strong> (훈련 자본 제외): - <strong>취미</strong> (주당 GPU 10시간 임대): <strong>$30-60/월</strong></p><ul><li><strong>프로덕션 팀</strong> (전용 GPU 1-2 + 모니터링): <strong>$200-400/월</strong></li><li><strong>작은 AI 랩</strong> (8× H100 클러스터): <strong>$2000-5000/월</strong></li></ul><p>매니지드 파인튜닝 플랫폼 비교: Together 파인튜닝 ~$0.50/M 토큰 (큰 데이터셋엔 빠르게 쌓임), OpenAI 파인튜닝 $25/M 토큰 (스케일에서 미친). 셀프호스트가 의미 있는 볼륨에서 둘 다 이김 + 가중치 소유.</p><h2 id=1-왜-2026에-파인튜닝-스택-정의-필요했나>1. 왜 2026에 &ldquo;파인튜닝 스택&rdquo; 정의 필요했나<a hidden class=anchor aria-hidden=true href=#1-왜-2026에-파인튜닝-스택-정의-필요했나>#</a></h2><p>스택 결정화한 3 변화: 1. <strong>Unsloth + Axolotl이 프로덕션 성숙 도달</strong> — &ldquo;빠른 실험 + 스케일 프로덕션&rdquo; 분할이 이제 깔끔
+aliases:</p>
+<ul>
+<li>/posts/fine-tuning-stack/</li>
+</ul>
+<hr>
+<p>2026년 LLM 파인튜닝이 마침내 일관된 스택을 가짐 — HuggingFace Trainer + DeepSpeed config + 커스텀 eval 스크립트를 덕테이프로 붙이는 날들은 끝. 이 컬렉션은 원시 데이터셋에서 프로덕션 배포 파인튜닝 모델까지 <strong>5컴포넌트 파이프라인</strong> 조립, 빠른 반복 (Unsloth)과 프로덕션 배포 (Axolotl) 사이 깔끔한 분할. 스케일에 따라 $50-300/월 훈련 인프라.</p>
+<p>도메인 특화 모델 구축, 오픈 웨이트 베이스 모델 instruction-tuning, DPO/GRPO 정렬, 또는 프로덕션 파인튜닝 파이프라인 실행 중이라면 — 이 스택.</p>
+<h2 id="tldr--한눈에-보는-스택">TL;DR — 한눈에 보는 스택<a hidden class="anchor" aria-hidden="true" href="#tldr--한눈에-보는-스택">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>#</th>
+					<th>컴포넌트</th>
+					<th>단계</th>
+					<th>역할</th>
+					<th>심층 가이드</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>1</td>
+					<td><strong>Unsloth</strong></td>
+					<td>실험</td>
+					<td>빠른 단일 GPU 파인튜닝, 2× 속도 + 70% 적은 VRAM</td>
+					<td><a href="/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth 2026 가이드</a></td>
+			</tr>
+			<tr>
+					<td>2</td>
+					<td><strong>Axolotl</strong></td>
+					<td>프로덕션</td>
+					<td>YAML 주도 멀티 GPU 프로덕션 파인튜닝</td>
+					<td><a href="/kr/resources/llm-frameworks/axolotl-llm-fine-tuning-framework-2026/">Axolotl 2026 가이드</a></td>
+			</tr>
+			<tr>
+					<td>3</td>
+					<td><strong>HuggingFace datasets + Hub</strong></td>
+					<td>데이터</td>
+					<td>데이터셋 버전, 팀과 공유, 훈련 가중치 push</td>
+					<td>[HF docs]</td>
+			</tr>
+			<tr>
+					<td>4</td>
+					<td><strong>Weights &amp; Biases</strong> (또는 대안)</td>
+					<td>Eval</td>
+					<td>손실 곡선, eval 점수, 하이퍼파라미터 sweep 추적</td>
+					<td>[W&amp;B docs]</td>
+			</tr>
+			<tr>
+					<td>5</td>
+					<td><strong>vLLM</strong></td>
+					<td>서빙</td>
+					<td>파인튜닝 모델 프로덕션 멀티테넌트 서빙</td>
+					<td><a href="/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/">로컬 LLM 러너 비교</a></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>월 총 비용</strong> (훈련 자본 제외): - <strong>취미</strong> (주당 GPU 10시간 임대): <strong>$30-60/월</strong></p>
+<ul>
+<li><strong>프로덕션 팀</strong> (전용 GPU 1-2 + 모니터링): <strong>$200-400/월</strong></li>
+<li><strong>작은 AI 랩</strong> (8× H100 클러스터): <strong>$2000-5000/월</strong></li>
+</ul>
+<p>매니지드 파인튜닝 플랫폼 비교: Together 파인튜닝 ~$0.50/M 토큰 (큰 데이터셋엔 빠르게 쌓임), OpenAI 파인튜닝 $25/M 토큰 (스케일에서 미친). 셀프호스트가 의미 있는 볼륨에서 둘 다 이김 + 가중치 소유.</p>
+<h2 id="1-왜-2026에-파인튜닝-스택-정의-필요했나">1. 왜 2026에 &ldquo;파인튜닝 스택&rdquo; 정의 필요했나<a hidden class="anchor" aria-hidden="true" href="#1-왜-2026에-파인튜닝-스택-정의-필요했나">#</a></h2>
+<p>스택 결정화한 3 변화: 1. <strong>Unsloth + Axolotl이 프로덕션 성숙 도달</strong> — &ldquo;빠른 실험 + 스케일 프로덕션&rdquo; 분할이 이제 깔끔
 2. <strong>GRPO가 기본 RL 파인튜닝됨</strong> (DeepSeek-R1 이후) — 둘 다 네이티브 지원
-3. <strong>오픈 웨이트 베이스 모델이 GPT-4 클래스 도달</strong> — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. 이들을 도메인용으로 파인튜닝이 이제 클로즈드 대안과 진짜 경쟁력</p><p>결과: 파인튜닝이 연구 → 엔지니어링 실천으로 이동. 스택이 그것을 반영.</p><h2 id=2-아키텍처--실험-프로덕션-파이프라인>2. 아키텍처 — 실험-프로덕션 파이프라인<a hidden class=anchor aria-hidden=true href=#2-아키텍처--실험-프로덕션-파이프라인>#</a></h2><pre tabindex=0><code>   ┌──────────────────────────────────────────────────┐
+3. <strong>오픈 웨이트 베이스 모델이 GPT-4 클래스 도달</strong> — Llama 3.3 70B, Qwen 3 32B, DeepSeek V3. 이들을 도메인용으로 파인튜닝이 이제 클로즈드 대안과 진짜 경쟁력</p>
+<p>결과: 파인튜닝이 연구 → 엔지니어링 실천으로 이동. 스택이 그것을 반영.</p>
+<h2 id="2-아키텍처--실험-프로덕션-파이프라인">2. 아키텍처 — 실험-프로덕션 파이프라인<a hidden class="anchor" aria-hidden="true" href="#2-아키텍처--실험-프로덕션-파이프라인">#</a></h2>
+<pre tabindex="0"><code>   ┌──────────────────────────────────────────────────┐
    │ 데이터셋 (JSONL: prompt/response 또는 messages)  │
    │  → HuggingFace datasets 라이브러리               │
    │  → HuggingFace Hub에 push (버전 관리)             │
@@ -52,8 +359,13 @@ aliases:</p><ul><li>/posts/fine-tuning-stack/</li></ul><hr><p>2026년 LLM 파인
    │  → 머지된 모델 HuggingFace Hub에 push            │
    │  → LiteLLM 게이트웨이 뒤 vLLM이 모델 서빙        │
    └──────────────────────────────────────────────────┘
-</code></pre><p>분할이 이걸 작동시키는 것 — Unsloth의 빠른 반복은 &ldquo;무엇이 작동하는가&rdquo; 탐색, Axolotl의 견고함은 &ldquo;이제 스케일&rdquo; 프로덕션 실행.</p><h2 id=3-컴포넌트-1--unsloth-실험-단계>3. 컴포넌트 1 — Unsloth (실험 단계)<a hidden class=anchor aria-hidden=true href=#3-컴포넌트-1--unsloth-실험-단계>#</a></h2><p><strong>역할</strong>: 파인튜닝 시간의 80% 보내는 곳. 데이터셋 포맷, 하이퍼파라미터, 베이스 모델 선택 반복. 각 실험 사이클: 단일 임대 GPU에 30분 - 3시간.</p><p><strong>Unsloth가 여기서 이기는 이유</strong>: HF TRL보다 2× 빠름 = 달러당 2× 실험. 70% 적은 VRAM = A100 필요 대신 $1500 RTX 4090에서 실험. <a href=/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/>Unsloth 심층 가이드</a> 참조.</p><p><strong>빠른 설치</strong>: `````bash
-pip install unsloth</p><pre tabindex=0><code>
+</code></pre><p>분할이 이걸 작동시키는 것 — Unsloth의 빠른 반복은 &ldquo;무엇이 작동하는가&rdquo; 탐색, Axolotl의 견고함은 &ldquo;이제 스케일&rdquo; 프로덕션 실행.</p>
+<h2 id="3-컴포넌트-1--unsloth-실험-단계">3. 컴포넌트 1 — Unsloth (실험 단계)<a hidden class="anchor" aria-hidden="true" href="#3-컴포넌트-1--unsloth-실험-단계">#</a></h2>
+<p><strong>역할</strong>: 파인튜닝 시간의 80% 보내는 곳. 데이터셋 포맷, 하이퍼파라미터, 베이스 모델 선택 반복. 각 실험 사이클: 단일 임대 GPU에 30분 - 3시간.</p>
+<p><strong>Unsloth가 여기서 이기는 이유</strong>: HF TRL보다 2× 빠름 = 달러당 2× 실험. 70% 적은 VRAM = A100 필요 대신 $1500 RTX 4090에서 실험. <a href="/kr/resources/llm-frameworks/unsloth-fast-llm-fine-tuning-2026/">Unsloth 심층 가이드</a> 참조.</p>
+<p><strong>빠른 설치</strong>: `````bash
+pip install unsloth</p>
+<pre tabindex="0"><code>
 **패턴**: Vast.ai에 RTX 4090 임대 ($0.40-0.60/시간) 또는 RunPod, 주말에 10-20 실험 실행, 위닝 레시피 발견, 팀 리뷰용 노트북에 캡처.
 
 ## 4. 컴포넌트 2 — Axolotl (프로덕션 단계)
@@ -64,9 +376,14 @@ pip install unsloth</p><pre tabindex=0><code>
 
 **빠른 설치**: `````bash
 pip install axolotl
-</code></pre><p><strong>패턴</strong>: Unsloth 위닝 레시피에서 하이퍼파라미터 가져옴 → Axolotl YAML 작성 → 8× H100 클러스터에서 실행 (Vast.ai ~$15-25/시간)으로 최종 6-12시간 프로덕션 실행 → 최종 가중치 HF Hub에 push.</p><h2 id=5-컴포넌트-3--huggingface-datasets--hub-데이터-레이어>5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어)<a hidden class=anchor aria-hidden=true href=#5-컴포넌트-3--huggingface-datasets--hub-데이터-레이어>#</a></h2><p><strong>역할</strong>: 데이터셋 버전. 팀 간 데이터셋 공유. 협업 테스트용 훈련 모델 가중치 push.</p><p><strong>왜 명백한 픽인가</strong>: HF가 AI 데이터셋 배포 레이어 이김 (코드의 GitHub처럼, 모델 + 데이터셋의 HF Hub). 모든 파인튜닝 도구가 네이티브 통합.</p><p><strong>빠른 설치</strong>: `````bash
+</code></pre><p><strong>패턴</strong>: Unsloth 위닝 레시피에서 하이퍼파라미터 가져옴 → Axolotl YAML 작성 → 8× H100 클러스터에서 실행 (Vast.ai ~$15-25/시간)으로 최종 6-12시간 프로덕션 실행 → 최종 가중치 HF Hub에 push.</p>
+<h2 id="5-컴포넌트-3--huggingface-datasets--hub-데이터-레이어">5. 컴포넌트 3 — HuggingFace Datasets + Hub (데이터 레이어)<a hidden class="anchor" aria-hidden="true" href="#5-컴포넌트-3--huggingface-datasets--hub-데이터-레이어">#</a></h2>
+<p><strong>역할</strong>: 데이터셋 버전. 팀 간 데이터셋 공유. 협업 테스트용 훈련 모델 가중치 push.</p>
+<p><strong>왜 명백한 픽인가</strong>: HF가 AI 데이터셋 배포 레이어 이김 (코드의 GitHub처럼, 모델 + 데이터셋의 HF Hub). 모든 파인튜닝 도구가 네이티브 통합.</p>
+<p><strong>빠른 설치</strong>: `````bash
 pip install datasets
-huggingface-cli login</p><pre tabindex=0><code>
+huggingface-cli login</p>
+<pre tabindex="0"><code>
 **패턴**: `````python
 from datasets import load_dataset, Dataset
 
@@ -76,10 +393,14 @@ data.push_to_hub(&#34;yourname/my-finetune-dataset&#34;, private=True)
 
 # 팀원 로드
 data = load_dataset(&#34;yourname/my-finetune-dataset&#34;)
-</code></pre><p>민감한 데이터 (의료 / 금융 / 독점)는 HF Hub의 <strong>프라이빗 데이터셋</strong> — 액세스 제어됨.</p><h2 id=6-컴포넌트-4--weights--biases-eval-추적>6. 컴포넌트 4 — Weights & Biases (Eval 추적)<a hidden class=anchor aria-hidden=true href=#6-컴포넌트-4--weights--biases-eval-추적>#</a></h2><p><strong>역할</strong>: 위닝 레시피 찾기 위해 50 실험 실행할 때 비교 방법 필요. W&amp;B가 사실상 선택 — 손실 곡선, eval 점수, 하이퍼파라미터, 하드웨어 활용 자동 로그.</p><p><strong>빠른 설치</strong> (env var 통해 Unsloth와 Axolotl 모두 작동): `````bash
+</code></pre><p>민감한 데이터 (의료 / 금융 / 독점)는 HF Hub의 <strong>프라이빗 데이터셋</strong> — 액세스 제어됨.</p>
+<h2 id="6-컴포넌트-4--weights--biases-eval-추적">6. 컴포넌트 4 — Weights &amp; Biases (Eval 추적)<a hidden class="anchor" aria-hidden="true" href="#6-컴포넌트-4--weights--biases-eval-추적">#</a></h2>
+<p><strong>역할</strong>: 위닝 레시피 찾기 위해 50 실험 실행할 때 비교 방법 필요. W&amp;B가 사실상 선택 — 손실 곡선, eval 점수, 하이퍼파라미터, 하드웨어 활용 자동 로그.</p>
+<p><strong>빠른 설치</strong> (env var 통해 Unsloth와 Axolotl 모두 작동): `````bash
 pip install wandb
 wandb login
-export WANDB_PROJECT=&ldquo;my-finetune-project&rdquo;</p><pre tabindex=0><code>
+export WANDB_PROJECT=&ldquo;my-finetune-project&rdquo;</p>
+<pre tabindex="0"><code>
 이제 모든 Unsloth / Axolotl 훈련 실행이 W&amp;B 대시보드에 자동 로그.
 
 **비용**: W&amp;B 무료 티어 관대 (단일 사용자, 무제한 공개 프로젝트). 팀 / 프라이빗 프로젝트: $50/사용자/월. 대안: **MLflow** (셀프호스트, 무료, 덜 정돈), **TensorBoard** (기본이지만 무료 + 로컬).
@@ -96,12 +417,94 @@ vllm serve yourname/my-finetuned-llama \
   --enable-lora \
   --lora-modules my-lora=path/to/lora_weights \
   --port 8000
-</code></pre><p><a href=/kr/resources/llm-frameworks/litellm/>LiteLLM 게이트웨이</a> 뒤에서 auth + rate limiting + 고객별 가상 키 = 본인 소유 인프라의 프로덕션 준비 멀티테넌트 LLM API.</p><h2 id=8-day-1-파이프라인-셋업-3-4시간>8. Day 1 파이프라인 셋업 (3-4시간)<a hidden class=anchor aria-hidden=true href=#8-day-1-파이프라인-셋업-3-4시간>#</a></h2><ol><li><strong>JSONL 포맷 데이터셋</strong> (다양함) — <code>train.jsonl</code>과 <code>eval.jsonl</code> 준비, HF Hub 프라이빗에 push</li><li><strong>RTX 4090 GPU 임대</strong> (10분) — 실험 단계용 Vast.ai 또는 3. <strong>Unsloth + W&amp;B 설치</strong> (10분) — ````pip install unsloth wandb```</li><li><strong>첫 QLoRA 실행</strong> (60분) — Unsloth 가이드 3절, Llama 3.2 8B 1 epoch 파인튜닝, W&amp;B 로그 나타남 확인</li><li><strong>5-10 짧은 실험 반복</strong> (~반나절) — 학습률, LoRA rank, 데이터셋 슬라이스 변경. 최고 eval 점수 레시피 찾기</li><li><strong>레시피를 Axolotl YAML로 번역</strong> (30분) — 같은 하이퍼파라미터 YAML 포맷, git commit</li><li><strong>8× H100 클러스터 임대</strong> 프로덕션 실행용 (Vast.ai ~$15-20/시간 × 6-12시간 = $90-240), 데이터 + 모니터링 측은 8. <strong>Axolotl 프로덕션 훈련 실행</strong> — 최종 가중치 HF Hub에 push</li><li><strong>vLLM 통해 배포</strong> — 전용 24 GB GPU + LiteLLM 게이트웨이에서 파인튜닝 모델 서빙</li><li><strong>베이스 모델 대비 eval</strong> — 파인튜닝이 실제로 eval 셋에서 베이스 이김? 아니면 반복</li></ol><p>3-4시간 셋업 + 1-2주 실험 후, 본인의 파인튜닝 모델을 프로덕션에 배포.</p><h2 id=9-비용-분석>9. 비용 분석<a hidden class=anchor aria-hidden=true href=#9-비용-분석>#</a></h2><table><thead><tr><th>항목</th><th>취미</th><th>프로덕션 팀</th><th>작은 AI 랩</th></tr></thead><tbody><tr><td>실험 GPU (필요 시 임대)</td><td>$30-60/월</td><td>$100-200/월</td><td>$300-500/월</td></tr><tr><td>프로덕션 훈련 (실행 시 임대)</td><td>$0-50/월</td><td>$200-400/월</td><td>$1500-3000/월</td></tr><tr><td>전용 서빙 GPU (vLLM)</td><td>$0 (Ollama 대신 사용)</td><td>$200/월 (RTX 4090)</td><td>$1000/월 (H100)</td></tr><tr><td>HF Hub</td><td>$0 (공개 + 1 GB까지 프라이빗 무료)</td><td>$9/월 (Pro)</td><td>$20/사용자/월 (엔터프라이즈)</td></tr><tr><td>W&amp;B</td><td>$0 (무료 티어)</td><td>$50/사용자/월</td><td>$50/사용자/월</td></tr><tr><td>기타 스토리지 / 대역폭</td><td>$5</td><td>$20</td><td>$50</td></tr><tr><td><strong>합계</strong></td><td><strong>~$35-115/월</strong></td><td><strong>~$580-880/월</strong></td><td><strong>~$2870-4570/월</strong></td></tr></tbody></table><p>매니지드 비교: Together 파인튜닝 $0.50/M 토큰 × 100M 토큰 데이터셋 = 파인튜닝 실행당 $50 × 10 실험 = 실험만 $500/월. 셀프호스트가 월 ~10 파인튜닝 이상에서 이김.</p><h2 id=10-업그레이드-경로>10. 업그레이드 경로<a hidden class=anchor aria-hidden=true href=#10-업그레이드-경로>#</a></h2><p>이 스택 벗어날 때: - <strong>70B 모델 일상 파인튜닝 필요</strong> — 임대 대신 H100 클러스터 구매 또는 장기 임대</p><ul><li><strong>컴플라이언스 / 데이터 거주성</strong> — Vast.ai에서 관할의 전용 베어 메탈로 이동</li><li><strong>멀티테넌트 파인튜닝 SaaS</strong> — 사용자 격리 레이어 추가; LangSmith 또는 유사 매니지드 eval 고려</li><li><strong>연속 파인튜닝 루프</strong> — 프로덕션 모델 저하 시 자동 재훈련 트리거용 <a href=/kr/collections/ai-agent-tool-chain/>AI 에이전트 도구 체인</a>과 페어</li><li><strong>도메인 특화 RL</strong> — 보상 모델링 + GRPO 루프 추가 (둘 다 지원; 그냥 더 컴퓨트 헝그리)</li></ul><h2 id=tldr--레시피>TL;DR — 레시피<a hidden class=anchor aria-hidden=true href=#tldr--레시피>#</a></h2><p><strong>프로덕션 LLM 파인튜닝용 5 컴포넌트, 취미부터 프로덕션 팀까지 $50-300/월</strong>: 1. <strong>Unsloth</strong> — 빠른 단일 GPU 실험 단계
+</code></pre><p><a href="/kr/resources/llm-frameworks/litellm/">LiteLLM 게이트웨이</a> 뒤에서 auth + rate limiting + 고객별 가상 키 = 본인 소유 인프라의 프로덕션 준비 멀티테넌트 LLM API.</p>
+<h2 id="8-day-1-파이프라인-셋업-3-4시간">8. Day 1 파이프라인 셋업 (3-4시간)<a hidden class="anchor" aria-hidden="true" href="#8-day-1-파이프라인-셋업-3-4시간">#</a></h2>
+<ol>
+<li><strong>JSONL 포맷 데이터셋</strong> (다양함) — <code>train.jsonl</code>과 <code>eval.jsonl</code> 준비, HF Hub 프라이빗에 push</li>
+<li><strong>RTX 4090 GPU 임대</strong> (10분) — 실험 단계용 Vast.ai 또는 3. <strong>Unsloth + W&amp;B 설치</strong> (10분) — ````pip install unsloth wandb```</li>
+<li><strong>첫 QLoRA 실행</strong> (60분) — Unsloth 가이드 3절, Llama 3.2 8B 1 epoch 파인튜닝, W&amp;B 로그 나타남 확인</li>
+<li><strong>5-10 짧은 실험 반복</strong> (~반나절) — 학습률, LoRA rank, 데이터셋 슬라이스 변경. 최고 eval 점수 레시피 찾기</li>
+<li><strong>레시피를 Axolotl YAML로 번역</strong> (30분) — 같은 하이퍼파라미터 YAML 포맷, git commit</li>
+<li><strong>8× H100 클러스터 임대</strong> 프로덕션 실행용 (Vast.ai ~$15-20/시간 × 6-12시간 = $90-240), 데이터 + 모니터링 측은 8. <strong>Axolotl 프로덕션 훈련 실행</strong> — 최종 가중치 HF Hub에 push</li>
+<li><strong>vLLM 통해 배포</strong> — 전용 24 GB GPU + LiteLLM 게이트웨이에서 파인튜닝 모델 서빙</li>
+<li><strong>베이스 모델 대비 eval</strong> — 파인튜닝이 실제로 eval 셋에서 베이스 이김? 아니면 반복</li>
+</ol>
+<p>3-4시간 셋업 + 1-2주 실험 후, 본인의 파인튜닝 모델을 프로덕션에 배포.</p>
+<h2 id="9-비용-분석">9. 비용 분석<a hidden class="anchor" aria-hidden="true" href="#9-비용-분석">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>항목</th>
+					<th>취미</th>
+					<th>프로덕션 팀</th>
+					<th>작은 AI 랩</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>실험 GPU (필요 시 임대)</td>
+					<td>$30-60/월</td>
+					<td>$100-200/월</td>
+					<td>$300-500/월</td>
+			</tr>
+			<tr>
+					<td>프로덕션 훈련 (실행 시 임대)</td>
+					<td>$0-50/월</td>
+					<td>$200-400/월</td>
+					<td>$1500-3000/월</td>
+			</tr>
+			<tr>
+					<td>전용 서빙 GPU (vLLM)</td>
+					<td>$0 (Ollama 대신 사용)</td>
+					<td>$200/월 (RTX 4090)</td>
+					<td>$1000/월 (H100)</td>
+			</tr>
+			<tr>
+					<td>HF Hub</td>
+					<td>$0 (공개 + 1 GB까지 프라이빗 무료)</td>
+					<td>$9/월 (Pro)</td>
+					<td>$20/사용자/월 (엔터프라이즈)</td>
+			</tr>
+			<tr>
+					<td>W&amp;B</td>
+					<td>$0 (무료 티어)</td>
+					<td>$50/사용자/월</td>
+					<td>$50/사용자/월</td>
+			</tr>
+			<tr>
+					<td>기타 스토리지 / 대역폭</td>
+					<td>$5</td>
+					<td>$20</td>
+					<td>$50</td>
+			</tr>
+			<tr>
+					<td><strong>합계</strong></td>
+					<td><strong>~$35-115/월</strong></td>
+					<td><strong>~$580-880/월</strong></td>
+					<td><strong>~$2870-4570/월</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p>매니지드 비교: Together 파인튜닝 $0.50/M 토큰 × 100M 토큰 데이터셋 = 파인튜닝 실행당 $50 × 10 실험 = 실험만 $500/월. 셀프호스트가 월 ~10 파인튜닝 이상에서 이김.</p>
+<h2 id="10-업그레이드-경로">10. 업그레이드 경로<a hidden class="anchor" aria-hidden="true" href="#10-업그레이드-경로">#</a></h2>
+<p>이 스택 벗어날 때: - <strong>70B 모델 일상 파인튜닝 필요</strong> — 임대 대신 H100 클러스터 구매 또는 장기 임대</p>
+<ul>
+<li><strong>컴플라이언스 / 데이터 거주성</strong> — Vast.ai에서 관할의 전용 베어 메탈로 이동</li>
+<li><strong>멀티테넌트 파인튜닝 SaaS</strong> — 사용자 격리 레이어 추가; LangSmith 또는 유사 매니지드 eval 고려</li>
+<li><strong>연속 파인튜닝 루프</strong> — 프로덕션 모델 저하 시 자동 재훈련 트리거용 <a href="/kr/collections/ai-agent-tool-chain/">AI 에이전트 도구 체인</a>과 페어</li>
+<li><strong>도메인 특화 RL</strong> — 보상 모델링 + GRPO 루프 추가 (둘 다 지원; 그냥 더 컴퓨트 헝그리)</li>
+</ul>
+<h2 id="tldr--레시피">TL;DR — 레시피<a hidden class="anchor" aria-hidden="true" href="#tldr--레시피">#</a></h2>
+<p><strong>프로덕션 LLM 파인튜닝용 5 컴포넌트, 취미부터 프로덕션 팀까지 $50-300/월</strong>: 1. <strong>Unsloth</strong> — 빠른 단일 GPU 실험 단계
 2. <strong>Axolotl</strong> — 프로덕션 멀티 GPU 단계
 3. <strong>HuggingFace datasets + Hub</strong> — 데이터 버전 관리 + 모델 배포
-4. <strong>Weights & Biases</strong> — eval 추적
-5. <strong>vLLM</strong> — 프로덕션 서빙</p><p>실험용 임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.</p><hr><p><em>동반 컬렉션: <a href=/kr/collections/cheap-llm-stack/>저렴한 LLM 스택</a> 배포 후 추론 비용 측 커버. <a href=/kr/collections/ai-agent-tool-chain/>AI 에이전트 도구 체인</a> 자동 파인튜닝 루프. <a href=/kr/collections/knowledge-base-stack/>지식 베이스 스택</a> 일부 케이스에서 RAG가 파인튜닝 대안.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+4. <strong>Weights &amp; Biases</strong> — eval 추적
+5. <strong>vLLM</strong> — 프로덕션 서빙</p>
+<p>실험용  임대, 프로덕션 실행은 Vast.ai 8× H100으로 스케일, 최종 모델 전용 24 GB GPU에 배포. 엔드 투 엔드 셀프호스트, 가중치 본인 소유, 진지함에 따라 스케일 비용.</p>
+<hr>
+<p><em>동반 컬렉션: <a href="/kr/collections/cheap-llm-stack/">저렴한 LLM 스택</a> 배포 후 추론 비용 측 커버. <a href="/kr/collections/ai-agent-tool-chain/">AI 에이전트 도구 체인</a> 자동 파인튜닝 루프. <a href="/kr/collections/knowledge-base-stack/">지식 베이스 스택</a> 일부 케이스에서 RAG가 파인튜닝 대안.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-21&rdquo;,
@@ -115,22 +518,219 @@ vllm serve yourname/my-finetuned-llama \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/fine-tuning-stack%22>https://dibi8.com/kr/resources/fine-tuning-stack"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/fine-tuning-stack%22">https://dibi8.com/kr/resources/fine-tuning-stack"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding fine-tuning stack 2026: 데이터셋에서 프로덕션 배포 llm까지 5컴포넌트 파이프라인 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding fine-tuning stack 2026: 데이터셋에서 프로덕션 배포 llm까지 5컴포넌트 파이프라인 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~7 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/fine-tuning-stack/>12-factor-agents-production-llm-software-2026</a></li><li><a href=/ko/ai-coding-agents/fine-tuning-stack/>12-factor-agents</a></li><li><a href=/ko/ai-coding-agents/fine-tuning-stack/>1m-context-window-llm-2026-real-test</a></li><li><a href=/ko/ai-coding-agents/fine-tuning-stack/>9router-smart-llm-proxy-token-saver-free-coding</a></li><li><a href=/ko/ai-coding-agents/fine-tuning-stack/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/faster-whisper/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/flowise-ai-workflow-builder-lowcode/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Fine-Tuning Stack 2026: 데이터셋에서 프로덕션 배포 LLM까지 5컴포넌트 파이프라인 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~7 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/fine-tuning-stack/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/ko/ai-coding-agents/fine-tuning-stack/">12-factor-agents</a></li>
+<li><a href="/ko/ai-coding-agents/fine-tuning-stack/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/ko/ai-coding-agents/fine-tuning-stack/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/ko/ai-coding-agents/fine-tuning-stack/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/faster-whisper/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/firecrawl-dev-utils-2026/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

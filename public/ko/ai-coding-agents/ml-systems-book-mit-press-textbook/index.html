@@ -1,61 +1,399 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/ml-systems-book-mit-press-textbook/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/ml-systems-book-mit-press-textbook/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/ml-systems-book-mit-press-textbook/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - C++\nDocker Go Python application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: “https://github.com/harvard-edge/cs249r_book.git\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /kr/posts/ml-systems-book-mit-press-textbook/ faqs: - q: ‘ML Systems Book은 어떤 주제를 다루나요?’ a: ‘ML Systems Book은 분산 학습(데이터 병렬처리, 모델 병렬처리, 파이프라인 병렬처리 및 내결함성), 모델 서빙(배치 및 실시간 추론, 버전 관리, 자동 스케일링), 하드웨어 가속(GPU, TPU, ASIC, 양자화, 가지치기), ML 인프라(피처 스토어, 실험 추적, CI/CD, 모니터링), 그리고 비용 최적화(스팟 인스턴스, 모델 압축, 동적 배치)를 다룹니다.’ q: ‘ML Systems Book은 몇 개의 챕터로 구성되어 있으며 어떻게 편성되어 있나요?’ a: ‘이 책은 12개의 챕터로 구성되어 있으며, ML 시스템 소개와 ML 워크로드를 시작으로 분산 학습, 모델 서빙, 하드웨어 가속기, ML 운영, 데이터 관리, 최적화, 신뢰성, 보안, 지속 가능성을 거쳐 미래 방향성으로 마무리됩니다.’ q: ‘ML Systems Book을 읽기 위한 사전 지식은 무엇인가요?’ a: ‘독자는 기초 머신러닝 지식(Andrew Ng 강의 수준), Python 프로그래밍, 선형대수 및 미적분학, 그리고 메모리, I/O, 네트워킹 등 기본 컴퓨터 시스템 개념을 알고 있어야 합니다. 분산 시스템 배경 지식은 필요하지 않으며, 이 책이 기초 원리부터 직접 설명합니다.’ q: ‘ML Systems Book의 가격은 얼마이며 어떻게 구할 수 있나요?’ a: ‘MIT Press에서 출판된 약 600페이지 분량의 이 책은 양장본 약 $75, 페이퍼백 약 $45이며, Kindle, Apple Books, Google Play에서 전자책으로도 구매할 수 있습니다. 무료 부가 자료로는 MIT OpenCourseWare의 강의 영상과 함께 제공되는 GitHub 저장소의 코드 예제가 있습니다.’ q: ‘ML Systems Book은 어떤 독자를 대상으로 하나요?’ a: ‘이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.’ {\u003c/* resource-info */\u003e}\n문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가? 당신은 Transformer 아키텍처를 숙달하고 BERT를 처음부터 구현할 수 있지만, 실제 작업에서는 계속 벽에 부딪힙니다: - 모델 훈련 속도가 너무 느려서 병목이 데이터 로딩에 있는지 GPU 계산에 있는지 모릅니다\n엣지 장치에 배포 후 정확도가 급락하는데 양자화 최적화 방법을 모릅니다 서비스 QPS가 안 올라가서 추론 지연으로 사용자가 불만입니다 데이터 파이프라인이 매일 밤 중에 붕괴되는데 아무도 이유를 모릅니다 문제는 알고리즘이 아니라 시스템입니다.\n대부분의 ML 과정은 모델과 알고리즘만 가르치지만, 모델을 실제로 실행시키는 시스템 엔지니어링은 무시합니다. 이것이 바로 ML Systems Book이 채우려는 공백입니다.\nML Systems Book이란 무엇인가? Machine Learning Systems는 MIT Press에서 출판한 머신러닝 시스템 교재로, 2026년에 정식 발행됩니다. 이 책은 GitHub에서 24,113+ Stars를 보유하고 있으며, 2030년까지 100만 학습자가 ML 시스템 엔지니어링을 마스터하도록 돕는 것을 목표로 합니다.\n알고리즘과 모델 아키텍처만 다루는 리소스와 달리, 이 책은 시스템 관점을 강조합니다: - 데이터 엔지니어링이 훈련 효율에 어떤 영향을 미치는지\n하드웨어 특성이 모델 설계를 어떻게 결정하는지 추론 가속의 엔지니어링 트레이드오프 연구실부터 프로덕션 환경까지의 완전한 체인 핵심 내용 1. 데이터 엔지니어링(Data Engineering) # 비효율적인 데이터 로딩은 훈련 병목의 1위 원인 # 이 책은 효율적인 데이터 파이프라인 구축을 가르칩니다 import tensorflow as tf # ❌ 비효율: 단일 스레드 로딩 dataset = tf.data.Dataset.from_tensor_slices(data) # ✅ 효율: 프리페치 + 병렬 + 캐싱 dataset = (tf.data.Dataset.from_tensor_slices(data) .map(preprocess, num_parallel_calls=tf.data.AUTOTUNE) .cache() .prefetch(tf.data.AUTOTUNE)) 다루는 주제: - 데이터 형식(TFRecord, Parquet, Arrow)\nETL 파이프라인 설계 데이터 버전 관리 품질 모니터링 및 클리닝 2. 모델 최적화(Model Optimization) 기술 목표 적용 시나리오 양자화(Quantization) INT8/FP16 추론 엣지 장치 배포 가지치기(Pruning) 매개변수 감소 모델 압축 증류(Distillation) 소형 모델이 대형 모델 학습 모바일 컴파일 최적화(XLA, TVM) 연산자 융합 추론 가속 동적 배치 처리 처리량 향상 서버측 3. 하드웨어 인식 훈련(Hardware-Aware Training) # 하드웨어 특성을 이해해야 효율적인 훈련 코드를 작성할 수 있습니다 # GPU: 메모리 대역폭이 병목 → 데이터 전송 감소 # TPU: 행렬 곱 최적화 → 적절한 batch size 사용 # Edge NPU: 고정 소수점 연산 → 양자화 인식 훈련 GPU: CUDA 프로그래밍, 메모리 관리, 다중 카드 병렬 TPU: XLA 컴파일, Pod 아키텍처, GSPMD Edge: 고정 소수점 연산, 메모리 제한, 전력 제약 4. 추론 가속(Inference Acceleration) # 100ms에서 10ms로 줄이는 엔지니어링 실무 # 1. 모델 변환: ONNX → TensorRT # 2. 연산자 최적화: Conv+BN+ReLU 융합 # 3. 메모리 최적화: 가중치 공유, 활성화 재계산 # 4. 배치 처리: 동적 batching + 요청 병합 # 5. 캐싱: 결과 캐싱 + 모델 워밍업 5. 배포 및 MLOps 모델 서빙: TensorFlow Serving, TorchServe, Triton 컨테이너화: Docker, Kubernetes 모니터링: 지연 시간, 처리량, 오류율, 데이터 드리프트 A/B 테스트: 온라인 실험, 섀도우 트래픽 6. 엣지 및 임베디드 ML(Edge / TinyML) // 마이크로컨트롤러에서 ML 실행(TinyML) #include \"tensorflow/lite/micro/micro_interpreter.h\" // 모델이 20KB에 불과, 16MHz Arduino에서 실행 // 음성 웨이크업, 제스처 인식 가능 모델 압축: 100MB에서 100KB로 하드웨어 플랫폼: Arduino, ESP32, Raspberry Pi 응용: 음성 웨이크업, 이상 탐지, 예측 유지보수 지식 아키텍처 ML Systems Book ├── Part 1: Foundations │ ├── ML 복습 │ ├── 컴퓨터 아키텍처 기초 │ └── 소프트웨어 엔지니어링 원칙 ├── Part 2: Data Engineering │ ├── 데이터 수집 및 라벨링 │ ├── ETL 및 특성 엔지니어링 │ └── 데이터 품질 및 모니터링 ├── Part 3: Model Development │ ├── 훈련 인프라 │ ├── 분산 훈련 │ └── 실험 관리 ├── Part 4: Model Optimization │ ├── 양자화 및 가지치기 │ ├── 컴파일 최적화 │ └── 하드웨어 인식 설계 ├── Part 5: Inference \u0026 Serving │ ├── 추론 엔진 │ ├── 서비스 아키텍처 │ └── 성능 최적화 ├── Part 6: Edge \u0026 Mobile │ ├── TinyML │ ├── 모바일 최적화 │ └── 연합 학습 └── Part 7: MLOps \u0026 Production ├── ML용 CI/CD ├── 모니터링 및 관찰 가능성 └── 윤리 및 보안 획득 방법 무료 온라인 읽기 https://mlsysbook.ai/book/ 무료 PDF 다운로드 https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf GitHub 소스 git clone https://github.com/harvard-edge/cs249r_book.git ```` ### 종이책 구매 - **출판사**: MIT Press (2026) - **ISBN**: 미정 - **가격**: 약 $60-80 ## 누구에게 적합한가? | 독자 | 수확 | |------|------| | **ML 연구원** | 모델 외부의 시스템 제약 이해 | | **소프트웨어 엔지니어** | ML 엔지니어링으로 전환하는 지식 지도 | | **시스템 엔지니어** | ML 워크로드 특성 파악 | | **학생** | 알고리즘에서 엔지니어링까지 완전한 관점 | | **기술 관리자** | ML 프로젝트의 엔지니어링 복잡성 이해 | ## 유사 리소스 비교 | 리소스 | 중점 | 가격 | 실무성 | |------|--------|------|--------| | **ML Systems Book** | 시스템 엔지니어링 | 무료 | ⭐⭐⭐⭐⭐ | | **Deep Learning Book** (Goodfellow) | 알고리즘 이론 | $80 | ⭐⭐⭐ | | **Designing ML Systems** (Huyen) | 프로덕션 실무 | $50 | ⭐⭐⭐⭐ | | **CS229** (Stanford) | 알고리즘 기초 | 무료 | ⭐⭐ | | **Made With ML** | MLOps | 무료 | ⭐⭐⭐⭐ | ## 커뮤니티 및 지원 - **GitHub Stars**: 24,113+ - **목표**: 2030년까지 100만 학습자 돕기 - **스폰서**: EDGE AI Foundation이 모든 Star에 자금을 매칭 - **오픈 콜렉티브**: Open Collective에서 기부 접수 ## 결론 ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교재**이며, **완전히 무료**입니다. - MIT Press 보증, 학술 품질 보장 - 데이터부터 배포까지 완전한 체인 커버 - 이론과 실무를 겸비하고, 코드 예제가 풍부 - 오픈소스 커뮤니티가 지속적으로 업데이트 모델을 훈련할 줄은 알지만 배포할 줄 모르거나, 프로덕션 환경에서 연구실만큼 성능이 안 나오는 경우, 이 책은 당신의 필수 과목입니다. **웹사이트**: [mlsysbook.ai](https://mlsysbook.ai/) **GitHub**: [harvard-edge/cs249r_book](https://github.com/harvard-edge/cs249r_book) **Stars**: 24,113+ | **출판사**: MIT Press (2026) ## 관련 기사 - [TabPFN: 테이블 데이터 기반 모델](/kr/resources/ai-tools/tabpfn-foundation-model-tabular-data/) - [Free LLM API Resources for AI Development](/kr/resources/llm-frameworks/free-llm-api-resources-ai-development/) - [Hermes Agent: 자기 개선하는 AI 에이전트](/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) * * * ## 추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. - **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%. *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"ML Systems Book：MIT 무료 머신러닝 시스템 교과서\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/ml-systems-book-mit-press-textbook\" } } ## Why This Matters Understanding ml systems book：mit 무료 머신러닝 시스템 교과서 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion ML Systems Book：MIT 무료 머신러닝 시스템 교과서 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ","wordCount":"1441","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/ml-systems-book-mit-press-textbook/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/ml-systems-book-mit-press-textbook/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/ml-systems-book-mit-press-textbook/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#%eb%ac%b8%ec%a0%9c-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98-%ec%9d%b4%ec%99%b8%ec%97%90-ml-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%ec%97%90%ea%b2%8c-%eb%ac%b4%ec%97%87%ec%9d%b4-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80 aria-label="문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?">문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?</a></li><li><a href=#ml-systems-book%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80 aria-label="ML Systems Book이란 무엇인가?">ML Systems Book이란 무엇인가?</a></li><li><a href=#%ed%95%b5%ec%8b%ac-%eb%82%b4%ec%9a%a9 aria-label="핵심 내용">핵심 내용</a><ul><li><a href=#1-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a7%81data-engineering aria-label="1. 데이터 엔지니어링(Data Engineering)">1. 데이터 엔지니어링(Data Engineering)</a></li><li><a href=#2-%eb%aa%a8%eb%8d%b8-%ec%b5%9c%ec%a0%81%ed%99%94model-optimization aria-label="2. 모델 최적화(Model Optimization)">2. 모델 최적화(Model Optimization)</a></li><li><a href=#3-%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4-%ec%9d%b8%ec%8b%9d-%ed%9b%88%eb%a0%a8hardware-aware-training aria-label="3. 하드웨어 인식 훈련(Hardware-Aware Training)">3. 하드웨어 인식 훈련(Hardware-Aware Training)</a></li><li><a href=#4-%ec%b6%94%eb%a1%a0-%ea%b0%80%ec%86%8dinference-acceleration aria-label="4. 추론 가속(Inference Acceleration)">4. 추론 가속(Inference Acceleration)</a></li><li><a href=#5-%eb%b0%b0%ed%8f%ac-%eb%b0%8f-mlops aria-label="5. 배포 및 MLOps">5. 배포 및 MLOps</a></li><li><a href=#6-%ec%97%a3%ec%a7%80-%eb%b0%8f-%ec%9e%84%eb%b2%a0%eb%94%94%eb%93%9c-mledge--tinyml aria-label="6. 엣지 및 임베디드 ML(Edge / TinyML)">6. 엣지 및 임베디드 ML(Edge / TinyML)</a></li></ul></li><li><a href=#%ec%a7%80%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98 aria-label="지식 아키텍처">지식 아키텍처</a></li><li><a href=#%ed%9a%8d%eb%93%9d-%eb%b0%a9%eb%b2%95 aria-label="획득 방법">획득 방법</a><ul><li><a href=#%eb%ac%b4%eb%a3%8c-%ec%98%a8%eb%9d%bc%ec%9d%b8-%ec%9d%bd%ea%b8%b0 aria-label="무료 온라인 읽기">무료 온라인 읽기</a></li><li><a href=#%eb%ac%b4%eb%a3%8c-pdf-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c aria-label="무료 PDF 다운로드">무료 PDF 다운로드</a></li><li><a href=#github-%ec%86%8c%ec%8a%a4 aria-label="GitHub 소스">GitHub 소스</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/ml-systems-book-mit-press-textbook/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/ml-systems-book-mit-press-textbook/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/ml-systems-book-mit-press-textbook/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - C++\nDocker Go Python application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: “https://github.com/harvard-edge/cs249r_book.git\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /kr/posts/ml-systems-book-mit-press-textbook/ faqs: - q: ‘ML Systems Book은 어떤 주제를 다루나요?’ a: ‘ML Systems Book은 분산 학습(데이터 병렬처리, 모델 병렬처리, 파이프라인 병렬처리 및 내결함성), 모델 서빙(배치 및 실시간 추론, 버전 관리, 자동 스케일링), 하드웨어 가속(GPU, TPU, ASIC, 양자화, 가지치기), ML 인프라(피처 스토어, 실험 추적, CI/CD, 모니터링), 그리고 비용 최적화(스팟 인스턴스, 모델 압축, 동적 배치)를 다룹니다.’ q: ‘ML Systems Book은 몇 개의 챕터로 구성되어 있으며 어떻게 편성되어 있나요?’ a: ‘이 책은 12개의 챕터로 구성되어 있으며, ML 시스템 소개와 ML 워크로드를 시작으로 분산 학습, 모델 서빙, 하드웨어 가속기, ML 운영, 데이터 관리, 최적화, 신뢰성, 보안, 지속 가능성을 거쳐 미래 방향성으로 마무리됩니다.’ q: ‘ML Systems Book을 읽기 위한 사전 지식은 무엇인가요?’ a: ‘독자는 기초 머신러닝 지식(Andrew Ng 강의 수준), Python 프로그래밍, 선형대수 및 미적분학, 그리고 메모리, I/O, 네트워킹 등 기본 컴퓨터 시스템 개념을 알고 있어야 합니다. 분산 시스템 배경 지식은 필요하지 않으며, 이 책이 기초 원리부터 직접 설명합니다.’ q: ‘ML Systems Book의 가격은 얼마이며 어떻게 구할 수 있나요?’ a: ‘MIT Press에서 출판된 약 600페이지 분량의 이 책은 양장본 약 $75, 페이퍼백 약 $45이며, Kindle, Apple Books, Google Play에서 전자책으로도 구매할 수 있습니다. 무료 부가 자료로는 MIT OpenCourseWare의 강의 영상과 함께 제공되는 GitHub 저장소의 코드 예제가 있습니다.’ q: ‘ML Systems Book은 어떤 독자를 대상으로 하나요?’ a: ‘이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.’ {\u003c/* resource-info */\u003e}\n문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가? 당신은 Transformer 아키텍처를 숙달하고 BERT를 처음부터 구현할 수 있지만, 실제 작업에서는 계속 벽에 부딪힙니다: - 모델 훈련 속도가 너무 느려서 병목이 데이터 로딩에 있는지 GPU 계산에 있는지 모릅니다\n엣지 장치에 배포 후 정확도가 급락하는데 양자화 최적화 방법을 모릅니다 서비스 QPS가 안 올라가서 추론 지연으로 사용자가 불만입니다 데이터 파이프라인이 매일 밤 중에 붕괴되는데 아무도 이유를 모릅니다 문제는 알고리즘이 아니라 시스템입니다.\n대부분의 ML 과정은 모델과 알고리즘만 가르치지만, 모델을 실제로 실행시키는 시스템 엔지니어링은 무시합니다. 이것이 바로 ML Systems Book이 채우려는 공백입니다.\nML Systems Book이란 무엇인가? Machine Learning Systems는 MIT Press에서 출판한 머신러닝 시스템 교재로, 2026년에 정식 발행됩니다. 이 책은 GitHub에서 24,113+ Stars를 보유하고 있으며, 2030년까지 100만 학습자가 ML 시스템 엔지니어링을 마스터하도록 돕는 것을 목표로 합니다.\n알고리즘과 모델 아키텍처만 다루는 리소스와 달리, 이 책은 시스템 관점을 강조합니다: - 데이터 엔지니어링이 훈련 효율에 어떤 영향을 미치는지\n하드웨어 특성이 모델 설계를 어떻게 결정하는지 추론 가속의 엔지니어링 트레이드오프 연구실부터 프로덕션 환경까지의 완전한 체인 핵심 내용 1. 데이터 엔지니어링(Data Engineering) # 비효율적인 데이터 로딩은 훈련 병목의 1위 원인 # 이 책은 효율적인 데이터 파이프라인 구축을 가르칩니다 import tensorflow as tf # ❌ 비효율: 단일 스레드 로딩 dataset = tf.data.Dataset.from_tensor_slices(data) # ✅ 효율: 프리페치 + 병렬 + 캐싱 dataset = (tf.data.Dataset.from_tensor_slices(data) .map(preprocess, num_parallel_calls=tf.data.AUTOTUNE) .cache() .prefetch(tf.data.AUTOTUNE)) 다루는 주제: - 데이터 형식(TFRecord, Parquet, Arrow)\nETL 파이프라인 설계 데이터 버전 관리 품질 모니터링 및 클리닝 2. 모델 최적화(Model Optimization) 기술 목표 적용 시나리오 양자화(Quantization) INT8/FP16 추론 엣지 장치 배포 가지치기(Pruning) 매개변수 감소 모델 압축 증류(Distillation) 소형 모델이 대형 모델 학습 모바일 컴파일 최적화(XLA, TVM) 연산자 융합 추론 가속 동적 배치 처리 처리량 향상 서버측 3. 하드웨어 인식 훈련(Hardware-Aware Training) # 하드웨어 특성을 이해해야 효율적인 훈련 코드를 작성할 수 있습니다 # GPU: 메모리 대역폭이 병목 → 데이터 전송 감소 # TPU: 행렬 곱 최적화 → 적절한 batch size 사용 # Edge NPU: 고정 소수점 연산 → 양자화 인식 훈련 GPU: CUDA 프로그래밍, 메모리 관리, 다중 카드 병렬 TPU: XLA 컴파일, Pod 아키텍처, GSPMD Edge: 고정 소수점 연산, 메모리 제한, 전력 제약 4. 추론 가속(Inference Acceleration) # 100ms에서 10ms로 줄이는 엔지니어링 실무 # 1. 모델 변환: ONNX → TensorRT # 2. 연산자 최적화: Conv+BN+ReLU 융합 # 3. 메모리 최적화: 가중치 공유, 활성화 재계산 # 4. 배치 처리: 동적 batching + 요청 병합 # 5. 캐싱: 결과 캐싱 + 모델 워밍업 5. 배포 및 MLOps 모델 서빙: TensorFlow Serving, TorchServe, Triton 컨테이너화: Docker, Kubernetes 모니터링: 지연 시간, 처리량, 오류율, 데이터 드리프트 A/B 테스트: 온라인 실험, 섀도우 트래픽 6. 엣지 및 임베디드 ML(Edge / TinyML) // 마이크로컨트롤러에서 ML 실행(TinyML) #include \"tensorflow/lite/micro/micro_interpreter.h\" // 모델이 20KB에 불과, 16MHz Arduino에서 실행 // 음성 웨이크업, 제스처 인식 가능 모델 압축: 100MB에서 100KB로 하드웨어 플랫폼: Arduino, ESP32, Raspberry Pi 응용: 음성 웨이크업, 이상 탐지, 예측 유지보수 지식 아키텍처 ML Systems Book ├── Part 1: Foundations │ ├── ML 복습 │ ├── 컴퓨터 아키텍처 기초 │ └── 소프트웨어 엔지니어링 원칙 ├── Part 2: Data Engineering │ ├── 데이터 수집 및 라벨링 │ ├── ETL 및 특성 엔지니어링 │ └── 데이터 품질 및 모니터링 ├── Part 3: Model Development │ ├── 훈련 인프라 │ ├── 분산 훈련 │ └── 실험 관리 ├── Part 4: Model Optimization │ ├── 양자화 및 가지치기 │ ├── 컴파일 최적화 │ └── 하드웨어 인식 설계 ├── Part 5: Inference \u0026 Serving │ ├── 추론 엔진 │ ├── 서비스 아키텍처 │ └── 성능 최적화 ├── Part 6: Edge \u0026 Mobile │ ├── TinyML │ ├── 모바일 최적화 │ └── 연합 학습 └── Part 7: MLOps \u0026 Production ├── ML용 CI/CD ├── 모니터링 및 관찰 가능성 └── 윤리 및 보안 획득 방법 무료 온라인 읽기 https://mlsysbook.ai/book/ 무료 PDF 다운로드 https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf GitHub 소스 git clone https://github.com/harvard-edge/cs249r_book.git ```` ### 종이책 구매 - **출판사**: MIT Press (2026) - **ISBN**: 미정 - **가격**: 약 $60-80 ## 누구에게 적합한가? | 독자 | 수확 | |------|------| | **ML 연구원** | 모델 외부의 시스템 제약 이해 | | **소프트웨어 엔지니어** | ML 엔지니어링으로 전환하는 지식 지도 | | **시스템 엔지니어** | ML 워크로드 특성 파악 | | **학생** | 알고리즘에서 엔지니어링까지 완전한 관점 | | **기술 관리자** | ML 프로젝트의 엔지니어링 복잡성 이해 | ## 유사 리소스 비교 | 리소스 | 중점 | 가격 | 실무성 | |------|--------|------|--------| | **ML Systems Book** | 시스템 엔지니어링 | 무료 | ⭐⭐⭐⭐⭐ | | **Deep Learning Book** (Goodfellow) | 알고리즘 이론 | $80 | ⭐⭐⭐ | | **Designing ML Systems** (Huyen) | 프로덕션 실무 | $50 | ⭐⭐⭐⭐ | | **CS229** (Stanford) | 알고리즘 기초 | 무료 | ⭐⭐ | | **Made With ML** | MLOps | 무료 | ⭐⭐⭐⭐ | ## 커뮤니티 및 지원 - **GitHub Stars**: 24,113+ - **목표**: 2030년까지 100만 학습자 돕기 - **스폰서**: EDGE AI Foundation이 모든 Star에 자금을 매칭 - **오픈 콜렉티브**: Open Collective에서 기부 접수 ## 결론 ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교재**이며, **완전히 무료**입니다. - MIT Press 보증, 학술 품질 보장 - 데이터부터 배포까지 완전한 체인 커버 - 이론과 실무를 겸비하고, 코드 예제가 풍부 - 오픈소스 커뮤니티가 지속적으로 업데이트 모델을 훈련할 줄은 알지만 배포할 줄 모르거나, 프로덕션 환경에서 연구실만큼 성능이 안 나오는 경우, 이 책은 당신의 필수 과목입니다. **웹사이트**: [mlsysbook.ai](https://mlsysbook.ai/) **GitHub**: [harvard-edge/cs249r_book](https://github.com/harvard-edge/cs249r_book) **Stars**: 24,113+ | **출판사**: MIT Press (2026) ## 관련 기사 - [TabPFN: 테이블 데이터 기반 모델](/kr/resources/ai-tools/tabpfn-foundation-model-tabular-data/) - [Free LLM API Resources for AI Development](/kr/resources/llm-frameworks/free-llm-api-resources-ai-development/) - [Hermes Agent: 자기 개선하는 AI 에이전트](/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/) * * * ## 추천 도구 오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet. - **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 (챗봇, 코드 생성, 번역, 검색 등) LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%. *추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"ML Systems Book：MIT 무료 머신러닝 시스템 교과서\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/ml-systems-book-mit-press-textbook\" } } ## Why This Matters Understanding ml systems book：mit 무료 머신러닝 시스템 교과서 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion ML Systems Book：MIT 무료 머신러닝 시스템 교과서 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ",
+  "wordCount" : "1441",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/ml-systems-book-mit-press-textbook/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/ml-systems-book-mit-press-textbook/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/ml-systems-book-mit-press-textbook/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/ml-systems-book-mit-press-textbook/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%eb%ac%b8%ec%a0%9c-%ec%95%8c%ea%b3%a0%eb%a6%ac%ec%a6%98-%ec%9d%b4%ec%99%b8%ec%97%90-ml-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%ec%97%90%ea%b2%8c-%eb%ac%b4%ec%97%87%ec%9d%b4-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?">문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?</a></li>
+            <li>
+                <a href="#ml-systems-book%ec%9d%b4%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="ML Systems Book이란 무엇인가?">ML Systems Book이란 무엇인가?</a></li>
+            <li>
+                <a href="#%ed%95%b5%ec%8b%ac-%eb%82%b4%ec%9a%a9" aria-label="핵심 내용">핵심 내용</a><ul>
+                    
+            <li>
+                <a href="#1-%eb%8d%b0%ec%9d%b4%ed%84%b0-%ec%97%94%ec%a7%80%eb%8b%88%ec%96%b4%eb%a7%81data-engineering" aria-label="1. 데이터 엔지니어링(Data Engineering)">1. 데이터 엔지니어링(Data Engineering)</a></li>
+            <li>
+                <a href="#2-%eb%aa%a8%eb%8d%b8-%ec%b5%9c%ec%a0%81%ed%99%94model-optimization" aria-label="2. 모델 최적화(Model Optimization)">2. 모델 최적화(Model Optimization)</a></li>
+            <li>
+                <a href="#3-%ed%95%98%eb%93%9c%ec%9b%a8%ec%96%b4-%ec%9d%b8%ec%8b%9d-%ed%9b%88%eb%a0%a8hardware-aware-training" aria-label="3. 하드웨어 인식 훈련(Hardware-Aware Training)">3. 하드웨어 인식 훈련(Hardware-Aware Training)</a></li>
+            <li>
+                <a href="#4-%ec%b6%94%eb%a1%a0-%ea%b0%80%ec%86%8dinference-acceleration" aria-label="4. 추론 가속(Inference Acceleration)">4. 추론 가속(Inference Acceleration)</a></li>
+            <li>
+                <a href="#5-%eb%b0%b0%ed%8f%ac-%eb%b0%8f-mlops" aria-label="5. 배포 및 MLOps">5. 배포 및 MLOps</a></li>
+            <li>
+                <a href="#6-%ec%97%a3%ec%a7%80-%eb%b0%8f-%ec%9e%84%eb%b2%a0%eb%94%94%eb%93%9c-mledge--tinyml" aria-label="6. 엣지 및 임베디드 ML(Edge / TinyML)">6. 엣지 및 임베디드 ML(Edge / TinyML)</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ec%a7%80%ec%8b%9d-%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98" aria-label="지식 아키텍처">지식 아키텍처</a></li>
+            <li>
+                <a href="#%ed%9a%8d%eb%93%9d-%eb%b0%a9%eb%b2%95" aria-label="획득 방법">획득 방법</a><ul>
+                    
+            <li>
+                <a href="#%eb%ac%b4%eb%a3%8c-%ec%98%a8%eb%9d%bc%ec%9d%b8-%ec%9d%bd%ea%b8%b0" aria-label="무료 온라인 읽기">무료 온라인 읽기</a></li>
+            <li>
+                <a href="#%eb%ac%b4%eb%a3%8c-pdf-%eb%8b%a4%ec%9a%b4%eb%a1%9c%eb%93%9c" aria-label="무료 PDF 다운로드">무료 PDF 다운로드</a></li>
+            <li>
+                <a href="#github-%ec%86%8c%ec%8a%a4" aria-label="GitHub 소스">GitHub 소스</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - C++</p><ul><li>Docker</li><li>Go</li><li>Python
+tech_stack: - C++</p>
+<ul>
+<li>Docker</li>
+<li>Go</li>
+<li>Python
 application_domain: &ldquo;Ai Tools&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
-file_size: ""
-file_md5: ""
-download_url: &ldquo;<a href=https://github.com/harvard-edge/cs249r_book.git%22>https://github.com/harvard-edge/cs249r_book.git"</a>
-backup_url: "&rdquo;
+file_size: &quot;&quot;
+file_md5: &quot;&quot;
+download_url: &ldquo;<a href="https://github.com/harvard-edge/cs249r_book.git%22">https://github.com/harvard-edge/cs249r_book.git"</a>
+backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</li><li>/kr/posts/ml-systems-book-mit-press-textbook/
+aliases:</li>
+<li>/kr/posts/ml-systems-book-mit-press-textbook/
 faqs: - q: &lsquo;ML Systems Book은 어떤 주제를 다루나요?&rsquo;
-a: &lsquo;ML Systems Book은 분산 학습(데이터 병렬처리, 모델 병렬처리, 파이프라인 병렬처리 및 내결함성), 모델 서빙(배치 및 실시간 추론, 버전 관리, 자동 스케일링), 하드웨어 가속(GPU, TPU, ASIC, 양자화, 가지치기), ML 인프라(피처 스토어, 실험 추적, CI/CD, 모니터링), 그리고 비용 최적화(스팟 인스턴스, 모델 압축, 동적 배치)를 다룹니다.&rsquo;</li><li>q: &lsquo;ML Systems Book은 몇 개의 챕터로 구성되어 있으며 어떻게 편성되어 있나요?&rsquo;
-a: &lsquo;이 책은 12개의 챕터로 구성되어 있으며, ML 시스템 소개와 ML 워크로드를 시작으로 분산 학습, 모델 서빙, 하드웨어 가속기, ML 운영, 데이터 관리, 최적화, 신뢰성, 보안, 지속 가능성을 거쳐 미래 방향성으로 마무리됩니다.&rsquo;</li><li>q: &lsquo;ML Systems Book을 읽기 위한 사전 지식은 무엇인가요?&rsquo;
-a: &lsquo;독자는 기초 머신러닝 지식(Andrew Ng 강의 수준), Python 프로그래밍, 선형대수 및 미적분학, 그리고 메모리, I/O, 네트워킹 등 기본 컴퓨터 시스템 개념을 알고 있어야 합니다. 분산 시스템 배경 지식은 필요하지 않으며, 이 책이 기초 원리부터 직접 설명합니다.&rsquo;</li><li>q: &lsquo;ML Systems Book의 가격은 얼마이며 어떻게 구할 수 있나요?&rsquo;
-a: &lsquo;MIT Press에서 출판된 약 600페이지 분량의 이 책은 양장본 약 $75, 페이퍼백 약 $45이며, Kindle, Apple Books, Google Play에서 전자책으로도 구매할 수 있습니다. 무료 부가 자료로는 MIT OpenCourseWare의 강의 영상과 함께 제공되는 GitHub 저장소의 코드 예제가 있습니다.&rsquo;</li><li>q: &lsquo;ML Systems Book은 어떤 독자를 대상으로 하나요?&rsquo;
-a: &lsquo;이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.&rsquo;</li></ul><hr><p>{&lt;/* resource-info */>}</p><h2 id=문제-알고리즘-이외에-ml-엔지니어에게-무엇이-필요한가>문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?<a hidden class=anchor aria-hidden=true href=#문제-알고리즘-이외에-ml-엔지니어에게-무엇이-필요한가>#</a></h2><p>당신은 Transformer 아키텍처를 숙달하고 BERT를 처음부터 구현할 수 있지만, 실제 작업에서는 계속 벽에 부딪힙니다: - 모델 훈련 속도가 너무 느려서 병목이 데이터 로딩에 있는지 GPU 계산에 있는지 모릅니다</p><ul><li>엣지 장치에 배포 후 정확도가 급락하는데 양자화 최적화 방법을 모릅니다</li><li>서비스 QPS가 안 올라가서 추론 지연으로 사용자가 불만입니다</li><li>데이터 파이프라인이 매일 밤 중에 붕괴되는데 아무도 이유를 모릅니다</li></ul><p><strong>문제는 알고리즘이 아니라 시스템입니다.</strong></p><p>대부분의 ML 과정은 모델과 알고리즘만 가르치지만, 모델을 실제로 실행시키는 시스템 엔지니어링은 무시합니다. 이것이 바로 <strong>ML Systems Book</strong>이 채우려는 공백입니다.</p><h2 id=ml-systems-book이란-무엇인가>ML Systems Book이란 무엇인가?<a hidden class=anchor aria-hidden=true href=#ml-systems-book이란-무엇인가>#</a></h2><p><a href=https://mlsysbook.ai/>Machine Learning Systems</a>는 <strong>MIT Press</strong>에서 출판한 머신러닝 시스템 교재로, 2026년에 정식 발행됩니다. 이 책은 GitHub에서 <strong>24,113+ Stars</strong>를 보유하고 있으며, 2030년까지 <strong>100만 학습자</strong>가 ML 시스템 엔지니어링을 마스터하도록 돕는 것을 목표로 합니다.</p><p>알고리즘과 모델 아키텍처만 다루는 리소스와 달리, 이 책은 <strong>시스템 관점</strong>을 강조합니다: - 데이터 엔지니어링이 훈련 효율에 어떤 영향을 미치는지</p><ul><li>하드웨어 특성이 모델 설계를 어떻게 결정하는지</li><li>추론 가속의 엔지니어링 트레이드오프</li><li>연구실부터 프로덕션 환경까지의 완전한 체인</li></ul><h2 id=핵심-내용>핵심 내용<a hidden class=anchor aria-hidden=true href=#핵심-내용>#</a></h2><h3 id=1-데이터-엔지니어링data-engineering>1. 데이터 엔지니어링(Data Engineering)<a hidden class=anchor aria-hidden=true href=#1-데이터-엔지니어링data-engineering>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 비효율적인 데이터 로딩은 훈련 병목의 1위 원인</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 이 책은 효율적인 데이터 파이프라인 구축을 가르칩니다</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> tensorflow <span style=color:#66d9ef>as</span> tf
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ❌ 비효율: 단일 스레드 로딩</span>
-</span></span><span style=display:flex><span>dataset <span style=color:#f92672>=</span> tf<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>Dataset<span style=color:#f92672>.</span>from_tensor_slices(data)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 효율: 프리페치 + 병렬 + 캐싱</span>
-</span></span><span style=display:flex><span>dataset <span style=color:#f92672>=</span> (tf<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>Dataset<span style=color:#f92672>.</span>from_tensor_slices(data)
-</span></span><span style=display:flex><span>           <span style=color:#f92672>.</span>map(preprocess, num_parallel_calls<span style=color:#f92672>=</span>tf<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>AUTOTUNE)
-</span></span><span style=display:flex><span>           <span style=color:#f92672>.</span>cache()
-</span></span><span style=display:flex><span>           <span style=color:#f92672>.</span>prefetch(tf<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>AUTOTUNE))
-</span></span></code></pre></div><p>다루는 주제: - 데이터 형식(TFRecord, Parquet, Arrow)</p><ul><li>ETL 파이프라인 설계</li><li>데이터 버전 관리</li><li>품질 모니터링 및 클리닝</li></ul><h3 id=2-모델-최적화model-optimization>2. 모델 최적화(Model Optimization)<a hidden class=anchor aria-hidden=true href=#2-모델-최적화model-optimization>#</a></h3><table><thead><tr><th>기술</th><th>목표</th><th>적용 시나리오</th></tr></thead><tbody><tr><td><strong>양자화(Quantization)</strong></td><td>INT8/FP16 추론</td><td>엣지 장치 배포</td></tr><tr><td><strong>가지치기(Pruning)</strong></td><td>매개변수 감소</td><td>모델 압축</td></tr><tr><td><strong>증류(Distillation)</strong></td><td>소형 모델이 대형 모델 학습</td><td>모바일</td></tr><tr><td><strong>컴파일 최적화(XLA, TVM)</strong></td><td>연산자 융합</td><td>추론 가속</td></tr><tr><td><strong>동적 배치 처리</strong></td><td>처리량 향상</td><td>서버측</td></tr></tbody></table><h3 id=3-하드웨어-인식-훈련hardware-aware-training>3. 하드웨어 인식 훈련(Hardware-Aware Training)<a hidden class=anchor aria-hidden=true href=#3-하드웨어-인식-훈련hardware-aware-training>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 하드웨어 특성을 이해해야 효율적인 훈련 코드를 작성할 수 있습니다</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># GPU: 메모리 대역폭이 병목 → 데이터 전송 감소</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># TPU: 행렬 곱 최적화 → 적절한 batch size 사용</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Edge NPU: 고정 소수점 연산 → 양자화 인식 훈련</span>
-</span></span></code></pre></div><ul><li><strong>GPU</strong>: CUDA 프로그래밍, 메모리 관리, 다중 카드 병렬</li><li><strong>TPU</strong>: XLA 컴파일, Pod 아키텍처, GSPMD</li><li><strong>Edge</strong>: 고정 소수점 연산, 메모리 제한, 전력 제약</li></ul><h3 id=4-추론-가속inference-acceleration>4. 추론 가속(Inference Acceleration)<a hidden class=anchor aria-hidden=true href=#4-추론-가속inference-acceleration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 100ms에서 10ms로 줄이는 엔지니어링 실무</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 1. 모델 변환: ONNX → TensorRT</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. 연산자 최적화: Conv+BN+ReLU 융합</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. 메모리 최적화: 가중치 공유, 활성화 재계산</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. 배치 처리: 동적 batching + 요청 병합</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 5. 캐싱: 결과 캐싱 + 모델 워밍업</span>
-</span></span></code></pre></div><h3 id=5-배포-및-mlops>5. 배포 및 MLOps<a hidden class=anchor aria-hidden=true href=#5-배포-및-mlops>#</a></h3><ul><li><strong>모델 서빙</strong>: TensorFlow Serving, TorchServe, Triton</li><li><strong>컨테이너화</strong>: Docker, Kubernetes</li><li><strong>모니터링</strong>: 지연 시간, 처리량, 오류율, 데이터 드리프트</li><li><strong>A/B 테스트</strong>: 온라인 실험, 섀도우 트래픽</li></ul><h3 id=6-엣지-및-임베디드-mledge--tinyml>6. 엣지 및 임베디드 ML(Edge / TinyML)<a hidden class=anchor aria-hidden=true href=#6-엣지-및-임베디드-mledge--tinyml>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-cpp data-lang=cpp><span style=display:flex><span><span style=color:#75715e>// 마이크로컨트롤러에서 ML 실행(TinyML)
-</span></span></span><span style=display:flex><span><span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;tensorflow/lite/micro/micro_interpreter.h&#34;</span><span style=color:#75715e>
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// 모델이 20KB에 불과, 16MHz Arduino에서 실행
-</span></span></span><span style=display:flex><span><span style=color:#75715e>// 음성 웨이크업, 제스처 인식 가능
-</span></span></span></code></pre></div><ul><li><strong>모델 압축</strong>: 100MB에서 100KB로</li><li><strong>하드웨어 플랫폼</strong>: Arduino, ESP32, Raspberry Pi</li><li><strong>응용</strong>: 음성 웨이크업, 이상 탐지, 예측 유지보수</li></ul><h2 id=지식-아키텍처>지식 아키텍처<a hidden class=anchor aria-hidden=true href=#지식-아키텍처>#</a></h2><pre tabindex=0><code>ML Systems Book
+a: &lsquo;ML Systems Book은 분산 학습(데이터 병렬처리, 모델 병렬처리, 파이프라인 병렬처리 및 내결함성), 모델 서빙(배치 및 실시간 추론, 버전 관리, 자동 스케일링), 하드웨어 가속(GPU, TPU, ASIC, 양자화, 가지치기), ML 인프라(피처 스토어, 실험 추적, CI/CD, 모니터링), 그리고 비용 최적화(스팟 인스턴스, 모델 압축, 동적 배치)를 다룹니다.&rsquo;</li>
+<li>q: &lsquo;ML Systems Book은 몇 개의 챕터로 구성되어 있으며 어떻게 편성되어 있나요?&rsquo;
+a: &lsquo;이 책은 12개의 챕터로 구성되어 있으며, ML 시스템 소개와 ML 워크로드를 시작으로 분산 학습, 모델 서빙, 하드웨어 가속기, ML 운영, 데이터 관리, 최적화, 신뢰성, 보안, 지속 가능성을 거쳐 미래 방향성으로 마무리됩니다.&rsquo;</li>
+<li>q: &lsquo;ML Systems Book을 읽기 위한 사전 지식은 무엇인가요?&rsquo;
+a: &lsquo;독자는 기초 머신러닝 지식(Andrew Ng 강의 수준), Python 프로그래밍, 선형대수 및 미적분학, 그리고 메모리, I/O, 네트워킹 등 기본 컴퓨터 시스템 개념을 알고 있어야 합니다. 분산 시스템 배경 지식은 필요하지 않으며, 이 책이 기초 원리부터 직접 설명합니다.&rsquo;</li>
+<li>q: &lsquo;ML Systems Book의 가격은 얼마이며 어떻게 구할 수 있나요?&rsquo;
+a: &lsquo;MIT Press에서 출판된 약 600페이지 분량의 이 책은 양장본 약 $75, 페이퍼백 약 $45이며, Kindle, Apple Books, Google Play에서 전자책으로도 구매할 수 있습니다. 무료 부가 자료로는 MIT OpenCourseWare의 강의 영상과 함께 제공되는 GitHub 저장소의 코드 예제가 있습니다.&rsquo;</li>
+<li>q: &lsquo;ML Systems Book은 어떤 독자를 대상으로 하나요?&rsquo;
+a: &lsquo;이 책은 프로덕션 환경에서 대규모 학습 및 저지연 모델 서빙이 필요한 ML 엔지니어, ML로 전환을 준비 중인 소프트웨어 엔지니어, 실험 속도를 높이고 싶은 연구자, 그리고 ML 인프라 투자와 팀 구조를 계획하는 엔지니어링 매니저를 대상으로 합니다.&rsquo;</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="문제-알고리즘-이외에-ml-엔지니어에게-무엇이-필요한가">문제: 알고리즘 이외에 ML 엔지니어에게 무엇이 필요한가?<a hidden class="anchor" aria-hidden="true" href="#문제-알고리즘-이외에-ml-엔지니어에게-무엇이-필요한가">#</a></h2>
+<p>당신은 Transformer 아키텍처를 숙달하고 BERT를 처음부터 구현할 수 있지만, 실제 작업에서는 계속 벽에 부딪힙니다: - 모델 훈련 속도가 너무 느려서 병목이 데이터 로딩에 있는지 GPU 계산에 있는지 모릅니다</p>
+<ul>
+<li>엣지 장치에 배포 후 정확도가 급락하는데 양자화 최적화 방법을 모릅니다</li>
+<li>서비스 QPS가 안 올라가서 추론 지연으로 사용자가 불만입니다</li>
+<li>데이터 파이프라인이 매일 밤 중에 붕괴되는데 아무도 이유를 모릅니다</li>
+</ul>
+<p><strong>문제는 알고리즘이 아니라 시스템입니다.</strong></p>
+<p>대부분의 ML 과정은 모델과 알고리즘만 가르치지만, 모델을 실제로 실행시키는 시스템 엔지니어링은 무시합니다. 이것이 바로 <strong>ML Systems Book</strong>이 채우려는 공백입니다.</p>
+<h2 id="ml-systems-book이란-무엇인가">ML Systems Book이란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#ml-systems-book이란-무엇인가">#</a></h2>
+<p><a href="https://mlsysbook.ai/">Machine Learning Systems</a>는 <strong>MIT Press</strong>에서 출판한 머신러닝 시스템 교재로, 2026년에 정식 발행됩니다. 이 책은 GitHub에서 <strong>24,113+ Stars</strong>를 보유하고 있으며, 2030년까지 <strong>100만 학습자</strong>가 ML 시스템 엔지니어링을 마스터하도록 돕는 것을 목표로 합니다.</p>
+<p>알고리즘과 모델 아키텍처만 다루는 리소스와 달리, 이 책은 <strong>시스템 관점</strong>을 강조합니다: - 데이터 엔지니어링이 훈련 효율에 어떤 영향을 미치는지</p>
+<ul>
+<li>하드웨어 특성이 모델 설계를 어떻게 결정하는지</li>
+<li>추론 가속의 엔지니어링 트레이드오프</li>
+<li>연구실부터 프로덕션 환경까지의 완전한 체인</li>
+</ul>
+<h2 id="핵심-내용">핵심 내용<a hidden class="anchor" aria-hidden="true" href="#핵심-내용">#</a></h2>
+<h3 id="1-데이터-엔지니어링data-engineering">1. 데이터 엔지니어링(Data Engineering)<a hidden class="anchor" aria-hidden="true" href="#1-데이터-엔지니어링data-engineering">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 비효율적인 데이터 로딩은 훈련 병목의 1위 원인</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 이 책은 효율적인 데이터 파이프라인 구축을 가르칩니다</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> tensorflow <span style="color:#66d9ef">as</span> tf
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ❌ 비효율: 단일 스레드 로딩</span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> tf<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>Dataset<span style="color:#f92672">.</span>from_tensor_slices(data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 효율: 프리페치 + 병렬 + 캐싱</span>
+</span></span><span style="display:flex;"><span>dataset <span style="color:#f92672">=</span> (tf<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>Dataset<span style="color:#f92672">.</span>from_tensor_slices(data)
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">.</span>map(preprocess, num_parallel_calls<span style="color:#f92672">=</span>tf<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>AUTOTUNE)
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">.</span>cache()
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">.</span>prefetch(tf<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>AUTOTUNE))
+</span></span></code></pre></div><p>다루는 주제: - 데이터 형식(TFRecord, Parquet, Arrow)</p>
+<ul>
+<li>ETL 파이프라인 설계</li>
+<li>데이터 버전 관리</li>
+<li>품질 모니터링 및 클리닝</li>
+</ul>
+<h3 id="2-모델-최적화model-optimization">2. 모델 최적화(Model Optimization)<a hidden class="anchor" aria-hidden="true" href="#2-모델-최적화model-optimization">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>기술</th>
+					<th>목표</th>
+					<th>적용 시나리오</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>양자화(Quantization)</strong></td>
+					<td>INT8/FP16 추론</td>
+					<td>엣지 장치 배포</td>
+			</tr>
+			<tr>
+					<td><strong>가지치기(Pruning)</strong></td>
+					<td>매개변수 감소</td>
+					<td>모델 압축</td>
+			</tr>
+			<tr>
+					<td><strong>증류(Distillation)</strong></td>
+					<td>소형 모델이 대형 모델 학습</td>
+					<td>모바일</td>
+			</tr>
+			<tr>
+					<td><strong>컴파일 최적화(XLA, TVM)</strong></td>
+					<td>연산자 융합</td>
+					<td>추론 가속</td>
+			</tr>
+			<tr>
+					<td><strong>동적 배치 처리</strong></td>
+					<td>처리량 향상</td>
+					<td>서버측</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="3-하드웨어-인식-훈련hardware-aware-training">3. 하드웨어 인식 훈련(Hardware-Aware Training)<a hidden class="anchor" aria-hidden="true" href="#3-하드웨어-인식-훈련hardware-aware-training">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 하드웨어 특성을 이해해야 효율적인 훈련 코드를 작성할 수 있습니다</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GPU: 메모리 대역폭이 병목 → 데이터 전송 감소</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TPU: 행렬 곱 최적화 → 적절한 batch size 사용</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Edge NPU: 고정 소수점 연산 → 양자화 인식 훈련</span>
+</span></span></code></pre></div><ul>
+<li><strong>GPU</strong>: CUDA 프로그래밍, 메모리 관리, 다중 카드 병렬</li>
+<li><strong>TPU</strong>: XLA 컴파일, Pod 아키텍처, GSPMD</li>
+<li><strong>Edge</strong>: 고정 소수점 연산, 메모리 제한, 전력 제약</li>
+</ul>
+<h3 id="4-추론-가속inference-acceleration">4. 추론 가속(Inference Acceleration)<a hidden class="anchor" aria-hidden="true" href="#4-추론-가속inference-acceleration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 100ms에서 10ms로 줄이는 엔지니어링 실무</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 1. 모델 변환: ONNX → TensorRT</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. 연산자 최적화: Conv+BN+ReLU 융합</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. 메모리 최적화: 가중치 공유, 활성화 재계산</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. 배치 처리: 동적 batching + 요청 병합</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. 캐싱: 결과 캐싱 + 모델 워밍업</span>
+</span></span></code></pre></div><h3 id="5-배포-및-mlops">5. 배포 및 MLOps<a hidden class="anchor" aria-hidden="true" href="#5-배포-및-mlops">#</a></h3>
+<ul>
+<li><strong>모델 서빙</strong>: TensorFlow Serving, TorchServe, Triton</li>
+<li><strong>컨테이너화</strong>: Docker, Kubernetes</li>
+<li><strong>모니터링</strong>: 지연 시간, 처리량, 오류율, 데이터 드리프트</li>
+<li><strong>A/B 테스트</strong>: 온라인 실험, 섀도우 트래픽</li>
+</ul>
+<h3 id="6-엣지-및-임베디드-mledge--tinyml">6. 엣지 및 임베디드 ML(Edge / TinyML)<a hidden class="anchor" aria-hidden="true" href="#6-엣지-및-임베디드-mledge--tinyml">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-cpp" data-lang="cpp"><span style="display:flex;"><span><span style="color:#75715e">// 마이크로컨트롤러에서 ML 실행(TinyML)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">#include</span> <span style="color:#75715e">&#34;tensorflow/lite/micro/micro_interpreter.h&#34;</span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// 모델이 20KB에 불과, 16MHz Arduino에서 실행
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// 음성 웨이크업, 제스처 인식 가능
+</span></span></span></code></pre></div><ul>
+<li><strong>모델 압축</strong>: 100MB에서 100KB로</li>
+<li><strong>하드웨어 플랫폼</strong>: Arduino, ESP32, Raspberry Pi</li>
+<li><strong>응용</strong>: 음성 웨이크업, 이상 탐지, 예측 유지보수</li>
+</ul>
+<h2 id="지식-아키텍처">지식 아키텍처<a hidden class="anchor" aria-hidden="true" href="#지식-아키텍처">#</a></h2>
+<pre tabindex="0"><code>ML Systems Book
 ├── Part 1: Foundations
 │   ├── ML 복습
 │   ├── 컴퓨터 아키텍처 기초
@@ -84,146 +422,294 @@ a: &lsquo;이 책은 프로덕션 환경에서 대규모 학습 및 저지연 �
     ├── ML용 CI/CD
     ├── 모니터링 및 관찰 가능성
     └── 윤리 및 보안
-</code></pre><h2 id=획득-방법>획득 방법<a hidden class=anchor aria-hidden=true href=#획득-방법>#</a></h2><h3 id=무료-온라인-읽기>무료 온라인 읽기<a hidden class=anchor aria-hidden=true href=#무료-온라인-읽기>#</a></h3><pre tabindex=0><code>https://mlsysbook.ai/book/
-</code></pre><h3 id=무료-pdf-다운로드>무료 PDF 다운로드<a hidden class=anchor aria-hidden=true href=#무료-pdf-다운로드>#</a></h3><pre tabindex=0><code>https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf
-</code></pre><h3 id=github-소스>GitHub 소스<a hidden class=anchor aria-hidden=true href=#github-소스>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/harvard-edge/cs249r_book.git
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 종이책 구매</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- **출판사**: MIT Press <span style=color:#f92672>(</span>2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- **ISBN**: 미정
-</span></span><span style=display:flex><span>- **가격**: 약 $60-80
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 누구에게 적합한가?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| 독자 | 수확 |
-</span></span><span style=display:flex><span>|------|------|
-</span></span><span style=display:flex><span>| **ML 연구원** | 모델 외부의 시스템 제약 이해 |
-</span></span><span style=display:flex><span>| **소프트웨어 엔지니어** | ML 엔지니어링으로 전환하는 지식 지도 |
-</span></span><span style=display:flex><span>| **시스템 엔지니어** | ML 워크로드 특성 파악 |
-</span></span><span style=display:flex><span>| **학생** | 알고리즘에서 엔지니어링까지 완전한 관점 |
-</span></span><span style=display:flex><span>| **기술 관리자** | ML 프로젝트의 엔지니어링 복잡성 이해 |
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 유사 리소스 비교</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| 리소스 | 중점 | 가격 | 실무성 |
-</span></span><span style=display:flex><span>|------|--------|------|--------|
-</span></span><span style=display:flex><span>| **ML Systems Book** | 시스템 엔지니어링 | 무료 | ⭐⭐⭐⭐⭐ |
-</span></span><span style=display:flex><span>| **Deep Learning Book** <span style=color:#f92672>(</span>Goodfellow<span style=color:#f92672>)</span> | 알고리즘 이론 | $80 | ⭐⭐⭐ |
-</span></span><span style=display:flex><span>| **Designing ML Systems** <span style=color:#f92672>(</span>Huyen<span style=color:#f92672>)</span> | 프로덕션 실무 | $50 | ⭐⭐⭐⭐ |
-</span></span><span style=display:flex><span>| **CS229** <span style=color:#f92672>(</span>Stanford<span style=color:#f92672>)</span> | 알고리즘 기초 | 무료 | ⭐⭐ |
-</span></span><span style=display:flex><span>| **Made With ML** | MLOps | 무료 | ⭐⭐⭐⭐ |
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 커뮤니티 및 지원</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- **GitHub Stars**: 24,113+
-</span></span><span style=display:flex><span>- **목표**: 2030년까지 100만 학습자 돕기
-</span></span><span style=display:flex><span>- **스폰서**: EDGE AI Foundation이 모든 Star에 자금을 매칭
-</span></span><span style=display:flex><span>- **오픈 콜렉티브**: Open Collective에서 기부 접수
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 결론</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교재**이며, **완전히 무료**입니다.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- MIT Press 보증, 학술 품질 보장
-</span></span><span style=display:flex><span>- 데이터부터 배포까지 완전한 체인 커버
-</span></span><span style=display:flex><span>- 이론과 실무를 겸비하고, 코드 예제가 풍부
-</span></span><span style=display:flex><span>- 오픈소스 커뮤니티가 지속적으로 업데이트
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>모델을 훈련할 줄은 알지만 배포할 줄 모르거나, 프로덕션 환경에서 연구실만큼 성능이 안 나오는 경우, 이 책은 당신의 필수 과목입니다.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**웹사이트**: <span style=color:#f92672>[</span>mlsysbook.ai<span style=color:#f92672>](</span>https://mlsysbook.ai/<span style=color:#f92672>)</span>  
-</span></span><span style=display:flex><span>**GitHub**: <span style=color:#f92672>[</span>harvard-edge/cs249r_book<span style=color:#f92672>](</span>https://github.com/harvard-edge/cs249r_book<span style=color:#f92672>)</span>  
-</span></span><span style=display:flex><span>**Stars**: 24,113+ | **출판사**: MIT Press <span style=color:#f92672>(</span>2026<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 관련 기사</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>TabPFN: 테이블 데이터 기반 모델<span style=color:#f92672>](</span>/kr/resources/ai-tools/tabpfn-foundation-model-tabular-data/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Free LLM API Resources <span style=color:#66d9ef>for</span> AI Development<span style=color:#f92672>](</span>/kr/resources/llm-frameworks/free-llm-api-resources-ai-development/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Hermes Agent: 자기 개선하는 AI 에이전트<span style=color:#f92672>](</span>/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 추천 도구</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
-</span></span><span style=display:flex><span>- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 <span style=color:#f92672>(</span>챗봇, 코드 생성, 번역, 검색 등<span style=color:#f92672>)</span> LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;ML Systems Book：MIT 무료 머신러닝 시스템 교과서&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-05-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-05-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/kr/resources/ml-systems-book-mit-press-textbook&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding ml systems book：mit 무료 머신러닝 시스템 교과서 is crucial <span style=color:#66d9ef>for</span> modern AI development. Here<span style=color:#960050;background-color:#1e0010>&#39;</span>s why: <span style=color:#75715e>### Key Benefits</span>
-</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
-</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
-</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
-</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
-</span></span><span style=display:flex><span>2. Generate documentation automatically
-</span></span><span style=display:flex><span>3. Build internal knowledge bases
-</span></span><span style=display:flex><span>4. Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
-</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
-</span></span><span style=display:flex><span>   - Identify repetitive tasks
-</span></span><span style=display:flex><span>   - Measure current time costs
-</span></span><span style=display:flex><span>   - Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **Choose Your Approach**
-</span></span><span style=display:flex><span>   - Start with simple automations
-</span></span><span style=display:flex><span>   - Gradually increase complexity
-</span></span><span style=display:flex><span>   - Test and iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **Measure Results**
-</span></span><span style=display:flex><span>   - Track time savings
-</span></span><span style=display:flex><span>   - Monitor quality improvements
-</span></span><span style=display:flex><span>   - Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>ML Systems Book：MIT 무료 머신러닝 시스템 교과서 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
-</span></span><span style=display:flex><span>*Read time: ~5 minutes*
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/mistral-ai-local-llm-deployment/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/moneyprinter-turbo-ai-video-generation-one-command/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre><h2 id="획득-방법">획득 방법<a hidden class="anchor" aria-hidden="true" href="#획득-방법">#</a></h2>
+<h3 id="무료-온라인-읽기">무료 온라인 읽기<a hidden class="anchor" aria-hidden="true" href="#무료-온라인-읽기">#</a></h3>
+<pre tabindex="0"><code>https://mlsysbook.ai/book/
+</code></pre><h3 id="무료-pdf-다운로드">무료 PDF 다운로드<a hidden class="anchor" aria-hidden="true" href="#무료-pdf-다운로드">#</a></h3>
+<pre tabindex="0"><code>https://mlsysbook.ai/book/assets/downloads/Machine-Learning-Systems.pdf
+</code></pre><h3 id="github-소스">GitHub 소스<a hidden class="anchor" aria-hidden="true" href="#github-소스">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/harvard-edge/cs249r_book.git
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 종이책 구매</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- **출판사**: MIT Press <span style="color:#f92672">(</span>2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- **ISBN**: 미정
+</span></span><span style="display:flex;"><span>- **가격**: 약 $60-80
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 누구에게 적합한가?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| 독자 | 수확 |
+</span></span><span style="display:flex;"><span>|------|------|
+</span></span><span style="display:flex;"><span>| **ML 연구원** | 모델 외부의 시스템 제약 이해 |
+</span></span><span style="display:flex;"><span>| **소프트웨어 엔지니어** | ML 엔지니어링으로 전환하는 지식 지도 |
+</span></span><span style="display:flex;"><span>| **시스템 엔지니어** | ML 워크로드 특성 파악 |
+</span></span><span style="display:flex;"><span>| **학생** | 알고리즘에서 엔지니어링까지 완전한 관점 |
+</span></span><span style="display:flex;"><span>| **기술 관리자** | ML 프로젝트의 엔지니어링 복잡성 이해 |
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 유사 리소스 비교</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| 리소스 | 중점 | 가격 | 실무성 |
+</span></span><span style="display:flex;"><span>|------|--------|------|--------|
+</span></span><span style="display:flex;"><span>| **ML Systems Book** | 시스템 엔지니어링 | 무료 | ⭐⭐⭐⭐⭐ |
+</span></span><span style="display:flex;"><span>| **Deep Learning Book** <span style="color:#f92672">(</span>Goodfellow<span style="color:#f92672">)</span> | 알고리즘 이론 | $80 | ⭐⭐⭐ |
+</span></span><span style="display:flex;"><span>| **Designing ML Systems** <span style="color:#f92672">(</span>Huyen<span style="color:#f92672">)</span> | 프로덕션 실무 | $50 | ⭐⭐⭐⭐ |
+</span></span><span style="display:flex;"><span>| **CS229** <span style="color:#f92672">(</span>Stanford<span style="color:#f92672">)</span> | 알고리즘 기초 | 무료 | ⭐⭐ |
+</span></span><span style="display:flex;"><span>| **Made With ML** | MLOps | 무료 | ⭐⭐⭐⭐ |
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 커뮤니티 및 지원</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- **GitHub Stars**: 24,113+
+</span></span><span style="display:flex;"><span>- **목표**: 2030년까지 100만 학습자 돕기
+</span></span><span style="display:flex;"><span>- **스폰서**: EDGE AI Foundation이 모든 Star에 자금을 매칭
+</span></span><span style="display:flex;"><span>- **오픈 콜렉티브**: Open Collective에서 기부 접수
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 결론</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ML Systems Book은 **현재 가장 포괄적인 ML 시스템 엔지니어링 교재**이며, **완전히 무료**입니다.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- MIT Press 보증, 학술 품질 보장
+</span></span><span style="display:flex;"><span>- 데이터부터 배포까지 완전한 체인 커버
+</span></span><span style="display:flex;"><span>- 이론과 실무를 겸비하고, 코드 예제가 풍부
+</span></span><span style="display:flex;"><span>- 오픈소스 커뮤니티가 지속적으로 업데이트
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>모델을 훈련할 줄은 알지만 배포할 줄 모르거나, 프로덕션 환경에서 연구실만큼 성능이 안 나오는 경우, 이 책은 당신의 필수 과목입니다.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**웹사이트**: <span style="color:#f92672">[</span>mlsysbook.ai<span style="color:#f92672">](</span>https://mlsysbook.ai/<span style="color:#f92672">)</span>  
+</span></span><span style="display:flex;"><span>**GitHub**: <span style="color:#f92672">[</span>harvard-edge/cs249r_book<span style="color:#f92672">](</span>https://github.com/harvard-edge/cs249r_book<span style="color:#f92672">)</span>  
+</span></span><span style="display:flex;"><span>**Stars**: 24,113+ | **출판사**: MIT Press <span style="color:#f92672">(</span>2026<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 관련 기사</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>TabPFN: 테이블 데이터 기반 모델<span style="color:#f92672">](</span>/kr/resources/ai-tools/tabpfn-foundation-model-tabular-data/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Free LLM API Resources <span style="color:#66d9ef">for</span> AI Development<span style="color:#f92672">](</span>/kr/resources/llm-frameworks/free-llm-api-resources-ai-development/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Hermes Agent: 자기 개선하는 AI 에이전트<span style="color:#f92672">](</span>/kr/resources/llm-frameworks/hermes-agent-self-improving-ai-agent/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 추천 도구</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>오픈소스 AI 도구 개발/배포 시 권장: - **** — 신규 가입 시 $200 크레딧 60일, 글로벌 14+ 리전, AI 워크로드용 원클릭 droplet.
+</span></span><span style="display:flex;"><span>- **** — Anthropic Claude / OpenAI / DeepSeek API 프록시. 위의 AI 도구 대부분 <span style="color:#f92672">(</span>챗봇, 코드 생성, 번역, 검색 등<span style="color:#f92672">)</span> LLM API 키 필요 — 이 프록시로 안정적인 톱 모델 액세스, 공식 가격의 ~30%.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*추천 링크 — 추가 비용 없이 dibi8.com을 지원합니다.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;ML Systems Book：MIT 무료 머신러닝 시스템 교과서&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/kr/resources/ml-systems-book-mit-press-textbook&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding ml systems book：mit 무료 머신러닝 시스템 교과서 is crucial <span style="color:#66d9ef">for</span> modern AI development. Here<span style="color:#960050;background-color:#1e0010">&#39;</span>s why: <span style="color:#75715e">### Key Benefits</span>
+</span></span><span style="display:flex;"><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span>- **Quality**: Improve output consistency  
+</span></span><span style="display:flex;"><span>- **Scalability**: Handle larger workloads
+</span></span><span style="display:flex;"><span>- **Cost**: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Real-World Applications</span>
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style="display:flex;"><span>2. Generate documentation automatically
+</span></span><span style="display:flex;"><span>3. Build internal knowledge bases
+</span></span><span style="display:flex;"><span>4. Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Getting Started</span>
+</span></span><span style="display:flex;"><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style="display:flex;"><span>   - Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   - Measure current time costs
+</span></span><span style="display:flex;"><span>   - Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **Choose Your Approach**
+</span></span><span style="display:flex;"><span>   - Start with simple automations
+</span></span><span style="display:flex;"><span>   - Gradually increase complexity
+</span></span><span style="display:flex;"><span>   - Test and iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **Measure Results**
+</span></span><span style="display:flex;"><span>   - Track time savings
+</span></span><span style="display:flex;"><span>   - Monitor quality improvements
+</span></span><span style="display:flex;"><span>   - Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>ML Systems Book：MIT 무료 머신러닝 시스템 교과서 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Last updated: 2026-09-20*
+</span></span><span style="display:flex;"><span>*Read time: ~5 minutes*
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/mistral-ai-local-llm-deployment/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/mlops-platform-comparison-mlflow-wandb-neptune/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

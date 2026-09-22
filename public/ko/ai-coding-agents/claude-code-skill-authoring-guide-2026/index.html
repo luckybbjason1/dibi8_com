@@ -1,10 +1,266 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/claude-code-skill-authoring-guide-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/claude-code-skill-authoring-guide-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/claude-code-skill-authoring-guide-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-28T00:00:00+08:00 lastmod: 2026-05-29T00:00:00+08:00 tech_stack: [‘Claude Code’, ‘Agent SDK’, Markdown, YAML] application_domain: LLM Frameworks source_version: ’’ licensing_model: Commercial (Anthropic) license_type: Proprietary file_size: ’’ file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-28” draft: false categories: [“llm-frameworks”] tags: [“claude-code”, “skills”, “agent-sdk”, “ai-coding-agents”, “llm-frameworks”, “developer-tools”, “prompt-engineering”] aliases:\n/posts/claude-code-skill-authoring/ faq: - q: “스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 무엇인가요?” a: “스킬은 SKILL.md 파일을 담은 디렉터리로, .claude/skills// (프로젝트 범위) 또는 ~/.claude/skills// (사용자 범위) 아래에 위치합니다. 최소 구성은 name과 description을 담은 YAML 프런트매터, 그리고 그 뒤에 본문으로 들어가는 지시문입니다. 디렉터리에는 스킬이 가리키는 보조 파일 — 참조 문서, 스크립트, 템플릿 — 도 함께 둘 수 있지만, 이 두 프런트매터 필드를 갖춘 SKILL.md가 더 이상 줄일 수 없는 핵심입니다.” q: “스킬과 단순히 CLAUDE.md에 지시문을 넣는 것의 차이는 무엇인가요?” a: “CLAUDE.md는 모든 상호작용마다 빠짐없이 로딩됩니다 — 항상 켜져 있는 프로젝트 전역 규칙용입니다. 반면 스킬은 그 description이 현재 작업과 맞을 때만 로딩됩니다. CLAUDE.md는 『항상 탭을 사용한다』, 『main에 직접 커밋하지 않는다』 같은 규칙에 쓰세요. 스킬은 『릴리스를 자르는 방법』이나 『불안정한(flaky) 테스트를 디버깅하는 방법』처럼 상황에 따른 절차 — 모든 프롬프트를 비대하게 만들고 싶지 않고, 실제로 그 작업을 할 때만 존재하길 바라는 지식 — 에 쓰세요. 스킬은 기본 컨텍스트를 가볍게 유지해 줍니다.” q: “description 필드는 스킬이 언제 로딩될지를 어떻게 제어하나요?” a: “description은 곧 트리거 신호입니다. Claude는 스킬 description들을 읽어 현재 작업에 어떤 스킬이 관련 있는지 판단한 뒤, 그 스킬의 전체 본문을 컨텍스트로 불러옵니다. 따라서 description은 스킬이 무엇인지가 아니라 언제 써야 하는지를 구체적인 단서로 묘사해야 합니다 — 『릴리스를 자르거나, 버전을 게시하거나, 빌드에 태그를 달 때 사용』처럼요. 모호한 description(『릴리스 헬퍼』)은 스킬이 존재하긴 해도 정작 필요한 순간에 발동하지 않게 만듭니다.” q: “점진적 공개(progressive disclosure)란 무엇이며 스킬에 왜 중요한가요?” a: “점진적 공개란 스킬이 먼저 가벼운 SKILL.md를 로딩하고, 더 무거운 보조 파일(상세 참조 문서, 큰 템플릿, 스크립트)은 작업이 실제로 필요로 할 때만 끌어오는 방식을 말합니다. SKILL.md는 짧게 유지하고 깊은 세부 내용은 references/big-spec.md를 가리키게 합니다. 이렇게 하면 컨텍스트가 보호됩니다 — 라우팅을 위한 트리거와 개요는 로딩 비용이 싸고, 비싼 세부 내용은 스킬이 진짜로 동작에 들어간 뒤에야 대화에 진입합니다.” q: “스킬에 스크립트도 포함할 수 있나요, 아니면 지시문만 담나요?” a: “둘 다 가능합니다. 스킬 디렉터리는 SKILL.md와 함께 스크립트(파이썬 헬퍼, 셸 스크립트), 템플릿, 참조 문서를 묶을 수 있습니다. 본문은 Claude에게 번들된 스크립트를 실행하거나 번들된 참조 문서를 읽으라고 지시할 수 있습니다. 바로 이 점이 스킬을 단순한 프롬프트 이상으로 만들어 줍니다 — 지시문, 참조 자료, 실행 가능한 헬퍼가 모두 하나의 디렉터리에서 함께 버전 관리되는, 패키징된 역량인 것이죠.” q: “스킬 대신 서브에이전트를 작성해야 하는 경우는 언제인가요?” a: “현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다.” Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026) 들어가며 Subagent vs MCP vs Skill에서 우리는 세 축 지도를 그렸습니다: 스킬은 지식 축을, 서브에이전트는 컨텍스트 축을, MCP 서버는 역량 축을 움직입니다. 이후 우리는 서브에이전트 축에 대한 심층 가이드를 발행했습니다 — 커스텀 에이전트 작성과 오케스트레이션 실패 양상입니다. 이 가이드는 그 삼부작을 완성합니다: 스킬 자체를 어떻게 작성하는가.\n스킬은 셋 중 가장 저평가된 존재입니다. 겉보기에 사소해 보이기 때문이죠 — “그냥 마크다운 파일 한 개잖아.” 하지만 잘 작성된 스킬은 필요할 때 그곳에 있어 주는 지식과, 모든 프롬프트가 지금 아무에게도 필요 없는 규칙 4,000 토큰을 끌고 다니는 비대한 ```CLAUDE.md```` 사이의 차이를 만듭니다. 이 글에서는 SKILL.md 구조, 모든 것을 결정하는 트리거 description, 가볍게 유지하기 위한 점진적 공개, 두 가지 실전 예제, 그리고 스킬이 결코 발동하지 않게 만드는 실수들을 다룹니다.\n스킬이란 실제로 무엇인가 스킬은 단순한 파일이 아니라 디렉터리입니다: ````` .claude/skills/cut-release/ SKILL.md # frontmatter + instructions references/ versioning.md # heavy detail, loaded on demand scripts/ bump-version.sh # an executable the skill can run\n````SKILL.md````가 진입점입니다. 그 프런트매터는 스킬의 정체성과 — 결정적으로 — *언제 로딩되어야 하는지*를 선언합니다. 본문에는 절차가 담깁니다. 보조 파일(참조 문서, 템플릿, 스크립트)은 옆에 두고 필요할 때만 끌어옵니다. 스킬은 ````.claude/skills/````(프로젝트, 팀과 공유) 또는 ````~/.claude/skills/````(사용자, 당신 머신의 모든 프로젝트)에 위치합니다. ## 스킬 vs CLAUDE.md: 로딩의 문제 이것이 사람들이 헷갈려 하는 결정입니다. 둘 다 지시문을 담지만, 차이는 *언제 로딩되는가*입니다. - **CLAUDE.md**는 **모든** 상호작용마다 로딩됩니다. 항상 켜져 있는 프로젝트 전역 불변 규칙용입니다: \"탭을 쓴다\", \"main에 force-push하지 않는다\", \"우리 API 베이스는 X다\". - **스킬**은 **그 description이 현재 작업과 맞을 때만** 로딩됩니다. 상황에 따른 절차용입니다: \"릴리스를 자르는 방법\", \"새 서비스를 온보딩하는 방법\", \"우리의 장애 대응 런북\". 판별 기준: *이 지시문이 무엇에 관한 것이든 무작위 프롬프트에 적용되는가?* 그렇다면 → CLAUDE.md. 특정 종류의 작업 중에만 의미가 있다면 → 스킬. 상황에 따른 플레이북을 CLAUDE.md에 욱여넣는 것이 컨텍스트 비대화의 1순위 실수입니다. 모든 프롬프트가 필요도 없는 지식의 비용을 치르게 되니까요. ## 프런트매터: name과 description `````markdown * * * name: cut-release description: \"Technical guide and comparison.\" * * * You are helping cut a release. Follow these steps in order... name 케밥 케이스, 서술적으로. 이것이 스킬의 정체성입니다.\ndescription — 모든 것을 결정하는 트리거 신호 Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 언제 발동할지에 대한 조건입니다. 구체적인 트리거로 꽉 채우세요: \u003e ❌ ````description: “Technical guide and comparison.”\n✅ ````description: “Technical guide and comparison.”\n첫 번째는 절대 발동하지 않습니다 — 실제 작업에서 “release helper\"에 매칭되는 것이 아무것도 없으니까요. 두 번째는 사용자가 “2.4.0 배포하자\"라고 말하는 순간 발동합니다. 스킬이 존재하는데도 결코 활성화되지 않는다면, 범인은 — 매번 — description입니다.\n본문 작성하기: 에세이가 아니라 절차 본문은 스킬이 로딩된 뒤 Claude가 따르는 지시문입니다. 세 가지 규칙: 1. 에세이가 아니라 절차로. 모델이 순서대로 실행하는 번호 매긴 단계가 맥락을 늘어놓은 문단보다 낫습니다. “1. package.json의 버전을 올린다. 2. 마지막 태그 이후 커밋들로부터 체인지로그를 재생성한다. 3. …” 2. 전제조건과 함정을 인라인으로 명시하라. “태그를 달기 전에 main에서 CI가 통과(green) 상태인지 확인하라” — 사람이라면 당연히 점검할 그런 것 말입니다. 3. 무거운 세부 내용은 인라인하지 말고 가리켜라. 버전 정책이 800단어라면 references/versioning.md에 넣고 “버전 올리기 규칙은 references/versioning.md를 읽어라\"라고 쓰세요. 그게 다음에 다룰 점진적 공개입니다.\n점진적 공개: SKILL.md를 가볍게 유지하라 스킬 작성의 핵심 한 수입니다. SKILL.md는 작아야 합니다 — 트리거 + 개요 + 포인터. 무거운 자료는 작업이 거기에 다다랐을 때만 로딩되는 보조 파일에 둡니다.\n왜 중요한가: description과 개요는 라우팅을 위해 훑어지므로 비용이 싸야 합니다. 상세한 2,000단어짜리 명세는 스킬이 실제로 동작에 들어가고 작업이 그 깊이를 필요로 할 때만 컨텍스트에 들어가야 합니다. 모든 것을 인라인하는 스킬은 그 목적을 무너뜨립니다 — 발동 방식만 달라졌을 뿐, CLAUDE.md식 비대화로 되돌아간 셈이죠.\n## Steps 1. Bump version (see references/versioning.md for the semver rules) 2. Run scripts/changelog.sh to generate the draft 3. ... Claude는 매번 로딩할 때가 아니라, 실제로 규칙이 필요할 때만 references/versioning.md를 읽습니다.\n실전 예제: 릴리스 체크리스트 스킬 * * * name: cut-release description: \"Technical guide and comparison.\" * * * You are cutting a release. Do NOT skip the precondition check. PRECONDITION: confirm CI is green on main. If not, stop and report. Steps: 1. Determine the new version (semver; see references/versioning.md). 2. Bump it in package.json and any version constants. 3. Generate the changelog from commits since the last tag. 4. Open a release PR; wait for review. 5. After merge: tag, push the tag, publish. Report which step you stopped at if anything blocks. 전제조건과 “어디서 멈췄는지 보고하라\"는 줄이 이 스킬을 프로덕션 등급으로 만들어 주는 요소입니다 — 단순한 단계들이 아니라, 신중한 사람이 적용하는 가드레일이죠.\n실전 예제: 도메인 플레이북 스킬 * * * name: debug-flaky-test description: \"Technical guide and comparison.\" * * * You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources. 1. Reproduce: run the test 20x in isolation and 20x with the full suite. Different results = test-order or shared-state dependence. 2. Check for unawaited async, real timers, and fixed sleeps. 3. Check for shared mutable state between tests. 4. Only after locating the cause, propose the fix. Do not \"add a retry.\" 여기 박힌 도메인 지식(네 가지 흔한 원인)에 주목하세요 — 그것은 제도화된 전문성이며, 누구나 시니어 엔지니어의 머릿속 점검표를 발동시킬 수 있도록 패키징된 것입니다.\n흔한 작성 실수 모호한 description. 스킬이 존재하지만 결코 발동하지 않습니다. 구체적인 트리거 문구를 — 사용자가 그것을 필요로 할 때 실제로 타이핑하는 단어들을 — 넣으세요. 모든 것을 CLAUDE.md에. 상황에 따른 절차가 모든 프롬프트를 비대하게 만듭니다. 스킬로 옮기세요. 무거운 세부 내용 인라인. 2,000단어짜리 SKILL.md. 점진적 공개를 쓰세요 — ````references/```를 가리키세요. 절차 대신 에세이. 에세이처럼 읽히는 스킬. 단계에 번호를 매기세요. 가드레일 부재. 전제조건도 정지 조건도 없는 단계들. 신중한 사람이라면 할 점검을 추가하세요. 핵심 원리 스킬은 적시(just-in-time) 전문성입니다. CLAUDE.md는 항상 참인 것이고, 스킬은 당신이 바로 이 특정한 일을 할 때 참인 것입니다. 기예는 description(그래서 적절한 순간에 발동하도록)과 점진적 공개(그래서 필요해질 때까지 비용이 싸게 유지되도록)에 있습니다. 이 둘을 제대로 갖추면, 당신 팀의 절차는 아무도 열어 보지 않는 위키 안에서 살기를 멈춥니다 — 작업이 부를 때 정확히 그 순간에 완전히 로딩된 채로 나타나고, 그 외에는 방해되지 않게 비켜나 있습니다.\n프로덕션급 Claude Code 세팅하기 스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. 팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트. 스킬은 버전 관리되며 CI에서도 실행됩니다. **** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.\n병렬 실행을 위한 클라우드 여유 공간. **** — 60일간 $200 무료 크레딧, 14개 이상의 리전.\n스킬 번들. 훌륭한 스킬을 쓰는 가장 빠른 길은 훌륭한 스킬을 읽어 보는 것입니다. 우리는 실전에서 검증된 다섯 개의 스킬을 Gumroad에 $19 번들로 묶었습니다 — 화면 모서리의 떠 있는 CTA를 참고하세요 — description, 점진적 공개 구조, 번들 스크립트가 이미 제대로 갖춰진 형태로요.\n함께 읽으면 좋은 글 Subagent vs MCP vs Skill — 이 글이 완성하는 세 축 프레임워크. 커스텀 에이전트 작성 — 이 가이드의 서브에이전트 축 자매편. AI Agent Skills 2026 개발자 가이드 — 더 넓은 스킬 생태계. 서브에이전트 패턴 — 스킬이 위임된 워커들과 어떻게 조합되는가. 결론 스킬은 가장 저렴하고 가장 저평가된 확장 지점입니다 — 마크다운 파일 하나가 든 디렉터리로, 상황에 따른 전문성을 적시 컨텍스트로 바꿔 줍니다. 이 기예 전체는 결국 두 가지로 환원됩니다: 적절한 순간에 발동하도록 실제 트리거 문구로 꽉 채운 description, 그리고 작업이 그 깊이를 필요로 할 때까지 가볍게 유지되도록 하는 점진적 공개. 이 둘을 잘 쓰면, 당신은 팀 전체가 — 그리고 모든 CI 실행이 — 관련된 바로 그 순간에 공짜로 얻는 절차를 패키징한 것입니다. 그것으로 삼부작이 완성됩니다: 지식엔 스킬, 컨텍스트엔 서브에이전트, 역량엔 MCP 서버.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)”, “datePublished”: “2026-05-28”, “dateModified”: “2026-05-28”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026\" } } Why This Matters Understanding claude code skill 작성법: 필요할 때만 claude가 불러오는 절차를 패키징하는 방법 (2026) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1910","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/claude-code-skill-authoring-guide-2026/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/claude-code-skill-authoring-guide-2026/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/claude-code-skill-authoring-guide-2026/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#claude-code-skill-%ec%9e%91%ec%84%b1%eb%b2%95-%ed%95%84%ec%9a%94%ed%95%a0-%eb%95%8c%eb%a7%8c-claude%ea%b0%80-%eb%b6%88%eb%9f%ac%ec%98%a4%eb%8a%94-%ec%a0%88%ec%b0%a8%eb%a5%bc-%ed%8c%a8%ed%82%a4%ec%a7%95%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95-2026 aria-label="Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)">Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)</a><ul><li><a href=#%eb%93%a4%ec%96%b4%ea%b0%80%eb%a9%b0 aria-label=들어가며>들어가며</a></li><li><a href=#%ec%8a%a4%ed%82%ac%ec%9d%b4%eb%9e%80-%ec%8b%a4%ec%a0%9c%eb%a1%9c-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80 aria-label="스킬이란 실제로 무엇인가">스킬이란 실제로 무엇인가</a><ul><li><a href=#name aria-label=name>name</a></li><li><a href=#description--%eb%aa%a8%eb%93%a0-%ea%b2%83%ec%9d%84-%ea%b2%b0%ec%a0%95%ed%95%98%eb%8a%94-%ed%8a%b8%eb%a6%ac%ea%b1%b0-%ec%8b%a0%ed%98%b8 aria-label="description — 모든 것을 결정하는 트리거 신호">description — 모든 것을 결정하는 트리거 신호</a></li></ul></li><li><a href=#%eb%b3%b8%eb%ac%b8-%ec%9e%91%ec%84%b1%ed%95%98%ea%b8%b0-%ec%97%90%ec%84%b8%ec%9d%b4%ea%b0%80-%ec%95%84%eb%8b%88%eb%9d%bc-%ec%a0%88%ec%b0%a8 aria-label="본문 작성하기: 에세이가 아니라 절차">본문 작성하기: 에세이가 아니라 절차</a></li><li><a href=#%ec%a0%90%ec%a7%84%ec%a0%81-%ea%b3%b5%ea%b0%9c-skillmd%eb%a5%bc-%ea%b0%80%eb%b3%8d%ea%b2%8c-%ec%9c%a0%ec%a7%80%ed%95%98%eb%9d%bc aria-label="점진적 공개: SKILL.md를 가볍게 유지하라">점진적 공개: SKILL.md를 가볍게 유지하라</a></li><li><a href=#%ec%8b%a4%ec%a0%84-%ec%98%88%ec%a0%9c-%eb%a6%b4%eb%a6%ac%ec%8a%a4-%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac aria-label="실전 예제: 릴리스 체크리스트 스킬">실전 예제: 릴리스 체크리스트 스킬</a></li><li><a href=#%ec%8b%a4%ec%a0%84-%ec%98%88%ec%a0%9c-%eb%8f%84%eb%a9%94%ec%9d%b8-%ed%94%8c%eb%a0%88%ec%9d%b4%eb%b6%81-%ec%8a%a4%ed%82%ac aria-label="실전 예제: 도메인 플레이북 스킬">실전 예제: 도메인 플레이북 스킬</a></li><li><a href=#%ed%9d%94%ed%95%9c-%ec%9e%91%ec%84%b1-%ec%8b%a4%ec%88%98 aria-label="흔한 작성 실수">흔한 작성 실수</a></li><li><a href=#%ed%95%b5%ec%8b%ac-%ec%9b%90%eb%a6%ac aria-label="핵심 원리">핵심 원리</a></li><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ea%b8%89-claude-code-%ec%84%b8%ed%8c%85%ed%95%98%ea%b8%b0 aria-label="프로덕션급 Claude Code 세팅하기">프로덕션급 Claude Code 세팅하기</a></li><li><a href=#%ed%95%a8%ea%bb%98-%ec%9d%bd%ec%9c%bc%eb%a9%b4-%ec%a2%8b%ec%9d%80-%ea%b8%80 aria-label="함께 읽으면 좋은 글">함께 읽으면 좋은 글</a></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-28T00:00:00+08:00 lastmod: 2026-05-29T00:00:00+08:00 tech_stack: [‘Claude Code’, ‘Agent SDK’, Markdown, YAML] application_domain: LLM Frameworks source_version: ’’ licensing_model: Commercial (Anthropic) license_type: Proprietary file_size: ’’ file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-28” draft: false categories: [“llm-frameworks”] tags: [“claude-code”, “skills”, “agent-sdk”, “ai-coding-agents”, “llm-frameworks”, “developer-tools”, “prompt-engineering”] aliases:\n/posts/claude-code-skill-authoring/ faq: - q: “스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 무엇인가요?” a: “스킬은 SKILL.md 파일을 담은 디렉터리로, .claude/skills// (프로젝트 범위) 또는 ~/.claude/skills// (사용자 범위) 아래에 위치합니다. 최소 구성은 name과 description을 담은 YAML 프런트매터, 그리고 그 뒤에 본문으로 들어가는 지시문입니다. 디렉터리에는 스킬이 가리키는 보조 파일 — 참조 문서, 스크립트, 템플릿 — 도 함께 둘 수 있지만, 이 두 프런트매터 필드를 갖춘 SKILL.md가 더 이상 줄일 수 없는 핵심입니다.” q: “스킬과 단순히 CLAUDE.md에 지시문을 넣는 것의 차이는 무엇인가요?” a: “CLAUDE.md는 모든 상호작용마다 빠짐없이 로딩됩니다 — 항상 켜져 있는 프로젝트 전역 규칙용입니다. 반면 스킬은 그 description이 현재 작업과 맞을 때만 로딩됩니다. CLAUDE.md는 『항상 탭을 사용한다』, 『main에 직접 커밋하지 않는다』 같은 규칙에 쓰세요. 스킬은 『릴리스를 자르는 방법』이나 『불안정한(flaky) 테스트를 디버깅하는 방법』처럼 상황에 따른 절차 — 모든 프롬프트를 비대하게 만들고 싶지 않고, 실제로 그 작업을 할 때만 존재하길 바라는 지식 — 에 쓰세요. 스킬은 기본 컨텍스트를 가볍게 유지해 줍니다.” q: “description 필드는 스킬이 언제 로딩될지를 어떻게 제어하나요?” a: “description은 곧 트리거 신호입니다. Claude는 스킬 description들을 읽어 현재 작업에 어떤 스킬이 관련 있는지 판단한 뒤, 그 스킬의 전체 본문을 컨텍스트로 불러옵니다. 따라서 description은 스킬이 무엇인지가 아니라 언제 써야 하는지를 구체적인 단서로 묘사해야 합니다 — 『릴리스를 자르거나, 버전을 게시하거나, 빌드에 태그를 달 때 사용』처럼요. 모호한 description(『릴리스 헬퍼』)은 스킬이 존재하긴 해도 정작 필요한 순간에 발동하지 않게 만듭니다.” q: “점진적 공개(progressive disclosure)란 무엇이며 스킬에 왜 중요한가요?” a: “점진적 공개란 스킬이 먼저 가벼운 SKILL.md를 로딩하고, 더 무거운 보조 파일(상세 참조 문서, 큰 템플릿, 스크립트)은 작업이 실제로 필요로 할 때만 끌어오는 방식을 말합니다. SKILL.md는 짧게 유지하고 깊은 세부 내용은 references/big-spec.md를 가리키게 합니다. 이렇게 하면 컨텍스트가 보호됩니다 — 라우팅을 위한 트리거와 개요는 로딩 비용이 싸고, 비싼 세부 내용은 스킬이 진짜로 동작에 들어간 뒤에야 대화에 진입합니다.” q: “스킬에 스크립트도 포함할 수 있나요, 아니면 지시문만 담나요?” a: “둘 다 가능합니다. 스킬 디렉터리는 SKILL.md와 함께 스크립트(파이썬 헬퍼, 셸 스크립트), 템플릿, 참조 문서를 묶을 수 있습니다. 본문은 Claude에게 번들된 스크립트를 실행하거나 번들된 참조 문서를 읽으라고 지시할 수 있습니다. 바로 이 점이 스킬을 단순한 프롬프트 이상으로 만들어 줍니다 — 지시문, 참조 자료, 실행 가능한 헬퍼가 모두 하나의 디렉터리에서 함께 버전 관리되는, 패키징된 역량인 것이죠.” q: “스킬 대신 서브에이전트를 작성해야 하는 경우는 언제인가요?” a: “현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다.” Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026) 들어가며 Subagent vs MCP vs Skill에서 우리는 세 축 지도를 그렸습니다: 스킬은 지식 축을, 서브에이전트는 컨텍스트 축을, MCP 서버는 역량 축을 움직입니다. 이후 우리는 서브에이전트 축에 대한 심층 가이드를 발행했습니다 — 커스텀 에이전트 작성과 오케스트레이션 실패 양상입니다. 이 가이드는 그 삼부작을 완성합니다: 스킬 자체를 어떻게 작성하는가.\n스킬은 셋 중 가장 저평가된 존재입니다. 겉보기에 사소해 보이기 때문이죠 — “그냥 마크다운 파일 한 개잖아.” 하지만 잘 작성된 스킬은 필요할 때 그곳에 있어 주는 지식과, 모든 프롬프트가 지금 아무에게도 필요 없는 규칙 4,000 토큰을 끌고 다니는 비대한 ```CLAUDE.md```` 사이의 차이를 만듭니다. 이 글에서는 SKILL.md 구조, 모든 것을 결정하는 트리거 description, 가볍게 유지하기 위한 점진적 공개, 두 가지 실전 예제, 그리고 스킬이 결코 발동하지 않게 만드는 실수들을 다룹니다.\n스킬이란 실제로 무엇인가 스킬은 단순한 파일이 아니라 디렉터리입니다: ````` .claude/skills/cut-release/ SKILL.md # frontmatter + instructions references/ versioning.md # heavy detail, loaded on demand scripts/ bump-version.sh # an executable the skill can run\n````SKILL.md````가 진입점입니다. 그 프런트매터는 스킬의 정체성과 — 결정적으로 — *언제 로딩되어야 하는지*를 선언합니다. 본문에는 절차가 담깁니다. 보조 파일(참조 문서, 템플릿, 스크립트)은 옆에 두고 필요할 때만 끌어옵니다. 스킬은 ````.claude/skills/````(프로젝트, 팀과 공유) 또는 ````~/.claude/skills/````(사용자, 당신 머신의 모든 프로젝트)에 위치합니다. ## 스킬 vs CLAUDE.md: 로딩의 문제 이것이 사람들이 헷갈려 하는 결정입니다. 둘 다 지시문을 담지만, 차이는 *언제 로딩되는가*입니다. - **CLAUDE.md**는 **모든** 상호작용마다 로딩됩니다. 항상 켜져 있는 프로젝트 전역 불변 규칙용입니다: \"탭을 쓴다\", \"main에 force-push하지 않는다\", \"우리 API 베이스는 X다\". - **스킬**은 **그 description이 현재 작업과 맞을 때만** 로딩됩니다. 상황에 따른 절차용입니다: \"릴리스를 자르는 방법\", \"새 서비스를 온보딩하는 방법\", \"우리의 장애 대응 런북\". 판별 기준: *이 지시문이 무엇에 관한 것이든 무작위 프롬프트에 적용되는가?* 그렇다면 → CLAUDE.md. 특정 종류의 작업 중에만 의미가 있다면 → 스킬. 상황에 따른 플레이북을 CLAUDE.md에 욱여넣는 것이 컨텍스트 비대화의 1순위 실수입니다. 모든 프롬프트가 필요도 없는 지식의 비용을 치르게 되니까요. ## 프런트매터: name과 description `````markdown * * * name: cut-release description: \"Technical guide and comparison.\" * * * You are helping cut a release. Follow these steps in order... name 케밥 케이스, 서술적으로. 이것이 스킬의 정체성입니다.\ndescription — 모든 것을 결정하는 트리거 신호 Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 언제 발동할지에 대한 조건입니다. 구체적인 트리거로 꽉 채우세요: \u003e ❌ ````description: “Technical guide and comparison.”\n✅ ````description: “Technical guide and comparison.”\n첫 번째는 절대 발동하지 않습니다 — 실제 작업에서 “release helper\"에 매칭되는 것이 아무것도 없으니까요. 두 번째는 사용자가 “2.4.0 배포하자\"라고 말하는 순간 발동합니다. 스킬이 존재하는데도 결코 활성화되지 않는다면, 범인은 — 매번 — description입니다.\n본문 작성하기: 에세이가 아니라 절차 본문은 스킬이 로딩된 뒤 Claude가 따르는 지시문입니다. 세 가지 규칙: 1. 에세이가 아니라 절차로. 모델이 순서대로 실행하는 번호 매긴 단계가 맥락을 늘어놓은 문단보다 낫습니다. “1. package.json의 버전을 올린다. 2. 마지막 태그 이후 커밋들로부터 체인지로그를 재생성한다. 3. …” 2. 전제조건과 함정을 인라인으로 명시하라. “태그를 달기 전에 main에서 CI가 통과(green) 상태인지 확인하라” — 사람이라면 당연히 점검할 그런 것 말입니다. 3. 무거운 세부 내용은 인라인하지 말고 가리켜라. 버전 정책이 800단어라면 references/versioning.md에 넣고 “버전 올리기 규칙은 references/versioning.md를 읽어라\"라고 쓰세요. 그게 다음에 다룰 점진적 공개입니다.\n점진적 공개: SKILL.md를 가볍게 유지하라 스킬 작성의 핵심 한 수입니다. SKILL.md는 작아야 합니다 — 트리거 + 개요 + 포인터. 무거운 자료는 작업이 거기에 다다랐을 때만 로딩되는 보조 파일에 둡니다.\n왜 중요한가: description과 개요는 라우팅을 위해 훑어지므로 비용이 싸야 합니다. 상세한 2,000단어짜리 명세는 스킬이 실제로 동작에 들어가고 작업이 그 깊이를 필요로 할 때만 컨텍스트에 들어가야 합니다. 모든 것을 인라인하는 스킬은 그 목적을 무너뜨립니다 — 발동 방식만 달라졌을 뿐, CLAUDE.md식 비대화로 되돌아간 셈이죠.\n## Steps 1. Bump version (see references/versioning.md for the semver rules) 2. Run scripts/changelog.sh to generate the draft 3. ... Claude는 매번 로딩할 때가 아니라, 실제로 규칙이 필요할 때만 references/versioning.md를 읽습니다.\n실전 예제: 릴리스 체크리스트 스킬 * * * name: cut-release description: \"Technical guide and comparison.\" * * * You are cutting a release. Do NOT skip the precondition check. PRECONDITION: confirm CI is green on main. If not, stop and report. Steps: 1. Determine the new version (semver; see references/versioning.md). 2. Bump it in package.json and any version constants. 3. Generate the changelog from commits since the last tag. 4. Open a release PR; wait for review. 5. After merge: tag, push the tag, publish. Report which step you stopped at if anything blocks. 전제조건과 “어디서 멈췄는지 보고하라\"는 줄이 이 스킬을 프로덕션 등급으로 만들어 주는 요소입니다 — 단순한 단계들이 아니라, 신중한 사람이 적용하는 가드레일이죠.\n실전 예제: 도메인 플레이북 스킬 * * * name: debug-flaky-test description: \"Technical guide and comparison.\" * * * You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources. 1. Reproduce: run the test 20x in isolation and 20x with the full suite. Different results = test-order or shared-state dependence. 2. Check for unawaited async, real timers, and fixed sleeps. 3. Check for shared mutable state between tests. 4. Only after locating the cause, propose the fix. Do not \"add a retry.\" 여기 박힌 도메인 지식(네 가지 흔한 원인)에 주목하세요 — 그것은 제도화된 전문성이며, 누구나 시니어 엔지니어의 머릿속 점검표를 발동시킬 수 있도록 패키징된 것입니다.\n흔한 작성 실수 모호한 description. 스킬이 존재하지만 결코 발동하지 않습니다. 구체적인 트리거 문구를 — 사용자가 그것을 필요로 할 때 실제로 타이핑하는 단어들을 — 넣으세요. 모든 것을 CLAUDE.md에. 상황에 따른 절차가 모든 프롬프트를 비대하게 만듭니다. 스킬로 옮기세요. 무거운 세부 내용 인라인. 2,000단어짜리 SKILL.md. 점진적 공개를 쓰세요 — ````references/```를 가리키세요. 절차 대신 에세이. 에세이처럼 읽히는 스킬. 단계에 번호를 매기세요. 가드레일 부재. 전제조건도 정지 조건도 없는 단계들. 신중한 사람이라면 할 점검을 추가하세요. 핵심 원리 스킬은 적시(just-in-time) 전문성입니다. CLAUDE.md는 항상 참인 것이고, 스킬은 당신이 바로 이 특정한 일을 할 때 참인 것입니다. 기예는 description(그래서 적절한 순간에 발동하도록)과 점진적 공개(그래서 필요해질 때까지 비용이 싸게 유지되도록)에 있습니다. 이 둘을 제대로 갖추면, 당신 팀의 절차는 아무도 열어 보지 않는 위키 안에서 살기를 멈춥니다 — 작업이 부를 때 정확히 그 순간에 완전히 로딩된 채로 나타나고, 그 외에는 방해되지 않게 비켜나 있습니다.\n프로덕션급 Claude Code 세팅하기 스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. 팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트. 스킬은 버전 관리되며 CI에서도 실행됩니다. **** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.\n병렬 실행을 위한 클라우드 여유 공간. **** — 60일간 $200 무료 크레딧, 14개 이상의 리전.\n스킬 번들. 훌륭한 스킬을 쓰는 가장 빠른 길은 훌륭한 스킬을 읽어 보는 것입니다. 우리는 실전에서 검증된 다섯 개의 스킬을 Gumroad에 $19 번들로 묶었습니다 — 화면 모서리의 떠 있는 CTA를 참고하세요 — description, 점진적 공개 구조, 번들 스크립트가 이미 제대로 갖춰진 형태로요.\n함께 읽으면 좋은 글 Subagent vs MCP vs Skill — 이 글이 완성하는 세 축 프레임워크. 커스텀 에이전트 작성 — 이 가이드의 서브에이전트 축 자매편. AI Agent Skills 2026 개발자 가이드 — 더 넓은 스킬 생태계. 서브에이전트 패턴 — 스킬이 위임된 워커들과 어떻게 조합되는가. 결론 스킬은 가장 저렴하고 가장 저평가된 확장 지점입니다 — 마크다운 파일 하나가 든 디렉터리로, 상황에 따른 전문성을 적시 컨텍스트로 바꿔 줍니다. 이 기예 전체는 결국 두 가지로 환원됩니다: 적절한 순간에 발동하도록 실제 트리거 문구로 꽉 채운 description, 그리고 작업이 그 깊이를 필요로 할 때까지 가볍게 유지되도록 하는 점진적 공개. 이 둘을 잘 쓰면, 당신은 팀 전체가 — 그리고 모든 CI 실행이 — 관련된 바로 그 순간에 공짜로 얻는 절차를 패키징한 것입니다. 그것으로 삼부작이 완성됩니다: 지식엔 스킬, 컨텍스트엔 서브에이전트, 역량엔 MCP 서버.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)”, “datePublished”: “2026-05-28”, “dateModified”: “2026-05-28”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026\" } } Why This Matters Understanding claude code skill 작성법: 필요할 때만 claude가 불러오는 절차를 패키징하는 방법 (2026) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1910",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/claude-code-skill-authoring-guide-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/claude-code-skill-authoring-guide-2026/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/claude-code-skill-authoring-guide-2026/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#claude-code-skill-%ec%9e%91%ec%84%b1%eb%b2%95-%ed%95%84%ec%9a%94%ed%95%a0-%eb%95%8c%eb%a7%8c-claude%ea%b0%80-%eb%b6%88%eb%9f%ac%ec%98%a4%eb%8a%94-%ec%a0%88%ec%b0%a8%eb%a5%bc-%ed%8c%a8%ed%82%a4%ec%a7%95%ed%95%98%eb%8a%94-%eb%b0%a9%eb%b2%95-2026" aria-label="Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)">Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)</a><ul>
+                    
+            <li>
+                <a href="#%eb%93%a4%ec%96%b4%ea%b0%80%eb%a9%b0" aria-label="들어가며">들어가며</a></li>
+            <li>
+                <a href="#%ec%8a%a4%ed%82%ac%ec%9d%b4%eb%9e%80-%ec%8b%a4%ec%a0%9c%eb%a1%9c-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="스킬이란 실제로 무엇인가">스킬이란 실제로 무엇인가</a><ul>
+                    
+            <li>
+                <a href="#name" aria-label="name">name</a></li>
+            <li>
+                <a href="#description--%eb%aa%a8%eb%93%a0-%ea%b2%83%ec%9d%84-%ea%b2%b0%ec%a0%95%ed%95%98%eb%8a%94-%ed%8a%b8%eb%a6%ac%ea%b1%b0-%ec%8b%a0%ed%98%b8" aria-label="description — 모든 것을 결정하는 트리거 신호">description — 모든 것을 결정하는 트리거 신호</a></li></ul>
+            </li>
+            <li>
+                <a href="#%eb%b3%b8%eb%ac%b8-%ec%9e%91%ec%84%b1%ed%95%98%ea%b8%b0-%ec%97%90%ec%84%b8%ec%9d%b4%ea%b0%80-%ec%95%84%eb%8b%88%eb%9d%bc-%ec%a0%88%ec%b0%a8" aria-label="본문 작성하기: 에세이가 아니라 절차">본문 작성하기: 에세이가 아니라 절차</a></li>
+            <li>
+                <a href="#%ec%a0%90%ec%a7%84%ec%a0%81-%ea%b3%b5%ea%b0%9c-skillmd%eb%a5%bc-%ea%b0%80%eb%b3%8d%ea%b2%8c-%ec%9c%a0%ec%a7%80%ed%95%98%eb%9d%bc" aria-label="점진적 공개: SKILL.md를 가볍게 유지하라">점진적 공개: SKILL.md를 가볍게 유지하라</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%84-%ec%98%88%ec%a0%9c-%eb%a6%b4%eb%a6%ac%ec%8a%a4-%ec%b2%b4%ed%81%ac%eb%a6%ac%ec%8a%a4%ed%8a%b8-%ec%8a%a4%ed%82%ac" aria-label="실전 예제: 릴리스 체크리스트 스킬">실전 예제: 릴리스 체크리스트 스킬</a></li>
+            <li>
+                <a href="#%ec%8b%a4%ec%a0%84-%ec%98%88%ec%a0%9c-%eb%8f%84%eb%a9%94%ec%9d%b8-%ed%94%8c%eb%a0%88%ec%9d%b4%eb%b6%81-%ec%8a%a4%ed%82%ac" aria-label="실전 예제: 도메인 플레이북 스킬">실전 예제: 도메인 플레이북 스킬</a></li>
+            <li>
+                <a href="#%ed%9d%94%ed%95%9c-%ec%9e%91%ec%84%b1-%ec%8b%a4%ec%88%98" aria-label="흔한 작성 실수">흔한 작성 실수</a></li>
+            <li>
+                <a href="#%ed%95%b5%ec%8b%ac-%ec%9b%90%eb%a6%ac" aria-label="핵심 원리">핵심 원리</a></li>
+            <li>
+                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98%ea%b8%89-claude-code-%ec%84%b8%ed%8c%85%ed%95%98%ea%b8%b0" aria-label="프로덕션급 Claude Code 세팅하기">프로덕션급 Claude Code 세팅하기</a></li>
+            <li>
+                <a href="#%ed%95%a8%ea%bb%98-%ec%9d%bd%ec%9c%bc%eb%a9%b4-%ec%a2%8b%ec%9d%80-%ea%b8%80" aria-label="함께 읽으면 좋은 글">함께 읽으면 좋은 글</a></li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-28T00:00:00+08:00
 lastmod: 2026-05-29T00:00:00+08:00
@@ -21,20 +277,36 @@ last_maintained: &ldquo;2026-05-28&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;claude-code&rdquo;, &ldquo;skills&rdquo;, &ldquo;agent-sdk&rdquo;, &ldquo;ai-coding-agents&rdquo;, &ldquo;llm-frameworks&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;prompt-engineering&rdquo;]
-aliases:</p><ul><li>/posts/claude-code-skill-authoring/
+aliases:</p>
+<ul>
+<li>/posts/claude-code-skill-authoring/
 faq: - q: &ldquo;스킬은 어디에 두며, SKILL.md에 최소한 필요한 것은 무엇인가요?&rdquo;
-a: &ldquo;스킬은 SKILL.md 파일을 담은 디렉터리로, .claude/skills/<name>/ (프로젝트 범위) 또는 ~/.claude/skills/<name>/ (사용자 범위) 아래에 위치합니다. 최소 구성은 name과 description을 담은 YAML 프런트매터, 그리고 그 뒤에 본문으로 들어가는 지시문입니다. 디렉터리에는 스킬이 가리키는 보조 파일 — 참조 문서, 스크립트, 템플릿 — 도 함께 둘 수 있지만, 이 두 프런트매터 필드를 갖춘 SKILL.md가 더 이상 줄일 수 없는 핵심입니다.&rdquo;</li><li>q: &ldquo;스킬과 단순히 CLAUDE.md에 지시문을 넣는 것의 차이는 무엇인가요?&rdquo;
-a: &ldquo;CLAUDE.md는 모든 상호작용마다 빠짐없이 로딩됩니다 — 항상 켜져 있는 프로젝트 전역 규칙용입니다. 반면 스킬은 그 description이 현재 작업과 맞을 때만 로딩됩니다. CLAUDE.md는 『항상 탭을 사용한다』, 『main에 직접 커밋하지 않는다』 같은 규칙에 쓰세요. 스킬은 『릴리스를 자르는 방법』이나 『불안정한(flaky) 테스트를 디버깅하는 방법』처럼 상황에 따른 절차 — 모든 프롬프트를 비대하게 만들고 싶지 않고, 실제로 그 작업을 할 때만 존재하길 바라는 지식 — 에 쓰세요. 스킬은 기본 컨텍스트를 가볍게 유지해 줍니다.&rdquo;</li><li>q: &ldquo;description 필드는 스킬이 언제 로딩될지를 어떻게 제어하나요?&rdquo;
-a: &ldquo;description은 곧 트리거 신호입니다. Claude는 스킬 description들을 읽어 현재 작업에 어떤 스킬이 관련 있는지 판단한 뒤, 그 스킬의 전체 본문을 컨텍스트로 불러옵니다. 따라서 description은 스킬이 무엇인지가 아니라 언제 써야 하는지를 구체적인 단서로 묘사해야 합니다 — 『릴리스를 자르거나, 버전을 게시하거나, 빌드에 태그를 달 때 사용』처럼요. 모호한 description(『릴리스 헬퍼』)은 스킬이 존재하긴 해도 정작 필요한 순간에 발동하지 않게 만듭니다.&rdquo;</li><li>q: &ldquo;점진적 공개(progressive disclosure)란 무엇이며 스킬에 왜 중요한가요?&rdquo;
-a: &ldquo;점진적 공개란 스킬이 먼저 가벼운 SKILL.md를 로딩하고, 더 무거운 보조 파일(상세 참조 문서, 큰 템플릿, 스크립트)은 작업이 실제로 필요로 할 때만 끌어오는 방식을 말합니다. SKILL.md는 짧게 유지하고 깊은 세부 내용은 references/big-spec.md를 가리키게 합니다. 이렇게 하면 컨텍스트가 보호됩니다 — 라우팅을 위한 트리거와 개요는 로딩 비용이 싸고, 비싼 세부 내용은 스킬이 진짜로 동작에 들어간 뒤에야 대화에 진입합니다.&rdquo;</li><li>q: &ldquo;스킬에 스크립트도 포함할 수 있나요, 아니면 지시문만 담나요?&rdquo;
-a: &ldquo;둘 다 가능합니다. 스킬 디렉터리는 SKILL.md와 함께 스크립트(파이썬 헬퍼, 셸 스크립트), 템플릿, 참조 문서를 묶을 수 있습니다. 본문은 Claude에게 번들된 스크립트를 실행하거나 번들된 참조 문서를 읽으라고 지시할 수 있습니다. 바로 이 점이 스킬을 단순한 프롬프트 이상으로 만들어 줍니다 — 지시문, 참조 자료, 실행 가능한 헬퍼가 모두 하나의 디렉터리에서 함께 버전 관리되는, 패키징된 역량인 것이죠.&rdquo;</li><li>q: &ldquo;스킬 대신 서브에이전트를 작성해야 하는 경우는 언제인가요?&rdquo;
-a: &ldquo;현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다.&rdquo;</li></ul><hr><h1 id=claude-code-skill-작성법-필요할-때만-claude가-불러오는-절차를-패키징하는-방법-2026>Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)<a hidden class=anchor aria-hidden=true href=#claude-code-skill-작성법-필요할-때만-claude가-불러오는-절차를-패키징하는-방법-2026>#</a></h1><h2 id=들어가며>들어가며<a hidden class=anchor aria-hidden=true href=#들어가며>#</a></h2><p><a href=/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/>Subagent vs MCP vs Skill</a>에서 우리는 세 축 지도를 그렸습니다: 스킬은 <strong>지식</strong> 축을, 서브에이전트는 <strong>컨텍스트</strong> 축을, MCP 서버는 <strong>역량</strong> 축을 움직입니다. 이후 우리는 서브에이전트 축에 대한 심층 가이드를 발행했습니다 — <a href=/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/>커스텀 에이전트 작성</a>과 <a href=/kr/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/>오케스트레이션 실패 양상</a>입니다. 이 가이드는 그 삼부작을 완성합니다: <strong>스킬</strong> 자체를 어떻게 작성하는가.</p><p>스킬은 셋 중 가장 저평가된 존재입니다. 겉보기에 사소해 보이기 때문이죠 — &ldquo;그냥 마크다운 파일 한 개잖아.&rdquo; 하지만 잘 작성된 스킬은 <em>필요할 때 그곳에 있어 주는</em> 지식과, 모든 프롬프트가 지금 아무에게도 필요 없는 규칙 4,000 토큰을 끌고 다니는 비대한 ```CLAUDE.md```` 사이의 차이를 만듭니다. 이 글에서는 SKILL.md 구조, 모든 것을 결정하는 트리거 description, 가볍게 유지하기 위한 점진적 공개, 두 가지 실전 예제, 그리고 스킬이 결코 발동하지 않게 만드는 실수들을 다룹니다.</p><h2 id=스킬이란-실제로-무엇인가>스킬이란 실제로 무엇인가<a hidden class=anchor aria-hidden=true href=#스킬이란-실제로-무엇인가>#</a></h2><p>스킬은 단순한 파일이 아니라 <strong>디렉터리</strong>입니다: `````
+a: &ldquo;스킬은 SKILL.md 파일을 담은 디렉터리로, .claude/skills/<name>/ (프로젝트 범위) 또는 ~/.claude/skills/<name>/ (사용자 범위) 아래에 위치합니다. 최소 구성은 name과 description을 담은 YAML 프런트매터, 그리고 그 뒤에 본문으로 들어가는 지시문입니다. 디렉터리에는 스킬이 가리키는 보조 파일 — 참조 문서, 스크립트, 템플릿 — 도 함께 둘 수 있지만, 이 두 프런트매터 필드를 갖춘 SKILL.md가 더 이상 줄일 수 없는 핵심입니다.&rdquo;</li>
+<li>q: &ldquo;스킬과 단순히 CLAUDE.md에 지시문을 넣는 것의 차이는 무엇인가요?&rdquo;
+a: &ldquo;CLAUDE.md는 모든 상호작용마다 빠짐없이 로딩됩니다 — 항상 켜져 있는 프로젝트 전역 규칙용입니다. 반면 스킬은 그 description이 현재 작업과 맞을 때만 로딩됩니다. CLAUDE.md는 『항상 탭을 사용한다』, 『main에 직접 커밋하지 않는다』 같은 규칙에 쓰세요. 스킬은 『릴리스를 자르는 방법』이나 『불안정한(flaky) 테스트를 디버깅하는 방법』처럼 상황에 따른 절차 — 모든 프롬프트를 비대하게 만들고 싶지 않고, 실제로 그 작업을 할 때만 존재하길 바라는 지식 — 에 쓰세요. 스킬은 기본 컨텍스트를 가볍게 유지해 줍니다.&rdquo;</li>
+<li>q: &ldquo;description 필드는 스킬이 언제 로딩될지를 어떻게 제어하나요?&rdquo;
+a: &ldquo;description은 곧 트리거 신호입니다. Claude는 스킬 description들을 읽어 현재 작업에 어떤 스킬이 관련 있는지 판단한 뒤, 그 스킬의 전체 본문을 컨텍스트로 불러옵니다. 따라서 description은 스킬이 무엇인지가 아니라 언제 써야 하는지를 구체적인 단서로 묘사해야 합니다 — 『릴리스를 자르거나, 버전을 게시하거나, 빌드에 태그를 달 때 사용』처럼요. 모호한 description(『릴리스 헬퍼』)은 스킬이 존재하긴 해도 정작 필요한 순간에 발동하지 않게 만듭니다.&rdquo;</li>
+<li>q: &ldquo;점진적 공개(progressive disclosure)란 무엇이며 스킬에 왜 중요한가요?&rdquo;
+a: &ldquo;점진적 공개란 스킬이 먼저 가벼운 SKILL.md를 로딩하고, 더 무거운 보조 파일(상세 참조 문서, 큰 템플릿, 스크립트)은 작업이 실제로 필요로 할 때만 끌어오는 방식을 말합니다. SKILL.md는 짧게 유지하고 깊은 세부 내용은 references/big-spec.md를 가리키게 합니다. 이렇게 하면 컨텍스트가 보호됩니다 — 라우팅을 위한 트리거와 개요는 로딩 비용이 싸고, 비싼 세부 내용은 스킬이 진짜로 동작에 들어간 뒤에야 대화에 진입합니다.&rdquo;</li>
+<li>q: &ldquo;스킬에 스크립트도 포함할 수 있나요, 아니면 지시문만 담나요?&rdquo;
+a: &ldquo;둘 다 가능합니다. 스킬 디렉터리는 SKILL.md와 함께 스크립트(파이썬 헬퍼, 셸 스크립트), 템플릿, 참조 문서를 묶을 수 있습니다. 본문은 Claude에게 번들된 스크립트를 실행하거나 번들된 참조 문서를 읽으라고 지시할 수 있습니다. 바로 이 점이 스킬을 단순한 프롬프트 이상으로 만들어 줍니다 — 지시문, 참조 자료, 실행 가능한 헬퍼가 모두 하나의 디렉터리에서 함께 버전 관리되는, 패키징된 역량인 것이죠.&rdquo;</li>
+<li>q: &ldquo;스킬 대신 서브에이전트를 작성해야 하는 경우는 언제인가요?&rdquo;
+a: &ldquo;현재 대화 안에서 실행되는 절차를 가르쳐야 할 때는 스킬을 작성하세요. 작업에 자체 컨텍스트 윈도우가 필요할 때 — 무거운 탐색, 병렬 리서치, 또는 그러지 않으면 부모 컨텍스트를 비대하게 만들 독립적 리뷰 — 는 서브에이전트를 작성하세요. 둘은 조합됩니다: 서브에이전트가 격리된 채 실행되면서 당신의 방법론을 따르기 위해 스킬을 로딩할 수 있습니다. 확장 결정 프레임워크의 경험칙은 이렇습니다 — 스킬은 행동을 바꾸고, 서브에이전트는 컨텍스트를 보호하며, MCP 서버는 역량을 추가한다.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="claude-code-skill-작성법-필요할-때만-claude가-불러오는-절차를-패키징하는-방법-2026">Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)<a hidden class="anchor" aria-hidden="true" href="#claude-code-skill-작성법-필요할-때만-claude가-불러오는-절차를-패키징하는-방법-2026">#</a></h1>
+<h2 id="들어가며">들어가며<a hidden class="anchor" aria-hidden="true" href="#들어가며">#</a></h2>
+<p><a href="/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/">Subagent vs MCP vs Skill</a>에서 우리는 세 축 지도를 그렸습니다: 스킬은 <strong>지식</strong> 축을, 서브에이전트는 <strong>컨텍스트</strong> 축을, MCP 서버는 <strong>역량</strong> 축을 움직입니다. 이후 우리는 서브에이전트 축에 대한 심층 가이드를 발행했습니다 — <a href="/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/">커스텀 에이전트 작성</a>과 <a href="/kr/resources/llm-frameworks/multi-agent-pipeline-postmortem-5-failures-2026/">오케스트레이션 실패 양상</a>입니다. 이 가이드는 그 삼부작을 완성합니다: <strong>스킬</strong> 자체를 어떻게 작성하는가.</p>
+<p>스킬은 셋 중 가장 저평가된 존재입니다. 겉보기에 사소해 보이기 때문이죠 — &ldquo;그냥 마크다운 파일 한 개잖아.&rdquo; 하지만 잘 작성된 스킬은 <em>필요할 때 그곳에 있어 주는</em> 지식과, 모든 프롬프트가 지금 아무에게도 필요 없는 규칙 4,000 토큰을 끌고 다니는 비대한 ```CLAUDE.md```` 사이의 차이를 만듭니다. 이 글에서는 SKILL.md 구조, 모든 것을 결정하는 트리거 description, 가볍게 유지하기 위한 점진적 공개, 두 가지 실전 예제, 그리고 스킬이 결코 발동하지 않게 만드는 실수들을 다룹니다.</p>
+<h2 id="스킬이란-실제로-무엇인가">스킬이란 실제로 무엇인가<a hidden class="anchor" aria-hidden="true" href="#스킬이란-실제로-무엇인가">#</a></h2>
+<p>스킬은 단순한 파일이 아니라 <strong>디렉터리</strong>입니다: `````
 .claude/skills/cut-release/
-SKILL.md # frontmatter + instructions
+SKILL.md            # frontmatter + instructions
 references/
-versioning.md # heavy detail, loaded on demand
+versioning.md     # heavy detail, loaded on demand
 scripts/
-bump-version.sh # an executable the skill can run</p><pre tabindex=0><code>
+bump-version.sh    # an executable the skill can run</p>
+<pre tabindex="0"><code>
 ````SKILL.md````가 진입점입니다. 그 프런트매터는 스킬의 정체성과 — 결정적으로 — *언제 로딩되어야 하는지*를 선언합니다. 본문에는 절차가 담깁니다. 보조 파일(참조 문서, 템플릿, 스크립트)은 옆에 두고 필요할 때만 끌어옵니다. 스킬은 ````.claude/skills/````(프로젝트, 팀과 공유) 또는 ````~/.claude/skills/````(사용자, 당신 머신의 모든 프로젝트)에 위치합니다.
 
 ## 스킬 vs CLAUDE.md: 로딩의 문제
@@ -55,42 +327,89 @@ description: &#34;Technical guide and comparison.&#34;
 * * *
 
 You are helping cut a release. Follow these steps in order...
-</code></pre><h3 id=name><code>name</code><a hidden class=anchor aria-hidden=true href=#name>#</a></h3><p>케밥 케이스, 서술적으로. 이것이 스킬의 정체성입니다.</p><h3 id=description--모든-것을-결정하는-트리거-신호><code>description</code> — 모든 것을 결정하는 트리거 신호<a hidden class=anchor aria-hidden=true href=#description--모든-것을-결정하는-트리거-신호>#</a></h3><p>Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 <strong>언제 발동할지에 대한 조건</strong>입니다. 구체적인 트리거로 꽉 채우세요: > ❌ ````description: &ldquo;Technical guide and comparison.&rdquo;</p><blockquote><p>✅ ````description: &ldquo;Technical guide and comparison.&rdquo;</p></blockquote><p>첫 번째는 절대 발동하지 않습니다 — 실제 작업에서 &ldquo;release helper"에 매칭되는 것이 아무것도 없으니까요. 두 번째는 사용자가 &ldquo;2.4.0 배포하자"라고 말하는 순간 발동합니다. 스킬이 존재하는데도 결코 활성화되지 않는다면, 범인은 — 매번 — description입니다.</p><h2 id=본문-작성하기-에세이가-아니라-절차>본문 작성하기: 에세이가 아니라 절차<a hidden class=anchor aria-hidden=true href=#본문-작성하기-에세이가-아니라-절차>#</a></h2><p>본문은 스킬이 로딩된 뒤 Claude가 따르는 지시문입니다. 세 가지 규칙: 1. <strong>에세이가 아니라 절차로.</strong> 모델이 순서대로 실행하는 번호 매긴 단계가 맥락을 늘어놓은 문단보다 낫습니다. &ldquo;1. package.json의 버전을 올린다. 2. 마지막 태그 이후 커밋들로부터 체인지로그를 재생성한다. 3. &mldr;&rdquo;
+</code></pre><h3 id="name"><code>name</code><a hidden class="anchor" aria-hidden="true" href="#name">#</a></h3>
+<p>케밥 케이스, 서술적으로. 이것이 스킬의 정체성입니다.</p>
+<h3 id="description--모든-것을-결정하는-트리거-신호"><code>description</code> — 모든 것을 결정하는 트리거 신호<a hidden class="anchor" aria-hidden="true" href="#description--모든-것을-결정하는-트리거-신호">#</a></h3>
+<p>Claude는 라우팅을 위해 스킬 description들을 읽습니다: 그것들을 훑어보고, 어떤 스킬이 현재 작업에 맞는지 판단한 뒤, 그 스킬의 본문을 로딩합니다. 따라서 description은 라벨이 아니라 <strong>언제 발동할지에 대한 조건</strong>입니다. 구체적인 트리거로 꽉 채우세요: &gt; ❌ ````description: &ldquo;Technical guide and comparison.&rdquo;</p>
+<blockquote>
+<p>✅ ````description: &ldquo;Technical guide and comparison.&rdquo;</p>
+</blockquote>
+<p>첫 번째는 절대 발동하지 않습니다 — 실제 작업에서 &ldquo;release helper&quot;에 매칭되는 것이 아무것도 없으니까요. 두 번째는 사용자가 &ldquo;2.4.0 배포하자&quot;라고 말하는 순간 발동합니다. 스킬이 존재하는데도 결코 활성화되지 않는다면, 범인은 — 매번 — description입니다.</p>
+<h2 id="본문-작성하기-에세이가-아니라-절차">본문 작성하기: 에세이가 아니라 절차<a hidden class="anchor" aria-hidden="true" href="#본문-작성하기-에세이가-아니라-절차">#</a></h2>
+<p>본문은 스킬이 로딩된 뒤 Claude가 따르는 지시문입니다. 세 가지 규칙: 1. <strong>에세이가 아니라 절차로.</strong> 모델이 순서대로 실행하는 번호 매긴 단계가 맥락을 늘어놓은 문단보다 낫습니다. &ldquo;1. package.json의 버전을 올린다. 2. 마지막 태그 이후 커밋들로부터 체인지로그를 재생성한다. 3. &hellip;&rdquo;
 2. <strong>전제조건과 함정을 인라인으로 명시하라.</strong> &ldquo;태그를 달기 전에 main에서 CI가 통과(green) 상태인지 확인하라&rdquo; — 사람이라면 당연히 점검할 그런 것 말입니다.
-3. <strong>무거운 세부 내용은 인라인하지 말고 가리켜라.</strong> 버전 정책이 800단어라면 <code>references/versioning.md</code>에 넣고 &ldquo;버전 올리기 규칙은 references/versioning.md를 읽어라"라고 쓰세요. 그게 다음에 다룰 점진적 공개입니다.</p><h2 id=점진적-공개-skillmd를-가볍게-유지하라>점진적 공개: SKILL.md를 가볍게 유지하라<a hidden class=anchor aria-hidden=true href=#점진적-공개-skillmd를-가볍게-유지하라>#</a></h2><p>스킬 작성의 핵심 한 수입니다. SKILL.md는 <strong>작아야</strong> 합니다 — 트리거 + 개요 + 포인터. 무거운 자료는 작업이 거기에 다다랐을 때만 로딩되는 보조 파일에 둡니다.</p><p>왜 중요한가: description과 개요는 라우팅을 위해 훑어지므로 비용이 싸야 합니다. 상세한 2,000단어짜리 명세는 스킬이 실제로 동작에 들어가고 작업이 그 깊이를 필요로 할 때만 컨텍스트에 들어가야 합니다. 모든 것을 인라인하는 스킬은 그 목적을 무너뜨립니다 — 발동 방식만 달라졌을 뿐, CLAUDE.md식 비대화로 되돌아간 셈이죠.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#75715e>## Steps
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span> Bump version (see references/versioning.md for the semver rules)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> Run scripts/changelog.sh to generate the draft
-</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> ...
-</span></span></code></pre></div><p>Claude는 매번 로딩할 때가 아니라, 실제로 규칙이 필요할 때만 <code>references/versioning.md</code>를 읽습니다.</p><h2 id=실전-예제-릴리스-체크리스트-스킬>실전 예제: 릴리스 체크리스트 스킬<a hidden class=anchor aria-hidden=true href=#실전-예제-릴리스-체크리스트-스킬>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>*</span> * *
-</span></span><span style=display:flex><span>name: cut-release
-</span></span><span style=display:flex><span>description: &#34;Technical guide and comparison.&#34;
-</span></span><span style=display:flex><span><span style=font-style:italic>* *</span> *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>You are cutting a release. Do NOT skip the precondition check.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>PRECONDITION: confirm CI is green on main. If not, stop and report.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Steps: 1. Determine the new version (semver; see references/versioning.md).
-</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> Bump it in package.json and any version constants.
-</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> Generate the changelog from commits since the last tag.
-</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span> Open a release PR; wait for review.
-</span></span><span style=display:flex><span><span style=color:#66d9ef>5.</span> After merge: tag, push the tag, publish.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Report which step you stopped at if anything blocks.
-</span></span></code></pre></div><p>전제조건과 &ldquo;어디서 멈췄는지 보고하라"는 줄이 이 스킬을 프로덕션 등급으로 만들어 주는 요소입니다 — 단순한 단계들이 아니라, 신중한 사람이 적용하는 가드레일이죠.</p><h2 id=실전-예제-도메인-플레이북-스킬>실전 예제: 도메인 플레이북 스킬<a hidden class=anchor aria-hidden=true href=#실전-예제-도메인-플레이북-스킬>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span><span style=color:#66d9ef>*</span> * *
-</span></span><span style=display:flex><span>name: debug-flaky-test
-</span></span><span style=display:flex><span>description: &#34;Technical guide and comparison.&#34;
-</span></span><span style=display:flex><span><span style=font-style:italic>* *</span> *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>1.</span> Reproduce: run the test 20x in isolation and 20x with the full suite.
-</span></span><span style=display:flex><span>   Different results = test-order or shared-state dependence.
-</span></span><span style=display:flex><span><span style=color:#66d9ef>2.</span> Check for unawaited async, real timers, and fixed sleeps.
-</span></span><span style=display:flex><span><span style=color:#66d9ef>3.</span> Check for shared mutable state between tests.
-</span></span><span style=display:flex><span><span style=color:#66d9ef>4.</span> Only after locating the cause, propose the fix. Do not &#34;add a retry.&#34;
-</span></span></code></pre></div><p>여기 박힌 도메인 지식(네 가지 흔한 원인)에 주목하세요 — 그것은 제도화된 전문성이며, 누구나 시니어 엔지니어의 머릿속 점검표를 발동시킬 수 있도록 패키징된 것입니다.</p><h2 id=흔한-작성-실수>흔한 작성 실수<a hidden class=anchor aria-hidden=true href=#흔한-작성-실수>#</a></h2><ul><li><strong>모호한 description.</strong> 스킬이 존재하지만 결코 발동하지 않습니다. 구체적인 트리거 문구를 — 사용자가 그것을 필요로 할 때 실제로 타이핑하는 단어들을 — 넣으세요.</li><li><strong>모든 것을 CLAUDE.md에.</strong> 상황에 따른 절차가 모든 프롬프트를 비대하게 만듭니다. 스킬로 옮기세요.</li><li><strong>무거운 세부 내용 인라인.</strong> 2,000단어짜리 SKILL.md. 점진적 공개를 쓰세요 — ````references/```를 가리키세요.</li><li><strong>절차 대신 에세이.</strong> 에세이처럼 읽히는 스킬. 단계에 번호를 매기세요.</li><li><strong>가드레일 부재.</strong> 전제조건도 정지 조건도 없는 단계들. 신중한 사람이라면 할 점검을 추가하세요.</li></ul><h2 id=핵심-원리>핵심 원리<a hidden class=anchor aria-hidden=true href=#핵심-원리>#</a></h2><p>스킬은 <strong>적시(just-in-time) 전문성</strong>입니다. CLAUDE.md는 항상 참인 것이고, 스킬은 <em>당신이 바로 이 특정한 일을 할 때</em> 참인 것입니다. 기예는 description(그래서 적절한 순간에 발동하도록)과 점진적 공개(그래서 필요해질 때까지 비용이 싸게 유지되도록)에 있습니다. 이 둘을 제대로 갖추면, 당신 팀의 절차는 아무도 열어 보지 않는 위키 안에서 살기를 멈춥니다 — 작업이 부를 때 정확히 그 순간에 완전히 로딩된 채로 나타나고, 그 외에는 방해되지 않게 비켜나 있습니다.</p><h2 id=프로덕션급-claude-code-세팅하기>프로덕션급 Claude Code 세팅하기<a hidden class=anchor aria-hidden=true href=#프로덕션급-claude-code-세팅하기>#</a></h2><p>스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. <strong>팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트.</strong> 스킬은 버전 관리되며 CI에서도 실행됩니다. **** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.</p><ol start=2><li><p><strong>병렬 실행을 위한 클라우드 여유 공간.</strong> **** — 60일간 $200 무료 크레딧, 14개 이상의 리전.</p></li><li><p><strong>스킬 번들.</strong> 훌륭한 스킬을 쓰는 가장 빠른 길은 훌륭한 스킬을 읽어 보는 것입니다. 우리는 실전에서 검증된 다섯 개의 스킬을 Gumroad에 $19 번들로 묶었습니다 — 화면 모서리의 떠 있는 CTA를 참고하세요 — description, 점진적 공개 구조, 번들 스크립트가 이미 제대로 갖춰진 형태로요.</p></li></ol><h2 id=함께-읽으면-좋은-글>함께 읽으면 좋은 글<a hidden class=anchor aria-hidden=true href=#함께-읽으면-좋은-글>#</a></h2><ul><li><a href=/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/>Subagent vs MCP vs Skill</a> — 이 글이 완성하는 세 축 프레임워크.</li><li><a href=/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/>커스텀 에이전트 작성</a> — 이 가이드의 서브에이전트 축 자매편.</li><li><a href=/kr/resources/llm-frameworks/ai-agent-skills-2026-developer-guide/>AI Agent Skills 2026 개발자 가이드</a> — 더 넓은 스킬 생태계.</li><li><a href=/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/>서브에이전트 패턴</a> — 스킬이 위임된 워커들과 어떻게 조합되는가.</li></ul><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>스킬은 가장 저렴하고 가장 저평가된 확장 지점입니다 — 마크다운 파일 하나가 든 디렉터리로, 상황에 따른 전문성을 적시 컨텍스트로 바꿔 줍니다. 이 기예 전체는 결국 두 가지로 환원됩니다: 적절한 순간에 발동하도록 실제 트리거 문구로 꽉 채운 <strong>description</strong>, 그리고 작업이 그 깊이를 필요로 할 때까지 가볍게 유지되도록 하는 <strong>점진적 공개</strong>. 이 둘을 잘 쓰면, 당신은 팀 전체가 — 그리고 모든 CI 실행이 — 관련된 바로 그 순간에 공짜로 얻는 절차를 패키징한 것입니다. 그것으로 삼부작이 완성됩니다: 지식엔 스킬, 컨텍스트엔 서브에이전트, 역량엔 MCP 서버.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+3. <strong>무거운 세부 내용은 인라인하지 말고 가리켜라.</strong> 버전 정책이 800단어라면 <code>references/versioning.md</code>에 넣고 &ldquo;버전 올리기 규칙은 references/versioning.md를 읽어라&quot;라고 쓰세요. 그게 다음에 다룰 점진적 공개입니다.</p>
+<h2 id="점진적-공개-skillmd를-가볍게-유지하라">점진적 공개: SKILL.md를 가볍게 유지하라<a hidden class="anchor" aria-hidden="true" href="#점진적-공개-skillmd를-가볍게-유지하라">#</a></h2>
+<p>스킬 작성의 핵심 한 수입니다. SKILL.md는 <strong>작아야</strong> 합니다 — 트리거 + 개요 + 포인터. 무거운 자료는 작업이 거기에 다다랐을 때만 로딩되는 보조 파일에 둡니다.</p>
+<p>왜 중요한가: description과 개요는 라우팅을 위해 훑어지므로 비용이 싸야 합니다. 상세한 2,000단어짜리 명세는 스킬이 실제로 동작에 들어가고 작업이 그 깊이를 필요로 할 때만 컨텍스트에 들어가야 합니다. 모든 것을 인라인하는 스킬은 그 목적을 무너뜨립니다 — 발동 방식만 달라졌을 뿐, CLAUDE.md식 비대화로 되돌아간 셈이죠.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#75715e">## Steps
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Bump version (see references/versioning.md for the semver rules)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> Run scripts/changelog.sh to generate the draft
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> ...
+</span></span></code></pre></div><p>Claude는 매번 로딩할 때가 아니라, 실제로 규칙이 필요할 때만 <code>references/versioning.md</code>를 읽습니다.</p>
+<h2 id="실전-예제-릴리스-체크리스트-스킬">실전 예제: 릴리스 체크리스트 스킬<a hidden class="anchor" aria-hidden="true" href="#실전-예제-릴리스-체크리스트-스킬">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#66d9ef">*</span> * *
+</span></span><span style="display:flex;"><span>name: cut-release
+</span></span><span style="display:flex;"><span>description: &#34;Technical guide and comparison.&#34;
+</span></span><span style="display:flex;"><span><span style="font-style:italic">* *</span> *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You are cutting a release. Do NOT skip the precondition check.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>PRECONDITION: confirm CI is green on main. If not, stop and report.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Steps: 1. Determine the new version (semver; see references/versioning.md).
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> Bump it in package.json and any version constants.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> Generate the changelog from commits since the last tag.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">4.</span> Open a release PR; wait for review.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">5.</span> After merge: tag, push the tag, publish.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Report which step you stopped at if anything blocks.
+</span></span></code></pre></div><p>전제조건과 &ldquo;어디서 멈췄는지 보고하라&quot;는 줄이 이 스킬을 프로덕션 등급으로 만들어 주는 요소입니다 — 단순한 단계들이 아니라, 신중한 사람이 적용하는 가드레일이죠.</p>
+<h2 id="실전-예제-도메인-플레이북-스킬">실전 예제: 도메인 플레이북 스킬<a hidden class="anchor" aria-hidden="true" href="#실전-예제-도메인-플레이북-스킬">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span><span style="color:#66d9ef">*</span> * *
+</span></span><span style="display:flex;"><span>name: debug-flaky-test
+</span></span><span style="display:flex;"><span>description: &#34;Technical guide and comparison.&#34;
+</span></span><span style="display:flex;"><span><span style="font-style:italic">* *</span> *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>You are diagnosing a flaky test. Flakiness is almost always one of: shared state, timing/async, test-order dependence, or external resources.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">1.</span> Reproduce: run the test 20x in isolation and 20x with the full suite.
+</span></span><span style="display:flex;"><span>   Different results = test-order or shared-state dependence.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">2.</span> Check for unawaited async, real timers, and fixed sleeps.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">3.</span> Check for shared mutable state between tests.
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">4.</span> Only after locating the cause, propose the fix. Do not &#34;add a retry.&#34;
+</span></span></code></pre></div><p>여기 박힌 도메인 지식(네 가지 흔한 원인)에 주목하세요 — 그것은 제도화된 전문성이며, 누구나 시니어 엔지니어의 머릿속 점검표를 발동시킬 수 있도록 패키징된 것입니다.</p>
+<h2 id="흔한-작성-실수">흔한 작성 실수<a hidden class="anchor" aria-hidden="true" href="#흔한-작성-실수">#</a></h2>
+<ul>
+<li><strong>모호한 description.</strong> 스킬이 존재하지만 결코 발동하지 않습니다. 구체적인 트리거 문구를 — 사용자가 그것을 필요로 할 때 실제로 타이핑하는 단어들을 — 넣으세요.</li>
+<li><strong>모든 것을 CLAUDE.md에.</strong> 상황에 따른 절차가 모든 프롬프트를 비대하게 만듭니다. 스킬로 옮기세요.</li>
+<li><strong>무거운 세부 내용 인라인.</strong> 2,000단어짜리 SKILL.md. 점진적 공개를 쓰세요 — ````references/```를 가리키세요.</li>
+<li><strong>절차 대신 에세이.</strong> 에세이처럼 읽히는 스킬. 단계에 번호를 매기세요.</li>
+<li><strong>가드레일 부재.</strong> 전제조건도 정지 조건도 없는 단계들. 신중한 사람이라면 할 점검을 추가하세요.</li>
+</ul>
+<h2 id="핵심-원리">핵심 원리<a hidden class="anchor" aria-hidden="true" href="#핵심-원리">#</a></h2>
+<p>스킬은 <strong>적시(just-in-time) 전문성</strong>입니다. CLAUDE.md는 항상 참인 것이고, 스킬은 <em>당신이 바로 이 특정한 일을 할 때</em> 참인 것입니다. 기예는 description(그래서 적절한 순간에 발동하도록)과 점진적 공개(그래서 필요해질 때까지 비용이 싸게 유지되도록)에 있습니다. 이 둘을 제대로 갖추면, 당신 팀의 절차는 아무도 열어 보지 않는 위키 안에서 살기를 멈춥니다 — 작업이 부를 때 정확히 그 순간에 완전히 로딩된 채로 나타나고, 그 외에는 방해되지 않게 비켜나 있습니다.</p>
+<h2 id="프로덕션급-claude-code-세팅하기">프로덕션급 Claude Code 세팅하기<a hidden class="anchor" aria-hidden="true" href="#프로덕션급-claude-code-세팅하기">#</a></h2>
+<p>스킬은 안정적이고 공유되는 환경에서 가장 빛납니다: 1. <strong>팀 공유, CI 호출형 워크플로를 위한 신뢰할 수 있는 호스트.</strong> 스킬은 버전 관리되며 CI에서도 실행됩니다. **** — 홍콩 VPS, 저지연 중국 본토 접속, 안정적인 BGP. dibi8.com을 호스팅하는 바로 그 IDC입니다. 월 $5-12.</p>
+<ol start="2">
+<li>
+<p><strong>병렬 실행을 위한 클라우드 여유 공간.</strong> **** — 60일간 $200 무료 크레딧, 14개 이상의 리전.</p>
+</li>
+<li>
+<p><strong>스킬 번들.</strong> 훌륭한 스킬을 쓰는 가장 빠른 길은 훌륭한 스킬을 읽어 보는 것입니다. 우리는 실전에서 검증된 다섯 개의 스킬을 Gumroad에 $19 번들로 묶었습니다 — 화면 모서리의 떠 있는 CTA를 참고하세요 — description, 점진적 공개 구조, 번들 스크립트가 이미 제대로 갖춰진 형태로요.</p>
+</li>
+</ol>
+<h2 id="함께-읽으면-좋은-글">함께 읽으면 좋은 글<a hidden class="anchor" aria-hidden="true" href="#함께-읽으면-좋은-글">#</a></h2>
+<ul>
+<li><a href="/kr/resources/llm-frameworks/claude-code-subagent-vs-mcp-server-skill-agent-2026/">Subagent vs MCP vs Skill</a> — 이 글이 완성하는 세 축 프레임워크.</li>
+<li><a href="/kr/resources/llm-frameworks/claude-code-custom-agent-authoring-guide-2026/">커스텀 에이전트 작성</a> — 이 가이드의 서브에이전트 축 자매편.</li>
+<li><a href="/kr/resources/llm-frameworks/ai-agent-skills-2026-developer-guide/">AI Agent Skills 2026 개발자 가이드</a> — 더 넓은 스킬 생태계.</li>
+<li><a href="/kr/resources/llm-frameworks/claude-code-subagent-patterns-multi-agent-workflows-2026/">서브에이전트 패턴</a> — 스킬이 위임된 워커들과 어떻게 조합되는가.</li>
+</ul>
+<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
+<p>스킬은 가장 저렴하고 가장 저평가된 확장 지점입니다 — 마크다운 파일 하나가 든 디렉터리로, 상황에 따른 전문성을 적시 컨텍스트로 바꿔 줍니다. 이 기예 전체는 결국 두 가지로 환원됩니다: 적절한 순간에 발동하도록 실제 트리거 문구로 꽉 채운 <strong>description</strong>, 그리고 작업이 그 깊이를 필요로 할 때까지 가볍게 유지되도록 하는 <strong>점진적 공개</strong>. 이 둘을 잘 쓰면, 당신은 팀 전체가 — 그리고 모든 CI 실행이 — 관련된 바로 그 순간에 공짜로 얻는 절차를 패키징한 것입니다. 그것으로 삼부작이 완성됩니다: 지식엔 스킬, 컨텍스트엔 서브에이전트, 역량엔 MCP 서버.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026)&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-28&rdquo;,
@@ -104,22 +423,230 @@ You are helping cut a release. Follow these steps in order...
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026%22>https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026%22">https://dibi8.com/kr/resources/claude-code-skill-authoring-guide-2026"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding claude code skill 작성법: 필요할 때만 claude가 불러오는 절차를 패키징하는 방법 (2026) is crucial for modern AI development. Here"s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding claude code skill 작성법: 필요할 때만 claude가 불러오는 절차를 패키징하는 방법 (2026) is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/>claude-code-vs-cline</a></li><li><a href=/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/>gemini-cli-vs-claude-code</a></li><li><a href=/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/>claude-code-vs-aider</a></li><li><a href=/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/>cursor-vs-claude-code</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/claude-code-mcp-advanced-10-server-stack-2026/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Claude Code Skill 작성법: 필요할 때만 Claude가 불러오는 절차를 패키징하는 방법 (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">claude-code-vs-cline</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">claude-code-vs-aider</a></li>
+<li><a href="/ko/ai-coding-agents/claude-code-skill-authoring-guide-2026/">cursor-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/claude-code-mcp-advanced-10-server-stack-2026/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/claude-code-subagent-mastery-stack/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

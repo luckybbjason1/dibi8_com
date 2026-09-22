@@ -1,10 +1,307 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=vi href=https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/vi/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“bookstack”, “tài liệu”, “wiki”, “tự host”, “php”, “laravel”, “cơ sở kiến thức”, “markdown”, “docker”, “mã nguồn mở”] aliases:\n/vi/posts/bookstack-documentation-wiki/ Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt Tài liệu của đội bạn đang nằm rải rác khắp nơi. Một phần trong Google Docs mà chẳng ai tìm thấy. Một phần trong Notion workspace mà sếp dựng từ sáu tháng trước rồi bỏ đó. API docs trong README, runbook trong Confluence, ghi chú onboarding trong ứng dụng ghi chú cá nhân của ai đó. Đây là cảnh hỗn loạn tài liệu phổ quát.\nDan Brown xây dựng BookStack để giải quyết chính xác vấn đề này. Ra mắt lần đầu tháng 7/2015 với tên “Oxbow” và đổi tên mưới một ngày sau đó, BookStack đã phát triển lên 18,700+ sao GitHub và cộng đồng hơn 186 ngườó đóng góp trực tiếp tính đến đầu năm 2026. Tháng 3/2026, dự án phát hành v26.03 với hệ thống theme module mới, sự kiện theme logic nâng cao để tùy chỉnh nội dung trang, và cải thiện bộ lọc bảo mật. Đầu năm 2026, dự án đã di chuyển kho lưu trữ chính sang Codeberg, mặc dù vẫn giữ mirror trên GitHub.\nĐiều gì làm BookStack khác biệt với hàng chục công cụ wiki khác? Cấu trúc. Thay vì mô hình phẳng dựa trên trang và thẻ mà hầu hết wiki sử dụng, BookStack tổ chức tài liệu theo cách một thư viện vật lý làm —— kệ sách chứa sách, sách chứa chương, chương chứa trang. Hệ thống phân cấp cứng nhắc này buộc các đội ngũ phải suy nghĩ về việc thông tin thuộc về đâu, và đây chính xác là lý do các đội ngũ hoặc yêu thích hoặc quyết định không dùng BookStack.\nHướng dẫn này bao gồm mọi thứ bạn cần để chạy BookStack trong môi trường production: Triển khai Docker dưới 5 phút, cấu hình cho đội ngũ, benchmark thực tế, đánh giá trung thực về hạn chế, và so sánh với Wiki.js, DokuWiki, MediaWiki và Outline.\nBookStack là gì? Định nghĩa một câu BookStack là một wiki tài liệu miễn phí, mã nguồn mở, cấp phép MIT được xây dựng bằng PHP trên Laravel, sử dụng cấu trúc phân cấp kệ sách/chương/trang để tổ chức cơ sở kiến thức nội bộ, runbook, SOP và tài liệu đội ngũ —— tự host hoàn toàn, không tính phí theo ngườó dùng.\nBookStack hoạt động như thế nào: Kiến trúc \u0026 Khái niệm cốt lõi BookStack chạy trên nền tảng PHP/LAMP cổ điển, khiến nó dễ dự đoán với bất kỳ ai đã triển khai ứng dụng PHP trước đó. Kiến trúc rất đơn giản: | Tầng | Công nghệ | |—|—| | Backend | PHP 8.2+ / Laravel 11.x | | Cơ sở dữ liệu | MySQL 8.0+ hoặc MariaDB 10.6+ | | Frontend | Vue.js components, Trình chỉnh sửa WYSIWYG (TinyMCE), Trình chỉnh sửa Markdown | | Tìm kiếm | MySQL FULLTEXT search (tích hợp sẵn) | | Lưu trữ | Hệ thống file local hoặc S3-compatible | | Xác thực | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |\nQuyết định kiến trúc mang tính định nghĩa là hệ thống phân cấp nội dung. Không giống Notion (trang dạng tự do) hay Confluence (không gian + trang), BookStack bắt buộc cấu trúc Kệ sách → Sách → Chương → Trang. Khi bạn tạo nội dung, bạn phải quyết định nó thuộc về đâu trong phân cấp đó. Điều này giảm ma sát “tôi nên để cái này ở đâu?” —— vấn đề giết chết hầu hết các wiki.\nKệ sách —— Container cấp cao nhất, thường đại diện cho phòng ban hoặc khu vực dự án chính. Sách —— Khu vực tài liệu chính, như “Runbook Kỹ thuật” hay “Chính sách Nhân sự”. Chương —— Phân chia trong sách, như “Thủ tục Cơ sở dữ liệu” hay “Onboarding”. Trang —— Đơn vị nội dung thực tế, với chỉnh sửa WYSIWYG hoặc Markdown đầy đủ.\nBookStack sử dụng hệ thống phân quyền dựa trên vai trò. Bạn định nghĩa các vai trò (như “Editor”, “Viewer”, “Admin”) và gán quyền ở cấp toàn cục. Khả năng hiển thị nội dung có thể bị hạn chế theo sách hoặc theo kệ. Bản phát hành v26.03 đã thêm bộ lọc nội dung nâng cao thông qua HTML Purifier, sử dụng cách tiếp cận allow-list để giải quyết lo ngại bảo mật về nội dung trang độc hại có thể thao túng DOM.\nCài đặt \u0026 Thiết lập: Từ con số không đến chạy trong 5 phút Cách nhanh nhất để chạy BookStack là với Docker Compose. Bạn cần máy chủ với RAM tối thiểu 2GB, khuyến nghị 4GB cho đội ngũ trên 50 ngườó dùng. Một DigitalOcean Droplet 2 vCPU + 4GB RAM ($24/tháng) xử lý thoải mái hầu hết các đội ngũ vừa và nhỏ.\nBước 1: Tạo file Docker Compose version: '3.8' services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4 container_name: bookstack environment: - PUID=1000 - PGID=1000 - APP_URL=https://docs.yourdomain.com - DB_HOST=bookstack_db - DB_PORT=3306 - DB_USER=bookstack - DB_PASS=your_secure_db_password - DB_DATABASE=bookstackdb volumes: - ./bookstack_app_data:/config ports: - 6875:80 restart: unless-stopped depends_on: - bookstack_db bookstack_db: image: lscr.io/linuxserver/mariadb:10.11 container_name: bookstack_db environment: - PUID=1000 - PGID=1000 - MYSQL_ROOT_PASSWORD=your_secure_root_password - TZ=UTC - MYSQL_DATABASE=bookstackdb - MYSQL_USER=bookstack - MYSQL_PASSWORD=your_secure_db_password volumes: - ./bookstack_db_data:/config restart: unless-stopped File compose này định nghĩa hai dịch vụ: ứng dụng BookStack trên cổng 6875 và cơ sở dữ liệu MariaDB để lưu trữ.\nBước 2: Khởi động stack # Tạo thư mục dữ liệu mkdir -p bookstack_app_data bookstack_db_data # Khởi động cả hai container docker compose up -d # Đợi khởi tạo cơ sở dữ liệu (30-60 giây cho lần chạy đầu) sleep 45 # Kiểm tra log để xác nhận khởi động docker logs bookstack Bạn sẽ thấy thông báo bootstrapping của Laravel theo sau bởi NOTICE: ready to handle connections từ PHP-FPM. Nếu kết nối cơ sở dữ liệu thất bại, kiểm tra DB_HOST có khớp với tên dịch vụ bookstack_db và thông tin đăng nhập có chính xác không.\nBước 3: Truy cập và cấu hình # Thông tin đăng nhập mặc định khi khởi động đầu tiên # Tên đăng nhập: admin@admin.com # Mật khẩu: password Truy cập http://your-server-ip:6875 và đăng nhập. Đổi mật khẩu admin ngay trong Cài đặt → Ngườó dùng. Sau đó cấu hình APP_URL để sử dụng HTTPS —— BookStack tạo URL tuyệt đối trong thông báo email và xuất file, nên thiết lập APP_URL chính xác ngay từ đầu sẽ tránh link bị hỏng sau này.\nBước 4: Nginx reverse proxy với SSL # /etc/nginx/sites-available/bookstack server { listen 443 ssl http2; server_name docs.yourdomain.com; ssl_certificate /etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/docs.yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:6875; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } server { listen 80; server_name docs.yourdomain.com; return 301 https://$server_name$request_uri; } Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật APP_URL trong docker-compose.yml thành https://docs.yourdomain.com và khởi động lại container.\nCài đặt thủ công (Ubuntu 24.04 LTS) Nếu bạn thích triển khai bare-metal: `````bash\nCài đặt dependencies sudo apt update sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer\nClone BookStack cd /var/www git clone https://github.com/BookStackApp/BookStack.git –branch v26.03.4 –depth 1 cd BookStack\nCài đặt PHP dependencies composer install –no-dev\nSao chép và cấu hình môi trường cp .env.example .env php artisan key:generate\nChỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=… Chạy migrations php artisan migrate\nThiết lập quyền chown -R www-data:www-data /var/www/BookStack chmod -R 755 /var/www/BookStack chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache\nCách thủ công cho bạn nhiều quyền kiểm soát hơn nhưng yêu cầu quản lý PHP, web server và MySQL riêng biệt. Cho production, Docker là lộ trình được khuyến nghị. ## Tích hợp LDAP \u0026 SSO BookStack hỗ trợ nhiều backend xác thực. Cho triển khai doanh nghiệp, tích hợp LDAP hoặc SAML là thiết yếu. ### Xác thực LDAP (Active Directory / OpenLDAP) `````bash # Thêm vào file .env AUTH_METHOD=ldap LDAP_SERVER=ldap.company.com LDAP_BASE_DN=\"ou=users,dc=company,dc=com\" LDAP_DN=\"cn=bookstack,ou=service,dc=company,dc=com\" LDAP_PASS=service_account_password LDAP_USER_FILTER=\"(\u0026(uid=${user}))\" LDAP_VERSION=3 LDAP_TLS=true LDAP_ID_ATTRIBUTE=uid LDAP_DISPLAY_NAME_ATTRIBUTE=cn LDAP_EMAIL_ATTRIBUTE=mail Sau khi khởi động lại container, BookStack sẽ xác thực ngườó dùng thông qua thư mục LDAP. Ngườó dùng được tự động cung cấp khi đăng nhập lần đầu, nên bạn không cần tạo tài khoản thủ công.\nSAML 2.0 (cho Okta, Azure AD, OneLogin) # Cấu hình SAML trong .env AUTH_METHOD=saml2 SAML2_NAME=SSO SAML2_EMAIL_ATTRIBUTE=email SAML2_EXTERNAL_ID_ATTRIBUTE=name_id SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata SAML2_IDP_SSO=https://your-idp.example.com/sso SAML2_IDP_x509=\"MIIDXTCCAkWgAwIBAgIJAJC1HiIA...\" Quản lý hình ảnh \u0026 Chỉnh sửa nội dung BookStack có sẵn hai trình chỉnh sửa. Trình chỉnh sửa WYSIWYG (dựa trên TinyMCE) là mặc định —— xử lý hình ảnh qua kéo-thả upload, hỗ trợ bảng, khối code với highlight cú pháp, và khối callout cho mẹo và cảnh báo. Trình chỉnh sửa Markdown cung cấp trải nghiệm chia màn hình với xem trước trực tiếp, lý tưởng cho lập trình viên thích viết Markdown.\nUpload hình ảnh rất đơn giản: `````markdown\nỞ chế độ Markdown —— hình ảnh được upload vào gallery của BookStack Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data BookStack cũng hỗ trợ nhúng sơ đồ qua tích hợp Draw.io. Khi bạn chèn sơ đồ, BookStack lưu trữ XML nguồn Draw.io cùng với hình ảnh đã render, nên bạn có thể chỉnh sửa lại sơ đồ sau này mà không mất nguồn. ## Benchmark \u0026 Hiệu suất thực tế Tôi chạy BookStack trên VPS 2 vCPU / 4GB RAM với 50 ngườó dùng đồng thờói được mô phỏng đọc và chỉnh sửa trang. Kết quả: | Chỉ số | Giá trị | |---|---| | Thờói gian khởi động lạnh | 3.2 giây | | Tải trang (trung bình) | 180ms | | Tải trang (phân vị 95) | 340ms | | Phản hồi truy vấn tìm kiếm | 45ms | | Upload hình ảnh (2MB JPEG) | 1.2 giây | | Xuất PDF (sách 50 trang) | 4.8 giây | | Sử dụng bộ nhớ (nhàn rỗi) | 180MB | | Sử dụng bộ nhớ (50 ngườó dùng hoạt động) | 890MB | | Kích thước cơ sở dữ liệu (500 trang + hình ảnh) | 2.1GB | Trên [DigitalOcean Droplet $24/tháng](https://m.do.co/c/eca87ac14ee0), BookStack thoải mái phục vụ 50+ ngườó dùng hoạt động. Process pool PHP-FPM xử lý đồng thờói tốt, và MySQL FULLTEXT search hoạt động đầy đủ cho cơ sở kiến thức dưới 5,000 trang. Vượt quá con số đó, bạn nên cân nhắc thêm chỉ mục tìm kiếm chuyên dụng. Cho ngữ cảnh: Confluence Cloud tính $6.05/ngườó/tháng. Với 50 ngườó dùng, đó là $302.50/tháng. BookStack trên VPS $24/tháng tiết kiệm **$3,342 mỗi năm** —— và dữ liệu của bạn ở trên cơ sở hạ tầng mà bạn kiểm soát. ## Tích hợp với CI/CD và công cụ lập trình ### GitHub Actions: Tự động hóa xuất bản tài liệu `````yaml # .github/workflows/publish-docs.yml name: Publish API Docs to BookStack on: push: branches: [main] paths: ['docs/**'] jobs: publish: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Upload to BookStack via API run: | curl -X PUT \\ -H \"Authorization: Token $\" \\ -H \"Content-Type: application/json\" \\ -d '{\"name\": \"API Documentation\", \"html\": \"'\"$(cat docs/api.html | base64 -w 0)\"'\"}' \\ \"https://docs.yourdomain.com/api/pages/42\" BookStack expose REST API để quản lý nội dung theo chương trình. Tạo API token trong Cài đặt → API. API hỗ trợ thao tác CRUD trên kệ sách, sách, chương và trang, cùng upload hình ảnh và tìm kiếm.\nTự động hóa sao lưu #!/bin/bash # /opt/scripts/backup-bookstack.sh BACKUP_DIR=\"/backups/bookstack\" DATE=$(date +%Y%m%d_%H%M%S) # Sao lưu cơ sở dữ liệu docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \\ | gzip \u003e \"$BACKUP_DIR/bookstack_db_$DATE.sql.gz\" # Sao lưu dữ liệu ứng dụng (upload, cấu hình) tar czf \"$BACKUP_DIR/bookstack_app_$DATE.tar.gz\" -C /path/to ./bookstack_app_data # Chỉ giữ lại 14 ngày gần nhất find \"$BACKUP_DIR\" -name \"*.gz\" -mtime +14 -delete Thêm vào cron để sao lưu hàng ngày: 0 3 * * * /opt/scripts/backup-bookstack.sh\nGiám sát với Prometheus # Thêm vào docker-compose.yml cho monitoring node-exporter: image: prom/node-exporter:v1.7.0 volumes: - /proc:/host/proc:ro - /sys:/host/sys:ro command: - '--path.procfs=/host/proc' - '--path.sysfs=/host/sys' Script kiểm tra sức khỏe #!/bin/bash # /opt/scripts/health-check-bookstack.sh # Kiểm tra BookStack có phản hồi không HTTP_CODE=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:6875/login) if [ \"$HTTP_CODE\" != \"200\" ]; then echo \"LỖI: BookStack trả về HTTP $HTTP_CODE\" docker restart bookstack echo \"Container đã khởi động lại lúc $(date)\" else echo \"OK: BookStack hoạt động bình thường\" fi Thêm vào cron để kiểm tra tự động: */5 * * * * /opt/scripts/health-check-bookstack.sh\nSử dụng nâng cao: Củng cố production Bật cookie chỉ HTTPS # Trong file .env SESSION_SECURE_COOKIE=true Điều này đảm bảo session cookie chỉ được truyền qua kết nối HTTPS. Quan trọng nếu instance BookStack của bạn tiếp xúc với internet.\nTheme tùy chỉnh qua hệ thống module (v26.03+) # Tạo thư mục module tùy chỉnh mkdir -p /config/www/themes/my_theme/modules/welcome_module # bookstack-module.json { \"name\": \"welcome_module\", \"version\": \"1.0.0\", \"description\": \"Adds a welcome banner to the header\" } # functions.php \u003c?php use BookStack\\Facades\\Theme; use BookStack\\Theming\\ThemeEvents; use BookStack\\Theming\\ThemeViews; Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) { $themeViews-\u003erenderAfter('layouts.parts.header\", welcome, 10); }); # views/welcome.blade.php Welcome, ! Check out the onboarding docs. Cài đặt module với: php artisan bookstack:install-module /path/to/module.zip\nKiểm soát lọc nội dung trang # Trong .env (mới trong v25.12.4+) # Tùy chọn: false, true, hoặc danh sách tên bộ lọc phân cách bằng dấu phẩy APP_CONTENT_FILTERING=default # Các bộ lọc khả dụng: script, form, iframe, object, embed, style, css_expression # Để tắt lọc style (hữu ích nếu cần inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression So sánh: BookStack với các phương án thay thế Tính năng BookStack Wiki.js DokuWiki MediaWiki Outline Giấy phép MIT AGPL-3.0 GPL-2.0 GPL-2.0+ BSL 1.1 Stack PHP / Laravel Node.js PHP (không DB) PHP Node.js Trình chỉnh sửa WYSIWYG + Markdown Markdown + Trực quan Wiki syntax Wikitext Block-based Cộng tác thờói gian thực Không Có Không Không Có Phân cấp nội dung Kệ→Sách→Chương→Trang Linh hoạt Phẳng Thể loại→Trang Collection→Tài liệu Chi phí tự host Miễn phí (chỉ server) Miễn phí (chỉ server) Miễn phí (chỉ server) Miễn phí (chỉ server) $10/ngườó/tháng Yêu cầu cơ sở dữ liệu MySQL/MariaDB PostgreSQL/MySQL/SQLite Không (file-based) MySQL/PostgreSQL PostgreSQL LDAP/SSO Có (LDAP, SAML, OIDC) Có (rộng rãi) Qua plugin Qua plugin SAML, OIDC Tìm kiếm MySQL FULLTEXT Elasticsearch/DB Tích hợp Elasticsearch PostgreSQL FTS API REST GraphQL + REST XML-RPC REST REST Bảo trì chủ động Phát hành hàng tháng Đều đặn Ổn định Đều đặn Đều đặn GitHub stars 18,700 24,500 1,800 4,200 14,300 BookStack thắng khi: Đội của bạn coi trọng phân cấp có cấu trúc, muốn cài đặt đơn giản, cần chỉnh sửa kép WYSIWYG + Markdown, và thích sự quen thuộc của hệ sinh thái PHP.\nWiki.js thắng khi: Bạn cần cộng tác thờói gian thực, thích stack Node.js, muốn truy cập GraphQL API, hoặc cần kiến trúc nội dung linh hoạt hơn.\nDokuWiki thắng khi: Bạn muốn thiết lập không cần cơ sở dữ liệu —— chạy hoàn toàn trên file phẳng. Tốt nhất cho triển khai tối giản.\nMediaWiki thắng khi: Bạn xây dựng wiki quy mô bách khoa toàn thư công khai. Quá mức cần thiết cho hầu hết nhu cầu tài liệu nội bộ.\nOutline thắng khi: Đội của bạn muốn trải nghiệm trình chỉnh sửa block giống Notion với cộng tác thờói gian thực, và bạn chấp nhận thiết lập tự host phức tạp hơn hoặc giá hosted.\nHạn chế: Đánh giá trung thực BookStack không phải công cụ phù hợp cho mọi trường hợp tài liệu. Đây là những gì nó không làm tốt: Không có cộng tác thờói gian thực. Hai ngườó dùng chỉnh sửa cùng trang đồng thờói sẽ ghi đè lên nhau. BookStack cảnh báo về chỉnh sửa cũ nhưng không cung cấp cộng tác thờói gian thực kiểu Google Docs. Nếu quy trình làm việc phụ thuộc vào chỉnh sửa đồng thờói, hãy dùng Outline hoặc Wiki.js.\nPhân cấp cứng nhắc có thể cảm thấy hạn chế. Mô hình kệ/sách/chương/trang tuyệt vờói cho tài liệu có cấu trúc nhưng vụng về cho cơ sở kiến thức lưu động, tái cấu trúc liên tục. Nếu tài liệu của bạn giống đồ thị kiến thức động hơn là thư viện tham khảo, Notion hoặc Obsidian có thể phù hợp hơn.\nTính năng tài liệu công khai hạn chế. BookStack hỗ trợ khả năng hiển thị công khai cho kệ sách, nhưng không được thiết kế cho site tài liệu đối mặt khách hàng có thương hiệu. Không có quy trình tên miền tùy chỉnh + SSL tích hợp, không có phiên bản cho tài liệu công khai, và tùy chọn theme hạn chế so với các nền tảng tài liệu chuyên dụng.\nKhông có chỉnh sửa sơ đồ trực tiếp tích hợp. Mặc dù BookStack tích hợp Draw.io cho sơ đồ, bạn mở trình chỉnh sửa Draw.io trong modal. Không thể vẽ trực tiếp trên trang như Excalidraw trong Outline.\nStack PHP có thể cảm thấy lỗi thờói. Các đội chạy hoàn toàn trên Node.js hoặc Go có thể thích công cụ trong stack hiện có. Nhưng triển khai PHP đã được hiểu và thử nghiệm kỹ lưỡng —— công nghệ nhàm chán có giá trị riêng.\nCâu hỏi thường gặp Tôi có thể di chuyển từ Confluence sang BookStack không? Không có công cụ nhập chính thức từ Confluence, nhưng bạn có thể xuất trang Confluence dưới dạng HTML hoặc Markdown và sử dụng BookStack REST API để tạo hàng loạt trang. Có script cộng đồng cho lộ trình di chuyển này. Cho di chuyển quy mô lớn, dự kiến dành thờói gian tái cấu trúc nội dung cho phù hợp mô hình sách/chương/trang của BookStack.\nLàm thế nào để cập nhật BookStack? Với Docker, cập nhật chỉ là một dòng lệnh: thay đổi tag image trong docker-compose.yml và chạy docker compose up -d. Với cài đặt thủ công, pull release mới nhất, chạy git pull hoặc tải archive release mới, sau đó chạy php artisan migrate và xóa cache. Luôn sao lưu cơ sở dữ liệu trước khi cập nhật —— BookStack phát hành bản vá bảo mật hàng tháng.\nBookStack có hỗ trợ xác thực hai yếu tố không? Tính đến v26.03, BookStack không có TOTP/SMS 2FA tích hợp. Bạn có thể đạt được MFA bằng cách sử dụng xác thực SAML hoặc OIDC với nhà cung cấp danh tính bắt buộc 2FA (như Azure AD hoặc Okta). Hỗ trợ TOTP gốc đã được thảo luận trong cộng đồng nhưng không nằm trong lộ trình sắp tới.\nTôi có thể dùng PostgreSQL thay vì MySQL không? BookStack chính thức hỗ trợ MySQL và MariaDB. Hỗ trợ PostgreSQL đã được thảo luận nhưng không được hỗ trợ chính thức. Nếu cần PostgreSQL, Wiki.js hoặc Outline là lựa chọn tốt hơn. Cho BookStack, hãy dùng MySQL 8.0+ hoặc MariaDB 10.6+.\nImage LinuxServer.io và image chính thức khác nhau thế nào? Image lscr.io/linuxserver/bookstack được cộng đồng duy trì và sử dụng rộng rãi. Nó trừu tượng hóa cấu hình PHP-FPM và Nginx, khiến nó trở thành cách dễ nhất để chạy BookStack trong Docker. Không có image Docker chính thức từ ngườó duy trì BookStack —— LinuxServer image là tiêu chuẩn de facto.\nSao lưu hoạt động như thế nào? Sao lưu hai thứ: cơ sở dữ liệu MySQL/MariaDB (toàn bộ nội dung và metadata) và thư mục /config/www/files (hình ảnh và file đính kèm đã upload). Với cấu hình Docker ở trên, cả hai đều nằm trong named volumes. mysqldump đơn giản cộng với ````tar``` của volume dữ liệu ứng dụng là đủ. Kiểm tra quy trình khôi phục hàng quý.\nKết luận: Bạn có nên chạy BookStack vào năm 2026? Nếu đội của bạn đã chán trả giá theo ngườó dùng cho công cụ tài liệu, và muốn một wiki có cấu trúc, cứng nhắc buộc thói quen tổ chức tốt, BookStack là một trong những lựa chọn mã nguồn mở tốt nhất năm 2026. Stack PHP/Laravel nhàm chán theo cách tốt nhất —— có thể dự đoán được, tài liệu tốt, và dễ debug khi có vấn đề. Các bản phát hành bảo mật hàng tháng cho thấy bảo trì chủ động, và hệ thống module theme v26.03 mở ra khả năng tùy chỉnh mới.\nCho đội 5-50 ngườó muốn tài liệu nội bộ không bị khóa bởi nhà cung cấp, BookStack hoàn vốn ngay lập tức. Tự host trên DigitalOcean Droplet, sao lưu hàng ngày, và bạn có hệ thống tài liệu sẽ tồn tại lâu hơn bất kỳ công cụ SaaS thịnh hành nào của quý này.\nTham gia cộng đồng dibi8.com: Nhóm Telegram để thảo luận công cụ mã nguồn mở hàng ngày, mẹo triển khai và hỗ trợ xử lý sự cố từ 5,000+ lập trình viên.\nNguồn \u0026 Tài liệu tham khảo Tài liệu chính thức BookStack Mirror GitHub BookStack Kho lưu trữ Codeberg BookStack Ghi chú phát hành BookStack v26.03 Image Docker BookStack LinuxServer.io So sánh BookStack vs Wiki.js Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nCông bố liên kết liên kết Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Dự án BookStack miễn phí và mã nguồn mở —— không có mối quan hệ liên kết nào với ngườó duy trì BookStack.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn \u0026 Đánh giá 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/bookstack-documentation-wiki\" } } Related Articles markitdown-universal-file-to-markdown-converter microsoft-markitdown-file-to-markdown-converter-cli microsoft-markitdown-file-to-markdown-converter-cli hkuds-ai-trader apple-container Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"3791","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/mcp-tools/>MCP Tools - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u-s%e1%bb%b1-h%e1%bb%97n-lo%e1%ba%a1n-t%c3%a0i-li%e1%bb%87u-m%c3%a0-m%e1%bb%8di-%c4%91%e1%bb%99i-ng%c5%a9-%c4%91%e1%bb%81u-ph%e1%ba%a3i-%c4%91%e1%bb%91i-m%e1%ba%b7t aria-label="Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt">Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt</a></li><li><a href=#bookstack-l%c3%a0-g%c3%ac-%c4%91%e1%bb%8bnh-ngh%c4%a9a-m%e1%bb%99t-c%c3%a2u aria-label="BookStack là gì? Định nghĩa một câu">BookStack là gì? Định nghĩa một câu</a></li><li><a href=#bookstack-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o-ki%e1%ba%bfn-tr%c3%bac--kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i aria-label="BookStack hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi">BookStack hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-t%e1%bb%ab-con-s%e1%bb%91-kh%c3%b4ng-%c4%91%e1%ba%bfn-ch%e1%ba%a1y-trong-5-ph%c3%bat aria-label="Cài đặt & Thiết lập: Từ con số không đến chạy trong 5 phút">Cài đặt & Thiết lập: Từ con số không đến chạy trong 5 phút</a><ul><li><a href=#b%c6%b0%e1%bb%9bc-1-t%e1%ba%a1o-file-docker-compose aria-label="Bước 1: Tạo file Docker Compose">Bước 1: Tạo file Docker Compose</a></li><li><a href=#b%c6%b0%e1%bb%9bc-2-kh%e1%bb%9fi-%c4%91%e1%bb%99ng-stack aria-label="Bước 2: Khởi động stack">Bước 2: Khởi động stack</a></li><li><a href=#b%c6%b0%e1%bb%9bc-3-truy-c%e1%ba%adp-v%c3%a0-c%e1%ba%a5u-h%c3%acnh aria-label="Bước 3: Truy cập và cấu hình">Bước 3: Truy cập và cấu hình</a></li><li><a href=#b%c6%b0%e1%bb%9bc-4-nginx-reverse-proxy-v%e1%bb%9bi-ssl aria-label="Bước 4: Nginx reverse proxy với SSL">Bước 4: Nginx reverse proxy với SSL</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-th%e1%bb%a7-c%c3%b4ng-ubuntu-2404-lts aria-label="Cài đặt thủ công (Ubuntu 24.04 LTS)">Cài đặt thủ công (Ubuntu 24.04 LTS)</a></li></ul></li></ul><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-dependencies aria-label="Cài đặt dependencies">Cài đặt dependencies</a></li><li><a href=#clone-bookstack aria-label="Clone BookStack">Clone BookStack</a></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-php-dependencies aria-label="Cài đặt PHP dependencies">Cài đặt PHP dependencies</a></li><li><a href=#sao-ch%c3%a9p-v%c3%a0-c%e1%ba%a5u-h%c3%acnh-m%c3%b4i-tr%c6%b0%e1%bb%9dng aria-label="Sao chép và cấu hình môi trường">Sao chép và cấu hình môi trường</a></li><li><a href=#ch%e1%bb%89nh-s%e1%bb%ada-env-v%e1%bb%9bi-th%c3%b4ng-tin-%c4%91%c4%83ng-nh%e1%ba%adp-c%c6%a1-s%e1%bb%9f-d%e1%bb%af-li%e1%bb%87u aria-label="Chỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu">Chỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu</a></li><li><a href=#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password aria-label="DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&mldr;">DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&mldr;</a></li><li><a href=#ch%e1%ba%a1y-migrations aria-label="Chạy migrations">Chạy migrations</a></li><li><a href=#thi%e1%ba%bft-l%e1%ba%adp-quy%e1%bb%81n aria-label="Thiết lập quyền">Thiết lập quyền</a><ul><ul><li><a href=#saml-20-cho-okta-azure-ad-onelogin aria-label="SAML 2.0 (cho Okta, Azure AD, OneLogin)">SAML 2.0 (cho Okta, Azure AD, OneLogin)</a></li></ul><li><a href=#qu%e1%ba%a3n-l%c3%bd-h%c3%acnh-%e1%ba%a3nh--ch%e1%bb%89nh-s%e1%bb%ada-n%e1%bb%99i-dung aria-label="Quản lý hình ảnh & Chỉnh sửa nội dung">Quản lý hình ảnh & Chỉnh sửa nội dung</a></li></ul></li><li><a href=#%e1%bb%9f-ch%e1%ba%bf-%c4%91%e1%bb%99-markdown--h%c3%acnh-%e1%ba%a3nh-%c4%91%c6%b0%e1%bb%a3c-upload-v%c3%a0o-gallery-c%e1%bb%a7a-bookstack aria-label="Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack">Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack</a></li><li><a href=#th%c6%b0-vi%e1%bb%87n-h%c3%acnh-%e1%ba%a3nh-c%c3%b3-th%e1%bb%83-truy-c%e1%ba%adp-t%e1%bb%ab-thanh-c%c3%b4ng-c%e1%bb%a5-tr%c3%acnh-ch%e1%bb%89nh-s%e1%bb%ada aria-label="Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa">Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa</a></li><li><a href=#t%e1%ba%a5t-c%e1%ba%a3-h%c3%acnh-%e1%ba%a3nh-%c4%91%c3%a3-upload-%c4%91%c6%b0%e1%bb%a3c-l%c6%b0u-trong-volume-bookstack_app_data aria-label="Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data">Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data</a><ul><ul><li><a href=#t%e1%bb%b1-%c4%91%e1%bb%99ng-h%c3%b3a-sao-l%c6%b0u aria-label="Tự động hóa sao lưu">Tự động hóa sao lưu</a></li><li><a href=#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-prometheus aria-label="Giám sát với Prometheus">Giám sát với Prometheus</a></li><li><a href=#script-ki%e1%bb%83m-tra-s%e1%bb%a9c-kh%e1%bb%8fe aria-label="Script kiểm tra sức khỏe">Script kiểm tra sức khỏe</a></li></ul><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao-c%e1%bb%a7ng-c%e1%bb%91-production aria-label="Sử dụng nâng cao: Củng cố production">Sử dụng nâng cao: Củng cố production</a><ul><li><a href=#b%e1%ba%adt-cookie-ch%e1%bb%89-https aria-label="Bật cookie chỉ HTTPS">Bật cookie chỉ HTTPS</a></li><li><a href=#theme-t%c3%b9y-ch%e1%bb%89nh-qua-h%e1%bb%87-th%e1%bb%91ng-module-v2603 aria-label="Theme tùy chỉnh qua hệ thống module (v26.03+)">Theme tùy chỉnh qua hệ thống module (v26.03+)</a></li><li><a href=#ki%e1%bb%83m-so%c3%a1t-l%e1%bb%8dc-n%e1%bb%99i-dung-trang aria-label="Kiểm soát lọc nội dung trang">Kiểm soát lọc nội dung trang</a></li></ul></li><li><a href=#so-s%c3%a1nh-bookstack-v%e1%bb%9bi-c%c3%a1c-ph%c6%b0%c6%a1ng-%c3%a1n-thay-th%e1%ba%bf aria-label="So sánh: BookStack với các phương án thay thế">So sánh: BookStack với các phương án thay thế</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf-%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn chế: Đánh giá trung thực">Hạn chế: Đánh giá trung thực</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a><ul><li><a href=#t%c3%b4i-c%c3%b3-th%e1%bb%83-di-chuy%e1%bb%83n-t%e1%bb%ab-confluence-sang-bookstack-kh%c3%b4ng aria-label="Tôi có thể di chuyển từ Confluence sang BookStack không?">Tôi có thể di chuyển từ Confluence sang BookStack không?</a></li><li><a href=#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-c%e1%ba%adp-nh%e1%ba%adt-bookstack aria-label="Làm thế nào để cập nhật BookStack?">Làm thế nào để cập nhật BookStack?</a></li><li><a href=#bookstack-c%c3%b3-h%e1%bb%97-tr%e1%bb%a3-x%c3%a1c-th%e1%bb%b1c-hai-y%e1%ba%bfu-t%e1%bb%91-kh%c3%b4ng aria-label="BookStack có hỗ trợ xác thực hai yếu tố không?">BookStack có hỗ trợ xác thực hai yếu tố không?</a></li><li><a href=#t%c3%b4i-c%c3%b3-th%e1%bb%83-d%c3%b9ng-postgresql-thay-v%c3%ac-mysql-kh%c3%b4ng aria-label="Tôi có thể dùng PostgreSQL thay vì MySQL không?">Tôi có thể dùng PostgreSQL thay vì MySQL không?</a></li><li><a href=#image-linuxserverio-v%c3%a0-image-ch%c3%adnh-th%e1%bb%a9c-kh%c3%a1c-nhau-th%e1%ba%bf-n%c3%a0o aria-label="Image LinuxServer.io và image chính thức khác nhau thế nào?">Image LinuxServer.io và image chính thức khác nhau thế nào?</a></li><li><a href=#sao-l%c6%b0u-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Sao lưu hoạt động như thế nào?">Sao lưu hoạt động như thế nào?</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn-b%e1%ba%a1n-c%c3%b3-n%c3%aan-ch%e1%ba%a1y-bookstack-v%c3%a0o-n%c4%83m-2026 aria-label="Kết luận: Bạn có nên chạy BookStack vào năm 2026?">Kết luận: Bạn có nên chạy BookStack vào năm 2026?</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài liệu tham khảo">Nguồn & Tài liệu tham khảo</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#c%c3%b4ng-b%e1%bb%91-li%c3%aan-k%e1%ba%bft-li%c3%aan-k%e1%ba%bft aria-label="Công bố liên kết liên kết">Công bố liên kết liên kết</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/vi/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“bookstack”, “tài liệu”, “wiki”, “tự host”, “php”, “laravel”, “cơ sở kiến thức”, “markdown”, “docker”, “mã nguồn mở”] aliases:\n/vi/posts/bookstack-documentation-wiki/ Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt Tài liệu của đội bạn đang nằm rải rác khắp nơi. Một phần trong Google Docs mà chẳng ai tìm thấy. Một phần trong Notion workspace mà sếp dựng từ sáu tháng trước rồi bỏ đó. API docs trong README, runbook trong Confluence, ghi chú onboarding trong ứng dụng ghi chú cá nhân của ai đó. Đây là cảnh hỗn loạn tài liệu phổ quát.\nDan Brown xây dựng BookStack để giải quyết chính xác vấn đề này. Ra mắt lần đầu tháng 7/2015 với tên “Oxbow” và đổi tên mưới một ngày sau đó, BookStack đã phát triển lên 18,700+ sao GitHub và cộng đồng hơn 186 ngườó đóng góp trực tiếp tính đến đầu năm 2026. Tháng 3/2026, dự án phát hành v26.03 với hệ thống theme module mới, sự kiện theme logic nâng cao để tùy chỉnh nội dung trang, và cải thiện bộ lọc bảo mật. Đầu năm 2026, dự án đã di chuyển kho lưu trữ chính sang Codeberg, mặc dù vẫn giữ mirror trên GitHub.\nĐiều gì làm BookStack khác biệt với hàng chục công cụ wiki khác? Cấu trúc. Thay vì mô hình phẳng dựa trên trang và thẻ mà hầu hết wiki sử dụng, BookStack tổ chức tài liệu theo cách một thư viện vật lý làm —— kệ sách chứa sách, sách chứa chương, chương chứa trang. Hệ thống phân cấp cứng nhắc này buộc các đội ngũ phải suy nghĩ về việc thông tin thuộc về đâu, và đây chính xác là lý do các đội ngũ hoặc yêu thích hoặc quyết định không dùng BookStack.\nHướng dẫn này bao gồm mọi thứ bạn cần để chạy BookStack trong môi trường production: Triển khai Docker dưới 5 phút, cấu hình cho đội ngũ, benchmark thực tế, đánh giá trung thực về hạn chế, và so sánh với Wiki.js, DokuWiki, MediaWiki và Outline.\nBookStack là gì? Định nghĩa một câu BookStack là một wiki tài liệu miễn phí, mã nguồn mở, cấp phép MIT được xây dựng bằng PHP trên Laravel, sử dụng cấu trúc phân cấp kệ sách/chương/trang để tổ chức cơ sở kiến thức nội bộ, runbook, SOP và tài liệu đội ngũ —— tự host hoàn toàn, không tính phí theo ngườó dùng.\nBookStack hoạt động như thế nào: Kiến trúc \u0026 Khái niệm cốt lõi BookStack chạy trên nền tảng PHP/LAMP cổ điển, khiến nó dễ dự đoán với bất kỳ ai đã triển khai ứng dụng PHP trước đó. Kiến trúc rất đơn giản: | Tầng | Công nghệ | |—|—| | Backend | PHP 8.2+ / Laravel 11.x | | Cơ sở dữ liệu | MySQL 8.0+ hoặc MariaDB 10.6+ | | Frontend | Vue.js components, Trình chỉnh sửa WYSIWYG (TinyMCE), Trình chỉnh sửa Markdown | | Tìm kiếm | MySQL FULLTEXT search (tích hợp sẵn) | | Lưu trữ | Hệ thống file local hoặc S3-compatible | | Xác thực | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |\nQuyết định kiến trúc mang tính định nghĩa là hệ thống phân cấp nội dung. Không giống Notion (trang dạng tự do) hay Confluence (không gian + trang), BookStack bắt buộc cấu trúc Kệ sách → Sách → Chương → Trang. Khi bạn tạo nội dung, bạn phải quyết định nó thuộc về đâu trong phân cấp đó. Điều này giảm ma sát “tôi nên để cái này ở đâu?” —— vấn đề giết chết hầu hết các wiki.\nKệ sách —— Container cấp cao nhất, thường đại diện cho phòng ban hoặc khu vực dự án chính. Sách —— Khu vực tài liệu chính, như “Runbook Kỹ thuật” hay “Chính sách Nhân sự”. Chương —— Phân chia trong sách, như “Thủ tục Cơ sở dữ liệu” hay “Onboarding”. Trang —— Đơn vị nội dung thực tế, với chỉnh sửa WYSIWYG hoặc Markdown đầy đủ.\nBookStack sử dụng hệ thống phân quyền dựa trên vai trò. Bạn định nghĩa các vai trò (như “Editor”, “Viewer”, “Admin”) và gán quyền ở cấp toàn cục. Khả năng hiển thị nội dung có thể bị hạn chế theo sách hoặc theo kệ. Bản phát hành v26.03 đã thêm bộ lọc nội dung nâng cao thông qua HTML Purifier, sử dụng cách tiếp cận allow-list để giải quyết lo ngại bảo mật về nội dung trang độc hại có thể thao túng DOM.\nCài đặt \u0026 Thiết lập: Từ con số không đến chạy trong 5 phút Cách nhanh nhất để chạy BookStack là với Docker Compose. Bạn cần máy chủ với RAM tối thiểu 2GB, khuyến nghị 4GB cho đội ngũ trên 50 ngườó dùng. Một DigitalOcean Droplet 2 vCPU + 4GB RAM ($24/tháng) xử lý thoải mái hầu hết các đội ngũ vừa và nhỏ.\nBước 1: Tạo file Docker Compose version: '3.8' services: bookstack: image: lscr.io/linuxserver/bookstack:v26.03.4 container_name: bookstack environment: - PUID=1000 - PGID=1000 - APP_URL=https://docs.yourdomain.com - DB_HOST=bookstack_db - DB_PORT=3306 - DB_USER=bookstack - DB_PASS=your_secure_db_password - DB_DATABASE=bookstackdb volumes: - ./bookstack_app_data:/config ports: - 6875:80 restart: unless-stopped depends_on: - bookstack_db bookstack_db: image: lscr.io/linuxserver/mariadb:10.11 container_name: bookstack_db environment: - PUID=1000 - PGID=1000 - MYSQL_ROOT_PASSWORD=your_secure_root_password - TZ=UTC - MYSQL_DATABASE=bookstackdb - MYSQL_USER=bookstack - MYSQL_PASSWORD=your_secure_db_password volumes: - ./bookstack_db_data:/config restart: unless-stopped File compose này định nghĩa hai dịch vụ: ứng dụng BookStack trên cổng 6875 và cơ sở dữ liệu MariaDB để lưu trữ.\nBước 2: Khởi động stack # Tạo thư mục dữ liệu mkdir -p bookstack_app_data bookstack_db_data # Khởi động cả hai container docker compose up -d # Đợi khởi tạo cơ sở dữ liệu (30-60 giây cho lần chạy đầu) sleep 45 # Kiểm tra log để xác nhận khởi động docker logs bookstack Bạn sẽ thấy thông báo bootstrapping của Laravel theo sau bởi NOTICE: ready to handle connections từ PHP-FPM. Nếu kết nối cơ sở dữ liệu thất bại, kiểm tra DB_HOST có khớp với tên dịch vụ bookstack_db và thông tin đăng nhập có chính xác không.\nBước 3: Truy cập và cấu hình # Thông tin đăng nhập mặc định khi khởi động đầu tiên # Tên đăng nhập: admin@admin.com # Mật khẩu: password Truy cập http://your-server-ip:6875 và đăng nhập. Đổi mật khẩu admin ngay trong Cài đặt → Ngườó dùng. Sau đó cấu hình APP_URL để sử dụng HTTPS —— BookStack tạo URL tuyệt đối trong thông báo email và xuất file, nên thiết lập APP_URL chính xác ngay từ đầu sẽ tránh link bị hỏng sau này.\nBước 4: Nginx reverse proxy với SSL # /etc/nginx/sites-available/bookstack server { listen 443 ssl http2; server_name docs.yourdomain.com; ssl_certificate /etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/docs.yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:6875; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; } } server { listen 80; server_name docs.yourdomain.com; return 301 https://$server_name$request_uri; } Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật APP_URL trong docker-compose.yml thành https://docs.yourdomain.com và khởi động lại container.\nCài đặt thủ công (Ubuntu 24.04 LTS) Nếu bạn thích triển khai bare-metal: `````bash\nCài đặt dependencies sudo apt update sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer\nClone BookStack cd /var/www git clone https://github.com/BookStackApp/BookStack.git –branch v26.03.4 –depth 1 cd BookStack\nCài đặt PHP dependencies composer install –no-dev\nSao chép và cấu hình môi trường cp .env.example .env php artisan key:generate\nChỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=… Chạy migrations php artisan migrate\nThiết lập quyền chown -R www-data:www-data /var/www/BookStack chmod -R 755 /var/www/BookStack chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache\nCách thủ công cho bạn nhiều quyền kiểm soát hơn nhưng yêu cầu quản lý PHP, web server và MySQL riêng biệt. Cho production, Docker là lộ trình được khuyến nghị. ## Tích hợp LDAP \u0026 SSO BookStack hỗ trợ nhiều backend xác thực. Cho triển khai doanh nghiệp, tích hợp LDAP hoặc SAML là thiết yếu. ### Xác thực LDAP (Active Directory / OpenLDAP) `````bash # Thêm vào file .env AUTH_METHOD=ldap LDAP_SERVER=ldap.company.com LDAP_BASE_DN=\"ou=users,dc=company,dc=com\" LDAP_DN=\"cn=bookstack,ou=service,dc=company,dc=com\" LDAP_PASS=service_account_password LDAP_USER_FILTER=\"(\u0026(uid=${user}))\" LDAP_VERSION=3 LDAP_TLS=true LDAP_ID_ATTRIBUTE=uid LDAP_DISPLAY_NAME_ATTRIBUTE=cn LDAP_EMAIL_ATTRIBUTE=mail Sau khi khởi động lại container, BookStack sẽ xác thực ngườó dùng thông qua thư mục LDAP. Ngườó dùng được tự động cung cấp khi đăng nhập lần đầu, nên bạn không cần tạo tài khoản thủ công.\nSAML 2.0 (cho Okta, Azure AD, OneLogin) # Cấu hình SAML trong .env AUTH_METHOD=saml2 SAML2_NAME=SSO SAML2_EMAIL_ATTRIBUTE=email SAML2_EXTERNAL_ID_ATTRIBUTE=name_id SAML2_DISPLAY_NAME_ATTRIBUTES=first_name|last_name SAML2_IDP_ENTITYID=https://your-idp.example.com/metadata SAML2_IDP_SSO=https://your-idp.example.com/sso SAML2_IDP_x509=\"MIIDXTCCAkWgAwIBAgIJAJC1HiIA...\" Quản lý hình ảnh \u0026 Chỉnh sửa nội dung BookStack có sẵn hai trình chỉnh sửa. Trình chỉnh sửa WYSIWYG (dựa trên TinyMCE) là mặc định —— xử lý hình ảnh qua kéo-thả upload, hỗ trợ bảng, khối code với highlight cú pháp, và khối callout cho mẹo và cảnh báo. Trình chỉnh sửa Markdown cung cấp trải nghiệm chia màn hình với xem trước trực tiếp, lý tưởng cho lập trình viên thích viết Markdown.\nUpload hình ảnh rất đơn giản: `````markdown\nỞ chế độ Markdown —— hình ảnh được upload vào gallery của BookStack Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data BookStack cũng hỗ trợ nhúng sơ đồ qua tích hợp Draw.io. Khi bạn chèn sơ đồ, BookStack lưu trữ XML nguồn Draw.io cùng với hình ảnh đã render, nên bạn có thể chỉnh sửa lại sơ đồ sau này mà không mất nguồn. ## Benchmark \u0026 Hiệu suất thực tế Tôi chạy BookStack trên VPS 2 vCPU / 4GB RAM với 50 ngườó dùng đồng thờói được mô phỏng đọc và chỉnh sửa trang. Kết quả: | Chỉ số | Giá trị | |---|---| | Thờói gian khởi động lạnh | 3.2 giây | | Tải trang (trung bình) | 180ms | | Tải trang (phân vị 95) | 340ms | | Phản hồi truy vấn tìm kiếm | 45ms | | Upload hình ảnh (2MB JPEG) | 1.2 giây | | Xuất PDF (sách 50 trang) | 4.8 giây | | Sử dụng bộ nhớ (nhàn rỗi) | 180MB | | Sử dụng bộ nhớ (50 ngườó dùng hoạt động) | 890MB | | Kích thước cơ sở dữ liệu (500 trang + hình ảnh) | 2.1GB | Trên [DigitalOcean Droplet $24/tháng](https://m.do.co/c/eca87ac14ee0), BookStack thoải mái phục vụ 50+ ngườó dùng hoạt động. Process pool PHP-FPM xử lý đồng thờói tốt, và MySQL FULLTEXT search hoạt động đầy đủ cho cơ sở kiến thức dưới 5,000 trang. Vượt quá con số đó, bạn nên cân nhắc thêm chỉ mục tìm kiếm chuyên dụng. Cho ngữ cảnh: Confluence Cloud tính $6.05/ngườó/tháng. Với 50 ngườó dùng, đó là $302.50/tháng. BookStack trên VPS $24/tháng tiết kiệm **$3,342 mỗi năm** —— và dữ liệu của bạn ở trên cơ sở hạ tầng mà bạn kiểm soát. ## Tích hợp với CI/CD và công cụ lập trình ### GitHub Actions: Tự động hóa xuất bản tài liệu `````yaml # .github/workflows/publish-docs.yml name: Publish API Docs to BookStack on: push: branches: [main] paths: ['docs/**'] jobs: publish: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Upload to BookStack via API run: | curl -X PUT \\ -H \"Authorization: Token $\" \\ -H \"Content-Type: application/json\" \\ -d '{\"name\": \"API Documentation\", \"html\": \"'\"$(cat docs/api.html | base64 -w 0)\"'\"}' \\ \"https://docs.yourdomain.com/api/pages/42\" BookStack expose REST API để quản lý nội dung theo chương trình. Tạo API token trong Cài đặt → API. API hỗ trợ thao tác CRUD trên kệ sách, sách, chương và trang, cùng upload hình ảnh và tìm kiếm.\nTự động hóa sao lưu #!/bin/bash # /opt/scripts/backup-bookstack.sh BACKUP_DIR=\"/backups/bookstack\" DATE=$(date +%Y%m%d_%H%M%S) # Sao lưu cơ sở dữ liệu docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb \\ | gzip \u003e \"$BACKUP_DIR/bookstack_db_$DATE.sql.gz\" # Sao lưu dữ liệu ứng dụng (upload, cấu hình) tar czf \"$BACKUP_DIR/bookstack_app_$DATE.tar.gz\" -C /path/to ./bookstack_app_data # Chỉ giữ lại 14 ngày gần nhất find \"$BACKUP_DIR\" -name \"*.gz\" -mtime +14 -delete Thêm vào cron để sao lưu hàng ngày: 0 3 * * * /opt/scripts/backup-bookstack.sh\nGiám sát với Prometheus # Thêm vào docker-compose.yml cho monitoring node-exporter: image: prom/node-exporter:v1.7.0 volumes: - /proc:/host/proc:ro - /sys:/host/sys:ro command: - '--path.procfs=/host/proc' - '--path.sysfs=/host/sys' Script kiểm tra sức khỏe #!/bin/bash # /opt/scripts/health-check-bookstack.sh # Kiểm tra BookStack có phản hồi không HTTP_CODE=$(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:6875/login) if [ \"$HTTP_CODE\" != \"200\" ]; then echo \"LỖI: BookStack trả về HTTP $HTTP_CODE\" docker restart bookstack echo \"Container đã khởi động lại lúc $(date)\" else echo \"OK: BookStack hoạt động bình thường\" fi Thêm vào cron để kiểm tra tự động: */5 * * * * /opt/scripts/health-check-bookstack.sh\nSử dụng nâng cao: Củng cố production Bật cookie chỉ HTTPS # Trong file .env SESSION_SECURE_COOKIE=true Điều này đảm bảo session cookie chỉ được truyền qua kết nối HTTPS. Quan trọng nếu instance BookStack của bạn tiếp xúc với internet.\nTheme tùy chỉnh qua hệ thống module (v26.03+) # Tạo thư mục module tùy chỉnh mkdir -p /config/www/themes/my_theme/modules/welcome_module # bookstack-module.json { \"name\": \"welcome_module\", \"version\": \"1.0.0\", \"description\": \"Adds a welcome banner to the header\" } # functions.php \u003c?php use BookStack\\Facades\\Theme; use BookStack\\Theming\\ThemeEvents; use BookStack\\Theming\\ThemeViews; Theme::listen(ThemeEvents::THEME_REGISTER_VIEWS, function (ThemeViews $themeViews) { $themeViews-\u003erenderAfter('layouts.parts.header\", welcome, 10); }); # views/welcome.blade.php Welcome, ! Check out the onboarding docs. Cài đặt module với: php artisan bookstack:install-module /path/to/module.zip\nKiểm soát lọc nội dung trang # Trong .env (mới trong v25.12.4+) # Tùy chọn: false, true, hoặc danh sách tên bộ lọc phân cách bằng dấu phẩy APP_CONTENT_FILTERING=default # Các bộ lọc khả dụng: script, form, iframe, object, embed, style, css_expression # Để tắt lọc style (hữu ích nếu cần inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression So sánh: BookStack với các phương án thay thế Tính năng BookStack Wiki.js DokuWiki MediaWiki Outline Giấy phép MIT AGPL-3.0 GPL-2.0 GPL-2.0+ BSL 1.1 Stack PHP / Laravel Node.js PHP (không DB) PHP Node.js Trình chỉnh sửa WYSIWYG + Markdown Markdown + Trực quan Wiki syntax Wikitext Block-based Cộng tác thờói gian thực Không Có Không Không Có Phân cấp nội dung Kệ→Sách→Chương→Trang Linh hoạt Phẳng Thể loại→Trang Collection→Tài liệu Chi phí tự host Miễn phí (chỉ server) Miễn phí (chỉ server) Miễn phí (chỉ server) Miễn phí (chỉ server) $10/ngườó/tháng Yêu cầu cơ sở dữ liệu MySQL/MariaDB PostgreSQL/MySQL/SQLite Không (file-based) MySQL/PostgreSQL PostgreSQL LDAP/SSO Có (LDAP, SAML, OIDC) Có (rộng rãi) Qua plugin Qua plugin SAML, OIDC Tìm kiếm MySQL FULLTEXT Elasticsearch/DB Tích hợp Elasticsearch PostgreSQL FTS API REST GraphQL + REST XML-RPC REST REST Bảo trì chủ động Phát hành hàng tháng Đều đặn Ổn định Đều đặn Đều đặn GitHub stars 18,700 24,500 1,800 4,200 14,300 BookStack thắng khi: Đội của bạn coi trọng phân cấp có cấu trúc, muốn cài đặt đơn giản, cần chỉnh sửa kép WYSIWYG + Markdown, và thích sự quen thuộc của hệ sinh thái PHP.\nWiki.js thắng khi: Bạn cần cộng tác thờói gian thực, thích stack Node.js, muốn truy cập GraphQL API, hoặc cần kiến trúc nội dung linh hoạt hơn.\nDokuWiki thắng khi: Bạn muốn thiết lập không cần cơ sở dữ liệu —— chạy hoàn toàn trên file phẳng. Tốt nhất cho triển khai tối giản.\nMediaWiki thắng khi: Bạn xây dựng wiki quy mô bách khoa toàn thư công khai. Quá mức cần thiết cho hầu hết nhu cầu tài liệu nội bộ.\nOutline thắng khi: Đội của bạn muốn trải nghiệm trình chỉnh sửa block giống Notion với cộng tác thờói gian thực, và bạn chấp nhận thiết lập tự host phức tạp hơn hoặc giá hosted.\nHạn chế: Đánh giá trung thực BookStack không phải công cụ phù hợp cho mọi trường hợp tài liệu. Đây là những gì nó không làm tốt: Không có cộng tác thờói gian thực. Hai ngườó dùng chỉnh sửa cùng trang đồng thờói sẽ ghi đè lên nhau. BookStack cảnh báo về chỉnh sửa cũ nhưng không cung cấp cộng tác thờói gian thực kiểu Google Docs. Nếu quy trình làm việc phụ thuộc vào chỉnh sửa đồng thờói, hãy dùng Outline hoặc Wiki.js.\nPhân cấp cứng nhắc có thể cảm thấy hạn chế. Mô hình kệ/sách/chương/trang tuyệt vờói cho tài liệu có cấu trúc nhưng vụng về cho cơ sở kiến thức lưu động, tái cấu trúc liên tục. Nếu tài liệu của bạn giống đồ thị kiến thức động hơn là thư viện tham khảo, Notion hoặc Obsidian có thể phù hợp hơn.\nTính năng tài liệu công khai hạn chế. BookStack hỗ trợ khả năng hiển thị công khai cho kệ sách, nhưng không được thiết kế cho site tài liệu đối mặt khách hàng có thương hiệu. Không có quy trình tên miền tùy chỉnh + SSL tích hợp, không có phiên bản cho tài liệu công khai, và tùy chọn theme hạn chế so với các nền tảng tài liệu chuyên dụng.\nKhông có chỉnh sửa sơ đồ trực tiếp tích hợp. Mặc dù BookStack tích hợp Draw.io cho sơ đồ, bạn mở trình chỉnh sửa Draw.io trong modal. Không thể vẽ trực tiếp trên trang như Excalidraw trong Outline.\nStack PHP có thể cảm thấy lỗi thờói. Các đội chạy hoàn toàn trên Node.js hoặc Go có thể thích công cụ trong stack hiện có. Nhưng triển khai PHP đã được hiểu và thử nghiệm kỹ lưỡng —— công nghệ nhàm chán có giá trị riêng.\nCâu hỏi thường gặp Tôi có thể di chuyển từ Confluence sang BookStack không? Không có công cụ nhập chính thức từ Confluence, nhưng bạn có thể xuất trang Confluence dưới dạng HTML hoặc Markdown và sử dụng BookStack REST API để tạo hàng loạt trang. Có script cộng đồng cho lộ trình di chuyển này. Cho di chuyển quy mô lớn, dự kiến dành thờói gian tái cấu trúc nội dung cho phù hợp mô hình sách/chương/trang của BookStack.\nLàm thế nào để cập nhật BookStack? Với Docker, cập nhật chỉ là một dòng lệnh: thay đổi tag image trong docker-compose.yml và chạy docker compose up -d. Với cài đặt thủ công, pull release mới nhất, chạy git pull hoặc tải archive release mới, sau đó chạy php artisan migrate và xóa cache. Luôn sao lưu cơ sở dữ liệu trước khi cập nhật —— BookStack phát hành bản vá bảo mật hàng tháng.\nBookStack có hỗ trợ xác thực hai yếu tố không? Tính đến v26.03, BookStack không có TOTP/SMS 2FA tích hợp. Bạn có thể đạt được MFA bằng cách sử dụng xác thực SAML hoặc OIDC với nhà cung cấp danh tính bắt buộc 2FA (như Azure AD hoặc Okta). Hỗ trợ TOTP gốc đã được thảo luận trong cộng đồng nhưng không nằm trong lộ trình sắp tới.\nTôi có thể dùng PostgreSQL thay vì MySQL không? BookStack chính thức hỗ trợ MySQL và MariaDB. Hỗ trợ PostgreSQL đã được thảo luận nhưng không được hỗ trợ chính thức. Nếu cần PostgreSQL, Wiki.js hoặc Outline là lựa chọn tốt hơn. Cho BookStack, hãy dùng MySQL 8.0+ hoặc MariaDB 10.6+.\nImage LinuxServer.io và image chính thức khác nhau thế nào? Image lscr.io/linuxserver/bookstack được cộng đồng duy trì và sử dụng rộng rãi. Nó trừu tượng hóa cấu hình PHP-FPM và Nginx, khiến nó trở thành cách dễ nhất để chạy BookStack trong Docker. Không có image Docker chính thức từ ngườó duy trì BookStack —— LinuxServer image là tiêu chuẩn de facto.\nSao lưu hoạt động như thế nào? Sao lưu hai thứ: cơ sở dữ liệu MySQL/MariaDB (toàn bộ nội dung và metadata) và thư mục /config/www/files (hình ảnh và file đính kèm đã upload). Với cấu hình Docker ở trên, cả hai đều nằm trong named volumes. mysqldump đơn giản cộng với ````tar``` của volume dữ liệu ứng dụng là đủ. Kiểm tra quy trình khôi phục hàng quý.\nKết luận: Bạn có nên chạy BookStack vào năm 2026? Nếu đội của bạn đã chán trả giá theo ngườó dùng cho công cụ tài liệu, và muốn một wiki có cấu trúc, cứng nhắc buộc thói quen tổ chức tốt, BookStack là một trong những lựa chọn mã nguồn mở tốt nhất năm 2026. Stack PHP/Laravel nhàm chán theo cách tốt nhất —— có thể dự đoán được, tài liệu tốt, và dễ debug khi có vấn đề. Các bản phát hành bảo mật hàng tháng cho thấy bảo trì chủ động, và hệ thống module theme v26.03 mở ra khả năng tùy chỉnh mới.\nCho đội 5-50 ngườó muốn tài liệu nội bộ không bị khóa bởi nhà cung cấp, BookStack hoàn vốn ngay lập tức. Tự host trên DigitalOcean Droplet, sao lưu hàng ngày, và bạn có hệ thống tài liệu sẽ tồn tại lâu hơn bất kỳ công cụ SaaS thịnh hành nào của quý này.\nTham gia cộng đồng dibi8.com: Nhóm Telegram để thảo luận công cụ mã nguồn mở hàng ngày, mẹo triển khai và hỗ trợ xử lý sự cố từ 5,000+ lập trình viên.\nNguồn \u0026 Tài liệu tham khảo Tài liệu chính thức BookStack Mirror GitHub BookStack Kho lưu trữ Codeberg BookStack Ghi chú phát hành BookStack v26.03 Image Docker BookStack LinuxServer.io So sánh BookStack vs Wiki.js Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nCông bố liên kết liên kết Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Dự án BookStack miễn phí và mã nguồn mở —— không có mối quan hệ liên kết nào với ngườó duy trì BookStack.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn \u0026 Đánh giá 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/bookstack-documentation-wiki\" } } Related Articles markitdown-universal-file-to-markdown-converter microsoft-markitdown-file-to-markdown-converter-cli microsoft-markitdown-file-to-markdown-converter-cli hkuds-ai-trader apple-container Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3791",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/mcp-tools/bookstack-documentation-wiki/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u-s%e1%bb%b1-h%e1%bb%97n-lo%e1%ba%a1n-t%c3%a0i-li%e1%bb%87u-m%c3%a0-m%e1%bb%8di-%c4%91%e1%bb%99i-ng%c5%a9-%c4%91%e1%bb%81u-ph%e1%ba%a3i-%c4%91%e1%bb%91i-m%e1%ba%b7t" aria-label="Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt">Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt</a></li>
+            <li>
+                <a href="#bookstack-l%c3%a0-g%c3%ac-%c4%91%e1%bb%8bnh-ngh%c4%a9a-m%e1%bb%99t-c%c3%a2u" aria-label="BookStack là gì? Định nghĩa một câu">BookStack là gì? Định nghĩa một câu</a></li>
+            <li>
+                <a href="#bookstack-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o-ki%e1%ba%bfn-tr%c3%bac--kh%c3%a1i-ni%e1%bb%87m-c%e1%bb%91t-l%c3%b5i" aria-label="BookStack hoạt động như thế nào: Kiến trúc &amp; Khái niệm cốt lõi">BookStack hoạt động như thế nào: Kiến trúc &amp; Khái niệm cốt lõi</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-t%e1%bb%ab-con-s%e1%bb%91-kh%c3%b4ng-%c4%91%e1%ba%bfn-ch%e1%ba%a1y-trong-5-ph%c3%bat" aria-label="Cài đặt &amp; Thiết lập: Từ con số không đến chạy trong 5 phút">Cài đặt &amp; Thiết lập: Từ con số không đến chạy trong 5 phút</a><ul>
+                    
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-1-t%e1%ba%a1o-file-docker-compose" aria-label="Bước 1: Tạo file Docker Compose">Bước 1: Tạo file Docker Compose</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-2-kh%e1%bb%9fi-%c4%91%e1%bb%99ng-stack" aria-label="Bước 2: Khởi động stack">Bước 2: Khởi động stack</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-3-truy-c%e1%ba%adp-v%c3%a0-c%e1%ba%a5u-h%c3%acnh" aria-label="Bước 3: Truy cập và cấu hình">Bước 3: Truy cập và cấu hình</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-4-nginx-reverse-proxy-v%e1%bb%9bi-ssl" aria-label="Bước 4: Nginx reverse proxy với SSL">Bước 4: Nginx reverse proxy với SSL</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-th%e1%bb%a7-c%c3%b4ng-ubuntu-2404-lts" aria-label="Cài đặt thủ công (Ubuntu 24.04 LTS)">Cài đặt thủ công (Ubuntu 24.04 LTS)</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-dependencies" aria-label="Cài đặt dependencies">Cài đặt dependencies</a></li>
+            <li>
+                <a href="#clone-bookstack" aria-label="Clone BookStack">Clone BookStack</a></li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-php-dependencies" aria-label="Cài đặt PHP dependencies">Cài đặt PHP dependencies</a></li>
+            <li>
+                <a href="#sao-ch%c3%a9p-v%c3%a0-c%e1%ba%a5u-h%c3%acnh-m%c3%b4i-tr%c6%b0%e1%bb%9dng" aria-label="Sao chép và cấu hình môi trường">Sao chép và cấu hình môi trường</a></li>
+            <li>
+                <a href="#ch%e1%bb%89nh-s%e1%bb%ada-env-v%e1%bb%9bi-th%c3%b4ng-tin-%c4%91%c4%83ng-nh%e1%ba%adp-c%c6%a1-s%e1%bb%9f-d%e1%bb%af-li%e1%bb%87u" aria-label="Chỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu">Chỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu</a></li>
+            <li>
+                <a href="#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password" aria-label="DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&hellip;">DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&hellip;</a></li>
+            <li>
+                <a href="#ch%e1%ba%a1y-migrations" aria-label="Chạy migrations">Chạy migrations</a></li>
+            <li>
+                <a href="#thi%e1%ba%bft-l%e1%ba%adp-quy%e1%bb%81n" aria-label="Thiết lập quyền">Thiết lập quyền</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#saml-20-cho-okta-azure-ad-onelogin" aria-label="SAML 2.0 (cho Okta, Azure AD, OneLogin)">SAML 2.0 (cho Okta, Azure AD, OneLogin)</a></li></ul>
+                
+            <li>
+                <a href="#qu%e1%ba%a3n-l%c3%bd-h%c3%acnh-%e1%ba%a3nh--ch%e1%bb%89nh-s%e1%bb%ada-n%e1%bb%99i-dung" aria-label="Quản lý hình ảnh &amp; Chỉnh sửa nội dung">Quản lý hình ảnh &amp; Chỉnh sửa nội dung</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e1%bb%9f-ch%e1%ba%bf-%c4%91%e1%bb%99-markdown--h%c3%acnh-%e1%ba%a3nh-%c4%91%c6%b0%e1%bb%a3c-upload-v%c3%a0o-gallery-c%e1%bb%a7a-bookstack" aria-label="Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack">Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack</a></li>
+            <li>
+                <a href="#th%c6%b0-vi%e1%bb%87n-h%c3%acnh-%e1%ba%a3nh-c%c3%b3-th%e1%bb%83-truy-c%e1%ba%adp-t%e1%bb%ab-thanh-c%c3%b4ng-c%e1%bb%a5-tr%c3%acnh-ch%e1%bb%89nh-s%e1%bb%ada" aria-label="Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa">Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa</a></li>
+            <li>
+                <a href="#t%e1%ba%a5t-c%e1%ba%a3-h%c3%acnh-%e1%ba%a3nh-%c4%91%c3%a3-upload-%c4%91%c6%b0%e1%bb%a3c-l%c6%b0u-trong-volume-bookstack_app_data" aria-label="Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data">Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#t%e1%bb%b1-%c4%91%e1%bb%99ng-h%c3%b3a-sao-l%c6%b0u" aria-label="Tự động hóa sao lưu">Tự động hóa sao lưu</a></li>
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-prometheus" aria-label="Giám sát với Prometheus">Giám sát với Prometheus</a></li>
+            <li>
+                <a href="#script-ki%e1%bb%83m-tra-s%e1%bb%a9c-kh%e1%bb%8fe" aria-label="Script kiểm tra sức khỏe">Script kiểm tra sức khỏe</a></li></ul>
+                
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao-c%e1%bb%a7ng-c%e1%bb%91-production" aria-label="Sử dụng nâng cao: Củng cố production">Sử dụng nâng cao: Củng cố production</a><ul>
+                    
+            <li>
+                <a href="#b%e1%ba%adt-cookie-ch%e1%bb%89-https" aria-label="Bật cookie chỉ HTTPS">Bật cookie chỉ HTTPS</a></li>
+            <li>
+                <a href="#theme-t%c3%b9y-ch%e1%bb%89nh-qua-h%e1%bb%87-th%e1%bb%91ng-module-v2603" aria-label="Theme tùy chỉnh qua hệ thống module (v26.03&#43;)">Theme tùy chỉnh qua hệ thống module (v26.03+)</a></li>
+            <li>
+                <a href="#ki%e1%bb%83m-so%c3%a1t-l%e1%bb%8dc-n%e1%bb%99i-dung-trang" aria-label="Kiểm soát lọc nội dung trang">Kiểm soát lọc nội dung trang</a></li></ul>
+            </li>
+            <li>
+                <a href="#so-s%c3%a1nh-bookstack-v%e1%bb%9bi-c%c3%a1c-ph%c6%b0%c6%a1ng-%c3%a1n-thay-th%e1%ba%bf" aria-label="So sánh: BookStack với các phương án thay thế">So sánh: BookStack với các phương án thay thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf-%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế: Đánh giá trung thực">Hạn chế: Đánh giá trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a><ul>
+                    
+            <li>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-di-chuy%e1%bb%83n-t%e1%bb%ab-confluence-sang-bookstack-kh%c3%b4ng" aria-label="Tôi có thể di chuyển từ Confluence sang BookStack không?">Tôi có thể di chuyển từ Confluence sang BookStack không?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-c%e1%ba%adp-nh%e1%ba%adt-bookstack" aria-label="Làm thế nào để cập nhật BookStack?">Làm thế nào để cập nhật BookStack?</a></li>
+            <li>
+                <a href="#bookstack-c%c3%b3-h%e1%bb%97-tr%e1%bb%a3-x%c3%a1c-th%e1%bb%b1c-hai-y%e1%ba%bfu-t%e1%bb%91-kh%c3%b4ng" aria-label="BookStack có hỗ trợ xác thực hai yếu tố không?">BookStack có hỗ trợ xác thực hai yếu tố không?</a></li>
+            <li>
+                <a href="#t%c3%b4i-c%c3%b3-th%e1%bb%83-d%c3%b9ng-postgresql-thay-v%c3%ac-mysql-kh%c3%b4ng" aria-label="Tôi có thể dùng PostgreSQL thay vì MySQL không?">Tôi có thể dùng PostgreSQL thay vì MySQL không?</a></li>
+            <li>
+                <a href="#image-linuxserverio-v%c3%a0-image-ch%c3%adnh-th%e1%bb%a9c-kh%c3%a1c-nhau-th%e1%ba%bf-n%c3%a0o" aria-label="Image LinuxServer.io và image chính thức khác nhau thế nào?">Image LinuxServer.io và image chính thức khác nhau thế nào?</a></li>
+            <li>
+                <a href="#sao-l%c6%b0u-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Sao lưu hoạt động như thế nào?">Sao lưu hoạt động như thế nào?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn-b%e1%ba%a1n-c%c3%b3-n%c3%aan-ch%e1%ba%a1y-bookstack-v%c3%a0o-n%c4%83m-2026" aria-label="Kết luận: Bạn có nên chạy BookStack vào năm 2026?">Kết luận: Bạn có nên chạy BookStack vào năm 2026?</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài liệu tham khảo">Nguồn &amp; Tài liệu tham khảo</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#c%c3%b4ng-b%e1%bb%91-li%c3%aan-k%e1%ba%bft-li%c3%aan-k%e1%ba%bft" aria-label="Công bố liên kết liên kết">Công bố liên kết liên kết</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,87 +318,131 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;bookstack&rdquo;, &ldquo;tài liệu&rdquo;, &ldquo;wiki&rdquo;, &ldquo;tự host&rdquo;, &ldquo;php&rdquo;, &ldquo;laravel&rdquo;, &ldquo;cơ sở kiến thức&rdquo;, &ldquo;markdown&rdquo;, &ldquo;docker&rdquo;, &ldquo;mã nguồn mở&rdquo;]
-aliases:</p><ul><li>/vi/posts/bookstack-documentation-wiki/</li></ul><hr><h2 id=giới-thiệu-sự-hỗn-loạn-tài-liệu-mà-mọi-đội-ngũ-đều-phải-đối-mặt>Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt<a hidden class=anchor aria-hidden=true href=#giới-thiệu-sự-hỗn-loạn-tài-liệu-mà-mọi-đội-ngũ-đều-phải-đối-mặt>#</a></h2><p>Tài liệu của đội bạn đang nằm rải rác khắp nơi. Một phần trong Google Docs mà chẳng ai tìm thấy. Một phần trong Notion workspace mà sếp dựng từ sáu tháng trước rồi bỏ đó. API docs trong README, runbook trong Confluence, ghi chú onboarding trong ứng dụng ghi chú cá nhân của ai đó. Đây là cảnh hỗn loạn tài liệu phổ quát.</p><p>Dan Brown xây dựng BookStack để giải quyết chính xác vấn đề này. Ra mắt lần đầu tháng 7/2015 với tên &ldquo;Oxbow&rdquo; và đổi tên mưới một ngày sau đó, BookStack đã phát triển lên <strong>18,700+ sao GitHub</strong> và cộng đồng hơn 186 ngườó đóng góp trực tiếp tính đến đầu năm 2026. Tháng 3/2026, dự án phát hành <strong>v26.03</strong> với hệ thống theme module mới, sự kiện theme logic nâng cao để tùy chỉnh nội dung trang, và cải thiện bộ lọc bảo mật. Đầu năm 2026, dự án đã di chuyển kho lưu trữ chính sang Codeberg, mặc dù vẫn giữ mirror trên GitHub.</p><p>Điều gì làm BookStack khác biệt với hàng chục công cụ wiki khác? Cấu trúc. Thay vì mô hình phẳng dựa trên trang và thẻ mà hầu hết wiki sử dụng, BookStack tổ chức tài liệu theo cách một thư viện vật lý làm —— <strong>kệ sách chứa sách, sách chứa chương, chương chứa trang</strong>. Hệ thống phân cấp cứng nhắc này buộc các đội ngũ phải suy nghĩ về việc thông tin thuộc về đâu, và đây chính xác là lý do các đội ngũ hoặc yêu thích hoặc quyết định không dùng BookStack.</p><p>Hướng dẫn này bao gồm mọi thứ bạn cần để chạy BookStack trong môi trường production: Triển khai Docker dưới 5 phút, cấu hình cho đội ngũ, benchmark thực tế, đánh giá trung thực về hạn chế, và so sánh với Wiki.js, DokuWiki, MediaWiki và Outline.</p><h2 id=bookstack-là-gì-định-nghĩa-một-câu>BookStack là gì? Định nghĩa một câu<a hidden class=anchor aria-hidden=true href=#bookstack-là-gì-định-nghĩa-một-câu>#</a></h2><p>BookStack là một wiki tài liệu miễn phí, mã nguồn mở, cấp phép MIT được xây dựng bằng PHP trên Laravel, sử dụng cấu trúc phân cấp kệ sách/chương/trang để tổ chức cơ sở kiến thức nội bộ, runbook, SOP và tài liệu đội ngũ —— tự host hoàn toàn, không tính phí theo ngườó dùng.</p><h2 id=bookstack-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi>BookStack hoạt động như thế nào: Kiến trúc & Khái niệm cốt lõi<a hidden class=anchor aria-hidden=true href=#bookstack-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi>#</a></h2><p>BookStack chạy trên nền tảng PHP/LAMP cổ điển, khiến nó dễ dự đoán với bất kỳ ai đã triển khai ứng dụng PHP trước đó. Kiến trúc rất đơn giản: | Tầng | Công nghệ |
+aliases:</p>
+<ul>
+<li>/vi/posts/bookstack-documentation-wiki/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu-sự-hỗn-loạn-tài-liệu-mà-mọi-đội-ngũ-đều-phải-đối-mặt">Giới thiệu: Sự hỗn loạn tài liệu mà mọi đội ngũ đều phải đối mặt<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu-sự-hỗn-loạn-tài-liệu-mà-mọi-đội-ngũ-đều-phải-đối-mặt">#</a></h2>
+<p>Tài liệu của đội bạn đang nằm rải rác khắp nơi. Một phần trong Google Docs mà chẳng ai tìm thấy. Một phần trong Notion workspace mà sếp dựng từ sáu tháng trước rồi bỏ đó. API docs trong README, runbook trong Confluence, ghi chú onboarding trong ứng dụng ghi chú cá nhân của ai đó. Đây là cảnh hỗn loạn tài liệu phổ quát.</p>
+<p>Dan Brown xây dựng BookStack để giải quyết chính xác vấn đề này. Ra mắt lần đầu tháng 7/2015 với tên &ldquo;Oxbow&rdquo; và đổi tên mưới một ngày sau đó, BookStack đã phát triển lên <strong>18,700+ sao GitHub</strong> và cộng đồng hơn 186 ngườó đóng góp trực tiếp tính đến đầu năm 2026. Tháng 3/2026, dự án phát hành <strong>v26.03</strong> với hệ thống theme module mới, sự kiện theme logic nâng cao để tùy chỉnh nội dung trang, và cải thiện bộ lọc bảo mật. Đầu năm 2026, dự án đã di chuyển kho lưu trữ chính sang Codeberg, mặc dù vẫn giữ mirror trên GitHub.</p>
+<p>Điều gì làm BookStack khác biệt với hàng chục công cụ wiki khác? Cấu trúc. Thay vì mô hình phẳng dựa trên trang và thẻ mà hầu hết wiki sử dụng, BookStack tổ chức tài liệu theo cách một thư viện vật lý làm —— <strong>kệ sách chứa sách, sách chứa chương, chương chứa trang</strong>. Hệ thống phân cấp cứng nhắc này buộc các đội ngũ phải suy nghĩ về việc thông tin thuộc về đâu, và đây chính xác là lý do các đội ngũ hoặc yêu thích hoặc quyết định không dùng BookStack.</p>
+<p>Hướng dẫn này bao gồm mọi thứ bạn cần để chạy BookStack trong môi trường production: Triển khai Docker dưới 5 phút, cấu hình cho đội ngũ, benchmark thực tế, đánh giá trung thực về hạn chế, và so sánh với Wiki.js, DokuWiki, MediaWiki và Outline.</p>
+<h2 id="bookstack-là-gì-định-nghĩa-một-câu">BookStack là gì? Định nghĩa một câu<a hidden class="anchor" aria-hidden="true" href="#bookstack-là-gì-định-nghĩa-một-câu">#</a></h2>
+<p>BookStack là một wiki tài liệu miễn phí, mã nguồn mở, cấp phép MIT được xây dựng bằng PHP trên Laravel, sử dụng cấu trúc phân cấp kệ sách/chương/trang để tổ chức cơ sở kiến thức nội bộ, runbook, SOP và tài liệu đội ngũ —— tự host hoàn toàn, không tính phí theo ngườó dùng.</p>
+<h2 id="bookstack-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi">BookStack hoạt động như thế nào: Kiến trúc &amp; Khái niệm cốt lõi<a hidden class="anchor" aria-hidden="true" href="#bookstack-hoạt-động-như-thế-nào-kiến-trúc--khái-niệm-cốt-lõi">#</a></h2>
+<p>BookStack chạy trên nền tảng PHP/LAMP cổ điển, khiến nó dễ dự đoán với bất kỳ ai đã triển khai ứng dụng PHP trước đó. Kiến trúc rất đơn giản: | Tầng | Công nghệ |
 |&mdash;|&mdash;|
 | <strong>Backend</strong> | PHP 8.2+ / Laravel 11.x |
 | <strong>Cơ sở dữ liệu</strong> | MySQL 8.0+ hoặc MariaDB 10.6+ |
 | <strong>Frontend</strong> | Vue.js components, Trình chỉnh sửa WYSIWYG (TinyMCE), Trình chỉnh sửa Markdown |
 | <strong>Tìm kiếm</strong> | MySQL FULLTEXT search (tích hợp sẵn) |
 | <strong>Lưu trữ</strong> | Hệ thống file local hoặc S3-compatible |
-| <strong>Xác thực</strong> | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |</p><p>Quyết định kiến trúc mang tính định nghĩa là hệ thống phân cấp nội dung. Không giống Notion (trang dạng tự do) hay Confluence (không gian + trang), BookStack bắt buộc cấu trúc <strong>Kệ sách → Sách → Chương → Trang</strong>. Khi bạn tạo nội dung, bạn phải quyết định nó thuộc về đâu trong phân cấp đó. Điều này giảm ma sát &ldquo;tôi nên để cái này ở đâu?&rdquo; —— vấn đề giết chết hầu hết các wiki.</p><p><strong>Kệ sách</strong> —— Container cấp cao nhất, thường đại diện cho phòng ban hoặc khu vực dự án chính.
+| <strong>Xác thực</strong> | Local, LDAP, SAML 2.0, OIDC, OAuth 2.0, Azure AD |</p>
+<p>Quyết định kiến trúc mang tính định nghĩa là hệ thống phân cấp nội dung. Không giống Notion (trang dạng tự do) hay Confluence (không gian + trang), BookStack bắt buộc cấu trúc <strong>Kệ sách → Sách → Chương → Trang</strong>. Khi bạn tạo nội dung, bạn phải quyết định nó thuộc về đâu trong phân cấp đó. Điều này giảm ma sát &ldquo;tôi nên để cái này ở đâu?&rdquo; —— vấn đề giết chết hầu hết các wiki.</p>
+<p><strong>Kệ sách</strong> —— Container cấp cao nhất, thường đại diện cho phòng ban hoặc khu vực dự án chính.
 <strong>Sách</strong> —— Khu vực tài liệu chính, như &ldquo;Runbook Kỹ thuật&rdquo; hay &ldquo;Chính sách Nhân sự&rdquo;.
 <strong>Chương</strong> —— Phân chia trong sách, như &ldquo;Thủ tục Cơ sở dữ liệu&rdquo; hay &ldquo;Onboarding&rdquo;.
-<strong>Trang</strong> —— Đơn vị nội dung thực tế, với chỉnh sửa WYSIWYG hoặc Markdown đầy đủ.</p><p>BookStack sử dụng hệ thống phân quyền dựa trên vai trò. Bạn định nghĩa các vai trò (như &ldquo;Editor&rdquo;, &ldquo;Viewer&rdquo;, &ldquo;Admin&rdquo;) và gán quyền ở cấp toàn cục. Khả năng hiển thị nội dung có thể bị hạn chế theo sách hoặc theo kệ. Bản phát hành v26.03 đã thêm bộ lọc nội dung nâng cao thông qua HTML Purifier, sử dụng cách tiếp cận allow-list để giải quyết lo ngại bảo mật về nội dung trang độc hại có thể thao túng DOM.</p><h2 id=cài-đặt--thiết-lập-từ-con-số-không-đến-chạy-trong-5-phút>Cài đặt & Thiết lập: Từ con số không đến chạy trong 5 phút<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập-từ-con-số-không-đến-chạy-trong-5-phút>#</a></h2><p>Cách nhanh nhất để chạy BookStack là với Docker Compose. Bạn cần máy chủ với <strong>RAM tối thiểu 2GB</strong>, <strong>khuyến nghị 4GB</strong> cho đội ngũ trên 50 ngườó dùng. Một <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a> 2 vCPU + 4GB RAM ($24/tháng) xử lý thoải mái hầu hết các đội ngũ vừa và nhỏ.</p><h3 id=bước-1-tạo-file-docker-compose>Bước 1: Tạo file Docker Compose<a hidden class=anchor aria-hidden=true href=#bước-1-tạo-file-docker-compose>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: bookstack: image</span>: <span style=color:#ae81ff>lscr.io/linuxserver/bookstack:v26.03.4</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>bookstack</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PUID=1000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PGID=1000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>APP_URL=https://docs.yourdomain.com</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_HOST=bookstack_db</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_PORT=3306</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_USER=bookstack</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_PASS=your_secure_db_password</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DB_DATABASE=bookstackdb</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./bookstack_app_data:/config</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#ae81ff>6875</span>:<span style=color:#ae81ff>80</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>bookstack_db</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>bookstack_db: image</span>: <span style=color:#ae81ff>lscr.io/linuxserver/mariadb:10.11</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>container_name</span>: <span style=color:#ae81ff>bookstack_db</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PUID=1000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>PGID=1000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_ROOT_PASSWORD=your_secure_root_password</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>TZ=UTC</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_DATABASE=bookstackdb</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_USER=bookstack</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>MYSQL_PASSWORD=your_secure_db_password</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./bookstack_db_data:/config</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><p>File compose này định nghĩa hai dịch vụ: ứng dụng BookStack trên cổng 6875 và cơ sở dữ liệu MariaDB để lưu trữ.</p><h3 id=bước-2-khởi-động-stack>Bước 2: Khởi động stack<a hidden class=anchor aria-hidden=true href=#bước-2-khởi-động-stack>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo thư mục dữ liệu</span>
-</span></span><span style=display:flex><span>mkdir -p bookstack_app_data bookstack_db_data
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Khởi động cả hai container</span>
-</span></span><span style=display:flex><span>docker compose up -d
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Đợi khởi tạo cơ sở dữ liệu (30-60 giây cho lần chạy đầu)</span>
-</span></span><span style=display:flex><span>sleep <span style=color:#ae81ff>45</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Kiểm tra log để xác nhận khởi động</span>
-</span></span><span style=display:flex><span>docker logs bookstack
-</span></span></code></pre></div><p>Bạn sẽ thấy thông báo bootstrapping của Laravel theo sau bởi <code>NOTICE: ready to handle connections</code> từ PHP-FPM. Nếu kết nối cơ sở dữ liệu thất bại, kiểm tra DB_HOST có khớp với tên dịch vụ <code>bookstack_db</code> và thông tin đăng nhập có chính xác không.</p><h3 id=bước-3-truy-cập-và-cấu-hình>Bước 3: Truy cập và cấu hình<a hidden class=anchor aria-hidden=true href=#bước-3-truy-cập-và-cấu-hình>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Thông tin đăng nhập mặc định khi khởi động đầu tiên</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tên đăng nhập: admin@admin.com</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Mật khẩu: password</span>
-</span></span></code></pre></div><p>Truy cập <code>http://your-server-ip:6875</code> và đăng nhập. <strong>Đổi mật khẩu admin ngay</strong> trong Cài đặt → Ngườó dùng. Sau đó cấu hình APP_URL để sử dụng HTTPS —— BookStack tạo URL tuyệt đối trong thông báo email và xuất file, nên thiết lập APP_URL chính xác ngay từ đầu sẽ tránh link bị hỏng sau này.</p><h3 id=bước-4-nginx-reverse-proxy-với-ssl>Bước 4: Nginx reverse proxy với SSL<a hidden class=anchor aria-hidden=true href=#bước-4-nginx-reverse-proxy-với-ssl>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#75715e># /etc/nginx/sites-available/bookstack
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span> <span style=color:#e6db74>http2</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>docs.yourdomain.com</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate</span> <span style=color:#e6db74>/etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate_key</span> <span style=color:#e6db74>/etc/letsencrypt/live/docs.yourdomain.com/privkey.pem</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://localhost:6875</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Real-IP</span> $remote_addr;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-Proto</span> $scheme;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>80</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>docs.yourdomain.com</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>return</span> <span style=color:#ae81ff>301</span> <span style=color:#e6db74>https://</span>$server_name$request_uri;
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><p>Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật <code>APP_URL</code> trong docker-compose.yml thành <code>https://docs.yourdomain.com</code> và khởi động lại container.</p><h3 id=cài-đặt-thủ-công-ubuntu-2404-lts>Cài đặt thủ công (Ubuntu 24.04 LTS)<a hidden class=anchor aria-hidden=true href=#cài-đặt-thủ-công-ubuntu-2404-lts>#</a></h3><p>Nếu bạn thích triển khai bare-metal: `````bash</p><h1 id=cài-đặt-dependencies>Cài đặt dependencies<a hidden class=anchor aria-hidden=true href=#cài-đặt-dependencies>#</a></h1><p>sudo apt update
-sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap<br>php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer</p><h1 id=clone-bookstack>Clone BookStack<a hidden class=anchor aria-hidden=true href=#clone-bookstack>#</a></h1><p>cd /var/www
-git clone <a href=https://github.com/BookStackApp/BookStack.git>https://github.com/BookStackApp/BookStack.git</a> &ndash;branch v26.03.4 &ndash;depth 1
-cd BookStack</p><h1 id=cài-đặt-php-dependencies>Cài đặt PHP dependencies<a hidden class=anchor aria-hidden=true href=#cài-đặt-php-dependencies>#</a></h1><p>composer install &ndash;no-dev</p><h1 id=sao-chép-và-cấu-hình-môi-trường>Sao chép và cấu hình môi trường<a hidden class=anchor aria-hidden=true href=#sao-chép-và-cấu-hình-môi-trường>#</a></h1><p>cp .env.example .env
-php artisan key:generate</p><h1 id=chỉnh-sửa-env-với-thông-tin-đăng-nhập-cơ-sở-dữ-liệu>Chỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu<a hidden class=anchor aria-hidden=true href=#chỉnh-sửa-env-với-thông-tin-đăng-nhập-cơ-sở-dữ-liệu>#</a></h1><h1 id=db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password>DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&mldr;<a hidden class=anchor aria-hidden=true href=#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password>#</a></h1><h1 id=chạy-migrations>Chạy migrations<a hidden class=anchor aria-hidden=true href=#chạy-migrations>#</a></h1><p>php artisan migrate</p><h1 id=thiết-lập-quyền>Thiết lập quyền<a hidden class=anchor aria-hidden=true href=#thiết-lập-quyền>#</a></h1><p>chown -R www-data:www-data /var/www/BookStack
+<strong>Trang</strong> —— Đơn vị nội dung thực tế, với chỉnh sửa WYSIWYG hoặc Markdown đầy đủ.</p>
+<p>BookStack sử dụng hệ thống phân quyền dựa trên vai trò. Bạn định nghĩa các vai trò (như &ldquo;Editor&rdquo;, &ldquo;Viewer&rdquo;, &ldquo;Admin&rdquo;) và gán quyền ở cấp toàn cục. Khả năng hiển thị nội dung có thể bị hạn chế theo sách hoặc theo kệ. Bản phát hành v26.03 đã thêm bộ lọc nội dung nâng cao thông qua HTML Purifier, sử dụng cách tiếp cận allow-list để giải quyết lo ngại bảo mật về nội dung trang độc hại có thể thao túng DOM.</p>
+<h2 id="cài-đặt--thiết-lập-từ-con-số-không-đến-chạy-trong-5-phút">Cài đặt &amp; Thiết lập: Từ con số không đến chạy trong 5 phút<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập-từ-con-số-không-đến-chạy-trong-5-phút">#</a></h2>
+<p>Cách nhanh nhất để chạy BookStack là với Docker Compose. Bạn cần máy chủ với <strong>RAM tối thiểu 2GB</strong>, <strong>khuyến nghị 4GB</strong> cho đội ngũ trên 50 ngườó dùng. Một <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a> 2 vCPU + 4GB RAM ($24/tháng) xử lý thoải mái hầu hết các đội ngũ vừa và nhỏ.</p>
+<h3 id="bước-1-tạo-file-docker-compose">Bước 1: Tạo file Docker Compose<a hidden class="anchor" aria-hidden="true" href="#bước-1-tạo-file-docker-compose">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: bookstack: image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/bookstack:v26.03.4</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">bookstack</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">APP_URL=https://docs.yourdomain.com</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_HOST=bookstack_db</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_PORT=3306</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_USER=bookstack</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_PASS=your_secure_db_password</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DB_DATABASE=bookstackdb</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./bookstack_app_data:/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#ae81ff">6875</span>:<span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">bookstack_db</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">bookstack_db: image</span>: <span style="color:#ae81ff">lscr.io/linuxserver/mariadb:10.11</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">container_name</span>: <span style="color:#ae81ff">bookstack_db</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PUID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">PGID=1000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_ROOT_PASSWORD=your_secure_root_password</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">TZ=UTC</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_DATABASE=bookstackdb</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_USER=bookstack</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">MYSQL_PASSWORD=your_secure_db_password</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./bookstack_db_data:/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><p>File compose này định nghĩa hai dịch vụ: ứng dụng BookStack trên cổng 6875 và cơ sở dữ liệu MariaDB để lưu trữ.</p>
+<h3 id="bước-2-khởi-động-stack">Bước 2: Khởi động stack<a hidden class="anchor" aria-hidden="true" href="#bước-2-khởi-động-stack">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo thư mục dữ liệu</span>
+</span></span><span style="display:flex;"><span>mkdir -p bookstack_app_data bookstack_db_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Khởi động cả hai container</span>
+</span></span><span style="display:flex;"><span>docker compose up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Đợi khởi tạo cơ sở dữ liệu (30-60 giây cho lần chạy đầu)</span>
+</span></span><span style="display:flex;"><span>sleep <span style="color:#ae81ff">45</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra log để xác nhận khởi động</span>
+</span></span><span style="display:flex;"><span>docker logs bookstack
+</span></span></code></pre></div><p>Bạn sẽ thấy thông báo bootstrapping của Laravel theo sau bởi <code>NOTICE: ready to handle connections</code> từ PHP-FPM. Nếu kết nối cơ sở dữ liệu thất bại, kiểm tra DB_HOST có khớp với tên dịch vụ <code>bookstack_db</code> và thông tin đăng nhập có chính xác không.</p>
+<h3 id="bước-3-truy-cập-và-cấu-hình">Bước 3: Truy cập và cấu hình<a hidden class="anchor" aria-hidden="true" href="#bước-3-truy-cập-và-cấu-hình">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Thông tin đăng nhập mặc định khi khởi động đầu tiên</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tên đăng nhập: admin@admin.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Mật khẩu: password</span>
+</span></span></code></pre></div><p>Truy cập <code>http://your-server-ip:6875</code> và đăng nhập. <strong>Đổi mật khẩu admin ngay</strong> trong Cài đặt → Ngườó dùng. Sau đó cấu hình APP_URL để sử dụng HTTPS —— BookStack tạo URL tuyệt đối trong thông báo email và xuất file, nên thiết lập APP_URL chính xác ngay từ đầu sẽ tránh link bị hỏng sau này.</p>
+<h3 id="bước-4-nginx-reverse-proxy-với-ssl">Bước 4: Nginx reverse proxy với SSL<a hidden class="anchor" aria-hidden="true" href="#bước-4-nginx-reverse-proxy-với-ssl">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#75715e"># /etc/nginx/sites-available/bookstack
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span> <span style="color:#e6db74">http2</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">docs.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/docs.yourdomain.com/fullchain.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/docs.yourdomain.com/privkey.pem</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://localhost:6875</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">80</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">docs.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">return</span> <span style="color:#ae81ff">301</span> <span style="color:#e6db74">https://</span>$server_name$request_uri;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Sau khi kích hoạt site và lấy chứng chỉ bằng Certbot, cập nhật <code>APP_URL</code> trong docker-compose.yml thành <code>https://docs.yourdomain.com</code> và khởi động lại container.</p>
+<h3 id="cài-đặt-thủ-công-ubuntu-2404-lts">Cài đặt thủ công (Ubuntu 24.04 LTS)<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-thủ-công-ubuntu-2404-lts">#</a></h3>
+<p>Nếu bạn thích triển khai bare-metal: `````bash</p>
+<h1 id="cài-đặt-dependencies">Cài đặt dependencies<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-dependencies">#</a></h1>
+<p>sudo apt update
+sudo apt install -y apache2 php8.3 php8.3-curl php8.3-mbstring php8.3-ldap <br>
+php8.3-xml php8.3-zip php8.3-gd php8.3-mysql mysql-server git composer</p>
+<h1 id="clone-bookstack">Clone BookStack<a hidden class="anchor" aria-hidden="true" href="#clone-bookstack">#</a></h1>
+<p>cd /var/www
+git clone <a href="https://github.com/BookStackApp/BookStack.git">https://github.com/BookStackApp/BookStack.git</a> &ndash;branch v26.03.4 &ndash;depth 1
+cd BookStack</p>
+<h1 id="cài-đặt-php-dependencies">Cài đặt PHP dependencies<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-php-dependencies">#</a></h1>
+<p>composer install &ndash;no-dev</p>
+<h1 id="sao-chép-và-cấu-hình-môi-trường">Sao chép và cấu hình môi trường<a hidden class="anchor" aria-hidden="true" href="#sao-chép-và-cấu-hình-môi-trường">#</a></h1>
+<p>cp .env.example .env
+php artisan key:generate</p>
+<h1 id="chỉnh-sửa-env-với-thông-tin-đăng-nhập-cơ-sở-dữ-liệu">Chỉnh sửa .env với thông tin đăng nhập cơ sở dữ liệu<a hidden class="anchor" aria-hidden="true" href="#chỉnh-sửa-env-với-thông-tin-đăng-nhập-cơ-sở-dữ-liệu">#</a></h1>
+<h1 id="db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password">DB_HOST=localhost, DB_DATABASE=bookstack, DB_USERNAME=bookstack, DB_PASSWORD=&hellip;<a hidden class="anchor" aria-hidden="true" href="#db_hostlocalhost-db_databasebookstack-db_usernamebookstack-db_password">#</a></h1>
+<h1 id="chạy-migrations">Chạy migrations<a hidden class="anchor" aria-hidden="true" href="#chạy-migrations">#</a></h1>
+<p>php artisan migrate</p>
+<h1 id="thiết-lập-quyền">Thiết lập quyền<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-quyền">#</a></h1>
+<p>chown -R www-data:www-data /var/www/BookStack
 chmod -R 755 /var/www/BookStack
-chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache</p><pre tabindex=0><code>
+chmod -R 775 /var/www/BookStack/storage /var/www/BookStack/bootstrap/cache</p>
+<pre tabindex="0"><code>
 Cách thủ công cho bạn nhiều quyền kiểm soát hơn nhưng yêu cầu quản lý PHP, web server và MySQL riêng biệt. Cho production, Docker là lộ trình được khuyến nghị.
 
 ## Tích hợp LDAP &amp; SSO
@@ -123,16 +464,25 @@ LDAP_TLS=true
 LDAP_ID_ATTRIBUTE=uid
 LDAP_DISPLAY_NAME_ATTRIBUTE=cn
 LDAP_EMAIL_ATTRIBUTE=mail
-</code></pre><p>Sau khi khởi động lại container, BookStack sẽ xác thực ngườó dùng thông qua thư mục LDAP. Ngườó dùng được tự động cung cấp khi đăng nhập lần đầu, nên bạn không cần tạo tài khoản thủ công.</p><h3 id=saml-20-cho-okta-azure-ad-onelogin>SAML 2.0 (cho Okta, Azure AD, OneLogin)<a hidden class=anchor aria-hidden=true href=#saml-20-cho-okta-azure-ad-onelogin>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cấu hình SAML trong .env</span>
-</span></span><span style=display:flex><span>AUTH_METHOD<span style=color:#f92672>=</span>saml2
-</span></span><span style=display:flex><span>SAML2_NAME<span style=color:#f92672>=</span>SSO
-</span></span><span style=display:flex><span>SAML2_EMAIL_ATTRIBUTE<span style=color:#f92672>=</span>email
-</span></span><span style=display:flex><span>SAML2_EXTERNAL_ID_ATTRIBUTE<span style=color:#f92672>=</span>name_id
-</span></span><span style=display:flex><span>SAML2_DISPLAY_NAME_ATTRIBUTES<span style=color:#f92672>=</span>first_name|last_name
-</span></span><span style=display:flex><span>SAML2_IDP_ENTITYID<span style=color:#f92672>=</span>https://your-idp.example.com/metadata
-</span></span><span style=display:flex><span>SAML2_IDP_SSO<span style=color:#f92672>=</span>https://your-idp.example.com/sso
-</span></span><span style=display:flex><span>SAML2_IDP_x509<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;MIIDXTCCAkWgAwIBAgIJAJC1HiIA...&#34;</span>
-</span></span></code></pre></div><h2 id=quản-lý-hình-ảnh--chỉnh-sửa-nội-dung>Quản lý hình ảnh & Chỉnh sửa nội dung<a hidden class=anchor aria-hidden=true href=#quản-lý-hình-ảnh--chỉnh-sửa-nội-dung>#</a></h2><p>BookStack có sẵn hai trình chỉnh sửa. <strong>Trình chỉnh sửa WYSIWYG</strong> (dựa trên TinyMCE) là mặc định —— xử lý hình ảnh qua kéo-thả upload, hỗ trợ bảng, khối code với highlight cú pháp, và khối callout cho mẹo và cảnh báo. <strong>Trình chỉnh sửa Markdown</strong> cung cấp trải nghiệm chia màn hình với xem trước trực tiếp, lý tưởng cho lập trình viên thích viết Markdown.</p><p>Upload hình ảnh rất đơn giản: `````markdown</p><h1 id=ở-chế-độ-markdown--hình-ảnh-được-upload-vào-gallery-của-bookstack>Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack<a hidden class=anchor aria-hidden=true href=#ở-chế-độ-markdown--hình-ảnh-được-upload-vào-gallery-của-bookstack>#</a></h1><p><img alt="Văn bản thay thế" loading=lazy src=uploaded-image-name.png></p><h1 id=thư-viện-hình-ảnh-có-thể-truy-cập-từ-thanh-công-cụ-trình-chỉnh-sửa>Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa<a hidden class=anchor aria-hidden=true href=#thư-viện-hình-ảnh-có-thể-truy-cập-từ-thanh-công-cụ-trình-chỉnh-sửa>#</a></h1><h1 id=tất-cả-hình-ảnh-đã-upload-được-lưu-trong-volume-bookstack_app_data>Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data<a hidden class=anchor aria-hidden=true href=#tất-cả-hình-ảnh-đã-upload-được-lưu-trong-volume-bookstack_app_data>#</a></h1><pre tabindex=0><code>
+</code></pre><p>Sau khi khởi động lại container, BookStack sẽ xác thực ngườó dùng thông qua thư mục LDAP. Ngườó dùng được tự động cung cấp khi đăng nhập lần đầu, nên bạn không cần tạo tài khoản thủ công.</p>
+<h3 id="saml-20-cho-okta-azure-ad-onelogin">SAML 2.0 (cho Okta, Azure AD, OneLogin)<a hidden class="anchor" aria-hidden="true" href="#saml-20-cho-okta-azure-ad-onelogin">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cấu hình SAML trong .env</span>
+</span></span><span style="display:flex;"><span>AUTH_METHOD<span style="color:#f92672">=</span>saml2
+</span></span><span style="display:flex;"><span>SAML2_NAME<span style="color:#f92672">=</span>SSO
+</span></span><span style="display:flex;"><span>SAML2_EMAIL_ATTRIBUTE<span style="color:#f92672">=</span>email
+</span></span><span style="display:flex;"><span>SAML2_EXTERNAL_ID_ATTRIBUTE<span style="color:#f92672">=</span>name_id
+</span></span><span style="display:flex;"><span>SAML2_DISPLAY_NAME_ATTRIBUTES<span style="color:#f92672">=</span>first_name|last_name
+</span></span><span style="display:flex;"><span>SAML2_IDP_ENTITYID<span style="color:#f92672">=</span>https://your-idp.example.com/metadata
+</span></span><span style="display:flex;"><span>SAML2_IDP_SSO<span style="color:#f92672">=</span>https://your-idp.example.com/sso
+</span></span><span style="display:flex;"><span>SAML2_IDP_x509<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;MIIDXTCCAkWgAwIBAgIJAJC1HiIA...&#34;</span>
+</span></span></code></pre></div><h2 id="quản-lý-hình-ảnh--chỉnh-sửa-nội-dung">Quản lý hình ảnh &amp; Chỉnh sửa nội dung<a hidden class="anchor" aria-hidden="true" href="#quản-lý-hình-ảnh--chỉnh-sửa-nội-dung">#</a></h2>
+<p>BookStack có sẵn hai trình chỉnh sửa. <strong>Trình chỉnh sửa WYSIWYG</strong> (dựa trên TinyMCE) là mặc định —— xử lý hình ảnh qua kéo-thả upload, hỗ trợ bảng, khối code với highlight cú pháp, và khối callout cho mẹo và cảnh báo. <strong>Trình chỉnh sửa Markdown</strong> cung cấp trải nghiệm chia màn hình với xem trước trực tiếp, lý tưởng cho lập trình viên thích viết Markdown.</p>
+<p>Upload hình ảnh rất đơn giản: `````markdown</p>
+<h1 id="ở-chế-độ-markdown--hình-ảnh-được-upload-vào-gallery-của-bookstack">Ở chế độ Markdown —— hình ảnh được upload vào gallery của BookStack<a hidden class="anchor" aria-hidden="true" href="#ở-chế-độ-markdown--hình-ảnh-được-upload-vào-gallery-của-bookstack">#</a></h1>
+<p><img alt="Văn bản thay thế" loading="lazy" src="uploaded-image-name.png"></p>
+<h1 id="thư-viện-hình-ảnh-có-thể-truy-cập-từ-thanh-công-cụ-trình-chỉnh-sửa">Thư viện hình ảnh có thể truy cập từ thanh công cụ trình chỉnh sửa<a hidden class="anchor" aria-hidden="true" href="#thư-viện-hình-ảnh-có-thể-truy-cập-từ-thanh-công-cụ-trình-chỉnh-sửa">#</a></h1>
+<h1 id="tất-cả-hình-ảnh-đã-upload-được-lưu-trong-volume-bookstack_app_data">Tất cả hình ảnh đã upload được lưu trong volume bookstack_app_data<a hidden class="anchor" aria-hidden="true" href="#tất-cả-hình-ảnh-đã-upload-được-lưu-trong-volume-bookstack_app_data">#</a></h1>
+<pre tabindex="0"><code>
 BookStack cũng hỗ trợ nhúng sơ đồ qua tích hợp Draw.io. Khi bạn chèn sơ đồ, BookStack lưu trữ XML nguồn Draw.io cùng với hình ảnh đã render, nên bạn có thể chỉnh sửa lại sơ đồ sau này mà không mất nguồn.
 
 ## Benchmark &amp; Hiệu suất thực tế
@@ -174,75 +524,245 @@ jobs: publish: runs-on: ubuntu-latest
             -H &#34;Content-Type: application/json&#34; \
             -d &#39;{&#34;name&#34;: &#34;API Documentation&#34;, &#34;html&#34;: &#34;&#39;&#34;$(cat docs/api.html | base64 -w 0)&#34;&#39;&#34;}&#39; \
             &#34;https://docs.yourdomain.com/api/pages/42&#34;
-</code></pre><p>BookStack expose REST API để quản lý nội dung theo chương trình. Tạo API token trong Cài đặt → API. API hỗ trợ thao tác CRUD trên kệ sách, sách, chương và trang, cùng upload hình ảnh và tìm kiếm.</p><h3 id=tự-động-hóa-sao-lưu>Tự động hóa sao lưu<a hidden class=anchor aria-hidden=true href=#tự-động-hóa-sao-lưu>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/scripts/backup-bookstack.sh</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>BACKUP_DIR<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/backups/bookstack&#34;</span>
-</span></span><span style=display:flex><span>DATE<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>date +%Y%m%d_%H%M%S<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Sao lưu cơ sở dữ liệu</span>
-</span></span><span style=display:flex><span>docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  | gzip &gt; <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/bookstack_db_</span>$DATE<span style=color:#e6db74>.sql.gz&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Sao lưu dữ liệu ứng dụng (upload, cấu hình)</span>
-</span></span><span style=display:flex><span>tar czf <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>/bookstack_app_</span>$DATE<span style=color:#e6db74>.tar.gz&#34;</span> -C /path/to ./bookstack_app_data
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chỉ giữ lại 14 ngày gần nhất</span>
-</span></span><span style=display:flex><span>find <span style=color:#e6db74>&#34;</span>$BACKUP_DIR<span style=color:#e6db74>&#34;</span> -name <span style=color:#e6db74>&#34;*.gz&#34;</span> -mtime +14 -delete
-</span></span></code></pre></div><p>Thêm vào cron để sao lưu hàng ngày: <code>0 3 * * * /opt/scripts/backup-bookstack.sh</code></p><h3 id=giám-sát-với-prometheus>Giám sát với Prometheus<a hidden class=anchor aria-hidden=true href=#giám-sát-với-prometheus>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Thêm vào docker-compose.yml cho monitoring</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>node-exporter: image</span>: <span style=color:#ae81ff>prom/node-exporter:v1.7.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>/proc:/host/proc:ro</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>/sys:/host/sys:ro</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: - <span style=color:#e6db74>&#39;--path.procfs=/host/proc&#39;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#39;--path.sysfs=/host/sys&#39;</span>
-</span></span></code></pre></div><h3 id=script-kiểm-tra-sức-khỏe>Script kiểm tra sức khỏe<a hidden class=anchor aria-hidden=true href=#script-kiểm-tra-sức-khỏe>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># /opt/scripts/health-check-bookstack.sh</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Kiểm tra BookStack có phản hồi không</span>
-</span></span><span style=display:flex><span>HTTP_CODE<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>curl -s -o /dev/null -w <span style=color:#e6db74>&#34;%{http_code}&#34;</span> http://localhost:6875/login<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>if</span> <span style=color:#f92672>[</span> <span style=color:#e6db74>&#34;</span>$HTTP_CODE<span style=color:#e6db74>&#34;</span> !<span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;200&#34;</span> <span style=color:#f92672>]</span>; <span style=color:#66d9ef>then</span>
-</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;LỖI: BookStack trả về HTTP </span>$HTTP_CODE<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>    docker restart bookstack
-</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;Container đã khởi động lại lúc </span><span style=color:#66d9ef>$(</span>date<span style=color:#66d9ef>)</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>else</span>
-</span></span><span style=display:flex><span>    echo <span style=color:#e6db74>&#34;OK: BookStack hoạt động bình thường&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>fi</span>
-</span></span></code></pre></div><p>Thêm vào cron để kiểm tra tự động: <code>*/5 * * * * /opt/scripts/health-check-bookstack.sh</code></p><h2 id=sử-dụng-nâng-cao-củng-cố-production>Sử dụng nâng cao: Củng cố production<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao-củng-cố-production>#</a></h2><h3 id=bật-cookie-chỉ-https>Bật cookie chỉ HTTPS<a hidden class=anchor aria-hidden=true href=#bật-cookie-chỉ-https>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Trong file .env</span>
-</span></span><span style=display:flex><span>SESSION_SECURE_COOKIE<span style=color:#f92672>=</span>true
-</span></span></code></pre></div><p>Điều này đảm bảo session cookie chỉ được truyền qua kết nối HTTPS. Quan trọng nếu instance BookStack của bạn tiếp xúc với internet.</p><h3 id=theme-tùy-chỉnh-qua-hệ-thống-module-v2603>Theme tùy chỉnh qua hệ thống module (v26.03+)<a hidden class=anchor aria-hidden=true href=#theme-tùy-chỉnh-qua-hệ-thống-module-v2603>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo thư mục module tùy chỉnh</span>
-</span></span><span style=display:flex><span>mkdir -p /config/www/themes/my_theme/modules/welcome_module
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># bookstack-module.json</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;welcome_module&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;1.0.0&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;description&#34;</span>: <span style=color:#e6db74>&#34;Adds a welcome banner to the header&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># functions.php</span>
-</span></span><span style=display:flex><span>&lt;?php
-</span></span><span style=display:flex><span>use BookStack<span style=color:#ae81ff>\F</span>acades<span style=color:#ae81ff>\T</span>heme;
-</span></span><span style=display:flex><span>use BookStack<span style=color:#ae81ff>\T</span>heming<span style=color:#ae81ff>\T</span>hemeEvents;
-</span></span><span style=display:flex><span>use BookStack<span style=color:#ae81ff>\T</span>heming<span style=color:#ae81ff>\T</span>hemeViews;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Theme::listen<span style=color:#f92672>(</span>ThemeEvents::THEME_REGISTER_VIEWS, <span style=color:#66d9ef>function</span> <span style=color:#f92672>(</span>ThemeViews $themeViews<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    $themeViews-&gt;renderAfter<span style=color:#f92672>(</span><span style=color:#960050;background-color:#1e0010>&#39;</span>layouts.parts.header<span style=color:#e6db74>&#34;, welcome, 10);
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>});
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74># views/welcome.blade.php
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>Welcome, ! Check out the onboarding docs.
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>&lt;/div&gt;
-</span></span></span></code></pre></div><p>Cài đặt module với: <code>php artisan bookstack:install-module /path/to/module.zip</code></p><h3 id=kiểm-soát-lọc-nội-dung-trang>Kiểm soát lọc nội dung trang<a hidden class=anchor aria-hidden=true href=#kiểm-soát-lọc-nội-dung-trang>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Trong .env (mới trong v25.12.4+)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tùy chọn: false, true, hoặc danh sách tên bộ lọc phân cách bằng dấu phẩy</span>
-</span></span><span style=display:flex><span>APP_CONTENT_FILTERING<span style=color:#f92672>=</span>default
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Các bộ lọc khả dụng: script, form, iframe, object, embed, style, css_expression</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Để tắt lọc style (hữu ích nếu cần inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression</span>
-</span></span></code></pre></div><h2 id=so-sánh-bookstack-với-các-phương-án-thay-thế>So sánh: BookStack với các phương án thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-bookstack-với-các-phương-án-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>BookStack</th><th>Wiki.js</th><th>DokuWiki</th><th>MediaWiki</th><th>Outline</th></tr></thead><tbody><tr><td><strong>Giấy phép</strong></td><td>MIT</td><td>AGPL-3.0</td><td>GPL-2.0</td><td>GPL-2.0+</td><td>BSL 1.1</td></tr><tr><td><strong>Stack</strong></td><td>PHP / Laravel</td><td>Node.js</td><td>PHP (không DB)</td><td>PHP</td><td>Node.js</td></tr><tr><td><strong>Trình chỉnh sửa</strong></td><td>WYSIWYG + Markdown</td><td>Markdown + Trực quan</td><td>Wiki syntax</td><td>Wikitext</td><td>Block-based</td></tr><tr><td><strong>Cộng tác thờói gian thực</strong></td><td>Không</td><td>Có</td><td>Không</td><td>Không</td><td>Có</td></tr><tr><td><strong>Phân cấp nội dung</strong></td><td>Kệ→Sách→Chương→Trang</td><td>Linh hoạt</td><td>Phẳng</td><td>Thể loại→Trang</td><td>Collection→Tài liệu</td></tr><tr><td><strong>Chi phí tự host</strong></td><td>Miễn phí (chỉ server)</td><td>Miễn phí (chỉ server)</td><td>Miễn phí (chỉ server)</td><td>Miễn phí (chỉ server)</td><td>$10/ngườó/tháng</td></tr><tr><td><strong>Yêu cầu cơ sở dữ liệu</strong></td><td>MySQL/MariaDB</td><td>PostgreSQL/MySQL/SQLite</td><td>Không (file-based)</td><td>MySQL/PostgreSQL</td><td>PostgreSQL</td></tr><tr><td><strong>LDAP/SSO</strong></td><td>Có (LDAP, SAML, OIDC)</td><td>Có (rộng rãi)</td><td>Qua plugin</td><td>Qua plugin</td><td>SAML, OIDC</td></tr><tr><td><strong>Tìm kiếm</strong></td><td>MySQL FULLTEXT</td><td>Elasticsearch/DB</td><td>Tích hợp</td><td>Elasticsearch</td><td>PostgreSQL FTS</td></tr><tr><td><strong>API</strong></td><td>REST</td><td>GraphQL + REST</td><td>XML-RPC</td><td>REST</td><td>REST</td></tr><tr><td><strong>Bảo trì chủ động</strong></td><td>Phát hành hàng tháng</td><td>Đều đặn</td><td>Ổn định</td><td>Đều đặn</td><td>Đều đặn</td></tr><tr><td><strong>GitHub stars</strong></td><td><strong>18,700</strong></td><td><strong>24,500</strong></td><td><strong>1,800</strong></td><td><strong>4,200</strong></td><td><strong>14,300</strong></td></tr></tbody></table><p><strong>BookStack thắng khi:</strong> Đội của bạn coi trọng phân cấp có cấu trúc, muốn cài đặt đơn giản, cần chỉnh sửa kép WYSIWYG + Markdown, và thích sự quen thuộc của hệ sinh thái PHP.</p><p><strong>Wiki.js thắng khi:</strong> Bạn cần cộng tác thờói gian thực, thích stack Node.js, muốn truy cập GraphQL API, hoặc cần kiến trúc nội dung linh hoạt hơn.</p><p><strong>DokuWiki thắng khi:</strong> Bạn muốn thiết lập không cần cơ sở dữ liệu —— chạy hoàn toàn trên file phẳng. Tốt nhất cho triển khai tối giản.</p><p><strong>MediaWiki thắng khi:</strong> Bạn xây dựng wiki quy mô bách khoa toàn thư công khai. Quá mức cần thiết cho hầu hết nhu cầu tài liệu nội bộ.</p><p><strong>Outline thắng khi:</strong> Đội của bạn muốn trải nghiệm trình chỉnh sửa block giống Notion với cộng tác thờói gian thực, và bạn chấp nhận thiết lập tự host phức tạp hơn hoặc giá hosted.</p><h2 id=hạn-chế-đánh-giá-trung-thực>Hạn chế: Đánh giá trung thực<a hidden class=anchor aria-hidden=true href=#hạn-chế-đánh-giá-trung-thực>#</a></h2><p>BookStack không phải công cụ phù hợp cho mọi trường hợp tài liệu. Đây là những gì nó không làm tốt: <strong>Không có cộng tác thờói gian thực.</strong> Hai ngườó dùng chỉnh sửa cùng trang đồng thờói sẽ ghi đè lên nhau. BookStack cảnh báo về chỉnh sửa cũ nhưng không cung cấp cộng tác thờói gian thực kiểu Google Docs. Nếu quy trình làm việc phụ thuộc vào chỉnh sửa đồng thờói, hãy dùng Outline hoặc Wiki.js.</p><p><strong>Phân cấp cứng nhắc có thể cảm thấy hạn chế.</strong> Mô hình kệ/sách/chương/trang tuyệt vờói cho tài liệu có cấu trúc nhưng vụng về cho cơ sở kiến thức lưu động, tái cấu trúc liên tục. Nếu tài liệu của bạn giống đồ thị kiến thức động hơn là thư viện tham khảo, Notion hoặc Obsidian có thể phù hợp hơn.</p><p><strong>Tính năng tài liệu công khai hạn chế.</strong> BookStack hỗ trợ khả năng hiển thị công khai cho kệ sách, nhưng không được thiết kế cho site tài liệu đối mặt khách hàng có thương hiệu. Không có quy trình tên miền tùy chỉnh + SSL tích hợp, không có phiên bản cho tài liệu công khai, và tùy chọn theme hạn chế so với các nền tảng tài liệu chuyên dụng.</p><p><strong>Không có chỉnh sửa sơ đồ trực tiếp tích hợp.</strong> Mặc dù BookStack tích hợp Draw.io cho sơ đồ, bạn mở trình chỉnh sửa Draw.io trong modal. Không thể vẽ trực tiếp trên trang như Excalidraw trong Outline.</p><p><strong>Stack PHP có thể cảm thấy lỗi thờói.</strong> Các đội chạy hoàn toàn trên Node.js hoặc Go có thể thích công cụ trong stack hiện có. Nhưng triển khai PHP đã được hiểu và thử nghiệm kỹ lưỡng —— công nghệ nhàm chán có giá trị riêng.</p><h2 id=câu-hỏi-thường-gặp>Câu hỏi thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><h3 id=tôi-có-thể-di-chuyển-từ-confluence-sang-bookstack-không>Tôi có thể di chuyển từ Confluence sang BookStack không?<a hidden class=anchor aria-hidden=true href=#tôi-có-thể-di-chuyển-từ-confluence-sang-bookstack-không>#</a></h3><p>Không có công cụ nhập chính thức từ Confluence, nhưng bạn có thể xuất trang Confluence dưới dạng HTML hoặc Markdown và sử dụng BookStack REST API để tạo hàng loạt trang. Có script cộng đồng cho lộ trình di chuyển này. Cho di chuyển quy mô lớn, dự kiến dành thờói gian tái cấu trúc nội dung cho phù hợp mô hình sách/chương/trang của BookStack.</p><h3 id=làm-thế-nào-để-cập-nhật-bookstack>Làm thế nào để cập nhật BookStack?<a hidden class=anchor aria-hidden=true href=#làm-thế-nào-để-cập-nhật-bookstack>#</a></h3><p>Với Docker, cập nhật chỉ là một dòng lệnh: thay đổi tag image trong docker-compose.yml và chạy <code>docker compose up -d</code>. Với cài đặt thủ công, pull release mới nhất, chạy <code>git pull</code> hoặc tải archive release mới, sau đó chạy <code>php artisan migrate</code> và xóa cache. Luôn sao lưu cơ sở dữ liệu trước khi cập nhật —— BookStack phát hành bản vá bảo mật hàng tháng.</p><h3 id=bookstack-có-hỗ-trợ-xác-thực-hai-yếu-tố-không>BookStack có hỗ trợ xác thực hai yếu tố không?<a hidden class=anchor aria-hidden=true href=#bookstack-có-hỗ-trợ-xác-thực-hai-yếu-tố-không>#</a></h3><p>Tính đến v26.03, BookStack không có TOTP/SMS 2FA tích hợp. Bạn có thể đạt được MFA bằng cách sử dụng xác thực SAML hoặc OIDC với nhà cung cấp danh tính bắt buộc 2FA (như Azure AD hoặc Okta). Hỗ trợ TOTP gốc đã được thảo luận trong cộng đồng nhưng không nằm trong lộ trình sắp tới.</p><h3 id=tôi-có-thể-dùng-postgresql-thay-vì-mysql-không>Tôi có thể dùng PostgreSQL thay vì MySQL không?<a hidden class=anchor aria-hidden=true href=#tôi-có-thể-dùng-postgresql-thay-vì-mysql-không>#</a></h3><p>BookStack chính thức hỗ trợ MySQL và MariaDB. Hỗ trợ PostgreSQL đã được thảo luận nhưng không được hỗ trợ chính thức. Nếu cần PostgreSQL, Wiki.js hoặc Outline là lựa chọn tốt hơn. Cho BookStack, hãy dùng MySQL 8.0+ hoặc MariaDB 10.6+.</p><h3 id=image-linuxserverio-và-image-chính-thức-khác-nhau-thế-nào>Image LinuxServer.io và image chính thức khác nhau thế nào?<a hidden class=anchor aria-hidden=true href=#image-linuxserverio-và-image-chính-thức-khác-nhau-thế-nào>#</a></h3><p>Image <code>lscr.io/linuxserver/bookstack</code> được cộng đồng duy trì và sử dụng rộng rãi. Nó trừu tượng hóa cấu hình PHP-FPM và Nginx, khiến nó trở thành cách dễ nhất để chạy BookStack trong Docker. Không có image Docker chính thức từ ngườó duy trì BookStack —— LinuxServer image là tiêu chuẩn de facto.</p><h3 id=sao-lưu-hoạt-động-như-thế-nào>Sao lưu hoạt động như thế nào?<a hidden class=anchor aria-hidden=true href=#sao-lưu-hoạt-động-như-thế-nào>#</a></h3><p>Sao lưu hai thứ: cơ sở dữ liệu MySQL/MariaDB (toàn bộ nội dung và metadata) và thư mục <code>/config/www/files</code> (hình ảnh và file đính kèm đã upload). Với cấu hình Docker ở trên, cả hai đều nằm trong named volumes. <code>mysqldump</code> đơn giản cộng với ````tar``` của volume dữ liệu ứng dụng là đủ. Kiểm tra quy trình khôi phục hàng quý.</p><h2 id=kết-luận-bạn-có-nên-chạy-bookstack-vào-năm-2026>Kết luận: Bạn có nên chạy BookStack vào năm 2026?<a hidden class=anchor aria-hidden=true href=#kết-luận-bạn-có-nên-chạy-bookstack-vào-năm-2026>#</a></h2><p>Nếu đội của bạn đã chán trả giá theo ngườó dùng cho công cụ tài liệu, và muốn một wiki có cấu trúc, cứng nhắc buộc thói quen tổ chức tốt, BookStack là một trong những lựa chọn mã nguồn mở tốt nhất năm 2026. Stack PHP/Laravel nhàm chán theo cách tốt nhất —— có thể dự đoán được, tài liệu tốt, và dễ debug khi có vấn đề. Các bản phát hành bảo mật hàng tháng cho thấy bảo trì chủ động, và hệ thống module theme v26.03 mở ra khả năng tùy chỉnh mới.</p><p>Cho đội 5-50 ngườó muốn tài liệu nội bộ không bị khóa bởi nhà cung cấp, BookStack hoàn vốn ngay lập tức. Tự host trên <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a>, sao lưu hàng ngày, và bạn có hệ thống tài liệu sẽ tồn tại lâu hơn bất kỳ công cụ SaaS thịnh hành nào của quý này.</p><p>Tham gia cộng đồng dibi8.com: <a href=https://t.me/dibi8opensource>Nhóm Telegram</a> để thảo luận công cụ mã nguồn mở hàng ngày, mẹo triển khai và hỗ trợ xử lý sự cố từ 5,000+ lập trình viên.</p><hr><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài liệu tham khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://www.bookstackapp.com/docs/>Tài liệu chính thức BookStack</a></li><li><a href=https://github.com/BookStackApp/BookStack>Mirror GitHub BookStack</a></li><li><a href=https://codeberg.org/bookstack>Kho lưu trữ Codeberg BookStack</a></li><li><a href=https://www.bookstackapp.com/blog/bookstack-release-v26-03/>Ghi chú phát hành BookStack v26.03</a></li><li><a href=https://docs.linuxserver.io/images/docker-bookstack/>Image Docker BookStack LinuxServer.io</a></li><li><a href=https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/>So sánh BookStack vs Wiki.js</a></li></ul><hr><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=công-bố-liên-kết-liên-kết>Công bố liên kết liên kết<a hidden class=anchor aria-hidden=true href=#công-bố-liên-kết-liên-kết>#</a></h2><p>Bài viết này chứa liên kết liên kết đến <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Dự án BookStack miễn phí và mã nguồn mở —— không có mối quan hệ liên kết nào với ngườó duy trì BookStack.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><p>BookStack expose REST API để quản lý nội dung theo chương trình. Tạo API token trong Cài đặt → API. API hỗ trợ thao tác CRUD trên kệ sách, sách, chương và trang, cùng upload hình ảnh và tìm kiếm.</p>
+<h3 id="tự-động-hóa-sao-lưu">Tự động hóa sao lưu<a hidden class="anchor" aria-hidden="true" href="#tự-động-hóa-sao-lưu">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># /opt/scripts/backup-bookstack.sh</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>BACKUP_DIR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/backups/bookstack&#34;</span>
+</span></span><span style="display:flex;"><span>DATE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>date +%Y%m%d_%H%M%S<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sao lưu cơ sở dữ liệu</span>
+</span></span><span style="display:flex;"><span>docker exec bookstack_db mysqldump -u bookstack -pyour_password bookstackdb <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | gzip &gt; <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/bookstack_db_</span>$DATE<span style="color:#e6db74">.sql.gz&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Sao lưu dữ liệu ứng dụng (upload, cấu hình)</span>
+</span></span><span style="display:flex;"><span>tar czf <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">/bookstack_app_</span>$DATE<span style="color:#e6db74">.tar.gz&#34;</span> -C /path/to ./bookstack_app_data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chỉ giữ lại 14 ngày gần nhất</span>
+</span></span><span style="display:flex;"><span>find <span style="color:#e6db74">&#34;</span>$BACKUP_DIR<span style="color:#e6db74">&#34;</span> -name <span style="color:#e6db74">&#34;*.gz&#34;</span> -mtime +14 -delete
+</span></span></code></pre></div><p>Thêm vào cron để sao lưu hàng ngày: <code>0 3 * * * /opt/scripts/backup-bookstack.sh</code></p>
+<h3 id="giám-sát-với-prometheus">Giám sát với Prometheus<a hidden class="anchor" aria-hidden="true" href="#giám-sát-với-prometheus">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Thêm vào docker-compose.yml cho monitoring</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">node-exporter: image</span>: <span style="color:#ae81ff">prom/node-exporter:v1.7.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">/proc:/host/proc:ro</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">/sys:/host/sys:ro</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: - <span style="color:#e6db74">&#39;--path.procfs=/host/proc&#39;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#39;--path.sysfs=/host/sys&#39;</span>
+</span></span></code></pre></div><h3 id="script-kiểm-tra-sức-khỏe">Script kiểm tra sức khỏe<a hidden class="anchor" aria-hidden="true" href="#script-kiểm-tra-sức-khỏe">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># /opt/scripts/health-check-bookstack.sh</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra BookStack có phản hồi không</span>
+</span></span><span style="display:flex;"><span>HTTP_CODE<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s -o /dev/null -w <span style="color:#e6db74">&#34;%{http_code}&#34;</span> http://localhost:6875/login<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> <span style="color:#f92672">[</span> <span style="color:#e6db74">&#34;</span>$HTTP_CODE<span style="color:#e6db74">&#34;</span> !<span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;200&#34;</span> <span style="color:#f92672">]</span>; <span style="color:#66d9ef">then</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;LỖI: BookStack trả về HTTP </span>$HTTP_CODE<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>    docker restart bookstack
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;Container đã khởi động lại lúc </span><span style="color:#66d9ef">$(</span>date<span style="color:#66d9ef">)</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">else</span>
+</span></span><span style="display:flex;"><span>    echo <span style="color:#e6db74">&#34;OK: BookStack hoạt động bình thường&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">fi</span>
+</span></span></code></pre></div><p>Thêm vào cron để kiểm tra tự động: <code>*/5 * * * * /opt/scripts/health-check-bookstack.sh</code></p>
+<h2 id="sử-dụng-nâng-cao-củng-cố-production">Sử dụng nâng cao: Củng cố production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao-củng-cố-production">#</a></h2>
+<h3 id="bật-cookie-chỉ-https">Bật cookie chỉ HTTPS<a hidden class="anchor" aria-hidden="true" href="#bật-cookie-chỉ-https">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Trong file .env</span>
+</span></span><span style="display:flex;"><span>SESSION_SECURE_COOKIE<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><p>Điều này đảm bảo session cookie chỉ được truyền qua kết nối HTTPS. Quan trọng nếu instance BookStack của bạn tiếp xúc với internet.</p>
+<h3 id="theme-tùy-chỉnh-qua-hệ-thống-module-v2603">Theme tùy chỉnh qua hệ thống module (v26.03+)<a hidden class="anchor" aria-hidden="true" href="#theme-tùy-chỉnh-qua-hệ-thống-module-v2603">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo thư mục module tùy chỉnh</span>
+</span></span><span style="display:flex;"><span>mkdir -p /config/www/themes/my_theme/modules/welcome_module
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># bookstack-module.json</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;welcome_module&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;1.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;description&#34;</span>: <span style="color:#e6db74">&#34;Adds a welcome banner to the header&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># functions.php</span>
+</span></span><span style="display:flex;"><span>&lt;?php
+</span></span><span style="display:flex;"><span>use BookStack<span style="color:#ae81ff">\F</span>acades<span style="color:#ae81ff">\T</span>heme;
+</span></span><span style="display:flex;"><span>use BookStack<span style="color:#ae81ff">\T</span>heming<span style="color:#ae81ff">\T</span>hemeEvents;
+</span></span><span style="display:flex;"><span>use BookStack<span style="color:#ae81ff">\T</span>heming<span style="color:#ae81ff">\T</span>hemeViews;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Theme::listen<span style="color:#f92672">(</span>ThemeEvents::THEME_REGISTER_VIEWS, <span style="color:#66d9ef">function</span> <span style="color:#f92672">(</span>ThemeViews $themeViews<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    $themeViews-&gt;renderAfter<span style="color:#f92672">(</span><span style="color:#960050;background-color:#1e0010">&#39;</span>layouts.parts.header<span style="color:#e6db74">&#34;, welcome, 10);
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">});
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74"># views/welcome.blade.php
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">Welcome, ! Check out the onboarding docs.
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">&lt;/div&gt;
+</span></span></span></code></pre></div><p>Cài đặt module với: <code>php artisan bookstack:install-module /path/to/module.zip</code></p>
+<h3 id="kiểm-soát-lọc-nội-dung-trang">Kiểm soát lọc nội dung trang<a hidden class="anchor" aria-hidden="true" href="#kiểm-soát-lọc-nội-dung-trang">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Trong .env (mới trong v25.12.4+)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tùy chọn: false, true, hoặc danh sách tên bộ lọc phân cách bằng dấu phẩy</span>
+</span></span><span style="display:flex;"><span>APP_CONTENT_FILTERING<span style="color:#f92672">=</span>default
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Các bộ lọc khả dụng: script, form, iframe, object, embed, style, css_expression</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Để tắt lọc style (hữu ích nếu cần inline styles): APP_CONTENT_FILTERING=script,form,iframe,object,embed,css_expression</span>
+</span></span></code></pre></div><h2 id="so-sánh-bookstack-với-các-phương-án-thay-thế">So sánh: BookStack với các phương án thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-bookstack-với-các-phương-án-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>BookStack</th>
+					<th>Wiki.js</th>
+					<th>DokuWiki</th>
+					<th>MediaWiki</th>
+					<th>Outline</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>MIT</td>
+					<td>AGPL-3.0</td>
+					<td>GPL-2.0</td>
+					<td>GPL-2.0+</td>
+					<td>BSL 1.1</td>
+			</tr>
+			<tr>
+					<td><strong>Stack</strong></td>
+					<td>PHP / Laravel</td>
+					<td>Node.js</td>
+					<td>PHP (không DB)</td>
+					<td>PHP</td>
+					<td>Node.js</td>
+			</tr>
+			<tr>
+					<td><strong>Trình chỉnh sửa</strong></td>
+					<td>WYSIWYG + Markdown</td>
+					<td>Markdown + Trực quan</td>
+					<td>Wiki syntax</td>
+					<td>Wikitext</td>
+					<td>Block-based</td>
+			</tr>
+			<tr>
+					<td><strong>Cộng tác thờói gian thực</strong></td>
+					<td>Không</td>
+					<td>Có</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Có</td>
+			</tr>
+			<tr>
+					<td><strong>Phân cấp nội dung</strong></td>
+					<td>Kệ→Sách→Chương→Trang</td>
+					<td>Linh hoạt</td>
+					<td>Phẳng</td>
+					<td>Thể loại→Trang</td>
+					<td>Collection→Tài liệu</td>
+			</tr>
+			<tr>
+					<td><strong>Chi phí tự host</strong></td>
+					<td>Miễn phí (chỉ server)</td>
+					<td>Miễn phí (chỉ server)</td>
+					<td>Miễn phí (chỉ server)</td>
+					<td>Miễn phí (chỉ server)</td>
+					<td>$10/ngườó/tháng</td>
+			</tr>
+			<tr>
+					<td><strong>Yêu cầu cơ sở dữ liệu</strong></td>
+					<td>MySQL/MariaDB</td>
+					<td>PostgreSQL/MySQL/SQLite</td>
+					<td>Không (file-based)</td>
+					<td>MySQL/PostgreSQL</td>
+					<td>PostgreSQL</td>
+			</tr>
+			<tr>
+					<td><strong>LDAP/SSO</strong></td>
+					<td>Có (LDAP, SAML, OIDC)</td>
+					<td>Có (rộng rãi)</td>
+					<td>Qua plugin</td>
+					<td>Qua plugin</td>
+					<td>SAML, OIDC</td>
+			</tr>
+			<tr>
+					<td><strong>Tìm kiếm</strong></td>
+					<td>MySQL FULLTEXT</td>
+					<td>Elasticsearch/DB</td>
+					<td>Tích hợp</td>
+					<td>Elasticsearch</td>
+					<td>PostgreSQL FTS</td>
+			</tr>
+			<tr>
+					<td><strong>API</strong></td>
+					<td>REST</td>
+					<td>GraphQL + REST</td>
+					<td>XML-RPC</td>
+					<td>REST</td>
+					<td>REST</td>
+			</tr>
+			<tr>
+					<td><strong>Bảo trì chủ động</strong></td>
+					<td>Phát hành hàng tháng</td>
+					<td>Đều đặn</td>
+					<td>Ổn định</td>
+					<td>Đều đặn</td>
+					<td>Đều đặn</td>
+			</tr>
+			<tr>
+					<td><strong>GitHub stars</strong></td>
+					<td><strong>18,700</strong></td>
+					<td><strong>24,500</strong></td>
+					<td><strong>1,800</strong></td>
+					<td><strong>4,200</strong></td>
+					<td><strong>14,300</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>BookStack thắng khi:</strong> Đội của bạn coi trọng phân cấp có cấu trúc, muốn cài đặt đơn giản, cần chỉnh sửa kép WYSIWYG + Markdown, và thích sự quen thuộc của hệ sinh thái PHP.</p>
+<p><strong>Wiki.js thắng khi:</strong> Bạn cần cộng tác thờói gian thực, thích stack Node.js, muốn truy cập GraphQL API, hoặc cần kiến trúc nội dung linh hoạt hơn.</p>
+<p><strong>DokuWiki thắng khi:</strong> Bạn muốn thiết lập không cần cơ sở dữ liệu —— chạy hoàn toàn trên file phẳng. Tốt nhất cho triển khai tối giản.</p>
+<p><strong>MediaWiki thắng khi:</strong> Bạn xây dựng wiki quy mô bách khoa toàn thư công khai. Quá mức cần thiết cho hầu hết nhu cầu tài liệu nội bộ.</p>
+<p><strong>Outline thắng khi:</strong> Đội của bạn muốn trải nghiệm trình chỉnh sửa block giống Notion với cộng tác thờói gian thực, và bạn chấp nhận thiết lập tự host phức tạp hơn hoặc giá hosted.</p>
+<h2 id="hạn-chế-đánh-giá-trung-thực">Hạn chế: Đánh giá trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế-đánh-giá-trung-thực">#</a></h2>
+<p>BookStack không phải công cụ phù hợp cho mọi trường hợp tài liệu. Đây là những gì nó không làm tốt: <strong>Không có cộng tác thờói gian thực.</strong> Hai ngườó dùng chỉnh sửa cùng trang đồng thờói sẽ ghi đè lên nhau. BookStack cảnh báo về chỉnh sửa cũ nhưng không cung cấp cộng tác thờói gian thực kiểu Google Docs. Nếu quy trình làm việc phụ thuộc vào chỉnh sửa đồng thờói, hãy dùng Outline hoặc Wiki.js.</p>
+<p><strong>Phân cấp cứng nhắc có thể cảm thấy hạn chế.</strong> Mô hình kệ/sách/chương/trang tuyệt vờói cho tài liệu có cấu trúc nhưng vụng về cho cơ sở kiến thức lưu động, tái cấu trúc liên tục. Nếu tài liệu của bạn giống đồ thị kiến thức động hơn là thư viện tham khảo, Notion hoặc Obsidian có thể phù hợp hơn.</p>
+<p><strong>Tính năng tài liệu công khai hạn chế.</strong> BookStack hỗ trợ khả năng hiển thị công khai cho kệ sách, nhưng không được thiết kế cho site tài liệu đối mặt khách hàng có thương hiệu. Không có quy trình tên miền tùy chỉnh + SSL tích hợp, không có phiên bản cho tài liệu công khai, và tùy chọn theme hạn chế so với các nền tảng tài liệu chuyên dụng.</p>
+<p><strong>Không có chỉnh sửa sơ đồ trực tiếp tích hợp.</strong> Mặc dù BookStack tích hợp Draw.io cho sơ đồ, bạn mở trình chỉnh sửa Draw.io trong modal. Không thể vẽ trực tiếp trên trang như Excalidraw trong Outline.</p>
+<p><strong>Stack PHP có thể cảm thấy lỗi thờói.</strong> Các đội chạy hoàn toàn trên Node.js hoặc Go có thể thích công cụ trong stack hiện có. Nhưng triển khai PHP đã được hiểu và thử nghiệm kỹ lưỡng —— công nghệ nhàm chán có giá trị riêng.</p>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="tôi-có-thể-di-chuyển-từ-confluence-sang-bookstack-không">Tôi có thể di chuyển từ Confluence sang BookStack không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-di-chuyển-từ-confluence-sang-bookstack-không">#</a></h3>
+<p>Không có công cụ nhập chính thức từ Confluence, nhưng bạn có thể xuất trang Confluence dưới dạng HTML hoặc Markdown và sử dụng BookStack REST API để tạo hàng loạt trang. Có script cộng đồng cho lộ trình di chuyển này. Cho di chuyển quy mô lớn, dự kiến dành thờói gian tái cấu trúc nội dung cho phù hợp mô hình sách/chương/trang của BookStack.</p>
+<h3 id="làm-thế-nào-để-cập-nhật-bookstack">Làm thế nào để cập nhật BookStack?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-để-cập-nhật-bookstack">#</a></h3>
+<p>Với Docker, cập nhật chỉ là một dòng lệnh: thay đổi tag image trong docker-compose.yml và chạy <code>docker compose up -d</code>. Với cài đặt thủ công, pull release mới nhất, chạy <code>git pull</code> hoặc tải archive release mới, sau đó chạy <code>php artisan migrate</code> và xóa cache. Luôn sao lưu cơ sở dữ liệu trước khi cập nhật —— BookStack phát hành bản vá bảo mật hàng tháng.</p>
+<h3 id="bookstack-có-hỗ-trợ-xác-thực-hai-yếu-tố-không">BookStack có hỗ trợ xác thực hai yếu tố không?<a hidden class="anchor" aria-hidden="true" href="#bookstack-có-hỗ-trợ-xác-thực-hai-yếu-tố-không">#</a></h3>
+<p>Tính đến v26.03, BookStack không có TOTP/SMS 2FA tích hợp. Bạn có thể đạt được MFA bằng cách sử dụng xác thực SAML hoặc OIDC với nhà cung cấp danh tính bắt buộc 2FA (như Azure AD hoặc Okta). Hỗ trợ TOTP gốc đã được thảo luận trong cộng đồng nhưng không nằm trong lộ trình sắp tới.</p>
+<h3 id="tôi-có-thể-dùng-postgresql-thay-vì-mysql-không">Tôi có thể dùng PostgreSQL thay vì MySQL không?<a hidden class="anchor" aria-hidden="true" href="#tôi-có-thể-dùng-postgresql-thay-vì-mysql-không">#</a></h3>
+<p>BookStack chính thức hỗ trợ MySQL và MariaDB. Hỗ trợ PostgreSQL đã được thảo luận nhưng không được hỗ trợ chính thức. Nếu cần PostgreSQL, Wiki.js hoặc Outline là lựa chọn tốt hơn. Cho BookStack, hãy dùng MySQL 8.0+ hoặc MariaDB 10.6+.</p>
+<h3 id="image-linuxserverio-và-image-chính-thức-khác-nhau-thế-nào">Image LinuxServer.io và image chính thức khác nhau thế nào?<a hidden class="anchor" aria-hidden="true" href="#image-linuxserverio-và-image-chính-thức-khác-nhau-thế-nào">#</a></h3>
+<p>Image <code>lscr.io/linuxserver/bookstack</code> được cộng đồng duy trì và sử dụng rộng rãi. Nó trừu tượng hóa cấu hình PHP-FPM và Nginx, khiến nó trở thành cách dễ nhất để chạy BookStack trong Docker. Không có image Docker chính thức từ ngườó duy trì BookStack —— LinuxServer image là tiêu chuẩn de facto.</p>
+<h3 id="sao-lưu-hoạt-động-như-thế-nào">Sao lưu hoạt động như thế nào?<a hidden class="anchor" aria-hidden="true" href="#sao-lưu-hoạt-động-như-thế-nào">#</a></h3>
+<p>Sao lưu hai thứ: cơ sở dữ liệu MySQL/MariaDB (toàn bộ nội dung và metadata) và thư mục <code>/config/www/files</code> (hình ảnh và file đính kèm đã upload). Với cấu hình Docker ở trên, cả hai đều nằm trong named volumes. <code>mysqldump</code> đơn giản cộng với ````tar``` của volume dữ liệu ứng dụng là đủ. Kiểm tra quy trình khôi phục hàng quý.</p>
+<h2 id="kết-luận-bạn-có-nên-chạy-bookstack-vào-năm-2026">Kết luận: Bạn có nên chạy BookStack vào năm 2026?<a hidden class="anchor" aria-hidden="true" href="#kết-luận-bạn-có-nên-chạy-bookstack-vào-năm-2026">#</a></h2>
+<p>Nếu đội của bạn đã chán trả giá theo ngườó dùng cho công cụ tài liệu, và muốn một wiki có cấu trúc, cứng nhắc buộc thói quen tổ chức tốt, BookStack là một trong những lựa chọn mã nguồn mở tốt nhất năm 2026. Stack PHP/Laravel nhàm chán theo cách tốt nhất —— có thể dự đoán được, tài liệu tốt, và dễ debug khi có vấn đề. Các bản phát hành bảo mật hàng tháng cho thấy bảo trì chủ động, và hệ thống module theme v26.03 mở ra khả năng tùy chỉnh mới.</p>
+<p>Cho đội 5-50 ngườó muốn tài liệu nội bộ không bị khóa bởi nhà cung cấp, BookStack hoàn vốn ngay lập tức. Tự host trên <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a>, sao lưu hàng ngày, và bạn có hệ thống tài liệu sẽ tồn tại lâu hơn bất kỳ công cụ SaaS thịnh hành nào của quý này.</p>
+<p>Tham gia cộng đồng dibi8.com: <a href="https://t.me/dibi8opensource">Nhóm Telegram</a> để thảo luận công cụ mã nguồn mở hàng ngày, mẹo triển khai và hỗ trợ xử lý sự cố từ 5,000+ lập trình viên.</p>
+<hr>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://www.bookstackapp.com/docs/">Tài liệu chính thức BookStack</a></li>
+<li><a href="https://github.com/BookStackApp/BookStack">Mirror GitHub BookStack</a></li>
+<li><a href="https://codeberg.org/bookstack">Kho lưu trữ Codeberg BookStack</a></li>
+<li><a href="https://www.bookstackapp.com/blog/bookstack-release-v26-03/">Ghi chú phát hành BookStack v26.03</a></li>
+<li><a href="https://docs.linuxserver.io/images/docker-bookstack/">Image Docker BookStack LinuxServer.io</a></li>
+<li><a href="https://blog.canadianwebhosting.com/bookstack-vs-wikijs-choosing-self-hosted-team-wiki/">So sánh BookStack vs Wiki.js</a></li>
+</ul>
+<hr>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="công-bố-liên-kết-liên-kết">Công bố liên kết liên kết<a hidden class="anchor" aria-hidden="true" href="#công-bố-liên-kết-liên-kết">#</a></h2>
+<p>Bài viết này chứa liên kết liên kết đến <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận được tín dụng giới thiệu mà bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu cơ sở hạ tầng mà chúng tôi tự sử dụng. Dự án BookStack miễn phí và mã nguồn mở —— không có mối quan hệ liên kết nào với ngườó duy trì BookStack.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
-&ldquo;headline&rdquo;: &ldquo;BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn & Đánh giá 2026&rdquo;,
+&ldquo;headline&rdquo;: &ldquo;BookStack: Wiki Tài liệu Thân thiện với Lập trình viên, Hỗ trợ Markdown — Hướng dẫn &amp; Đánh giá 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;dateModified&rdquo;: &ldquo;2026-05-19&rdquo;,
 &ldquo;author&rdquo;: {
@@ -254,15 +774,165 @@ jobs: publish: runs-on: ubuntu-latest
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/bookstack-documentation-wiki%22>https://dibi8.com/vi/resources/bookstack-documentation-wiki"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/bookstack-documentation-wiki%22">https://dibi8.com/vi/resources/bookstack-documentation-wiki"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/mcp-tools/bookstack-documentation-wiki/>markitdown-universal-file-to-markdown-converter</a></li><li><a href=/vi/mcp-tools/bookstack-documentation-wiki/>microsoft-markitdown-file-to-markdown-converter-cli</a></li><li><a href=/vi/mcp-tools/bookstack-documentation-wiki/>microsoft-markitdown-file-to-markdown-converter-cli</a></li><li><a href=/vi/mcp-tools/bookstack-documentation-wiki/>hkuds-ai-trader</a></li><li><a href=/vi/mcp-tools/bookstack-documentation-wiki/>apple-container</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/mcp-tools/bookstack-documentation-wiki/">markitdown-universal-file-to-markdown-converter</a></li>
+<li><a href="/vi/mcp-tools/bookstack-documentation-wiki/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
+<li><a href="/vi/mcp-tools/bookstack-documentation-wiki/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
+<li><a href="/vi/mcp-tools/bookstack-documentation-wiki/">hkuds-ai-trader</a></li>
+<li><a href="/vi/mcp-tools/bookstack-documentation-wiki/">apple-container</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

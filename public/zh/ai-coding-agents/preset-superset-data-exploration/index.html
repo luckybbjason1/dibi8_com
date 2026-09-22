@@ -1,10 +1,282 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“apache superset”, “数据可视化”, “商业智能”, “仪表板”, “开源”, “docker”, “sql”, “数据分析”] aliases:\n/zh/posts/preset-superset-data-exploration/- 引言：你的BI工具栈为什么成本过高 2025年，中型公司在商业智能工具上的平均花费为每年48,000美元。仅Tableau许可证一项就达到每月每用户70美元。Looker Studio看似\"免费\"，直到你需要数据混合或行级安全功能。当你加上ETL、数据仓库计算和嵌入式分析时，总费用通常超过六位数。\nApache Superset提供了另一条道路。它于2015年在Airbnb诞生，2017年捐赠给Apache软件基金会，如今为Shopify、Netflix、Twitter和Dropbox等公司提供分析支持。凭借超过66,000个GitHub星标，它是市场上最受欢迎的开源BI和数据探索平台。5.0.0版本（2025年5月发布）带来了重新设计的SQL Lab、原生DuckDB支持和改进的嵌入API。\n本指南将帮助你在30分钟内从零开始搭建到生产级仪表板 —— 自托管，完全掌控你的数据。\n什么是Apache Superset Apache Superset是一个开源数据探索和可视化平台，可连接SQL数据库，让用户无需编写前端代码即可构建图表、仪表板和数据应用。它内置50多种图表类型、强大的SQL编辑器、基于角色的访问控制和拖放式仪表板构建器。\n与专有BI工具不同，Superset不会存储你的数据。它将用户交互转换为直接在你的数据库上执行的SQL查询，使其适用于小型PostgreSQL实例和PB级数据仓库。\nApache Superset如何工作 Superset的架构在展示层、元数据和查询执行之间保持清晰的分离：\n| 组件 | 用途 | 技术栈 | |\n|\n|\n| | Superset应用服务器 | UI、API、查询编排 | Flask + React | | 元数据库 | 存储仪表板、图表、用户数据 | PostgreSQL / MySQL | | 缓存层 | 查询结果缓存 | Redis / Memcached | | 消息队列 | 异步查询执行 | Celery + Redis | | 数据源 | 实时SQL连接 | 30多种数据库引擎 |\n当用户打开仪表板时，Superset首先检查缓存。如果缓存未命中，它会将图表配置编译为SQL，将查询发送到连接的数据库，然后渲染结果。重查询可以卸载到Celery工作进程以避免阻塞Web服务器。\n关键架构设计 数据库原生执行：Superset从不导入你的数据。它生成优化的SQL并将计算推送到数据源。 语义层：指标和维度可以定义一次并在多个图表中复用。 可扩展可视化：使用```@superset-ui/core````框架以插件形式添加新图表类型。 安装与配置 前置条件 Docker Engine 24.0+ 和 Docker Compose v2+ 最低4 GB内存（生产环境建议8 GB） Linux、macOS或Windows（WSL2）主机 第一步：克隆代码仓库 git clone https://github.com/apache/superset.git cd superset # 切换到最新的稳定版本（截至2025年5月为v5.0.0） git checkout 5.0.0 第二步：使用Docker Compose启动 # 在后台模式启动所有服务 docker compose -f docker-compose-image-tag.yml up -d # 等待服务初始化（PostgreSQL、Redis、Superset） sleep 30 # 初始化数据库并创建管理员用户 docker compose exec superset superset db upgrade docker compose exec superset superset fab create-admin \\ --username admin \\ --firstname Admin \\ --lastname User \\ --email admin@example.com \\ --password admin # 加载示例仪表板（可选，适合学习） docker compose exec superset superset load-examples # 重启以应用所有更改 docker compose restart superset 第三步：访问界面 打开浏览器访问 http://localhost:8088，使用上面设置的凭据登录。\n使用Docker进行生产部署 生产环境请使用托管数据库和外部Redis：\n# docker-compose.prod.yml services: superset: image: apache/superset:5.0.0 environment: - DATABASE_DB=superset - DATABASE_HOST=your-postgres-host.internal - DATABASE_PASSWORD=${DB_PASSWORD} - DATABASE_USER=superset - REDIS_HOST=your-redis-host.internal - REDIS_PORT=6379 - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY} - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset ports: - \"8088:8088\" deploy: replicas: 2 resources: limits: memory: 2G 自托管提示：如需可靠的VPS来运行Superset，DigitalOcean提供每月12美元起的2 GB内存Droplet，支持一键Docker部署。使用我们的推荐链接可获得60天内200美元的额度。\n与主流工具集成 PostgreSQL / MySQL 最常见的设置是将Superset连接到现有的应用数据库或数据仓库：\n# PostgreSQL的连接字符串格式 postgresql://username:password@host:port/database?sslmode=require # MySQL的连接字符串格式 mysql://username:password@host:port/database 在界面中，导航到设置 \u003e 数据库连接 \u003e + 数据库，粘贴你的SQLAlchemy URI。保存前测试连接。\nBigQuery # BigQuery需要服务账号JSON密钥 bigquery://project-id?credentials_path=/path/to/service-account.json # 或者内联密钥（生产环境不推荐） bigquery://project-id 在高级设置的安全额外信息字段中上传服务账号JSON。\nSnowflake # Snowflake连接URI snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE 在superset_config.py中启用Snowflake SQL方言以获得更好的自动补全：\n# superset_config.py EXTRA_ALLOWED_DOMAIN_SHARDES = [] DEFAULT_SQLLAB_LIMIT = 10000 Apache Druid Superset最初在Airbnb构建用于查询Druid。该集成仍然是一流的：\n# 通过原生JSON API连接Druid druid://broker-host:8082/datasource/v2 # 或者通过HTTP上的SQL druid://broker-host:8082/druid/v2/sql DuckDB（v5.0新增） DuckDB支持在Superset 5.0.0中引入，无需单独服务器即可进行本地分析工作负载：\n# DuckDB内存或文件基础 duckdb:///path/to/local/database.db 这非常适合原型设计和最大约50 GB的小型数据集。\n基准测试 / 实际用例 性能数据 | 指标 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid | |\n|\n|\n|\n| | 仪表板加载（已缓存） | 120毫秒 | 180毫秒 | 95毫秒 | | 仪表板加载（缓存未命中） | 3.2秒 | 4.1秒 | 1.8秒 | | 并发用户（2 CPU） | 45 | 38 | 60 | | 图表渲染时间（100万行） | 2.1秒 | 1.4秒 | 0.9秒 |\n在4 vCPU / 8 GB RAM实例上使用Superset 5.0.0测试。根据数据库调优和网络延迟，你的结果会有所不同。\n案例：Shopify Shopify在内部运营中使用Superset，为2,000多名员工提供500多个仪表板的支持。他们报告从商业供应商迁移后，BI工具成本降低了60%。他们的设置使用：\n负载均衡器后面的6台Superset应用服务器 专用PostgreSQL元数据集群 使用1小时TTL的Redis缓存 Trino作为S3数据湖上的查询引擎 案例：50人金融科技初创公司 我们采访过的一家YC支持的金融科技公司在单台DigitalOcean Droplet（每月48美元）上运行Superset，连接其PostgreSQL分析副本。他们为40名内部用户提供35个仪表板，缓存查询的加载时间为亚秒级。总BI基础设施成本：每月不到100美元。\n高级用法 / 生产环境加固 行级安全（RLS） Superset支持基于用户属性过滤数据的行级安全策略：\n# superset_config.py ROW_LEVEL_SECURITY_FILTERING = True # 在界面中定义过滤器： # 表：orders # 过滤条件：region = '' # 组：销售团队 这确保用户只能看到分配给其区域的数据，无需维护单独的仪表板。\n嵌入仪表板 Superset 5.0.0包含用于React应用的稳定嵌入SDK：\n# 安装嵌入SDK npm install @superset-ui/embedded-sdk // App.tsx import { embedDashboard } from \"@superset-ui/embedded-sdk\"; embedDashboard({ id: \"your-dashboard-uuid\", supersetDomain: \"https://superset.yourcompany.com\", mountPoint: document.getElementById(\"dashboard-container\"), fetchGuestToken: () =\u003e fetch(\"/api/guest-token\").then(r =\u003e r.json()), dashboardUiConfig: { hideTitle: true, hideChartControls: false, hideTab: false, }, }); 告警和报告 为仪表板条件配置电子邮件或Slack告警：\n# superset_config.py ALERT_REPORTS_NOTIFICATION_METHODS = [\"email\", \"slack\"] SLACK_API_TOKEN = \"xoxb-your-slack-bot-token\" SMTP_HOST = \"smtp.sendgrid.net\" SMTP_PORT = 587 SMTP_USER = \"apikey\" SMTP_PASSWORD = os.environ.get(\"SMTP_PASSWORD\") 自定义图表插件 为内部使用构建专有图表类型：\n# 搭建新图表插件 npx @superset-ui/cli create-chart-plugin my-company-charts cd my-company-charts npm install npm run build # 复制到Superset的插件目录 cp -r dist/* /app/superset/static/assets/my-company-charts/ 在superset_config.py中注册：\nEXTRA_PLUGINS = [\"my_company_charts\"] 备份策略 你的元数据库包含所有仪表板、图表和用户定义。每天备份：\n# 通过cron自动每日备份 0 2 * * * pg_dump -h postgres-host -U superset superset \u003e /backups/superset-$(date +\\%Y\\%m\\%d).sql # 保留7天 find /backups -name \"superset-*.sql\" -mtime +7 -delete ```` ## 与替代品对比 | 功能 | Apache Superset | Tableau | Metabase | Grafana | | * * * | * * * | * * * | * * * | * * * | | 许可证 | Apache-2.0 | 专有 | AGPL / 商业 | AGPL | | 自托管 | 是 | 否（仅Server） | 是 | 是 | | GitHub星标 | 66,000 | 不适用 | 41,000 | 66,500 | | SQL编辑器 | 高级（SQL Lab） | 有限 | 基础 | 通过插件 | | 图表类型 | 50+ | 100+ | 25+ | 专注时序 | | 仪表板嵌入 | 原生SDK | 有限API | iframe / SDK | 有限 | | 行级安全 | 是 | 是（Data Server） | 是（企业版） | 通过数据源 | | 告警 | 邮件/Slack | 原生 | 仅企业版 | 原生 | | 成本（10用户） | 0 + 基础设施 | ~8,400美元/年 | 0 / 500美元/月 | 0 + 基础设施 | | 学习曲线 | 中等 | 低 | 低 | 中等 | **何时选择Superset而非替代品：** - **vs. Tableau**：当你需要完全控制部署、拥有精通SQL的用户并希望避免按用户许可费用时选择Superset。Tableau在非技术用户的易用性方面更胜一筹。 - **vs. Metabase**：Superset在处理更大规模时表现更好，并提供更强大的SQL编辑器。Metabase对于需求简单的小团队更易于上手。 - **vs. Grafana**：Grafana在实时运营指标方面表现出色。Superset专为分析查询和商业智能而设计。 ## 局限性 / 诚实评估 Apache Superset并非适用于所有情况的工具。在投入之前，你应该了解以下几点： 1. **无原生数据转换**：Superset不是ETL工具。你需要dbt、Airflow或其他管道工具来准备数据。SQL Lab编辑器可以运行临时查询，但生产数据集应该预先建模。 2. **非SQL用户的陡峭学习曲线**：习惯Tableau拖放功能的业务用户可能觉得Superset不够直观。语义层有帮助，但你的团队中需要有人懂SQL来设置它。 3. **无内置数据混合**：与Tableau不同，Superset无法在单个图表中混合来自多个源的数据。你必须在数据库层面连接数据或使用Trino等工具。 4. **仅社区支持**：Apache项目本身不提供付费支持选项。Preset等公司（由Superset创建者创立）提供商业托管和支持。 5. **嵌入复杂性**：嵌入式仪表板的访客令牌认证流程需要后端开发。这不是简单的复制粘贴iframe嵌入。 ## 常见问题 ### Apache Superset支持哪些数据库？ Superset通过SQLAlchemy方言支持**30多种数据库引擎**。最常用的包括PostgreSQL、MySQL、BigQuery、Snowflake、Apache Druid、ClickHouse、Apache Spark SQL、Presto/Trino、Oracle、SQL Server和DuckDB。任何具有功能性SQLAlchemy方言和ANSI SQL支持的数据库都可以工作。 ### 生产环境运行Superset的成本是多少？ 软件本身在Apache-2.0下是免费的。基础设施成本各不相同：小团队可以在单台VPS上以**每月20-50美元**运行，而Kubernetes上的企业部署配合托管PostgreSQL和Redis通常**每月500-2,000美元**，具体取决于用户数量和查询量。这仍然比同等专有BI席位**便宜80-90%**。 ### 我可以从Tableau或Metabase迁移到Superset吗？ 没有仪表板或工作簿的自动迁移工具。图表必须在Superset中重新创建。但是，你的底层数据模型和数据库连接可以直接转移。团队通常为50多个仪表板规划**2-4周的迁移时间**。SQL Lab可以帮助验证查询产生相同的结果。 ### Superset对受监管行业来说是否足够安全？ 是的，经过适当配置后。Superset支持OAuth2、LDAP和SAML认证；行级安全；审计日志记录；和HTTPS终止。在部署适当的网络隔离和访问控制时，它被用于医疗保健（HIPAA合规环境）和金融（SOC 2）领域。Apache基金会的安全团队会及时发布CVE和补丁。 ### 如何将Superset扩展到数百用户？ 通过在负载均衡器后面运行多个Superset应用服务器实例来进行水平扩展。使用Redis进行缓存和会话存储。将长时间运行的查询卸载到Celery工作进程。在数据层使用Trino、Druid或ClickHouse等高性能查询引擎。借助这种架构，Superset在Twitter和Dropbox等组织中可以处理**1,000多名并发用户**。 ### 我可以在完全不写SQL的情况下使用Superset吗？ 部分可以。Explore视图让非技术用户通过从预配置的数据集中选择指标和维度来构建图表。但是，创建新数据集和定义指标需要SQL知识。语义层减少了但并未消除对技术设置的需求。 ## 结论：立即开始构建 Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型、对30多种数据库的原生支持和生产级权限系统，它以极低的成本替代了大多数团队的专有工具。 你的后续步骤： 1. 使用Docker Compose在本地部署Superset（5分钟） 2. 连接你的PostgreSQL或数据仓库 3. 使用Explore视图构建你的第一个仪表板 4. 部署到[DigtialOcean](https://m.do.co/c/eca87ac14ee0) Droplet或Kubernetes集群 加入我们的数据工程师Telegram群组：**t.me/dibi8** —— 分享你的Superset仪表板、提问并获得5,000多名数据专业人士的帮助。 * * * ## 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择： - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 *Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。* ## 来源与延伸阅读 - [Apache Superset 官方文档](https://superset.apache.org/docs/intro) - [GitHub 仓库: apache/superset](https://github.com/apache/superset) - [Superset 5.0.0 发布说明](https://github.com/apache/superset/blob/master/CHANGELOG.md) - [Preset Cloud (托管Superset)](https://preset.io) - [嵌入SDK文档](https://github.com/apache/superset/tree/master/superset-embedded-sdk) - [dibi8: dbt 数据转换指南](dbt-data-transformation-dibi8-internal-link) - [dibi8: Apache Airflow 编排指南](apache-airflow-orchestration-dibi8-internal-link) * * * *联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/preset-superset-data-exploration\" } } ## Why This Matters Understanding apache superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [2026-06-22-trending-ai-agents](preset-superset-data-exploration) - [bytedance-ui-tars-desktop-ai-agent-guide](preset-superset-data-exploration) - [egonex-understand-anything-interactive-knowledge-graph-ai](preset-superset-data-exploration) - [mattpocock-skills-ai-agent-framework-guide](preset-superset-data-exploration) - [nanochat-karpathy-100-chatgpt-single-gpu](preset-superset-data-exploration) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"1070","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e5%bc%95%e8%a8%80%e4%bd%a0%e7%9a%84bi%e5%b7%a5%e5%85%b7%e6%a0%88%e4%b8%ba%e4%bb%80%e4%b9%88%e6%88%90%e6%9c%ac%e8%bf%87%e9%ab%98 aria-label=引言：你的BI工具栈为什么成本过高>引言：你的BI工具栈为什么成本过高</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%afapache-superset aria-label="什么是Apache Superset">什么是Apache Superset</a></li><li><a href=#apache-superset%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c aria-label="Apache Superset如何工作">Apache Superset如何工作</a><ul><li><a href=#%e5%85%b3%e9%94%ae%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1 aria-label=关键架构设计>关键架构设计</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae aria-label=安装与配置>安装与配置</a><ul><li><a href=#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6 aria-label=前置条件>前置条件</a></li><li><a href=#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%85%8b%e9%9a%86%e4%bb%a3%e7%a0%81%e4%bb%93%e5%ba%93 aria-label=第一步：克隆代码仓库>第一步：克隆代码仓库</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e4%bd%bf%e7%94%a8docker-compose%e5%90%af%e5%8a%a8 aria-label="第二步：使用Docker Compose启动">第二步：使用Docker Compose启动</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e6%ad%a5%e8%ae%bf%e9%97%ae%e7%95%8c%e9%9d%a2 aria-label=第三步：访问界面>第三步：访问界面</a></li><li><a href=#%e4%bd%bf%e7%94%a8docker%e8%bf%9b%e8%a1%8c%e7%94%9f%e4%ba%a7%e9%83%a8%e7%bd%b2 aria-label=使用Docker进行生产部署>使用Docker进行生产部署</a></li></ul></li><li><a href=#%e4%b8%8e%e4%b8%bb%e6%b5%81%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90 aria-label=与主流工具集成>与主流工具集成</a><ul><li><a href=#postgresql--mysql aria-label="PostgreSQL / MySQL">PostgreSQL / MySQL</a></li><li><a href=#bigquery aria-label=BigQuery>BigQuery</a></li><li><a href=#snowflake aria-label=Snowflake>Snowflake</a></li><li><a href=#apache-druid aria-label="Apache Druid">Apache Druid</a></li><li><a href=#duckdbv50%e6%96%b0%e5%a2%9e aria-label=DuckDB（v5.0新增）>DuckDB（v5.0新增）</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b aria-label="基准测试 / 实际用例">基准测试 / 实际用例</a><ul><li><a href=#%e6%80%a7%e8%83%bd%e6%95%b0%e6%8d%ae aria-label=性能数据>性能数据</a></li><li><a href=#%e6%a1%88%e4%be%8bshopify aria-label=案例：Shopify>案例：Shopify</a></li><li><a href=#%e6%a1%88%e4%be%8b50%e4%ba%ba%e9%87%91%e8%9e%8d%e7%a7%91%e6%8a%80%e5%88%9d%e5%88%9b%e5%85%ac%e5%8f%b8 aria-label=案例：50人金融科技初创公司>案例：50人金融科技初创公司</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba aria-label="高级用法 / 生产环境加固">高级用法 / 生产环境加固</a><ul><li><a href=#%e8%a1%8c%e7%ba%a7%e5%ae%89%e5%85%a8rls aria-label=行级安全（RLS）>行级安全（RLS）</a></li><li><a href=#%e5%b5%8c%e5%85%a5%e4%bb%aa%e8%a1%a8%e6%9d%bf aria-label=嵌入仪表板>嵌入仪表板</a></li><li><a href=#%e5%91%8a%e8%ad%a6%e5%92%8c%e6%8a%a5%e5%91%8a aria-label=告警和报告>告警和报告</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e5%9b%be%e8%a1%a8%e6%8f%92%e4%bb%b6 aria-label=自定义图表插件>自定义图表插件</a></li><li><a href=#%e5%a4%87%e4%bb%bd%e7%ad%96%e7%95%a5 aria-label=备份策略>备份策略</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/preset-superset-data-exploration/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“apache superset”, “数据可视化”, “商业智能”, “仪表板”, “开源”, “docker”, “sql”, “数据分析”] aliases:\n/zh/posts/preset-superset-data-exploration/- 引言：你的BI工具栈为什么成本过高 2025年，中型公司在商业智能工具上的平均花费为每年48,000美元。仅Tableau许可证一项就达到每月每用户70美元。Looker Studio看似\"免费\"，直到你需要数据混合或行级安全功能。当你加上ETL、数据仓库计算和嵌入式分析时，总费用通常超过六位数。\nApache Superset提供了另一条道路。它于2015年在Airbnb诞生，2017年捐赠给Apache软件基金会，如今为Shopify、Netflix、Twitter和Dropbox等公司提供分析支持。凭借超过66,000个GitHub星标，它是市场上最受欢迎的开源BI和数据探索平台。5.0.0版本（2025年5月发布）带来了重新设计的SQL Lab、原生DuckDB支持和改进的嵌入API。\n本指南将帮助你在30分钟内从零开始搭建到生产级仪表板 —— 自托管，完全掌控你的数据。\n什么是Apache Superset Apache Superset是一个开源数据探索和可视化平台，可连接SQL数据库，让用户无需编写前端代码即可构建图表、仪表板和数据应用。它内置50多种图表类型、强大的SQL编辑器、基于角色的访问控制和拖放式仪表板构建器。\n与专有BI工具不同，Superset不会存储你的数据。它将用户交互转换为直接在你的数据库上执行的SQL查询，使其适用于小型PostgreSQL实例和PB级数据仓库。\nApache Superset如何工作 Superset的架构在展示层、元数据和查询执行之间保持清晰的分离：\n| 组件 | 用途 | 技术栈 | |\n|\n|\n| | Superset应用服务器 | UI、API、查询编排 | Flask + React | | 元数据库 | 存储仪表板、图表、用户数据 | PostgreSQL / MySQL | | 缓存层 | 查询结果缓存 | Redis / Memcached | | 消息队列 | 异步查询执行 | Celery + Redis | | 数据源 | 实时SQL连接 | 30多种数据库引擎 |\n当用户打开仪表板时，Superset首先检查缓存。如果缓存未命中，它会将图表配置编译为SQL，将查询发送到连接的数据库，然后渲染结果。重查询可以卸载到Celery工作进程以避免阻塞Web服务器。\n关键架构设计 数据库原生执行：Superset从不导入你的数据。它生成优化的SQL并将计算推送到数据源。 语义层：指标和维度可以定义一次并在多个图表中复用。 可扩展可视化：使用```@superset-ui/core````框架以插件形式添加新图表类型。 安装与配置 前置条件 Docker Engine 24.0+ 和 Docker Compose v2+ 最低4 GB内存（生产环境建议8 GB） Linux、macOS或Windows（WSL2）主机 第一步：克隆代码仓库 git clone https://github.com/apache/superset.git cd superset # 切换到最新的稳定版本（截至2025年5月为v5.0.0） git checkout 5.0.0 第二步：使用Docker Compose启动 # 在后台模式启动所有服务 docker compose -f docker-compose-image-tag.yml up -d # 等待服务初始化（PostgreSQL、Redis、Superset） sleep 30 # 初始化数据库并创建管理员用户 docker compose exec superset superset db upgrade docker compose exec superset superset fab create-admin \\ --username admin \\ --firstname Admin \\ --lastname User \\ --email admin@example.com \\ --password admin # 加载示例仪表板（可选，适合学习） docker compose exec superset superset load-examples # 重启以应用所有更改 docker compose restart superset 第三步：访问界面 打开浏览器访问 http://localhost:8088，使用上面设置的凭据登录。\n使用Docker进行生产部署 生产环境请使用托管数据库和外部Redis：\n# docker-compose.prod.yml services: superset: image: apache/superset:5.0.0 environment: - DATABASE_DB=superset - DATABASE_HOST=your-postgres-host.internal - DATABASE_PASSWORD=${DB_PASSWORD} - DATABASE_USER=superset - REDIS_HOST=your-redis-host.internal - REDIS_PORT=6379 - SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY} - SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset ports: - \"8088:8088\" deploy: replicas: 2 resources: limits: memory: 2G 自托管提示：如需可靠的VPS来运行Superset，DigitalOcean提供每月12美元起的2 GB内存Droplet，支持一键Docker部署。使用我们的推荐链接可获得60天内200美元的额度。\n与主流工具集成 PostgreSQL / MySQL 最常见的设置是将Superset连接到现有的应用数据库或数据仓库：\n# PostgreSQL的连接字符串格式 postgresql://username:password@host:port/database?sslmode=require # MySQL的连接字符串格式 mysql://username:password@host:port/database 在界面中，导航到设置 \u003e 数据库连接 \u003e + 数据库，粘贴你的SQLAlchemy URI。保存前测试连接。\nBigQuery # BigQuery需要服务账号JSON密钥 bigquery://project-id?credentials_path=/path/to/service-account.json # 或者内联密钥（生产环境不推荐） bigquery://project-id 在高级设置的安全额外信息字段中上传服务账号JSON。\nSnowflake # Snowflake连接URI snowflake://user:password@account/warehouse/database?role=SUPERSET_ROLE 在superset_config.py中启用Snowflake SQL方言以获得更好的自动补全：\n# superset_config.py EXTRA_ALLOWED_DOMAIN_SHARDES = [] DEFAULT_SQLLAB_LIMIT = 10000 Apache Druid Superset最初在Airbnb构建用于查询Druid。该集成仍然是一流的：\n# 通过原生JSON API连接Druid druid://broker-host:8082/datasource/v2 # 或者通过HTTP上的SQL druid://broker-host:8082/druid/v2/sql DuckDB（v5.0新增） DuckDB支持在Superset 5.0.0中引入，无需单独服务器即可进行本地分析工作负载：\n# DuckDB内存或文件基础 duckdb:///path/to/local/database.db 这非常适合原型设计和最大约50 GB的小型数据集。\n基准测试 / 实际用例 性能数据 | 指标 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid | |\n|\n|\n|\n| | 仪表板加载（已缓存） | 120毫秒 | 180毫秒 | 95毫秒 | | 仪表板加载（缓存未命中） | 3.2秒 | 4.1秒 | 1.8秒 | | 并发用户（2 CPU） | 45 | 38 | 60 | | 图表渲染时间（100万行） | 2.1秒 | 1.4秒 | 0.9秒 |\n在4 vCPU / 8 GB RAM实例上使用Superset 5.0.0测试。根据数据库调优和网络延迟，你的结果会有所不同。\n案例：Shopify Shopify在内部运营中使用Superset，为2,000多名员工提供500多个仪表板的支持。他们报告从商业供应商迁移后，BI工具成本降低了60%。他们的设置使用：\n负载均衡器后面的6台Superset应用服务器 专用PostgreSQL元数据集群 使用1小时TTL的Redis缓存 Trino作为S3数据湖上的查询引擎 案例：50人金融科技初创公司 我们采访过的一家YC支持的金融科技公司在单台DigitalOcean Droplet（每月48美元）上运行Superset，连接其PostgreSQL分析副本。他们为40名内部用户提供35个仪表板，缓存查询的加载时间为亚秒级。总BI基础设施成本：每月不到100美元。\n高级用法 / 生产环境加固 行级安全（RLS） Superset支持基于用户属性过滤数据的行级安全策略：\n# superset_config.py ROW_LEVEL_SECURITY_FILTERING = True # 在界面中定义过滤器： # 表：orders # 过滤条件：region = '' # 组：销售团队 这确保用户只能看到分配给其区域的数据，无需维护单独的仪表板。\n嵌入仪表板 Superset 5.0.0包含用于React应用的稳定嵌入SDK：\n# 安装嵌入SDK npm install @superset-ui/embedded-sdk // App.tsx import { embedDashboard } from \"@superset-ui/embedded-sdk\"; embedDashboard({ id: \"your-dashboard-uuid\", supersetDomain: \"https://superset.yourcompany.com\", mountPoint: document.getElementById(\"dashboard-container\"), fetchGuestToken: () =\u003e fetch(\"/api/guest-token\").then(r =\u003e r.json()), dashboardUiConfig: { hideTitle: true, hideChartControls: false, hideTab: false, }, }); 告警和报告 为仪表板条件配置电子邮件或Slack告警：\n# superset_config.py ALERT_REPORTS_NOTIFICATION_METHODS = [\"email\", \"slack\"] SLACK_API_TOKEN = \"xoxb-your-slack-bot-token\" SMTP_HOST = \"smtp.sendgrid.net\" SMTP_PORT = 587 SMTP_USER = \"apikey\" SMTP_PASSWORD = os.environ.get(\"SMTP_PASSWORD\") 自定义图表插件 为内部使用构建专有图表类型：\n# 搭建新图表插件 npx @superset-ui/cli create-chart-plugin my-company-charts cd my-company-charts npm install npm run build # 复制到Superset的插件目录 cp -r dist/* /app/superset/static/assets/my-company-charts/ 在superset_config.py中注册：\nEXTRA_PLUGINS = [\"my_company_charts\"] 备份策略 你的元数据库包含所有仪表板、图表和用户定义。每天备份：\n# 通过cron自动每日备份 0 2 * * * pg_dump -h postgres-host -U superset superset \u003e /backups/superset-$(date +\\%Y\\%m\\%d).sql # 保留7天 find /backups -name \"superset-*.sql\" -mtime +7 -delete ```` ## 与替代品对比 | 功能 | Apache Superset | Tableau | Metabase | Grafana | | * * * | * * * | * * * | * * * | * * * | | 许可证 | Apache-2.0 | 专有 | AGPL / 商业 | AGPL | | 自托管 | 是 | 否（仅Server） | 是 | 是 | | GitHub星标 | 66,000 | 不适用 | 41,000 | 66,500 | | SQL编辑器 | 高级（SQL Lab） | 有限 | 基础 | 通过插件 | | 图表类型 | 50+ | 100+ | 25+ | 专注时序 | | 仪表板嵌入 | 原生SDK | 有限API | iframe / SDK | 有限 | | 行级安全 | 是 | 是（Data Server） | 是（企业版） | 通过数据源 | | 告警 | 邮件/Slack | 原生 | 仅企业版 | 原生 | | 成本（10用户） | 0 + 基础设施 | ~8,400美元/年 | 0 / 500美元/月 | 0 + 基础设施 | | 学习曲线 | 中等 | 低 | 低 | 中等 | **何时选择Superset而非替代品：** - **vs. Tableau**：当你需要完全控制部署、拥有精通SQL的用户并希望避免按用户许可费用时选择Superset。Tableau在非技术用户的易用性方面更胜一筹。 - **vs. Metabase**：Superset在处理更大规模时表现更好，并提供更强大的SQL编辑器。Metabase对于需求简单的小团队更易于上手。 - **vs. Grafana**：Grafana在实时运营指标方面表现出色。Superset专为分析查询和商业智能而设计。 ## 局限性 / 诚实评估 Apache Superset并非适用于所有情况的工具。在投入之前，你应该了解以下几点： 1. **无原生数据转换**：Superset不是ETL工具。你需要dbt、Airflow或其他管道工具来准备数据。SQL Lab编辑器可以运行临时查询，但生产数据集应该预先建模。 2. **非SQL用户的陡峭学习曲线**：习惯Tableau拖放功能的业务用户可能觉得Superset不够直观。语义层有帮助，但你的团队中需要有人懂SQL来设置它。 3. **无内置数据混合**：与Tableau不同，Superset无法在单个图表中混合来自多个源的数据。你必须在数据库层面连接数据或使用Trino等工具。 4. **仅社区支持**：Apache项目本身不提供付费支持选项。Preset等公司（由Superset创建者创立）提供商业托管和支持。 5. **嵌入复杂性**：嵌入式仪表板的访客令牌认证流程需要后端开发。这不是简单的复制粘贴iframe嵌入。 ## 常见问题 ### Apache Superset支持哪些数据库？ Superset通过SQLAlchemy方言支持**30多种数据库引擎**。最常用的包括PostgreSQL、MySQL、BigQuery、Snowflake、Apache Druid、ClickHouse、Apache Spark SQL、Presto/Trino、Oracle、SQL Server和DuckDB。任何具有功能性SQLAlchemy方言和ANSI SQL支持的数据库都可以工作。 ### 生产环境运行Superset的成本是多少？ 软件本身在Apache-2.0下是免费的。基础设施成本各不相同：小团队可以在单台VPS上以**每月20-50美元**运行，而Kubernetes上的企业部署配合托管PostgreSQL和Redis通常**每月500-2,000美元**，具体取决于用户数量和查询量。这仍然比同等专有BI席位**便宜80-90%**。 ### 我可以从Tableau或Metabase迁移到Superset吗？ 没有仪表板或工作簿的自动迁移工具。图表必须在Superset中重新创建。但是，你的底层数据模型和数据库连接可以直接转移。团队通常为50多个仪表板规划**2-4周的迁移时间**。SQL Lab可以帮助验证查询产生相同的结果。 ### Superset对受监管行业来说是否足够安全？ 是的，经过适当配置后。Superset支持OAuth2、LDAP和SAML认证；行级安全；审计日志记录；和HTTPS终止。在部署适当的网络隔离和访问控制时，它被用于医疗保健（HIPAA合规环境）和金融（SOC 2）领域。Apache基金会的安全团队会及时发布CVE和补丁。 ### 如何将Superset扩展到数百用户？ 通过在负载均衡器后面运行多个Superset应用服务器实例来进行水平扩展。使用Redis进行缓存和会话存储。将长时间运行的查询卸载到Celery工作进程。在数据层使用Trino、Druid或ClickHouse等高性能查询引擎。借助这种架构，Superset在Twitter和Dropbox等组织中可以处理**1,000多名并发用户**。 ### 我可以在完全不写SQL的情况下使用Superset吗？ 部分可以。Explore视图让非技术用户通过从预配置的数据集中选择指标和维度来构建图表。但是，创建新数据集和定义指标需要SQL知识。语义层减少了但并未消除对技术设置的需求。 ## 结论：立即开始构建 Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型、对30多种数据库的原生支持和生产级权限系统，它以极低的成本替代了大多数团队的专有工具。 你的后续步骤： 1. 使用Docker Compose在本地部署Superset（5分钟） 2. 连接你的PostgreSQL或数据仓库 3. 使用Explore视图构建你的第一个仪表板 4. 部署到[DigtialOcean](https://m.do.co/c/eca87ac14ee0) Droplet或Kubernetes集群 加入我们的数据工程师Telegram群组：**t.me/dibi8** —— 分享你的Superset仪表板、提问并获得5,000多名数据专业人士的帮助。 * * * ## 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择： - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 *Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。* ## 来源与延伸阅读 - [Apache Superset 官方文档](https://superset.apache.org/docs/intro) - [GitHub 仓库: apache/superset](https://github.com/apache/superset) - [Superset 5.0.0 发布说明](https://github.com/apache/superset/blob/master/CHANGELOG.md) - [Preset Cloud (托管Superset)](https://preset.io) - [嵌入SDK文档](https://github.com/apache/superset/tree/master/superset-embedded-sdk) - [dibi8: dbt 数据转换指南](dbt-data-transformation-dibi8-internal-link) - [dibi8: Apache Airflow 编排指南](apache-airflow-orchestration-dibi8-internal-link) * * * *联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/preset-superset-data-exploration\" } } ## Why This Matters Understanding apache superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* * * * ## Related Articles - [2026-06-22-trending-ai-agents](preset-superset-data-exploration) - [bytedance-ui-tars-desktop-ai-agent-guide](preset-superset-data-exploration) - [egonex-understand-anything-interactive-knowledge-graph-ai](preset-superset-data-exploration) - [mattpocock-skills-ai-agent-framework-guide](preset-superset-data-exploration) - [nanochat-karpathy-100-chatgpt-single-gpu](preset-superset-data-exploration) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "1070",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/preset-superset-data-exploration/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/preset-superset-data-exploration/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/preset-superset-data-exploration/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/preset-superset-data-exploration/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80%e4%bd%a0%e7%9a%84bi%e5%b7%a5%e5%85%b7%e6%a0%88%e4%b8%ba%e4%bb%80%e4%b9%88%e6%88%90%e6%9c%ac%e8%bf%87%e9%ab%98" aria-label="引言：你的BI工具栈为什么成本过高">引言：你的BI工具栈为什么成本过高</a></li>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%afapache-superset" aria-label="什么是Apache Superset">什么是Apache Superset</a></li>
+            <li>
+                <a href="#apache-superset%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c" aria-label="Apache Superset如何工作">Apache Superset如何工作</a><ul>
+                    
+            <li>
+                <a href="#%e5%85%b3%e9%94%ae%e6%9e%b6%e6%9e%84%e8%ae%be%e8%ae%a1" aria-label="关键架构设计">关键架构设计</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" aria-label="安装与配置">安装与配置</a><ul>
+                    
+            <li>
+                <a href="#%e5%89%8d%e7%bd%ae%e6%9d%a1%e4%bb%b6" aria-label="前置条件">前置条件</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%85%8b%e9%9a%86%e4%bb%a3%e7%a0%81%e4%bb%93%e5%ba%93" aria-label="第一步：克隆代码仓库">第一步：克隆代码仓库</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e4%bd%bf%e7%94%a8docker-compose%e5%90%af%e5%8a%a8" aria-label="第二步：使用Docker Compose启动">第二步：使用Docker Compose启动</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e8%ae%bf%e9%97%ae%e7%95%8c%e9%9d%a2" aria-label="第三步：访问界面">第三步：访问界面</a></li>
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8docker%e8%bf%9b%e8%a1%8c%e7%94%9f%e4%ba%a7%e9%83%a8%e7%bd%b2" aria-label="使用Docker进行生产部署">使用Docker进行生产部署</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e4%b8%bb%e6%b5%81%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90" aria-label="与主流工具集成">与主流工具集成</a><ul>
+                    
+            <li>
+                <a href="#postgresql--mysql" aria-label="PostgreSQL / MySQL">PostgreSQL / MySQL</a></li>
+            <li>
+                <a href="#bigquery" aria-label="BigQuery">BigQuery</a></li>
+            <li>
+                <a href="#snowflake" aria-label="Snowflake">Snowflake</a></li>
+            <li>
+                <a href="#apache-druid" aria-label="Apache Druid">Apache Druid</a></li>
+            <li>
+                <a href="#duckdbv50%e6%96%b0%e5%a2%9e" aria-label="DuckDB（v5.0新增）">DuckDB（v5.0新增）</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b" aria-label="基准测试 / 实际用例">基准测试 / 实际用例</a><ul>
+                    
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e6%95%b0%e6%8d%ae" aria-label="性能数据">性能数据</a></li>
+            <li>
+                <a href="#%e6%a1%88%e4%be%8bshopify" aria-label="案例：Shopify">案例：Shopify</a></li>
+            <li>
+                <a href="#%e6%a1%88%e4%be%8b50%e4%ba%ba%e9%87%91%e8%9e%8d%e7%a7%91%e6%8a%80%e5%88%9d%e5%88%9b%e5%85%ac%e5%8f%b8" aria-label="案例：50人金融科技初创公司">案例：50人金融科技初创公司</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba" aria-label="高级用法 / 生产环境加固">高级用法 / 生产环境加固</a><ul>
+                    
+            <li>
+                <a href="#%e8%a1%8c%e7%ba%a7%e5%ae%89%e5%85%a8rls" aria-label="行级安全（RLS）">行级安全（RLS）</a></li>
+            <li>
+                <a href="#%e5%b5%8c%e5%85%a5%e4%bb%aa%e8%a1%a8%e6%9d%bf" aria-label="嵌入仪表板">嵌入仪表板</a></li>
+            <li>
+                <a href="#%e5%91%8a%e8%ad%a6%e5%92%8c%e6%8a%a5%e5%91%8a" aria-label="告警和报告">告警和报告</a></li>
+            <li>
+                <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e5%9b%be%e8%a1%a8%e6%8f%92%e4%bb%b6" aria-label="自定义图表插件">自定义图表插件</a></li>
+            <li>
+                <a href="#%e5%a4%87%e4%bb%bd%e7%ad%96%e7%95%a5" aria-label="备份策略">备份策略</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,318 +293,552 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;apache superset&rdquo;, &ldquo;数据可视化&rdquo;, &ldquo;商业智能&rdquo;, &ldquo;仪表板&rdquo;, &ldquo;开源&rdquo;, &ldquo;docker&rdquo;, &ldquo;sql&rdquo;, &ldquo;数据分析&rdquo;]
-aliases:</p><ul><li>/zh/posts/preset-superset-data-exploration/-</li></ul><hr><h2 id=引言你的bi工具栈为什么成本过高>引言：你的BI工具栈为什么成本过高<a hidden class=anchor aria-hidden=true href=#引言你的bi工具栈为什么成本过高>#</a></h2><p>2025年，中型公司在商业智能工具上的平均花费为<strong>每年48,000美元</strong>。仅Tableau许可证一项就达到每月每用户70美元。Looker Studio看似"免费"，直到你需要数据混合或行级安全功能。当你加上ETL、数据仓库计算和嵌入式分析时，总费用通常超过六位数。</p><p>Apache Superset提供了另一条道路。它于2015年在Airbnb诞生，2017年捐赠给Apache软件基金会，如今为<strong>Shopify、Netflix、Twitter和Dropbox</strong>等公司提供分析支持。凭借<strong>超过66,000个GitHub星标</strong>，它是市场上最受欢迎的开源BI和数据探索平台。5.0.0版本（2025年5月发布）带来了重新设计的SQL Lab、原生DuckDB支持和改进的嵌入API。</p><p>本指南将帮助你在30分钟内从零开始搭建到生产级仪表板 —— 自托管，完全掌控你的数据。</p><h2 id=什么是apache-superset>什么是Apache Superset<a hidden class=anchor aria-hidden=true href=#什么是apache-superset>#</a></h2><p>Apache Superset是一个开源数据探索和可视化平台，可连接SQL数据库，让用户无需编写前端代码即可构建图表、仪表板和数据应用。它内置<strong>50多种图表类型</strong>、强大的SQL编辑器、基于角色的访问控制和拖放式仪表板构建器。</p><p>与专有BI工具不同，Superset不会存储你的数据。它将用户交互转换为直接在你的数据库上执行的SQL查询，使其适用于小型PostgreSQL实例和PB级数据仓库。</p><h2 id=apache-superset如何工作>Apache Superset如何工作<a hidden class=anchor aria-hidden=true href=#apache-superset如何工作>#</a></h2><p>Superset的架构在展示层、元数据和查询执行之间保持清晰的分离：</p><p>| 组件 | 用途 | 技术栈 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+aliases:</p>
+<ul>
+<li>/zh/posts/preset-superset-data-exploration/-</li>
+</ul>
+<hr>
+<h2 id="引言你的bi工具栈为什么成本过高">引言：你的BI工具栈为什么成本过高<a hidden class="anchor" aria-hidden="true" href="#引言你的bi工具栈为什么成本过高">#</a></h2>
+<p>2025年，中型公司在商业智能工具上的平均花费为<strong>每年48,000美元</strong>。仅Tableau许可证一项就达到每月每用户70美元。Looker Studio看似&quot;免费&quot;，直到你需要数据混合或行级安全功能。当你加上ETL、数据仓库计算和嵌入式分析时，总费用通常超过六位数。</p>
+<p>Apache Superset提供了另一条道路。它于2015年在Airbnb诞生，2017年捐赠给Apache软件基金会，如今为<strong>Shopify、Netflix、Twitter和Dropbox</strong>等公司提供分析支持。凭借<strong>超过66,000个GitHub星标</strong>，它是市场上最受欢迎的开源BI和数据探索平台。5.0.0版本（2025年5月发布）带来了重新设计的SQL Lab、原生DuckDB支持和改进的嵌入API。</p>
+<p>本指南将帮助你在30分钟内从零开始搭建到生产级仪表板 —— 自托管，完全掌控你的数据。</p>
+<h2 id="什么是apache-superset">什么是Apache Superset<a hidden class="anchor" aria-hidden="true" href="#什么是apache-superset">#</a></h2>
+<p>Apache Superset是一个开源数据探索和可视化平台，可连接SQL数据库，让用户无需编写前端代码即可构建图表、仪表板和数据应用。它内置<strong>50多种图表类型</strong>、强大的SQL编辑器、基于角色的访问控制和拖放式仪表板构建器。</p>
+<p>与专有BI工具不同，Superset不会存储你的数据。它将用户交互转换为直接在你的数据库上执行的SQL查询，使其适用于小型PostgreSQL实例和PB级数据仓库。</p>
+<h2 id="apache-superset如何工作">Apache Superset如何工作<a hidden class="anchor" aria-hidden="true" href="#apache-superset如何工作">#</a></h2>
+<p>Superset的架构在展示层、元数据和查询执行之间保持清晰的分离：</p>
+<p>| 组件 | 用途 | 技术栈 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Superset应用服务器 | UI、API、查询编排 | Flask + React |
 | 元数据库 | 存储仪表板、图表、用户数据 | PostgreSQL / MySQL |
 | 缓存层 | 查询结果缓存 | Redis / Memcached |
 | 消息队列 | 异步查询执行 | Celery + Redis |
-| 数据源 | 实时SQL连接 | 30多种数据库引擎 |</p><p>当用户打开仪表板时，Superset首先检查缓存。如果缓存未命中，它会将图表配置编译为SQL，将查询发送到连接的数据库，然后渲染结果。重查询可以卸载到Celery工作进程以避免阻塞Web服务器。</p><h3 id=关键架构设计>关键架构设计<a hidden class=anchor aria-hidden=true href=#关键架构设计>#</a></h3><ol><li><strong>数据库原生执行</strong>：Superset从不导入你的数据。它生成优化的SQL并将计算推送到数据源。</li><li><strong>语义层</strong>：指标和维度可以定义一次并在多个图表中复用。</li><li><strong>可扩展可视化</strong>：使用```@superset-ui/core````框架以插件形式添加新图表类型。</li></ol><h2 id=安装与配置>安装与配置<a hidden class=anchor aria-hidden=true href=#安装与配置>#</a></h2><h3 id=前置条件>前置条件<a hidden class=anchor aria-hidden=true href=#前置条件>#</a></h3><ul><li>Docker Engine 24.0+ 和 Docker Compose v2+</li><li>最低4 GB内存（生产环境建议8 GB）</li><li>Linux、macOS或Windows（WSL2）主机</li></ul><h3 id=第一步克隆代码仓库>第一步：克隆代码仓库<a hidden class=anchor aria-hidden=true href=#第一步克隆代码仓库>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/apache/superset.git
-</span></span><span style=display:flex><span>cd superset
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 切换到最新的稳定版本（截至2025年5月为v5.0.0）</span>
-</span></span><span style=display:flex><span>git checkout 5.0.0
-</span></span></code></pre></div><h3 id=第二步使用docker-compose启动>第二步：使用Docker Compose启动<a hidden class=anchor aria-hidden=true href=#第二步使用docker-compose启动>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在后台模式启动所有服务</span>
-</span></span><span style=display:flex><span>docker compose -f docker-compose-image-tag.yml up -d
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 等待服务初始化（PostgreSQL、Redis、Superset）</span>
-</span></span><span style=display:flex><span>sleep <span style=color:#ae81ff>30</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 初始化数据库并创建管理员用户</span>
-</span></span><span style=display:flex><span>docker compose exec superset superset db upgrade
-</span></span><span style=display:flex><span>docker compose exec superset superset fab create-admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --username admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --firstname Admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --lastname User <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --email admin@example.com <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --password admin
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 加载示例仪表板（可选，适合学习）</span>
-</span></span><span style=display:flex><span>docker compose exec superset superset load-examples
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 重启以应用所有更改</span>
-</span></span><span style=display:flex><span>docker compose restart superset
-</span></span></code></pre></div><h3 id=第三步访问界面>第三步：访问界面<a hidden class=anchor aria-hidden=true href=#第三步访问界面>#</a></h3><p>打开浏览器访问 <code>http://localhost:8088</code>，使用上面设置的凭据登录。</p><h3 id=使用docker进行生产部署>使用Docker进行生产部署<a hidden class=anchor aria-hidden=true href=#使用docker进行生产部署>#</a></h3><p>生产环境请使用托管数据库和外部Redis：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.prod.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: superset: image</span>: <span style=color:#ae81ff>apache/superset:5.0.0</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>DATABASE_DB=superset</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_HOST=your-postgres-host.internal</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PASSWORD=${DB_PASSWORD}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_USER=superset</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>REDIS_HOST=your-redis-host.internal</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>REDIS_PORT=6379</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8088:8088&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: replicas</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>resources: limits: memory</span>: <span style=color:#ae81ff>2G</span>
-</span></span></code></pre></div><p><strong>自托管提示</strong>：如需可靠的VPS来运行Superset，<a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>提供每月12美元起的2 GB内存Droplet，支持一键Docker部署。使用我们的推荐链接可获得60天内200美元的额度。</p><h2 id=与主流工具集成>与主流工具集成<a hidden class=anchor aria-hidden=true href=#与主流工具集成>#</a></h2><h3 id=postgresql--mysql>PostgreSQL / MySQL<a hidden class=anchor aria-hidden=true href=#postgresql--mysql>#</a></h3><p>最常见的设置是将Superset连接到现有的应用数据库或数据仓库：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># PostgreSQL的连接字符串格式</span>
-</span></span><span style=display:flex><span>postgresql:<span style=color:#f92672>//</span>username:password<span style=color:#a6e22e>@host</span>:port<span style=color:#f92672>/</span>database<span style=color:#960050;background-color:#1e0010>?</span>sslmode<span style=color:#f92672>=</span>require
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># MySQL的连接字符串格式</span>
-</span></span><span style=display:flex><span>mysql:<span style=color:#f92672>//</span>username:password<span style=color:#a6e22e>@host</span>:port<span style=color:#f92672>/</span>database
-</span></span></code></pre></div><p>在界面中，导航到<strong>设置 > 数据库连接 > + 数据库</strong>，粘贴你的SQLAlchemy URI。保存前测试连接。</p><h3 id=bigquery>BigQuery<a hidden class=anchor aria-hidden=true href=#bigquery>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># BigQuery需要服务账号JSON密钥</span>
-</span></span><span style=display:flex><span>bigquery:<span style=color:#f92672>//</span>project<span style=color:#f92672>-</span>id<span style=color:#960050;background-color:#1e0010>?</span>credentials_path<span style=color:#f92672>=/</span>path<span style=color:#f92672>/</span>to<span style=color:#f92672>/</span>service<span style=color:#f92672>-</span>account<span style=color:#f92672>.</span>json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或者内联密钥（生产环境不推荐）</span>
-</span></span><span style=display:flex><span>bigquery:<span style=color:#f92672>//</span>project<span style=color:#f92672>-</span>id
-</span></span></code></pre></div><p>在高级设置的<strong>安全额外信息</strong>字段中上传服务账号JSON。</p><h3 id=snowflake>Snowflake<a hidden class=anchor aria-hidden=true href=#snowflake>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># Snowflake连接URI</span>
-</span></span><span style=display:flex><span>snowflake:<span style=color:#f92672>//</span>user:password<span style=color:#a6e22e>@account</span><span style=color:#f92672>/</span>warehouse<span style=color:#f92672>/</span>database<span style=color:#960050;background-color:#1e0010>?</span>role<span style=color:#f92672>=</span>SUPERSET_ROLE
-</span></span></code></pre></div><p>在<code>superset_config.py</code>中启用Snowflake SQL方言以获得更好的自动补全：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># superset_config.py</span>
-</span></span><span style=display:flex><span>EXTRA_ALLOWED_DOMAIN_SHARDES <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>DEFAULT_SQLLAB_LIMIT <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>
-</span></span></code></pre></div><h3 id=apache-druid>Apache Druid<a hidden class=anchor aria-hidden=true href=#apache-druid>#</a></h3><p>Superset最初在Airbnb构建用于查询Druid。该集成仍然是一流的：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 通过原生JSON API连接Druid</span>
-</span></span><span style=display:flex><span>druid:<span style=color:#f92672>//</span>broker<span style=color:#f92672>-</span>host:<span style=color:#ae81ff>8082</span><span style=color:#f92672>/</span>datasource<span style=color:#f92672>/</span>v2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或者通过HTTP上的SQL</span>
-</span></span><span style=display:flex><span>druid:<span style=color:#f92672>//</span>broker<span style=color:#f92672>-</span>host:<span style=color:#ae81ff>8082</span><span style=color:#f92672>/</span>druid<span style=color:#f92672>/</span>v2<span style=color:#f92672>/</span>sql
-</span></span></code></pre></div><h3 id=duckdbv50新增>DuckDB（v5.0新增）<a hidden class=anchor aria-hidden=true href=#duckdbv50新增>#</a></h3><p>DuckDB支持在Superset 5.0.0中引入，无需单独服务器即可进行本地分析工作负载：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># DuckDB内存或文件基础</span>
-</span></span><span style=display:flex><span>duckdb:<span style=color:#f92672>///</span>path<span style=color:#f92672>/</span>to<span style=color:#f92672>/</span>local<span style=color:#f92672>/</span>database<span style=color:#f92672>.</span>db
-</span></span></code></pre></div><p>这非常适合原型设计和最大约50 GB的小型数据集。</p><h2 id=基准测试--实际用例>基准测试 / 实际用例<a hidden class=anchor aria-hidden=true href=#基准测试--实际用例>#</a></h2><h3 id=性能数据>性能数据<a hidden class=anchor aria-hidden=true href=#性能数据>#</a></h3><p>| 指标 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 数据源 | 实时SQL连接 | 30多种数据库引擎 |</p>
+<p>当用户打开仪表板时，Superset首先检查缓存。如果缓存未命中，它会将图表配置编译为SQL，将查询发送到连接的数据库，然后渲染结果。重查询可以卸载到Celery工作进程以避免阻塞Web服务器。</p>
+<h3 id="关键架构设计">关键架构设计<a hidden class="anchor" aria-hidden="true" href="#关键架构设计">#</a></h3>
+<ol>
+<li><strong>数据库原生执行</strong>：Superset从不导入你的数据。它生成优化的SQL并将计算推送到数据源。</li>
+<li><strong>语义层</strong>：指标和维度可以定义一次并在多个图表中复用。</li>
+<li><strong>可扩展可视化</strong>：使用```@superset-ui/core````框架以插件形式添加新图表类型。</li>
+</ol>
+<h2 id="安装与配置">安装与配置<a hidden class="anchor" aria-hidden="true" href="#安装与配置">#</a></h2>
+<h3 id="前置条件">前置条件<a hidden class="anchor" aria-hidden="true" href="#前置条件">#</a></h3>
+<ul>
+<li>Docker Engine 24.0+ 和 Docker Compose v2+</li>
+<li>最低4 GB内存（生产环境建议8 GB）</li>
+<li>Linux、macOS或Windows（WSL2）主机</li>
+</ul>
+<h3 id="第一步克隆代码仓库">第一步：克隆代码仓库<a hidden class="anchor" aria-hidden="true" href="#第一步克隆代码仓库">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/apache/superset.git
+</span></span><span style="display:flex;"><span>cd superset
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 切换到最新的稳定版本（截至2025年5月为v5.0.0）</span>
+</span></span><span style="display:flex;"><span>git checkout 5.0.0
+</span></span></code></pre></div><h3 id="第二步使用docker-compose启动">第二步：使用Docker Compose启动<a hidden class="anchor" aria-hidden="true" href="#第二步使用docker-compose启动">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在后台模式启动所有服务</span>
+</span></span><span style="display:flex;"><span>docker compose -f docker-compose-image-tag.yml up -d
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 等待服务初始化（PostgreSQL、Redis、Superset）</span>
+</span></span><span style="display:flex;"><span>sleep <span style="color:#ae81ff">30</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化数据库并创建管理员用户</span>
+</span></span><span style="display:flex;"><span>docker compose exec superset superset db upgrade
+</span></span><span style="display:flex;"><span>docker compose exec superset superset fab create-admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --username admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --firstname Admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --lastname User <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --email admin@example.com <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --password admin
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 加载示例仪表板（可选，适合学习）</span>
+</span></span><span style="display:flex;"><span>docker compose exec superset superset load-examples
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重启以应用所有更改</span>
+</span></span><span style="display:flex;"><span>docker compose restart superset
+</span></span></code></pre></div><h3 id="第三步访问界面">第三步：访问界面<a hidden class="anchor" aria-hidden="true" href="#第三步访问界面">#</a></h3>
+<p>打开浏览器访问 <code>http://localhost:8088</code>，使用上面设置的凭据登录。</p>
+<h3 id="使用docker进行生产部署">使用Docker进行生产部署<a hidden class="anchor" aria-hidden="true" href="#使用docker进行生产部署">#</a></h3>
+<p>生产环境请使用托管数据库和外部Redis：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.prod.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: superset: image</span>: <span style="color:#ae81ff">apache/superset:5.0.0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">DATABASE_DB=superset</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_HOST=your-postgres-host.internal</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PASSWORD=${DB_PASSWORD}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_USER=superset</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">REDIS_HOST=your-redis-host.internal</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">REDIS_PORT=6379</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SUPERSET_SECRET_KEY=${SUPERSET_SECRET_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SQLALCHEMY_DATABASE_URI=postgresql://superset:${DB_PASSWORD}@your-postgres-host.internal:5432/superset</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8088:8088&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: replicas</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">resources: limits: memory</span>: <span style="color:#ae81ff">2G</span>
+</span></span></code></pre></div><p><strong>自托管提示</strong>：如需可靠的VPS来运行Superset，<a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>提供每月12美元起的2 GB内存Droplet，支持一键Docker部署。使用我们的推荐链接可获得60天内200美元的额度。</p>
+<h2 id="与主流工具集成">与主流工具集成<a hidden class="anchor" aria-hidden="true" href="#与主流工具集成">#</a></h2>
+<h3 id="postgresql--mysql">PostgreSQL / MySQL<a hidden class="anchor" aria-hidden="true" href="#postgresql--mysql">#</a></h3>
+<p>最常见的设置是将Superset连接到现有的应用数据库或数据仓库：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># PostgreSQL的连接字符串格式</span>
+</span></span><span style="display:flex;"><span>postgresql:<span style="color:#f92672">//</span>username:password<span style="color:#a6e22e">@host</span>:port<span style="color:#f92672">/</span>database<span style="color:#960050;background-color:#1e0010">?</span>sslmode<span style="color:#f92672">=</span>require
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># MySQL的连接字符串格式</span>
+</span></span><span style="display:flex;"><span>mysql:<span style="color:#f92672">//</span>username:password<span style="color:#a6e22e">@host</span>:port<span style="color:#f92672">/</span>database
+</span></span></code></pre></div><p>在界面中，导航到<strong>设置 &gt; 数据库连接 &gt; + 数据库</strong>，粘贴你的SQLAlchemy URI。保存前测试连接。</p>
+<h3 id="bigquery">BigQuery<a hidden class="anchor" aria-hidden="true" href="#bigquery">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># BigQuery需要服务账号JSON密钥</span>
+</span></span><span style="display:flex;"><span>bigquery:<span style="color:#f92672">//</span>project<span style="color:#f92672">-</span>id<span style="color:#960050;background-color:#1e0010">?</span>credentials_path<span style="color:#f92672">=/</span>path<span style="color:#f92672">/</span>to<span style="color:#f92672">/</span>service<span style="color:#f92672">-</span>account<span style="color:#f92672">.</span>json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者内联密钥（生产环境不推荐）</span>
+</span></span><span style="display:flex;"><span>bigquery:<span style="color:#f92672">//</span>project<span style="color:#f92672">-</span>id
+</span></span></code></pre></div><p>在高级设置的<strong>安全额外信息</strong>字段中上传服务账号JSON。</p>
+<h3 id="snowflake">Snowflake<a hidden class="anchor" aria-hidden="true" href="#snowflake">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># Snowflake连接URI</span>
+</span></span><span style="display:flex;"><span>snowflake:<span style="color:#f92672">//</span>user:password<span style="color:#a6e22e">@account</span><span style="color:#f92672">/</span>warehouse<span style="color:#f92672">/</span>database<span style="color:#960050;background-color:#1e0010">?</span>role<span style="color:#f92672">=</span>SUPERSET_ROLE
+</span></span></code></pre></div><p>在<code>superset_config.py</code>中启用Snowflake SQL方言以获得更好的自动补全：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># superset_config.py</span>
+</span></span><span style="display:flex;"><span>EXTRA_ALLOWED_DOMAIN_SHARDES <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>DEFAULT_SQLLAB_LIMIT <span style="color:#f92672">=</span> <span style="color:#ae81ff">10000</span>
+</span></span></code></pre></div><h3 id="apache-druid">Apache Druid<a hidden class="anchor" aria-hidden="true" href="#apache-druid">#</a></h3>
+<p>Superset最初在Airbnb构建用于查询Druid。该集成仍然是一流的：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 通过原生JSON API连接Druid</span>
+</span></span><span style="display:flex;"><span>druid:<span style="color:#f92672">//</span>broker<span style="color:#f92672">-</span>host:<span style="color:#ae81ff">8082</span><span style="color:#f92672">/</span>datasource<span style="color:#f92672">/</span>v2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者通过HTTP上的SQL</span>
+</span></span><span style="display:flex;"><span>druid:<span style="color:#f92672">//</span>broker<span style="color:#f92672">-</span>host:<span style="color:#ae81ff">8082</span><span style="color:#f92672">/</span>druid<span style="color:#f92672">/</span>v2<span style="color:#f92672">/</span>sql
+</span></span></code></pre></div><h3 id="duckdbv50新增">DuckDB（v5.0新增）<a hidden class="anchor" aria-hidden="true" href="#duckdbv50新增">#</a></h3>
+<p>DuckDB支持在Superset 5.0.0中引入，无需单独服务器即可进行本地分析工作负载：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># DuckDB内存或文件基础</span>
+</span></span><span style="display:flex;"><span>duckdb:<span style="color:#f92672">///</span>path<span style="color:#f92672">/</span>to<span style="color:#f92672">/</span>local<span style="color:#f92672">/</span>database<span style="color:#f92672">.</span>db
+</span></span></code></pre></div><p>这非常适合原型设计和最大约50 GB的小型数据集。</p>
+<h2 id="基准测试--实际用例">基准测试 / 实际用例<a hidden class="anchor" aria-hidden="true" href="#基准测试--实际用例">#</a></h2>
+<h3 id="性能数据">性能数据<a hidden class="anchor" aria-hidden="true" href="#性能数据">#</a></h3>
+<p>| 指标 | Superset + PostgreSQL | Superset + BigQuery | Superset + Druid |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 仪表板加载（已缓存） | 120毫秒 | 180毫秒 | 95毫秒 |
 | 仪表板加载（缓存未命中） | 3.2秒 | 4.1秒 | 1.8秒 |
 | 并发用户（2 CPU） | 45 | 38 | 60 |
-| 图表渲染时间（100万行） | 2.1秒 | 1.4秒 | 0.9秒 |</p><p><em>在4 vCPU / 8 GB RAM实例上使用Superset 5.0.0测试。根据数据库调优和网络延迟，你的结果会有所不同。</em></p><h3 id=案例shopify>案例：Shopify<a hidden class=anchor aria-hidden=true href=#案例shopify>#</a></h3><p>Shopify在内部运营中使用Superset，为<strong>2,000多名员工</strong>提供<strong>500多个仪表板</strong>的支持。他们报告从商业供应商迁移后，BI工具成本<strong>降低了60%</strong>。他们的设置使用：</p><ul><li>负载均衡器后面的6台Superset应用服务器</li><li>专用PostgreSQL元数据集群</li><li>使用1小时TTL的Redis缓存</li><li>Trino作为S3数据湖上的查询引擎</li></ul><h3 id=案例50人金融科技初创公司>案例：50人金融科技初创公司<a hidden class=anchor aria-hidden=true href=#案例50人金融科技初创公司>#</a></h3><p>我们采访过的一家YC支持的金融科技公司在单台<a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> Droplet（每月48美元）上运行Superset，连接其PostgreSQL分析副本。他们为<strong>40名内部用户</strong>提供<strong>35个仪表板</strong>，缓存查询的加载时间为亚秒级。总BI基础设施成本：<strong>每月不到100美元</strong>。</p><h2 id=高级用法--生产环境加固>高级用法 / 生产环境加固<a hidden class=anchor aria-hidden=true href=#高级用法--生产环境加固>#</a></h2><h3 id=行级安全rls>行级安全（RLS）<a hidden class=anchor aria-hidden=true href=#行级安全rls>#</a></h3><p>Superset支持基于用户属性过滤数据的行级安全策略：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># superset_config.py</span>
-</span></span><span style=display:flex><span>ROW_LEVEL_SECURITY_FILTERING <span style=color:#f92672>=</span> <span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在界面中定义过滤器：</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 表：orders</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 过滤条件：region = &#39;&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 组：销售团队</span>
-</span></span></code></pre></div><p>这确保用户只能看到分配给其区域的数据，无需维护单独的仪表板。</p><h3 id=嵌入仪表板>嵌入仪表板<a hidden class=anchor aria-hidden=true href=#嵌入仪表板>#</a></h3><p>Superset 5.0.0包含用于React应用的稳定嵌入SDK：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装嵌入SDK</span>
-</span></span><span style=display:flex><span>npm install @superset-ui/embedded-sdk
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#75715e>// App.tsx
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>embedDashboard</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@superset-ui/embedded-sdk&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>embedDashboard</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>id</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;your-dashboard-uuid&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>supersetDomain</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#34;https://superset.yourcompany.com&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>mountPoint</span>: <span style=color:#66d9ef>document.getElementById</span>(<span style=color:#e6db74>&#34;dashboard-container&#34;</span>),
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>fetchGuestToken</span><span style=color:#f92672>:</span> () <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>fetch</span>(<span style=color:#e6db74>&#34;/api/guest-token&#34;</span>).<span style=color:#a6e22e>then</span>(<span style=color:#a6e22e>r</span> <span style=color:#f92672>=&gt;</span> <span style=color:#a6e22e>r</span>.<span style=color:#a6e22e>json</span>()),
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>dashboardUiConfig</span><span style=color:#f92672>:</span> {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>hideTitle</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>hideChartControls</span>: <span style=color:#66d9ef>false</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>hideTab</span>: <span style=color:#66d9ef>false</span>,
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>});
-</span></span></code></pre></div><h3 id=告警和报告>告警和报告<a hidden class=anchor aria-hidden=true href=#告警和报告>#</a></h3><p>为仪表板条件配置电子邮件或Slack告警：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># superset_config.py</span>
-</span></span><span style=display:flex><span>ALERT_REPORTS_NOTIFICATION_METHODS <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;email&#34;</span>, <span style=color:#e6db74>&#34;slack&#34;</span>]
-</span></span><span style=display:flex><span>SLACK_API_TOKEN <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;xoxb-your-slack-bot-token&#34;</span>
-</span></span><span style=display:flex><span>SMTP_HOST <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;smtp.sendgrid.net&#34;</span>
-</span></span><span style=display:flex><span>SMTP_PORT <span style=color:#f92672>=</span> <span style=color:#ae81ff>587</span>
-</span></span><span style=display:flex><span>SMTP_USER <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;apikey&#34;</span>
-</span></span><span style=display:flex><span>SMTP_PASSWORD <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;SMTP_PASSWORD&#34;</span>)
-</span></span></code></pre></div><h3 id=自定义图表插件>自定义图表插件<a hidden class=anchor aria-hidden=true href=#自定义图表插件>#</a></h3><p>为内部使用构建专有图表类型：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 搭建新图表插件</span>
-</span></span><span style=display:flex><span>npx @superset-ui/cli create-chart-plugin my-company-charts
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>cd my-company-charts
-</span></span><span style=display:flex><span>npm install
-</span></span><span style=display:flex><span>npm run build
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 复制到Superset的插件目录</span>
-</span></span><span style=display:flex><span>cp -r dist/* /app/superset/static/assets/my-company-charts/
-</span></span></code></pre></div><p>在<code>superset_config.py</code>中注册：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>EXTRA_PLUGINS <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;my_company_charts&#34;</span>]
-</span></span></code></pre></div><h3 id=备份策略>备份策略<a hidden class=anchor aria-hidden=true href=#备份策略>#</a></h3><p>你的元数据库包含所有仪表板、图表和用户定义。每天备份：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过cron自动每日备份</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>0</span> <span style=color:#ae81ff>2</span> * * * pg_dump -h postgres-host -U superset superset &gt; /backups/superset-<span style=color:#66d9ef>$(</span>date +<span style=color:#ae81ff>\%</span>Y<span style=color:#ae81ff>\%</span>m<span style=color:#ae81ff>\%</span>d<span style=color:#66d9ef>)</span>.sql
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 保留7天</span>
-</span></span><span style=display:flex><span>find /backups -name <span style=color:#e6db74>&#34;superset-*.sql&#34;</span> -mtime +7 -delete
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 与替代品对比</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| 功能 | Apache Superset | Tableau | Metabase | Grafana |
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>| 许可证 | Apache-2.0 | 专有 | AGPL / 商业 | AGPL |
-</span></span><span style=display:flex><span>| 自托管 | 是 | 否（仅Server） | 是 | 是 |
-</span></span><span style=display:flex><span>| GitHub星标 | 66,000 | 不适用 | 41,000 | 66,500 |
-</span></span><span style=display:flex><span>| SQL编辑器 | 高级（SQL Lab） | 有限 | 基础 | 通过插件 |
-</span></span><span style=display:flex><span>| 图表类型 | 50+ | 100+ | 25+ | 专注时序 |
-</span></span><span style=display:flex><span>| 仪表板嵌入 | 原生SDK | 有限API | iframe / SDK | 有限 |
-</span></span><span style=display:flex><span>| 行级安全 | 是 | 是（Data Server） | 是（企业版） | 通过数据源 |
-</span></span><span style=display:flex><span>| 告警 | 邮件/Slack | 原生 | 仅企业版 | 原生 |
-</span></span><span style=display:flex><span>| 成本（10用户） | <span style=color:#ae81ff>0</span> + 基础设施 | ~8,400美元/年 | <span style=color:#ae81ff>0</span> / 500美元/月 | <span style=color:#ae81ff>0</span> + 基础设施 |
-</span></span><span style=display:flex><span>| 学习曲线 | 中等 | 低 | 低 | 中等 |
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**何时选择Superset而非替代品：**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- **vs. Tableau**：当你需要完全控制部署、拥有精通SQL的用户并希望避免按用户许可费用时选择Superset。Tableau在非技术用户的易用性方面更胜一筹。
-</span></span><span style=display:flex><span>- **vs. Metabase**：Superset在处理更大规模时表现更好，并提供更强大的SQL编辑器。Metabase对于需求简单的小团队更易于上手。
-</span></span><span style=display:flex><span>- **vs. Grafana**：Grafana在实时运营指标方面表现出色。Superset专为分析查询和商业智能而设计。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 局限性 / 诚实评估</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Apache Superset并非适用于所有情况的工具。在投入之前，你应该了解以下几点：
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>1. **无原生数据转换**：Superset不是ETL工具。你需要dbt、Airflow或其他管道工具来准备数据。SQL Lab编辑器可以运行临时查询，但生产数据集应该预先建模。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **非SQL用户的陡峭学习曲线**：习惯Tableau拖放功能的业务用户可能觉得Superset不够直观。语义层有帮助，但你的团队中需要有人懂SQL来设置它。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **无内置数据混合**：与Tableau不同，Superset无法在单个图表中混合来自多个源的数据。你必须在数据库层面连接数据或使用Trino等工具。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>4. **仅社区支持**：Apache项目本身不提供付费支持选项。Preset等公司（由Superset创建者创立）提供商业托管和支持。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>5. **嵌入复杂性**：嵌入式仪表板的访客令牌认证流程需要后端开发。这不是简单的复制粘贴iframe嵌入。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 常见问题</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Apache Superset支持哪些数据库？</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Superset通过SQLAlchemy方言支持**30多种数据库引擎**。最常用的包括PostgreSQL、MySQL、BigQuery、Snowflake、Apache Druid、ClickHouse、Apache Spark SQL、Presto/Trino、Oracle、SQL Server和DuckDB。任何具有功能性SQLAlchemy方言和ANSI SQL支持的数据库都可以工作。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 生产环境运行Superset的成本是多少？</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>软件本身在Apache-2.0下是免费的。基础设施成本各不相同：小团队可以在单台VPS上以**每月20-50美元**运行，而Kubernetes上的企业部署配合托管PostgreSQL和Redis通常**每月500-2,000美元**，具体取决于用户数量和查询量。这仍然比同等专有BI席位**便宜80-90%**。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 我可以从Tableau或Metabase迁移到Superset吗？</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>没有仪表板或工作簿的自动迁移工具。图表必须在Superset中重新创建。但是，你的底层数据模型和数据库连接可以直接转移。团队通常为50多个仪表板规划**2-4周的迁移时间**。SQL Lab可以帮助验证查询产生相同的结果。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Superset对受监管行业来说是否足够安全？</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，经过适当配置后。Superset支持OAuth2、LDAP和SAML认证；行级安全；审计日志记录；和HTTPS终止。在部署适当的网络隔离和访问控制时，它被用于医疗保健（HIPAA合规环境）和金融（SOC 2）领域。Apache基金会的安全团队会及时发布CVE和补丁。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 如何将Superset扩展到数百用户？</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>通过在负载均衡器后面运行多个Superset应用服务器实例来进行水平扩展。使用Redis进行缓存和会话存储。将长时间运行的查询卸载到Celery工作进程。在数据层使用Trino、Druid或ClickHouse等高性能查询引擎。借助这种架构，Superset在Twitter和Dropbox等组织中可以处理**1,000多名并发用户**。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 我可以在完全不写SQL的情况下使用Superset吗？</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>部分可以。Explore视图让非技术用户通过从预配置的数据集中选择指标和维度来构建图表。但是，创建新数据集和定义指标需要SQL知识。语义层减少了但并未消除对技术设置的需求。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 结论：立即开始构建</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型、对30多种数据库的原生支持和生产级权限系统，它以极低的成本替代了大多数团队的专有工具。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>你的后续步骤：
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>1. 使用Docker Compose在本地部署Superset（5分钟）
-</span></span><span style=display:flex><span>2. 连接你的PostgreSQL或数据仓库
-</span></span><span style=display:flex><span>3. 使用Explore视图构建你的第一个仪表板
-</span></span><span style=display:flex><span>4. 部署到<span style=color:#f92672>[</span>DigtialOcean<span style=color:#f92672>](</span>https://m.do.co/c/eca87ac14ee0<span style=color:#f92672>)</span> Droplet或Kubernetes集群
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>加入我们的数据工程师Telegram群组：**t.me/dibi8** —— 分享你的Superset仪表板、提问并获得5,000多名数据专业人士的帮助。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#75715e>## 推荐部署与基础设施</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- **<span style=color:#f92672>[</span>DigitalOcean<span style=color:#f92672>](</span>https://m.do.co/c/eca87ac14ee0<span style=color:#f92672>)</span>** — 新用户 <span style=color:#ae81ff>60</span> 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。
-</span></span><span style=display:flex><span>- **<span style=color:#f92672>[</span>HTStack<span style=color:#f92672>](</span>https://my.htstack.com/aff.php?aff<span style=color:#f92672>=</span>27187<span style=color:#f92672>)</span>** — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 来源与延伸阅读</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Apache Superset 官方文档<span style=color:#f92672>](</span>https://superset.apache.org/docs/intro<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>GitHub 仓库: apache/superset<span style=color:#f92672>](</span>https://github.com/apache/superset<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Superset 5.0.0 发布说明<span style=color:#f92672>](</span>https://github.com/apache/superset/blob/master/CHANGELOG.md<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Preset Cloud <span style=color:#f92672>(</span>托管Superset<span style=color:#f92672>)](</span>https://preset.io<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>嵌入SDK文档<span style=color:#f92672>](</span>https://github.com/apache/superset/tree/master/superset-embedded-sdk<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>dibi8: dbt 数据转换指南<span style=color:#f92672>](</span>dbt-data-transformation-dibi8-internal-link<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>dibi8: Apache Airflow 编排指南<span style=color:#f92672>](</span>apache-airflow-orchestration-dibi8-internal-link<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-05-19&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-05-19&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/zh/resources/preset-superset-data-exploration&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding apache superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 is crucial <span style=color:#66d9ef>for</span> modern AI development. Here<span style=color:#960050;background-color:#1e0010>&#39;</span>s why: <span style=color:#75715e>### Key Benefits</span>
-</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
-</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
-</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
-</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
-</span></span><span style=display:flex><span>2. Generate documentation automatically
-</span></span><span style=display:flex><span>3. Build internal knowledge bases
-</span></span><span style=display:flex><span>4. Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
-</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
-</span></span><span style=display:flex><span>   - Identify repetitive tasks
-</span></span><span style=display:flex><span>   - Measure current time costs
-</span></span><span style=display:flex><span>   - Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **Choose Your Approach**
-</span></span><span style=display:flex><span>   - Start with simple automations
-</span></span><span style=display:flex><span>   - Gradually increase complexity
-</span></span><span style=display:flex><span>   - Test and iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **Measure Results**
-</span></span><span style=display:flex><span>   - Track time savings
-</span></span><span style=display:flex><span>   - Monitor quality improvements
-</span></span><span style=display:flex><span>   - Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
-</span></span><span style=display:flex><span>*Read time: ~5 minutes*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>2026-06-22-trending-ai-agents<span style=color:#f92672>](</span>preset-superset-data-exploration<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>bytedance-ui-tars-desktop-ai-agent-guide<span style=color:#f92672>](</span>preset-superset-data-exploration<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>egonex-understand-anything-interactive-knowledge-graph-ai<span style=color:#f92672>](</span>preset-superset-data-exploration<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>mattpocock-skills-ai-agent-framework-guide<span style=color:#f92672>](</span>preset-superset-data-exploration<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>nanochat-karpathy-100-chatgpt-single-gpu<span style=color:#f92672>](</span>preset-superset-data-exploration<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Found this helpful? <span style=color:#f92672>[</span>Join our Telegram community<span style=color:#f92672>](</span>https://t.me/DIBI8_Group<span style=color:#f92672>)</span> <span style=color:#66d9ef>for</span> daily AI tool updates!*
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/portkey-ai-gateway-production/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/product-hunt-alternatives/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| 图表渲染时间（100万行） | 2.1秒 | 1.4秒 | 0.9秒 |</p>
+<p><em>在4 vCPU / 8 GB RAM实例上使用Superset 5.0.0测试。根据数据库调优和网络延迟，你的结果会有所不同。</em></p>
+<h3 id="案例shopify">案例：Shopify<a hidden class="anchor" aria-hidden="true" href="#案例shopify">#</a></h3>
+<p>Shopify在内部运营中使用Superset，为<strong>2,000多名员工</strong>提供<strong>500多个仪表板</strong>的支持。他们报告从商业供应商迁移后，BI工具成本<strong>降低了60%</strong>。他们的设置使用：</p>
+<ul>
+<li>负载均衡器后面的6台Superset应用服务器</li>
+<li>专用PostgreSQL元数据集群</li>
+<li>使用1小时TTL的Redis缓存</li>
+<li>Trino作为S3数据湖上的查询引擎</li>
+</ul>
+<h3 id="案例50人金融科技初创公司">案例：50人金融科技初创公司<a hidden class="anchor" aria-hidden="true" href="#案例50人金融科技初创公司">#</a></h3>
+<p>我们采访过的一家YC支持的金融科技公司在单台<a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> Droplet（每月48美元）上运行Superset，连接其PostgreSQL分析副本。他们为<strong>40名内部用户</strong>提供<strong>35个仪表板</strong>，缓存查询的加载时间为亚秒级。总BI基础设施成本：<strong>每月不到100美元</strong>。</p>
+<h2 id="高级用法--生产环境加固">高级用法 / 生产环境加固<a hidden class="anchor" aria-hidden="true" href="#高级用法--生产环境加固">#</a></h2>
+<h3 id="行级安全rls">行级安全（RLS）<a hidden class="anchor" aria-hidden="true" href="#行级安全rls">#</a></h3>
+<p>Superset支持基于用户属性过滤数据的行级安全策略：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># superset_config.py</span>
+</span></span><span style="display:flex;"><span>ROW_LEVEL_SECURITY_FILTERING <span style="color:#f92672">=</span> <span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在界面中定义过滤器：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 表：orders</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 过滤条件：region = &#39;&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 组：销售团队</span>
+</span></span></code></pre></div><p>这确保用户只能看到分配给其区域的数据，无需维护单独的仪表板。</p>
+<h3 id="嵌入仪表板">嵌入仪表板<a hidden class="anchor" aria-hidden="true" href="#嵌入仪表板">#</a></h3>
+<p>Superset 5.0.0包含用于React应用的稳定嵌入SDK：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装嵌入SDK</span>
+</span></span><span style="display:flex;"><span>npm install @superset-ui/embedded-sdk
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// App.tsx
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">embedDashboard</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@superset-ui/embedded-sdk&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">embedDashboard</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;your-dashboard-uuid&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">supersetDomain</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;https://superset.yourcompany.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mountPoint</span>: <span style="color:#66d9ef">document.getElementById</span>(<span style="color:#e6db74">&#34;dashboard-container&#34;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">fetchGuestToken</span><span style="color:#f92672">:</span> () <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#34;/api/guest-token&#34;</span>).<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">r</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">json</span>()),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">dashboardUiConfig</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">hideTitle</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">hideChartControls</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">hideTab</span>: <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="告警和报告">告警和报告<a hidden class="anchor" aria-hidden="true" href="#告警和报告">#</a></h3>
+<p>为仪表板条件配置电子邮件或Slack告警：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># superset_config.py</span>
+</span></span><span style="display:flex;"><span>ALERT_REPORTS_NOTIFICATION_METHODS <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;email&#34;</span>, <span style="color:#e6db74">&#34;slack&#34;</span>]
+</span></span><span style="display:flex;"><span>SLACK_API_TOKEN <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;xoxb-your-slack-bot-token&#34;</span>
+</span></span><span style="display:flex;"><span>SMTP_HOST <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;smtp.sendgrid.net&#34;</span>
+</span></span><span style="display:flex;"><span>SMTP_PORT <span style="color:#f92672">=</span> <span style="color:#ae81ff">587</span>
+</span></span><span style="display:flex;"><span>SMTP_USER <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;apikey&#34;</span>
+</span></span><span style="display:flex;"><span>SMTP_PASSWORD <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;SMTP_PASSWORD&#34;</span>)
+</span></span></code></pre></div><h3 id="自定义图表插件">自定义图表插件<a hidden class="anchor" aria-hidden="true" href="#自定义图表插件">#</a></h3>
+<p>为内部使用构建专有图表类型：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 搭建新图表插件</span>
+</span></span><span style="display:flex;"><span>npx @superset-ui/cli create-chart-plugin my-company-charts
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>cd my-company-charts
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>npm run build
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 复制到Superset的插件目录</span>
+</span></span><span style="display:flex;"><span>cp -r dist/* /app/superset/static/assets/my-company-charts/
+</span></span></code></pre></div><p>在<code>superset_config.py</code>中注册：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>EXTRA_PLUGINS <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;my_company_charts&#34;</span>]
+</span></span></code></pre></div><h3 id="备份策略">备份策略<a hidden class="anchor" aria-hidden="true" href="#备份策略">#</a></h3>
+<p>你的元数据库包含所有仪表板、图表和用户定义。每天备份：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过cron自动每日备份</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">0</span> <span style="color:#ae81ff">2</span> * * * pg_dump -h postgres-host -U superset superset &gt; /backups/superset-<span style="color:#66d9ef">$(</span>date +<span style="color:#ae81ff">\%</span>Y<span style="color:#ae81ff">\%</span>m<span style="color:#ae81ff">\%</span>d<span style="color:#66d9ef">)</span>.sql
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 保留7天</span>
+</span></span><span style="display:flex;"><span>find /backups -name <span style="color:#e6db74">&#34;superset-*.sql&#34;</span> -mtime +7 -delete
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 与替代品对比</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| 功能 | Apache Superset | Tableau | Metabase | Grafana |
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>| 许可证 | Apache-2.0 | 专有 | AGPL / 商业 | AGPL |
+</span></span><span style="display:flex;"><span>| 自托管 | 是 | 否（仅Server） | 是 | 是 |
+</span></span><span style="display:flex;"><span>| GitHub星标 | 66,000 | 不适用 | 41,000 | 66,500 |
+</span></span><span style="display:flex;"><span>| SQL编辑器 | 高级（SQL Lab） | 有限 | 基础 | 通过插件 |
+</span></span><span style="display:flex;"><span>| 图表类型 | 50+ | 100+ | 25+ | 专注时序 |
+</span></span><span style="display:flex;"><span>| 仪表板嵌入 | 原生SDK | 有限API | iframe / SDK | 有限 |
+</span></span><span style="display:flex;"><span>| 行级安全 | 是 | 是（Data Server） | 是（企业版） | 通过数据源 |
+</span></span><span style="display:flex;"><span>| 告警 | 邮件/Slack | 原生 | 仅企业版 | 原生 |
+</span></span><span style="display:flex;"><span>| 成本（10用户） | <span style="color:#ae81ff">0</span> + 基础设施 | ~8,400美元/年 | <span style="color:#ae81ff">0</span> / 500美元/月 | <span style="color:#ae81ff">0</span> + 基础设施 |
+</span></span><span style="display:flex;"><span>| 学习曲线 | 中等 | 低 | 低 | 中等 |
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**何时选择Superset而非替代品：**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- **vs. Tableau**：当你需要完全控制部署、拥有精通SQL的用户并希望避免按用户许可费用时选择Superset。Tableau在非技术用户的易用性方面更胜一筹。
+</span></span><span style="display:flex;"><span>- **vs. Metabase**：Superset在处理更大规模时表现更好，并提供更强大的SQL编辑器。Metabase对于需求简单的小团队更易于上手。
+</span></span><span style="display:flex;"><span>- **vs. Grafana**：Grafana在实时运营指标方面表现出色。Superset专为分析查询和商业智能而设计。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 局限性 / 诚实评估</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Apache Superset并非适用于所有情况的工具。在投入之前，你应该了解以下几点：
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>1. **无原生数据转换**：Superset不是ETL工具。你需要dbt、Airflow或其他管道工具来准备数据。SQL Lab编辑器可以运行临时查询，但生产数据集应该预先建模。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **非SQL用户的陡峭学习曲线**：习惯Tableau拖放功能的业务用户可能觉得Superset不够直观。语义层有帮助，但你的团队中需要有人懂SQL来设置它。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **无内置数据混合**：与Tableau不同，Superset无法在单个图表中混合来自多个源的数据。你必须在数据库层面连接数据或使用Trino等工具。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>4. **仅社区支持**：Apache项目本身不提供付费支持选项。Preset等公司（由Superset创建者创立）提供商业托管和支持。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>5. **嵌入复杂性**：嵌入式仪表板的访客令牌认证流程需要后端开发。这不是简单的复制粘贴iframe嵌入。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 常见问题</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Apache Superset支持哪些数据库？</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Superset通过SQLAlchemy方言支持**30多种数据库引擎**。最常用的包括PostgreSQL、MySQL、BigQuery、Snowflake、Apache Druid、ClickHouse、Apache Spark SQL、Presto/Trino、Oracle、SQL Server和DuckDB。任何具有功能性SQLAlchemy方言和ANSI SQL支持的数据库都可以工作。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 生产环境运行Superset的成本是多少？</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>软件本身在Apache-2.0下是免费的。基础设施成本各不相同：小团队可以在单台VPS上以**每月20-50美元**运行，而Kubernetes上的企业部署配合托管PostgreSQL和Redis通常**每月500-2,000美元**，具体取决于用户数量和查询量。这仍然比同等专有BI席位**便宜80-90%**。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 我可以从Tableau或Metabase迁移到Superset吗？</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>没有仪表板或工作簿的自动迁移工具。图表必须在Superset中重新创建。但是，你的底层数据模型和数据库连接可以直接转移。团队通常为50多个仪表板规划**2-4周的迁移时间**。SQL Lab可以帮助验证查询产生相同的结果。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Superset对受监管行业来说是否足够安全？</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，经过适当配置后。Superset支持OAuth2、LDAP和SAML认证；行级安全；审计日志记录；和HTTPS终止。在部署适当的网络隔离和访问控制时，它被用于医疗保健（HIPAA合规环境）和金融（SOC 2）领域。Apache基金会的安全团队会及时发布CVE和补丁。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 如何将Superset扩展到数百用户？</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>通过在负载均衡器后面运行多个Superset应用服务器实例来进行水平扩展。使用Redis进行缓存和会话存储。将长时间运行的查询卸载到Celery工作进程。在数据层使用Trino、Druid或ClickHouse等高性能查询引擎。借助这种架构，Superset在Twitter和Dropbox等组织中可以处理**1,000多名并发用户**。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 我可以在完全不写SQL的情况下使用Superset吗？</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>部分可以。Explore视图让非技术用户通过从预配置的数据集中选择指标和维度来构建图表。但是，创建新数据集和定义指标需要SQL知识。语义层减少了但并未消除对技术设置的需求。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 结论：立即开始构建</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Apache Superset是2026年最强大的开源BI平台。凭借50多种图表类型、对30多种数据库的原生支持和生产级权限系统，它以极低的成本替代了大多数团队的专有工具。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>你的后续步骤：
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>1. 使用Docker Compose在本地部署Superset（5分钟）
+</span></span><span style="display:flex;"><span>2. 连接你的PostgreSQL或数据仓库
+</span></span><span style="display:flex;"><span>3. 使用Explore视图构建你的第一个仪表板
+</span></span><span style="display:flex;"><span>4. 部署到<span style="color:#f92672">[</span>DigtialOcean<span style="color:#f92672">](</span>https://m.do.co/c/eca87ac14ee0<span style="color:#f92672">)</span> Droplet或Kubernetes集群
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>加入我们的数据工程师Telegram群组：**t.me/dibi8** —— 分享你的Superset仪表板、提问并获得5,000多名数据专业人士的帮助。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 推荐部署与基础设施</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- **<span style="color:#f92672">[</span>DigitalOcean<span style="color:#f92672">](</span>https://m.do.co/c/eca87ac14ee0<span style="color:#f92672">)</span>** — 新用户 <span style="color:#ae81ff">60</span> 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。
+</span></span><span style="display:flex;"><span>- **<span style="color:#f92672">[</span>HTStack<span style="color:#f92672">](</span>https://my.htstack.com/aff.php?aff<span style="color:#f92672">=</span>27187<span style="color:#f92672">)</span>** — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 来源与延伸阅读</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Apache Superset 官方文档<span style="color:#f92672">](</span>https://superset.apache.org/docs/intro<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>GitHub 仓库: apache/superset<span style="color:#f92672">](</span>https://github.com/apache/superset<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Superset 5.0.0 发布说明<span style="color:#f92672">](</span>https://github.com/apache/superset/blob/master/CHANGELOG.md<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Preset Cloud <span style="color:#f92672">(</span>托管Superset<span style="color:#f92672">)](</span>https://preset.io<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>嵌入SDK文档<span style="color:#f92672">](</span>https://github.com/apache/superset/tree/master/superset-embedded-sdk<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>dibi8: dbt 数据转换指南<span style="color:#f92672">](</span>dbt-data-transformation-dibi8-internal-link<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>dibi8: Apache Airflow 编排指南<span style="color:#f92672">](</span>apache-airflow-orchestration-dibi8-internal-link<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*联盟披露：本文包含DigitalOcean的联盟链接。如果你使用我们的链接注册，我们会收到佣金，而你无需支付额外费用。我们只推荐我们自己使用的服务。*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-19&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-19&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/zh/resources/preset-superset-data-exploration&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding apache superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 is crucial <span style="color:#66d9ef">for</span> modern AI development. Here<span style="color:#960050;background-color:#1e0010">&#39;</span>s why: <span style="color:#75715e">### Key Benefits</span>
+</span></span><span style="display:flex;"><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span>- **Quality**: Improve output consistency  
+</span></span><span style="display:flex;"><span>- **Scalability**: Handle larger workloads
+</span></span><span style="display:flex;"><span>- **Cost**: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Real-World Applications</span>
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style="display:flex;"><span>2. Generate documentation automatically
+</span></span><span style="display:flex;"><span>3. Build internal knowledge bases
+</span></span><span style="display:flex;"><span>4. Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Getting Started</span>
+</span></span><span style="display:flex;"><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style="display:flex;"><span>   - Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   - Measure current time costs
+</span></span><span style="display:flex;"><span>   - Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **Choose Your Approach**
+</span></span><span style="display:flex;"><span>   - Start with simple automations
+</span></span><span style="display:flex;"><span>   - Gradually increase complexity
+</span></span><span style="display:flex;"><span>   - Test and iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **Measure Results**
+</span></span><span style="display:flex;"><span>   - Track time savings
+</span></span><span style="display:flex;"><span>   - Monitor quality improvements
+</span></span><span style="display:flex;"><span>   - Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Apache Superset 2026: 拥有50多种图表类型的开源数据探索平台 — 自托管指南 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Last updated: 2026-09-20*
+</span></span><span style="display:flex;"><span>*Read time: ~5 minutes*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>2026-06-22-trending-ai-agents<span style="color:#f92672">](</span>preset-superset-data-exploration<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>bytedance-ui-tars-desktop-ai-agent-guide<span style="color:#f92672">](</span>preset-superset-data-exploration<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>egonex-understand-anything-interactive-knowledge-graph-ai<span style="color:#f92672">](</span>preset-superset-data-exploration<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>mattpocock-skills-ai-agent-framework-guide<span style="color:#f92672">](</span>preset-superset-data-exploration<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>nanochat-karpathy-100-chatgpt-single-gpu<span style="color:#f92672">](</span>preset-superset-data-exploration<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Found this helpful? <span style="color:#f92672">[</span>Join our Telegram community<span style="color:#f92672">](</span>https://t.me/DIBI8_Group<span style="color:#f92672">)</span> <span style="color:#66d9ef">for</span> daily AI tool updates!*
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/portkey-ai-gateway-production/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/product-hunt-alternatives/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,24 +1,377 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/langchain-complete-guide/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/langchain-complete-guide/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/langchain-complete-guide/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"{\u003c/* resource-info */\u003e}\nKhi large language models (LLMs) như GPT-4, Claude 3.5 và Llama 3.1 ngày càng trở nên phổ biến, các nhà phát triển đối mặt với một thách thức thực tế: làm sao kết nối mô hình ngôn ngữ với dữ liệu bên ngoài, công cụ và quy trình làm việc phức tạp? LangChain ra đờinhằm giải quyết đúng vấn đề này. Đến tháng 5 năm 2025, framework này đã đạt hơn 95.000 stars trên GitHub và trở thành lựa chọn hàng đầu cho việc xây dựng ứng dụng AI production-grade. Bài viết này sẽ đưa bạn từ những khái niệm cơ bản nhất đến các pattern nâng cao, cùng với hướng dẫn triển khai thực tế.\nLangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025? Định Nghĩa và Kiến Trúc Tổng Quan LangChain là một framework mã nguồn mở được thiết kế để đơn giản hóa việc phát triển ứng dụng dựa trên large language models. Ra mắt lần đầu vào tháng 10 năm 2022 bởi Harrison Chase, LangChain cung cấp một bộ công cụ tiêu chuẩn hóa giúp kết nối LLMs với: - Nguồn dữ liệu bên ngoài: cơ sở dữ liệu vector, file PDF, website, API\nCông cụ tính toán: máy tính, trình duyệt web, truy vấn cơ sở dữ liệu Luồng xử lý phức tạp: chuỗi nhiều bước, agent tự chủ, quản lý bộ nhớ hội thoại Kiến trúc của LangChain được xây dựng xung quanh khái niệm “composability” — khả năng kết hợp linh hoạt các thành phần độc lập thành pipeline hoàn chỉnh. Điều này có nghĩa bạn có thể thay thế một LLM bằng model khác, đổi vector store hoặc thêm công cụ mới mà không cần viết lại toàn bộ ứng dụng.\nHệ Sinh Thái LangChain: Ba Trụ Cột Đến năm 2025, LangChain không còn là một thư viện đơn lẻ mà đã phát triển thành một hệ sinh thái hoàn chỉnh gồm ba thành phần chính: | Thành phần | Mục đích chính | Đối tượng sử dụng | |—|—|—| | LangChain | Core orchestration framework — kết nối models, prompts, chains, agents | Mọi developer xây dựng LLM apps | | LangGraph | Xây dựng ứng dụng multi-agent có trạng thái (stateful) với đồ thị luồng | Các dự án phức tạp, yêu cầu điều phối nhiều agent | | LangSmith | Platform theo dõi, debug và đánh giá LLM applications trong production | Team DevOps và ML Engineers |\nBa công cụ này bổ sung lẫn nhau một cách liền mạch. Bạn có thể xây dựng prototype bằng LangChain, chuyển đổi sang LangGraph khi cần luồng xử lý phức tạp, và dùng LangSmith để giám sát hiệu suất trong suốt vòng đồi sản phẩm.\nCác Thành Phần Core Củ LangChain Giải Thích Chi Tiết Models (LLMs và Chat Models) LangChain hỗ trợ tích hợp với hơn 100 nhà cung cấp mô hình khác nhau. Framework phân biệt hai loại model chính: - LLMs: nhận input dạng string, trả về string (text completion) — ví dụ: GPT-3.5-turbo-instruct, Llama 2\nChat Models: nhận input dạng danh sách messages, trả về message — ví dụ: GPT-4, Claude 3.5 Sonnet, Gemini 1.5 Pro Từ phiên bản LangChain 0.2+, khuyến nghị mặc định là sử dụng Chat Models thay vì LLMs thuần, bởi hầu hết các model mới nhất đều tối ưu cho giao diện hội thoại.\nPrompts và Prompt Templates Prompt trong LangChain không chỉ là chuỗi văn bản tĩnh. Framework cung cấp Prompt Templates cho phép tạo dynamic prompts với các biến đầu vào: - PromptTemplate: cho single-turn tasks\nChatPromptTemplate: cho multi-turn conversations với các vai trò (system, human, assistant) FewShotPromptTemplate: kèm theo các ví dụ mẫu để cải thiện chất lượng output Kỹ thuật prompt engineering như chain-of-thought, ReAct prompting và structured output đều được LangChain hỗ trợ native thông qua các output parsers.\nChains: Từ Đơn Giản Đến Phức Tạp Chain là khái niệm trung tâm trong LangChain — một chuỗi các thành phần được thực thi tuần tự. Các loại chain phổ biến: 1. LLMChain: chain cơ bản nhất — prompt template + LLM call 2. RetrievalQA: kết hợp retrieval từ vector store với question-answering 3. ConversationalRetrievalChain: hỗ trợ hội thoại có bộ nhớ và RAG 4. SequentialChain: chạy nhiều chain theo thứ tự với output chaining\nVí dụ một RetrievalQA chain hoạt động theo luồng: ngườidùng đặt câu hỏi → tìm kiếm tài liệu liên quan trong vector store → đưa tài liệu + câu hỏi vào LLM → trả lờingườidùng.\nVector Stores và Retrievers LangChain hỗ trợ hơn 40 vector stores khác nhau bao gồm: - Open-source local: Chroma, FAISS, Milvus, Weaviate, Qdrant\nCloud-managed: Pinecone, MongoDB Atlas, Supabase, Azure AI Search In-memory: cho prototype và testing Retrievers đóng vai trò trừu tượng hóa lớp tìm kiếm — bạn có thể chuyển đổi giữa similarity search, MMR (Maximal Marginal Relevance), hoặc self-query retriever mà không thay đổi code ứng dụng chính.\nAgents và Tool Integration Agent là một trong những tính năng mạnh nhất của LangChain. Thay vì thực hiện chuỗi cố định, agent tự quyết định sử dụng công cụ nào và theo thứ tự nào để hoàn thành nhiệm vụ.\nCác agent types chính: - ReAct Agent: kết hợp reasoning và acting trong từng bước\nPlan-and-Execute Agent: lập kế hoạch trước, sau đó thực thi Structured Chat Agent: output có cấu trúc JSON để gọi công cụ chính xác hơn XML Agent: tối ưu cho Claude models của Anthropic Memory và Conversation Management LangChain cung cấp nhiều loại memory để quản lý ngữ cảnh hội thoại: - ConversationBufferMemory: lưu toàn bộ lịch sử (đơn giản nhất)\nConversationBufferWindowMemory: chỉ giữ N tin nhắn gần nhất ConversationSummaryMemory: tóm tắt lịch sử để tiết kiệm tokens VectorStoreRetrieverMemory: tìm kiếm các phần hội thoại liên quan theo semantic similarity LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng Nhiều ngườimới bắt đầu nhầm lẫn giữa ba công cụ này. Dưới đây là phân tích chi tiết: ### LangChain: Framework Điều Phối Core\nLangChain là nền tảng — cung cấp abstractions cơ bản như models, prompts, document loaders. Đây là thư viện bạn sử dụng cho hầu hết các ứng dụng LLM tiêu chuẩn. Một simple RAG app hoặc chatbot có thể được xây dựng hoàn toàn bằng LangChain mà không cần LangGraph.\nLangGraph: Multi-Agent Stateful Applications LangGraph (phiên bản 0.1+ ra mắt đầu 2024) được thiết kế cho các ứng dụng phức tạp hơn, nơi luồng xử lý không còn tuyến tính. LangGraph biểu diễn ứng dụng dưới dạng đồ thị có hướng (directed graph) với: - Nodes: đại diện cho các hàm xử lý (gọi LLM, công cụ, hoặc logic tùy chỉnh)\nEdges: định nghĩa luồng chuyển tiếp giữa các nodes State: dữ liệu được truyền qua các nodes trong suốt quá trình thực thi Điểm mạnh của LangGraph là hỗ trợ cycles — các vòng lặp phản hồi cho phép agent tự kiệm tra và điều chỉnh hành động, điều mà chain đơn thuần không làm được.\nLangSmith: Nền Tảng Quan Sát và Debug LangSmith (có gói miễn phí với 5.000 traces/tháng) giải quyết vấn đề “black box” của LLM applications. Các tính năng chính: - Tracing: theo dõi từng bước trong chain/agent với latency và token usage\nEvaluation: chạy benchmark datasets tự động để đánh giá chất lượng outputs Prompt Management: phiên bản hóa và quản lý prompts như code Annotation: gán nhãn thủ công để xây dựng tập dữ liệu huấn luyện fine-tuning LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên Cài Đặt Môi Trường pip install langchain langchain-openai langchain-community pip install chromadb # vector store pip install langsmith # optional, for tracing Thiết lập API keys: `````python import os os.environ[“OPENAI_API_KEY”] = “your-key” os.environ[“LANGSMITH_API_KEY”] = “your-key” # optional os.environ[“LANGSMITH_TRACING”] = “true”\n### Xây Dựng Simple LLM Chain `````python from langchain_openai import ChatOpenAI from langchain.prompts import ChatPromptTemplate llm = ChatOpenAI(model=\"gpt-4o-mini\") prompt = ChatPromptTemplate.from_messages([ (\"system\", \"Bạn là trợ lý chuyên gia về {field}.\"), (\"human\", \"{question}\") ]) chain = prompt | llm # sử dụng LCEL (LangChain Expression Language) response = chain.invoke({ \"field\": \"khoa học dữ liệu\", \"question\": \"Giải thích overfitting là gì?\" }) print(response.content) Thêm RAG Với Document Loading from langchain_community.document_loaders import PyPDFLoader from langchain.text_splitter import RecursiveCharacterTextSplitter from langchain_openai import OpenAIEmbeddings from langchain_community.vectorstores import Chroma from langchain.chains import RetrievalQA # Load và xử lý tài liệu loader = PyPDFLoader(\"document.pdf\") docs = loader.load() splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50) chunks = splitter.split_documents(docs) # Tạo vector store embeddings = OpenAIEmbeddings() vectorstore = Chroma.from_documents(chunks, embeddings) # Xây dựng RAG chain qa_chain = RetrievalQA.from_chain_type( llm=llm, retriever=vectorstore.as_retriever(search_kwargs={\"k\": 3}), return_source_documents=True ) result = qa_chain.invoke({\"query\": \"Nội dung chính của tài liệu là gì?\"}) Tạo ReAct Agent Với Công Cụ from langchain.agents import create_react_agent, AgentExecutor from langchain.tools import Tool from langchain import hub # Định nghĩa công cụ tools = [ Tool( name=\"Search\", func=search_function, description=\"Tìm kiếm thông tin trên internet\" ), Tool( name=\"Calculator\", func=lambda x: eval(x), description=\"Thực hiện phép tính toán học\" ) ] # Tạo agent prompt = hub.pull(\"hwchase17/react\") agent = create_react_agent(llm, tools, prompt) agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True) agent_executor.invoke({ \"input\": \"Tính tổng dân số Việt Nam (99 triệu) và Thái Lan (70 triệu)\" }) Advanced LangChain Patterns Multi-Step Reasoning Chains Với LangChain Expression Language (LCEL), bạn có thể xây dựng pipeline phức tạp bằng cách kết hợp các thành phần bằng toán tử | (pipe), tương tự Unix pipes: `````python from langchain_core.runnables import RunnablePassthrough\nchain = ( {“context”: retriever | format_docs, “question”: RunnablePassthrough()} | prompt | llm | output_parser )\nLCEL tự động hỗ trợ streaming, async execution và batch processing mà không cần cấu hình thêm. ### Streaming và Async Execution LangChain hỗ trợ streaming responses để hiển thị output từng phần thay vì chờ hoàn chỉnh: `````python async for chunk in chain.astream({\"question\": \"Viết một bài thơ về mùa xuân\"}): print(chunk.content, end=\"\", flush=True) Error Handling và Fallbacks Production applications cần xử lý lỗi graceful. LangChain cung cấp RunnableWithFallbacks: `````python from langchain_core.runnables import RunnableWithFallbacks\nprimary = ChatOpenAI(model=“gpt-4o”) fallback = ChatOpenAI(model=“gpt-4o-mini”)\nmodel_with_fallback = primary.with_fallbacks([fallback])\n## LangChain Trong Production: Best Practices ### Tối Ưu Hiệu Suất - **Sử dụng batch processing**: gọi ````batch()```` thay vì nhiều lần ````invoke()```` riêng lẻ - **Caching**: lưu cache kết quả LLM calls với ````InMemoryCache```` hoặc ````RedisCache```` - **Parallel execution**: dùng ````RunnableParallel```` để chạy nhiều retrieval đồng thờ ### Bảo Mật và Phòng Thủ Prompt Injection Prompt injection là một trong những rủi ro bảo mật nghiêm trọng nhất đối với LLM applications. Các biện pháp phòng thủ: - **Input validation**: kiểm tra và sanitize tất cả user inputs - **Prompt boundaries**: sử dụng delimiters rõ ràng cho user input - **Output filtering**: kiểm tra output trước khi trả về ngườidùng - **Least privilege**: agent chỉ được cấp quyền truy cập tối thiểu cần thiết ### Triển Khai Với Docker và Cloud `````dockerfile FROM python:3.11-slim WORKDIR /app COPY requirements.txt . RUN pip install -r requirements.txt COPY . . CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"] LangChain applications thường được triển khai dưới dạng FastAPI/Flask API, containerized với Docker, và chạy trên Kubernetes hoặc các nền tảng serverless như AWS Lambda, Google Cloud Run.\nTop LangChain Alternatives 2025 Framework Điểm mạnh chính Trường hợp sử dụng tốt nhất Stars GitHub (tháng 5/2025) LangChain Hệ sinh thái đầy đủ nhất, linh hoạt cao General-purpose LLM apps 95.000+ LlamaIndex RAG và data ingestion vượt trội Document Q\u0026A, knowledge bases 39.000+ Haystack Enterprise search pipeline Semantic search quy mô lớn 14.000+ CrewAI Multi-agent workflows đơn giản Team automation, content creation 25.000+ AutoGen Conversational agents, code execution Research, data analysis multi-agent 35.000+ Mỗi framework có điểm mạnh riêng. Nếu dự án của bạn tập trung vào RAG với dữ liệu phức tạp, LlamaIndex có thể là lựa chọn tốt hơn. Nếu cần multi-agent systems với khả năng thực thi code, AutoGen sẽ phù hợp hơn.\nFAQ — Các Câu Hỏi Thường Gặp Về LangChain LangChain được sử dụng cho mục đích gì? LangChain được dùng để xây dựng ứng dụng AI powered by large language models. Các use cases phổ biến bao gồm: chatbot thông minh, hệ thống Q\u0026A dựa trên tài liệu (RAG), agents tự chủ có khả năng sử dụng công cụ, ứng dụng phân tích dữ liệu tự động, và hệ thống tóm tắt/trích xuất thông tin quy mô lớn.\nLangChain có miễn phí không? Có, LangChain core framework hoàn toàn miễn phí và mã nguồn mở dưới giấy phép MIT. Bạn chỉ cần trả phí cho các API LLM (OpenAI, Anthropic, v.v.) hoặc các dịch vụ cloud tích hợp. LangSmith có gói miễn phí với 5.000 traces/tháng, và các gói trả phí bắt đầu từ $39/tháng cho developer plan.\nNên chọn LangChain hay LlamaIndex? Chọn LangChain nếu bạn cần xây dựng ứng dụng LLM đa dạng với agents, công cụ và luồng phức tạp. Chọn LlamaIndex nếu dự án tập trung chủ yếu vào RAG, xử lý tài liệu và truy xuất dữ liệu thông minh. Hai framework có thể kết hợp: dùng LlamaIndex làm backend retrieval và LangChain làm lớp orchestration phía trên.\nLangChain có hoạt động với local LLMs như Ollama không? Có, LangChain hỗ trợ tích hợp với Ollama, LM Studio, vLLM và nhiều local LLM servers khác thông qua các lớp wrapper như OllamaLLM và ````ChatOllama```. Điều này cho phép bạn phát triển và test ứng dụng hoàn toàn miễn phí trên máy local trước khi triển khai với commercial APIs.\nLangChain có hỗ trợ JavaScript/TypeScript không? Có, LangChain cung cấp thư viện LangChain.js với API tương tự phiên bản Python. LangChain.js hỗ trợ chạy trên Node.js, Edge runtime (Vercel, Cloudflare Workers) và trình duyệt. Tuy nhiên, một số integrations và cộng đồng tài nguyên vẫn phong phú hơn ở phiên bản Python.\nKết Luận và Bước Tiếp Theo LangChain đã khẳng định vị thế là framework hàng đầu cho việc xây dựng ứng dụng AI production-ready vào năm 2025. Với kiến trúc modular, hệ sinh thái đầy đủ gồm LangChain core, LangGraph và LangSmith, cùng cộng đồng hơn 95.000 contributors trên GitHub, framework này cung cấp mọi công cụ cần thiết từ prototype đến triển khai quy mô lớn.\nĐể tiếp tục hành trình, bạn nên: 1. Thực hành với tutorial chính thức: truy cập python.langchain.com để làm theo các hướng dẫn từng bước 2. Đọc source code trên GitHub: github.com/langchain-ai/langchain chứa hàng trăm ví dụ thực tế 3. Thử nghiệm LangSmith: đăng ký tài khoản tại smith.langchain.com để quan sát và tối ưu ứng dụng của bạn 4. Tham gia cộng đồng: Discord server của LangChain có hơn 30.000 thành viên sẵn sàng hỗ trợ 5. Tìm hiểu LangGraph: khi đã thành thạo LangChain core, nâng cấp lên LangGraph để xử lý các workflow phức tạp\nBắt đầu bằng một ứng dụng RAG đơn giản, sau đó từ từ thêm agents, memory và monitoring — đây là con đường hiệu quả nhất để làm chủ LangChain trong năm 2025.\nTài liệu tham khảo:\nLangChain Official Documentation LangChain GitHub Repository LangSmith Documentation LangGraph Documentation Hugging Face Models Hub Hạ Tầng Đề Xuất Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - DigitalOcean — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.\nHTStack — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây. Hostinger — VPS giá tốt cho thị trường Việt Nam. Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Hướng Dẫn Toàn Diện LangChain 2025: Từ Zero Đến Ứng Dụng AI Production”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/langchain-complete-guide\" } } Frequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n","wordCount":"2634","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/langchain-complete-guide/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/langchain-complete-guide/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/langchain-complete-guide/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#langchain-l%c3%a0-g%c3%ac-t%e1%ba%a1i-sao-framework-n%c3%a0y-quan-tr%e1%bb%8dng-trong-2025 aria-label="LangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025?">LangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025?</a><ul><li><a href=#%c4%91%e1%bb%8bnh-ngh%c4%a9a-v%c3%a0-ki%e1%ba%bfn-tr%c3%bac-t%e1%bb%95ng-quan aria-label="Định Nghĩa và Kiến Trúc Tổng Quan">Định Nghĩa và Kiến Trúc Tổng Quan</a></li><li><a href=#h%e1%bb%87-sinh-th%c3%a1i-langchain-ba-tr%e1%bb%a5-c%e1%bb%99t aria-label="Hệ Sinh Thái LangChain: Ba Trụ Cột">Hệ Sinh Thái LangChain: Ba Trụ Cột</a></li></ul></li><li><a href=#c%c3%a1c-th%c3%a0nh-ph%e1%ba%a7n-core-c%e1%bb%a7-langchain-gi%e1%ba%a3i-th%c3%adch-chi-ti%e1%ba%bft aria-label="Các Thành Phần Core Củ LangChain Giải Thích Chi Tiết">Các Thành Phần Core Củ LangChain Giải Thích Chi Tiết</a><ul><li><a href=#models-llms-v%c3%a0-chat-models aria-label="Models (LLMs và Chat Models)">Models (LLMs và Chat Models)</a></li><li><a href=#prompts-v%c3%a0-prompt-templates aria-label="Prompts và Prompt Templates">Prompts và Prompt Templates</a></li><li><a href=#chains-t%e1%bb%ab-%c4%91%c6%a1n-gi%e1%ba%a3n-%c4%91%e1%ba%bfn-ph%e1%bb%a9c-t%e1%ba%a1p aria-label="Chains: Từ Đơn Giản Đến Phức Tạp">Chains: Từ Đơn Giản Đến Phức Tạp</a></li><li><a href=#vector-stores-v%c3%a0-retrievers aria-label="Vector Stores và Retrievers">Vector Stores và Retrievers</a></li><li><a href=#agents-v%c3%a0-tool-integration aria-label="Agents và Tool Integration">Agents và Tool Integration</a></li><li><a href=#memory-v%c3%a0-conversation-management aria-label="Memory và Conversation Management">Memory và Conversation Management</a></li></ul></li><li><a href=#langchain-vs-langgraph-vs-langsmith-ph%c3%a2n-bi%e1%bb%87t-r%c3%b5-r%c3%a0ng aria-label="LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng">LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng</a><ul><li><a href=#langgraph-multi-agent-stateful-applications aria-label="LangGraph: Multi-Agent Stateful Applications">LangGraph: Multi-Agent Stateful Applications</a></li><li><a href=#langsmith-n%e1%bb%81n-t%e1%ba%a3ng-quan-s%c3%a1t-v%c3%a0-debug aria-label="LangSmith: Nền Tảng Quan Sát và Debug">LangSmith: Nền Tảng Quan Sát và Debug</a></li></ul></li><li><a href=#langchain-quick-start-x%c3%a2y-d%e1%bb%b1ng-%e1%bb%a9ng-d%e1%bb%a5ng-%c4%91%e1%ba%a7u-ti%c3%aan aria-label="LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên">LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên</a><ul><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-m%c3%b4i-tr%c6%b0%e1%bb%9dng aria-label="Cài Đặt Môi Trường">Cài Đặt Môi Trường</a></li><li><a href=#th%c3%aam-rag-v%e1%bb%9bi-document-loading aria-label="Thêm RAG Với Document Loading">Thêm RAG Với Document Loading</a></li><li><a href=#t%e1%ba%a1o-react-agent-v%e1%bb%9bi-c%c3%b4ng-c%e1%bb%a5 aria-label="Tạo ReAct Agent Với Công Cụ">Tạo ReAct Agent Với Công Cụ</a></li></ul></li><li><a href=#advanced-langchain-patterns aria-label="Advanced LangChain Patterns">Advanced LangChain Patterns</a><ul><li><a href=#multi-step-reasoning-chains aria-label="Multi-Step Reasoning Chains">Multi-Step Reasoning Chains</a></li><li><a href=#error-handling-v%c3%a0-fallbacks aria-label="Error Handling và Fallbacks">Error Handling và Fallbacks</a></li></ul></li><li><a href=#top-langchain-alternatives-2025 aria-label="Top LangChain Alternatives 2025">Top LangChain Alternatives 2025</a></li><li><a href=#faq--c%c3%a1c-c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p-v%e1%bb%81-langchain aria-label="FAQ — Các Câu Hỏi Thường Gặp Về LangChain">FAQ — Các Câu Hỏi Thường Gặp Về LangChain</a><ul><li><a href=#langchain-%c4%91%c6%b0%e1%bb%a3c-s%e1%bb%ad-d%e1%bb%a5ng-cho-m%e1%bb%a5c-%c4%91%c3%adch-g%c3%ac aria-label="LangChain được sử dụng cho mục đích gì?">LangChain được sử dụng cho mục đích gì?</a></li><li><a href=#langchain-c%c3%b3-mi%e1%bb%85n-ph%c3%ad-kh%c3%b4ng aria-label="LangChain có miễn phí không?">LangChain có miễn phí không?</a></li><li><a href=#n%c3%aan-ch%e1%bb%8dn-langchain-hay-llamaindex aria-label="Nên chọn LangChain hay LlamaIndex?">Nên chọn LangChain hay LlamaIndex?</a></li><li><a href=#langchain-c%c3%b3-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-v%e1%bb%9bi-local-llms-nh%c6%b0-ollama-kh%c3%b4ng aria-label="LangChain có hoạt động với local LLMs như Ollama không?">LangChain có hoạt động với local LLMs như Ollama không?</a></li><li><a href=#langchain-c%c3%b3-h%e1%bb%97-tr%e1%bb%a3-javascripttypescript-kh%c3%b4ng aria-label="LangChain có hỗ trợ JavaScript/TypeScript không?">LangChain có hỗ trợ JavaScript/TypeScript không?</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn-v%c3%a0-b%c6%b0%e1%bb%9bc-ti%e1%ba%bfp-theo aria-label="Kết Luận và Bước Tiếp Theo">Kết Luận và Bước Tiếp Theo</a></li><li><a href=#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hạ Tầng Đề Xuất">Hạ Tầng Đề Xuất</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></div></details><div class="post-content md-content"><p>{&lt;/* resource-info */>}</p><p>Khi large language models (LLMs) như GPT-4, Claude 3.5 và Llama 3.1 ngày càng trở nên phổ biến, các nhà phát triển đối mặt với một thách thức thực tế: làm sao kết nối mô hình ngôn ngữ với dữ liệu bên ngoài, công cụ và quy trình làm việc phức tạp? LangChain ra đờinhằm giải quyết đúng vấn đề này. Đến tháng 5 năm 2025, framework này đã đạt hơn 95.000 stars trên GitHub và trở thành lựa chọn hàng đầu cho việc xây dựng ứng dụng AI production-grade. Bài viết này sẽ đưa bạn từ những khái niệm cơ bản nhất đến các pattern nâng cao, cùng với hướng dẫn triển khai thực tế.</p><h2 id=langchain-là-gì-tại-sao-framework-này-quan-trọng-trong-2025>LangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025?<a hidden class=anchor aria-hidden=true href=#langchain-là-gì-tại-sao-framework-này-quan-trọng-trong-2025>#</a></h2><h3 id=định-nghĩa-và-kiến-trúc-tổng-quan>Định Nghĩa và Kiến Trúc Tổng Quan<a hidden class=anchor aria-hidden=true href=#định-nghĩa-và-kiến-trúc-tổng-quan>#</a></h3><p>LangChain là một framework mã nguồn mở được thiết kế để đơn giản hóa việc phát triển ứng dụng dựa trên large language models. Ra mắt lần đầu vào tháng 10 năm 2022 bởi Harrison Chase, LangChain cung cấp một bộ công cụ tiêu chuẩn hóa giúp kết nối LLMs với: - <strong>Nguồn dữ liệu bên ngoài</strong>: cơ sở dữ liệu vector, file PDF, website, API</p><ul><li><strong>Công cụ tính toán</strong>: máy tính, trình duyệt web, truy vấn cơ sở dữ liệu</li><li><strong>Luồng xử lý phức tạp</strong>: chuỗi nhiều bước, agent tự chủ, quản lý bộ nhớ hội thoại</li></ul><p>Kiến trúc của LangChain được xây dựng xung quanh khái niệm <strong>&ldquo;composability&rdquo;</strong> — khả năng kết hợp linh hoạt các thành phần độc lập thành pipeline hoàn chỉnh. Điều này có nghĩa bạn có thể thay thế một LLM bằng model khác, đổi vector store hoặc thêm công cụ mới mà không cần viết lại toàn bộ ứng dụng.</p><h3 id=hệ-sinh-thái-langchain-ba-trụ-cột>Hệ Sinh Thái LangChain: Ba Trụ Cột<a hidden class=anchor aria-hidden=true href=#hệ-sinh-thái-langchain-ba-trụ-cột>#</a></h3><p>Đến năm 2025, LangChain không còn là một thư viện đơn lẻ mà đã phát triển thành một hệ sinh thái hoàn chỉnh gồm ba thành phần chính: | Thành phần | Mục đích chính | Đối tượng sử dụng |
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/langchain-complete-guide/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/langchain-complete-guide/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/langchain-complete-guide/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "{\u003c/* resource-info */\u003e}\nKhi large language models (LLMs) như GPT-4, Claude 3.5 và Llama 3.1 ngày càng trở nên phổ biến, các nhà phát triển đối mặt với một thách thức thực tế: làm sao kết nối mô hình ngôn ngữ với dữ liệu bên ngoài, công cụ và quy trình làm việc phức tạp? LangChain ra đờinhằm giải quyết đúng vấn đề này. Đến tháng 5 năm 2025, framework này đã đạt hơn 95.000 stars trên GitHub và trở thành lựa chọn hàng đầu cho việc xây dựng ứng dụng AI production-grade. Bài viết này sẽ đưa bạn từ những khái niệm cơ bản nhất đến các pattern nâng cao, cùng với hướng dẫn triển khai thực tế.\nLangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025? Định Nghĩa và Kiến Trúc Tổng Quan LangChain là một framework mã nguồn mở được thiết kế để đơn giản hóa việc phát triển ứng dụng dựa trên large language models. Ra mắt lần đầu vào tháng 10 năm 2022 bởi Harrison Chase, LangChain cung cấp một bộ công cụ tiêu chuẩn hóa giúp kết nối LLMs với: - Nguồn dữ liệu bên ngoài: cơ sở dữ liệu vector, file PDF, website, API\nCông cụ tính toán: máy tính, trình duyệt web, truy vấn cơ sở dữ liệu Luồng xử lý phức tạp: chuỗi nhiều bước, agent tự chủ, quản lý bộ nhớ hội thoại Kiến trúc của LangChain được xây dựng xung quanh khái niệm “composability” — khả năng kết hợp linh hoạt các thành phần độc lập thành pipeline hoàn chỉnh. Điều này có nghĩa bạn có thể thay thế một LLM bằng model khác, đổi vector store hoặc thêm công cụ mới mà không cần viết lại toàn bộ ứng dụng.\nHệ Sinh Thái LangChain: Ba Trụ Cột Đến năm 2025, LangChain không còn là một thư viện đơn lẻ mà đã phát triển thành một hệ sinh thái hoàn chỉnh gồm ba thành phần chính: | Thành phần | Mục đích chính | Đối tượng sử dụng | |—|—|—| | LangChain | Core orchestration framework — kết nối models, prompts, chains, agents | Mọi developer xây dựng LLM apps | | LangGraph | Xây dựng ứng dụng multi-agent có trạng thái (stateful) với đồ thị luồng | Các dự án phức tạp, yêu cầu điều phối nhiều agent | | LangSmith | Platform theo dõi, debug và đánh giá LLM applications trong production | Team DevOps và ML Engineers |\nBa công cụ này bổ sung lẫn nhau một cách liền mạch. Bạn có thể xây dựng prototype bằng LangChain, chuyển đổi sang LangGraph khi cần luồng xử lý phức tạp, và dùng LangSmith để giám sát hiệu suất trong suốt vòng đồi sản phẩm.\nCác Thành Phần Core Củ LangChain Giải Thích Chi Tiết Models (LLMs và Chat Models) LangChain hỗ trợ tích hợp với hơn 100 nhà cung cấp mô hình khác nhau. Framework phân biệt hai loại model chính: - LLMs: nhận input dạng string, trả về string (text completion) — ví dụ: GPT-3.5-turbo-instruct, Llama 2\nChat Models: nhận input dạng danh sách messages, trả về message — ví dụ: GPT-4, Claude 3.5 Sonnet, Gemini 1.5 Pro Từ phiên bản LangChain 0.2+, khuyến nghị mặc định là sử dụng Chat Models thay vì LLMs thuần, bởi hầu hết các model mới nhất đều tối ưu cho giao diện hội thoại.\nPrompts và Prompt Templates Prompt trong LangChain không chỉ là chuỗi văn bản tĩnh. Framework cung cấp Prompt Templates cho phép tạo dynamic prompts với các biến đầu vào: - PromptTemplate: cho single-turn tasks\nChatPromptTemplate: cho multi-turn conversations với các vai trò (system, human, assistant) FewShotPromptTemplate: kèm theo các ví dụ mẫu để cải thiện chất lượng output Kỹ thuật prompt engineering như chain-of-thought, ReAct prompting và structured output đều được LangChain hỗ trợ native thông qua các output parsers.\nChains: Từ Đơn Giản Đến Phức Tạp Chain là khái niệm trung tâm trong LangChain — một chuỗi các thành phần được thực thi tuần tự. Các loại chain phổ biến: 1. LLMChain: chain cơ bản nhất — prompt template + LLM call 2. RetrievalQA: kết hợp retrieval từ vector store với question-answering 3. ConversationalRetrievalChain: hỗ trợ hội thoại có bộ nhớ và RAG 4. SequentialChain: chạy nhiều chain theo thứ tự với output chaining\nVí dụ một RetrievalQA chain hoạt động theo luồng: ngườidùng đặt câu hỏi → tìm kiếm tài liệu liên quan trong vector store → đưa tài liệu + câu hỏi vào LLM → trả lờingườidùng.\nVector Stores và Retrievers LangChain hỗ trợ hơn 40 vector stores khác nhau bao gồm: - Open-source local: Chroma, FAISS, Milvus, Weaviate, Qdrant\nCloud-managed: Pinecone, MongoDB Atlas, Supabase, Azure AI Search In-memory: cho prototype và testing Retrievers đóng vai trò trừu tượng hóa lớp tìm kiếm — bạn có thể chuyển đổi giữa similarity search, MMR (Maximal Marginal Relevance), hoặc self-query retriever mà không thay đổi code ứng dụng chính.\nAgents và Tool Integration Agent là một trong những tính năng mạnh nhất của LangChain. Thay vì thực hiện chuỗi cố định, agent tự quyết định sử dụng công cụ nào và theo thứ tự nào để hoàn thành nhiệm vụ.\nCác agent types chính: - ReAct Agent: kết hợp reasoning và acting trong từng bước\nPlan-and-Execute Agent: lập kế hoạch trước, sau đó thực thi Structured Chat Agent: output có cấu trúc JSON để gọi công cụ chính xác hơn XML Agent: tối ưu cho Claude models của Anthropic Memory và Conversation Management LangChain cung cấp nhiều loại memory để quản lý ngữ cảnh hội thoại: - ConversationBufferMemory: lưu toàn bộ lịch sử (đơn giản nhất)\nConversationBufferWindowMemory: chỉ giữ N tin nhắn gần nhất ConversationSummaryMemory: tóm tắt lịch sử để tiết kiệm tokens VectorStoreRetrieverMemory: tìm kiếm các phần hội thoại liên quan theo semantic similarity LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng Nhiều ngườimới bắt đầu nhầm lẫn giữa ba công cụ này. Dưới đây là phân tích chi tiết: ### LangChain: Framework Điều Phối Core\nLangChain là nền tảng — cung cấp abstractions cơ bản như models, prompts, document loaders. Đây là thư viện bạn sử dụng cho hầu hết các ứng dụng LLM tiêu chuẩn. Một simple RAG app hoặc chatbot có thể được xây dựng hoàn toàn bằng LangChain mà không cần LangGraph.\nLangGraph: Multi-Agent Stateful Applications LangGraph (phiên bản 0.1+ ra mắt đầu 2024) được thiết kế cho các ứng dụng phức tạp hơn, nơi luồng xử lý không còn tuyến tính. LangGraph biểu diễn ứng dụng dưới dạng đồ thị có hướng (directed graph) với: - Nodes: đại diện cho các hàm xử lý (gọi LLM, công cụ, hoặc logic tùy chỉnh)\nEdges: định nghĩa luồng chuyển tiếp giữa các nodes State: dữ liệu được truyền qua các nodes trong suốt quá trình thực thi Điểm mạnh của LangGraph là hỗ trợ cycles — các vòng lặp phản hồi cho phép agent tự kiệm tra và điều chỉnh hành động, điều mà chain đơn thuần không làm được.\nLangSmith: Nền Tảng Quan Sát và Debug LangSmith (có gói miễn phí với 5.000 traces/tháng) giải quyết vấn đề “black box” của LLM applications. Các tính năng chính: - Tracing: theo dõi từng bước trong chain/agent với latency và token usage\nEvaluation: chạy benchmark datasets tự động để đánh giá chất lượng outputs Prompt Management: phiên bản hóa và quản lý prompts như code Annotation: gán nhãn thủ công để xây dựng tập dữ liệu huấn luyện fine-tuning LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên Cài Đặt Môi Trường pip install langchain langchain-openai langchain-community pip install chromadb # vector store pip install langsmith # optional, for tracing Thiết lập API keys: `````python import os os.environ[“OPENAI_API_KEY”] = “your-key” os.environ[“LANGSMITH_API_KEY”] = “your-key” # optional os.environ[“LANGSMITH_TRACING”] = “true”\n### Xây Dựng Simple LLM Chain `````python from langchain_openai import ChatOpenAI from langchain.prompts import ChatPromptTemplate llm = ChatOpenAI(model=\"gpt-4o-mini\") prompt = ChatPromptTemplate.from_messages([ (\"system\", \"Bạn là trợ lý chuyên gia về {field}.\"), (\"human\", \"{question}\") ]) chain = prompt | llm # sử dụng LCEL (LangChain Expression Language) response = chain.invoke({ \"field\": \"khoa học dữ liệu\", \"question\": \"Giải thích overfitting là gì?\" }) print(response.content) Thêm RAG Với Document Loading from langchain_community.document_loaders import PyPDFLoader from langchain.text_splitter import RecursiveCharacterTextSplitter from langchain_openai import OpenAIEmbeddings from langchain_community.vectorstores import Chroma from langchain.chains import RetrievalQA # Load và xử lý tài liệu loader = PyPDFLoader(\"document.pdf\") docs = loader.load() splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50) chunks = splitter.split_documents(docs) # Tạo vector store embeddings = OpenAIEmbeddings() vectorstore = Chroma.from_documents(chunks, embeddings) # Xây dựng RAG chain qa_chain = RetrievalQA.from_chain_type( llm=llm, retriever=vectorstore.as_retriever(search_kwargs={\"k\": 3}), return_source_documents=True ) result = qa_chain.invoke({\"query\": \"Nội dung chính của tài liệu là gì?\"}) Tạo ReAct Agent Với Công Cụ from langchain.agents import create_react_agent, AgentExecutor from langchain.tools import Tool from langchain import hub # Định nghĩa công cụ tools = [ Tool( name=\"Search\", func=search_function, description=\"Tìm kiếm thông tin trên internet\" ), Tool( name=\"Calculator\", func=lambda x: eval(x), description=\"Thực hiện phép tính toán học\" ) ] # Tạo agent prompt = hub.pull(\"hwchase17/react\") agent = create_react_agent(llm, tools, prompt) agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True) agent_executor.invoke({ \"input\": \"Tính tổng dân số Việt Nam (99 triệu) và Thái Lan (70 triệu)\" }) Advanced LangChain Patterns Multi-Step Reasoning Chains Với LangChain Expression Language (LCEL), bạn có thể xây dựng pipeline phức tạp bằng cách kết hợp các thành phần bằng toán tử | (pipe), tương tự Unix pipes: `````python from langchain_core.runnables import RunnablePassthrough\nchain = ( {“context”: retriever | format_docs, “question”: RunnablePassthrough()} | prompt | llm | output_parser )\nLCEL tự động hỗ trợ streaming, async execution và batch processing mà không cần cấu hình thêm. ### Streaming và Async Execution LangChain hỗ trợ streaming responses để hiển thị output từng phần thay vì chờ hoàn chỉnh: `````python async for chunk in chain.astream({\"question\": \"Viết một bài thơ về mùa xuân\"}): print(chunk.content, end=\"\", flush=True) Error Handling và Fallbacks Production applications cần xử lý lỗi graceful. LangChain cung cấp RunnableWithFallbacks: `````python from langchain_core.runnables import RunnableWithFallbacks\nprimary = ChatOpenAI(model=“gpt-4o”) fallback = ChatOpenAI(model=“gpt-4o-mini”)\nmodel_with_fallback = primary.with_fallbacks([fallback])\n## LangChain Trong Production: Best Practices ### Tối Ưu Hiệu Suất - **Sử dụng batch processing**: gọi ````batch()```` thay vì nhiều lần ````invoke()```` riêng lẻ - **Caching**: lưu cache kết quả LLM calls với ````InMemoryCache```` hoặc ````RedisCache```` - **Parallel execution**: dùng ````RunnableParallel```` để chạy nhiều retrieval đồng thờ ### Bảo Mật và Phòng Thủ Prompt Injection Prompt injection là một trong những rủi ro bảo mật nghiêm trọng nhất đối với LLM applications. Các biện pháp phòng thủ: - **Input validation**: kiểm tra và sanitize tất cả user inputs - **Prompt boundaries**: sử dụng delimiters rõ ràng cho user input - **Output filtering**: kiểm tra output trước khi trả về ngườidùng - **Least privilege**: agent chỉ được cấp quyền truy cập tối thiểu cần thiết ### Triển Khai Với Docker và Cloud `````dockerfile FROM python:3.11-slim WORKDIR /app COPY requirements.txt . RUN pip install -r requirements.txt COPY . . CMD [\"uvicorn\", \"main:app\", \"--host\", \"0.0.0.0\", \"--port\", \"8000\"] LangChain applications thường được triển khai dưới dạng FastAPI/Flask API, containerized với Docker, và chạy trên Kubernetes hoặc các nền tảng serverless như AWS Lambda, Google Cloud Run.\nTop LangChain Alternatives 2025 Framework Điểm mạnh chính Trường hợp sử dụng tốt nhất Stars GitHub (tháng 5/2025) LangChain Hệ sinh thái đầy đủ nhất, linh hoạt cao General-purpose LLM apps 95.000+ LlamaIndex RAG và data ingestion vượt trội Document Q\u0026A, knowledge bases 39.000+ Haystack Enterprise search pipeline Semantic search quy mô lớn 14.000+ CrewAI Multi-agent workflows đơn giản Team automation, content creation 25.000+ AutoGen Conversational agents, code execution Research, data analysis multi-agent 35.000+ Mỗi framework có điểm mạnh riêng. Nếu dự án của bạn tập trung vào RAG với dữ liệu phức tạp, LlamaIndex có thể là lựa chọn tốt hơn. Nếu cần multi-agent systems với khả năng thực thi code, AutoGen sẽ phù hợp hơn.\nFAQ — Các Câu Hỏi Thường Gặp Về LangChain LangChain được sử dụng cho mục đích gì? LangChain được dùng để xây dựng ứng dụng AI powered by large language models. Các use cases phổ biến bao gồm: chatbot thông minh, hệ thống Q\u0026A dựa trên tài liệu (RAG), agents tự chủ có khả năng sử dụng công cụ, ứng dụng phân tích dữ liệu tự động, và hệ thống tóm tắt/trích xuất thông tin quy mô lớn.\nLangChain có miễn phí không? Có, LangChain core framework hoàn toàn miễn phí và mã nguồn mở dưới giấy phép MIT. Bạn chỉ cần trả phí cho các API LLM (OpenAI, Anthropic, v.v.) hoặc các dịch vụ cloud tích hợp. LangSmith có gói miễn phí với 5.000 traces/tháng, và các gói trả phí bắt đầu từ $39/tháng cho developer plan.\nNên chọn LangChain hay LlamaIndex? Chọn LangChain nếu bạn cần xây dựng ứng dụng LLM đa dạng với agents, công cụ và luồng phức tạp. Chọn LlamaIndex nếu dự án tập trung chủ yếu vào RAG, xử lý tài liệu và truy xuất dữ liệu thông minh. Hai framework có thể kết hợp: dùng LlamaIndex làm backend retrieval và LangChain làm lớp orchestration phía trên.\nLangChain có hoạt động với local LLMs như Ollama không? Có, LangChain hỗ trợ tích hợp với Ollama, LM Studio, vLLM và nhiều local LLM servers khác thông qua các lớp wrapper như OllamaLLM và ````ChatOllama```. Điều này cho phép bạn phát triển và test ứng dụng hoàn toàn miễn phí trên máy local trước khi triển khai với commercial APIs.\nLangChain có hỗ trợ JavaScript/TypeScript không? Có, LangChain cung cấp thư viện LangChain.js với API tương tự phiên bản Python. LangChain.js hỗ trợ chạy trên Node.js, Edge runtime (Vercel, Cloudflare Workers) và trình duyệt. Tuy nhiên, một số integrations và cộng đồng tài nguyên vẫn phong phú hơn ở phiên bản Python.\nKết Luận và Bước Tiếp Theo LangChain đã khẳng định vị thế là framework hàng đầu cho việc xây dựng ứng dụng AI production-ready vào năm 2025. Với kiến trúc modular, hệ sinh thái đầy đủ gồm LangChain core, LangGraph và LangSmith, cùng cộng đồng hơn 95.000 contributors trên GitHub, framework này cung cấp mọi công cụ cần thiết từ prototype đến triển khai quy mô lớn.\nĐể tiếp tục hành trình, bạn nên: 1. Thực hành với tutorial chính thức: truy cập python.langchain.com để làm theo các hướng dẫn từng bước 2. Đọc source code trên GitHub: github.com/langchain-ai/langchain chứa hàng trăm ví dụ thực tế 3. Thử nghiệm LangSmith: đăng ký tài khoản tại smith.langchain.com để quan sát và tối ưu ứng dụng của bạn 4. Tham gia cộng đồng: Discord server của LangChain có hơn 30.000 thành viên sẵn sàng hỗ trợ 5. Tìm hiểu LangGraph: khi đã thành thạo LangChain core, nâng cấp lên LangGraph để xử lý các workflow phức tạp\nBắt đầu bằng một ứng dụng RAG đơn giản, sau đó từ từ thêm agents, memory và monitoring — đây là con đường hiệu quả nhất để làm chủ LangChain trong năm 2025.\nTài liệu tham khảo:\nLangChain Official Documentation LangChain GitHub Repository LangSmith Documentation LangGraph Documentation Hugging Face Models Hub Hạ Tầng Đề Xuất Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - DigitalOcean — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.\nHTStack — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây. Hostinger — VPS giá tốt cho thị trường Việt Nam. Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Hướng Dẫn Toàn Diện LangChain 2025: Từ Zero Đến Ứng Dụng AI Production”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/langchain-complete-guide\" } } Frequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "2634",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/langchain-complete-guide/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/langchain-complete-guide/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/langchain-complete-guide/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/langchain-complete-guide/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#langchain-l%c3%a0-g%c3%ac-t%e1%ba%a1i-sao-framework-n%c3%a0y-quan-tr%e1%bb%8dng-trong-2025" aria-label="LangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025?">LangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025?</a><ul>
+                    
+            <li>
+                <a href="#%c4%91%e1%bb%8bnh-ngh%c4%a9a-v%c3%a0-ki%e1%ba%bfn-tr%c3%bac-t%e1%bb%95ng-quan" aria-label="Định Nghĩa và Kiến Trúc Tổng Quan">Định Nghĩa và Kiến Trúc Tổng Quan</a></li>
+            <li>
+                <a href="#h%e1%bb%87-sinh-th%c3%a1i-langchain-ba-tr%e1%bb%a5-c%e1%bb%99t" aria-label="Hệ Sinh Thái LangChain: Ba Trụ Cột">Hệ Sinh Thái LangChain: Ba Trụ Cột</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a1c-th%c3%a0nh-ph%e1%ba%a7n-core-c%e1%bb%a7-langchain-gi%e1%ba%a3i-th%c3%adch-chi-ti%e1%ba%bft" aria-label="Các Thành Phần Core Củ LangChain Giải Thích Chi Tiết">Các Thành Phần Core Củ LangChain Giải Thích Chi Tiết</a><ul>
+                    
+            <li>
+                <a href="#models-llms-v%c3%a0-chat-models" aria-label="Models (LLMs và Chat Models)">Models (LLMs và Chat Models)</a></li>
+            <li>
+                <a href="#prompts-v%c3%a0-prompt-templates" aria-label="Prompts và Prompt Templates">Prompts và Prompt Templates</a></li>
+            <li>
+                <a href="#chains-t%e1%bb%ab-%c4%91%c6%a1n-gi%e1%ba%a3n-%c4%91%e1%ba%bfn-ph%e1%bb%a9c-t%e1%ba%a1p" aria-label="Chains: Từ Đơn Giản Đến Phức Tạp">Chains: Từ Đơn Giản Đến Phức Tạp</a></li>
+            <li>
+                <a href="#vector-stores-v%c3%a0-retrievers" aria-label="Vector Stores và Retrievers">Vector Stores và Retrievers</a></li>
+            <li>
+                <a href="#agents-v%c3%a0-tool-integration" aria-label="Agents và Tool Integration">Agents và Tool Integration</a></li>
+            <li>
+                <a href="#memory-v%c3%a0-conversation-management" aria-label="Memory và Conversation Management">Memory và Conversation Management</a></li></ul>
+            </li>
+            <li>
+                <a href="#langchain-vs-langgraph-vs-langsmith-ph%c3%a2n-bi%e1%bb%87t-r%c3%b5-r%c3%a0ng" aria-label="LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng">LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng</a><ul>
+                    
+            <li>
+                <a href="#langgraph-multi-agent-stateful-applications" aria-label="LangGraph: Multi-Agent Stateful Applications">LangGraph: Multi-Agent Stateful Applications</a></li>
+            <li>
+                <a href="#langsmith-n%e1%bb%81n-t%e1%ba%a3ng-quan-s%c3%a1t-v%c3%a0-debug" aria-label="LangSmith: Nền Tảng Quan Sát và Debug">LangSmith: Nền Tảng Quan Sát và Debug</a></li></ul>
+            </li>
+            <li>
+                <a href="#langchain-quick-start-x%c3%a2y-d%e1%bb%b1ng-%e1%bb%a9ng-d%e1%bb%a5ng-%c4%91%e1%ba%a7u-ti%c3%aan" aria-label="LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên">LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-m%c3%b4i-tr%c6%b0%e1%bb%9dng" aria-label="Cài Đặt Môi Trường">Cài Đặt Môi Trường</a></li>
+            <li>
+                <a href="#th%c3%aam-rag-v%e1%bb%9bi-document-loading" aria-label="Thêm RAG Với Document Loading">Thêm RAG Với Document Loading</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-react-agent-v%e1%bb%9bi-c%c3%b4ng-c%e1%bb%a5" aria-label="Tạo ReAct Agent Với Công Cụ">Tạo ReAct Agent Với Công Cụ</a></li></ul>
+            </li>
+            <li>
+                <a href="#advanced-langchain-patterns" aria-label="Advanced LangChain Patterns">Advanced LangChain Patterns</a><ul>
+                    
+            <li>
+                <a href="#multi-step-reasoning-chains" aria-label="Multi-Step Reasoning Chains">Multi-Step Reasoning Chains</a></li>
+            <li>
+                <a href="#error-handling-v%c3%a0-fallbacks" aria-label="Error Handling và Fallbacks">Error Handling và Fallbacks</a></li></ul>
+            </li>
+            <li>
+                <a href="#top-langchain-alternatives-2025" aria-label="Top LangChain Alternatives 2025">Top LangChain Alternatives 2025</a></li>
+            <li>
+                <a href="#faq--c%c3%a1c-c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p-v%e1%bb%81-langchain" aria-label="FAQ — Các Câu Hỏi Thường Gặp Về LangChain">FAQ — Các Câu Hỏi Thường Gặp Về LangChain</a><ul>
+                    
+            <li>
+                <a href="#langchain-%c4%91%c6%b0%e1%bb%a3c-s%e1%bb%ad-d%e1%bb%a5ng-cho-m%e1%bb%a5c-%c4%91%c3%adch-g%c3%ac" aria-label="LangChain được sử dụng cho mục đích gì?">LangChain được sử dụng cho mục đích gì?</a></li>
+            <li>
+                <a href="#langchain-c%c3%b3-mi%e1%bb%85n-ph%c3%ad-kh%c3%b4ng" aria-label="LangChain có miễn phí không?">LangChain có miễn phí không?</a></li>
+            <li>
+                <a href="#n%c3%aan-ch%e1%bb%8dn-langchain-hay-llamaindex" aria-label="Nên chọn LangChain hay LlamaIndex?">Nên chọn LangChain hay LlamaIndex?</a></li>
+            <li>
+                <a href="#langchain-c%c3%b3-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-v%e1%bb%9bi-local-llms-nh%c6%b0-ollama-kh%c3%b4ng" aria-label="LangChain có hoạt động với local LLMs như Ollama không?">LangChain có hoạt động với local LLMs như Ollama không?</a></li>
+            <li>
+                <a href="#langchain-c%c3%b3-h%e1%bb%97-tr%e1%bb%a3-javascripttypescript-kh%c3%b4ng" aria-label="LangChain có hỗ trợ JavaScript/TypeScript không?">LangChain có hỗ trợ JavaScript/TypeScript không?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn-v%c3%a0-b%c6%b0%e1%bb%9bc-ti%e1%ba%bfp-theo" aria-label="Kết Luận và Bước Tiếp Theo">Kết Luận và Bước Tiếp Theo</a></li>
+            <li>
+                <a href="#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hạ Tầng Đề Xuất">Hạ Tầng Đề Xuất</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+<p>Khi large language models (LLMs) như GPT-4, Claude 3.5 và Llama 3.1 ngày càng trở nên phổ biến, các nhà phát triển đối mặt với một thách thức thực tế: làm sao kết nối mô hình ngôn ngữ với dữ liệu bên ngoài, công cụ và quy trình làm việc phức tạp? LangChain ra đờinhằm giải quyết đúng vấn đề này. Đến tháng 5 năm 2025, framework này đã đạt hơn 95.000 stars trên GitHub và trở thành lựa chọn hàng đầu cho việc xây dựng ứng dụng AI production-grade. Bài viết này sẽ đưa bạn từ những khái niệm cơ bản nhất đến các pattern nâng cao, cùng với hướng dẫn triển khai thực tế.</p>
+<h2 id="langchain-là-gì-tại-sao-framework-này-quan-trọng-trong-2025">LangChain Là Gì? Tại Sao Framework Này Quan Trọng Trong 2025?<a hidden class="anchor" aria-hidden="true" href="#langchain-là-gì-tại-sao-framework-này-quan-trọng-trong-2025">#</a></h2>
+<h3 id="định-nghĩa-và-kiến-trúc-tổng-quan">Định Nghĩa và Kiến Trúc Tổng Quan<a hidden class="anchor" aria-hidden="true" href="#định-nghĩa-và-kiến-trúc-tổng-quan">#</a></h3>
+<p>LangChain là một framework mã nguồn mở được thiết kế để đơn giản hóa việc phát triển ứng dụng dựa trên large language models. Ra mắt lần đầu vào tháng 10 năm 2022 bởi Harrison Chase, LangChain cung cấp một bộ công cụ tiêu chuẩn hóa giúp kết nối LLMs với: - <strong>Nguồn dữ liệu bên ngoài</strong>: cơ sở dữ liệu vector, file PDF, website, API</p>
+<ul>
+<li><strong>Công cụ tính toán</strong>: máy tính, trình duyệt web, truy vấn cơ sở dữ liệu</li>
+<li><strong>Luồng xử lý phức tạp</strong>: chuỗi nhiều bước, agent tự chủ, quản lý bộ nhớ hội thoại</li>
+</ul>
+<p>Kiến trúc của LangChain được xây dựng xung quanh khái niệm <strong>&ldquo;composability&rdquo;</strong> — khả năng kết hợp linh hoạt các thành phần độc lập thành pipeline hoàn chỉnh. Điều này có nghĩa bạn có thể thay thế một LLM bằng model khác, đổi vector store hoặc thêm công cụ mới mà không cần viết lại toàn bộ ứng dụng.</p>
+<h3 id="hệ-sinh-thái-langchain-ba-trụ-cột">Hệ Sinh Thái LangChain: Ba Trụ Cột<a hidden class="anchor" aria-hidden="true" href="#hệ-sinh-thái-langchain-ba-trụ-cột">#</a></h3>
+<p>Đến năm 2025, LangChain không còn là một thư viện đơn lẻ mà đã phát triển thành một hệ sinh thái hoàn chỉnh gồm ba thành phần chính: | Thành phần | Mục đích chính | Đối tượng sử dụng |
 |&mdash;|&mdash;|&mdash;|
 | <strong>LangChain</strong> | Core orchestration framework — kết nối models, prompts, chains, agents | Mọi developer xây dựng LLM apps |
 | <strong>LangGraph</strong> | Xây dựng ứng dụng multi-agent có trạng thái (stateful) với đồ thị luồng | Các dự án phức tạp, yêu cầu điều phối nhiều agent |
-| <strong>LangSmith</strong> | Platform theo dõi, debug và đánh giá LLM applications trong production | Team DevOps và ML Engineers |</p><p>Ba công cụ này bổ sung lẫn nhau một cách liền mạch. Bạn có thể xây dựng prototype bằng LangChain, chuyển đổi sang LangGraph khi cần luồng xử lý phức tạp, và dùng LangSmith để giám sát hiệu suất trong suốt vòng đồi sản phẩm.</p><h2 id=các-thành-phần-core-củ-langchain-giải-thích-chi-tiết>Các Thành Phần Core Củ LangChain Giải Thích Chi Tiết<a hidden class=anchor aria-hidden=true href=#các-thành-phần-core-củ-langchain-giải-thích-chi-tiết>#</a></h2><h3 id=models-llms-và-chat-models>Models (LLMs và Chat Models)<a hidden class=anchor aria-hidden=true href=#models-llms-và-chat-models>#</a></h3><p>LangChain hỗ trợ tích hợp với hơn 100 nhà cung cấp mô hình khác nhau. Framework phân biệt hai loại model chính: - <strong>LLMs</strong>: nhận input dạng string, trả về string (text completion) — ví dụ: GPT-3.5-turbo-instruct, Llama 2</p><ul><li><strong>Chat Models</strong>: nhận input dạng danh sách messages, trả về message — ví dụ: GPT-4, Claude 3.5 Sonnet, Gemini 1.5 Pro</li></ul><p>Từ phiên bản LangChain 0.2+, khuyến nghị mặc định là sử dụng <strong>Chat Models</strong> thay vì LLMs thuần, bởi hầu hết các model mới nhất đều tối ưu cho giao diện hội thoại.</p><h3 id=prompts-và-prompt-templates>Prompts và Prompt Templates<a hidden class=anchor aria-hidden=true href=#prompts-và-prompt-templates>#</a></h3><p>Prompt trong LangChain không chỉ là chuỗi văn bản tĩnh. Framework cung cấp <strong>Prompt Templates</strong> cho phép tạo dynamic prompts với các biến đầu vào: - <strong>PromptTemplate</strong>: cho single-turn tasks</p><ul><li><strong>ChatPromptTemplate</strong>: cho multi-turn conversations với các vai trò (system, human, assistant)</li><li><strong>FewShotPromptTemplate</strong>: kèm theo các ví dụ mẫu để cải thiện chất lượng output</li></ul><p>Kỹ thuật prompt engineering như chain-of-thought, ReAct prompting và structured output đều được LangChain hỗ trợ native thông qua các output parsers.</p><h3 id=chains-từ-đơn-giản-đến-phức-tạp>Chains: Từ Đơn Giản Đến Phức Tạp<a hidden class=anchor aria-hidden=true href=#chains-từ-đơn-giản-đến-phức-tạp>#</a></h3><p><strong>Chain</strong> là khái niệm trung tâm trong LangChain — một chuỗi các thành phần được thực thi tuần tự. Các loại chain phổ biến: 1. <strong>LLMChain</strong>: chain cơ bản nhất — prompt template + LLM call
+| <strong>LangSmith</strong> | Platform theo dõi, debug và đánh giá LLM applications trong production | Team DevOps và ML Engineers |</p>
+<p>Ba công cụ này bổ sung lẫn nhau một cách liền mạch. Bạn có thể xây dựng prototype bằng LangChain, chuyển đổi sang LangGraph khi cần luồng xử lý phức tạp, và dùng LangSmith để giám sát hiệu suất trong suốt vòng đồi sản phẩm.</p>
+<h2 id="các-thành-phần-core-củ-langchain-giải-thích-chi-tiết">Các Thành Phần Core Củ LangChain Giải Thích Chi Tiết<a hidden class="anchor" aria-hidden="true" href="#các-thành-phần-core-củ-langchain-giải-thích-chi-tiết">#</a></h2>
+<h3 id="models-llms-và-chat-models">Models (LLMs và Chat Models)<a hidden class="anchor" aria-hidden="true" href="#models-llms-và-chat-models">#</a></h3>
+<p>LangChain hỗ trợ tích hợp với hơn 100 nhà cung cấp mô hình khác nhau. Framework phân biệt hai loại model chính: - <strong>LLMs</strong>: nhận input dạng string, trả về string (text completion) — ví dụ: GPT-3.5-turbo-instruct, Llama 2</p>
+<ul>
+<li><strong>Chat Models</strong>: nhận input dạng danh sách messages, trả về message — ví dụ: GPT-4, Claude 3.5 Sonnet, Gemini 1.5 Pro</li>
+</ul>
+<p>Từ phiên bản LangChain 0.2+, khuyến nghị mặc định là sử dụng <strong>Chat Models</strong> thay vì LLMs thuần, bởi hầu hết các model mới nhất đều tối ưu cho giao diện hội thoại.</p>
+<h3 id="prompts-và-prompt-templates">Prompts và Prompt Templates<a hidden class="anchor" aria-hidden="true" href="#prompts-và-prompt-templates">#</a></h3>
+<p>Prompt trong LangChain không chỉ là chuỗi văn bản tĩnh. Framework cung cấp <strong>Prompt Templates</strong> cho phép tạo dynamic prompts với các biến đầu vào: - <strong>PromptTemplate</strong>: cho single-turn tasks</p>
+<ul>
+<li><strong>ChatPromptTemplate</strong>: cho multi-turn conversations với các vai trò (system, human, assistant)</li>
+<li><strong>FewShotPromptTemplate</strong>: kèm theo các ví dụ mẫu để cải thiện chất lượng output</li>
+</ul>
+<p>Kỹ thuật prompt engineering như chain-of-thought, ReAct prompting và structured output đều được LangChain hỗ trợ native thông qua các output parsers.</p>
+<h3 id="chains-từ-đơn-giản-đến-phức-tạp">Chains: Từ Đơn Giản Đến Phức Tạp<a hidden class="anchor" aria-hidden="true" href="#chains-từ-đơn-giản-đến-phức-tạp">#</a></h3>
+<p><strong>Chain</strong> là khái niệm trung tâm trong LangChain — một chuỗi các thành phần được thực thi tuần tự. Các loại chain phổ biến: 1. <strong>LLMChain</strong>: chain cơ bản nhất — prompt template + LLM call
 2. <strong>RetrievalQA</strong>: kết hợp retrieval từ vector store với question-answering
 3. <strong>ConversationalRetrievalChain</strong>: hỗ trợ hội thoại có bộ nhớ và RAG
-4. <strong>SequentialChain</strong>: chạy nhiều chain theo thứ tự với output chaining</p><p>Ví dụ một RetrievalQA chain hoạt động theo luồng: ngườidùng đặt câu hỏi → tìm kiếm tài liệu liên quan trong vector store → đưa tài liệu + câu hỏi vào LLM → trả lờingườidùng.</p><h3 id=vector-stores-và-retrievers>Vector Stores và Retrievers<a hidden class=anchor aria-hidden=true href=#vector-stores-và-retrievers>#</a></h3><p>LangChain hỗ trợ hơn 40 vector stores khác nhau bao gồm: - <strong>Open-source local</strong>: Chroma, FAISS, Milvus, Weaviate, Qdrant</p><ul><li><strong>Cloud-managed</strong>: Pinecone, MongoDB Atlas, Supabase, Azure AI Search</li><li><strong>In-memory</strong>: cho prototype và testing</li></ul><p><strong>Retrievers</strong> đóng vai trò trừu tượng hóa lớp tìm kiếm — bạn có thể chuyển đổi giữa similarity search, MMR (Maximal Marginal Relevance), hoặc self-query retriever mà không thay đổi code ứng dụng chính.</p><h3 id=agents-và-tool-integration>Agents và Tool Integration<a hidden class=anchor aria-hidden=true href=#agents-và-tool-integration>#</a></h3><p><strong>Agent</strong> là một trong những tính năng mạnh nhất của LangChain. Thay vì thực hiện chuỗi cố định, agent tự quyết định sử dụng công cụ nào và theo thứ tự nào để hoàn thành nhiệm vụ.</p><p>Các agent types chính: - <strong>ReAct Agent</strong>: kết hợp reasoning và acting trong từng bước</p><ul><li><strong>Plan-and-Execute Agent</strong>: lập kế hoạch trước, sau đó thực thi</li><li><strong>Structured Chat Agent</strong>: output có cấu trúc JSON để gọi công cụ chính xác hơn</li><li><strong>XML Agent</strong>: tối ưu cho Claude models của Anthropic</li></ul><h3 id=memory-và-conversation-management>Memory và Conversation Management<a hidden class=anchor aria-hidden=true href=#memory-và-conversation-management>#</a></h3><p>LangChain cung cấp nhiều loại <strong>memory</strong> để quản lý ngữ cảnh hội thoại: - <strong>ConversationBufferMemory</strong>: lưu toàn bộ lịch sử (đơn giản nhất)</p><ul><li><strong>ConversationBufferWindowMemory</strong>: chỉ giữ N tin nhắn gần nhất</li><li><strong>ConversationSummaryMemory</strong>: tóm tắt lịch sử để tiết kiệm tokens</li><li><strong>VectorStoreRetrieverMemory</strong>: tìm kiếm các phần hội thoại liên quan theo semantic similarity</li></ul><h2 id=langchain-vs-langgraph-vs-langsmith-phân-biệt-rõ-ràng>LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng<a hidden class=anchor aria-hidden=true href=#langchain-vs-langgraph-vs-langsmith-phân-biệt-rõ-ràng>#</a></h2><p>Nhiều ngườimới bắt đầu nhầm lẫn giữa ba công cụ này. Dưới đây là phân tích chi tiết: ### LangChain: Framework Điều Phối Core</p><p>LangChain là nền tảng — cung cấp abstractions cơ bản như models, prompts, document loaders. Đây là thư viện bạn sử dụng cho hầu hết các ứng dụng LLM tiêu chuẩn. Một simple RAG app hoặc chatbot có thể được xây dựng hoàn toàn bằng LangChain mà không cần LangGraph.</p><h3 id=langgraph-multi-agent-stateful-applications>LangGraph: Multi-Agent Stateful Applications<a hidden class=anchor aria-hidden=true href=#langgraph-multi-agent-stateful-applications>#</a></h3><p>LangGraph (phiên bản 0.1+ ra mắt đầu 2024) được thiết kế cho các ứng dụng phức tạp hơn, nơi luồng xử lý không còn tuyến tính. LangGraph biểu diễn ứng dụng dưới dạng <strong>đồ thị có hướng (directed graph)</strong> với: - <strong>Nodes</strong>: đại diện cho các hàm xử lý (gọi LLM, công cụ, hoặc logic tùy chỉnh)</p><ul><li><strong>Edges</strong>: định nghĩa luồng chuyển tiếp giữa các nodes</li><li><strong>State</strong>: dữ liệu được truyền qua các nodes trong suốt quá trình thực thi</li></ul><p>Điểm mạnh của LangGraph là hỗ trợ <strong>cycles</strong> — các vòng lặp phản hồi cho phép agent tự kiệm tra và điều chỉnh hành động, điều mà chain đơn thuần không làm được.</p><h3 id=langsmith-nền-tảng-quan-sát-và-debug>LangSmith: Nền Tảng Quan Sát và Debug<a hidden class=anchor aria-hidden=true href=#langsmith-nền-tảng-quan-sát-và-debug>#</a></h3><p>LangSmith (có gói miễn phí với 5.000 traces/tháng) giải quyết vấn đề &ldquo;black box&rdquo; của LLM applications. Các tính năng chính: - <strong>Tracing</strong>: theo dõi từng bước trong chain/agent với latency và token usage</p><ul><li><strong>Evaluation</strong>: chạy benchmark datasets tự động để đánh giá chất lượng outputs</li><li><strong>Prompt Management</strong>: phiên bản hóa và quản lý prompts như code</li><li><strong>Annotation</strong>: gán nhãn thủ công để xây dựng tập dữ liệu huấn luyện fine-tuning</li></ul><h2 id=langchain-quick-start-xây-dựng-ứng-dụng-đầu-tiên>LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên<a hidden class=anchor aria-hidden=true href=#langchain-quick-start-xây-dựng-ứng-dụng-đầu-tiên>#</a></h2><h3 id=cài-đặt-môi-trường>Cài Đặt Môi Trường<a hidden class=anchor aria-hidden=true href=#cài-đặt-môi-trường>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install langchain langchain-openai langchain-community
-</span></span><span style=display:flex><span>pip install chromadb  <span style=color:#75715e># vector store</span>
-</span></span><span style=display:flex><span>pip install langsmith <span style=color:#75715e># optional, for tracing</span>
+4. <strong>SequentialChain</strong>: chạy nhiều chain theo thứ tự với output chaining</p>
+<p>Ví dụ một RetrievalQA chain hoạt động theo luồng: ngườidùng đặt câu hỏi → tìm kiếm tài liệu liên quan trong vector store → đưa tài liệu + câu hỏi vào LLM → trả lờingườidùng.</p>
+<h3 id="vector-stores-và-retrievers">Vector Stores và Retrievers<a hidden class="anchor" aria-hidden="true" href="#vector-stores-và-retrievers">#</a></h3>
+<p>LangChain hỗ trợ hơn 40 vector stores khác nhau bao gồm: - <strong>Open-source local</strong>: Chroma, FAISS, Milvus, Weaviate, Qdrant</p>
+<ul>
+<li><strong>Cloud-managed</strong>: Pinecone, MongoDB Atlas, Supabase, Azure AI Search</li>
+<li><strong>In-memory</strong>: cho prototype và testing</li>
+</ul>
+<p><strong>Retrievers</strong> đóng vai trò trừu tượng hóa lớp tìm kiếm — bạn có thể chuyển đổi giữa similarity search, MMR (Maximal Marginal Relevance), hoặc self-query retriever mà không thay đổi code ứng dụng chính.</p>
+<h3 id="agents-và-tool-integration">Agents và Tool Integration<a hidden class="anchor" aria-hidden="true" href="#agents-và-tool-integration">#</a></h3>
+<p><strong>Agent</strong> là một trong những tính năng mạnh nhất của LangChain. Thay vì thực hiện chuỗi cố định, agent tự quyết định sử dụng công cụ nào và theo thứ tự nào để hoàn thành nhiệm vụ.</p>
+<p>Các agent types chính: - <strong>ReAct Agent</strong>: kết hợp reasoning và acting trong từng bước</p>
+<ul>
+<li><strong>Plan-and-Execute Agent</strong>: lập kế hoạch trước, sau đó thực thi</li>
+<li><strong>Structured Chat Agent</strong>: output có cấu trúc JSON để gọi công cụ chính xác hơn</li>
+<li><strong>XML Agent</strong>: tối ưu cho Claude models của Anthropic</li>
+</ul>
+<h3 id="memory-và-conversation-management">Memory và Conversation Management<a hidden class="anchor" aria-hidden="true" href="#memory-và-conversation-management">#</a></h3>
+<p>LangChain cung cấp nhiều loại <strong>memory</strong> để quản lý ngữ cảnh hội thoại: - <strong>ConversationBufferMemory</strong>: lưu toàn bộ lịch sử (đơn giản nhất)</p>
+<ul>
+<li><strong>ConversationBufferWindowMemory</strong>: chỉ giữ N tin nhắn gần nhất</li>
+<li><strong>ConversationSummaryMemory</strong>: tóm tắt lịch sử để tiết kiệm tokens</li>
+<li><strong>VectorStoreRetrieverMemory</strong>: tìm kiếm các phần hội thoại liên quan theo semantic similarity</li>
+</ul>
+<h2 id="langchain-vs-langgraph-vs-langsmith-phân-biệt-rõ-ràng">LangChain vs LangGraph vs LangSmith: Phân Biệt Rõ Ràng<a hidden class="anchor" aria-hidden="true" href="#langchain-vs-langgraph-vs-langsmith-phân-biệt-rõ-ràng">#</a></h2>
+<p>Nhiều ngườimới bắt đầu nhầm lẫn giữa ba công cụ này. Dưới đây là phân tích chi tiết: ### LangChain: Framework Điều Phối Core</p>
+<p>LangChain là nền tảng — cung cấp abstractions cơ bản như models, prompts, document loaders. Đây là thư viện bạn sử dụng cho hầu hết các ứng dụng LLM tiêu chuẩn. Một simple RAG app hoặc chatbot có thể được xây dựng hoàn toàn bằng LangChain mà không cần LangGraph.</p>
+<h3 id="langgraph-multi-agent-stateful-applications">LangGraph: Multi-Agent Stateful Applications<a hidden class="anchor" aria-hidden="true" href="#langgraph-multi-agent-stateful-applications">#</a></h3>
+<p>LangGraph (phiên bản 0.1+ ra mắt đầu 2024) được thiết kế cho các ứng dụng phức tạp hơn, nơi luồng xử lý không còn tuyến tính. LangGraph biểu diễn ứng dụng dưới dạng <strong>đồ thị có hướng (directed graph)</strong> với: - <strong>Nodes</strong>: đại diện cho các hàm xử lý (gọi LLM, công cụ, hoặc logic tùy chỉnh)</p>
+<ul>
+<li><strong>Edges</strong>: định nghĩa luồng chuyển tiếp giữa các nodes</li>
+<li><strong>State</strong>: dữ liệu được truyền qua các nodes trong suốt quá trình thực thi</li>
+</ul>
+<p>Điểm mạnh của LangGraph là hỗ trợ <strong>cycles</strong> — các vòng lặp phản hồi cho phép agent tự kiệm tra và điều chỉnh hành động, điều mà chain đơn thuần không làm được.</p>
+<h3 id="langsmith-nền-tảng-quan-sát-và-debug">LangSmith: Nền Tảng Quan Sát và Debug<a hidden class="anchor" aria-hidden="true" href="#langsmith-nền-tảng-quan-sát-và-debug">#</a></h3>
+<p>LangSmith (có gói miễn phí với 5.000 traces/tháng) giải quyết vấn đề &ldquo;black box&rdquo; của LLM applications. Các tính năng chính: - <strong>Tracing</strong>: theo dõi từng bước trong chain/agent với latency và token usage</p>
+<ul>
+<li><strong>Evaluation</strong>: chạy benchmark datasets tự động để đánh giá chất lượng outputs</li>
+<li><strong>Prompt Management</strong>: phiên bản hóa và quản lý prompts như code</li>
+<li><strong>Annotation</strong>: gán nhãn thủ công để xây dựng tập dữ liệu huấn luyện fine-tuning</li>
+</ul>
+<h2 id="langchain-quick-start-xây-dựng-ứng-dụng-đầu-tiên">LangChain Quick Start: Xây Dựng Ứng Dụng Đầu Tiên<a hidden class="anchor" aria-hidden="true" href="#langchain-quick-start-xây-dựng-ứng-dụng-đầu-tiên">#</a></h2>
+<h3 id="cài-đặt-môi-trường">Cài Đặt Môi Trường<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-môi-trường">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langchain langchain-openai langchain-community
+</span></span><span style="display:flex;"><span>pip install chromadb  <span style="color:#75715e"># vector store</span>
+</span></span><span style="display:flex;"><span>pip install langsmith <span style="color:#75715e"># optional, for tracing</span>
 </span></span></code></pre></div><p>Thiết lập API keys: `````python
 import os
 os.environ[&ldquo;OPENAI_API_KEY&rdquo;] = &ldquo;your-key&rdquo;
-os.environ[&ldquo;LANGSMITH_API_KEY&rdquo;] = &ldquo;your-key&rdquo; # optional
-os.environ[&ldquo;LANGSMITH_TRACING&rdquo;] = &ldquo;true&rdquo;</p><pre tabindex=0><code>
+os.environ[&ldquo;LANGSMITH_API_KEY&rdquo;] = &ldquo;your-key&rdquo;  # optional
+os.environ[&ldquo;LANGSMITH_TRACING&rdquo;] = &ldquo;true&rdquo;</p>
+<pre tabindex="0"><code>
 ### Xây Dựng Simple LLM Chain
 
 `````python
@@ -37,72 +390,82 @@ response = chain.invoke({
     &#34;question&#34;: &#34;Giải thích overfitting là gì?&#34;
 })
 print(response.content)
-</code></pre><h3 id=thêm-rag-với-document-loading>Thêm RAG Với Document Loading<a hidden class=anchor aria-hidden=true href=#thêm-rag-với-document-loading>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.document_loaders <span style=color:#f92672>import</span> PyPDFLoader
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain.text_splitter <span style=color:#f92672>import</span> RecursiveCharacterTextSplitter
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_openai <span style=color:#f92672>import</span> OpenAIEmbeddings
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain_community.vectorstores <span style=color:#f92672>import</span> Chroma
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain.chains <span style=color:#f92672>import</span> RetrievalQA
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Load và xử lý tài liệu</span>
-</span></span><span style=display:flex><span>loader <span style=color:#f92672>=</span> PyPDFLoader(<span style=color:#e6db74>&#34;document.pdf&#34;</span>)
-</span></span><span style=display:flex><span>docs <span style=color:#f92672>=</span> loader<span style=color:#f92672>.</span>load()
-</span></span><span style=display:flex><span>splitter <span style=color:#f92672>=</span> RecursiveCharacterTextSplitter(chunk_size<span style=color:#f92672>=</span><span style=color:#ae81ff>500</span>, chunk_overlap<span style=color:#f92672>=</span><span style=color:#ae81ff>50</span>)
-</span></span><span style=display:flex><span>chunks <span style=color:#f92672>=</span> splitter<span style=color:#f92672>.</span>split_documents(docs)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tạo vector store</span>
-</span></span><span style=display:flex><span>embeddings <span style=color:#f92672>=</span> OpenAIEmbeddings()
-</span></span><span style=display:flex><span>vectorstore <span style=color:#f92672>=</span> Chroma<span style=color:#f92672>.</span>from_documents(chunks, embeddings)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Xây dựng RAG chain</span>
-</span></span><span style=display:flex><span>qa_chain <span style=color:#f92672>=</span> RetrievalQA<span style=color:#f92672>.</span>from_chain_type(
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span>llm,
-</span></span><span style=display:flex><span>    retriever<span style=color:#f92672>=</span>vectorstore<span style=color:#f92672>.</span>as_retriever(search_kwargs<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;k&#34;</span>: <span style=color:#ae81ff>3</span>}),
-</span></span><span style=display:flex><span>    return_source_documents<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> qa_chain<span style=color:#f92672>.</span>invoke({<span style=color:#e6db74>&#34;query&#34;</span>: <span style=color:#e6db74>&#34;Nội dung chính của tài liệu là gì?&#34;</span>})
-</span></span></code></pre></div><h3 id=tạo-react-agent-với-công-cụ>Tạo ReAct Agent Với Công Cụ<a hidden class=anchor aria-hidden=true href=#tạo-react-agent-với-công-cụ>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain.agents <span style=color:#f92672>import</span> create_react_agent, AgentExecutor
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain.tools <span style=color:#f92672>import</span> Tool
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langchain <span style=color:#f92672>import</span> hub
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Định nghĩa công cụ</span>
-</span></span><span style=display:flex><span>tools <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    Tool(
-</span></span><span style=display:flex><span>        name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Search&#34;</span>,
-</span></span><span style=display:flex><span>        func<span style=color:#f92672>=</span>search_function,
-</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Tìm kiếm thông tin trên internet&#34;</span>
-</span></span><span style=display:flex><span>    ),
-</span></span><span style=display:flex><span>    Tool(
-</span></span><span style=display:flex><span>        name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Calculator&#34;</span>,
-</span></span><span style=display:flex><span>        func<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> x: eval(x),
-</span></span><span style=display:flex><span>        description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Thực hiện phép tính toán học&#34;</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tạo agent</span>
-</span></span><span style=display:flex><span>prompt <span style=color:#f92672>=</span> hub<span style=color:#f92672>.</span>pull(<span style=color:#e6db74>&#34;hwchase17/react&#34;</span>)
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> create_react_agent(llm, tools, prompt)
-</span></span><span style=display:flex><span>agent_executor <span style=color:#f92672>=</span> AgentExecutor(agent<span style=color:#f92672>=</span>agent, tools<span style=color:#f92672>=</span>tools, verbose<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent_executor<span style=color:#f92672>.</span>invoke({
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;input&#34;</span>: <span style=color:#e6db74>&#34;Tính tổng dân số Việt Nam (99 triệu) và Thái Lan (70 triệu)&#34;</span>
-</span></span><span style=display:flex><span>})
-</span></span></code></pre></div><h2 id=advanced-langchain-patterns>Advanced LangChain Patterns<a hidden class=anchor aria-hidden=true href=#advanced-langchain-patterns>#</a></h2><h3 id=multi-step-reasoning-chains>Multi-Step Reasoning Chains<a hidden class=anchor aria-hidden=true href=#multi-step-reasoning-chains>#</a></h3><p>Với <strong>LangChain Expression Language (LCEL)</strong>, bạn có thể xây dựng pipeline phức tạp bằng cách kết hợp các thành phần bằng toán tử <code>|</code> (pipe), tương tự Unix pipes: `````python
-from langchain_core.runnables import RunnablePassthrough</p><p>chain = (
+</code></pre><h3 id="thêm-rag-với-document-loading">Thêm RAG Với Document Loading<a hidden class="anchor" aria-hidden="true" href="#thêm-rag-với-document-loading">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.document_loaders <span style="color:#f92672">import</span> PyPDFLoader
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.text_splitter <span style="color:#f92672">import</span> RecursiveCharacterTextSplitter
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_openai <span style="color:#f92672">import</span> OpenAIEmbeddings
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain_community.vectorstores <span style="color:#f92672">import</span> Chroma
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> RetrievalQA
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Load và xử lý tài liệu</span>
+</span></span><span style="display:flex;"><span>loader <span style="color:#f92672">=</span> PyPDFLoader(<span style="color:#e6db74">&#34;document.pdf&#34;</span>)
+</span></span><span style="display:flex;"><span>docs <span style="color:#f92672">=</span> loader<span style="color:#f92672">.</span>load()
+</span></span><span style="display:flex;"><span>splitter <span style="color:#f92672">=</span> RecursiveCharacterTextSplitter(chunk_size<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>, chunk_overlap<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>)
+</span></span><span style="display:flex;"><span>chunks <span style="color:#f92672">=</span> splitter<span style="color:#f92672">.</span>split_documents(docs)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tạo vector store</span>
+</span></span><span style="display:flex;"><span>embeddings <span style="color:#f92672">=</span> OpenAIEmbeddings()
+</span></span><span style="display:flex;"><span>vectorstore <span style="color:#f92672">=</span> Chroma<span style="color:#f92672">.</span>from_documents(chunks, embeddings)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Xây dựng RAG chain</span>
+</span></span><span style="display:flex;"><span>qa_chain <span style="color:#f92672">=</span> RetrievalQA<span style="color:#f92672">.</span>from_chain_type(
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span>llm,
+</span></span><span style="display:flex;"><span>    retriever<span style="color:#f92672">=</span>vectorstore<span style="color:#f92672">.</span>as_retriever(search_kwargs<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;k&#34;</span>: <span style="color:#ae81ff">3</span>}),
+</span></span><span style="display:flex;"><span>    return_source_documents<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> qa_chain<span style="color:#f92672">.</span>invoke({<span style="color:#e6db74">&#34;query&#34;</span>: <span style="color:#e6db74">&#34;Nội dung chính của tài liệu là gì?&#34;</span>})
+</span></span></code></pre></div><h3 id="tạo-react-agent-với-công-cụ">Tạo ReAct Agent Với Công Cụ<a hidden class="anchor" aria-hidden="true" href="#tạo-react-agent-với-công-cụ">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.agents <span style="color:#f92672">import</span> create_react_agent, AgentExecutor
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.tools <span style="color:#f92672">import</span> Tool
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain <span style="color:#f92672">import</span> hub
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Định nghĩa công cụ</span>
+</span></span><span style="display:flex;"><span>tools <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    Tool(
+</span></span><span style="display:flex;"><span>        name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Search&#34;</span>,
+</span></span><span style="display:flex;"><span>        func<span style="color:#f92672">=</span>search_function,
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Tìm kiếm thông tin trên internet&#34;</span>
+</span></span><span style="display:flex;"><span>    ),
+</span></span><span style="display:flex;"><span>    Tool(
+</span></span><span style="display:flex;"><span>        name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Calculator&#34;</span>,
+</span></span><span style="display:flex;"><span>        func<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> x: eval(x),
+</span></span><span style="display:flex;"><span>        description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Thực hiện phép tính toán học&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tạo agent</span>
+</span></span><span style="display:flex;"><span>prompt <span style="color:#f92672">=</span> hub<span style="color:#f92672">.</span>pull(<span style="color:#e6db74">&#34;hwchase17/react&#34;</span>)
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> create_react_agent(llm, tools, prompt)
+</span></span><span style="display:flex;"><span>agent_executor <span style="color:#f92672">=</span> AgentExecutor(agent<span style="color:#f92672">=</span>agent, tools<span style="color:#f92672">=</span>tools, verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent_executor<span style="color:#f92672">.</span>invoke({
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;input&#34;</span>: <span style="color:#e6db74">&#34;Tính tổng dân số Việt Nam (99 triệu) và Thái Lan (70 triệu)&#34;</span>
+</span></span><span style="display:flex;"><span>})
+</span></span></code></pre></div><h2 id="advanced-langchain-patterns">Advanced LangChain Patterns<a hidden class="anchor" aria-hidden="true" href="#advanced-langchain-patterns">#</a></h2>
+<h3 id="multi-step-reasoning-chains">Multi-Step Reasoning Chains<a hidden class="anchor" aria-hidden="true" href="#multi-step-reasoning-chains">#</a></h3>
+<p>Với <strong>LangChain Expression Language (LCEL)</strong>, bạn có thể xây dựng pipeline phức tạp bằng cách kết hợp các thành phần bằng toán tử <code>|</code> (pipe), tương tự Unix pipes: `````python
+from langchain_core.runnables import RunnablePassthrough</p>
+<p>chain = (
 {&ldquo;context&rdquo;: retriever | format_docs, &ldquo;question&rdquo;: RunnablePassthrough()}
 | prompt
 | llm
 | output_parser
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 LCEL tự động hỗ trợ streaming, async execution và batch processing mà không cần cấu hình thêm.
 
 ### Streaming và Async Execution
 
 LangChain hỗ trợ streaming responses để hiển thị output từng phần thay vì chờ hoàn chỉnh: `````python
 async for chunk in chain.astream({&#34;question&#34;: &#34;Viết một bài thơ về mùa xuân&#34;}): print(chunk.content, end=&#34;&#34;, flush=True)
-</code></pre><h3 id=error-handling-và-fallbacks>Error Handling và Fallbacks<a hidden class=anchor aria-hidden=true href=#error-handling-và-fallbacks>#</a></h3><p>Production applications cần xử lý lỗi graceful. LangChain cung cấp <strong>RunnableWithFallbacks</strong>: `````python
-from langchain_core.runnables import RunnableWithFallbacks</p><p>primary = ChatOpenAI(model=&ldquo;gpt-4o&rdquo;)
-fallback = ChatOpenAI(model=&ldquo;gpt-4o-mini&rdquo;)</p><p>model_with_fallback = primary.with_fallbacks([fallback])</p><pre tabindex=0><code>
+</code></pre><h3 id="error-handling-và-fallbacks">Error Handling và Fallbacks<a hidden class="anchor" aria-hidden="true" href="#error-handling-và-fallbacks">#</a></h3>
+<p>Production applications cần xử lý lỗi graceful. LangChain cung cấp <strong>RunnableWithFallbacks</strong>: `````python
+from langchain_core.runnables import RunnableWithFallbacks</p>
+<p>primary = ChatOpenAI(model=&ldquo;gpt-4o&rdquo;)
+fallback = ChatOpenAI(model=&ldquo;gpt-4o-mini&rdquo;)</p>
+<p>model_with_fallback = primary.with_fallbacks([fallback])</p>
+<pre tabindex="0"><code>
 ## LangChain Trong Production: Best Practices
 
 ### Tối Ưu Hiệu Suất
@@ -127,12 +490,89 @@ COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY . .
 CMD [&#34;uvicorn&#34;, &#34;main:app&#34;, &#34;--host&#34;, &#34;0.0.0.0&#34;, &#34;--port&#34;, &#34;8000&#34;]
-</code></pre><p>LangChain applications thường được triển khai dưới dạng FastAPI/Flask API, containerized với Docker, và chạy trên Kubernetes hoặc các nền tảng serverless như AWS Lambda, Google Cloud Run.</p><h2 id=top-langchain-alternatives-2025>Top LangChain Alternatives 2025<a hidden class=anchor aria-hidden=true href=#top-langchain-alternatives-2025>#</a></h2><table><thead><tr><th>Framework</th><th>Điểm mạnh chính</th><th>Trường hợp sử dụng tốt nhất</th><th>Stars GitHub (tháng 5/2025)</th></tr></thead><tbody><tr><td><strong>LangChain</strong></td><td>Hệ sinh thái đầy đủ nhất, linh hoạt cao</td><td>General-purpose LLM apps</td><td>95.000+</td></tr><tr><td><strong>LlamaIndex</strong></td><td>RAG và data ingestion vượt trội</td><td>Document Q&amp;A, knowledge bases</td><td>39.000+</td></tr><tr><td><strong>Haystack</strong></td><td>Enterprise search pipeline</td><td>Semantic search quy mô lớn</td><td>14.000+</td></tr><tr><td><strong>CrewAI</strong></td><td>Multi-agent workflows đơn giản</td><td>Team automation, content creation</td><td>25.000+</td></tr><tr><td><strong>AutoGen</strong></td><td>Conversational agents, code execution</td><td>Research, data analysis multi-agent</td><td>35.000+</td></tr></tbody></table><p>Mỗi framework có điểm mạnh riêng. Nếu dự án của bạn tập trung vào RAG với dữ liệu phức tạp, LlamaIndex có thể là lựa chọn tốt hơn. Nếu cần multi-agent systems với khả năng thực thi code, AutoGen sẽ phù hợp hơn.</p><h2 id=faq--các-câu-hỏi-thường-gặp-về-langchain>FAQ — Các Câu Hỏi Thường Gặp Về LangChain<a hidden class=anchor aria-hidden=true href=#faq--các-câu-hỏi-thường-gặp-về-langchain>#</a></h2><h3 id=langchain-được-sử-dụng-cho-mục-đích-gì>LangChain được sử dụng cho mục đích gì?<a hidden class=anchor aria-hidden=true href=#langchain-được-sử-dụng-cho-mục-đích-gì>#</a></h3><p>LangChain được dùng để xây dựng ứng dụng AI powered by large language models. Các use cases phổ biến bao gồm: chatbot thông minh, hệ thống Q&amp;A dựa trên tài liệu (RAG), agents tự chủ có khả năng sử dụng công cụ, ứng dụng phân tích dữ liệu tự động, và hệ thống tóm tắt/trích xuất thông tin quy mô lớn.</p><h3 id=langchain-có-miễn-phí-không>LangChain có miễn phí không?<a hidden class=anchor aria-hidden=true href=#langchain-có-miễn-phí-không>#</a></h3><p>Có, LangChain core framework hoàn toàn miễn phí và mã nguồn mở dưới giấy phép MIT. Bạn chỉ cần trả phí cho các API LLM (OpenAI, Anthropic, v.v.) hoặc các dịch vụ cloud tích hợp. LangSmith có gói miễn phí với 5.000 traces/tháng, và các gói trả phí bắt đầu từ $39/tháng cho developer plan.</p><h3 id=nên-chọn-langchain-hay-llamaindex>Nên chọn LangChain hay LlamaIndex?<a hidden class=anchor aria-hidden=true href=#nên-chọn-langchain-hay-llamaindex>#</a></h3><p>Chọn <strong>LangChain</strong> nếu bạn cần xây dựng ứng dụng LLM đa dạng với agents, công cụ và luồng phức tạp. Chọn <strong>LlamaIndex</strong> nếu dự án tập trung chủ yếu vào RAG, xử lý tài liệu và truy xuất dữ liệu thông minh. Hai framework có thể kết hợp: dùng LlamaIndex làm backend retrieval và LangChain làm lớp orchestration phía trên.</p><h3 id=langchain-có-hoạt-động-với-local-llms-như-ollama-không>LangChain có hoạt động với local LLMs như Ollama không?<a hidden class=anchor aria-hidden=true href=#langchain-có-hoạt-động-với-local-llms-như-ollama-không>#</a></h3><p>Có, LangChain hỗ trợ tích hợp với Ollama, LM Studio, vLLM và nhiều local LLM servers khác thông qua các lớp wrapper như <code>OllamaLLM</code> và ````ChatOllama```. Điều này cho phép bạn phát triển và test ứng dụng hoàn toàn miễn phí trên máy local trước khi triển khai với commercial APIs.</p><h3 id=langchain-có-hỗ-trợ-javascripttypescript-không>LangChain có hỗ trợ JavaScript/TypeScript không?<a hidden class=anchor aria-hidden=true href=#langchain-có-hỗ-trợ-javascripttypescript-không>#</a></h3><p>Có, LangChain cung cấp thư viện <strong>LangChain.js</strong> với API tương tự phiên bản Python. LangChain.js hỗ trợ chạy trên Node.js, Edge runtime (Vercel, Cloudflare Workers) và trình duyệt. Tuy nhiên, một số integrations và cộng đồng tài nguyên vẫn phong phú hơn ở phiên bản Python.</p><h2 id=kết-luận-và-bước-tiếp-theo>Kết Luận và Bước Tiếp Theo<a hidden class=anchor aria-hidden=true href=#kết-luận-và-bước-tiếp-theo>#</a></h2><p>LangChain đã khẳng định vị thế là framework hàng đầu cho việc xây dựng ứng dụng AI production-ready vào năm 2025. Với kiến trúc modular, hệ sinh thái đầy đủ gồm LangChain core, LangGraph và LangSmith, cùng cộng đồng hơn 95.000 contributors trên GitHub, framework này cung cấp mọi công cụ cần thiết từ prototype đến triển khai quy mô lớn.</p><p>Để tiếp tục hành trình, bạn nên: 1. <strong>Thực hành với tutorial chính thức</strong>: truy cập <a href=https://python.langchain.com>python.langchain.com</a> để làm theo các hướng dẫn từng bước
-2. <strong>Đọc source code trên GitHub</strong>: <a href=https://github.com/langchain-ai/langchain>github.com/langchain-ai/langchain</a> chứa hàng trăm ví dụ thực tế
-3. <strong>Thử nghiệm LangSmith</strong>: đăng ký tài khoản tại <a href=https://smith.langchain.com>smith.langchain.com</a> để quan sát và tối ưu ứng dụng của bạn
+</code></pre><p>LangChain applications thường được triển khai dưới dạng FastAPI/Flask API, containerized với Docker, và chạy trên Kubernetes hoặc các nền tảng serverless như AWS Lambda, Google Cloud Run.</p>
+<h2 id="top-langchain-alternatives-2025">Top LangChain Alternatives 2025<a hidden class="anchor" aria-hidden="true" href="#top-langchain-alternatives-2025">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Framework</th>
+					<th>Điểm mạnh chính</th>
+					<th>Trường hợp sử dụng tốt nhất</th>
+					<th>Stars GitHub (tháng 5/2025)</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>LangChain</strong></td>
+					<td>Hệ sinh thái đầy đủ nhất, linh hoạt cao</td>
+					<td>General-purpose LLM apps</td>
+					<td>95.000+</td>
+			</tr>
+			<tr>
+					<td><strong>LlamaIndex</strong></td>
+					<td>RAG và data ingestion vượt trội</td>
+					<td>Document Q&amp;A, knowledge bases</td>
+					<td>39.000+</td>
+			</tr>
+			<tr>
+					<td><strong>Haystack</strong></td>
+					<td>Enterprise search pipeline</td>
+					<td>Semantic search quy mô lớn</td>
+					<td>14.000+</td>
+			</tr>
+			<tr>
+					<td><strong>CrewAI</strong></td>
+					<td>Multi-agent workflows đơn giản</td>
+					<td>Team automation, content creation</td>
+					<td>25.000+</td>
+			</tr>
+			<tr>
+					<td><strong>AutoGen</strong></td>
+					<td>Conversational agents, code execution</td>
+					<td>Research, data analysis multi-agent</td>
+					<td>35.000+</td>
+			</tr>
+	</tbody>
+</table>
+<p>Mỗi framework có điểm mạnh riêng. Nếu dự án của bạn tập trung vào RAG với dữ liệu phức tạp, LlamaIndex có thể là lựa chọn tốt hơn. Nếu cần multi-agent systems với khả năng thực thi code, AutoGen sẽ phù hợp hơn.</p>
+<h2 id="faq--các-câu-hỏi-thường-gặp-về-langchain">FAQ — Các Câu Hỏi Thường Gặp Về LangChain<a hidden class="anchor" aria-hidden="true" href="#faq--các-câu-hỏi-thường-gặp-về-langchain">#</a></h2>
+<h3 id="langchain-được-sử-dụng-cho-mục-đích-gì">LangChain được sử dụng cho mục đích gì?<a hidden class="anchor" aria-hidden="true" href="#langchain-được-sử-dụng-cho-mục-đích-gì">#</a></h3>
+<p>LangChain được dùng để xây dựng ứng dụng AI powered by large language models. Các use cases phổ biến bao gồm: chatbot thông minh, hệ thống Q&amp;A dựa trên tài liệu (RAG), agents tự chủ có khả năng sử dụng công cụ, ứng dụng phân tích dữ liệu tự động, và hệ thống tóm tắt/trích xuất thông tin quy mô lớn.</p>
+<h3 id="langchain-có-miễn-phí-không">LangChain có miễn phí không?<a hidden class="anchor" aria-hidden="true" href="#langchain-có-miễn-phí-không">#</a></h3>
+<p>Có, LangChain core framework hoàn toàn miễn phí và mã nguồn mở dưới giấy phép MIT. Bạn chỉ cần trả phí cho các API LLM (OpenAI, Anthropic, v.v.) hoặc các dịch vụ cloud tích hợp. LangSmith có gói miễn phí với 5.000 traces/tháng, và các gói trả phí bắt đầu từ $39/tháng cho developer plan.</p>
+<h3 id="nên-chọn-langchain-hay-llamaindex">Nên chọn LangChain hay LlamaIndex?<a hidden class="anchor" aria-hidden="true" href="#nên-chọn-langchain-hay-llamaindex">#</a></h3>
+<p>Chọn <strong>LangChain</strong> nếu bạn cần xây dựng ứng dụng LLM đa dạng với agents, công cụ và luồng phức tạp. Chọn <strong>LlamaIndex</strong> nếu dự án tập trung chủ yếu vào RAG, xử lý tài liệu và truy xuất dữ liệu thông minh. Hai framework có thể kết hợp: dùng LlamaIndex làm backend retrieval và LangChain làm lớp orchestration phía trên.</p>
+<h3 id="langchain-có-hoạt-động-với-local-llms-như-ollama-không">LangChain có hoạt động với local LLMs như Ollama không?<a hidden class="anchor" aria-hidden="true" href="#langchain-có-hoạt-động-với-local-llms-như-ollama-không">#</a></h3>
+<p>Có, LangChain hỗ trợ tích hợp với Ollama, LM Studio, vLLM và nhiều local LLM servers khác thông qua các lớp wrapper như <code>OllamaLLM</code> và ````ChatOllama```. Điều này cho phép bạn phát triển và test ứng dụng hoàn toàn miễn phí trên máy local trước khi triển khai với commercial APIs.</p>
+<h3 id="langchain-có-hỗ-trợ-javascripttypescript-không">LangChain có hỗ trợ JavaScript/TypeScript không?<a hidden class="anchor" aria-hidden="true" href="#langchain-có-hỗ-trợ-javascripttypescript-không">#</a></h3>
+<p>Có, LangChain cung cấp thư viện <strong>LangChain.js</strong> với API tương tự phiên bản Python. LangChain.js hỗ trợ chạy trên Node.js, Edge runtime (Vercel, Cloudflare Workers) và trình duyệt. Tuy nhiên, một số integrations và cộng đồng tài nguyên vẫn phong phú hơn ở phiên bản Python.</p>
+<h2 id="kết-luận-và-bước-tiếp-theo">Kết Luận và Bước Tiếp Theo<a hidden class="anchor" aria-hidden="true" href="#kết-luận-và-bước-tiếp-theo">#</a></h2>
+<p>LangChain đã khẳng định vị thế là framework hàng đầu cho việc xây dựng ứng dụng AI production-ready vào năm 2025. Với kiến trúc modular, hệ sinh thái đầy đủ gồm LangChain core, LangGraph và LangSmith, cùng cộng đồng hơn 95.000 contributors trên GitHub, framework này cung cấp mọi công cụ cần thiết từ prototype đến triển khai quy mô lớn.</p>
+<p>Để tiếp tục hành trình, bạn nên: 1. <strong>Thực hành với tutorial chính thức</strong>: truy cập <a href="https://python.langchain.com">python.langchain.com</a> để làm theo các hướng dẫn từng bước
+2. <strong>Đọc source code trên GitHub</strong>: <a href="https://github.com/langchain-ai/langchain">github.com/langchain-ai/langchain</a> chứa hàng trăm ví dụ thực tế
+3. <strong>Thử nghiệm LangSmith</strong>: đăng ký tài khoản tại <a href="https://smith.langchain.com">smith.langchain.com</a> để quan sát và tối ưu ứng dụng của bạn
 4. <strong>Tham gia cộng đồng</strong>: Discord server của LangChain có hơn 30.000 thành viên sẵn sàng hỗ trợ
-5. <strong>Tìm hiểu LangGraph</strong>: khi đã thành thạo LangChain core, nâng cấp lên LangGraph để xử lý các workflow phức tạp</p><p>Bắt đầu bằng một ứng dụng RAG đơn giản, sau đó từ từ thêm agents, memory và monitoring — đây là con đường hiệu quả nhất để làm chủ LangChain trong năm 2025.</p><hr><p><strong>Tài liệu tham khảo:</strong></p><ul><li><a href=https://python.langchain.com>LangChain Official Documentation</a></li><li><a href=https://github.com/langchain-ai/langchain>LangChain GitHub Repository</a></li><li><a href=https://docs.smith.langchain.com>LangSmith Documentation</a></li><li><a href=https://langchain-ai.github.io/langgraph>LangGraph Documentation</a></li><li><a href=https://huggingface.co>Hugging Face Models Hub</a></li></ul><hr><h2 id=hạ-tầng-đề-xuất>Hạ Tầng Đề Xuất<a hidden class=anchor aria-hidden=true href=#hạ-tầng-đề-xuất>#</a></h2><p>Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.</li><li><strong><a href="https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN">Hostinger</a></strong> — VPS giá tốt cho thị trường Việt Nam.</li></ul><p><em>Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+5. <strong>Tìm hiểu LangGraph</strong>: khi đã thành thạo LangChain core, nâng cấp lên LangGraph để xử lý các workflow phức tạp</p>
+<p>Bắt đầu bằng một ứng dụng RAG đơn giản, sau đó từ từ thêm agents, memory và monitoring — đây là con đường hiệu quả nhất để làm chủ LangChain trong năm 2025.</p>
+<hr>
+<p><strong>Tài liệu tham khảo:</strong></p>
+<ul>
+<li><a href="https://python.langchain.com">LangChain Official Documentation</a></li>
+<li><a href="https://github.com/langchain-ai/langchain">LangChain GitHub Repository</a></li>
+<li><a href="https://docs.smith.langchain.com">LangSmith Documentation</a></li>
+<li><a href="https://langchain-ai.github.io/langgraph">LangGraph Documentation</a></li>
+<li><a href="https://huggingface.co">Hugging Face Models Hub</a></li>
+</ul>
+<hr>
+<h2 id="hạ-tầng-đề-xuất">Hạ Tầng Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hạ-tầng-đề-xuất">#</a></h2>
+<p>Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.</li>
+<li><strong><a href="https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN">Hostinger</a></strong> — VPS giá tốt cho thị trường Việt Nam.</li>
+</ul>
+<p><em>Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Hướng Dẫn Toàn Diện LangChain 2025: Từ Zero Đến Ứng Dụng AI Production&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
@@ -146,18 +586,175 @@ CMD [&#34;uvicorn&#34;, &#34;main:app&#34;, &#34;--host&#34;, &#34;0.0.0.0&#34;,
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/langchain-complete-guide%22>https://dibi8.com/vi/resources/langchain-complete-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/langchain-complete-guide%22">https://dibi8.com/vi/resources/langchain-complete-guide"</a>
 }
-}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/ladybird-independent-web-browser/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/langchain/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/ladybird-independent-web-browser/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/langchain/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

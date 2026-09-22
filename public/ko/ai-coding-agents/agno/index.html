@@ -1,10 +1,307 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/agno/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/agno/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/agno/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/agno/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/agno/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/agno/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/agno/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“agno”, “ai-agent”, “python-sdk”, “multi-agent”, “오픈소스”, “경량 프레임워크”, “agent-platform”, “ollama”, “openai”] aliases:\n/kr/posts/agno/ 2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 “에이전트 개발을 단순화\"하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. 40,233개의 GitHub Star, 452명의 기여자, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 agno tutorial —는 agno setup, 아키텍처, 실제 코드 예제, agno vs crewai 벤치마크 비교, 그리고 이 lightweight ai framework의 부족한 부분에 대한 진실한 분석을 다룹니다.\nAgno란 무엇인가? Agno는 AI 에이전트 플랫폼을 구축, 실행 및 관리하기 위한 오픈소스 Python SDK입니다. 원래 Phidata라는 이름으로 출시되었으며, 2024년 말에 Agno로 재브랜딩되고 Apache-2.0 라이선스로 변경되었습니다. Agno의 핵심은 세 가지 통합 계층을 제공합니다: 에이전트와 멀티 에이전트 팀을 정의하는 Python SDK, 프로덕션 배포를 위한 Stateless FastAPI 런타임인 AgentOS, 그리고 모니터링, 세션 관리 및 팀 운영을 위한 컨트롤 플레인 UI입니다.\nAgno의 가치 제안은 간단합니다: 일반 Python 클래스로 에이전트를 빌드하고, 100개 이상의 사전 구축된 통합 라이브러리에서 도구를 연결하고, 그래프 DSL이나 역할 기반 추상화를 배우지 않고 API 서비스로 배포합니다. 이 프레임워크는 OpenAI, Anthropic Claude, Google Gemini, Cohere, 그리고 Ollama를 통한 로컬 모델을 포함한 23개 이상의 LLM 제공업체를 지원합니다. 에이전트 초기화는 약 3마이크로초가 소요되며, 메모리 사용량은 에이전트당 약 6.5 KiB로, 유사한 프레임워크에 비해 약 50배 적은 오버헤드를 가집니다.\nAgno의 작동 방식 아키텍처 개요 Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ```` ┌─────────────────────────────────────────────────────────────┐ │ 컨트롤 플레인 (AgentOS UI) │ │ 채팅 · 트레이스 검사 · 세션 관리 │ ├─────────────────────────────────────────────────────────────┤ │ 런타임 (AgentOS API) │ │ FastAPI · 세션 스토리지 · RBAC · 스케줄링 · 인증 │ ├─────────────────────────────────────────────────────────────┤ │ SDK 계층 │ │ Agent · Team · Tools · Memory · Knowledge · Guardrails │ ├─────────────────────────────────────────────────────────────┤ │ 모델 제공업체 (23개 이상 지원) │ │ OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok … │ └─────────────────────────────────────────────────────────────┘\n### 핵심 개념 ![Agno AgentOS 대시보드](https://mintcdn.com/agno-v2/8V9aTUOgPNSFLOye/images/demo-os.png) **Agent(에이전트)**: 기본 단위입니다. Agno 에이전트는 모델, 도구, 지시사항, 메모리, 지식 베이스로 LLM 호출을 래핑합니다. 에이전트는 숨겨진 상태가 없는 일반 Python 객체입니다. **Team(팀)**: 메모리, 도구, 지식을 공유하는 에이전트의 모음입니다. 팀은 에이전트가 공유 컨텍스트를 통해 통신하는 그래프 정의 없이 멀티 에이전트 오케스트레이션을 가능하게 합니다. **Tools(도구)**: 웹 검색(DuckDuckGo, Google), 파일 작업(PDF, CSV, DOCX), API, 데이터베이스, MCP(Model Context Protocol) 서버를 포함한 100개 이상의 사전 구축된 도구 통합입니다. **Memory \u0026 Knowledge(메모리와 지식)**: 일차적인 시스템으로, 사용자 메모리, 세션 상태, RAG 지식 베이스가 **사용자의** 데이터베이스에 저장됩니다 — Agno는 데이터를 관리형 서비스에 가두지 않습니다. **AgentOS 런타임**: 에이전트를 REST API로 제공하는 Stateless FastAPI 백엔드입니다. 세션 읽기/쓰기, 컨텍스트 주입, 인간 승인 루프, OpenTelemetry 트레이싱을 자동으로 처리합니다. ## 설치 및 설정 Agno는 Python 3.10+ 이외의 외부 의존성 없이 2분 이내에 설치됩니다. ### 1단계: 가상 환경 생성 `````bash # uv 사용 (권장) curl -LsSf https://astral.sh/uv/install.sh | sh uv venv --python 3.12 source .venv/bin/activate # 또는 표준 venv 사용 python3 -m venv ~/.venvs/agno source ~/.venvs/agno/bin/activate 2단계: Agno 설치 # 최소 설치 uv pip install -U agno # OpenAI 지원 포함 uv pip install -U agno openai # 일반적인 도구 포함 전체 설치 uv pip install -U agno openai duckduckgo-search chromadb 3단계: 설치 확인 python -c \"import agno; print(agno.__version__)\" # 예상: 2.6.8 이상 4단계: 첫 번째 에이전트 실행 basic_agent.py를 생성합니다: `````python from agno.agent import Agent\nagent = Agent( model=“openai:gpt-4o”, description=“당신은 도움이 되는 코딩 어시스턴트입니다.”, markdown=True, )\nagent.print_response(“Python에서 asyncio와 threading의 차이점을 설명하세요.”, stream=True)\n`````bash export OPENAI_API_KEY=\"sk-your-key-here\" python basic_agent.py 이것으로 끝입니다 — 10줄의 Python으로 작동하는 에이전트입니다. YAML 설정, 그래프 정의, 번거로움이 없습니다.\nOpenAI, Anthropic, Ollama, Docker, AWS 통합 OpenAI 통합 from agno.agent import Agent from agno.models.openai import OpenAIChat from agno.tools.duckduckgo import DuckDuckGoTools agent = Agent( model=OpenAIChat(id=\"gpt-4o\"), tools=[DuckDuckGoTools()], show_tool_calls=True, markdown=True, ) agent.print_response(\"양자 컴퓨팅의 최신 소식\", stream=True) Anthropic Claude 통합 from agno.agent import Agent from agno.models.anthropic import Claude agent = Agent( model=Claude(id=\"claude-sonnet-4-20250514\"), description=\"당신은 시장 동향을 전문으로 하는 연구 분석가입니다.\", markdown=True, ) agent.print_response(\"동남아시아의 EV 시장을 분석하세요.\", stream=True) Ollama 통합 (로컬 모델) from agno.agent import Agent from agno.models.ollama import Ollama agent = Agent( model=Ollama(id=\"qwen3\"), description=\"당신은 완전히 오프라인으로 실행되는 로컬 AI 어시스턴트입니다.\", markdown=True, ) agent.print_response(\"Python 예제로 재귀를 설명하세요.\", stream=True) # Ollama 설치 curl -fsSL https://ollama.com/install.sh | sh # 모델 가져오기 ollama pull qwen3 # 실행 python ollama_agent.py Docker 배포 FROM python:3.12-slim WORKDIR /app COPY requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY . . EXPOSE 8000 CMD [\"python\", \"workbench.py\"] # docker-compose.yml version: '3.8' services: agentos: build: . ports: - \"8000:8000\" environment: - OPENAI_API_KEY=${OPENAI_API_KEY} - AGNO_ENV=production volumes: - ./data:/app/data restart: unless-stopped AWS 배포 (ECS with Fargate) # 빌드 및 ECR에 푸시 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com docker build -t agno-agent . docker tag agno-agent:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest # Fargate에 배포 aws ecs create-service \\ --cluster agno-production \\ --service-name agent-service \\ --task-definition agno-task:1 \\ --desired-count 2 \\ --launch-type FARGATE 벤치마크 / 실제 사용 사례 성능 벤치마크 Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점을 보여줍니다: 지표 Agno CrewAI AutoGen LangGraph 에이전트 초기화 ~3 μs ~12 ms ~45 ms ~150 ms 에이전트당 메모리 ~6.5 KiB ~320 KiB ~1.2 MiB ~2.8 MiB 콜드 스타트 (로컬) 45 ms 890 ms 2.1 s 4.5 s 지원 LLM 제공업체 23+ 8+ 12+ 15+ 내장 도구 수 100+ 25+ 40+ 60+ 기본 에이전트 코드 라인 7 25 35 40+ 이러한 숫자는 규모가 클 때 중요합니다. 1,000개의 동시 에이전트 세션을 실행하는 서비스는 Agno로 약 6.5 MiB를 소비하는 반면, LangGraph로는 약 2.8 GiB를 소비합니다 — 클라우드 비용에 직접적인 영향을 미치는 400배의 메모리 차이입니다.\n프로덕션 사용 사례 데이터 라벨링 파이프라인: ML 팀은 텍스트, 이미지, 오디오, 비디오 데이터셋을 라벨링하기 위해 Agno를 사용합니다. 멀티모달 입력 지원은 단일 에이전트 파이프라인이 혼합 미디어를 프레임워크 전환 없이 처리할 수 있음을 의미합니다.\n제품 코파일럿: 팀은 AgentOS API를 통해 제품에 Agno 에이전트를 직접 임베드합니다. 세션 스토리지와 메모리는 사용자 세션 간 대화 연속성을 가능하게 합니다.\n문서 처리: ChromaDB, LanceDB 또는 PostgreSQL 벡터 스토어를 통한 하이브리드 RAG 검색을 갖춘 지식 에이전트는 법률 계약서, 의료 기록, 재무 보고서를 처리합니다.\n합성 데이터 생성: 데이터 사이언스 팀은 Agno의 구조화된 출력 기능을 활용하여 미세 조정을 위한 훈련 쌍과 선호 데이터셋을 생성합니다.\n고급 사용법 / 프로덕션 강화 멀티 에이전트 시스템 Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: `````python from agno.agent import Agent from agno.models.openai import OpenAIChat from agno.tools.duckduckgo import DuckDuckGoTools from agno.team import Team\n연구 에이전트 researcher = Agent( name=“Researcher”, model=OpenAIChat(id=“gpt-4o-mini”), tools=[DuckDuckGoTools()], description=“모든 주제의 최신 데이터와 통계를 찾습니다.”, )\n작가 에이전트 writer = Agent( name=“Writer”, model=OpenAIChat(id=“gpt-4o”), description=“연구 노트에서 세련된 기사를 작성합니다.”, )\n팀 구성 team = Team( name=“Content Team”, members=[researcher, writer], instructions=“잘 연구되고 매력적인 콘텐츠를 협업하여 제작합니다.”, )\nteam.print_response(“2026년 재생 에너지 동향에 대한 기사를 작성하세요.”, stream=True)\n### Agentic RAG 지식 베이스 `````python from agno.agent import Agent from agno.knowledge.embedder.google import GeminiEmbedder from agno.knowledge.knowledge import Knowledge from agno.models.google import Gemini from agno.vectordb.chroma import ChromaDb from agno.vectordb.search import SearchType knowledge = Knowledge( vector_db=ChromaDb( collection=\"docs\", path=\"tmp/chromadb\", persistent_client=True, search_type=SearchType.hybrid, embedder=GeminiEmbedder(id=\"gemini-embedding-001\"), ), ) knowledge.insert(url=\"https://docs.agno.com/introduction.md\", skip_if_exists=True) agent = Agent( model=Gemini(id=\"gemini-3-flash-preview\"), knowledge=knowledge, search_knowledge=True, markdown=True, ) agent.print_response(\"Agno란 무엇인가요?\", stream=True) 세션 스토리지가 있는 프로덕션 서비스 from agno.agent import Agent from agno.db.sqlite import SqliteDb from agno.os import AgentOS from agno.tools.workspace import Workspace workbench = Agent( name=\"Workbench\", model=\"openai:gpt-5.5\", db=SqliteDb(db_file=\"workbench.db\"), memory=True, tools=[Workspace(root=\"./workspace\", allowed=[\"read\", \"list\", \"search\", \"shell\"])], instructions=\"사용자가 작업 공간 파일을 구성하고 분석하도록 도와줍니다.\", markdown=True, ) # API로 서비스 제공 AgentOS.agent = workbench AgentOS.serve(host=\"0.0.0.0\", port=8000) # 서비스 시작 python workbench.py # curl로 테스트 curl -X POST http://localhost:8000/v1/agents/workbench/run \\ -H \"Content-Type: application/json\" \\ -d '{\"message\": \"내 다운로드 폴더를 정리해줘\", \"session_id\": \"user-123\"}\" 보안 및 모니터링 from agno.agent import Agent from agno.os import AgentOS # 파괴적 도구에 대해 인간 승인 활성화 agent = Agent( name=\"SecureAgent\", model=\"openai:gpt-4o\", tools=[Workspace(root=\"./data\", allowed=[\"read\", \"list\"])], human_approval=True, # 도구 호출에 승인 필요 audit_trail=True, # 모든 작업 기록 markdown=True, ) # OpenTelemetry 트레이싱 (AgentOS에서 자동 구성) AgentOS.agent = agent AgentOS.serve(host=\"0.0.0.0\", port=8000) 대안과의 비교 기능 Agno CrewAI AutoGen LangChain + LangGraph GitHub Star 40,233 51,000+ 58,000+ 96,000+ / 31,000+ 라이선스 Apache-2.0 MIT MIT (코드) / CC-BY-4.0 (문서) MIT 아키텍처 SDK + FastAPI 런타임 + 컨트롤 플레인 역할 기반 팀 대화형 멀티 에이전트 그래프 기반 오케스트레이션 에이전트 초기화 속도 ~3 μs ~12 ms ~45 ms ~150 ms 메모리 오버헤드 ~6.5 KiB ~320 KiB ~1.2 MiB ~2.8 MiB LLM 제공업체 수 23+ 8+ 12+ 15+ 내장 도구 수 100+ 25+ 40+ 60+ 학습 곡선 낮음 중간 높음 높음 최적 사용처 프로덕션 에이전트 서비스 역할 기반 업무 워크플로우 연구 / 마이크로소프트 에코시스템 복잡한 상태 저장 워크플로우 데이터 자체 호스팅 예 (당신의 DB) 부분 예 예 MCP 지원 예 아니오 제한적 예 AgentOS UI 예 (내장) 아니오 아니오 LangSmith (별도) 커뮤니티 452 기여자 성장 중 마이크로소프트 지원 가장 큰 에코시스템 Agno를 선택할 때: 세션 관리, 트레이싱, 낮은 메모리 사용량이 있는 가벼운 API 중심 에이전트가 필요한 경우.\nCrewAI를 선택할 때: 역할 기반 팀(연구원, 작가, 편집자)이 당신의 멘탈 모델에 맞고 최소한의 설정으로 구조화된 워크플로우가 필요한 경우.\nAutoGen를 선택할 때: 마이크로소프트 에코시스템에 있고, 연구 도구를 빌드하거나, 내장 코드 실행이 있는 대화형 멀티 에이전트 시스템이 필요한 경우.\nLangGraph를 선택할 때: 명시적 상태 머신, 체크포인팅, 리플레이, 그래프 의미론이 제공하는 세밀한 분기 제어가 워크플로우에 필요한 경우.\n한계 / 정직한 평가 Agno는 모든 에이전트 사용 사례에 적합한 도구는 아닙니다. 도입 전 고려해야 할 사항은 다음과 같습니다: 그래프 의미론 부재: 워크플로우에 명시적 상태 전환, 체크포인팅, 재생 가능한 실행 경로가 필요한 경우 LangGraph의 그래프 모델이 더 적합합니다. Agno의 팀 기반 오케스트레이션은 더 간단하지만 복잡한 분기 논리에서는 덜 정확합니다.\nLangChain보다 작은 커뮤니티: 452명의 기여자 대 LangChain의 3,000+명, 서드파티 튜토리얼과 StackOverflow 답변은 적습니다. 문서가 빠르게 개선되고 있지만 아직 엣지 케이스 시나리오에는 공백이 있습니다.\nPython 전용: LangChain이 JavaScript/TypeScript를 지원하고 AutoGen이 .NET 경로를 가진 반면, Agno는 Python 전용입니다. Node.js나 .NET을 사용하는 풀스택 팀은 언어 브리지가 필요합니다.\n더 젊은 생태계: Phidata에서 Agno로의 리브랜딩(2024년 말)과 1.x에서 2.x로의 마이그레이션은 패키지 레이아웃과 API를 변경했습니다. 일부 오래된 커뮤니티 튜토리얼은 더 이상 사용되지 않는 임포트를 사용합니다.\nAgentOS 종속성 고려: SDK는 완전히 오픈소스이지만, agno.com에서 호스팅되는 AgentOS UI는 프리미엄 기능을 제공합니다. 팀은 컨트롤 플레인에 약속하기 전에 어떤 기능이 유료 플랜을 필요로 하는지 확인해야 합니다.\n자주 묻는 질문 프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요? Agno는 런타임 오버헤드와 서비스 패키징을 우선시합니다 — 세션과 트레이싱이 있는 FastAPI 백엔드를 몇 분 안에 얻을 수 있습니다. LangGraph는 상태 관리와 분기 제어에 대해 더 많은 제어를 제공하지만 그래프 의미론을 배워야 하며 상당히 높은 메모리 오버헤드를 가집니다. 에이전트 API를 제공하는 팀에게는 Agno가 상용구를 줄입니다. 복잡한 결정론적 워크플로우를 구축하는 팀에게는 LangGraph의 명시적 상태 모델이 학습 비용을 감수할 가치가 있습니다.\nAgno를 로컬 모델만으로 실행할 수 있나요? 네. Agno는 Ollama, LM Studio, 그리고 모든 OpenAI 호환 로컬 엔드포인트와 통합됩니다. Ollama 모델 제공업체를 사용하면 Llama 3, Qwen3, Mistral과 같은 모델로 완전히 오프라인에서 실행할 수 있습니다. 로컬 배포에는 API 키나 클라우드 의존성이 필요하지 않습니다.\nAgno는 세션 스토리지에 어떤 데이터베이스를 지원하나요? Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, LanceDB를 지원합니다. SqliteDb, PostgresDb, LanceDb 클래스가 세션 읽기/쓰기를 자동으로 처리합니다 — 수동 SQL이 필요 없습니다. 지원되는 벡터 데이터베이스는 ChromaDB, LanceDB, RAG 지식 베이스용 pgvector를 포함합니다.\nAgno는 엔터프라이즈 배포에 적합한가요? 예, 단 주의가 필요합니다. Agno의 AgentOS 런타임은 RBAC, 인간 승인 루프, 감사 추적, OpenTelemetry 가시성을 포함합니다 — 이는 모두 엔터프라이즈 배포에 필요한 요구사항입니다. 그러나 이 프로젝트는 LangChain보다 젊고, 엔터프라이즈 지원(SLA, 전담 지원)은 Agno의 상업 제품을 통해서만 사용할 수 있습니다. 엄격한 규정 준수 요구사항이 있는 팀은 자체 호스팅과 관리형 옵션을 평가해야 합니다.\nPhidata에서 Agno로 어떻게 마이그레이션하나요? 마이그레이션은 패키지 임포트를 phidata에서 agno로 업데이트하고 2.x API 변경 사항에 적응하는 것을 포함합니다. Agno 팀은 일반적인 패턴을 다루는 마이그레이션 가이드를 제공합니다. 주요 변경 사항은 Agent 클래스가 PhiAgent를 대체하고, Team 클래스가 ````PhiTeam```을 대체하며, AgentOS 런타임이 별도의 모듈이 되는 것입니다. 대부분의 마이그레이션은 중간 규모의 코드베이스에 대해 몇 시간이 소요됩니다.\nAgentOS 런타임 없이 Agno를 사용할 수 있나요? 완전히 가능합니다. SDK 계층은 완전히 독립적입니다. 에이전트를 독립형 Python 스크립트로 빌드하고 실행하거나, 기존 FastAPI/Django/Flask 앱에 통합하거나, 에이전트와 도구 구성 요소만 사용할 수 있습니다. AgentOS는 세션 관리와 모니터링이 즉시 필요한 팀을 위한 선택적 편의 계층입니다.\n결론 Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다: Python 팀에게 그래프 기반 오케스트레이션의 복잡성 없이 에이전트 서비스를 빌드하고 배포할 수 있는 빠르고 가벼운 방법을 제공합니다. 3 μs 에이전트 초기화, 6.5 KiB 메모리 사용량, 100개 이상의 사전 구축 도구는 직접적으로 더 낮은 인프라 비용과 더 빠른 개발 주기로 전환됩니다.\n2026년에 프로덕션 에이전트를 제공하는 팀에게 결정 프레임워크는 간단합니다: 가벼운 API 중심 에이전트가 필요하면 Agno로 시작하세요; 역할 기반 팀이 당신의 멘탈 모델에 맞으면 CrewAI를 평가하세요; 마이크로소프트 중심 또는 연구 워크로드의 경우 AutoGen을 고려하세요; 명시적 상태 머신 의미론이 타협할 수 없는 경우에만 LangGraph를 사용하세요.\n40,233개의 GitHub Star와 452명의 기여자 커뮤니티는 Agno가 유망한 프로젝트에서 프로덕션에 적합한 플랫폼으로 도약했음을 보여줍니다. 이를 평가하는 가장 좋은 방법은 설치 섹션에서 10줄 예제를 실행하고 설정 시간을 대안과 비교하는 것입니다.\n실행 항목: Agno GitHub 저장소를 클론하고, 첫 번째 에이전트를 실행한 다음, 위의 Docker 설정을 사용하여 클라우드 서버에 배포하세요. 실시간 지원을 위해 Agno Discord 커뮤니티에 가입하세요.\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n참고 자료 및 추가 독서 Agno GitHub 저장소 — 공식 소스 코드, 40,233 Star Agno 공식 문서 — 예제와 API 레퍼런스가 포함된 완전한 문서 Agno AgentOS — 에이전트 관리를 위한 호스팅 컨트롤 플레인 FutureAGI 프레임워크 비교 2026 — 오픈소스 에이전트 프레임워크 상세 비교 Deepchecks AI 에이전트 프레임워크 2025 — 프레임워크 벤치마크 및 사용 사례 분석 CrewAI vs LangGraph vs AutoGen vs Agno — 창업자를 위한 프레임워크 비교 AI Agents Kit 비교 2026 — 커뮤니티 주도 프레임워크 순위 Agno vs CrewAI 상세 비교 — 커뮤니티 리뷰가 포함된 기능별 분석 이 기사에는 제휴 링크가 포함되어 있습니다. 이러한 링크를 통해 서비스에 가입하면 추가 비용 없이 dibi8.com에 커미션이 지급될 수 있습니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, AutoGen 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/agno\" } } Related Articles ollama-vs-lm-studio ollama-vs-vllm llm-inference-cost-optimization-guide-2026 ollama-vs-vllm ollama-vs-lm-studio Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"2353","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/agno/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/agno/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/agno/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/agno/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><ul><li><a href=#agno%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80 aria-label="Agno란 무엇인가?">Agno란 무엇인가?</a></li><li><a href=#agno%ec%9d%98-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d aria-label="Agno의 작동 방식">Agno의 작동 방식</a><ul><li><a href=#%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94 aria-label="아키텍처 개요">아키텍처 개요</a></li><li><a href=#2%eb%8b%a8%ea%b3%84-agno-%ec%84%a4%ec%b9%98 aria-label="2단계: Agno 설치">2단계: Agno 설치</a></li><li><a href=#3%eb%8b%a8%ea%b3%84-%ec%84%a4%ec%b9%98-%ed%99%95%ec%9d%b8 aria-label="3단계: 설치 확인">3단계: 설치 확인</a></li><li><a href=#4%eb%8b%a8%ea%b3%84-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8b%a4%ed%96%89 aria-label="4단계: 첫 번째 에이전트 실행">4단계: 첫 번째 에이전트 실행</a></li></ul></li><li><a href=#openai-anthropic-ollama-docker-aws-%ed%86%b5%ed%95%a9 aria-label="OpenAI, Anthropic, Ollama, Docker, AWS 통합">OpenAI, Anthropic, Ollama, Docker, AWS 통합</a><ul><li><a href=#openai-%ed%86%b5%ed%95%a9 aria-label="OpenAI 통합">OpenAI 통합</a></li><li><a href=#anthropic-claude-%ed%86%b5%ed%95%a9 aria-label="Anthropic Claude 통합">Anthropic Claude 통합</a></li><li><a href=#ollama-%ed%86%b5%ed%95%a9-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8 aria-label="Ollama 통합 (로컬 모델)">Ollama 통합 (로컬 모델)</a></li><li><a href=#docker-%eb%b0%b0%ed%8f%ac aria-label="Docker 배포">Docker 배포</a></li><li><a href=#aws-%eb%b0%b0%ed%8f%ac-ecs-with-fargate aria-label="AWS 배포 (ECS with Fargate)">AWS 배포 (ECS with Fargate)</a></li></ul></li><li><a href=#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul><li><a href=#%ec%84%b1%eb%8a%a5-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac aria-label="성능 벤치마크">성능 벤치마크</a></li><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80 aria-label="프로덕션 사용 사례">프로덕션 사용 사례</a></li></ul></li><li><a href=#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94 aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul><li><a href=#%eb%a9%80%ed%8b%b0-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8b%9c%ec%8a%a4%ed%85%9c aria-label="멀티 에이전트 시스템">멀티 에이전트 시스템</a></li></ul></li></ul><li><a href=#%ec%97%b0%ea%b5%ac-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8 aria-label="연구 에이전트">연구 에이전트</a></li><li><a href=#%ec%9e%91%ea%b0%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8 aria-label="작가 에이전트">작가 에이전트</a></li><li><a href=#%ed%8c%80-%ea%b5%ac%ec%84%b1 aria-label="팀 구성">팀 구성</a><ul><ul><li><a href=#%ec%84%b8%ec%85%98-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80%ea%b0%80-%ec%9e%88%eb%8a%94-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%84%9c%eb%b9%84%ec%8a%a4 aria-label="세션 스토리지가 있는 프로덕션 서비스">세션 스토리지가 있는 프로덕션 서비스</a></li><li><a href=#%eb%b3%b4%ec%95%88-%eb%b0%8f-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81 aria-label="보안 및 모니터링">보안 및 모니터링</a></li></ul><li><a href=#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90 aria-label="대안과의 비교">대안과의 비교</a></li><li><a href=#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80 aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li><li><a href=#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8 aria-label="자주 묻는 질문">자주 묻는 질문</a><ul><li><a href=#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%99%98%ea%b2%bd%ec%97%90%ec%84%9c-agno%ec%99%80-langgraph%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%b9%84%ea%b5%90%ed%95%98%eb%82%98%ec%9a%94 aria-label="프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요?">프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요?</a></li><li><a href=#agno%eb%a5%bc-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8%eb%a7%8c%ec%9c%bc%eb%a1%9c-%ec%8b%a4%ed%96%89%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94 aria-label="Agno를 로컬 모델만으로 실행할 수 있나요?">Agno를 로컬 모델만으로 실행할 수 있나요?</a></li><li><a href=#agno%eb%8a%94-%ec%84%b8%ec%85%98-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80%ec%97%90-%ec%96%b4%eb%96%a4-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%eb%a5%bc-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94 aria-label="Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?">Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?</a></li><li><a href=#agno%eb%8a%94-%ec%97%94%ed%84%b0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88-%eb%b0%b0%ed%8f%ac%ec%97%90-%ec%a0%81%ed%95%a9%ed%95%9c%ea%b0%80%ec%9a%94 aria-label="Agno는 엔터프라이즈 배포에 적합한가요?">Agno는 엔터프라이즈 배포에 적합한가요?</a></li><li><a href=#phidata%ec%97%90%ec%84%9c-agno%eb%a1%9c-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%a7%88%ec%9d%b4%ea%b7%b8%eb%a0%88%ec%9d%b4%ec%85%98%ed%95%98%eb%82%98%ec%9a%94 aria-label="Phidata에서 Agno로 어떻게 마이그레이션하나요?">Phidata에서 Agno로 어떻게 마이그레이션하나요?</a></li><li><a href=#agentos-%eb%9f%b0%ed%83%80%ec%9e%84-%ec%97%86%ec%9d%b4-agno%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94 aria-label="AgentOS 런타임 없이 Agno를 사용할 수 있나요?">AgentOS 런타임 없이 Agno를 사용할 수 있나요?</a></li></ul></li><li><a href=#%ea%b2%b0%eb%a1%a0 aria-label=결론>결론</a></li><li><a href=#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li><li><a href=#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c-%eb%b0%8f-%ec%b6%94%ea%b0%80-%eb%8f%85%ec%84%9c aria-label="참고 자료 및 추가 독서">참고 자료 및 추가 독서</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/agno/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/agno/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/agno/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/agno/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/agno/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/agno/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/agno/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“agno”, “ai-agent”, “python-sdk”, “multi-agent”, “오픈소스”, “경량 프레임워크”, “agent-platform”, “ollama”, “openai”] aliases:\n/kr/posts/agno/ 2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 “에이전트 개발을 단순화\"하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. 40,233개의 GitHub Star, 452명의 기여자, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 agno tutorial —는 agno setup, 아키텍처, 실제 코드 예제, agno vs crewai 벤치마크 비교, 그리고 이 lightweight ai framework의 부족한 부분에 대한 진실한 분석을 다룹니다.\nAgno란 무엇인가? Agno는 AI 에이전트 플랫폼을 구축, 실행 및 관리하기 위한 오픈소스 Python SDK입니다. 원래 Phidata라는 이름으로 출시되었으며, 2024년 말에 Agno로 재브랜딩되고 Apache-2.0 라이선스로 변경되었습니다. Agno의 핵심은 세 가지 통합 계층을 제공합니다: 에이전트와 멀티 에이전트 팀을 정의하는 Python SDK, 프로덕션 배포를 위한 Stateless FastAPI 런타임인 AgentOS, 그리고 모니터링, 세션 관리 및 팀 운영을 위한 컨트롤 플레인 UI입니다.\nAgno의 가치 제안은 간단합니다: 일반 Python 클래스로 에이전트를 빌드하고, 100개 이상의 사전 구축된 통합 라이브러리에서 도구를 연결하고, 그래프 DSL이나 역할 기반 추상화를 배우지 않고 API 서비스로 배포합니다. 이 프레임워크는 OpenAI, Anthropic Claude, Google Gemini, Cohere, 그리고 Ollama를 통한 로컬 모델을 포함한 23개 이상의 LLM 제공업체를 지원합니다. 에이전트 초기화는 약 3마이크로초가 소요되며, 메모리 사용량은 에이전트당 약 6.5 KiB로, 유사한 프레임워크에 비해 약 50배 적은 오버헤드를 가집니다.\nAgno의 작동 방식 아키텍처 개요 Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ```` ┌─────────────────────────────────────────────────────────────┐ │ 컨트롤 플레인 (AgentOS UI) │ │ 채팅 · 트레이스 검사 · 세션 관리 │ ├─────────────────────────────────────────────────────────────┤ │ 런타임 (AgentOS API) │ │ FastAPI · 세션 스토리지 · RBAC · 스케줄링 · 인증 │ ├─────────────────────────────────────────────────────────────┤ │ SDK 계층 │ │ Agent · Team · Tools · Memory · Knowledge · Guardrails │ ├─────────────────────────────────────────────────────────────┤ │ 모델 제공업체 (23개 이상 지원) │ │ OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok … │ └─────────────────────────────────────────────────────────────┘\n### 핵심 개념 ![Agno AgentOS 대시보드](https://mintcdn.com/agno-v2/8V9aTUOgPNSFLOye/images/demo-os.png) **Agent(에이전트)**: 기본 단위입니다. Agno 에이전트는 모델, 도구, 지시사항, 메모리, 지식 베이스로 LLM 호출을 래핑합니다. 에이전트는 숨겨진 상태가 없는 일반 Python 객체입니다. **Team(팀)**: 메모리, 도구, 지식을 공유하는 에이전트의 모음입니다. 팀은 에이전트가 공유 컨텍스트를 통해 통신하는 그래프 정의 없이 멀티 에이전트 오케스트레이션을 가능하게 합니다. **Tools(도구)**: 웹 검색(DuckDuckGo, Google), 파일 작업(PDF, CSV, DOCX), API, 데이터베이스, MCP(Model Context Protocol) 서버를 포함한 100개 이상의 사전 구축된 도구 통합입니다. **Memory \u0026 Knowledge(메모리와 지식)**: 일차적인 시스템으로, 사용자 메모리, 세션 상태, RAG 지식 베이스가 **사용자의** 데이터베이스에 저장됩니다 — Agno는 데이터를 관리형 서비스에 가두지 않습니다. **AgentOS 런타임**: 에이전트를 REST API로 제공하는 Stateless FastAPI 백엔드입니다. 세션 읽기/쓰기, 컨텍스트 주입, 인간 승인 루프, OpenTelemetry 트레이싱을 자동으로 처리합니다. ## 설치 및 설정 Agno는 Python 3.10+ 이외의 외부 의존성 없이 2분 이내에 설치됩니다. ### 1단계: 가상 환경 생성 `````bash # uv 사용 (권장) curl -LsSf https://astral.sh/uv/install.sh | sh uv venv --python 3.12 source .venv/bin/activate # 또는 표준 venv 사용 python3 -m venv ~/.venvs/agno source ~/.venvs/agno/bin/activate 2단계: Agno 설치 # 최소 설치 uv pip install -U agno # OpenAI 지원 포함 uv pip install -U agno openai # 일반적인 도구 포함 전체 설치 uv pip install -U agno openai duckduckgo-search chromadb 3단계: 설치 확인 python -c \"import agno; print(agno.__version__)\" # 예상: 2.6.8 이상 4단계: 첫 번째 에이전트 실행 basic_agent.py를 생성합니다: `````python from agno.agent import Agent\nagent = Agent( model=“openai:gpt-4o”, description=“당신은 도움이 되는 코딩 어시스턴트입니다.”, markdown=True, )\nagent.print_response(“Python에서 asyncio와 threading의 차이점을 설명하세요.”, stream=True)\n`````bash export OPENAI_API_KEY=\"sk-your-key-here\" python basic_agent.py 이것으로 끝입니다 — 10줄의 Python으로 작동하는 에이전트입니다. YAML 설정, 그래프 정의, 번거로움이 없습니다.\nOpenAI, Anthropic, Ollama, Docker, AWS 통합 OpenAI 통합 from agno.agent import Agent from agno.models.openai import OpenAIChat from agno.tools.duckduckgo import DuckDuckGoTools agent = Agent( model=OpenAIChat(id=\"gpt-4o\"), tools=[DuckDuckGoTools()], show_tool_calls=True, markdown=True, ) agent.print_response(\"양자 컴퓨팅의 최신 소식\", stream=True) Anthropic Claude 통합 from agno.agent import Agent from agno.models.anthropic import Claude agent = Agent( model=Claude(id=\"claude-sonnet-4-20250514\"), description=\"당신은 시장 동향을 전문으로 하는 연구 분석가입니다.\", markdown=True, ) agent.print_response(\"동남아시아의 EV 시장을 분석하세요.\", stream=True) Ollama 통합 (로컬 모델) from agno.agent import Agent from agno.models.ollama import Ollama agent = Agent( model=Ollama(id=\"qwen3\"), description=\"당신은 완전히 오프라인으로 실행되는 로컬 AI 어시스턴트입니다.\", markdown=True, ) agent.print_response(\"Python 예제로 재귀를 설명하세요.\", stream=True) # Ollama 설치 curl -fsSL https://ollama.com/install.sh | sh # 모델 가져오기 ollama pull qwen3 # 실행 python ollama_agent.py Docker 배포 FROM python:3.12-slim WORKDIR /app COPY requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY . . EXPOSE 8000 CMD [\"python\", \"workbench.py\"] # docker-compose.yml version: '3.8' services: agentos: build: . ports: - \"8000:8000\" environment: - OPENAI_API_KEY=${OPENAI_API_KEY} - AGNO_ENV=production volumes: - ./data:/app/data restart: unless-stopped AWS 배포 (ECS with Fargate) # 빌드 및 ECR에 푸시 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com docker build -t agno-agent . docker tag agno-agent:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest # Fargate에 배포 aws ecs create-service \\ --cluster agno-production \\ --service-name agent-service \\ --task-definition agno-task:1 \\ --desired-count 2 \\ --launch-type FARGATE 벤치마크 / 실제 사용 사례 성능 벤치마크 Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점을 보여줍니다: 지표 Agno CrewAI AutoGen LangGraph 에이전트 초기화 ~3 μs ~12 ms ~45 ms ~150 ms 에이전트당 메모리 ~6.5 KiB ~320 KiB ~1.2 MiB ~2.8 MiB 콜드 스타트 (로컬) 45 ms 890 ms 2.1 s 4.5 s 지원 LLM 제공업체 23+ 8+ 12+ 15+ 내장 도구 수 100+ 25+ 40+ 60+ 기본 에이전트 코드 라인 7 25 35 40+ 이러한 숫자는 규모가 클 때 중요합니다. 1,000개의 동시 에이전트 세션을 실행하는 서비스는 Agno로 약 6.5 MiB를 소비하는 반면, LangGraph로는 약 2.8 GiB를 소비합니다 — 클라우드 비용에 직접적인 영향을 미치는 400배의 메모리 차이입니다.\n프로덕션 사용 사례 데이터 라벨링 파이프라인: ML 팀은 텍스트, 이미지, 오디오, 비디오 데이터셋을 라벨링하기 위해 Agno를 사용합니다. 멀티모달 입력 지원은 단일 에이전트 파이프라인이 혼합 미디어를 프레임워크 전환 없이 처리할 수 있음을 의미합니다.\n제품 코파일럿: 팀은 AgentOS API를 통해 제품에 Agno 에이전트를 직접 임베드합니다. 세션 스토리지와 메모리는 사용자 세션 간 대화 연속성을 가능하게 합니다.\n문서 처리: ChromaDB, LanceDB 또는 PostgreSQL 벡터 스토어를 통한 하이브리드 RAG 검색을 갖춘 지식 에이전트는 법률 계약서, 의료 기록, 재무 보고서를 처리합니다.\n합성 데이터 생성: 데이터 사이언스 팀은 Agno의 구조화된 출력 기능을 활용하여 미세 조정을 위한 훈련 쌍과 선호 데이터셋을 생성합니다.\n고급 사용법 / 프로덕션 강화 멀티 에이전트 시스템 Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: `````python from agno.agent import Agent from agno.models.openai import OpenAIChat from agno.tools.duckduckgo import DuckDuckGoTools from agno.team import Team\n연구 에이전트 researcher = Agent( name=“Researcher”, model=OpenAIChat(id=“gpt-4o-mini”), tools=[DuckDuckGoTools()], description=“모든 주제의 최신 데이터와 통계를 찾습니다.”, )\n작가 에이전트 writer = Agent( name=“Writer”, model=OpenAIChat(id=“gpt-4o”), description=“연구 노트에서 세련된 기사를 작성합니다.”, )\n팀 구성 team = Team( name=“Content Team”, members=[researcher, writer], instructions=“잘 연구되고 매력적인 콘텐츠를 협업하여 제작합니다.”, )\nteam.print_response(“2026년 재생 에너지 동향에 대한 기사를 작성하세요.”, stream=True)\n### Agentic RAG 지식 베이스 `````python from agno.agent import Agent from agno.knowledge.embedder.google import GeminiEmbedder from agno.knowledge.knowledge import Knowledge from agno.models.google import Gemini from agno.vectordb.chroma import ChromaDb from agno.vectordb.search import SearchType knowledge = Knowledge( vector_db=ChromaDb( collection=\"docs\", path=\"tmp/chromadb\", persistent_client=True, search_type=SearchType.hybrid, embedder=GeminiEmbedder(id=\"gemini-embedding-001\"), ), ) knowledge.insert(url=\"https://docs.agno.com/introduction.md\", skip_if_exists=True) agent = Agent( model=Gemini(id=\"gemini-3-flash-preview\"), knowledge=knowledge, search_knowledge=True, markdown=True, ) agent.print_response(\"Agno란 무엇인가요?\", stream=True) 세션 스토리지가 있는 프로덕션 서비스 from agno.agent import Agent from agno.db.sqlite import SqliteDb from agno.os import AgentOS from agno.tools.workspace import Workspace workbench = Agent( name=\"Workbench\", model=\"openai:gpt-5.5\", db=SqliteDb(db_file=\"workbench.db\"), memory=True, tools=[Workspace(root=\"./workspace\", allowed=[\"read\", \"list\", \"search\", \"shell\"])], instructions=\"사용자가 작업 공간 파일을 구성하고 분석하도록 도와줍니다.\", markdown=True, ) # API로 서비스 제공 AgentOS.agent = workbench AgentOS.serve(host=\"0.0.0.0\", port=8000) # 서비스 시작 python workbench.py # curl로 테스트 curl -X POST http://localhost:8000/v1/agents/workbench/run \\ -H \"Content-Type: application/json\" \\ -d '{\"message\": \"내 다운로드 폴더를 정리해줘\", \"session_id\": \"user-123\"}\" 보안 및 모니터링 from agno.agent import Agent from agno.os import AgentOS # 파괴적 도구에 대해 인간 승인 활성화 agent = Agent( name=\"SecureAgent\", model=\"openai:gpt-4o\", tools=[Workspace(root=\"./data\", allowed=[\"read\", \"list\"])], human_approval=True, # 도구 호출에 승인 필요 audit_trail=True, # 모든 작업 기록 markdown=True, ) # OpenTelemetry 트레이싱 (AgentOS에서 자동 구성) AgentOS.agent = agent AgentOS.serve(host=\"0.0.0.0\", port=8000) 대안과의 비교 기능 Agno CrewAI AutoGen LangChain + LangGraph GitHub Star 40,233 51,000+ 58,000+ 96,000+ / 31,000+ 라이선스 Apache-2.0 MIT MIT (코드) / CC-BY-4.0 (문서) MIT 아키텍처 SDK + FastAPI 런타임 + 컨트롤 플레인 역할 기반 팀 대화형 멀티 에이전트 그래프 기반 오케스트레이션 에이전트 초기화 속도 ~3 μs ~12 ms ~45 ms ~150 ms 메모리 오버헤드 ~6.5 KiB ~320 KiB ~1.2 MiB ~2.8 MiB LLM 제공업체 수 23+ 8+ 12+ 15+ 내장 도구 수 100+ 25+ 40+ 60+ 학습 곡선 낮음 중간 높음 높음 최적 사용처 프로덕션 에이전트 서비스 역할 기반 업무 워크플로우 연구 / 마이크로소프트 에코시스템 복잡한 상태 저장 워크플로우 데이터 자체 호스팅 예 (당신의 DB) 부분 예 예 MCP 지원 예 아니오 제한적 예 AgentOS UI 예 (내장) 아니오 아니오 LangSmith (별도) 커뮤니티 452 기여자 성장 중 마이크로소프트 지원 가장 큰 에코시스템 Agno를 선택할 때: 세션 관리, 트레이싱, 낮은 메모리 사용량이 있는 가벼운 API 중심 에이전트가 필요한 경우.\nCrewAI를 선택할 때: 역할 기반 팀(연구원, 작가, 편집자)이 당신의 멘탈 모델에 맞고 최소한의 설정으로 구조화된 워크플로우가 필요한 경우.\nAutoGen를 선택할 때: 마이크로소프트 에코시스템에 있고, 연구 도구를 빌드하거나, 내장 코드 실행이 있는 대화형 멀티 에이전트 시스템이 필요한 경우.\nLangGraph를 선택할 때: 명시적 상태 머신, 체크포인팅, 리플레이, 그래프 의미론이 제공하는 세밀한 분기 제어가 워크플로우에 필요한 경우.\n한계 / 정직한 평가 Agno는 모든 에이전트 사용 사례에 적합한 도구는 아닙니다. 도입 전 고려해야 할 사항은 다음과 같습니다: 그래프 의미론 부재: 워크플로우에 명시적 상태 전환, 체크포인팅, 재생 가능한 실행 경로가 필요한 경우 LangGraph의 그래프 모델이 더 적합합니다. Agno의 팀 기반 오케스트레이션은 더 간단하지만 복잡한 분기 논리에서는 덜 정확합니다.\nLangChain보다 작은 커뮤니티: 452명의 기여자 대 LangChain의 3,000+명, 서드파티 튜토리얼과 StackOverflow 답변은 적습니다. 문서가 빠르게 개선되고 있지만 아직 엣지 케이스 시나리오에는 공백이 있습니다.\nPython 전용: LangChain이 JavaScript/TypeScript를 지원하고 AutoGen이 .NET 경로를 가진 반면, Agno는 Python 전용입니다. Node.js나 .NET을 사용하는 풀스택 팀은 언어 브리지가 필요합니다.\n더 젊은 생태계: Phidata에서 Agno로의 리브랜딩(2024년 말)과 1.x에서 2.x로의 마이그레이션은 패키지 레이아웃과 API를 변경했습니다. 일부 오래된 커뮤니티 튜토리얼은 더 이상 사용되지 않는 임포트를 사용합니다.\nAgentOS 종속성 고려: SDK는 완전히 오픈소스이지만, agno.com에서 호스팅되는 AgentOS UI는 프리미엄 기능을 제공합니다. 팀은 컨트롤 플레인에 약속하기 전에 어떤 기능이 유료 플랜을 필요로 하는지 확인해야 합니다.\n자주 묻는 질문 프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요? Agno는 런타임 오버헤드와 서비스 패키징을 우선시합니다 — 세션과 트레이싱이 있는 FastAPI 백엔드를 몇 분 안에 얻을 수 있습니다. LangGraph는 상태 관리와 분기 제어에 대해 더 많은 제어를 제공하지만 그래프 의미론을 배워야 하며 상당히 높은 메모리 오버헤드를 가집니다. 에이전트 API를 제공하는 팀에게는 Agno가 상용구를 줄입니다. 복잡한 결정론적 워크플로우를 구축하는 팀에게는 LangGraph의 명시적 상태 모델이 학습 비용을 감수할 가치가 있습니다.\nAgno를 로컬 모델만으로 실행할 수 있나요? 네. Agno는 Ollama, LM Studio, 그리고 모든 OpenAI 호환 로컬 엔드포인트와 통합됩니다. Ollama 모델 제공업체를 사용하면 Llama 3, Qwen3, Mistral과 같은 모델로 완전히 오프라인에서 실행할 수 있습니다. 로컬 배포에는 API 키나 클라우드 의존성이 필요하지 않습니다.\nAgno는 세션 스토리지에 어떤 데이터베이스를 지원하나요? Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, LanceDB를 지원합니다. SqliteDb, PostgresDb, LanceDb 클래스가 세션 읽기/쓰기를 자동으로 처리합니다 — 수동 SQL이 필요 없습니다. 지원되는 벡터 데이터베이스는 ChromaDB, LanceDB, RAG 지식 베이스용 pgvector를 포함합니다.\nAgno는 엔터프라이즈 배포에 적합한가요? 예, 단 주의가 필요합니다. Agno의 AgentOS 런타임은 RBAC, 인간 승인 루프, 감사 추적, OpenTelemetry 가시성을 포함합니다 — 이는 모두 엔터프라이즈 배포에 필요한 요구사항입니다. 그러나 이 프로젝트는 LangChain보다 젊고, 엔터프라이즈 지원(SLA, 전담 지원)은 Agno의 상업 제품을 통해서만 사용할 수 있습니다. 엄격한 규정 준수 요구사항이 있는 팀은 자체 호스팅과 관리형 옵션을 평가해야 합니다.\nPhidata에서 Agno로 어떻게 마이그레이션하나요? 마이그레이션은 패키지 임포트를 phidata에서 agno로 업데이트하고 2.x API 변경 사항에 적응하는 것을 포함합니다. Agno 팀은 일반적인 패턴을 다루는 마이그레이션 가이드를 제공합니다. 주요 변경 사항은 Agent 클래스가 PhiAgent를 대체하고, Team 클래스가 ````PhiTeam```을 대체하며, AgentOS 런타임이 별도의 모듈이 되는 것입니다. 대부분의 마이그레이션은 중간 규모의 코드베이스에 대해 몇 시간이 소요됩니다.\nAgentOS 런타임 없이 Agno를 사용할 수 있나요? 완전히 가능합니다. SDK 계층은 완전히 독립적입니다. 에이전트를 독립형 Python 스크립트로 빌드하고 실행하거나, 기존 FastAPI/Django/Flask 앱에 통합하거나, 에이전트와 도구 구성 요소만 사용할 수 있습니다. AgentOS는 세션 관리와 모니터링이 즉시 필요한 팀을 위한 선택적 편의 계층입니다.\n결론 Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다: Python 팀에게 그래프 기반 오케스트레이션의 복잡성 없이 에이전트 서비스를 빌드하고 배포할 수 있는 빠르고 가벼운 방법을 제공합니다. 3 μs 에이전트 초기화, 6.5 KiB 메모리 사용량, 100개 이상의 사전 구축 도구는 직접적으로 더 낮은 인프라 비용과 더 빠른 개발 주기로 전환됩니다.\n2026년에 프로덕션 에이전트를 제공하는 팀에게 결정 프레임워크는 간단합니다: 가벼운 API 중심 에이전트가 필요하면 Agno로 시작하세요; 역할 기반 팀이 당신의 멘탈 모델에 맞으면 CrewAI를 평가하세요; 마이크로소프트 중심 또는 연구 워크로드의 경우 AutoGen을 고려하세요; 명시적 상태 머신 의미론이 타협할 수 없는 경우에만 LangGraph를 사용하세요.\n40,233개의 GitHub Star와 452명의 기여자 커뮤니티는 Agno가 유망한 프로젝트에서 프로덕션에 적합한 플랫폼으로 도약했음을 보여줍니다. 이를 평가하는 가장 좋은 방법은 설치 섹션에서 10줄 예제를 실행하고 설정 시간을 대안과 비교하는 것입니다.\n실행 항목: Agno GitHub 저장소를 클론하고, 첫 번째 에이전트를 실행한 다음, 위의 Docker 설정을 사용하여 클라우드 서버에 배포하세요. 실시간 지원을 위해 Agno Discord 커뮤니티에 가입하세요.\n추천 호스팅 및 인프라 위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - DigitalOcean — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.\nHTStack — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC. 제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.\n참고 자료 및 추가 독서 Agno GitHub 저장소 — 공식 소스 코드, 40,233 Star Agno 공식 문서 — 예제와 API 레퍼런스가 포함된 완전한 문서 Agno AgentOS — 에이전트 관리를 위한 호스팅 컨트롤 플레인 FutureAGI 프레임워크 비교 2026 — 오픈소스 에이전트 프레임워크 상세 비교 Deepchecks AI 에이전트 프레임워크 2025 — 프레임워크 벤치마크 및 사용 사례 분석 CrewAI vs LangGraph vs AutoGen vs Agno — 창업자를 위한 프레임워크 비교 AI Agents Kit 비교 2026 — 커뮤니티 주도 프레임워크 순위 Agno vs CrewAI 상세 비교 — 커뮤니티 리뷰가 포함된 기능별 분석 이 기사에는 제휴 링크가 포함되어 있습니다. 이러한 링크를 통해 서비스에 가입하면 추가 비용 없이 dibi8.com에 커미션이 지급될 수 있습니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, AutoGen 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/agno\" } } Related Articles ollama-vs-lm-studio ollama-vs-vllm llm-inference-cost-optimization-guide-2026 ollama-vs-vllm ollama-vs-lm-studio Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2353",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/agno/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/agno/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/agno/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/agno/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#agno%eb%9e%80-%eb%ac%b4%ec%97%87%ec%9d%b8%ea%b0%80" aria-label="Agno란 무엇인가?">Agno란 무엇인가?</a></li>
+            <li>
+                <a href="#agno%ec%9d%98-%ec%9e%91%eb%8f%99-%eb%b0%a9%ec%8b%9d" aria-label="Agno의 작동 방식">Agno의 작동 방식</a><ul>
+                    
+            <li>
+                <a href="#%ec%95%84%ed%82%a4%ed%85%8d%ec%b2%98-%ea%b0%9c%ec%9a%94" aria-label="아키텍처 개요">아키텍처 개요</a></li>
+            <li>
+                <a href="#2%eb%8b%a8%ea%b3%84-agno-%ec%84%a4%ec%b9%98" aria-label="2단계: Agno 설치">2단계: Agno 설치</a></li>
+            <li>
+                <a href="#3%eb%8b%a8%ea%b3%84-%ec%84%a4%ec%b9%98-%ed%99%95%ec%9d%b8" aria-label="3단계: 설치 확인">3단계: 설치 확인</a></li>
+            <li>
+                <a href="#4%eb%8b%a8%ea%b3%84-%ec%b2%ab-%eb%b2%88%ec%a7%b8-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8b%a4%ed%96%89" aria-label="4단계: 첫 번째 에이전트 실행">4단계: 첫 번째 에이전트 실행</a></li></ul>
+            </li>
+            <li>
+                <a href="#openai-anthropic-ollama-docker-aws-%ed%86%b5%ed%95%a9" aria-label="OpenAI, Anthropic, Ollama, Docker, AWS 통합">OpenAI, Anthropic, Ollama, Docker, AWS 통합</a><ul>
+                    
+            <li>
+                <a href="#openai-%ed%86%b5%ed%95%a9" aria-label="OpenAI 통합">OpenAI 통합</a></li>
+            <li>
+                <a href="#anthropic-claude-%ed%86%b5%ed%95%a9" aria-label="Anthropic Claude 통합">Anthropic Claude 통합</a></li>
+            <li>
+                <a href="#ollama-%ed%86%b5%ed%95%a9-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8" aria-label="Ollama 통합 (로컬 모델)">Ollama 통합 (로컬 모델)</a></li>
+            <li>
+                <a href="#docker-%eb%b0%b0%ed%8f%ac" aria-label="Docker 배포">Docker 배포</a></li>
+            <li>
+                <a href="#aws-%eb%b0%b0%ed%8f%ac-ecs-with-fargate" aria-label="AWS 배포 (ECS with Fargate)">AWS 배포 (ECS with Fargate)</a></li></ul>
+            </li>
+            <li>
+                <a href="#%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac--%ec%8b%a4%ec%a0%9c-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="벤치마크 / 실제 사용 사례">벤치마크 / 실제 사용 사례</a><ul>
+                    
+            <li>
+                <a href="#%ec%84%b1%eb%8a%a5-%eb%b2%a4%ec%b9%98%eb%a7%88%ed%81%ac" aria-label="성능 벤치마크">성능 벤치마크</a></li>
+            <li>
+                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%82%ac%ec%9a%a9-%ec%82%ac%eb%a1%80" aria-label="프로덕션 사용 사례">프로덕션 사용 사례</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b3%a0%ea%b8%89-%ec%82%ac%ec%9a%a9%eb%b2%95--%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ea%b0%95%ed%99%94" aria-label="고급 사용법 / 프로덕션 강화">고급 사용법 / 프로덕션 강화</a><ul>
+                    
+            <li>
+                <a href="#%eb%a9%80%ed%8b%b0-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8-%ec%8b%9c%ec%8a%a4%ed%85%9c" aria-label="멀티 에이전트 시스템">멀티 에이전트 시스템</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#%ec%97%b0%ea%b5%ac-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8" aria-label="연구 에이전트">연구 에이전트</a></li>
+            <li>
+                <a href="#%ec%9e%91%ea%b0%80-%ec%97%90%ec%9d%b4%ec%a0%84%ed%8a%b8" aria-label="작가 에이전트">작가 에이전트</a></li>
+            <li>
+                <a href="#%ed%8c%80-%ea%b5%ac%ec%84%b1" aria-label="팀 구성">팀 구성</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#%ec%84%b8%ec%85%98-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80%ea%b0%80-%ec%9e%88%eb%8a%94-%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ec%84%9c%eb%b9%84%ec%8a%a4" aria-label="세션 스토리지가 있는 프로덕션 서비스">세션 스토리지가 있는 프로덕션 서비스</a></li>
+            <li>
+                <a href="#%eb%b3%b4%ec%95%88-%eb%b0%8f-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81" aria-label="보안 및 모니터링">보안 및 모니터링</a></li></ul>
+                
+            <li>
+                <a href="#%eb%8c%80%ec%95%88%ea%b3%bc%ec%9d%98-%eb%b9%84%ea%b5%90" aria-label="대안과의 비교">대안과의 비교</a></li>
+            <li>
+                <a href="#%ed%95%9c%ea%b3%84--%ec%a0%95%ec%a7%81%ed%95%9c-%ed%8f%89%ea%b0%80" aria-label="한계 / 정직한 평가">한계 / 정직한 평가</a></li>
+            <li>
+                <a href="#%ec%9e%90%ec%a3%bc-%eb%ac%bb%eb%8a%94-%ec%a7%88%eb%ac%b8" aria-label="자주 묻는 질문">자주 묻는 질문</a><ul>
+                    
+            <li>
+                <a href="#%ed%94%84%eb%a1%9c%eb%8d%95%ec%85%98-%ed%99%98%ea%b2%bd%ec%97%90%ec%84%9c-agno%ec%99%80-langgraph%eb%a5%bc-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%b9%84%ea%b5%90%ed%95%98%eb%82%98%ec%9a%94" aria-label="프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요?">프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요?</a></li>
+            <li>
+                <a href="#agno%eb%a5%bc-%eb%a1%9c%ec%bb%ac-%eb%aa%a8%eb%8d%b8%eb%a7%8c%ec%9c%bc%eb%a1%9c-%ec%8b%a4%ed%96%89%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="Agno를 로컬 모델만으로 실행할 수 있나요?">Agno를 로컬 모델만으로 실행할 수 있나요?</a></li>
+            <li>
+                <a href="#agno%eb%8a%94-%ec%84%b8%ec%85%98-%ec%8a%a4%ed%86%a0%eb%a6%ac%ec%a7%80%ec%97%90-%ec%96%b4%eb%96%a4-%eb%8d%b0%ec%9d%b4%ed%84%b0%eb%b2%a0%ec%9d%b4%ec%8a%a4%eb%a5%bc-%ec%a7%80%ec%9b%90%ed%95%98%eb%82%98%ec%9a%94" aria-label="Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?">Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?</a></li>
+            <li>
+                <a href="#agno%eb%8a%94-%ec%97%94%ed%84%b0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88-%eb%b0%b0%ed%8f%ac%ec%97%90-%ec%a0%81%ed%95%a9%ed%95%9c%ea%b0%80%ec%9a%94" aria-label="Agno는 엔터프라이즈 배포에 적합한가요?">Agno는 엔터프라이즈 배포에 적합한가요?</a></li>
+            <li>
+                <a href="#phidata%ec%97%90%ec%84%9c-agno%eb%a1%9c-%ec%96%b4%eb%96%bb%ea%b2%8c-%eb%a7%88%ec%9d%b4%ea%b7%b8%eb%a0%88%ec%9d%b4%ec%85%98%ed%95%98%eb%82%98%ec%9a%94" aria-label="Phidata에서 Agno로 어떻게 마이그레이션하나요?">Phidata에서 Agno로 어떻게 마이그레이션하나요?</a></li>
+            <li>
+                <a href="#agentos-%eb%9f%b0%ed%83%80%ec%9e%84-%ec%97%86%ec%9d%b4-agno%eb%a5%bc-%ec%82%ac%ec%9a%a9%ed%95%a0-%ec%88%98-%ec%9e%88%eb%82%98%ec%9a%94" aria-label="AgentOS 런타임 없이 Agno를 사용할 수 있나요?">AgentOS 런타임 없이 Agno를 사용할 수 있나요?</a></li></ul>
+            </li>
+            <li>
+                <a href="#%ea%b2%b0%eb%a1%a0" aria-label="결론">결론</a></li>
+            <li>
+                <a href="#%ec%b6%94%ec%b2%9c-%ed%98%b8%ec%8a%a4%ed%8c%85-%eb%b0%8f-%ec%9d%b8%ed%94%84%eb%9d%bc" aria-label="추천 호스팅 및 인프라">추천 호스팅 및 인프라</a></li>
+            <li>
+                <a href="#%ec%b0%b8%ea%b3%a0-%ec%9e%90%eb%a3%8c-%eb%b0%8f-%ec%b6%94%ea%b0%80-%eb%8f%85%ec%84%9c" aria-label="참고 자료 및 추가 독서">참고 자료 및 추가 독서</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,20 +318,33 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;agno&rdquo;, &ldquo;ai-agent&rdquo;, &ldquo;python-sdk&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;오픈소스&rdquo;, &ldquo;경량 프레임워크&rdquo;, &ldquo;agent-platform&rdquo;, &ldquo;ollama&rdquo;, &ldquo;openai&rdquo;]
-aliases:</p><ul><li>/kr/posts/agno/</li></ul><hr><p>2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 &ldquo;에이전트 개발을 단순화"하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. <strong>40,233개의 GitHub Star</strong>, <strong>452명의 기여자</strong>, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 <strong>agno tutorial</strong> —는 <strong>agno setup</strong>, 아키텍처, 실제 코드 예제, <strong>agno vs crewai</strong> 벤치마크 비교, 그리고 이 <strong>lightweight ai framework</strong>의 부족한 부분에 대한 진실한 분석을 다룹니다.</p><p><img alt="Agno 프레임워크 배너" loading=lazy src=https://raw.githubusercontent.com/agno-agi/agno/main/imgs/banner.png></p><h2 id=agno란-무엇인가>Agno란 무엇인가?<a hidden class=anchor aria-hidden=true href=#agno란-무엇인가>#</a></h2><p><strong>Agno는 AI 에이전트 플랫폼을 구축, 실행 및 관리하기 위한 오픈소스 Python SDK입니다.</strong> 원래 Phidata라는 이름으로 출시되었으며, 2024년 말에 Agno로 재브랜딩되고 Apache-2.0 라이선스로 변경되었습니다. Agno의 핵심은 세 가지 통합 계층을 제공합니다: 에이전트와 멀티 에이전트 팀을 정의하는 Python SDK, 프로덕션 배포를 위한 Stateless FastAPI 런타임인 <strong>AgentOS</strong>, 그리고 모니터링, 세션 관리 및 팀 운영을 위한 컨트롤 플레인 UI입니다.</p><p>Agno의 가치 제안은 간단합니다: 일반 Python 클래스로 에이전트를 빌드하고, 100개 이상의 사전 구축된 통합 라이브러리에서 도구를 연결하고, 그래프 DSL이나 역할 기반 추상화를 배우지 않고 API 서비스로 배포합니다. 이 프레임워크는 OpenAI, Anthropic Claude, Google Gemini, Cohere, 그리고 Ollama를 통한 로컬 모델을 포함한 <strong>23개 이상의 LLM 제공업체</strong>를 지원합니다. 에이전트 초기화는 약 <strong>3마이크로초</strong>가 소요되며, 메모리 사용량은 에이전트당 약 <strong>6.5 KiB</strong>로, 유사한 프레임워크에 비해 약 50배 적은 오버헤드를 가집니다.</p><h2 id=agno의-작동-방식>Agno의 작동 방식<a hidden class=anchor aria-hidden=true href=#agno의-작동-방식>#</a></h2><h3 id=아키텍처-개요>아키텍처 개요<a hidden class=anchor aria-hidden=true href=#아키텍처-개요>#</a></h3><p>Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ````
+aliases:</p>
+<ul>
+<li>/kr/posts/agno/</li>
+</ul>
+<hr>
+<p>2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 &ldquo;에이전트 개발을 단순화&quot;하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. <strong>40,233개의 GitHub Star</strong>, <strong>452명의 기여자</strong>, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 <strong>agno tutorial</strong> —는 <strong>agno setup</strong>, 아키텍처, 실제 코드 예제, <strong>agno vs crewai</strong> 벤치마크 비교, 그리고 이 <strong>lightweight ai framework</strong>의 부족한 부분에 대한 진실한 분석을 다룹니다.</p>
+<p><img alt="Agno 프레임워크 배너" loading="lazy" src="https://raw.githubusercontent.com/agno-agi/agno/main/imgs/banner.png"></p>
+<h2 id="agno란-무엇인가">Agno란 무엇인가?<a hidden class="anchor" aria-hidden="true" href="#agno란-무엇인가">#</a></h2>
+<p><strong>Agno는 AI 에이전트 플랫폼을 구축, 실행 및 관리하기 위한 오픈소스 Python SDK입니다.</strong> 원래 Phidata라는 이름으로 출시되었으며, 2024년 말에 Agno로 재브랜딩되고 Apache-2.0 라이선스로 변경되었습니다. Agno의 핵심은 세 가지 통합 계층을 제공합니다: 에이전트와 멀티 에이전트 팀을 정의하는 Python SDK, 프로덕션 배포를 위한 Stateless FastAPI 런타임인 <strong>AgentOS</strong>, 그리고 모니터링, 세션 관리 및 팀 운영을 위한 컨트롤 플레인 UI입니다.</p>
+<p>Agno의 가치 제안은 간단합니다: 일반 Python 클래스로 에이전트를 빌드하고, 100개 이상의 사전 구축된 통합 라이브러리에서 도구를 연결하고, 그래프 DSL이나 역할 기반 추상화를 배우지 않고 API 서비스로 배포합니다. 이 프레임워크는 OpenAI, Anthropic Claude, Google Gemini, Cohere, 그리고 Ollama를 통한 로컬 모델을 포함한 <strong>23개 이상의 LLM 제공업체</strong>를 지원합니다. 에이전트 초기화는 약 <strong>3마이크로초</strong>가 소요되며, 메모리 사용량은 에이전트당 약 <strong>6.5 KiB</strong>로, 유사한 프레임워크에 비해 약 50배 적은 오버헤드를 가집니다.</p>
+<h2 id="agno의-작동-방식">Agno의 작동 방식<a hidden class="anchor" aria-hidden="true" href="#agno의-작동-방식">#</a></h2>
+<h3 id="아키텍처-개요">아키텍처 개요<a hidden class="anchor" aria-hidden="true" href="#아키텍처-개요">#</a></h3>
+<p>Agno의 아키텍처는 관심사를 세 가지 독립적인 계층으로 분리합니다: ````
 ┌─────────────────────────────────────────────────────────────┐
-│ 컨트롤 플레인 (AgentOS UI) │
-│ 채팅 · 트레이스 검사 · 세션 관리 │
+│                 컨트롤 플레인 (AgentOS UI)                   │
+│         채팅 · 트레이스 검사 · 세션 관리                      │
 ├─────────────────────────────────────────────────────────────┤
-│ 런타임 (AgentOS API) │
-│ FastAPI · 세션 스토리지 · RBAC · 스케줄링 · 인증 │
+│                  런타임 (AgentOS API)                        │
+│    FastAPI · 세션 스토리지 · RBAC · 스케줄링 · 인증          │
 ├─────────────────────────────────────────────────────────────┤
-│ SDK 계층 │
-│ Agent · Team · Tools · Memory · Knowledge · Guardrails │
+│                      SDK 계층                                │
+│  Agent · Team · Tools · Memory · Knowledge · Guardrails     │
 ├─────────────────────────────────────────────────────────────┤
-│ 모델 제공업체 (23개 이상 지원) │
-│ OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok &mldr; │
-└─────────────────────────────────────────────────────────────┘</p><pre tabindex=0><code>
+│              모델 제공업체 (23개 이상 지원)                   │
+│  OpenAI · Anthropic · Gemini · Ollama · Cohere · Grok &hellip;  │
+└─────────────────────────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
 ### 핵심 개념
 
 ![Agno AgentOS 대시보드](https://mintcdn.com/agno-v2/8V9aTUOgPNSFLOye/images/demo-os.png)
@@ -64,115 +374,202 @@ source .venv/bin/activate
 # 또는 표준 venv 사용
 python3 -m venv ~/.venvs/agno
 source ~/.venvs/agno/bin/activate
-</code></pre><h3 id=2단계-agno-설치>2단계: Agno 설치<a hidden class=anchor aria-hidden=true href=#2단계-agno-설치>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 최소 설치</span>
-</span></span><span style=display:flex><span>uv pip install -U agno
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># OpenAI 지원 포함</span>
-</span></span><span style=display:flex><span>uv pip install -U agno openai
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 일반적인 도구 포함 전체 설치</span>
-</span></span><span style=display:flex><span>uv pip install -U agno openai duckduckgo-search chromadb
-</span></span></code></pre></div><h3 id=3단계-설치-확인>3단계: 설치 확인<a hidden class=anchor aria-hidden=true href=#3단계-설치-확인>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -c <span style=color:#e6db74>&#34;import agno; print(agno.__version__)&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 예상: 2.6.8 이상</span>
-</span></span></code></pre></div><h3 id=4단계-첫-번째-에이전트-실행>4단계: 첫 번째 에이전트 실행<a hidden class=anchor aria-hidden=true href=#4단계-첫-번째-에이전트-실행>#</a></h3><p><code>basic_agent.py</code>를 생성합니다: `````python
-from agno.agent import Agent</p><p>agent = Agent(
+</code></pre><h3 id="2단계-agno-설치">2단계: Agno 설치<a hidden class="anchor" aria-hidden="true" href="#2단계-agno-설치">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 최소 설치</span>
+</span></span><span style="display:flex;"><span>uv pip install -U agno
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenAI 지원 포함</span>
+</span></span><span style="display:flex;"><span>uv pip install -U agno openai
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 일반적인 도구 포함 전체 설치</span>
+</span></span><span style="display:flex;"><span>uv pip install -U agno openai duckduckgo-search chromadb
+</span></span></code></pre></div><h3 id="3단계-설치-확인">3단계: 설치 확인<a hidden class="anchor" aria-hidden="true" href="#3단계-설치-확인">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -c <span style="color:#e6db74">&#34;import agno; print(agno.__version__)&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 예상: 2.6.8 이상</span>
+</span></span></code></pre></div><h3 id="4단계-첫-번째-에이전트-실행">4단계: 첫 번째 에이전트 실행<a hidden class="anchor" aria-hidden="true" href="#4단계-첫-번째-에이전트-실행">#</a></h3>
+<p><code>basic_agent.py</code>를 생성합니다: `````python
+from agno.agent import Agent</p>
+<p>agent = Agent(
 model=&ldquo;openai:gpt-4o&rdquo;,
 description=&ldquo;당신은 도움이 되는 코딩 어시스턴트입니다.&rdquo;,
 markdown=True,
-)</p><p>agent.print_response(&ldquo;Python에서 asyncio와 threading의 차이점을 설명하세요.&rdquo;, stream=True)</p><pre tabindex=0><code>
+)</p>
+<p>agent.print_response(&ldquo;Python에서 asyncio와 threading의 차이점을 설명하세요.&rdquo;, stream=True)</p>
+<pre tabindex="0"><code>
 `````bash
 export OPENAI_API_KEY=&#34;sk-your-key-here&#34;
 python basic_agent.py
-</code></pre><p>이것으로 끝입니다 — 10줄의 Python으로 작동하는 에이전트입니다. YAML 설정, 그래프 정의, 번거로움이 없습니다.</p><h2 id=openai-anthropic-ollama-docker-aws-통합>OpenAI, Anthropic, Ollama, Docker, AWS 통합<a hidden class=anchor aria-hidden=true href=#openai-anthropic-ollama-docker-aws-통합>#</a></h2><h3 id=openai-통합>OpenAI 통합<a hidden class=anchor aria-hidden=true href=#openai-통합>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> agno.agent <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.models.openai <span style=color:#f92672>import</span> OpenAIChat
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.tools.duckduckgo <span style=color:#f92672>import</span> DuckDuckGoTools
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>OpenAIChat(id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;gpt-4o&#34;</span>),
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[DuckDuckGoTools()],
-</span></span><span style=display:flex><span>    show_tool_calls<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    markdown<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent<span style=color:#f92672>.</span>print_response(<span style=color:#e6db74>&#34;양자 컴퓨팅의 최신 소식&#34;</span>, stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><h3 id=anthropic-claude-통합>Anthropic Claude 통합<a hidden class=anchor aria-hidden=true href=#anthropic-claude-통합>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> agno.agent <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.models.anthropic <span style=color:#f92672>import</span> Claude
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>Claude(id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;claude-sonnet-4-20250514&#34;</span>),
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;당신은 시장 동향을 전문으로 하는 연구 분석가입니다.&#34;</span>,
-</span></span><span style=display:flex><span>    markdown<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent<span style=color:#f92672>.</span>print_response(<span style=color:#e6db74>&#34;동남아시아의 EV 시장을 분석하세요.&#34;</span>, stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><h3 id=ollama-통합-로컬-모델>Ollama 통합 (로컬 모델)<a hidden class=anchor aria-hidden=true href=#ollama-통합-로컬-모델>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> agno.agent <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.models.ollama <span style=color:#f92672>import</span> Ollama
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span>Ollama(id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;qwen3&#34;</span>),
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;당신은 완전히 오프라인으로 실행되는 로컬 AI 어시스턴트입니다.&#34;</span>,
-</span></span><span style=display:flex><span>    markdown<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>agent<span style=color:#f92672>.</span>print_response(<span style=color:#e6db74>&#34;Python 예제로 재귀를 설명하세요.&#34;</span>, stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Ollama 설치</span>
-</span></span><span style=display:flex><span>curl -fsSL https://ollama.com/install.sh | sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 모델 가져오기</span>
-</span></span><span style=display:flex><span>ollama pull qwen3
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 실행</span>
-</span></span><span style=display:flex><span>python ollama_agent.py
-</span></span></code></pre></div><h3 id=docker-배포>Docker 배포<a hidden class=anchor aria-hidden=true href=#docker-배포>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:3.12-slim</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> requirements.txt .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install --no-cache-dir -r requirements.txt<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> . .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>EXPOSE</span> <span style=color:#e6db74>8000</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;workbench.py&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: agentos: build</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>OPENAI_API_KEY=${OPENAI_API_KEY}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>AGNO_ENV=production</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./data:/app/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><h3 id=aws-배포-ecs-with-fargate>AWS 배포 (ECS with Fargate)<a hidden class=anchor aria-hidden=true href=#aws-배포-ecs-with-fargate>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 빌드 및 ECR에 푸시</span>
-</span></span><span style=display:flex><span>aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>docker build -t agno-agent .
-</span></span><span style=display:flex><span>docker tag agno-agent:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest
-</span></span><span style=display:flex><span>docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Fargate에 배포</span>
-</span></span><span style=display:flex><span>aws ecs create-service <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --cluster agno-production <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --service-name agent-service <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --task-definition agno-task:1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --desired-count <span style=color:#ae81ff>2</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --launch-type FARGATE
-</span></span></code></pre></div><h2 id=벤치마크--실제-사용-사례>벤치마크 / 실제 사용 사례<a hidden class=anchor aria-hidden=true href=#벤치마크--실제-사용-사례>#</a></h2><h3 id=성능-벤치마크>성능 벤치마크<a hidden class=anchor aria-hidden=true href=#성능-벤치마크>#</a></h3><p>Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점을 보여줍니다: <img alt="Agno 공식 문서" loading=lazy src=https://docs.agno.com/introduction></p><table><thead><tr><th>지표</th><th>Agno</th><th>CrewAI</th><th>AutoGen</th><th>LangGraph</th></tr></thead><tbody><tr><td>에이전트 초기화</td><td>~3 μs</td><td>~12 ms</td><td>~45 ms</td><td>~150 ms</td></tr><tr><td>에이전트당 메모리</td><td>~6.5 KiB</td><td>~320 KiB</td><td>~1.2 MiB</td><td>~2.8 MiB</td></tr><tr><td>콜드 스타트 (로컬)</td><td>45 ms</td><td>890 ms</td><td>2.1 s</td><td>4.5 s</td></tr><tr><td>지원 LLM 제공업체</td><td>23+</td><td>8+</td><td>12+</td><td>15+</td></tr><tr><td>내장 도구 수</td><td>100+</td><td>25+</td><td>40+</td><td>60+</td></tr><tr><td>기본 에이전트 코드 라인</td><td>7</td><td>25</td><td>35</td><td>40+</td></tr></tbody></table><p>이러한 숫자는 규모가 클 때 중요합니다. 1,000개의 동시 에이전트 세션을 실행하는 서비스는 Agno로 약 <strong>6.5 MiB</strong>를 소비하는 반면, LangGraph로는 약 <strong>2.8 GiB</strong>를 소비합니다 — 클라우드 비용에 직접적인 영향을 미치는 400배의 메모리 차이입니다.</p><h3 id=프로덕션-사용-사례>프로덕션 사용 사례<a hidden class=anchor aria-hidden=true href=#프로덕션-사용-사례>#</a></h3><p><strong>데이터 라벨링 파이프라인</strong>: ML 팀은 텍스트, 이미지, 오디오, 비디오 데이터셋을 라벨링하기 위해 Agno를 사용합니다. 멀티모달 입력 지원은 단일 에이전트 파이프라인이 혼합 미디어를 프레임워크 전환 없이 처리할 수 있음을 의미합니다.</p><p><strong>제품 코파일럿</strong>: 팀은 AgentOS API를 통해 제품에 Agno 에이전트를 직접 임베드합니다. 세션 스토리지와 메모리는 사용자 세션 간 대화 연속성을 가능하게 합니다.</p><p><strong>문서 처리</strong>: ChromaDB, LanceDB 또는 PostgreSQL 벡터 스토어를 통한 하이브리드 RAG 검색을 갖춘 지식 에이전트는 법률 계약서, 의료 기록, 재무 보고서를 처리합니다.</p><p><strong>합성 데이터 생성</strong>: 데이터 사이언스 팀은 Agno의 구조화된 출력 기능을 활용하여 미세 조정을 위한 훈련 쌍과 선호 데이터셋을 생성합니다.</p><h2 id=고급-사용법--프로덕션-강화>고급 사용법 / 프로덕션 강화<a hidden class=anchor aria-hidden=true href=#고급-사용법--프로덕션-강화>#</a></h2><h3 id=멀티-에이전트-시스템>멀티 에이전트 시스템<a hidden class=anchor aria-hidden=true href=#멀티-에이전트-시스템>#</a></h3><p>Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: `````python
+</code></pre><p>이것으로 끝입니다 — 10줄의 Python으로 작동하는 에이전트입니다. YAML 설정, 그래프 정의, 번거로움이 없습니다.</p>
+<h2 id="openai-anthropic-ollama-docker-aws-통합">OpenAI, Anthropic, Ollama, Docker, AWS 통합<a hidden class="anchor" aria-hidden="true" href="#openai-anthropic-ollama-docker-aws-통합">#</a></h2>
+<h3 id="openai-통합">OpenAI 통합<a hidden class="anchor" aria-hidden="true" href="#openai-통합">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.models.openai <span style="color:#f92672">import</span> OpenAIChat
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.tools.duckduckgo <span style="color:#f92672">import</span> DuckDuckGoTools
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>OpenAIChat(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;gpt-4o&#34;</span>),
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[DuckDuckGoTools()],
+</span></span><span style="display:flex;"><span>    show_tool_calls<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent<span style="color:#f92672">.</span>print_response(<span style="color:#e6db74">&#34;양자 컴퓨팅의 최신 소식&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="anthropic-claude-통합">Anthropic Claude 통합<a hidden class="anchor" aria-hidden="true" href="#anthropic-claude-통합">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.models.anthropic <span style="color:#f92672">import</span> Claude
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>Claude(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-sonnet-4-20250514&#34;</span>),
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;당신은 시장 동향을 전문으로 하는 연구 분석가입니다.&#34;</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent<span style="color:#f92672">.</span>print_response(<span style="color:#e6db74">&#34;동남아시아의 EV 시장을 분석하세요.&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="ollama-통합-로컬-모델">Ollama 통합 (로컬 모델)<a hidden class="anchor" aria-hidden="true" href="#ollama-통합-로컬-모델">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.models.ollama <span style="color:#f92672">import</span> Ollama
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span>Ollama(id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;qwen3&#34;</span>),
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;당신은 완전히 오프라인으로 실행되는 로컬 AI 어시스턴트입니다.&#34;</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>agent<span style="color:#f92672">.</span>print_response(<span style="color:#e6db74">&#34;Python 예제로 재귀를 설명하세요.&#34;</span>, stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Ollama 설치</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://ollama.com/install.sh | sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 모델 가져오기</span>
+</span></span><span style="display:flex;"><span>ollama pull qwen3
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 실행</span>
+</span></span><span style="display:flex;"><span>python ollama_agent.py
+</span></span></code></pre></div><h3 id="docker-배포">Docker 배포<a hidden class="anchor" aria-hidden="true" href="#docker-배포">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.12-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> requirements.txt .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install --no-cache-dir -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">EXPOSE</span> <span style="color:#e6db74">8000</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;workbench.py&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: agentos: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">OPENAI_API_KEY=${OPENAI_API_KEY}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">AGNO_ENV=production</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./data:/app/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><h3 id="aws-배포-ecs-with-fargate">AWS 배포 (ECS with Fargate)<a hidden class="anchor" aria-hidden="true" href="#aws-배포-ecs-with-fargate">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 빌드 및 ECR에 푸시</span>
+</span></span><span style="display:flex;"><span>aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>docker build -t agno-agent .
+</span></span><span style="display:flex;"><span>docker tag agno-agent:latest $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest
+</span></span><span style="display:flex;"><span>docker push $AWS_ACCOUNT_ID.dkr.ecr.us-east-1.amazonaws.com/agno-agent:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Fargate에 배포</span>
+</span></span><span style="display:flex;"><span>aws ecs create-service <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --cluster agno-production <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --service-name agent-service <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --task-definition agno-task:1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --desired-count <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --launch-type FARGATE
+</span></span></code></pre></div><h2 id="벤치마크--실제-사용-사례">벤치마크 / 실제 사용 사례<a hidden class="anchor" aria-hidden="true" href="#벤치마크--실제-사용-사례">#</a></h2>
+<h3 id="성능-벤치마크">성능 벤치마크<a hidden class="anchor" aria-hidden="true" href="#성능-벤치마크">#</a></h3>
+<p>Agno의 경량 설계는 직접 비교 테스트에서 측정 가능한 이점을 보여줍니다: <img alt="Agno 공식 문서" loading="lazy" src="https://docs.agno.com/introduction"></p>
+<table>
+	<thead>
+			<tr>
+					<th>지표</th>
+					<th>Agno</th>
+					<th>CrewAI</th>
+					<th>AutoGen</th>
+					<th>LangGraph</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>에이전트 초기화</td>
+					<td>~3 μs</td>
+					<td>~12 ms</td>
+					<td>~45 ms</td>
+					<td>~150 ms</td>
+			</tr>
+			<tr>
+					<td>에이전트당 메모리</td>
+					<td>~6.5 KiB</td>
+					<td>~320 KiB</td>
+					<td>~1.2 MiB</td>
+					<td>~2.8 MiB</td>
+			</tr>
+			<tr>
+					<td>콜드 스타트 (로컬)</td>
+					<td>45 ms</td>
+					<td>890 ms</td>
+					<td>2.1 s</td>
+					<td>4.5 s</td>
+			</tr>
+			<tr>
+					<td>지원 LLM 제공업체</td>
+					<td>23+</td>
+					<td>8+</td>
+					<td>12+</td>
+					<td>15+</td>
+			</tr>
+			<tr>
+					<td>내장 도구 수</td>
+					<td>100+</td>
+					<td>25+</td>
+					<td>40+</td>
+					<td>60+</td>
+			</tr>
+			<tr>
+					<td>기본 에이전트 코드 라인</td>
+					<td>7</td>
+					<td>25</td>
+					<td>35</td>
+					<td>40+</td>
+			</tr>
+	</tbody>
+</table>
+<p>이러한 숫자는 규모가 클 때 중요합니다. 1,000개의 동시 에이전트 세션을 실행하는 서비스는 Agno로 약 <strong>6.5 MiB</strong>를 소비하는 반면, LangGraph로는 약 <strong>2.8 GiB</strong>를 소비합니다 — 클라우드 비용에 직접적인 영향을 미치는 400배의 메모리 차이입니다.</p>
+<h3 id="프로덕션-사용-사례">프로덕션 사용 사례<a hidden class="anchor" aria-hidden="true" href="#프로덕션-사용-사례">#</a></h3>
+<p><strong>데이터 라벨링 파이프라인</strong>: ML 팀은 텍스트, 이미지, 오디오, 비디오 데이터셋을 라벨링하기 위해 Agno를 사용합니다. 멀티모달 입력 지원은 단일 에이전트 파이프라인이 혼합 미디어를 프레임워크 전환 없이 처리할 수 있음을 의미합니다.</p>
+<p><strong>제품 코파일럿</strong>: 팀은 AgentOS API를 통해 제품에 Agno 에이전트를 직접 임베드합니다. 세션 스토리지와 메모리는 사용자 세션 간 대화 연속성을 가능하게 합니다.</p>
+<p><strong>문서 처리</strong>: ChromaDB, LanceDB 또는 PostgreSQL 벡터 스토어를 통한 하이브리드 RAG 검색을 갖춘 지식 에이전트는 법률 계약서, 의료 기록, 재무 보고서를 처리합니다.</p>
+<p><strong>합성 데이터 생성</strong>: 데이터 사이언스 팀은 Agno의 구조화된 출력 기능을 활용하여 미세 조정을 위한 훈련 쌍과 선호 데이터셋을 생성합니다.</p>
+<h2 id="고급-사용법--프로덕션-강화">고급 사용법 / 프로덕션 강화<a hidden class="anchor" aria-hidden="true" href="#고급-사용법--프로덕션-강화">#</a></h2>
+<h3 id="멀티-에이전트-시스템">멀티 에이전트 시스템<a hidden class="anchor" aria-hidden="true" href="#멀티-에이전트-시스템">#</a></h3>
+<p>Agno 팀을 사용하면 그래프 정의 없이 에이전트 그룹을 구성할 수 있습니다: `````python
 from agno.agent import Agent
 from agno.models.openai import OpenAIChat
 from agno.tools.duckduckgo import DuckDuckGoTools
-from agno.team import Team</p><h1 id=연구-에이전트>연구 에이전트<a hidden class=anchor aria-hidden=true href=#연구-에이전트>#</a></h1><p>researcher = Agent(
+from agno.team import Team</p>
+<h1 id="연구-에이전트">연구 에이전트<a hidden class="anchor" aria-hidden="true" href="#연구-에이전트">#</a></h1>
+<p>researcher = Agent(
 name=&ldquo;Researcher&rdquo;,
 model=OpenAIChat(id=&ldquo;gpt-4o-mini&rdquo;),
 tools=[DuckDuckGoTools()],
 description=&ldquo;모든 주제의 최신 데이터와 통계를 찾습니다.&rdquo;,
-)</p><h1 id=작가-에이전트>작가 에이전트<a hidden class=anchor aria-hidden=true href=#작가-에이전트>#</a></h1><p>writer = Agent(
+)</p>
+<h1 id="작가-에이전트">작가 에이전트<a hidden class="anchor" aria-hidden="true" href="#작가-에이전트">#</a></h1>
+<p>writer = Agent(
 name=&ldquo;Writer&rdquo;,
 model=OpenAIChat(id=&ldquo;gpt-4o&rdquo;),
 description=&ldquo;연구 노트에서 세련된 기사를 작성합니다.&rdquo;,
-)</p><h1 id=팀-구성>팀 구성<a hidden class=anchor aria-hidden=true href=#팀-구성>#</a></h1><p>team = Team(
+)</p>
+<h1 id="팀-구성">팀 구성<a hidden class="anchor" aria-hidden="true" href="#팀-구성">#</a></h1>
+<p>team = Team(
 name=&ldquo;Content Team&rdquo;,
 members=[researcher, writer],
 instructions=&ldquo;잘 연구되고 매력적인 콘텐츠를 협업하여 제작합니다.&rdquo;,
-)</p><p>team.print_response(&ldquo;2026년 재생 에너지 동향에 대한 기사를 작성하세요.&rdquo;, stream=True)</p><pre tabindex=0><code>
+)</p>
+<p>team.print_response(&ldquo;2026년 재생 에너지 동향에 대한 기사를 작성하세요.&rdquo;, stream=True)</p>
+<pre tabindex="0"><code>
 ### Agentic RAG 지식 베이스
 
 `````python
@@ -203,49 +600,203 @@ agent = Agent(
 )
 
 agent.print_response(&#34;Agno란 무엇인가요?&#34;, stream=True)
-</code></pre><h3 id=세션-스토리지가-있는-프로덕션-서비스>세션 스토리지가 있는 프로덕션 서비스<a hidden class=anchor aria-hidden=true href=#세션-스토리지가-있는-프로덕션-서비스>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> agno.agent <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.db.sqlite <span style=color:#f92672>import</span> SqliteDb
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.os <span style=color:#f92672>import</span> AgentOS
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.tools.workspace <span style=color:#f92672>import</span> Workspace
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>workbench <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Workbench&#34;</span>,
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;openai:gpt-5.5&#34;</span>,
-</span></span><span style=display:flex><span>    db<span style=color:#f92672>=</span>SqliteDb(db_file<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;workbench.db&#34;</span>),
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[Workspace(root<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./workspace&#34;</span>, allowed<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;read&#34;</span>, <span style=color:#e6db74>&#34;list&#34;</span>, <span style=color:#e6db74>&#34;search&#34;</span>, <span style=color:#e6db74>&#34;shell&#34;</span>])],
-</span></span><span style=display:flex><span>    instructions<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;사용자가 작업 공간 파일을 구성하고 분석하도록 도와줍니다.&#34;</span>,
-</span></span><span style=display:flex><span>    markdown<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># API로 서비스 제공</span>
-</span></span><span style=display:flex><span>AgentOS<span style=color:#f92672>.</span>agent <span style=color:#f92672>=</span> workbench
-</span></span><span style=display:flex><span>AgentOS<span style=color:#f92672>.</span>serve(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8000</span>)
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 서비스 시작</span>
-</span></span><span style=display:flex><span>python workbench.py
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># curl로 테스트</span>
-</span></span><span style=display:flex><span>curl -X POST http://localhost:8000/v1/agents/workbench/run <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#960050;background-color:#1e0010>&#39;</span><span style=color:#f92672>{</span><span style=color:#e6db74>&#34;message&#34;</span>: <span style=color:#e6db74>&#34;내 다운로드 폴더를 정리해줘&#34;</span>, <span style=color:#e6db74>&#34;session_id&#34;</span>: <span style=color:#e6db74>&#34;user-123&#34;</span><span style=color:#f92672>}</span><span style=color:#e6db74>&#34;
-</span></span></span></code></pre></div><h3 id=보안-및-모니터링>보안 및 모니터링<a hidden class=anchor aria-hidden=true href=#보안-및-모니터링>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> agno.agent <span style=color:#f92672>import</span> Agent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> agno.os <span style=color:#f92672>import</span> AgentOS
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 파괴적 도구에 대해 인간 승인 활성화</span>
-</span></span><span style=display:flex><span>agent <span style=color:#f92672>=</span> Agent(
-</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;SecureAgent&#34;</span>,
-</span></span><span style=display:flex><span>    model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;openai:gpt-4o&#34;</span>,
-</span></span><span style=display:flex><span>    tools<span style=color:#f92672>=</span>[Workspace(root<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./data&#34;</span>, allowed<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;read&#34;</span>, <span style=color:#e6db74>&#34;list&#34;</span>])],
-</span></span><span style=display:flex><span>    human_approval<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,  <span style=color:#75715e># 도구 호출에 승인 필요</span>
-</span></span><span style=display:flex><span>    audit_trail<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,     <span style=color:#75715e># 모든 작업 기록</span>
-</span></span><span style=display:flex><span>    markdown<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># OpenTelemetry 트레이싱 (AgentOS에서 자동 구성)</span>
-</span></span><span style=display:flex><span>AgentOS<span style=color:#f92672>.</span>agent <span style=color:#f92672>=</span> agent
-</span></span><span style=display:flex><span>AgentOS<span style=color:#f92672>.</span>serve(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;0.0.0.0&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>8000</span>)
-</span></span></code></pre></div><h2 id=대안과의-비교>대안과의 비교<a hidden class=anchor aria-hidden=true href=#대안과의-비교>#</a></h2><table><thead><tr><th>기능</th><th>Agno</th><th>CrewAI</th><th>AutoGen</th><th>LangChain + LangGraph</th></tr></thead><tbody><tr><td><strong>GitHub Star</strong></td><td>40,233</td><td>51,000+</td><td>58,000+</td><td>96,000+ / 31,000+</td></tr><tr><td><strong>라이선스</strong></td><td>Apache-2.0</td><td>MIT</td><td>MIT (코드) / CC-BY-4.0 (문서)</td><td>MIT</td></tr><tr><td><strong>아키텍처</strong></td><td>SDK + FastAPI 런타임 + 컨트롤 플레인</td><td>역할 기반 팀</td><td>대화형 멀티 에이전트</td><td>그래프 기반 오케스트레이션</td></tr><tr><td><strong>에이전트 초기화 속도</strong></td><td>~3 μs</td><td>~12 ms</td><td>~45 ms</td><td>~150 ms</td></tr><tr><td><strong>메모리 오버헤드</strong></td><td>~6.5 KiB</td><td>~320 KiB</td><td>~1.2 MiB</td><td>~2.8 MiB</td></tr><tr><td><strong>LLM 제공업체 수</strong></td><td>23+</td><td>8+</td><td>12+</td><td>15+</td></tr><tr><td><strong>내장 도구 수</strong></td><td>100+</td><td>25+</td><td>40+</td><td>60+</td></tr><tr><td><strong>학습 곡선</strong></td><td>낮음</td><td>중간</td><td>높음</td><td>높음</td></tr><tr><td><strong>최적 사용처</strong></td><td>프로덕션 에이전트 서비스</td><td>역할 기반 업무 워크플로우</td><td>연구 / 마이크로소프트 에코시스템</td><td>복잡한 상태 저장 워크플로우</td></tr><tr><td><strong>데이터 자체 호스팅</strong></td><td>예 (당신의 DB)</td><td>부분</td><td>예</td><td>예</td></tr><tr><td><strong>MCP 지원</strong></td><td>예</td><td>아니오</td><td>제한적</td><td>예</td></tr><tr><td><strong>AgentOS UI</strong></td><td>예 (내장)</td><td>아니오</td><td>아니오</td><td>LangSmith (별도)</td></tr><tr><td><strong>커뮤니티</strong></td><td>452 기여자</td><td>성장 중</td><td>마이크로소프트 지원</td><td>가장 큰 에코시스템</td></tr></tbody></table><p><strong>Agno를 선택할 때</strong>: 세션 관리, 트레이싱, 낮은 메모리 사용량이 있는 가벼운 API 중심 에이전트가 필요한 경우.</p><p><strong>CrewAI를 선택할 때</strong>: 역할 기반 팀(연구원, 작가, 편집자)이 당신의 멘탈 모델에 맞고 최소한의 설정으로 구조화된 워크플로우가 필요한 경우.</p><p><strong>AutoGen를 선택할 때</strong>: 마이크로소프트 에코시스템에 있고, 연구 도구를 빌드하거나, 내장 코드 실행이 있는 대화형 멀티 에이전트 시스템이 필요한 경우.</p><p><strong>LangGraph를 선택할 때</strong>: 명시적 상태 머신, 체크포인팅, 리플레이, 그래프 의미론이 제공하는 세밀한 분기 제어가 워크플로우에 필요한 경우.</p><h2 id=한계--정직한-평가>한계 / 정직한 평가<a hidden class=anchor aria-hidden=true href=#한계--정직한-평가>#</a></h2><p>Agno는 모든 에이전트 사용 사례에 적합한 도구는 아닙니다. 도입 전 고려해야 할 사항은 다음과 같습니다: <strong>그래프 의미론 부재</strong>: 워크플로우에 명시적 상태 전환, 체크포인팅, 재생 가능한 실행 경로가 필요한 경우 LangGraph의 그래프 모델이 더 적합합니다. Agno의 팀 기반 오케스트레이션은 더 간단하지만 복잡한 분기 논리에서는 덜 정확합니다.</p><p><strong>LangChain보다 작은 커뮤니티</strong>: 452명의 기여자 대 LangChain의 3,000+명, 서드파티 튜토리얼과 StackOverflow 답변은 적습니다. 문서가 빠르게 개선되고 있지만 아직 엣지 케이스 시나리오에는 공백이 있습니다.</p><p><strong>Python 전용</strong>: LangChain이 JavaScript/TypeScript를 지원하고 AutoGen이 .NET 경로를 가진 반면, Agno는 Python 전용입니다. Node.js나 .NET을 사용하는 풀스택 팀은 언어 브리지가 필요합니다.</p><p><strong>더 젊은 생태계</strong>: Phidata에서 Agno로의 리브랜딩(2024년 말)과 1.x에서 2.x로의 마이그레이션은 패키지 레이아웃과 API를 변경했습니다. 일부 오래된 커뮤니티 튜토리얼은 더 이상 사용되지 않는 임포트를 사용합니다.</p><p><strong>AgentOS 종속성 고려</strong>: SDK는 완전히 오픈소스이지만, agno.com에서 호스팅되는 AgentOS UI는 프리미엄 기능을 제공합니다. 팀은 컨트롤 플레인에 약속하기 전에 어떤 기능이 유료 플랜을 필요로 하는지 확인해야 합니다.</p><h2 id=자주-묻는-질문>자주 묻는 질문<a hidden class=anchor aria-hidden=true href=#자주-묻는-질문>#</a></h2><h3 id=프로덕션-환경에서-agno와-langgraph를-어떻게-비교하나요>프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요?<a hidden class=anchor aria-hidden=true href=#프로덕션-환경에서-agno와-langgraph를-어떻게-비교하나요>#</a></h3><p>Agno는 런타임 오버헤드와 서비스 패키징을 우선시합니다 — 세션과 트레이싱이 있는 FastAPI 백엔드를 몇 분 안에 얻을 수 있습니다. LangGraph는 상태 관리와 분기 제어에 대해 더 많은 제어를 제공하지만 그래프 의미론을 배워야 하며 상당히 높은 메모리 오버헤드를 가집니다. 에이전트 API를 제공하는 팀에게는 Agno가 상용구를 줄입니다. 복잡한 결정론적 워크플로우를 구축하는 팀에게는 LangGraph의 명시적 상태 모델이 학습 비용을 감수할 가치가 있습니다.</p><h3 id=agno를-로컬-모델만으로-실행할-수-있나요>Agno를 로컬 모델만으로 실행할 수 있나요?<a hidden class=anchor aria-hidden=true href=#agno를-로컬-모델만으로-실행할-수-있나요>#</a></h3><p>네. Agno는 Ollama, LM Studio, 그리고 모든 OpenAI 호환 로컬 엔드포인트와 통합됩니다. <code>Ollama</code> 모델 제공업체를 사용하면 Llama 3, Qwen3, Mistral과 같은 모델로 완전히 오프라인에서 실행할 수 있습니다. 로컬 배포에는 API 키나 클라우드 의존성이 필요하지 않습니다.</p><h3 id=agno는-세션-스토리지에-어떤-데이터베이스를-지원하나요>Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?<a hidden class=anchor aria-hidden=true href=#agno는-세션-스토리지에-어떤-데이터베이스를-지원하나요>#</a></h3><p>Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, LanceDB를 지원합니다. <code>SqliteDb</code>, <code>PostgresDb</code>, <code>LanceDb</code> 클래스가 세션 읽기/쓰기를 자동으로 처리합니다 — 수동 SQL이 필요 없습니다. 지원되는 벡터 데이터베이스는 ChromaDB, LanceDB, RAG 지식 베이스용 pgvector를 포함합니다.</p><h3 id=agno는-엔터프라이즈-배포에-적합한가요>Agno는 엔터프라이즈 배포에 적합한가요?<a hidden class=anchor aria-hidden=true href=#agno는-엔터프라이즈-배포에-적합한가요>#</a></h3><p>예, 단 주의가 필요합니다. Agno의 AgentOS 런타임은 RBAC, 인간 승인 루프, 감사 추적, OpenTelemetry 가시성을 포함합니다 — 이는 모두 엔터프라이즈 배포에 필요한 요구사항입니다. 그러나 이 프로젝트는 LangChain보다 젊고, 엔터프라이즈 지원(SLA, 전담 지원)은 Agno의 상업 제품을 통해서만 사용할 수 있습니다. 엄격한 규정 준수 요구사항이 있는 팀은 자체 호스팅과 관리형 옵션을 평가해야 합니다.</p><h3 id=phidata에서-agno로-어떻게-마이그레이션하나요>Phidata에서 Agno로 어떻게 마이그레이션하나요?<a hidden class=anchor aria-hidden=true href=#phidata에서-agno로-어떻게-마이그레이션하나요>#</a></h3><p>마이그레이션은 패키지 임포트를 <code>phidata</code>에서 <code>agno</code>로 업데이트하고 2.x API 변경 사항에 적응하는 것을 포함합니다. Agno 팀은 일반적인 패턴을 다루는 <a href=https://docs.agno.com/migration>마이그레이션 가이드</a>를 제공합니다. 주요 변경 사항은 <code>Agent</code> 클래스가 <code>PhiAgent</code>를 대체하고, <code>Team</code> 클래스가 ````PhiTeam```을 대체하며, AgentOS 런타임이 별도의 모듈이 되는 것입니다. 대부분의 마이그레이션은 중간 규모의 코드베이스에 대해 몇 시간이 소요됩니다.</p><h3 id=agentos-런타임-없이-agno를-사용할-수-있나요>AgentOS 런타임 없이 Agno를 사용할 수 있나요?<a hidden class=anchor aria-hidden=true href=#agentos-런타임-없이-agno를-사용할-수-있나요>#</a></h3><p>완전히 가능합니다. SDK 계층은 완전히 독립적입니다. 에이전트를 독립형 Python 스크립트로 빌드하고 실행하거나, 기존 FastAPI/Django/Flask 앱에 통합하거나, 에이전트와 도구 구성 요소만 사용할 수 있습니다. AgentOS는 세션 관리와 모니터링이 즉시 필요한 팀을 위한 선택적 편의 계층입니다.</p><h2 id=결론>결론<a hidden class=anchor aria-hidden=true href=#결론>#</a></h2><p>Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다: Python 팀에게 그래프 기반 오케스트레이션의 복잡성 없이 에이전트 서비스를 빌드하고 배포할 수 있는 빠르고 가벼운 방법을 제공합니다. <strong>3 μs 에이전트 초기화</strong>, <strong>6.5 KiB 메모리 사용량</strong>, <strong>100개 이상의 사전 구축 도구</strong>는 직접적으로 더 낮은 인프라 비용과 더 빠른 개발 주기로 전환됩니다.</p><p>2026년에 프로덕션 에이전트를 제공하는 팀에게 결정 프레임워크는 간단합니다: 가벼운 API 중심 에이전트가 필요하면 Agno로 시작하세요; 역할 기반 팀이 당신의 멘탈 모델에 맞으면 CrewAI를 평가하세요; 마이크로소프트 중심 또는 연구 워크로드의 경우 AutoGen을 고려하세요; 명시적 상태 머신 의미론이 타협할 수 없는 경우에만 LangGraph를 사용하세요.</p><p>40,233개의 GitHub Star와 452명의 기여자 커뮤니티는 Agno가 유망한 프로젝트에서 프로덕션에 적합한 플랫폼으로 도약했음을 보여줍니다. 이를 평가하는 가장 좋은 방법은 설치 섹션에서 10줄 예제를 실행하고 설정 시간을 대안과 비교하는 것입니다.</p><p><strong>실행 항목</strong>: <a href=https://github.com/agno-agi/agno>Agno GitHub 저장소</a>를 클론하고, 첫 번째 에이전트를 실행한 다음, 위의 Docker 설정을 사용하여 클라우드 서버에 배포하세요. 실시간 지원을 위해 <a href=https://discord.gg/agno>Agno Discord 커뮤니티</a>에 가입하세요.</p><h2 id=추천-호스팅-및-인프라>추천 호스팅 및 인프라<a hidden class=anchor aria-hidden=true href=#추천-호스팅-및-인프라>#</a></h2><p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li></ul><p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p><h2 id=참고-자료-및-추가-독서>참고 자료 및 추가 독서<a hidden class=anchor aria-hidden=true href=#참고-자료-및-추가-독서>#</a></h2><ul><li><a href=https://github.com/agno-agi/agno>Agno GitHub 저장소</a> — 공식 소스 코드, 40,233 Star</li><li><a href=https://docs.agno.com>Agno 공식 문서</a> — 예제와 API 레퍼런스가 포함된 완전한 문서</li><li><a href=https://os.agno.com>Agno AgentOS</a> — 에이전트 관리를 위한 호스팅 컨트롤 플레인</li><li><a href=https://futureagi.com/blog/oss-agent-frameworks-2026>FutureAGI 프레임워크 비교 2026</a> — 오픈소스 에이전트 프레임워크 상세 비교</li><li><a href=https://deepchecks.com/best-ai-agent-frameworks/>Deepchecks AI 에이전트 프레임워크 2025</a> — 프레임워크 벤치마크 및 사용 사례 분석</li><li><a href=https://ronniehuss.co.uk/crewai-vs-langgraph-vs-autogen-vs-agno/>CrewAI vs LangGraph vs AutoGen vs Agno</a> — 창업자를 위한 프레임워크 비교</li><li><a href=https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/>AI Agents Kit 비교 2026</a> — 커뮤니티 주도 프레임워크 순위</li><li><a href=https://respan.ai/market-map/compare/agno-vs-crewai>Agno vs CrewAI 상세 비교</a> — 커뮤니티 리뷰가 포함된 기능별 분석</li></ul><hr><p><em>이 기사에는 제휴 링크가 포함되어 있습니다. 이러한 링크를 통해 서비스에 가입하면 추가 비용 없이 dibi8.com에 커미션이 지급될 수 있습니다.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h3 id="세션-스토리지가-있는-프로덕션-서비스">세션 스토리지가 있는 프로덕션 서비스<a hidden class="anchor" aria-hidden="true" href="#세션-스토리지가-있는-프로덕션-서비스">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.db.sqlite <span style="color:#f92672">import</span> SqliteDb
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.os <span style="color:#f92672">import</span> AgentOS
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.tools.workspace <span style="color:#f92672">import</span> Workspace
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>workbench <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Workbench&#34;</span>,
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openai:gpt-5.5&#34;</span>,
+</span></span><span style="display:flex;"><span>    db<span style="color:#f92672">=</span>SqliteDb(db_file<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;workbench.db&#34;</span>),
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[Workspace(root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./workspace&#34;</span>, allowed<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;read&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>, <span style="color:#e6db74">&#34;search&#34;</span>, <span style="color:#e6db74">&#34;shell&#34;</span>])],
+</span></span><span style="display:flex;"><span>    instructions<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;사용자가 작업 공간 파일을 구성하고 분석하도록 도와줍니다.&#34;</span>,
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># API로 서비스 제공</span>
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>agent <span style="color:#f92672">=</span> workbench
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>serve(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 서비스 시작</span>
+</span></span><span style="display:flex;"><span>python workbench.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># curl로 테스트</span>
+</span></span><span style="display:flex;"><span>curl -X POST http://localhost:8000/v1/agents/workbench/run <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#f92672">{</span><span style="color:#e6db74">&#34;message&#34;</span>: <span style="color:#e6db74">&#34;내 다운로드 폴더를 정리해줘&#34;</span>, <span style="color:#e6db74">&#34;session_id&#34;</span>: <span style="color:#e6db74">&#34;user-123&#34;</span><span style="color:#f92672">}</span><span style="color:#e6db74">&#34;
+</span></span></span></code></pre></div><h3 id="보안-및-모니터링">보안 및 모니터링<a hidden class="anchor" aria-hidden="true" href="#보안-및-모니터링">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.agent <span style="color:#f92672">import</span> Agent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> agno.os <span style="color:#f92672">import</span> AgentOS
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 파괴적 도구에 대해 인간 승인 활성화</span>
+</span></span><span style="display:flex;"><span>agent <span style="color:#f92672">=</span> Agent(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;SecureAgent&#34;</span>,
+</span></span><span style="display:flex;"><span>    model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openai:gpt-4o&#34;</span>,
+</span></span><span style="display:flex;"><span>    tools<span style="color:#f92672">=</span>[Workspace(root<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./data&#34;</span>, allowed<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;read&#34;</span>, <span style="color:#e6db74">&#34;list&#34;</span>])],
+</span></span><span style="display:flex;"><span>    human_approval<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># 도구 호출에 승인 필요</span>
+</span></span><span style="display:flex;"><span>    audit_trail<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,     <span style="color:#75715e"># 모든 작업 기록</span>
+</span></span><span style="display:flex;"><span>    markdown<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenTelemetry 트레이싱 (AgentOS에서 자동 구성)</span>
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>agent <span style="color:#f92672">=</span> agent
+</span></span><span style="display:flex;"><span>AgentOS<span style="color:#f92672">.</span>serve(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;0.0.0.0&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">8000</span>)
+</span></span></code></pre></div><h2 id="대안과의-비교">대안과의 비교<a hidden class="anchor" aria-hidden="true" href="#대안과의-비교">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>기능</th>
+					<th>Agno</th>
+					<th>CrewAI</th>
+					<th>AutoGen</th>
+					<th>LangChain + LangGraph</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>GitHub Star</strong></td>
+					<td>40,233</td>
+					<td>51,000+</td>
+					<td>58,000+</td>
+					<td>96,000+ / 31,000+</td>
+			</tr>
+			<tr>
+					<td><strong>라이선스</strong></td>
+					<td>Apache-2.0</td>
+					<td>MIT</td>
+					<td>MIT (코드) / CC-BY-4.0 (문서)</td>
+					<td>MIT</td>
+			</tr>
+			<tr>
+					<td><strong>아키텍처</strong></td>
+					<td>SDK + FastAPI 런타임 + 컨트롤 플레인</td>
+					<td>역할 기반 팀</td>
+					<td>대화형 멀티 에이전트</td>
+					<td>그래프 기반 오케스트레이션</td>
+			</tr>
+			<tr>
+					<td><strong>에이전트 초기화 속도</strong></td>
+					<td>~3 μs</td>
+					<td>~12 ms</td>
+					<td>~45 ms</td>
+					<td>~150 ms</td>
+			</tr>
+			<tr>
+					<td><strong>메모리 오버헤드</strong></td>
+					<td>~6.5 KiB</td>
+					<td>~320 KiB</td>
+					<td>~1.2 MiB</td>
+					<td>~2.8 MiB</td>
+			</tr>
+			<tr>
+					<td><strong>LLM 제공업체 수</strong></td>
+					<td>23+</td>
+					<td>8+</td>
+					<td>12+</td>
+					<td>15+</td>
+			</tr>
+			<tr>
+					<td><strong>내장 도구 수</strong></td>
+					<td>100+</td>
+					<td>25+</td>
+					<td>40+</td>
+					<td>60+</td>
+			</tr>
+			<tr>
+					<td><strong>학습 곡선</strong></td>
+					<td>낮음</td>
+					<td>중간</td>
+					<td>높음</td>
+					<td>높음</td>
+			</tr>
+			<tr>
+					<td><strong>최적 사용처</strong></td>
+					<td>프로덕션 에이전트 서비스</td>
+					<td>역할 기반 업무 워크플로우</td>
+					<td>연구 / 마이크로소프트 에코시스템</td>
+					<td>복잡한 상태 저장 워크플로우</td>
+			</tr>
+			<tr>
+					<td><strong>데이터 자체 호스팅</strong></td>
+					<td>예 (당신의 DB)</td>
+					<td>부분</td>
+					<td>예</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td><strong>MCP 지원</strong></td>
+					<td>예</td>
+					<td>아니오</td>
+					<td>제한적</td>
+					<td>예</td>
+			</tr>
+			<tr>
+					<td><strong>AgentOS UI</strong></td>
+					<td>예 (내장)</td>
+					<td>아니오</td>
+					<td>아니오</td>
+					<td>LangSmith (별도)</td>
+			</tr>
+			<tr>
+					<td><strong>커뮤니티</strong></td>
+					<td>452 기여자</td>
+					<td>성장 중</td>
+					<td>마이크로소프트 지원</td>
+					<td>가장 큰 에코시스템</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Agno를 선택할 때</strong>: 세션 관리, 트레이싱, 낮은 메모리 사용량이 있는 가벼운 API 중심 에이전트가 필요한 경우.</p>
+<p><strong>CrewAI를 선택할 때</strong>: 역할 기반 팀(연구원, 작가, 편집자)이 당신의 멘탈 모델에 맞고 최소한의 설정으로 구조화된 워크플로우가 필요한 경우.</p>
+<p><strong>AutoGen를 선택할 때</strong>: 마이크로소프트 에코시스템에 있고, 연구 도구를 빌드하거나, 내장 코드 실행이 있는 대화형 멀티 에이전트 시스템이 필요한 경우.</p>
+<p><strong>LangGraph를 선택할 때</strong>: 명시적 상태 머신, 체크포인팅, 리플레이, 그래프 의미론이 제공하는 세밀한 분기 제어가 워크플로우에 필요한 경우.</p>
+<h2 id="한계--정직한-평가">한계 / 정직한 평가<a hidden class="anchor" aria-hidden="true" href="#한계--정직한-평가">#</a></h2>
+<p>Agno는 모든 에이전트 사용 사례에 적합한 도구는 아닙니다. 도입 전 고려해야 할 사항은 다음과 같습니다: <strong>그래프 의미론 부재</strong>: 워크플로우에 명시적 상태 전환, 체크포인팅, 재생 가능한 실행 경로가 필요한 경우 LangGraph의 그래프 모델이 더 적합합니다. Agno의 팀 기반 오케스트레이션은 더 간단하지만 복잡한 분기 논리에서는 덜 정확합니다.</p>
+<p><strong>LangChain보다 작은 커뮤니티</strong>: 452명의 기여자 대 LangChain의 3,000+명, 서드파티 튜토리얼과 StackOverflow 답변은 적습니다. 문서가 빠르게 개선되고 있지만 아직 엣지 케이스 시나리오에는 공백이 있습니다.</p>
+<p><strong>Python 전용</strong>: LangChain이 JavaScript/TypeScript를 지원하고 AutoGen이 .NET 경로를 가진 반면, Agno는 Python 전용입니다. Node.js나 .NET을 사용하는 풀스택 팀은 언어 브리지가 필요합니다.</p>
+<p><strong>더 젊은 생태계</strong>: Phidata에서 Agno로의 리브랜딩(2024년 말)과 1.x에서 2.x로의 마이그레이션은 패키지 레이아웃과 API를 변경했습니다. 일부 오래된 커뮤니티 튜토리얼은 더 이상 사용되지 않는 임포트를 사용합니다.</p>
+<p><strong>AgentOS 종속성 고려</strong>: SDK는 완전히 오픈소스이지만, agno.com에서 호스팅되는 AgentOS UI는 프리미엄 기능을 제공합니다. 팀은 컨트롤 플레인에 약속하기 전에 어떤 기능이 유료 플랜을 필요로 하는지 확인해야 합니다.</p>
+<h2 id="자주-묻는-질문">자주 묻는 질문<a hidden class="anchor" aria-hidden="true" href="#자주-묻는-질문">#</a></h2>
+<h3 id="프로덕션-환경에서-agno와-langgraph를-어떻게-비교하나요">프로덕션 환경에서 Agno와 LangGraph를 어떻게 비교하나요?<a hidden class="anchor" aria-hidden="true" href="#프로덕션-환경에서-agno와-langgraph를-어떻게-비교하나요">#</a></h3>
+<p>Agno는 런타임 오버헤드와 서비스 패키징을 우선시합니다 — 세션과 트레이싱이 있는 FastAPI 백엔드를 몇 분 안에 얻을 수 있습니다. LangGraph는 상태 관리와 분기 제어에 대해 더 많은 제어를 제공하지만 그래프 의미론을 배워야 하며 상당히 높은 메모리 오버헤드를 가집니다. 에이전트 API를 제공하는 팀에게는 Agno가 상용구를 줄입니다. 복잡한 결정론적 워크플로우를 구축하는 팀에게는 LangGraph의 명시적 상태 모델이 학습 비용을 감수할 가치가 있습니다.</p>
+<h3 id="agno를-로컬-모델만으로-실행할-수-있나요">Agno를 로컬 모델만으로 실행할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#agno를-로컬-모델만으로-실행할-수-있나요">#</a></h3>
+<p>네. Agno는 Ollama, LM Studio, 그리고 모든 OpenAI 호환 로컬 엔드포인트와 통합됩니다. <code>Ollama</code> 모델 제공업체를 사용하면 Llama 3, Qwen3, Mistral과 같은 모델로 완전히 오프라인에서 실행할 수 있습니다. 로컬 배포에는 API 키나 클라우드 의존성이 필요하지 않습니다.</p>
+<h3 id="agno는-세션-스토리지에-어떤-데이터베이스를-지원하나요">Agno는 세션 스토리지에 어떤 데이터베이스를 지원하나요?<a hidden class="anchor" aria-hidden="true" href="#agno는-세션-스토리지에-어떤-데이터베이스를-지원하나요">#</a></h3>
+<p>Agno는 세션 스토리지와 메모리를 위해 SQLite, PostgreSQL, MySQL, LanceDB를 지원합니다. <code>SqliteDb</code>, <code>PostgresDb</code>, <code>LanceDb</code> 클래스가 세션 읽기/쓰기를 자동으로 처리합니다 — 수동 SQL이 필요 없습니다. 지원되는 벡터 데이터베이스는 ChromaDB, LanceDB, RAG 지식 베이스용 pgvector를 포함합니다.</p>
+<h3 id="agno는-엔터프라이즈-배포에-적합한가요">Agno는 엔터프라이즈 배포에 적합한가요?<a hidden class="anchor" aria-hidden="true" href="#agno는-엔터프라이즈-배포에-적합한가요">#</a></h3>
+<p>예, 단 주의가 필요합니다. Agno의 AgentOS 런타임은 RBAC, 인간 승인 루프, 감사 추적, OpenTelemetry 가시성을 포함합니다 — 이는 모두 엔터프라이즈 배포에 필요한 요구사항입니다. 그러나 이 프로젝트는 LangChain보다 젊고, 엔터프라이즈 지원(SLA, 전담 지원)은 Agno의 상업 제품을 통해서만 사용할 수 있습니다. 엄격한 규정 준수 요구사항이 있는 팀은 자체 호스팅과 관리형 옵션을 평가해야 합니다.</p>
+<h3 id="phidata에서-agno로-어떻게-마이그레이션하나요">Phidata에서 Agno로 어떻게 마이그레이션하나요?<a hidden class="anchor" aria-hidden="true" href="#phidata에서-agno로-어떻게-마이그레이션하나요">#</a></h3>
+<p>마이그레이션은 패키지 임포트를 <code>phidata</code>에서 <code>agno</code>로 업데이트하고 2.x API 변경 사항에 적응하는 것을 포함합니다. Agno 팀은 일반적인 패턴을 다루는 <a href="https://docs.agno.com/migration">마이그레이션 가이드</a>를 제공합니다. 주요 변경 사항은 <code>Agent</code> 클래스가 <code>PhiAgent</code>를 대체하고, <code>Team</code> 클래스가 ````PhiTeam```을 대체하며, AgentOS 런타임이 별도의 모듈이 되는 것입니다. 대부분의 마이그레이션은 중간 규모의 코드베이스에 대해 몇 시간이 소요됩니다.</p>
+<h3 id="agentos-런타임-없이-agno를-사용할-수-있나요">AgentOS 런타임 없이 Agno를 사용할 수 있나요?<a hidden class="anchor" aria-hidden="true" href="#agentos-런타임-없이-agno를-사용할-수-있나요">#</a></h3>
+<p>완전히 가능합니다. SDK 계층은 완전히 독립적입니다. 에이전트를 독립형 Python 스크립트로 빌드하고 실행하거나, 기존 FastAPI/Django/Flask 앱에 통합하거나, 에이전트와 도구 구성 요소만 사용할 수 있습니다. AgentOS는 세션 관리와 모니터링이 즉시 필요한 팀을 위한 선택적 편의 계층입니다.</p>
+<h2 id="결론">결론<a hidden class="anchor" aria-hidden="true" href="#결론">#</a></h2>
+<p>Agno는 에이전트 프레임워크 환경에서 특정 격차를 메웁니다: Python 팀에게 그래프 기반 오케스트레이션의 복잡성 없이 에이전트 서비스를 빌드하고 배포할 수 있는 빠르고 가벼운 방법을 제공합니다. <strong>3 μs 에이전트 초기화</strong>, <strong>6.5 KiB 메모리 사용량</strong>, <strong>100개 이상의 사전 구축 도구</strong>는 직접적으로 더 낮은 인프라 비용과 더 빠른 개발 주기로 전환됩니다.</p>
+<p>2026년에 프로덕션 에이전트를 제공하는 팀에게 결정 프레임워크는 간단합니다: 가벼운 API 중심 에이전트가 필요하면 Agno로 시작하세요; 역할 기반 팀이 당신의 멘탈 모델에 맞으면 CrewAI를 평가하세요; 마이크로소프트 중심 또는 연구 워크로드의 경우 AutoGen을 고려하세요; 명시적 상태 머신 의미론이 타협할 수 없는 경우에만 LangGraph를 사용하세요.</p>
+<p>40,233개의 GitHub Star와 452명의 기여자 커뮤니티는 Agno가 유망한 프로젝트에서 프로덕션에 적합한 플랫폼으로 도약했음을 보여줍니다. 이를 평가하는 가장 좋은 방법은 설치 섹션에서 10줄 예제를 실행하고 설정 시간을 대안과 비교하는 것입니다.</p>
+<p><strong>실행 항목</strong>: <a href="https://github.com/agno-agi/agno">Agno GitHub 저장소</a>를 클론하고, 첫 번째 에이전트를 실행한 다음, 위의 Docker 설정을 사용하여 클라우드 서버에 배포하세요. 실시간 지원을 위해 <a href="https://discord.gg/agno">Agno Discord 커뮤니티</a>에 가입하세요.</p>
+<h2 id="추천-호스팅-및-인프라">추천 호스팅 및 인프라<a hidden class="anchor" aria-hidden="true" href="#추천-호스팅-및-인프라">#</a></h2>
+<p>위 도구들을 프로덕션에 배포하려면 안정적인 인프라가 필요합니다. dibi8가 직접 사용 중인 두 가지 옵션: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 60일 $200 무료 크레딧, 14개 이상 글로벌 리전. 오픈소스 AI 도구의 기본 선택.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 홍콩 VPS, 중국 본토 저지연 접속. dibi8.com 호스팅 중인 검증된 IDC.</li>
+</ul>
+<p><em>제휴 링크 — 추가 비용 없이 dibi8 운영을 지원합니다.</em></p>
+<h2 id="참고-자료-및-추가-독서">참고 자료 및 추가 독서<a hidden class="anchor" aria-hidden="true" href="#참고-자료-및-추가-독서">#</a></h2>
+<ul>
+<li><a href="https://github.com/agno-agi/agno">Agno GitHub 저장소</a> — 공식 소스 코드, 40,233 Star</li>
+<li><a href="https://docs.agno.com">Agno 공식 문서</a> — 예제와 API 레퍼런스가 포함된 완전한 문서</li>
+<li><a href="https://os.agno.com">Agno AgentOS</a> — 에이전트 관리를 위한 호스팅 컨트롤 플레인</li>
+<li><a href="https://futureagi.com/blog/oss-agent-frameworks-2026">FutureAGI 프레임워크 비교 2026</a> — 오픈소스 에이전트 프레임워크 상세 비교</li>
+<li><a href="https://deepchecks.com/best-ai-agent-frameworks/">Deepchecks AI 에이전트 프레임워크 2025</a> — 프레임워크 벤치마크 및 사용 사례 분석</li>
+<li><a href="https://ronniehuss.co.uk/crewai-vs-langgraph-vs-autogen-vs-agno/">CrewAI vs LangGraph vs AutoGen vs Agno</a> — 창업자를 위한 프레임워크 비교</li>
+<li><a href="https://aiagentskit.com/blog/best-ai-agent-frameworks-compared/">AI Agents Kit 비교 2026</a> — 커뮤니티 주도 프레임워크 순위</li>
+<li><a href="https://respan.ai/market-map/compare/agno-vs-crewai">Agno vs CrewAI 상세 비교</a> — 커뮤니티 리뷰가 포함된 기능별 분석</li>
+</ul>
+<hr>
+<p><em>이 기사에는 제휴 링크가 포함되어 있습니다. 이러한 링크를 통해 서비스에 가입하면 추가 비용 없이 dibi8.com에 커미션이 지급될 수 있습니다.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Agno: 40K+ Stars — 경량 AI 에이전트 프레임워크 심층 분석 vs CrewAI, AutoGen 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -259,18 +810,186 @@ agent.print_response(&#34;Agno란 무엇인가요?&#34;, stream=True)
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/agno%22>https://dibi8.com/kr/resources/agno"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/agno%22">https://dibi8.com/kr/resources/agno"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/agno/>ollama-vs-lm-studio</a></li><li><a href=/ko/ai-coding-agents/agno/>ollama-vs-vllm</a></li><li><a href=/ko/ai-coding-agents/agno/>llm-inference-cost-optimization-guide-2026</a></li><li><a href=/ko/ai-coding-agents/agno/>ollama-vs-vllm</a></li><li><a href=/ko/ai-coding-agents/agno/>ollama-vs-lm-studio</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/ai-agent-code-of-ethics/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/agno/">ollama-vs-lm-studio</a></li>
+<li><a href="/ko/ai-coding-agents/agno/">ollama-vs-vllm</a></li>
+<li><a href="/ko/ai-coding-agents/agno/">llm-inference-cost-optimization-guide-2026</a></li>
+<li><a href="/ko/ai-coding-agents/agno/">ollama-vs-vllm</a></li>
+<li><a href="/ko/ai-coding-agents/agno/">ollama-vs-lm-studio</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-code-of-ethics/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

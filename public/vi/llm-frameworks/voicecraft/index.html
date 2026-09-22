@@ -1,10 +1,311 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/llm-frameworks/voicecraft/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/voicecraft/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/voicecraft/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/voicecraft/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/voicecraft/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/vi/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/llm-frameworks/voicecraft/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“voicecraft”, “zero-shot-tts”, “chinh-sua-giong-noi”, “neural-codec”, “voice-cloning”, “ai-audio”, “docker”, “python”] aliases:\n/vi/posts/voicecraft/ Giới thiệu Chỉnh sửa âm thanh lồng tiếng từng đồng nghĩa với việc thu âm toàn bộ trong phòng thu. Nếu một podcaster vấp váy một từ hoặc ngườii đọc sách nói sai tên, cách sửa là đặt thêm một buổi thu, thiết lập micro và khớp giọng gốc. Quy trình này tốn kém và chậm. Năm 2024, nhóm nghiên cứu từ UT Austin và Meta FAIR công bố VoiceCraft, một mô hình ngôn ngữ codec thần kinh chỉnh sửa giọng nói và nhân bản giọng chỉ từ vài giây âm thanh tham khảo. Repository hiện có 8,500+ stars trên GitHub với 796 forks, bài báo được chấp nhận tại ACL 2024. Hướng dẫn này đi qua thiết lập VoiceCraft, so sánh với GPT-SoVITS, XTTS v2 và Coqui TTS, và trình bày các mẫu triển khai production với Docker.\nVoiceCraft là gì? VoiceCraft là một mô hình ngôn ngữ codec thần kinh token infilling thực hiện hai nhiệm vụ cốt lõi: (1) nhân bản giọng zero-shot text-to-speech (TTS) và (2) chỉnh sửa giọng nói trong bản ghi hiện có. Khác với pipeline TTS truyền thống cần hàng giờ dữ liệu huấn luyện cho mỗi ngườii nói, VoiceCraft chỉ cần 3-5 giây âm thanh tham khảo để tái tạo giọng với độ trung thực cao. Nó được xây dựng trên kiến trúc Transformer decoder và giới thiệu thủ tục token rearrangement kết hợp causal masking với delayed stacking, cho phép tạo sinh tự hồi quy có điều kiện từ ngữ cảnh hai chiều.\nHình 1: Tổng quan kiến trúc VoiceCraft — token infilling với causal masking và delayed stacking cho chỉnh sửa giọng nói và TTS.\nVoiceCraft hoạt động như thế nào Tổng quan kiến trúc Pipeline mô hình gồm ba giai đoạn: 1. EnCodec Quantization: Sóng âm thanh thô được lượng tử hóa thành token rờii rạc bằng codec thần kinh EnCodec của Meta. Mỗi khung âm thanh được biểu diễn bằng vector K chỉ mục codebook (lượng tử hóa vector residual, RVQ).\nToken Rearrangement: Đây là sáng kiến cốt lõi của VoiceCraft. Thủ tục hai bước biến đổi bài toán chỉnh sửa/infilling thành bài toán mô hình hóa ngôn ngữ từ trái sang phải: - Causal Masking: Các đoạn token ngẫu nhiên bị che và chuyển về cuối chuỗi, cho phép mô hình chú ý đến ngữ cảnh hai chiều trong quá trình sinh tự hồi quy.\nDelayed Stacking: Các vector được dịch chéo để dự đoán codebook k tại thờii điểm t có điều kiện từ codebook k-1, cho phép mô hình hóa multi-codebook hiệu quả. Transformer Decoder: Chuỗi token đã sắp xếp lại được mô hình hóa tự hồi quy bởi Transformer decoder. Các âm vị văn bản và token âm thanh được nối làm đầu vào điều kiện.\nCác phiên bản mô hình Mô hình Tham số Phù hợp cho Thờii lượng tối đa giga330M 330M Cân bằng chất lượng/tốc độ 16 giây giga830M 830M Chất lượng cao nhất 30+ giây giga330M-TTS-Enhanced 330M Fine-tune chuyên TTS 16 giây Bộ dữ liệu RealEdit VoiceCraft giới thiệu RealEdit, bộ dữ liệu benchmark gồm 310 ví dụ chỉnh sửa giọng nói thực tế từ sách nói, video YouTube và podcast Spotify. Khác với bộ dữ liệu phòng thí nghiệm sạch (LibriTTS, VCTK), RealEdit chứa đa dạng giọng vùng miền, tiếng ồn nền, nhạc và phong cách nói — biến nó thành thước đo thực tiễn cho chất lượng chỉnh sửa giọng nói.\nHình 2: Quy trình chỉnh sửa giọng nói VoiceCraft — âm thanh gốc, bản ghi mục tiêu và đầu ra chỉnh sửa đã tổng hợp.\nCài đặt \u0026 Thiết lập Tùy chọn 1: Docker (Khuyến nghị) Docker là con đường nhanh nhất đến môi trường VoiceCraft hoạt động. Dockerfile chính thức xử lý mọi phụ thuộc bao gồm EnCodec, Montreal Forced Aligner (MFA) và CUDA binding.\n# 1. Clone repository git clone https://github.com/jasonppy/VoiceCraft.git cd VoiceCraft # 2. Build Docker image docker build --tag \"voicecraft\" . # 3. Khởi động container (Linux) ./start-jupyter.sh # Windows: # start-jupyter.bat # 4. Lấy link Jupyter từ logs docker logs jupyter | grep \"127.0.0.1:8888\" # 5. Xác minh GPU trong container docker exec -it jupyter nvidia-smi Container expose Jupyter Lab trên cổng 8888 và Gradio UI trên cổng 7860. Mở inference_tts.ipynb hoặc inference_speech_editing.ipynb để chạy inference.\nTùy chọn 2: Môi trường Conda (Phát triển local) Để phát triển và fine-tune mô hình, môi trường Conda local cung cấp linh hoạt hơn.\n# Tạo và kích hoạt môi trường conda create -n voicecraft python=3.9.16 conda activate voicecraft # Cài PyTorch với CUDA 11.7 pip install torch==2.0.1 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu117 # Cài audiocraft (phụ thuộc EnCodec) pip install -e git+https://github.com/facebookresearch/audiocraft.git@c5157b5bf14bf83449c17ea1eeb66c19fb4bc7f0#egg=audiocraft # Cài xformers cho attention tiết kiệm bộ nhớ pip install xformers==0.0.22 # Phụ thuộc cốt lõi pip install tensorboard==2.16.2 pip install phonemizer==3.2.1 pip install datasets==2.16.0 pip install torchmetrics==0.11.1 pip install huggingface_hub==0.22.2 # Phụ thuộc hệ thống apt-get install -y ffmpeg espeak-ng # Cài Montreal Forced Aligner (MFA) để căn chỉnh text-audio conda install -c conda-forge montreal-forced-aligner=2.2.17 openfst=1.8.2 kaldi=5.5.1068 # Tải mô hình tiếng Anh của MFA mfa model download dictionary english_us_arpa mfa model download acoustic english_us_arpa # Jupyter kernel (tùy chọn) conda install -n voicecraft ipykernel --no-deps --force-reinstall Tùy chọn 3: Gradio Local UI Để có giao diện trình duyệt mà không cần notebook: `````bash\nPhụ thuộc hệ thống bổ sung cho Gradio apt-get install -y espeak espeak-data libespeak1 libespeak-dev apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev\nCài Gradio requirements pip install -r gradio_requirements.txt\nKhởi động Gradio server python gradio_app.py\nTruy cập UI web tại ````http://127.0.0.1:7860````. ### Yêu cầu phần cứng | Cấu hình | GPU tối thiểu | GPU khuyến nghị | RAM | |---------|--------------|----------------|-----| | Inference đầy đủ (830M) | 8 GB (kvcache) | 32 GB VRAM | 32 GB | | Inference nhanh (330M) | 8 GB | 16 GB VRAM | 16 GB | | Gradio UI | 8 GB | 16 GB VRAM | 16 GB | Tối ưu hóa ````kvcache```` đánh đổi một chút chất lượng để giảm đáng kể bộ nhớ, cho phép GPU 8 GB chạy inference. ## Tích hợp với các công cụ phổ biến ### VoiceCraft + Gradio Web UI Giao diện Gradio tích hợp cung cấp cách dễ nhất để thử nghiệm: `````bash # Khởi động Gradio với cài đặt mặc định python gradio_app.py --model-name \"giga330M\" --device \"cuda\" # Với đường dẫn mô hình tùy chỉnh python gradio_app.py \\ --model-path \"./pretrained_models/giga330M.pth\" \\ --codec-model \"encodec_16khz\" \\ --share # Tạo URL công khai Gradio UI hỗ trợ ba chế độ: Chế độ TTS (nhân bản giọng zero-shot), Chế độ Edit (chỉnh sửa giọng nói), và Chế độ Long TTS (tạo chuỗi chunk cho văn bản dài).\nVoiceCraft + Jupyter Notebook Để truy cập lập trình, sử dụng Jupyter notebook: `````python\ninference_tts.ipynb — Ví dụ zero-shot TTS from voicecraft import VoiceCraft\nTải mô hình 330M (nhanh hơn, chất lượng tốt) model = VoiceCraft.from_pretrained(“pyp1/VoiceCraft”, subfolder=“giga330M”)\nCung cấp 3-5 giây âm thanh tham khảo reference_audio = “demo/pam.wav” # Clip tham khảo reference_text = “I found the amazing VoiceCraft model”\nVăn bản cần tổng hợp target_text = “This is a test of zero shot voice cloning with VoiceCraft”\nTạo sinh output = model.tts( target_text=target_text, reference_audio=reference_audio, reference_text=reference_text, top_k=40, # Cập nhật tháng 3/2025: top-k=40 cải thiện chất lượng temperature=1.0 ) output.save(“output_tts.wav”)\n### VoiceCraft + Dòng lệnh Cho xử lý hàng loạt và scripting: `````bash # TTS inference qua CLI python tts_demo.py \\ --audio_path \"demo/pam.wav\" \\ --target_transcript \"This is the text to speak\" \\ --model_name \"giga330M\" \\ --top_k 40 \\ --temperature 1.0 \\ --output_path \"output.wav\" # Chỉnh sửa giọng nói qua CLI python speech_editing_demo.py \\ --audio_path \"demo/pam.wav\" \\ --original_transcript \"original text here\" \\ --edited_transcript \"edited text here\" \\ --model_name \"giga830M\" \\ --output_path \"edited_output.wav\" VoiceCraft + Docker API Để triển khai production, gói VoiceCraft trong REST API: `````dockerfile\nDockerfile.api — Wrapper API production FROM voicecraft:latest\nWORKDIR /app COPY api.py ./ COPY requirements-api.txt ./\nRUN pip install -r requirements-api.txt\nEXPOSE 8000\nCMD [“uvicorn”, “api:app”, “–host”, “0.0.0.0”, “–port”, “8000”]\n`````python # api.py — FastAPI wrapper cho VoiceCraft from fastapi import FastAPI, UploadFile, File from voicecraft import VoiceCraft import torchaudio app = FastAPI() model = VoiceCraft.from_pretrained(\"pyp1/VoiceCraft\", subfolder=\"giga330M\") @app.post(\"/tts\") async def tts( audio: UploadFile = File(...), reference_text: str = \"\", target_text: str = \"\" ): \"\"\"Endpoint zero-shot TTS.\"\"\" ref_audio, sr = torchaudio.load(audio.file) output = model.tts( target_text=target_text, reference_audio=ref_audio, reference_text=reference_text, top_k=40 ) return {\"output\": output.serialize()} VoiceCraft + HuggingFace Hub Tải trực tiếp mô hình pretrained từ HuggingFace: `````python from huggingface_hub import hf_hub_download\nTải trọng số mô hình model_path = hf_hub_download( repo_id=“pyp1/VoiceCraft”, filename=“giga330M.pth”, subfolder=\"\", local_dir=\"./pretrained_models\" )\nCũng có thể tải qua ModelScope (cho khu vực Trung Quốc) from modelscope import snapshot_download model_dir = snapshot_download(‘AI-ModelScope/VoiceCraft\")\n## Benchmark / Use case thực tế ### Benchmark Zero-shot TTS Kết quả đánh giá con ngườii từ bài báo ACL 2024 so sánh VoiceCraft với VALL-E, XTTS v2, FluentSpeech và YourTTS trên 250 câu kiểm tra (LibriTTS + YouTube): | Mô hình | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS | |---------|-----|-----|---------------------|-----------------|----------------------| | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** | | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 | | VALL-E | 7.1 | 0.50 | 4.00 | 3.86 | 4.07 | | FluentSpeech | 3.5 | 0.47 | 3.67 | 3.38 | 4.01 | | YourTTS | 6.6 | 0.41 | 3.14 | 2.79 | 2.79 | | Ground Truth | 3.8 | 0.76 | 4.39 | 4.48 | 4.44 | VoiceCraft đạt độ tương đồng giọng nói cao nhất (SIM 0.55) và điểm MOS đánh giá con ngườii tốt nhất trên mọi hạng mục. Chỉ kém ground truth 0.16 về intelligibility và 0.10 về speaker similarity. ### Benchmark Chỉnh sửa giọng nói Trên bộ dữ liệu RealEdit (310 ví dụ chỉnh sửa thực tế), VoiceCraft vượt trội hơn FluentSpeech: | Mô hình | WER | Intelligibility MOS | Naturalness MOS | |---------|-----|---------------------|-----------------| | **VoiceCraft** | 6.1 | **4.11** | **4.03** | | FluentSpeech | 4.5 | 3.97 | 3.81 | | Original (chưa chỉnh sửa) | 5.4 | 4.22 | 4.17 | Đáng chú ý, trong bài kiểm tra nghe song song, ngườii nghe thích giọng được chỉnh bởi VoiceCraft hơn **bản ghi gốc chưa chỉnh sửa** 48% thờii gian — nghĩa là đầu ra của mô hình gần như không thể phân biệt được với âm thanh thật. ### Ứng dụng thực tế | Use case | Âm thanh tham khảo | Chất lượng đầu ra | Thờii gian thiết lập | |----------|-------------------|-------------------|---------------------| | Chỉnh sửa podcast | 5 giây giọng host | Naturalness MOS 4.03 | \u003c 2 phút | | Nhân bản giọng sách nói | 5 giây giọng ngườii đọc | SIM 0.55 | \u003c 2 phút | | Lồng tiếng video YouTube | 5 giây giọng ngườii nói | Naturalness MOS 4.17 | \u003c 2 phút | | Tổng hợp giọng tổng đài | 3 giây giọng nhân viên | SIM 0.55 | \u003c 1 phút | ![Trang demo VoiceCraft](https://jasonppy.github.io/VoiceCraft_web/static/teaser_figure.png) *Hình 3: Trang demo VoiceCraft hiển thị ví dụ chỉnh sửa giọng nói — ngườii nghe không thể phân biệt bản chỉnh sửa và bản gốc trong 48% trường hợp.* ## Sử dụng nâng cao / Củng cố production ### Tối ưu bộ nhớ với KV Cache Cho GPU VRAM hạn chế, bật key-value cache: `````python # Bật kvcache cho GPU 8GB output = model.tts( target_text=target_text, reference_audio=reference_audio, reference_text=reference_text, top_k=40, kvcache=True, # Giảm VRAM ~60% batch_size=1 ) Top-k Sampling (Cập nhật tháng 3/2025) Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: `````python\nKhuyến nghị: top-k=40 cho chất lượng tốt nhất output = model.tts( target_text=target_text, reference_audio=reference_audio, reference_text=reference_text, top_k=40, temperature=1.0 )\n### Fine-tune trên dữ liệu tùy chỉnh Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained: `````bash # Chuẩn bị bộ dữ liệu conda activate voicecraft cd ./data python phonemize_encodec_encode_hf.py \\ --dataset_size xs \\ --download_to /path/to/downloads \\ --save_dir /path/to/processed \\ --encodec_model_path /path/to/encodec \\ --mega_batch_size 120 \\ --batch_size 32 \\ --max_len 30000 # Bắt đầu fine-tune cd ../z_scripts bash e830M_ft.sh # Fine-tune mô hình 830M Giám sát và logging import logging from torch.utils.tensorboard import SummaryWriter # Thiết lập logging logging.basicConfig(level=logging.INFO) logger = logging.getLogger(\"voicecraft\") # TensorBoard cho giám sát huấn luyện writer = SummaryWriter(log_dir=\"./runs/voicecraft-ft\") writer.add_scalar(\"loss/train\", loss.item(), global_step) writer.add_scalar(\"mos/validation\", val_mos, global_step) Bảo mật và an toàn Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License cho trọng số) có điều khoản đạo đức cấm sử dụng để tạo hoặc chỉnh sửa giọng nói của ngườii khác mà không có sự đồng ý. Cho triển khai production: - Xác minh ngườii nói trước khi nhân bản\nGhi log mọi yêu cầu tổng hợp để kiểm tra Thêm watermarking cho giọng tổng hợp Giới hạn tốc độ API để ngăn lạm dụng So sánh với các phương án thay thế Tính năng VoiceCraft GPT-SoVITS Coqui TTS (XTTS v2) VALL-E GitHub Stars 8.500 57.000 35.000* N/A (chỉ bài báo) Tham số 330M / 830M ~1B 467M 1B Chỉnh sửa giọng Native, SotA Không Không Hạn chế Zero-shot TTS 3-5 giây tham khảo 5 giây tham khảo 6 giây tham khảo 3 giây tham khảo Speaker Similarity MOS 4,34 ~4,0 3,44 4,07 Naturalness MOS 4,17 ~3,8 3,96 3,86 Ngôn ngữ Tiếng Anh EN, JA, KO, ZH, Yue 17 ngôn ngữ Tiếng Anh RTF Inference ~0,3x (GPU) 0,028x (4060Ti) 0,18x (A100) ~0,5x Giấy phép CC BY-NC-SA 4.0 MIT CPML (phi thương mại) N/A Docker Chính thức Cộng đồng Cộng đồng N/A Gradio UI Tích hợp Tích hợp CLI/API N/A Fine-tune Hỗ trợ Hỗ trợ Hỗ trợ N/A *Stars của repository Coqui TTS bao gồm tất cả các mô hình TTS, không chỉ XTTS.\nKhi chọn VoiceCraft:\nChỉnh sửa giọng nói là use case chính — không có đối thủ mã nguồn mở nào sánh bằng Cần độ tương đồng giọng cao nhất (MOS 4,34 so với 3,44 của XTTS) Làm việc với âm thanh ồn ào, thực tế (podcast, video YouTube) Nghiên cứu học thuật hoặc phi thương mại (giấy phép CC BY-NC-SA) Khi chọn GPT-SoVITS:\nCần nhân bản giọng Trung Quốc hoặc Nhật Bản Cần sử dụng thương mại (giấy phép MIT) Tốc độ inference nhanh nhất là quan trọng (RTF 0,028) Fine-tune few-shot với 1 phút dữ liệu Khi chọn XTTS v2:\nCần hỗ trợ đa ngôn ngữ (17 ngôn ngữ) Đã sử dụng hệ sinh thái Coqui TTS Chấp nhận giấy phép thương mại của Coqui Hạn chế / Đánh giá trung thực VoiceCraft không phải công cụ phù hợp cho mọi tác vụ âm thanh. Đây là những gì nhóm bảo trì và bài báo thừa nhận: 1. Chỉ tiếng Anh: Mô hình phát hành chỉ hỗ trợ âm vị tiếng Anh. VoiceCraft-X (tháng 11/2024) mở rộng sang 11 ngôn ngữ nhưng là một mô hình riêng biệt.\nGiấy phép phi thương mại: Cả code (CC BY-NC-SA 4.0) và trọng số mô hình (Coqui Public Model License) đều hạn chế sử dụng thương mại nếu không có thỏa thuận bổ sung.\nYêu cầu phần cứng: Mô hình 830M cần 32 GB bộ nhớ GPU cho inference đầy đủ. Ngay cả mô hình 330M cũng cần quản lý bộ nhớ cẩn thận trên GPU phổ thông.\nArtifact tạo sinh: Đôi khi xuất hiện tiếng im lặng kéo dài và tiếng cào trong âm thanh được tạo. Giải pháp (lấy mẫu nhiều đầu ra và chọn cái ngắn nhất) tăng chi phí tính toán.\nKhông hỗ trợ streaming inference: VoiceCraft tạo toàn bộ chuỗi tự hồi quy, khiến TTS streaming thờii gian thực không thực tế so với các mô hình như Kokoro hay MeloTTS.\nThiết lập phức tạp: So với các công cụ TTS có thể cài qua pip, VoiceCraft cần Docker hoặc Conda với MFA, EnCodec và phiên bản CUDA cụ thể — không phải cài đặt 30 giây.\nCâu hỏi thường gặp Q1: VoiceCraft cần bao nhiêu âm thanh tham khảo để nhân bản giọng?\nVoiceCraft cần chỉ 3-5 giây âm thanh tham khảo cho zero-shot TTS. Để có kết quả tốt nhất, sử dụng bản ghi sạch không có tiếng ồn nền hay nhạc. Mô hình mã hóa tham khảo thành embedding ngườii nói qua token EnCodec RVQ, nên tham khảo dài hơn không nhất thiết cải thiện chất lượng.\nQ2: Tôi có thể dùng VoiceCraft cho dự án thương mại không?\nCode VoiceCraft theo CC BY-NC-SA 4.0 và trọng số mô hình theo Coqui Public Model License 1.0.0 — cả hai đều hạn chế sử dụng thương mại. Nếu cần lựa chọn có giấy phép thương mại linh hoạt hơn, xem xét GPT-SoVITS (giấy phép MIT) hoặc mua giấy phép thương mại XTTS v2 từ Coqui.\nQ3: Tôi cần GPU gì để chạy VoiceCraft?\nMô hình 830M cần 32 GB VRAM (A100, V100 hoặc RTX 4090 + chia sẻ RAM hệ thống). Mô hình 330M chạy trên GPU 16 GB, và với ````kvcache=True```, inference có thể thực hiện trên card 8 GB. CPU-only inference mất 7+ phút cho mỗi câu trên Ryzen 8 lõi so với 35 giây trên GPU.\nQ4: VoiceCraft so với GPT-SoVITS trong nhân bản giọng như thế nào?\nVoiceCraft đạt độ tương đồng ngườii nói cao hơn (SIM 0,55 so với ~0,50) và tự nhiên hơn (MOS 4,17 so với ~3,8) trên âm thanh tiếng Anh. Tuy nhiên, GPT-SoVITS hỗ trợ tiếng Trung và tiếng Nhật nguyên bản, inference nhanh hơn (RTF 0,028 so với ~0,3), và sử dụng giấy phép MIT linh hoạt hơn. Về chỉnh sửa giọng nói cụ thể, VoiceCraft không có đối thủ mã nguồn mở nào.\nQ5: VoiceCraft có thể chỉnh sửa bản ghi hiện có mà không tổng hợp lại toàn bộ file không?\nCó — chỉnh sửa giọng nói là khả năng khác biệt chính của VoiceCraft. Bạn chỉ định đoạn cần chỉnh (chèn, xóa hoặc thay thế) trong bản ghi chữ, và mô hình chỉ infill các đoạn âm thanh bị ảnh hưởng trong khi bảo toàn ngữ cảnh xung quanh. Điều này hiệu quả hơn tổng hợp toàn bộ và duy trì tính liên tục âm thanh.\nQ6: Làm thế nào sửa tiếng “cào” trong âm thanh được tạo?\nĐây là vấn đề đã biết với các mô hình codec tự hồi quy. Cập nhật tháng 3/2025 (top-k=40 thay vì top-p=1.0) giảm đáng kể artifact. Các biện pháp khác: (1) lấy mẫu nhiều đầu ra và chọn cái ngắn/sạch nhất, (2) giảm nhiệt độ xuống 0.9, (3) sử dụng mô hình 330M-TTS-Enhanced được fine-tune riêng cho chất lượng TTS.\nQ7: VoiceCraft có REST API hay dịch vụ web không?\nRepository chính thức cung cấp giao diện Gradio và notebook Jupyter. Các dự án cộng đồng như VoiceCraft_API gói gọn nó trong server FastAPI. Cho production, triển khai container Docker sau API gateway với rate limiting và xác minh ngườii nói.\nKết luận VoiceCraft lấp đầy khoảng trống mà hầu hết công cụ TTS bỏ qua: chỉnh sửa giọng nói hiện có, không chỉ tổng hợp giọng mới. 8.500 stars GitHub và việc được ACL 2024 chấp nhận phản ánh giá trị kỹ thuật thực sự — đặc biệt là thủ tục token rearrangement cho phép ngữ cảnh hai chiều trong tạo sinh tự hồi quy. Các benchmark rõ ràng: VoiceCraft dẫn đầu về độ tương đồng giọng nói (MOS 4,34) và tạo ra âm thanh chỉnh sửa mà ngườii nghe thích hơn bản ghi gốc 48% thờii gian.\nCho lập trình viên xây dựng công cụ chỉnh sửa podcast, sách nói hoặc dịch vụ nhân bản giọng, VoiceCraft xứng đáng với công sức thiết lập. Bắt đầu với Docker quickstart, thử nghiệm trên Gradio UI, sau đó tích hợp qua Python API.\nTham gia nhóm Telegram của chúng tôi để thảo luận các mẫu triển khai VoiceCraft, chia sẻ cấu hình fine-tune và nhận trợ giúp cho môi trường production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo VoiceCraft GitHub Repository VoiceCraft Paper — ACL 2024 VoiceCraft arXiv (v3) VoiceCraft Demo Page VoiceCraft-X: Mở rộng đa ngôn ngữ HuggingFace Model Weights GPT-SoVITS Repository Coqui TTS / XTTS v2 EnCodec — Neural Codec của Meta Thông tin bộ dữ liệu RealEdit Hướng dẫn thiết lập Docker VoiceCraft VoiceCraft_API — FastAPI Wrapper Hướng dẫn này được nhóm kỹ thuật dibi8 viết độc lập. VoiceCraft được phát triển bởi Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed và David Harwath. Không có mối quan hệ thương mại nào giữa dibi8 và dự án VoiceCraft.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so với GPT-SoVITS, XTTS 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/voicecraft\" } } Related Articles apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"3616","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/llm-frameworks/voicecraft/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/llm-frameworks/voicecraft/>Zh</a></li><li><a href=https://dibi8.com/ko/llm-frameworks/voicecraft/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#voicecraft-l%c3%a0-g%c3%ac aria-label="VoiceCraft là gì?">VoiceCraft là gì?</a></li><li><a href=#voicecraft-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="VoiceCraft hoạt động như thế nào">VoiceCraft hoạt động như thế nào</a><ul><li><a href=#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li><li><a href=#c%c3%a1c-phi%c3%aan-b%e1%ba%a3n-m%c3%b4-h%c3%acnh aria-label="Các phiên bản mô hình">Các phiên bản mô hình</a></li><li><a href=#b%e1%bb%99-d%e1%bb%af-li%e1%bb%87u-realedit aria-label="Bộ dữ liệu RealEdit">Bộ dữ liệu RealEdit</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt & Thiết lập">Cài đặt & Thiết lập</a><ul><li><a href=#t%c3%b9y-ch%e1%bb%8dn-1-docker-khuy%e1%ba%bfn-ngh%e1%bb%8b aria-label="Tùy chọn 1: Docker (Khuyến nghị)">Tùy chọn 1: Docker (Khuyến nghị)</a></li><li><a href=#t%c3%b9y-ch%e1%bb%8dn-2-m%c3%b4i-tr%c6%b0%e1%bb%9dng-conda-ph%c3%a1t-tri%e1%bb%83n-local aria-label="Tùy chọn 2: Môi trường Conda (Phát triển local)">Tùy chọn 2: Môi trường Conda (Phát triển local)</a></li><li><a href=#t%c3%b9y-ch%e1%bb%8dn-3-gradio-local-ui aria-label="Tùy chọn 3: Gradio Local UI">Tùy chọn 3: Gradio Local UI</a></li></ul></li></ul><li><a href=#ph%e1%bb%a5-thu%e1%bb%99c-h%e1%bb%87-th%e1%bb%91ng-b%e1%bb%95-sung-cho-gradio aria-label="Phụ thuộc hệ thống bổ sung cho Gradio">Phụ thuộc hệ thống bổ sung cho Gradio</a></li><li><a href=#c%c3%a0i-gradio-requirements aria-label="Cài Gradio requirements">Cài Gradio requirements</a></li><li><a href=#kh%e1%bb%9fi-%c4%91%e1%bb%99ng-gradio-server aria-label="Khởi động Gradio server">Khởi động Gradio server</a><ul><ul><li><a href=#voicecraft--jupyter-notebook aria-label="VoiceCraft + Jupyter Notebook">VoiceCraft + Jupyter Notebook</a></li></ul></ul></li><li><a href=#inference_ttsipynb--v%c3%ad-d%e1%bb%a5-zero-shot-tts aria-label="inference_tts.ipynb — Ví dụ zero-shot TTS">inference_tts.ipynb — Ví dụ zero-shot TTS</a></li><li><a href=#t%e1%ba%a3i-m%c3%b4-h%c3%acnh-330m-nhanh-h%c6%a1n-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-t%e1%bb%91t aria-label="Tải mô hình 330M (nhanh hơn, chất lượng tốt)">Tải mô hình 330M (nhanh hơn, chất lượng tốt)</a></li><li><a href=#cung-c%e1%ba%a5p-3-5-gi%c3%a2y-%c3%a2m-thanh-tham-kh%e1%ba%a3o aria-label="Cung cấp 3-5 giây âm thanh tham khảo">Cung cấp 3-5 giây âm thanh tham khảo</a></li><li><a href=#v%c4%83n-b%e1%ba%a3n-c%e1%ba%a7n-t%e1%bb%95ng-h%e1%bb%a3p aria-label="Văn bản cần tổng hợp">Văn bản cần tổng hợp</a></li><li><a href=#t%e1%ba%a1o-sinh aria-label="Tạo sinh">Tạo sinh</a><ul><ul><li><a href=#voicecraft--docker-api aria-label="VoiceCraft + Docker API">VoiceCraft + Docker API</a></li></ul></ul></li><li><a href=#dockerfileapi--wrapper-api-production aria-label="Dockerfile.api — Wrapper API production">Dockerfile.api — Wrapper API production</a><ul><ul><li><a href=#voicecraft--huggingface-hub aria-label="VoiceCraft + HuggingFace Hub">VoiceCraft + HuggingFace Hub</a></li></ul></ul></li><li><a href=#t%e1%ba%a3i-tr%e1%bb%8dng-s%e1%bb%91-m%c3%b4-h%c3%acnh aria-label="Tải trọng số mô hình">Tải trọng số mô hình</a></li><li><a href=#c%c5%a9ng-c%c3%b3-th%e1%bb%83-t%e1%ba%a3i-qua-modelscope-cho-khu-v%e1%bb%b1c-trung-qu%e1%bb%91c aria-label="Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)">Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)</a><ul><ul><li><a href=#top-k-sampling-c%e1%ba%adp-nh%e1%ba%adt-th%c3%a1ng-32025 aria-label="Top-k Sampling (Cập nhật tháng 3/2025)">Top-k Sampling (Cập nhật tháng 3/2025)</a></li></ul></ul></li><li><a href=#khuy%e1%ba%bfn-ngh%e1%bb%8b-top-k40-cho-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-t%e1%bb%91t-nh%e1%ba%a5t aria-label="Khuyến nghị: top-k=40 cho chất lượng tốt nhất">Khuyến nghị: top-k=40 cho chất lượng tốt nhất</a><ul><ul><li><a href=#gi%c3%a1m-s%c3%a1t-v%c3%a0-logging aria-label="Giám sát và logging">Giám sát và logging</a></li><li><a href=#b%e1%ba%a3o-m%e1%ba%adt-v%c3%a0-an-to%c3%a0n aria-label="Bảo mật và an toàn">Bảo mật và an toàn</a></li></ul><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-ph%c6%b0%c6%a1ng-%c3%a1n-thay-th%e1%ba%bf aria-label="So sánh với các phương án thay thế">So sánh với các phương án thay thế</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết luận">Kết luận</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài liệu tham khảo">Nguồn & Tài liệu tham khảo</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/llm-frameworks/voicecraft/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-frameworks/voicecraft/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/voicecraft/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/voicecraft/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/llm-frameworks/voicecraft/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/vi/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/llm-frameworks/voicecraft/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“voicecraft”, “zero-shot-tts”, “chinh-sua-giong-noi”, “neural-codec”, “voice-cloning”, “ai-audio”, “docker”, “python”] aliases:\n/vi/posts/voicecraft/ Giới thiệu Chỉnh sửa âm thanh lồng tiếng từng đồng nghĩa với việc thu âm toàn bộ trong phòng thu. Nếu một podcaster vấp váy một từ hoặc ngườii đọc sách nói sai tên, cách sửa là đặt thêm một buổi thu, thiết lập micro và khớp giọng gốc. Quy trình này tốn kém và chậm. Năm 2024, nhóm nghiên cứu từ UT Austin và Meta FAIR công bố VoiceCraft, một mô hình ngôn ngữ codec thần kinh chỉnh sửa giọng nói và nhân bản giọng chỉ từ vài giây âm thanh tham khảo. Repository hiện có 8,500+ stars trên GitHub với 796 forks, bài báo được chấp nhận tại ACL 2024. Hướng dẫn này đi qua thiết lập VoiceCraft, so sánh với GPT-SoVITS, XTTS v2 và Coqui TTS, và trình bày các mẫu triển khai production với Docker.\nVoiceCraft là gì? VoiceCraft là một mô hình ngôn ngữ codec thần kinh token infilling thực hiện hai nhiệm vụ cốt lõi: (1) nhân bản giọng zero-shot text-to-speech (TTS) và (2) chỉnh sửa giọng nói trong bản ghi hiện có. Khác với pipeline TTS truyền thống cần hàng giờ dữ liệu huấn luyện cho mỗi ngườii nói, VoiceCraft chỉ cần 3-5 giây âm thanh tham khảo để tái tạo giọng với độ trung thực cao. Nó được xây dựng trên kiến trúc Transformer decoder và giới thiệu thủ tục token rearrangement kết hợp causal masking với delayed stacking, cho phép tạo sinh tự hồi quy có điều kiện từ ngữ cảnh hai chiều.\nHình 1: Tổng quan kiến trúc VoiceCraft — token infilling với causal masking và delayed stacking cho chỉnh sửa giọng nói và TTS.\nVoiceCraft hoạt động như thế nào Tổng quan kiến trúc Pipeline mô hình gồm ba giai đoạn: 1. EnCodec Quantization: Sóng âm thanh thô được lượng tử hóa thành token rờii rạc bằng codec thần kinh EnCodec của Meta. Mỗi khung âm thanh được biểu diễn bằng vector K chỉ mục codebook (lượng tử hóa vector residual, RVQ).\nToken Rearrangement: Đây là sáng kiến cốt lõi của VoiceCraft. Thủ tục hai bước biến đổi bài toán chỉnh sửa/infilling thành bài toán mô hình hóa ngôn ngữ từ trái sang phải: - Causal Masking: Các đoạn token ngẫu nhiên bị che và chuyển về cuối chuỗi, cho phép mô hình chú ý đến ngữ cảnh hai chiều trong quá trình sinh tự hồi quy.\nDelayed Stacking: Các vector được dịch chéo để dự đoán codebook k tại thờii điểm t có điều kiện từ codebook k-1, cho phép mô hình hóa multi-codebook hiệu quả. Transformer Decoder: Chuỗi token đã sắp xếp lại được mô hình hóa tự hồi quy bởi Transformer decoder. Các âm vị văn bản và token âm thanh được nối làm đầu vào điều kiện.\nCác phiên bản mô hình Mô hình Tham số Phù hợp cho Thờii lượng tối đa giga330M 330M Cân bằng chất lượng/tốc độ 16 giây giga830M 830M Chất lượng cao nhất 30+ giây giga330M-TTS-Enhanced 330M Fine-tune chuyên TTS 16 giây Bộ dữ liệu RealEdit VoiceCraft giới thiệu RealEdit, bộ dữ liệu benchmark gồm 310 ví dụ chỉnh sửa giọng nói thực tế từ sách nói, video YouTube và podcast Spotify. Khác với bộ dữ liệu phòng thí nghiệm sạch (LibriTTS, VCTK), RealEdit chứa đa dạng giọng vùng miền, tiếng ồn nền, nhạc và phong cách nói — biến nó thành thước đo thực tiễn cho chất lượng chỉnh sửa giọng nói.\nHình 2: Quy trình chỉnh sửa giọng nói VoiceCraft — âm thanh gốc, bản ghi mục tiêu và đầu ra chỉnh sửa đã tổng hợp.\nCài đặt \u0026 Thiết lập Tùy chọn 1: Docker (Khuyến nghị) Docker là con đường nhanh nhất đến môi trường VoiceCraft hoạt động. Dockerfile chính thức xử lý mọi phụ thuộc bao gồm EnCodec, Montreal Forced Aligner (MFA) và CUDA binding.\n# 1. Clone repository git clone https://github.com/jasonppy/VoiceCraft.git cd VoiceCraft # 2. Build Docker image docker build --tag \"voicecraft\" . # 3. Khởi động container (Linux) ./start-jupyter.sh # Windows: # start-jupyter.bat # 4. Lấy link Jupyter từ logs docker logs jupyter | grep \"127.0.0.1:8888\" # 5. Xác minh GPU trong container docker exec -it jupyter nvidia-smi Container expose Jupyter Lab trên cổng 8888 và Gradio UI trên cổng 7860. Mở inference_tts.ipynb hoặc inference_speech_editing.ipynb để chạy inference.\nTùy chọn 2: Môi trường Conda (Phát triển local) Để phát triển và fine-tune mô hình, môi trường Conda local cung cấp linh hoạt hơn.\n# Tạo và kích hoạt môi trường conda create -n voicecraft python=3.9.16 conda activate voicecraft # Cài PyTorch với CUDA 11.7 pip install torch==2.0.1 torchaudio==2.0.2 --index-url https://download.pytorch.org/whl/cu117 # Cài audiocraft (phụ thuộc EnCodec) pip install -e git+https://github.com/facebookresearch/audiocraft.git@c5157b5bf14bf83449c17ea1eeb66c19fb4bc7f0#egg=audiocraft # Cài xformers cho attention tiết kiệm bộ nhớ pip install xformers==0.0.22 # Phụ thuộc cốt lõi pip install tensorboard==2.16.2 pip install phonemizer==3.2.1 pip install datasets==2.16.0 pip install torchmetrics==0.11.1 pip install huggingface_hub==0.22.2 # Phụ thuộc hệ thống apt-get install -y ffmpeg espeak-ng # Cài Montreal Forced Aligner (MFA) để căn chỉnh text-audio conda install -c conda-forge montreal-forced-aligner=2.2.17 openfst=1.8.2 kaldi=5.5.1068 # Tải mô hình tiếng Anh của MFA mfa model download dictionary english_us_arpa mfa model download acoustic english_us_arpa # Jupyter kernel (tùy chọn) conda install -n voicecraft ipykernel --no-deps --force-reinstall Tùy chọn 3: Gradio Local UI Để có giao diện trình duyệt mà không cần notebook: `````bash\nPhụ thuộc hệ thống bổ sung cho Gradio apt-get install -y espeak espeak-data libespeak1 libespeak-dev apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev\nCài Gradio requirements pip install -r gradio_requirements.txt\nKhởi động Gradio server python gradio_app.py\nTruy cập UI web tại ````http://127.0.0.1:7860````. ### Yêu cầu phần cứng | Cấu hình | GPU tối thiểu | GPU khuyến nghị | RAM | |---------|--------------|----------------|-----| | Inference đầy đủ (830M) | 8 GB (kvcache) | 32 GB VRAM | 32 GB | | Inference nhanh (330M) | 8 GB | 16 GB VRAM | 16 GB | | Gradio UI | 8 GB | 16 GB VRAM | 16 GB | Tối ưu hóa ````kvcache```` đánh đổi một chút chất lượng để giảm đáng kể bộ nhớ, cho phép GPU 8 GB chạy inference. ## Tích hợp với các công cụ phổ biến ### VoiceCraft + Gradio Web UI Giao diện Gradio tích hợp cung cấp cách dễ nhất để thử nghiệm: `````bash # Khởi động Gradio với cài đặt mặc định python gradio_app.py --model-name \"giga330M\" --device \"cuda\" # Với đường dẫn mô hình tùy chỉnh python gradio_app.py \\ --model-path \"./pretrained_models/giga330M.pth\" \\ --codec-model \"encodec_16khz\" \\ --share # Tạo URL công khai Gradio UI hỗ trợ ba chế độ: Chế độ TTS (nhân bản giọng zero-shot), Chế độ Edit (chỉnh sửa giọng nói), và Chế độ Long TTS (tạo chuỗi chunk cho văn bản dài).\nVoiceCraft + Jupyter Notebook Để truy cập lập trình, sử dụng Jupyter notebook: `````python\ninference_tts.ipynb — Ví dụ zero-shot TTS from voicecraft import VoiceCraft\nTải mô hình 330M (nhanh hơn, chất lượng tốt) model = VoiceCraft.from_pretrained(“pyp1/VoiceCraft”, subfolder=“giga330M”)\nCung cấp 3-5 giây âm thanh tham khảo reference_audio = “demo/pam.wav” # Clip tham khảo reference_text = “I found the amazing VoiceCraft model”\nVăn bản cần tổng hợp target_text = “This is a test of zero shot voice cloning with VoiceCraft”\nTạo sinh output = model.tts( target_text=target_text, reference_audio=reference_audio, reference_text=reference_text, top_k=40, # Cập nhật tháng 3/2025: top-k=40 cải thiện chất lượng temperature=1.0 ) output.save(“output_tts.wav”)\n### VoiceCraft + Dòng lệnh Cho xử lý hàng loạt và scripting: `````bash # TTS inference qua CLI python tts_demo.py \\ --audio_path \"demo/pam.wav\" \\ --target_transcript \"This is the text to speak\" \\ --model_name \"giga330M\" \\ --top_k 40 \\ --temperature 1.0 \\ --output_path \"output.wav\" # Chỉnh sửa giọng nói qua CLI python speech_editing_demo.py \\ --audio_path \"demo/pam.wav\" \\ --original_transcript \"original text here\" \\ --edited_transcript \"edited text here\" \\ --model_name \"giga830M\" \\ --output_path \"edited_output.wav\" VoiceCraft + Docker API Để triển khai production, gói VoiceCraft trong REST API: `````dockerfile\nDockerfile.api — Wrapper API production FROM voicecraft:latest\nWORKDIR /app COPY api.py ./ COPY requirements-api.txt ./\nRUN pip install -r requirements-api.txt\nEXPOSE 8000\nCMD [“uvicorn”, “api:app”, “–host”, “0.0.0.0”, “–port”, “8000”]\n`````python # api.py — FastAPI wrapper cho VoiceCraft from fastapi import FastAPI, UploadFile, File from voicecraft import VoiceCraft import torchaudio app = FastAPI() model = VoiceCraft.from_pretrained(\"pyp1/VoiceCraft\", subfolder=\"giga330M\") @app.post(\"/tts\") async def tts( audio: UploadFile = File(...), reference_text: str = \"\", target_text: str = \"\" ): \"\"\"Endpoint zero-shot TTS.\"\"\" ref_audio, sr = torchaudio.load(audio.file) output = model.tts( target_text=target_text, reference_audio=ref_audio, reference_text=reference_text, top_k=40 ) return {\"output\": output.serialize()} VoiceCraft + HuggingFace Hub Tải trực tiếp mô hình pretrained từ HuggingFace: `````python from huggingface_hub import hf_hub_download\nTải trọng số mô hình model_path = hf_hub_download( repo_id=“pyp1/VoiceCraft”, filename=“giga330M.pth”, subfolder=\"\", local_dir=\"./pretrained_models\" )\nCũng có thể tải qua ModelScope (cho khu vực Trung Quốc) from modelscope import snapshot_download model_dir = snapshot_download(‘AI-ModelScope/VoiceCraft\")\n## Benchmark / Use case thực tế ### Benchmark Zero-shot TTS Kết quả đánh giá con ngườii từ bài báo ACL 2024 so sánh VoiceCraft với VALL-E, XTTS v2, FluentSpeech và YourTTS trên 250 câu kiểm tra (LibriTTS + YouTube): | Mô hình | WER | SIM | Intelligibility MOS | Naturalness MOS | Speaker Similarity MOS | |---------|-----|-----|---------------------|-----------------|----------------------| | **VoiceCraft** | **4.5** | **0.55** | **4.23** | **4.17** | **4.34** | | XTTS v2 | 3.6 | 0.47 | 4.13 | 3.96 | 3.44 | | VALL-E | 7.1 | 0.50 | 4.00 | 3.86 | 4.07 | | FluentSpeech | 3.5 | 0.47 | 3.67 | 3.38 | 4.01 | | YourTTS | 6.6 | 0.41 | 3.14 | 2.79 | 2.79 | | Ground Truth | 3.8 | 0.76 | 4.39 | 4.48 | 4.44 | VoiceCraft đạt độ tương đồng giọng nói cao nhất (SIM 0.55) và điểm MOS đánh giá con ngườii tốt nhất trên mọi hạng mục. Chỉ kém ground truth 0.16 về intelligibility và 0.10 về speaker similarity. ### Benchmark Chỉnh sửa giọng nói Trên bộ dữ liệu RealEdit (310 ví dụ chỉnh sửa thực tế), VoiceCraft vượt trội hơn FluentSpeech: | Mô hình | WER | Intelligibility MOS | Naturalness MOS | |---------|-----|---------------------|-----------------| | **VoiceCraft** | 6.1 | **4.11** | **4.03** | | FluentSpeech | 4.5 | 3.97 | 3.81 | | Original (chưa chỉnh sửa) | 5.4 | 4.22 | 4.17 | Đáng chú ý, trong bài kiểm tra nghe song song, ngườii nghe thích giọng được chỉnh bởi VoiceCraft hơn **bản ghi gốc chưa chỉnh sửa** 48% thờii gian — nghĩa là đầu ra của mô hình gần như không thể phân biệt được với âm thanh thật. ### Ứng dụng thực tế | Use case | Âm thanh tham khảo | Chất lượng đầu ra | Thờii gian thiết lập | |----------|-------------------|-------------------|---------------------| | Chỉnh sửa podcast | 5 giây giọng host | Naturalness MOS 4.03 | \u003c 2 phút | | Nhân bản giọng sách nói | 5 giây giọng ngườii đọc | SIM 0.55 | \u003c 2 phút | | Lồng tiếng video YouTube | 5 giây giọng ngườii nói | Naturalness MOS 4.17 | \u003c 2 phút | | Tổng hợp giọng tổng đài | 3 giây giọng nhân viên | SIM 0.55 | \u003c 1 phút | ![Trang demo VoiceCraft](https://jasonppy.github.io/VoiceCraft_web/static/teaser_figure.png) *Hình 3: Trang demo VoiceCraft hiển thị ví dụ chỉnh sửa giọng nói — ngườii nghe không thể phân biệt bản chỉnh sửa và bản gốc trong 48% trường hợp.* ## Sử dụng nâng cao / Củng cố production ### Tối ưu bộ nhớ với KV Cache Cho GPU VRAM hạn chế, bật key-value cache: `````python # Bật kvcache cho GPU 8GB output = model.tts( target_text=target_text, reference_audio=reference_audio, reference_text=reference_text, top_k=40, kvcache=True, # Giảm VRAM ~60% batch_size=1 ) Top-k Sampling (Cập nhật tháng 3/2025) Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: `````python\nKhuyến nghị: top-k=40 cho chất lượng tốt nhất output = model.tts( target_text=target_text, reference_audio=reference_audio, reference_text=reference_text, top_k=40, temperature=1.0 )\n### Fine-tune trên dữ liệu tùy chỉnh Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained: `````bash # Chuẩn bị bộ dữ liệu conda activate voicecraft cd ./data python phonemize_encodec_encode_hf.py \\ --dataset_size xs \\ --download_to /path/to/downloads \\ --save_dir /path/to/processed \\ --encodec_model_path /path/to/encodec \\ --mega_batch_size 120 \\ --batch_size 32 \\ --max_len 30000 # Bắt đầu fine-tune cd ../z_scripts bash e830M_ft.sh # Fine-tune mô hình 830M Giám sát và logging import logging from torch.utils.tensorboard import SummaryWriter # Thiết lập logging logging.basicConfig(level=logging.INFO) logger = logging.getLogger(\"voicecraft\") # TensorBoard cho giám sát huấn luyện writer = SummaryWriter(log_dir=\"./runs/voicecraft-ft\") writer.add_scalar(\"loss/train\", loss.item(), global_step) writer.add_scalar(\"mos/validation\", val_mos, global_step) Bảo mật và an toàn Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License cho trọng số) có điều khoản đạo đức cấm sử dụng để tạo hoặc chỉnh sửa giọng nói của ngườii khác mà không có sự đồng ý. Cho triển khai production: - Xác minh ngườii nói trước khi nhân bản\nGhi log mọi yêu cầu tổng hợp để kiểm tra Thêm watermarking cho giọng tổng hợp Giới hạn tốc độ API để ngăn lạm dụng So sánh với các phương án thay thế Tính năng VoiceCraft GPT-SoVITS Coqui TTS (XTTS v2) VALL-E GitHub Stars 8.500 57.000 35.000* N/A (chỉ bài báo) Tham số 330M / 830M ~1B 467M 1B Chỉnh sửa giọng Native, SotA Không Không Hạn chế Zero-shot TTS 3-5 giây tham khảo 5 giây tham khảo 6 giây tham khảo 3 giây tham khảo Speaker Similarity MOS 4,34 ~4,0 3,44 4,07 Naturalness MOS 4,17 ~3,8 3,96 3,86 Ngôn ngữ Tiếng Anh EN, JA, KO, ZH, Yue 17 ngôn ngữ Tiếng Anh RTF Inference ~0,3x (GPU) 0,028x (4060Ti) 0,18x (A100) ~0,5x Giấy phép CC BY-NC-SA 4.0 MIT CPML (phi thương mại) N/A Docker Chính thức Cộng đồng Cộng đồng N/A Gradio UI Tích hợp Tích hợp CLI/API N/A Fine-tune Hỗ trợ Hỗ trợ Hỗ trợ N/A *Stars của repository Coqui TTS bao gồm tất cả các mô hình TTS, không chỉ XTTS.\nKhi chọn VoiceCraft:\nChỉnh sửa giọng nói là use case chính — không có đối thủ mã nguồn mở nào sánh bằng Cần độ tương đồng giọng cao nhất (MOS 4,34 so với 3,44 của XTTS) Làm việc với âm thanh ồn ào, thực tế (podcast, video YouTube) Nghiên cứu học thuật hoặc phi thương mại (giấy phép CC BY-NC-SA) Khi chọn GPT-SoVITS:\nCần nhân bản giọng Trung Quốc hoặc Nhật Bản Cần sử dụng thương mại (giấy phép MIT) Tốc độ inference nhanh nhất là quan trọng (RTF 0,028) Fine-tune few-shot với 1 phút dữ liệu Khi chọn XTTS v2:\nCần hỗ trợ đa ngôn ngữ (17 ngôn ngữ) Đã sử dụng hệ sinh thái Coqui TTS Chấp nhận giấy phép thương mại của Coqui Hạn chế / Đánh giá trung thực VoiceCraft không phải công cụ phù hợp cho mọi tác vụ âm thanh. Đây là những gì nhóm bảo trì và bài báo thừa nhận: 1. Chỉ tiếng Anh: Mô hình phát hành chỉ hỗ trợ âm vị tiếng Anh. VoiceCraft-X (tháng 11/2024) mở rộng sang 11 ngôn ngữ nhưng là một mô hình riêng biệt.\nGiấy phép phi thương mại: Cả code (CC BY-NC-SA 4.0) và trọng số mô hình (Coqui Public Model License) đều hạn chế sử dụng thương mại nếu không có thỏa thuận bổ sung.\nYêu cầu phần cứng: Mô hình 830M cần 32 GB bộ nhớ GPU cho inference đầy đủ. Ngay cả mô hình 330M cũng cần quản lý bộ nhớ cẩn thận trên GPU phổ thông.\nArtifact tạo sinh: Đôi khi xuất hiện tiếng im lặng kéo dài và tiếng cào trong âm thanh được tạo. Giải pháp (lấy mẫu nhiều đầu ra và chọn cái ngắn nhất) tăng chi phí tính toán.\nKhông hỗ trợ streaming inference: VoiceCraft tạo toàn bộ chuỗi tự hồi quy, khiến TTS streaming thờii gian thực không thực tế so với các mô hình như Kokoro hay MeloTTS.\nThiết lập phức tạp: So với các công cụ TTS có thể cài qua pip, VoiceCraft cần Docker hoặc Conda với MFA, EnCodec và phiên bản CUDA cụ thể — không phải cài đặt 30 giây.\nCâu hỏi thường gặp Q1: VoiceCraft cần bao nhiêu âm thanh tham khảo để nhân bản giọng?\nVoiceCraft cần chỉ 3-5 giây âm thanh tham khảo cho zero-shot TTS. Để có kết quả tốt nhất, sử dụng bản ghi sạch không có tiếng ồn nền hay nhạc. Mô hình mã hóa tham khảo thành embedding ngườii nói qua token EnCodec RVQ, nên tham khảo dài hơn không nhất thiết cải thiện chất lượng.\nQ2: Tôi có thể dùng VoiceCraft cho dự án thương mại không?\nCode VoiceCraft theo CC BY-NC-SA 4.0 và trọng số mô hình theo Coqui Public Model License 1.0.0 — cả hai đều hạn chế sử dụng thương mại. Nếu cần lựa chọn có giấy phép thương mại linh hoạt hơn, xem xét GPT-SoVITS (giấy phép MIT) hoặc mua giấy phép thương mại XTTS v2 từ Coqui.\nQ3: Tôi cần GPU gì để chạy VoiceCraft?\nMô hình 830M cần 32 GB VRAM (A100, V100 hoặc RTX 4090 + chia sẻ RAM hệ thống). Mô hình 330M chạy trên GPU 16 GB, và với ````kvcache=True```, inference có thể thực hiện trên card 8 GB. CPU-only inference mất 7+ phút cho mỗi câu trên Ryzen 8 lõi so với 35 giây trên GPU.\nQ4: VoiceCraft so với GPT-SoVITS trong nhân bản giọng như thế nào?\nVoiceCraft đạt độ tương đồng ngườii nói cao hơn (SIM 0,55 so với ~0,50) và tự nhiên hơn (MOS 4,17 so với ~3,8) trên âm thanh tiếng Anh. Tuy nhiên, GPT-SoVITS hỗ trợ tiếng Trung và tiếng Nhật nguyên bản, inference nhanh hơn (RTF 0,028 so với ~0,3), và sử dụng giấy phép MIT linh hoạt hơn. Về chỉnh sửa giọng nói cụ thể, VoiceCraft không có đối thủ mã nguồn mở nào.\nQ5: VoiceCraft có thể chỉnh sửa bản ghi hiện có mà không tổng hợp lại toàn bộ file không?\nCó — chỉnh sửa giọng nói là khả năng khác biệt chính của VoiceCraft. Bạn chỉ định đoạn cần chỉnh (chèn, xóa hoặc thay thế) trong bản ghi chữ, và mô hình chỉ infill các đoạn âm thanh bị ảnh hưởng trong khi bảo toàn ngữ cảnh xung quanh. Điều này hiệu quả hơn tổng hợp toàn bộ và duy trì tính liên tục âm thanh.\nQ6: Làm thế nào sửa tiếng “cào” trong âm thanh được tạo?\nĐây là vấn đề đã biết với các mô hình codec tự hồi quy. Cập nhật tháng 3/2025 (top-k=40 thay vì top-p=1.0) giảm đáng kể artifact. Các biện pháp khác: (1) lấy mẫu nhiều đầu ra và chọn cái ngắn/sạch nhất, (2) giảm nhiệt độ xuống 0.9, (3) sử dụng mô hình 330M-TTS-Enhanced được fine-tune riêng cho chất lượng TTS.\nQ7: VoiceCraft có REST API hay dịch vụ web không?\nRepository chính thức cung cấp giao diện Gradio và notebook Jupyter. Các dự án cộng đồng như VoiceCraft_API gói gọn nó trong server FastAPI. Cho production, triển khai container Docker sau API gateway với rate limiting và xác minh ngườii nói.\nKết luận VoiceCraft lấp đầy khoảng trống mà hầu hết công cụ TTS bỏ qua: chỉnh sửa giọng nói hiện có, không chỉ tổng hợp giọng mới. 8.500 stars GitHub và việc được ACL 2024 chấp nhận phản ánh giá trị kỹ thuật thực sự — đặc biệt là thủ tục token rearrangement cho phép ngữ cảnh hai chiều trong tạo sinh tự hồi quy. Các benchmark rõ ràng: VoiceCraft dẫn đầu về độ tương đồng giọng nói (MOS 4,34) và tạo ra âm thanh chỉnh sửa mà ngườii nghe thích hơn bản ghi gốc 48% thờii gian.\nCho lập trình viên xây dựng công cụ chỉnh sửa podcast, sách nói hoặc dịch vụ nhân bản giọng, VoiceCraft xứng đáng với công sức thiết lập. Bắt đầu với Docker quickstart, thử nghiệm trên Gradio UI, sau đó tích hợp qua Python API.\nTham gia nhóm Telegram của chúng tôi để thảo luận các mẫu triển khai VoiceCraft, chia sẻ cấu hình fine-tune và nhận trợ giúp cho môi trường production.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài liệu tham khảo VoiceCraft GitHub Repository VoiceCraft Paper — ACL 2024 VoiceCraft arXiv (v3) VoiceCraft Demo Page VoiceCraft-X: Mở rộng đa ngôn ngữ HuggingFace Model Weights GPT-SoVITS Repository Coqui TTS / XTTS v2 EnCodec — Neural Codec của Meta Thông tin bộ dữ liệu RealEdit Hướng dẫn thiết lập Docker VoiceCraft VoiceCraft_API — FastAPI Wrapper Hướng dẫn này được nhóm kỹ thuật dibi8 viết độc lập. VoiceCraft được phát triển bởi Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed và David Harwath. Không có mối quan hệ thương mại nào giữa dibi8 và dự án VoiceCraft.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so với GPT-SoVITS, XTTS 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/voicecraft\" } } Related Articles apple-container freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "3616",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/llm-frameworks/voicecraft/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/llm-frameworks/voicecraft/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/llm-frameworks/voicecraft/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
+            <li>
+                <a href="#voicecraft-l%c3%a0-g%c3%ac" aria-label="VoiceCraft là gì?">VoiceCraft là gì?</a></li>
+            <li>
+                <a href="#voicecraft-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="VoiceCraft hoạt động như thế nào">VoiceCraft hoạt động như thế nào</a><ul>
+                    
+            <li>
+                <a href="#t%e1%bb%95ng-quan-ki%e1%ba%bfn-tr%c3%bac" aria-label="Tổng quan kiến trúc">Tổng quan kiến trúc</a></li>
+            <li>
+                <a href="#c%c3%a1c-phi%c3%aan-b%e1%ba%a3n-m%c3%b4-h%c3%acnh" aria-label="Các phiên bản mô hình">Các phiên bản mô hình</a></li>
+            <li>
+                <a href="#b%e1%bb%99-d%e1%bb%af-li%e1%bb%87u-realedit" aria-label="Bộ dữ liệu RealEdit">Bộ dữ liệu RealEdit</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt &amp; Thiết lập">Cài đặt &amp; Thiết lập</a><ul>
+                    
+            <li>
+                <a href="#t%c3%b9y-ch%e1%bb%8dn-1-docker-khuy%e1%ba%bfn-ngh%e1%bb%8b" aria-label="Tùy chọn 1: Docker (Khuyến nghị)">Tùy chọn 1: Docker (Khuyến nghị)</a></li>
+            <li>
+                <a href="#t%c3%b9y-ch%e1%bb%8dn-2-m%c3%b4i-tr%c6%b0%e1%bb%9dng-conda-ph%c3%a1t-tri%e1%bb%83n-local" aria-label="Tùy chọn 2: Môi trường Conda (Phát triển local)">Tùy chọn 2: Môi trường Conda (Phát triển local)</a></li>
+            <li>
+                <a href="#t%c3%b9y-ch%e1%bb%8dn-3-gradio-local-ui" aria-label="Tùy chọn 3: Gradio Local UI">Tùy chọn 3: Gradio Local UI</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#ph%e1%bb%a5-thu%e1%bb%99c-h%e1%bb%87-th%e1%bb%91ng-b%e1%bb%95-sung-cho-gradio" aria-label="Phụ thuộc hệ thống bổ sung cho Gradio">Phụ thuộc hệ thống bổ sung cho Gradio</a></li>
+            <li>
+                <a href="#c%c3%a0i-gradio-requirements" aria-label="Cài Gradio requirements">Cài Gradio requirements</a></li>
+            <li>
+                <a href="#kh%e1%bb%9fi-%c4%91%e1%bb%99ng-gradio-server" aria-label="Khởi động Gradio server">Khởi động Gradio server</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#voicecraft--jupyter-notebook" aria-label="VoiceCraft &#43; Jupyter Notebook">VoiceCraft + Jupyter Notebook</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#inference_ttsipynb--v%c3%ad-d%e1%bb%a5-zero-shot-tts" aria-label="inference_tts.ipynb — Ví dụ zero-shot TTS">inference_tts.ipynb — Ví dụ zero-shot TTS</a></li>
+            <li>
+                <a href="#t%e1%ba%a3i-m%c3%b4-h%c3%acnh-330m-nhanh-h%c6%a1n-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-t%e1%bb%91t" aria-label="Tải mô hình 330M (nhanh hơn, chất lượng tốt)">Tải mô hình 330M (nhanh hơn, chất lượng tốt)</a></li>
+            <li>
+                <a href="#cung-c%e1%ba%a5p-3-5-gi%c3%a2y-%c3%a2m-thanh-tham-kh%e1%ba%a3o" aria-label="Cung cấp 3-5 giây âm thanh tham khảo">Cung cấp 3-5 giây âm thanh tham khảo</a></li>
+            <li>
+                <a href="#v%c4%83n-b%e1%ba%a3n-c%e1%ba%a7n-t%e1%bb%95ng-h%e1%bb%a3p" aria-label="Văn bản cần tổng hợp">Văn bản cần tổng hợp</a></li>
+            <li>
+                <a href="#t%e1%ba%a1o-sinh" aria-label="Tạo sinh">Tạo sinh</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#voicecraft--docker-api" aria-label="VoiceCraft &#43; Docker API">VoiceCraft + Docker API</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#dockerfileapi--wrapper-api-production" aria-label="Dockerfile.api — Wrapper API production">Dockerfile.api — Wrapper API production</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#voicecraft--huggingface-hub" aria-label="VoiceCraft &#43; HuggingFace Hub">VoiceCraft + HuggingFace Hub</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#t%e1%ba%a3i-tr%e1%bb%8dng-s%e1%bb%91-m%c3%b4-h%c3%acnh" aria-label="Tải trọng số mô hình">Tải trọng số mô hình</a></li>
+            <li>
+                <a href="#c%c5%a9ng-c%c3%b3-th%e1%bb%83-t%e1%ba%a3i-qua-modelscope-cho-khu-v%e1%bb%b1c-trung-qu%e1%bb%91c" aria-label="Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)">Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#top-k-sampling-c%e1%ba%adp-nh%e1%ba%adt-th%c3%a1ng-32025" aria-label="Top-k Sampling (Cập nhật tháng 3/2025)">Top-k Sampling (Cập nhật tháng 3/2025)</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#khuy%e1%ba%bfn-ngh%e1%bb%8b-top-k40-cho-ch%e1%ba%a5t-l%c6%b0%e1%bb%a3ng-t%e1%bb%91t-nh%e1%ba%a5t" aria-label="Khuyến nghị: top-k=40 cho chất lượng tốt nhất">Khuyến nghị: top-k=40 cho chất lượng tốt nhất</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-v%c3%a0-logging" aria-label="Giám sát và logging">Giám sát và logging</a></li>
+            <li>
+                <a href="#b%e1%ba%a3o-m%e1%ba%adt-v%c3%a0-an-to%c3%a0n" aria-label="Bảo mật và an toàn">Bảo mật và an toàn</a></li></ul>
+                
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-ph%c6%b0%c6%a1ng-%c3%a1n-thay-th%e1%ba%bf" aria-label="So sánh với các phương án thay thế">So sánh với các phương án thay thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết luận">Kết luận</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài liệu tham khảo">Nguồn &amp; Tài liệu tham khảo</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,58 +322,130 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;voicecraft&rdquo;, &ldquo;zero-shot-tts&rdquo;, &ldquo;chinh-sua-giong-noi&rdquo;, &ldquo;neural-codec&rdquo;, &ldquo;voice-cloning&rdquo;, &ldquo;ai-audio&rdquo;, &ldquo;docker&rdquo;, &ldquo;python&rdquo;]
-aliases:</p><ul><li>/vi/posts/voicecraft/</li></ul><hr><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Chỉnh sửa âm thanh lồng tiếng từng đồng nghĩa với việc thu âm toàn bộ trong phòng thu. Nếu một podcaster vấp váy một từ hoặc ngườii đọc sách nói sai tên, cách sửa là đặt thêm một buổi thu, thiết lập micro và khớp giọng gốc. Quy trình này tốn kém và chậm. Năm 2024, nhóm nghiên cứu từ UT Austin và Meta FAIR công bố <strong>VoiceCraft</strong>, một mô hình ngôn ngữ codec thần kinh chỉnh sửa giọng nói và nhân bản giọng chỉ từ vài giây âm thanh tham khảo. Repository hiện có <strong>8,500+ stars</strong> trên GitHub với 796 forks, bài báo được chấp nhận tại ACL 2024. Hướng dẫn này đi qua thiết lập VoiceCraft, so sánh với GPT-SoVITS, XTTS v2 và Coqui TTS, và trình bày các mẫu triển khai production với Docker.</p><h2 id=voicecraft-là-gì>VoiceCraft là gì?<a hidden class=anchor aria-hidden=true href=#voicecraft-là-gì>#</a></h2><p><strong>VoiceCraft</strong> là một mô hình ngôn ngữ codec thần kinh token infilling thực hiện hai nhiệm vụ cốt lõi: (1) nhân bản giọng zero-shot text-to-speech (TTS) và (2) chỉnh sửa giọng nói trong bản ghi hiện có. Khác với pipeline TTS truyền thống cần hàng giờ dữ liệu huấn luyện cho mỗi ngườii nói, VoiceCraft chỉ cần 3-5 giây âm thanh tham khảo để tái tạo giọng với độ trung thực cao. Nó được xây dựng trên kiến trúc Transformer decoder và giới thiệu thủ tục token rearrangement kết hợp causal masking với delayed stacking, cho phép tạo sinh tự hồi quy có điều kiện từ ngữ cảnh hai chiều.</p><p><img alt="Tổng quan kiến trúc VoiceCraft" loading=lazy src=https://raw.githubusercontent.com/jasonppy/VoiceCraft/main/assets/overview.png>
-<em>Hình 1: Tổng quan kiến trúc VoiceCraft — token infilling với causal masking và delayed stacking cho chỉnh sửa giọng nói và TTS.</em></p><h2 id=voicecraft-hoạt-động-như-thế-nào>VoiceCraft hoạt động như thế nào<a hidden class=anchor aria-hidden=true href=#voicecraft-hoạt-động-như-thế-nào>#</a></h2><h3 id=tổng-quan-kiến-trúc>Tổng quan kiến trúc<a hidden class=anchor aria-hidden=true href=#tổng-quan-kiến-trúc>#</a></h3><p>Pipeline mô hình gồm ba giai đoạn: 1. <strong>EnCodec Quantization</strong>: Sóng âm thanh thô được lượng tử hóa thành token rờii rạc bằng codec thần kinh EnCodec của Meta. Mỗi khung âm thanh được biểu diễn bằng vector K chỉ mục codebook (lượng tử hóa vector residual, RVQ).</p><ol start=2><li><p><strong>Token Rearrangement</strong>: Đây là sáng kiến cốt lõi của VoiceCraft. Thủ tục hai bước biến đổi bài toán chỉnh sửa/infilling thành bài toán mô hình hóa ngôn ngữ từ trái sang phải: - <strong>Causal Masking</strong>: Các đoạn token ngẫu nhiên bị che và chuyển về cuối chuỗi, cho phép mô hình chú ý đến ngữ cảnh hai chiều trong quá trình sinh tự hồi quy.</p><ul><li><strong>Delayed Stacking</strong>: Các vector được dịch chéo để dự đoán codebook k tại thờii điểm t có điều kiện từ codebook k-1, cho phép mô hình hóa multi-codebook hiệu quả.</li></ul></li><li><p><strong>Transformer Decoder</strong>: Chuỗi token đã sắp xếp lại được mô hình hóa tự hồi quy bởi Transformer decoder. Các âm vị văn bản và token âm thanh được nối làm đầu vào điều kiện.</p></li></ol><h3 id=các-phiên-bản-mô-hình>Các phiên bản mô hình<a hidden class=anchor aria-hidden=true href=#các-phiên-bản-mô-hình>#</a></h3><table><thead><tr><th>Mô hình</th><th>Tham số</th><th>Phù hợp cho</th><th>Thờii lượng tối đa</th></tr></thead><tbody><tr><td>giga330M</td><td>330M</td><td>Cân bằng chất lượng/tốc độ</td><td>16 giây</td></tr><tr><td>giga830M</td><td>830M</td><td>Chất lượng cao nhất</td><td>30+ giây</td></tr><tr><td>giga330M-TTS-Enhanced</td><td>330M</td><td>Fine-tune chuyên TTS</td><td>16 giây</td></tr></tbody></table><h3 id=bộ-dữ-liệu-realedit>Bộ dữ liệu RealEdit<a hidden class=anchor aria-hidden=true href=#bộ-dữ-liệu-realedit>#</a></h3><p>VoiceCraft giới thiệu <strong>RealEdit</strong>, bộ dữ liệu benchmark gồm 310 ví dụ chỉnh sửa giọng nói thực tế từ sách nói, video YouTube và podcast Spotify. Khác với bộ dữ liệu phòng thí nghiệm sạch (LibriTTS, VCTK), RealEdit chứa đa dạng giọng vùng miền, tiếng ồn nền, nhạc và phong cách nói — biến nó thành thước đo thực tiễn cho chất lượng chỉnh sửa giọng nói.</p><p><img alt="Sơ đồ chỉnh sửa giọng nói VoiceCraft" loading=lazy src=https://jasonppy.github.io/VoiceCraft_web/static/editing_figure.png>
-<em>Hình 2: Quy trình chỉnh sửa giọng nói VoiceCraft — âm thanh gốc, bản ghi mục tiêu và đầu ra chỉnh sửa đã tổng hợp.</em></p><h2 id=cài-đặt--thiết-lập>Cài đặt & Thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập>#</a></h2><h3 id=tùy-chọn-1-docker-khuyến-nghị>Tùy chọn 1: Docker (Khuyến nghị)<a hidden class=anchor aria-hidden=true href=#tùy-chọn-1-docker-khuyến-nghị>#</a></h3><p>Docker là con đường nhanh nhất đến môi trường VoiceCraft hoạt động. Dockerfile chính thức xử lý mọi phụ thuộc bao gồm EnCodec, Montreal Forced Aligner (MFA) và CUDA binding.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. Clone repository</span>
-</span></span><span style=display:flex><span>git clone https://github.com/jasonppy/VoiceCraft.git
-</span></span><span style=display:flex><span>cd VoiceCraft
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Build Docker image</span>
-</span></span><span style=display:flex><span>docker build --tag <span style=color:#e6db74>&#34;voicecraft&#34;</span> .
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Khởi động container (Linux)</span>
-</span></span><span style=display:flex><span>./start-jupyter.sh
-</span></span><span style=display:flex><span><span style=color:#75715e># Windows: # start-jupyter.bat</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 4. Lấy link Jupyter từ logs</span>
-</span></span><span style=display:flex><span>docker logs jupyter | grep <span style=color:#e6db74>&#34;127.0.0.1:8888&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 5. Xác minh GPU trong container</span>
-</span></span><span style=display:flex><span>docker exec -it jupyter nvidia-smi
-</span></span></code></pre></div><p>Container expose Jupyter Lab trên cổng 8888 và Gradio UI trên cổng 7860. Mở <code>inference_tts.ipynb</code> hoặc <code>inference_speech_editing.ipynb</code> để chạy inference.</p><h3 id=tùy-chọn-2-môi-trường-conda-phát-triển-local>Tùy chọn 2: Môi trường Conda (Phát triển local)<a hidden class=anchor aria-hidden=true href=#tùy-chọn-2-môi-trường-conda-phát-triển-local>#</a></h3><p>Để phát triển và fine-tune mô hình, môi trường Conda local cung cấp linh hoạt hơn.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tạo và kích hoạt môi trường</span>
-</span></span><span style=display:flex><span>conda create -n voicecraft python<span style=color:#f92672>=</span>3.9.16
-</span></span><span style=display:flex><span>conda activate voicecraft
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài PyTorch với CUDA 11.7</span>
-</span></span><span style=display:flex><span>pip install torch<span style=color:#f92672>==</span>2.0.1 torchaudio<span style=color:#f92672>==</span>2.0.2 --index-url https://download.pytorch.org/whl/cu117
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài audiocraft (phụ thuộc EnCodec)</span>
-</span></span><span style=display:flex><span>pip install -e git+https://github.com/facebookresearch/audiocraft.git@c5157b5bf14bf83449c17ea1eeb66c19fb4bc7f0#egg<span style=color:#f92672>=</span>audiocraft
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài xformers cho attention tiết kiệm bộ nhớ</span>
-</span></span><span style=display:flex><span>pip install xformers<span style=color:#f92672>==</span>0.0.22
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Phụ thuộc cốt lõi</span>
-</span></span><span style=display:flex><span>pip install tensorboard<span style=color:#f92672>==</span>2.16.2
-</span></span><span style=display:flex><span>pip install phonemizer<span style=color:#f92672>==</span>3.2.1
-</span></span><span style=display:flex><span>pip install datasets<span style=color:#f92672>==</span>2.16.0
-</span></span><span style=display:flex><span>pip install torchmetrics<span style=color:#f92672>==</span>0.11.1
-</span></span><span style=display:flex><span>pip install huggingface_hub<span style=color:#f92672>==</span>0.22.2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Phụ thuộc hệ thống</span>
-</span></span><span style=display:flex><span>apt-get install -y ffmpeg espeak-ng
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cài Montreal Forced Aligner (MFA) để căn chỉnh text-audio</span>
-</span></span><span style=display:flex><span>conda install -c conda-forge montreal-forced-aligner<span style=color:#f92672>=</span>2.2.17 openfst<span style=color:#f92672>=</span>1.8.2 kaldi<span style=color:#f92672>=</span>5.5.1068
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tải mô hình tiếng Anh của MFA</span>
-</span></span><span style=display:flex><span>mfa model download dictionary english_us_arpa
-</span></span><span style=display:flex><span>mfa model download acoustic english_us_arpa
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Jupyter kernel (tùy chọn)</span>
-</span></span><span style=display:flex><span>conda install -n voicecraft ipykernel --no-deps --force-reinstall
-</span></span></code></pre></div><h3 id=tùy-chọn-3-gradio-local-ui>Tùy chọn 3: Gradio Local UI<a hidden class=anchor aria-hidden=true href=#tùy-chọn-3-gradio-local-ui>#</a></h3><p>Để có giao diện trình duyệt mà không cần notebook: `````bash</p><h1 id=phụ-thuộc-hệ-thống-bổ-sung-cho-gradio>Phụ thuộc hệ thống bổ sung cho Gradio<a hidden class=anchor aria-hidden=true href=#phụ-thuộc-hệ-thống-bổ-sung-cho-gradio>#</a></h1><p>apt-get install -y espeak espeak-data libespeak1 libespeak-dev
-apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev</p><h1 id=cài-gradio-requirements>Cài Gradio requirements<a hidden class=anchor aria-hidden=true href=#cài-gradio-requirements>#</a></h1><p>pip install -r gradio_requirements.txt</p><h1 id=khởi-động-gradio-server>Khởi động Gradio server<a hidden class=anchor aria-hidden=true href=#khởi-động-gradio-server>#</a></h1><p>python gradio_app.py</p><pre tabindex=0><code>
+aliases:</p>
+<ul>
+<li>/vi/posts/voicecraft/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Chỉnh sửa âm thanh lồng tiếng từng đồng nghĩa với việc thu âm toàn bộ trong phòng thu. Nếu một podcaster vấp váy một từ hoặc ngườii đọc sách nói sai tên, cách sửa là đặt thêm một buổi thu, thiết lập micro và khớp giọng gốc. Quy trình này tốn kém và chậm. Năm 2024, nhóm nghiên cứu từ UT Austin và Meta FAIR công bố <strong>VoiceCraft</strong>, một mô hình ngôn ngữ codec thần kinh chỉnh sửa giọng nói và nhân bản giọng chỉ từ vài giây âm thanh tham khảo. Repository hiện có <strong>8,500+ stars</strong> trên GitHub với 796 forks, bài báo được chấp nhận tại ACL 2024. Hướng dẫn này đi qua thiết lập VoiceCraft, so sánh với GPT-SoVITS, XTTS v2 và Coqui TTS, và trình bày các mẫu triển khai production với Docker.</p>
+<h2 id="voicecraft-là-gì">VoiceCraft là gì?<a hidden class="anchor" aria-hidden="true" href="#voicecraft-là-gì">#</a></h2>
+<p><strong>VoiceCraft</strong> là một mô hình ngôn ngữ codec thần kinh token infilling thực hiện hai nhiệm vụ cốt lõi: (1) nhân bản giọng zero-shot text-to-speech (TTS) và (2) chỉnh sửa giọng nói trong bản ghi hiện có. Khác với pipeline TTS truyền thống cần hàng giờ dữ liệu huấn luyện cho mỗi ngườii nói, VoiceCraft chỉ cần 3-5 giây âm thanh tham khảo để tái tạo giọng với độ trung thực cao. Nó được xây dựng trên kiến trúc Transformer decoder và giới thiệu thủ tục token rearrangement kết hợp causal masking với delayed stacking, cho phép tạo sinh tự hồi quy có điều kiện từ ngữ cảnh hai chiều.</p>
+<p><img alt="Tổng quan kiến trúc VoiceCraft" loading="lazy" src="https://raw.githubusercontent.com/jasonppy/VoiceCraft/main/assets/overview.png">
+<em>Hình 1: Tổng quan kiến trúc VoiceCraft — token infilling với causal masking và delayed stacking cho chỉnh sửa giọng nói và TTS.</em></p>
+<h2 id="voicecraft-hoạt-động-như-thế-nào">VoiceCraft hoạt động như thế nào<a hidden class="anchor" aria-hidden="true" href="#voicecraft-hoạt-động-như-thế-nào">#</a></h2>
+<h3 id="tổng-quan-kiến-trúc">Tổng quan kiến trúc<a hidden class="anchor" aria-hidden="true" href="#tổng-quan-kiến-trúc">#</a></h3>
+<p>Pipeline mô hình gồm ba giai đoạn: 1. <strong>EnCodec Quantization</strong>: Sóng âm thanh thô được lượng tử hóa thành token rờii rạc bằng codec thần kinh EnCodec của Meta. Mỗi khung âm thanh được biểu diễn bằng vector K chỉ mục codebook (lượng tử hóa vector residual, RVQ).</p>
+<ol start="2">
+<li>
+<p><strong>Token Rearrangement</strong>: Đây là sáng kiến cốt lõi của VoiceCraft. Thủ tục hai bước biến đổi bài toán chỉnh sửa/infilling thành bài toán mô hình hóa ngôn ngữ từ trái sang phải: - <strong>Causal Masking</strong>: Các đoạn token ngẫu nhiên bị che và chuyển về cuối chuỗi, cho phép mô hình chú ý đến ngữ cảnh hai chiều trong quá trình sinh tự hồi quy.</p>
+<ul>
+<li><strong>Delayed Stacking</strong>: Các vector được dịch chéo để dự đoán codebook k tại thờii điểm t có điều kiện từ codebook k-1, cho phép mô hình hóa multi-codebook hiệu quả.</li>
+</ul>
+</li>
+<li>
+<p><strong>Transformer Decoder</strong>: Chuỗi token đã sắp xếp lại được mô hình hóa tự hồi quy bởi Transformer decoder. Các âm vị văn bản và token âm thanh được nối làm đầu vào điều kiện.</p>
+</li>
+</ol>
+<h3 id="các-phiên-bản-mô-hình">Các phiên bản mô hình<a hidden class="anchor" aria-hidden="true" href="#các-phiên-bản-mô-hình">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Mô hình</th>
+					<th>Tham số</th>
+					<th>Phù hợp cho</th>
+					<th>Thờii lượng tối đa</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>giga330M</td>
+					<td>330M</td>
+					<td>Cân bằng chất lượng/tốc độ</td>
+					<td>16 giây</td>
+			</tr>
+			<tr>
+					<td>giga830M</td>
+					<td>830M</td>
+					<td>Chất lượng cao nhất</td>
+					<td>30+ giây</td>
+			</tr>
+			<tr>
+					<td>giga330M-TTS-Enhanced</td>
+					<td>330M</td>
+					<td>Fine-tune chuyên TTS</td>
+					<td>16 giây</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="bộ-dữ-liệu-realedit">Bộ dữ liệu RealEdit<a hidden class="anchor" aria-hidden="true" href="#bộ-dữ-liệu-realedit">#</a></h3>
+<p>VoiceCraft giới thiệu <strong>RealEdit</strong>, bộ dữ liệu benchmark gồm 310 ví dụ chỉnh sửa giọng nói thực tế từ sách nói, video YouTube và podcast Spotify. Khác với bộ dữ liệu phòng thí nghiệm sạch (LibriTTS, VCTK), RealEdit chứa đa dạng giọng vùng miền, tiếng ồn nền, nhạc và phong cách nói — biến nó thành thước đo thực tiễn cho chất lượng chỉnh sửa giọng nói.</p>
+<p><img alt="Sơ đồ chỉnh sửa giọng nói VoiceCraft" loading="lazy" src="https://jasonppy.github.io/VoiceCraft_web/static/editing_figure.png">
+<em>Hình 2: Quy trình chỉnh sửa giọng nói VoiceCraft — âm thanh gốc, bản ghi mục tiêu và đầu ra chỉnh sửa đã tổng hợp.</em></p>
+<h2 id="cài-đặt--thiết-lập">Cài đặt &amp; Thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập">#</a></h2>
+<h3 id="tùy-chọn-1-docker-khuyến-nghị">Tùy chọn 1: Docker (Khuyến nghị)<a hidden class="anchor" aria-hidden="true" href="#tùy-chọn-1-docker-khuyến-nghị">#</a></h3>
+<p>Docker là con đường nhanh nhất đến môi trường VoiceCraft hoạt động. Dockerfile chính thức xử lý mọi phụ thuộc bao gồm EnCodec, Montreal Forced Aligner (MFA) và CUDA binding.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Clone repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/jasonppy/VoiceCraft.git
+</span></span><span style="display:flex;"><span>cd VoiceCraft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Build Docker image</span>
+</span></span><span style="display:flex;"><span>docker build --tag <span style="color:#e6db74">&#34;voicecraft&#34;</span> .
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Khởi động container (Linux)</span>
+</span></span><span style="display:flex;"><span>./start-jupyter.sh
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Windows: # start-jupyter.bat</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Lấy link Jupyter từ logs</span>
+</span></span><span style="display:flex;"><span>docker logs jupyter | grep <span style="color:#e6db74">&#34;127.0.0.1:8888&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. Xác minh GPU trong container</span>
+</span></span><span style="display:flex;"><span>docker exec -it jupyter nvidia-smi
+</span></span></code></pre></div><p>Container expose Jupyter Lab trên cổng 8888 và Gradio UI trên cổng 7860. Mở <code>inference_tts.ipynb</code> hoặc <code>inference_speech_editing.ipynb</code> để chạy inference.</p>
+<h3 id="tùy-chọn-2-môi-trường-conda-phát-triển-local">Tùy chọn 2: Môi trường Conda (Phát triển local)<a hidden class="anchor" aria-hidden="true" href="#tùy-chọn-2-môi-trường-conda-phát-triển-local">#</a></h3>
+<p>Để phát triển và fine-tune mô hình, môi trường Conda local cung cấp linh hoạt hơn.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tạo và kích hoạt môi trường</span>
+</span></span><span style="display:flex;"><span>conda create -n voicecraft python<span style="color:#f92672">=</span>3.9.16
+</span></span><span style="display:flex;"><span>conda activate voicecraft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài PyTorch với CUDA 11.7</span>
+</span></span><span style="display:flex;"><span>pip install torch<span style="color:#f92672">==</span>2.0.1 torchaudio<span style="color:#f92672">==</span>2.0.2 --index-url https://download.pytorch.org/whl/cu117
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài audiocraft (phụ thuộc EnCodec)</span>
+</span></span><span style="display:flex;"><span>pip install -e git+https://github.com/facebookresearch/audiocraft.git@c5157b5bf14bf83449c17ea1eeb66c19fb4bc7f0#egg<span style="color:#f92672">=</span>audiocraft
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài xformers cho attention tiết kiệm bộ nhớ</span>
+</span></span><span style="display:flex;"><span>pip install xformers<span style="color:#f92672">==</span>0.0.22
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phụ thuộc cốt lõi</span>
+</span></span><span style="display:flex;"><span>pip install tensorboard<span style="color:#f92672">==</span>2.16.2
+</span></span><span style="display:flex;"><span>pip install phonemizer<span style="color:#f92672">==</span>3.2.1
+</span></span><span style="display:flex;"><span>pip install datasets<span style="color:#f92672">==</span>2.16.0
+</span></span><span style="display:flex;"><span>pip install torchmetrics<span style="color:#f92672">==</span>0.11.1
+</span></span><span style="display:flex;"><span>pip install huggingface_hub<span style="color:#f92672">==</span>0.22.2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Phụ thuộc hệ thống</span>
+</span></span><span style="display:flex;"><span>apt-get install -y ffmpeg espeak-ng
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cài Montreal Forced Aligner (MFA) để căn chỉnh text-audio</span>
+</span></span><span style="display:flex;"><span>conda install -c conda-forge montreal-forced-aligner<span style="color:#f92672">=</span>2.2.17 openfst<span style="color:#f92672">=</span>1.8.2 kaldi<span style="color:#f92672">=</span>5.5.1068
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tải mô hình tiếng Anh của MFA</span>
+</span></span><span style="display:flex;"><span>mfa model download dictionary english_us_arpa
+</span></span><span style="display:flex;"><span>mfa model download acoustic english_us_arpa
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Jupyter kernel (tùy chọn)</span>
+</span></span><span style="display:flex;"><span>conda install -n voicecraft ipykernel --no-deps --force-reinstall
+</span></span></code></pre></div><h3 id="tùy-chọn-3-gradio-local-ui">Tùy chọn 3: Gradio Local UI<a hidden class="anchor" aria-hidden="true" href="#tùy-chọn-3-gradio-local-ui">#</a></h3>
+<p>Để có giao diện trình duyệt mà không cần notebook: `````bash</p>
+<h1 id="phụ-thuộc-hệ-thống-bổ-sung-cho-gradio">Phụ thuộc hệ thống bổ sung cho Gradio<a hidden class="anchor" aria-hidden="true" href="#phụ-thuộc-hệ-thống-bổ-sung-cho-gradio">#</a></h1>
+<p>apt-get install -y espeak espeak-data libespeak1 libespeak-dev
+apt-get install -y festival build-essential flac libasound2-dev libsndfile1-dev</p>
+<h1 id="cài-gradio-requirements">Cài Gradio requirements<a hidden class="anchor" aria-hidden="true" href="#cài-gradio-requirements">#</a></h1>
+<p>pip install -r gradio_requirements.txt</p>
+<h1 id="khởi-động-gradio-server">Khởi động Gradio server<a hidden class="anchor" aria-hidden="true" href="#khởi-động-gradio-server">#</a></h1>
+<p>python gradio_app.py</p>
+<pre tabindex="0"><code>
 Truy cập UI web tại ````http://127.0.0.1:7860````.
 
 ### Yêu cầu phần cứng
@@ -98,15 +471,28 @@ python gradio_app.py \
   --model-path &#34;./pretrained_models/giga330M.pth&#34; \
   --codec-model &#34;encodec_16khz&#34; \
   --share  # Tạo URL công khai
-</code></pre><p>Gradio UI hỗ trợ ba chế độ: <strong>Chế độ TTS</strong> (nhân bản giọng zero-shot), <strong>Chế độ Edit</strong> (chỉnh sửa giọng nói), và <strong>Chế độ Long TTS</strong> (tạo chuỗi chunk cho văn bản dài).</p><h3 id=voicecraft--jupyter-notebook>VoiceCraft + Jupyter Notebook<a hidden class=anchor aria-hidden=true href=#voicecraft--jupyter-notebook>#</a></h3><p>Để truy cập lập trình, sử dụng Jupyter notebook: `````python</p><h1 id=inference_ttsipynb--ví-dụ-zero-shot-tts>inference_tts.ipynb — Ví dụ zero-shot TTS<a hidden class=anchor aria-hidden=true href=#inference_ttsipynb--ví-dụ-zero-shot-tts>#</a></h1><p>from voicecraft import VoiceCraft</p><h1 id=tải-mô-hình-330m-nhanh-hơn-chất-lượng-tốt>Tải mô hình 330M (nhanh hơn, chất lượng tốt)<a hidden class=anchor aria-hidden=true href=#tải-mô-hình-330m-nhanh-hơn-chất-lượng-tốt>#</a></h1><p>model = VoiceCraft.from_pretrained(&ldquo;pyp1/VoiceCraft&rdquo;, subfolder=&ldquo;giga330M&rdquo;)</p><h1 id=cung-cấp-3-5-giây-âm-thanh-tham-khảo>Cung cấp 3-5 giây âm thanh tham khảo<a hidden class=anchor aria-hidden=true href=#cung-cấp-3-5-giây-âm-thanh-tham-khảo>#</a></h1><p>reference_audio = &ldquo;demo/pam.wav&rdquo; # Clip tham khảo
-reference_text = &ldquo;I found the amazing VoiceCraft model&rdquo;</p><h1 id=văn-bản-cần-tổng-hợp>Văn bản cần tổng hợp<a hidden class=anchor aria-hidden=true href=#văn-bản-cần-tổng-hợp>#</a></h1><p>target_text = &ldquo;This is a test of zero shot voice cloning with VoiceCraft&rdquo;</p><h1 id=tạo-sinh>Tạo sinh<a hidden class=anchor aria-hidden=true href=#tạo-sinh>#</a></h1><p>output = model.tts(
+</code></pre><p>Gradio UI hỗ trợ ba chế độ: <strong>Chế độ TTS</strong> (nhân bản giọng zero-shot), <strong>Chế độ Edit</strong> (chỉnh sửa giọng nói), và <strong>Chế độ Long TTS</strong> (tạo chuỗi chunk cho văn bản dài).</p>
+<h3 id="voicecraft--jupyter-notebook">VoiceCraft + Jupyter Notebook<a hidden class="anchor" aria-hidden="true" href="#voicecraft--jupyter-notebook">#</a></h3>
+<p>Để truy cập lập trình, sử dụng Jupyter notebook: `````python</p>
+<h1 id="inference_ttsipynb--ví-dụ-zero-shot-tts">inference_tts.ipynb — Ví dụ zero-shot TTS<a hidden class="anchor" aria-hidden="true" href="#inference_ttsipynb--ví-dụ-zero-shot-tts">#</a></h1>
+<p>from voicecraft import VoiceCraft</p>
+<h1 id="tải-mô-hình-330m-nhanh-hơn-chất-lượng-tốt">Tải mô hình 330M (nhanh hơn, chất lượng tốt)<a hidden class="anchor" aria-hidden="true" href="#tải-mô-hình-330m-nhanh-hơn-chất-lượng-tốt">#</a></h1>
+<p>model = VoiceCraft.from_pretrained(&ldquo;pyp1/VoiceCraft&rdquo;, subfolder=&ldquo;giga330M&rdquo;)</p>
+<h1 id="cung-cấp-3-5-giây-âm-thanh-tham-khảo">Cung cấp 3-5 giây âm thanh tham khảo<a hidden class="anchor" aria-hidden="true" href="#cung-cấp-3-5-giây-âm-thanh-tham-khảo">#</a></h1>
+<p>reference_audio = &ldquo;demo/pam.wav&rdquo;  # Clip tham khảo
+reference_text = &ldquo;I found the amazing VoiceCraft model&rdquo;</p>
+<h1 id="văn-bản-cần-tổng-hợp">Văn bản cần tổng hợp<a hidden class="anchor" aria-hidden="true" href="#văn-bản-cần-tổng-hợp">#</a></h1>
+<p>target_text = &ldquo;This is a test of zero shot voice cloning with VoiceCraft&rdquo;</p>
+<h1 id="tạo-sinh">Tạo sinh<a hidden class="anchor" aria-hidden="true" href="#tạo-sinh">#</a></h1>
+<p>output = model.tts(
 target_text=target_text,
 reference_audio=reference_audio,
 reference_text=reference_text,
-top_k=40, # Cập nhật tháng 3/2025: top-k=40 cải thiện chất lượng
+top_k=40,  # Cập nhật tháng 3/2025: top-k=40 cải thiện chất lượng
 temperature=1.0
 )
-output.save(&ldquo;output_tts.wav&rdquo;)</p><pre tabindex=0><code>
+output.save(&ldquo;output_tts.wav&rdquo;)</p>
+<pre tabindex="0"><code>
 ### VoiceCraft + Dòng lệnh
 
 Cho xử lý hàng loạt và scripting: `````bash
@@ -126,9 +512,17 @@ python speech_editing_demo.py \
   --edited_transcript &#34;edited text here&#34; \
   --model_name &#34;giga830M&#34; \
   --output_path &#34;edited_output.wav&#34;
-</code></pre><h3 id=voicecraft--docker-api>VoiceCraft + Docker API<a hidden class=anchor aria-hidden=true href=#voicecraft--docker-api>#</a></h3><p>Để triển khai production, gói VoiceCraft trong REST API: `````dockerfile</p><h1 id=dockerfileapi--wrapper-api-production>Dockerfile.api — Wrapper API production<a hidden class=anchor aria-hidden=true href=#dockerfileapi--wrapper-api-production>#</a></h1><p>FROM voicecraft:latest</p><p>WORKDIR /app
+</code></pre><h3 id="voicecraft--docker-api">VoiceCraft + Docker API<a hidden class="anchor" aria-hidden="true" href="#voicecraft--docker-api">#</a></h3>
+<p>Để triển khai production, gói VoiceCraft trong REST API: `````dockerfile</p>
+<h1 id="dockerfileapi--wrapper-api-production">Dockerfile.api — Wrapper API production<a hidden class="anchor" aria-hidden="true" href="#dockerfileapi--wrapper-api-production">#</a></h1>
+<p>FROM voicecraft:latest</p>
+<p>WORKDIR /app
 COPY api.py ./
-COPY requirements-api.txt ./</p><p>RUN pip install -r requirements-api.txt</p><p>EXPOSE 8000</p><p>CMD [&ldquo;uvicorn&rdquo;, &ldquo;api:app&rdquo;, &ldquo;&ndash;host&rdquo;, &ldquo;0.0.0.0&rdquo;, &ldquo;&ndash;port&rdquo;, &ldquo;8000&rdquo;]</p><pre tabindex=0><code>
+COPY requirements-api.txt ./</p>
+<p>RUN pip install -r requirements-api.txt</p>
+<p>EXPOSE 8000</p>
+<p>CMD [&ldquo;uvicorn&rdquo;, &ldquo;api:app&rdquo;, &ldquo;&ndash;host&rdquo;, &ldquo;0.0.0.0&rdquo;, &ldquo;&ndash;port&rdquo;, &ldquo;8000&rdquo;]</p>
+<pre tabindex="0"><code>
 `````python
 # api.py — FastAPI wrapper cho VoiceCraft
 from fastapi import FastAPI, UploadFile, File
@@ -152,14 +546,20 @@ async def tts(
         top_k=40
     )
     return {&#34;output&#34;: output.serialize()}
-</code></pre><h3 id=voicecraft--huggingface-hub>VoiceCraft + HuggingFace Hub<a hidden class=anchor aria-hidden=true href=#voicecraft--huggingface-hub>#</a></h3><p>Tải trực tiếp mô hình pretrained từ HuggingFace: `````python
-from huggingface_hub import hf_hub_download</p><h1 id=tải-trọng-số-mô-hình>Tải trọng số mô hình<a hidden class=anchor aria-hidden=true href=#tải-trọng-số-mô-hình>#</a></h1><p>model_path = hf_hub_download(
+</code></pre><h3 id="voicecraft--huggingface-hub">VoiceCraft + HuggingFace Hub<a hidden class="anchor" aria-hidden="true" href="#voicecraft--huggingface-hub">#</a></h3>
+<p>Tải trực tiếp mô hình pretrained từ HuggingFace: `````python
+from huggingface_hub import hf_hub_download</p>
+<h1 id="tải-trọng-số-mô-hình">Tải trọng số mô hình<a hidden class="anchor" aria-hidden="true" href="#tải-trọng-số-mô-hình">#</a></h1>
+<p>model_path = hf_hub_download(
 repo_id=&ldquo;pyp1/VoiceCraft&rdquo;,
 filename=&ldquo;giga330M.pth&rdquo;,
-subfolder="",
-local_dir="./pretrained_models"
-)</p><h1 id=cũng-có-thể-tải-qua-modelscope-cho-khu-vực-trung-quốc>Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)<a hidden class=anchor aria-hidden=true href=#cũng-có-thể-tải-qua-modelscope-cho-khu-vực-trung-quốc>#</a></h1><p>from modelscope import snapshot_download
-model_dir = snapshot_download(&lsquo;AI-ModelScope/VoiceCraft")</p><pre tabindex=0><code>
+subfolder=&quot;&quot;,
+local_dir=&quot;./pretrained_models&quot;
+)</p>
+<h1 id="cũng-có-thể-tải-qua-modelscope-cho-khu-vực-trung-quốc">Cũng có thể tải qua ModelScope (cho khu vực Trung Quốc)<a hidden class="anchor" aria-hidden="true" href="#cũng-có-thể-tải-qua-modelscope-cho-khu-vực-trung-quốc">#</a></h1>
+<p>from modelscope import snapshot_download
+model_dir = snapshot_download(&lsquo;AI-ModelScope/VoiceCraft&quot;)</p>
+<pre tabindex="0"><code>
 ## Benchmark / Use case thực tế
 
 ### Benchmark Zero-shot TTS
@@ -211,13 +611,17 @@ output = model.tts(
     kvcache=True,  # Giảm VRAM ~60%
     batch_size=1
 )
-</code></pre><h3 id=top-k-sampling-cập-nhật-tháng-32025>Top-k Sampling (Cập nhật tháng 3/2025)<a hidden class=anchor aria-hidden=true href=#top-k-sampling-cập-nhật-tháng-32025>#</a></h3><p>Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: `````python</p><h1 id=khuyến-nghị-top-k40-cho-chất-lượng-tốt-nhất>Khuyến nghị: top-k=40 cho chất lượng tốt nhất<a hidden class=anchor aria-hidden=true href=#khuyến-nghị-top-k40-cho-chất-lượng-tốt-nhất>#</a></h1><p>output = model.tts(
+</code></pre><h3 id="top-k-sampling-cập-nhật-tháng-32025">Top-k Sampling (Cập nhật tháng 3/2025)<a hidden class="anchor" aria-hidden="true" href="#top-k-sampling-cập-nhật-tháng-32025">#</a></h3>
+<p>Chiến lược lấy mẫu mặc định được cập nhật từ top-p=1.0 sang top-k=40, cải thiện đáng kể chất lượng đầu ra: `````python</p>
+<h1 id="khuyến-nghị-top-k40-cho-chất-lượng-tốt-nhất">Khuyến nghị: top-k=40 cho chất lượng tốt nhất<a hidden class="anchor" aria-hidden="true" href="#khuyến-nghị-top-k40-cho-chất-lượng-tốt-nhất">#</a></h1>
+<p>output = model.tts(
 target_text=target_text,
 reference_audio=reference_audio,
 reference_text=reference_text,
 top_k=40,
 temperature=1.0
-)</p><pre tabindex=0><code>
+)</p>
+<pre tabindex="0"><code>
 ### Fine-tune trên dữ liệu tùy chỉnh
 
 Cho giọng vùng miền cụ thể, fine-tune mô hình pretrained: `````bash
@@ -236,19 +640,206 @@ python phonemize_encodec_encode_hf.py \
 # Bắt đầu fine-tune
 cd ../z_scripts
 bash e830M_ft.sh  # Fine-tune mô hình 830M
-</code></pre><h3 id=giám-sát-và-logging>Giám sát và logging<a hidden class=anchor aria-hidden=true href=#giám-sát-và-logging>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> logging
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> torch.utils.tensorboard <span style=color:#f92672>import</span> SummaryWriter
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Thiết lập logging</span>
-</span></span><span style=display:flex><span>logging<span style=color:#f92672>.</span>basicConfig(level<span style=color:#f92672>=</span>logging<span style=color:#f92672>.</span>INFO)
-</span></span><span style=display:flex><span>logger <span style=color:#f92672>=</span> logging<span style=color:#f92672>.</span>getLogger(<span style=color:#e6db74>&#34;voicecraft&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># TensorBoard cho giám sát huấn luyện</span>
-</span></span><span style=display:flex><span>writer <span style=color:#f92672>=</span> SummaryWriter(log_dir<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;./runs/voicecraft-ft&#34;</span>)
-</span></span><span style=display:flex><span>writer<span style=color:#f92672>.</span>add_scalar(<span style=color:#e6db74>&#34;loss/train&#34;</span>, loss<span style=color:#f92672>.</span>item(), global_step)
-</span></span><span style=display:flex><span>writer<span style=color:#f92672>.</span>add_scalar(<span style=color:#e6db74>&#34;mos/validation&#34;</span>, val_mos, global_step)
-</span></span></code></pre></div><h3 id=bảo-mật-và-an-toàn>Bảo mật và an toàn<a hidden class=anchor aria-hidden=true href=#bảo-mật-và-an-toàn>#</a></h3><p>Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License cho trọng số) có điều khoản đạo đức cấm sử dụng để tạo hoặc chỉnh sửa giọng nói của ngườii khác mà không có sự đồng ý. Cho triển khai production: - Xác minh ngườii nói trước khi nhân bản</p><ul><li>Ghi log mọi yêu cầu tổng hợp để kiểm tra</li><li>Thêm watermarking cho giọng tổng hợp</li><li>Giới hạn tốc độ API để ngăn lạm dụng</li></ul><h2 id=so-sánh-với-các-phương-án-thay-thế>So sánh với các phương án thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-phương-án-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th>VoiceCraft</th><th>GPT-SoVITS</th><th>Coqui TTS (XTTS v2)</th><th>VALL-E</th></tr></thead><tbody><tr><td><strong>GitHub Stars</strong></td><td>8.500</td><td>57.000</td><td>35.000*</td><td>N/A (chỉ bài báo)</td></tr><tr><td><strong>Tham số</strong></td><td>330M / 830M</td><td>~1B</td><td>467M</td><td>1B</td></tr><tr><td><strong>Chỉnh sửa giọng</strong></td><td>Native, SotA</td><td>Không</td><td>Không</td><td>Hạn chế</td></tr><tr><td><strong>Zero-shot TTS</strong></td><td>3-5 giây tham khảo</td><td>5 giây tham khảo</td><td>6 giây tham khảo</td><td>3 giây tham khảo</td></tr><tr><td><strong>Speaker Similarity MOS</strong></td><td>4,34</td><td>~4,0</td><td>3,44</td><td>4,07</td></tr><tr><td><strong>Naturalness MOS</strong></td><td>4,17</td><td>~3,8</td><td>3,96</td><td>3,86</td></tr><tr><td><strong>Ngôn ngữ</strong></td><td>Tiếng Anh</td><td>EN, JA, KO, ZH, Yue</td><td>17 ngôn ngữ</td><td>Tiếng Anh</td></tr><tr><td><strong>RTF Inference</strong></td><td>~0,3x (GPU)</td><td>0,028x (4060Ti)</td><td>0,18x (A100)</td><td>~0,5x</td></tr><tr><td><strong>Giấy phép</strong></td><td>CC BY-NC-SA 4.0</td><td>MIT</td><td>CPML (phi thương mại)</td><td>N/A</td></tr><tr><td><strong>Docker</strong></td><td>Chính thức</td><td>Cộng đồng</td><td>Cộng đồng</td><td>N/A</td></tr><tr><td><strong>Gradio UI</strong></td><td>Tích hợp</td><td>Tích hợp</td><td>CLI/API</td><td>N/A</td></tr><tr><td><strong>Fine-tune</strong></td><td>Hỗ trợ</td><td>Hỗ trợ</td><td>Hỗ trợ</td><td>N/A</td></tr></tbody></table><p>*Stars của repository Coqui TTS bao gồm tất cả các mô hình TTS, không chỉ XTTS.</p><p><strong>Khi chọn VoiceCraft:</strong></p><ul><li><strong>Chỉnh sửa giọng nói</strong> là use case chính — không có đối thủ mã nguồn mở nào sánh bằng</li><li>Cần <strong>độ tương đồng giọng cao nhất</strong> (MOS 4,34 so với 3,44 của XTTS)</li><li>Làm việc với âm thanh <strong>ồn ào, thực tế</strong> (podcast, video YouTube)</li><li>Nghiên cứu học thuật hoặc phi thương mại (giấy phép CC BY-NC-SA)</li></ul><p><strong>Khi chọn GPT-SoVITS:</strong></p><ul><li>Cần nhân bản giọng <strong>Trung Quốc hoặc Nhật Bản</strong></li><li>Cần sử dụng thương mại (giấy phép MIT)</li><li>Tốc độ inference nhanh nhất là quan trọng (RTF 0,028)</li><li>Fine-tune few-shot với 1 phút dữ liệu</li></ul><p><strong>Khi chọn XTTS v2:</strong></p><ul><li>Cần hỗ trợ <strong>đa ngôn ngữ</strong> (17 ngôn ngữ)</li><li>Đã sử dụng hệ sinh thái Coqui TTS</li><li>Chấp nhận giấy phép thương mại của Coqui</li></ul><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn chế / Đánh giá trung thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><p>VoiceCraft không phải công cụ phù hợp cho mọi tác vụ âm thanh. Đây là những gì nhóm bảo trì và bài báo thừa nhận: 1. <strong>Chỉ tiếng Anh</strong>: Mô hình phát hành chỉ hỗ trợ âm vị tiếng Anh. VoiceCraft-X (tháng 11/2024) mở rộng sang 11 ngôn ngữ nhưng là một mô hình riêng biệt.</p><ol start=2><li><p><strong>Giấy phép phi thương mại</strong>: Cả code (CC BY-NC-SA 4.0) và trọng số mô hình (Coqui Public Model License) đều hạn chế sử dụng thương mại nếu không có thỏa thuận bổ sung.</p></li><li><p><strong>Yêu cầu phần cứng</strong>: Mô hình 830M cần 32 GB bộ nhớ GPU cho inference đầy đủ. Ngay cả mô hình 330M cũng cần quản lý bộ nhớ cẩn thận trên GPU phổ thông.</p></li><li><p><strong>Artifact tạo sinh</strong>: Đôi khi xuất hiện tiếng im lặng kéo dài và tiếng cào trong âm thanh được tạo. Giải pháp (lấy mẫu nhiều đầu ra và chọn cái ngắn nhất) tăng chi phí tính toán.</p></li><li><p><strong>Không hỗ trợ streaming inference</strong>: VoiceCraft tạo toàn bộ chuỗi tự hồi quy, khiến TTS streaming thờii gian thực không thực tế so với các mô hình như Kokoro hay MeloTTS.</p></li><li><p><strong>Thiết lập phức tạp</strong>: So với các công cụ TTS có thể cài qua pip, VoiceCraft cần Docker hoặc Conda với MFA, EnCodec và phiên bản CUDA cụ thể — không phải cài đặt 30 giây.</p></li></ol><h2 id=câu-hỏi-thường-gặp>Câu hỏi thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><p><strong>Q1: VoiceCraft cần bao nhiêu âm thanh tham khảo để nhân bản giọng?</strong></p><p>VoiceCraft cần chỉ 3-5 giây âm thanh tham khảo cho zero-shot TTS. Để có kết quả tốt nhất, sử dụng bản ghi sạch không có tiếng ồn nền hay nhạc. Mô hình mã hóa tham khảo thành embedding ngườii nói qua token EnCodec RVQ, nên tham khảo dài hơn không nhất thiết cải thiện chất lượng.</p><p><strong>Q2: Tôi có thể dùng VoiceCraft cho dự án thương mại không?</strong></p><p>Code VoiceCraft theo CC BY-NC-SA 4.0 và trọng số mô hình theo Coqui Public Model License 1.0.0 — cả hai đều hạn chế sử dụng thương mại. Nếu cần lựa chọn có giấy phép thương mại linh hoạt hơn, xem xét GPT-SoVITS (giấy phép MIT) hoặc mua giấy phép thương mại XTTS v2 từ Coqui.</p><p><strong>Q3: Tôi cần GPU gì để chạy VoiceCraft?</strong></p><p>Mô hình 830M cần 32 GB VRAM (A100, V100 hoặc RTX 4090 + chia sẻ RAM hệ thống). Mô hình 330M chạy trên GPU 16 GB, và với ````kvcache=True```, inference có thể thực hiện trên card 8 GB. CPU-only inference mất 7+ phút cho mỗi câu trên Ryzen 8 lõi so với 35 giây trên GPU.</p><p><strong>Q4: VoiceCraft so với GPT-SoVITS trong nhân bản giọng như thế nào?</strong></p><p>VoiceCraft đạt độ tương đồng ngườii nói cao hơn (SIM 0,55 so với ~0,50) và tự nhiên hơn (MOS 4,17 so với ~3,8) trên âm thanh tiếng Anh. Tuy nhiên, GPT-SoVITS hỗ trợ tiếng Trung và tiếng Nhật nguyên bản, inference nhanh hơn (RTF 0,028 so với ~0,3), và sử dụng giấy phép MIT linh hoạt hơn. Về chỉnh sửa giọng nói cụ thể, VoiceCraft không có đối thủ mã nguồn mở nào.</p><p><strong>Q5: VoiceCraft có thể chỉnh sửa bản ghi hiện có mà không tổng hợp lại toàn bộ file không?</strong></p><p>Có — chỉnh sửa giọng nói là khả năng khác biệt chính của VoiceCraft. Bạn chỉ định đoạn cần chỉnh (chèn, xóa hoặc thay thế) trong bản ghi chữ, và mô hình chỉ infill các đoạn âm thanh bị ảnh hưởng trong khi bảo toàn ngữ cảnh xung quanh. Điều này hiệu quả hơn tổng hợp toàn bộ và duy trì tính liên tục âm thanh.</p><p><strong>Q6: Làm thế nào sửa tiếng &ldquo;cào&rdquo; trong âm thanh được tạo?</strong></p><p>Đây là vấn đề đã biết với các mô hình codec tự hồi quy. Cập nhật tháng 3/2025 (top-k=40 thay vì top-p=1.0) giảm đáng kể artifact. Các biện pháp khác: (1) lấy mẫu nhiều đầu ra và chọn cái ngắn/sạch nhất, (2) giảm nhiệt độ xuống 0.9, (3) sử dụng mô hình 330M-TTS-Enhanced được fine-tune riêng cho chất lượng TTS.</p><p><strong>Q7: VoiceCraft có REST API hay dịch vụ web không?</strong></p><p>Repository chính thức cung cấp giao diện Gradio và notebook Jupyter. Các dự án cộng đồng như VoiceCraft_API gói gọn nó trong server FastAPI. Cho production, triển khai container Docker sau API gateway với rate limiting và xác minh ngườii nói.</p><h2 id=kết-luận>Kết luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>VoiceCraft lấp đầy khoảng trống mà hầu hết công cụ TTS bỏ qua: chỉnh sửa giọng nói hiện có, không chỉ tổng hợp giọng mới. 8.500 stars GitHub và việc được ACL 2024 chấp nhận phản ánh giá trị kỹ thuật thực sự — đặc biệt là thủ tục token rearrangement cho phép ngữ cảnh hai chiều trong tạo sinh tự hồi quy. Các benchmark rõ ràng: VoiceCraft dẫn đầu về độ tương đồng giọng nói (MOS 4,34) và tạo ra âm thanh chỉnh sửa mà ngườii nghe thích hơn bản ghi gốc 48% thờii gian.</p><p>Cho lập trình viên xây dựng công cụ chỉnh sửa podcast, sách nói hoặc dịch vụ nhân bản giọng, VoiceCraft xứng đáng với công sức thiết lập. Bắt đầu với Docker quickstart, thử nghiệm trên Gradio UI, sau đó tích hợp qua Python API.</p><p>Tham gia <a href=https://t.me/dibi8opensource>nhóm Telegram</a> của chúng tôi để thảo luận các mẫu triển khai VoiceCraft, chia sẻ cấu hình fine-tune và nhận trợ giúp cho môi trường production.</p><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài liệu tham khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://github.com/jasonppy/VoiceCraft>VoiceCraft GitHub Repository</a></li><li><a href=https://aclanthology.org/2024.acl-long.673/>VoiceCraft Paper — ACL 2024</a></li><li><a href=https://arxiv.org/abs/2403.16973>VoiceCraft arXiv (v3)</a></li><li><a href=https://jasonppy.github.io/VoiceCraft_web/>VoiceCraft Demo Page</a></li><li><a href=https://arxiv.org/abs/2511.12347>VoiceCraft-X: Mở rộng đa ngôn ngữ</a></li><li><a href=https://huggingface.co/pyp1/VoiceCraft>HuggingFace Model Weights</a></li><li><a href=https://github.com/RVC-Boss/GPT-SoVITS>GPT-SoVITS Repository</a></li><li><a href=https://github.com/coqui-ai/TTS>Coqui TTS / XTTS v2</a></li><li><a href=https://github.com/facebookresearch/audiocraft>EnCodec — Neural Codec của Meta</a></li><li><a href=https://github.com/jasonppy/VoiceCraft/blob/master/RealEdit.txt>Thông tin bộ dữ liệu RealEdit</a></li><li><a href=https://github.com/jasonppy/VoiceCraft#quickstart-docker>Hướng dẫn thiết lập Docker VoiceCraft</a></li><li><a href=https://github.com/GPU-Net/VoiceCraft_API>VoiceCraft_API — FastAPI Wrapper</a></li></ul><p><em>Hướng dẫn này được nhóm kỹ thuật dibi8 viết độc lập. VoiceCraft được phát triển bởi Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed và David Harwath. Không có mối quan hệ thương mại nào giữa dibi8 và dự án VoiceCraft.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h3 id="giám-sát-và-logging">Giám sát và logging<a hidden class="anchor" aria-hidden="true" href="#giám-sát-và-logging">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> logging
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> torch.utils.tensorboard <span style="color:#f92672">import</span> SummaryWriter
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Thiết lập logging</span>
+</span></span><span style="display:flex;"><span>logging<span style="color:#f92672">.</span>basicConfig(level<span style="color:#f92672">=</span>logging<span style="color:#f92672">.</span>INFO)
+</span></span><span style="display:flex;"><span>logger <span style="color:#f92672">=</span> logging<span style="color:#f92672">.</span>getLogger(<span style="color:#e6db74">&#34;voicecraft&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TensorBoard cho giám sát huấn luyện</span>
+</span></span><span style="display:flex;"><span>writer <span style="color:#f92672">=</span> SummaryWriter(log_dir<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./runs/voicecraft-ft&#34;</span>)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;loss/train&#34;</span>, loss<span style="color:#f92672">.</span>item(), global_step)
+</span></span><span style="display:flex;"><span>writer<span style="color:#f92672">.</span>add_scalar(<span style="color:#e6db74">&#34;mos/validation&#34;</span>, val_mos, global_step)
+</span></span></code></pre></div><h3 id="bảo-mật-và-an-toàn">Bảo mật và an toàn<a hidden class="anchor" aria-hidden="true" href="#bảo-mật-và-an-toàn">#</a></h3>
+<p>Giấy phép VoiceCraft (CC BY-NC-SA 4.0 cho code, Coqui Public Model License cho trọng số) có điều khoản đạo đức cấm sử dụng để tạo hoặc chỉnh sửa giọng nói của ngườii khác mà không có sự đồng ý. Cho triển khai production: - Xác minh ngườii nói trước khi nhân bản</p>
+<ul>
+<li>Ghi log mọi yêu cầu tổng hợp để kiểm tra</li>
+<li>Thêm watermarking cho giọng tổng hợp</li>
+<li>Giới hạn tốc độ API để ngăn lạm dụng</li>
+</ul>
+<h2 id="so-sánh-với-các-phương-án-thay-thế">So sánh với các phương án thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-phương-án-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>VoiceCraft</th>
+					<th>GPT-SoVITS</th>
+					<th>Coqui TTS (XTTS v2)</th>
+					<th>VALL-E</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>GitHub Stars</strong></td>
+					<td>8.500</td>
+					<td>57.000</td>
+					<td>35.000*</td>
+					<td>N/A (chỉ bài báo)</td>
+			</tr>
+			<tr>
+					<td><strong>Tham số</strong></td>
+					<td>330M / 830M</td>
+					<td>~1B</td>
+					<td>467M</td>
+					<td>1B</td>
+			</tr>
+			<tr>
+					<td><strong>Chỉnh sửa giọng</strong></td>
+					<td>Native, SotA</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Hạn chế</td>
+			</tr>
+			<tr>
+					<td><strong>Zero-shot TTS</strong></td>
+					<td>3-5 giây tham khảo</td>
+					<td>5 giây tham khảo</td>
+					<td>6 giây tham khảo</td>
+					<td>3 giây tham khảo</td>
+			</tr>
+			<tr>
+					<td><strong>Speaker Similarity MOS</strong></td>
+					<td>4,34</td>
+					<td>~4,0</td>
+					<td>3,44</td>
+					<td>4,07</td>
+			</tr>
+			<tr>
+					<td><strong>Naturalness MOS</strong></td>
+					<td>4,17</td>
+					<td>~3,8</td>
+					<td>3,96</td>
+					<td>3,86</td>
+			</tr>
+			<tr>
+					<td><strong>Ngôn ngữ</strong></td>
+					<td>Tiếng Anh</td>
+					<td>EN, JA, KO, ZH, Yue</td>
+					<td>17 ngôn ngữ</td>
+					<td>Tiếng Anh</td>
+			</tr>
+			<tr>
+					<td><strong>RTF Inference</strong></td>
+					<td>~0,3x (GPU)</td>
+					<td>0,028x (4060Ti)</td>
+					<td>0,18x (A100)</td>
+					<td>~0,5x</td>
+			</tr>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>CC BY-NC-SA 4.0</td>
+					<td>MIT</td>
+					<td>CPML (phi thương mại)</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td><strong>Docker</strong></td>
+					<td>Chính thức</td>
+					<td>Cộng đồng</td>
+					<td>Cộng đồng</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td><strong>Gradio UI</strong></td>
+					<td>Tích hợp</td>
+					<td>Tích hợp</td>
+					<td>CLI/API</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td><strong>Fine-tune</strong></td>
+					<td>Hỗ trợ</td>
+					<td>Hỗ trợ</td>
+					<td>Hỗ trợ</td>
+					<td>N/A</td>
+			</tr>
+	</tbody>
+</table>
+<p>*Stars của repository Coqui TTS bao gồm tất cả các mô hình TTS, không chỉ XTTS.</p>
+<p><strong>Khi chọn VoiceCraft:</strong></p>
+<ul>
+<li><strong>Chỉnh sửa giọng nói</strong> là use case chính — không có đối thủ mã nguồn mở nào sánh bằng</li>
+<li>Cần <strong>độ tương đồng giọng cao nhất</strong> (MOS 4,34 so với 3,44 của XTTS)</li>
+<li>Làm việc với âm thanh <strong>ồn ào, thực tế</strong> (podcast, video YouTube)</li>
+<li>Nghiên cứu học thuật hoặc phi thương mại (giấy phép CC BY-NC-SA)</li>
+</ul>
+<p><strong>Khi chọn GPT-SoVITS:</strong></p>
+<ul>
+<li>Cần nhân bản giọng <strong>Trung Quốc hoặc Nhật Bản</strong></li>
+<li>Cần sử dụng thương mại (giấy phép MIT)</li>
+<li>Tốc độ inference nhanh nhất là quan trọng (RTF 0,028)</li>
+<li>Fine-tune few-shot với 1 phút dữ liệu</li>
+</ul>
+<p><strong>Khi chọn XTTS v2:</strong></p>
+<ul>
+<li>Cần hỗ trợ <strong>đa ngôn ngữ</strong> (17 ngôn ngữ)</li>
+<li>Đã sử dụng hệ sinh thái Coqui TTS</li>
+<li>Chấp nhận giấy phép thương mại của Coqui</li>
+</ul>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn chế / Đánh giá trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>VoiceCraft không phải công cụ phù hợp cho mọi tác vụ âm thanh. Đây là những gì nhóm bảo trì và bài báo thừa nhận: 1. <strong>Chỉ tiếng Anh</strong>: Mô hình phát hành chỉ hỗ trợ âm vị tiếng Anh. VoiceCraft-X (tháng 11/2024) mở rộng sang 11 ngôn ngữ nhưng là một mô hình riêng biệt.</p>
+<ol start="2">
+<li>
+<p><strong>Giấy phép phi thương mại</strong>: Cả code (CC BY-NC-SA 4.0) và trọng số mô hình (Coqui Public Model License) đều hạn chế sử dụng thương mại nếu không có thỏa thuận bổ sung.</p>
+</li>
+<li>
+<p><strong>Yêu cầu phần cứng</strong>: Mô hình 830M cần 32 GB bộ nhớ GPU cho inference đầy đủ. Ngay cả mô hình 330M cũng cần quản lý bộ nhớ cẩn thận trên GPU phổ thông.</p>
+</li>
+<li>
+<p><strong>Artifact tạo sinh</strong>: Đôi khi xuất hiện tiếng im lặng kéo dài và tiếng cào trong âm thanh được tạo. Giải pháp (lấy mẫu nhiều đầu ra và chọn cái ngắn nhất) tăng chi phí tính toán.</p>
+</li>
+<li>
+<p><strong>Không hỗ trợ streaming inference</strong>: VoiceCraft tạo toàn bộ chuỗi tự hồi quy, khiến TTS streaming thờii gian thực không thực tế so với các mô hình như Kokoro hay MeloTTS.</p>
+</li>
+<li>
+<p><strong>Thiết lập phức tạp</strong>: So với các công cụ TTS có thể cài qua pip, VoiceCraft cần Docker hoặc Conda với MFA, EnCodec và phiên bản CUDA cụ thể — không phải cài đặt 30 giây.</p>
+</li>
+</ol>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<p><strong>Q1: VoiceCraft cần bao nhiêu âm thanh tham khảo để nhân bản giọng?</strong></p>
+<p>VoiceCraft cần chỉ 3-5 giây âm thanh tham khảo cho zero-shot TTS. Để có kết quả tốt nhất, sử dụng bản ghi sạch không có tiếng ồn nền hay nhạc. Mô hình mã hóa tham khảo thành embedding ngườii nói qua token EnCodec RVQ, nên tham khảo dài hơn không nhất thiết cải thiện chất lượng.</p>
+<p><strong>Q2: Tôi có thể dùng VoiceCraft cho dự án thương mại không?</strong></p>
+<p>Code VoiceCraft theo CC BY-NC-SA 4.0 và trọng số mô hình theo Coqui Public Model License 1.0.0 — cả hai đều hạn chế sử dụng thương mại. Nếu cần lựa chọn có giấy phép thương mại linh hoạt hơn, xem xét GPT-SoVITS (giấy phép MIT) hoặc mua giấy phép thương mại XTTS v2 từ Coqui.</p>
+<p><strong>Q3: Tôi cần GPU gì để chạy VoiceCraft?</strong></p>
+<p>Mô hình 830M cần 32 GB VRAM (A100, V100 hoặc RTX 4090 + chia sẻ RAM hệ thống). Mô hình 330M chạy trên GPU 16 GB, và với ````kvcache=True```, inference có thể thực hiện trên card 8 GB. CPU-only inference mất 7+ phút cho mỗi câu trên Ryzen 8 lõi so với 35 giây trên GPU.</p>
+<p><strong>Q4: VoiceCraft so với GPT-SoVITS trong nhân bản giọng như thế nào?</strong></p>
+<p>VoiceCraft đạt độ tương đồng ngườii nói cao hơn (SIM 0,55 so với ~0,50) và tự nhiên hơn (MOS 4,17 so với ~3,8) trên âm thanh tiếng Anh. Tuy nhiên, GPT-SoVITS hỗ trợ tiếng Trung và tiếng Nhật nguyên bản, inference nhanh hơn (RTF 0,028 so với ~0,3), và sử dụng giấy phép MIT linh hoạt hơn. Về chỉnh sửa giọng nói cụ thể, VoiceCraft không có đối thủ mã nguồn mở nào.</p>
+<p><strong>Q5: VoiceCraft có thể chỉnh sửa bản ghi hiện có mà không tổng hợp lại toàn bộ file không?</strong></p>
+<p>Có — chỉnh sửa giọng nói là khả năng khác biệt chính của VoiceCraft. Bạn chỉ định đoạn cần chỉnh (chèn, xóa hoặc thay thế) trong bản ghi chữ, và mô hình chỉ infill các đoạn âm thanh bị ảnh hưởng trong khi bảo toàn ngữ cảnh xung quanh. Điều này hiệu quả hơn tổng hợp toàn bộ và duy trì tính liên tục âm thanh.</p>
+<p><strong>Q6: Làm thế nào sửa tiếng &ldquo;cào&rdquo; trong âm thanh được tạo?</strong></p>
+<p>Đây là vấn đề đã biết với các mô hình codec tự hồi quy. Cập nhật tháng 3/2025 (top-k=40 thay vì top-p=1.0) giảm đáng kể artifact. Các biện pháp khác: (1) lấy mẫu nhiều đầu ra và chọn cái ngắn/sạch nhất, (2) giảm nhiệt độ xuống 0.9, (3) sử dụng mô hình 330M-TTS-Enhanced được fine-tune riêng cho chất lượng TTS.</p>
+<p><strong>Q7: VoiceCraft có REST API hay dịch vụ web không?</strong></p>
+<p>Repository chính thức cung cấp giao diện Gradio và notebook Jupyter. Các dự án cộng đồng như VoiceCraft_API gói gọn nó trong server FastAPI. Cho production, triển khai container Docker sau API gateway với rate limiting và xác minh ngườii nói.</p>
+<h2 id="kết-luận">Kết luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>VoiceCraft lấp đầy khoảng trống mà hầu hết công cụ TTS bỏ qua: chỉnh sửa giọng nói hiện có, không chỉ tổng hợp giọng mới. 8.500 stars GitHub và việc được ACL 2024 chấp nhận phản ánh giá trị kỹ thuật thực sự — đặc biệt là thủ tục token rearrangement cho phép ngữ cảnh hai chiều trong tạo sinh tự hồi quy. Các benchmark rõ ràng: VoiceCraft dẫn đầu về độ tương đồng giọng nói (MOS 4,34) và tạo ra âm thanh chỉnh sửa mà ngườii nghe thích hơn bản ghi gốc 48% thờii gian.</p>
+<p>Cho lập trình viên xây dựng công cụ chỉnh sửa podcast, sách nói hoặc dịch vụ nhân bản giọng, VoiceCraft xứng đáng với công sức thiết lập. Bắt đầu với Docker quickstart, thử nghiệm trên Gradio UI, sau đó tích hợp qua Python API.</p>
+<p>Tham gia <a href="https://t.me/dibi8opensource">nhóm Telegram</a> của chúng tôi để thảo luận các mẫu triển khai VoiceCraft, chia sẻ cấu hình fine-tune và nhận trợ giúp cho môi trường production.</p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài liệu tham khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/jasonppy/VoiceCraft">VoiceCraft GitHub Repository</a></li>
+<li><a href="https://aclanthology.org/2024.acl-long.673/">VoiceCraft Paper — ACL 2024</a></li>
+<li><a href="https://arxiv.org/abs/2403.16973">VoiceCraft arXiv (v3)</a></li>
+<li><a href="https://jasonppy.github.io/VoiceCraft_web/">VoiceCraft Demo Page</a></li>
+<li><a href="https://arxiv.org/abs/2511.12347">VoiceCraft-X: Mở rộng đa ngôn ngữ</a></li>
+<li><a href="https://huggingface.co/pyp1/VoiceCraft">HuggingFace Model Weights</a></li>
+<li><a href="https://github.com/RVC-Boss/GPT-SoVITS">GPT-SoVITS Repository</a></li>
+<li><a href="https://github.com/coqui-ai/TTS">Coqui TTS / XTTS v2</a></li>
+<li><a href="https://github.com/facebookresearch/audiocraft">EnCodec — Neural Codec của Meta</a></li>
+<li><a href="https://github.com/jasonppy/VoiceCraft/blob/master/RealEdit.txt">Thông tin bộ dữ liệu RealEdit</a></li>
+<li><a href="https://github.com/jasonppy/VoiceCraft#quickstart-docker">Hướng dẫn thiết lập Docker VoiceCraft</a></li>
+<li><a href="https://github.com/GPU-Net/VoiceCraft_API">VoiceCraft_API — FastAPI Wrapper</a></li>
+</ul>
+<p><em>Hướng dẫn này được nhóm kỹ thuật dibi8 viết độc lập. VoiceCraft được phát triển bởi Puyuan Peng, Po-Yao Huang, Shang-Wen Li, Abdelrahman Mohamed và David Harwath. Không có mối quan hệ thương mại nào giữa dibi8 và dự án VoiceCraft.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;VoiceCraft: 8.5K+ Stars — Zero-Shot Speech Editing so với GPT-SoVITS, XTTS 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -262,15 +853,165 @@ bash e830M_ft.sh  # Fine-tune mô hình 830M
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/voicecraft%22>https://dibi8.com/vi/resources/voicecraft"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/voicecraft%22">https://dibi8.com/vi/resources/voicecraft"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/llm-frameworks/voicecraft/>apple-container</a></li><li><a href=/vi/llm-frameworks/voicecraft/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/vi/llm-frameworks/voicecraft/>moneyprinterturbo-one-click-ai-video-generator</a></li><li><a href=/vi/llm-frameworks/voicecraft/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/vi/llm-frameworks/voicecraft/>moneyprinterturbo-one-click-ai-video-generator</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/llm-frameworks/voicecraft/">apple-container</a></li>
+<li><a href="/vi/llm-frameworks/voicecraft/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/vi/llm-frameworks/voicecraft/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+<li><a href="/vi/llm-frameworks/voicecraft/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/vi/llm-frameworks/voicecraft/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

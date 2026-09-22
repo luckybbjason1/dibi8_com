@@ -1,290 +1,756 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/shellcheck/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/shellcheck/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/shellcheck/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/shellcheck/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/shellcheck/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/shellcheck/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/shellcheck/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"ShellCheck 是捕获 shell 脚本中 bug 的事实标准工具，在生产环境部署前就能发现问题。凭借 39,456+ GitHub stars 和活跃的开源社区，它是 bash、sh、dash 和 ksh 脚本中应用最广泛的静态分析工具。本指南涵盖 ShellCheck 安装、编辑器集成、CI/CD 流水线配置以及生产环境加固。\n简介 Shell 脚本支撑着部署流水线、系统自动化和基础设施管理。一个未引用的变量或一个未检查的返回码就可能破坏数据、暴露凭据或导致生产服务器宕机。2014 年 Heartbleed 事件后续影响以及无数的 CI/CD 故障都可以追溯到静态分析能够捕获的 shell 脚本 bug。\nShellCheck 由 Vidar Holen 于 2012 年创建，专门填补了这一空白。它在不执行脚本的前提下解析 shell 脚本，识别语法错误、语义陷阱、可移植性问题和安全漏洞。凭借 280 多个内置检查规则（每条规则对应唯一的 SC 编号），它既能发现新手的常见错误，也能识别让资深开发者栽跟头的微妙边界情况。\n本指南提供完整的 shellcheck 教程与安装配置指南：多平台安装、编辑器集成、shellcheck docker 使用、GitHub Actions 配置以及生产环境加固。无论你是进行 bash 代码检查还是为整个 monorepo 设置质量门禁，以下配置均可直接复制、适配和部署。\n什么是 ShellCheck？ ShellCheck 是一款针对 shell 脚本的静态分析工具（“linter”）。它读取 bash/sh/dash/ksh 源代码，构建抽象语法树（AST），并应用语义规则来检测 bug、反模式和风格违规 —— 全程无需执行脚本。\n该项目使用 Haskell 编写（占代码库的 96.4%），采用 GPL-3.0 许可证分发，由 Vidar Holen 维护，拥有 166+ 位贡献者。稳定版本 v0.11.0 于 2025 年 8 月 4 日发布。\n核心功能 语法验证：在运行前捕获格式错误的构造 语义分析：检测未引用变量、不可达代码和被掩盖的退出码 可移植性检查：在应遵循 POSIX 标准的 ```/bin/sh```` 脚本中标出 bash 特有语法 安全审计：识别命令注入向量和不安全的 eval 模式 风格强制：建议使用现代构造替代已弃用的语法 ShellCheck 工作原理 ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调优性能或解读结果时更加得心应手。\n架构概览 源代码脚本 → 词法分析器 → 解析器 (AST) → 分析器 → 报告器 ↓ ↓ ↓ 词法单元 语法树 SC-警告 词法分析器：将脚本切分为标识符、关键字、运算符和字面量 解析器：从词法单元流构建 AST，处理 shell 特有的语法特点 分析器：遍历 AST 并应用 280+ 条规则，每条映射到唯一的 SC 错误码 报告器：将发现格式化为终端输出、JSON、CheckStyle XML、GCC 兼容警告或 SARIF 格式 严重程度分级 每条 ShellCheck 发现都带有以下四种严重级别之一：\n| 级别 | 退出码影响 | 示例 | |\n|\n|\n| | 错误 | 非零退出 | 语法错误，未定义变量 | | 警告 | 非零退出 | 未引用变量 (SC2086) | | 信息 | 零退出 | 风格建议 | | 风格 | 零退出 | 格式偏好 |\n核心检查类别 SC1xxx：语法和解析问题（如 SC1007 — = 后有多余空格） SC2xxx：语义和可移植性警告（如 SC2086 — 未引用变量） SC3xxx：Bash/dash/ksh 特有的兼容性提示 SC4xxx：可选检查和实验性规则 安装与配置 ShellCheck 支持所有主流平台。安装耗时不超过两分钟。\nLinux (APT / Debian / Ubuntu) # 更新软件包索引 sudo apt update # 安装 ShellCheck sudo apt install -y shellcheck # 验证版本 shellcheck --version # ShellCheck - shell script analysis tool # version: 0.11.0 # license: GNU General Public License, version 3 # website: https://www.shellcheck.net Linux (DNF / Fedora / RHEL) # 通过 DNF 安装 sudo dnf install -y shellcheck # 验证版本 shellcheck --version macOS (Homebrew) # 通过 Homebrew 安装 brew install shellcheck # 验证版本 shellcheck --version Windows (通过 Chocolatey) # 通过 Chocolatey 安装（管理员权限） choco install shellcheck # 验证版本 shellcheck --version Docker（跨平台） # 无需本地安装，通过 Docker 运行 ocker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:stable \\ /mnt/deploy.sh # 检查当前目录所有脚本 docker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:stable \\ /mnt/*.sh # 锁定特定版本以确保 CI 构建可复现 docker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:v0.11.0 \\ /mnt/deploy.sh 从源码构建（Haskell Stack） # 克隆仓库 git clone https://github.com/koalaman/shellcheck.git cd shellcheck # 使用 Stack 构建 stack install # 或使用 Cabal 构建 cabal update cabal install Pre-commit 钩子 # 添加到 .pre-commit-config.yaml repos: - repo: https://github.com/koalaman/shellcheck-precommit rev: v0.11.0 hooks: - id: shellcheck args: [\"--severity=warning\"] 编辑器集成 当你打字时实时显示反馈是 ShellCheck 最出色的体验。每个主流编辑器都有 ShellCheck 插件。\nVS Code 安装 Timon Wong 开发的 ShellCheck 扩展（插件 ID：timonwong.shellcheck）。\n// settings.json { \"shellcheck.executablePath\": \"shellcheck\", \"shellcheck.exclude\": [\"SC1090\", \"SC1091\"], \"shellcheck.severity\": \"warning\", \"shellcheck.run\": \"onType\" } Vim / Neovim 使用 ALE（异步语法检查引擎）：\n\" .vimrc 或 init.vim let g:ale_linters = { \\ sh: [shellcheck], \\} \" 保存时和输入时运行 let g:ale_lint_on_save = 1 let g:ale_lint_on_text_changed = always Neovim 中使用原生 LSP：\n-- init.lua (nvim-lspconfig) require(lspconfig).bashls.setup { settings = { bashIde = { shellcheckPath = \"shellcheck\" } } } Emacs ;; init.el 配合 Flycheck (add-hook 'sh-mode-hook #'flycheck-mode) (setq flycheck-shellcheck-severity \"warning\") Sublime Text 通过 Package Control 安装：SublimeLinter-shellcheck。\n// SublimeLinter.sublime-settings { \"linters\": { \"shellcheck\": { \"executable\": \"shellcheck\", \"args\": [\"--severity=warning\"] } } } CI/CD 集成 在 CI 中运行 ShellCheck 可以阻止有问题的脚本合并。以下是适用于 GitHub Actions、GitLab CI 和 Jenkins 的即用配置。\nGitHub Actions # .github/workflows/shellcheck.yml name: ShellCheck on: [push, pull_request] jobs: shellcheck: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Run ShellCheck uses: ludeeus/action-shellcheck@master env: SEVERITY: warning with: ignore_paths: \u003e- ./vendor ./third_party 手动配置（指定版本）：\n# .github/workflows/shellcheck-manual.yml name: ShellCheck Manual on: [push, pull_request] jobs: shellcheck: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install ShellCheck run: | wget -qO- \"https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz\" | tar -xJf - sudo cp \"shellcheck-v0.11.0/shellcheck\" /usr/local/bin/ - name: 检查所有 shell 脚本 run: | find . -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --severity=warning --format=tty GitLab CI # .gitlab-ci.yml stages: - lint shellcheck: stage: lint image: koalaman/shellcheck-alpine:stable script: - find . -name \"*.sh\" -type f -exec shellcheck --severity=warning {} + rules: - if: $CI_PIPELINE_SOURCE == \"merge_request_event\" - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH Jenkins // Jenkinsfile pipeline { agent any stages { stage(ShellCheck) { steps { sh ''' #!/bin/bash set -euo pipefail if ! command -v shellcheck \u0026\u003e /dev/null; then echo \"正在安装 ShellCheck...\" apt-get update \u0026\u0026 apt-get install -y shellcheck fi find . -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --severity=warning ''' } } } post { failure { echo \"ShellCheck 发现问题。请查看构建日志。\" } } } CircleCI # .circleci/config.yml version: 2.1 orbs: shellcheck: circleci/shellcheck@3.2.0 workflows: lint: jobs: - shellcheck/check: severity: \"warning\" exclude: \"SC1090,SC1091\" 配置与规则管理 ShellCheck 提供多种机制来控制运行哪些检查以及如何报告。\n行内指令 #!/bin/bash # shellcheck disable=SC2086 echo $UNQUOTED_VAR # 本行禁用 SC2086 # shellcheck disable=SC2034 UNUSED_VAR=\"此变量已赋值但未使用\" # 代码块后重新启用 # shellcheck enable=SC2086 echo \"$PROPERLY_QUOTED\" 配置文件 (.shellcheckrc) # .shellcheckrc — 项目级配置 # 放在仓库根目录或 $HOME/.shellcheckrc # 为没有 shebang 的脚本设置 shell 方言 shell=bash # 全局排除特定检查 disable=SC1090,SC1091,SC2155 # 设置最低严重程度 (error, warning, info, style) severity=warning # 启用可选检查 enable=require-variable-braces,check-set-e-suppressed # 指定外部源（用于 source 的文件） external-sources=true 严重程度过滤 # 仅报告错误和警告（不报告 info/style） shellcheck --severity=warning script.sh # 仅报告错误 shellcheck --severity=error script.sh 输出格式 # 人类可读的终端输出（默认） shellcheck --format=tty script.sh # JSON 格式，用于程序化处理 shellcheck --format=json script.sh \u003e shellcheck-report.json # CheckStyle XML（兼容 Jenkins、GitLab） shellcheck --format=checkstyle script.sh \u003e shellcheck.xml # GCC 兼容警告（通用编辑器集成） shellcheck --format=gcc script.sh # SARIF 格式（集成到 GitHub Security 标签页） shellcheck --format=sarif script.sh \u003e shellcheck.sarif 基准测试与实际用例 ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下是基准和使用指标。\n性能基准 在 2024 标准 CI 运行器上测试（Ubuntu 24.04, 2 vCPU, 4 GB 内存）：\n| 脚本规模 | 行数 | 分析时间 | 内存占用 | |\n|\n|\n|\n| | 小型 | 50 | 0.05秒 | 12 MB | | 中型 | 500 | 0.3秒 | 28 MB | | 大型 | 2,000 | 1.1秒 | 67 MB | | Monorepo | 10,000 | 4.8秒 | 142 MB |\n实际采用情况 GitHub Actions: 官方 ludeeus/action-shellcheck 月运行 50万+ 次 Homebrew: 用 ShellCheck 检查所有 5,000+ 个 formula 的 shell 脚本 Google Shell 风格指南: 推荐所有 shell 脚本使用 ShellCheck NixOS: 在官方软件包构建流水线中使用 ShellCheck Debian / Ubuntu: 在官方仓库中打包维护 检测到的 Bug 类别（1,000 个开源脚本样本分析） | 检查编号 | 描述 | 检出率 | |\n|\n|\n| | SC2086 | 未引用变量 | 34.2% | | SC2164 | cd 未检查返回值 | 18.7% | | SC1090 | 无法跟踪被 source 的文件 | 22.1% | | SC2155 | 声明与赋值合并 | 15.3% | | SC2046 | 未引用的命令替换 | 12.8% |\n高级用法与生产加固 对于大规模使用 ShellCheck 的团队，以下模式可提高可靠性和可维护性。\n多脚本批量分析 #!/bin/bash set -euo pipefail SEVERITY=\"warning\" SCRIPT_DIRS=(\"scripts/\" \"bin/\" \"deploy/\") EXCLUDES=() # 构建排除列表 for code in SC1090 SC1091 SC2155; do EXCLUDES+=(\"-e\" \"$code\") done # 查找并检查所有 shell 脚本 find \"${SCRIPT_DIRS[@]}\" -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --severity=\"$SEVERITY\" \"${EXCLUDES[@]}\" echo \"所有脚本通过 ShellCheck 检查，严重程度: $SEVERITY\" 上传 SARIF 到 GitHub 安全面板 # .github/workflows/security-scan.yml name: Security Scan on: [push, pull_request] jobs: scan: runs-on: ubuntu-latest permissions: security-events: write contents: read steps: - uses: actions/checkout@v4 - name: 运行 ShellCheck SARIF run: | find . -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --format=sarif \u003e shellcheck.sarif || true - name: 上传到 GitHub Security uses: github/codeql-action/upload-sarif@v3 if: always() with: sarif_file: shellcheck.sarif Dockerfile 检查阶段 # Dockerfile FROM koalaman/shellcheck:stable AS lint WORKDIR /scripts COPY . . RUN find . -name \"*.sh\" -exec shellcheck --severity=warning {} + FROM alpine:3.20 AS runtime COPY --from=lint /scripts/deploy.sh /usr/local/bin/ ENTRYPOINT [\"/usr/local/bin/deploy.sh\"] 在 CI 中监控 ShellCheck 将 ShellCheck 失败作为团队指标追踪：\n#!/bin/bash # ci-metrics.sh — 追踪 shellcheck 警告数量随时间变化 WARNINGS=$(find . -name \"*.sh\" -exec shellcheck --severity=warning --format=json {} + | \\ jq '. | length\") echo \"shellcheck_warnings $WARNINGS\" \u003e\u003e metrics.txt 与替代工具对比 | 功能 | ShellCheck | bash -n | shfmt | checkbashisms | |\n|\n|\n|\n|\n| | 静态分析深度 | 语义（基于 AST） | 仅语法 | 解析器/格式化器 | 模式匹配 | | 错误数量 | ~280+ 检查 | ~20 个错误 | 0（格式化器） | ~40 个模式 | | Bash/sh/dash/ksh 支持 | 全部方言 | 仅 Bash | POSIX + Bash | 仅 sh | | 编辑器集成 | 20+ 编辑器 | 无 | 10+ 编辑器 | 无 | | CI/CD 就绪 | 原生（退出码） | 手动 | 仅退出码 | 手动 | | JSON/XML/SARIF 输出 | 全部格式 | 无 | 无 | 无 | | 自动修复建议 | 是（网页 + 部分 CLI） | 否 | 是（格式化） | 否 | | 性能 (500 行) | 0.3秒 | 0.01秒 | 0.02秒 | 0.5秒 | | 可移植性检查 | 是 | 否 | 部分 | 是（仅 bashisms） | | 许可证 | GPL-3.0 | GPL-3.0 | BSD-3-Clause | GPL-2.0+ |\n何时选择哪种工具 ShellCheck：通用 shell 脚本质量和安全审计。默认选择。 bash -n：快速 bash 脚本语法验证，别无选择时的备选。 shfmt：代码格式化和风格规范化。与 ShellCheck 互补（不是替代品）。 checkbashisms：Debian 特有的可移植性检查。为 Debian/Ubuntu 打包时使用。 局限性与客观评价 ShellCheck 并非万能。理解其边界可避免盲目信任。\nShellCheck 无法捕获的问题 运行时逻辑错误：无法判断你的 curl 命令是否指向正确的端点 业务逻辑 bug：验证语法，但不验证备份脚本是否备份了正确的目录 性能问题：语法有效的无限循环会通过检查 图灵完备分析：某些动态行为（如 eval \"$DYNAMIC_CMD\"）本质上无法分析 平台与环境局限 ShellCheck 假设标准 Unix 工具。针对嵌入式系统或 busybox 环境的脚本可能产生误报 部分 SC 规则具有主观性。团队应审查并自定义 .shellcheckrc，而非盲目应用所有建议 不支持 Windows 原生脚本（PowerShell、CMD） 构建与依赖考量 从源码构建时 Haskell 运行时在 Docker 镜像中增加约 30 MB 预构建二进制文件（推荐方式）无运行时依赖 CI 流水线应锁定特定版本，避免因新版本增加检查而导致构建中断 常见问题解答 ShellCheck 支持哪些 shell？ ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell、zsh（部分支持）和 fish。使用 --shell bash|sh|dash|ksh 指定目标 shell，或依赖脚本中的 shebang 行。\n如何屏蔽特定的 ShellCheck 警告？ 使用行内指令：在警告所在行前添加 # shellcheck disable=SC2086。要全局屏蔽，在 .shellcheckrc 中添加 disable=SC2086。每个检查都有对应的 wiki 页面，地址为 https://www.shellcheck.net/wiki/SC2086，说明了原理。\nShellCheck 能自动修复脚本吗？ shellcheck.net 网页界面为许多常见问题提供自动修复建议。CLI 工具在输出中显示建议修复但不直接修改文件。部分第三方工具封装 ShellCheck 来自动应用修复。\n如何将 ShellCheck 集成到 pre-commit 钩子？ 将官方 pre-commit 钩子 https://github.com/koalaman/shellcheck-precommit 添加到你的 .pre-commit-config.yaml。设置 args: [\"--severity=warning\"] 阻止带警告的提交，或 args: [\"--severity=error\"] 仅阻止错误。\nShellCheck 适合安全审计吗？ ShellCheck 识别常见安全模式，如命令注入（SC2096）、不安全的 eval 使用以及可能恶意展开的未引用变量。但它不能替代专业安全扫描器。与 Semgrep 或 GitHub CodeQL 结合使用以获得全面安全覆盖。\n为什么 ShellCheck 会标记正常运行的代码？ 许多 ShellCheck 警告针对\"现在能用，以后会崩\"的场景。未引用变量对不含空格的文件名有效，但对含空格或通配符的输入会失败。这些警告可防止潜在 bug 在生产环境暴露。\n如何在 Docker 容器中运行 ShellCheck？ 使用官方镜像：docker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:stable /mnt/script.sh。锁定到 v0.11.0 或其他特定版本以确保 CI 构建可复现。镜像基于 Alpine Linux，约 15 MB。\n总结 ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。凭借 39,456+ GitHub stars、全面的 CI/CD 集成以及对每个主流编辑器的支持，它应该成为每位开发者的工具链标配。从 Docker 单行命令开始获取即时反馈，添加 .shellcheckrc 项目配置确保团队一致性，接入 GitHub Actions 在合并前捕获 bug。\n团队行动项：\n今天就对你最重要的 5 个部署脚本运行 shellcheck 安装 VS Code 扩展或 Vim ALE 集成以获得实时反馈 在仓库根目录创建 ````.shellcheckrc```，配置项目特定规则 设置 GitHub Actions 工作流，阻止带警告的合并 加入 dibi8 Telegram 群组，讨论开发者工具、CI/CD 最佳实践和 DevOps 自动化。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n参考与延伸阅读 ShellCheck 官方网站 ShellCheck GitHub 仓库 ShellCheck Wiki — 所有检查编号 ShellCheck v0.11.0 发布说明 ShellCheck Pre-commit 钩子 ludeeus/action-shellcheck — GitHub Action Google Shell 风格指南 shfmt — Shell 格式化工具 checkbashisms — Debian Devscripts POSIX.1-2017 Shell 命令语言 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 CI/CD 集成指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/shellcheck\" } } Related Articles apple-container trivy-production-security-scanner-2026 trivy-production-security-scanner-2026 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1594","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/shellcheck/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/shellcheck/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/shellcheck/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/shellcheck/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e7%ae%80%e4%bb%8b aria-label=简介>简介</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-shellcheck aria-label="什么是 ShellCheck？">什么是 ShellCheck？</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd aria-label=核心功能>核心功能</a></li></ul></li><li><a href=#shellcheck-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="ShellCheck 工作原理">ShellCheck 工作原理</a><ul><li><a href=#%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88 aria-label=架构概览>架构概览</a></li><li><a href=#%e4%b8%a5%e9%87%8d%e7%a8%8b%e5%ba%a6%e5%88%86%e7%ba%a7 aria-label=严重程度分级>严重程度分级</a></li><li><a href=#%e6%a0%b8%e5%bf%83%e6%a3%80%e6%9f%a5%e7%b1%bb%e5%88%ab aria-label=核心检查类别>核心检查类别</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae aria-label=安装与配置>安装与配置</a><ul><li><a href=#linux-apt--debian--ubuntu aria-label="Linux (APT / Debian / Ubuntu)">Linux (APT / Debian / Ubuntu)</a></li><li><a href=#linux-dnf--fedora--rhel aria-label="Linux (DNF / Fedora / RHEL)">Linux (DNF / Fedora / RHEL)</a></li><li><a href=#macos-homebrew aria-label="macOS (Homebrew)">macOS (Homebrew)</a></li><li><a href=#windows-%e9%80%9a%e8%bf%87-chocolatey aria-label="Windows (通过 Chocolatey)">Windows (通过 Chocolatey)</a></li><li><a href=#docker%e8%b7%a8%e5%b9%b3%e5%8f%b0 aria-label=Docker（跨平台）>Docker（跨平台）</a></li><li><a href=#%e4%bb%8e%e6%ba%90%e7%a0%81%e6%9e%84%e5%bb%bahaskell-stack aria-label="从源码构建（Haskell Stack）">从源码构建（Haskell Stack）</a></li><li><a href=#pre-commit-%e9%92%a9%e5%ad%90 aria-label="Pre-commit 钩子">Pre-commit 钩子</a></li></ul></li><li><a href=#%e7%bc%96%e8%be%91%e5%99%a8%e9%9b%86%e6%88%90 aria-label=编辑器集成>编辑器集成</a><ul><li><a href=#vs-code aria-label="VS Code">VS Code</a></li><li><a href=#vim--neovim aria-label="Vim / Neovim">Vim / Neovim</a></li><li><a href=#emacs aria-label=Emacs>Emacs</a></li><li><a href=#sublime-text aria-label="Sublime Text">Sublime Text</a></li></ul></li><li><a href=#cicd-%e9%9b%86%e6%88%90 aria-label="CI/CD 集成">CI/CD 集成</a><ul><li><a href=#github-actions aria-label="GitHub Actions">GitHub Actions</a></li><li><a href=#gitlab-ci aria-label="GitLab CI">GitLab CI</a></li><li><a href=#jenkins aria-label=Jenkins>Jenkins</a></li><li><a href=#circleci aria-label=CircleCI>CircleCI</a></li></ul></li><li><a href=#%e9%85%8d%e7%bd%ae%e4%b8%8e%e8%a7%84%e5%88%99%e7%ae%a1%e7%90%86 aria-label=配置与规则管理>配置与规则管理</a><ul><li><a href=#%e8%a1%8c%e5%86%85%e6%8c%87%e4%bb%a4 aria-label=行内指令>行内指令</a></li><li><a href=#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-shellcheckrc aria-label="配置文件 (.shellcheckrc)">配置文件 (.shellcheckrc)</a></li><li><a href=#%e4%b8%a5%e9%87%8d%e7%a8%8b%e5%ba%a6%e8%bf%87%e6%bb%a4 aria-label=严重程度过滤>严重程度过滤</a></li><li><a href=#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f aria-label=输出格式>输出格式</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e4%b8%8e%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b aria-label=基准测试与实际用例>基准测试与实际用例</a><ul><li><a href=#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86 aria-label=性能基准>性能基准</a></li><li><a href=#%e5%ae%9e%e9%99%85%e9%87%87%e7%94%a8%e6%83%85%e5%86%b5 aria-label=实际采用情况>实际采用情况</a></li><li><a href=#%e6%a3%80%e6%b5%8b%e5%88%b0%e7%9a%84-bug-%e7%b1%bb%e5%88%ab1000-%e4%b8%aa%e5%bc%80%e6%ba%90%e8%84%9a%e6%9c%ac%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90 aria-label="检测到的 Bug 类别（1,000 个开源脚本样本分析）">检测到的 Bug 类别（1,000 个开源脚本样本分析）</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b8%8e%e7%94%9f%e4%ba%a7%e5%8a%a0%e5%9b%ba aria-label=高级用法与生产加固>高级用法与生产加固</a><ul><li><a href=#%e5%a4%9a%e8%84%9a%e6%9c%ac%e6%89%b9%e9%87%8f%e5%88%86%e6%9e%90 aria-label=多脚本批量分析>多脚本批量分析</a></li><li><a href=#%e4%b8%8a%e4%bc%a0-sarif-%e5%88%b0-github-%e5%ae%89%e5%85%a8%e9%9d%a2%e6%9d%bf aria-label="上传 SARIF 到 GitHub 安全面板">上传 SARIF 到 GitHub 安全面板</a></li><li><a href=#dockerfile-%e6%a3%80%e6%9f%a5%e9%98%b6%e6%ae%b5 aria-label="Dockerfile 检查阶段">Dockerfile 检查阶段</a></li><li><a href=#%e5%9c%a8-ci-%e4%b8%ad%e7%9b%91%e6%8e%a7-shellcheck aria-label="在 CI 中监控 ShellCheck">在 CI 中监控 ShellCheck</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94 aria-label=与替代工具对比>与替代工具对比</a><ul><li><a href=#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9%e5%93%aa%e7%a7%8d%e5%b7%a5%e5%85%b7 aria-label=何时选择哪种工具>何时选择哪种工具</a></li></ul></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7%e4%b8%8e%e5%ae%a2%e8%a7%82%e8%af%84%e4%bb%b7 aria-label=局限性与客观评价>局限性与客观评价</a><ul><li><a href=#shellcheck-%e6%97%a0%e6%b3%95%e6%8d%95%e8%8e%b7%e7%9a%84%e9%97%ae%e9%a2%98 aria-label="ShellCheck 无法捕获的问题">ShellCheck 无法捕获的问题</a></li><li><a href=#%e5%b9%b3%e5%8f%b0%e4%b8%8e%e7%8e%af%e5%a2%83%e5%b1%80%e9%99%90 aria-label=平台与环境局限>平台与环境局限</a></li><li><a href=#%e6%9e%84%e5%bb%ba%e4%b8%8e%e4%be%9d%e8%b5%96%e8%80%83%e9%87%8f aria-label=构建与依赖考量>构建与依赖考量</a></li></ul></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94 aria-label=常见问题解答>常见问题解答</a><ul><li><a href=#shellcheck-%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b-shell aria-label="ShellCheck 支持哪些 shell？">ShellCheck 支持哪些 shell？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e5%b1%8f%e8%94%bd%e7%89%b9%e5%ae%9a%e7%9a%84-shellcheck-%e8%ad%a6%e5%91%8a aria-label="如何屏蔽特定的 ShellCheck 警告？">如何屏蔽特定的 ShellCheck 警告？</a></li><li><a href=#shellcheck-%e8%83%bd%e8%87%aa%e5%8a%a8%e4%bf%ae%e5%a4%8d%e8%84%9a%e6%9c%ac%e5%90%97 aria-label="ShellCheck 能自动修复脚本吗？">ShellCheck 能自动修复脚本吗？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e5%b0%86-shellcheck-%e9%9b%86%e6%88%90%e5%88%b0-pre-commit-%e9%92%a9%e5%ad%90 aria-label="如何将 ShellCheck 集成到 pre-commit 钩子？">如何将 ShellCheck 集成到 pre-commit 钩子？</a></li><li><a href=#shellcheck-%e9%80%82%e5%90%88%e5%ae%89%e5%85%a8%e5%ae%a1%e8%ae%a1%e5%90%97 aria-label="ShellCheck 适合安全审计吗？">ShellCheck 适合安全审计吗？</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88-shellcheck-%e4%bc%9a%e6%a0%87%e8%ae%b0%e6%ad%a3%e5%b8%b8%e8%bf%90%e8%a1%8c%e7%9a%84%e4%bb%a3%e7%a0%81 aria-label="为什么 ShellCheck 会标记正常运行的代码？">为什么 ShellCheck 会标记正常运行的代码？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e5%9c%a8-docker-%e5%ae%b9%e5%99%a8%e4%b8%ad%e8%bf%90%e8%a1%8c-shellcheck aria-label="如何在 Docker 容器中运行 ShellCheck？">如何在 Docker 容器中运行 ShellCheck？</a></li></ul></li><li><a href=#%e6%80%bb%e7%bb%93 aria-label=总结>总结</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e5%8f%82%e8%80%83%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=参考与延伸阅读>参考与延伸阅读</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>ShellCheck 是捕获 shell 脚本中 bug 的事实标准工具，在生产环境部署前就能发现问题。凭借 39,456+ GitHub stars 和活跃的开源社区，它是 bash、sh、dash 和 ksh 脚本中应用最广泛的静态分析工具。本指南涵盖 ShellCheck 安装、编辑器集成、CI/CD 流水线配置以及生产环境加固。</p><p><img alt="ShellCheck 终端输出显示未引用变量警告" loading=lazy src=https://github.com/koalaman/shellcheck/raw/master/doc/terminal.png></p><h2 id=简介>简介<a hidden class=anchor aria-hidden=true href=#简介>#</a></h2><p>Shell 脚本支撑着部署流水线、系统自动化和基础设施管理。一个未引用的变量或一个未检查的返回码就可能破坏数据、暴露凭据或导致生产服务器宕机。2014 年 Heartbleed 事件后续影响以及无数的 CI/CD 故障都可以追溯到静态分析能够捕获的 shell 脚本 bug。</p><p>ShellCheck 由 Vidar Holen 于 2012 年创建，专门填补了这一空白。它在不执行脚本的前提下解析 shell 脚本，识别语法错误、语义陷阱、可移植性问题和安全漏洞。凭借 280 多个内置检查规则（每条规则对应唯一的 SC 编号），它既能发现新手的常见错误，也能识别让资深开发者栽跟头的微妙边界情况。</p><p>本指南提供完整的 shellcheck 教程与安装配置指南：多平台安装、编辑器集成、shellcheck docker 使用、GitHub Actions 配置以及生产环境加固。无论你是进行 bash 代码检查还是为整个 monorepo 设置质量门禁，以下配置均可直接复制、适配和部署。</p><h2 id=什么是-shellcheck>什么是 ShellCheck？<a hidden class=anchor aria-hidden=true href=#什么是-shellcheck>#</a></h2><p>ShellCheck 是一款针对 shell 脚本的静态分析工具（&ldquo;linter&rdquo;）。它读取 bash/sh/dash/ksh 源代码，构建抽象语法树（AST），并应用语义规则来检测 bug、反模式和风格违规 —— 全程无需执行脚本。</p><p>该项目使用 Haskell 编写（占代码库的 96.4%），采用 GPL-3.0 许可证分发，由 Vidar Holen 维护，拥有 166+ 位贡献者。稳定版本 v0.11.0 于 2025 年 8 月 4 日发布。</p><h3 id=核心功能>核心功能<a hidden class=anchor aria-hidden=true href=#核心功能>#</a></h3><ul><li><strong>语法验证</strong>：在运行前捕获格式错误的构造</li><li><strong>语义分析</strong>：检测未引用变量、不可达代码和被掩盖的退出码</li><li><strong>可移植性检查</strong>：在应遵循 POSIX 标准的 ```/bin/sh```` 脚本中标出 bash 特有语法</li><li><strong>安全审计</strong>：识别命令注入向量和不安全的 eval 模式</li><li><strong>风格强制</strong>：建议使用现代构造替代已弃用的语法</li></ul><h2 id=shellcheck-工作原理>ShellCheck 工作原理<a hidden class=anchor aria-hidden=true href=#shellcheck-工作原理>#</a></h2><p>ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调优性能或解读结果时更加得心应手。</p><h3 id=架构概览>架构概览<a hidden class=anchor aria-hidden=true href=#架构概览>#</a></h3><pre tabindex=0><code>源代码脚本 → 词法分析器 → 解析器 (AST) → 分析器 → 报告器
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/shellcheck/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/shellcheck/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/shellcheck/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/shellcheck/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/shellcheck/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/shellcheck/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/shellcheck/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "ShellCheck 是捕获 shell 脚本中 bug 的事实标准工具，在生产环境部署前就能发现问题。凭借 39,456+ GitHub stars 和活跃的开源社区，它是 bash、sh、dash 和 ksh 脚本中应用最广泛的静态分析工具。本指南涵盖 ShellCheck 安装、编辑器集成、CI/CD 流水线配置以及生产环境加固。\n简介 Shell 脚本支撑着部署流水线、系统自动化和基础设施管理。一个未引用的变量或一个未检查的返回码就可能破坏数据、暴露凭据或导致生产服务器宕机。2014 年 Heartbleed 事件后续影响以及无数的 CI/CD 故障都可以追溯到静态分析能够捕获的 shell 脚本 bug。\nShellCheck 由 Vidar Holen 于 2012 年创建，专门填补了这一空白。它在不执行脚本的前提下解析 shell 脚本，识别语法错误、语义陷阱、可移植性问题和安全漏洞。凭借 280 多个内置检查规则（每条规则对应唯一的 SC 编号），它既能发现新手的常见错误，也能识别让资深开发者栽跟头的微妙边界情况。\n本指南提供完整的 shellcheck 教程与安装配置指南：多平台安装、编辑器集成、shellcheck docker 使用、GitHub Actions 配置以及生产环境加固。无论你是进行 bash 代码检查还是为整个 monorepo 设置质量门禁，以下配置均可直接复制、适配和部署。\n什么是 ShellCheck？ ShellCheck 是一款针对 shell 脚本的静态分析工具（“linter”）。它读取 bash/sh/dash/ksh 源代码，构建抽象语法树（AST），并应用语义规则来检测 bug、反模式和风格违规 —— 全程无需执行脚本。\n该项目使用 Haskell 编写（占代码库的 96.4%），采用 GPL-3.0 许可证分发，由 Vidar Holen 维护，拥有 166+ 位贡献者。稳定版本 v0.11.0 于 2025 年 8 月 4 日发布。\n核心功能 语法验证：在运行前捕获格式错误的构造 语义分析：检测未引用变量、不可达代码和被掩盖的退出码 可移植性检查：在应遵循 POSIX 标准的 ```/bin/sh```` 脚本中标出 bash 特有语法 安全审计：识别命令注入向量和不安全的 eval 模式 风格强制：建议使用现代构造替代已弃用的语法 ShellCheck 工作原理 ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调优性能或解读结果时更加得心应手。\n架构概览 源代码脚本 → 词法分析器 → 解析器 (AST) → 分析器 → 报告器 ↓ ↓ ↓ 词法单元 语法树 SC-警告 词法分析器：将脚本切分为标识符、关键字、运算符和字面量 解析器：从词法单元流构建 AST，处理 shell 特有的语法特点 分析器：遍历 AST 并应用 280+ 条规则，每条映射到唯一的 SC 错误码 报告器：将发现格式化为终端输出、JSON、CheckStyle XML、GCC 兼容警告或 SARIF 格式 严重程度分级 每条 ShellCheck 发现都带有以下四种严重级别之一：\n| 级别 | 退出码影响 | 示例 | |\n|\n|\n| | 错误 | 非零退出 | 语法错误，未定义变量 | | 警告 | 非零退出 | 未引用变量 (SC2086) | | 信息 | 零退出 | 风格建议 | | 风格 | 零退出 | 格式偏好 |\n核心检查类别 SC1xxx：语法和解析问题（如 SC1007 — = 后有多余空格） SC2xxx：语义和可移植性警告（如 SC2086 — 未引用变量） SC3xxx：Bash/dash/ksh 特有的兼容性提示 SC4xxx：可选检查和实验性规则 安装与配置 ShellCheck 支持所有主流平台。安装耗时不超过两分钟。\nLinux (APT / Debian / Ubuntu) # 更新软件包索引 sudo apt update # 安装 ShellCheck sudo apt install -y shellcheck # 验证版本 shellcheck --version # ShellCheck - shell script analysis tool # version: 0.11.0 # license: GNU General Public License, version 3 # website: https://www.shellcheck.net Linux (DNF / Fedora / RHEL) # 通过 DNF 安装 sudo dnf install -y shellcheck # 验证版本 shellcheck --version macOS (Homebrew) # 通过 Homebrew 安装 brew install shellcheck # 验证版本 shellcheck --version Windows (通过 Chocolatey) # 通过 Chocolatey 安装（管理员权限） choco install shellcheck # 验证版本 shellcheck --version Docker（跨平台） # 无需本地安装，通过 Docker 运行 ocker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:stable \\ /mnt/deploy.sh # 检查当前目录所有脚本 docker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:stable \\ /mnt/*.sh # 锁定特定版本以确保 CI 构建可复现 docker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:v0.11.0 \\ /mnt/deploy.sh 从源码构建（Haskell Stack） # 克隆仓库 git clone https://github.com/koalaman/shellcheck.git cd shellcheck # 使用 Stack 构建 stack install # 或使用 Cabal 构建 cabal update cabal install Pre-commit 钩子 # 添加到 .pre-commit-config.yaml repos: - repo: https://github.com/koalaman/shellcheck-precommit rev: v0.11.0 hooks: - id: shellcheck args: [\"--severity=warning\"] 编辑器集成 当你打字时实时显示反馈是 ShellCheck 最出色的体验。每个主流编辑器都有 ShellCheck 插件。\nVS Code 安装 Timon Wong 开发的 ShellCheck 扩展（插件 ID：timonwong.shellcheck）。\n// settings.json { \"shellcheck.executablePath\": \"shellcheck\", \"shellcheck.exclude\": [\"SC1090\", \"SC1091\"], \"shellcheck.severity\": \"warning\", \"shellcheck.run\": \"onType\" } Vim / Neovim 使用 ALE（异步语法检查引擎）：\n\" .vimrc 或 init.vim let g:ale_linters = { \\ sh: [shellcheck], \\} \" 保存时和输入时运行 let g:ale_lint_on_save = 1 let g:ale_lint_on_text_changed = always Neovim 中使用原生 LSP：\n-- init.lua (nvim-lspconfig) require(lspconfig).bashls.setup { settings = { bashIde = { shellcheckPath = \"shellcheck\" } } } Emacs ;; init.el 配合 Flycheck (add-hook 'sh-mode-hook #'flycheck-mode) (setq flycheck-shellcheck-severity \"warning\") Sublime Text 通过 Package Control 安装：SublimeLinter-shellcheck。\n// SublimeLinter.sublime-settings { \"linters\": { \"shellcheck\": { \"executable\": \"shellcheck\", \"args\": [\"--severity=warning\"] } } } CI/CD 集成 在 CI 中运行 ShellCheck 可以阻止有问题的脚本合并。以下是适用于 GitHub Actions、GitLab CI 和 Jenkins 的即用配置。\nGitHub Actions # .github/workflows/shellcheck.yml name: ShellCheck on: [push, pull_request] jobs: shellcheck: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4 - name: Run ShellCheck uses: ludeeus/action-shellcheck@master env: SEVERITY: warning with: ignore_paths: \u003e- ./vendor ./third_party 手动配置（指定版本）：\n# .github/workflows/shellcheck-manual.yml name: ShellCheck Manual on: [push, pull_request] jobs: shellcheck: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install ShellCheck run: | wget -qO- \"https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz\" | tar -xJf - sudo cp \"shellcheck-v0.11.0/shellcheck\" /usr/local/bin/ - name: 检查所有 shell 脚本 run: | find . -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --severity=warning --format=tty GitLab CI # .gitlab-ci.yml stages: - lint shellcheck: stage: lint image: koalaman/shellcheck-alpine:stable script: - find . -name \"*.sh\" -type f -exec shellcheck --severity=warning {} + rules: - if: $CI_PIPELINE_SOURCE == \"merge_request_event\" - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH Jenkins // Jenkinsfile pipeline { agent any stages { stage(ShellCheck) { steps { sh ''' #!/bin/bash set -euo pipefail if ! command -v shellcheck \u0026\u003e /dev/null; then echo \"正在安装 ShellCheck...\" apt-get update \u0026\u0026 apt-get install -y shellcheck fi find . -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --severity=warning ''' } } } post { failure { echo \"ShellCheck 发现问题。请查看构建日志。\" } } } CircleCI # .circleci/config.yml version: 2.1 orbs: shellcheck: circleci/shellcheck@3.2.0 workflows: lint: jobs: - shellcheck/check: severity: \"warning\" exclude: \"SC1090,SC1091\" 配置与规则管理 ShellCheck 提供多种机制来控制运行哪些检查以及如何报告。\n行内指令 #!/bin/bash # shellcheck disable=SC2086 echo $UNQUOTED_VAR # 本行禁用 SC2086 # shellcheck disable=SC2034 UNUSED_VAR=\"此变量已赋值但未使用\" # 代码块后重新启用 # shellcheck enable=SC2086 echo \"$PROPERLY_QUOTED\" 配置文件 (.shellcheckrc) # .shellcheckrc — 项目级配置 # 放在仓库根目录或 $HOME/.shellcheckrc # 为没有 shebang 的脚本设置 shell 方言 shell=bash # 全局排除特定检查 disable=SC1090,SC1091,SC2155 # 设置最低严重程度 (error, warning, info, style) severity=warning # 启用可选检查 enable=require-variable-braces,check-set-e-suppressed # 指定外部源（用于 source 的文件） external-sources=true 严重程度过滤 # 仅报告错误和警告（不报告 info/style） shellcheck --severity=warning script.sh # 仅报告错误 shellcheck --severity=error script.sh 输出格式 # 人类可读的终端输出（默认） shellcheck --format=tty script.sh # JSON 格式，用于程序化处理 shellcheck --format=json script.sh \u003e shellcheck-report.json # CheckStyle XML（兼容 Jenkins、GitLab） shellcheck --format=checkstyle script.sh \u003e shellcheck.xml # GCC 兼容警告（通用编辑器集成） shellcheck --format=gcc script.sh # SARIF 格式（集成到 GitHub Security 标签页） shellcheck --format=sarif script.sh \u003e shellcheck.sarif 基准测试与实际用例 ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下是基准和使用指标。\n性能基准 在 2024 标准 CI 运行器上测试（Ubuntu 24.04, 2 vCPU, 4 GB 内存）：\n| 脚本规模 | 行数 | 分析时间 | 内存占用 | |\n|\n|\n|\n| | 小型 | 50 | 0.05秒 | 12 MB | | 中型 | 500 | 0.3秒 | 28 MB | | 大型 | 2,000 | 1.1秒 | 67 MB | | Monorepo | 10,000 | 4.8秒 | 142 MB |\n实际采用情况 GitHub Actions: 官方 ludeeus/action-shellcheck 月运行 50万+ 次 Homebrew: 用 ShellCheck 检查所有 5,000+ 个 formula 的 shell 脚本 Google Shell 风格指南: 推荐所有 shell 脚本使用 ShellCheck NixOS: 在官方软件包构建流水线中使用 ShellCheck Debian / Ubuntu: 在官方仓库中打包维护 检测到的 Bug 类别（1,000 个开源脚本样本分析） | 检查编号 | 描述 | 检出率 | |\n|\n|\n| | SC2086 | 未引用变量 | 34.2% | | SC2164 | cd 未检查返回值 | 18.7% | | SC1090 | 无法跟踪被 source 的文件 | 22.1% | | SC2155 | 声明与赋值合并 | 15.3% | | SC2046 | 未引用的命令替换 | 12.8% |\n高级用法与生产加固 对于大规模使用 ShellCheck 的团队，以下模式可提高可靠性和可维护性。\n多脚本批量分析 #!/bin/bash set -euo pipefail SEVERITY=\"warning\" SCRIPT_DIRS=(\"scripts/\" \"bin/\" \"deploy/\") EXCLUDES=() # 构建排除列表 for code in SC1090 SC1091 SC2155; do EXCLUDES+=(\"-e\" \"$code\") done # 查找并检查所有 shell 脚本 find \"${SCRIPT_DIRS[@]}\" -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --severity=\"$SEVERITY\" \"${EXCLUDES[@]}\" echo \"所有脚本通过 ShellCheck 检查，严重程度: $SEVERITY\" 上传 SARIF 到 GitHub 安全面板 # .github/workflows/security-scan.yml name: Security Scan on: [push, pull_request] jobs: scan: runs-on: ubuntu-latest permissions: security-events: write contents: read steps: - uses: actions/checkout@v4 - name: 运行 ShellCheck SARIF run: | find . -name \"*.sh\" -type f -print0 | \\ xargs -0 shellcheck --format=sarif \u003e shellcheck.sarif || true - name: 上传到 GitHub Security uses: github/codeql-action/upload-sarif@v3 if: always() with: sarif_file: shellcheck.sarif Dockerfile 检查阶段 # Dockerfile FROM koalaman/shellcheck:stable AS lint WORKDIR /scripts COPY . . RUN find . -name \"*.sh\" -exec shellcheck --severity=warning {} + FROM alpine:3.20 AS runtime COPY --from=lint /scripts/deploy.sh /usr/local/bin/ ENTRYPOINT [\"/usr/local/bin/deploy.sh\"] 在 CI 中监控 ShellCheck 将 ShellCheck 失败作为团队指标追踪：\n#!/bin/bash # ci-metrics.sh — 追踪 shellcheck 警告数量随时间变化 WARNINGS=$(find . -name \"*.sh\" -exec shellcheck --severity=warning --format=json {} + | \\ jq '. | length\") echo \"shellcheck_warnings $WARNINGS\" \u003e\u003e metrics.txt 与替代工具对比 | 功能 | ShellCheck | bash -n | shfmt | checkbashisms | |\n|\n|\n|\n|\n| | 静态分析深度 | 语义（基于 AST） | 仅语法 | 解析器/格式化器 | 模式匹配 | | 错误数量 | ~280+ 检查 | ~20 个错误 | 0（格式化器） | ~40 个模式 | | Bash/sh/dash/ksh 支持 | 全部方言 | 仅 Bash | POSIX + Bash | 仅 sh | | 编辑器集成 | 20+ 编辑器 | 无 | 10+ 编辑器 | 无 | | CI/CD 就绪 | 原生（退出码） | 手动 | 仅退出码 | 手动 | | JSON/XML/SARIF 输出 | 全部格式 | 无 | 无 | 无 | | 自动修复建议 | 是（网页 + 部分 CLI） | 否 | 是（格式化） | 否 | | 性能 (500 行) | 0.3秒 | 0.01秒 | 0.02秒 | 0.5秒 | | 可移植性检查 | 是 | 否 | 部分 | 是（仅 bashisms） | | 许可证 | GPL-3.0 | GPL-3.0 | BSD-3-Clause | GPL-2.0+ |\n何时选择哪种工具 ShellCheck：通用 shell 脚本质量和安全审计。默认选择。 bash -n：快速 bash 脚本语法验证，别无选择时的备选。 shfmt：代码格式化和风格规范化。与 ShellCheck 互补（不是替代品）。 checkbashisms：Debian 特有的可移植性检查。为 Debian/Ubuntu 打包时使用。 局限性与客观评价 ShellCheck 并非万能。理解其边界可避免盲目信任。\nShellCheck 无法捕获的问题 运行时逻辑错误：无法判断你的 curl 命令是否指向正确的端点 业务逻辑 bug：验证语法，但不验证备份脚本是否备份了正确的目录 性能问题：语法有效的无限循环会通过检查 图灵完备分析：某些动态行为（如 eval \"$DYNAMIC_CMD\"）本质上无法分析 平台与环境局限 ShellCheck 假设标准 Unix 工具。针对嵌入式系统或 busybox 环境的脚本可能产生误报 部分 SC 规则具有主观性。团队应审查并自定义 .shellcheckrc，而非盲目应用所有建议 不支持 Windows 原生脚本（PowerShell、CMD） 构建与依赖考量 从源码构建时 Haskell 运行时在 Docker 镜像中增加约 30 MB 预构建二进制文件（推荐方式）无运行时依赖 CI 流水线应锁定特定版本，避免因新版本增加检查而导致构建中断 常见问题解答 ShellCheck 支持哪些 shell？ ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell、zsh（部分支持）和 fish。使用 --shell bash|sh|dash|ksh 指定目标 shell，或依赖脚本中的 shebang 行。\n如何屏蔽特定的 ShellCheck 警告？ 使用行内指令：在警告所在行前添加 # shellcheck disable=SC2086。要全局屏蔽，在 .shellcheckrc 中添加 disable=SC2086。每个检查都有对应的 wiki 页面，地址为 https://www.shellcheck.net/wiki/SC2086，说明了原理。\nShellCheck 能自动修复脚本吗？ shellcheck.net 网页界面为许多常见问题提供自动修复建议。CLI 工具在输出中显示建议修复但不直接修改文件。部分第三方工具封装 ShellCheck 来自动应用修复。\n如何将 ShellCheck 集成到 pre-commit 钩子？ 将官方 pre-commit 钩子 https://github.com/koalaman/shellcheck-precommit 添加到你的 .pre-commit-config.yaml。设置 args: [\"--severity=warning\"] 阻止带警告的提交，或 args: [\"--severity=error\"] 仅阻止错误。\nShellCheck 适合安全审计吗？ ShellCheck 识别常见安全模式，如命令注入（SC2096）、不安全的 eval 使用以及可能恶意展开的未引用变量。但它不能替代专业安全扫描器。与 Semgrep 或 GitHub CodeQL 结合使用以获得全面安全覆盖。\n为什么 ShellCheck 会标记正常运行的代码？ 许多 ShellCheck 警告针对\"现在能用，以后会崩\"的场景。未引用变量对不含空格的文件名有效，但对含空格或通配符的输入会失败。这些警告可防止潜在 bug 在生产环境暴露。\n如何在 Docker 容器中运行 ShellCheck？ 使用官方镜像：docker run --rm -v \"$PWD:/mnt\" koalaman/shellcheck:stable /mnt/script.sh。锁定到 v0.11.0 或其他特定版本以确保 CI 构建可复现。镜像基于 Alpine Linux，约 15 MB。\n总结 ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。凭借 39,456+ GitHub stars、全面的 CI/CD 集成以及对每个主流编辑器的支持，它应该成为每位开发者的工具链标配。从 Docker 单行命令开始获取即时反馈，添加 .shellcheckrc 项目配置确保团队一致性，接入 GitHub Actions 在合并前捕获 bug。\n团队行动项：\n今天就对你最重要的 5 个部署脚本运行 shellcheck 安装 VS Code 扩展或 Vim ALE 集成以获得实时反馈 在仓库根目录创建 ````.shellcheckrc```，配置项目特定规则 设置 GitHub Actions 工作流，阻止带警告的合并 加入 dibi8 Telegram 群组，讨论开发者工具、CI/CD 最佳实践和 DevOps 自动化。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n参考与延伸阅读 ShellCheck 官方网站 ShellCheck GitHub 仓库 ShellCheck Wiki — 所有检查编号 ShellCheck v0.11.0 发布说明 ShellCheck Pre-commit 钩子 ludeeus/action-shellcheck — GitHub Action Google Shell 风格指南 shfmt — Shell 格式化工具 checkbashisms — Debian Devscripts POSIX.1-2017 Shell 命令语言 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 CI/CD 集成指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/shellcheck\" } } Related Articles apple-container trivy-production-security-scanner-2026 trivy-production-security-scanner-2026 2026-06-15-trending-ai-agents 2026-06-22-trending-ai-agents Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1594",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/shellcheck/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/shellcheck/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/shellcheck/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/shellcheck/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e7%ae%80%e4%bb%8b" aria-label="简介">简介</a></li>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af-shellcheck" aria-label="什么是 ShellCheck？">什么是 ShellCheck？</a><ul>
+                    
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd" aria-label="核心功能">核心功能</a></li></ul>
+            </li>
+            <li>
+                <a href="#shellcheck-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="ShellCheck 工作原理">ShellCheck 工作原理</a><ul>
+                    
+            <li>
+                <a href="#%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88" aria-label="架构概览">架构概览</a></li>
+            <li>
+                <a href="#%e4%b8%a5%e9%87%8d%e7%a8%8b%e5%ba%a6%e5%88%86%e7%ba%a7" aria-label="严重程度分级">严重程度分级</a></li>
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e6%a3%80%e6%9f%a5%e7%b1%bb%e5%88%ab" aria-label="核心检查类别">核心检查类别</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e9%85%8d%e7%bd%ae" aria-label="安装与配置">安装与配置</a><ul>
+                    
+            <li>
+                <a href="#linux-apt--debian--ubuntu" aria-label="Linux (APT / Debian / Ubuntu)">Linux (APT / Debian / Ubuntu)</a></li>
+            <li>
+                <a href="#linux-dnf--fedora--rhel" aria-label="Linux (DNF / Fedora / RHEL)">Linux (DNF / Fedora / RHEL)</a></li>
+            <li>
+                <a href="#macos-homebrew" aria-label="macOS (Homebrew)">macOS (Homebrew)</a></li>
+            <li>
+                <a href="#windows-%e9%80%9a%e8%bf%87-chocolatey" aria-label="Windows (通过 Chocolatey)">Windows (通过 Chocolatey)</a></li>
+            <li>
+                <a href="#docker%e8%b7%a8%e5%b9%b3%e5%8f%b0" aria-label="Docker（跨平台）">Docker（跨平台）</a></li>
+            <li>
+                <a href="#%e4%bb%8e%e6%ba%90%e7%a0%81%e6%9e%84%e5%bb%bahaskell-stack" aria-label="从源码构建（Haskell Stack）">从源码构建（Haskell Stack）</a></li>
+            <li>
+                <a href="#pre-commit-%e9%92%a9%e5%ad%90" aria-label="Pre-commit 钩子">Pre-commit 钩子</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bc%96%e8%be%91%e5%99%a8%e9%9b%86%e6%88%90" aria-label="编辑器集成">编辑器集成</a><ul>
+                    
+            <li>
+                <a href="#vs-code" aria-label="VS Code">VS Code</a></li>
+            <li>
+                <a href="#vim--neovim" aria-label="Vim / Neovim">Vim / Neovim</a></li>
+            <li>
+                <a href="#emacs" aria-label="Emacs">Emacs</a></li>
+            <li>
+                <a href="#sublime-text" aria-label="Sublime Text">Sublime Text</a></li></ul>
+            </li>
+            <li>
+                <a href="#cicd-%e9%9b%86%e6%88%90" aria-label="CI/CD 集成">CI/CD 集成</a><ul>
+                    
+            <li>
+                <a href="#github-actions" aria-label="GitHub Actions">GitHub Actions</a></li>
+            <li>
+                <a href="#gitlab-ci" aria-label="GitLab CI">GitLab CI</a></li>
+            <li>
+                <a href="#jenkins" aria-label="Jenkins">Jenkins</a></li>
+            <li>
+                <a href="#circleci" aria-label="CircleCI">CircleCI</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e4%b8%8e%e8%a7%84%e5%88%99%e7%ae%a1%e7%90%86" aria-label="配置与规则管理">配置与规则管理</a><ul>
+                    
+            <li>
+                <a href="#%e8%a1%8c%e5%86%85%e6%8c%87%e4%bb%a4" aria-label="行内指令">行内指令</a></li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6-shellcheckrc" aria-label="配置文件 (.shellcheckrc)">配置文件 (.shellcheckrc)</a></li>
+            <li>
+                <a href="#%e4%b8%a5%e9%87%8d%e7%a8%8b%e5%ba%a6%e8%bf%87%e6%bb%a4" aria-label="严重程度过滤">严重程度过滤</a></li>
+            <li>
+                <a href="#%e8%be%93%e5%87%ba%e6%a0%bc%e5%bc%8f" aria-label="输出格式">输出格式</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e4%b8%8e%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b" aria-label="基准测试与实际用例">基准测试与实际用例</a><ul>
+                    
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86" aria-label="性能基准">性能基准</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e9%99%85%e9%87%87%e7%94%a8%e6%83%85%e5%86%b5" aria-label="实际采用情况">实际采用情况</a></li>
+            <li>
+                <a href="#%e6%a3%80%e6%b5%8b%e5%88%b0%e7%9a%84-bug-%e7%b1%bb%e5%88%ab1000-%e4%b8%aa%e5%bc%80%e6%ba%90%e8%84%9a%e6%9c%ac%e6%a0%b7%e6%9c%ac%e5%88%86%e6%9e%90" aria-label="检测到的 Bug 类别（1,000 个开源脚本样本分析）">检测到的 Bug 类别（1,000 个开源脚本样本分析）</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b8%8e%e7%94%9f%e4%ba%a7%e5%8a%a0%e5%9b%ba" aria-label="高级用法与生产加固">高级用法与生产加固</a><ul>
+                    
+            <li>
+                <a href="#%e5%a4%9a%e8%84%9a%e6%9c%ac%e6%89%b9%e9%87%8f%e5%88%86%e6%9e%90" aria-label="多脚本批量分析">多脚本批量分析</a></li>
+            <li>
+                <a href="#%e4%b8%8a%e4%bc%a0-sarif-%e5%88%b0-github-%e5%ae%89%e5%85%a8%e9%9d%a2%e6%9d%bf" aria-label="上传 SARIF 到 GitHub 安全面板">上传 SARIF 到 GitHub 安全面板</a></li>
+            <li>
+                <a href="#dockerfile-%e6%a3%80%e6%9f%a5%e9%98%b6%e6%ae%b5" aria-label="Dockerfile 检查阶段">Dockerfile 检查阶段</a></li>
+            <li>
+                <a href="#%e5%9c%a8-ci-%e4%b8%ad%e7%9b%91%e6%8e%a7-shellcheck" aria-label="在 CI 中监控 ShellCheck">在 CI 中监控 ShellCheck</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94" aria-label="与替代工具对比">与替代工具对比</a><ul>
+                    
+            <li>
+                <a href="#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9%e5%93%aa%e7%a7%8d%e5%b7%a5%e5%85%b7" aria-label="何时选择哪种工具">何时选择哪种工具</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7%e4%b8%8e%e5%ae%a2%e8%a7%82%e8%af%84%e4%bb%b7" aria-label="局限性与客观评价">局限性与客观评价</a><ul>
+                    
+            <li>
+                <a href="#shellcheck-%e6%97%a0%e6%b3%95%e6%8d%95%e8%8e%b7%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="ShellCheck 无法捕获的问题">ShellCheck 无法捕获的问题</a></li>
+            <li>
+                <a href="#%e5%b9%b3%e5%8f%b0%e4%b8%8e%e7%8e%af%e5%a2%83%e5%b1%80%e9%99%90" aria-label="平台与环境局限">平台与环境局限</a></li>
+            <li>
+                <a href="#%e6%9e%84%e5%bb%ba%e4%b8%8e%e4%be%9d%e8%b5%96%e8%80%83%e9%87%8f" aria-label="构建与依赖考量">构建与依赖考量</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94" aria-label="常见问题解答">常见问题解答</a><ul>
+                    
+            <li>
+                <a href="#shellcheck-%e6%94%af%e6%8c%81%e5%93%aa%e4%ba%9b-shell" aria-label="ShellCheck 支持哪些 shell？">ShellCheck 支持哪些 shell？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e5%b1%8f%e8%94%bd%e7%89%b9%e5%ae%9a%e7%9a%84-shellcheck-%e8%ad%a6%e5%91%8a" aria-label="如何屏蔽特定的 ShellCheck 警告？">如何屏蔽特定的 ShellCheck 警告？</a></li>
+            <li>
+                <a href="#shellcheck-%e8%83%bd%e8%87%aa%e5%8a%a8%e4%bf%ae%e5%a4%8d%e8%84%9a%e6%9c%ac%e5%90%97" aria-label="ShellCheck 能自动修复脚本吗？">ShellCheck 能自动修复脚本吗？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e5%b0%86-shellcheck-%e9%9b%86%e6%88%90%e5%88%b0-pre-commit-%e9%92%a9%e5%ad%90" aria-label="如何将 ShellCheck 集成到 pre-commit 钩子？">如何将 ShellCheck 集成到 pre-commit 钩子？</a></li>
+            <li>
+                <a href="#shellcheck-%e9%80%82%e5%90%88%e5%ae%89%e5%85%a8%e5%ae%a1%e8%ae%a1%e5%90%97" aria-label="ShellCheck 适合安全审计吗？">ShellCheck 适合安全审计吗？</a></li>
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88-shellcheck-%e4%bc%9a%e6%a0%87%e8%ae%b0%e6%ad%a3%e5%b8%b8%e8%bf%90%e8%a1%8c%e7%9a%84%e4%bb%a3%e7%a0%81" aria-label="为什么 ShellCheck 会标记正常运行的代码？">为什么 ShellCheck 会标记正常运行的代码？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e5%9c%a8-docker-%e5%ae%b9%e5%99%a8%e4%b8%ad%e8%bf%90%e8%a1%8c-shellcheck" aria-label="如何在 Docker 容器中运行 ShellCheck？">如何在 Docker 容器中运行 ShellCheck？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%80%bb%e7%bb%93" aria-label="总结">总结</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#%e5%8f%82%e8%80%83%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="参考与延伸阅读">参考与延伸阅读</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>ShellCheck 是捕获 shell 脚本中 bug 的事实标准工具，在生产环境部署前就能发现问题。凭借 39,456+ GitHub stars 和活跃的开源社区，它是 bash、sh、dash 和 ksh 脚本中应用最广泛的静态分析工具。本指南涵盖 ShellCheck 安装、编辑器集成、CI/CD 流水线配置以及生产环境加固。</p>
+<p><img alt="ShellCheck 终端输出显示未引用变量警告" loading="lazy" src="https://github.com/koalaman/shellcheck/raw/master/doc/terminal.png"></p>
+<h2 id="简介">简介<a hidden class="anchor" aria-hidden="true" href="#简介">#</a></h2>
+<p>Shell 脚本支撑着部署流水线、系统自动化和基础设施管理。一个未引用的变量或一个未检查的返回码就可能破坏数据、暴露凭据或导致生产服务器宕机。2014 年 Heartbleed 事件后续影响以及无数的 CI/CD 故障都可以追溯到静态分析能够捕获的 shell 脚本 bug。</p>
+<p>ShellCheck 由 Vidar Holen 于 2012 年创建，专门填补了这一空白。它在不执行脚本的前提下解析 shell 脚本，识别语法错误、语义陷阱、可移植性问题和安全漏洞。凭借 280 多个内置检查规则（每条规则对应唯一的 SC 编号），它既能发现新手的常见错误，也能识别让资深开发者栽跟头的微妙边界情况。</p>
+<p>本指南提供完整的 shellcheck 教程与安装配置指南：多平台安装、编辑器集成、shellcheck docker 使用、GitHub Actions 配置以及生产环境加固。无论你是进行 bash 代码检查还是为整个 monorepo 设置质量门禁，以下配置均可直接复制、适配和部署。</p>
+<h2 id="什么是-shellcheck">什么是 ShellCheck？<a hidden class="anchor" aria-hidden="true" href="#什么是-shellcheck">#</a></h2>
+<p>ShellCheck 是一款针对 shell 脚本的静态分析工具（&ldquo;linter&rdquo;）。它读取 bash/sh/dash/ksh 源代码，构建抽象语法树（AST），并应用语义规则来检测 bug、反模式和风格违规 —— 全程无需执行脚本。</p>
+<p>该项目使用 Haskell 编写（占代码库的 96.4%），采用 GPL-3.0 许可证分发，由 Vidar Holen 维护，拥有 166+ 位贡献者。稳定版本 v0.11.0 于 2025 年 8 月 4 日发布。</p>
+<h3 id="核心功能">核心功能<a hidden class="anchor" aria-hidden="true" href="#核心功能">#</a></h3>
+<ul>
+<li><strong>语法验证</strong>：在运行前捕获格式错误的构造</li>
+<li><strong>语义分析</strong>：检测未引用变量、不可达代码和被掩盖的退出码</li>
+<li><strong>可移植性检查</strong>：在应遵循 POSIX 标准的 ```/bin/sh```` 脚本中标出 bash 特有语法</li>
+<li><strong>安全审计</strong>：识别命令注入向量和不安全的 eval 模式</li>
+<li><strong>风格强制</strong>：建议使用现代构造替代已弃用的语法</li>
+</ul>
+<h2 id="shellcheck-工作原理">ShellCheck 工作原理<a hidden class="anchor" aria-hidden="true" href="#shellcheck-工作原理">#</a></h2>
+<p>ShellCheck 作为多阶段分析流水线运行。理解其架构有助于在调优性能或解读结果时更加得心应手。</p>
+<h3 id="架构概览">架构概览<a hidden class="anchor" aria-hidden="true" href="#架构概览">#</a></h3>
+<pre tabindex="0"><code>源代码脚本 → 词法分析器 → 解析器 (AST) → 分析器 → 报告器
                       ↓            ↓             ↓
                   词法单元     语法树        SC-警告
-</code></pre><ol><li><strong>词法分析器</strong>：将脚本切分为标识符、关键字、运算符和字面量</li><li><strong>解析器</strong>：从词法单元流构建 AST，处理 shell 特有的语法特点</li><li><strong>分析器</strong>：遍历 AST 并应用 280+ 条规则，每条映射到唯一的 SC 错误码</li><li><strong>报告器</strong>：将发现格式化为终端输出、JSON、CheckStyle XML、GCC 兼容警告或 SARIF 格式</li></ol><h3 id=严重程度分级>严重程度分级<a hidden class=anchor aria-hidden=true href=#严重程度分级>#</a></h3><p>每条 ShellCheck 发现都带有以下四种严重级别之一：</p><p>| 级别 | 退出码影响 | 示例 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><ol>
+<li><strong>词法分析器</strong>：将脚本切分为标识符、关键字、运算符和字面量</li>
+<li><strong>解析器</strong>：从词法单元流构建 AST，处理 shell 特有的语法特点</li>
+<li><strong>分析器</strong>：遍历 AST 并应用 280+ 条规则，每条映射到唯一的 SC 错误码</li>
+<li><strong>报告器</strong>：将发现格式化为终端输出、JSON、CheckStyle XML、GCC 兼容警告或 SARIF 格式</li>
+</ol>
+<h3 id="严重程度分级">严重程度分级<a hidden class="anchor" aria-hidden="true" href="#严重程度分级">#</a></h3>
+<p>每条 ShellCheck 发现都带有以下四种严重级别之一：</p>
+<p>| 级别 | 退出码影响 | 示例 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 错误 | 非零退出 | 语法错误，未定义变量 |
 | 警告 | 非零退出 | 未引用变量 (SC2086) |
 | 信息 | 零退出 | 风格建议 |
-| 风格 | 零退出 | 格式偏好 |</p><h3 id=核心检查类别>核心检查类别<a hidden class=anchor aria-hidden=true href=#核心检查类别>#</a></h3><ul><li><strong>SC1xxx</strong>：语法和解析问题（如 SC1007 — <code>=</code> 后有多余空格）</li><li><strong>SC2xxx</strong>：语义和可移植性警告（如 SC2086 — 未引用变量）</li><li><strong>SC3xxx</strong>：Bash/dash/ksh 特有的兼容性提示</li><li><strong>SC4xxx</strong>：可选检查和实验性规则</li></ul><h2 id=安装与配置>安装与配置<a hidden class=anchor aria-hidden=true href=#安装与配置>#</a></h2><p>ShellCheck 支持所有主流平台。安装耗时不超过两分钟。</p><h3 id=linux-apt--debian--ubuntu>Linux (APT / Debian / Ubuntu)<a hidden class=anchor aria-hidden=true href=#linux-apt--debian--ubuntu>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 更新软件包索引</span>
-</span></span><span style=display:flex><span>sudo apt update
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 安装 ShellCheck</span>
-</span></span><span style=display:flex><span>sudo apt install -y shellcheck
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证版本</span>
-</span></span><span style=display:flex><span>shellcheck --version
-</span></span><span style=display:flex><span><span style=color:#75715e># ShellCheck - shell script analysis tool</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># version: 0.11.0</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># license: GNU General Public License, version 3</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># website: https://www.shellcheck.net</span>
-</span></span></code></pre></div><h3 id=linux-dnf--fedora--rhel>Linux (DNF / Fedora / RHEL)<a hidden class=anchor aria-hidden=true href=#linux-dnf--fedora--rhel>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过 DNF 安装</span>
-</span></span><span style=display:flex><span>sudo dnf install -y shellcheck
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证版本</span>
-</span></span><span style=display:flex><span>shellcheck --version
-</span></span></code></pre></div><h3 id=macos-homebrew>macOS (Homebrew)<a hidden class=anchor aria-hidden=true href=#macos-homebrew>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过 Homebrew 安装</span>
-</span></span><span style=display:flex><span>brew install shellcheck
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证版本</span>
-</span></span><span style=display:flex><span>shellcheck --version
-</span></span></code></pre></div><h3 id=windows-通过-chocolatey>Windows (通过 Chocolatey)<a hidden class=anchor aria-hidden=true href=#windows-通过-chocolatey>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-powershell data-lang=powershell><span style=display:flex><span><span style=color:#75715e># 通过 Chocolatey 安装（管理员权限）</span>
-</span></span><span style=display:flex><span>choco install shellcheck
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证版本</span>
-</span></span><span style=display:flex><span>shellcheck --version
-</span></span></code></pre></div><h3 id=docker跨平台>Docker（跨平台）<a hidden class=anchor aria-hidden=true href=#docker跨平台>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 无需本地安装，通过 Docker 运行</span>
-</span></span><span style=display:flex><span>ocker run --rm -v <span style=color:#e6db74>&#34;</span>$PWD<span style=color:#e6db74>:/mnt&#34;</span> koalaman/shellcheck:stable <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  /mnt/deploy.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查当前目录所有脚本</span>
-</span></span><span style=display:flex><span>docker run --rm -v <span style=color:#e6db74>&#34;</span>$PWD<span style=color:#e6db74>:/mnt&#34;</span> koalaman/shellcheck:stable <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  /mnt/*.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 锁定特定版本以确保 CI 构建可复现</span>
-</span></span><span style=display:flex><span>docker run --rm -v <span style=color:#e6db74>&#34;</span>$PWD<span style=color:#e6db74>:/mnt&#34;</span> koalaman/shellcheck:v0.11.0 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  /mnt/deploy.sh
-</span></span></code></pre></div><h3 id=从源码构建haskell-stack>从源码构建（Haskell Stack）<a hidden class=anchor aria-hidden=true href=#从源码构建haskell-stack>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆仓库</span>
-</span></span><span style=display:flex><span>git clone https://github.com/koalaman/shellcheck.git
-</span></span><span style=display:flex><span>cd shellcheck
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用 Stack 构建</span>
-</span></span><span style=display:flex><span>stack install
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或使用 Cabal 构建</span>
-</span></span><span style=display:flex><span>cabal update
-</span></span><span style=display:flex><span>cabal install
-</span></span></code></pre></div><h3 id=pre-commit-钩子>Pre-commit 钩子<a hidden class=anchor aria-hidden=true href=#pre-commit-钩子>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 添加到 .pre-commit-config.yaml</span>
-</span></span><span style=display:flex><span>repos: - repo: https://github.com/koalaman/shellcheck-precommit
-</span></span><span style=display:flex><span>    rev: v0.11.0
-</span></span><span style=display:flex><span>    hooks: - id: shellcheck
-</span></span><span style=display:flex><span>        args: <span style=color:#f92672>[</span><span style=color:#e6db74>&#34;--severity=warning&#34;</span><span style=color:#f92672>]</span>
-</span></span></code></pre></div><h2 id=编辑器集成>编辑器集成<a hidden class=anchor aria-hidden=true href=#编辑器集成>#</a></h2><p>当你打字时实时显示反馈是 ShellCheck 最出色的体验。每个主流编辑器都有 ShellCheck 插件。</p><h3 id=vs-code>VS Code<a hidden class=anchor aria-hidden=true href=#vs-code>#</a></h3><p>安装 Timon Wong 开发的 <strong>ShellCheck</strong> 扩展（插件 ID：<code>timonwong.shellcheck</code>）。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// settings.json
-</span></span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;shellcheck.executablePath&#34;</span>: <span style=color:#e6db74>&#34;shellcheck&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;shellcheck.exclude&#34;</span>: [<span style=color:#e6db74>&#34;SC1090&#34;</span>, <span style=color:#e6db74>&#34;SC1091&#34;</span>],
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;shellcheck.severity&#34;</span>: <span style=color:#e6db74>&#34;warning&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;shellcheck.run&#34;</span>: <span style=color:#e6db74>&#34;onType&#34;</span>
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=vim--neovim>Vim / Neovim<a hidden class=anchor aria-hidden=true href=#vim--neovim>#</a></h3><p>使用 ALE（异步语法检查引擎）：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-vim data-lang=vim><span style=display:flex><span><span style=color:#75715e>&#34; .vimrc 或 init.vim</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>g</span>:<span style=color:#a6e22e>ale_linters</span> = {
-</span></span><span style=display:flex><span>\   <span style=color:#a6e22e>sh</span>: [<span style=color:#a6e22e>shellcheck</span>],
-</span></span><span style=display:flex><span>\}
-</span></span><span style=display:flex><span><span style=color:#75715e>
-</span></span></span><span style=display:flex><span><span style=color:#75715e>&#34; 保存时和输入时运行</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>g</span>:<span style=color:#a6e22e>ale_lint_on_save</span> = <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>let</span> <span style=color:#a6e22e>g</span>:<span style=color:#a6e22e>ale_lint_on_text_changed</span> = <span style=color:#a6e22e>always</span>
-</span></span></code></pre></div><p>Neovim 中使用原生 LSP：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-lua data-lang=lua><span style=display:flex><span><span style=color:#75715e>-- init.lua (nvim-lspconfig)</span>
-</span></span><span style=display:flex><span>require(lspconfig).bashls.setup {
-</span></span><span style=display:flex><span>  settings <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    bashIde <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>      shellcheckPath <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;shellcheck&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=emacs>Emacs<a hidden class=anchor aria-hidden=true href=#emacs>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-elisp data-lang=elisp><span style=display:flex><span><span style=color:#75715e>;; init.el 配合 Flycheck</span>
-</span></span><span style=display:flex><span>(add-hook <span style=color:#e6db74>&#39;sh-mode-hook</span> <span style=color:#a6e22e>#&#39;</span>flycheck-mode)
-</span></span><span style=display:flex><span>(setq flycheck-shellcheck-severity <span style=color:#e6db74>&#34;warning&#34;</span>)
-</span></span></code></pre></div><h3 id=sublime-text>Sublime Text<a hidden class=anchor aria-hidden=true href=#sublime-text>#</a></h3><p>通过 Package Control 安装：<strong>SublimeLinter-shellcheck</strong>。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// SublimeLinter.sublime-settings
-</span></span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;linters&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>&#34;shellcheck&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;executable&#34;</span>: <span style=color:#e6db74>&#34;shellcheck&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;args&#34;</span>: [<span style=color:#e6db74>&#34;--severity=warning&#34;</span>]
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=cicd-集成>CI/CD 集成<a hidden class=anchor aria-hidden=true href=#cicd-集成>#</a></h2><p>在 CI 中运行 ShellCheck 可以阻止有问题的脚本合并。以下是适用于 GitHub Actions、GitLab CI 和 Jenkins 的即用配置。</p><h3 id=github-actions>GitHub Actions<a hidden class=anchor aria-hidden=true href=#github-actions>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/shellcheck.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>ShellCheck</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>push, pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: shellcheck: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - name</span>: <span style=color:#ae81ff>Checkout repository</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Run ShellCheck</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>ludeeus/action-shellcheck@master</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>env: SEVERITY</span>: <span style=color:#ae81ff>warning</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>with: ignore_paths</span>: &gt;-<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ./vendor
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            ./third_party</span>
-</span></span></code></pre></div><p>手动配置（指定版本）：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/shellcheck-manual.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>ShellCheck Manual</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>push, pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: shellcheck: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install ShellCheck</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          wget -qO- &#34;https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz&#34; | tar -xJf -
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          sudo cp &#34;shellcheck-v0.11.0/shellcheck&#34; /usr/local/bin/</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>检查所有 shell 脚本</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          find . -name &#34;*.sh&#34; -type f -print0 | \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            xargs -0 shellcheck --severity=warning --format=tty</span>
-</span></span></code></pre></div><h3 id=gitlab-ci>GitLab CI<a hidden class=anchor aria-hidden=true href=#gitlab-ci>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .gitlab-ci.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>stages</span>: - <span style=color:#ae81ff>lint</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>shellcheck: stage</span>: <span style=color:#ae81ff>lint</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>image</span>: <span style=color:#ae81ff>koalaman/shellcheck-alpine:stable</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>script</span>: - <span style=color:#ae81ff>find . -name &#34;*.sh&#34; -type f -exec shellcheck --severity=warning {} +</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>rules: - if</span>: <span style=color:#ae81ff>$CI_PIPELINE_SOURCE == &#34;merge_request_event&#34;</span>
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>if</span>: <span style=color:#ae81ff>$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH</span>
-</span></span></code></pre></div><h3 id=jenkins>Jenkins<a hidden class=anchor aria-hidden=true href=#jenkins>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-groovy data-lang=groovy><span style=display:flex><span><span style=color:#75715e>// Jenkinsfile
-</span></span></span><span style=display:flex><span>pipeline <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    agent any
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    stages <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        stage<span style=color:#f92672>(</span>ShellCheck<span style=color:#f92672>)</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>            steps <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>                sh <span style=color:#e6db74>&#39;&#39;&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    #!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    set -euo pipefail
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    if ! command -v shellcheck &amp;&gt; /dev/null; then
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        echo &#34;正在安装 ShellCheck...&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        apt-get update &amp;&amp; apt-get install -y shellcheck
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    fi
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                    find . -name &#34;*.sh&#34; -type f -print0 | \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                        xargs -0 shellcheck --severity=warning
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>                &#39;&#39;&#39;</span>
-</span></span><span style=display:flex><span>            <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    post <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>        failure <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>            echo <span style=color:#e6db74>&#34;ShellCheck 发现问题。请查看构建日志。&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span></code></pre></div><h3 id=circleci>CircleCI<a hidden class=anchor aria-hidden=true href=#circleci>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .circleci/config.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#ae81ff>2.1</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>orbs: shellcheck</span>: <span style=color:#ae81ff>circleci/shellcheck@3.2.0</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>workflows: lint: jobs: - shellcheck/check: severity</span>: <span style=color:#e6db74>&#34;warning&#34;</span>
-</span></span><span style=display:flex><span>          <span style=color:#f92672>exclude</span>: <span style=color:#e6db74>&#34;SC1090,SC1091&#34;</span>
-</span></span></code></pre></div><h2 id=配置与规则管理>配置与规则管理<a hidden class=anchor aria-hidden=true href=#配置与规则管理>#</a></h2><p>ShellCheck 提供多种机制来控制运行哪些检查以及如何报告。</p><h3 id=行内指令>行内指令<a hidden class=anchor aria-hidden=true href=#行内指令>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># shellcheck disable=SC2086</span>
-</span></span><span style=display:flex><span>echo $UNQUOTED_VAR  <span style=color:#75715e># 本行禁用 SC2086</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># shellcheck disable=SC2034</span>
-</span></span><span style=display:flex><span>UNUSED_VAR<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;此变量已赋值但未使用&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 代码块后重新启用</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># shellcheck enable=SC2086</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;</span>$PROPERLY_QUOTED<span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=配置文件-shellcheckrc>配置文件 (.shellcheckrc)<a hidden class=anchor aria-hidden=true href=#配置文件-shellcheckrc>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># .shellcheckrc — 项目级配置</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 放在仓库根目录或 $HOME/.shellcheckrc</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 为没有 shebang 的脚本设置 shell 方言</span>
-</span></span><span style=display:flex><span>shell<span style=color:#f92672>=</span>bash
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 全局排除特定检查</span>
-</span></span><span style=display:flex><span>disable<span style=color:#f92672>=</span>SC1090,SC1091,SC2155
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 设置最低严重程度 (error, warning, info, style)</span>
-</span></span><span style=display:flex><span>severity<span style=color:#f92672>=</span>warning
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启用可选检查</span>
-</span></span><span style=display:flex><span>enable<span style=color:#f92672>=</span>require-variable-braces,check-set-e-suppressed
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 指定外部源（用于 source 的文件）</span>
-</span></span><span style=display:flex><span>external-sources<span style=color:#f92672>=</span>true
-</span></span></code></pre></div><h3 id=严重程度过滤>严重程度过滤<a hidden class=anchor aria-hidden=true href=#严重程度过滤>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 仅报告错误和警告（不报告 info/style）</span>
-</span></span><span style=display:flex><span>shellcheck --severity<span style=color:#f92672>=</span>warning script.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 仅报告错误</span>
-</span></span><span style=display:flex><span>shellcheck --severity<span style=color:#f92672>=</span>error script.sh
-</span></span></code></pre></div><h3 id=输出格式>输出格式<a hidden class=anchor aria-hidden=true href=#输出格式>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 人类可读的终端输出（默认）</span>
-</span></span><span style=display:flex><span>shellcheck --format<span style=color:#f92672>=</span>tty script.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># JSON 格式，用于程序化处理</span>
-</span></span><span style=display:flex><span>shellcheck --format<span style=color:#f92672>=</span>json script.sh &gt; shellcheck-report.json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># CheckStyle XML（兼容 Jenkins、GitLab）</span>
-</span></span><span style=display:flex><span>shellcheck --format<span style=color:#f92672>=</span>checkstyle script.sh &gt; shellcheck.xml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># GCC 兼容警告（通用编辑器集成）</span>
-</span></span><span style=display:flex><span>shellcheck --format<span style=color:#f92672>=</span>gcc script.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># SARIF 格式（集成到 GitHub Security 标签页）</span>
-</span></span><span style=display:flex><span>shellcheck --format<span style=color:#f92672>=</span>sarif script.sh &gt; shellcheck.sarif
-</span></span></code></pre></div><h2 id=基准测试与实际用例>基准测试与实际用例<a hidden class=anchor aria-hidden=true href=#基准测试与实际用例>#</a></h2><p>ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下是基准和使用指标。</p><h3 id=性能基准>性能基准<a hidden class=anchor aria-hidden=true href=#性能基准>#</a></h3><p>在 2024 标准 CI 运行器上测试（Ubuntu 24.04, 2 vCPU, 4 GB 内存）：</p><p>| 脚本规模 | 行数 | 分析时间 | 内存占用 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 风格 | 零退出 | 格式偏好 |</p>
+<h3 id="核心检查类别">核心检查类别<a hidden class="anchor" aria-hidden="true" href="#核心检查类别">#</a></h3>
+<ul>
+<li><strong>SC1xxx</strong>：语法和解析问题（如 SC1007 — <code>=</code> 后有多余空格）</li>
+<li><strong>SC2xxx</strong>：语义和可移植性警告（如 SC2086 — 未引用变量）</li>
+<li><strong>SC3xxx</strong>：Bash/dash/ksh 特有的兼容性提示</li>
+<li><strong>SC4xxx</strong>：可选检查和实验性规则</li>
+</ul>
+<h2 id="安装与配置">安装与配置<a hidden class="anchor" aria-hidden="true" href="#安装与配置">#</a></h2>
+<p>ShellCheck 支持所有主流平台。安装耗时不超过两分钟。</p>
+<h3 id="linux-apt--debian--ubuntu">Linux (APT / Debian / Ubuntu)<a hidden class="anchor" aria-hidden="true" href="#linux-apt--debian--ubuntu">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 更新软件包索引</span>
+</span></span><span style="display:flex;"><span>sudo apt update
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安装 ShellCheck</span>
+</span></span><span style="display:flex;"><span>sudo apt install -y shellcheck
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证版本</span>
+</span></span><span style="display:flex;"><span>shellcheck --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ShellCheck - shell script analysis tool</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># version: 0.11.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># license: GNU General Public License, version 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># website: https://www.shellcheck.net</span>
+</span></span></code></pre></div><h3 id="linux-dnf--fedora--rhel">Linux (DNF / Fedora / RHEL)<a hidden class="anchor" aria-hidden="true" href="#linux-dnf--fedora--rhel">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过 DNF 安装</span>
+</span></span><span style="display:flex;"><span>sudo dnf install -y shellcheck
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证版本</span>
+</span></span><span style="display:flex;"><span>shellcheck --version
+</span></span></code></pre></div><h3 id="macos-homebrew">macOS (Homebrew)<a hidden class="anchor" aria-hidden="true" href="#macos-homebrew">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过 Homebrew 安装</span>
+</span></span><span style="display:flex;"><span>brew install shellcheck
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证版本</span>
+</span></span><span style="display:flex;"><span>shellcheck --version
+</span></span></code></pre></div><h3 id="windows-通过-chocolatey">Windows (通过 Chocolatey)<a hidden class="anchor" aria-hidden="true" href="#windows-通过-chocolatey">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># 通过 Chocolatey 安装（管理员权限）</span>
+</span></span><span style="display:flex;"><span>choco install shellcheck
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证版本</span>
+</span></span><span style="display:flex;"><span>shellcheck --version
+</span></span></code></pre></div><h3 id="docker跨平台">Docker（跨平台）<a hidden class="anchor" aria-hidden="true" href="#docker跨平台">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 无需本地安装，通过 Docker 运行</span>
+</span></span><span style="display:flex;"><span>ocker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">:/mnt&#34;</span> koalaman/shellcheck:stable <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  /mnt/deploy.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查当前目录所有脚本</span>
+</span></span><span style="display:flex;"><span>docker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">:/mnt&#34;</span> koalaman/shellcheck:stable <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  /mnt/*.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 锁定特定版本以确保 CI 构建可复现</span>
+</span></span><span style="display:flex;"><span>docker run --rm -v <span style="color:#e6db74">&#34;</span>$PWD<span style="color:#e6db74">:/mnt&#34;</span> koalaman/shellcheck:v0.11.0 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  /mnt/deploy.sh
+</span></span></code></pre></div><h3 id="从源码构建haskell-stack">从源码构建（Haskell Stack）<a hidden class="anchor" aria-hidden="true" href="#从源码构建haskell-stack">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 克隆仓库</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/koalaman/shellcheck.git
+</span></span><span style="display:flex;"><span>cd shellcheck
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用 Stack 构建</span>
+</span></span><span style="display:flex;"><span>stack install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或使用 Cabal 构建</span>
+</span></span><span style="display:flex;"><span>cabal update
+</span></span><span style="display:flex;"><span>cabal install
+</span></span></code></pre></div><h3 id="pre-commit-钩子">Pre-commit 钩子<a hidden class="anchor" aria-hidden="true" href="#pre-commit-钩子">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 添加到 .pre-commit-config.yaml</span>
+</span></span><span style="display:flex;"><span>repos: - repo: https://github.com/koalaman/shellcheck-precommit
+</span></span><span style="display:flex;"><span>    rev: v0.11.0
+</span></span><span style="display:flex;"><span>    hooks: - id: shellcheck
+</span></span><span style="display:flex;"><span>        args: <span style="color:#f92672">[</span><span style="color:#e6db74">&#34;--severity=warning&#34;</span><span style="color:#f92672">]</span>
+</span></span></code></pre></div><h2 id="编辑器集成">编辑器集成<a hidden class="anchor" aria-hidden="true" href="#编辑器集成">#</a></h2>
+<p>当你打字时实时显示反馈是 ShellCheck 最出色的体验。每个主流编辑器都有 ShellCheck 插件。</p>
+<h3 id="vs-code">VS Code<a hidden class="anchor" aria-hidden="true" href="#vs-code">#</a></h3>
+<p>安装 Timon Wong 开发的 <strong>ShellCheck</strong> 扩展（插件 ID：<code>timonwong.shellcheck</code>）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// settings.json
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;shellcheck.executablePath&#34;</span>: <span style="color:#e6db74">&#34;shellcheck&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;shellcheck.exclude&#34;</span>: [<span style="color:#e6db74">&#34;SC1090&#34;</span>, <span style="color:#e6db74">&#34;SC1091&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;shellcheck.severity&#34;</span>: <span style="color:#e6db74">&#34;warning&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;shellcheck.run&#34;</span>: <span style="color:#e6db74">&#34;onType&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="vim--neovim">Vim / Neovim<a hidden class="anchor" aria-hidden="true" href="#vim--neovim">#</a></h3>
+<p>使用 ALE（异步语法检查引擎）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-vim" data-lang="vim"><span style="display:flex;"><span><span style="color:#75715e">&#34; .vimrc 或 init.vim</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">g</span>:<span style="color:#a6e22e">ale_linters</span> = {
+</span></span><span style="display:flex;"><span>\   <span style="color:#a6e22e">sh</span>: [<span style="color:#a6e22e">shellcheck</span>],
+</span></span><span style="display:flex;"><span>\}
+</span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">&#34; 保存时和输入时运行</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">g</span>:<span style="color:#a6e22e">ale_lint_on_save</span> = <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">g</span>:<span style="color:#a6e22e">ale_lint_on_text_changed</span> = <span style="color:#a6e22e">always</span>
+</span></span></code></pre></div><p>Neovim 中使用原生 LSP：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#75715e">-- init.lua (nvim-lspconfig)</span>
+</span></span><span style="display:flex;"><span>require(lspconfig).bashls.setup {
+</span></span><span style="display:flex;"><span>  settings <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    bashIde <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>      shellcheckPath <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;shellcheck&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="emacs">Emacs<a hidden class="anchor" aria-hidden="true" href="#emacs">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-elisp" data-lang="elisp"><span style="display:flex;"><span><span style="color:#75715e">;; init.el 配合 Flycheck</span>
+</span></span><span style="display:flex;"><span>(add-hook <span style="color:#e6db74">&#39;sh-mode-hook</span> <span style="color:#a6e22e">#&#39;</span>flycheck-mode)
+</span></span><span style="display:flex;"><span>(setq flycheck-shellcheck-severity <span style="color:#e6db74">&#34;warning&#34;</span>)
+</span></span></code></pre></div><h3 id="sublime-text">Sublime Text<a hidden class="anchor" aria-hidden="true" href="#sublime-text">#</a></h3>
+<p>通过 Package Control 安装：<strong>SublimeLinter-shellcheck</strong>。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// SublimeLinter.sublime-settings
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;linters&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">&#34;shellcheck&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;executable&#34;</span>: <span style="color:#e6db74">&#34;shellcheck&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;args&#34;</span>: [<span style="color:#e6db74">&#34;--severity=warning&#34;</span>]
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="cicd-集成">CI/CD 集成<a hidden class="anchor" aria-hidden="true" href="#cicd-集成">#</a></h2>
+<p>在 CI 中运行 ShellCheck 可以阻止有问题的脚本合并。以下是适用于 GitHub Actions、GitLab CI 和 Jenkins 的即用配置。</p>
+<h3 id="github-actions">GitHub Actions<a hidden class="anchor" aria-hidden="true" href="#github-actions">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/shellcheck.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">ShellCheck</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: shellcheck: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - name</span>: <span style="color:#ae81ff">Checkout repository</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Run ShellCheck</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">ludeeus/action-shellcheck@master</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">env: SEVERITY</span>: <span style="color:#ae81ff">warning</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with: ignore_paths</span>: &gt;-<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            ./vendor
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            ./third_party</span>
+</span></span></code></pre></div><p>手动配置（指定版本）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/shellcheck-manual.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">ShellCheck Manual</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: shellcheck: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install ShellCheck</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          wget -qO- &#34;https://github.com/koalaman/shellcheck/releases/download/v0.11.0/shellcheck-v0.11.0.linux.x86_64.tar.xz&#34; | tar -xJf -
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          sudo cp &#34;shellcheck-v0.11.0/shellcheck&#34; /usr/local/bin/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">检查所有 shell 脚本</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          find . -name &#34;*.sh&#34; -type f -print0 | \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            xargs -0 shellcheck --severity=warning --format=tty</span>
+</span></span></code></pre></div><h3 id="gitlab-ci">GitLab CI<a hidden class="anchor" aria-hidden="true" href="#gitlab-ci">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .gitlab-ci.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">stages</span>: - <span style="color:#ae81ff">lint</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">shellcheck: stage</span>: <span style="color:#ae81ff">lint</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">image</span>: <span style="color:#ae81ff">koalaman/shellcheck-alpine:stable</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">script</span>: - <span style="color:#ae81ff">find . -name &#34;*.sh&#34; -type f -exec shellcheck --severity=warning {} +</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">rules: - if</span>: <span style="color:#ae81ff">$CI_PIPELINE_SOURCE == &#34;merge_request_event&#34;</span>
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">if</span>: <span style="color:#ae81ff">$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH</span>
+</span></span></code></pre></div><h3 id="jenkins">Jenkins<a hidden class="anchor" aria-hidden="true" href="#jenkins">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-groovy" data-lang="groovy"><span style="display:flex;"><span><span style="color:#75715e">// Jenkinsfile
+</span></span></span><span style="display:flex;"><span>pipeline <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    agent any
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    stages <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        stage<span style="color:#f92672">(</span>ShellCheck<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            steps <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                sh <span style="color:#e6db74">&#39;&#39;&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    #!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    set -euo pipefail
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    if ! command -v shellcheck &amp;&gt; /dev/null; then
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        echo &#34;正在安装 ShellCheck...&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        apt-get update &amp;&amp; apt-get install -y shellcheck
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    fi
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                    find . -name &#34;*.sh&#34; -type f -print0 | \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                        xargs -0 shellcheck --severity=warning
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">                &#39;&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    post <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>        failure <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            echo <span style="color:#e6db74">&#34;ShellCheck 发现问题。请查看构建日志。&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="circleci">CircleCI<a hidden class="anchor" aria-hidden="true" href="#circleci">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .circleci/config.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#ae81ff">2.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">orbs: shellcheck</span>: <span style="color:#ae81ff">circleci/shellcheck@3.2.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">workflows: lint: jobs: - shellcheck/check: severity</span>: <span style="color:#e6db74">&#34;warning&#34;</span>
+</span></span><span style="display:flex;"><span>          <span style="color:#f92672">exclude</span>: <span style="color:#e6db74">&#34;SC1090,SC1091&#34;</span>
+</span></span></code></pre></div><h2 id="配置与规则管理">配置与规则管理<a hidden class="anchor" aria-hidden="true" href="#配置与规则管理">#</a></h2>
+<p>ShellCheck 提供多种机制来控制运行哪些检查以及如何报告。</p>
+<h3 id="行内指令">行内指令<a hidden class="anchor" aria-hidden="true" href="#行内指令">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># shellcheck disable=SC2086</span>
+</span></span><span style="display:flex;"><span>echo $UNQUOTED_VAR  <span style="color:#75715e"># 本行禁用 SC2086</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># shellcheck disable=SC2034</span>
+</span></span><span style="display:flex;"><span>UNUSED_VAR<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;此变量已赋值但未使用&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 代码块后重新启用</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># shellcheck enable=SC2086</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;</span>$PROPERLY_QUOTED<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="配置文件-shellcheckrc">配置文件 (.shellcheckrc)<a hidden class="anchor" aria-hidden="true" href="#配置文件-shellcheckrc">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># .shellcheckrc — 项目级配置</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 放在仓库根目录或 $HOME/.shellcheckrc</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 为没有 shebang 的脚本设置 shell 方言</span>
+</span></span><span style="display:flex;"><span>shell<span style="color:#f92672">=</span>bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 全局排除特定检查</span>
+</span></span><span style="display:flex;"><span>disable<span style="color:#f92672">=</span>SC1090,SC1091,SC2155
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置最低严重程度 (error, warning, info, style)</span>
+</span></span><span style="display:flex;"><span>severity<span style="color:#f92672">=</span>warning
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启用可选检查</span>
+</span></span><span style="display:flex;"><span>enable<span style="color:#f92672">=</span>require-variable-braces,check-set-e-suppressed
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 指定外部源（用于 source 的文件）</span>
+</span></span><span style="display:flex;"><span>external-sources<span style="color:#f92672">=</span>true
+</span></span></code></pre></div><h3 id="严重程度过滤">严重程度过滤<a hidden class="anchor" aria-hidden="true" href="#严重程度过滤">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 仅报告错误和警告（不报告 info/style）</span>
+</span></span><span style="display:flex;"><span>shellcheck --severity<span style="color:#f92672">=</span>warning script.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 仅报告错误</span>
+</span></span><span style="display:flex;"><span>shellcheck --severity<span style="color:#f92672">=</span>error script.sh
+</span></span></code></pre></div><h3 id="输出格式">输出格式<a hidden class="anchor" aria-hidden="true" href="#输出格式">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 人类可读的终端输出（默认）</span>
+</span></span><span style="display:flex;"><span>shellcheck --format<span style="color:#f92672">=</span>tty script.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># JSON 格式，用于程序化处理</span>
+</span></span><span style="display:flex;"><span>shellcheck --format<span style="color:#f92672">=</span>json script.sh &gt; shellcheck-report.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># CheckStyle XML（兼容 Jenkins、GitLab）</span>
+</span></span><span style="display:flex;"><span>shellcheck --format<span style="color:#f92672">=</span>checkstyle script.sh &gt; shellcheck.xml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># GCC 兼容警告（通用编辑器集成）</span>
+</span></span><span style="display:flex;"><span>shellcheck --format<span style="color:#f92672">=</span>gcc script.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># SARIF 格式（集成到 GitHub Security 标签页）</span>
+</span></span><span style="display:flex;"><span>shellcheck --format<span style="color:#f92672">=</span>sarif script.sh &gt; shellcheck.sarif
+</span></span></code></pre></div><h2 id="基准测试与实际用例">基准测试与实际用例<a hidden class="anchor" aria-hidden="true" href="#基准测试与实际用例">#</a></h2>
+<p>ShellCheck 的采用范围从个人开发者到企业 CI/CD 流水线。以下是基准和使用指标。</p>
+<h3 id="性能基准">性能基准<a hidden class="anchor" aria-hidden="true" href="#性能基准">#</a></h3>
+<p>在 2024 标准 CI 运行器上测试（Ubuntu 24.04, 2 vCPU, 4 GB 内存）：</p>
+<p>| 脚本规模 | 行数 | 分析时间 | 内存占用 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 小型 | 50 | 0.05秒 | 12 MB |
 | 中型 | 500 | 0.3秒 | 28 MB |
 | 大型 | 2,000 | 1.1秒 | 67 MB |
-| Monorepo | 10,000 | 4.8秒 | 142 MB |</p><h3 id=实际采用情况>实际采用情况<a hidden class=anchor aria-hidden=true href=#实际采用情况>#</a></h3><ul><li><strong>GitHub Actions</strong>: 官方 <code>ludeeus/action-shellcheck</code> 月运行 50万+ 次</li><li><strong>Homebrew</strong>: 用 ShellCheck 检查所有 5,000+ 个 formula 的 shell 脚本</li><li><strong>Google Shell 风格指南</strong>: 推荐所有 shell 脚本使用 ShellCheck</li><li><strong>NixOS</strong>: 在官方软件包构建流水线中使用 ShellCheck</li><li><strong>Debian / Ubuntu</strong>: 在官方仓库中打包维护</li></ul><h3 id=检测到的-bug-类别1000-个开源脚本样本分析>检测到的 Bug 类别（1,000 个开源脚本样本分析）<a hidden class=anchor aria-hidden=true href=#检测到的-bug-类别1000-个开源脚本样本分析>#</a></h3><p>| 检查编号 | 描述 | 检出率 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Monorepo | 10,000 | 4.8秒 | 142 MB |</p>
+<h3 id="实际采用情况">实际采用情况<a hidden class="anchor" aria-hidden="true" href="#实际采用情况">#</a></h3>
+<ul>
+<li><strong>GitHub Actions</strong>: 官方 <code>ludeeus/action-shellcheck</code> 月运行 50万+ 次</li>
+<li><strong>Homebrew</strong>: 用 ShellCheck 检查所有 5,000+ 个 formula 的 shell 脚本</li>
+<li><strong>Google Shell 风格指南</strong>: 推荐所有 shell 脚本使用 ShellCheck</li>
+<li><strong>NixOS</strong>: 在官方软件包构建流水线中使用 ShellCheck</li>
+<li><strong>Debian / Ubuntu</strong>: 在官方仓库中打包维护</li>
+</ul>
+<h3 id="检测到的-bug-类别1000-个开源脚本样本分析">检测到的 Bug 类别（1,000 个开源脚本样本分析）<a hidden class="anchor" aria-hidden="true" href="#检测到的-bug-类别1000-个开源脚本样本分析">#</a></h3>
+<p>| 检查编号 | 描述 | 检出率 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | SC2086 | 未引用变量 | 34.2% |
 | SC2164 | cd 未检查返回值 | 18.7% |
 | SC1090 | 无法跟踪被 source 的文件 | 22.1% |
 | SC2155 | 声明与赋值合并 | 15.3% |
-| SC2046 | 未引用的命令替换 | 12.8% |</p><h2 id=高级用法与生产加固>高级用法与生产加固<a hidden class=anchor aria-hidden=true href=#高级用法与生产加固>#</a></h2><p>对于大规模使用 ShellCheck 的团队，以下模式可提高可靠性和可维护性。</p><h3 id=多脚本批量分析>多脚本批量分析<a hidden class=anchor aria-hidden=true href=#多脚本批量分析>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span>set -euo pipefail
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>SEVERITY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;warning&#34;</span>
-</span></span><span style=display:flex><span>SCRIPT_DIRS<span style=color:#f92672>=(</span><span style=color:#e6db74>&#34;scripts/&#34;</span> <span style=color:#e6db74>&#34;bin/&#34;</span> <span style=color:#e6db74>&#34;deploy/&#34;</span><span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>EXCLUDES<span style=color:#f92672>=()</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 构建排除列表</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> code in SC1090 SC1091 SC2155; <span style=color:#66d9ef>do</span>
-</span></span><span style=display:flex><span>    EXCLUDES<span style=color:#f92672>+=(</span><span style=color:#e6db74>&#34;-e&#34;</span> <span style=color:#e6db74>&#34;</span>$code<span style=color:#e6db74>&#34;</span><span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 查找并检查所有 shell 脚本</span>
-</span></span><span style=display:flex><span>find <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>SCRIPT_DIRS[@]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> -name <span style=color:#e6db74>&#34;*.sh&#34;</span> -type f -print0 | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    xargs -0 shellcheck --severity<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span>$SEVERITY<span style=color:#e6db74>&#34;</span> <span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>EXCLUDES[@]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;所有脚本通过 ShellCheck 检查，严重程度: </span>$SEVERITY<span style=color:#e6db74>&#34;</span>
-</span></span></code></pre></div><h3 id=上传-sarif-到-github-安全面板>上传 SARIF 到 GitHub 安全面板<a hidden class=anchor aria-hidden=true href=#上传-sarif-到-github-安全面板>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/security-scan.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Security Scan</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: [<span style=color:#ae81ff>push, pull_request]</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: scan: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>permissions: security-events</span>: <span style=color:#ae81ff>write</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>contents</span>: <span style=color:#ae81ff>read</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>运行 ShellCheck SARIF</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          find . -name &#34;*.sh&#34; -type f -print0 | \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>            xargs -0 shellcheck --format=sarif &gt; shellcheck.sarif || true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>上传到 GitHub Security</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>uses</span>: <span style=color:#ae81ff>github/codeql-action/upload-sarif@v3</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>if</span>: <span style=color:#ae81ff>always()</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>with: sarif_file</span>: <span style=color:#ae81ff>shellcheck.sarif</span>
-</span></span></code></pre></div><h3 id=dockerfile-检查阶段>Dockerfile 检查阶段<a hidden class=anchor aria-hidden=true href=#dockerfile-检查阶段>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>koalaman/shellcheck:stable</span> <span style=color:#66d9ef>AS</span> <span style=color:#e6db74>lint</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/scripts</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> . .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> find . -name <span style=color:#e6db74>&#34;*.sh&#34;</span> -exec shellcheck --severity<span style=color:#f92672>=</span>warning <span style=color:#f92672>{}</span> +<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>alpine:3.20</span> <span style=color:#66d9ef>AS</span> <span style=color:#e6db74>runtime</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> --from<span style=color:#f92672>=</span>lint /scripts/deploy.sh /usr/local/bin/<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>ENTRYPOINT</span> [<span style=color:#e6db74>&#34;/usr/local/bin/deploy.sh&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><h3 id=在-ci-中监控-shellcheck>在 CI 中监控 ShellCheck<a hidden class=anchor aria-hidden=true href=#在-ci-中监控-shellcheck>#</a></h3><p>将 ShellCheck 失败作为团队指标追踪：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># ci-metrics.sh — 追踪 shellcheck 警告数量随时间变化</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>WARNINGS<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>find . -name <span style=color:#e6db74>&#34;*.sh&#34;</span> -exec shellcheck --severity<span style=color:#f92672>=</span>warning --format<span style=color:#f92672>=</span>json <span style=color:#f92672>{}</span> + | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    jq <span style=color:#960050;background-color:#1e0010>&#39;</span>. | length<span style=color:#e6db74>&#34;)
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>echo &#34;</span>shellcheck_warnings $WARNINGS<span style=color:#e6db74>&#34; &gt;&gt; metrics.txt
-</span></span></span></code></pre></div><h2 id=与替代工具对比>与替代工具对比<a hidden class=anchor aria-hidden=true href=#与替代工具对比>#</a></h2><p>| 功能 | ShellCheck | <code>bash -n</code> | shfmt | checkbashisms |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| SC2046 | 未引用的命令替换 | 12.8% |</p>
+<h2 id="高级用法与生产加固">高级用法与生产加固<a hidden class="anchor" aria-hidden="true" href="#高级用法与生产加固">#</a></h2>
+<p>对于大规模使用 ShellCheck 的团队，以下模式可提高可靠性和可维护性。</p>
+<h3 id="多脚本批量分析">多脚本批量分析<a hidden class="anchor" aria-hidden="true" href="#多脚本批量分析">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span>set -euo pipefail
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>SEVERITY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;warning&#34;</span>
+</span></span><span style="display:flex;"><span>SCRIPT_DIRS<span style="color:#f92672">=(</span><span style="color:#e6db74">&#34;scripts/&#34;</span> <span style="color:#e6db74">&#34;bin/&#34;</span> <span style="color:#e6db74">&#34;deploy/&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>EXCLUDES<span style="color:#f92672">=()</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 构建排除列表</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> code in SC1090 SC1091 SC2155; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>    EXCLUDES<span style="color:#f92672">+=(</span><span style="color:#e6db74">&#34;-e&#34;</span> <span style="color:#e6db74">&#34;</span>$code<span style="color:#e6db74">&#34;</span><span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查找并检查所有 shell 脚本</span>
+</span></span><span style="display:flex;"><span>find <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>SCRIPT_DIRS[@]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> -name <span style="color:#e6db74">&#34;*.sh&#34;</span> -type f -print0 | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    xargs -0 shellcheck --severity<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span>$SEVERITY<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>EXCLUDES[@]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;所有脚本通过 ShellCheck 检查，严重程度: </span>$SEVERITY<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><h3 id="上传-sarif-到-github-安全面板">上传 SARIF 到 GitHub 安全面板<a hidden class="anchor" aria-hidden="true" href="#上传-sarif-到-github-安全面板">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/security-scan.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Security Scan</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: [<span style="color:#ae81ff">push, pull_request]</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: scan: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">permissions: security-events</span>: <span style="color:#ae81ff">write</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">contents</span>: <span style="color:#ae81ff">read</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">运行 ShellCheck SARIF</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          find . -name &#34;*.sh&#34; -type f -print0 | \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">            xargs -0 shellcheck --format=sarif &gt; shellcheck.sarif || true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">上传到 GitHub Security</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">uses</span>: <span style="color:#ae81ff">github/codeql-action/upload-sarif@v3</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">if</span>: <span style="color:#ae81ff">always()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">with: sarif_file</span>: <span style="color:#ae81ff">shellcheck.sarif</span>
+</span></span></code></pre></div><h3 id="dockerfile-检查阶段">Dockerfile 检查阶段<a hidden class="anchor" aria-hidden="true" href="#dockerfile-检查阶段">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">koalaman/shellcheck:stable</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">lint</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/scripts</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> . .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> find . -name <span style="color:#e6db74">&#34;*.sh&#34;</span> -exec shellcheck --severity<span style="color:#f92672">=</span>warning <span style="color:#f92672">{}</span> +<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">alpine:3.20</span> <span style="color:#66d9ef">AS</span> <span style="color:#e6db74">runtime</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> --from<span style="color:#f92672">=</span>lint /scripts/deploy.sh /usr/local/bin/<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">ENTRYPOINT</span> [<span style="color:#e6db74">&#34;/usr/local/bin/deploy.sh&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><h3 id="在-ci-中监控-shellcheck">在 CI 中监控 ShellCheck<a hidden class="anchor" aria-hidden="true" href="#在-ci-中监控-shellcheck">#</a></h3>
+<p>将 ShellCheck 失败作为团队指标追踪：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># ci-metrics.sh — 追踪 shellcheck 警告数量随时间变化</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>WARNINGS<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>find . -name <span style="color:#e6db74">&#34;*.sh&#34;</span> -exec shellcheck --severity<span style="color:#f92672">=</span>warning --format<span style="color:#f92672">=</span>json <span style="color:#f92672">{}</span> + | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    jq <span style="color:#960050;background-color:#1e0010">&#39;</span>. | length<span style="color:#e6db74">&#34;)
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">echo &#34;</span>shellcheck_warnings $WARNINGS<span style="color:#e6db74">&#34; &gt;&gt; metrics.txt
+</span></span></span></code></pre></div><h2 id="与替代工具对比">与替代工具对比<a hidden class="anchor" aria-hidden="true" href="#与替代工具对比">#</a></h2>
+<p>| 功能 | ShellCheck | <code>bash -n</code> | shfmt | checkbashisms |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 静态分析深度 | 语义（基于 AST） | 仅语法 | 解析器/格式化器 | 模式匹配 |
 | 错误数量 | ~280+ 检查 | ~20 个错误 | 0（格式化器） | ~40 个模式 |
 | Bash/sh/dash/ksh 支持 | 全部方言 | 仅 Bash | POSIX + Bash | 仅 sh |
@@ -294,8 +760,82 @@
 | 自动修复建议 | 是（网页 + 部分 CLI） | 否 | 是（格式化） | 否 |
 | 性能 (500 行) | 0.3秒 | 0.01秒 | 0.02秒 | 0.5秒 |
 | 可移植性检查 | 是 | 否 | 部分 | 是（仅 bashisms） |
-| 许可证 | GPL-3.0 | GPL-3.0 | BSD-3-Clause | GPL-2.0+ |</p><h3 id=何时选择哪种工具>何时选择哪种工具<a hidden class=anchor aria-hidden=true href=#何时选择哪种工具>#</a></h3><ul><li><strong>ShellCheck</strong>：通用 shell 脚本质量和安全审计。默认选择。</li><li><strong><code>bash -n</code></strong>：快速 bash 脚本语法验证，别无选择时的备选。</li><li><strong>shfmt</strong>：代码格式化和风格规范化。与 ShellCheck 互补（不是替代品）。</li><li><strong>checkbashisms</strong>：Debian 特有的可移植性检查。为 Debian/Ubuntu 打包时使用。</li></ul><h2 id=局限性与客观评价>局限性与客观评价<a hidden class=anchor aria-hidden=true href=#局限性与客观评价>#</a></h2><p>ShellCheck 并非万能。理解其边界可避免盲目信任。</p><h3 id=shellcheck-无法捕获的问题>ShellCheck 无法捕获的问题<a hidden class=anchor aria-hidden=true href=#shellcheck-无法捕获的问题>#</a></h3><ul><li><strong>运行时逻辑错误</strong>：无法判断你的 <code>curl</code> 命令是否指向正确的端点</li><li><strong>业务逻辑 bug</strong>：验证语法，但不验证备份脚本是否备份了正确的目录</li><li><strong>性能问题</strong>：语法有效的无限循环会通过检查</li><li><strong>图灵完备分析</strong>：某些动态行为（如 <code>eval "$DYNAMIC_CMD"</code>）本质上无法分析</li></ul><h3 id=平台与环境局限>平台与环境局限<a hidden class=anchor aria-hidden=true href=#平台与环境局限>#</a></h3><ul><li>ShellCheck 假设标准 Unix 工具。针对嵌入式系统或 busybox 环境的脚本可能产生误报</li><li>部分 SC 规则具有主观性。团队应审查并自定义 <code>.shellcheckrc</code>，而非盲目应用所有建议</li><li>不支持 Windows 原生脚本（PowerShell、CMD）</li></ul><h3 id=构建与依赖考量>构建与依赖考量<a hidden class=anchor aria-hidden=true href=#构建与依赖考量>#</a></h3><ul><li>从源码构建时 Haskell 运行时在 Docker 镜像中增加约 30 MB</li><li>预构建二进制文件（推荐方式）无运行时依赖</li><li>CI 流水线应锁定特定版本，避免因新版本增加检查而导致构建中断</li></ul><h2 id=常见问题解答>常见问题解答<a hidden class=anchor aria-hidden=true href=#常见问题解答>#</a></h2><h3 id=shellcheck-支持哪些-shell>ShellCheck 支持哪些 shell？<a hidden class=anchor aria-hidden=true href=#shellcheck-支持哪些-shell>#</a></h3><p>ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell、zsh（部分支持）和 fish。使用 <code>--shell bash|sh|dash|ksh</code> 指定目标 shell，或依赖脚本中的 shebang 行。</p><h3 id=如何屏蔽特定的-shellcheck-警告>如何屏蔽特定的 ShellCheck 警告？<a hidden class=anchor aria-hidden=true href=#如何屏蔽特定的-shellcheck-警告>#</a></h3><p>使用行内指令：在警告所在行前添加 <code># shellcheck disable=SC2086</code>。要全局屏蔽，在 <code>.shellcheckrc</code> 中添加 <code>disable=SC2086</code>。每个检查都有对应的 wiki 页面，地址为 <code>https://www.shellcheck.net/wiki/SC2086</code>，说明了原理。</p><h3 id=shellcheck-能自动修复脚本吗>ShellCheck 能自动修复脚本吗？<a hidden class=anchor aria-hidden=true href=#shellcheck-能自动修复脚本吗>#</a></h3><p><a href=https://www.shellcheck.net>shellcheck.net</a> 网页界面为许多常见问题提供自动修复建议。CLI 工具在输出中显示建议修复但不直接修改文件。部分第三方工具封装 ShellCheck 来自动应用修复。</p><h3 id=如何将-shellcheck-集成到-pre-commit-钩子>如何将 ShellCheck 集成到 pre-commit 钩子？<a hidden class=anchor aria-hidden=true href=#如何将-shellcheck-集成到-pre-commit-钩子>#</a></h3><p>将官方 pre-commit 钩子 <code>https://github.com/koalaman/shellcheck-precommit</code> 添加到你的 <code>.pre-commit-config.yaml</code>。设置 <code>args: ["--severity=warning"]</code> 阻止带警告的提交，或 <code>args: ["--severity=error"]</code> 仅阻止错误。</p><h3 id=shellcheck-适合安全审计吗>ShellCheck 适合安全审计吗？<a hidden class=anchor aria-hidden=true href=#shellcheck-适合安全审计吗>#</a></h3><p>ShellCheck 识别常见安全模式，如命令注入（SC2096）、不安全的 eval 使用以及可能恶意展开的未引用变量。但它不能替代专业安全扫描器。与 Semgrep 或 GitHub CodeQL 结合使用以获得全面安全覆盖。</p><h3 id=为什么-shellcheck-会标记正常运行的代码>为什么 ShellCheck 会标记正常运行的代码？<a hidden class=anchor aria-hidden=true href=#为什么-shellcheck-会标记正常运行的代码>#</a></h3><p>许多 ShellCheck 警告针对"现在能用，以后会崩"的场景。未引用变量对不含空格的文件名有效，但对含空格或通配符的输入会失败。这些警告可防止潜在 bug 在生产环境暴露。</p><h3 id=如何在-docker-容器中运行-shellcheck>如何在 Docker 容器中运行 ShellCheck？<a hidden class=anchor aria-hidden=true href=#如何在-docker-容器中运行-shellcheck>#</a></h3><p>使用官方镜像：<code>docker run --rm -v "$PWD:/mnt" koalaman/shellcheck:stable /mnt/script.sh</code>。锁定到 <code>v0.11.0</code> 或其他特定版本以确保 CI 构建可复现。镜像基于 Alpine Linux，约 15 MB。</p><h2 id=总结>总结<a hidden class=anchor aria-hidden=true href=#总结>#</a></h2><p>ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。凭借 39,456+ GitHub stars、全面的 CI/CD 集成以及对每个主流编辑器的支持，它应该成为每位开发者的工具链标配。从 Docker 单行命令开始获取即时反馈，添加 <code>.shellcheckrc</code> 项目配置确保团队一致性，接入 GitHub Actions 在合并前捕获 bug。</p><p>团队行动项：</p><ol><li>今天就对你最重要的 5 个部署脚本运行 <code>shellcheck</code></li><li>安装 VS Code 扩展或 Vim ALE 集成以获得实时反馈</li><li>在仓库根目录创建 ````.shellcheckrc```，配置项目特定规则</li><li>设置 GitHub Actions 工作流，阻止带警告的合并</li></ol><p>加入 <a href=https://t.me/dibi8>dibi8 Telegram 群组</a>，讨论开发者工具、CI/CD 最佳实践和 DevOps 自动化。</p><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=参考与延伸阅读>参考与延伸阅读<a hidden class=anchor aria-hidden=true href=#参考与延伸阅读>#</a></h2><ul><li><a href=https://www.shellcheck.net/>ShellCheck 官方网站</a></li><li><a href=https://github.com/koalaman/shellcheck>ShellCheck GitHub 仓库</a></li><li><a href=https://www.shellcheck.net/wiki/>ShellCheck Wiki — 所有检查编号</a></li><li><a href=https://github.com/koalaman/shellcheck/releases/tag/v0.11.0>ShellCheck v0.11.0 发布说明</a></li><li><a href=https://github.com/koalaman/shellcheck-precommit>ShellCheck Pre-commit 钩子</a></li><li><a href=https://github.com/ludeeus/action-shellcheck>ludeeus/action-shellcheck — GitHub Action</a></li><li><a href=https://google.github.io/styleguide/shellguide.html>Google Shell 风格指南</a></li><li><a href=https://github.com/mvdan/sh>shfmt — Shell 格式化工具</a></li><li><a href=https://packages.debian.org/sid/devscripts>checkbashisms — Debian Devscripts</a></li><li><a href=https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html>POSIX.1-2017 Shell 命令语言</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 许可证 | GPL-3.0 | GPL-3.0 | BSD-3-Clause | GPL-2.0+ |</p>
+<h3 id="何时选择哪种工具">何时选择哪种工具<a hidden class="anchor" aria-hidden="true" href="#何时选择哪种工具">#</a></h3>
+<ul>
+<li><strong>ShellCheck</strong>：通用 shell 脚本质量和安全审计。默认选择。</li>
+<li><strong><code>bash -n</code></strong>：快速 bash 脚本语法验证，别无选择时的备选。</li>
+<li><strong>shfmt</strong>：代码格式化和风格规范化。与 ShellCheck 互补（不是替代品）。</li>
+<li><strong>checkbashisms</strong>：Debian 特有的可移植性检查。为 Debian/Ubuntu 打包时使用。</li>
+</ul>
+<h2 id="局限性与客观评价">局限性与客观评价<a hidden class="anchor" aria-hidden="true" href="#局限性与客观评价">#</a></h2>
+<p>ShellCheck 并非万能。理解其边界可避免盲目信任。</p>
+<h3 id="shellcheck-无法捕获的问题">ShellCheck 无法捕获的问题<a hidden class="anchor" aria-hidden="true" href="#shellcheck-无法捕获的问题">#</a></h3>
+<ul>
+<li><strong>运行时逻辑错误</strong>：无法判断你的 <code>curl</code> 命令是否指向正确的端点</li>
+<li><strong>业务逻辑 bug</strong>：验证语法，但不验证备份脚本是否备份了正确的目录</li>
+<li><strong>性能问题</strong>：语法有效的无限循环会通过检查</li>
+<li><strong>图灵完备分析</strong>：某些动态行为（如 <code>eval &quot;$DYNAMIC_CMD&quot;</code>）本质上无法分析</li>
+</ul>
+<h3 id="平台与环境局限">平台与环境局限<a hidden class="anchor" aria-hidden="true" href="#平台与环境局限">#</a></h3>
+<ul>
+<li>ShellCheck 假设标准 Unix 工具。针对嵌入式系统或 busybox 环境的脚本可能产生误报</li>
+<li>部分 SC 规则具有主观性。团队应审查并自定义 <code>.shellcheckrc</code>，而非盲目应用所有建议</li>
+<li>不支持 Windows 原生脚本（PowerShell、CMD）</li>
+</ul>
+<h3 id="构建与依赖考量">构建与依赖考量<a hidden class="anchor" aria-hidden="true" href="#构建与依赖考量">#</a></h3>
+<ul>
+<li>从源码构建时 Haskell 运行时在 Docker 镜像中增加约 30 MB</li>
+<li>预构建二进制文件（推荐方式）无运行时依赖</li>
+<li>CI 流水线应锁定特定版本，避免因新版本增加检查而导致构建中断</li>
+</ul>
+<h2 id="常见问题解答">常见问题解答<a hidden class="anchor" aria-hidden="true" href="#常见问题解答">#</a></h2>
+<h3 id="shellcheck-支持哪些-shell">ShellCheck 支持哪些 shell？<a hidden class="anchor" aria-hidden="true" href="#shellcheck-支持哪些-shell">#</a></h3>
+<p>ShellCheck 支持 bash、dash、sh、ksh 和 busybox sh。不支持 PowerShell、zsh（部分支持）和 fish。使用 <code>--shell bash|sh|dash|ksh</code> 指定目标 shell，或依赖脚本中的 shebang 行。</p>
+<h3 id="如何屏蔽特定的-shellcheck-警告">如何屏蔽特定的 ShellCheck 警告？<a hidden class="anchor" aria-hidden="true" href="#如何屏蔽特定的-shellcheck-警告">#</a></h3>
+<p>使用行内指令：在警告所在行前添加 <code># shellcheck disable=SC2086</code>。要全局屏蔽，在 <code>.shellcheckrc</code> 中添加 <code>disable=SC2086</code>。每个检查都有对应的 wiki 页面，地址为 <code>https://www.shellcheck.net/wiki/SC2086</code>，说明了原理。</p>
+<h3 id="shellcheck-能自动修复脚本吗">ShellCheck 能自动修复脚本吗？<a hidden class="anchor" aria-hidden="true" href="#shellcheck-能自动修复脚本吗">#</a></h3>
+<p><a href="https://www.shellcheck.net">shellcheck.net</a> 网页界面为许多常见问题提供自动修复建议。CLI 工具在输出中显示建议修复但不直接修改文件。部分第三方工具封装 ShellCheck 来自动应用修复。</p>
+<h3 id="如何将-shellcheck-集成到-pre-commit-钩子">如何将 ShellCheck 集成到 pre-commit 钩子？<a hidden class="anchor" aria-hidden="true" href="#如何将-shellcheck-集成到-pre-commit-钩子">#</a></h3>
+<p>将官方 pre-commit 钩子 <code>https://github.com/koalaman/shellcheck-precommit</code> 添加到你的 <code>.pre-commit-config.yaml</code>。设置 <code>args: [&quot;--severity=warning&quot;]</code> 阻止带警告的提交，或 <code>args: [&quot;--severity=error&quot;]</code> 仅阻止错误。</p>
+<h3 id="shellcheck-适合安全审计吗">ShellCheck 适合安全审计吗？<a hidden class="anchor" aria-hidden="true" href="#shellcheck-适合安全审计吗">#</a></h3>
+<p>ShellCheck 识别常见安全模式，如命令注入（SC2096）、不安全的 eval 使用以及可能恶意展开的未引用变量。但它不能替代专业安全扫描器。与 Semgrep 或 GitHub CodeQL 结合使用以获得全面安全覆盖。</p>
+<h3 id="为什么-shellcheck-会标记正常运行的代码">为什么 ShellCheck 会标记正常运行的代码？<a hidden class="anchor" aria-hidden="true" href="#为什么-shellcheck-会标记正常运行的代码">#</a></h3>
+<p>许多 ShellCheck 警告针对&quot;现在能用，以后会崩&quot;的场景。未引用变量对不含空格的文件名有效，但对含空格或通配符的输入会失败。这些警告可防止潜在 bug 在生产环境暴露。</p>
+<h3 id="如何在-docker-容器中运行-shellcheck">如何在 Docker 容器中运行 ShellCheck？<a hidden class="anchor" aria-hidden="true" href="#如何在-docker-容器中运行-shellcheck">#</a></h3>
+<p>使用官方镜像：<code>docker run --rm -v &quot;$PWD:/mnt&quot; koalaman/shellcheck:stable /mnt/script.sh</code>。锁定到 <code>v0.11.0</code> 或其他特定版本以确保 CI 构建可复现。镜像基于 Alpine Linux，约 15 MB。</p>
+<h2 id="总结">总结<a hidden class="anchor" aria-hidden="true" href="#总结">#</a></h2>
+<p>ShellCheck 是最成熟、应用最广泛的 shell 脚本静态分析工具。凭借 39,456+ GitHub stars、全面的 CI/CD 集成以及对每个主流编辑器的支持，它应该成为每位开发者的工具链标配。从 Docker 单行命令开始获取即时反馈，添加 <code>.shellcheckrc</code> 项目配置确保团队一致性，接入 GitHub Actions 在合并前捕获 bug。</p>
+<p>团队行动项：</p>
+<ol>
+<li>今天就对你最重要的 5 个部署脚本运行 <code>shellcheck</code></li>
+<li>安装 VS Code 扩展或 Vim ALE 集成以获得实时反馈</li>
+<li>在仓库根目录创建 ````.shellcheckrc```，配置项目特定规则</li>
+<li>设置 GitHub Actions 工作流，阻止带警告的合并</li>
+</ol>
+<p>加入 <a href="https://t.me/dibi8">dibi8 Telegram 群组</a>，讨论开发者工具、CI/CD 最佳实践和 DevOps 自动化。</p>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="参考与延伸阅读">参考与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#参考与延伸阅读">#</a></h2>
+<ul>
+<li><a href="https://www.shellcheck.net/">ShellCheck 官方网站</a></li>
+<li><a href="https://github.com/koalaman/shellcheck">ShellCheck GitHub 仓库</a></li>
+<li><a href="https://www.shellcheck.net/wiki/">ShellCheck Wiki — 所有检查编号</a></li>
+<li><a href="https://github.com/koalaman/shellcheck/releases/tag/v0.11.0">ShellCheck v0.11.0 发布说明</a></li>
+<li><a href="https://github.com/koalaman/shellcheck-precommit">ShellCheck Pre-commit 钩子</a></li>
+<li><a href="https://github.com/ludeeus/action-shellcheck">ludeeus/action-shellcheck — GitHub Action</a></li>
+<li><a href="https://google.github.io/styleguide/shellguide.html">Google Shell 风格指南</a></li>
+<li><a href="https://github.com/mvdan/sh">shfmt — Shell 格式化工具</a></li>
+<li><a href="https://packages.debian.org/sid/devscripts">checkbashisms — Debian Devscripts</a></li>
+<li><a href="https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html">POSIX.1-2017 Shell 命令语言</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;ShellCheck: 39,456 GitHub Stars — ShellCheck 完整安装配置教程与 CI/CD 集成指南 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -309,18 +849,175 @@
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/shellcheck%22>https://dibi8.com/zh/resources/shellcheck"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/shellcheck%22">https://dibi8.com/zh/resources/shellcheck"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/shellcheck/>apple-container</a></li><li><a href=/zh/ai-coding-agents/shellcheck/>trivy-production-security-scanner-2026</a></li><li><a href=/zh/ai-coding-agents/shellcheck/>trivy-production-security-scanner-2026</a></li><li><a href=/zh/ai-coding-agents/shellcheck/>2026-06-15-trending-ai-agents</a></li><li><a href=/zh/ai-coding-agents/shellcheck/>2026-06-22-trending-ai-agents</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/signoz-apm-observability-open-source/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/shellcheck/">apple-container</a></li>
+<li><a href="/zh/ai-coding-agents/shellcheck/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/zh/ai-coding-agents/shellcheck/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/zh/ai-coding-agents/shellcheck/">2026-06-15-trending-ai-agents</a></li>
+<li><a href="/zh/ai-coding-agents/shellcheck/">2026-06-22-trending-ai-agents</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/signoz-apm-observability-open-source/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

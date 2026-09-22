@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Engineering on Dibi8</title><link>https://dibi8.com/tags/engineering/</link><description>Recent content in Engineering on Dibi8</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/tags/engineering/index.xml" rel="self" type="application/rss+xml"/><item><title>mattpocock/skills: Bộ Kỹ Năng Chuẩn Cho Engineers 2026</title><link>https://dibi8.com/mattpocock-skills/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/mattpocock-skills/</guid><description>mattpocock/skills có 267.501 GitHub stars — cao nhất trong các bộ agent skills. Được tạo bởi Matt Pocock, chuyên gia TypeScript hàng đầu. Bộ kỹ năng thực chiến, không học thuật.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Engineering on Dibi8</title>
+    <link>https://dibi8.com/tags/engineering/</link>
+    <description>Recent content in Engineering on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/tags/engineering/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>mattpocock/skills: Bộ Kỹ Năng Chuẩn Cho Engineers 2026</title>
+      <link>https://dibi8.com/mattpocock-skills/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/mattpocock-skills/</guid>
+      <description>mattpocock/skills có 267.501 GitHub stars — cao nhất trong các bộ agent skills. Được tạo bởi Matt Pocock, chuyên gia TypeScript hàng đầu. Bộ kỹ năng thực chiến, không học thuật.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,101 +1,470 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/hermes-agent-self-improving-ai-agent/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/hermes-agent-self-improving-ai-agent/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/hermes-agent-self-improving-ai-agent/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nPython TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: “210.6 MB” file_md5: ’' download_url: https://github.com/NousResearch/hermes-agent backup_url: ’' last_maintained: “2026-05-16” draft: false aliases: /zh/posts/genericagent-self-evolving-ai-agent.zh/ /zh/posts/hermes-agent-self-improving-ai-agent/ faqs: - q: ‘Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工具有什么不同？’ a: ‘Hermes Agent 内置了自学习循环、跨会话的持久记忆，以及一套技能系统，这些都是那些工具所不具备的。它还能在 6 个消息平台上运行，支持 cron 定时调度和 MCP，并且开源、可自托管；而其他工具只局限于 CLI、桌面端或 IDE，且要收取订阅费或 API 费用。’ q: ‘Hermes Agent 的自我提升循环是如何运作的？’ a: ‘完成一项任务后，Hermes 会分析哪些做法有效、哪些无效，提取出可复用的模式，创建一个记录该方法的技能文件，在类似任务上测试这个技能，再根据结果加以优化。随着时间推移，这会构建出一个专属于该用户的个人技能库。’ q: ‘Hermes Agent 会在会话之间保留哪些类型的记忆？’ a: ‘Hermes 维护两类记忆：用户画像记忆（编码风格、项目、偏好的工具、沟通偏好以及常犯的错误）和会话记忆（当前项目上下文、最近的命令与输出，以及编辑过的文件）。即使在重启电脑之后，用户画像记忆依然会保留。’ q: ‘Hermes Agent 可以在哪些消息平台上运行？’ a: ‘Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 hermes gateway setup 命令进行配置。同一套命令和技能在每个平台上都能通用。’ q: ‘如何安装 Hermes Agent 并配置 LLM 提供商？’ a: ‘在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 ./setup-hermes.sh。随后你可以用类似 hermes config set provider openai 和 hermes config set model gpt-4o 的命令来设置提供商，或通过 hermes config set provider ollama 使用本地模型。’— {\u003c/* resource-info */\u003e}\n问题：大多数 AI 代理都把你忘了 你花了几个小时教 AI 助手你的工作流、编码风格、项目结构。然后你开启了一个新会话——一切都没了。这个代理每次都把你当成陌生人。\n这就是当今大多数 AI 代理的根本局限：没有记忆、没有学习、没有成长。它们按设计就是无状态的，这使它们成为强大的工具，但却是糟糕的长期合作伙伴。\nHermes Agent 用一个激进的方法解决了这个问题：它是唯一内置学习循环的代理。\n什么是 Hermes Agent？ Hermes Agent 是由 Nous Research 创建的Open Source AI 代理——正是打造了 Hermes Open Source大语言模型系列的同一个团队。它在 GitHub 上拥有 136,579+ 星标 和 20,960+ 复刻，是现存最受欢迎的 AI 代理框架之一。\n项目的标语说明了一切：“与你共同成长的代理。”\n与其他作为静态工具的代理不同，Hermes Agent：\n从经验中创建技能 —— 学习你的工作流并将它们保存为可复用的技能 在使用过程中改进技能 —— 基于反馈精炼其能力 跨会话持久化知识 —— 记住你是谁以及你喜欢什么 建立对你的深度模型 —— 你用得越多，它就越懂你 核心功能 1. 内置学习循环 Hermes Agent 的核心创新是其自我改进循环：\n经验 → 反思 → 技能创建 → 实践 → 改进 当你用 Hermes 完成任务时，它会：\n分析 什么有效、什么无效 提取 可复用的模式 创建 记录方法技能文件 测试 技能在类似任务上的表现 精炼 基于结果进行优化 随着时间的推移，这会创建一个专属于你的个人技能库。\n2. 40+ 内置工具 Hermes Agent 配备了全面的工具集：\n| 工具类别 | 示例 | | |\n| | 文件操作 | 读取、写入、搜索、差异对比、补丁 | | 终端 | 执行命令、Shell 会话、后台作业 | | 网页 | 浏览、抓取、下载、API 调用 | | 代码 | 语法检查、代码检查、格式化、测试 | | Git | 提交、分支、差异、日志、PR 审查 | | 系统 | 进程管理、文件监控、定时任务 |\n工具集系统让你只启用需要的工具，减少 Token 使用量并提高专注度。\n3. 技能系统（程序性记忆） 技能是 Hermes Agent 的秘密武器。它们是可复用的程序文件，捕获：\n触发条件 —— 何时使用此技能 分步说明 —— 该做什么 陷阱 —— 要避免的常见错误 验证步骤 —— 如何确认成功 示例技能结构：\n* * * name: \"hugo-blog-deploy\" trigger: \"deploy hugo blog\" steps: 1. \"Run hugo --minify --cleanDestinationDir\" 2. \"Verify build succeeded\" 3. \"Run deploy.sh\" 4. \"Check live site with curl\" pitfalls: - \"Future dates prevent building\" - \"Cloudflare cache may show stale content\" verification: - \"curl -s https://site.com | grep title\" 技能可以：\n自动创建 —— 从成功完成的任务中 从技能中心下载 —— 社区贡献的技能 手动编写 —— 针对你的特定工作流 与他人分享 4. 持久记忆 Hermes Agent 维护两种类型的记忆：\n用户档案记忆：\n你喜欢的编码风格 你参与的项目 你喜欢的工具 沟通偏好 你常犯的错误（这样它就能帮你避免） 会话记忆：\n当前项目上下文 最近的命令和输出 你一直在编辑的文件 本次会话的对话 这种记忆跨会话持久化，所以即使你重启电脑，Hermes 也记得你。\n5. 消息网关 Hermes Agent 不仅仅是一个 CLI 工具——它是一个多平台消息机器人：\n| 平台 | 设置 | 使用场景 | |\n|\n|\n| | Telegram | hermes gateway setup | 移动 AI 助手 | | Discord | hermes gateway setup | 团队协作 | | Slack | hermes gateway setup | 工作场所集成 | | WhatsApp | hermes gateway setup | 个人助手 | | Signal | hermes gateway setup | 注重隐私 | | Email | hermes gateway setup | 异步工作流 |\n配置完成后，你可以从任何这些平台与 Hermes 聊天，使用相同的命令和技能。\n6. MCP 集成 Hermes Agent 支持模型上下文协议（MCP），允许它连接到任何 MCP 服务器以获得扩展能力：\n数据库服务器 —— 查询 SQL 数据库 文件服务器 —— 访问远程文件系统 API 服务器 —— 与任何 REST API 交互 自定义服务器 —— 构建你自己的集成 这使 Hermes 具有无限的可扩展性——如果你能构建 MCP 服务器，Hermes 就能使用它。\n7. 定时任务调度 Hermes Agent 可以通过其内置的定时系统运行定时任务：\n# 每天早上 9 点运行一个技能 hermes cron add --skill \"daily-report\" --schedule \"0 9 * * *\" # 每周运行备份 hermes cron add --skill \"backup-database\" --schedule \"0 2 * * 0\" # 列出所有定时任务 hermes cron list 非常适合需要按计划运行的自动化工作流。\n8. 安全功能 Hermes Agent 认真对待安全：\n命令审批 —— 风险命令需要显式确认 私信配对 —— 敏感操作前验证你的身份 容器隔离 —— 在隔离环境中运行不受信任的代码 审计日志 —— 所有操作都被记录以供审查 快速开始 安装 # 一行命令安装（Linux、macOS、WSL2） curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash # 或者手动克隆并设置 git clone https://github.com/NousResearch/hermes-agent.git cd hermes-agent ./setup-hermes.sh 首次对话 source ~/.bashrc # 重新加载 Shell hermes # 开始聊天 配置提供商 # 设置你喜欢的 LLM 提供商 hermes config set provider openai hermes config set model gpt-4o # 或者使用本地模型 hermes config set provider ollama hermes config set model llama3.1 常用命令 # 开启全新对话 /new # 随时切换模型 /model anthropic:claude-3-5-sonnet # 设置个性 /personality developer # 检查使用情况 /usage # 浏览可用技能 /skills # 使用特定技能 /hugo-blog-deploy # 压缩上下文以节省 Token /compress 架构 Hermes Agent 采用模块化架构构建：\nHermes Agent ├── CLI 界面（终端 UI） ├── 消息网关（Telegram、Discord 等） ├── 代理核心（推理引擎） ├── 技能系统（程序性记忆） ├── 记忆存储（持久化存储） ├── 工具集管理器（40+ 工具） ├── MCP 客户端（外部集成） ├── 定时调度器（自动化任务） └── 安全层（审批、隔离） ```` 整个系统使用 **Python**（2800 万+ 行代码）编写，Web 界面使用 TypeScript 组件。 ## 使用场景 ### 对于开发者 - **代码审查助手** —— Hermes 学习你的代码库并审查 PR - **DevOps 自动化** —— 部署、监控和排查基础设施问题 - **文档编写器** —— 从代码注释自动生成文档 - **Bug 猎手** —— 搜索导致过去 Bug 的模式 ### 对于团队 - **共享技能库** —— 团队最佳实践作为可复用技能 - **入职加速器** —— 新团队成员即时访问团队知识 - **7×24 运营** —— 定时任务处理日常维护 - **多平台访问** —— 从 Slack、Discord 或 Telegram 与 Hermes 聊天 ### 对于高级用户 - **个人知识库** —— Hermes 记住你教它的一切 - **工作流自动化** —— 复杂的多步骤任务变成一个命令 - **跨平台助手** —— 桌面、移动端和 Web 上使用同一个助手 - **自定义集成** —— 为你的特定工具构建 MCP 服务器 ## 性能对比 | 功能 | Hermes Agent | Claude Code | Cursor | GitHub Copilot | | * * * | * * * | * * * | * * * | * * * | | **自我学习** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **持久记忆** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **技能系统** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **多平台** | ✅ 6 个平台 | ❌ 仅 CLI | ❌ 仅桌面端 | ❌ 仅 IDE | | **Open Source** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **定时调度** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **MCP 支持** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **免费层** | ✅ 自托管 | 💰 API 费用 | 💰 订阅 | 💰 订阅 | ## 局限性 - **学习曲线** —— 技能系统需要前期投入 - **本地设置** —— 自托管需要技术知识 - **资源使用** —— 持久记忆随时间消耗存储空间 - **提供商成本** —— LLM API 调用仍然花钱（除非使用本地模型） ## 结论 Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不是将 AI 视为一次性工具，而是将其视为**与你共同成长的长期合作伙伴**。 自我改进循环、持久记忆和技能系统创造了复利效应：你用 Hermes 越多，它就越有价值。这与传统 AI 工具随时间提供递减回报的情况正好相反。 如果你厌倦了每次会话都重新教你的 AI 助手同样的事情，Hermes Agent 值得探索。 **GitHub**: [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) **文档**: [hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs/) **星标**: 136,579+ | **复刻**: 20,960+ | **许可证**: Open Source 你尝试过 Hermes Agent 吗？你对自我改进的 AI 代理有什么体验？在评论中分享你的想法。 ## 相关文章 - [Agent Reach：让你的 AI Agent 一键连接互联网](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) - [Free Claude Code：不花一分钱，让顶级 AI 帮你写代码](/zh/resources/ai-tools/free-claude-code-open-source-proxy/) - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) * * * ## 推荐自托管基础设施 要 7×24 稳定跑这套，服务器选择很关键： - **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。 - **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hermes Agent：一个会自我进化的 AI 代理，越用越懂你\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/hermes-agent-self-improving-ai-agent\" } } ## Why This Matters Understanding hermes agent：一个会自我进化的 ai 代理，越用越懂你 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Hermes Agent：一个会自我进化的 AI 代理，越用越懂你 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ","wordCount":"1331","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/hermes-agent-self-improving-ai-agent/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/hermes-agent-self-improving-ai-agent/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/hermes-agent-self-improving-ai-agent/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e9%97%ae%e9%a2%98%e5%a4%a7%e5%a4%9a%e6%95%b0-ai-%e4%bb%a3%e7%90%86%e9%83%bd%e6%8a%8a%e4%bd%a0%e5%bf%98%e4%ba%86 aria-label="问题：大多数 AI 代理都把你忘了">问题：大多数 AI 代理都把你忘了</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-hermes-agent aria-label="什么是 Hermes Agent？">什么是 Hermes Agent？</a></li><li><a href=#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd aria-label=核心功能>核心功能</a><ul><li><a href=#1-%e5%86%85%e7%bd%ae%e5%ad%a6%e4%b9%a0%e5%be%aa%e7%8e%af aria-label="1. 内置学习循环">1. 内置学习循环</a></li><li><a href=#2-40-%e5%86%85%e7%bd%ae%e5%b7%a5%e5%85%b7 aria-label="2. 40+ 内置工具">2. 40+ 内置工具</a></li><li><a href=#3-%e6%8a%80%e8%83%bd%e7%b3%bb%e7%bb%9f%e7%a8%8b%e5%ba%8f%e6%80%a7%e8%ae%b0%e5%bf%86 aria-label="3. 技能系统（程序性记忆）">3. 技能系统（程序性记忆）</a></li><li><a href=#4-%e6%8c%81%e4%b9%85%e8%ae%b0%e5%bf%86 aria-label="4. 持久记忆">4. 持久记忆</a></li><li><a href=#5-%e6%b6%88%e6%81%af%e7%bd%91%e5%85%b3 aria-label="5. 消息网关">5. 消息网关</a></li><li><a href=#6-mcp-%e9%9b%86%e6%88%90 aria-label="6. MCP 集成">6. MCP 集成</a></li><li><a href=#7-%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1%e8%b0%83%e5%ba%a6 aria-label="7. 定时任务调度">7. 定时任务调度</a></li><li><a href=#8-%e5%ae%89%e5%85%a8%e5%8a%9f%e8%83%bd aria-label="8. 安全功能">8. 安全功能</a></li></ul></li><li><a href=#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b aria-label=快速开始>快速开始</a><ul><li><a href=#%e5%ae%89%e8%a3%85 aria-label=安装>安装</a></li><li><a href=#%e9%a6%96%e6%ac%a1%e5%af%b9%e8%af%9d aria-label=首次对话>首次对话</a></li><li><a href=#%e9%85%8d%e7%bd%ae%e6%8f%90%e4%be%9b%e5%95%86 aria-label=配置提供商>配置提供商</a></li><li><a href=#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4 aria-label=常用命令>常用命令</a></li></ul></li><li><a href=#%e6%9e%b6%e6%9e%84 aria-label=架构>架构</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/hermes-agent-self-improving-ai-agent/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/hermes-agent-self-improving-ai-agent/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/hermes-agent-self-improving-ai-agent/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nPython TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: “210.6 MB” file_md5: ’' download_url: https://github.com/NousResearch/hermes-agent backup_url: ’' last_maintained: “2026-05-16” draft: false aliases: /zh/posts/genericagent-self-evolving-ai-agent.zh/ /zh/posts/hermes-agent-self-improving-ai-agent/ faqs: - q: ‘Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工具有什么不同？’ a: ‘Hermes Agent 内置了自学习循环、跨会话的持久记忆，以及一套技能系统，这些都是那些工具所不具备的。它还能在 6 个消息平台上运行，支持 cron 定时调度和 MCP，并且开源、可自托管；而其他工具只局限于 CLI、桌面端或 IDE，且要收取订阅费或 API 费用。’ q: ‘Hermes Agent 的自我提升循环是如何运作的？’ a: ‘完成一项任务后，Hermes 会分析哪些做法有效、哪些无效，提取出可复用的模式，创建一个记录该方法的技能文件，在类似任务上测试这个技能，再根据结果加以优化。随着时间推移，这会构建出一个专属于该用户的个人技能库。’ q: ‘Hermes Agent 会在会话之间保留哪些类型的记忆？’ a: ‘Hermes 维护两类记忆：用户画像记忆（编码风格、项目、偏好的工具、沟通偏好以及常犯的错误）和会话记忆（当前项目上下文、最近的命令与输出，以及编辑过的文件）。即使在重启电脑之后，用户画像记忆依然会保留。’ q: ‘Hermes Agent 可以在哪些消息平台上运行？’ a: ‘Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 hermes gateway setup 命令进行配置。同一套命令和技能在每个平台上都能通用。’ q: ‘如何安装 Hermes Agent 并配置 LLM 提供商？’ a: ‘在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 ./setup-hermes.sh。随后你可以用类似 hermes config set provider openai 和 hermes config set model gpt-4o 的命令来设置提供商，或通过 hermes config set provider ollama 使用本地模型。’— {\u003c/* resource-info */\u003e}\n问题：大多数 AI 代理都把你忘了 你花了几个小时教 AI 助手你的工作流、编码风格、项目结构。然后你开启了一个新会话——一切都没了。这个代理每次都把你当成陌生人。\n这就是当今大多数 AI 代理的根本局限：没有记忆、没有学习、没有成长。它们按设计就是无状态的，这使它们成为强大的工具，但却是糟糕的长期合作伙伴。\nHermes Agent 用一个激进的方法解决了这个问题：它是唯一内置学习循环的代理。\n什么是 Hermes Agent？ Hermes Agent 是由 Nous Research 创建的Open Source AI 代理——正是打造了 Hermes Open Source大语言模型系列的同一个团队。它在 GitHub 上拥有 136,579+ 星标 和 20,960+ 复刻，是现存最受欢迎的 AI 代理框架之一。\n项目的标语说明了一切：“与你共同成长的代理。”\n与其他作为静态工具的代理不同，Hermes Agent：\n从经验中创建技能 —— 学习你的工作流并将它们保存为可复用的技能 在使用过程中改进技能 —— 基于反馈精炼其能力 跨会话持久化知识 —— 记住你是谁以及你喜欢什么 建立对你的深度模型 —— 你用得越多，它就越懂你 核心功能 1. 内置学习循环 Hermes Agent 的核心创新是其自我改进循环：\n经验 → 反思 → 技能创建 → 实践 → 改进 当你用 Hermes 完成任务时，它会：\n分析 什么有效、什么无效 提取 可复用的模式 创建 记录方法技能文件 测试 技能在类似任务上的表现 精炼 基于结果进行优化 随着时间的推移，这会创建一个专属于你的个人技能库。\n2. 40+ 内置工具 Hermes Agent 配备了全面的工具集：\n| 工具类别 | 示例 | | |\n| | 文件操作 | 读取、写入、搜索、差异对比、补丁 | | 终端 | 执行命令、Shell 会话、后台作业 | | 网页 | 浏览、抓取、下载、API 调用 | | 代码 | 语法检查、代码检查、格式化、测试 | | Git | 提交、分支、差异、日志、PR 审查 | | 系统 | 进程管理、文件监控、定时任务 |\n工具集系统让你只启用需要的工具，减少 Token 使用量并提高专注度。\n3. 技能系统（程序性记忆） 技能是 Hermes Agent 的秘密武器。它们是可复用的程序文件，捕获：\n触发条件 —— 何时使用此技能 分步说明 —— 该做什么 陷阱 —— 要避免的常见错误 验证步骤 —— 如何确认成功 示例技能结构：\n* * * name: \"hugo-blog-deploy\" trigger: \"deploy hugo blog\" steps: 1. \"Run hugo --minify --cleanDestinationDir\" 2. \"Verify build succeeded\" 3. \"Run deploy.sh\" 4. \"Check live site with curl\" pitfalls: - \"Future dates prevent building\" - \"Cloudflare cache may show stale content\" verification: - \"curl -s https://site.com | grep title\" 技能可以：\n自动创建 —— 从成功完成的任务中 从技能中心下载 —— 社区贡献的技能 手动编写 —— 针对你的特定工作流 与他人分享 4. 持久记忆 Hermes Agent 维护两种类型的记忆：\n用户档案记忆：\n你喜欢的编码风格 你参与的项目 你喜欢的工具 沟通偏好 你常犯的错误（这样它就能帮你避免） 会话记忆：\n当前项目上下文 最近的命令和输出 你一直在编辑的文件 本次会话的对话 这种记忆跨会话持久化，所以即使你重启电脑，Hermes 也记得你。\n5. 消息网关 Hermes Agent 不仅仅是一个 CLI 工具——它是一个多平台消息机器人：\n| 平台 | 设置 | 使用场景 | |\n|\n|\n| | Telegram | hermes gateway setup | 移动 AI 助手 | | Discord | hermes gateway setup | 团队协作 | | Slack | hermes gateway setup | 工作场所集成 | | WhatsApp | hermes gateway setup | 个人助手 | | Signal | hermes gateway setup | 注重隐私 | | Email | hermes gateway setup | 异步工作流 |\n配置完成后，你可以从任何这些平台与 Hermes 聊天，使用相同的命令和技能。\n6. MCP 集成 Hermes Agent 支持模型上下文协议（MCP），允许它连接到任何 MCP 服务器以获得扩展能力：\n数据库服务器 —— 查询 SQL 数据库 文件服务器 —— 访问远程文件系统 API 服务器 —— 与任何 REST API 交互 自定义服务器 —— 构建你自己的集成 这使 Hermes 具有无限的可扩展性——如果你能构建 MCP 服务器，Hermes 就能使用它。\n7. 定时任务调度 Hermes Agent 可以通过其内置的定时系统运行定时任务：\n# 每天早上 9 点运行一个技能 hermes cron add --skill \"daily-report\" --schedule \"0 9 * * *\" # 每周运行备份 hermes cron add --skill \"backup-database\" --schedule \"0 2 * * 0\" # 列出所有定时任务 hermes cron list 非常适合需要按计划运行的自动化工作流。\n8. 安全功能 Hermes Agent 认真对待安全：\n命令审批 —— 风险命令需要显式确认 私信配对 —— 敏感操作前验证你的身份 容器隔离 —— 在隔离环境中运行不受信任的代码 审计日志 —— 所有操作都被记录以供审查 快速开始 安装 # 一行命令安装（Linux、macOS、WSL2） curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash # 或者手动克隆并设置 git clone https://github.com/NousResearch/hermes-agent.git cd hermes-agent ./setup-hermes.sh 首次对话 source ~/.bashrc # 重新加载 Shell hermes # 开始聊天 配置提供商 # 设置你喜欢的 LLM 提供商 hermes config set provider openai hermes config set model gpt-4o # 或者使用本地模型 hermes config set provider ollama hermes config set model llama3.1 常用命令 # 开启全新对话 /new # 随时切换模型 /model anthropic:claude-3-5-sonnet # 设置个性 /personality developer # 检查使用情况 /usage # 浏览可用技能 /skills # 使用特定技能 /hugo-blog-deploy # 压缩上下文以节省 Token /compress 架构 Hermes Agent 采用模块化架构构建：\nHermes Agent ├── CLI 界面（终端 UI） ├── 消息网关（Telegram、Discord 等） ├── 代理核心（推理引擎） ├── 技能系统（程序性记忆） ├── 记忆存储（持久化存储） ├── 工具集管理器（40+ 工具） ├── MCP 客户端（外部集成） ├── 定时调度器（自动化任务） └── 安全层（审批、隔离） ```` 整个系统使用 **Python**（2800 万+ 行代码）编写，Web 界面使用 TypeScript 组件。 ## 使用场景 ### 对于开发者 - **代码审查助手** —— Hermes 学习你的代码库并审查 PR - **DevOps 自动化** —— 部署、监控和排查基础设施问题 - **文档编写器** —— 从代码注释自动生成文档 - **Bug 猎手** —— 搜索导致过去 Bug 的模式 ### 对于团队 - **共享技能库** —— 团队最佳实践作为可复用技能 - **入职加速器** —— 新团队成员即时访问团队知识 - **7×24 运营** —— 定时任务处理日常维护 - **多平台访问** —— 从 Slack、Discord 或 Telegram 与 Hermes 聊天 ### 对于高级用户 - **个人知识库** —— Hermes 记住你教它的一切 - **工作流自动化** —— 复杂的多步骤任务变成一个命令 - **跨平台助手** —— 桌面、移动端和 Web 上使用同一个助手 - **自定义集成** —— 为你的特定工具构建 MCP 服务器 ## 性能对比 | 功能 | Hermes Agent | Claude Code | Cursor | GitHub Copilot | | * * * | * * * | * * * | * * * | * * * | | **自我学习** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **持久记忆** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **技能系统** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **多平台** | ✅ 6 个平台 | ❌ 仅 CLI | ❌ 仅桌面端 | ❌ 仅 IDE | | **Open Source** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **定时调度** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **MCP 支持** | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | **免费层** | ✅ 自托管 | 💰 API 费用 | 💰 订阅 | 💰 订阅 | ## 局限性 - **学习曲线** —— 技能系统需要前期投入 - **本地设置** —— 自托管需要技术知识 - **资源使用** —— 持久记忆随时间消耗存储空间 - **提供商成本** —— LLM API 调用仍然花钱（除非使用本地模型） ## 结论 Hermes Agent 代表了我们对 AI 助手认知的**根本性转变**。它不是将 AI 视为一次性工具，而是将其视为**与你共同成长的长期合作伙伴**。 自我改进循环、持久记忆和技能系统创造了复利效应：你用 Hermes 越多，它就越有价值。这与传统 AI 工具随时间提供递减回报的情况正好相反。 如果你厌倦了每次会话都重新教你的 AI 助手同样的事情，Hermes Agent 值得探索。 **GitHub**: [NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent) **文档**: [hermes-agent.nousresearch.com/docs](https://hermes-agent.nousresearch.com/docs/) **星标**: 136,579+ | **复刻**: 20,960+ | **许可证**: Open Source 你尝试过 Hermes Agent 吗？你对自我改进的 AI 代理有什么体验？在评论中分享你的想法。 ## 相关文章 - [Agent Reach：让你的 AI Agent 一键连接互联网](/zh/resources/llm-frameworks/agent-reach-ai-agent-internet-access/) - [Free Claude Code：不花一分钱，让顶级 AI 帮你写代码](/zh/resources/ai-tools/free-claude-code-open-source-proxy/) - [OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活](/zh/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/) * * * ## 推荐自托管基础设施 要 7×24 稳定跑这套，服务器选择很关键： - **** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。 - **** — 香港 VPS，国内访问低延迟。**这就是 dibi8.com 自家所在的 IDC**，生产环境已验证。 *以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Hermes Agent：一个会自我进化的 AI 代理，越用越懂你\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/hermes-agent-self-improving-ai-agent\" } } ## Why This Matters Understanding hermes agent：一个会自我进化的 ai 代理，越用越懂你 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Hermes Agent：一个会自我进化的 AI 代理，越用越懂你 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ",
+  "wordCount" : "1331",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/hermes-agent-self-improving-ai-agent/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/hermes-agent-self-improving-ai-agent/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/hermes-agent-self-improving-ai-agent/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/hermes-agent-self-improving-ai-agent/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e5%a4%a7%e5%a4%9a%e6%95%b0-ai-%e4%bb%a3%e7%90%86%e9%83%bd%e6%8a%8a%e4%bd%a0%e5%bf%98%e4%ba%86" aria-label="问题：大多数 AI 代理都把你忘了">问题：大多数 AI 代理都把你忘了</a></li>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af-hermes-agent" aria-label="什么是 Hermes Agent？">什么是 Hermes Agent？</a></li>
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd" aria-label="核心功能">核心功能</a><ul>
+                    
+            <li>
+                <a href="#1-%e5%86%85%e7%bd%ae%e5%ad%a6%e4%b9%a0%e5%be%aa%e7%8e%af" aria-label="1. 内置学习循环">1. 内置学习循环</a></li>
+            <li>
+                <a href="#2-40-%e5%86%85%e7%bd%ae%e5%b7%a5%e5%85%b7" aria-label="2. 40&#43; 内置工具">2. 40+ 内置工具</a></li>
+            <li>
+                <a href="#3-%e6%8a%80%e8%83%bd%e7%b3%bb%e7%bb%9f%e7%a8%8b%e5%ba%8f%e6%80%a7%e8%ae%b0%e5%bf%86" aria-label="3. 技能系统（程序性记忆）">3. 技能系统（程序性记忆）</a></li>
+            <li>
+                <a href="#4-%e6%8c%81%e4%b9%85%e8%ae%b0%e5%bf%86" aria-label="4. 持久记忆">4. 持久记忆</a></li>
+            <li>
+                <a href="#5-%e6%b6%88%e6%81%af%e7%bd%91%e5%85%b3" aria-label="5. 消息网关">5. 消息网关</a></li>
+            <li>
+                <a href="#6-mcp-%e9%9b%86%e6%88%90" aria-label="6. MCP 集成">6. MCP 集成</a></li>
+            <li>
+                <a href="#7-%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1%e8%b0%83%e5%ba%a6" aria-label="7. 定时任务调度">7. 定时任务调度</a></li>
+            <li>
+                <a href="#8-%e5%ae%89%e5%85%a8%e5%8a%9f%e8%83%bd" aria-label="8. 安全功能">8. 安全功能</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b" aria-label="快速开始">快速开始</a><ul>
+                    
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85" aria-label="安装">安装</a></li>
+            <li>
+                <a href="#%e9%a6%96%e6%ac%a1%e5%af%b9%e8%af%9d" aria-label="首次对话">首次对话</a></li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e6%8f%90%e4%be%9b%e5%95%86" aria-label="配置提供商">配置提供商</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e7%94%a8%e5%91%bd%e4%bb%a4" aria-label="常用命令">常用命令</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%9e%b6%e6%9e%84" aria-label="架构">架构</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go</p><ul><li>Python</li><li>TypeScript
+tech_stack: - Go</p>
+<ul>
+<li>Python</li>
+<li>TypeScript
 application_domain: Llm Frameworks
 source_version: &rsquo;'
 licensing_model: Open Source
 license_type: MIT
 file_size: &ldquo;210.6 MB&rdquo;
 file_md5: &rsquo;'
-download_url: <a href=https://github.com/NousResearch/hermes-agent>https://github.com/NousResearch/hermes-agent</a>
+download_url: <a href="https://github.com/NousResearch/hermes-agent">https://github.com/NousResearch/hermes-agent</a>
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-16&rdquo;
 draft: false
-aliases:<ul><li>/zh/posts/genericagent-self-evolving-ai-agent.zh/</li></ul></li><li>/zh/posts/hermes-agent-self-improving-ai-agent/
+aliases:
+<ul>
+<li>/zh/posts/genericagent-self-evolving-ai-agent.zh/</li>
+</ul>
+</li>
+<li>/zh/posts/hermes-agent-self-improving-ai-agent/
 faqs: - q: &lsquo;Hermes Agent 与 Claude Code、Cursor 或 GitHub Copilot 这类工具有什么不同？&rsquo;
-a: &lsquo;Hermes Agent 内置了自学习循环、跨会话的持久记忆，以及一套技能系统，这些都是那些工具所不具备的。它还能在 6 个消息平台上运行，支持 cron 定时调度和 MCP，并且开源、可自托管；而其他工具只局限于 CLI、桌面端或 IDE，且要收取订阅费或 API 费用。&rsquo;<ul><li>q: &lsquo;Hermes Agent 的自我提升循环是如何运作的？&rsquo;
-a: &lsquo;完成一项任务后，Hermes 会分析哪些做法有效、哪些无效，提取出可复用的模式，创建一个记录该方法的技能文件，在类似任务上测试这个技能，再根据结果加以优化。随着时间推移，这会构建出一个专属于该用户的个人技能库。&rsquo;</li><li>q: &lsquo;Hermes Agent 会在会话之间保留哪些类型的记忆？&rsquo;
-a: &lsquo;Hermes 维护两类记忆：用户画像记忆（编码风格、项目、偏好的工具、沟通偏好以及常犯的错误）和会话记忆（当前项目上下文、最近的命令与输出，以及编辑过的文件）。即使在重启电脑之后，用户画像记忆依然会保留。&rsquo;</li><li>q: &lsquo;Hermes Agent 可以在哪些消息平台上运行？&rsquo;
-a: &lsquo;Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 <code>hermes gateway setup</code> 命令进行配置。同一套命令和技能在每个平台上都能通用。&rsquo;</li><li>q: &lsquo;如何安装 Hermes Agent 并配置 LLM 提供商？&rsquo;
-a: &lsquo;在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 <code>./setup-hermes.sh</code>。随后你可以用类似 <code>hermes config set provider openai</code> 和 <code>hermes config set model gpt-4o</code> 的命令来设置提供商，或通过 <code>hermes config set provider ollama</code> 使用本地模型。&rsquo;&mdash;</li></ul></li></ul><p>{&lt;/* resource-info */>}</p><h2 id=问题大多数-ai-代理都把你忘了>问题：大多数 AI 代理都把你忘了<a hidden class=anchor aria-hidden=true href=#问题大多数-ai-代理都把你忘了>#</a></h2><p>你花了几个小时教 AI 助手你的工作流、编码风格、项目结构。然后你开启了一个新会话——一切都没了。这个代理每次都把你当成陌生人。</p><p>这就是当今大多数 AI 代理的根本局限：<strong>没有记忆、没有学习、没有成长</strong>。它们按设计就是无状态的，这使它们成为强大的工具，但却是糟糕的长期合作伙伴。</p><p><strong>Hermes Agent</strong> 用一个激进的方法解决了这个问题：它是唯一内置学习循环的代理。</p><h2 id=什么是-hermes-agent>什么是 Hermes Agent？<a hidden class=anchor aria-hidden=true href=#什么是-hermes-agent>#</a></h2><p><a href=https://github.com/NousResearch/hermes-agent>Hermes Agent</a> 是由 <a href=https://nousresearch.com>Nous Research</a> 创建的Open Source AI 代理——正是打造了 Hermes Open Source大语言模型系列的同一个团队。它在 GitHub 上拥有 <strong>136,579+ 星标</strong> 和 <strong>20,960+ 复刻</strong>，是现存最受欢迎的 AI 代理框架之一。</p><p>项目的标语说明了一切：<strong>&ldquo;与你共同成长的代理。&rdquo;</strong></p><p>与其他作为静态工具的代理不同，Hermes Agent：</p><ul><li><strong>从经验中创建技能</strong> —— 学习你的工作流并将它们保存为可复用的技能</li><li><strong>在使用过程中改进技能</strong> —— 基于反馈精炼其能力</li><li><strong>跨会话持久化知识</strong> —— 记住你是谁以及你喜欢什么</li><li><strong>建立对你的深度模型</strong> —— 你用得越多，它就越懂你</li></ul><h2 id=核心功能>核心功能<a hidden class=anchor aria-hidden=true href=#核心功能>#</a></h2><h3 id=1-内置学习循环>1. 内置学习循环<a hidden class=anchor aria-hidden=true href=#1-内置学习循环>#</a></h3><p>Hermes Agent 的核心创新是其<strong>自我改进循环</strong>：</p><pre tabindex=0><code>经验 → 反思 → 技能创建 → 实践 → 改进
-</code></pre><p>当你用 Hermes 完成任务时，它会：</p><ol><li><strong>分析</strong> 什么有效、什么无效</li><li><strong>提取</strong> 可复用的模式</li><li><strong>创建</strong> 记录方法技能文件</li><li><strong>测试</strong> 技能在类似任务上的表现</li><li><strong>精炼</strong> 基于结果进行优化</li></ol><p>随着时间的推移，这会创建一个<strong>专属于你的个人技能库</strong>。</p><h3 id=2-40-内置工具>2. 40+ 内置工具<a hidden class=anchor aria-hidden=true href=#2-40-内置工具>#</a></h3><p>Hermes Agent 配备了全面的工具集：</p><h2 id=heading>| 工具类别 | 示例 |
-|</h2><p>|</p><hr><p>|
+a: &lsquo;Hermes Agent 内置了自学习循环、跨会话的持久记忆，以及一套技能系统，这些都是那些工具所不具备的。它还能在 6 个消息平台上运行，支持 cron 定时调度和 MCP，并且开源、可自托管；而其他工具只局限于 CLI、桌面端或 IDE，且要收取订阅费或 API 费用。&rsquo;
+<ul>
+<li>q: &lsquo;Hermes Agent 的自我提升循环是如何运作的？&rsquo;
+a: &lsquo;完成一项任务后，Hermes 会分析哪些做法有效、哪些无效，提取出可复用的模式，创建一个记录该方法的技能文件，在类似任务上测试这个技能，再根据结果加以优化。随着时间推移，这会构建出一个专属于该用户的个人技能库。&rsquo;</li>
+<li>q: &lsquo;Hermes Agent 会在会话之间保留哪些类型的记忆？&rsquo;
+a: &lsquo;Hermes 维护两类记忆：用户画像记忆（编码风格、项目、偏好的工具、沟通偏好以及常犯的错误）和会话记忆（当前项目上下文、最近的命令与输出，以及编辑过的文件）。即使在重启电脑之后，用户画像记忆依然会保留。&rsquo;</li>
+<li>q: &lsquo;Hermes Agent 可以在哪些消息平台上运行？&rsquo;
+a: &lsquo;Hermes Agent 可作为多平台消息机器人运行于 Telegram、Discord、Slack、WhatsApp、Signal 和 Email，全部通过 <code>hermes gateway setup</code> 命令进行配置。同一套命令和技能在每个平台上都能通用。&rsquo;</li>
+<li>q: &lsquo;如何安装 Hermes Agent 并配置 LLM 提供商？&rsquo;
+a: &lsquo;在 Linux、macOS 或 WSL2 上，你可以用一行 curl 脚本管道传给 bash 来安装，或者克隆代码仓库后运行 <code>./setup-hermes.sh</code>。随后你可以用类似 <code>hermes config set provider openai</code> 和 <code>hermes config set model gpt-4o</code> 的命令来设置提供商，或通过 <code>hermes config set provider ollama</code> 使用本地模型。&rsquo;&mdash;</li>
+</ul>
+</li>
+</ul>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="问题大多数-ai-代理都把你忘了">问题：大多数 AI 代理都把你忘了<a hidden class="anchor" aria-hidden="true" href="#问题大多数-ai-代理都把你忘了">#</a></h2>
+<p>你花了几个小时教 AI 助手你的工作流、编码风格、项目结构。然后你开启了一个新会话——一切都没了。这个代理每次都把你当成陌生人。</p>
+<p>这就是当今大多数 AI 代理的根本局限：<strong>没有记忆、没有学习、没有成长</strong>。它们按设计就是无状态的，这使它们成为强大的工具，但却是糟糕的长期合作伙伴。</p>
+<p><strong>Hermes Agent</strong> 用一个激进的方法解决了这个问题：它是唯一内置学习循环的代理。</p>
+<h2 id="什么是-hermes-agent">什么是 Hermes Agent？<a hidden class="anchor" aria-hidden="true" href="#什么是-hermes-agent">#</a></h2>
+<p><a href="https://github.com/NousResearch/hermes-agent">Hermes Agent</a> 是由 <a href="https://nousresearch.com">Nous Research</a> 创建的Open Source AI 代理——正是打造了 Hermes Open Source大语言模型系列的同一个团队。它在 GitHub 上拥有 <strong>136,579+ 星标</strong> 和 <strong>20,960+ 复刻</strong>，是现存最受欢迎的 AI 代理框架之一。</p>
+<p>项目的标语说明了一切：<strong>&ldquo;与你共同成长的代理。&rdquo;</strong></p>
+<p>与其他作为静态工具的代理不同，Hermes Agent：</p>
+<ul>
+<li><strong>从经验中创建技能</strong> —— 学习你的工作流并将它们保存为可复用的技能</li>
+<li><strong>在使用过程中改进技能</strong> —— 基于反馈精炼其能力</li>
+<li><strong>跨会话持久化知识</strong> —— 记住你是谁以及你喜欢什么</li>
+<li><strong>建立对你的深度模型</strong> —— 你用得越多，它就越懂你</li>
+</ul>
+<h2 id="核心功能">核心功能<a hidden class="anchor" aria-hidden="true" href="#核心功能">#</a></h2>
+<h3 id="1-内置学习循环">1. 内置学习循环<a hidden class="anchor" aria-hidden="true" href="#1-内置学习循环">#</a></h3>
+<p>Hermes Agent 的核心创新是其<strong>自我改进循环</strong>：</p>
+<pre tabindex="0"><code>经验 → 反思 → 技能创建 → 实践 → 改进
+</code></pre><p>当你用 Hermes 完成任务时，它会：</p>
+<ol>
+<li><strong>分析</strong> 什么有效、什么无效</li>
+<li><strong>提取</strong> 可复用的模式</li>
+<li><strong>创建</strong> 记录方法技能文件</li>
+<li><strong>测试</strong> 技能在类似任务上的表现</li>
+<li><strong>精炼</strong> 基于结果进行优化</li>
+</ol>
+<p>随着时间的推移，这会创建一个<strong>专属于你的个人技能库</strong>。</p>
+<h3 id="2-40-内置工具">2. 40+ 内置工具<a hidden class="anchor" aria-hidden="true" href="#2-40-内置工具">#</a></h3>
+<p>Hermes Agent 配备了全面的工具集：</p>
+<h2 id="heading">| 工具类别 | 示例 |
+|</h2>
+<p>|</p>
+<hr>
+<p>|
 | <strong>文件操作</strong> | 读取、写入、搜索、差异对比、补丁 |
 | <strong>终端</strong> | 执行命令、Shell 会话、后台作业 |
 | <strong>网页</strong> | 浏览、抓取、下载、API 调用 |
 | <strong>代码</strong> | 语法检查、代码检查、格式化、测试 |
 | <strong>Git</strong> | 提交、分支、差异、日志、PR 审查 |
-| <strong>系统</strong> | 进程管理、文件监控、定时任务 |</p><p><strong>工具集系统</strong>让你只启用需要的工具，减少 Token 使用量并提高专注度。</p><h3 id=3-技能系统程序性记忆>3. 技能系统（程序性记忆）<a hidden class=anchor aria-hidden=true href=#3-技能系统程序性记忆>#</a></h3><p>技能是 Hermes Agent 的秘密武器。它们是<strong>可复用的程序文件</strong>，捕获：</p><ul><li><strong>触发条件</strong> —— 何时使用此技能</li><li><strong>分步说明</strong> —— 该做什么</li><li><strong>陷阱</strong> —— 要避免的常见错误</li><li><strong>验证步骤</strong> —— 如何确认成功</li></ul><p>示例技能结构：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#e6db74>&#34;hugo-blog-deploy&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>trigger</span>: <span style=color:#e6db74>&#34;deploy hugo blog&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>steps</span>: <span style=color:#ae81ff>1</span><span style=color:#ae81ff>. &#34;Run hugo --minify --cleanDestinationDir&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>2</span><span style=color:#ae81ff>. &#34;Verify build succeeded&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>3</span><span style=color:#ae81ff>. &#34;Run deploy.sh&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#ae81ff>4</span><span style=color:#ae81ff>. &#34;Check live site with curl&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>pitfalls</span>: - <span style=color:#e6db74>&#34;Future dates prevent building&#34;</span>
-</span></span><span style=display:flex><span>  - <span style=color:#e6db74>&#34;Cloudflare cache may show stale content&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>verification</span>: - <span style=color:#e6db74>&#34;curl -s https://site.com | grep title&#34;</span>
-</span></span></code></pre></div><p>技能可以：</p><ul><li><strong>自动创建</strong> —— 从成功完成的任务中</li><li><strong>从技能中心下载</strong> —— 社区贡献的技能</li><li><strong>手动编写</strong> —— 针对你的特定工作流</li><li><strong>与他人分享</strong></li></ul><h3 id=4-持久记忆>4. 持久记忆<a hidden class=anchor aria-hidden=true href=#4-持久记忆>#</a></h3><p>Hermes Agent 维护<strong>两种类型的记忆</strong>：</p><p><strong>用户档案记忆</strong>：</p><ul><li>你喜欢的编码风格</li><li>你参与的项目</li><li>你喜欢的工具</li><li>沟通偏好</li><li>你常犯的错误（这样它就能帮你避免）</li></ul><p><strong>会话记忆</strong>：</p><ul><li>当前项目上下文</li><li>最近的命令和输出</li><li>你一直在编辑的文件</li><li>本次会话的对话</li></ul><p>这种记忆跨会话持久化，所以即使你重启电脑，Hermes <strong>也记得你</strong>。</p><h3 id=5-消息网关>5. 消息网关<a hidden class=anchor aria-hidden=true href=#5-消息网关>#</a></h3><p>Hermes Agent 不仅仅是一个 CLI 工具——它是一个<strong>多平台消息机器人</strong>：</p><p>| 平台 | 设置 | 使用场景 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>系统</strong> | 进程管理、文件监控、定时任务 |</p>
+<p><strong>工具集系统</strong>让你只启用需要的工具，减少 Token 使用量并提高专注度。</p>
+<h3 id="3-技能系统程序性记忆">3. 技能系统（程序性记忆）<a hidden class="anchor" aria-hidden="true" href="#3-技能系统程序性记忆">#</a></h3>
+<p>技能是 Hermes Agent 的秘密武器。它们是<strong>可复用的程序文件</strong>，捕获：</p>
+<ul>
+<li><strong>触发条件</strong> —— 何时使用此技能</li>
+<li><strong>分步说明</strong> —— 该做什么</li>
+<li><strong>陷阱</strong> —— 要避免的常见错误</li>
+<li><strong>验证步骤</strong> —— 如何确认成功</li>
+</ul>
+<p>示例技能结构：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#e6db74">&#34;hugo-blog-deploy&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">trigger</span>: <span style="color:#e6db74">&#34;deploy hugo blog&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">steps</span>: <span style="color:#ae81ff">1</span><span style="color:#ae81ff">. &#34;Run hugo --minify --cleanDestinationDir&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">2</span><span style="color:#ae81ff">. &#34;Verify build succeeded&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">3</span><span style="color:#ae81ff">. &#34;Run deploy.sh&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#ae81ff">4</span><span style="color:#ae81ff">. &#34;Check live site with curl&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">pitfalls</span>: - <span style="color:#e6db74">&#34;Future dates prevent building&#34;</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#e6db74">&#34;Cloudflare cache may show stale content&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">verification</span>: - <span style="color:#e6db74">&#34;curl -s https://site.com | grep title&#34;</span>
+</span></span></code></pre></div><p>技能可以：</p>
+<ul>
+<li><strong>自动创建</strong> —— 从成功完成的任务中</li>
+<li><strong>从技能中心下载</strong> —— 社区贡献的技能</li>
+<li><strong>手动编写</strong> —— 针对你的特定工作流</li>
+<li><strong>与他人分享</strong></li>
+</ul>
+<h3 id="4-持久记忆">4. 持久记忆<a hidden class="anchor" aria-hidden="true" href="#4-持久记忆">#</a></h3>
+<p>Hermes Agent 维护<strong>两种类型的记忆</strong>：</p>
+<p><strong>用户档案记忆</strong>：</p>
+<ul>
+<li>你喜欢的编码风格</li>
+<li>你参与的项目</li>
+<li>你喜欢的工具</li>
+<li>沟通偏好</li>
+<li>你常犯的错误（这样它就能帮你避免）</li>
+</ul>
+<p><strong>会话记忆</strong>：</p>
+<ul>
+<li>当前项目上下文</li>
+<li>最近的命令和输出</li>
+<li>你一直在编辑的文件</li>
+<li>本次会话的对话</li>
+</ul>
+<p>这种记忆跨会话持久化，所以即使你重启电脑，Hermes <strong>也记得你</strong>。</p>
+<h3 id="5-消息网关">5. 消息网关<a hidden class="anchor" aria-hidden="true" href="#5-消息网关">#</a></h3>
+<p>Hermes Agent 不仅仅是一个 CLI 工具——它是一个<strong>多平台消息机器人</strong>：</p>
+<p>| 平台 | 设置 | 使用场景 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Telegram</strong> | <code>hermes gateway setup</code> | 移动 AI 助手 |
 | <strong>Discord</strong> | <code>hermes gateway setup</code> | 团队协作 |
 | <strong>Slack</strong> | <code>hermes gateway setup</code> | 工作场所集成 |
 | <strong>WhatsApp</strong> | <code>hermes gateway setup</code> | 个人助手 |
 | <strong>Signal</strong> | <code>hermes gateway setup</code> | 注重隐私 |
-| <strong>Email</strong> | <code>hermes gateway setup</code> | 异步工作流 |</p><p>配置完成后，你可以从任何这些平台与 Hermes 聊天，使用相同的命令和技能。</p><h3 id=6-mcp-集成>6. MCP 集成<a hidden class=anchor aria-hidden=true href=#6-mcp-集成>#</a></h3><p>Hermes Agent 支持<strong>模型上下文协议（MCP）</strong>，允许它连接到任何 MCP 服务器以获得扩展能力：</p><ul><li><strong>数据库服务器</strong> —— 查询 SQL 数据库</li><li><strong>文件服务器</strong> —— 访问远程文件系统</li><li><strong>API 服务器</strong> —— 与任何 REST API 交互</li><li><strong>自定义服务器</strong> —— 构建你自己的集成</li></ul><p>这使 Hermes 具有无限的可扩展性——如果你能构建 MCP 服务器，Hermes 就能使用它。</p><h3 id=7-定时任务调度>7. 定时任务调度<a hidden class=anchor aria-hidden=true href=#7-定时任务调度>#</a></h3><p>Hermes Agent 可以通过其内置的定时系统运行<strong>定时任务</strong>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 每天早上 9 点运行一个技能</span>
-</span></span><span style=display:flex><span>hermes cron add --skill <span style=color:#e6db74>&#34;daily-report&#34;</span> --schedule <span style=color:#e6db74>&#34;0 9 * * *&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 每周运行备份</span>
-</span></span><span style=display:flex><span>hermes cron add --skill <span style=color:#e6db74>&#34;backup-database&#34;</span> --schedule <span style=color:#e6db74>&#34;0 2 * * 0&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 列出所有定时任务</span>
-</span></span><span style=display:flex><span>hermes cron list
-</span></span></code></pre></div><p>非常适合需要按计划运行的自动化工作流。</p><h3 id=8-安全功能>8. 安全功能<a hidden class=anchor aria-hidden=true href=#8-安全功能>#</a></h3><p>Hermes Agent 认真对待安全：</p><ul><li><strong>命令审批</strong> —— 风险命令需要显式确认</li><li><strong>私信配对</strong> —— 敏感操作前验证你的身份</li><li><strong>容器隔离</strong> —— 在隔离环境中运行不受信任的代码</li><li><strong>审计日志</strong> —— 所有操作都被记录以供审查</li></ul><h2 id=快速开始>快速开始<a hidden class=anchor aria-hidden=true href=#快速开始>#</a></h2><h3 id=安装>安装<a hidden class=anchor aria-hidden=true href=#安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 一行命令安装（Linux、macOS、WSL2）</span>
-</span></span><span style=display:flex><span>curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或者手动克隆并设置</span>
-</span></span><span style=display:flex><span>git clone https://github.com/NousResearch/hermes-agent.git
-</span></span><span style=display:flex><span>cd hermes-agent
-</span></span><span style=display:flex><span>./setup-hermes.sh
-</span></span></code></pre></div><h3 id=首次对话>首次对话<a hidden class=anchor aria-hidden=true href=#首次对话>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>source ~/.bashrc    <span style=color:#75715e># 重新加载 Shell</span>
-</span></span><span style=display:flex><span>hermes              <span style=color:#75715e># 开始聊天</span>
-</span></span></code></pre></div><h3 id=配置提供商>配置提供商<a hidden class=anchor aria-hidden=true href=#配置提供商>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 设置你喜欢的 LLM 提供商</span>
-</span></span><span style=display:flex><span>hermes config set provider openai
-</span></span><span style=display:flex><span>hermes config set model gpt-4o
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或者使用本地模型</span>
-</span></span><span style=display:flex><span>hermes config set provider ollama
-</span></span><span style=display:flex><span>hermes config set model llama3.1
-</span></span></code></pre></div><h3 id=常用命令>常用命令<a hidden class=anchor aria-hidden=true href=#常用命令>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 开启全新对话</span>
-</span></span><span style=display:flex><span>/new
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 随时切换模型</span>
-</span></span><span style=display:flex><span>/model anthropic:claude-3-5-sonnet
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 设置个性</span>
-</span></span><span style=display:flex><span>/personality developer
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查使用情况</span>
-</span></span><span style=display:flex><span>/usage
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 浏览可用技能</span>
-</span></span><span style=display:flex><span>/skills
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用特定技能</span>
-</span></span><span style=display:flex><span>/hugo-blog-deploy
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 压缩上下文以节省 Token</span>
-</span></span><span style=display:flex><span>/compress
-</span></span></code></pre></div><h2 id=架构>架构<a hidden class=anchor aria-hidden=true href=#架构>#</a></h2><p>Hermes Agent 采用模块化架构构建：</p><pre tabindex=0><code>Hermes Agent
+| <strong>Email</strong> | <code>hermes gateway setup</code> | 异步工作流 |</p>
+<p>配置完成后，你可以从任何这些平台与 Hermes 聊天，使用相同的命令和技能。</p>
+<h3 id="6-mcp-集成">6. MCP 集成<a hidden class="anchor" aria-hidden="true" href="#6-mcp-集成">#</a></h3>
+<p>Hermes Agent 支持<strong>模型上下文协议（MCP）</strong>，允许它连接到任何 MCP 服务器以获得扩展能力：</p>
+<ul>
+<li><strong>数据库服务器</strong> —— 查询 SQL 数据库</li>
+<li><strong>文件服务器</strong> —— 访问远程文件系统</li>
+<li><strong>API 服务器</strong> —— 与任何 REST API 交互</li>
+<li><strong>自定义服务器</strong> —— 构建你自己的集成</li>
+</ul>
+<p>这使 Hermes 具有无限的可扩展性——如果你能构建 MCP 服务器，Hermes 就能使用它。</p>
+<h3 id="7-定时任务调度">7. 定时任务调度<a hidden class="anchor" aria-hidden="true" href="#7-定时任务调度">#</a></h3>
+<p>Hermes Agent 可以通过其内置的定时系统运行<strong>定时任务</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 每天早上 9 点运行一个技能</span>
+</span></span><span style="display:flex;"><span>hermes cron add --skill <span style="color:#e6db74">&#34;daily-report&#34;</span> --schedule <span style="color:#e6db74">&#34;0 9 * * *&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 每周运行备份</span>
+</span></span><span style="display:flex;"><span>hermes cron add --skill <span style="color:#e6db74">&#34;backup-database&#34;</span> --schedule <span style="color:#e6db74">&#34;0 2 * * 0&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 列出所有定时任务</span>
+</span></span><span style="display:flex;"><span>hermes cron list
+</span></span></code></pre></div><p>非常适合需要按计划运行的自动化工作流。</p>
+<h3 id="8-安全功能">8. 安全功能<a hidden class="anchor" aria-hidden="true" href="#8-安全功能">#</a></h3>
+<p>Hermes Agent 认真对待安全：</p>
+<ul>
+<li><strong>命令审批</strong> —— 风险命令需要显式确认</li>
+<li><strong>私信配对</strong> —— 敏感操作前验证你的身份</li>
+<li><strong>容器隔离</strong> —— 在隔离环境中运行不受信任的代码</li>
+<li><strong>审计日志</strong> —— 所有操作都被记录以供审查</li>
+</ul>
+<h2 id="快速开始">快速开始<a hidden class="anchor" aria-hidden="true" href="#快速开始">#</a></h2>
+<h3 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 一行命令安装（Linux、macOS、WSL2）</span>
+</span></span><span style="display:flex;"><span>curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者手动克隆并设置</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/NousResearch/hermes-agent.git
+</span></span><span style="display:flex;"><span>cd hermes-agent
+</span></span><span style="display:flex;"><span>./setup-hermes.sh
+</span></span></code></pre></div><h3 id="首次对话">首次对话<a hidden class="anchor" aria-hidden="true" href="#首次对话">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>source ~/.bashrc    <span style="color:#75715e"># 重新加载 Shell</span>
+</span></span><span style="display:flex;"><span>hermes              <span style="color:#75715e"># 开始聊天</span>
+</span></span></code></pre></div><h3 id="配置提供商">配置提供商<a hidden class="anchor" aria-hidden="true" href="#配置提供商">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 设置你喜欢的 LLM 提供商</span>
+</span></span><span style="display:flex;"><span>hermes config set provider openai
+</span></span><span style="display:flex;"><span>hermes config set model gpt-4o
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者使用本地模型</span>
+</span></span><span style="display:flex;"><span>hermes config set provider ollama
+</span></span><span style="display:flex;"><span>hermes config set model llama3.1
+</span></span></code></pre></div><h3 id="常用命令">常用命令<a hidden class="anchor" aria-hidden="true" href="#常用命令">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 开启全新对话</span>
+</span></span><span style="display:flex;"><span>/new
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 随时切换模型</span>
+</span></span><span style="display:flex;"><span>/model anthropic:claude-3-5-sonnet
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 设置个性</span>
+</span></span><span style="display:flex;"><span>/personality developer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查使用情况</span>
+</span></span><span style="display:flex;"><span>/usage
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 浏览可用技能</span>
+</span></span><span style="display:flex;"><span>/skills
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用特定技能</span>
+</span></span><span style="display:flex;"><span>/hugo-blog-deploy
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 压缩上下文以节省 Token</span>
+</span></span><span style="display:flex;"><span>/compress
+</span></span></code></pre></div><h2 id="架构">架构<a hidden class="anchor" aria-hidden="true" href="#架构">#</a></h2>
+<p>Hermes Agent 采用模块化架构构建：</p>
+<pre tabindex="0"><code>Hermes Agent
 ├── CLI 界面（终端 UI）
 ├── 消息网关（Telegram、Discord 等）
 ├── 代理核心（推理引擎）
@@ -299,11 +668,155 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 | **License** | Proprietary | Commercial | Apache 2.0 | MIT |
 | **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
 | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/hello-agents-ai-agent-building-tutorial/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/hkuds-ai-trader/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/hello-agents-ai-agent-building-tutorial/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/hkuds-ai-trader/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

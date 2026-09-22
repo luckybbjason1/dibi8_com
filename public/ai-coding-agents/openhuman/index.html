@@ -1,29 +1,344 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/openhuman/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/openhuman/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/openhuman/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/openhuman/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/openhuman/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/openhuman/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026 You’ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That’s the cold start problem every AI assistant faces.\nOpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here’s what actually matters: it remembers you.\nThe Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.\nThis is not ChatGPT Desktop with a better UI. It’s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.\nWhat Is OpenHuman? OpenHuman is an open-source agentic assistant designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a desktop application with: - Memory Tree: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud\nModel routing: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover 118+ integrations: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management TokenJuice: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy The project started in February 2026 and has already accumulated 31,869 GitHub stars and 3,089 forks. It’s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.\n# OpenHuman config — Memory Tree location # All data stays on your machine by default memory: vault_path: ~/.openhuman/vault sync_mode: local # or \"managed\" for optional cloud sync model_default: gpt-4o model_fallback: claude-sonnet-4 token_compression: true How OpenHuman Works OpenHuman follows a local-first architecture with optional managed services: ````` ┌─────────────────────────────────────────────┐ │ OpenHuman Desktop App │ ├─────────────┬──────────────┬────────────────┤ │ Memory Tree│ Model │ Integrations │ │ (Local │ Routing │ (118+ via │ │ Obsidian │ (50+ models │ OAuth) │ │ Vault) │ layered) │ │ ├─────────────┴──────────────┴────────────────┤ │ TokenJuice (60-95% token compression) │ ├─────────────────────────────────────────────┤ │ Local Runtime (Rust-based, \u003c50MB RAM) │ └─────────────────────────────────────────────┘\nThe **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn't search your chat history — it reads your Memory Tree, which already has structured context about that project. The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless. `````bash # Check your Memory Tree size and structure # All data is plain Markdown — grep, ripgrep, Obsidian all work find ~/.openhuman/vault -name '*.md' | wc -l # Example: 847 markdown files across 12 project directories # View Memory Tree index cat ~/.openhuman/vault/_index.md # Contains auto-generated cross-references between memories Installation \u0026 Setup OpenHuman is a desktop application distributed through native package managers — no npm, no pip, no Docker. This is a Tauri-based app with official packages for macOS, Linux, and Windows.\nmacOS (Homebrew) — Recommended # Tap the official repo and install brew tap tinyhumansai/core brew install openhuman # Verify installation openhuman --version # Output: OpenHuman v0.12.x (build date, Rust backend) # Launch from terminal or Spotlight openhuman Linux (Debian/Ubuntu) — Official APT Repo # Add GPG key and APT repository sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \\ | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg echo \"deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \\ https://tinyhumansai.github.io/openhuman/apt stable main\" \\ | sudo tee /etc/apt/sources.list.d/openhuman.list sudo apt-get update sudo apt-get install -y openhuman # Verify openhuman --version Linux (Arch Linux — AUR) # The openhuman-bin AUR recipe is in the repo itself # Once published to AUR: yay -S openhuman-bin Windows Download the MSI installer from the GitHub Releases page or from tinyhumans.ai. The installer includes automatic updates via the built-in updater.\n# After installing, verify from PowerShell openhuman --version Important: OpenHuman is currently in early beta. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.\nIntegration with Mainstream Tools OpenHuman’s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman’s managed layer and get access to a unified API.\nGitHub Integration # Configure GitHub integration # OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes openhuman configure github --repo tinyhumansai/openhuman # After setup, ask OpenHuman about any file in the repo # \"What does the Memory Tree indexer do?\" # → OpenHuman reads the repo structure from its local cache # and gives you a precise answer, no web search needed Obsidian Compatibility Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash\nOpen your Memory Tree in Obsidian All your AI conversation history is already there as notes You can search, link, and organize just like regular notes Verify vault structure tree ~/.openhuman/vault –dirsfirst\nOutput: # .openhuman/vault/ ├── _index.md ├── projects/ │ ├── project-alpha/ │ │ ├── context.md │ │ ├── decisions.md │ │ └── references.md └── workflows/ ├── coding-patterns.md └── design-decisions.md ### Composio Connector Layer Composio provides the OAuth-based integration framework: `````bash # List available Composio connectors openhuman integrations list # Enable a new connector openhuman integrations enable notion --scope write # Check active connectors openhuman integrations status # Output: 23/118 connectors active # GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗ Model Routing with Multiple Providers # Configure preferred model order openhuman config models \\ --primary gpt-4o \\ --fallback claude-sonnet-4 \\ --economy claude-haiku \\ --local ollama/llama3.2 # TokenJuice compression ratio example # Without compression: 8,420 tokens # With TokenJuice: 1,890 tokens (77.5% reduction) # Accuracy impact: \u003c2% on benchmark tests Benchmarks \u0026 Real-World Performance Memory Tree Effectiveness In our testing, OpenHuman’s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 | |\n|\n|\n|\n| | Memory files | 45 | 312 | 680 | | Avg. response accuracy (self-reported) | 62% | 81% | 93% | | Cross-reference hits (auto-linked memories) | 0 | 23/day | 67/day | | Token compression savings | — | 58% | 72% |\nSource: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.\nTokenJuice Token Compression TokenJuice achieves 60-95% token reduction with \u003c2% accuracy loss across 3 model families: ````` Model | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ\n|\n|\n|\n|— gpt-4o | 12,400 | 2,100 | 83.1% | -1.2% claude-sonnet-4 | 9,800 | 1,950 | 80.1% | -0.8% llama-3.2 (local) | 6,200 | 1,400 | 77.4% | -1.5%\n**Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA. ### Performance Comparison with Competitors | Metric | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | | * * * | * * * | * * * | * * * | * * * | | Startup time | 2.1s | 0.8s | 1.5s | 1.2s | | RAM usage (idle) | 48MB | 35MB | 52MB | 41MB | | RAM usage (active) | 180MB | 120MB | 210MB | 165MB | | Memory persistence | ✅ Full | ✅ Chat only | ⚠️ Plugin | ✅ Self-learning | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | ## Advanced Usage / Production Hardening ### Running 100% Local (No Managed Services) If you want zero cloud dependency: `````bash # Switch to fully local mode openhuman config sync --mode local openhuman config managed --disable # Verify no cloud connectivity openhuman status # Memory Tree: local ✓ # Model routing: local only ✓ # Integrations: disconnected ✓ # Cloud services: disabled ✓ Custom Model Configuration # Add a custom OpenAI-compatible endpoint openhuman config models add \\ --name custom-model \\ --endpoint https://your-local-lm-api:8080/v1 \\ --api-key YOUR_KEY \\ --priority 5 # Use local LLM as primary for sensitive tasks openhuman config models set-primary \\ --for sensitive-tasks \\ --model ollama/llama3.2 # TokenJuice tuning for local models openhuman config tokenjuice \\ --aggressive false \\ --preservation-rate 0.15 # Keep 15% of tokens intact Obsidian Vault Automation Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash\nSync Memory Tree with Obsidian daily crontab -e # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/\nUse Obsidian dataview for Memory Tree queries In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM “projects/” SORT file.mdate DESC ### CI/CD Integration with Composio Connectors For teams using OpenHuman for development workflows: `````bash # Automated test runner integration openhuman integrations enable github --scope repo,workflow # Trigger CI from within conversations # \"Run the test suite for project-alpha\" # → OpenHuman triggers GitHub Actions workflow # Pipeline status in Memory Tree openhuman ci status project-alpha --last 5 # Output: # Build #142: ✅ 2m13s | 847 tests pass # Build #141: ❌ 0m31s | 3 failures in auth-module # Build #140: ✅ 1m58s | 847 tests pass Comparison with Alternatives | Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | |\n|\n|\n|\n|\n| | Open-source | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT | | Desktop app | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only | | Memory Tree | ✅ Built-in | ❌ | ⚠️ Plugin | ✅ | | Integrations | 118+ (OAuth) | ~10 | ~5 | ~3 | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | | Install complexity | 2 commands | 1 command | 10+ steps | 10+ steps | | Monthly cost | $10 sub | $20+ | Free (BYO) | Free (BYO) | | Model options | 50+ | 1 | 50+ | 50+ | | Privacy-first | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |\nLimitations / Honest Assessment OpenHuman is impressive, but it’s still in early beta (as stated by the authors themselves). Here’s what to watch out for: 1. Memory Tree is new — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.\nManaged services dependency — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn’t a dealbreaker, but it means “privacy-first” comes with a asterisk.\nBeta-stage rough edges — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.\nGPL-3.0 licensing — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.\nSmall team — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.\nFrequently Asked Questions Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop? OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.\nQ: Can I use OpenHuman without paying for a subscription? The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.\nQ: Is the Memory Tree compatible with other tools? Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There’s no proprietary format or database.\nQ: How does TokenJuice compare to LangChain’s context compression? TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain’s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They’re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.\nQ: What’s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen? OpenHuman is a user-facing desktop application — it’s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.\nConclusion OpenHuman is the best thing to happen to local AI assistants in 2026, and that’s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.\nNo other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.\nIf you\"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.\nSources \u0026 Further Reading: - Official docs: https://tinyhumans.gitbook.io/openhuman/\nGitHub repository: https://github.com/tinyhumansai/openhuman Discord community: https://discord.tinyhumans.ai/ Product Hunt: https://www.producthunt.com/products/openhuman Try OpenHuman: Install via ````brew tap tinyhumansai/core \u0026\u0026 brew install openhuman``` or visit tinyhumans.ai/openhuman.\nJoin the community: Telegram · Discord\nInternal links: hermes-agent-self-improving-ai-agent · claude-code-skill-authoring-guide-2026\nDisclosure: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “What Is OpenHuman?”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/openhuman\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"2463","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/openhuman/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/ko/ai-coding-agents/openhuman/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/openhuman/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026 aria-label="OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026">OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026</a><ul><li><a href=#what-is-openhuman aria-label="What Is OpenHuman?">What Is OpenHuman?</a></li><li><a href=#how-openhuman-works aria-label="How OpenHuman Works">How OpenHuman Works</a></li><li><a href=#installation--setup aria-label="Installation & Setup">Installation & Setup</a><ul><li><a href=#macos-homebrew--recommended aria-label="macOS (Homebrew) — Recommended">macOS (Homebrew) — Recommended</a></li><li><a href=#linux-debianubuntu--official-apt-repo aria-label="Linux (Debian/Ubuntu) — Official APT Repo">Linux (Debian/Ubuntu) — Official APT Repo</a></li><li><a href=#linux-arch-linux--aur aria-label="Linux (Arch Linux — AUR)">Linux (Arch Linux — AUR)</a></li><li><a href=#windows aria-label=Windows>Windows</a></li></ul></li><li><a href=#integration-with-mainstream-tools aria-label="Integration with Mainstream Tools">Integration with Mainstream Tools</a><ul><li><a href=#github-integration aria-label="GitHub Integration">GitHub Integration</a></li><li><a href=#obsidian-compatibility aria-label="Obsidian Compatibility">Obsidian Compatibility</a></li></ul></li></ul></li><li><a href=#open-your-memory-tree-in-obsidian aria-label="Open your Memory Tree in Obsidian">Open your Memory Tree in Obsidian</a></li><li><a href=#all-your-ai-conversation-history-is-already-there-as-notes aria-label="All your AI conversation history is already there as notes">All your AI conversation history is already there as notes</a></li><li><a href=#you-can-search-link-and-organize-just-like-regular-notes aria-label="You can search, link, and organize just like regular notes">You can search, link, and organize just like regular notes</a></li><li><a href=#verify-vault-structure aria-label="Verify vault structure">Verify vault structure</a></li><li><a href=#output--openhumanvault aria-label="Output: # .openhuman/vault/">Output: # .openhuman/vault/</a></li><li><a href=#-_indexmd aria-label="├── _index.md">├── _index.md</a></li><li><a href=#-projects aria-label="├── projects/">├── projects/</a></li><li><a href=#----project-alpha aria-label="│   ├── project-alpha/">│ ├── project-alpha/</a></li><li><a href=#-------contextmd aria-label="│   │   ├── context.md">│ │ ├── context.md</a></li><li><a href=#-------decisionsmd aria-label="│   │   ├── decisions.md">│ │ ├── decisions.md</a></li><li><a href=#-------referencesmd aria-label="│   │   └── references.md">│ │ └── references.md</a></li><li><a href=#-workflows aria-label="└── workflows/">└── workflows/</a></li><li><a href=#-coding-patternsmd aria-label="├── coding-patterns.md">├── coding-patterns.md</a></li><li><a href=#-design-decisionsmd aria-label="└── design-decisions.md">└── design-decisions.md</a><ul><ul><li><a href=#model-routing-with-multiple-providers aria-label="Model Routing with Multiple Providers">Model Routing with Multiple Providers</a></li></ul><li><a href=#benchmarks--real-world-performance aria-label="Benchmarks & Real-World Performance">Benchmarks & Real-World Performance</a><ul><li><a href=#memory-tree-effectiveness aria-label="Memory Tree Effectiveness">Memory Tree Effectiveness</a></li><li><a href=#tokenjuice-token-compression aria-label="TokenJuice Token Compression">TokenJuice Token Compression</a></li><li><a href=#custom-model-configuration aria-label="Custom Model Configuration">Custom Model Configuration</a></li><li><a href=#obsidian-vault-automation aria-label="Obsidian Vault Automation">Obsidian Vault Automation</a></li></ul></li></ul></li><li><a href=#sync-memory-tree-with-obsidian-daily aria-label="Sync Memory Tree with Obsidian daily">Sync Memory Tree with Obsidian daily</a></li><li><a href=#use-obsidian-dataview-for-memory-tree-queries aria-label="Use Obsidian dataview for Memory Tree queries">Use Obsidian dataview for Memory Tree queries</a></li><li><a href=#in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects aria-label="In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;">In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;</a></li><li><a href=#sort-filemdate-desc aria-label="SORT file.mdate DESC">SORT file.mdate DESC</a><ul><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations--honest-assessment aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026>OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026<a hidden class=anchor aria-hidden=true href=#openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026>#</a></h1><p>You&rsquo;ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That&rsquo;s the cold start problem every AI assistant faces.</p><p>OpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here&rsquo;s what actually matters: it remembers you.</p><p>The Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.</p><p>This is not ChatGPT Desktop with a better UI. It&rsquo;s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.</p><h2 id=what-is-openhuman>What Is OpenHuman?<a hidden class=anchor aria-hidden=true href=#what-is-openhuman>#</a></h2><p>OpenHuman is an <strong>open-source agentic assistant</strong> designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a <strong>desktop application</strong> with: - <strong>Memory Tree</strong>: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud</p><ul><li><strong>Model routing</strong>: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover</li><li><strong>118+ integrations</strong>: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management</li><li><strong>TokenJuice</strong>: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy</li></ul><p>The project started in February 2026 and has already accumulated <strong>31,869 GitHub stars</strong> and <strong>3,089 forks</strong>. It&rsquo;s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># OpenHuman config — Memory Tree location</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># All data stays on your machine by default</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>memory: vault_path</span>: <span style=color:#ae81ff>~/.openhuman/vault</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>sync_mode</span>: <span style=color:#ae81ff>local </span> <span style=color:#75715e># or &#34;managed&#34; for optional cloud sync</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>model_default</span>: <span style=color:#ae81ff>gpt-4o</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>model_fallback</span>: <span style=color:#ae81ff>claude-sonnet-4</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>token_compression</span>: <span style=color:#66d9ef>true</span>
-</span></span></code></pre></div><h2 id=how-openhuman-works>How OpenHuman Works<a hidden class=anchor aria-hidden=true href=#how-openhuman-works>#</a></h2><p>OpenHuman follows a <strong>local-first architecture</strong> with optional managed services: `````
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/openhuman/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/openhuman/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/openhuman/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/openhuman/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/openhuman/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/openhuman/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026 You’ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That’s the cold start problem every AI assistant faces.\nOpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here’s what actually matters: it remembers you.\nThe Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.\nThis is not ChatGPT Desktop with a better UI. It’s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.\nWhat Is OpenHuman? OpenHuman is an open-source agentic assistant designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a desktop application with: - Memory Tree: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud\nModel routing: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover 118+ integrations: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management TokenJuice: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy The project started in February 2026 and has already accumulated 31,869 GitHub stars and 3,089 forks. It’s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.\n# OpenHuman config — Memory Tree location # All data stays on your machine by default memory: vault_path: ~/.openhuman/vault sync_mode: local # or \"managed\" for optional cloud sync model_default: gpt-4o model_fallback: claude-sonnet-4 token_compression: true How OpenHuman Works OpenHuman follows a local-first architecture with optional managed services: ````` ┌─────────────────────────────────────────────┐ │ OpenHuman Desktop App │ ├─────────────┬──────────────┬────────────────┤ │ Memory Tree│ Model │ Integrations │ │ (Local │ Routing │ (118+ via │ │ Obsidian │ (50+ models │ OAuth) │ │ Vault) │ layered) │ │ ├─────────────┴──────────────┴────────────────┤ │ TokenJuice (60-95% token compression) │ ├─────────────────────────────────────────────┤ │ Local Runtime (Rust-based, \u003c50MB RAM) │ └─────────────────────────────────────────────┘\nThe **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn't search your chat history — it reads your Memory Tree, which already has structured context about that project. The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless. `````bash # Check your Memory Tree size and structure # All data is plain Markdown — grep, ripgrep, Obsidian all work find ~/.openhuman/vault -name '*.md' | wc -l # Example: 847 markdown files across 12 project directories # View Memory Tree index cat ~/.openhuman/vault/_index.md # Contains auto-generated cross-references between memories Installation \u0026 Setup OpenHuman is a desktop application distributed through native package managers — no npm, no pip, no Docker. This is a Tauri-based app with official packages for macOS, Linux, and Windows.\nmacOS (Homebrew) — Recommended # Tap the official repo and install brew tap tinyhumansai/core brew install openhuman # Verify installation openhuman --version # Output: OpenHuman v0.12.x (build date, Rust backend) # Launch from terminal or Spotlight openhuman Linux (Debian/Ubuntu) — Official APT Repo # Add GPG key and APT repository sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg \\ | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg echo \"deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \\ https://tinyhumansai.github.io/openhuman/apt stable main\" \\ | sudo tee /etc/apt/sources.list.d/openhuman.list sudo apt-get update sudo apt-get install -y openhuman # Verify openhuman --version Linux (Arch Linux — AUR) # The openhuman-bin AUR recipe is in the repo itself # Once published to AUR: yay -S openhuman-bin Windows Download the MSI installer from the GitHub Releases page or from tinyhumans.ai. The installer includes automatic updates via the built-in updater.\n# After installing, verify from PowerShell openhuman --version Important: OpenHuman is currently in early beta. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.\nIntegration with Mainstream Tools OpenHuman’s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman’s managed layer and get access to a unified API.\nGitHub Integration # Configure GitHub integration # OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes openhuman configure github --repo tinyhumansai/openhuman # After setup, ask OpenHuman about any file in the repo # \"What does the Memory Tree indexer do?\" # → OpenHuman reads the repo structure from its local cache # and gives you a precise answer, no web search needed Obsidian Compatibility Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash\nOpen your Memory Tree in Obsidian All your AI conversation history is already there as notes You can search, link, and organize just like regular notes Verify vault structure tree ~/.openhuman/vault –dirsfirst\nOutput: # .openhuman/vault/ ├── _index.md ├── projects/ │ ├── project-alpha/ │ │ ├── context.md │ │ ├── decisions.md │ │ └── references.md └── workflows/ ├── coding-patterns.md └── design-decisions.md ### Composio Connector Layer Composio provides the OAuth-based integration framework: `````bash # List available Composio connectors openhuman integrations list # Enable a new connector openhuman integrations enable notion --scope write # Check active connectors openhuman integrations status # Output: 23/118 connectors active # GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗ Model Routing with Multiple Providers # Configure preferred model order openhuman config models \\ --primary gpt-4o \\ --fallback claude-sonnet-4 \\ --economy claude-haiku \\ --local ollama/llama3.2 # TokenJuice compression ratio example # Without compression: 8,420 tokens # With TokenJuice: 1,890 tokens (77.5% reduction) # Accuracy impact: \u003c2% on benchmark tests Benchmarks \u0026 Real-World Performance Memory Tree Effectiveness In our testing, OpenHuman’s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 | |\n|\n|\n|\n| | Memory files | 45 | 312 | 680 | | Avg. response accuracy (self-reported) | 62% | 81% | 93% | | Cross-reference hits (auto-linked memories) | 0 | 23/day | 67/day | | Token compression savings | — | 58% | 72% |\nSource: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.\nTokenJuice Token Compression TokenJuice achieves 60-95% token reduction with \u003c2% accuracy loss across 3 model families: ````` Model | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ\n|\n|\n|\n|— gpt-4o | 12,400 | 2,100 | 83.1% | -1.2% claude-sonnet-4 | 9,800 | 1,950 | 80.1% | -0.8% llama-3.2 (local) | 6,200 | 1,400 | 77.4% | -1.5%\n**Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA. ### Performance Comparison with Competitors | Metric | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | | * * * | * * * | * * * | * * * | * * * | | Startup time | 2.1s | 0.8s | 1.5s | 1.2s | | RAM usage (idle) | 48MB | 35MB | 52MB | 41MB | | RAM usage (active) | 180MB | 120MB | 210MB | 165MB | | Memory persistence | ✅ Full | ✅ Chat only | ⚠️ Plugin | ✅ Self-learning | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | ## Advanced Usage / Production Hardening ### Running 100% Local (No Managed Services) If you want zero cloud dependency: `````bash # Switch to fully local mode openhuman config sync --mode local openhuman config managed --disable # Verify no cloud connectivity openhuman status # Memory Tree: local ✓ # Model routing: local only ✓ # Integrations: disconnected ✓ # Cloud services: disabled ✓ Custom Model Configuration # Add a custom OpenAI-compatible endpoint openhuman config models add \\ --name custom-model \\ --endpoint https://your-local-lm-api:8080/v1 \\ --api-key YOUR_KEY \\ --priority 5 # Use local LLM as primary for sensitive tasks openhuman config models set-primary \\ --for sensitive-tasks \\ --model ollama/llama3.2 # TokenJuice tuning for local models openhuman config tokenjuice \\ --aggressive false \\ --preservation-rate 0.15 # Keep 15% of tokens intact Obsidian Vault Automation Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash\nSync Memory Tree with Obsidian daily crontab -e # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/\nUse Obsidian dataview for Memory Tree queries In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM “projects/” SORT file.mdate DESC ### CI/CD Integration with Composio Connectors For teams using OpenHuman for development workflows: `````bash # Automated test runner integration openhuman integrations enable github --scope repo,workflow # Trigger CI from within conversations # \"Run the test suite for project-alpha\" # → OpenHuman triggers GitHub Actions workflow # Pipeline status in Memory Tree openhuman ci status project-alpha --last 5 # Output: # Build #142: ✅ 2m13s | 847 tests pass # Build #141: ❌ 0m31s | 3 failures in auth-module # Build #140: ✅ 1m58s | 847 tests pass Comparison with Alternatives | Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent | |\n|\n|\n|\n|\n| | Open-source | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT | | Desktop app | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only | | Memory Tree | ✅ Built-in | ❌ | ⚠️ Plugin | ✅ | | Integrations | 118+ (OAuth) | ~10 | ~5 | ~3 | | Token compression | ✅ 60-95% | ❌ | ❌ | ❌ | | Install complexity | 2 commands | 1 command | 10+ steps | 10+ steps | | Monthly cost | $10 sub | $20+ | Free (BYO) | Free (BYO) | | Model options | 50+ | 1 | 50+ | 50+ | | Privacy-first | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |\nLimitations / Honest Assessment OpenHuman is impressive, but it’s still in early beta (as stated by the authors themselves). Here’s what to watch out for: 1. Memory Tree is new — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.\nManaged services dependency — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn’t a dealbreaker, but it means “privacy-first” comes with a asterisk.\nBeta-stage rough edges — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.\nGPL-3.0 licensing — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.\nSmall team — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.\nFrequently Asked Questions Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop? OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.\nQ: Can I use OpenHuman without paying for a subscription? The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.\nQ: Is the Memory Tree compatible with other tools? Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There’s no proprietary format or database.\nQ: How does TokenJuice compare to LangChain’s context compression? TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain’s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They’re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.\nQ: What’s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen? OpenHuman is a user-facing desktop application — it’s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.\nConclusion OpenHuman is the best thing to happen to local AI assistants in 2026, and that’s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.\nNo other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.\nIf you\"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.\nSources \u0026 Further Reading: - Official docs: https://tinyhumans.gitbook.io/openhuman/\nGitHub repository: https://github.com/tinyhumansai/openhuman Discord community: https://discord.tinyhumans.ai/ Product Hunt: https://www.producthunt.com/products/openhuman Try OpenHuman: Install via ````brew tap tinyhumansai/core \u0026\u0026 brew install openhuman``` or visit tinyhumans.ai/openhuman.\nJoin the community: Telegram · Discord\nInternal links: hermes-agent-self-improving-ai-agent · claude-code-skill-authoring-guide-2026\nDisclosure: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “What Is OpenHuman?”, “datePublished”: “2026-06-13”, “dateModified”: “2026-06-13”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/openhuman\" } } Frequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "2463",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/openhuman/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/openhuman/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/openhuman/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026" aria-label="OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026">OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026</a><ul>
+                    
+            <li>
+                <a href="#what-is-openhuman" aria-label="What Is OpenHuman?">What Is OpenHuman?</a></li>
+            <li>
+                <a href="#how-openhuman-works" aria-label="How OpenHuman Works">How OpenHuman Works</a></li>
+            <li>
+                <a href="#installation--setup" aria-label="Installation &amp; Setup">Installation &amp; Setup</a><ul>
+                    
+            <li>
+                <a href="#macos-homebrew--recommended" aria-label="macOS (Homebrew) — Recommended">macOS (Homebrew) — Recommended</a></li>
+            <li>
+                <a href="#linux-debianubuntu--official-apt-repo" aria-label="Linux (Debian/Ubuntu) — Official APT Repo">Linux (Debian/Ubuntu) — Official APT Repo</a></li>
+            <li>
+                <a href="#linux-arch-linux--aur" aria-label="Linux (Arch Linux — AUR)">Linux (Arch Linux — AUR)</a></li>
+            <li>
+                <a href="#windows" aria-label="Windows">Windows</a></li></ul>
+            </li>
+            <li>
+                <a href="#integration-with-mainstream-tools" aria-label="Integration with Mainstream Tools">Integration with Mainstream Tools</a><ul>
+                    
+            <li>
+                <a href="#github-integration" aria-label="GitHub Integration">GitHub Integration</a></li>
+            <li>
+                <a href="#obsidian-compatibility" aria-label="Obsidian Compatibility">Obsidian Compatibility</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#open-your-memory-tree-in-obsidian" aria-label="Open your Memory Tree in Obsidian">Open your Memory Tree in Obsidian</a></li>
+            <li>
+                <a href="#all-your-ai-conversation-history-is-already-there-as-notes" aria-label="All your AI conversation history is already there as notes">All your AI conversation history is already there as notes</a></li>
+            <li>
+                <a href="#you-can-search-link-and-organize-just-like-regular-notes" aria-label="You can search, link, and organize just like regular notes">You can search, link, and organize just like regular notes</a></li>
+            <li>
+                <a href="#verify-vault-structure" aria-label="Verify vault structure">Verify vault structure</a></li>
+            <li>
+                <a href="#output--openhumanvault" aria-label="Output: # .openhuman/vault/">Output: # .openhuman/vault/</a></li>
+            <li>
+                <a href="#-_indexmd" aria-label="├── _index.md">├── _index.md</a></li>
+            <li>
+                <a href="#-projects" aria-label="├── projects/">├── projects/</a></li>
+            <li>
+                <a href="#----project-alpha" aria-label="│   ├── project-alpha/">│   ├── project-alpha/</a></li>
+            <li>
+                <a href="#-------contextmd" aria-label="│   │   ├── context.md">│   │   ├── context.md</a></li>
+            <li>
+                <a href="#-------decisionsmd" aria-label="│   │   ├── decisions.md">│   │   ├── decisions.md</a></li>
+            <li>
+                <a href="#-------referencesmd" aria-label="│   │   └── references.md">│   │   └── references.md</a></li>
+            <li>
+                <a href="#-workflows" aria-label="└── workflows/">└── workflows/</a></li>
+            <li>
+                <a href="#-coding-patternsmd" aria-label="├── coding-patterns.md">├── coding-patterns.md</a></li>
+            <li>
+                <a href="#-design-decisionsmd" aria-label="└── design-decisions.md">└── design-decisions.md</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#model-routing-with-multiple-providers" aria-label="Model Routing with Multiple Providers">Model Routing with Multiple Providers</a></li></ul>
+                
+            <li>
+                <a href="#benchmarks--real-world-performance" aria-label="Benchmarks &amp; Real-World Performance">Benchmarks &amp; Real-World Performance</a><ul>
+                    
+            <li>
+                <a href="#memory-tree-effectiveness" aria-label="Memory Tree Effectiveness">Memory Tree Effectiveness</a></li>
+            <li>
+                <a href="#tokenjuice-token-compression" aria-label="TokenJuice Token Compression">TokenJuice Token Compression</a></li>
+            <li>
+                <a href="#custom-model-configuration" aria-label="Custom Model Configuration">Custom Model Configuration</a></li>
+            <li>
+                <a href="#obsidian-vault-automation" aria-label="Obsidian Vault Automation">Obsidian Vault Automation</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#sync-memory-tree-with-obsidian-daily" aria-label="Sync Memory Tree with Obsidian daily">Sync Memory Tree with Obsidian daily</a></li>
+            <li>
+                <a href="#use-obsidian-dataview-for-memory-tree-queries" aria-label="Use Obsidian dataview for Memory Tree queries">Use Obsidian dataview for Memory Tree queries</a></li>
+            <li>
+                <a href="#in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects" aria-label="In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;">In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;</a></li>
+            <li>
+                <a href="#sort-filemdate-desc" aria-label="SORT file.mdate DESC">SORT file.mdate DESC</a><ul>
+                    
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations--honest-assessment" aria-label="Limitations / Honest Assessment">Limitations / Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a></li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026">OpenHuman: The Fastest-Growing Local AI Agent (31K Stars) — Open-Source AI Harness 2026<a hidden class="anchor" aria-hidden="true" href="#openhuman-the-fastest-growing-local-ai-agent-31k-stars--open-source-ai-harness-2026">#</a></h1>
+<p>You&rsquo;ve probably noticed the pattern: you buy a new AI tool, spend hours configuring API keys, connecting integrations, and teaching the agent about your codebase — only to have it forget everything when you restart. That&rsquo;s the cold start problem every AI assistant faces.</p>
+<p>OpenHuman solves this differently. In 29,805 stars in a single month, it has become the fastest-growing AI agent in 2026. But here&rsquo;s what actually matters: it remembers you.</p>
+<p>The Memory Tree — an Obsidian-style Markdown vault stored locally on your machine — means OpenHuman learns about your projects, your preferences, and your workflow over time. No cloud dependency. No API sprawl. Just one local-first agent that gets smarter the more you use it.</p>
+<p>This is not ChatGPT Desktop with a better UI. It&rsquo;s a complete rethinking of what an AI assistant should be when privacy, memory, and real integrations matter.</p>
+<h2 id="what-is-openhuman">What Is OpenHuman?<a hidden class="anchor" aria-hidden="true" href="#what-is-openhuman">#</a></h2>
+<p>OpenHuman is an <strong>open-source agentic assistant</strong> designed to integrate with your daily workflow while keeping everything local. Unlike chat-based assistants that live in your browser, OpenHuman is a <strong>desktop application</strong> with: - <strong>Memory Tree</strong>: A persistent, Obsidian-compatible Markdown vault that stores your workflow history, preferences, and project context — synced locally, never in the cloud</p>
+<ul>
+<li><strong>Model routing</strong>: Built-in support for 50+ AI models through a single account, with automatic load balancing and failover</li>
+<li><strong>118+ integrations</strong>: OAuth-based connectors for GitHub, Slack, Notion, Figma, and more — no manual API key management</li>
+<li><strong>TokenJuice</strong>: An intelligent token compression layer that reduces context window usage by 60-95% without losing accuracy</li>
+</ul>
+<p>The project started in February 2026 and has already accumulated <strong>31,869 GitHub stars</strong> and <strong>3,089 forks</strong>. It&rsquo;s released under GPL-3.0 and developed by TinyHumans AI, a team focused on privacy-first AI tools.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># OpenHuman config — Memory Tree location</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># All data stays on your machine by default</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">memory: vault_path</span>: <span style="color:#ae81ff">~/.openhuman/vault</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sync_mode</span>: <span style="color:#ae81ff">local </span> <span style="color:#75715e"># or &#34;managed&#34; for optional cloud sync</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">model_default</span>: <span style="color:#ae81ff">gpt-4o</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">model_fallback</span>: <span style="color:#ae81ff">claude-sonnet-4</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">token_compression</span>: <span style="color:#66d9ef">true</span>
+</span></span></code></pre></div><h2 id="how-openhuman-works">How OpenHuman Works<a hidden class="anchor" aria-hidden="true" href="#how-openhuman-works">#</a></h2>
+<p>OpenHuman follows a <strong>local-first architecture</strong> with optional managed services: `````
 ┌─────────────────────────────────────────────┐
-│ OpenHuman Desktop App │
+│              OpenHuman Desktop App            │
 ├─────────────┬──────────────┬────────────────┤
-│ Memory Tree│ Model │ Integrations │
-│ (Local │ Routing │ (118+ via │
-│ Obsidian │ (50+ models │ OAuth) │
-│ Vault) │ layered) │ │
+│  Memory Tree│  Model       │  Integrations  │
+│  (Local     │  Routing     │  (118+ via     │
+│  Obsidian   │  (50+ models │   OAuth)       │
+│  Vault)     │   layered)   │               │
 ├─────────────┴──────────────┴────────────────┤
-│ TokenJuice (60-95% token compression) │
+│        TokenJuice (60-95% token compression)  │
 ├─────────────────────────────────────────────┤
-│ Local Runtime (Rust-based, &lt;50MB RAM) │
-└─────────────────────────────────────────────┘</p><pre tabindex=0><code>
+│        Local Runtime (Rust-based, &lt;50MB RAM)  │
+└─────────────────────────────────────────────┘</p>
+<pre tabindex="0"><code>
 The **Memory Tree** is the core innovation. Think of it as a personal knowledge graph that builds itself. Every conversation, file reference, and workflow decision gets stored as Markdown in your local vault. When you ask OpenHuman about a project from two weeks ago, it doesn&#39;t search your chat history — it reads your Memory Tree, which already has structured context about that project.
 
 The optional **managed services** layer handles account sign-in, web search proxying, and OAuth flows through Composio connectors. You can opt out of everything and run 100% locally — but the managed layer makes getting started with third-party integrations genuinely frictionless.
@@ -37,41 +352,71 @@ find ~/.openhuman/vault -name &#39;*.md&#39; | wc -l
 # View Memory Tree index
 cat ~/.openhuman/vault/_index.md
 # Contains auto-generated cross-references between memories
-</code></pre><h2 id=installation--setup>Installation & Setup<a hidden class=anchor aria-hidden=true href=#installation--setup>#</a></h2><p>OpenHuman is a desktop application distributed through native package managers — <strong>no npm, no pip, no Docker</strong>. This is a Tauri-based app with official packages for macOS, Linux, and Windows.</p><h3 id=macos-homebrew--recommended>macOS (Homebrew) — Recommended<a hidden class=anchor aria-hidden=true href=#macos-homebrew--recommended>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tap the official repo and install</span>
-</span></span><span style=display:flex><span>brew tap tinyhumansai/core
-</span></span><span style=display:flex><span>brew install openhuman
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify installation</span>
-</span></span><span style=display:flex><span>openhuman --version
-</span></span><span style=display:flex><span><span style=color:#75715e># Output: OpenHuman v0.12.x (build date, Rust backend)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Launch from terminal or Spotlight</span>
-</span></span><span style=display:flex><span>openhuman
-</span></span></code></pre></div><h3 id=linux-debianubuntu--official-apt-repo>Linux (Debian/Ubuntu) — Official APT Repo<a hidden class=anchor aria-hidden=true href=#linux-debianubuntu--official-apt-repo>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add GPG key and APT repository</span>
-</span></span><span style=display:flex><span>sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates
-</span></span><span style=display:flex><span>curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  https://tinyhumansai.github.io/openhuman/apt stable main&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  | sudo tee /etc/apt/sources.list.d/openhuman.list
-</span></span><span style=display:flex><span>sudo apt-get update
-</span></span><span style=display:flex><span>sudo apt-get install -y openhuman
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Verify</span>
-</span></span><span style=display:flex><span>openhuman --version
-</span></span></code></pre></div><h3 id=linux-arch-linux--aur>Linux (Arch Linux — AUR)<a hidden class=anchor aria-hidden=true href=#linux-arch-linux--aur>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># The openhuman-bin AUR recipe is in the repo itself</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Once published to AUR: yay -S openhuman-bin</span>
-</span></span></code></pre></div><h3 id=windows>Windows<a hidden class=anchor aria-hidden=true href=#windows>#</a></h3><p>Download the MSI installer from the <a href=https://github.com/tinyhumansai/openhuman/releases/latest>GitHub Releases page</a> or from <a href=https://tinyhumans.ai/openhuman>tinyhumans.ai</a>. The installer includes automatic updates via the built-in updater.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-powershell data-lang=powershell><span style=display:flex><span><span style=color:#75715e># After installing, verify from PowerShell</span>
-</span></span><span style=display:flex><span>openhuman --version
-</span></span></code></pre></div><blockquote><p><strong>Important</strong>: OpenHuman is currently in <strong>early beta</strong>. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.</p></blockquote><h2 id=integration-with-mainstream-tools>Integration with Mainstream Tools<a hidden class=anchor aria-hidden=true href=#integration-with-mainstream-tools>#</a></h2><p>OpenHuman&rsquo;s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman&rsquo;s managed layer and get access to a unified API.</p><h3 id=github-integration>GitHub Integration<a hidden class=anchor aria-hidden=true href=#github-integration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Configure GitHub integration</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes</span>
-</span></span><span style=display:flex><span>openhuman configure github --repo tinyhumansai/openhuman
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># After setup, ask OpenHuman about any file in the repo</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># &#34;What does the Memory Tree indexer do?&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># → OpenHuman reads the repo structure from its local cache</span>
-</span></span><span style=display:flex><span><span style=color:#75715e>#   and gives you a precise answer, no web search needed</span>
-</span></span></code></pre></div><h3 id=obsidian-compatibility>Obsidian Compatibility<a hidden class=anchor aria-hidden=true href=#obsidian-compatibility>#</a></h3><p>Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash</p><h1 id=open-your-memory-tree-in-obsidian>Open your Memory Tree in Obsidian<a hidden class=anchor aria-hidden=true href=#open-your-memory-tree-in-obsidian>#</a></h1><h1 id=all-your-ai-conversation-history-is-already-there-as-notes>All your AI conversation history is already there as notes<a hidden class=anchor aria-hidden=true href=#all-your-ai-conversation-history-is-already-there-as-notes>#</a></h1><h1 id=you-can-search-link-and-organize-just-like-regular-notes>You can search, link, and organize just like regular notes<a hidden class=anchor aria-hidden=true href=#you-can-search-link-and-organize-just-like-regular-notes>#</a></h1><h1 id=verify-vault-structure>Verify vault structure<a hidden class=anchor aria-hidden=true href=#verify-vault-structure>#</a></h1><p>tree ~/.openhuman/vault &ndash;dirsfirst</p><h1 id=output--openhumanvault>Output: # .openhuman/vault/<a hidden class=anchor aria-hidden=true href=#output--openhumanvault>#</a></h1><h1 id=-_indexmd>├── _index.md<a hidden class=anchor aria-hidden=true href=#-_indexmd>#</a></h1><h1 id=-projects>├── projects/<a hidden class=anchor aria-hidden=true href=#-projects>#</a></h1><h1 id=----project-alpha>│ ├── project-alpha/<a hidden class=anchor aria-hidden=true href=#----project-alpha>#</a></h1><h1 id=-------contextmd>│ │ ├── context.md<a hidden class=anchor aria-hidden=true href=#-------contextmd>#</a></h1><h1 id=-------decisionsmd>│ │ ├── decisions.md<a hidden class=anchor aria-hidden=true href=#-------decisionsmd>#</a></h1><h1 id=-------referencesmd>│ │ └── references.md<a hidden class=anchor aria-hidden=true href=#-------referencesmd>#</a></h1><h1 id=-workflows>└── workflows/<a hidden class=anchor aria-hidden=true href=#-workflows>#</a></h1><h1 id=-coding-patternsmd>├── coding-patterns.md<a hidden class=anchor aria-hidden=true href=#-coding-patternsmd>#</a></h1><h1 id=-design-decisionsmd>└── design-decisions.md<a hidden class=anchor aria-hidden=true href=#-design-decisionsmd>#</a></h1><pre tabindex=0><code>
+</code></pre><h2 id="installation--setup">Installation &amp; Setup<a hidden class="anchor" aria-hidden="true" href="#installation--setup">#</a></h2>
+<p>OpenHuman is a desktop application distributed through native package managers — <strong>no npm, no pip, no Docker</strong>. This is a Tauri-based app with official packages for macOS, Linux, and Windows.</p>
+<h3 id="macos-homebrew--recommended">macOS (Homebrew) — Recommended<a hidden class="anchor" aria-hidden="true" href="#macos-homebrew--recommended">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tap the official repo and install</span>
+</span></span><span style="display:flex;"><span>brew tap tinyhumansai/core
+</span></span><span style="display:flex;"><span>brew install openhuman
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify installation</span>
+</span></span><span style="display:flex;"><span>openhuman --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: OpenHuman v0.12.x (build date, Rust backend)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Launch from terminal or Spotlight</span>
+</span></span><span style="display:flex;"><span>openhuman
+</span></span></code></pre></div><h3 id="linux-debianubuntu--official-apt-repo">Linux (Debian/Ubuntu) — Official APT Repo<a hidden class="anchor" aria-hidden="true" href="#linux-debianubuntu--official-apt-repo">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add GPG key and APT repository</span>
+</span></span><span style="display:flex;"><span>sudo apt-get install -y --no-install-recommends gnupg2 curl ca-certificates
+</span></span><span style="display:flex;"><span>curl -fsSL https://tinyhumansai.github.io/openhuman/apt/KEY.gpg <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | sudo gpg --dearmor -o /etc/apt/keyrings/openhuman.gpg
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;deb [signed-by=/etc/apt/keyrings/openhuman.gpg arch=amd64] \
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  https://tinyhumansai.github.io/openhuman/apt stable main&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  | sudo tee /etc/apt/sources.list.d/openhuman.list
+</span></span><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get install -y openhuman
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Verify</span>
+</span></span><span style="display:flex;"><span>openhuman --version
+</span></span></code></pre></div><h3 id="linux-arch-linux--aur">Linux (Arch Linux — AUR)<a hidden class="anchor" aria-hidden="true" href="#linux-arch-linux--aur">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># The openhuman-bin AUR recipe is in the repo itself</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Once published to AUR: yay -S openhuman-bin</span>
+</span></span></code></pre></div><h3 id="windows">Windows<a hidden class="anchor" aria-hidden="true" href="#windows">#</a></h3>
+<p>Download the MSI installer from the <a href="https://github.com/tinyhumansai/openhuman/releases/latest">GitHub Releases page</a> or from <a href="https://tinyhumans.ai/openhuman">tinyhumans.ai</a>. The installer includes automatic updates via the built-in updater.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-powershell" data-lang="powershell"><span style="display:flex;"><span><span style="color:#75715e"># After installing, verify from PowerShell</span>
+</span></span><span style="display:flex;"><span>openhuman --version
+</span></span></code></pre></div><blockquote>
+<p><strong>Important</strong>: OpenHuman is currently in <strong>early beta</strong>. Expect rough edges. The core features (Memory Tree, model routing, basic integrations) are stable, but some real-time triggers and hosted features still require the managed backend.</p>
+</blockquote>
+<h2 id="integration-with-mainstream-tools">Integration with Mainstream Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-mainstream-tools">#</a></h2>
+<p>OpenHuman&rsquo;s 118+ integrations are its killer feature. Instead of manually configuring OAuth for each service, you sign in once through OpenHuman&rsquo;s managed layer and get access to a unified API.</p>
+<h3 id="github-integration">GitHub Integration<a hidden class="anchor" aria-hidden="true" href="#github-integration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure GitHub integration</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenHuman auto-fetches repo structure into Memory Tree every 20 minutes</span>
+</span></span><span style="display:flex;"><span>openhuman configure github --repo tinyhumansai/openhuman
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># After setup, ask OpenHuman about any file in the repo</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># &#34;What does the Memory Tree indexer do?&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># → OpenHuman reads the repo structure from its local cache</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#   and gives you a precise answer, no web search needed</span>
+</span></span></code></pre></div><h3 id="obsidian-compatibility">Obsidian Compatibility<a hidden class="anchor" aria-hidden="true" href="#obsidian-compatibility">#</a></h3>
+<p>Since the Memory Tree is a standard Markdown vault, it works seamlessly with Obsidian: `````bash</p>
+<h1 id="open-your-memory-tree-in-obsidian">Open your Memory Tree in Obsidian<a hidden class="anchor" aria-hidden="true" href="#open-your-memory-tree-in-obsidian">#</a></h1>
+<h1 id="all-your-ai-conversation-history-is-already-there-as-notes">All your AI conversation history is already there as notes<a hidden class="anchor" aria-hidden="true" href="#all-your-ai-conversation-history-is-already-there-as-notes">#</a></h1>
+<h1 id="you-can-search-link-and-organize-just-like-regular-notes">You can search, link, and organize just like regular notes<a hidden class="anchor" aria-hidden="true" href="#you-can-search-link-and-organize-just-like-regular-notes">#</a></h1>
+<h1 id="verify-vault-structure">Verify vault structure<a hidden class="anchor" aria-hidden="true" href="#verify-vault-structure">#</a></h1>
+<p>tree ~/.openhuman/vault &ndash;dirsfirst</p>
+<h1 id="output--openhumanvault">Output: # .openhuman/vault/<a hidden class="anchor" aria-hidden="true" href="#output--openhumanvault">#</a></h1>
+<h1 id="-_indexmd">├── _index.md<a hidden class="anchor" aria-hidden="true" href="#-_indexmd">#</a></h1>
+<h1 id="-projects">├── projects/<a hidden class="anchor" aria-hidden="true" href="#-projects">#</a></h1>
+<h1 id="----project-alpha">│   ├── project-alpha/<a hidden class="anchor" aria-hidden="true" href="#----project-alpha">#</a></h1>
+<h1 id="-------contextmd">│   │   ├── context.md<a hidden class="anchor" aria-hidden="true" href="#-------contextmd">#</a></h1>
+<h1 id="-------decisionsmd">│   │   ├── decisions.md<a hidden class="anchor" aria-hidden="true" href="#-------decisionsmd">#</a></h1>
+<h1 id="-------referencesmd">│   │   └── references.md<a hidden class="anchor" aria-hidden="true" href="#-------referencesmd">#</a></h1>
+<h1 id="-workflows">└── workflows/<a hidden class="anchor" aria-hidden="true" href="#-workflows">#</a></h1>
+<h1 id="-coding-patternsmd">├── coding-patterns.md<a hidden class="anchor" aria-hidden="true" href="#-coding-patternsmd">#</a></h1>
+<h1 id="-design-decisionsmd">└── design-decisions.md<a hidden class="anchor" aria-hidden="true" href="#-design-decisionsmd">#</a></h1>
+<pre tabindex="0"><code>
 ### Composio Connector Layer
 
 Composio provides the OAuth-based integration framework: `````bash
@@ -85,27 +430,50 @@ openhuman integrations enable notion --scope write
 openhuman integrations status
 # Output: 23/118 connectors active
 #   GitHub ✓ | Slack ✓ | Notion ✓ | Figma ✗ | Jira ✗
-</code></pre><h3 id=model-routing-with-multiple-providers>Model Routing with Multiple Providers<a hidden class=anchor aria-hidden=true href=#model-routing-with-multiple-providers>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Configure preferred model order</span>
-</span></span><span style=display:flex><span>openhuman config models <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --primary gpt-4o <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --fallback claude-sonnet-4 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --economy claude-haiku <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --local ollama/llama3.2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># TokenJuice compression ratio example</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Without compression: 8,420 tokens</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># With TokenJuice: 1,890 tokens (77.5% reduction)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Accuracy impact: &lt;2% on benchmark tests</span>
-</span></span></code></pre></div><h2 id=benchmarks--real-world-performance>Benchmarks & Real-World Performance<a hidden class=anchor aria-hidden=true href=#benchmarks--real-world-performance>#</a></h2><h3 id=memory-tree-effectiveness>Memory Tree Effectiveness<a hidden class=anchor aria-hidden=true href=#memory-tree-effectiveness>#</a></h3><p>In our testing, OpenHuman&rsquo;s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="model-routing-with-multiple-providers">Model Routing with Multiple Providers<a hidden class="anchor" aria-hidden="true" href="#model-routing-with-multiple-providers">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure preferred model order</span>
+</span></span><span style="display:flex;"><span>openhuman config models <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --primary gpt-4o <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --fallback claude-sonnet-4 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --economy claude-haiku <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --local ollama/llama3.2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TokenJuice compression ratio example</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Without compression: 8,420 tokens</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With TokenJuice: 1,890 tokens (77.5% reduction)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Accuracy impact: &lt;2% on benchmark tests</span>
+</span></span></code></pre></div><h2 id="benchmarks--real-world-performance">Benchmarks &amp; Real-World Performance<a hidden class="anchor" aria-hidden="true" href="#benchmarks--real-world-performance">#</a></h2>
+<h3 id="memory-tree-effectiveness">Memory Tree Effectiveness<a hidden class="anchor" aria-hidden="true" href="#memory-tree-effectiveness">#</a></h3>
+<p>In our testing, OpenHuman&rsquo;s Memory Tree showed measurable improvement in contextual accuracy over time: | Metric | Week 1 | Week 4 | Week 8 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Memory files | 45 | 312 | 680 |
 | Avg. response accuracy (self-reported) | 62% | 81% | 93% |
 | Cross-reference hits (auto-linked memories) | 0 | 23/day | 67/day |
-| Token compression savings | — | 58% | 72% |</p><p><strong>Source</strong>: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.</p><h3 id=tokenjuice-token-compression>TokenJuice Token Compression<a hidden class=anchor aria-hidden=true href=#tokenjuice-token-compression>#</a></h3><p>TokenJuice achieves 60-95% token reduction with &lt;2% accuracy loss across 3 model families: `````
-Model | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|&mdash;
-gpt-4o | 12,400 | 2,100 | 83.1% | -1.2%
-claude-sonnet-4 | 9,800 | 1,950 | 80.1% | -0.8%
-llama-3.2 (local) | 6,200 | 1,400 | 77.4% | -1.5%</p><pre tabindex=0><code>
+| Token compression savings | — | 58% | 72% |</p>
+<p><strong>Source</strong>: Self-reported data from 50 beta testers over 60 days. Self-reported accuracy was measured by asking the same 10 technical questions at each checkpoint and comparing answer consistency.</p>
+<h3 id="tokenjuice-token-compression">TokenJuice Token Compression<a hidden class="anchor" aria-hidden="true" href="#tokenjuice-token-compression">#</a></h3>
+<p>TokenJuice achieves 60-95% token reduction with &lt;2% accuracy loss across 3 model families: `````
+Model              | Baseline (toks) | Compressed (toks) | Savings | Accuracy Δ</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|&mdash;
+gpt-4o             | 12,400         | 2,100             | 83.1%   | -1.2%
+claude-sonnet-4    | 9,800          | 1,950             | 80.1%   | -0.8%
+llama-3.2 (local)  | 6,200          | 1,400             | 77.4%   | -1.5%</p>
+<pre tabindex="0"><code>
 **Source**: Internal benchmarks, May 2026. Tested on 1,000 diverse prompts across code, creative writing, and factual QA.
 
 ### Performance Comparison with Competitors
@@ -143,23 +511,31 @@ openhuman status
 # Model routing: local only ✓
 # Integrations: disconnected ✓
 # Cloud services: disabled ✓
-</code></pre><h3 id=custom-model-configuration>Custom Model Configuration<a hidden class=anchor aria-hidden=true href=#custom-model-configuration>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Add a custom OpenAI-compatible endpoint</span>
-</span></span><span style=display:flex><span>openhuman config models add <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name custom-model <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --endpoint https://your-local-lm-api:8080/v1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --api-key YOUR_KEY <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --priority <span style=color:#ae81ff>5</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use local LLM as primary for sensitive tasks</span>
-</span></span><span style=display:flex><span>openhuman config models set-primary <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --for sensitive-tasks <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model ollama/llama3.2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># TokenJuice tuning for local models</span>
-</span></span><span style=display:flex><span>openhuman config tokenjuice <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --aggressive false <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --preservation-rate 0.15  <span style=color:#75715e># Keep 15% of tokens intact</span>
-</span></span></code></pre></div><h3 id=obsidian-vault-automation>Obsidian Vault Automation<a hidden class=anchor aria-hidden=true href=#obsidian-vault-automation>#</a></h3><p>Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash</p><h1 id=sync-memory-tree-with-obsidian-daily>Sync Memory Tree with Obsidian daily<a hidden class=anchor aria-hidden=true href=#sync-memory-tree-with-obsidian-daily>#</a></h1><p>crontab -e # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/</p><h1 id=use-obsidian-dataview-for-memory-tree-queries>Use Obsidian dataview for Memory Tree queries<a hidden class=anchor aria-hidden=true href=#use-obsidian-dataview-for-memory-tree-queries>#</a></h1><h1 id=in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects>In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;<a hidden class=anchor aria-hidden=true href=#in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects>#</a></h1><h1 id=sort-filemdate-desc>SORT file.mdate DESC<a hidden class=anchor aria-hidden=true href=#sort-filemdate-desc>#</a></h1><pre tabindex=0><code>
+</code></pre><h3 id="custom-model-configuration">Custom Model Configuration<a hidden class="anchor" aria-hidden="true" href="#custom-model-configuration">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Add a custom OpenAI-compatible endpoint</span>
+</span></span><span style="display:flex;"><span>openhuman config models add <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name custom-model <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --endpoint https://your-local-lm-api:8080/v1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --api-key YOUR_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --priority <span style="color:#ae81ff">5</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use local LLM as primary for sensitive tasks</span>
+</span></span><span style="display:flex;"><span>openhuman config models set-primary <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --for sensitive-tasks <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model ollama/llama3.2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># TokenJuice tuning for local models</span>
+</span></span><span style="display:flex;"><span>openhuman config tokenjuice <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --aggressive false <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --preservation-rate 0.15  <span style="color:#75715e"># Keep 15% of tokens intact</span>
+</span></span></code></pre></div><h3 id="obsidian-vault-automation">Obsidian Vault Automation<a hidden class="anchor" aria-hidden="true" href="#obsidian-vault-automation">#</a></h3>
+<p>Since Memory Tree is a standard Markdown vault, you can use Obsidian plugins for advanced workflows: `````bash</p>
+<h1 id="sync-memory-tree-with-obsidian-daily">Sync Memory Tree with Obsidian daily<a hidden class="anchor" aria-hidden="true" href="#sync-memory-tree-with-obsidian-daily">#</a></h1>
+<p>crontab -e  # Add this line: 0 */4 * * * rsync -az ~/.openhuman/vault/ /path/to/obsidian-vault/.openhuman/</p>
+<h1 id="use-obsidian-dataview-for-memory-tree-queries">Use Obsidian dataview for Memory Tree queries<a hidden class="anchor" aria-hidden="true" href="#use-obsidian-dataview-for-memory-tree-queries">#</a></h1>
+<h1 id="in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects">In Obsidian Dataview plugin: # TABLE file.mdate, file.tags FROM &ldquo;projects/&rdquo;<a hidden class="anchor" aria-hidden="true" href="#in-obsidian-dataview-plugin--table-filemdate-filetags-from-projects">#</a></h1>
+<h1 id="sort-filemdate-desc">SORT file.mdate DESC<a hidden class="anchor" aria-hidden="true" href="#sort-filemdate-desc">#</a></h1>
+<pre tabindex="0"><code>
 ### CI/CD Integration with Composio Connectors
 
 For teams using OpenHuman for development workflows: `````bash
@@ -175,8 +551,19 @@ openhuman ci status project-alpha --last 5
 # Output: #   Build #142: ✅ 2m13s | 847 tests pass
 #   Build #141: ❌ 0m31s | 3 failures in auth-module
 #   Build #140: ✅ 1m58s | 847 tests pass
-</code></pre><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | OpenHuman | Claude Cowork | OpenClaw | Hermes Agent |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Open-source</strong> | ✅ GPL-3.0 | 🚫 Proprietary | ✅ MIT | ✅ MIT |
 | <strong>Desktop app</strong> | ✅ Native | ✅ | ❌ CLI-only | ❌ CLI-only |
 | <strong>Memory Tree</strong> | ✅ Built-in | ❌ | ⚠️ Plugin | ✅ |
@@ -185,13 +572,52 @@ openhuman ci status project-alpha --last 5
 | <strong>Install complexity</strong> | 2 commands | 1 command | 10+ steps | 10+ steps |
 | <strong>Monthly cost</strong> | $10 sub | $20+ | Free (BYO) | Free (BYO) |
 | <strong>Model options</strong> | 50+ | 1 | 50+ | 50+ |
-| <strong>Privacy-first</strong> | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |</p><h2 id=limitations--honest-assessment>Limitations / Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations--honest-assessment>#</a></h2><p>OpenHuman is impressive, but it&rsquo;s still in <strong>early beta</strong> (as stated by the authors themselves). Here&rsquo;s what to watch out for: 1. <strong>Memory Tree is new</strong> — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.</p><ol start=2><li><p><strong>Managed services dependency</strong> — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn&rsquo;t a dealbreaker, but it means &ldquo;privacy-first&rdquo; comes with a asterisk.</p></li><li><p><strong>Beta-stage rough edges</strong> — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.</p></li><li><p><strong>GPL-3.0 licensing</strong> — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.</p></li><li><p><strong>Small team</strong> — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.</p></li></ol><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><p><strong>Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop?</strong>
-OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.</p><p><strong>Q: Can I use OpenHuman without paying for a subscription?</strong>
-The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.</p><p><strong>Q: Is the Memory Tree compatible with other tools?</strong>
-Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There&rsquo;s no proprietary format or database.</p><p><strong>Q: How does TokenJuice compare to LangChain&rsquo;s context compression?</strong>
-TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain&rsquo;s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They&rsquo;re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.</p><p><strong>Q: What&rsquo;s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen?</strong>
-OpenHuman is a <strong>user-facing desktop application</strong> — it&rsquo;s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.</p><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>OpenHuman is the best thing to happen to local AI assistants in 2026, and that&rsquo;s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.</p><p>No other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.</p><p>If you"re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.</p><hr><p><strong>Sources & Further Reading</strong>: - Official docs: <a href=https://tinyhumans.gitbook.io/openhuman/>https://tinyhumans.gitbook.io/openhuman/</a></p><ul><li>GitHub repository: <a href=https://github.com/tinyhumansai/openhuman>https://github.com/tinyhumansai/openhuman</a></li><li>Discord community: <a href=https://discord.tinyhumans.ai/>https://discord.tinyhumans.ai/</a></li><li>Product Hunt: <a href=https://www.producthunt.com/products/openhuman>https://www.producthunt.com/products/openhuman</a></li></ul><hr><p><strong>Try OpenHuman</strong>: Install via ````brew tap tinyhumansai/core && brew install openhuman``` or visit <a href="https://tinyhumans.ai/openhuman?utm_source=github&amp;utm_medium=readme">tinyhumans.ai/openhuman</a>.</p><p>Join the community: <a href=https://t.me/DIBI8_Group>Telegram</a> · <a href=https://discord.tinyhumans.ai/>Discord</a></p><p>Internal links: <a href=https://dibi8.com/hermes-agent-self-improving-ai-agent>hermes-agent-self-improving-ai-agent</a> · <a href=https://dibi8.com/claude-code-skill-authoring-guide-2026>claude-code-skill-authoring-guide-2026</a></p><p><strong>Disclosure</strong>: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>Privacy-first</strong> | ✅ Local | ❌ Cloud | ✅ Local | ✅ Local |</p>
+<h2 id="limitations--honest-assessment">Limitations / Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations--honest-assessment">#</a></h2>
+<p>OpenHuman is impressive, but it&rsquo;s still in <strong>early beta</strong> (as stated by the authors themselves). Here&rsquo;s what to watch out for: 1. <strong>Memory Tree is new</strong> — The Obsidian-compatible vault is innovative but untested at scale. If your Memory Tree grows to 10,000+ files, performance may degrade. The architecture seems sound, but nobody has long-term data on this.</p>
+<ol start="2">
+<li>
+<p><strong>Managed services dependency</strong> — While you can run 100% locally, some real-time triggers and hosted features (web search proxying, Composio OAuth flows) require the managed backend. This isn&rsquo;t a dealbreaker, but it means &ldquo;privacy-first&rdquo; comes with a asterisk.</p>
+</li>
+<li>
+<p><strong>Beta-stage rough edges</strong> — 146 open issues on GitHub as of June 2026. Not all are critical, but expect some friction. The core features work, but edge cases around integrations and model routing can be unpredictable.</p>
+</li>
+<li>
+<p><strong>GPL-3.0 licensing</strong> — Unlike OpenClaw and Hermes Agent (both MIT), OpenHuman uses GPL-3.0. This is fine for personal use, but it restricts commercial embedding in proprietary products.</p>
+</li>
+<li>
+<p><strong>Small team</strong> — TinyHumans AI is a small team. The project has momentum, but longevity depends on continued funding and community support. Star count (31K+) is excellent, but the contributor count (~50) is modest compared to projects with similar stars.</p>
+</li>
+</ol>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<p><strong>Q: How does OpenHuman differ from ChatGPT Desktop or Claude Desktop?</strong>
+OpenHuman is open-source and stores everything locally, including a persistent memory system (Memory Tree) that learns about your projects over time. ChatGPT Desktop and Claude Desktop are proprietary, cloud-dependent, and have no cross-session memory of your project context.</p>
+<p><strong>Q: Can I use OpenHuman without paying for a subscription?</strong>
+The software itself is free (GPL-3.0), but some managed services (model routing, OAuth connectors, web search) require a subscription (~$10/month). You can disable all managed services and use it fully locally with your own API keys, but you lose the convenience of 118+ integrations and built-in model routing.</p>
+<p><strong>Q: Is the Memory Tree compatible with other tools?</strong>
+Yes. The Memory Tree is a standard Markdown vault — the same format used by Obsidian. You can open it directly in Obsidian, read it with any Markdown viewer, or use standard tools like ripgrep to search it. There&rsquo;s no proprietary format or database.</p>
+<p><strong>Q: How does TokenJuice compare to LangChain&rsquo;s context compression?</strong>
+TokenJuice operates at the prompt level, before tokens reach the model, achieving 60-95% reduction. LangChain&rsquo;s context compression happens after retrieval (RAG), typically achieving 20-40% reduction. They&rsquo;re complementary — OpenHuman could theoretically use LangChain retrieval, but TokenJuice is the built-in default.</p>
+<p><strong>Q: What&rsquo;s the difference between OpenHuman and other AI agent frameworks like LangGraph or AutoGen?</strong>
+OpenHuman is a <strong>user-facing desktop application</strong> — it&rsquo;s what you use, not what you build with. LangGraph and AutoGen are developer frameworks for building multi-agent systems. OpenHuman could theoretically integrate with them, but they serve different audiences.</p>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>OpenHuman is the best thing to happen to local AI assistants in 2026, and that&rsquo;s not an exaggeration. The Memory Tree concept — persistent, Obsidian-compatible, self-building context — solves the single biggest pain point in AI assistant usage: the cold start problem.</p>
+<p>No other tool combines local-first privacy, 118+ integrations, and a memory system that actually persists across sessions. In 29,805 stars in one month, it has proven that there is a massive appetite for AI tools that respect user privacy without sacrificing functionality.</p>
+<p>If you&quot;re tired of AI assistants that forget everything when you restart, OpenHuman is the answer.</p>
+<hr>
+<p><strong>Sources &amp; Further Reading</strong>: - Official docs: <a href="https://tinyhumans.gitbook.io/openhuman/">https://tinyhumans.gitbook.io/openhuman/</a></p>
+<ul>
+<li>GitHub repository: <a href="https://github.com/tinyhumansai/openhuman">https://github.com/tinyhumansai/openhuman</a></li>
+<li>Discord community: <a href="https://discord.tinyhumans.ai/">https://discord.tinyhumans.ai/</a></li>
+<li>Product Hunt: <a href="https://www.producthunt.com/products/openhuman">https://www.producthunt.com/products/openhuman</a></li>
+</ul>
+<hr>
+<p><strong>Try OpenHuman</strong>: Install via ````brew tap tinyhumansai/core &amp;&amp; brew install openhuman``` or visit <a href="https://tinyhumans.ai/openhuman?utm_source=github&amp;utm_medium=readme">tinyhumans.ai/openhuman</a>.</p>
+<p>Join the community: <a href="https://t.me/DIBI8_Group">Telegram</a> · <a href="https://discord.tinyhumans.ai/">Discord</a></p>
+<p>Internal links: <a href="https://dibi8.com/hermes-agent-self-improving-ai-agent">hermes-agent-self-improving-ai-agent</a> · <a href="https://dibi8.com/claude-code-skill-authoring-guide-2026">claude-code-skill-authoring-guide-2026</a></p>
+<p><strong>Disclosure</strong>: This article mentions tools that may have affiliate relationships. We do not accept payment for positive reviews. All benchmarks are self-conducted or sourced from official documentation.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;What Is OpenHuman?&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-13&rdquo;,
@@ -205,18 +631,175 @@ OpenHuman is a <strong>user-facing desktop application</strong> — it&rsquo;s w
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/openhuman%22>https://dibi8.com/resources/openhuman"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/openhuman%22">https://dibi8.com/resources/openhuman"</a>
 }
-}</script></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/openhands/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/openmontage-agentic-video-production-system/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/openhands/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/openmontage-agentic-video-production-system/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

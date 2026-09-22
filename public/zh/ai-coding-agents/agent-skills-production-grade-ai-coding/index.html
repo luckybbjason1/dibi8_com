@@ -1,14 +1,337 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/agent-skills-production-grade-ai-coding/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/agent-skills-production-grade-ai-coding/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/agent-skills-production-grade-ai-coding/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nJavaScript TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases: /zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/ /zh/posts/agent-skills-production-grade-ai-coding/ faqs: - q: ‘Addy Osmani 开发的 Agent Skills 是什么？’ a: ‘Agent Skills 是一个开源合集，包含 20 项生产级工程技能和 7 个斜杠命令，把资深工程师的工作流、质量门禁和最佳实践编码固化下来，供 AI 编码智能体使用。它由 Addy Osmani 打造，覆盖完整的软件开发生命周期：DEFINE、PLAN、BUILD、VERIFY、REVIEW、SHIP。’ q: ‘Agent Skills 能配合哪些 AI 编码智能体使用？’ a: ‘Agent Skills 可配合 Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro 和 Codex 使用。每个智能体都有专属目录存放技能清单（manifest），技能会根据文件类型和上下文自动激活。’ q: ‘Agent Skills 中的 7 个斜杠命令是什么？’ a: ‘这 7 个命令是 /spec（定义要构建什么）、/plan（把工作拆分成小而原子化的任务）、/build（增量构建）、/test（用测试证明它能正常工作）、/review（合并前评审）、/code-simplify（清晰胜过炫技）和 /ship（部署到生产环境）。每个命令都会根据你正在编辑的内容自动激活相关技能。’ q: ‘如何为 Claude Code 安装 Agent Skills？’ a: ‘对于 Claude Code，你可以用 gh repo clone addyosmani/agent-skills .claude/skills 把仓库克隆到你的项目中，或者用 claude plugin install addyosmani/agent-skills 作为插件安装。’ q: ‘Agent Skills 中的反合理化表（anti-rationalization table）是什么？’ a: ‘反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如\"我稍后再加测试\"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。’— {\u003c/* resource-info */\u003e}\nAgent Skills：开发团队如何以5倍速度交付生产级代码 AI编码智能体无处不在——但大多数生成的玩具代码在生产环境中会崩溃。Agent Skills 由Addy Osmani（Google Chrome工程负责人）创建，是一个开源系统，可将任何AI智能体转变为高级软件工程师。拥有 33,400+ GitHub stars 和 3,900+ forks，它是2026年出现的最具影响力的开发者生产力工具之一。\n什么是Agent Skills？ Agent Skills 是一套20个生产级工程技能和7个斜杠命令，编码了Google规模公司高级工程师使用的工作流、质量门限和最佳实践。它适用于Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro和Codex。\n该系统映射到完整的软件开发生命周期：\n定义 → 规划 → 构建 → 验证 → 审查 → 交付 /spec /plan /build /test /review /ship 7个斜杠命令 | 你在做什么 | 命令 | 核心原则 | | |\n|\n| | 定义要构建的内容 | /spec | 规范先于代码 | | 规划如何构建 | /plan | 小而原子的任务 | | 增量构建 | /build | 一次一个切片 | | 证明它有效 | /test | 测试即证明 | | 合并前审查 | /review | 改善代码健康度 | | 简化代码 | /code-simplify | 清晰优于巧妙 | | 交付生产 | /ship | 更快更安全 |\n每个命令自动激活正确的技能。例如，/build 会根据您编辑的文件类型触发 incremental-implementation、test-driven-development 和 frontend-ui-engineering。\n20个生产级技能 定义——明确要构建的内容 idea-refine：结构化发散/收敛思维，将模糊想法转化为具体提案。 spec-driven-development：在编写任何代码之前，编写涵盖目标、命令、结构、代码风格、测试和边界的PRD。 规划——分解任务 planning-and-task-breakdown：将规范分解为带有验收标准和依赖排序的小型可验证任务。 构建——编写代码 incremental-implementation：薄垂直切片——实现、测试、验证、提交。功能标志、安全默认值、回滚友好变更。 test-driven-development：红-绿-重构，测试金字塔（80/15/5），测试大小，DAMP优于DRY，Beyonce规则。 context-engineering：在正确的时间向智能体提供正确的信息——规则文件、上下文打包、MCP集成。 source-driven-development：将每个框架决策建立在官方文档基础上——验证、引用来源、标记未验证内容。 frontend-ui-engineering：组件架构、设计系统、状态管理、响应式设计、WCAG 2.1 AA无障碍。 api-and-interface-design：契约优先设计、Hyrum定律、单版本规则、错误语义、边界验证。 验证——证明它有效 browser-testing-with-devtools：Chrome DevTools MCP用于实时运行时数据——DOM检查、控制台日志、网络跟踪、性能分析。 debugging-and-error-recovery：五步分类：重现、定位、减少、修复、防护。停线规则、安全回退。 审查——合并前的质量门限 code-review：结构化审查清单——正确性、性能、安全性、可维护性、测试覆盖率。 security-review：OWASP Top 10、依赖扫描、密钥检测、输入验证、输出编码。 交付——安全部署 deployment-and-rollback：蓝绿、金丝雀、功能标志、数据库迁移、回滚程序。 monitoring-and-observability：指标、日志、跟踪、警报、SLO、错误预算。 按智能体安装 Claude Code（推荐） # 克隆到您的项目中 gh repo clone addyosmani/agent-skills .claude/skills # 或作为插件安装 claude plugin install addyosmani/agent-skills Cursor 将 .cursor/skills/ 目录复制到项目根目录。技能根据文件类型自动激活。\nGemini CLI gemini install skills addyosmani/agent-skills Windsurf / OpenCode / Copilot 每个都有专用目录（.windsurf/、.opencode/、.github/copilot/）包含技能清单。\n代码示例：规范驱动开发 # /spec 输出示例 ## 目标 构建一个使用JWT令牌的用户认证REST API。 ## 命令 - POST /auth/register - POST /auth/login - POST /auth/refresh ## 结构 - controllers/auth.js - services/token.js - middleware/jwt.js - tests/auth.test.js ## 代码风格 - 仅使用async/await - Express错误处理中间件 - Zod用于输入验证 ## 测试 - 令牌服务100%覆盖率 - 所有端点的集成测试 - 负载测试：1000 req/s基线 ## 边界 - 不存储明文密码 - 令牌15分钟过期 - 速率限制：每分钟5次尝试 智能体使用此规范生成实现、测试和文档——在编写任何代码之前全部对齐。\n实际应用场景 案例1：2周内完成创业MVP 一个3人创业团队使用 /spec → /plan → /build → /test 在10天内交付了一个全栈SaaS MVP。规范防止了3次重大架构转向，每次转向原本会耗费2周。\n案例2：企业重构 一家财富500强团队使用 incremental-implementation 和 code-review 技能重构了一个10万行的React代码库。在3个月的迁移期间零生产事故。\n案例3：代理交付 一家Web开发代理公司将Agent Skills嵌入其标准工作流。项目交付时间下降了40%，客户变更请求减少了25%，因为规范及早发现了歧义。\n案例4：开源维护者 一位流行的npm包维护者在每个PR上使用 /review。该技能在人类审查之前捕获边缘情况、缺失测试和API破坏性变更。\n与竞品对比 | 功能 | Agent Skills | GitHub Copilot | Cursor Rules | 通用提示 | |\n|\n|\n|\n|\n| | 开源 | ✅ 是 | ❌ 否 | ❌ 否 | N/A | | 20个结构化技能 | ✅ 是 | ❌ 通用 | ❌ 基础 | ❌ 临时 | | 多智能体支持 | ✅ 7+智能体 | ❌ 仅Copilot | ❌ 仅Cursor | ❌ N/A | | 质量门限 | ✅ 内置 | ❌ 无 | ❌ 无 | ❌ 手动 | | 规范驱动 | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 罕见 | | 反合理化 | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | 高级工程师模式 | ✅ 是 | ❌ 初级水平 | ❌ 混合 | ❌ 混合 |\nSEO与开发者采用 Agent Skills在高意向开发者关键词上排名：\n“AI coding agent best practices” “production-grade AI software development” “Claude Code skills system” “spec-driven development with AI” “AI test-driven development” 该项目在工程领导圈中获得关注，因为它系统地解决了\"AI编写损坏代码\"的问题。\n相关文章 Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300% DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90% 2026年十大AI开发者生产力工具 深入解析：技能激活引擎 Agent Skills 使用上下文感知激活引擎，根据多个信号确定加载哪些技能：\n信号来源 显式命令：/build、/test、/review 直接加载其映射的技能包。 文件类型检测：编辑 .tsx 文件自动加载 frontend-ui-engineering；.proto 文件触发 api-and-interface-design。 Git 状态：src/ 中未提交的更改触发 incremental-implementation；失败的 CI 状态触发 debugging-and-error-recovery。 自然语言意图：“我需要为用户认证设计一个 API” 即使没有斜杠命令也会激活 api-and-interface-design。 技能组合 技能是可组合的。当您在一个从新的 API 端点获取数据的 React 组件上运行 /build 时，引擎会加载：\nincremental-implementation（主要） frontend-ui-engineering（UI 层） api-and-interface-design（数据契约） test-driven-development（验证） 这种组合防止了 AI 智能体针对一层进行优化而破坏相邻系统的常见失败模式。\n反合理化表 Agent Skills 最具创新性的功能之一是嵌入在每个技能中的反合理化表。高级工程师知道初级开发人员（和 AI 智能体）经常为走捷径辩护。这些表先发制人地标记常见的合理化并提供反驳：\n| 常见合理化 | 反驳 | 技能 | |\n|\n|\n| | “我稍后添加测试” | “稍后永远不会到来。未经测试的代码会进入生产环境。” | test-driven-development | | “API 仅供内部使用” | “内部 API 会变成公共的。从第一天起就为外部使用者设计。” | api-and-interface-design | | “这只是一个快速修复” | “快速修复会积累技术债务。遵循完整的分类流程。” | debugging-and-error-recovery | | “用户不会注意到性能问题” | “性能是一项功能。在否定之前先进行性能分析。” | browser-testing-with-devtools |\n这些表源自 Google 规模组织的真实事后分析和代码审查反馈。\n上下文工程：秘诀 context-engineering 技能可以说是最具变革性的。它教会 AI 智能体如何有效地管理自己的上下文窗口：\n规则文件 在项目根目录中放置 .cursorrules、.claude.md 或 .kiro.md 文件以定义：\n架构决策及其原理 禁止的模式（例如，“永远不要在 TypeScript 中使用 any\"） 首选库和版本约束 测试约定（jest 与 vitest，覆盖率阈值） 上下文打包 对于大型代码库，该技能教会智能体：\n总结：在加载完整内容之前，将超过 500 行的文件总结为接口描述 优先：优先加载近期 git 活动的文件，而非陈旧代码 排除：从上下文中排除生成的文件（锁文件、构建输出） 链式引用：当文件 A 导入 B 时，加载 A 的接口和 B 的实现 MCP 集成 该技能包括用于以下内容的模型上下文协议 (MCP) 配置：\n浏览器 DevTools：实时 DOM 检查、网络跟踪分析 数据库模式：用于 API 设计验证的 SQL 内省 文档服务器：实时框架文档查找 衡量 Agent Skill 影响 使用 Agent Skills 的团队应跟踪以下指标：\n| 指标 | 基线（无技能） | 使用 Agent Skills | 变化 | |\n|\n|\n|\n| | 从规范到首次提交的时间 | 4 小时 | 45 分钟 | -81% | | PR 审查轮次 | 平均 3.2 | 平均 1.4 | -56% | | 每月生产事故 | 2.1 | 0.3 | -86% | | 新代码测试覆盖率 | 34% | 89% | +162% | | 开发者满意度（1-10） | 5.2 | 8.1 | +56% |\n团队采用策略 策略 1：逐步推广 第 1-2 周：仅引入 /spec 和 /plan。在编写任何代码之前衡量规范质量。 第 3-4 周：添加 /build 和 /test。跟踪测试覆盖率改进。 第 5-6 周：启用 /review 和 /ship。衡量生产事故减少。\n策略 2：试点小组 选择一个 3-4 人的功能小组作为试点。让他们在一个完整的冲刺中使用所有 7 个命令。记录经验教训，并根据反馈创建团队特定的 .cursorrules 文件。\n策略 3：门控集成 将 Agent Skills 集成到 CI/CD 中：\n阻止不包含功能 \u003e 100 行的规范文件的 PR 在 PR 上自动运行 /review 并将结果作为评论发布 要求任何错误修复 PR 的 /test 输出（测试计划） 对比：Agent Skills 与工程阶梯 Agent Skills 有效地压缩了高级工程实践的学习曲线：\n| 高级工程实践 | 掌握所需年限 | Agent Skills 等效 | |\n|\n|\n| | 编写全面的规范 | 2-3 年 | /spec 命令 | | 分解复杂项目 | 1-2 年 | /plan 命令 | | 测试驱动开发纪律 | 2-4 年 | /test + 技能 | | 代码审查专业知识 | 3-5 年 | /review 命令 | | 生产调试直觉 | 3-5 年 | debugging-and-error-recovery | | API 设计判断 | 2-3 年 | ````api-and-interface-design``` 技能 |\n这种压缩意味着使用 Agent Skills 的初级开发人员可以在几周内（而不是几年内）生产出与中级工程师相当的质量输出。\n相关文章 Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300% DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90% 2026年十大AI开发者生产力工具 结论 Agent Skills 是\"AI能编码\"和\"AI能交付生产软件\"之间缺失的环节。通过将高级工程判断编码为结构化、可验证的工作流，Addy Osmani 为任何开发团队创造了一个力量倍增器。无论您是独立创始人、创业工程师还是企业负责人，这些技能都将使您的 AI 智能体编写您实际想要部署的代码。\n哪个 Agent Skill 对您的工作流改善最大？在评论中告诉我们。\n推荐自托管基础设施 要 7×24 稳定跑这套，服务器选择很关键：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。 **** — 香港 VPS，国内访问低延迟。这就是 dibi8.com 自家所在的 IDC，生产环境已验证。 以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Agent Skills：开发团队如何以5倍速度交付生产级代码”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding\" } } Why This Matters Understanding agent skills：开发团队如何以5倍速度交付生产级代码 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Agent Skills：开发团队如何以5倍速度交付生产级代码 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\nTool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | |\n|\n|\n|\n|\n| | Price | $20/month | $20/month | Free | Free | | Interface | CLI + IDE | Full IDE | CLI | CLI | | License | Proprietary | Commercial | Apache 2.0 | MIT | | GitHub Stars | N/A | N/A | N/A | 45,000+ | | Best For | Complex reasoning | Daily coding | Fast iteration | Customization |\n","wordCount":"1217","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/agent-skills-production-grade-ai-coding/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/agent-skills-production-grade-ai-coding/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/agent-skills-production-grade-ai-coding/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#agent-skills%e5%bc%80%e5%8f%91%e5%9b%a2%e9%98%9f%e5%a6%82%e4%bd%95%e4%bb%a55%e5%80%8d%e9%80%9f%e5%ba%a6%e4%ba%a4%e4%bb%98%e7%94%9f%e4%ba%a7%e7%ba%a7%e4%bb%a3%e7%a0%81 aria-label="Agent Skills：开发团队如何以5倍速度交付生产级代码">Agent Skills：开发团队如何以5倍速度交付生产级代码</a><ul><li><a href=#%e4%bb%80%e4%b9%88%e6%98%afagent-skills aria-label="什么是Agent Skills？">什么是Agent Skills？</a></li><li><a href=#7%e4%b8%aa%e6%96%9c%e6%9d%a0%e5%91%bd%e4%bb%a4 aria-label=7个斜杠命令>7个斜杠命令</a></li><li><a href=#20%e4%b8%aa%e7%94%9f%e4%ba%a7%e7%ba%a7%e6%8a%80%e8%83%bd aria-label=20个生产级技能>20个生产级技能</a><ul><li><a href=#%e5%ae%9a%e4%b9%89%e6%98%8e%e7%a1%ae%e8%a6%81%e6%9e%84%e5%bb%ba%e7%9a%84%e5%86%85%e5%ae%b9 aria-label=定义——明确要构建的内容>定义——明确要构建的内容</a></li><li><a href=#%e8%a7%84%e5%88%92%e5%88%86%e8%a7%a3%e4%bb%bb%e5%8a%a1 aria-label=规划——分解任务>规划——分解任务</a></li><li><a href=#%e6%9e%84%e5%bb%ba%e7%bc%96%e5%86%99%e4%bb%a3%e7%a0%81 aria-label=构建——编写代码>构建——编写代码</a></li><li><a href=#%e9%aa%8c%e8%af%81%e8%af%81%e6%98%8e%e5%ae%83%e6%9c%89%e6%95%88 aria-label=验证——证明它有效>验证——证明它有效</a></li><li><a href=#%e5%ae%a1%e6%9f%a5%e5%90%88%e5%b9%b6%e5%89%8d%e7%9a%84%e8%b4%a8%e9%87%8f%e9%97%a8%e9%99%90 aria-label=审查——合并前的质量门限>审查——合并前的质量门限</a></li><li><a href=#%e4%ba%a4%e4%bb%98%e5%ae%89%e5%85%a8%e9%83%a8%e7%bd%b2 aria-label=交付——安全部署>交付——安全部署</a></li></ul></li><li><a href=#%e6%8c%89%e6%99%ba%e8%83%bd%e4%bd%93%e5%ae%89%e8%a3%85 aria-label=按智能体安装>按智能体安装</a><ul><li><a href=#claude-code%e6%8e%a8%e8%8d%90 aria-label="Claude Code（推荐）">Claude Code（推荐）</a></li><li><a href=#cursor aria-label=Cursor>Cursor</a></li><li><a href=#gemini-cli aria-label="Gemini CLI">Gemini CLI</a></li><li><a href=#windsurf--opencode--copilot aria-label="Windsurf / OpenCode / Copilot">Windsurf / OpenCode / Copilot</a></li></ul></li><li><a href=#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b%e8%a7%84%e8%8c%83%e9%a9%b1%e5%8a%a8%e5%bc%80%e5%8f%91 aria-label=代码示例：规范驱动开发>代码示例：规范驱动开发</a></li><li><a href=#%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af aria-label=实际应用场景>实际应用场景</a><ul><li><a href=#%e6%a1%88%e4%be%8b12%e5%91%a8%e5%86%85%e5%ae%8c%e6%88%90%e5%88%9b%e4%b8%9amvp aria-label=案例1：2周内完成创业MVP>案例1：2周内完成创业MVP</a></li><li><a href=#%e6%a1%88%e4%be%8b2%e4%bc%81%e4%b8%9a%e9%87%8d%e6%9e%84 aria-label=案例2：企业重构>案例2：企业重构</a></li><li><a href=#%e6%a1%88%e4%be%8b3%e4%bb%a3%e7%90%86%e4%ba%a4%e4%bb%98 aria-label=案例3：代理交付>案例3：代理交付</a></li><li><a href=#%e6%a1%88%e4%be%8b4%e5%bc%80%e6%ba%90%e7%bb%b4%e6%8a%a4%e8%80%85 aria-label=案例4：开源维护者>案例4：开源维护者</a></li></ul></li><li><a href=#%e4%b8%8e%e7%ab%9e%e5%93%81%e5%af%b9%e6%af%94 aria-label=与竞品对比>与竞品对比</a></li><li><a href=#seo%e4%b8%8e%e5%bc%80%e5%8f%91%e8%80%85%e9%87%87%e7%94%a8 aria-label=SEO与开发者采用>SEO与开发者采用</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0 aria-label=相关文章>相关文章</a></li><li><a href=#%e6%b7%b1%e5%85%a5%e8%a7%a3%e6%9e%90%e6%8a%80%e8%83%bd%e6%bf%80%e6%b4%bb%e5%bc%95%e6%93%8e aria-label=深入解析：技能激活引擎>深入解析：技能激活引擎</a><ul><li><a href=#%e4%bf%a1%e5%8f%b7%e6%9d%a5%e6%ba%90 aria-label=信号来源>信号来源</a></li><li><a href=#%e6%8a%80%e8%83%bd%e7%bb%84%e5%90%88 aria-label=技能组合>技能组合</a></li></ul></li><li><a href=#%e5%8f%8d%e5%90%88%e7%90%86%e5%8c%96%e8%a1%a8 aria-label=反合理化表>反合理化表</a></li><li><a href=#%e4%b8%8a%e4%b8%8b%e6%96%87%e5%b7%a5%e7%a8%8b%e7%a7%98%e8%af%80 aria-label=上下文工程：秘诀>上下文工程：秘诀</a><ul><li><a href=#%e8%a7%84%e5%88%99%e6%96%87%e4%bb%b6 aria-label=规则文件>规则文件</a></li><li><a href=#%e4%b8%8a%e4%b8%8b%e6%96%87%e6%89%93%e5%8c%85 aria-label=上下文打包>上下文打包</a></li><li><a href=#mcp-%e9%9b%86%e6%88%90 aria-label="MCP 集成">MCP 集成</a></li></ul></li><li><a href=#%e8%a1%a1%e9%87%8f-agent-skill-%e5%bd%b1%e5%93%8d aria-label="衡量 Agent Skill 影响">衡量 Agent Skill 影响</a></li><li><a href=#%e5%9b%a2%e9%98%9f%e9%87%87%e7%94%a8%e7%ad%96%e7%95%a5 aria-label=团队采用策略>团队采用策略</a><ul><li><a href=#%e7%ad%96%e7%95%a5-1%e9%80%90%e6%ad%a5%e6%8e%a8%e5%b9%bf aria-label="策略 1：逐步推广">策略 1：逐步推广</a></li><li><a href=#%e7%ad%96%e7%95%a5-2%e8%af%95%e7%82%b9%e5%b0%8f%e7%bb%84 aria-label="策略 2：试点小组">策略 2：试点小组</a></li><li><a href=#%e7%ad%96%e7%95%a5-3%e9%97%a8%e6%8e%a7%e9%9b%86%e6%88%90 aria-label="策略 3：门控集成">策略 3：门控集成</a></li></ul></li><li><a href=#%e5%af%b9%e6%af%94agent-skills-%e4%b8%8e%e5%b7%a5%e7%a8%8b%e9%98%b6%e6%a2%af aria-label="对比：Agent Skills 与工程阶梯">对比：Agent Skills 与工程阶梯</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0-1 aria-label=相关文章>相关文章</a></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e8%87%aa%e6%89%98%e7%ae%a1%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐自托管基础设施>推荐自托管基础设施</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li><li><a href=#tool-comparison aria-label="Tool Comparison">Tool Comparison</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/agent-skills-production-grade-ai-coding/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/agent-skills-production-grade-ai-coding/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/agent-skills-production-grade-ai-coding/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Go\nJavaScript TypeScript application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-15” draft: false aliases: /zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/ /zh/posts/agent-skills-production-grade-ai-coding/ faqs: - q: ‘Addy Osmani 开发的 Agent Skills 是什么？’ a: ‘Agent Skills 是一个开源合集，包含 20 项生产级工程技能和 7 个斜杠命令，把资深工程师的工作流、质量门禁和最佳实践编码固化下来，供 AI 编码智能体使用。它由 Addy Osmani 打造，覆盖完整的软件开发生命周期：DEFINE、PLAN、BUILD、VERIFY、REVIEW、SHIP。’ q: ‘Agent Skills 能配合哪些 AI 编码智能体使用？’ a: ‘Agent Skills 可配合 Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro 和 Codex 使用。每个智能体都有专属目录存放技能清单（manifest），技能会根据文件类型和上下文自动激活。’ q: ‘Agent Skills 中的 7 个斜杠命令是什么？’ a: ‘这 7 个命令是 /spec（定义要构建什么）、/plan（把工作拆分成小而原子化的任务）、/build（增量构建）、/test（用测试证明它能正常工作）、/review（合并前评审）、/code-simplify（清晰胜过炫技）和 /ship（部署到生产环境）。每个命令都会根据你正在编辑的内容自动激活相关技能。’ q: ‘如何为 Claude Code 安装 Agent Skills？’ a: ‘对于 Claude Code，你可以用 gh repo clone addyosmani/agent-skills .claude/skills 把仓库克隆到你的项目中，或者用 claude plugin install addyosmani/agent-skills 作为插件安装。’ q: ‘Agent Skills 中的反合理化表（anti-rationalization table）是什么？’ a: ‘反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如\"我稍后再加测试\"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。’— {\u003c/* resource-info */\u003e}\nAgent Skills：开发团队如何以5倍速度交付生产级代码 AI编码智能体无处不在——但大多数生成的玩具代码在生产环境中会崩溃。Agent Skills 由Addy Osmani（Google Chrome工程负责人）创建，是一个开源系统，可将任何AI智能体转变为高级软件工程师。拥有 33,400+ GitHub stars 和 3,900+ forks，它是2026年出现的最具影响力的开发者生产力工具之一。\n什么是Agent Skills？ Agent Skills 是一套20个生产级工程技能和7个斜杠命令，编码了Google规模公司高级工程师使用的工作流、质量门限和最佳实践。它适用于Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro和Codex。\n该系统映射到完整的软件开发生命周期：\n定义 → 规划 → 构建 → 验证 → 审查 → 交付 /spec /plan /build /test /review /ship 7个斜杠命令 | 你在做什么 | 命令 | 核心原则 | | |\n|\n| | 定义要构建的内容 | /spec | 规范先于代码 | | 规划如何构建 | /plan | 小而原子的任务 | | 增量构建 | /build | 一次一个切片 | | 证明它有效 | /test | 测试即证明 | | 合并前审查 | /review | 改善代码健康度 | | 简化代码 | /code-simplify | 清晰优于巧妙 | | 交付生产 | /ship | 更快更安全 |\n每个命令自动激活正确的技能。例如，/build 会根据您编辑的文件类型触发 incremental-implementation、test-driven-development 和 frontend-ui-engineering。\n20个生产级技能 定义——明确要构建的内容 idea-refine：结构化发散/收敛思维，将模糊想法转化为具体提案。 spec-driven-development：在编写任何代码之前，编写涵盖目标、命令、结构、代码风格、测试和边界的PRD。 规划——分解任务 planning-and-task-breakdown：将规范分解为带有验收标准和依赖排序的小型可验证任务。 构建——编写代码 incremental-implementation：薄垂直切片——实现、测试、验证、提交。功能标志、安全默认值、回滚友好变更。 test-driven-development：红-绿-重构，测试金字塔（80/15/5），测试大小，DAMP优于DRY，Beyonce规则。 context-engineering：在正确的时间向智能体提供正确的信息——规则文件、上下文打包、MCP集成。 source-driven-development：将每个框架决策建立在官方文档基础上——验证、引用来源、标记未验证内容。 frontend-ui-engineering：组件架构、设计系统、状态管理、响应式设计、WCAG 2.1 AA无障碍。 api-and-interface-design：契约优先设计、Hyrum定律、单版本规则、错误语义、边界验证。 验证——证明它有效 browser-testing-with-devtools：Chrome DevTools MCP用于实时运行时数据——DOM检查、控制台日志、网络跟踪、性能分析。 debugging-and-error-recovery：五步分类：重现、定位、减少、修复、防护。停线规则、安全回退。 审查——合并前的质量门限 code-review：结构化审查清单——正确性、性能、安全性、可维护性、测试覆盖率。 security-review：OWASP Top 10、依赖扫描、密钥检测、输入验证、输出编码。 交付——安全部署 deployment-and-rollback：蓝绿、金丝雀、功能标志、数据库迁移、回滚程序。 monitoring-and-observability：指标、日志、跟踪、警报、SLO、错误预算。 按智能体安装 Claude Code（推荐） # 克隆到您的项目中 gh repo clone addyosmani/agent-skills .claude/skills # 或作为插件安装 claude plugin install addyosmani/agent-skills Cursor 将 .cursor/skills/ 目录复制到项目根目录。技能根据文件类型自动激活。\nGemini CLI gemini install skills addyosmani/agent-skills Windsurf / OpenCode / Copilot 每个都有专用目录（.windsurf/、.opencode/、.github/copilot/）包含技能清单。\n代码示例：规范驱动开发 # /spec 输出示例 ## 目标 构建一个使用JWT令牌的用户认证REST API。 ## 命令 - POST /auth/register - POST /auth/login - POST /auth/refresh ## 结构 - controllers/auth.js - services/token.js - middleware/jwt.js - tests/auth.test.js ## 代码风格 - 仅使用async/await - Express错误处理中间件 - Zod用于输入验证 ## 测试 - 令牌服务100%覆盖率 - 所有端点的集成测试 - 负载测试：1000 req/s基线 ## 边界 - 不存储明文密码 - 令牌15分钟过期 - 速率限制：每分钟5次尝试 智能体使用此规范生成实现、测试和文档——在编写任何代码之前全部对齐。\n实际应用场景 案例1：2周内完成创业MVP 一个3人创业团队使用 /spec → /plan → /build → /test 在10天内交付了一个全栈SaaS MVP。规范防止了3次重大架构转向，每次转向原本会耗费2周。\n案例2：企业重构 一家财富500强团队使用 incremental-implementation 和 code-review 技能重构了一个10万行的React代码库。在3个月的迁移期间零生产事故。\n案例3：代理交付 一家Web开发代理公司将Agent Skills嵌入其标准工作流。项目交付时间下降了40%，客户变更请求减少了25%，因为规范及早发现了歧义。\n案例4：开源维护者 一位流行的npm包维护者在每个PR上使用 /review。该技能在人类审查之前捕获边缘情况、缺失测试和API破坏性变更。\n与竞品对比 | 功能 | Agent Skills | GitHub Copilot | Cursor Rules | 通用提示 | |\n|\n|\n|\n|\n| | 开源 | ✅ 是 | ❌ 否 | ❌ 否 | N/A | | 20个结构化技能 | ✅ 是 | ❌ 通用 | ❌ 基础 | ❌ 临时 | | 多智能体支持 | ✅ 7+智能体 | ❌ 仅Copilot | ❌ 仅Cursor | ❌ N/A | | 质量门限 | ✅ 内置 | ❌ 无 | ❌ 无 | ❌ 手动 | | 规范驱动 | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 罕见 | | 反合理化 | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 | | 高级工程师模式 | ✅ 是 | ❌ 初级水平 | ❌ 混合 | ❌ 混合 |\nSEO与开发者采用 Agent Skills在高意向开发者关键词上排名：\n“AI coding agent best practices” “production-grade AI software development” “Claude Code skills system” “spec-driven development with AI” “AI test-driven development” 该项目在工程领导圈中获得关注，因为它系统地解决了\"AI编写损坏代码\"的问题。\n相关文章 Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300% DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90% 2026年十大AI开发者生产力工具 深入解析：技能激活引擎 Agent Skills 使用上下文感知激活引擎，根据多个信号确定加载哪些技能：\n信号来源 显式命令：/build、/test、/review 直接加载其映射的技能包。 文件类型检测：编辑 .tsx 文件自动加载 frontend-ui-engineering；.proto 文件触发 api-and-interface-design。 Git 状态：src/ 中未提交的更改触发 incremental-implementation；失败的 CI 状态触发 debugging-and-error-recovery。 自然语言意图：“我需要为用户认证设计一个 API” 即使没有斜杠命令也会激活 api-and-interface-design。 技能组合 技能是可组合的。当您在一个从新的 API 端点获取数据的 React 组件上运行 /build 时，引擎会加载：\nincremental-implementation（主要） frontend-ui-engineering（UI 层） api-and-interface-design（数据契约） test-driven-development（验证） 这种组合防止了 AI 智能体针对一层进行优化而破坏相邻系统的常见失败模式。\n反合理化表 Agent Skills 最具创新性的功能之一是嵌入在每个技能中的反合理化表。高级工程师知道初级开发人员（和 AI 智能体）经常为走捷径辩护。这些表先发制人地标记常见的合理化并提供反驳：\n| 常见合理化 | 反驳 | 技能 | |\n|\n|\n| | “我稍后添加测试” | “稍后永远不会到来。未经测试的代码会进入生产环境。” | test-driven-development | | “API 仅供内部使用” | “内部 API 会变成公共的。从第一天起就为外部使用者设计。” | api-and-interface-design | | “这只是一个快速修复” | “快速修复会积累技术债务。遵循完整的分类流程。” | debugging-and-error-recovery | | “用户不会注意到性能问题” | “性能是一项功能。在否定之前先进行性能分析。” | browser-testing-with-devtools |\n这些表源自 Google 规模组织的真实事后分析和代码审查反馈。\n上下文工程：秘诀 context-engineering 技能可以说是最具变革性的。它教会 AI 智能体如何有效地管理自己的上下文窗口：\n规则文件 在项目根目录中放置 .cursorrules、.claude.md 或 .kiro.md 文件以定义：\n架构决策及其原理 禁止的模式（例如，“永远不要在 TypeScript 中使用 any\"） 首选库和版本约束 测试约定（jest 与 vitest，覆盖率阈值） 上下文打包 对于大型代码库，该技能教会智能体：\n总结：在加载完整内容之前，将超过 500 行的文件总结为接口描述 优先：优先加载近期 git 活动的文件，而非陈旧代码 排除：从上下文中排除生成的文件（锁文件、构建输出） 链式引用：当文件 A 导入 B 时，加载 A 的接口和 B 的实现 MCP 集成 该技能包括用于以下内容的模型上下文协议 (MCP) 配置：\n浏览器 DevTools：实时 DOM 检查、网络跟踪分析 数据库模式：用于 API 设计验证的 SQL 内省 文档服务器：实时框架文档查找 衡量 Agent Skill 影响 使用 Agent Skills 的团队应跟踪以下指标：\n| 指标 | 基线（无技能） | 使用 Agent Skills | 变化 | |\n|\n|\n|\n| | 从规范到首次提交的时间 | 4 小时 | 45 分钟 | -81% | | PR 审查轮次 | 平均 3.2 | 平均 1.4 | -56% | | 每月生产事故 | 2.1 | 0.3 | -86% | | 新代码测试覆盖率 | 34% | 89% | +162% | | 开发者满意度（1-10） | 5.2 | 8.1 | +56% |\n团队采用策略 策略 1：逐步推广 第 1-2 周：仅引入 /spec 和 /plan。在编写任何代码之前衡量规范质量。 第 3-4 周：添加 /build 和 /test。跟踪测试覆盖率改进。 第 5-6 周：启用 /review 和 /ship。衡量生产事故减少。\n策略 2：试点小组 选择一个 3-4 人的功能小组作为试点。让他们在一个完整的冲刺中使用所有 7 个命令。记录经验教训，并根据反馈创建团队特定的 .cursorrules 文件。\n策略 3：门控集成 将 Agent Skills 集成到 CI/CD 中：\n阻止不包含功能 \u003e 100 行的规范文件的 PR 在 PR 上自动运行 /review 并将结果作为评论发布 要求任何错误修复 PR 的 /test 输出（测试计划） 对比：Agent Skills 与工程阶梯 Agent Skills 有效地压缩了高级工程实践的学习曲线：\n| 高级工程实践 | 掌握所需年限 | Agent Skills 等效 | |\n|\n|\n| | 编写全面的规范 | 2-3 年 | /spec 命令 | | 分解复杂项目 | 1-2 年 | /plan 命令 | | 测试驱动开发纪律 | 2-4 年 | /test + 技能 | | 代码审查专业知识 | 3-5 年 | /review 命令 | | 生产调试直觉 | 3-5 年 | debugging-and-error-recovery | | API 设计判断 | 2-3 年 | ````api-and-interface-design``` 技能 |\n这种压缩意味着使用 Agent Skills 的初级开发人员可以在几周内（而不是几年内）生产出与中级工程师相当的质量输出。\n相关文章 Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300% DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90% 2026年十大AI开发者生产力工具 结论 Agent Skills 是\"AI能编码\"和\"AI能交付生产软件\"之间缺失的环节。通过将高级工程判断编码为结构化、可验证的工作流，Addy Osmani 为任何开发团队创造了一个力量倍增器。无论您是独立创始人、创业工程师还是企业负责人，这些技能都将使您的 AI 智能体编写您实际想要部署的代码。\n哪个 Agent Skill 对您的工作流改善最大？在评论中告诉我们。\n推荐自托管基础设施 要 7×24 稳定跑这套，服务器选择很关键：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。 **** — 香港 VPS，国内访问低延迟。这就是 dibi8.com 自家所在的 IDC，生产环境已验证。 以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Agent Skills：开发团队如何以5倍速度交付生产级代码”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding\" } } Why This Matters Understanding agent skills：开发团队如何以5倍速度交付生产级代码 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Agent Skills：开发团队如何以5倍速度交付生产级代码 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\nTool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | |\n|\n|\n|\n|\n| | Price | $20/month | $20/month | Free | Free | | Interface | CLI + IDE | Full IDE | CLI | CLI | | License | Proprietary | Commercial | Apache 2.0 | MIT | | GitHub Stars | N/A | N/A | N/A | 45,000+ | | Best For | Complex reasoning | Daily coding | Fast iteration | Customization |\n",
+  "wordCount" : "1217",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/agent-skills-production-grade-ai-coding/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>6 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/agent-skills-production-grade-ai-coding/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/agent-skills-production-grade-ai-coding/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/agent-skills-production-grade-ai-coding/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#agent-skills%e5%bc%80%e5%8f%91%e5%9b%a2%e9%98%9f%e5%a6%82%e4%bd%95%e4%bb%a55%e5%80%8d%e9%80%9f%e5%ba%a6%e4%ba%a4%e4%bb%98%e7%94%9f%e4%ba%a7%e7%ba%a7%e4%bb%a3%e7%a0%81" aria-label="Agent Skills：开发团队如何以5倍速度交付生产级代码">Agent Skills：开发团队如何以5倍速度交付生产级代码</a><ul>
+                    
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%afagent-skills" aria-label="什么是Agent Skills？">什么是Agent Skills？</a></li>
+            <li>
+                <a href="#7%e4%b8%aa%e6%96%9c%e6%9d%a0%e5%91%bd%e4%bb%a4" aria-label="7个斜杠命令">7个斜杠命令</a></li>
+            <li>
+                <a href="#20%e4%b8%aa%e7%94%9f%e4%ba%a7%e7%ba%a7%e6%8a%80%e8%83%bd" aria-label="20个生产级技能">20个生产级技能</a><ul>
+                    
+            <li>
+                <a href="#%e5%ae%9a%e4%b9%89%e6%98%8e%e7%a1%ae%e8%a6%81%e6%9e%84%e5%bb%ba%e7%9a%84%e5%86%85%e5%ae%b9" aria-label="定义——明确要构建的内容">定义——明确要构建的内容</a></li>
+            <li>
+                <a href="#%e8%a7%84%e5%88%92%e5%88%86%e8%a7%a3%e4%bb%bb%e5%8a%a1" aria-label="规划——分解任务">规划——分解任务</a></li>
+            <li>
+                <a href="#%e6%9e%84%e5%bb%ba%e7%bc%96%e5%86%99%e4%bb%a3%e7%a0%81" aria-label="构建——编写代码">构建——编写代码</a></li>
+            <li>
+                <a href="#%e9%aa%8c%e8%af%81%e8%af%81%e6%98%8e%e5%ae%83%e6%9c%89%e6%95%88" aria-label="验证——证明它有效">验证——证明它有效</a></li>
+            <li>
+                <a href="#%e5%ae%a1%e6%9f%a5%e5%90%88%e5%b9%b6%e5%89%8d%e7%9a%84%e8%b4%a8%e9%87%8f%e9%97%a8%e9%99%90" aria-label="审查——合并前的质量门限">审查——合并前的质量门限</a></li>
+            <li>
+                <a href="#%e4%ba%a4%e4%bb%98%e5%ae%89%e5%85%a8%e9%83%a8%e7%bd%b2" aria-label="交付——安全部署">交付——安全部署</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%8c%89%e6%99%ba%e8%83%bd%e4%bd%93%e5%ae%89%e8%a3%85" aria-label="按智能体安装">按智能体安装</a><ul>
+                    
+            <li>
+                <a href="#claude-code%e6%8e%a8%e8%8d%90" aria-label="Claude Code（推荐）">Claude Code（推荐）</a></li>
+            <li>
+                <a href="#cursor" aria-label="Cursor">Cursor</a></li>
+            <li>
+                <a href="#gemini-cli" aria-label="Gemini CLI">Gemini CLI</a></li>
+            <li>
+                <a href="#windsurf--opencode--copilot" aria-label="Windsurf / OpenCode / Copilot">Windsurf / OpenCode / Copilot</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%bb%a3%e7%a0%81%e7%a4%ba%e4%be%8b%e8%a7%84%e8%8c%83%e9%a9%b1%e5%8a%a8%e5%bc%80%e5%8f%91" aria-label="代码示例：规范驱动开发">代码示例：规范驱动开发</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e9%99%85%e5%ba%94%e7%94%a8%e5%9c%ba%e6%99%af" aria-label="实际应用场景">实际应用场景</a><ul>
+                    
+            <li>
+                <a href="#%e6%a1%88%e4%be%8b12%e5%91%a8%e5%86%85%e5%ae%8c%e6%88%90%e5%88%9b%e4%b8%9amvp" aria-label="案例1：2周内完成创业MVP">案例1：2周内完成创业MVP</a></li>
+            <li>
+                <a href="#%e6%a1%88%e4%be%8b2%e4%bc%81%e4%b8%9a%e9%87%8d%e6%9e%84" aria-label="案例2：企业重构">案例2：企业重构</a></li>
+            <li>
+                <a href="#%e6%a1%88%e4%be%8b3%e4%bb%a3%e7%90%86%e4%ba%a4%e4%bb%98" aria-label="案例3：代理交付">案例3：代理交付</a></li>
+            <li>
+                <a href="#%e6%a1%88%e4%be%8b4%e5%bc%80%e6%ba%90%e7%bb%b4%e6%8a%a4%e8%80%85" aria-label="案例4：开源维护者">案例4：开源维护者</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e7%ab%9e%e5%93%81%e5%af%b9%e6%af%94" aria-label="与竞品对比">与竞品对比</a></li>
+            <li>
+                <a href="#seo%e4%b8%8e%e5%bc%80%e5%8f%91%e8%80%85%e9%87%87%e7%94%a8" aria-label="SEO与开发者采用">SEO与开发者采用</a></li>
+            <li>
+                <a href="#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0" aria-label="相关文章">相关文章</a></li>
+            <li>
+                <a href="#%e6%b7%b1%e5%85%a5%e8%a7%a3%e6%9e%90%e6%8a%80%e8%83%bd%e6%bf%80%e6%b4%bb%e5%bc%95%e6%93%8e" aria-label="深入解析：技能激活引擎">深入解析：技能激活引擎</a><ul>
+                    
+            <li>
+                <a href="#%e4%bf%a1%e5%8f%b7%e6%9d%a5%e6%ba%90" aria-label="信号来源">信号来源</a></li>
+            <li>
+                <a href="#%e6%8a%80%e8%83%bd%e7%bb%84%e5%90%88" aria-label="技能组合">技能组合</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%8f%8d%e5%90%88%e7%90%86%e5%8c%96%e8%a1%a8" aria-label="反合理化表">反合理化表</a></li>
+            <li>
+                <a href="#%e4%b8%8a%e4%b8%8b%e6%96%87%e5%b7%a5%e7%a8%8b%e7%a7%98%e8%af%80" aria-label="上下文工程：秘诀">上下文工程：秘诀</a><ul>
+                    
+            <li>
+                <a href="#%e8%a7%84%e5%88%99%e6%96%87%e4%bb%b6" aria-label="规则文件">规则文件</a></li>
+            <li>
+                <a href="#%e4%b8%8a%e4%b8%8b%e6%96%87%e6%89%93%e5%8c%85" aria-label="上下文打包">上下文打包</a></li>
+            <li>
+                <a href="#mcp-%e9%9b%86%e6%88%90" aria-label="MCP 集成">MCP 集成</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e8%a1%a1%e9%87%8f-agent-skill-%e5%bd%b1%e5%93%8d" aria-label="衡量 Agent Skill 影响">衡量 Agent Skill 影响</a></li>
+            <li>
+                <a href="#%e5%9b%a2%e9%98%9f%e9%87%87%e7%94%a8%e7%ad%96%e7%95%a5" aria-label="团队采用策略">团队采用策略</a><ul>
+                    
+            <li>
+                <a href="#%e7%ad%96%e7%95%a5-1%e9%80%90%e6%ad%a5%e6%8e%a8%e5%b9%bf" aria-label="策略 1：逐步推广">策略 1：逐步推广</a></li>
+            <li>
+                <a href="#%e7%ad%96%e7%95%a5-2%e8%af%95%e7%82%b9%e5%b0%8f%e7%bb%84" aria-label="策略 2：试点小组">策略 2：试点小组</a></li>
+            <li>
+                <a href="#%e7%ad%96%e7%95%a5-3%e9%97%a8%e6%8e%a7%e9%9b%86%e6%88%90" aria-label="策略 3：门控集成">策略 3：门控集成</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%af%b9%e6%af%94agent-skills-%e4%b8%8e%e5%b7%a5%e7%a8%8b%e9%98%b6%e6%a2%af" aria-label="对比：Agent Skills 与工程阶梯">对比：Agent Skills 与工程阶梯</a></li>
+            <li>
+                <a href="#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0-1" aria-label="相关文章">相关文章</a></li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e8%87%aa%e6%89%98%e7%ae%a1%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐自托管基础设施">推荐自托管基础设施</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li>
+            <li>
+                <a href="#tool-comparison" aria-label="Tool Comparison">Tool Comparison</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Go</p><ul><li>JavaScript</li><li>TypeScript
+tech_stack: - Go</p>
+<ul>
+<li>JavaScript</li>
+<li>TypeScript
 application_domain: Llm Frameworks
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -19,88 +342,300 @@ download_url: &rsquo;'
 backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:<ul><li>/zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/</li></ul></li><li>/zh/posts/agent-skills-production-grade-ai-coding/
+aliases:
+<ul>
+<li>/zh/posts/addy-osmani-agent-skills-production-grade-ai-coding-agents.zh/</li>
+</ul>
+</li>
+<li>/zh/posts/agent-skills-production-grade-ai-coding/
 faqs: - q: &lsquo;Addy Osmani 开发的 Agent Skills 是什么？&rsquo;
-a: &lsquo;Agent Skills 是一个开源合集，包含 20 项生产级工程技能和 7 个斜杠命令，把资深工程师的工作流、质量门禁和最佳实践编码固化下来，供 AI 编码智能体使用。它由 Addy Osmani 打造，覆盖完整的软件开发生命周期：DEFINE、PLAN、BUILD、VERIFY、REVIEW、SHIP。&rsquo;<ul><li>q: &lsquo;Agent Skills 能配合哪些 AI 编码智能体使用？&rsquo;
-a: &lsquo;Agent Skills 可配合 Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro 和 Codex 使用。每个智能体都有专属目录存放技能清单（manifest），技能会根据文件类型和上下文自动激活。&rsquo;</li><li>q: &lsquo;Agent Skills 中的 7 个斜杠命令是什么？&rsquo;
-a: &lsquo;这 7 个命令是 /spec（定义要构建什么）、/plan（把工作拆分成小而原子化的任务）、/build（增量构建）、/test（用测试证明它能正常工作）、/review（合并前评审）、/code-simplify（清晰胜过炫技）和 /ship（部署到生产环境）。每个命令都会根据你正在编辑的内容自动激活相关技能。&rsquo;</li><li>q: &lsquo;如何为 Claude Code 安装 Agent Skills？&rsquo;
-a: &lsquo;对于 Claude Code，你可以用 <code>gh repo clone addyosmani/agent-skills .claude/skills</code> 把仓库克隆到你的项目中，或者用 <code>claude plugin install addyosmani/agent-skills</code> 作为插件安装。&rsquo;</li><li>q: &lsquo;Agent Skills 中的反合理化表（anti-rationalization table）是什么？&rsquo;
-a: &lsquo;反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如"我稍后再加测试"），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。&rsquo;&mdash;</li></ul></li></ul><p>{&lt;/* resource-info */>}</p><h1 id=agent-skills开发团队如何以5倍速度交付生产级代码>Agent Skills：开发团队如何以5倍速度交付生产级代码<a hidden class=anchor aria-hidden=true href=#agent-skills开发团队如何以5倍速度交付生产级代码>#</a></h1><p>AI编码智能体无处不在——但大多数生成的玩具代码在生产环境中会崩溃。<strong>Agent Skills</strong> 由Addy Osmani（Google Chrome工程负责人）创建，是一个开源系统，可将任何AI智能体转变为<strong>高级软件工程师</strong>。拥有 <strong>33,400+ GitHub stars</strong> 和 <strong>3,900+ forks</strong>，它是2026年出现的最具影响力的开发者生产力工具之一。</p><h2 id=什么是agent-skills>什么是Agent Skills？<a hidden class=anchor aria-hidden=true href=#什么是agent-skills>#</a></h2><p>Agent Skills 是一套<strong>20个生产级工程技能</strong>和<strong>7个斜杠命令</strong>，编码了Google规模公司高级工程师使用的工作流、质量门限和最佳实践。它适用于Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro和Codex。</p><p>该系统映射到完整的软件开发生命周期：</p><pre tabindex=0><code>定义 → 规划 → 构建 → 验证 → 审查 → 交付
+a: &lsquo;Agent Skills 是一个开源合集，包含 20 项生产级工程技能和 7 个斜杠命令，把资深工程师的工作流、质量门禁和最佳实践编码固化下来，供 AI 编码智能体使用。它由 Addy Osmani 打造，覆盖完整的软件开发生命周期：DEFINE、PLAN、BUILD、VERIFY、REVIEW、SHIP。&rsquo;
+<ul>
+<li>q: &lsquo;Agent Skills 能配合哪些 AI 编码智能体使用？&rsquo;
+a: &lsquo;Agent Skills 可配合 Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro 和 Codex 使用。每个智能体都有专属目录存放技能清单（manifest），技能会根据文件类型和上下文自动激活。&rsquo;</li>
+<li>q: &lsquo;Agent Skills 中的 7 个斜杠命令是什么？&rsquo;
+a: &lsquo;这 7 个命令是 /spec（定义要构建什么）、/plan（把工作拆分成小而原子化的任务）、/build（增量构建）、/test（用测试证明它能正常工作）、/review（合并前评审）、/code-simplify（清晰胜过炫技）和 /ship（部署到生产环境）。每个命令都会根据你正在编辑的内容自动激活相关技能。&rsquo;</li>
+<li>q: &lsquo;如何为 Claude Code 安装 Agent Skills？&rsquo;
+a: &lsquo;对于 Claude Code，你可以用 <code>gh repo clone addyosmani/agent-skills .claude/skills</code> 把仓库克隆到你的项目中，或者用 <code>claude plugin install addyosmani/agent-skills</code> 作为插件安装。&rsquo;</li>
+<li>q: &lsquo;Agent Skills 中的反合理化表（anti-rationalization table）是什么？&rsquo;
+a: &lsquo;反合理化表是嵌入每项技能中的一个功能，它会提前标记开发者和 AI 智能体用来偷工减料的常见借口（例如&quot;我稍后再加测试&quot;），并给出对应的反驳论据。这些表格源自 Google 规模组织中真实的事后复盘（post-mortem）和代码评审反馈。&rsquo;&mdash;</li>
+</ul>
+</li>
+</ul>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h1 id="agent-skills开发团队如何以5倍速度交付生产级代码">Agent Skills：开发团队如何以5倍速度交付生产级代码<a hidden class="anchor" aria-hidden="true" href="#agent-skills开发团队如何以5倍速度交付生产级代码">#</a></h1>
+<p>AI编码智能体无处不在——但大多数生成的玩具代码在生产环境中会崩溃。<strong>Agent Skills</strong> 由Addy Osmani（Google Chrome工程负责人）创建，是一个开源系统，可将任何AI智能体转变为<strong>高级软件工程师</strong>。拥有 <strong>33,400+ GitHub stars</strong> 和 <strong>3,900+ forks</strong>，它是2026年出现的最具影响力的开发者生产力工具之一。</p>
+<h2 id="什么是agent-skills">什么是Agent Skills？<a hidden class="anchor" aria-hidden="true" href="#什么是agent-skills">#</a></h2>
+<p>Agent Skills 是一套<strong>20个生产级工程技能</strong>和<strong>7个斜杠命令</strong>，编码了Google规模公司高级工程师使用的工作流、质量门限和最佳实践。它适用于Claude Code、Cursor、Gemini CLI、Windsurf、OpenCode、GitHub Copilot、Kiro和Codex。</p>
+<p>该系统映射到完整的软件开发生命周期：</p>
+<pre tabindex="0"><code>定义 → 规划 → 构建 → 验证 → 审查 → 交付
   /spec   /plan  /build  /test   /review  /ship
-</code></pre><h2 id=7个斜杠命令>7个斜杠命令<a hidden class=anchor aria-hidden=true href=#7个斜杠命令>#</a></h2><h2 id=heading>| 你在做什么 | 命令 | 核心原则 |
-|</h2><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h2 id="7个斜杠命令">7个斜杠命令<a hidden class="anchor" aria-hidden="true" href="#7个斜杠命令">#</a></h2>
+<h2 id="heading">| 你在做什么 | 命令 | 核心原则 |
+|</h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 定义要构建的内容 | <code>/spec</code> | 规范先于代码 |
 | 规划如何构建 | <code>/plan</code> | 小而原子的任务 |
 | 增量构建 | <code>/build</code> | 一次一个切片 |
 | 证明它有效 | <code>/test</code> | 测试即证明 |
 | 合并前审查 | <code>/review</code> | 改善代码健康度 |
 | 简化代码 | <code>/code-simplify</code> | 清晰优于巧妙 |
-| 交付生产 | <code>/ship</code> | 更快更安全 |</p><p>每个命令自动激活正确的技能。例如，<code>/build</code> 会根据您编辑的文件类型触发 <code>incremental-implementation</code>、<code>test-driven-development</code> 和 <code>frontend-ui-engineering</code>。</p><h2 id=20个生产级技能>20个生产级技能<a hidden class=anchor aria-hidden=true href=#20个生产级技能>#</a></h2><h3 id=定义明确要构建的内容>定义——明确要构建的内容<a hidden class=anchor aria-hidden=true href=#定义明确要构建的内容>#</a></h3><ol><li><strong>idea-refine</strong>：结构化发散/收敛思维，将模糊想法转化为具体提案。</li><li><strong>spec-driven-development</strong>：在编写任何代码之前，编写涵盖目标、命令、结构、代码风格、测试和边界的PRD。</li></ol><h3 id=规划分解任务>规划——分解任务<a hidden class=anchor aria-hidden=true href=#规划分解任务>#</a></h3><ol start=3><li><strong>planning-and-task-breakdown</strong>：将规范分解为带有验收标准和依赖排序的小型可验证任务。</li></ol><h3 id=构建编写代码>构建——编写代码<a hidden class=anchor aria-hidden=true href=#构建编写代码>#</a></h3><ol start=4><li><strong>incremental-implementation</strong>：薄垂直切片——实现、测试、验证、提交。功能标志、安全默认值、回滚友好变更。</li><li><strong>test-driven-development</strong>：红-绿-重构，测试金字塔（80/15/5），测试大小，DAMP优于DRY，Beyonce规则。</li><li><strong>context-engineering</strong>：在正确的时间向智能体提供正确的信息——规则文件、上下文打包、MCP集成。</li><li><strong>source-driven-development</strong>：将每个框架决策建立在官方文档基础上——验证、引用来源、标记未验证内容。</li><li><strong>frontend-ui-engineering</strong>：组件架构、设计系统、状态管理、响应式设计、WCAG 2.1 AA无障碍。</li><li><strong>api-and-interface-design</strong>：契约优先设计、Hyrum定律、单版本规则、错误语义、边界验证。</li></ol><h3 id=验证证明它有效>验证——证明它有效<a hidden class=anchor aria-hidden=true href=#验证证明它有效>#</a></h3><ol start=10><li><strong>browser-testing-with-devtools</strong>：Chrome DevTools MCP用于实时运行时数据——DOM检查、控制台日志、网络跟踪、性能分析。</li><li><strong>debugging-and-error-recovery</strong>：五步分类：重现、定位、减少、修复、防护。停线规则、安全回退。</li></ol><h3 id=审查合并前的质量门限>审查——合并前的质量门限<a hidden class=anchor aria-hidden=true href=#审查合并前的质量门限>#</a></h3><ol start=12><li><strong>code-review</strong>：结构化审查清单——正确性、性能、安全性、可维护性、测试覆盖率。</li><li><strong>security-review</strong>：OWASP Top 10、依赖扫描、密钥检测、输入验证、输出编码。</li></ol><h3 id=交付安全部署>交付——安全部署<a hidden class=anchor aria-hidden=true href=#交付安全部署>#</a></h3><ol start=14><li><strong>deployment-and-rollback</strong>：蓝绿、金丝雀、功能标志、数据库迁移、回滚程序。</li><li><strong>monitoring-and-observability</strong>：指标、日志、跟踪、警报、SLO、错误预算。</li></ol><h2 id=按智能体安装>按智能体安装<a hidden class=anchor aria-hidden=true href=#按智能体安装>#</a></h2><h3 id=claude-code推荐>Claude Code（推荐）<a hidden class=anchor aria-hidden=true href=#claude-code推荐>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆到您的项目中</span>
-</span></span><span style=display:flex><span>gh repo clone addyosmani/agent-skills .claude/skills
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或作为插件安装</span>
-</span></span><span style=display:flex><span>claude plugin install addyosmani/agent-skills
-</span></span></code></pre></div><h3 id=cursor>Cursor<a hidden class=anchor aria-hidden=true href=#cursor>#</a></h3><p>将 <code>.cursor/skills/</code> 目录复制到项目根目录。技能根据文件类型自动激活。</p><h3 id=gemini-cli>Gemini CLI<a hidden class=anchor aria-hidden=true href=#gemini-cli>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>gemini install skills addyosmani/agent-skills
-</span></span></code></pre></div><h3 id=windsurf--opencode--copilot>Windsurf / OpenCode / Copilot<a hidden class=anchor aria-hidden=true href=#windsurf--opencode--copilot>#</a></h3><p>每个都有专用目录（<code>.windsurf/</code>、<code>.opencode/</code>、<code>.github/copilot/</code>）包含技能清单。</p><h2 id=代码示例规范驱动开发>代码示例：规范驱动开发<a hidden class=anchor aria-hidden=true href=#代码示例规范驱动开发>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-markdown data-lang=markdown><span style=display:flex><span># /spec 输出示例
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 目标
-</span></span></span><span style=display:flex><span>构建一个使用JWT令牌的用户认证REST API。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 命令
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> POST /auth/register
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> POST /auth/login
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> POST /auth/refresh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 结构
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> controllers/auth.js
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> services/token.js
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> middleware/jwt.js
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> tests/auth.test.js
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 代码风格
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 仅使用async/await
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> Express错误处理中间件
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> Zod用于输入验证
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 测试
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 令牌服务100%覆盖率
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 所有端点的集成测试
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 负载测试：1000 req/s基线
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## 边界
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 不存储明文密码
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 令牌15分钟过期
-</span></span><span style=display:flex><span><span style=color:#66d9ef>-</span> 速率限制：每分钟5次尝试
-</span></span></code></pre></div><p>智能体使用此规范生成实现、测试和文档——在编写任何代码之前全部对齐。</p><h2 id=实际应用场景>实际应用场景<a hidden class=anchor aria-hidden=true href=#实际应用场景>#</a></h2><h3 id=案例12周内完成创业mvp>案例1：2周内完成创业MVP<a hidden class=anchor aria-hidden=true href=#案例12周内完成创业mvp>#</a></h3><p>一个3人创业团队使用 <code>/spec</code> → <code>/plan</code> → <code>/build</code> → <code>/test</code> 在10天内交付了一个全栈SaaS MVP。规范防止了3次重大架构转向，每次转向原本会耗费2周。</p><h3 id=案例2企业重构>案例2：企业重构<a hidden class=anchor aria-hidden=true href=#案例2企业重构>#</a></h3><p>一家财富500强团队使用 <code>incremental-implementation</code> 和 <code>code-review</code> 技能重构了一个10万行的React代码库。在3个月的迁移期间零生产事故。</p><h3 id=案例3代理交付>案例3：代理交付<a hidden class=anchor aria-hidden=true href=#案例3代理交付>#</a></h3><p>一家Web开发代理公司将Agent Skills嵌入其标准工作流。项目交付时间下降了40%，客户变更请求减少了25%，因为规范及早发现了歧义。</p><h3 id=案例4开源维护者>案例4：开源维护者<a hidden class=anchor aria-hidden=true href=#案例4开源维护者>#</a></h3><p>一位流行的npm包维护者在每个PR上使用 <code>/review</code>。该技能在人类审查之前捕获边缘情况、缺失测试和API破坏性变更。</p><h2 id=与竞品对比>与竞品对比<a hidden class=anchor aria-hidden=true href=#与竞品对比>#</a></h2><p>| 功能 | Agent Skills | GitHub Copilot | Cursor Rules | 通用提示 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 交付生产 | <code>/ship</code> | 更快更安全 |</p>
+<p>每个命令自动激活正确的技能。例如，<code>/build</code> 会根据您编辑的文件类型触发 <code>incremental-implementation</code>、<code>test-driven-development</code> 和 <code>frontend-ui-engineering</code>。</p>
+<h2 id="20个生产级技能">20个生产级技能<a hidden class="anchor" aria-hidden="true" href="#20个生产级技能">#</a></h2>
+<h3 id="定义明确要构建的内容">定义——明确要构建的内容<a hidden class="anchor" aria-hidden="true" href="#定义明确要构建的内容">#</a></h3>
+<ol>
+<li><strong>idea-refine</strong>：结构化发散/收敛思维，将模糊想法转化为具体提案。</li>
+<li><strong>spec-driven-development</strong>：在编写任何代码之前，编写涵盖目标、命令、结构、代码风格、测试和边界的PRD。</li>
+</ol>
+<h3 id="规划分解任务">规划——分解任务<a hidden class="anchor" aria-hidden="true" href="#规划分解任务">#</a></h3>
+<ol start="3">
+<li><strong>planning-and-task-breakdown</strong>：将规范分解为带有验收标准和依赖排序的小型可验证任务。</li>
+</ol>
+<h3 id="构建编写代码">构建——编写代码<a hidden class="anchor" aria-hidden="true" href="#构建编写代码">#</a></h3>
+<ol start="4">
+<li><strong>incremental-implementation</strong>：薄垂直切片——实现、测试、验证、提交。功能标志、安全默认值、回滚友好变更。</li>
+<li><strong>test-driven-development</strong>：红-绿-重构，测试金字塔（80/15/5），测试大小，DAMP优于DRY，Beyonce规则。</li>
+<li><strong>context-engineering</strong>：在正确的时间向智能体提供正确的信息——规则文件、上下文打包、MCP集成。</li>
+<li><strong>source-driven-development</strong>：将每个框架决策建立在官方文档基础上——验证、引用来源、标记未验证内容。</li>
+<li><strong>frontend-ui-engineering</strong>：组件架构、设计系统、状态管理、响应式设计、WCAG 2.1 AA无障碍。</li>
+<li><strong>api-and-interface-design</strong>：契约优先设计、Hyrum定律、单版本规则、错误语义、边界验证。</li>
+</ol>
+<h3 id="验证证明它有效">验证——证明它有效<a hidden class="anchor" aria-hidden="true" href="#验证证明它有效">#</a></h3>
+<ol start="10">
+<li><strong>browser-testing-with-devtools</strong>：Chrome DevTools MCP用于实时运行时数据——DOM检查、控制台日志、网络跟踪、性能分析。</li>
+<li><strong>debugging-and-error-recovery</strong>：五步分类：重现、定位、减少、修复、防护。停线规则、安全回退。</li>
+</ol>
+<h3 id="审查合并前的质量门限">审查——合并前的质量门限<a hidden class="anchor" aria-hidden="true" href="#审查合并前的质量门限">#</a></h3>
+<ol start="12">
+<li><strong>code-review</strong>：结构化审查清单——正确性、性能、安全性、可维护性、测试覆盖率。</li>
+<li><strong>security-review</strong>：OWASP Top 10、依赖扫描、密钥检测、输入验证、输出编码。</li>
+</ol>
+<h3 id="交付安全部署">交付——安全部署<a hidden class="anchor" aria-hidden="true" href="#交付安全部署">#</a></h3>
+<ol start="14">
+<li><strong>deployment-and-rollback</strong>：蓝绿、金丝雀、功能标志、数据库迁移、回滚程序。</li>
+<li><strong>monitoring-and-observability</strong>：指标、日志、跟踪、警报、SLO、错误预算。</li>
+</ol>
+<h2 id="按智能体安装">按智能体安装<a hidden class="anchor" aria-hidden="true" href="#按智能体安装">#</a></h2>
+<h3 id="claude-code推荐">Claude Code（推荐）<a hidden class="anchor" aria-hidden="true" href="#claude-code推荐">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 克隆到您的项目中</span>
+</span></span><span style="display:flex;"><span>gh repo clone addyosmani/agent-skills .claude/skills
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或作为插件安装</span>
+</span></span><span style="display:flex;"><span>claude plugin install addyosmani/agent-skills
+</span></span></code></pre></div><h3 id="cursor">Cursor<a hidden class="anchor" aria-hidden="true" href="#cursor">#</a></h3>
+<p>将 <code>.cursor/skills/</code> 目录复制到项目根目录。技能根据文件类型自动激活。</p>
+<h3 id="gemini-cli">Gemini CLI<a hidden class="anchor" aria-hidden="true" href="#gemini-cli">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>gemini install skills addyosmani/agent-skills
+</span></span></code></pre></div><h3 id="windsurf--opencode--copilot">Windsurf / OpenCode / Copilot<a hidden class="anchor" aria-hidden="true" href="#windsurf--opencode--copilot">#</a></h3>
+<p>每个都有专用目录（<code>.windsurf/</code>、<code>.opencode/</code>、<code>.github/copilot/</code>）包含技能清单。</p>
+<h2 id="代码示例规范驱动开发">代码示例：规范驱动开发<a hidden class="anchor" aria-hidden="true" href="#代码示例规范驱动开发">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span># /spec 输出示例
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 目标
+</span></span></span><span style="display:flex;"><span>构建一个使用JWT令牌的用户认证REST API。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 命令
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> POST /auth/register
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> POST /auth/login
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> POST /auth/refresh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 结构
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> controllers/auth.js
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> services/token.js
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> middleware/jwt.js
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> tests/auth.test.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 代码风格
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 仅使用async/await
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Express错误处理中间件
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> Zod用于输入验证
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 测试
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 令牌服务100%覆盖率
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 所有端点的集成测试
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 负载测试：1000 req/s基线
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## 边界
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 不存储明文密码
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 令牌15分钟过期
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">-</span> 速率限制：每分钟5次尝试
+</span></span></code></pre></div><p>智能体使用此规范生成实现、测试和文档——在编写任何代码之前全部对齐。</p>
+<h2 id="实际应用场景">实际应用场景<a hidden class="anchor" aria-hidden="true" href="#实际应用场景">#</a></h2>
+<h3 id="案例12周内完成创业mvp">案例1：2周内完成创业MVP<a hidden class="anchor" aria-hidden="true" href="#案例12周内完成创业mvp">#</a></h3>
+<p>一个3人创业团队使用 <code>/spec</code> → <code>/plan</code> → <code>/build</code> → <code>/test</code> 在10天内交付了一个全栈SaaS MVP。规范防止了3次重大架构转向，每次转向原本会耗费2周。</p>
+<h3 id="案例2企业重构">案例2：企业重构<a hidden class="anchor" aria-hidden="true" href="#案例2企业重构">#</a></h3>
+<p>一家财富500强团队使用 <code>incremental-implementation</code> 和 <code>code-review</code> 技能重构了一个10万行的React代码库。在3个月的迁移期间零生产事故。</p>
+<h3 id="案例3代理交付">案例3：代理交付<a hidden class="anchor" aria-hidden="true" href="#案例3代理交付">#</a></h3>
+<p>一家Web开发代理公司将Agent Skills嵌入其标准工作流。项目交付时间下降了40%，客户变更请求减少了25%，因为规范及早发现了歧义。</p>
+<h3 id="案例4开源维护者">案例4：开源维护者<a hidden class="anchor" aria-hidden="true" href="#案例4开源维护者">#</a></h3>
+<p>一位流行的npm包维护者在每个PR上使用 <code>/review</code>。该技能在人类审查之前捕获边缘情况、缺失测试和API破坏性变更。</p>
+<h2 id="与竞品对比">与竞品对比<a hidden class="anchor" aria-hidden="true" href="#与竞品对比">#</a></h2>
+<p>| 功能 | Agent Skills | GitHub Copilot | Cursor Rules | 通用提示 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>开源</strong> | ✅ 是 | ❌ 否 | ❌ 否 | N/A |
 | <strong>20个结构化技能</strong> | ✅ 是 | ❌ 通用 | ❌ 基础 | ❌ 临时 |
 | <strong>多智能体支持</strong> | ✅ 7+智能体 | ❌ 仅Copilot | ❌ 仅Cursor | ❌ N/A |
 | <strong>质量门限</strong> | ✅ 内置 | ❌ 无 | ❌ 无 | ❌ 手动 |
 | <strong>规范驱动</strong> | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 罕见 |
 | <strong>反合理化</strong> | ✅ 是 | ❌ 否 | ❌ 否 | ❌ 否 |
-| <strong>高级工程师模式</strong> | ✅ 是 | ❌ 初级水平 | ❌ 混合 | ❌ 混合 |</p><h2 id=seo与开发者采用>SEO与开发者采用<a hidden class=anchor aria-hidden=true href=#seo与开发者采用>#</a></h2><p>Agent Skills在高意向开发者关键词上排名：</p><ul><li>&ldquo;AI coding agent best practices&rdquo;</li><li>&ldquo;production-grade AI software development&rdquo;</li><li>&ldquo;Claude Code skills system&rdquo;</li><li>&ldquo;spec-driven development with AI&rdquo;</li><li>&ldquo;AI test-driven development&rdquo;</li></ul><p>该项目在<strong>工程领导圈</strong>中获得关注，因为它系统地解决了"AI编写损坏代码"的问题。</p><h2 id=相关文章>相关文章<a hidden class=anchor aria-hidden=true href=#相关文章>#</a></h2><ul><li><a href=/zh/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation/>Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%</a></li><li><a href=/zh/resources/ai-tools/docuseal-open-source-docusign-alternative/>DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%</a></li><li><a href=/zh/resources/llm-frameworks/top-10-open-source-ai-tools-2026/>2026年十大AI开发者生产力工具</a></li></ul><h2 id=深入解析技能激活引擎>深入解析：技能激活引擎<a hidden class=anchor aria-hidden=true href=#深入解析技能激活引擎>#</a></h2><p>Agent Skills 使用上下文感知激活引擎，根据多个信号确定加载哪些技能：</p><h3 id=信号来源>信号来源<a hidden class=anchor aria-hidden=true href=#信号来源>#</a></h3><ol><li><strong>显式命令</strong>：<code>/build</code>、<code>/test</code>、<code>/review</code> 直接加载其映射的技能包。</li><li><strong>文件类型检测</strong>：编辑 <code>.tsx</code> 文件自动加载 <code>frontend-ui-engineering</code>；<code>.proto</code> 文件触发 <code>api-and-interface-design</code>。</li><li><strong>Git 状态</strong>：<code>src/</code> 中未提交的更改触发 <code>incremental-implementation</code>；失败的 CI 状态触发 <code>debugging-and-error-recovery</code>。</li><li><strong>自然语言意图</strong>：&ldquo;我需要为用户认证设计一个 API&rdquo; 即使没有斜杠命令也会激活 <code>api-and-interface-design</code>。</li></ol><h3 id=技能组合>技能组合<a hidden class=anchor aria-hidden=true href=#技能组合>#</a></h3><p>技能是可组合的。当您在一个从新的 API 端点获取数据的 React 组件上运行 <code>/build</code> 时，引擎会加载：</p><ul><li><code>incremental-implementation</code>（主要）</li><li><code>frontend-ui-engineering</code>（UI 层）</li><li><code>api-and-interface-design</code>（数据契约）</li><li><code>test-driven-development</code>（验证）</li></ul><p>这种组合防止了 AI 智能体针对一层进行优化而破坏相邻系统的常见失败模式。</p><h2 id=反合理化表>反合理化表<a hidden class=anchor aria-hidden=true href=#反合理化表>#</a></h2><p>Agent Skills 最具创新性的功能之一是嵌入在每个技能中的<strong>反合理化表</strong>。高级工程师知道初级开发人员（和 AI 智能体）经常为走捷径辩护。这些表先发制人地标记常见的合理化并提供反驳：</p><p>| 常见合理化 | 反驳 | 技能 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>高级工程师模式</strong> | ✅ 是 | ❌ 初级水平 | ❌ 混合 | ❌ 混合 |</p>
+<h2 id="seo与开发者采用">SEO与开发者采用<a hidden class="anchor" aria-hidden="true" href="#seo与开发者采用">#</a></h2>
+<p>Agent Skills在高意向开发者关键词上排名：</p>
+<ul>
+<li>&ldquo;AI coding agent best practices&rdquo;</li>
+<li>&ldquo;production-grade AI software development&rdquo;</li>
+<li>&ldquo;Claude Code skills system&rdquo;</li>
+<li>&ldquo;spec-driven development with AI&rdquo;</li>
+<li>&ldquo;AI test-driven development&rdquo;</li>
+</ul>
+<p>该项目在<strong>工程领导圈</strong>中获得关注，因为它系统地解决了&quot;AI编写损坏代码&quot;的问题。</p>
+<h2 id="相关文章">相关文章<a hidden class="anchor" aria-hidden="true" href="#相关文章">#</a></h2>
+<ul>
+<li><a href="/zh/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation/">Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%</a></li>
+<li><a href="/zh/resources/ai-tools/docuseal-open-source-docusign-alternative/">DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%</a></li>
+<li><a href="/zh/resources/llm-frameworks/top-10-open-source-ai-tools-2026/">2026年十大AI开发者生产力工具</a></li>
+</ul>
+<h2 id="深入解析技能激活引擎">深入解析：技能激活引擎<a hidden class="anchor" aria-hidden="true" href="#深入解析技能激活引擎">#</a></h2>
+<p>Agent Skills 使用上下文感知激活引擎，根据多个信号确定加载哪些技能：</p>
+<h3 id="信号来源">信号来源<a hidden class="anchor" aria-hidden="true" href="#信号来源">#</a></h3>
+<ol>
+<li><strong>显式命令</strong>：<code>/build</code>、<code>/test</code>、<code>/review</code> 直接加载其映射的技能包。</li>
+<li><strong>文件类型检测</strong>：编辑 <code>.tsx</code> 文件自动加载 <code>frontend-ui-engineering</code>；<code>.proto</code> 文件触发 <code>api-and-interface-design</code>。</li>
+<li><strong>Git 状态</strong>：<code>src/</code> 中未提交的更改触发 <code>incremental-implementation</code>；失败的 CI 状态触发 <code>debugging-and-error-recovery</code>。</li>
+<li><strong>自然语言意图</strong>：&ldquo;我需要为用户认证设计一个 API&rdquo; 即使没有斜杠命令也会激活 <code>api-and-interface-design</code>。</li>
+</ol>
+<h3 id="技能组合">技能组合<a hidden class="anchor" aria-hidden="true" href="#技能组合">#</a></h3>
+<p>技能是可组合的。当您在一个从新的 API 端点获取数据的 React 组件上运行 <code>/build</code> 时，引擎会加载：</p>
+<ul>
+<li><code>incremental-implementation</code>（主要）</li>
+<li><code>frontend-ui-engineering</code>（UI 层）</li>
+<li><code>api-and-interface-design</code>（数据契约）</li>
+<li><code>test-driven-development</code>（验证）</li>
+</ul>
+<p>这种组合防止了 AI 智能体针对一层进行优化而破坏相邻系统的常见失败模式。</p>
+<h2 id="反合理化表">反合理化表<a hidden class="anchor" aria-hidden="true" href="#反合理化表">#</a></h2>
+<p>Agent Skills 最具创新性的功能之一是嵌入在每个技能中的<strong>反合理化表</strong>。高级工程师知道初级开发人员（和 AI 智能体）经常为走捷径辩护。这些表先发制人地标记常见的合理化并提供反驳：</p>
+<p>| 常见合理化 | 反驳 | 技能 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | &ldquo;我稍后添加测试&rdquo; | &ldquo;稍后永远不会到来。未经测试的代码会进入生产环境。&rdquo; | test-driven-development |
 | &ldquo;API 仅供内部使用&rdquo; | &ldquo;内部 API 会变成公共的。从第一天起就为外部使用者设计。&rdquo; | api-and-interface-design |
 | &ldquo;这只是一个快速修复&rdquo; | &ldquo;快速修复会积累技术债务。遵循完整的分类流程。&rdquo; | debugging-and-error-recovery |
-| &ldquo;用户不会注意到性能问题&rdquo; | &ldquo;性能是一项功能。在否定之前先进行性能分析。&rdquo; | browser-testing-with-devtools |</p><p>这些表源自 Google 规模组织的真实事后分析和代码审查反馈。</p><h2 id=上下文工程秘诀>上下文工程：秘诀<a hidden class=anchor aria-hidden=true href=#上下文工程秘诀>#</a></h2><p><code>context-engineering</code> 技能可以说是最具变革性的。它教会 AI 智能体如何有效地管理自己的上下文窗口：</p><h3 id=规则文件>规则文件<a hidden class=anchor aria-hidden=true href=#规则文件>#</a></h3><p>在项目根目录中放置 <code>.cursorrules</code>、<code>.claude.md</code> 或 <code>.kiro.md</code> 文件以定义：</p><ul><li>架构决策及其原理</li><li>禁止的模式（例如，&ldquo;永远不要在 TypeScript 中使用 <code>any</code>"）</li><li>首选库和版本约束</li><li>测试约定（jest 与 vitest，覆盖率阈值）</li></ul><h3 id=上下文打包>上下文打包<a hidden class=anchor aria-hidden=true href=#上下文打包>#</a></h3><p>对于大型代码库，该技能教会智能体：</p><ol><li><strong>总结</strong>：在加载完整内容之前，将超过 500 行的文件总结为接口描述</li><li><strong>优先</strong>：优先加载近期 git 活动的文件，而非陈旧代码</li><li><strong>排除</strong>：从上下文中排除生成的文件（锁文件、构建输出）</li><li><strong>链式引用</strong>：当文件 A 导入 B 时，加载 A 的接口和 B 的实现</li></ol><h3 id=mcp-集成>MCP 集成<a hidden class=anchor aria-hidden=true href=#mcp-集成>#</a></h3><p>该技能包括用于以下内容的模型上下文协议 (MCP) 配置：</p><ul><li><strong>浏览器 DevTools</strong>：实时 DOM 检查、网络跟踪分析</li><li><strong>数据库模式</strong>：用于 API 设计验证的 SQL 内省</li><li><strong>文档服务器</strong>：实时框架文档查找</li></ul><h2 id=衡量-agent-skill-影响>衡量 Agent Skill 影响<a hidden class=anchor aria-hidden=true href=#衡量-agent-skill-影响>#</a></h2><p>使用 Agent Skills 的团队应跟踪以下指标：</p><p>| 指标 | 基线（无技能） | 使用 Agent Skills | 变化 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| &ldquo;用户不会注意到性能问题&rdquo; | &ldquo;性能是一项功能。在否定之前先进行性能分析。&rdquo; | browser-testing-with-devtools |</p>
+<p>这些表源自 Google 规模组织的真实事后分析和代码审查反馈。</p>
+<h2 id="上下文工程秘诀">上下文工程：秘诀<a hidden class="anchor" aria-hidden="true" href="#上下文工程秘诀">#</a></h2>
+<p><code>context-engineering</code> 技能可以说是最具变革性的。它教会 AI 智能体如何有效地管理自己的上下文窗口：</p>
+<h3 id="规则文件">规则文件<a hidden class="anchor" aria-hidden="true" href="#规则文件">#</a></h3>
+<p>在项目根目录中放置 <code>.cursorrules</code>、<code>.claude.md</code> 或 <code>.kiro.md</code> 文件以定义：</p>
+<ul>
+<li>架构决策及其原理</li>
+<li>禁止的模式（例如，&ldquo;永远不要在 TypeScript 中使用 <code>any</code>&quot;）</li>
+<li>首选库和版本约束</li>
+<li>测试约定（jest 与 vitest，覆盖率阈值）</li>
+</ul>
+<h3 id="上下文打包">上下文打包<a hidden class="anchor" aria-hidden="true" href="#上下文打包">#</a></h3>
+<p>对于大型代码库，该技能教会智能体：</p>
+<ol>
+<li><strong>总结</strong>：在加载完整内容之前，将超过 500 行的文件总结为接口描述</li>
+<li><strong>优先</strong>：优先加载近期 git 活动的文件，而非陈旧代码</li>
+<li><strong>排除</strong>：从上下文中排除生成的文件（锁文件、构建输出）</li>
+<li><strong>链式引用</strong>：当文件 A 导入 B 时，加载 A 的接口和 B 的实现</li>
+</ol>
+<h3 id="mcp-集成">MCP 集成<a hidden class="anchor" aria-hidden="true" href="#mcp-集成">#</a></h3>
+<p>该技能包括用于以下内容的模型上下文协议 (MCP) 配置：</p>
+<ul>
+<li><strong>浏览器 DevTools</strong>：实时 DOM 检查、网络跟踪分析</li>
+<li><strong>数据库模式</strong>：用于 API 设计验证的 SQL 内省</li>
+<li><strong>文档服务器</strong>：实时框架文档查找</li>
+</ul>
+<h2 id="衡量-agent-skill-影响">衡量 Agent Skill 影响<a hidden class="anchor" aria-hidden="true" href="#衡量-agent-skill-影响">#</a></h2>
+<p>使用 Agent Skills 的团队应跟踪以下指标：</p>
+<p>| 指标 | 基线（无技能） | 使用 Agent Skills | 变化 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 从规范到首次提交的时间 | 4 小时 | 45 分钟 | -81% |
 | PR 审查轮次 | 平均 3.2 | 平均 1.4 | -56% |
 | 每月生产事故 | 2.1 | 0.3 | -86% |
 | 新代码测试覆盖率 | 34% | 89% | +162% |
-| 开发者满意度（1-10） | 5.2 | 8.1 | +56% |</p><h2 id=团队采用策略>团队采用策略<a hidden class=anchor aria-hidden=true href=#团队采用策略>#</a></h2><h3 id=策略-1逐步推广>策略 1：逐步推广<a hidden class=anchor aria-hidden=true href=#策略-1逐步推广>#</a></h3><p>第 1-2 周：仅引入 <code>/spec</code> 和 <code>/plan</code>。在编写任何代码之前衡量规范质量。
+| 开发者满意度（1-10） | 5.2 | 8.1 | +56% |</p>
+<h2 id="团队采用策略">团队采用策略<a hidden class="anchor" aria-hidden="true" href="#团队采用策略">#</a></h2>
+<h3 id="策略-1逐步推广">策略 1：逐步推广<a hidden class="anchor" aria-hidden="true" href="#策略-1逐步推广">#</a></h3>
+<p>第 1-2 周：仅引入 <code>/spec</code> 和 <code>/plan</code>。在编写任何代码之前衡量规范质量。
 第 3-4 周：添加 <code>/build</code> 和 <code>/test</code>。跟踪测试覆盖率改进。
-第 5-6 周：启用 <code>/review</code> 和 <code>/ship</code>。衡量生产事故减少。</p><h3 id=策略-2试点小组>策略 2：试点小组<a hidden class=anchor aria-hidden=true href=#策略-2试点小组>#</a></h3><p>选择一个 3-4 人的功能小组作为试点。让他们在一个完整的冲刺中使用所有 7 个命令。记录经验教训，并根据反馈创建团队特定的 <code>.cursorrules</code> 文件。</p><h3 id=策略-3门控集成>策略 3：门控集成<a hidden class=anchor aria-hidden=true href=#策略-3门控集成>#</a></h3><p>将 Agent Skills 集成到 CI/CD 中：</p><ul><li>阻止不包含功能 > 100 行的规范文件的 PR</li><li>在 PR 上自动运行 <code>/review</code> 并将结果作为评论发布</li><li>要求任何错误修复 PR 的 <code>/test</code> 输出（测试计划）</li></ul><h2 id=对比agent-skills-与工程阶梯>对比：Agent Skills 与工程阶梯<a hidden class=anchor aria-hidden=true href=#对比agent-skills-与工程阶梯>#</a></h2><p>Agent Skills 有效地压缩了高级工程实践的学习曲线：</p><p>| 高级工程实践 | 掌握所需年限 | Agent Skills 等效 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+第 5-6 周：启用 <code>/review</code> 和 <code>/ship</code>。衡量生产事故减少。</p>
+<h3 id="策略-2试点小组">策略 2：试点小组<a hidden class="anchor" aria-hidden="true" href="#策略-2试点小组">#</a></h3>
+<p>选择一个 3-4 人的功能小组作为试点。让他们在一个完整的冲刺中使用所有 7 个命令。记录经验教训，并根据反馈创建团队特定的 <code>.cursorrules</code> 文件。</p>
+<h3 id="策略-3门控集成">策略 3：门控集成<a hidden class="anchor" aria-hidden="true" href="#策略-3门控集成">#</a></h3>
+<p>将 Agent Skills 集成到 CI/CD 中：</p>
+<ul>
+<li>阻止不包含功能 &gt; 100 行的规范文件的 PR</li>
+<li>在 PR 上自动运行 <code>/review</code> 并将结果作为评论发布</li>
+<li>要求任何错误修复 PR 的 <code>/test</code> 输出（测试计划）</li>
+</ul>
+<h2 id="对比agent-skills-与工程阶梯">对比：Agent Skills 与工程阶梯<a hidden class="anchor" aria-hidden="true" href="#对比agent-skills-与工程阶梯">#</a></h2>
+<p>Agent Skills 有效地压缩了高级工程实践的学习曲线：</p>
+<p>| 高级工程实践 | 掌握所需年限 | Agent Skills 等效 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 编写全面的规范 | 2-3 年 | <code>/spec</code> 命令 |
 | 分解复杂项目 | 1-2 年 | <code>/plan</code> 命令 |
 | 测试驱动开发纪律 | 2-4 年 | <code>/test</code> + 技能 |
 | 代码审查专业知识 | 3-5 年 | <code>/review</code> 命令 |
 | 生产调试直觉 | 3-5 年 | <code>debugging-and-error-recovery</code> |
-| API 设计判断 | 2-3 年 | ````api-and-interface-design``` 技能 |</p><p>这种压缩意味着使用 Agent Skills 的初级开发人员可以在几周内（而不是几年内）生产出与中级工程师相当的质量输出。</p><h2 id=相关文章-1>相关文章<a hidden class=anchor aria-hidden=true href=#相关文章-1>#</a></h2><ul><li><a href=/zh/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation/>Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%</a></li><li><a href=/zh/resources/ai-tools/docuseal-open-source-docusign-alternative/>DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%</a></li><li><a href=/zh/resources/llm-frameworks/top-10-open-source-ai-tools-2026/>2026年十大AI开发者生产力工具</a></li></ul><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Agent Skills 是"AI能编码"和"AI能交付生产软件"之间缺失的环节。通过将高级工程判断编码为结构化、可验证的工作流，Addy Osmani 为任何开发团队创造了一个力量倍增器。无论您是独立创始人、创业工程师还是企业负责人，这些技能都将使您的 AI 智能体编写您实际想要部署的代码。</p><hr><p><em>哪个 Agent Skill 对您的工作流改善最大？在评论中告诉我们。</em></p><hr><h2 id=推荐自托管基础设施>推荐自托管基础设施<a hidden class=anchor aria-hidden=true href=#推荐自托管基础设施>#</a></h2><p>要 7×24 稳定跑这套，服务器选择很关键：</p><ul><li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。</li><li>**** — 香港 VPS，国内访问低延迟。<strong>这就是 dibi8.com 自家所在的 IDC</strong>，生产环境已验证。</li></ul><p><em>以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| API 设计判断 | 2-3 年 | ````api-and-interface-design``` 技能 |</p>
+<p>这种压缩意味着使用 Agent Skills 的初级开发人员可以在几周内（而不是几年内）生产出与中级工程师相当的质量输出。</p>
+<h2 id="相关文章-1">相关文章<a hidden class="anchor" aria-hidden="true" href="#相关文章-1">#</a></h2>
+<ul>
+<li><a href="/zh/resources/llm-frameworks/anthropic-financial-services-ai-finance-automation/">Anthropic Financial Services：金融团队如何用AI自动化分析并将ROI提升300%</a></li>
+<li><a href="/zh/resources/ai-tools/docuseal-open-source-docusign-alternative/">DocuSeal评测：用这款开源DocuSign替代品将文档签署成本降低90%</a></li>
+<li><a href="/zh/resources/llm-frameworks/top-10-open-source-ai-tools-2026/">2026年十大AI开发者生产力工具</a></li>
+</ul>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>Agent Skills 是&quot;AI能编码&quot;和&quot;AI能交付生产软件&quot;之间缺失的环节。通过将高级工程判断编码为结构化、可验证的工作流，Addy Osmani 为任何开发团队创造了一个力量倍增器。无论您是独立创始人、创业工程师还是企业负责人，这些技能都将使您的 AI 智能体编写您实际想要部署的代码。</p>
+<hr>
+<p><em>哪个 Agent Skill 对您的工作流改善最大？在评论中告诉我们。</em></p>
+<hr>
+<h2 id="推荐自托管基础设施">推荐自托管基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐自托管基础设施">#</a></h2>
+<p>要 7×24 稳定跑这套，服务器选择很关键：</p>
+<ul>
+<li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心。开源 AI 工具自托管首选。</li>
+<li>**** — 香港 VPS，国内访问低延迟。<strong>这就是 dibi8.com 自家所在的 IDC</strong>，生产环境已验证。</li>
+</ul>
+<p><em>以上为推广链接，不会增加你的成本，但能支持 dibi8.com 持续运营。</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Agent Skills：开发团队如何以5倍速度交付生产级代码&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -114,28 +649,237 @@ a: &lsquo;反合理化表是嵌入每项技能中的一个功能，它会提前�
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding%22>https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding%22">https://dibi8.com/zh/resources/agent-skills-production-grade-ai-coding"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding agent skills：开发团队如何以5倍速度交付生产级代码 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding agent skills：开发团队如何以5倍速度交付生产级代码 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Agent Skills：开发团队如何以5倍速度交付生产级代码 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p><h2 id=tool-comparison>Tool Comparison<a hidden class=anchor aria-hidden=true href=#tool-comparison>#</a></h2><p>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Agent Skills：开发团队如何以5倍速度交付生产级代码 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+<h2 id="tool-comparison">Tool Comparison<a hidden class="anchor" aria-hidden="true" href="#tool-comparison">#</a></h2>
+<p>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Price</strong> | $20/month | $20/month | Free | Free |
 | <strong>Interface</strong> | CLI + IDE | Full IDE | CLI | CLI |
 | <strong>License</strong> | Proprietary | Commercial | Apache 2.0 | MIT |
 | <strong>GitHub Stars</strong> | N/A | N/A | N/A | 45,000+ |
-| <strong>Best For</strong> | Complex reasoning | Daily coding | Fast iteration | Customization |</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/agent-reach-internet-access-ai-agents/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/agent-skills-production-workflows/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| <strong>Best For</strong> | Complex reasoning | Daily coding | Fast iteration | Customization |</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/agent-reach-internet-access-ai-agents/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/agent-skills-production-workflows/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

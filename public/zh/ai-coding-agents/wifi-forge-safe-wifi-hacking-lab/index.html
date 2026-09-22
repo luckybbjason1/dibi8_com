@@ -1,38 +1,338 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “16.4 MB” file_md5: \"\" download_url: “https://github.com/her3ticAVI/MiniNet-framework\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases:\n/zh/posts/wifi-forge-safe-wifi-hacking-lab/ faqs: - q: ‘WiFi-Forge 是什么？’ a: ‘WiFi-Forge 是 Black Hills InfoSec 推出的开源项目，提供一个安全合法的沙盒环境，供你练习无线攻击技术。它在你的笔记本上运行一个虚拟实验室，无需购买任何硬件，也不存在接触他人网络的风险。’ q: ‘使用 WiFi-Forge 学习 WiFi 攻击，我需要专用 WiFi 网卡吗？’ a: ‘不需要。WiFi-Forge 通过软件模拟接入点、站点和无线信道，完全省去了对支持 monitor mode 的 USB 网卡的需求。只有当你想学习物理射频层时才需要真实网卡，而该模拟环境并不涵盖这部分内容。’ q: ‘WiFi-Forge 基于什么技术构建？’ a: ‘WiFi-Forge 基于 mininet-wifi 构建，后者是一款 802.11 网络模拟器，能在 Linux 网络命名空间内创建虚拟接入点和客户端。每个 AP 和客户端都是真实的 Linux 进程，因此 airodump-ng、tcpdump、Reaver、Hashcat 等工具的行为就如同在操作真实的无线流量。’ q: ‘在 WiFi-Forge 中可以练习哪些 WiFi 攻击？’ a: ‘内置实验涵盖：WPA/WPA2 握手包捕获、WPS 攻击（Reaver PIN 爆破和 Pixie-Dust）、evil-twin/Karma 流氓 AP、去认证洪泛、Beacon 洪泛、MAC 地址随机化分析，以及 PMKID 攻击。每个实验会启动一个特定的网络拓扑，并提供一个类 CTF 的小目标。’ q: ‘安装和运行 WiFi-Forge 需要什么？’ a: ‘你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。’— WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 {\u003c/* resource-info */\u003e}\n如果你尝试过用传统方式学 WiFi 攻击,流程通常是这样:订一块支持 monitor 模式和包注入的 USB 无线网卡,跟 Linux 驱动斗一晚上,搭一个自己拥有的测试热点,然后才开始练你真正想学的攻击。WiFi-Forge 把这一整套准备工作直接跳过。\nWiFi-Forge 是 Black Hills InfoSec Open Source的项目,提供一个安全合法的环境给你练习无线攻击。不需要硬件,不会误伤别人的网络,也不会把驱动搞坏。开一个虚拟实验室,你就可以开始动手。\n为什么需要它 —— WiFi 学习的三个坑 传统 WiFi 实战教学有三件事最劝退人: 1. 硬件不可控。 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。 2. 法律灰区。 在大多数国家,接触任何不属于你的网络 —— 哪怕只是被动监听 —— 都是违法行为。“我只是嗅探一下” 不是抗辩理由。 3. 环境难复位。 真实硬件不能一键回退。搞砸了的配置没办法 git checkout 回去。\nWiFi-Forge 把这三个问题全部合并到笔记本上的一个沙盒里。\n底层是什么 WiFi-Forge 建在 mininet-wifi 之上 —— 一个 802.11 网络模拟器,在 Linux 网络命名空间里创建虚拟接入点、客户端和\"无线电波\"。每个 AP 和客户端都是真实的 Linux 进程,你可以用 iwconfig、airodump-ng、tcpdump,甚至 Reaver、Hashcat 直接打模拟流量,所有标准工具的行为跟在真实电波上完全一样。\nWiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击场景、以及一套引导式结构,让你不用每次想练点东西都先去设计一个网络。\n你能练什么 自带的实验室覆盖了常见的 WiFi 攻击类别: - WPA/WPA2 握手包抓取 —— deauth 一个客户端,抓 4 路握手,用 hashcat 或 aircrack-ng 离线爆破\nWPS 攻击 —— Reaver PIN 暴力破解、Pixie-Dust 攻击 Evil-twin / Karma —— 起一个伪装目标 SSID 的钓鱼 AP,看客户端自动连过来 Deauth 洪泛 —— 把客户端从合法 AP 上踢下来 Beacon 洪泛 —— 喷上千个假 AP,把扫描工具搞崩 MAC 随机化分析 —— 看看现代设备怎么藏自己身份(以及它们在哪些地方会泄露) PMKID 攻击 —— 不需要客户端连着也能抓握手 每个实验室会启动对应的拓扑,把你扔进 shell,给你一个小型 CTF 风格的目标。\n怎么开始 git clone https://github.com/blackhillsinfosec/WifiForge cd WifiForge sudo ./install.sh sudo python3 wififorge.py 需要 Linux 环境(Ubuntu/Debian 最稳)、Python 3、root 权限(mininet-wifi 要用内核功能)。安装脚本会自动处理依赖 —— mininet-wifi、aircrack-ng、hashcat、reaver 等。\n适合谁用 OSCP / OSWP 备考者 —— 可以练跟考试实验室相似的场景,不用买硬件 CTF 出题人 —— 快速搭起无线挑战,不用配真实电台 安全讲师 —— 每个学生都有独立沙盒,几秒就能复位 好奇的开发者 —— 终于能用调试器一步步看清 4 路握手到底长什么样 ⚠️ WiFi-Forge 学不到什么: 物理层 —— RF、天线选择、真实信号衰减。这部分早晚还是要真卡。但 90% 的实战攻击都发生在协议层 —— 这一层的模拟和真实流量完全无差。\n关于合法性和职业操守 这种项目必须把话讲在前面:这些技术只能对你自己拥有的网络、或者拿到书面授权许可的网络使用。 WiFi-Forge 之所以存在,就是因为有了模拟环境就没必要去\"试一下\"咖啡馆隔壁的 WiFi。安全地学习,这才是它的全部意义。\n— 仓库: github.com/blackhillsinfosec/WifiForge\n底层: mininet-wifi 维护者: Black Hills InfoSec 推荐工具 跑或部署开源 AI 工具时，推荐：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 **** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。 推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab\" } } Why This Matters Understanding wifi-forge — 一个安全合法的 wifi 黑客学习沙盒 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nUnderstanding these core concepts will help you master the topic: 1. Abstraction: Hide complexity behind simple interfaces 2. Composition: Build complex systems from simple parts 3. Immutability: Prefer immutable data structures 4. Error Handling: Handle failures gracefully 5. Performance: Optimize for your specific use case\nArchitecture Overview ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ Client │────▶│ API │────▶│ Database │ │ (UI) │ │ Server │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ ▼ ┌─────────────┐ │ Cache │ │ (Redis) │ └─────────────┘ Understanding these core concepts will help you master the topic: 1. Abstraction: Hide complexity behind simple interfaces 2. Composition: Build complex systems from simple parts 3. Immutability: Prefer immutable data structures 4. Error Handling: Handle failures gracefully 5. Performance: Optimize for your specific use case\nArchitecture Overview ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ Client │────▶│ API │────▶│ Database │ │ (UI) │ │ Server │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ ▼ ┌─────────────┐ │ Cache │ │ (Redis) │ └─────────────┘ ```` ","wordCount":"734","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ko/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#wifi-forge--%e4%b8%80%e4%b8%aa%e5%ae%89%e5%85%a8%e5%90%88%e6%b3%95%e7%9a%84-wifi-%e9%bb%91%e5%ae%a2%e5%ad%a6%e4%b9%a0%e6%b2%99%e7%9b%92 aria-label="WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒">WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒</a><ul><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83--wifi-%e5%ad%a6%e4%b9%a0%e7%9a%84%e4%b8%89%e4%b8%aa%e5%9d%91 aria-label="为什么需要它 —— WiFi 学习的三个坑">为什么需要它 —— WiFi 学习的三个坑</a></li><li><a href=#%e5%ba%95%e5%b1%82%e6%98%af%e4%bb%80%e4%b9%88 aria-label=底层是什么>底层是什么</a></li><li><a href=#%e4%bd%a0%e8%83%bd%e7%bb%83%e4%bb%80%e4%b9%88 aria-label=你能练什么>你能练什么</a></li><li><a href=#%e6%80%8e%e4%b9%88%e5%bc%80%e5%a7%8b aria-label=怎么开始>怎么开始</a></li><li><a href=#%e9%80%82%e5%90%88%e8%b0%81%e7%94%a8 aria-label=适合谁用>适合谁用</a></li><li><a href=#%e5%85%b3%e4%ba%8e%e5%90%88%e6%b3%95%e6%80%a7%e5%92%8c%e8%81%8c%e4%b8%9a%e6%93%8d%e5%ae%88 aria-label=关于合法性和职业操守>关于合法性和职业操守</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e5%b7%a5%e5%85%b7 aria-label=推荐工具>推荐工具</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a><ul><li><a href=#architecture-overview aria-label="Architecture Overview">Architecture Overview</a></li><li><a href=#architecture-overview-1 aria-label="Architecture Overview">Architecture Overview</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Python application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “16.4 MB” file_md5: \"\" download_url: “https://github.com/her3ticAVI/MiniNet-framework\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases:\n/zh/posts/wifi-forge-safe-wifi-hacking-lab/ faqs: - q: ‘WiFi-Forge 是什么？’ a: ‘WiFi-Forge 是 Black Hills InfoSec 推出的开源项目，提供一个安全合法的沙盒环境，供你练习无线攻击技术。它在你的笔记本上运行一个虚拟实验室，无需购买任何硬件，也不存在接触他人网络的风险。’ q: ‘使用 WiFi-Forge 学习 WiFi 攻击，我需要专用 WiFi 网卡吗？’ a: ‘不需要。WiFi-Forge 通过软件模拟接入点、站点和无线信道，完全省去了对支持 monitor mode 的 USB 网卡的需求。只有当你想学习物理射频层时才需要真实网卡，而该模拟环境并不涵盖这部分内容。’ q: ‘WiFi-Forge 基于什么技术构建？’ a: ‘WiFi-Forge 基于 mininet-wifi 构建，后者是一款 802.11 网络模拟器，能在 Linux 网络命名空间内创建虚拟接入点和客户端。每个 AP 和客户端都是真实的 Linux 进程，因此 airodump-ng、tcpdump、Reaver、Hashcat 等工具的行为就如同在操作真实的无线流量。’ q: ‘在 WiFi-Forge 中可以练习哪些 WiFi 攻击？’ a: ‘内置实验涵盖：WPA/WPA2 握手包捕获、WPS 攻击（Reaver PIN 爆破和 Pixie-Dust）、evil-twin/Karma 流氓 AP、去认证洪泛、Beacon 洪泛、MAC 地址随机化分析，以及 PMKID 攻击。每个实验会启动一个特定的网络拓扑，并提供一个类 CTF 的小目标。’ q: ‘安装和运行 WiFi-Forge 需要什么？’ a: ‘你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。’— WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 {\u003c/* resource-info */\u003e}\n如果你尝试过用传统方式学 WiFi 攻击,流程通常是这样:订一块支持 monitor 模式和包注入的 USB 无线网卡,跟 Linux 驱动斗一晚上,搭一个自己拥有的测试热点,然后才开始练你真正想学的攻击。WiFi-Forge 把这一整套准备工作直接跳过。\nWiFi-Forge 是 Black Hills InfoSec Open Source的项目,提供一个安全合法的环境给你练习无线攻击。不需要硬件,不会误伤别人的网络,也不会把驱动搞坏。开一个虚拟实验室,你就可以开始动手。\n为什么需要它 —— WiFi 学习的三个坑 传统 WiFi 实战教学有三件事最劝退人: 1. 硬件不可控。 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。 2. 法律灰区。 在大多数国家,接触任何不属于你的网络 —— 哪怕只是被动监听 —— 都是违法行为。“我只是嗅探一下” 不是抗辩理由。 3. 环境难复位。 真实硬件不能一键回退。搞砸了的配置没办法 git checkout 回去。\nWiFi-Forge 把这三个问题全部合并到笔记本上的一个沙盒里。\n底层是什么 WiFi-Forge 建在 mininet-wifi 之上 —— 一个 802.11 网络模拟器,在 Linux 网络命名空间里创建虚拟接入点、客户端和\"无线电波\"。每个 AP 和客户端都是真实的 Linux 进程,你可以用 iwconfig、airodump-ng、tcpdump,甚至 Reaver、Hashcat 直接打模拟流量,所有标准工具的行为跟在真实电波上完全一样。\nWiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击场景、以及一套引导式结构,让你不用每次想练点东西都先去设计一个网络。\n你能练什么 自带的实验室覆盖了常见的 WiFi 攻击类别: - WPA/WPA2 握手包抓取 —— deauth 一个客户端,抓 4 路握手,用 hashcat 或 aircrack-ng 离线爆破\nWPS 攻击 —— Reaver PIN 暴力破解、Pixie-Dust 攻击 Evil-twin / Karma —— 起一个伪装目标 SSID 的钓鱼 AP,看客户端自动连过来 Deauth 洪泛 —— 把客户端从合法 AP 上踢下来 Beacon 洪泛 —— 喷上千个假 AP,把扫描工具搞崩 MAC 随机化分析 —— 看看现代设备怎么藏自己身份(以及它们在哪些地方会泄露) PMKID 攻击 —— 不需要客户端连着也能抓握手 每个实验室会启动对应的拓扑,把你扔进 shell,给你一个小型 CTF 风格的目标。\n怎么开始 git clone https://github.com/blackhillsinfosec/WifiForge cd WifiForge sudo ./install.sh sudo python3 wififorge.py 需要 Linux 环境(Ubuntu/Debian 最稳)、Python 3、root 权限(mininet-wifi 要用内核功能)。安装脚本会自动处理依赖 —— mininet-wifi、aircrack-ng、hashcat、reaver 等。\n适合谁用 OSCP / OSWP 备考者 —— 可以练跟考试实验室相似的场景,不用买硬件 CTF 出题人 —— 快速搭起无线挑战,不用配真实电台 安全讲师 —— 每个学生都有独立沙盒,几秒就能复位 好奇的开发者 —— 终于能用调试器一步步看清 4 路握手到底长什么样 ⚠️ WiFi-Forge 学不到什么: 物理层 —— RF、天线选择、真实信号衰减。这部分早晚还是要真卡。但 90% 的实战攻击都发生在协议层 —— 这一层的模拟和真实流量完全无差。\n关于合法性和职业操守 这种项目必须把话讲在前面:这些技术只能对你自己拥有的网络、或者拿到书面授权许可的网络使用。 WiFi-Forge 之所以存在,就是因为有了模拟环境就没必要去\"试一下\"咖啡馆隔壁的 WiFi。安全地学习,这才是它的全部意义。\n— 仓库: github.com/blackhillsinfosec/WifiForge\n底层: mininet-wifi 维护者: Black Hills InfoSec 推荐工具 跑或部署开源 AI 工具时，推荐：\n**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。 **** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。 推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab\" } } Why This Matters Understanding wifi-forge — 一个安全合法的 wifi 黑客学习沙盒 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nUnderstanding these core concepts will help you master the topic: 1. Abstraction: Hide complexity behind simple interfaces 2. Composition: Build complex systems from simple parts 3. Immutability: Prefer immutable data structures 4. Error Handling: Handle failures gracefully 5. Performance: Optimize for your specific use case\nArchitecture Overview ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ Client │────▶│ API │────▶│ Database │ │ (UI) │ │ Server │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ ▼ ┌─────────────┐ │ Cache │ │ (Redis) │ └─────────────┘ Understanding these core concepts will help you master the topic: 1. Abstraction: Hide complexity behind simple interfaces 2. Composition: Build complex systems from simple parts 3. Immutability: Prefer immutable data structures 4. Error Handling: Handle failures gracefully 5. Performance: Optimize for your specific use case\nArchitecture Overview ┌─────────────┐ ┌─────────────┐ ┌─────────────┐ │ Client │────▶│ API │────▶│ Database │ │ (UI) │ │ Server │ │ │ └─────────────┘ └─────────────┘ └─────────────┘ │ ▼ ┌─────────────┐ │ Cache │ │ (Redis) │ └─────────────┘ ```` ",
+  "wordCount" : "734",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#wifi-forge--%e4%b8%80%e4%b8%aa%e5%ae%89%e5%85%a8%e5%90%88%e6%b3%95%e7%9a%84-wifi-%e9%bb%91%e5%ae%a2%e5%ad%a6%e4%b9%a0%e6%b2%99%e7%9b%92" aria-label="WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒">WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒</a><ul>
+                    
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e9%9c%80%e8%a6%81%e5%ae%83--wifi-%e5%ad%a6%e4%b9%a0%e7%9a%84%e4%b8%89%e4%b8%aa%e5%9d%91" aria-label="为什么需要它 —— WiFi 学习的三个坑">为什么需要它 —— WiFi 学习的三个坑</a></li>
+            <li>
+                <a href="#%e5%ba%95%e5%b1%82%e6%98%af%e4%bb%80%e4%b9%88" aria-label="底层是什么">底层是什么</a></li>
+            <li>
+                <a href="#%e4%bd%a0%e8%83%bd%e7%bb%83%e4%bb%80%e4%b9%88" aria-label="你能练什么">你能练什么</a></li>
+            <li>
+                <a href="#%e6%80%8e%e4%b9%88%e5%bc%80%e5%a7%8b" aria-label="怎么开始">怎么开始</a></li>
+            <li>
+                <a href="#%e9%80%82%e5%90%88%e8%b0%81%e7%94%a8" aria-label="适合谁用">适合谁用</a></li>
+            <li>
+                <a href="#%e5%85%b3%e4%ba%8e%e5%90%88%e6%b3%95%e6%80%a7%e5%92%8c%e8%81%8c%e4%b8%9a%e6%93%8d%e5%ae%88" aria-label="关于合法性和职业操守">关于合法性和职业操守</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e5%b7%a5%e5%85%b7" aria-label="推荐工具">推荐工具</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a><ul>
+                    
+            <li>
+                <a href="#architecture-overview" aria-label="Architecture Overview">Architecture Overview</a></li>
+            <li>
+                <a href="#architecture-overview-1" aria-label="Architecture Overview">Architecture Overview</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
 tech_stack: - Python
 application_domain: &ldquo;Ai Tools&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
 file_size: &ldquo;16.4 MB&rdquo;
-file_md5: ""
-download_url: &ldquo;<a href=https://github.com/her3ticAVI/MiniNet-framework%22>https://github.com/her3ticAVI/MiniNet-framework"</a>
-backup_url: "&rdquo;
+file_md5: &quot;&quot;
+download_url: &ldquo;<a href="https://github.com/her3ticAVI/MiniNet-framework%22">https://github.com/her3ticAVI/MiniNet-framework"</a>
+backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</p><ul><li>/zh/posts/wifi-forge-safe-wifi-hacking-lab/
+aliases:</p>
+<ul>
+<li>/zh/posts/wifi-forge-safe-wifi-hacking-lab/
 faqs: - q: &lsquo;WiFi-Forge 是什么？&rsquo;
-a: &lsquo;WiFi-Forge 是 Black Hills InfoSec 推出的开源项目，提供一个安全合法的沙盒环境，供你练习无线攻击技术。它在你的笔记本上运行一个虚拟实验室，无需购买任何硬件，也不存在接触他人网络的风险。&rsquo;</li><li>q: &lsquo;使用 WiFi-Forge 学习 WiFi 攻击，我需要专用 WiFi 网卡吗？&rsquo;
-a: &lsquo;不需要。WiFi-Forge 通过软件模拟接入点、站点和无线信道，完全省去了对支持 monitor mode 的 USB 网卡的需求。只有当你想学习物理射频层时才需要真实网卡，而该模拟环境并不涵盖这部分内容。&rsquo;</li><li>q: &lsquo;WiFi-Forge 基于什么技术构建？&rsquo;
-a: &lsquo;WiFi-Forge 基于 mininet-wifi 构建，后者是一款 802.11 网络模拟器，能在 Linux 网络命名空间内创建虚拟接入点和客户端。每个 AP 和客户端都是真实的 Linux 进程，因此 airodump-ng、tcpdump、Reaver、Hashcat 等工具的行为就如同在操作真实的无线流量。&rsquo;</li><li>q: &lsquo;在 WiFi-Forge 中可以练习哪些 WiFi 攻击？&rsquo;
-a: &lsquo;内置实验涵盖：WPA/WPA2 握手包捕获、WPS 攻击（Reaver PIN 爆破和 Pixie-Dust）、evil-twin/Karma 流氓 AP、去认证洪泛、Beacon 洪泛、MAC 地址随机化分析，以及 PMKID 攻击。每个实验会启动一个特定的网络拓扑，并提供一个类 CTF 的小目标。&rsquo;</li><li>q: &lsquo;安装和运行 WiFi-Forge 需要什么？&rsquo;
-a: &lsquo;你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。&rsquo;&mdash;</li></ul><h1 id=wifi-forge--一个安全合法的-wifi-黑客学习沙盒>WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒<a hidden class=anchor aria-hidden=true href=#wifi-forge--一个安全合法的-wifi-黑客学习沙盒>#</a></h1><p>{&lt;/* resource-info */>}</p><p>如果你尝试过用传统方式学 WiFi 攻击,流程通常是这样:订一块支持 monitor 模式和包注入的 USB 无线网卡,跟 Linux 驱动斗一晚上,搭一个自己拥有的测试热点,<em>然后</em>才开始练你真正想学的攻击。<strong>WiFi-Forge</strong> 把这一整套准备工作直接跳过。</p><p><img alt="WiFi-Forge 横幅" loading=lazy src=https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/WifiForgeVersion2.png></p><p><a href=https://github.com/blackhillsinfosec/WifiForge>WiFi-Forge</a> 是 <a href=https://www.blackhillsinfosec.com/>Black Hills InfoSec</a> Open Source的项目,提供一个<strong>安全合法</strong>的环境给你练习无线攻击。不需要硬件,不会误伤别人的网络,也不会把驱动搞坏。开一个虚拟实验室,你就可以开始动手。</p><h2 id=为什么需要它--wifi-学习的三个坑>为什么需要它 —— WiFi 学习的三个坑<a hidden class=anchor aria-hidden=true href=#为什么需要它--wifi-学习的三个坑>#</a></h2><p>传统 WiFi 实战教学有三件事最劝退人: 1. <strong>硬件不可控。</strong> 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。
+a: &lsquo;WiFi-Forge 是 Black Hills InfoSec 推出的开源项目，提供一个安全合法的沙盒环境，供你练习无线攻击技术。它在你的笔记本上运行一个虚拟实验室，无需购买任何硬件，也不存在接触他人网络的风险。&rsquo;</li>
+<li>q: &lsquo;使用 WiFi-Forge 学习 WiFi 攻击，我需要专用 WiFi 网卡吗？&rsquo;
+a: &lsquo;不需要。WiFi-Forge 通过软件模拟接入点、站点和无线信道，完全省去了对支持 monitor mode 的 USB 网卡的需求。只有当你想学习物理射频层时才需要真实网卡，而该模拟环境并不涵盖这部分内容。&rsquo;</li>
+<li>q: &lsquo;WiFi-Forge 基于什么技术构建？&rsquo;
+a: &lsquo;WiFi-Forge 基于 mininet-wifi 构建，后者是一款 802.11 网络模拟器，能在 Linux 网络命名空间内创建虚拟接入点和客户端。每个 AP 和客户端都是真实的 Linux 进程，因此 airodump-ng、tcpdump、Reaver、Hashcat 等工具的行为就如同在操作真实的无线流量。&rsquo;</li>
+<li>q: &lsquo;在 WiFi-Forge 中可以练习哪些 WiFi 攻击？&rsquo;
+a: &lsquo;内置实验涵盖：WPA/WPA2 握手包捕获、WPS 攻击（Reaver PIN 爆破和 Pixie-Dust）、evil-twin/Karma 流氓 AP、去认证洪泛、Beacon 洪泛、MAC 地址随机化分析，以及 PMKID 攻击。每个实验会启动一个特定的网络拓扑，并提供一个类 CTF 的小目标。&rsquo;</li>
+<li>q: &lsquo;安装和运行 WiFi-Forge 需要什么？&rsquo;
+a: &lsquo;你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root 权限，因为 mininet-wifi 依赖内核特性。克隆仓库后，运行 sudo ./install.sh 安装依赖，再运行 sudo python3 wififorge.py 启动。&rsquo;&mdash;</li>
+</ul>
+<h1 id="wifi-forge--一个安全合法的-wifi-黑客学习沙盒">WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒<a hidden class="anchor" aria-hidden="true" href="#wifi-forge--一个安全合法的-wifi-黑客学习沙盒">#</a></h1>
+<p>{&lt;/* resource-info */&gt;}</p>
+<p>如果你尝试过用传统方式学 WiFi 攻击,流程通常是这样:订一块支持 monitor 模式和包注入的 USB 无线网卡,跟 Linux 驱动斗一晚上,搭一个自己拥有的测试热点,<em>然后</em>才开始练你真正想学的攻击。<strong>WiFi-Forge</strong> 把这一整套准备工作直接跳过。</p>
+<p><img alt="WiFi-Forge 横幅" loading="lazy" src="https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/WifiForgeVersion2.png"></p>
+<p><a href="https://github.com/blackhillsinfosec/WifiForge">WiFi-Forge</a> 是 <a href="https://www.blackhillsinfosec.com/">Black Hills InfoSec</a> Open Source的项目,提供一个<strong>安全合法</strong>的环境给你练习无线攻击。不需要硬件,不会误伤别人的网络,也不会把驱动搞坏。开一个虚拟实验室,你就可以开始动手。</p>
+<h2 id="为什么需要它--wifi-学习的三个坑">为什么需要它 —— WiFi 学习的三个坑<a hidden class="anchor" aria-hidden="true" href="#为什么需要它--wifi-学习的三个坑">#</a></h2>
+<p>传统 WiFi 实战教学有三件事最劝退人: 1. <strong>硬件不可控。</strong> 不是每张 USB 网卡都干净支持 monitor + injection。靠谱的几款(Alfa AWUS036、Panda PAU09 等)要 30~60 美金,而且一次只能用一张。
 2. <strong>法律灰区。</strong> 在大多数国家,接触任何不属于你的网络 —— 哪怕只是被动监听 —— 都是违法行为。&ldquo;我只是嗅探一下&rdquo; 不是抗辩理由。
-3. <strong>环境难复位。</strong> 真实硬件不能一键回退。搞砸了的配置没办法 <code>git checkout</code> 回去。</p><p>WiFi-Forge 把这三个问题全部合并到笔记本上的一个沙盒里。</p><h2 id=底层是什么>底层是什么<a hidden class=anchor aria-hidden=true href=#底层是什么>#</a></h2><p>WiFi-Forge 建在 <a href=https://github.com/intrig-unicamp/mininet-wifi>mininet-wifi</a> 之上 —— 一个 802.11 网络模拟器,在 Linux 网络命名空间里创建虚拟接入点、客户端和"无线电波"。每个 AP 和客户端都是真实的 Linux 进程,你可以用 <code>iwconfig</code>、<code>airodump-ng</code>、<code>tcpdump</code>,甚至 Reaver、Hashcat 直接打模拟流量,所有标准工具的行为跟在真实电波上完全一样。</p><p>WiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击场景、以及一套引导式结构,让你不用每次想练点东西都先去设计一个网络。</p><h2 id=你能练什么>你能练什么<a hidden class=anchor aria-hidden=true href=#你能练什么>#</a></h2><p><img alt="WiFi-Forge 运行截图" loading=lazy src=https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/wififorge-running.png></p><p>自带的实验室覆盖了常见的 WiFi 攻击类别: - <strong>WPA/WPA2 握手包抓取</strong> —— deauth 一个客户端,抓 4 路握手,用 hashcat 或 aircrack-ng 离线爆破</p><ul><li><strong>WPS 攻击</strong> —— Reaver PIN 暴力破解、Pixie-Dust 攻击</li><li><strong>Evil-twin / Karma</strong> —— 起一个伪装目标 SSID 的钓鱼 AP,看客户端自动连过来</li><li><strong>Deauth 洪泛</strong> —— 把客户端从合法 AP 上踢下来</li><li><strong>Beacon 洪泛</strong> —— 喷上千个假 AP,把扫描工具搞崩</li><li><strong>MAC 随机化分析</strong> —— 看看现代设备怎么藏自己身份(以及它们在哪些地方会泄露)</li><li><strong>PMKID 攻击</strong> —— 不需要客户端连着也能抓握手</li></ul><p>每个实验室会启动对应的拓扑,把你扔进 shell,给你一个小型 CTF 风格的目标。</p><h2 id=怎么开始>怎么开始<a hidden class=anchor aria-hidden=true href=#怎么开始>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/blackhillsinfosec/WifiForge
-</span></span><span style=display:flex><span>cd WifiForge
-</span></span><span style=display:flex><span>sudo ./install.sh
-</span></span><span style=display:flex><span>sudo python3 wififorge.py
-</span></span></code></pre></div><p>需要 Linux 环境(Ubuntu/Debian 最稳)、Python 3、root 权限(mininet-wifi 要用内核功能)。安装脚本会自动处理依赖 —— mininet-wifi、aircrack-ng、hashcat、reaver 等。</p><h2 id=适合谁用>适合谁用<a hidden class=anchor aria-hidden=true href=#适合谁用>#</a></h2><p><img alt=无线安全实验 loading=lazy src="https://www.bobology.com/members/images/249.jpg?cb=20250922025150"></p><ul><li><strong>OSCP / OSWP 备考者</strong> —— 可以练跟考试实验室相似的场景,不用买硬件</li><li><strong>CTF 出题人</strong> —— 快速搭起无线挑战,不用配真实电台</li><li><strong>安全讲师</strong> —— 每个学生都有独立沙盒,几秒就能复位</li><li><strong>好奇的开发者</strong> —— 终于能用调试器一步步看清 4 路握手到底长什么样</li></ul><blockquote><p>⚠️ <strong>WiFi-Forge 学不到什么:</strong> 物理层 —— RF、天线选择、真实信号衰减。这部分早晚还是要真卡。但 90% 的实战攻击都发生在协议层 —— 这一层的模拟和真实流量完全无差。</p></blockquote><h2 id=关于合法性和职业操守>关于合法性和职业操守<a hidden class=anchor aria-hidden=true href=#关于合法性和职业操守>#</a></h2><p>这种项目必须把话讲在前面:<strong>这些技术只能对你自己拥有的网络、或者拿到书面授权许可的网络使用。</strong> WiFi-Forge 之所以存在,<strong>就是因为</strong>有了模拟环境就没必要去"试一下"咖啡馆隔壁的 WiFi。安全地学习,这才是它的全部意义。</p><p>&mdash; <strong>仓库:</strong> <a href=https://github.com/blackhillsinfosec/WifiForge>github.com/blackhillsinfosec/WifiForge</a></p><ul><li><strong>底层:</strong> <a href=https://github.com/intrig-unicamp/mininet-wifi>mininet-wifi</a></li><li><strong>维护者:</strong> <a href=https://www.blackhillsinfosec.com/>Black Hills InfoSec</a></li></ul><hr><h2 id=推荐工具>推荐工具<a hidden class=anchor aria-hidden=true href=#推荐工具>#</a></h2><p>跑或部署开源 AI 工具时，推荐：</p><ul><li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。</li><li>**** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。</li></ul><p><em>推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+3. <strong>环境难复位。</strong> 真实硬件不能一键回退。搞砸了的配置没办法 <code>git checkout</code> 回去。</p>
+<p>WiFi-Forge 把这三个问题全部合并到笔记本上的一个沙盒里。</p>
+<h2 id="底层是什么">底层是什么<a hidden class="anchor" aria-hidden="true" href="#底层是什么">#</a></h2>
+<p>WiFi-Forge 建在 <a href="https://github.com/intrig-unicamp/mininet-wifi">mininet-wifi</a> 之上 —— 一个 802.11 网络模拟器,在 Linux 网络命名空间里创建虚拟接入点、客户端和&quot;无线电波&quot;。每个 AP 和客户端都是真实的 Linux 进程,你可以用 <code>iwconfig</code>、<code>airodump-ng</code>、<code>tcpdump</code>,甚至 Reaver、Hashcat 直接打模拟流量,所有标准工具的行为跟在真实电波上完全一样。</p>
+<p>WiFi-Forge 在这个基础上加了:预设好的拓扑、开箱即用的攻击场景、以及一套引导式结构,让你不用每次想练点东西都先去设计一个网络。</p>
+<h2 id="你能练什么">你能练什么<a hidden class="anchor" aria-hidden="true" href="#你能练什么">#</a></h2>
+<p><img alt="WiFi-Forge 运行截图" loading="lazy" src="https://github.com/her3ticAVI/MiniNet-framework/raw/main/images/wififorge-running.png"></p>
+<p>自带的实验室覆盖了常见的 WiFi 攻击类别: - <strong>WPA/WPA2 握手包抓取</strong> —— deauth 一个客户端,抓 4 路握手,用 hashcat 或 aircrack-ng 离线爆破</p>
+<ul>
+<li><strong>WPS 攻击</strong> —— Reaver PIN 暴力破解、Pixie-Dust 攻击</li>
+<li><strong>Evil-twin / Karma</strong> —— 起一个伪装目标 SSID 的钓鱼 AP,看客户端自动连过来</li>
+<li><strong>Deauth 洪泛</strong> —— 把客户端从合法 AP 上踢下来</li>
+<li><strong>Beacon 洪泛</strong> —— 喷上千个假 AP,把扫描工具搞崩</li>
+<li><strong>MAC 随机化分析</strong> —— 看看现代设备怎么藏自己身份(以及它们在哪些地方会泄露)</li>
+<li><strong>PMKID 攻击</strong> —— 不需要客户端连着也能抓握手</li>
+</ul>
+<p>每个实验室会启动对应的拓扑,把你扔进 shell,给你一个小型 CTF 风格的目标。</p>
+<h2 id="怎么开始">怎么开始<a hidden class="anchor" aria-hidden="true" href="#怎么开始">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/blackhillsinfosec/WifiForge
+</span></span><span style="display:flex;"><span>cd WifiForge
+</span></span><span style="display:flex;"><span>sudo ./install.sh
+</span></span><span style="display:flex;"><span>sudo python3 wififorge.py
+</span></span></code></pre></div><p>需要 Linux 环境(Ubuntu/Debian 最稳)、Python 3、root 权限(mininet-wifi 要用内核功能)。安装脚本会自动处理依赖 —— mininet-wifi、aircrack-ng、hashcat、reaver 等。</p>
+<h2 id="适合谁用">适合谁用<a hidden class="anchor" aria-hidden="true" href="#适合谁用">#</a></h2>
+<p><img alt="无线安全实验" loading="lazy" src="https://www.bobology.com/members/images/249.jpg?cb=20250922025150"></p>
+<ul>
+<li><strong>OSCP / OSWP 备考者</strong> —— 可以练跟考试实验室相似的场景,不用买硬件</li>
+<li><strong>CTF 出题人</strong> —— 快速搭起无线挑战,不用配真实电台</li>
+<li><strong>安全讲师</strong> —— 每个学生都有独立沙盒,几秒就能复位</li>
+<li><strong>好奇的开发者</strong> —— 终于能用调试器一步步看清 4 路握手到底长什么样</li>
+</ul>
+<blockquote>
+<p>⚠️ <strong>WiFi-Forge 学不到什么:</strong> 物理层 —— RF、天线选择、真实信号衰减。这部分早晚还是要真卡。但 90% 的实战攻击都发生在协议层 —— 这一层的模拟和真实流量完全无差。</p>
+</blockquote>
+<h2 id="关于合法性和职业操守">关于合法性和职业操守<a hidden class="anchor" aria-hidden="true" href="#关于合法性和职业操守">#</a></h2>
+<p>这种项目必须把话讲在前面:<strong>这些技术只能对你自己拥有的网络、或者拿到书面授权许可的网络使用。</strong> WiFi-Forge 之所以存在,<strong>就是因为</strong>有了模拟环境就没必要去&quot;试一下&quot;咖啡馆隔壁的 WiFi。安全地学习,这才是它的全部意义。</p>
+<p>&mdash; <strong>仓库:</strong> <a href="https://github.com/blackhillsinfosec/WifiForge">github.com/blackhillsinfosec/WifiForge</a></p>
+<ul>
+<li><strong>底层:</strong> <a href="https://github.com/intrig-unicamp/mininet-wifi">mininet-wifi</a></li>
+<li><strong>维护者:</strong> <a href="https://www.blackhillsinfosec.com/">Black Hills InfoSec</a></li>
+</ul>
+<hr>
+<h2 id="推荐工具">推荐工具<a hidden class="anchor" aria-hidden="true" href="#推荐工具">#</a></h2>
+<p>跑或部署开源 AI 工具时，推荐：</p>
+<ul>
+<li>**** — 新用户 $200 试用 60 天，全球 14+ 数据中心，AI 工作流 droplet 一键部署。</li>
+<li>**** — Claude / OpenAI / DeepSeek API 中转。上面的 AI 工具 (chatbot / 代码生成 / 翻译 / 搜索 等) 大多需要 LLM API key — 这个中转给你稳定访问顶级模型, 价格约官方 30%。</li>
+</ul>
+<p><em>推广链接 — 不增加你的成本，能支持 dibi8.com 持续运营。</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -46,22 +346,66 @@ a: &lsquo;你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root �
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab%22>https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab%22">https://dibi8.com/zh/resources/wifi-forge-safe-wifi-hacking-lab"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding wifi-forge — 一个安全合法的 wifi 黑客学习沙盒 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding wifi-forge — 一个安全合法的 wifi 黑客学习沙盒 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><p>Understanding these core concepts will help you master the topic: 1. <strong>Abstraction</strong>: Hide complexity behind simple interfaces
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>WiFi-Forge — 一个安全合法的 WiFi 黑客学习沙盒 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<p>Understanding these core concepts will help you master the topic: 1. <strong>Abstraction</strong>: Hide complexity behind simple interfaces
 2. <strong>Composition</strong>: Build complex systems from simple parts
 3. <strong>Immutability</strong>: Prefer immutable data structures
 4. <strong>Error Handling</strong>: Handle failures gracefully
-5. <strong>Performance</strong>: Optimize for your specific use case</p><h3 id=architecture-overview>Architecture Overview<a hidden class=anchor aria-hidden=true href=#architecture-overview>#</a></h3><pre tabindex=0><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+5. <strong>Performance</strong>: Optimize for your specific use case</p>
+<h3 id="architecture-overview">Architecture Overview<a hidden class="anchor" aria-hidden="true" href="#architecture-overview">#</a></h3>
+<pre tabindex="0"><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
 └─────────────┘     └─────────────┘     └─────────────┘
@@ -75,7 +419,9 @@ a: &lsquo;你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root �
 2. <strong>Composition</strong>: Build complex systems from simple parts
 3. <strong>Immutability</strong>: Prefer immutable data structures
 4. <strong>Error Handling</strong>: Handle failures gracefully
-5. <strong>Performance</strong>: Optimize for your specific use case</p><h3 id=architecture-overview-1>Architecture Overview<a hidden class=anchor aria-hidden=true href=#architecture-overview-1>#</a></h3><pre tabindex=0><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
+5. <strong>Performance</strong>: Optimize for your specific use case</p>
+<h3 id="architecture-overview-1">Architecture Overview<a hidden class="anchor" aria-hidden="true" href="#architecture-overview-1">#</a></h3>
+<pre tabindex="0"><code>┌─────────────┐     ┌─────────────┐     ┌─────────────┐
 │   Client    │────▶│   API       │────▶│   Database  │
 │   (UI)      │     │   Server    │     │             │
 └─────────────┘     └─────────────┘     └─────────────┘
@@ -86,11 +432,155 @@ a: &lsquo;你需要 Linux（Ubuntu 或 Debian 最佳）、Python 3 以及 root �
                      │  (Redis)    │
                      └─────────────┘
 ````
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/windsurf-ai-ide/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/windsurf-ai-ide/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

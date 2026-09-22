@@ -1,27 +1,377 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="en_us"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego Core Concept: Encoding Expert Intuition into Agent Constraints The fundamental problem with traditional AI coding assistants is statelessness, lack of constraints, and no memory. Every conversation starts from a blank slate. The AI repeats the same mistakes, pushes force to your main branch, and runs ```rm -rf```` in production.
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>What Are AI Agent Skills? From Black Boxes to Composable Behavioral Lego Core Concept: Encoding Expert Intuition into Agent Constraints The fundamental problem with traditional AI coding assistants is statelessness, lack of constraints, and no memory. Every conversation starts from a blank slate. The AI repeats the same mistakes, pushes force to your main branch, and runs ```rm -rf```` in production.
 The Skills pattern solves this by encoding domain-specific workflows, guardrails, and debugging methodologies into structured configuration files. The AI agent loads these “behavioral patterns” before executing any task.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Agent Tool Chain 2026: The 6-Component Stack for Buil… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python
-TypeScript Docker PostgreSQL application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai agent”, “tool chain”, “langgraph”, “mcp”, “stack”, “collection”] aliases: /posts/ai-agent-tool-chain/- “AI agent” stopped being a research topic in 2025 and became a production engineering category in 2026. The teams shipping real autonomous agents — customer support bots that survive restarts, coding agents that refactor across a hundred files, research agents that run for hours — converged on a remarkably consistent stack. This collection assembles it.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-agent-tool-chain/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr… description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [‘Claude Code’, Cursor, ‘Codex CLI’, ‘Gemini CLI’, MCP] application_domain: Dev Utils source_version: “Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0” licensing_model: ‘Commercial / Mixed’ license_type: ‘Proprietary + Open-source CLIs’ file_size: ’’ file_md5: ’’ download_url: ’’ backup_url: ’' last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“claude-code”, “cursor”, “codex-cli”, “gemini-cli”, “ai-coding”, “agent”, “2026”] aliases:
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{&lt;/* resource-info */>}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Agent Tool Chain 2026: The 6-Component Stack for Buil… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: - Python
+TypeScript Docker PostgreSQL application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai agent”, “tool chain”, “langgraph”, “mcp”, “stack”, “collection”] aliases: /posts/ai-agent-tool-chain/- “AI agent” stopped being a research topic in 2025 and became a production engineering category in 2026. The teams shipping real autonomous agents — customer support bots that survive restarts, coding agents that refactor across a hundred files, research agents that run for hours — converged on a remarkably consistent stack. This collection assembles it.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-agent-tool-chain/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Coding 2026-Q2 Shootout: Claude Code 1.0 vs Cursor Pr… description: “Technical guide and comparison.” date: 2026-05-26T00:00:00&#43;08:00 lastmod: 2026-05-26T00:00:00&#43;08:00 tech_stack: [‘Claude Code’, Cursor, ‘Codex CLI’, ‘Gemini CLI’, MCP] application_domain: Dev Utils source_version: “Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0” licensing_model: ‘Commercial / Mixed’ license_type: ‘Proprietary &#43; Open-source CLIs’ file_size: ’’ file_md5: ’’ download_url: ’’ backup_url: ’&#39; last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“claude-code”, “cursor”, “codex-cli”, “gemini-cli”, “ai-coding”, “agent”, “2026”] aliases:
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
 Introduction: This Is Not Just Another Tool Upgrade If you’re still equating “AI coding” with GitHub Copilot’s autocomplete suggestions, you’ve missed the most significant platform shift in developer tooling since the IDE wars of the early 2000s.
 Between January and May 2026, the AI coding assistant space transformed from “intelligent autocomplete” to “autonomous software engineering.” Claude Code’s skills ecosystem went from an experimental curiosity to a marketplace with thousands of public skills. OpenAI rebuilt Codex CLI from scratch. Google shipped Gemini 3 Pro alongside Antigravity, an agentic IDE platform. And in the open-source corner, Hermes Agent added 32,000 GitHub stars in a single week, while Andrej Karpathy’s personal skills repository pulled 44,000 stars in seven days.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>11 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-coding-agent-landscape-2026-skills-mcp-opensource/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts … description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [‘Claude Code’, Cursor, ‘Codex CLI’, ‘OpenAI API’, ‘Anthropic API’] application_domain: Dev Utils source_version: “May 2026 30-day window” licensing_model: Commercial license_type: Proprietary last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “claude-code”, “cursor”, “codex-cli”, “pricing”, “2026”] aliases:
-/posts/ai-coding-agent-monthly-bill-2026-real-receipts/ faq: - q: “Is Claude Max ($200) worth it vs API pay-as-you-go?” a: “Threshold: if you use Claude Code more than ~3 hours per workday, Max wins. Below that, API pay-as-you-go with Sonnet 4.6 lands in the $80-150 range. Above 4h/day you save real money vs API.” q: “What was the biggest surprise in 30 days of tracking?” a: “Cursor Pro’s tab-completion is essentially free at the $20/month tier, but API overflow for agent runs added $67 in month two. The ‘cheap IDE’ framing hides a real cost when you start using its agent features heavily.” q: “Should solo developers stack all three?” a: “No. Two is the sweet spot. Common pairing: Claude Code + Cursor ($220/month). Stacking three only makes sense if you have a specific shell-heavy automation workload where Codex CLI’s terminal integration wins.” q: “How does usage actually break down by task type?” a: “Our 30-day split: ~60% refactor + new feature work (Claude Code), ~25% inline edits + tab completion (Cursor), ~15% shell/devops scripting (Codex CLI). The split explains why Claude Code is the single most-used tool — refactor work is where AI value compounds.” q: “Are there hidden costs in the unlimited Max plan?” a: “Two: (1) Anthropic throttles after sustained burst usage — practical ceiling is ~5-6 hours of intensive agent loops per day. (2) Long contexts (200K+ tokens) consume the same monthly quota faster. Both rare in normal workflows.” q: “What changed in May 2026 pricing that wasn’t in earlier reviews?” a: “Anthropic adjusted Max plan rate limits in late April (looser, more headroom). OpenAI’s Codex CLI moved fully to pay-as-you-go (no Pro tier). Cursor added a $50 Business tier with API credits bundled. All three changes shift the threshold math compared to Q1 reviews.” AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts Meta Description: 30-day actual bills from Claude Max ($200), ChatGPT Plus + Codex CLI ($165), Cursor Pro + API ($87). Per-task cost, when each pays off, where switching makes sense.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-coding-agent-monthly-bill-2026-real-receipts/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““AI Coding Agents 2026 - Complete Guide””, “description”: ““Comprehensive guide to AI coding agents in 2026. Compare Claude Code, Cursor, Codex CLI, OpenCode and more. Features, pricing, benchmarks.””, “datePublished”: ““2026-09-20"”, “dateModified”: ““2026-09-20"”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/ai-coding-agents-2026-complete-guide/" }, “url”: “https://dibi8.com/cn/tools/ai-coding-agents-2026-complete-guide/", “image”: “https://picsum.photos/seed/ai-coding-agents-2026-complete-guide/1200x630", “keywords”: “ai-coding,claude-code,cursor,codex,opencode,comparison,agents”, “articleSection”: “ai-tools” } ...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-coding-agents-2026-complete-guide/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Coding Ethics 2026: Corporate Policy Guide for Allow … description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Policy, Compliance, ‘Claude Code’, Cursor] application_domain: Dev Utils source_version: “2026 Q2” licensing_model: ‘N/A’ license_type: ‘N/A’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “ethics”, “policy”, “compliance”, “2026”] aliases:
-/posts/ai-coding-ethics-corporate-policy-guide-2026/ faq: - q: “What are the main corporate AI coding policy stances in 2026?” a: “Three camps: (1) Allow with audit (most common in tech) — developers can use AI coding tools, code is reviewed. (2) Restrict to approved tools (financial / healthcare) — only enterprise tier of major vendors with DPAs. (3) Forbid (some defense / classified work) — air-gapped, local-only AI or none. Each has trade-offs.” q: “What are the real IP/legal risks of AI coding?” a: “Three: (1) Training data leakage — if your prompts include proprietary code, vendor may use it (less common with Enterprise plans). (2) Output liability — who owns AI-generated code? Mostly settled in your favor in 2026 but contract language matters. (3) License contamination — AI may reproduce GPL code that contaminates your proprietary codebase.” q: “How do companies actually implement ‘allow with audit’?” a: “Pattern: approved tool list (Claude Code, Cursor, GitHub Copilot), required PR review for AI-generated code, sometimes labeling commits as AI-assisted, training on prompt hygiene (don’t paste secrets, scope context). Most companies stop at the first three; the labeling/training varies.” q: “Is there a right answer or is it context-dependent?” a: “Context-dependent. For pure web SaaS work: allow with light audit is almost always right. For healthcare/financial regulated work: enterprise tier with DPA + restricted use is the bar. For defense/classified: forbid cloud AI, allow only local. Mismatched policy creates either compliance risk or productivity loss.” AI Coding Ethics 2026: Corporate Policy Guide Meta Description: Companies split into AI-allow / restrict / forbid camps. Practical guide for what each looks like, how to choose, IP/compliance gotchas.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>7 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-coding-ethics-corporate-policy-guide-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Best Cursor Alternatives 2026: 7 AI Coding Tools Compare… description: “Technical guide and comparison.” date: 2026-05-22T00:00:00+08:00 lastmod: 2026-05-22T00:00:00+08:00 tech_stack: [‘VS Code’, JetBrains, ‘Terminal CLI’, ‘Native editors’] application_domain: Llm Frameworks source_version: ’’ licensing_model: Mixed (Open Source + Commercial) license_type: Various file_size: ’’ file_md5: ’’ download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“cursor”, “cursor-alternatives”, “claude-code”, “cline”, “github-copilot”, “windsurf”, “continue-dev”, “zed”, “ai-coding”, “ai-ide”, “developer-tools”, “comparison”] aliases:
-/posts/ai-coding-tools-2026/ /resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/ faqs: - q: ‘Why are developers leaving Cursor in 2026?’ a: Cursor’s mid-2025 switch to credit-based pricing cut effective Pro usage from ~500 requests to ~225 requests/month at the same $20 price. The trust damage matters more than the math — developers don’’t mind paying, they hate when tools change rules mid-project.' q: What’s the best free Cursor alternative?' a: ‘Cline (5M+ installs, Apache 2.0 license, BYOK). You pay only the underlying API (Anthropic/OpenAI), typically 3-5x cheaper than Cursor’’s bundled pricing. Continue.dev also has a free open-source core.’ q: ‘Is Claude Code objectively better than Cursor?’ a: ‘On benchmarks yes (80.8% vs ~65% SWE-bench Verified). In daily practice it depends — Claude Code has no GUI, so if you rely on visual diffs and inline editing, Cursor may still feel more natural.’ q: What’s the cheapest paid AI coding tool?' a: ‘GitHub Copilot ($10/mo) is the cheapest paid tier with 2K completions + 50 chat requests free monthly. Cline is fully free if you BYOK and supply your own API key.’ q: ‘Can I run AI coding tools fully offline?’ a: ‘Yes with Cline + Ollama/LM Studio local models. Continue.dev also supports local models. No subscription, complete privacy, but requires 32GB RAM + 16GB VRAM (RTX 4080 / Apple M2 Max) for production-quality local coding.’ Best Cursor Alternatives 2026: 7 AI Coding Tools Compared (Claude Code, Cline, Copilot, Windsurf, Continue.dev, Zed) Quick Answer Q: What are the best Cursor alternatives in 2026?
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-coding-tools-cursor-alternatives-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Best AI Content Detector Tools 2025: GPTZero, Turnitin A… description: “Technical guide and comparison.” date: 2026-05-18T00:00:00+08:00 lastmod: 2026-05-18T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-18” draft: false categories: [“ai-tools”] tags: [“ai content detection”, “gptzero”, “turnitin”, “copyleaks”, “originality.ai”, “ai writing detection”, “content authenticity”] aliases:
-/posts/ai-content-detector-tools/ Best AI Content Detector Tools 2025: GPTZero, Turnitin AI, Copyleaks & More Compared {&lt;/* resource-info */>}
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-content-detector-tools/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Best AI Customer Service Chatbot Tools 2025: Intercom, Zendesk AI & More {&lt;/* resource-info */>}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>11 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-coding-agent-landscape-2026-skills-mcp-opensource/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts … description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [‘Claude Code’, Cursor, ‘Codex CLI’, ‘OpenAI API’, ‘Anthropic API’] application_domain: Dev Utils source_version: “May 2026 30-day window” licensing_model: Commercial license_type: Proprietary last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “claude-code”, “cursor”, “codex-cli”, “pricing”, “2026”] aliases:
+/posts/ai-coding-agent-monthly-bill-2026-real-receipts/ faq: - q: “Is Claude Max ($200) worth it vs API pay-as-you-go?” a: “Threshold: if you use Claude Code more than ~3 hours per workday, Max wins. Below that, API pay-as-you-go with Sonnet 4.6 lands in the $80-150 range. Above 4h/day you save real money vs API.” q: “What was the biggest surprise in 30 days of tracking?” a: “Cursor Pro’s tab-completion is essentially free at the $20/month tier, but API overflow for agent runs added $67 in month two. The ‘cheap IDE’ framing hides a real cost when you start using its agent features heavily.” q: “Should solo developers stack all three?” a: “No. Two is the sweet spot. Common pairing: Claude Code &#43; Cursor ($220/month). Stacking three only makes sense if you have a specific shell-heavy automation workload where Codex CLI’s terminal integration wins.” q: “How does usage actually break down by task type?” a: “Our 30-day split: ~60% refactor &#43; new feature work (Claude Code), ~25% inline edits &#43; tab completion (Cursor), ~15% shell/devops scripting (Codex CLI). The split explains why Claude Code is the single most-used tool — refactor work is where AI value compounds.” q: “Are there hidden costs in the unlimited Max plan?” a: “Two: (1) Anthropic throttles after sustained burst usage — practical ceiling is ~5-6 hours of intensive agent loops per day. (2) Long contexts (200K&#43; tokens) consume the same monthly quota faster. Both rare in normal workflows.” q: “What changed in May 2026 pricing that wasn’t in earlier reviews?” a: “Anthropic adjusted Max plan rate limits in late April (looser, more headroom). OpenAI’s Codex CLI moved fully to pay-as-you-go (no Pro tier). Cursor added a $50 Business tier with API credits bundled. All three changes shift the threshold math compared to Q1 reviews.” AI Coding Agent Monthly Bill 2026: Real 30-Day Receipts Meta Description: 30-day actual bills from Claude Max ($200), ChatGPT Plus &#43; Codex CLI ($165), Cursor Pro &#43; API ($87). Per-task cost, when each pays off, where switching makes sense.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-coding-agent-monthly-bill-2026-real-receipts/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““AI Coding Agents 2026 - Complete Guide””, “description”: ““Comprehensive guide to AI coding agents in 2026. Compare Claude Code, Cursor, Codex CLI, OpenCode and more. Features, pricing, benchmarks.””, “datePublished”: ““2026-09-20&#34;”, “dateModified”: ““2026-09-20&#34;”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/ai-coding-agents-2026-complete-guide/&#34; }, “url”: “https://dibi8.com/cn/tools/ai-coding-agents-2026-complete-guide/&#34;, “image”: “https://picsum.photos/seed/ai-coding-agents-2026-complete-guide/1200x630&#34;, “keywords”: “ai-coding,claude-code,cursor,codex,opencode,comparison,agents”, “articleSection”: “ai-tools” } ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>2 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-coding-agents-2026-complete-guide/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Coding Ethics 2026: Corporate Policy Guide for Allow … description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Policy, Compliance, ‘Claude Code’, Cursor] application_domain: Dev Utils source_version: “2026 Q2” licensing_model: ‘N/A’ license_type: ‘N/A’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “ethics”, “policy”, “compliance”, “2026”] aliases:
+/posts/ai-coding-ethics-corporate-policy-guide-2026/ faq: - q: “What are the main corporate AI coding policy stances in 2026?” a: “Three camps: (1) Allow with audit (most common in tech) — developers can use AI coding tools, code is reviewed. (2) Restrict to approved tools (financial / healthcare) — only enterprise tier of major vendors with DPAs. (3) Forbid (some defense / classified work) — air-gapped, local-only AI or none. Each has trade-offs.” q: “What are the real IP/legal risks of AI coding?” a: “Three: (1) Training data leakage — if your prompts include proprietary code, vendor may use it (less common with Enterprise plans). (2) Output liability — who owns AI-generated code? Mostly settled in your favor in 2026 but contract language matters. (3) License contamination — AI may reproduce GPL code that contaminates your proprietary codebase.” q: “How do companies actually implement ‘allow with audit’?” a: “Pattern: approved tool list (Claude Code, Cursor, GitHub Copilot), required PR review for AI-generated code, sometimes labeling commits as AI-assisted, training on prompt hygiene (don’t paste secrets, scope context). Most companies stop at the first three; the labeling/training varies.” q: “Is there a right answer or is it context-dependent?” a: “Context-dependent. For pure web SaaS work: allow with light audit is almost always right. For healthcare/financial regulated work: enterprise tier with DPA &#43; restricted use is the bar. For defense/classified: forbid cloud AI, allow only local. Mismatched policy creates either compliance risk or productivity loss.” AI Coding Ethics 2026: Corporate Policy Guide Meta Description: Companies split into AI-allow / restrict / forbid camps. Practical guide for what each looks like, how to choose, IP/compliance gotchas.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>7 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-coding-ethics-corporate-policy-guide-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Best Cursor Alternatives 2026: 7 AI Coding Tools Compare… description: “Technical guide and comparison.” date: 2026-05-22T00:00:00&#43;08:00 lastmod: 2026-05-22T00:00:00&#43;08:00 tech_stack: [‘VS Code’, JetBrains, ‘Terminal CLI’, ‘Native editors’] application_domain: Llm Frameworks source_version: ’’ licensing_model: Mixed (Open Source &#43; Commercial) license_type: Various file_size: ’’ file_md5: ’’ download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“cursor”, “cursor-alternatives”, “claude-code”, “cline”, “github-copilot”, “windsurf”, “continue-dev”, “zed”, “ai-coding”, “ai-ide”, “developer-tools”, “comparison”] aliases:
+/posts/ai-coding-tools-2026/ /resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/ faqs: - q: ‘Why are developers leaving Cursor in 2026?’ a: Cursor’s mid-2025 switch to credit-based pricing cut effective Pro usage from ~500 requests to ~225 requests/month at the same $20 price. The trust damage matters more than the math — developers don’’t mind paying, they hate when tools change rules mid-project.&#39; q: What’s the best free Cursor alternative?&#39; a: ‘Cline (5M&#43; installs, Apache 2.0 license, BYOK). You pay only the underlying API (Anthropic/OpenAI), typically 3-5x cheaper than Cursor’’s bundled pricing. Continue.dev also has a free open-source core.’ q: ‘Is Claude Code objectively better than Cursor?’ a: ‘On benchmarks yes (80.8% vs ~65% SWE-bench Verified). In daily practice it depends — Claude Code has no GUI, so if you rely on visual diffs and inline editing, Cursor may still feel more natural.’ q: What’s the cheapest paid AI coding tool?&#39; a: ‘GitHub Copilot ($10/mo) is the cheapest paid tier with 2K completions &#43; 50 chat requests free monthly. Cline is fully free if you BYOK and supply your own API key.’ q: ‘Can I run AI coding tools fully offline?’ a: ‘Yes with Cline &#43; Ollama/LM Studio local models. Continue.dev also supports local models. No subscription, complete privacy, but requires 32GB RAM &#43; 16GB VRAM (RTX 4080 / Apple M2 Max) for production-quality local coding.’ Best Cursor Alternatives 2026: 7 AI Coding Tools Compared (Claude Code, Cline, Copilot, Windsurf, Continue.dev, Zed) Quick Answer Q: What are the best Cursor alternatives in 2026?
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-coding-tools-cursor-alternatives-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Best AI Content Detector Tools 2025: GPTZero, Turnitin A… description: “Technical guide and comparison.” date: 2026-05-18T00:00:00&#43;08:00 lastmod: 2026-05-18T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-18” draft: false categories: [“ai-tools”] tags: [“ai content detection”, “gptzero”, “turnitin”, “copyleaks”, “originality.ai”, “ai writing detection”, “content authenticity”] aliases:
+/posts/ai-content-detector-tools/ Best AI Content Detector Tools 2025: GPTZero, Turnitin AI, Copyleaks &amp; More Compared {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-content-detector-tools/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Best AI Customer Service Chatbot Tools 2025: Intercom, Zendesk AI &amp; More {&lt;/* resource-info */&gt;}
 Customer service underwent its most dramatic transformation in decades during 2024 and 2025. AI chatbots moved from simple FAQ responders to fully autonomous support agents capable of resolving complex inquiries, processing refunds, and escalating issues with full context. Companies deploying advanced AI chatbots report 40–70% reductions in support ticket volume and average response times under 10 seconds.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>15 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/ai-customer-service-chatbot-tools/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/page/4/>«&nbsp;Prev&nbsp;
-</a><a class=next href=https://dibi8.com/page/6/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>15 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/ai-customer-service-chatbot-tools/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/page/4/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/page/6/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

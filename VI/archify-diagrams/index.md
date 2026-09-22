@@ -1,244 +1,241 @@
 ---
-title: "Archify: Genera Diagramas de Arquitectura Listos para Producción en 2026"
-description: "Archify de tt-a1i se ha convertido en una de las herramientas de visualización de arquitectura más populares en 2026, ganando 59,700 estrellas y 3,900 forks en un solo mes. Esta herramienta HTML autocontenida genera diagramas hermosos e interactivos a partir de análisis de código sin requerir dependencias externas."
+title: "Archify: Tạo Architecture Diagrams Production-Ready Trong 2026"
+description: "Công cụ tự động sinh kiến trúc diagram từ codebase. Tích hợp AI coding agents, workflow thực tế cho dev teams. 59,700 stars GitHub."
 date: 2026-09-20
 lastmod: 2026-09-20
-tags: [archify, architecture-diagrams, ai-tools, visualization, code-analysis, 2026]
+tags: [architecture, diagrams, visualization, ai-agents, code-analysis]
 categories: [dev-utils]
-license_type: Open Source
-source: "GitHub"
+license_type: MIT
+source: "GitHub: tt-a1i/archify"
 github: "tt-a1i/archify"
-word_count: 0
-h2_count: 0
-code_blocks: 0
-faq_count: 0
+lang: vi
 ---
 
-# Archify: Genera Diagramas de Arquitectura Listos para Producción en 2026
+# Archify: Tạo Architecture Diagrams Production-Ready Trong 2026
 
-Archify de tt-a1i se ha convertido en una de las herramientas de visualización de arquitectura más populares en 2026, ganando **59,700 estrellas** y **3,900 forks** en un solo mes. Esta herramienta HTML autocontenida genera diagramas hermosos e interactivos a partir de análisis de código sin requerir dependencias externas.
+Archify bởi tt-a1i đã trở thành một trong những công cụ trực quan hóa kiến trúc phổ biến nhất năm 2026, đạt **59,700 stars** và **3,900 forks** chỉ trong một tháng. Công cụ HTML self-contained này tạo diagram đẹp, tương tác từ phân tích code mà không cần dependencies ngoài.
 
-Esta guía explora cómo funciona Archify, su integración con agentes de codificación de IA, y flujos de trabajo prácticos para equipos de desarrollo.
+Hướng dẫn này khám phá cách Archify hoạt động, tích hợp với AI coding agents và workflow thực tế cho development teams.
 
-## ¿Qué es Archify?
+## Archify Là Gì?
 
-Archify es una habilidad de agente que transforma bases de código en diagramas de arquitectura visuales. A diferencia de las herramientas de diagramación tradicionales que requieren dibujo manual, Archify analiza la estructura del código y genera automáticamente:
+Archify là agent skill biến codebase thành architecture diagram trực quan. Khác với công cụ vẽ diagram truyền thống đòi hỏi vẽ thủ công, Archify phân tích cấu trúc code và tự động tạo:
 
-- **Diagramas de flujo de trabajo**: Muestran flujo de ejecución y dependencias
-- **Diagramas de secuencia**: Ilustran interacciones entre componentes
-- **Diagramas de flujo de datos**: Rastrean movimiento de datos a través de sistemas
-- **Diagramas de ciclo de vida**: Mapean ciclos de objetos y solicitudes
-- **Diagramas de componentes**: Muestran arquitectura del sistema
+- **Workflow diagrams**: Hiển thị luồng thực thi và dependencies
+- **Sequence diagrams**: Minh họa tương tác giữa các component
+- **Data flow diagrams**: Theo dõi chuyển động dữ liệu qua hệ thống
+- **Lifecycle diagrams**: Ánh xạ object và request lifecycles
+- **Component diagrams**: Hiển thị kiến trúc hệ thống
 
-### Características clave
+### Tính Năng Chính
 
-- **HTML autocontenida**: Sin dependencias externas ni pasos de compilación
-- **Movimiento y animación**: Diagramas interactivos con transiciones suaves
-- **Exportación nítida**: Exporta a SVG, PNG o PDF para documentación
-- **Nativo de IA**: Diseñado para trabajar con Claude Code, Codex y otros agentes
-- **Cero configuración**: Funciona fuera de la caja con la mayoría de las bases de código
+- **Self-contained HTML**: Không dependencies ngoài hay build steps
+- **Motion và Animation**: Diagram tương tác với transitions mượt mà
+- **Crisp Export**: Xuất ra SVG, PNG hoặc PDF cho documentation
+- **AI-Native**: Thiết kế để hoạt động với Claude Code, Codex và agents khác
+- **Zero Configuration**: Hoạt động ngay với hầu hết codebases
 
-## Instalación y configuración
+## Cài Đặt và Cấu Hình
 
-### Para Claude Code
+### Cho Claude Code
 
 ```bash
-# Instalar vía npx (recomendado)
+# Install qua npx (khuyến nghị)
 npx -y tt-a1i/archify
 
-# O clonar y enlazar
+# Hoặc clone và link
 git clone https://github.com/tt-a1i/archify.git
 cd archify
 ./skills.sh install
 ```
 
-### Para otros agentes
+### Cho Agents Khác
 
-Archify funciona con cualquier agente que soporte habilidades de Markdown:
+Archify hoạt động với mọi agent hỗ trợ Markdown skills:
 
 ```markdown
-# Usando Archify
+# Sử dụng Archify
 
-1. Apunta a tu repositorio
-2. Pide diagramas de arquitectura
-3. Revisa y personaliza la salida
-4. Exporta para documentación
+1. Point vào repository của bạn
+2. Yêu cầu architecture diagrams
+3. Review và customize output
+4. Export cho documentation
 ```
 
-### Inicio rápido
+### Quick Start
 
 ```bash
-# Analiza un repositorio de GitHub
-archify https://github.com/tu-org/tu-repo
+# Phân tích GitHub repository
+archify https://github.com/your-org/your-repo
 
-# Genera tipos específicos de diagramas
+# Tạo diagram types cụ thể
 archify --type=workflow --output=diagram.html
 archify --type=sequence --scope="auth-service"
 
-# Modo interactivo
+# Interactive mode
 archify --interactive
 ```
 
-## Cómo funciona Archify
+## Cách Archify Hoạt Động
 
-### Pipeline de análisis
+### Analysis Pipeline
 
-Archify sigue un proceso de análisis multietapa:
+Archify theo quy trình phân tích đa giai đoạn:
 
-1. **Análisis de código**: Escanea archivos fuente para entender estructura
-2. **Mapeo de dependencias**: Identifica imports, exports y relaciones
-3. **Detección de patrones**: Reconoce patrones arquitectónicos comunes
-4. **Generación de diagramas**: Crea representaciones visuales
-5. **Refinamiento**: Aplica estilos y optimizaciones de diseño
+1. **Code Parsing**: Quét source files để hiểu cấu trúc
+2. **Dependency Mapping**: Xác định imports, exports và relationships
+3. **Pattern Detection**: Nhận diện common architectural patterns
+4. **Diagram Generation**: Tạo visual representations
+5. **Refinement**: Áp dụng styling và layout optimizations
 
-### Lenguajes admitidos
+### Ngôn Ngữ Được Hỗ Trợ
 
-Archify tiene parsers integrados para:
+Archify có built-in parsers cho:
 
 - **JavaScript/TypeScript**: Node.js, React, Vue, Next.js
 - **Python**: Django, Flask, FastAPI
-- **Go**: Patrones de biblioteca estándar, microservicios
-- **Rust**: Proyectos Cargo, aplicaciones async
+- **Go**: Standard library patterns, microservices
+- **Rust**: Cargo projects, async applications
 - **Java/Kotlin**: Spring Boot, Android
-- **Ruby**: Aplicaciones Rails
+- **Ruby**: Rails applications
 - **PHP**: Laravel, Symfony
 
-### Tipos de diagramas
+### Các Loại Diagram
 
-#### 1. Diagramas de flujo de trabajo
+#### 1. Workflow Diagrams
 
-Muestran la secuencia de operaciones en un sistema:
+Hiển thị sequence của operations trong hệ thống:
 
 ```
-Solicitud de usuario → Gateway de API → Servicio de autenticación → Base de datos
+User Request → API Gateway → Auth Service → Database
                     ↓
-              Limitador de tasa → Capa de caché
+              Rate Limiter → Cache Layer
 ```
 
-**Casos de uso:**
-- Flujos de solicitud de API
-- Procesamiento de trabajos en segundo plano
-- Pipelines de procesamiento de pagos
-- Arquitecturas impulsadas por eventos
+**Use Cases:**
+- API request flows
+- Background job processing
+- Payment processing pipelines
+- Event-driven architectures
 
-#### 2. Diagramas de secuencia
+#### 2. Sequence Diagrams
 
-Ilustran interacciones entre componentes:
+Minh họa interactions giữa các components:
 
 ```
-Cliente      Servidor      Base de datos
+Client        Server        Database
   │             │             │
-  │──Solicitud──▶│             │
-  │             │──Consulta──▶  │
-  │             │◀──Resultado──  │
-  │◀──Respuesta──│             │
+  │──Request──▶│             │
+  │             │──Query──▶  │
+  │             │◀──Result──  │
+  │◀──Response──│             │
 ```
 
-**Casos de uso:**
-- Flujos de endpoints de API
-- Comunicación servicio-a-servicio
-- Flujos de autenticación
-- Pipelines de transformación de datos
+**Use Cases:**
+- API endpoint flows
+- Service-to-service communication
+- Authentication flows
+- Data transformation pipelines
 
-#### 3. Diagramas de flujo de datos
+#### 3. Data Flow Diagrams
 
-Rastrean cómo se mueven los datos a través de los sistemas:
+Theo dõi cách dữ liệu di chuyển qua hệ thống:
 
 ```
 ┌─────────┐    ┌─────────┐    ┌─────────┐
-│  Fuente  │───▶│Procesador│───▶│Almacenamiento│
-│ (API)   │    │(Transform)│   │(Base de datos)│
+│  Source  │───▶│Processor│───▶│Storage  │
+│ (API)   │    │(Transform)│   │(Database)│
 └─────────┘    └─────────┘    └─────────┘
 ```
 
-**Casos de uso:**
-- Pipelines ETL
-- Streaming de eventos
+**Use Cases:**
+- ETL pipelines
+- Event streaming
 - Data warehousing
-- Invalidación de caché
+- Cache invalidation
 
-#### 4. Diagramas de ciclo de vida
+#### 4. Lifecycle Diagrams
 
-Mapean ciclos de objetos y solicitudes:
+Ánh xạ object và request lifetimes:
 
 ```
-Creado → Inicializado → Activo → Inactivo → Destruído
+Created → Initialized → Active → Idle → Destroyed
     ↑                                 │
-    └────────── Reciclado ─────────────┘
+    └────────── Recycled ─────────────┘
 ```
 
-**Casos de uso:**
-- Pooling de conexiones de base de datos
-- Ciclo de vida de entrada de caché
-- Gestión de procesos worker
-- Manejo de sesiones
+**Use Cases:**
+- Database connection pooling
+- Cache entry lifecycle
+- Worker process management
+- Session handling
 
-#### 5. Diagramas de componentes
+#### 5. Component Diagrams
 
-Muestran arquitectura del sistema:
+Hiển thị kiến trúc hệ thống:
 
 ```
 ┌─────────────────────────────────────┐
-│           Capa Frontend             │
+│           Frontend Layer            │
 │  ┌─────────┐  ┌─────────┐          │
-│  │  Web    │  │  Móvil  │          │
+│  │  Web    │  │  Mobile │          │
 │  └─────────┘  └─────────┘          │
 ├─────────────────────────────────────┤
-│          Capa Gateway de API        │
+│          API Gateway Layer          │
 │  ┌─────────────────────────────┐   │
-│  │      Limitador de tasa      │   │
-│  │      Middleware Auth        │   │
+│  │      Rate Limiter           │   │
+│  │      Auth Middleware        │   │
 │  └─────────────────────────────┘   │
 ├─────────────────────────────────────┤
-│         Capa de Servicios          │
+│         Service Layer               │
 │  ┌──────┐ ┌──────┐ ┌──────┐       │
-│  │Usuario│ │Pedido │ │Pago  │       │
+│  │User  │ │Order │ │Pay  │       │
 │  └──────┘ └──────┘ └──────┘       │
 └─────────────────────────────────────┘
 ```
 
-**Casos de uso:**
-- Arquitectura de microservicios
-- Diseño de aplicaciones en capas
-- Mapeo de integración de terceros
-- Topología de infraestructura
+**Use Cases:**
+- Microservice architecture
+- Layered application design
+- Third-party integration mapping
+- Infrastructure topology
 
-## Flujos de trabajo prácticos
+## Workflows Thực Tế
 
-### 1. Onboarding de nuevos desarrolladores
+### 1. Onboarding New Developers
 
-**Problema**: Los nuevos miembros del equipo luchan por entender la estructura de la base de código.
+**Vấn đề**: Thành viên mới struggle hiểu cấu trúc codebase.
 
-**Solución**: Genera diagramas de arquitectura durante el onboarding.
+**Giải pháp**: Tạo architecture diagrams trong onboarding.
 
 ```bash
-# Ejecuta durante el primer día
-archify --repo=https://github.com/empresa/app-principal \
+# Chạy ngày đầu tiên
+archify --repo=https://github.com/company/main-app \
         --output=docs/onboarding/ \
         --type=all
 
-# Crea walkthrough interactivo
+# Tạo interactive walkthrough
 archify --interactive --port=8080
 ```
 
-**Beneficios:**
-- Reduce tiempo de onboarding en 40%
-- Crea documentación viva
-- Ayuda a identificar deuda arquitectónica
+**Lợi ích:**
+- Giảm onboarding time 40%
+- Tạo living documentation
+- Giúp identify architectural debt
 
-### 2. Documentación técnica
+### 2. Technical Documentation
 
-**Problema**: La documentación se vuelve obsoleta a medida que evoluciona el código.
+**Vấn đề**: Documentation lỗi thời khi code evolve.
 
-**Solución**: Genera diagramas directamente del código.
+**Giải pháp**: Tạo diagrams trực tiếp từ code.
 
 ```python
-# En tu pipeline de documentación
+# Trong documentation pipeline
 def generate_architecture_docs(repo_url, output_dir):
-    # Clona repositorio
+    # Clone repo
     subprocess.run(["git", "clone", repo_url, "/tmp/app"])
     
-    # Genera diagramas
+    # Generate diagrams
     subprocess.run([
         "archify",
         "--path=/tmp/app",
@@ -246,119 +243,119 @@ def generate_architecture_docs(repo_url, output_dir):
         "--types=workflow,sequence,component"
     ])
     
-    # Commit documentación
+    # Commit documentation
     subprocess.run(["git", "add", output_dir])
-    subprocess.run(["git", "commit", "-m", "Actualiza docs de arquitectura"])
+    subprocess.run(["git", "commit", "-m", "Update architecture docs"])
 ```
 
-**Beneficios:**
-- Siempre actualizado con el código
-- Fuente única de verdad
-- Actualizaciones automáticas de documentación
+**Lợi ích:**
+- Luôn update với code
+- Single source of truth
+- Automated documentation updates
 
-### 3. Revisiones de arquitectura
+### 3. Architecture Reviews
 
-**Problema**: La creación manual de diagramas es laboriosa.
+**Vấn đề**: Manual diagram creation tốn thời gian.
 
-**Solución**: Usa Archify para generar diagramas base, luego refina.
+**Giải pháp**: Dùng Archify tạo baseline diagrams, sau đó refine.
 
 ```bash
-# Genera diagramas iniciales
+# Generate initial diagrams
 archify --repo=. --type=component --output=review/
 
-# Crea comparación entre versiones
+# Tạo comparison across versions
 archify --repo=. --compare=main,feature-branch --output=comparison/
 
-# Genera detección de cambios
+# Generate change detection
 archify --repo=. --diff --output=deltas/
 ```
 
-**Beneficios:**
-- Comparación visual rápida
-- Identifica cambios no intencionados
-- Rastrea evolución arquitectónica
+**Lợi ích:**
+- Quick visual comparison
+- Identify unintended changes
+- Track architectural evolution
 
-### 4. Entrevistas de diseño de sistemas
+### 4. System Design Interviews
 
-**Problema**: Dibujar diagramas durante entrevistas es estresante.
+**Vấn đề**: Vẽ diagram trong interviews gây stress.
 
-**Solución**: Usa Archify para generar diagramas limpios y profesionales.
+**Giải pháp**: Dùng Archify tạo clean, professional diagrams.
 
 ```bash
-# Generación de diagramas en tiempo real
+# Real-time diagram generation
 archify --interactive --mode=interview
 
-# Genera desde descripción verbal
-echo "Diseña un acortador de URLs" | archify --from=prompt
+# Generate from verbal description
+echo "Design a URL shortener" | archify --from=prompt
 ```
 
-**Beneficios:**
-- Apariencia profesional
-- Enfócate en discusión, no en dibujar
-- Guarda diagramas para referencia posterior
+**Lợi ích:**
+- Professional appearance
+- Tập trung vào discussion, không phải vẽ
+- Lưu diagrams cho reference sau
 
-### 5. Presentaciones a clientes
+### 5. Client Presentations
 
-**Problema**: Crear diagramos orientados al cliente toma demasiado tiempo.
+**Vấn đề**: Tạo client-facing diagrams mất quá lâu.
 
-**Solución**: Genera diagramas pulidos en minutos.
+**Giải pháp**: Tạo polished diagrams trong vài phút.
 
 ```bash
-# Genera diagramas listos para presentación
+# Tạo presentation-ready diagrams
 archify --repo=. \
         --style=clean \
         --export=svg \
         --output=presentations/
 
-# Crea walkthrough animado
+# Tạo animated walkthrough
 archify --repo=. --animate --output=walkthrough.html
 ```
 
-**Beneficios:**
-- Ahorra horas de trabajo manual
-- Estilismo consistente
-- Presentaciones interactivas
+**Lợi ích:**
+- Tiết kiệm hours manual work
+- Consistent styling
+- Interactive presentations
 
-## Integración con agentes de IA
+## Tích Hợp Với AI Agents
 
-### Integración con Claude Code
+### Claude Code Integration
 
 ```markdown
-# En tu sesión de Claude Code
+# Trong Claude Code session
 
-> Analiza el flujo de autenticación en este proyecto
-> Genera un diagrama de secuencia que muestre el flujo OAuth
-> Exporta como SVG para documentación
+> Phân tích authentication flow trong project này
+> Tạo sequence diagram hiển thị OAuth flow
+> Export ra SVG cho documentation
 ```
 
-Claude Code puede entonces:
-1. Ejecutar análisis de Archify
-2. Interpretar resultados
-3. Generar explicaciones
-4. Crear documentación
+Claude Code có thể:
+1. Chạy Archify analysis
+2. Interpret results
+3. Tạo explanations
+4. Tạo documentation
 
-### Integración con Codex
+### Codex Integration
 
 ```python
-# En tu flujo de trabajo Codex
+# Trong Codex workflow
 def analyze_system(repo_path):
-    # Genera diagramas
+    # Generate diagrams
     archify_result = run_archify(repo_path)
     
-    # Analiza con IA
+    # Analyze với AI
     insights = codex.analyze({
         "diagrams": archify_result,
-        "question": "¿Cuáles son los principales riesgos arquitectónicos?"
+        "question": "What are the main architectural risks?"
     })
     
     return insights
 ```
 
-### Integración con GitHub Actions
+### GitHub Actions Integration
 
 ```yaml
 # .github/workflows/archify.yml
-name: Genera Documentos de Arquitectura
+name: Generate Architecture Docs
 
 on:
   push:
@@ -370,294 +367,294 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       
-      - name: Instalar Archify
+      - name: Install Archify
         run: npm install -g @tt-a1i/archify
         
-      - name: Genera diagramas
+      - name: Generate diagrams
         run: archify --path=. --output=docs/architecture
         
       - name: Commit docs
         run: |
           git add docs/architecture
-          git commit -m "Actualiza diagramas de arquitectura" || echo "Sin cambios"
+          git commit -m "Update architecture diagrams" || echo "No changes"
           git push
 ```
 
-## Personalización y estilo
+## Customization và Styling
 
-### Opciones de tema
+### Theme Options
 
-Archify soporta múltiples temas visuales:
+Archify hỗ trợ multiple visual themes:
 
 ```bash
-# Temas disponibles
-archify --theme=dark      # Fondo oscuro, texto claro
-archify --theme=light     # Fondo claro, texto oscuro
-archify --theme=mono      # Monocromático, amigable para impresión
-archify --theme=colorful  # Colores vibrantes, atractivo
+# Available themes
+archify --theme=dark      # Dark background, light text
+archify --theme=light     # Light background, dark text
+archify --theme=mono      # Monochrome, print-friendly
+archify --theme=colorful  # Vibrant colors, engaging
 ```
 
-### Personalización de estilo
+### Style Customization
 
-Controla la apariencia del diagrama:
+Kiểm soát diagram appearance:
 
 ```bash
-# Estilismo de nodos
-archify --node-style=filled    # Nodos coloreados sólidos
-archify --node-style=outlined  # Nodos contorneados
-archify --node-style=wireframe # Wireframes mínimos
+# Node styling
+archify --node-style=filled    # Solid colored nodes
+archify --node-style=outlined  # Outlined nodes
+archify --node-style=wireframe # Minimal wireframes
 
-# Opciones de diseño
-archify --layout=horizontal    # Flujo izquierda-derecha
-archify --layout=vertical      # Flujo arriba-abajo
-archify --layout=auto          # Diseño automático inteligente
+# Layout options
+archify --layout=horizontal    # Left-to-right flow
+archify --layout=vertical      # Top-to-bottom flow
+archify --layout=auto          # Intelligent auto-layout
 
-# Estilismo de bordes
-archify --edge-style=curved    # Curvas suaves
-archify --edge-style=straight  # Líneas angulares
-archify --edge-style=dashed    # Conexiones punteadas
+# Edge styling
+archify --edge-style=curved    # Smooth curves
+archify --edge-style=straight  # Angular lines
+archify --edge-style=dashed    # Dashed connections
 ```
 
-### Formatos de exportación
+### Export Formats
 
 ```bash
-# SVG para web y documentación
+# SVG cho web và documentation
 archify --export=svg --output=diagram.svg
 
-# PNG para presentaciones
+# PNG cho presentations
 archify --export=png --resolution=2x --output=diagram.png
 
-# PDF para impresión
+# PDF cho printing
 archify --export=pdf --output=diagram.pdf
 
-# HTML interactivo para web
+# Interactive HTML cho web
 archify --export=html --interactive --output=diagram.html
 ```
 
-## Funciones avanzadas
+## Advanced Features
 
-### Colaboración en tiempo real
+### Real-time Collaboration
 
-Archify soporta edición colaborativa:
+Archify hỗ trợ collaborative editing:
 
 ```bash
-# Inicia sesión colaborativo
+# Bắt đầu collaborative session
 archify --collab --port=3000
 
-# Comparte con el equipo
-# Los miembros del equipo se unen vía URL
-# Los cambios se sincronizan en tiempo real
+# Chia sẻ với team
+# Team members join qua URL
+# Changes sync real-time
 ```
 
-### Comparación de versiones
+### Version Comparison
 
-Compara arquitectura entre branches:
+So sánh architecture across branches:
 
 ```bash
-# Diff entre main y branch de funcionalidad
+# Diff giữa main và feature branch
 archify --compare=main,feature/auth \
         --output=comparison/ \
         --highlight-changes
 
-# Genera reporte de cambios
+# Generate change report
 archify --compare=main,feature/auth \
         --report=changes.md
 ```
 
-### Análisis de rendimiento
+### Performance Analysis
 
-Identifica cuellos de botella desde diagramas:
+Identify bottlenecks từ diagrams:
 
 ```bash
-# Analiza implicaciones de rendimiento
+# Analyze performance implications
 archify --analyze=performance --output=report.html
 
-# Encuentra caminos calientes
+# Find hot paths
 archify --hotpaths --top=10 --output=hotpaths.md
 ```
 
-### Análisis de seguridad
+### Security Analysis
 
-Detecta patrones y problemas de seguridad:
+Detect security patterns và issues:
 
 ```bash
-# Analiza flujos de autenticación
+# Analyze auth flows
 archify --focus=authentication --output=security/
 
-# Identifica exposición de datos
+# Identify data exposure
 archify --focus=data-flow --check=exposure
 ```
 
-## Limitaciones y consideraciones
+## Limitations và Considerations
 
-### Lo que Archify no hará
+### Archify Không Làm Gì
 
-1. **Explicar lógica de negocio**: Muestra estructura, no propósito
-2. **Reemplazar diseño**: Ayuda a documentar, no a crear arquitectura
-3. **Entender contexto**: Puede perder restricciones organizacionales
-4. **Garantizar precisión**: Basado en análisis de código, puede perder comportamiento en tiempo de ejecución
+1. **Giải thích Business Logic**: Hiển thị structure, không phải purpose
+2. **Thay Thế Design**: Giúp document, không phải tạo architecture
+3. **Hiểu Context**: Có thể bỏ qua organizational constraints
+4. **Đảm Bảo Accuracy**: Dựa trên code analysis, có thể bỏ qua runtime behavior
 
-### Cuándo usar diagramas manuales
+### Khi Nào Dùng Manual Diagrams
 
-- **Planificación estratégica**: Decisiones de arquitectura de alto nivel
-- **Comunicación con clientes**: Vistas ejecutivas simplificadas
-- **Documentación regulatoria**: Requerimientos formales de cumplimiento
-- **Sistemas legados**: Contexto histórico complejo necesario
+- **Strategic Planning**: High-level architecture decisions
+- **Client Communication**: Simplified executive views
+- **Regulatory Documentation**: Formal compliance requirements
+- **Legacy Systems**: Complex historical context needed
 
-### Mejores prácticas
+### Best Practices
 
-1. **Combina enfoques**: Usa Archify para baseline, refina manualmente
-2. **Actualizaciones regulares**: Regenera después de cambios significativos
-3. **Revisión del equipo**: Tiene arquitectos que validen diagramas automatizados
-4. **Adición de contexto**: Agrega notas explicando lógica de negocio
-5. **Control de versiones**: Almacena diagramas junto con código
+1. **Kết Hợp Approaches**: Dùng Archify cho baseline, refine manual
+2. **Cập Nhật Regular**: Regenerate sau significant changes
+3. **Team Review**: Có architects validate automated diagrams
+4. **Context Addition**: Thêm notes giải thích business logic
+5. **Version Control**: Store diagrams alongside code
 
-## Benchmarks de rendimiento
+## Performance Benchmarks
 
-### Velocidad de procesamiento
+### Processing Speed
 
-| Tamaño del repositorio | Tiempo de análisis | Generación de diagramas |
-|------------------------|-------------------|------------------------|
-| < 10K LOC | < 5 segundos | < 2 segundos |
-| 10K - 100K LOC | 10-30 segundos | 3-5 segundos |
-| 100K - 500K LOC | 1-3 minutos | 5-10 segundos |
-| > 500K LOC | 3-10 minutos | 10-30 segundos |
+| Repository Size | Analysis Time | Diagram Generation |
+|----------------|---------------|-------------------|
+| < 10K LOC | < 5 seconds | < 2 seconds |
+| 10K - 100K LOC | 10-30 seconds | 3-5 seconds |
+| 100K - 500K LOC | 1-3 minutes | 5-10 seconds |
+| > 500K LOC | 3-10 minutes | 10-30 seconds |
 
-### Uso de memoria
+### Memory Usage
 
-- **Baseline**: 50-100 MB para proyectos pequeños
-- **Proyectos grandes**: 200-500 MB para bases de código empresariales
-- **Uso pico**: Picos cortos durante análisis
+- **Baseline**: 50-100 MB cho small projects
+- **Large Projects**: 200-500 MB cho enterprise codebases
+- **Peak Usage**: Short spikes during analysis
 
-### Escalabilidad
+### Scalability
 
-- **Usuario único**: Funciona bien para proyectos personales
-- **Uso de equipo**: Características colaborativas soportan 5-10 usuarios concurrentes
-- **Empresarial**: Considera despliegue de servidor para 10+ usuarios
+- **Single User**: Hoạt động tốt cho personal projects
+- **Team Usage**: Collaborative features support 5-10 concurrent users
+- **Enterprise**: Xem xét server deployment cho 10+ users
 
-## Comparación con otras herramientas
+## So Sánh Với Các Công Cụ Khác
 
 ### Archify vs. Mermaid
 
-| Característica | Archify | Mermaid |
-|----------------|---------|---------|
-| Auto-generación | ✅ Sí | ❌ Manual |
-| Análisis de código | ✅ Profundo | ❌ Ninguno |
-| Interactivo | ✅ Sí | Limitado |
-| Curva de aprendizaje | Baja | Media |
-| Personalización | Alta | Media |
-| Integración | Nativo de agente | Nativo de Markdown |
+| Feature | Archify | Mermaid |
+|---------|---------|---------|
+| Auto-generation | ✅ Yes | ❌ Manual |
+| Code Analysis | ✅ Deep | ❌ None |
+| Interactive | ✅ Yes | Limited |
+| Learning Curve | Low | Medium |
+| Customization | High | Medium |
+| Integration | Agent-native | Markdown-native |
 
-**Veredicto**: Usa Archify para análisis automatizado, Mermaid para documentación manual.
+**Verdict**: Dùng Archify cho automated analysis, Mermaid cho manual documentation.
 
 ### Archify vs. Draw.io
 
-| Característica | Archify | Draw.io |
-|----------------|---------|---------|
-| Automatización | ✅ Completa | ❌ Ninguna |
-| Calidad de diseño | Alta | Alta |
-| Colaboración | Tiempo real | Basado en nube |
-| Curva de aprendizaje | Baja | Media |
-| Opciones de exportación | Múltiples | Múltiples |
+| Feature | Archify | Draw.io |
+|---------|---------|---------|
+| Automation | ✅ Full | ❌ None |
+| Design Quality | High | High |
+| Collaboration | Real-time | Cloud-based |
+| Learning Curve | Low | Medium |
+| Export Options | Multiple | Multiple |
 
-**Veredicto**: Usa Archify para generación rápida, Draw.io para diseño detallado.
+**Verdict**: Dùng Archify cho quick generation, Draw.io cho detailed design.
 
 ### Archify vs. PlantUML
 
-| Característica | Archify | PlantUML |
-|----------------|---------|----------|
-| Auto-generación | ✅ Sí | ❌ Manual |
-| Soporte de lenguajes | Múltiples | Enfocado en Java |
-| Calidad de salida | Moderna | Tradicional |
-| Integración | Nativo de agente | Plugins IDE |
+| Feature | Archify | PlantUML |
+|---------|---------|----------|
+| Auto-generation | ✅ Yes | ❌ Manual |
+| Language Support | Multiple | Java-focused |
+| Output Quality | Modern | Traditional |
+| Integration | Agent-native | IDE plugins |
 
-**Veredicto**: Usa Archify para flujos de trabajo modernos, PlantUML para proyectos muy Java.
+**Verdict**: Dùng Archify cho modern workflows, PlantUML cho Java-heavy projects.
 
-## Comunidad y ecosistema
+## Community và Ecosystem
 
-### Estadísticas de GitHub
+### GitHub Statistics
 
-- **Estrellas**: 59,700 ⭐
+- **Stars**: 59,700 ⭐
 - **Forks**: 3,900 🍴
 - **Watchers**: 1,200 👁️
-- **Issues**: Triage activo
-- **Contribuidores**: 45+
+- **Issues**: Active triage
+- **Contributors**: 45+
 
-### Ecosistema de integración
+### Integration Ecosystem
 
-Archify se integra con:
+Archify tích hợp với:
 
-- **Agentes de IA**: Claude Code, Codex, Cursor, GitHub Copilot
+- **AI Agents**: Claude Code, Codex, Cursor, GitHub Copilot
 - **CI/CD**: GitHub Actions, GitLab CI, Jenkins
-- **Documentación**: MkDocs, Docusaurus, Hugo
-- **Herramientas de diseño**: Figma, Sketch (vía exportación)
-- **Comunicación**: Slack, Discord (vía bots)
+- **Documentation**: MkDocs, Docusaurus, Hugo
+- **Design Tools**: Figma, Sketch (via export)
+- **Communication**: Slack, Discord (via bots)
 
-### Cómo contribuir
+### Contributing
 
-Maneras de contribuir:
+Ways to contribute:
 
-1. **Reportar issues**: Reportes de bugs y solicitudes de funcionalidades
-2. **Enviar PRs**: Mejoras de código y nuevos parsers
-3. **Agregar parsers**: Soporte para más lenguajes
-4. **Mejorar docs**: Tutoriales y ejemplos
-5. **Compartir flujos de trabajo**: Casos de uso del mundo real
+1. **Report Issues**: Bug reports và feature requests
+2. **Submit PRs**: Code improvements và new parsers
+3. **Add Parsers**: Support cho nhiều languages hơn
+4. **Improve Docs**: Tutorials và examples
+5. **Share Workflows**: Real-world use cases
 
-## Hoja de ruta futura
+## Future Roadmap
 
 ### Q4 2026
 
-- **Lanzamiento de API**: API REST para acceso programático
-- **Extensión de navegador**: Generación de diagramas en tiempo real
-- **Plugins de IDE**: Integración con VS Code, JetBrains
-- **App móvil**: Visores para iOS y Android
+- **API Release**: REST API cho programmatic access
+- **Browser Extension**: Real-time diagram generation
+- **IDE Plugins**: VS Code, JetBrains integration
+- **Mobile App**: iOS và Android viewers
 
 ### Q1 2027
 
-- **IA avanzada**: Mejor reconocimiento de patrones
-- **Colaboración**: Edición multiusuario
-- **Análisis**: Insights de uso y recomendaciones
-- **Marketplace**: Plantillas de diagramas compartidas
+- **Advanced AI**: Better pattern recognition
+- **Collaboration**: Multi-user editing
+- **Analytics**: Usage insights và recommendations
+- **Marketplace**: Shared diagram templates
 
 ### Q2 2027
 
-- **Servicio en la nube**: Plataforma de colaboración alojada
-- **Funcionalidades empresariales**: SSO, logs de auditoría, SLA
-- **Visualización avanzada**: Vistas de arquitectura 3D
-- **Hub de integración**: Más integraciones de terceros
+- **Cloud Service**: Hosted collaboration platform
+- **Enterprise Features**: SSO, audit logs, SLA
+- **Advanced Visualization**: 3D architecture views
+- **Integration Hub**: Nhiều third-party integrations hơn
 
-## Conclusión
+## Kết Luận
 
-Archify representa un avance significativo en visualización de arquitectura. Al automatizar la generación de diagramas desde código, ahorra a los desarrolladores horas de trabajo manual mientras crea documentación precisa y actualizada.
+Archify đại diện cho advancement đáng kể trong architectural visualization. Bằng cách automate diagram generation từ code, nó tiết kiệm developers hours manual work trong khi tạo accurate, up-to-date documentation.
 
-### Ventajas clave
+### Key Advantages
 
-1. **Ahorro de tiempo**: Genera diagramas en segundos, no horas
-2. **Precisión**: Basado en código real, no en memoria
-3. **Integración**: Funciona con flujos de trabajo modernos de agentes de IA
-4. **Flexibilidad**: Múltiples formatos de salida y estilos
-5. **Comunidad**: Desarrollo y soporte activos
+1. **Tiết Kiệm Thời Gian**: Tạo diagrams trong seconds, không phải hours
+2. **Accuracy**: Dựa trên actual code, không phải memory
+3. **Integration**: Hoạt động với modern AI agent workflows
+4. **Flexibility**: Multiple output formats và styles
+5. **Community**: Active development và support
 
-### Quién debería usarlo
+### Ai Nên Dùng
 
-- **Desarrolladores**: Documenta tu base de código rápidamente
-- **Arquitectos**: Crea representaciones visuales de diseños
-- **Equipos**: Onboardea nuevos miembros más rápido
-- **Consultores**: Analiza sistemas de clientes eficientemente
-- **Estudiantes**: Aprende patrones de arquitectura visualmente
+- **Developers**: Document codebase của bạn nhanh chóng
+- **Architects**: Tạo visual representations của designs
+- **Teams**: Onboard new members nhanh hơn
+- **Consultants**: Analyze client systems efficiently
+- **Students**: Học architecture patterns visually
 
-### Pensamientos finales
+### Final Thoughts
 
-A medida que las bases de código se vuelven más complejas, la necesidad de documentación clara se vuelve crítica. Archify cierra la brecha entre código y visualización, haciendo que la comprensión de arquitectura sea accesible para todos.
+Khi codebases trở nên phức tạp hơn, nhu cầu cho clear documentation trở nên critical. Archify cầu nối gap giữa code và visualization, làm architecture understanding accessible cho everyone.
 
-La herramienta no reemplaza el pensamiento de diseño humano—lo potencia manejando las partes tediosas de documentación mientras te enfocas en las decisiones arquitectónicas importantes.
-
----
-
-**Repositorio de GitHub**: https://github.com/tt-a1i/archify  
-**Estrellas**: 59,700 ⭐ | **Forks**: 3,900 🍴 | **Licencia**: MIT  
-**Última actualización**: Septiembre 2026
+Công cụ không thay thế human design thinking—nó enhance bằng cách xử lý tedious parts của documentation trong khi bạn tập trung vào important architectural decisions.
 
 ---
 
-*¿Found esto útil? ¡Únete a nuestra comunidad de Telegram para actualizaciones diarias de herramientas de IA: https://t.me/DIBI8_Group*
+**GitHub Repository**: https://github.com/tt-a1i/archify  
+**Stars**: 59,700 ⭐ | **Forks**: 3,900 🍴 | **License**: MIT  
+**Last Updated**: September 2026
+
+---
+
+*Thấy hữu ích? Tham gia cộng đồng Telegram của chúng tôi để nhận cập nhật AI tool hàng ngày: https://t.me/DIBI8_Group*

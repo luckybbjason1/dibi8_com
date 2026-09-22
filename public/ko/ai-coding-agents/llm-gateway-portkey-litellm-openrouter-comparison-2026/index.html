@@ -1,14 +1,264 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ko/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: - Python\nTypeScript Docker Kubernetes application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“llm gateway”, “portkey”, “litellm”, “openrouter”, “비교”] aliases: /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/ Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) “최고의 LLM 게이트웨이” 글 세 편을 읽으면 답이 세 개 나오고 비교 가능한 숫자는 0개입니다. 이 글에서 그 문제를 해결합니다. Portkey, LiteLLM, OpenRouter — 2026년 실제 프로덕션 AI 트래픽을 처리하는 세 게이트웨이 — 의 정면 대결입니다. 실제 측정한 지연시간, $1,000/월 비용 분석, 30초만에 적용 가능한 결정 트리를 제공합니다.\n60초만 있으시면 2절 표를 보고 자신의 행에 맞는 걸 고르세요. 나머지는 “왜 이걸 골랐느냐\"고 CFO가 물을 때를 위한 자료입니다.\n1. 왜 LLM 게이트웨이가 필요한가 직접 Provider SDK를 쓰던 애플리케이션이 3개월쯤 지나면 만나는 세 가지 문제: 1. 벤더 락인 고통 — 코드가 OpenAI 모양인데 Claude 4.7이 막 출시됐다. 어쩌나? 2. 신뢰성 — 각 Provider SLA가 99.5%. 페일오버 없이 셋을 병렬로 돌리면 누적 가용성이 떨어집니다(중복이 아니라 곱셈). 3. 비용과 가시성 — 재무팀이 팀별 지출 추적을 원하는데 SDK는 안 됩니다.\nLLM 게이트웨이는 앱과 N개 Provider 사이에 자리해서, 통일된 API(거의 항상 OpenAI 호환)를 노출하고 재시도/페일오버/캐싱/레이트 리밋/지출 로깅을 처리합니다. 잘못 고르면 매 요청마다 100ms+가 추가됩니다. 잘 고르면 그것의 존재를 잊게 됩니다.\n2. 30초 결정 트리 상황 추천 엔터프라이즈, 컴플라이언스 중요, SOC2/HIPAA 필요 Portkey 셀프호스팅 선호, 벤더 마진 0%, 인프라팀 보유 LiteLLM 솔로 개발자/스타트업, 즉시 300+ 모델 접근 OpenRouter 코딩 에이전트 워크플로우, 토큰 비용이 압도적 9Router (8절 참조) 셋 다 원함 스택 — LiteLLM 앞단, OpenRouter는 그 업스트림 Provider 중 하나, Portkey로 감싸서 가시성 확보 이 표의 각 칸을 나머지 글에서 정당화합니다.\n3. Portkey: 엔터프라이즈급 게이트웨이 한 줄 소개: 1,600+ LLM을 위한 단일 컨트롤 플레인, \u003c1ms 게이트웨이 지연, 내장 50+ 가드레일. SOC2/HIPAA/GDPR/CCPA 즉시 컴플라이언스.\n실제 수치: - GitHub 스타: 11.8k (MIT 라이선스, 오픈소스 코어)\n게이트웨이 지연: \u003c1ms 추가 (122kb 런타임 풋프린트) 가격: 오픈소스 무료. 클라우드 플랫폼 요금 ≈ $49/월 ($1K/월 API 지출 기준) 컴플라이언스: SOC2 Type II, HIPAA, GDPR, CCPA 킬러 기능: 시맨틱 캐싱 (단순 키 기반이 아님), 50+ AI 가드레일, MCP 게이트웨이 별도 제품, Autogen/CrewAI/LangChain/Phidata 네이티브 통합 Portkey가 이기는 경우: 규제 산업(헬스/금융/공공)에 AI 배포. 감사 가능한 가시성 + 가드레일 스토리 필요. 또는 이미 Autogen/CrewAI 위에 만들었고 모든 에이전트의 라우팅/캐싱/리밋을 한 config 파일로 통제하고 싶을 때.\nPortkey가 지는 경우: 두 명짜리 팀이 Claude와 GPT-5를 동시에 호출하면서 SDK 두 개 쓰기 싫을 때. 닭 잡는 데 소 잡는 칼.\nPortkey 풀 가이드 — 프로덕션 배포, 가드레일 설정, 가시성 대시보드 투어 — 는 Portkey AI Gateway 2026 프로덕션 설정을 참고하세요.\n4. LiteLLM: 셀프호스팅 표준 한 줄 소개: 100+ Provider를 하나의 OpenAI 호환 API 뒤에 노출하는 오픈소스 프록시 서버. 셀프호스팅, 벤더 마진 0%.\n실제 수치: - GitHub 스타: 47.8k (셋 중 압도적 1위)\n게이트웨이 지연: 1,000 RPS에서 P95 8ms (공식 벤치마크) — 실측 10-20ms 가격: 셀프호스팅 무료. 엔터프라이즈 티어(SSO, 전문 지원)는 별도 가격 셀프호스팅 스택: Python 프록시 + PostgreSQL(지출 추적) + Redis(캐싱) 킬러 기능: 프로젝트/사용자별 가상 API 키, A2A 프로토콜 네이티브 지원, MCP 도구 통합, 멀티 테넌트 인증 LiteLLM이 이기는 경우: DevOps 인력이 있다. 게이트웨이를 소유하고, 모든 바이트를 보고, 키를 제3자와 절대 공유하지 않고 싶다. 규모에서 마진 0%는 거부할 수 없습니다 — $50K/월 API 지출 시 OpenRouter의 5.5% = $2,750/월 증발.\nLiteLLM이 지는 경우: 혼자고, “Python 프록시 + PostgreSQL + Redis\"가 추가로 돌봐야 할 세 가지인 상황. OpenRouter로 넘어가세요.\n추천 호스팅: 4GB VPS면 1k RPS는 충분합니다. 우리는 사내 LiteLLM 프록시를 HTStack 홍콩 VPS (dibi8.com 자체도 여기서 운영) 에서 돌립니다. 글로벌 분산 배포는 DigitalOcean Kubernetes 3 레플리카가 프로덕션 표준 패턴.\nLiteLLM 풀 가이드(Docker compose, 가상 키, 지출 대시보드 포함)는 LiteLLM 프로덕션 게이트웨이 2026 설정 참고.\n5. OpenRouter: 제로 셋업 애그리게이터 한 줄 소개: API 키 하나. 모델 300+. 인프라 0. Provider 정가 + 신용카드 충전 시 5.5% 수수료로 토큰 단위 결제.\n실제 수치: - 모델: 300+, 프론티어 오픈 웨이트 모델(DeepSeek-V4, Llama 4, Qwen 3) + 프로프라이어터리(GPT-5, Claude 4.7, Gemini 2 Pro) 포함\n게이트웨이 지연: 실측 100-150ms 추가 (이게 진짜 비용 — Provider API 앞단에 호스팅된 서비스 한 층) 가격: Provider 정가 + 신용카드 충전 5.5% 수수료 (암호화폐 충전 시 이 수수료 회피 가능) 공개 SLA 없음 — 커뮤니티에서 Provider 장애 시 5xx 군집 발생 보고 무료 모델: 커뮤니티 후원 무료 엔드포인트(Llama, Mistral 변형), 테스트 적합 OpenRouter가 이기는 경우: 프로토타입 중. 취미 개발자. Bedrock/Azure에 아직 안 올라온 모델 필요 (신규 오픈 웨이트 출시 시 OpenRouter가 보통 1순위 호스트). 인프라 관리 1도 하기 싫을 때.\nOpenRouter가 지는 경우: 월 추론 비용 $2K 초과. 5.5% = $110+/월, 가치 0. 이 시점에 LiteLLM + Provider 직접 키 조합이 수학적으로 자명해집니다.\nOpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 OpenRouter 통합 LLM API 게이트웨이 2026 설정 참고.\n6. 정면 대결: 숫자 테이블 지표 Portkey LiteLLM OpenRouter GitHub 스타 11.8k 47.8k N/A (클로즈드 서비스) 라이선스 MIT OSS 코어 (커스텀 엔터프라이즈) 프로프라이어터리 모델 지원 1,600+ 100+ Provider 300+ 모델 추가 지연 \u003c1ms 8ms P95 표방 / 실측 10-20ms 100-150ms $1K/월 비용 $1,049 ($49 플랫폼) $1,000 + ~$20-50 VPS $1,055 ($55 수수료) $50K/월 비용 $1,049 플랫폼 비용 $1,000-2,500 인프라 $52,750 (5.5% 수수료) 셀프호스팅 ✅ (오픈소스 코어) ✅ (설계 자체가 이걸 위함) ❌ 컴플라이언스(SOC2/HIPAA) ✅ 엔터프라이즈 티어만 ⚠️ Provider에 의존 셋업 시간 1일 1-3일 5분 최적 사용처 규제 엔터프라이즈 비용 의식적 대규모 프로토타입 \u0026 폭넓은 시도 행 단위로 읽으세요. 지배적 제약으로 선택하세요.\n7. 실제 시나리오 시나리오 A — 코딩 에이전트 만드는 솔로 파운더: v0는 OpenRouter, 월 추론이 $1K 넘으면 6개월 차쯤 LiteLLM으로 전환. 5.5%가 아프기 시작하는 시점.\n시나리오 B — DevOps 팀 있는 Series B 스타트업: 1일차부터 LiteLLM 셀프호스팅. OpenRouter를 LiteLLM의 업스트림 Provider 중 하나로 써서 Bedrock에 아직 안 올라온 신규 모델 접근.\n시나리오 C — HIPAA 감사 받는 헬스케어 AI: Portkey, 토론 끝. 컴플라이언스 스토리만으로 플랫폼 비용 본전, 50+ 가드레일은 보안 리뷰 체크박스 그대로.\n시나리오 D — 인디 해커, 주말에 10개 모델 아이디어 테스트: OpenRouter. 5분 셋업, API 키 한 개, 모든 모델. 출시한 다음에 비용 걱정 하세요.\n시나리오 E — 기존 OpenAI 코드베이스에 Claude 페일오버 추가: LiteLLM 한 개 박고 base URL 한 줄 바꾸기. YAML로 페일오버 규칙 설정. 오후에 출시.\n8. 셋을 넘어서: 9Router가 모두를 이기는 순간 특정 워크로드 하나 — 코딩 에이전트 — 에서는 Portkey/LiteLLM/OpenRouter 모두 지배적 비용 동인인 토큰 수를 최적화하지 않습니다. 코딩 에이전트는 매 턴마다 전체 코드베이스를 보내며 컨텍스트 윈도우와 토큰을 폭파시킵니다.\n9Router는 RTK(반복 토큰 압축) 중심으로 설계된 스마트 프록시로, 반복 콘텐츠(파일 헤더, import, 시스템 프롬프트)의 시맨틱 중복 제거로 Provider에 보내는 실제 토큰을 20-40% 줄입니다. 또한 40+ Provider 자동 페일오버와 무료 코딩 티어 조합(Gemini 1k req/day + DeepSeek 무료층 + GLM-4.6 무료층) 오케스트레이션을 제공합니다.\n월 LLM 지출의 60%+가 코딩 에이전트라면 9Router가 위의 어떤 최저가 옵션보다 더 절약할 가능성이 큽니다. 설정은 9Router 스마트 LLM 프록시 + 토큰 세이버 가이드 참고.\nTL;DR 세 게이트웨이, 세 정직한 기본값: - 엔터프라이즈 → Portkey\n규모에서 비용에 민감 → LiteLLM 빠르게 움직이며 모든 걸 원함 → OpenRouter 코딩 에이전트로 토큰 태움 → 9Router “범용 최고” LLM 게이트웨이는 없습니다. “2절 결정 트리 당신 행에 매칭되는” 게이트웨이만 있습니다. 그걸 골라 출시하고, 월 추론 청구서가 $5,000을 넘기면 재평가하세요.\n위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 DigitalOcean droplet 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026\" } } Why This Matters Understanding portkey vs litellm vs openrouter 2026: 정직한 llm 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n","wordCount":"1427","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>Zh</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#portkey-vs-litellm-vs-openrouter-2026-%ec%a0%95%ec%a7%81%ed%95%9c-llm-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4-%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c-%ec%a7%80%ec%97%b0%ec%8b%9c%ea%b0%84-%eb%b9%84%ec%9a%a9-%ec%85%80%ed%94%84%ed%98%b8%ec%8a%a4%ed%8c%85 aria-label="Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)">Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)</a><ul><li><a href=#1-%ec%99%9c-llm-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4%ea%b0%80-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80 aria-label="1. 왜 LLM 게이트웨이가 필요한가">1. 왜 LLM 게이트웨이가 필요한가</a></li><li><a href=#2-30%ec%b4%88-%ea%b2%b0%ec%a0%95-%ed%8a%b8%eb%a6%ac aria-label="2. 30초 결정 트리">2. 30초 결정 트리</a></li><li><a href=#3-portkey-%ec%97%94%ed%84%b0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88%ea%b8%89-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4 aria-label="3. Portkey: 엔터프라이즈급 게이트웨이">3. Portkey: 엔터프라이즈급 게이트웨이</a></li><li><a href=#4-litellm-%ec%85%80%ed%94%84%ed%98%b8%ec%8a%a4%ed%8c%85-%ed%91%9c%ec%a4%80 aria-label="4. LiteLLM: 셀프호스팅 표준">4. LiteLLM: 셀프호스팅 표준</a></li><li><a href=#5-openrouter-%ec%a0%9c%eb%a1%9c-%ec%85%8b%ec%97%85-%ec%95%a0%ea%b7%b8%eb%a6%ac%ea%b2%8c%ec%9d%b4%ed%84%b0 aria-label="5. OpenRouter: 제로 셋업 애그리게이터">5. OpenRouter: 제로 셋업 애그리게이터</a></li><li><a href=#6-%ec%a0%95%eb%a9%b4-%eb%8c%80%ea%b2%b0-%ec%88%ab%ec%9e%90-%ed%85%8c%ec%9d%b4%eb%b8%94 aria-label="6. 정면 대결: 숫자 테이블">6. 정면 대결: 숫자 테이블</a></li><li><a href=#7-%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4 aria-label="7. 실제 시나리오">7. 실제 시나리오</a></li><li><a href=#8-%ec%85%8b%ec%9d%84-%eb%84%98%ec%96%b4%ec%84%9c-9router%ea%b0%80-%eb%aa%a8%eb%91%90%eb%a5%bc-%ec%9d%b4%ea%b8%b0%eb%8a%94-%ec%88%9c%ea%b0%84 aria-label="8. 셋을 넘어서: 9Router가 모두를 이기는 순간">8. 셋을 넘어서: 9Router가 모두를 이기는 순간</a></li><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-20T00:00:00+08:00 lastmod: 2026-05-20T00:00:00+08:00 tech_stack: - Python\nTypeScript Docker Kubernetes application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“llm gateway”, “portkey”, “litellm”, “openrouter”, “비교”] aliases: /posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/ Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) “최고의 LLM 게이트웨이” 글 세 편을 읽으면 답이 세 개 나오고 비교 가능한 숫자는 0개입니다. 이 글에서 그 문제를 해결합니다. Portkey, LiteLLM, OpenRouter — 2026년 실제 프로덕션 AI 트래픽을 처리하는 세 게이트웨이 — 의 정면 대결입니다. 실제 측정한 지연시간, $1,000/월 비용 분석, 30초만에 적용 가능한 결정 트리를 제공합니다.\n60초만 있으시면 2절 표를 보고 자신의 행에 맞는 걸 고르세요. 나머지는 “왜 이걸 골랐느냐\"고 CFO가 물을 때를 위한 자료입니다.\n1. 왜 LLM 게이트웨이가 필요한가 직접 Provider SDK를 쓰던 애플리케이션이 3개월쯤 지나면 만나는 세 가지 문제: 1. 벤더 락인 고통 — 코드가 OpenAI 모양인데 Claude 4.7이 막 출시됐다. 어쩌나? 2. 신뢰성 — 각 Provider SLA가 99.5%. 페일오버 없이 셋을 병렬로 돌리면 누적 가용성이 떨어집니다(중복이 아니라 곱셈). 3. 비용과 가시성 — 재무팀이 팀별 지출 추적을 원하는데 SDK는 안 됩니다.\nLLM 게이트웨이는 앱과 N개 Provider 사이에 자리해서, 통일된 API(거의 항상 OpenAI 호환)를 노출하고 재시도/페일오버/캐싱/레이트 리밋/지출 로깅을 처리합니다. 잘못 고르면 매 요청마다 100ms+가 추가됩니다. 잘 고르면 그것의 존재를 잊게 됩니다.\n2. 30초 결정 트리 상황 추천 엔터프라이즈, 컴플라이언스 중요, SOC2/HIPAA 필요 Portkey 셀프호스팅 선호, 벤더 마진 0%, 인프라팀 보유 LiteLLM 솔로 개발자/스타트업, 즉시 300+ 모델 접근 OpenRouter 코딩 에이전트 워크플로우, 토큰 비용이 압도적 9Router (8절 참조) 셋 다 원함 스택 — LiteLLM 앞단, OpenRouter는 그 업스트림 Provider 중 하나, Portkey로 감싸서 가시성 확보 이 표의 각 칸을 나머지 글에서 정당화합니다.\n3. Portkey: 엔터프라이즈급 게이트웨이 한 줄 소개: 1,600+ LLM을 위한 단일 컨트롤 플레인, \u003c1ms 게이트웨이 지연, 내장 50+ 가드레일. SOC2/HIPAA/GDPR/CCPA 즉시 컴플라이언스.\n실제 수치: - GitHub 스타: 11.8k (MIT 라이선스, 오픈소스 코어)\n게이트웨이 지연: \u003c1ms 추가 (122kb 런타임 풋프린트) 가격: 오픈소스 무료. 클라우드 플랫폼 요금 ≈ $49/월 ($1K/월 API 지출 기준) 컴플라이언스: SOC2 Type II, HIPAA, GDPR, CCPA 킬러 기능: 시맨틱 캐싱 (단순 키 기반이 아님), 50+ AI 가드레일, MCP 게이트웨이 별도 제품, Autogen/CrewAI/LangChain/Phidata 네이티브 통합 Portkey가 이기는 경우: 규제 산업(헬스/금융/공공)에 AI 배포. 감사 가능한 가시성 + 가드레일 스토리 필요. 또는 이미 Autogen/CrewAI 위에 만들었고 모든 에이전트의 라우팅/캐싱/리밋을 한 config 파일로 통제하고 싶을 때.\nPortkey가 지는 경우: 두 명짜리 팀이 Claude와 GPT-5를 동시에 호출하면서 SDK 두 개 쓰기 싫을 때. 닭 잡는 데 소 잡는 칼.\nPortkey 풀 가이드 — 프로덕션 배포, 가드레일 설정, 가시성 대시보드 투어 — 는 Portkey AI Gateway 2026 프로덕션 설정을 참고하세요.\n4. LiteLLM: 셀프호스팅 표준 한 줄 소개: 100+ Provider를 하나의 OpenAI 호환 API 뒤에 노출하는 오픈소스 프록시 서버. 셀프호스팅, 벤더 마진 0%.\n실제 수치: - GitHub 스타: 47.8k (셋 중 압도적 1위)\n게이트웨이 지연: 1,000 RPS에서 P95 8ms (공식 벤치마크) — 실측 10-20ms 가격: 셀프호스팅 무료. 엔터프라이즈 티어(SSO, 전문 지원)는 별도 가격 셀프호스팅 스택: Python 프록시 + PostgreSQL(지출 추적) + Redis(캐싱) 킬러 기능: 프로젝트/사용자별 가상 API 키, A2A 프로토콜 네이티브 지원, MCP 도구 통합, 멀티 테넌트 인증 LiteLLM이 이기는 경우: DevOps 인력이 있다. 게이트웨이를 소유하고, 모든 바이트를 보고, 키를 제3자와 절대 공유하지 않고 싶다. 규모에서 마진 0%는 거부할 수 없습니다 — $50K/월 API 지출 시 OpenRouter의 5.5% = $2,750/월 증발.\nLiteLLM이 지는 경우: 혼자고, “Python 프록시 + PostgreSQL + Redis\"가 추가로 돌봐야 할 세 가지인 상황. OpenRouter로 넘어가세요.\n추천 호스팅: 4GB VPS면 1k RPS는 충분합니다. 우리는 사내 LiteLLM 프록시를 HTStack 홍콩 VPS (dibi8.com 자체도 여기서 운영) 에서 돌립니다. 글로벌 분산 배포는 DigitalOcean Kubernetes 3 레플리카가 프로덕션 표준 패턴.\nLiteLLM 풀 가이드(Docker compose, 가상 키, 지출 대시보드 포함)는 LiteLLM 프로덕션 게이트웨이 2026 설정 참고.\n5. OpenRouter: 제로 셋업 애그리게이터 한 줄 소개: API 키 하나. 모델 300+. 인프라 0. Provider 정가 + 신용카드 충전 시 5.5% 수수료로 토큰 단위 결제.\n실제 수치: - 모델: 300+, 프론티어 오픈 웨이트 모델(DeepSeek-V4, Llama 4, Qwen 3) + 프로프라이어터리(GPT-5, Claude 4.7, Gemini 2 Pro) 포함\n게이트웨이 지연: 실측 100-150ms 추가 (이게 진짜 비용 — Provider API 앞단에 호스팅된 서비스 한 층) 가격: Provider 정가 + 신용카드 충전 5.5% 수수료 (암호화폐 충전 시 이 수수료 회피 가능) 공개 SLA 없음 — 커뮤니티에서 Provider 장애 시 5xx 군집 발생 보고 무료 모델: 커뮤니티 후원 무료 엔드포인트(Llama, Mistral 변형), 테스트 적합 OpenRouter가 이기는 경우: 프로토타입 중. 취미 개발자. Bedrock/Azure에 아직 안 올라온 모델 필요 (신규 오픈 웨이트 출시 시 OpenRouter가 보통 1순위 호스트). 인프라 관리 1도 하기 싫을 때.\nOpenRouter가 지는 경우: 월 추론 비용 $2K 초과. 5.5% = $110+/월, 가치 0. 이 시점에 LiteLLM + Provider 직접 키 조합이 수학적으로 자명해집니다.\nOpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 OpenRouter 통합 LLM API 게이트웨이 2026 설정 참고.\n6. 정면 대결: 숫자 테이블 지표 Portkey LiteLLM OpenRouter GitHub 스타 11.8k 47.8k N/A (클로즈드 서비스) 라이선스 MIT OSS 코어 (커스텀 엔터프라이즈) 프로프라이어터리 모델 지원 1,600+ 100+ Provider 300+ 모델 추가 지연 \u003c1ms 8ms P95 표방 / 실측 10-20ms 100-150ms $1K/월 비용 $1,049 ($49 플랫폼) $1,000 + ~$20-50 VPS $1,055 ($55 수수료) $50K/월 비용 $1,049 플랫폼 비용 $1,000-2,500 인프라 $52,750 (5.5% 수수료) 셀프호스팅 ✅ (오픈소스 코어) ✅ (설계 자체가 이걸 위함) ❌ 컴플라이언스(SOC2/HIPAA) ✅ 엔터프라이즈 티어만 ⚠️ Provider에 의존 셋업 시간 1일 1-3일 5분 최적 사용처 규제 엔터프라이즈 비용 의식적 대규모 프로토타입 \u0026 폭넓은 시도 행 단위로 읽으세요. 지배적 제약으로 선택하세요.\n7. 실제 시나리오 시나리오 A — 코딩 에이전트 만드는 솔로 파운더: v0는 OpenRouter, 월 추론이 $1K 넘으면 6개월 차쯤 LiteLLM으로 전환. 5.5%가 아프기 시작하는 시점.\n시나리오 B — DevOps 팀 있는 Series B 스타트업: 1일차부터 LiteLLM 셀프호스팅. OpenRouter를 LiteLLM의 업스트림 Provider 중 하나로 써서 Bedrock에 아직 안 올라온 신규 모델 접근.\n시나리오 C — HIPAA 감사 받는 헬스케어 AI: Portkey, 토론 끝. 컴플라이언스 스토리만으로 플랫폼 비용 본전, 50+ 가드레일은 보안 리뷰 체크박스 그대로.\n시나리오 D — 인디 해커, 주말에 10개 모델 아이디어 테스트: OpenRouter. 5분 셋업, API 키 한 개, 모든 모델. 출시한 다음에 비용 걱정 하세요.\n시나리오 E — 기존 OpenAI 코드베이스에 Claude 페일오버 추가: LiteLLM 한 개 박고 base URL 한 줄 바꾸기. YAML로 페일오버 규칙 설정. 오후에 출시.\n8. 셋을 넘어서: 9Router가 모두를 이기는 순간 특정 워크로드 하나 — 코딩 에이전트 — 에서는 Portkey/LiteLLM/OpenRouter 모두 지배적 비용 동인인 토큰 수를 최적화하지 않습니다. 코딩 에이전트는 매 턴마다 전체 코드베이스를 보내며 컨텍스트 윈도우와 토큰을 폭파시킵니다.\n9Router는 RTK(반복 토큰 압축) 중심으로 설계된 스마트 프록시로, 반복 콘텐츠(파일 헤더, import, 시스템 프롬프트)의 시맨틱 중복 제거로 Provider에 보내는 실제 토큰을 20-40% 줄입니다. 또한 40+ Provider 자동 페일오버와 무료 코딩 티어 조합(Gemini 1k req/day + DeepSeek 무료층 + GLM-4.6 무료층) 오케스트레이션을 제공합니다.\n월 LLM 지출의 60%+가 코딩 에이전트라면 9Router가 위의 어떤 최저가 옵션보다 더 절약할 가능성이 큽니다. 설정은 9Router 스마트 LLM 프록시 + 토큰 세이버 가이드 참고.\nTL;DR 세 게이트웨이, 세 정직한 기본값: - 엔터프라이즈 → Portkey\n규모에서 비용에 민감 → LiteLLM 빠르게 움직이며 모든 걸 원함 → OpenRouter 코딩 에이전트로 토큰 태움 → 9Router “범용 최고” LLM 게이트웨이는 없습니다. “2절 결정 트리 당신 행에 매칭되는” 게이트웨이만 있습니다. 그걸 골라 출시하고, 월 추론 청구서가 $5,000을 넘기면 재평가하세요.\n위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 DigitalOcean droplet 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)”, “datePublished”: “2026-05-20”, “dateModified”: “2026-05-20”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026\" } } Why This Matters Understanding portkey vs litellm vs openrouter 2026: 정직한 llm 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "1427",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#portkey-vs-litellm-vs-openrouter-2026-%ec%a0%95%ec%a7%81%ed%95%9c-llm-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4-%ec%84%a0%ed%83%9d-%ea%b0%80%ec%9d%b4%eb%93%9c-%ec%a7%80%ec%97%b0%ec%8b%9c%ea%b0%84-%eb%b9%84%ec%9a%a9-%ec%85%80%ed%94%84%ed%98%b8%ec%8a%a4%ed%8c%85" aria-label="Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)">Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)</a><ul>
+                    
+            <li>
+                <a href="#1-%ec%99%9c-llm-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4%ea%b0%80-%ed%95%84%ec%9a%94%ed%95%9c%ea%b0%80" aria-label="1. 왜 LLM 게이트웨이가 필요한가">1. 왜 LLM 게이트웨이가 필요한가</a></li>
+            <li>
+                <a href="#2-30%ec%b4%88-%ea%b2%b0%ec%a0%95-%ed%8a%b8%eb%a6%ac" aria-label="2. 30초 결정 트리">2. 30초 결정 트리</a></li>
+            <li>
+                <a href="#3-portkey-%ec%97%94%ed%84%b0%ed%94%84%eb%9d%bc%ec%9d%b4%ec%a6%88%ea%b8%89-%ea%b2%8c%ec%9d%b4%ed%8a%b8%ec%9b%a8%ec%9d%b4" aria-label="3. Portkey: 엔터프라이즈급 게이트웨이">3. Portkey: 엔터프라이즈급 게이트웨이</a></li>
+            <li>
+                <a href="#4-litellm-%ec%85%80%ed%94%84%ed%98%b8%ec%8a%a4%ed%8c%85-%ed%91%9c%ec%a4%80" aria-label="4. LiteLLM: 셀프호스팅 표준">4. LiteLLM: 셀프호스팅 표준</a></li>
+            <li>
+                <a href="#5-openrouter-%ec%a0%9c%eb%a1%9c-%ec%85%8b%ec%97%85-%ec%95%a0%ea%b7%b8%eb%a6%ac%ea%b2%8c%ec%9d%b4%ed%84%b0" aria-label="5. OpenRouter: 제로 셋업 애그리게이터">5. OpenRouter: 제로 셋업 애그리게이터</a></li>
+            <li>
+                <a href="#6-%ec%a0%95%eb%a9%b4-%eb%8c%80%ea%b2%b0-%ec%88%ab%ec%9e%90-%ed%85%8c%ec%9d%b4%eb%b8%94" aria-label="6. 정면 대결: 숫자 테이블">6. 정면 대결: 숫자 테이블</a></li>
+            <li>
+                <a href="#7-%ec%8b%a4%ec%a0%9c-%ec%8b%9c%eb%82%98%eb%a6%ac%ec%98%a4" aria-label="7. 실제 시나리오">7. 실제 시나리오</a></li>
+            <li>
+                <a href="#8-%ec%85%8b%ec%9d%84-%eb%84%98%ec%96%b4%ec%84%9c-9router%ea%b0%80-%eb%aa%a8%eb%91%90%eb%a5%bc-%ec%9d%b4%ea%b8%b0%eb%8a%94-%ec%88%9c%ea%b0%84" aria-label="8. 셋을 넘어서: 9Router가 모두를 이기는 순간">8. 셋을 넘어서: 9Router가 모두를 이기는 순간</a></li>
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-20T00:00:00+08:00
 lastmod: 2026-05-20T00:00:00+08:00
-tech_stack: - Python</p><ul><li>TypeScript</li><li>Docker</li><li>Kubernetes
+tech_stack: - Python</p>
+<ul>
+<li>TypeScript</li>
+<li>Docker</li>
+<li>Kubernetes
 application_domain: Llm Frameworks
 source_version: &rsquo;'
 licensing_model: Open Source
@@ -21,10 +271,183 @@ last_maintained: &ldquo;2026-05-20&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;llm gateway&rdquo;, &ldquo;portkey&rdquo;, &ldquo;litellm&rdquo;, &ldquo;openrouter&rdquo;, &ldquo;비교&rdquo;]
-aliases:</li><li>/posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/</li></ul><hr><h1 id=portkey-vs-litellm-vs-openrouter-2026-정직한-llm-게이트웨이-선택-가이드-지연시간-비용-셀프호스팅>Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)<a hidden class=anchor aria-hidden=true href=#portkey-vs-litellm-vs-openrouter-2026-정직한-llm-게이트웨이-선택-가이드-지연시간-비용-셀프호스팅>#</a></h1><p>&ldquo;최고의 LLM 게이트웨이&rdquo; 글 세 편을 읽으면 답이 세 개 나오고 비교 가능한 숫자는 0개입니다. 이 글에서 그 문제를 해결합니다. <strong>Portkey</strong>, <strong>LiteLLM</strong>, <strong>OpenRouter</strong> — 2026년 실제 프로덕션 AI 트래픽을 처리하는 세 게이트웨이 — 의 정면 대결입니다. 실제 측정한 지연시간, $1,000/월 비용 분석, 30초만에 적용 가능한 결정 트리를 제공합니다.</p><p>60초만 있으시면 2절 표를 보고 자신의 행에 맞는 걸 고르세요. 나머지는 &ldquo;왜 이걸 골랐느냐"고 CFO가 물을 때를 위한 자료입니다.</p><h2 id=1-왜-llm-게이트웨이가-필요한가>1. 왜 LLM 게이트웨이가 필요한가<a hidden class=anchor aria-hidden=true href=#1-왜-llm-게이트웨이가-필요한가>#</a></h2><p>직접 Provider SDK를 쓰던 애플리케이션이 3개월쯤 지나면 만나는 세 가지 문제: 1. <strong>벤더 락인 고통</strong> — 코드가 OpenAI 모양인데 Claude 4.7이 막 출시됐다. 어쩌나?
+aliases:</li>
+<li>/posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/</li>
+</ul>
+<hr>
+<h1 id="portkey-vs-litellm-vs-openrouter-2026-정직한-llm-게이트웨이-선택-가이드-지연시간-비용-셀프호스팅">Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)<a hidden class="anchor" aria-hidden="true" href="#portkey-vs-litellm-vs-openrouter-2026-정직한-llm-게이트웨이-선택-가이드-지연시간-비용-셀프호스팅">#</a></h1>
+<p>&ldquo;최고의 LLM 게이트웨이&rdquo; 글 세 편을 읽으면 답이 세 개 나오고 비교 가능한 숫자는 0개입니다. 이 글에서 그 문제를 해결합니다. <strong>Portkey</strong>, <strong>LiteLLM</strong>, <strong>OpenRouter</strong> — 2026년 실제 프로덕션 AI 트래픽을 처리하는 세 게이트웨이 — 의 정면 대결입니다. 실제 측정한 지연시간, $1,000/월 비용 분석, 30초만에 적용 가능한 결정 트리를 제공합니다.</p>
+<p>60초만 있으시면 2절 표를 보고 자신의 행에 맞는 걸 고르세요. 나머지는 &ldquo;왜 이걸 골랐느냐&quot;고 CFO가 물을 때를 위한 자료입니다.</p>
+<h2 id="1-왜-llm-게이트웨이가-필요한가">1. 왜 LLM 게이트웨이가 필요한가<a hidden class="anchor" aria-hidden="true" href="#1-왜-llm-게이트웨이가-필요한가">#</a></h2>
+<p>직접 Provider SDK를 쓰던 애플리케이션이 3개월쯤 지나면 만나는 세 가지 문제: 1. <strong>벤더 락인 고통</strong> — 코드가 OpenAI 모양인데 Claude 4.7이 막 출시됐다. 어쩌나?
 2. <strong>신뢰성</strong> — 각 Provider SLA가 99.5%. 페일오버 없이 셋을 병렬로 돌리면 누적 가용성이 떨어집니다(중복이 아니라 곱셈).
-3. <strong>비용과 가시성</strong> — 재무팀이 팀별 지출 추적을 원하는데 SDK는 안 됩니다.</p><p>LLM 게이트웨이는 앱과 N개 Provider 사이에 자리해서, 통일된 API(거의 항상 OpenAI 호환)를 노출하고 재시도/페일오버/캐싱/레이트 리밋/지출 로깅을 처리합니다. 잘못 고르면 매 요청마다 100ms+가 추가됩니다. 잘 고르면 그것의 존재를 잊게 됩니다.</p><h2 id=2-30초-결정-트리>2. 30초 결정 트리<a hidden class=anchor aria-hidden=true href=#2-30초-결정-트리>#</a></h2><table><thead><tr><th>상황</th><th>추천</th></tr></thead><tbody><tr><td>엔터프라이즈, 컴플라이언스 중요, SOC2/HIPAA 필요</td><td><strong>Portkey</strong></td></tr><tr><td>셀프호스팅 선호, 벤더 마진 0%, 인프라팀 보유</td><td><strong>LiteLLM</strong></td></tr><tr><td>솔로 개발자/스타트업, 즉시 300+ 모델 접근</td><td><strong>OpenRouter</strong></td></tr><tr><td>코딩 에이전트 워크플로우, 토큰 비용이 압도적</td><td><strong>9Router</strong> (8절 참조)</td></tr><tr><td>셋 다 원함</td><td>스택 — LiteLLM 앞단, OpenRouter는 그 업스트림 Provider 중 하나, Portkey로 감싸서 가시성 확보</td></tr></tbody></table><p>이 표의 각 칸을 나머지 글에서 정당화합니다.</p><h2 id=3-portkey-엔터프라이즈급-게이트웨이>3. Portkey: 엔터프라이즈급 게이트웨이<a hidden class=anchor aria-hidden=true href=#3-portkey-엔터프라이즈급-게이트웨이>#</a></h2><p><strong>한 줄 소개</strong>: 1,600+ LLM을 위한 단일 컨트롤 플레인, &lt;1ms 게이트웨이 지연, 내장 50+ 가드레일. SOC2/HIPAA/GDPR/CCPA 즉시 컴플라이언스.</p><p><strong>실제 수치</strong>: - <strong>GitHub 스타</strong>: 11.8k (MIT 라이선스, 오픈소스 코어)</p><ul><li><strong>게이트웨이 지연</strong>: &lt;1ms 추가 (122kb 런타임 풋프린트)</li><li><strong>가격</strong>: 오픈소스 무료. 클라우드 플랫폼 요금 ≈ $49/월 ($1K/월 API 지출 기준)</li><li><strong>컴플라이언스</strong>: SOC2 Type II, HIPAA, GDPR, CCPA</li><li><strong>킬러 기능</strong>: 시맨틱 캐싱 (단순 키 기반이 아님), 50+ AI 가드레일, MCP 게이트웨이 별도 제품, Autogen/CrewAI/LangChain/Phidata 네이티브 통합</li></ul><p><strong>Portkey가 이기는 경우</strong>: 규제 산업(헬스/금융/공공)에 AI 배포. 감사 가능한 가시성 + 가드레일 스토리 필요. 또는 이미 Autogen/CrewAI 위에 만들었고 모든 에이전트의 라우팅/캐싱/리밋을 한 config 파일로 통제하고 싶을 때.</p><p><strong>Portkey가 지는 경우</strong>: 두 명짜리 팀이 Claude와 GPT-5를 동시에 호출하면서 SDK 두 개 쓰기 싫을 때. 닭 잡는 데 소 잡는 칼.</p><p>Portkey 풀 가이드 — 프로덕션 배포, 가드레일 설정, 가시성 대시보드 투어 — 는 <a href=/kr/resources/llm-frameworks/portkey-ai-gateway-production/>Portkey AI Gateway 2026 프로덕션 설정</a>을 참고하세요.</p><h2 id=4-litellm-셀프호스팅-표준>4. LiteLLM: 셀프호스팅 표준<a hidden class=anchor aria-hidden=true href=#4-litellm-셀프호스팅-표준>#</a></h2><p><strong>한 줄 소개</strong>: 100+ Provider를 하나의 OpenAI 호환 API 뒤에 노출하는 오픈소스 프록시 서버. 셀프호스팅, 벤더 마진 0%.</p><p><strong>실제 수치</strong>: - <strong>GitHub 스타</strong>: 47.8k (셋 중 압도적 1위)</p><ul><li><strong>게이트웨이 지연</strong>: 1,000 RPS에서 P95 8ms (공식 벤치마크) — 실측 10-20ms</li><li><strong>가격</strong>: 셀프호스팅 무료. 엔터프라이즈 티어(SSO, 전문 지원)는 별도 가격</li><li><strong>셀프호스팅 스택</strong>: Python 프록시 + PostgreSQL(지출 추적) + Redis(캐싱)</li><li><strong>킬러 기능</strong>: 프로젝트/사용자별 가상 API 키, A2A 프로토콜 네이티브 지원, MCP 도구 통합, 멀티 테넌트 인증</li></ul><p><strong>LiteLLM이 이기는 경우</strong>: DevOps 인력이 있다. 게이트웨이를 소유하고, 모든 바이트를 보고, 키를 제3자와 절대 공유하지 않고 싶다. 규모에서 마진 0%는 거부할 수 없습니다 — $50K/월 API 지출 시 OpenRouter의 5.5% = $2,750/월 증발.</p><p><strong>LiteLLM이 지는 경우</strong>: 혼자고, &ldquo;Python 프록시 + PostgreSQL + Redis"가 추가로 돌봐야 할 세 가지인 상황. OpenRouter로 넘어가세요.</p><p><strong>추천 호스팅</strong>: 4GB VPS면 1k RPS는 충분합니다. 우리는 사내 LiteLLM 프록시를 <a href="https://my.htstack.com/aff.php?aff=27187">HTStack 홍콩 VPS</a> (dibi8.com 자체도 여기서 운영) 에서 돌립니다. 글로벌 분산 배포는 <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Kubernetes</a> 3 레플리카가 프로덕션 표준 패턴.</p><p>LiteLLM 풀 가이드(Docker compose, 가상 키, 지출 대시보드 포함)는 <a href=/kr/resources/llm-frameworks/litellm/>LiteLLM 프로덕션 게이트웨이 2026 설정</a> 참고.</p><h2 id=5-openrouter-제로-셋업-애그리게이터>5. OpenRouter: 제로 셋업 애그리게이터<a hidden class=anchor aria-hidden=true href=#5-openrouter-제로-셋업-애그리게이터>#</a></h2><p><strong>한 줄 소개</strong>: API 키 하나. 모델 300+. 인프라 0. Provider 정가 + 신용카드 충전 시 5.5% 수수료로 토큰 단위 결제.</p><p><strong>실제 수치</strong>: - <strong>모델</strong>: 300+, 프론티어 오픈 웨이트 모델(DeepSeek-V4, Llama 4, Qwen 3) + 프로프라이어터리(GPT-5, Claude 4.7, Gemini 2 Pro) 포함</p><ul><li><strong>게이트웨이 지연</strong>: 실측 100-150ms 추가 (이게 진짜 비용 — Provider API 앞단에 호스팅된 서비스 한 층)</li><li><strong>가격</strong>: Provider 정가 + <strong>신용카드 충전 5.5% 수수료</strong> (암호화폐 충전 시 이 수수료 회피 가능)</li><li><strong>공개 SLA 없음</strong> — 커뮤니티에서 Provider 장애 시 5xx 군집 발생 보고</li><li><strong>무료 모델</strong>: 커뮤니티 후원 무료 엔드포인트(Llama, Mistral 변형), 테스트 적합</li></ul><p><strong>OpenRouter가 이기는 경우</strong>: 프로토타입 중. 취미 개발자. Bedrock/Azure에 아직 안 올라온 모델 필요 (신규 오픈 웨이트 출시 시 OpenRouter가 보통 1순위 호스트). 인프라 관리 1도 하기 싫을 때.</p><p><strong>OpenRouter가 지는 경우</strong>: 월 추론 비용 $2K 초과. 5.5% = $110+/월, 가치 0. 이 시점에 LiteLLM + Provider 직접 키 조합이 수학적으로 자명해집니다.</p><p>OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 <a href=/kr/resources/llm-frameworks/openrouter-unified-llm-api-gateway/>OpenRouter 통합 LLM API 게이트웨이 2026 설정</a> 참고.</p><h2 id=6-정면-대결-숫자-테이블>6. 정면 대결: 숫자 테이블<a hidden class=anchor aria-hidden=true href=#6-정면-대결-숫자-테이블>#</a></h2><table><thead><tr><th>지표</th><th>Portkey</th><th>LiteLLM</th><th>OpenRouter</th></tr></thead><tbody><tr><td>GitHub 스타</td><td>11.8k</td><td><strong>47.8k</strong></td><td>N/A (클로즈드 서비스)</td></tr><tr><td>라이선스</td><td>MIT</td><td>OSS 코어 (커스텀 엔터프라이즈)</td><td>프로프라이어터리</td></tr><tr><td>모델 지원</td><td>1,600+</td><td>100+ Provider</td><td>300+ 모델</td></tr><tr><td>추가 지연</td><td><strong>&lt;1ms</strong></td><td>8ms P95 표방 / 실측 10-20ms</td><td>100-150ms</td></tr><tr><td>$1K/월 비용</td><td>$1,049 ($49 플랫폼)</td><td>$1,000 + ~$20-50 VPS</td><td><strong>$1,055</strong> ($55 수수료)</td></tr><tr><td>$50K/월 비용</td><td>$1,049 플랫폼 비용</td><td>$1,000-2,500 인프라</td><td><strong>$52,750</strong> (5.5% 수수료)</td></tr><tr><td>셀프호스팅</td><td>✅ (오픈소스 코어)</td><td>✅ (설계 자체가 이걸 위함)</td><td>❌</td></tr><tr><td>컴플라이언스(SOC2/HIPAA)</td><td>✅</td><td>엔터프라이즈 티어만</td><td>⚠️ Provider에 의존</td></tr><tr><td>셋업 시간</td><td>1일</td><td>1-3일</td><td><strong>5분</strong></td></tr><tr><td>최적 사용처</td><td>규제 엔터프라이즈</td><td>비용 의식적 대규모</td><td>프로토타입 & 폭넓은 시도</td></tr></tbody></table><p>행 단위로 읽으세요. 지배적 제약으로 선택하세요.</p><h2 id=7-실제-시나리오>7. 실제 시나리오<a hidden class=anchor aria-hidden=true href=#7-실제-시나리오>#</a></h2><p><strong>시나리오 A — 코딩 에이전트 만드는 솔로 파운더</strong>: v0는 OpenRouter, 월 추론이 $1K 넘으면 6개월 차쯤 LiteLLM으로 전환. 5.5%가 아프기 시작하는 시점.</p><p><strong>시나리오 B — DevOps 팀 있는 Series B 스타트업</strong>: 1일차부터 LiteLLM 셀프호스팅. OpenRouter를 LiteLLM의 업스트림 Provider 중 하나로 써서 Bedrock에 아직 안 올라온 신규 모델 접근.</p><p><strong>시나리오 C — HIPAA 감사 받는 헬스케어 AI</strong>: Portkey, 토론 끝. 컴플라이언스 스토리만으로 플랫폼 비용 본전, 50+ 가드레일은 보안 리뷰 체크박스 그대로.</p><p><strong>시나리오 D — 인디 해커, 주말에 10개 모델 아이디어 테스트</strong>: OpenRouter. 5분 셋업, API 키 한 개, 모든 모델. 출시한 다음에 비용 걱정 하세요.</p><p><strong>시나리오 E — 기존 OpenAI 코드베이스에 Claude 페일오버 추가</strong>: LiteLLM 한 개 박고 base URL 한 줄 바꾸기. YAML로 페일오버 규칙 설정. 오후에 출시.</p><h2 id=8-셋을-넘어서-9router가-모두를-이기는-순간>8. 셋을 넘어서: 9Router가 모두를 이기는 순간<a hidden class=anchor aria-hidden=true href=#8-셋을-넘어서-9router가-모두를-이기는-순간>#</a></h2><p>특정 워크로드 하나 — <strong>코딩 에이전트</strong> — 에서는 Portkey/LiteLLM/OpenRouter 모두 지배적 비용 동인인 <strong>토큰 수</strong>를 최적화하지 않습니다. 코딩 에이전트는 매 턴마다 <em>전체 코드베이스</em>를 보내며 컨텍스트 윈도우와 토큰을 폭파시킵니다.</p><p><strong>9Router</strong>는 <strong>RTK(반복 토큰 압축)</strong> 중심으로 설계된 스마트 프록시로, 반복 콘텐츠(파일 헤더, import, 시스템 프롬프트)의 시맨틱 중복 제거로 Provider에 보내는 실제 토큰을 20-40% 줄입니다. 또한 40+ Provider 자동 페일오버와 무료 코딩 티어 조합(Gemini 1k req/day + DeepSeek 무료층 + GLM-4.6 무료층) 오케스트레이션을 제공합니다.</p><p>월 LLM 지출의 60%+가 코딩 에이전트라면 9Router가 위의 어떤 최저가 옵션보다 더 절약할 가능성이 큽니다. 설정은 <a href=/kr/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/>9Router 스마트 LLM 프록시 + 토큰 세이버 가이드</a> 참고.</p><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p>세 게이트웨이, 세 정직한 기본값: - <strong>엔터프라이즈</strong> → Portkey</p><ul><li><strong>규모에서 비용에 민감</strong> → LiteLLM</li><li><strong>빠르게 움직이며 모든 걸 원함</strong> → OpenRouter</li><li><strong>코딩 에이전트로 토큰 태움</strong> → 9Router</li></ul><p>&ldquo;범용 최고&rdquo; LLM 게이트웨이는 없습니다. &ldquo;2절 결정 트리 당신 행에 매칭되는&rdquo; 게이트웨이만 있습니다. 그걸 골라 출시하고, 월 추론 청구서가 $5,000을 넘기면 재평가하세요.</p><hr><p><em>위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean droplet</a> 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+3. <strong>비용과 가시성</strong> — 재무팀이 팀별 지출 추적을 원하는데 SDK는 안 됩니다.</p>
+<p>LLM 게이트웨이는 앱과 N개 Provider 사이에 자리해서, 통일된 API(거의 항상 OpenAI 호환)를 노출하고 재시도/페일오버/캐싱/레이트 리밋/지출 로깅을 처리합니다. 잘못 고르면 매 요청마다 100ms+가 추가됩니다. 잘 고르면 그것의 존재를 잊게 됩니다.</p>
+<h2 id="2-30초-결정-트리">2. 30초 결정 트리<a hidden class="anchor" aria-hidden="true" href="#2-30초-결정-트리">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>상황</th>
+					<th>추천</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>엔터프라이즈, 컴플라이언스 중요, SOC2/HIPAA 필요</td>
+					<td><strong>Portkey</strong></td>
+			</tr>
+			<tr>
+					<td>셀프호스팅 선호, 벤더 마진 0%, 인프라팀 보유</td>
+					<td><strong>LiteLLM</strong></td>
+			</tr>
+			<tr>
+					<td>솔로 개발자/스타트업, 즉시 300+ 모델 접근</td>
+					<td><strong>OpenRouter</strong></td>
+			</tr>
+			<tr>
+					<td>코딩 에이전트 워크플로우, 토큰 비용이 압도적</td>
+					<td><strong>9Router</strong> (8절 참조)</td>
+			</tr>
+			<tr>
+					<td>셋 다 원함</td>
+					<td>스택 — LiteLLM 앞단, OpenRouter는 그 업스트림 Provider 중 하나, Portkey로 감싸서 가시성 확보</td>
+			</tr>
+	</tbody>
+</table>
+<p>이 표의 각 칸을 나머지 글에서 정당화합니다.</p>
+<h2 id="3-portkey-엔터프라이즈급-게이트웨이">3. Portkey: 엔터프라이즈급 게이트웨이<a hidden class="anchor" aria-hidden="true" href="#3-portkey-엔터프라이즈급-게이트웨이">#</a></h2>
+<p><strong>한 줄 소개</strong>: 1,600+ LLM을 위한 단일 컨트롤 플레인, &lt;1ms 게이트웨이 지연, 내장 50+ 가드레일. SOC2/HIPAA/GDPR/CCPA 즉시 컴플라이언스.</p>
+<p><strong>실제 수치</strong>: - <strong>GitHub 스타</strong>: 11.8k (MIT 라이선스, 오픈소스 코어)</p>
+<ul>
+<li><strong>게이트웨이 지연</strong>: &lt;1ms 추가 (122kb 런타임 풋프린트)</li>
+<li><strong>가격</strong>: 오픈소스 무료. 클라우드 플랫폼 요금 ≈ $49/월 ($1K/월 API 지출 기준)</li>
+<li><strong>컴플라이언스</strong>: SOC2 Type II, HIPAA, GDPR, CCPA</li>
+<li><strong>킬러 기능</strong>: 시맨틱 캐싱 (단순 키 기반이 아님), 50+ AI 가드레일, MCP 게이트웨이 별도 제품, Autogen/CrewAI/LangChain/Phidata 네이티브 통합</li>
+</ul>
+<p><strong>Portkey가 이기는 경우</strong>: 규제 산업(헬스/금융/공공)에 AI 배포. 감사 가능한 가시성 + 가드레일 스토리 필요. 또는 이미 Autogen/CrewAI 위에 만들었고 모든 에이전트의 라우팅/캐싱/리밋을 한 config 파일로 통제하고 싶을 때.</p>
+<p><strong>Portkey가 지는 경우</strong>: 두 명짜리 팀이 Claude와 GPT-5를 동시에 호출하면서 SDK 두 개 쓰기 싫을 때. 닭 잡는 데 소 잡는 칼.</p>
+<p>Portkey 풀 가이드 — 프로덕션 배포, 가드레일 설정, 가시성 대시보드 투어 — 는 <a href="/kr/resources/llm-frameworks/portkey-ai-gateway-production/">Portkey AI Gateway 2026 프로덕션 설정</a>을 참고하세요.</p>
+<h2 id="4-litellm-셀프호스팅-표준">4. LiteLLM: 셀프호스팅 표준<a hidden class="anchor" aria-hidden="true" href="#4-litellm-셀프호스팅-표준">#</a></h2>
+<p><strong>한 줄 소개</strong>: 100+ Provider를 하나의 OpenAI 호환 API 뒤에 노출하는 오픈소스 프록시 서버. 셀프호스팅, 벤더 마진 0%.</p>
+<p><strong>실제 수치</strong>: - <strong>GitHub 스타</strong>: 47.8k (셋 중 압도적 1위)</p>
+<ul>
+<li><strong>게이트웨이 지연</strong>: 1,000 RPS에서 P95 8ms (공식 벤치마크) — 실측 10-20ms</li>
+<li><strong>가격</strong>: 셀프호스팅 무료. 엔터프라이즈 티어(SSO, 전문 지원)는 별도 가격</li>
+<li><strong>셀프호스팅 스택</strong>: Python 프록시 + PostgreSQL(지출 추적) + Redis(캐싱)</li>
+<li><strong>킬러 기능</strong>: 프로젝트/사용자별 가상 API 키, A2A 프로토콜 네이티브 지원, MCP 도구 통합, 멀티 테넌트 인증</li>
+</ul>
+<p><strong>LiteLLM이 이기는 경우</strong>: DevOps 인력이 있다. 게이트웨이를 소유하고, 모든 바이트를 보고, 키를 제3자와 절대 공유하지 않고 싶다. 규모에서 마진 0%는 거부할 수 없습니다 — $50K/월 API 지출 시 OpenRouter의 5.5% = $2,750/월 증발.</p>
+<p><strong>LiteLLM이 지는 경우</strong>: 혼자고, &ldquo;Python 프록시 + PostgreSQL + Redis&quot;가 추가로 돌봐야 할 세 가지인 상황. OpenRouter로 넘어가세요.</p>
+<p><strong>추천 호스팅</strong>: 4GB VPS면 1k RPS는 충분합니다. 우리는 사내 LiteLLM 프록시를 <a href="https://my.htstack.com/aff.php?aff=27187">HTStack 홍콩 VPS</a> (dibi8.com 자체도 여기서 운영) 에서 돌립니다. 글로벌 분산 배포는 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Kubernetes</a> 3 레플리카가 프로덕션 표준 패턴.</p>
+<p>LiteLLM 풀 가이드(Docker compose, 가상 키, 지출 대시보드 포함)는 <a href="/kr/resources/llm-frameworks/litellm/">LiteLLM 프로덕션 게이트웨이 2026 설정</a> 참고.</p>
+<h2 id="5-openrouter-제로-셋업-애그리게이터">5. OpenRouter: 제로 셋업 애그리게이터<a hidden class="anchor" aria-hidden="true" href="#5-openrouter-제로-셋업-애그리게이터">#</a></h2>
+<p><strong>한 줄 소개</strong>: API 키 하나. 모델 300+. 인프라 0. Provider 정가 + 신용카드 충전 시 5.5% 수수료로 토큰 단위 결제.</p>
+<p><strong>실제 수치</strong>: - <strong>모델</strong>: 300+, 프론티어 오픈 웨이트 모델(DeepSeek-V4, Llama 4, Qwen 3) + 프로프라이어터리(GPT-5, Claude 4.7, Gemini 2 Pro) 포함</p>
+<ul>
+<li><strong>게이트웨이 지연</strong>: 실측 100-150ms 추가 (이게 진짜 비용 — Provider API 앞단에 호스팅된 서비스 한 층)</li>
+<li><strong>가격</strong>: Provider 정가 + <strong>신용카드 충전 5.5% 수수료</strong> (암호화폐 충전 시 이 수수료 회피 가능)</li>
+<li><strong>공개 SLA 없음</strong> — 커뮤니티에서 Provider 장애 시 5xx 군집 발생 보고</li>
+<li><strong>무료 모델</strong>: 커뮤니티 후원 무료 엔드포인트(Llama, Mistral 변형), 테스트 적합</li>
+</ul>
+<p><strong>OpenRouter가 이기는 경우</strong>: 프로토타입 중. 취미 개발자. Bedrock/Azure에 아직 안 올라온 모델 필요 (신규 오픈 웨이트 출시 시 OpenRouter가 보통 1순위 호스트). 인프라 관리 1도 하기 싫을 때.</p>
+<p><strong>OpenRouter가 지는 경우</strong>: 월 추론 비용 $2K 초과. 5.5% = $110+/월, 가치 0. 이 시점에 LiteLLM + Provider 직접 키 조합이 수학적으로 자명해집니다.</p>
+<p>OpenRouter 풀 가이드(무료 모델 라우팅 팁 포함)는 <a href="/kr/resources/llm-frameworks/openrouter-unified-llm-api-gateway/">OpenRouter 통합 LLM API 게이트웨이 2026 설정</a> 참고.</p>
+<h2 id="6-정면-대결-숫자-테이블">6. 정면 대결: 숫자 테이블<a hidden class="anchor" aria-hidden="true" href="#6-정면-대결-숫자-테이블">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>지표</th>
+					<th>Portkey</th>
+					<th>LiteLLM</th>
+					<th>OpenRouter</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>GitHub 스타</td>
+					<td>11.8k</td>
+					<td><strong>47.8k</strong></td>
+					<td>N/A (클로즈드 서비스)</td>
+			</tr>
+			<tr>
+					<td>라이선스</td>
+					<td>MIT</td>
+					<td>OSS 코어 (커스텀 엔터프라이즈)</td>
+					<td>프로프라이어터리</td>
+			</tr>
+			<tr>
+					<td>모델 지원</td>
+					<td>1,600+</td>
+					<td>100+ Provider</td>
+					<td>300+ 모델</td>
+			</tr>
+			<tr>
+					<td>추가 지연</td>
+					<td><strong>&lt;1ms</strong></td>
+					<td>8ms P95 표방 / 실측 10-20ms</td>
+					<td>100-150ms</td>
+			</tr>
+			<tr>
+					<td>$1K/월 비용</td>
+					<td>$1,049 ($49 플랫폼)</td>
+					<td>$1,000 + ~$20-50 VPS</td>
+					<td><strong>$1,055</strong> ($55 수수료)</td>
+			</tr>
+			<tr>
+					<td>$50K/월 비용</td>
+					<td>$1,049 플랫폼 비용</td>
+					<td>$1,000-2,500 인프라</td>
+					<td><strong>$52,750</strong> (5.5% 수수료)</td>
+			</tr>
+			<tr>
+					<td>셀프호스팅</td>
+					<td>✅ (오픈소스 코어)</td>
+					<td>✅ (설계 자체가 이걸 위함)</td>
+					<td>❌</td>
+			</tr>
+			<tr>
+					<td>컴플라이언스(SOC2/HIPAA)</td>
+					<td>✅</td>
+					<td>엔터프라이즈 티어만</td>
+					<td>⚠️ Provider에 의존</td>
+			</tr>
+			<tr>
+					<td>셋업 시간</td>
+					<td>1일</td>
+					<td>1-3일</td>
+					<td><strong>5분</strong></td>
+			</tr>
+			<tr>
+					<td>최적 사용처</td>
+					<td>규제 엔터프라이즈</td>
+					<td>비용 의식적 대규모</td>
+					<td>프로토타입 &amp; 폭넓은 시도</td>
+			</tr>
+	</tbody>
+</table>
+<p>행 단위로 읽으세요. 지배적 제약으로 선택하세요.</p>
+<h2 id="7-실제-시나리오">7. 실제 시나리오<a hidden class="anchor" aria-hidden="true" href="#7-실제-시나리오">#</a></h2>
+<p><strong>시나리오 A — 코딩 에이전트 만드는 솔로 파운더</strong>: v0는 OpenRouter, 월 추론이 $1K 넘으면 6개월 차쯤 LiteLLM으로 전환. 5.5%가 아프기 시작하는 시점.</p>
+<p><strong>시나리오 B — DevOps 팀 있는 Series B 스타트업</strong>: 1일차부터 LiteLLM 셀프호스팅. OpenRouter를 LiteLLM의 업스트림 Provider 중 하나로 써서 Bedrock에 아직 안 올라온 신규 모델 접근.</p>
+<p><strong>시나리오 C — HIPAA 감사 받는 헬스케어 AI</strong>: Portkey, 토론 끝. 컴플라이언스 스토리만으로 플랫폼 비용 본전, 50+ 가드레일은 보안 리뷰 체크박스 그대로.</p>
+<p><strong>시나리오 D — 인디 해커, 주말에 10개 모델 아이디어 테스트</strong>: OpenRouter. 5분 셋업, API 키 한 개, 모든 모델. 출시한 다음에 비용 걱정 하세요.</p>
+<p><strong>시나리오 E — 기존 OpenAI 코드베이스에 Claude 페일오버 추가</strong>: LiteLLM 한 개 박고 base URL 한 줄 바꾸기. YAML로 페일오버 규칙 설정. 오후에 출시.</p>
+<h2 id="8-셋을-넘어서-9router가-모두를-이기는-순간">8. 셋을 넘어서: 9Router가 모두를 이기는 순간<a hidden class="anchor" aria-hidden="true" href="#8-셋을-넘어서-9router가-모두를-이기는-순간">#</a></h2>
+<p>특정 워크로드 하나 — <strong>코딩 에이전트</strong> — 에서는 Portkey/LiteLLM/OpenRouter 모두 지배적 비용 동인인 <strong>토큰 수</strong>를 최적화하지 않습니다. 코딩 에이전트는 매 턴마다 <em>전체 코드베이스</em>를 보내며 컨텍스트 윈도우와 토큰을 폭파시킵니다.</p>
+<p><strong>9Router</strong>는 <strong>RTK(반복 토큰 압축)</strong> 중심으로 설계된 스마트 프록시로, 반복 콘텐츠(파일 헤더, import, 시스템 프롬프트)의 시맨틱 중복 제거로 Provider에 보내는 실제 토큰을 20-40% 줄입니다. 또한 40+ Provider 자동 페일오버와 무료 코딩 티어 조합(Gemini 1k req/day + DeepSeek 무료층 + GLM-4.6 무료층) 오케스트레이션을 제공합니다.</p>
+<p>월 LLM 지출의 60%+가 코딩 에이전트라면 9Router가 위의 어떤 최저가 옵션보다 더 절약할 가능성이 큽니다. 설정은 <a href="/kr/resources/llm-frameworks/9router-smart-llm-proxy-token-saver-free-coding/">9Router 스마트 LLM 프록시 + 토큰 세이버 가이드</a> 참고.</p>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p>세 게이트웨이, 세 정직한 기본값: - <strong>엔터프라이즈</strong> → Portkey</p>
+<ul>
+<li><strong>규모에서 비용에 민감</strong> → LiteLLM</li>
+<li><strong>빠르게 움직이며 모든 걸 원함</strong> → OpenRouter</li>
+<li><strong>코딩 에이전트로 토큰 태움</strong> → 9Router</li>
+</ul>
+<p>&ldquo;범용 최고&rdquo; LLM 게이트웨이는 없습니다. &ldquo;2절 결정 트리 당신 행에 매칭되는&rdquo; 게이트웨이만 있습니다. 그걸 골라 출시하고, 월 추론 청구서가 $5,000을 넘기면 재평가하세요.</p>
+<hr>
+<p><em>위 셋을 약속 없이 프로덕션에서 테스트하고 싶으신가요? $6/월 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean droplet</a> 하나 띄워서 LiteLLM 돌리고, 기존 OpenAI SDK base URL만 가리키면 애플리케이션 코드 0 라인 변경으로 페일오버 옵션이 폭발적으로 늘어납니다.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅)&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-20&rdquo;,
@@ -38,22 +461,230 @@ aliases:</li><li>/posts/llm-gateway-portkey-litellm-openrouter-comparison-2026/<
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026%22>https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026%22">https://dibi8.com/kr/resources/llm-gateway-portkey-litellm-openrouter-comparison-2026"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding portkey vs litellm vs openrouter 2026: 정직한 llm 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) is crucial for modern AI development. Here"s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding portkey vs litellm vs openrouter 2026: 정직한 llm 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>12-factor-agents-production-llm-software-2026</a></li><li><a href=/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>12-factor-agents</a></li><li><a href=/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>1m-context-window-llm-2026-real-test</a></li><li><a href=/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>9router-smart-llm-proxy-token-saver-free-coding</a></li><li><a href=/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ko/ai-coding-agents/llm-fine-tuning-frameworks-comparison/><span class=title>« 이전 페이지</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ko/ai-coding-agents/llm-inference-cost-optimization-guide-2026/><span class=title>다음 페이지 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Portkey vs LiteLLM vs OpenRouter 2026: 정직한 LLM 게이트웨이 선택 가이드 (지연시간, 비용, 셀프호스팅) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">12-factor-agents</a></li>
+<li><a href="/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/ko/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/llm-fine-tuning-frameworks-comparison/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/llm-inference-cost-optimization-guide-2026/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

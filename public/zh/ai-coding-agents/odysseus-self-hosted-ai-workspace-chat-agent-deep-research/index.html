@@ -1,10 +1,291 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026 ┌──────────────────────────────────────────────────┐ │ Odysseus Architecture │ │ │ │ ┌─────────┐ ┌──────────┐ ┌─────────────────┐ │ │ │ Chat │ │ Agent │ │ Cookbook │ │ │ │ (API) │ │ (Tools) │ │ (Model Server)│ │ │ └────┬────┘ └────┬─────┘ └────────┬────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Python Backend (FastAPI) │ │ │ │ ChromaDB │ SearXNG │ ntfy │ .env config │ │ │ └───────────────────────────────────────────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ Docker Compose Stack │ │ │ ┌────────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ │ │ │ Odysseus│ │ChromaDB │ │SearXNG │ │ ntfy │ │ │ └────────┘ └──────────┘ └────────┘ └─────────┘ │ │ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Frontend: Responsive Web UI (PWA) │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────┘ Odysseus 是一个自托管的AI工作站，集成了10多种集成工具到一个隐私优先的界面中。由名为pewdiepie-archdaemon 的开发者创建，自2026年5月31日创建以来已获得超过65,000颗GitHub星标——是GitHub历史上增长最快的AI项目之一。\n与需要您提交数据的ChatGPT或Claude不同，Odysseus 完全在您的硬件上运行。您可以连接自己的API密钥或将本地模型自行服务。该项目描述自己为“类似于ChatGPT和Claude的UI体验的自托管版本，但更具瑕疵且更有趣。”\n本指南涵盖了所有内容：架构分解、Docker和原生安装、模型配置、代理设置、深度研究以及生产强化。\n什么是Odysseus？ Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈AI工作站。它为希望拥有统一AI界面便利性的同时保持完全数据主权的用户而设计——就像ChatGPT的多模型聊天一样。\n该项目在单个网络应用程序中集成了以下功能：\n| 功能 | 描述 | 基于 | |\n|\n|\n| | 聊天 | 多模型对话 | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot | | 代理 | 自主智能代理 | OpenCode, MCP, web, files, shell, skills, memory | | 烹饪书 | 意识到硬件的模型下载器和服务端 | llmfit, VRAM意识，GGUF/FP8/AWQ | | 深度研究 | 多步研究与源合成 | 阿里巴巴通义深度研究的改进版本 | | 对比 | 盲目多模型对比测试 | 多模型合成 | | 文档 | 多标签文本编辑器，带有AI辅助 | Markdown, HTML, CSV, 语法高亮 | | 内存/技能 | 持久化内存，向量+关键词检索 | ChromaDB, fastembed (ONNX) | | 邮件 | IMAP/SMTP收件箱，带有AI分类 | IMAP, SMTP, CalDAV意识 | | 笔记与任务 | 待办事项列表、提醒、cron风格的任务 | ntfy, 浏览器, 邮件渠道 | | 日历 | 本地优先的日历，CalDAV同步 | CalDAV, .ics导入/导出 | | 其他 | 图像编辑器、主题编辑器、文件上传、双因素认证 | Vision + PDF支持 |\nOdysseus 如何工作 Odysseus 采用分层架构。后端是一个使用Python FastAPI编写的应用程序，负责模型推理、工具执行和数据库查询的协调。前端是一个响应式Web UI，可在桌面和移动设备上运行（可安装为PWA）。\nClient (Browser/PWA) │ ▼ ┌─────────────────────────┐ │ Web UI (Frontend) │ │ Chat / Agent / Docs / │ │ Email / Calendar / etc. │ └─────────┬───────────────┘ │ WebSocket / REST API ▼ ┌─────────────────────────┐ │ FastAPI Backend │ │ • Chat handler │ │ • Agent executor │ │ • Cookbook manager │ │ • Deep research engine │ └─────────┬───────────────┘ │ ┌─────┼──────────┬──────────┐ ▼ ▼ ▼ ▼ vLLM Ollama SearXNG ChromaDB (GPU) (CPU) (Search) (Memory) 烹饪书组件尤为值得注意——它会扫描您的硬件以检测可用的GPU，然后推荐并下载兼容的GGUF、FP8或AWQ格式模型。这消除了确定哪个模型适合您VRAM的常见痛点。\n对于代理，Odysseus 基于 OpenCode 构建，并支持MCP（Model Context Protocol）进行工具集成。这意味着您的代理可以自主地与文件、shell、网络搜索和自定义技能交互。\n安装与设置 Docker（推荐） Docker 是运行Odysseus 的最简单且最可靠的方式。项目提供了完整的Docker Compose堆栈，包括应用程序、ChromaDB用于记忆、SearXNG用于Web搜索以及ntfy用于通知。\n# Clone the repository (use dev branch for latest features) git clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus # Copy the example environment file (recommended) cp .env.example .env # Optional: configure explicit defaults # APP_BIND=127.0.0.1 # APP_PORT=7000 # AUTH_ENABLED=true # Start the stack docker compose up -d --build 启动后，请访问 http://localhost:7000。首次设置时，Odysseus 会创建一个管理员账户（除非设置了 ODYSSEUS_ADMIN_USER），并在终端中打印临时密码。\n要包含可选的额外功能（PDF查看器、AGPL PyMuPDF进行Office提取）：\ndocker compose build --build-arg INSTALL_OPTIONAL=true docker compose up -d --build 要启用对NVIDIA GPU的GPU通过：\n# Diagnose GPU passthrough scripts/check-docker-gpu.sh # Install NVIDIA Container Toolkit if needed scripts/check-docker-gpu.sh --install-nvidia-toolkit # Enable GPU overlay scripts.check-docker-gpu.sh --enable-nvidia-overlay 对于AMD/ROCm：\nscripts/check-docker-amd-gpu.sh 然后编辑 .env 以添加覆盖层和您的主机渲染组ID。\n原生Linux/macOS安装 如果您不希望使用Docker：\ngit clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus # Create Python virtual environment python3 -m venv venv source venv/bin/activate # Install dependencies pip install -r requirements.txt # Run initial setup python setup.py # Start the server python -m uvicorn app:app --host 127.0.0.1 --port 7000 要求：Python 3.11+。应用程序本身很轻量级；本地模型服务取决于您的模型、运行时、GPU和VRAM的重量。\nApple Silicon（macOS带GPU） Docker 在 macOS 上无法使用 Metal GPU。对于 M 系列 Mac 上的 GPU 加速本地模型服务：\ngit clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus # The bundled script handles venv + dependencies + startup ./start-macos.sh 这将在 http://127.0.0.1:7860 启动。要通过 Tailscale 暴露给手机：\nODYSSEUS_HOST=0.0.0.0 ./start-macos.sh 构建桌面应用 您可以将 Odysseus 包装为原生桌面应用封装器：\n./build-macos-app.sh 配置与模型设置 安装后，通过 web UI 的 设置 选项卡配置您的 AI 模型。可以添加以下这些提供者中的任意一个：\n# Example .env configuration for multi-provider setup APP_BIND=127.0.0.1 APP_PORT=7000 AUTH_ENABLED=true DATABASE_URL=sqlite:///./odysseus.db # OpenAI-compatible API OPENAI_API_KEY=sk-your-key-here OPENAI_BASE_URL=https://api.openai.com/v1 # Anthropic ANTHROPIC_API_KEY=sk-ant-your-key-here # Ollama (local) OLLAMA_BASE_URL=http://localhost:11434 # OpenRouter OPENROUTER_API_KEY=sk-or-your-key-here 烹饪书提供了图形界面辅助下载和部署模型的方式。它会检测到您的 GPU VRAM 并建议合适的模型。对于仅使用 API（没有本地模型）的情况，您可以跳过烹饪书并连接到您偏好的 API 提供商。\n添加自定义模型 # List available models in Cookbook odysseus cookbook list # Download a model (auto-detects best format for your hardware) odysseus cookbook download mistral-7b # Start serving a local model odysseus cookbook serve llama-3.1-8b 与其他工具的集成 OpenCode Agent 框架 Odysseus 剂量基于 OpenCode，使其能够自主使用工具。您可以配置 MCP 服务器以连接外部工具：\n# Configure MCP in .env MCP_SERVERS=http://localhost:3000,mcp://your-server # Your agent can then use: # - File tools (read/write/search) # - Shell execution # - Web search # - Custom skills ChromaDB 用于持久内存 Odysseus 包含了 ChromaDB，用于向量基础的持久内存。您的剂量会记住之前的对话，并可以通过向量相似性和关键词搜索来检索上下文：\n# Memory import/export odysseus memory export --output memory.json odysseus memory import --input memory.json # The memory system uses: # - ChromaDB for vector storage # - fastembed (ONNX) for embeddings # - Combined vector + keyword retrieval SearXNG 网站搜索 对于需要网络研究的剂量，Odysseus 集成了 SearXNG（一个隐私保护的元搜索引擎）。这意味着 AI 剂量可以在不将您的查询暴露给 Google 或 Bing 的情况下进行网络搜索：\n# SearXNG is included in the Docker stack # Access it at: http://localhost:8888 (inside Docker network) # Agent web search uses it automatically 电子邮件集成 Odysseus 包含了一个完整的 IMAP/SMTP 收件箱，并集成了 AI 功能来处理邮件：\n# Email config in .env EMAIL_IMAP_SERVER=imap.gmail.com EMAIL_IMAP_PORT=993 EMAIL_SMTP_SERVER=smtp.gmail.com EMAIL_SMTP_PORT=587 EMAIL_USERNAME=your@email.com EMAIL_PASSWORD=app-password AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分类和过滤垃圾邮件。\n性能基准与实际用例 资源使用比较 | 组件 | Docker | 原生（无模型） | |\n|\n|\n| | 内存 (RAM) | ~200 MB | ~50 MB | | 磁盘空间 (Disk) | ~500 MB（基础） | ~100 MB | | 启动时间 (Startup) | ~5 秒 | ~1 秒 | | GPU 通过式 | 支持 | 原生仅限（Metal） |\n深度研究性能 Odysseus 的深度研究功能（来自阿里巴巴 Tongyi DeepResearch 的改编）可以执行多步骤的研究工作流：\nResearch Task: \"Compare RAG vs. fine-tuning for enterprise QA\" Step 1: Web search (SearXNG) → 15 sources Step 2: Read \u0026 extract key points → 8 documents Step 3: Synthesize into report → 5-page summary Step 4: Visualize with charts → auto-generated 这特别适用于研究人员、分析师以及需要从多个来源综合信息并生成结构化报告的人。\n模型比较模式 比较功能允许您在旁边对不同模型进行盲 A/B 测试：\nPrompt: \"Write a Python binary search implementation\" Model A: [hidden] → Response Model B: [hidden] → Response User selects best response → rankings updated 这消除了在评估哪种模型最适合您的用例时的品牌偏见。\n高级用法 / 生产强化 多用户设置 # Enable authentication (default) AUTH_ENABLED=true # Set custom admin user ODYSSEUS_ADMIN_USER=yourusername # Set admin password via .env ODYSSEUS_ADMIN_PASSWORD=secure-password # After first login, disable temporary password requirement # via Settings panel 反向代理配置 对于反向代理后的生产部署：\nserver { listen 443 ssl; server_name ai.yourdomain.com; ssl_certificate /etc/letsencrypt/live/ai.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/ai.yourdomain.com/remote.key; location / { proxy_pass http://127.0.0.1:7000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; } } 用于生产的 Docker Compose # docker-compose.prod.yml services: odysseus: image: pewdiepie-archdaemon/odysseus:latest restart: unless-stopped ports: - \"127.0.0.1:7000:7000\" volumes: - ./data:/app/data - ./config:/app/config env_file: .env deploy: resources: reservations: devices: - driver: nvidia count: 1 capabilities: [gpu] 备份策略 # Backup ChromaDB (memory) and configuration tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \\ data/ \\ config/ \\ .env \\ # ChromaDB data persists in: ./data/chroma/ # SQLite database: ./odysseus.db 与其他替代方案的比较 | 特性 | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI | |\n|\n|\n|\n|\n|\n| | 自托管 | ✅ 完全 | ❌ 只限云端 | ❌ 只限云端 | ❌ 只限云端 | ✅ 部分 | | 内置代理 | ✅ OpenCode/MCP | ✅ GPTs | ✅ Computer Use | ❌ 无 | ✅ 局部 | | 深度研究 | ✅ 内置 | ✅ Plus 版本仅限 | ✅ | ✅ 内置 | ❌ 无 | | 邮件集成 | ✅ IMAP/SMTP | ❌ 无 | ❌ 无 | ❌ 无 | ❌ 无 | | 日历同步 | ✅ CalDAV | ❌ 无 | ❌ 无 | ❌ 无 | ❌ 无 | | 本地模型 | ✅ vLLM/llama.cpp | ❌ 无 | ❌ 无 | ❌ 无 | ✅ 部分 | | 内存持久化 | ✅ ChromaDB | ✅ Plus 版本仅限 | ❌ 无 | ❌ 无 | ✅ 部分 | | 移动 PWA | ✅ 完全 | ✅ 是 | ✅ 是 | ✅ 是 | ✅ 是 | | 成本 | 免费（自托管） | $20/月 | $20/月 | 免费 | 免费 |\n限制 / 实事评估 尽管 Odysseus 非常出色，但也有一些需要了解的限制：\n新项目（创建于 2026 年 5 月 31 日） — 尽管有超过 65,000 星，Odysseus 极其年轻。预期会出现错误、中断变更和不完整的文档。dev 分支是默认分支，但“可能不稳定”。\nGPU 支持侧重于 Docker/NVIDIA — AMD ROCm 支持存在，但需要手动 .env 配置。Apple Silicon 需要原生安装（不支持 Docker GPU）。\n尚未发布官方容器镜像 — 您必须从源代码构建（git clone + ````docker compose build```）。一个官方的 Docker Hub 镜像将简化部署过程。\nCookbook 模型选择有限 — 虽然 VRAM 意识强，但 CookBook 从 HuggingFace 下载模型可能对大型模型下载速度较慢。没有内置模型注册表和质量评分。\n代理功能仍在成熟中 — 基于 OpenCode 构建，代理可以使用工具，但缺乏更成熟的框架所具有的广泛插件生态系统。\n移动体验为“响应式” — 项目声明它在手机上看起来运行良好，但由于是基于 Web 的应用，因此不是真正的原生移动体验。\n常见问题解答 Q: 我可以在 Raspberry Pi 上运行 Odysseus 吗？\nA: 技术上可以，但本地模型服务将不切实际。您可以连接到远程 API 提供商（如 OpenAI、Anthropic 或 OpenRouter）或远程模型服务器。基于 Chromium 的前端在 ARM 设备上的性能可能因内存限制而受到影响。\nQ: Odysseus 是否已经准备好用于团队使用？\nA: 截至 2026 年 6 月，该项目尚未达到 1.0 版本且正在积极开发中。它非常适合个人使用和测试，但团队部署应预期偶尔出现中断变更。多用户身份验证系统存在，但功能有限（没有 RBAC 或 SSO）。\nQ: 如何在不使用 CookBook 的情况下连接我的本地模型？\nA: 您可以使用 Ollama 或 vLLM 作为您的模型提供商，并在 Odysseus 设置中配置 API 端点。CookBook 是可选的，主要是为了下载和通过 VRAM 意识强的推荐来提供模型。\nQ: Odysseus 支持流式响应吗？\nA: 是的，所有聊天和代理响应都通过 WebSocket 连接实时流式传输。前端支持流式 UI 动画以实现类似于 ChatGPT 的体验。\nQ: 我可以不用任何 API 密钥使用 Odysseus 吗？\nA: 可以 — 如果您有 GPU，可以通过 vLLM 或 llama.cpp（通过 CookBook）在本地提供模型服务。对于仅 CPU 用户，Ollama 提供免费的本地模型。API 仅用需要来自 OpenAI、Anthropic 或 OpenRouter 的密钥。\nQ: Odysseus 如何与 Gmail 集成？\nA: 您需要在 Google 账户设置中创建一个“应用专用密码”（在安全 \u003e 双重验证 \u003e 应用专用密码下）。使用这个 16 位密码而不是您的常规 Gmail 密码进行 IMAP 配置。 Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历管理以及本地模型服务整合到一个以隐私为先的工作空间中。该项目拥有超过 65,000 颗星，仅创建几周时间就广受用户欢迎，这些用户希望在使用 ChatGPT 接口的同时避免数据交换的代价。\n基于 Docker 的安装使其即使对于缺乏深厚 Linux 知识的用户也易于访问，而原生安装和 Apple Silicon 支持则为那些更喜欢直接在其硬件上运行的用户提供选择。\n亲自尝试 Odysseus： github.com/pewdiepie-archdaemon/odysseus\n相关文章：\nAgentMemory — 为 AI 编码代理提供持久化内存 Open Notebook — 提供 15+ AI 供应商的开源 NotebookLM 替代品 参考资料及进一步阅读：\n官方文档: https://pewdiepie-archdaemon.github.io/odysseus/ GitHub 仓库: https://github.com/pewdiepie-archdaemon/odysseus 烹饪指南（模型选择）: https://github.com/AlexsJones/llmfit 深度研究（改编自）: https://github.com/Alibaba-NLP/DeepResearch 代理框架（OpenCode）: https://github.com/anomalyco/opencode 加入我们的社区，了解更多 AI 工具深度解析：t.me/DIBI8_Group\n免责声明： 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026”, “datePublished”: “2026-06-09”, “dateModified”: “2026-06-09”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research\" } } Related Articles oh-my-pi academic-research-skills last30days-skill-ai-agent-research-engine-social-media last30days-skill-ai-agent-research-engine-social-media last30days-skill-ai-agent-research-engine-social-media Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1479","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#odysseus%e8%87%aa%e5%b8%a6ai%e5%b7%a5%e4%bd%9c%e7%ab%99%e5%86%85%e7%bd%ae10%e5%a4%9a%e7%a7%8d%e5%b7%a5%e5%85%b7github%e6%98%9f%e6%a0%8765000%e5%ae%8c%e6%95%b4%e5%ae%89%e8%a3%85%e6%8c%87%e5%8d%972026 aria-label=Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026>Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026</a><ul><li><a href=#%e4%bb%80%e4%b9%88%e6%98%afodysseus aria-label=什么是Odysseus？>什么是Odysseus？</a></li><li><a href=#odysseus-%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c aria-label="Odysseus 如何工作">Odysseus 如何工作</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae aria-label=安装与设置>安装与设置</a><ul><li><a href=#docker%e6%8e%a8%e8%8d%90 aria-label=Docker（推荐）>Docker（推荐）</a></li><li><a href=#%e5%8e%9f%e7%94%9flinuxmacos%e5%ae%89%e8%a3%85 aria-label=原生Linux/macOS安装>原生Linux/macOS安装</a></li><li><a href=#apple-siliconmacos%e5%b8%a6gpu aria-label="Apple Silicon（macOS带GPU）">Apple Silicon（macOS带GPU）</a></li><li><a href=#%e6%9e%84%e5%bb%ba%e6%a1%8c%e9%9d%a2%e5%ba%94%e7%94%a8 aria-label=构建桌面应用>构建桌面应用</a></li></ul></li><li><a href=#%e9%85%8d%e7%bd%ae%e4%b8%8e%e6%a8%a1%e5%9e%8b%e8%ae%be%e7%bd%ae aria-label=配置与模型设置>配置与模型设置</a><ul><li><a href=#%e6%b7%bb%e5%8a%a0%e8%87%aa%e5%ae%9a%e4%b9%89%e6%a8%a1%e5%9e%8b aria-label=添加自定义模型>添加自定义模型</a></li></ul></li><li><a href=#%e4%b8%8e%e5%85%b6%e4%bb%96%e5%b7%a5%e5%85%b7%e7%9a%84%e9%9b%86%e6%88%90 aria-label=与其他工具的集成>与其他工具的集成</a><ul><li><a href=#opencode-agent-%e6%a1%86%e6%9e%b6 aria-label="OpenCode Agent 框架">OpenCode Agent 框架</a></li><li><a href=#chromadb-%e7%94%a8%e4%ba%8e%e6%8c%81%e4%b9%85%e5%86%85%e5%ad%98 aria-label="ChromaDB 用于持久内存">ChromaDB 用于持久内存</a></li><li><a href=#searxng-%e7%bd%91%e7%ab%99%e6%90%9c%e7%b4%a2 aria-label="SearXNG 网站搜索">SearXNG 网站搜索</a></li><li><a href=#%e7%94%b5%e5%ad%90%e9%82%ae%e4%bb%b6%e9%9b%86%e6%88%90 aria-label=电子邮件集成>电子邮件集成</a></li></ul></li><li><a href=#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86%e4%b8%8e%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b aria-label=性能基准与实际用例>性能基准与实际用例</a><ul><li><a href=#%e8%b5%84%e6%ba%90%e4%bd%bf%e7%94%a8%e6%af%94%e8%be%83 aria-label=资源使用比较>资源使用比较</a></li><li><a href=#%e6%b7%b1%e5%ba%a6%e7%a0%94%e7%a9%b6%e6%80%a7%e8%83%bd aria-label=深度研究性能>深度研究性能</a></li><li><a href=#%e6%a8%a1%e5%9e%8b%e6%af%94%e8%be%83%e6%a8%a1%e5%bc%8f aria-label=模型比较模式>模型比较模式</a></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e5%bc%ba%e5%8c%96 aria-label="高级用法 / 生产强化">高级用法 / 生产强化</a><ul><li><a href=#%e5%a4%9a%e7%94%a8%e6%88%b7%e8%ae%be%e7%bd%ae aria-label=多用户设置>多用户设置</a></li><li><a href=#%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e9%85%8d%e7%bd%ae aria-label=反向代理配置>反向代理配置</a></li><li><a href=#%e7%94%a8%e4%ba%8e%e7%94%9f%e4%ba%a7%e7%9a%84-docker-compose aria-label="用于生产的 Docker Compose">用于生产的 Docker Compose</a></li><li><a href=#%e5%a4%87%e4%bb%bd%e7%ad%96%e7%95%a5 aria-label=备份策略>备份策略</a></li></ul></li><li><a href=#%e4%b8%8e%e5%85%b6%e4%bb%96%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e6%af%94%e8%be%83 aria-label=与其他替代方案的比较>与其他替代方案的比较</a></li><li><a href=#%e9%99%90%e5%88%b6--%e5%ae%9e%e4%ba%8b%e8%af%84%e4%bc%b0 aria-label="限制 / 实事评估">限制 / 实事评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94 aria-label=常见问题解答>常见问题解答</a></li></ul></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=odysseus自带ai工作站内置10多种工具github星标65000完整安装指南2026>Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026<a hidden class=anchor aria-hidden=true href=#odysseus自带ai工作站内置10多种工具github星标65000完整安装指南2026>#</a></h1><pre tabindex=0><code>┌──────────────────────────────────────────────────┐
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026 ┌──────────────────────────────────────────────────┐ │ Odysseus Architecture │ │ │ │ ┌─────────┐ ┌──────────┐ ┌─────────────────┐ │ │ │ Chat │ │ Agent │ │ Cookbook │ │ │ │ (API) │ │ (Tools) │ │ (Model Server)│ │ │ └────┬────┘ └────┬─────┘ └────────┬────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Python Backend (FastAPI) │ │ │ │ ChromaDB │ SearXNG │ ntfy │ .env config │ │ │ └───────────────────────────────────────────────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ Docker Compose Stack │ │ │ ┌────────┐ ┌──────────┐ ┌────────┐ ┌─────────┐ │ │ │ Odysseus│ │ChromaDB │ │SearXNG │ │ ntfy │ │ │ └────────┘ └──────────┘ └────────┘ └─────────┘ │ │ │ │ ┌───────────────────────────────────────────────┐ │ │ │ Frontend: Responsive Web UI (PWA) │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────┘ Odysseus 是一个自托管的AI工作站，集成了10多种集成工具到一个隐私优先的界面中。由名为pewdiepie-archdaemon 的开发者创建，自2026年5月31日创建以来已获得超过65,000颗GitHub星标——是GitHub历史上增长最快的AI项目之一。\n与需要您提交数据的ChatGPT或Claude不同，Odysseus 完全在您的硬件上运行。您可以连接自己的API密钥或将本地模型自行服务。该项目描述自己为“类似于ChatGPT和Claude的UI体验的自托管版本，但更具瑕疵且更有趣。”\n本指南涵盖了所有内容：架构分解、Docker和原生安装、模型配置、代理设置、深度研究以及生产强化。\n什么是Odysseus？ Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈AI工作站。它为希望拥有统一AI界面便利性的同时保持完全数据主权的用户而设计——就像ChatGPT的多模型聊天一样。\n该项目在单个网络应用程序中集成了以下功能：\n| 功能 | 描述 | 基于 | |\n|\n|\n| | 聊天 | 多模型对话 | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot | | 代理 | 自主智能代理 | OpenCode, MCP, web, files, shell, skills, memory | | 烹饪书 | 意识到硬件的模型下载器和服务端 | llmfit, VRAM意识，GGUF/FP8/AWQ | | 深度研究 | 多步研究与源合成 | 阿里巴巴通义深度研究的改进版本 | | 对比 | 盲目多模型对比测试 | 多模型合成 | | 文档 | 多标签文本编辑器，带有AI辅助 | Markdown, HTML, CSV, 语法高亮 | | 内存/技能 | 持久化内存，向量+关键词检索 | ChromaDB, fastembed (ONNX) | | 邮件 | IMAP/SMTP收件箱，带有AI分类 | IMAP, SMTP, CalDAV意识 | | 笔记与任务 | 待办事项列表、提醒、cron风格的任务 | ntfy, 浏览器, 邮件渠道 | | 日历 | 本地优先的日历，CalDAV同步 | CalDAV, .ics导入/导出 | | 其他 | 图像编辑器、主题编辑器、文件上传、双因素认证 | Vision + PDF支持 |\nOdysseus 如何工作 Odysseus 采用分层架构。后端是一个使用Python FastAPI编写的应用程序，负责模型推理、工具执行和数据库查询的协调。前端是一个响应式Web UI，可在桌面和移动设备上运行（可安装为PWA）。\nClient (Browser/PWA) │ ▼ ┌─────────────────────────┐ │ Web UI (Frontend) │ │ Chat / Agent / Docs / │ │ Email / Calendar / etc. │ └─────────┬───────────────┘ │ WebSocket / REST API ▼ ┌─────────────────────────┐ │ FastAPI Backend │ │ • Chat handler │ │ • Agent executor │ │ • Cookbook manager │ │ • Deep research engine │ └─────────┬───────────────┘ │ ┌─────┼──────────┬──────────┐ ▼ ▼ ▼ ▼ vLLM Ollama SearXNG ChromaDB (GPU) (CPU) (Search) (Memory) 烹饪书组件尤为值得注意——它会扫描您的硬件以检测可用的GPU，然后推荐并下载兼容的GGUF、FP8或AWQ格式模型。这消除了确定哪个模型适合您VRAM的常见痛点。\n对于代理，Odysseus 基于 OpenCode 构建，并支持MCP（Model Context Protocol）进行工具集成。这意味着您的代理可以自主地与文件、shell、网络搜索和自定义技能交互。\n安装与设置 Docker（推荐） Docker 是运行Odysseus 的最简单且最可靠的方式。项目提供了完整的Docker Compose堆栈，包括应用程序、ChromaDB用于记忆、SearXNG用于Web搜索以及ntfy用于通知。\n# Clone the repository (use dev branch for latest features) git clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus # Copy the example environment file (recommended) cp .env.example .env # Optional: configure explicit defaults # APP_BIND=127.0.0.1 # APP_PORT=7000 # AUTH_ENABLED=true # Start the stack docker compose up -d --build 启动后，请访问 http://localhost:7000。首次设置时，Odysseus 会创建一个管理员账户（除非设置了 ODYSSEUS_ADMIN_USER），并在终端中打印临时密码。\n要包含可选的额外功能（PDF查看器、AGPL PyMuPDF进行Office提取）：\ndocker compose build --build-arg INSTALL_OPTIONAL=true docker compose up -d --build 要启用对NVIDIA GPU的GPU通过：\n# Diagnose GPU passthrough scripts/check-docker-gpu.sh # Install NVIDIA Container Toolkit if needed scripts/check-docker-gpu.sh --install-nvidia-toolkit # Enable GPU overlay scripts.check-docker-gpu.sh --enable-nvidia-overlay 对于AMD/ROCm：\nscripts/check-docker-amd-gpu.sh 然后编辑 .env 以添加覆盖层和您的主机渲染组ID。\n原生Linux/macOS安装 如果您不希望使用Docker：\ngit clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus # Create Python virtual environment python3 -m venv venv source venv/bin/activate # Install dependencies pip install -r requirements.txt # Run initial setup python setup.py # Start the server python -m uvicorn app:app --host 127.0.0.1 --port 7000 要求：Python 3.11+。应用程序本身很轻量级；本地模型服务取决于您的模型、运行时、GPU和VRAM的重量。\nApple Silicon（macOS带GPU） Docker 在 macOS 上无法使用 Metal GPU。对于 M 系列 Mac 上的 GPU 加速本地模型服务：\ngit clone https://github.com/pewdiepie-archdaemon/odysseus.git cd odysseus # The bundled script handles venv + dependencies + startup ./start-macos.sh 这将在 http://127.0.0.1:7860 启动。要通过 Tailscale 暴露给手机：\nODYSSEUS_HOST=0.0.0.0 ./start-macos.sh 构建桌面应用 您可以将 Odysseus 包装为原生桌面应用封装器：\n./build-macos-app.sh 配置与模型设置 安装后，通过 web UI 的 设置 选项卡配置您的 AI 模型。可以添加以下这些提供者中的任意一个：\n# Example .env configuration for multi-provider setup APP_BIND=127.0.0.1 APP_PORT=7000 AUTH_ENABLED=true DATABASE_URL=sqlite:///./odysseus.db # OpenAI-compatible API OPENAI_API_KEY=sk-your-key-here OPENAI_BASE_URL=https://api.openai.com/v1 # Anthropic ANTHROPIC_API_KEY=sk-ant-your-key-here # Ollama (local) OLLAMA_BASE_URL=http://localhost:11434 # OpenRouter OPENROUTER_API_KEY=sk-or-your-key-here 烹饪书提供了图形界面辅助下载和部署模型的方式。它会检测到您的 GPU VRAM 并建议合适的模型。对于仅使用 API（没有本地模型）的情况，您可以跳过烹饪书并连接到您偏好的 API 提供商。\n添加自定义模型 # List available models in Cookbook odysseus cookbook list # Download a model (auto-detects best format for your hardware) odysseus cookbook download mistral-7b # Start serving a local model odysseus cookbook serve llama-3.1-8b 与其他工具的集成 OpenCode Agent 框架 Odysseus 剂量基于 OpenCode，使其能够自主使用工具。您可以配置 MCP 服务器以连接外部工具：\n# Configure MCP in .env MCP_SERVERS=http://localhost:3000,mcp://your-server # Your agent can then use: # - File tools (read/write/search) # - Shell execution # - Web search # - Custom skills ChromaDB 用于持久内存 Odysseus 包含了 ChromaDB，用于向量基础的持久内存。您的剂量会记住之前的对话，并可以通过向量相似性和关键词搜索来检索上下文：\n# Memory import/export odysseus memory export --output memory.json odysseus memory import --input memory.json # The memory system uses: # - ChromaDB for vector storage # - fastembed (ONNX) for embeddings # - Combined vector + keyword retrieval SearXNG 网站搜索 对于需要网络研究的剂量，Odysseus 集成了 SearXNG（一个隐私保护的元搜索引擎）。这意味着 AI 剂量可以在不将您的查询暴露给 Google 或 Bing 的情况下进行网络搜索：\n# SearXNG is included in the Docker stack # Access it at: http://localhost:8888 (inside Docker network) # Agent web search uses it automatically 电子邮件集成 Odysseus 包含了一个完整的 IMAP/SMTP 收件箱，并集成了 AI 功能来处理邮件：\n# Email config in .env EMAIL_IMAP_SERVER=imap.gmail.com EMAIL_IMAP_PORT=993 EMAIL_SMTP_SERVER=smtp.gmail.com EMAIL_SMTP_PORT=587 EMAIL_USERNAME=your@email.com EMAIL_PASSWORD=app-password AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分类和过滤垃圾邮件。\n性能基准与实际用例 资源使用比较 | 组件 | Docker | 原生（无模型） | |\n|\n|\n| | 内存 (RAM) | ~200 MB | ~50 MB | | 磁盘空间 (Disk) | ~500 MB（基础） | ~100 MB | | 启动时间 (Startup) | ~5 秒 | ~1 秒 | | GPU 通过式 | 支持 | 原生仅限（Metal） |\n深度研究性能 Odysseus 的深度研究功能（来自阿里巴巴 Tongyi DeepResearch 的改编）可以执行多步骤的研究工作流：\nResearch Task: \"Compare RAG vs. fine-tuning for enterprise QA\" Step 1: Web search (SearXNG) → 15 sources Step 2: Read \u0026 extract key points → 8 documents Step 3: Synthesize into report → 5-page summary Step 4: Visualize with charts → auto-generated 这特别适用于研究人员、分析师以及需要从多个来源综合信息并生成结构化报告的人。\n模型比较模式 比较功能允许您在旁边对不同模型进行盲 A/B 测试：\nPrompt: \"Write a Python binary search implementation\" Model A: [hidden] → Response Model B: [hidden] → Response User selects best response → rankings updated 这消除了在评估哪种模型最适合您的用例时的品牌偏见。\n高级用法 / 生产强化 多用户设置 # Enable authentication (default) AUTH_ENABLED=true # Set custom admin user ODYSSEUS_ADMIN_USER=yourusername # Set admin password via .env ODYSSEUS_ADMIN_PASSWORD=secure-password # After first login, disable temporary password requirement # via Settings panel 反向代理配置 对于反向代理后的生产部署：\nserver { listen 443 ssl; server_name ai.yourdomain.com; ssl_certificate /etc/letsencrypt/live/ai.yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/ai.yourdomain.com/remote.key; location / { proxy_pass http://127.0.0.1:7000; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; proxy_set_header X-Forwarded-Proto $scheme; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; } } 用于生产的 Docker Compose # docker-compose.prod.yml services: odysseus: image: pewdiepie-archdaemon/odysseus:latest restart: unless-stopped ports: - \"127.0.0.1:7000:7000\" volumes: - ./data:/app/data - ./config:/app/config env_file: .env deploy: resources: reservations: devices: - driver: nvidia count: 1 capabilities: [gpu] 备份策略 # Backup ChromaDB (memory) and configuration tar czf odysseus-backup-$(date +%Y%m%d).tar.gz \\ data/ \\ config/ \\ .env \\ # ChromaDB data persists in: ./data/chroma/ # SQLite database: ./odysseus.db 与其他替代方案的比较 | 特性 | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI | |\n|\n|\n|\n|\n|\n| | 自托管 | ✅ 完全 | ❌ 只限云端 | ❌ 只限云端 | ❌ 只限云端 | ✅ 部分 | | 内置代理 | ✅ OpenCode/MCP | ✅ GPTs | ✅ Computer Use | ❌ 无 | ✅ 局部 | | 深度研究 | ✅ 内置 | ✅ Plus 版本仅限 | ✅ | ✅ 内置 | ❌ 无 | | 邮件集成 | ✅ IMAP/SMTP | ❌ 无 | ❌ 无 | ❌ 无 | ❌ 无 | | 日历同步 | ✅ CalDAV | ❌ 无 | ❌ 无 | ❌ 无 | ❌ 无 | | 本地模型 | ✅ vLLM/llama.cpp | ❌ 无 | ❌ 无 | ❌ 无 | ✅ 部分 | | 内存持久化 | ✅ ChromaDB | ✅ Plus 版本仅限 | ❌ 无 | ❌ 无 | ✅ 部分 | | 移动 PWA | ✅ 完全 | ✅ 是 | ✅ 是 | ✅ 是 | ✅ 是 | | 成本 | 免费（自托管） | $20/月 | $20/月 | 免费 | 免费 |\n限制 / 实事评估 尽管 Odysseus 非常出色，但也有一些需要了解的限制：\n新项目（创建于 2026 年 5 月 31 日） — 尽管有超过 65,000 星，Odysseus 极其年轻。预期会出现错误、中断变更和不完整的文档。dev 分支是默认分支，但“可能不稳定”。\nGPU 支持侧重于 Docker/NVIDIA — AMD ROCm 支持存在，但需要手动 .env 配置。Apple Silicon 需要原生安装（不支持 Docker GPU）。\n尚未发布官方容器镜像 — 您必须从源代码构建（git clone + ````docker compose build```）。一个官方的 Docker Hub 镜像将简化部署过程。\nCookbook 模型选择有限 — 虽然 VRAM 意识强，但 CookBook 从 HuggingFace 下载模型可能对大型模型下载速度较慢。没有内置模型注册表和质量评分。\n代理功能仍在成熟中 — 基于 OpenCode 构建，代理可以使用工具，但缺乏更成熟的框架所具有的广泛插件生态系统。\n移动体验为“响应式” — 项目声明它在手机上看起来运行良好，但由于是基于 Web 的应用，因此不是真正的原生移动体验。\n常见问题解答 Q: 我可以在 Raspberry Pi 上运行 Odysseus 吗？\nA: 技术上可以，但本地模型服务将不切实际。您可以连接到远程 API 提供商（如 OpenAI、Anthropic 或 OpenRouter）或远程模型服务器。基于 Chromium 的前端在 ARM 设备上的性能可能因内存限制而受到影响。\nQ: Odysseus 是否已经准备好用于团队使用？\nA: 截至 2026 年 6 月，该项目尚未达到 1.0 版本且正在积极开发中。它非常适合个人使用和测试，但团队部署应预期偶尔出现中断变更。多用户身份验证系统存在，但功能有限（没有 RBAC 或 SSO）。\nQ: 如何在不使用 CookBook 的情况下连接我的本地模型？\nA: 您可以使用 Ollama 或 vLLM 作为您的模型提供商，并在 Odysseus 设置中配置 API 端点。CookBook 是可选的，主要是为了下载和通过 VRAM 意识强的推荐来提供模型。\nQ: Odysseus 支持流式响应吗？\nA: 是的，所有聊天和代理响应都通过 WebSocket 连接实时流式传输。前端支持流式 UI 动画以实现类似于 ChatGPT 的体验。\nQ: 我可以不用任何 API 密钥使用 Odysseus 吗？\nA: 可以 — 如果您有 GPU，可以通过 vLLM 或 llama.cpp（通过 CookBook）在本地提供模型服务。对于仅 CPU 用户，Ollama 提供免费的本地模型。API 仅用需要来自 OpenAI、Anthropic 或 OpenRouter 的密钥。\nQ: Odysseus 如何与 Gmail 集成？\nA: 您需要在 Google 账户设置中创建一个“应用专用密码”（在安全 \u003e 双重验证 \u003e 应用专用密码下）。使用这个 16 位密码而不是您的常规 Gmail 密码进行 IMAP 配置。 Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历管理以及本地模型服务整合到一个以隐私为先的工作空间中。该项目拥有超过 65,000 颗星，仅创建几周时间就广受用户欢迎，这些用户希望在使用 ChatGPT 接口的同时避免数据交换的代价。\n基于 Docker 的安装使其即使对于缺乏深厚 Linux 知识的用户也易于访问，而原生安装和 Apple Silicon 支持则为那些更喜欢直接在其硬件上运行的用户提供选择。\n亲自尝试 Odysseus： github.com/pewdiepie-archdaemon/odysseus\n相关文章：\nAgentMemory — 为 AI 编码代理提供持久化内存 Open Notebook — 提供 15+ AI 供应商的开源 NotebookLM 替代品 参考资料及进一步阅读：\n官方文档: https://pewdiepie-archdaemon.github.io/odysseus/ GitHub 仓库: https://github.com/pewdiepie-archdaemon/odysseus 烹饪指南（模型选择）: https://github.com/AlexsJones/llmfit 深度研究（改编自）: https://github.com/Alibaba-NLP/DeepResearch 代理框架（OpenCode）: https://github.com/anomalyco/opencode 加入我们的社区，了解更多 AI 工具深度解析：t.me/DIBI8_Group\n免责声明： 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026”, “datePublished”: “2026-06-09”, “dateModified”: “2026-06-09”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research\" } } Related Articles oh-my-pi academic-research-skills last30days-skill-ai-agent-research-engine-social-media last30days-skill-ai-agent-research-engine-social-media last30days-skill-ai-agent-research-engine-social-media Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1479",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#odysseus%e8%87%aa%e5%b8%a6ai%e5%b7%a5%e4%bd%9c%e7%ab%99%e5%86%85%e7%bd%ae10%e5%a4%9a%e7%a7%8d%e5%b7%a5%e5%85%b7github%e6%98%9f%e6%a0%8765000%e5%ae%8c%e6%95%b4%e5%ae%89%e8%a3%85%e6%8c%87%e5%8d%972026" aria-label="Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000&#43;——完整安装指南2026">Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026</a><ul>
+                    
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%afodysseus" aria-label="什么是Odysseus？">什么是Odysseus？</a></li>
+            <li>
+                <a href="#odysseus-%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c" aria-label="Odysseus 如何工作">Odysseus 如何工作</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae" aria-label="安装与设置">安装与设置</a><ul>
+                    
+            <li>
+                <a href="#docker%e6%8e%a8%e8%8d%90" aria-label="Docker（推荐）">Docker（推荐）</a></li>
+            <li>
+                <a href="#%e5%8e%9f%e7%94%9flinuxmacos%e5%ae%89%e8%a3%85" aria-label="原生Linux/macOS安装">原生Linux/macOS安装</a></li>
+            <li>
+                <a href="#apple-siliconmacos%e5%b8%a6gpu" aria-label="Apple Silicon（macOS带GPU）">Apple Silicon（macOS带GPU）</a></li>
+            <li>
+                <a href="#%e6%9e%84%e5%bb%ba%e6%a1%8c%e9%9d%a2%e5%ba%94%e7%94%a8" aria-label="构建桌面应用">构建桌面应用</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e4%b8%8e%e6%a8%a1%e5%9e%8b%e8%ae%be%e7%bd%ae" aria-label="配置与模型设置">配置与模型设置</a><ul>
+                    
+            <li>
+                <a href="#%e6%b7%bb%e5%8a%a0%e8%87%aa%e5%ae%9a%e4%b9%89%e6%a8%a1%e5%9e%8b" aria-label="添加自定义模型">添加自定义模型</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e5%85%b6%e4%bb%96%e5%b7%a5%e5%85%b7%e7%9a%84%e9%9b%86%e6%88%90" aria-label="与其他工具的集成">与其他工具的集成</a><ul>
+                    
+            <li>
+                <a href="#opencode-agent-%e6%a1%86%e6%9e%b6" aria-label="OpenCode Agent 框架">OpenCode Agent 框架</a></li>
+            <li>
+                <a href="#chromadb-%e7%94%a8%e4%ba%8e%e6%8c%81%e4%b9%85%e5%86%85%e5%ad%98" aria-label="ChromaDB 用于持久内存">ChromaDB 用于持久内存</a></li>
+            <li>
+                <a href="#searxng-%e7%bd%91%e7%ab%99%e6%90%9c%e7%b4%a2" aria-label="SearXNG 网站搜索">SearXNG 网站搜索</a></li>
+            <li>
+                <a href="#%e7%94%b5%e5%ad%90%e9%82%ae%e4%bb%b6%e9%9b%86%e6%88%90" aria-label="电子邮件集成">电子邮件集成</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e5%9f%ba%e5%87%86%e4%b8%8e%e5%ae%9e%e9%99%85%e7%94%a8%e4%be%8b" aria-label="性能基准与实际用例">性能基准与实际用例</a><ul>
+                    
+            <li>
+                <a href="#%e8%b5%84%e6%ba%90%e4%bd%bf%e7%94%a8%e6%af%94%e8%be%83" aria-label="资源使用比较">资源使用比较</a></li>
+            <li>
+                <a href="#%e6%b7%b1%e5%ba%a6%e7%a0%94%e7%a9%b6%e6%80%a7%e8%83%bd" aria-label="深度研究性能">深度研究性能</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e5%9e%8b%e6%af%94%e8%be%83%e6%a8%a1%e5%bc%8f" aria-label="模型比较模式">模型比较模式</a></li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e5%bc%ba%e5%8c%96" aria-label="高级用法 / 生产强化">高级用法 / 生产强化</a><ul>
+                    
+            <li>
+                <a href="#%e5%a4%9a%e7%94%a8%e6%88%b7%e8%ae%be%e7%bd%ae" aria-label="多用户设置">多用户设置</a></li>
+            <li>
+                <a href="#%e5%8f%8d%e5%90%91%e4%bb%a3%e7%90%86%e9%85%8d%e7%bd%ae" aria-label="反向代理配置">反向代理配置</a></li>
+            <li>
+                <a href="#%e7%94%a8%e4%ba%8e%e7%94%9f%e4%ba%a7%e7%9a%84-docker-compose" aria-label="用于生产的 Docker Compose">用于生产的 Docker Compose</a></li>
+            <li>
+                <a href="#%e5%a4%87%e4%bb%bd%e7%ad%96%e7%95%a5" aria-label="备份策略">备份策略</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e5%85%b6%e4%bb%96%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e6%af%94%e8%be%83" aria-label="与其他替代方案的比较">与其他替代方案的比较</a></li>
+            <li>
+                <a href="#%e9%99%90%e5%88%b6--%e5%ae%9e%e4%ba%8b%e8%af%84%e4%bc%b0" aria-label="限制 / 实事评估">限制 / 实事评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e8%a7%a3%e7%ad%94" aria-label="常见问题解答">常见问题解答</a></li></ul>
+            </li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="odysseus自带ai工作站内置10多种工具github星标65000完整安装指南2026">Odysseus：自带AI工作站，内置10多种工具——GitHub星标65,000+——完整安装指南2026<a hidden class="anchor" aria-hidden="true" href="#odysseus自带ai工作站内置10多种工具github星标65000完整安装指南2026">#</a></h1>
+<pre tabindex="0"><code>┌──────────────────────────────────────────────────┐
 │              Odysseus Architecture                 │
 │                                                   │
 │  ┌─────────┐  ┌──────────┐  ┌─────────────────┐  │
@@ -29,8 +310,20 @@
 │  │        Frontend: Responsive Web UI (PWA)      │ │
 │  └───────────────────────────────────────────────┘ │
 └──────────────────────────────────────────────────┘
-</code></pre><p>Odysseus 是一个自托管的AI工作站，集成了10多种集成工具到一个隐私优先的界面中。由名为<code>pewdiepie-archdaemon</code> 的开发者创建，自2026年5月31日创建以来已获得超过65,000颗GitHub星标——是GitHub历史上增长最快的AI项目之一。</p><p>与需要您提交数据的ChatGPT或Claude不同，Odysseus 完全在您的硬件上运行。您可以连接自己的API密钥或将本地模型自行服务。该项目描述自己为“类似于ChatGPT和Claude的UI体验的自托管版本，但更具瑕疵且更有趣。”</p><p>本指南涵盖了所有内容：架构分解、Docker和原生安装、模型配置、代理设置、深度研究以及生产强化。</p><h2 id=什么是odysseus>什么是Odysseus？<a hidden class=anchor aria-hidden=true href=#什么是odysseus>#</a></h2><p>Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈AI工作站。它为希望拥有统一AI界面便利性的同时保持完全数据主权的用户而设计——就像ChatGPT的多模型聊天一样。</p><p>该项目在单个网络应用程序中集成了以下功能：</p><p>| 功能 | 描述 | 基于 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>Odysseus 是一个自托管的AI工作站，集成了10多种集成工具到一个隐私优先的界面中。由名为<code>pewdiepie-archdaemon</code> 的开发者创建，自2026年5月31日创建以来已获得超过65,000颗GitHub星标——是GitHub历史上增长最快的AI项目之一。</p>
+<p>与需要您提交数据的ChatGPT或Claude不同，Odysseus 完全在您的硬件上运行。您可以连接自己的API密钥或将本地模型自行服务。该项目描述自己为“类似于ChatGPT和Claude的UI体验的自托管版本，但更具瑕疵且更有趣。”</p>
+<p>本指南涵盖了所有内容：架构分解、Docker和原生安装、模型配置、代理设置、深度研究以及生产强化。</p>
+<h2 id="什么是odysseus">什么是Odysseus？<a hidden class="anchor" aria-hidden="true" href="#什么是odysseus">#</a></h2>
+<p>Odysseus 是一个基于Python（FastAPI后端，响应式Web前端）的全栈AI工作站。它为希望拥有统一AI界面便利性的同时保持完全数据主权的用户而设计——就像ChatGPT的多模型聊天一样。</p>
+<p>该项目在单个网络应用程序中集成了以下功能：</p>
+<p>| 功能 | 描述 | 基于 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 聊天 | 多模型对话 | vLLM, llama.cpp, Ollama, OpenRouter, OpenAI, GitHub Copilot |
 | 代理 | 自主智能代理 | OpenCode, MCP, web, files, shell, skills, memory |
 | 烹饪书 | 意识到硬件的模型下载器和服务端 | llmfit, VRAM意识，GGUF/FP8/AWQ |
@@ -41,7 +334,13 @@
 | 邮件 | IMAP/SMTP收件箱，带有AI分类 | IMAP, SMTP, CalDAV意识 |
 | 笔记与任务 | 待办事项列表、提醒、cron风格的任务 | ntfy, 浏览器, 邮件渠道 |
 | 日历 | 本地优先的日历，CalDAV同步 | CalDAV, .ics导入/导出 |
-| 其他 | 图像编辑器、主题编辑器、文件上传、双因素认证 | Vision + PDF支持 |</p><p><img alt="Odysseus 聊天与代理" loading=lazy src=https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/chat.gif></p><p><img alt="Odysseus 深度研究" loading=lazy src=https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/research.gif></p><p><img alt="Odysseus 对比" loading=lazy src=https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/compare.gif></p><h2 id=odysseus-如何工作>Odysseus 如何工作<a hidden class=anchor aria-hidden=true href=#odysseus-如何工作>#</a></h2><p>Odysseus 采用分层架构。后端是一个使用Python FastAPI编写的应用程序，负责模型推理、工具执行和数据库查询的协调。前端是一个响应式Web UI，可在桌面和移动设备上运行（可安装为PWA）。</p><pre tabindex=0><code>Client (Browser/PWA)
+| 其他 | 图像编辑器、主题编辑器、文件上传、双因素认证 | Vision + PDF支持 |</p>
+<p><img alt="Odysseus 聊天与代理" loading="lazy" src="https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/chat.gif"></p>
+<p><img alt="Odysseus 深度研究" loading="lazy" src="https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/research.gif"></p>
+<p><img alt="Odysseus 对比" loading="lazy" src="https://raw.githubusercontent.com/pewdiepie-archdaemon/odysseus/dev/docs/compare.gif"></p>
+<h2 id="odysseus-如何工作">Odysseus 如何工作<a hidden class="anchor" aria-hidden="true" href="#odysseus-如何工作">#</a></h2>
+<p>Odysseus 采用分层架构。后端是一个使用Python FastAPI编写的应用程序，负责模型推理、工具执行和数据库查询的协调。前端是一个响应式Web UI，可在桌面和移动设备上运行（可安装为PWA）。</p>
+<pre tabindex="0"><code>Client (Browser/PWA)
     │
     ▼
 ┌─────────────────────────┐
@@ -63,169 +362,235 @@
     ▼     ▼          ▼          ▼
   vLLM  Ollama    SearXNG   ChromaDB
  (GPU)  (CPU)    (Search)  (Memory)
-</code></pre><p><strong>烹饪书</strong>组件尤为值得注意——它会扫描您的硬件以检测可用的GPU，然后推荐并下载兼容的GGUF、FP8或AWQ格式模型。这消除了确定哪个模型适合您VRAM的常见痛点。</p><p>对于代理，Odysseus 基于 <a href=https://github.com/anomalyco/opencode>OpenCode</a> 构建，并支持MCP（Model Context Protocol）进行工具集成。这意味着您的代理可以自主地与文件、shell、网络搜索和自定义技能交互。</p><h2 id=安装与设置>安装与设置<a hidden class=anchor aria-hidden=true href=#安装与设置>#</a></h2><h3 id=docker推荐>Docker（推荐）<a hidden class=anchor aria-hidden=true href=#docker推荐>#</a></h3><p>Docker 是运行Odysseus 的最简单且最可靠的方式。项目提供了完整的Docker Compose堆栈，包括应用程序、ChromaDB用于记忆、SearXNG用于Web搜索以及ntfy用于通知。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the repository (use dev branch for latest features)</span>
-</span></span><span style=display:flex><span>git clone https://github.com/pewdiepie-archdaemon/odysseus.git
-</span></span><span style=display:flex><span>cd odysseus
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Copy the example environment file (recommended)</span>
-</span></span><span style=display:flex><span>cp .env.example .env
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Optional: configure explicit defaults</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># APP_BIND=127.0.0.1</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># APP_PORT=7000</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># AUTH_ENABLED=true</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start the stack</span>
-</span></span><span style=display:flex><span>docker compose up -d --build
-</span></span></code></pre></div><p>启动后，请访问 <code>http://localhost:7000</code>。首次设置时，Odysseus 会创建一个管理员账户（除非设置了 <code>ODYSSEUS_ADMIN_USER</code>），并在终端中打印临时密码。</p><p>要包含可选的额外功能（PDF查看器、AGPL PyMuPDF进行Office提取）：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker compose build --build-arg INSTALL_OPTIONAL<span style=color:#f92672>=</span>true
-</span></span><span style=display:flex><span>docker compose up -d --build
-</span></span></code></pre></div><p>要启用对NVIDIA GPU的GPU通过：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Diagnose GPU passthrough</span>
-</span></span><span style=display:flex><span>scripts/check-docker-gpu.sh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install NVIDIA Container Toolkit if needed</span>
-</span></span><span style=display:flex><span>scripts/check-docker-gpu.sh --install-nvidia-toolkit
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Enable GPU overlay</span>
-</span></span><span style=display:flex><span>scripts.check-docker-gpu.sh --enable-nvidia-overlay
-</span></span></code></pre></div><p>对于AMD/ROCm：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>scripts/check-docker-amd-gpu.sh
-</span></span></code></pre></div><p>然后编辑 <code>.env</code> 以添加覆盖层和您的主机渲染组ID。</p><h3 id=原生linuxmacos安装>原生Linux/macOS安装<a hidden class=anchor aria-hidden=true href=#原生linuxmacos安装>#</a></h3><p>如果您不希望使用Docker：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/pewdiepie-archdaemon/odysseus.git
-</span></span><span style=display:flex><span>cd odysseus
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Create Python virtual environment</span>
-</span></span><span style=display:flex><span>python3 -m venv venv
-</span></span><span style=display:flex><span>source venv/bin/activate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install dependencies</span>
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run initial setup</span>
-</span></span><span style=display:flex><span>python setup.py
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start the server</span>
-</span></span><span style=display:flex><span>python -m uvicorn app:app --host 127.0.0.1 --port <span style=color:#ae81ff>7000</span>
-</span></span></code></pre></div><p>要求：Python 3.11+。应用程序本身很轻量级；本地模型服务取决于您的模型、运行时、GPU和VRAM的重量。</p><h3 id=apple-siliconmacos带gpu>Apple Silicon（macOS带GPU）<a hidden class=anchor aria-hidden=true href=#apple-siliconmacos带gpu>#</a></h3><p>Docker 在 macOS 上无法使用 Metal GPU。对于 M 系列 Mac 上的 GPU 加速本地模型服务：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/pewdiepie-archdaemon/odysseus.git
-</span></span><span style=display:flex><span>cd odysseus
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># The bundled script handles venv + dependencies + startup</span>
-</span></span><span style=display:flex><span>./start-macos.sh
-</span></span></code></pre></div><p>这将在 <code>http://127.0.0.1:7860</code> 启动。要通过 Tailscale 暴露给手机：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>ODYSSEUS_HOST<span style=color:#f92672>=</span>0.0.0.0 ./start-macos.sh
-</span></span></code></pre></div><h3 id=构建桌面应用>构建桌面应用<a hidden class=anchor aria-hidden=true href=#构建桌面应用>#</a></h3><p>您可以将 Odysseus 包装为原生桌面应用封装器：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>./build-macos-app.sh
-</span></span></code></pre></div><h2 id=配置与模型设置>配置与模型设置<a hidden class=anchor aria-hidden=true href=#配置与模型设置>#</a></h2><p>安装后，通过 web UI 的 <strong>设置</strong> 选项卡配置您的 AI 模型。可以添加以下这些提供者中的任意一个：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Example .env configuration for multi-provider setup</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>APP_BIND=127.0.0.1</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>APP_PORT=7000</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>AUTH_ENABLED=true</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>DATABASE_URL=sqlite:///./odysseus.db</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># OpenAI-compatible API</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>OPENAI_API_KEY=sk-your-key-here</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>OPENAI_BASE_URL=https://api.openai.com/v1</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Anthropic</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>ANTHROPIC_API_KEY=sk-ant-your-key-here</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Ollama (local)</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>OLLAMA_BASE_URL=http://localhost:11434</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># OpenRouter</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>OPENROUTER_API_KEY=sk-or-your-key-here</span>
-</span></span></code></pre></div><p>烹饪书提供了图形界面辅助下载和部署模型的方式。它会检测到您的 GPU VRAM 并建议合适的模型。对于仅使用 API（没有本地模型）的情况，您可以跳过烹饪书并连接到您偏好的 API 提供商。</p><h3 id=添加自定义模型>添加自定义模型<a hidden class=anchor aria-hidden=true href=#添加自定义模型>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># List available models in Cookbook</span>
-</span></span><span style=display:flex><span>odysseus cookbook list
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Download a model (auto-detects best format for your hardware)</span>
-</span></span><span style=display:flex><span>odysseus cookbook download mistral-7b
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start serving a local model</span>
-</span></span><span style=display:flex><span>odysseus cookbook serve llama-3.1-8b
-</span></span></code></pre></div><h2 id=与其他工具的集成>与其他工具的集成<a hidden class=anchor aria-hidden=true href=#与其他工具的集成>#</a></h2><h3 id=opencode-agent-框架>OpenCode Agent 框架<a hidden class=anchor aria-hidden=true href=#opencode-agent-框架>#</a></h3><p>Odysseus 剂量基于 <a href=https://github.com/anomalyco/opencode>OpenCode</a>，使其能够自主使用工具。您可以配置 MCP 服务器以连接外部工具：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Configure MCP in .env</span>
-</span></span><span style=display:flex><span>MCP_SERVERS<span style=color:#f92672>=</span>http://localhost:3000,mcp://your-server
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Your agent can then use: # - File tools (read/write/search)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Shell execution</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Web search</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Custom skills</span>
-</span></span></code></pre></div><h3 id=chromadb-用于持久内存>ChromaDB 用于持久内存<a hidden class=anchor aria-hidden=true href=#chromadb-用于持久内存>#</a></h3><p>Odysseus 包含了 ChromaDB，用于向量基础的持久内存。您的剂量会记住之前的对话，并可以通过向量相似性和关键词搜索来检索上下文：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Memory import/export</span>
-</span></span><span style=display:flex><span>odysseus memory export --output memory.json
-</span></span><span style=display:flex><span>odysseus memory import --input memory.json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># The memory system uses: # - ChromaDB for vector storage</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - fastembed (ONNX) for embeddings</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Combined vector + keyword retrieval</span>
-</span></span></code></pre></div><h3 id=searxng-网站搜索>SearXNG 网站搜索<a hidden class=anchor aria-hidden=true href=#searxng-网站搜索>#</a></h3><p>对于需要网络研究的剂量，Odysseus 集成了 SearXNG（一个隐私保护的元搜索引擎）。这意味着 AI 剂量可以在不将您的查询暴露给 Google 或 Bing 的情况下进行网络搜索：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># SearXNG is included in the Docker stack</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Access it at: http://localhost:8888 (inside Docker network)</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Agent web search uses it automatically</span>
-</span></span></code></pre></div><h3 id=电子邮件集成>电子邮件集成<a hidden class=anchor aria-hidden=true href=#电子邮件集成>#</a></h3><p>Odysseus 包含了一个完整的 IMAP/SMTP 收件箱，并集成了 AI 功能来处理邮件：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Email config in .env</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>EMAIL_IMAP_SERVER=imap.gmail.com</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>EMAIL_IMAP_PORT=993</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>EMAIL_SMTP_SERVER=smtp.gmail.com</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>EMAIL_SMTP_PORT=587</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>EMAIL_USERNAME=your@email.com</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>EMAIL_PASSWORD=app-password</span>
-</span></span></code></pre></div><p>AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分类和过滤垃圾邮件。</p><h2 id=性能基准与实际用例>性能基准与实际用例<a hidden class=anchor aria-hidden=true href=#性能基准与实际用例>#</a></h2><h3 id=资源使用比较>资源使用比较<a hidden class=anchor aria-hidden=true href=#资源使用比较>#</a></h3><p>| 组件 | Docker | 原生（无模型） |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>烹饪书</strong>组件尤为值得注意——它会扫描您的硬件以检测可用的GPU，然后推荐并下载兼容的GGUF、FP8或AWQ格式模型。这消除了确定哪个模型适合您VRAM的常见痛点。</p>
+<p>对于代理，Odysseus 基于 <a href="https://github.com/anomalyco/opencode">OpenCode</a> 构建，并支持MCP（Model Context Protocol）进行工具集成。这意味着您的代理可以自主地与文件、shell、网络搜索和自定义技能交互。</p>
+<h2 id="安装与设置">安装与设置<a hidden class="anchor" aria-hidden="true" href="#安装与设置">#</a></h2>
+<h3 id="docker推荐">Docker（推荐）<a hidden class="anchor" aria-hidden="true" href="#docker推荐">#</a></h3>
+<p>Docker 是运行Odysseus 的最简单且最可靠的方式。项目提供了完整的Docker Compose堆栈，包括应用程序、ChromaDB用于记忆、SearXNG用于Web搜索以及ntfy用于通知。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository (use dev branch for latest features)</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/pewdiepie-archdaemon/odysseus.git
+</span></span><span style="display:flex;"><span>cd odysseus
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy the example environment file (recommended)</span>
+</span></span><span style="display:flex;"><span>cp .env.example .env
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional: configure explicit defaults</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># APP_BIND=127.0.0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># APP_PORT=7000</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AUTH_ENABLED=true</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start the stack</span>
+</span></span><span style="display:flex;"><span>docker compose up -d --build
+</span></span></code></pre></div><p>启动后，请访问 <code>http://localhost:7000</code>。首次设置时，Odysseus 会创建一个管理员账户（除非设置了 <code>ODYSSEUS_ADMIN_USER</code>），并在终端中打印临时密码。</p>
+<p>要包含可选的额外功能（PDF查看器、AGPL PyMuPDF进行Office提取）：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose build --build-arg INSTALL_OPTIONAL<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>docker compose up -d --build
+</span></span></code></pre></div><p>要启用对NVIDIA GPU的GPU通过：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Diagnose GPU passthrough</span>
+</span></span><span style="display:flex;"><span>scripts/check-docker-gpu.sh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install NVIDIA Container Toolkit if needed</span>
+</span></span><span style="display:flex;"><span>scripts/check-docker-gpu.sh --install-nvidia-toolkit
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Enable GPU overlay</span>
+</span></span><span style="display:flex;"><span>scripts.check-docker-gpu.sh --enable-nvidia-overlay
+</span></span></code></pre></div><p>对于AMD/ROCm：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>scripts/check-docker-amd-gpu.sh
+</span></span></code></pre></div><p>然后编辑 <code>.env</code> 以添加覆盖层和您的主机渲染组ID。</p>
+<h3 id="原生linuxmacos安装">原生Linux/macOS安装<a hidden class="anchor" aria-hidden="true" href="#原生linuxmacos安装">#</a></h3>
+<p>如果您不希望使用Docker：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/pewdiepie-archdaemon/odysseus.git
+</span></span><span style="display:flex;"><span>cd odysseus
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Create Python virtual environment</span>
+</span></span><span style="display:flex;"><span>python3 -m venv venv
+</span></span><span style="display:flex;"><span>source venv/bin/activate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run initial setup</span>
+</span></span><span style="display:flex;"><span>python setup.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start the server</span>
+</span></span><span style="display:flex;"><span>python -m uvicorn app:app --host 127.0.0.1 --port <span style="color:#ae81ff">7000</span>
+</span></span></code></pre></div><p>要求：Python 3.11+。应用程序本身很轻量级；本地模型服务取决于您的模型、运行时、GPU和VRAM的重量。</p>
+<h3 id="apple-siliconmacos带gpu">Apple Silicon（macOS带GPU）<a hidden class="anchor" aria-hidden="true" href="#apple-siliconmacos带gpu">#</a></h3>
+<p>Docker 在 macOS 上无法使用 Metal GPU。对于 M 系列 Mac 上的 GPU 加速本地模型服务：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/pewdiepie-archdaemon/odysseus.git
+</span></span><span style="display:flex;"><span>cd odysseus
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The bundled script handles venv + dependencies + startup</span>
+</span></span><span style="display:flex;"><span>./start-macos.sh
+</span></span></code></pre></div><p>这将在 <code>http://127.0.0.1:7860</code> 启动。要通过 Tailscale 暴露给手机：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>ODYSSEUS_HOST<span style="color:#f92672">=</span>0.0.0.0 ./start-macos.sh
+</span></span></code></pre></div><h3 id="构建桌面应用">构建桌面应用<a hidden class="anchor" aria-hidden="true" href="#构建桌面应用">#</a></h3>
+<p>您可以将 Odysseus 包装为原生桌面应用封装器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>./build-macos-app.sh
+</span></span></code></pre></div><h2 id="配置与模型设置">配置与模型设置<a hidden class="anchor" aria-hidden="true" href="#配置与模型设置">#</a></h2>
+<p>安装后，通过 web UI 的 <strong>设置</strong> 选项卡配置您的 AI 模型。可以添加以下这些提供者中的任意一个：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Example .env configuration for multi-provider setup</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">APP_BIND=127.0.0.1</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">APP_PORT=7000</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">AUTH_ENABLED=true</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">DATABASE_URL=sqlite:///./odysseus.db</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenAI-compatible API</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">OPENAI_API_KEY=sk-your-key-here</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">OPENAI_BASE_URL=https://api.openai.com/v1</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Anthropic</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">ANTHROPIC_API_KEY=sk-ant-your-key-here</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ollama (local)</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">OLLAMA_BASE_URL=http://localhost:11434</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># OpenRouter</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">OPENROUTER_API_KEY=sk-or-your-key-here</span>
+</span></span></code></pre></div><p>烹饪书提供了图形界面辅助下载和部署模型的方式。它会检测到您的 GPU VRAM 并建议合适的模型。对于仅使用 API（没有本地模型）的情况，您可以跳过烹饪书并连接到您偏好的 API 提供商。</p>
+<h3 id="添加自定义模型">添加自定义模型<a hidden class="anchor" aria-hidden="true" href="#添加自定义模型">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># List available models in Cookbook</span>
+</span></span><span style="display:flex;"><span>odysseus cookbook list
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Download a model (auto-detects best format for your hardware)</span>
+</span></span><span style="display:flex;"><span>odysseus cookbook download mistral-7b
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start serving a local model</span>
+</span></span><span style="display:flex;"><span>odysseus cookbook serve llama-3.1-8b
+</span></span></code></pre></div><h2 id="与其他工具的集成">与其他工具的集成<a hidden class="anchor" aria-hidden="true" href="#与其他工具的集成">#</a></h2>
+<h3 id="opencode-agent-框架">OpenCode Agent 框架<a hidden class="anchor" aria-hidden="true" href="#opencode-agent-框架">#</a></h3>
+<p>Odysseus 剂量基于 <a href="https://github.com/anomalyco/opencode">OpenCode</a>，使其能够自主使用工具。您可以配置 MCP 服务器以连接外部工具：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Configure MCP in .env</span>
+</span></span><span style="display:flex;"><span>MCP_SERVERS<span style="color:#f92672">=</span>http://localhost:3000,mcp://your-server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Your agent can then use: # - File tools (read/write/search)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Shell execution</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Web search</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Custom skills</span>
+</span></span></code></pre></div><h3 id="chromadb-用于持久内存">ChromaDB 用于持久内存<a hidden class="anchor" aria-hidden="true" href="#chromadb-用于持久内存">#</a></h3>
+<p>Odysseus 包含了 ChromaDB，用于向量基础的持久内存。您的剂量会记住之前的对话，并可以通过向量相似性和关键词搜索来检索上下文：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Memory import/export</span>
+</span></span><span style="display:flex;"><span>odysseus memory export --output memory.json
+</span></span><span style="display:flex;"><span>odysseus memory import --input memory.json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># The memory system uses: # - ChromaDB for vector storage</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - fastembed (ONNX) for embeddings</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Combined vector + keyword retrieval</span>
+</span></span></code></pre></div><h3 id="searxng-网站搜索">SearXNG 网站搜索<a hidden class="anchor" aria-hidden="true" href="#searxng-网站搜索">#</a></h3>
+<p>对于需要网络研究的剂量，Odysseus 集成了 SearXNG（一个隐私保护的元搜索引擎）。这意味着 AI 剂量可以在不将您的查询暴露给 Google 或 Bing 的情况下进行网络搜索：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># SearXNG is included in the Docker stack</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Access it at: http://localhost:8888 (inside Docker network)</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Agent web search uses it automatically</span>
+</span></span></code></pre></div><h3 id="电子邮件集成">电子邮件集成<a hidden class="anchor" aria-hidden="true" href="#电子邮件集成">#</a></h3>
+<p>Odysseus 包含了一个完整的 IMAP/SMTP 收件箱，并集成了 AI 功能来处理邮件：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Email config in .env</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EMAIL_IMAP_SERVER=imap.gmail.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EMAIL_IMAP_PORT=993</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EMAIL_SMTP_SERVER=smtp.gmail.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EMAIL_SMTP_PORT=587</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EMAIL_USERNAME=your@email.com</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">EMAIL_PASSWORD=app-password</span>
+</span></span></code></pre></div><p>AI 可以自动：总结邮件、标记紧急程度、起草回复、自动分类和过滤垃圾邮件。</p>
+<h2 id="性能基准与实际用例">性能基准与实际用例<a hidden class="anchor" aria-hidden="true" href="#性能基准与实际用例">#</a></h2>
+<h3 id="资源使用比较">资源使用比较<a hidden class="anchor" aria-hidden="true" href="#资源使用比较">#</a></h3>
+<p>| 组件 | Docker | 原生（无模型） |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 内存 (RAM) | ~200 MB | ~50 MB |
 | 磁盘空间 (Disk) | ~500 MB（基础） | ~100 MB |
 | 启动时间 (Startup) | ~5 秒 | ~1 秒 |
-| GPU 通过式 | 支持 | 原生仅限（Metal） |</p><h3 id=深度研究性能>深度研究性能<a hidden class=anchor aria-hidden=true href=#深度研究性能>#</a></h3><p>Odysseus 的深度研究功能（来自阿里巴巴 Tongyi DeepResearch 的改编）可以执行多步骤的研究工作流：</p><pre tabindex=0><code>Research Task: &#34;Compare RAG vs. fine-tuning for enterprise QA&#34;
+| GPU 通过式 | 支持 | 原生仅限（Metal） |</p>
+<h3 id="深度研究性能">深度研究性能<a hidden class="anchor" aria-hidden="true" href="#深度研究性能">#</a></h3>
+<p>Odysseus 的深度研究功能（来自阿里巴巴 Tongyi DeepResearch 的改编）可以执行多步骤的研究工作流：</p>
+<pre tabindex="0"><code>Research Task: &#34;Compare RAG vs. fine-tuning for enterprise QA&#34;
 
 Step 1: Web search (SearXNG) → 15 sources
 Step 2: Read &amp; extract key points → 8 documents
 Step 3: Synthesize into report → 5-page summary
 Step 4: Visualize with charts → auto-generated
-</code></pre><p>这特别适用于研究人员、分析师以及需要从多个来源综合信息并生成结构化报告的人。</p><h3 id=模型比较模式>模型比较模式<a hidden class=anchor aria-hidden=true href=#模型比较模式>#</a></h3><p>比较功能允许您在旁边对不同模型进行盲 A/B 测试：</p><pre tabindex=0><code>Prompt: &#34;Write a Python binary search implementation&#34;
+</code></pre><p>这特别适用于研究人员、分析师以及需要从多个来源综合信息并生成结构化报告的人。</p>
+<h3 id="模型比较模式">模型比较模式<a hidden class="anchor" aria-hidden="true" href="#模型比较模式">#</a></h3>
+<p>比较功能允许您在旁边对不同模型进行盲 A/B 测试：</p>
+<pre tabindex="0"><code>Prompt: &#34;Write a Python binary search implementation&#34;
 
 Model A: [hidden] → Response
 Model B: [hidden] → Response
 
 User selects best response → rankings updated
-</code></pre><p>这消除了在评估哪种模型最适合您的用例时的品牌偏见。</p><h3 id=高级用法--生产强化>高级用法 / 生产强化<a hidden class=anchor aria-hidden=true href=#高级用法--生产强化>#</a></h3><h4 id=多用户设置>多用户设置<a hidden class=anchor aria-hidden=true href=#多用户设置>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Enable authentication (default)</span>
-</span></span><span style=display:flex><span>AUTH_ENABLED<span style=color:#f92672>=</span>true
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Set custom admin user</span>
-</span></span><span style=display:flex><span>ODYSSEUS_ADMIN_USER<span style=color:#f92672>=</span>yourusername
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Set admin password via .env</span>
-</span></span><span style=display:flex><span>ODYSSEUS_ADMIN_PASSWORD<span style=color:#f92672>=</span>secure-password
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># After first login, disable temporary password requirement</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># via Settings panel</span>
-</span></span></code></pre></div><h4 id=反向代理配置>反向代理配置<a hidden class=anchor aria-hidden=true href=#反向代理配置>#</a></h4><p>对于反向代理后的生产部署：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-nginx data-lang=nginx><span style=display:flex><span><span style=color:#66d9ef>server</span> {
-</span></span><span style=display:flex><span>    <span style=color:#f92672>listen</span> <span style=color:#ae81ff>443</span> <span style=color:#e6db74>ssl</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>server_name</span> <span style=color:#e6db74>ai.yourdomain.com</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate</span> <span style=color:#e6db74>/etc/letsencrypt/live/ai.yourdomain.com/fullchain.pem</span>;
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ssl_certificate_key</span> <span style=color:#e6db74>/etc/letsencrypt/live/ai.yourdomain.com/remote.key</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>location</span> <span style=color:#e6db74>/</span> {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_pass</span> <span style=color:#e6db74>http://127.0.0.1:7000</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Host</span> $host;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Real-IP</span> $remote_addr;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-For</span> $proxy_add_x_forwarded_for;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>X-Forwarded-Proto</span> $scheme;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_http_version</span> <span style=color:#ae81ff>1</span><span style=color:#e6db74>.1</span>;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Upgrade</span> $http_upgrade;
-</span></span><span style=display:flex><span>        <span style=color:#f92672>proxy_set_header</span> <span style=color:#e6db74>Connection</span> <span style=color:#e6db74>&#34;upgrade&#34;</span>;
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h4 id=用于生产的-docker-compose>用于生产的 Docker Compose<a hidden class=anchor aria-hidden=true href=#用于生产的-docker-compose>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.prod.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: odysseus: image</span>: <span style=color:#ae81ff>pewdiepie-archdaemon/odysseus:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;127.0.0.1:7000:7000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./data:/app/data</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>./config:/app/config</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>env_file</span>: <span style=color:#ae81ff>.env</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: reservations: devices: - driver</span>: <span style=color:#ae81ff>nvidia</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>count</span>: <span style=color:#ae81ff>1</span>
-</span></span><span style=display:flex><span>              <span style=color:#f92672>capabilities</span>: [<span style=color:#ae81ff>gpu]</span>
-</span></span></code></pre></div><h4 id=备份策略>备份策略<a hidden class=anchor aria-hidden=true href=#备份策略>#</a></h4><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Backup ChromaDB (memory) and configuration</span>
-</span></span><span style=display:flex><span>tar czf odysseus-backup-<span style=color:#66d9ef>$(</span>date +%Y%m%d<span style=color:#66d9ef>)</span>.tar.gz <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  data/ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  config/ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  .env <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ChromaDB data persists in: ./data/chroma/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># SQLite database: ./odysseus.db</span>
-</span></span></code></pre></div><h3 id=与其他替代方案的比较>与其他替代方案的比较<a hidden class=anchor aria-hidden=true href=#与其他替代方案的比较>#</a></h3><p>| 特性 | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><p>这消除了在评估哪种模型最适合您的用例时的品牌偏见。</p>
+<h3 id="高级用法--生产强化">高级用法 / 生产强化<a hidden class="anchor" aria-hidden="true" href="#高级用法--生产强化">#</a></h3>
+<h4 id="多用户设置">多用户设置<a hidden class="anchor" aria-hidden="true" href="#多用户设置">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Enable authentication (default)</span>
+</span></span><span style="display:flex;"><span>AUTH_ENABLED<span style="color:#f92672">=</span>true
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set custom admin user</span>
+</span></span><span style="display:flex;"><span>ODYSSEUS_ADMIN_USER<span style="color:#f92672">=</span>yourusername
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Set admin password via .env</span>
+</span></span><span style="display:flex;"><span>ODYSSEUS_ADMIN_PASSWORD<span style="color:#f92672">=</span>secure-password
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># After first login, disable temporary password requirement</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># via Settings panel</span>
+</span></span></code></pre></div><h4 id="反向代理配置">反向代理配置<a hidden class="anchor" aria-hidden="true" href="#反向代理配置">#</a></h4>
+<p>对于反向代理后的生产部署：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-nginx" data-lang="nginx"><span style="display:flex;"><span><span style="color:#66d9ef">server</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">listen</span> <span style="color:#ae81ff">443</span> <span style="color:#e6db74">ssl</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">server_name</span> <span style="color:#e6db74">ai.yourdomain.com</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate</span> <span style="color:#e6db74">/etc/letsencrypt/live/ai.yourdomain.com/fullchain.pem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ssl_certificate_key</span> <span style="color:#e6db74">/etc/letsencrypt/live/ai.yourdomain.com/remote.key</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">location</span> <span style="color:#e6db74">/</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_pass</span> <span style="color:#e6db74">http://127.0.0.1:7000</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Host</span> $host;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Real-IP</span> $remote_addr;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-For</span> $proxy_add_x_forwarded_for;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">X-Forwarded-Proto</span> $scheme;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_http_version</span> <span style="color:#ae81ff">1</span><span style="color:#e6db74">.1</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Upgrade</span> $http_upgrade;
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">proxy_set_header</span> <span style="color:#e6db74">Connection</span> <span style="color:#e6db74">&#34;upgrade&#34;</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="用于生产的-docker-compose">用于生产的 Docker Compose<a hidden class="anchor" aria-hidden="true" href="#用于生产的-docker-compose">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.prod.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: odysseus: image</span>: <span style="color:#ae81ff">pewdiepie-archdaemon/odysseus:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;127.0.0.1:7000:7000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./data:/app/data</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">./config:/app/config</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">env_file</span>: <span style="color:#ae81ff">.env</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: reservations: devices: - driver</span>: <span style="color:#ae81ff">nvidia</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">count</span>: <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>              <span style="color:#f92672">capabilities</span>: [<span style="color:#ae81ff">gpu]</span>
+</span></span></code></pre></div><h4 id="备份策略">备份策略<a hidden class="anchor" aria-hidden="true" href="#备份策略">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Backup ChromaDB (memory) and configuration</span>
+</span></span><span style="display:flex;"><span>tar czf odysseus-backup-<span style="color:#66d9ef">$(</span>date +%Y%m%d<span style="color:#66d9ef">)</span>.tar.gz <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  data/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  config/ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  .env <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ChromaDB data persists in: ./data/chroma/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># SQLite database: ./odysseus.db</span>
+</span></span></code></pre></div><h3 id="与其他替代方案的比较">与其他替代方案的比较<a hidden class="anchor" aria-hidden="true" href="#与其他替代方案的比较">#</a></h3>
+<p>| 特性 | Odysseus | ChatGPT | Claude | NotebookLM | Open WebUI |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 自托管 | ✅ 完全 | ❌ 只限云端 | ❌ 只限云端 | ❌ 只限云端 | ✅ 部分 |
 | 内置代理 | ✅ OpenCode/MCP | ✅ GPTs | ✅ Computer Use | ❌ 无 | ✅ 局部 |
 | 深度研究 | ✅ 内置 | ✅ Plus 版本仅限 | ✅ | ✅ 内置 | ❌ 无 |
@@ -234,9 +599,63 @@ User selects best response → rankings updated
 | 本地模型 | ✅ vLLM/llama.cpp | ❌ 无 | ❌ 无 | ❌ 无 | ✅ 部分 |
 | 内存持久化 | ✅ ChromaDB | ✅ Plus 版本仅限 | ❌ 无 | ❌ 无 | ✅ 部分 |
 | 移动 PWA | ✅ 完全 | ✅ 是 | ✅ 是 | ✅ 是 | ✅ 是 |
-| 成本 | 免费（自托管） | $20/月 | $20/月 | 免费 | 免费 |</p><h3 id=限制--实事评估>限制 / 实事评估<a hidden class=anchor aria-hidden=true href=#限制--实事评估>#</a></h3><p>尽管 Odysseus 非常出色，但也有一些需要了解的限制：</p><ol><li><p><strong>新项目（创建于 2026 年 5 月 31 日）</strong> — 尽管有超过 65,000 星，Odysseus 极其年轻。预期会出现错误、中断变更和不完整的文档。<code>dev</code> 分支是默认分支，但“可能不稳定”。</p></li><li><p><strong>GPU 支持侧重于 Docker/NVIDIA</strong> — AMD ROCm 支持存在，但需要手动 <code>.env</code> 配置。Apple Silicon 需要原生安装（不支持 Docker GPU）。</p></li><li><p><strong>尚未发布官方容器镜像</strong> — 您必须从源代码构建（<code>git clone</code> + ````docker compose build```）。一个官方的 Docker Hub 镜像将简化部署过程。</p></li><li><p><strong>Cookbook 模型选择有限</strong> — 虽然 VRAM 意识强，但 CookBook 从 HuggingFace 下载模型可能对大型模型下载速度较慢。没有内置模型注册表和质量评分。</p></li><li><p><strong>代理功能仍在成熟中</strong> — 基于 OpenCode 构建，代理可以使用工具，但缺乏更成熟的框架所具有的广泛插件生态系统。</p></li><li><p><strong>移动体验为“响应式”</strong> — 项目声明它在手机上看起来运行良好，但由于是基于 Web 的应用，因此不是真正的原生移动体验。</p></li></ol><h3 id=常见问题解答>常见问题解答<a hidden class=anchor aria-hidden=true href=#常见问题解答>#</a></h3><p><strong>Q: 我可以在 Raspberry Pi 上运行 Odysseus 吗？</strong></p><p>A: 技术上可以，但本地模型服务将不切实际。您可以连接到远程 API 提供商（如 OpenAI、Anthropic 或 OpenRouter）或远程模型服务器。基于 Chromium 的前端在 ARM 设备上的性能可能因内存限制而受到影响。</p><p><strong>Q: Odysseus 是否已经准备好用于团队使用？</strong></p><p>A: 截至 2026 年 6 月，该项目尚未达到 1.0 版本且正在积极开发中。它非常适合个人使用和测试，但团队部署应预期偶尔出现中断变更。多用户身份验证系统存在，但功能有限（没有 RBAC 或 SSO）。</p><p><strong>Q: 如何在不使用 CookBook 的情况下连接我的本地模型？</strong></p><p>A: 您可以使用 Ollama 或 vLLM 作为您的模型提供商，并在 Odysseus 设置中配置 API 端点。CookBook 是可选的，主要是为了下载和通过 VRAM 意识强的推荐来提供模型。</p><p><strong>Q: Odysseus 支持流式响应吗？</strong></p><p>A: 是的，所有聊天和代理响应都通过 WebSocket 连接实时流式传输。前端支持流式 UI 动画以实现类似于 ChatGPT 的体验。</p><p><strong>Q: 我可以不用任何 API 密钥使用 Odysseus 吗？</strong></p><p>A: 可以 — 如果您有 GPU，可以通过 vLLM 或 llama.cpp（通过 CookBook）在本地提供模型服务。对于仅 CPU 用户，Ollama 提供免费的本地模型。API 仅用需要来自 OpenAI、Anthropic 或 OpenRouter 的密钥。</p><p><strong>Q: Odysseus 如何与 Gmail 集成？</strong></p><p>A: 您需要在 Google 账户设置中创建一个“应用专用密码”（在安全 > 双重验证 > 应用专用密码下）。使用这个 16 位密码而不是您的常规 Gmail 密码进行 IMAP 配置。
-Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历管理以及本地模型服务整合到一个以隐私为先的工作空间中。该项目拥有超过 65,000 颗星，仅创建几周时间就广受用户欢迎，这些用户希望在使用 ChatGPT 接口的同时避免数据交换的代价。</p><p>基于 Docker 的安装使其即使对于缺乏深厚 Linux 知识的用户也易于访问，而原生安装和 Apple Silicon 支持则为那些更喜欢直接在其硬件上运行的用户提供选择。</p><p><strong>亲自尝试 Odysseus：</strong> <a href=https://github.com/pewdiepie-archdaemon/odysseus>github.com/pewdiepie-archdaemon/odysseus</a></p><p><strong>相关文章：</strong></p><ul><li><a href=https://dibi8.com/agentmemory-persistent-memory-ai-coding-agents>AgentMemory</a> — 为 AI 编码代理提供持久化内存</li><li><a href=https://dibi8.com/open-notebook-open-source-notebooklm-alternative-15-ai-providers>Open Notebook</a> — 提供 15+ AI 供应商的开源 NotebookLM 替代品</li></ul><p><strong>参考资料及进一步阅读：</strong></p><ul><li>官方文档: <a href=https://pewdiepie-archdaemon.github.io/odysseus/>https://pewdiepie-archdaemon.github.io/odysseus/</a></li><li>GitHub 仓库: <a href=https://github.com/pewdiepie-archdaemon/odysseus>https://github.com/pewdiepie-archdaemon/odysseus</a></li><li>烹饪指南（模型选择）: <a href=https://github.com/AlexsJones/llmfit>https://github.com/AlexsJones/llmfit</a></li><li>深度研究（改编自）: <a href=https://github.com/Alibaba-NLP/DeepResearch>https://github.com/Alibaba-NLP/DeepResearch</a></li><li>代理框架（OpenCode）: <a href=https://github.com/anomalyco/opencode>https://github.com/anomalyco/opencode</a></li></ul><hr><p>加入我们的社区，了解更多 AI 工具深度解析：<a href=https://t.me/DIBI8_Group>t.me/DIBI8_Group</a></p><p><strong>免责声明：</strong> 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 成本 | 免费（自托管） | $20/月 | $20/月 | 免费 | 免费 |</p>
+<h3 id="限制--实事评估">限制 / 实事评估<a hidden class="anchor" aria-hidden="true" href="#限制--实事评估">#</a></h3>
+<p>尽管 Odysseus 非常出色，但也有一些需要了解的限制：</p>
+<ol>
+<li>
+<p><strong>新项目（创建于 2026 年 5 月 31 日）</strong> — 尽管有超过 65,000 星，Odysseus 极其年轻。预期会出现错误、中断变更和不完整的文档。<code>dev</code> 分支是默认分支，但“可能不稳定”。</p>
+</li>
+<li>
+<p><strong>GPU 支持侧重于 Docker/NVIDIA</strong> — AMD ROCm 支持存在，但需要手动 <code>.env</code> 配置。Apple Silicon 需要原生安装（不支持 Docker GPU）。</p>
+</li>
+<li>
+<p><strong>尚未发布官方容器镜像</strong> — 您必须从源代码构建（<code>git clone</code> + ````docker compose build```）。一个官方的 Docker Hub 镜像将简化部署过程。</p>
+</li>
+<li>
+<p><strong>Cookbook 模型选择有限</strong> — 虽然 VRAM 意识强，但 CookBook 从 HuggingFace 下载模型可能对大型模型下载速度较慢。没有内置模型注册表和质量评分。</p>
+</li>
+<li>
+<p><strong>代理功能仍在成熟中</strong> — 基于 OpenCode 构建，代理可以使用工具，但缺乏更成熟的框架所具有的广泛插件生态系统。</p>
+</li>
+<li>
+<p><strong>移动体验为“响应式”</strong> — 项目声明它在手机上看起来运行良好，但由于是基于 Web 的应用，因此不是真正的原生移动体验。</p>
+</li>
+</ol>
+<h3 id="常见问题解答">常见问题解答<a hidden class="anchor" aria-hidden="true" href="#常见问题解答">#</a></h3>
+<p><strong>Q: 我可以在 Raspberry Pi 上运行 Odysseus 吗？</strong></p>
+<p>A: 技术上可以，但本地模型服务将不切实际。您可以连接到远程 API 提供商（如 OpenAI、Anthropic 或 OpenRouter）或远程模型服务器。基于 Chromium 的前端在 ARM 设备上的性能可能因内存限制而受到影响。</p>
+<p><strong>Q: Odysseus 是否已经准备好用于团队使用？</strong></p>
+<p>A: 截至 2026 年 6 月，该项目尚未达到 1.0 版本且正在积极开发中。它非常适合个人使用和测试，但团队部署应预期偶尔出现中断变更。多用户身份验证系统存在，但功能有限（没有 RBAC 或 SSO）。</p>
+<p><strong>Q: 如何在不使用 CookBook 的情况下连接我的本地模型？</strong></p>
+<p>A: 您可以使用 Ollama 或 vLLM 作为您的模型提供商，并在 Odysseus 设置中配置 API 端点。CookBook 是可选的，主要是为了下载和通过 VRAM 意识强的推荐来提供模型。</p>
+<p><strong>Q: Odysseus 支持流式响应吗？</strong></p>
+<p>A: 是的，所有聊天和代理响应都通过 WebSocket 连接实时流式传输。前端支持流式 UI 动画以实现类似于 ChatGPT 的体验。</p>
+<p><strong>Q: 我可以不用任何 API 密钥使用 Odysseus 吗？</strong></p>
+<p>A: 可以 — 如果您有 GPU，可以通过 vLLM 或 llama.cpp（通过 CookBook）在本地提供模型服务。对于仅 CPU 用户，Ollama 提供免费的本地模型。API 仅用需要来自 OpenAI、Anthropic 或 OpenRouter 的密钥。</p>
+<p><strong>Q: Odysseus 如何与 Gmail 集成？</strong></p>
+<p>A: 您需要在 Google 账户设置中创建一个“应用专用密码”（在安全 &gt; 双重验证 &gt; 应用专用密码下）。使用这个 16 位密码而不是您的常规 Gmail 密码进行 IMAP 配置。
+Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊天、代理自动化、深度研究、文档编辑、邮件筛选、日历管理以及本地模型服务整合到一个以隐私为先的工作空间中。该项目拥有超过 65,000 颗星，仅创建几周时间就广受用户欢迎，这些用户希望在使用 ChatGPT 接口的同时避免数据交换的代价。</p>
+<p>基于 Docker 的安装使其即使对于缺乏深厚 Linux 知识的用户也易于访问，而原生安装和 Apple Silicon 支持则为那些更喜欢直接在其硬件上运行的用户提供选择。</p>
+<p><strong>亲自尝试 Odysseus：</strong> <a href="https://github.com/pewdiepie-archdaemon/odysseus">github.com/pewdiepie-archdaemon/odysseus</a></p>
+<p><strong>相关文章：</strong></p>
+<ul>
+<li><a href="https://dibi8.com/agentmemory-persistent-memory-ai-coding-agents">AgentMemory</a> — 为 AI 编码代理提供持久化内存</li>
+<li><a href="https://dibi8.com/open-notebook-open-source-notebooklm-alternative-15-ai-providers">Open Notebook</a> — 提供 15+ AI 供应商的开源 NotebookLM 替代品</li>
+</ul>
+<p><strong>参考资料及进一步阅读：</strong></p>
+<ul>
+<li>官方文档: <a href="https://pewdiepie-archdaemon.github.io/odysseus/">https://pewdiepie-archdaemon.github.io/odysseus/</a></li>
+<li>GitHub 仓库: <a href="https://github.com/pewdiepie-archdaemon/odysseus">https://github.com/pewdiepie-archdaemon/odysseus</a></li>
+<li>烹饪指南（模型选择）: <a href="https://github.com/AlexsJones/llmfit">https://github.com/AlexsJones/llmfit</a></li>
+<li>深度研究（改编自）: <a href="https://github.com/Alibaba-NLP/DeepResearch">https://github.com/Alibaba-NLP/DeepResearch</a></li>
+<li>代理框架（OpenCode）: <a href="https://github.com/anomalyco/opencode">https://github.com/anomalyco/opencode</a></li>
+</ul>
+<hr>
+<p>加入我们的社区，了解更多 AI 工具深度解析：<a href="https://t.me/DIBI8_Group">t.me/DIBI8_Group</a></p>
+<p><strong>免责声明：</strong> 本文仅作参考之用。在生产环境中运行第三方软件之前，请务必审查源代码。关联声明：上述某些链接可能包含关联代码。我们可能会在不增加您额外成本的情况下获得佣金。</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;奥德赛：自我托管AI工作站，内置10余种工具——6.5万颗星——完整安装指南2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-06-09&rdquo;,
@@ -250,18 +669,186 @@ Odysseus 是 GitHub 上最具雄心的自托管 AI 项目之一——它将聊�
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research%22>https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research%22">https://dibi8.com/zh/resources/odysseus-self-hosted-ai-workspace-chat-agent-deep-research"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>oh-my-pi</a></li><li><a href=/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>academic-research-skills</a></li><li><a href=/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>last30days-skill-ai-agent-research-engine-social-media</a></li><li><a href=/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>last30days-skill-ai-agent-research-engine-social-media</a></li><li><a href=/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/>last30days-skill-ai-agent-research-engine-social-media</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/ohmyzsh/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">oh-my-pi</a></li>
+<li><a href="/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">academic-research-skills</a></li>
+<li><a href="/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">last30days-skill-ai-agent-research-engine-social-media</a></li>
+<li><a href="/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">last30days-skill-ai-agent-research-engine-social-media</a></li>
+<li><a href="/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research/">last30days-skill-ai-agent-research-engine-social-media</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/ohmyzsh/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

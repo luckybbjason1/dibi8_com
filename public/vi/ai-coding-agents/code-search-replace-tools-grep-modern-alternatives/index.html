@@ -1,162 +1,655 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"{\u003c/* resource-info */\u003e}\nTìm kiếm trong codebase là một trong những thao tác thường xuyên nhất của lập trình viên. Dù là truy tìm hàm được gọi ở đâu, tìm kiếm TODO cần xử lý, hay refactor tên biến trên toàn bộ dự án — một công cụ tìm kiếm nhanh và đáng tin cậy có thể tiết kiệm hàng giờ mỗi tuần.\nTừ ```grep— công cụ 50 năm tuổi có mặt trên mọi hệ thống Unix — đến [ripgrep](https://github.com/BurntSushi/ripgrep) viết bằng Rust hiện đại, [fzf](https://github.com/junegunn/fzf) mang tính tương tác, và [sd](https://github.com/chmln/sd) thay thếsed```` — hệ sinh thái công cụ tìm kiếm code đã phát triển vượt bậc. Bài viết này dẫn bạn qua lộ trình tiến hóa của công cụ tìm kiếm code và giúp xây dựng workflow tối ưu.\nTại Sao grep Không Còn Đủ Cho Developer? grep là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, grep gặp phải nhiều hạn chế: - Không tự động đệ quy: Phải thêm flag -r hoặc kết hợp với find\nKhông tôn trọng .gitignore: Tìm kiếm vào cả node_modules/, .git/, vendor/, tạo ra kết quả nhiễu Tốc độ chậm hơn: Không song song hóa, không tối ưu cho large codebase Xử lý Unicode kém: Gặp vấn đề với file UTF-8 có BOM Output không tối ưu: Cú pháp flags phức tạp, màu sắc cần bật thủ công Các công cụ hiện đại sinh ra để giải quyết chính xác những vấn đề này, trong khi vẫn giữ nguyên sức mạnh của regex.\ngrep: Nền Tảng Bất Diệt Cú Pháp Cơ Bản Và Các Flags Thông Dụng # Tìm kiếm đơn giản grep \"pattern\" file.txt # Tìm đệ quy trong thư mục grep -r \"pattern\" ./src/ # Hiển thị số dòng, tên file, màu sắc grep -rn --color=auto \"pattern\" ./src/ # Tìm toàn bộ từ (word boundary) grep -w \"class\" *.js # Bỏ qua case grep -i \"error\" log.txt # Đếm số kết quả grep -c \"TODO\" *.py # Tìm file KHÔNG chứa pattern grep -L \"pattern\" *.txt Khi Nào grep Vẫn Là Lựa Chọn Đúng? Scripting và pipeline: grep có mặt trên mọi hệ thống Unix, không cần cài đặt Simple file search: Tìm trong một vài file, không cần .gitignore Remote servers: SSH vào server không có ripgrep hoặc ag cài sẵn POSIX compliance: Khi cần đảm bảo script chạy trên mọi nền tảng ack: grep Dành Riêng Cho Developer ack (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm “developer-friendly”: - Tự động đệ quy: Không cần flag -r\nTôn trọng .gitignore: Tự động bỏ qua file trong .gitignore và các thư mục như .git/, node_modules/ Nhận diện file type: --js tìm trong file JavaScript, --py cho Python, --html cho HTML Output có màu: Mặc định highlight kết quả Hiển thị số dòng: Mặc định # Cài đặt cpan App::Ack # macOS/Linux có Perl brew install ack # macOS với Homebrew # Ví dụ sử dụng ack \"class User\" --js # Tìm trong file JavaScript ack \"def \" --py -C 2 # Tìm trong Python, hiển thị 2 dòng context ack \"TODO|FIXME\" # Tìm TODO hoặc FIXME ack đặt nền móng cho thế hệ công cụ tiếp theo, mặc dù hiện tại đã bị vượt mặt về tốc độ.\nThe Silver Searcher (ag): Tốc Độ Lên Ngôi The Silver Searcher (ag) được viết bằng C, nhanh hơn ack từ 3-5 lần nhờ song song hóa và tối ưu hệ thống file. ag giữ lại tất cả ưu điểm của ack và bổ sung tốc độ.\n# Cài đặt brew install the_silver_searcher # macOS apt install silversearcher-ag # Ubuntu/Debian pacman -S the_silver_searcher # Arch # Cú pháp tương tự ack ag \"pattern\" # Tìm đệ quy, tôn trọng .gitignore ag -i \"pattern\" # Không phân biệt hoa thường ag --js \"pattern\" # Chỉ tìm trong JavaScript ag -l \"pattern\" # Chỉ liệt kê tên file ag -C 3 \"pattern\" # Hiển thị 3 dòng context Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripgrep — commit cuối cùng thường cách đây nhiều tháng.\nripgrep (rg): Tiêu Chuẩn Mới Tại Sao ripgrep Thống Trị Code Search Ngày Nay? ripgrep (rg) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. Tốc độ cực nhanh: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks 2. Song song hóa tự động: Sử dụng tất cả CPU core có sẵn 3. Smart defaults: Đệ quy, hiển thị số dòng, tôn trọng .gitignore, hidden files — tất cả là mặc định 4. Unicode support tuyệt vờii: Xử lý đa ngôn ngữ tốt hơn bất kỳ đối thủ nào 5. Type filtering linh hoạt: --type, --type-add cho phép định nghĩa loại file tùy chỉnh 6. Configuration file: Hỗ trợ .ripgreprc để lưu cấu hình mặc định 7. Integration hoàn hảo: Backend search cho VS Code, fzf, Vim, Emacs\nBảng Benchmark: grep vs ack vs ag vs ripgrep Công cụ Ngôn ngữ Kích thước code tìm kiếm Thờii gian tương đối Đệ quy mặc định .gitignore Unicode grep C Linux kernel (~3GB) 1x (baseline) Không Không Hạn chế ack Perl Linux kernel ~0.5x grep (chậm hơn) Có Có Tốt ag C Linux kernel ~0.2x grep Có Có Tốt ripgrep Rust Linux kernel ~0.1x grep (10x nhanh) Có Có Xuất sắc Dữ liệu benchmark từ ripgrep GitHub repository, thử nghiệm tìm kiếm fn run trong Linux kernel source tree.\nCác Pattern Tìm Kiếm Thông Dụng Với ripgrep # Tìm kiếm cơ bản — đệ quy, tôn trọng .gitignore mặc định rg \"function name\" # Tìm trong loại file cụ thể (js, py, rs, go...) rg \"class User\" --type js # Hoặc nhiều loại file rg \"import\" -t py -t js # Hiển thị context (dòng trước/sau) rg \"TODO\" -C 3 # Chỉ liệt kê tên file (không nội dung) rg \"pattern\" -l # Tìm với regex rg \"^export\\s+(const|let|function)\" # Tìm và thay thế (kết hợp với sd hoặc perl) rg \"oldPattern\" -l | xargs sd \"oldPattern\" \"newPattern\" # Tìm trong file ẩn (không .gitignore) rg \"pattern\" --hidden # Thêm loại file tùy chỉnh trong .ripgreprc --type-add web:*.{html,css,js,jsx,ts,tsx,vue} File Cấu Hình .ripgreprc # ~/.ripgreprc --max-columns=150 --max-columns-preview --type-add web:*.{html,css,js,jsx,ts,tsx,vue,svelte} --smart-case --follow --hidden --glob=!.git/ --glob=!node_modules/ --glob=!vendor/ --glob=!.next/ --glob=!dist/ Kết hợp với biến môi trường: export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc\nfzf: Cách Mạng Tìm Kiếm Tương Tác fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng fzf khác biệt với ripgrep ở chỗ: fzf không quét file system. Thay vào đó, fzf nhận một danh sách đầu vào (từ stdin) và cho phép bạn lọc tương tác theo thờii gian thực khi gõ. Điều này tạo ra workflow tìm kiếm hoàn hảo: một công cụ (rg, fd, find) tạo danh sách, fzf giúp bạn chọn từ danh sách đó.\nCombo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo # Tìm file và xem preview với syntax highlighting rg --files | fzf --preview 'bat --style=numbers --color=always {}' # Tìm kiếm nội dung file với preview rg --line-number --no-heading --smart-case \"pattern\" | \\ fzf --delimiter ':' \\ --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' # Duyệt Git branches git branch | fzf --preview ' git log --oneline --graph --decorate {1}' # Duyệt Git commits git log --oneline | fzf --preview ' git show --stat {1}' Key Bindings Mặc Định Phím tắt Chức năng Ctrl+T Chèn file đã chọn vào dòng lệnh Alt+C Chuyển đến thư mục đã chọn (cd) Ctrl+R Tìm kiếm tương tác trong lịch sử lệnh Tab Chọn nhiều mục (multi-select) Ctrl+/ Chuyển đổi giữa match chính xác và fuzzy sd: Thay Thế Find \u0026 Replace Trực Quan Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ? sd là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn sed đáng kể: | Tác vụ | sed | sd | |——–|—–|—–| | Thay thế đơn giản | sed 's/old/new/g' | sd 'old' 'new' | | Thay thế file | sed -i 's/old/new/g' file | sd 'old' 'new' file | | Thay thế đệ quy | find . -exec sed -i 's/old/new/g' {} + | sd 'old' 'new' **/*.rs | | Regex phức tạp | sed 's/\\(foo\\)\\(bar\\)/\\2\\1/g' | sd '(foo)(bar)' '$2$1' | | Preview trước khi áp dụng | Không có | sd -p 'old' 'new' file |\nCác Tính Năng Nổi Bật CủA sd Không cần escape dấu /: sd 'http://localhost:3000' 'https://api.example.com' hoạt động bình thường Preview mode (-p): Xem thay đổi trước khi áp dụng — cực kỳ quan trọng cho refactoring Recursive: sd 'pattern' 'replacement' **/*.js thay thế tất cả file JavaScript Syntax regex hiện đại: Sử dụng Rust regex engine, hỗ trợ capture groups với $1, $2 So Sánh: sd vs sed vs perl -pi # Thay thế đơn giản — sd rõ ràng hơn sed -i 's/old/new/g' file.txt # sed sd 'old' 'new' file.txt # sd — đơn giản hơn perl -pi -e 's/old/new/g' file.txt # perl # Thay thế có dấu / trong pattern sed -i 's/http:\\/\\/localhost/http:\\/\\/127.0.0.1/g' file # sed — escape hỗn loạn sd 'http://localhost' 'http://127.0.0.1' file # sd — không cần escape # Thay thế recursive trong nhiều file find . -name \"*.js\" -exec sed -i 's/var/const/g' {} + # sed sd 'var' 'const' **/*.js # sd Tìm Kiếm Trong IDE Và Editor Hiện Đại VS Code: Global Search Với Regex VS Code sử dụng ripgrep làm backend cho tính năng global search (Ctrl+Shift+F), hỗ trợ regex, include/exclude patterns, và replace across files. Điểm mạnh: tích hợp sâu với refactoring — sau khi tìm, bạn có thể rename symbol hoặc extract function ngay lập tức.\nJetBrains: Structural Search And Replace Các IDE của JetBrains (IntelliJ IDEA, PyCharm, WebStorm) cung cấp Structural Search and Replace (SSR) — tìm kiếm dựa trên cấu trúc cú pháp AST thay vì text thuần. Ví dụ, bạn có thể tìm “tất cả vòng lặp for có 3 statements trong body” hoặc “tất cả hàm gọi method X với argument kiểu String” — những truy vấn không thể thực hiện bằng regex.\nNeoVim: Telescope Với Live Grep Trong hệ sinh thái NeoVim, Telescope kết hợp với ripgrep tạo ra trải nghiệm tìm kiếm code tuyệt vờii ngay trong editor. Telescope live_grep tìm kiếm toàn bộ project theo thờii gian thực khi bạn gõ.\nCác Nền Tảng Tìm Kiếm Code Quy Mô Lớn Sourcegraph: Nền Tảng Trí Tuệ Code Sourcegraph là nền tảng tìm kiếm và phân tích code dành cho doanh nghiệp, hỗ trợ tìm kiếm across hàng nghìn repository. Tính năng nổi bật: code intelligence (hover để xem definition, references), batch changes (refactoring trên quy mô lớn), và Code Insights (theo dõi xu hướng code theo thờii gian). Sourcegraph miễn phí cho team nhỏ (dưới 10 users); gói Enterprise có giá tùy chỉnh.\nGitHub Code Search GitHub cung cấp Code Search mới với regex support, symbol search, và path filtering. Ví dụ: language:rust repo:tokio-rs/tokio fn spawn tìm hàm spawn trong repository tokio, giới hạn file Rust. Đây là công cụ miễn phí và mạnh mẽ cho việc tìm kiếm trong mã nguồn mở.\nLivegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ Livegrep là công cụ tự host cho phép tìm kiếm regex trên codebase lớn (hàng triệu dòng code) gần như tức thờii. Được sử dụng nội bộ tại nhiều công ty lớn như Stripe và Google. Livegrep phù hợp cho tổ chức có codebase monorepo lớn cần tìm kiếm nhanh.\nCác Workflow Tìm Kiếm Thực Tế Workflow Hàng Ngày: rg + fzf + bat # 1. Tìm kiếm file eza --files | fzf --preview 'bat --style=numbers --color=always {}' # 2. Tìm kiếm nội dung grep_func() { rg --line-number --no-heading --color=always \"$1\" | \\ fzf --ansi --delimiter ':' --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' } # 3. Xem nội dung file cat() { bat \"$@\"; } Workflow Refactoring Hàng Loạt: rg + sd # Bước 1: Tìm tất cả file chứa pattern cần thay đổi rg \"oldFunctionName\" -l # Bước 2: Xem preview thay đổi sd -p \"oldFunctionName\" \"newFunctionName\" $(rg \"oldFunctionName\" -l) # Bước 3: Áp dụng thay đổi sd \"oldFunctionName\" \"newFunctionName\" $(rg \"oldFunctionName\" -l) # Bước 4: Kiểm tra bằng test npm test Tìm Kiếm Lịch Sử Git # Tìm commit thêm/xóa một dòng code cụ thể git log -S \"function name\" --oneline # Tìm commit thay đổi một pattern regex git log -G \"pattern\" --oneline # Tìm trong tất cả các branch git grep \"pattern\" $( git branch -a | cut -c3- ) # Tìm khi một file được đề cập git log --all --full-history -- \"**/config.ts\" Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. ripgrep (rg): Tìm kiếm code siêu tốc trên toàn bộ codebase 2. fzf: Lọc và chọn tương tác từ bất kỳ danh sách nào 3. sd: Thay thế text đơn giản, trực quan hơn sed\nKết hợp ba công cụ này với bat (cat nâng cao) tạo ra workflow tìm kiếm và duyệt code mượt mà mà không cần rờii terminal. Bổ sung GitHub Code Search hoặc Sourcegraph khi cần tìm kiếm across nhiều repository hoặc codebase monorepo khổng lồ.\nTương lai của code search đang hướng về AI-powered search — các công cụ như GitHub Copilot Chat cho phép tìm kiếm bằng ngôn ngữ tự nhiên (“tìm hàm xử lý authentication trong project này”). Tuy nhiên, công cụ CLI truyền thống vẫn sẽ giữ vị trí không thể thay thế nhờ tốc độ, độ tin cậy, và khả năng tích hợp vào workflow tự động hóa.\nFAQ ripgrep có nhanh hơn grep không? Có, ripgrep nhanh hơn grep khoảng 10 lần trong hầu hết các tình huống tìm kiếm codebase thực tế. Sự khác biệt đến từ: (1) ripgrep song song hóa mặc định sử dụng nhiều CPU core; (2) ripgrep tôn trọng .gitignore nên quét ít file hơn; (3) ripgrep được viết bằng Rust với memory management tối ưu. Tuy nhiên, grep vẫn có mặt trên mọi hệ thống và không cần cài đặt.\nCông cụ nào tốt nhất để tìm kiếm code trong nhiều file? ripgrep (rg) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều file nhờ tốc độ nhanh, tôn trọng .gitignore, và cú pháp đơn giản. Kết hợp với fzf để có trải nghiệm tương tác. Nếu cần tìm kiếm across nhiều repository, GitHub Code Search hoặc Sourcegraph là lựa chọn phù hợp.\nLàm thế nào để thay thế text trong nhiều file từ dòng lệnh? Sử dụng sd cho cú pháp đơn giản nhất: sd \"oldText\" \"newText\" $(rg \"oldText\" -l). Lệnh rg -l liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag -p (preview) trước để xem thay đổi: sd -p \"old\" \"new\" $(rg \"old\" -l). Nếu không có sd, dùng ````perl -pi -e ’s/old/new/g\" $(rg “old” -l)```.\nCó thể dùng ripgrep với VS Code không? VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc định (global search và file search). Bạn không cần cấu hình gì thêm. Trong terminal tích hợp của VS Code, bạn có thể cài ripgrep và sử dụng trực tiếp. Ngoài ra, extension “ripgrep” cho phép tìm kiếm nâng cao với các tùy chọn ripgrep từ command palette.\nack, ag và rg khác nhau như thế nào? Đây là ba thế hệ công cụ tìm kiếm code: ack (Perl, ~2006) là ngườii tiên phong với .gitignore support và file type detection; ag — The Silver Searcher (C, ~2011) nhanh hơn ack 3-5x nhờ song song hóa; ripgrep (Rust, ~2016) nhanh hơn tất cả, hỗ trợ Unicode tốt hơn, và được bảo trì tích cực nhất. Ngày nay, ripgrep là lựa chọn được khuyến nghị cho hầu hết use case.\nTài Liệu Tham Khảo ripgrep GitHub Repository fzf GitHub Repository sd GitHub Repository ack — Beyond grep The Silver Searcher GitHub Sourcegraph GitHub Code Search Livegrep GitHub Repository Hạ Tầng Đề Xuất Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - DigitalOcean — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.\nHTStack — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây. Hostinger — VPS giá tốt cho thị trường Việt Nam. Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd và Các Lựa Chọn Thay Thế Hiện Đại”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives\" } } ","wordCount":"2836","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/>En</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#t%e1%ba%a1i-sao-grep-kh%c3%b4ng-c%c3%b2n-%c4%91%e1%bb%a7-cho-developer aria-label="Tại Sao grep Không Còn Đủ Cho Developer?">Tại Sao grep Không Còn Đủ Cho Developer?</a></li><li><a href=#grep-n%e1%bb%81n-t%e1%ba%a3ng-b%e1%ba%a5t-di%e1%bb%87t aria-label="grep: Nền Tảng Bất Diệt">grep: Nền Tảng Bất Diệt</a><ul><li><a href=#c%c3%ba-ph%c3%a1p-c%c6%a1-b%e1%ba%a3n-v%c3%a0-c%c3%a1c-flags-th%c3%b4ng-d%e1%bb%a5ng aria-label="Cú Pháp Cơ Bản Và Các Flags Thông Dụng">Cú Pháp Cơ Bản Và Các Flags Thông Dụng</a></li><li><a href=#khi-n%c3%a0o-grep-v%e1%ba%abn-l%c3%a0-l%e1%bb%b1a-ch%e1%bb%8dn-%c4%91%c3%bang aria-label="Khi Nào grep Vẫn Là Lựa Chọn Đúng?">Khi Nào grep Vẫn Là Lựa Chọn Đúng?</a></li></ul></li><li><a href=#ack-grep-d%c3%a0nh-ri%c3%aang-cho-developer aria-label="ack: grep Dành Riêng Cho Developer">ack: grep Dành Riêng Cho Developer</a></li><li><a href=#the-silver-searcher-ag-t%e1%bb%91c-%c4%91%e1%bb%99-l%c3%aan-ng%c3%b4i aria-label="The Silver Searcher (ag): Tốc Độ Lên Ngôi">The Silver Searcher (ag): Tốc Độ Lên Ngôi</a></li><li><a href=#ripgrep-rg-ti%c3%aau-chu%e1%ba%a9n-m%e1%bb%9bi aria-label="ripgrep (rg): Tiêu Chuẩn Mới">ripgrep (rg): Tiêu Chuẩn Mới</a><ul><li><a href=#t%e1%ba%a1i-sao-ripgrep-th%e1%bb%91ng-tr%e1%bb%8b-code-search-ng%c3%a0y-nay aria-label="Tại Sao ripgrep Thống Trị Code Search Ngày Nay?">Tại Sao ripgrep Thống Trị Code Search Ngày Nay?</a></li><li><a href=#b%e1%ba%a3ng-benchmark-grep-vs-ack-vs-ag-vs-ripgrep aria-label="Bảng Benchmark: grep vs ack vs ag vs ripgrep">Bảng Benchmark: grep vs ack vs ag vs ripgrep</a></li><li><a href=#c%c3%a1c-pattern-t%c3%acm-ki%e1%ba%bfm-th%c3%b4ng-d%e1%bb%a5ng-v%e1%bb%9bi-ripgrep aria-label="Các Pattern Tìm Kiếm Thông Dụng Với ripgrep">Các Pattern Tìm Kiếm Thông Dụng Với ripgrep</a></li><li><a href=#file-c%e1%ba%a5u-h%c3%acnh-ripgreprc aria-label="File Cấu Hình .ripgreprc">File Cấu Hình .ripgreprc</a></li></ul></li><li><a href=#fzf-c%c3%a1ch-m%e1%ba%a1ng-t%c3%acm-ki%e1%ba%bfm-t%c6%b0%c6%a1ng-t%c3%a1c aria-label="fzf: Cách Mạng Tìm Kiếm Tương Tác">fzf: Cách Mạng Tìm Kiếm Tương Tác</a><ul><li><a href=#fzf-kh%c3%b4ng-ph%e1%ba%a3i-c%c3%b4ng-c%e1%bb%a5-t%c3%acm-ki%e1%ba%bfm--n%c3%b3-l%c3%a0-cu%e1%bb%99c-c%c3%a1ch-m%e1%ba%a1ng aria-label="fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng">fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng</a></li><li><a href=#combo-ripgrep--fzf--bat-workflow-t%c3%acm-ki%e1%ba%bfm-ho%c3%a0n-h%e1%ba%a3o aria-label="Combo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo">Combo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo</a></li><li><a href=#key-bindings-m%e1%ba%b7c-%c4%91%e1%bb%8bnh aria-label="Key Bindings Mặc Định">Key Bindings Mặc Định</a></li></ul></li><li><a href=#sd-thay-th%e1%ba%bf-find--replace-tr%e1%bb%b1c-quan aria-label="sd: Thay Thế Find & Replace Trực Quan">sd: Thay Thế Find & Replace Trực Quan</a><ul><li><a href=#t%e1%ba%a1i-sao-sd-thay-th%e1%ba%bf-sed-cho-h%e1%ba%a7u-h%e1%ba%bft-t%c3%a1c-v%e1%bb%a5 aria-label="Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?">Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?</a></li><li><a href=#c%c3%a1c-t%c3%adnh-n%c4%83ng-n%e1%bb%95i-b%e1%ba%adt-c%e1%bb%a7a-sd aria-label="Các Tính Năng Nổi Bật CủA sd">Các Tính Năng Nổi Bật CủA sd</a></li><li><a href=#so-s%c3%a1nh-sd-vs-sed-vs-perl--pi aria-label="So Sánh: sd vs sed vs perl -pi">So Sánh: sd vs sed vs perl -pi</a></li></ul></li><li><a href=#t%c3%acm-ki%e1%ba%bfm-trong-ide-v%c3%a0-editor-hi%e1%bb%87n-%c4%91%e1%ba%a1i aria-label="Tìm Kiếm Trong IDE Và Editor Hiện Đại">Tìm Kiếm Trong IDE Và Editor Hiện Đại</a><ul><li><a href=#vs-code-global-search-v%e1%bb%9bi-regex aria-label="VS Code: Global Search Với Regex">VS Code: Global Search Với Regex</a></li><li><a href=#jetbrains-structural-search-and-replace aria-label="JetBrains: Structural Search And Replace">JetBrains: Structural Search And Replace</a></li><li><a href=#neovim-telescope-v%e1%bb%9bi-live-grep aria-label="NeoVim: Telescope Với Live Grep">NeoVim: Telescope Với Live Grep</a></li></ul></li><li><a href=#c%c3%a1c-n%e1%bb%81n-t%e1%ba%a3ng-t%c3%acm-ki%e1%ba%bfm-code-quy-m%c3%b4-l%e1%bb%9bn aria-label="Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn">Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn</a><ul><li><a href=#sourcegraph-n%e1%bb%81n-t%e1%ba%a3ng-tr%c3%ad-tu%e1%bb%87-code aria-label="Sourcegraph: Nền Tảng Trí Tuệ Code">Sourcegraph: Nền Tảng Trí Tuệ Code</a></li><li><a href=#github-code-search aria-label="GitHub Code Search">GitHub Code Search</a></li><li><a href=#livegrep-t%c3%acm-ki%e1%ba%bfm-regex-tr%c3%aan-codebase-kh%e1%bb%95ng-l%e1%bb%93 aria-label="Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ">Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ</a></li></ul></li><li><a href=#c%c3%a1c-workflow-t%c3%acm-ki%e1%ba%bfm-th%e1%bb%b1c-t%e1%ba%bf aria-label="Các Workflow Tìm Kiếm Thực Tế">Các Workflow Tìm Kiếm Thực Tế</a><ul><li><a href=#workflow-h%c3%a0ng-ng%c3%a0y-rg--fzf--bat aria-label="Workflow Hàng Ngày: rg + fzf + bat">Workflow Hàng Ngày: rg + fzf + bat</a></li><li><a href=#workflow-refactoring-h%c3%a0ng-lo%e1%ba%a1t-rg--sd aria-label="Workflow Refactoring Hàng Loạt: rg + sd">Workflow Refactoring Hàng Loạt: rg + sd</a></li><li><a href=#t%c3%acm-ki%e1%ba%bfm-l%e1%bb%8bch-s%e1%bb%ad-git aria-label="Tìm Kiếm Lịch Sử Git">Tìm Kiếm Lịch Sử Git</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn-x%c3%a2y-d%e1%bb%b1ng-b%e1%bb%99-c%c3%b4ng-c%e1%bb%a5-t%c3%acm-ki%e1%ba%bfm-c%e1%bb%a7a-b%e1%ba%a1n aria-label="Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn">Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#ripgrep-c%c3%b3-nhanh-h%c6%a1n-grep-kh%c3%b4ng aria-label="ripgrep có nhanh hơn grep không?">ripgrep có nhanh hơn grep không?</a></li><li><a href=#c%c3%b4ng-c%e1%bb%a5-n%c3%a0o-t%e1%bb%91t-nh%e1%ba%a5t-%c4%91%e1%bb%83-t%c3%acm-ki%e1%ba%bfm-code-trong-nhi%e1%bb%81u-file aria-label="Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?">Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?</a></li><li><a href=#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-thay-th%e1%ba%bf-text-trong-nhi%e1%bb%81u-file-t%e1%bb%ab-d%c3%b2ng-l%e1%bb%87nh aria-label="Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?">Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?</a></li><li><a href=#c%c3%b3-th%e1%bb%83-d%c3%b9ng-ripgrep-v%e1%bb%9bi-vs-code-kh%c3%b4ng aria-label="Có thể dùng ripgrep với VS Code không?">Có thể dùng ripgrep với VS Code không?</a></li><li><a href=#ack-ag-v%c3%a0-rg-kh%c3%a1c-nhau-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="ack, ag và rg khác nhau như thế nào?">ack, ag và rg khác nhau như thế nào?</a></li></ul></li><li><a href=#t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Tài Liệu Tham Khảo">Tài Liệu Tham Khảo</a></li><li><a href=#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hạ Tầng Đề Xuất">Hạ Tầng Đề Xuất</a></li></ul></div></details><div class="post-content md-content"><p>{&lt;/* resource-info */>}</p><p>Tìm kiếm trong codebase là một trong những thao tác thường xuyên nhất của lập trình viên. Dù là truy tìm hàm được gọi ở đâu, tìm kiếm TODO cần xử lý, hay refactor tên biến trên toàn bộ dự án — một công cụ tìm kiếm nhanh và đáng tin cậy có thể tiết kiệm hàng giờ mỗi tuần.</p><p>Từ ```grep<code>— công cụ 50 năm tuổi có mặt trên mọi hệ thống Unix — đến [ripgrep](https://github.com/BurntSushi/ripgrep) viết bằng Rust hiện đại, [fzf](https://github.com/junegunn/fzf) mang tính tương tác, và [sd](https://github.com/chmln/sd) thay thế</code>sed```` — hệ sinh thái công cụ tìm kiếm code đã phát triển vượt bậc. Bài viết này dẫn bạn qua lộ trình tiến hóa của công cụ tìm kiếm code và giúp xây dựng workflow tối ưu.</p><h2 id=tại-sao-grep-không-còn-đủ-cho-developer>Tại Sao grep Không Còn Đủ Cho Developer?<a hidden class=anchor aria-hidden=true href=#tại-sao-grep-không-còn-đủ-cho-developer>#</a></h2><p><code>grep</code> là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, <code>grep</code> gặp phải nhiều hạn chế: - <strong>Không tự động đệ quy</strong>: Phải thêm flag <code>-r</code> hoặc kết hợp với <code>find</code></p><ul><li><strong>Không tôn trọng .gitignore</strong>: Tìm kiếm vào cả <code>node_modules/</code>, <code>.git/</code>, <code>vendor/</code>, tạo ra kết quả nhiễu</li><li><strong>Tốc độ chậm hơn</strong>: Không song song hóa, không tối ưu cho large codebase</li><li><strong>Xử lý Unicode kém</strong>: Gặp vấn đề với file UTF-8 có BOM</li><li><strong>Output không tối ưu</strong>: Cú pháp flags phức tạp, màu sắc cần bật thủ công</li></ul><p>Các công cụ hiện đại sinh ra để giải quyết chính xác những vấn đề này, trong khi vẫn giữ nguyên sức mạnh của regex.</p><h2 id=grep-nền-tảng-bất-diệt>grep: Nền Tảng Bất Diệt<a hidden class=anchor aria-hidden=true href=#grep-nền-tảng-bất-diệt>#</a></h2><h3 id=cú-pháp-cơ-bản-và-các-flags-thông-dụng>Cú Pháp Cơ Bản Và Các Flags Thông Dụng<a hidden class=anchor aria-hidden=true href=#cú-pháp-cơ-bản-và-các-flags-thông-dụng>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tìm kiếm đơn giản</span>
-</span></span><span style=display:flex><span>grep <span style=color:#e6db74>&#34;pattern&#34;</span> file.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm đệ quy trong thư mục</span>
-</span></span><span style=display:flex><span>grep -r <span style=color:#e6db74>&#34;pattern&#34;</span> ./src/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hiển thị số dòng, tên file, màu sắc</span>
-</span></span><span style=display:flex><span>grep -rn --color<span style=color:#f92672>=</span>auto <span style=color:#e6db74>&#34;pattern&#34;</span> ./src/
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm toàn bộ từ (word boundary)</span>
-</span></span><span style=display:flex><span>grep -w <span style=color:#e6db74>&#34;class&#34;</span> *.js
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bỏ qua case</span>
-</span></span><span style=display:flex><span>grep -i <span style=color:#e6db74>&#34;error&#34;</span> log.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Đếm số kết quả</span>
-</span></span><span style=display:flex><span>grep -c <span style=color:#e6db74>&#34;TODO&#34;</span> *.py
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm file KHÔNG chứa pattern</span>
-</span></span><span style=display:flex><span>grep -L <span style=color:#e6db74>&#34;pattern&#34;</span> *.txt
-</span></span></code></pre></div><h3 id=khi-nào-grep-vẫn-là-lựa-chọn-đúng>Khi Nào grep Vẫn Là Lựa Chọn Đúng?<a hidden class=anchor aria-hidden=true href=#khi-nào-grep-vẫn-là-lựa-chọn-đúng>#</a></h3><ul><li><strong>Scripting và pipeline</strong>: grep có mặt trên mọi hệ thống Unix, không cần cài đặt</li><li><strong>Simple file search</strong>: Tìm trong một vài file, không cần .gitignore</li><li><strong>Remote servers</strong>: SSH vào server không có ripgrep hoặc ag cài sẵn</li><li><strong>POSIX compliance</strong>: Khi cần đảm bảo script chạy trên mọi nền tảng</li></ul><h2 id=ack-grep-dành-riêng-cho-developer>ack: grep Dành Riêng Cho Developer<a hidden class=anchor aria-hidden=true href=#ack-grep-dành-riêng-cho-developer>#</a></h2><p><a href=https://beyondgrep.com>ack</a> (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm &ldquo;developer-friendly&rdquo;: - <strong>Tự động đệ quy</strong>: Không cần flag <code>-r</code></p><ul><li><strong>Tôn trọng .gitignore</strong>: Tự động bỏ qua file trong <code>.gitignore</code> và các thư mục như <code>.git/</code>, <code>node_modules/</code></li><li><strong>Nhận diện file type</strong>: <code>--js</code> tìm trong file JavaScript, <code>--py</code> cho Python, <code>--html</code> cho HTML</li><li><strong>Output có màu</strong>: Mặc định highlight kết quả</li><li><strong>Hiển thị số dòng</strong>: Mặc định</li></ul><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt</span>
-</span></span><span style=display:flex><span>cpan App::Ack          <span style=color:#75715e># macOS/Linux có Perl</span>
-</span></span><span style=display:flex><span>brew install ack       <span style=color:#75715e># macOS với Homebrew</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Ví dụ sử dụng</span>
-</span></span><span style=display:flex><span>ack <span style=color:#e6db74>&#34;class User&#34;</span> --js        <span style=color:#75715e># Tìm trong file JavaScript</span>
-</span></span><span style=display:flex><span>ack <span style=color:#e6db74>&#34;def &#34;</span> --py -C <span style=color:#ae81ff>2</span>          <span style=color:#75715e># Tìm trong Python, hiển thị 2 dòng context</span>
-</span></span><span style=display:flex><span>ack <span style=color:#e6db74>&#34;TODO|FIXME&#34;</span>              <span style=color:#75715e># Tìm TODO hoặc FIXME</span>
-</span></span></code></pre></div><p>ack đặt nền móng cho thế hệ công cụ tiếp theo, mặc dù hiện tại đã bị vượt mặt về tốc độ.</p><h2 id=the-silver-searcher-ag-tốc-độ-lên-ngôi>The Silver Searcher (ag): Tốc Độ Lên Ngôi<a hidden class=anchor aria-hidden=true href=#the-silver-searcher-ag-tốc-độ-lên-ngôi>#</a></h2><p><a href=https://github.com/ggreer/the_silver_searcher>The Silver Searcher</a> (<code>ag</code>) được viết bằng C, nhanh hơn ack từ 3-5 lần nhờ song song hóa và tối ưu hệ thống file. <code>ag</code> giữ lại tất cả ưu điểm của ack và bổ sung tốc độ.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt</span>
-</span></span><span style=display:flex><span>brew install the_silver_searcher    <span style=color:#75715e># macOS</span>
-</span></span><span style=display:flex><span>apt install silversearcher-ag       <span style=color:#75715e># Ubuntu/Debian</span>
-</span></span><span style=display:flex><span>pacman -S the_silver_searcher       <span style=color:#75715e># Arch</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Cú pháp tương tự ack</span>
-</span></span><span style=display:flex><span>ag <span style=color:#e6db74>&#34;pattern&#34;</span>                        <span style=color:#75715e># Tìm đệ quy, tôn trọng .gitignore</span>
-</span></span><span style=display:flex><span>ag -i <span style=color:#e6db74>&#34;pattern&#34;</span>                     <span style=color:#75715e># Không phân biệt hoa thường</span>
-</span></span><span style=display:flex><span>ag --js <span style=color:#e6db74>&#34;pattern&#34;</span>                   <span style=color:#75715e># Chỉ tìm trong JavaScript</span>
-</span></span><span style=display:flex><span>ag -l <span style=color:#e6db74>&#34;pattern&#34;</span>                     <span style=color:#75715e># Chỉ liệt kê tên file</span>
-</span></span><span style=display:flex><span>ag -C <span style=color:#ae81ff>3</span> <span style=color:#e6db74>&#34;pattern&#34;</span>                   <span style=color:#75715e># Hiển thị 3 dòng context</span>
-</span></span></code></pre></div><p>Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripgrep — commit cuối cùng thường cách đây nhiều tháng.</p><h2 id=ripgrep-rg-tiêu-chuẩn-mới>ripgrep (rg): Tiêu Chuẩn Mới<a hidden class=anchor aria-hidden=true href=#ripgrep-rg-tiêu-chuẩn-mới>#</a></h2><h3 id=tại-sao-ripgrep-thống-trị-code-search-ngày-nay>Tại Sao ripgrep Thống Trị Code Search Ngày Nay?<a hidden class=anchor aria-hidden=true href=#tại-sao-ripgrep-thống-trị-code-search-ngày-nay>#</a></h3><p><a href=https://github.com/BurntSushi/ripgrep>ripgrep</a> (<code>rg</code>) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. <strong>Tốc độ cực nhanh</strong>: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "{\u003c/* resource-info */\u003e}\nTìm kiếm trong codebase là một trong những thao tác thường xuyên nhất của lập trình viên. Dù là truy tìm hàm được gọi ở đâu, tìm kiếm TODO cần xử lý, hay refactor tên biến trên toàn bộ dự án — một công cụ tìm kiếm nhanh và đáng tin cậy có thể tiết kiệm hàng giờ mỗi tuần.\nTừ ```grep— công cụ 50 năm tuổi có mặt trên mọi hệ thống Unix — đến [ripgrep](https://github.com/BurntSushi/ripgrep) viết bằng Rust hiện đại, [fzf](https://github.com/junegunn/fzf) mang tính tương tác, và [sd](https://github.com/chmln/sd) thay thếsed```` — hệ sinh thái công cụ tìm kiếm code đã phát triển vượt bậc. Bài viết này dẫn bạn qua lộ trình tiến hóa của công cụ tìm kiếm code và giúp xây dựng workflow tối ưu.\nTại Sao grep Không Còn Đủ Cho Developer? grep là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, grep gặp phải nhiều hạn chế: - Không tự động đệ quy: Phải thêm flag -r hoặc kết hợp với find\nKhông tôn trọng .gitignore: Tìm kiếm vào cả node_modules/, .git/, vendor/, tạo ra kết quả nhiễu Tốc độ chậm hơn: Không song song hóa, không tối ưu cho large codebase Xử lý Unicode kém: Gặp vấn đề với file UTF-8 có BOM Output không tối ưu: Cú pháp flags phức tạp, màu sắc cần bật thủ công Các công cụ hiện đại sinh ra để giải quyết chính xác những vấn đề này, trong khi vẫn giữ nguyên sức mạnh của regex.\ngrep: Nền Tảng Bất Diệt Cú Pháp Cơ Bản Và Các Flags Thông Dụng # Tìm kiếm đơn giản grep \"pattern\" file.txt # Tìm đệ quy trong thư mục grep -r \"pattern\" ./src/ # Hiển thị số dòng, tên file, màu sắc grep -rn --color=auto \"pattern\" ./src/ # Tìm toàn bộ từ (word boundary) grep -w \"class\" *.js # Bỏ qua case grep -i \"error\" log.txt # Đếm số kết quả grep -c \"TODO\" *.py # Tìm file KHÔNG chứa pattern grep -L \"pattern\" *.txt Khi Nào grep Vẫn Là Lựa Chọn Đúng? Scripting và pipeline: grep có mặt trên mọi hệ thống Unix, không cần cài đặt Simple file search: Tìm trong một vài file, không cần .gitignore Remote servers: SSH vào server không có ripgrep hoặc ag cài sẵn POSIX compliance: Khi cần đảm bảo script chạy trên mọi nền tảng ack: grep Dành Riêng Cho Developer ack (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm “developer-friendly”: - Tự động đệ quy: Không cần flag -r\nTôn trọng .gitignore: Tự động bỏ qua file trong .gitignore và các thư mục như .git/, node_modules/ Nhận diện file type: --js tìm trong file JavaScript, --py cho Python, --html cho HTML Output có màu: Mặc định highlight kết quả Hiển thị số dòng: Mặc định # Cài đặt cpan App::Ack # macOS/Linux có Perl brew install ack # macOS với Homebrew # Ví dụ sử dụng ack \"class User\" --js # Tìm trong file JavaScript ack \"def \" --py -C 2 # Tìm trong Python, hiển thị 2 dòng context ack \"TODO|FIXME\" # Tìm TODO hoặc FIXME ack đặt nền móng cho thế hệ công cụ tiếp theo, mặc dù hiện tại đã bị vượt mặt về tốc độ.\nThe Silver Searcher (ag): Tốc Độ Lên Ngôi The Silver Searcher (ag) được viết bằng C, nhanh hơn ack từ 3-5 lần nhờ song song hóa và tối ưu hệ thống file. ag giữ lại tất cả ưu điểm của ack và bổ sung tốc độ.\n# Cài đặt brew install the_silver_searcher # macOS apt install silversearcher-ag # Ubuntu/Debian pacman -S the_silver_searcher # Arch # Cú pháp tương tự ack ag \"pattern\" # Tìm đệ quy, tôn trọng .gitignore ag -i \"pattern\" # Không phân biệt hoa thường ag --js \"pattern\" # Chỉ tìm trong JavaScript ag -l \"pattern\" # Chỉ liệt kê tên file ag -C 3 \"pattern\" # Hiển thị 3 dòng context Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripgrep — commit cuối cùng thường cách đây nhiều tháng.\nripgrep (rg): Tiêu Chuẩn Mới Tại Sao ripgrep Thống Trị Code Search Ngày Nay? ripgrep (rg) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. Tốc độ cực nhanh: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks 2. Song song hóa tự động: Sử dụng tất cả CPU core có sẵn 3. Smart defaults: Đệ quy, hiển thị số dòng, tôn trọng .gitignore, hidden files — tất cả là mặc định 4. Unicode support tuyệt vờii: Xử lý đa ngôn ngữ tốt hơn bất kỳ đối thủ nào 5. Type filtering linh hoạt: --type, --type-add cho phép định nghĩa loại file tùy chỉnh 6. Configuration file: Hỗ trợ .ripgreprc để lưu cấu hình mặc định 7. Integration hoàn hảo: Backend search cho VS Code, fzf, Vim, Emacs\nBảng Benchmark: grep vs ack vs ag vs ripgrep Công cụ Ngôn ngữ Kích thước code tìm kiếm Thờii gian tương đối Đệ quy mặc định .gitignore Unicode grep C Linux kernel (~3GB) 1x (baseline) Không Không Hạn chế ack Perl Linux kernel ~0.5x grep (chậm hơn) Có Có Tốt ag C Linux kernel ~0.2x grep Có Có Tốt ripgrep Rust Linux kernel ~0.1x grep (10x nhanh) Có Có Xuất sắc Dữ liệu benchmark từ ripgrep GitHub repository, thử nghiệm tìm kiếm fn run trong Linux kernel source tree.\nCác Pattern Tìm Kiếm Thông Dụng Với ripgrep # Tìm kiếm cơ bản — đệ quy, tôn trọng .gitignore mặc định rg \"function name\" # Tìm trong loại file cụ thể (js, py, rs, go...) rg \"class User\" --type js # Hoặc nhiều loại file rg \"import\" -t py -t js # Hiển thị context (dòng trước/sau) rg \"TODO\" -C 3 # Chỉ liệt kê tên file (không nội dung) rg \"pattern\" -l # Tìm với regex rg \"^export\\s+(const|let|function)\" # Tìm và thay thế (kết hợp với sd hoặc perl) rg \"oldPattern\" -l | xargs sd \"oldPattern\" \"newPattern\" # Tìm trong file ẩn (không .gitignore) rg \"pattern\" --hidden # Thêm loại file tùy chỉnh trong .ripgreprc --type-add web:*.{html,css,js,jsx,ts,tsx,vue} File Cấu Hình .ripgreprc # ~/.ripgreprc --max-columns=150 --max-columns-preview --type-add web:*.{html,css,js,jsx,ts,tsx,vue,svelte} --smart-case --follow --hidden --glob=!.git/ --glob=!node_modules/ --glob=!vendor/ --glob=!.next/ --glob=!dist/ Kết hợp với biến môi trường: export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc\nfzf: Cách Mạng Tìm Kiếm Tương Tác fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng fzf khác biệt với ripgrep ở chỗ: fzf không quét file system. Thay vào đó, fzf nhận một danh sách đầu vào (từ stdin) và cho phép bạn lọc tương tác theo thờii gian thực khi gõ. Điều này tạo ra workflow tìm kiếm hoàn hảo: một công cụ (rg, fd, find) tạo danh sách, fzf giúp bạn chọn từ danh sách đó.\nCombo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo # Tìm file và xem preview với syntax highlighting rg --files | fzf --preview 'bat --style=numbers --color=always {}' # Tìm kiếm nội dung file với preview rg --line-number --no-heading --smart-case \"pattern\" | \\ fzf --delimiter ':' \\ --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' # Duyệt Git branches git branch | fzf --preview ' git log --oneline --graph --decorate {1}' # Duyệt Git commits git log --oneline | fzf --preview ' git show --stat {1}' Key Bindings Mặc Định Phím tắt Chức năng Ctrl+T Chèn file đã chọn vào dòng lệnh Alt+C Chuyển đến thư mục đã chọn (cd) Ctrl+R Tìm kiếm tương tác trong lịch sử lệnh Tab Chọn nhiều mục (multi-select) Ctrl+/ Chuyển đổi giữa match chính xác và fuzzy sd: Thay Thế Find \u0026 Replace Trực Quan Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ? sd là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn sed đáng kể: | Tác vụ | sed | sd | |——–|—–|—–| | Thay thế đơn giản | sed 's/old/new/g' | sd 'old' 'new' | | Thay thế file | sed -i 's/old/new/g' file | sd 'old' 'new' file | | Thay thế đệ quy | find . -exec sed -i 's/old/new/g' {} + | sd 'old' 'new' **/*.rs | | Regex phức tạp | sed 's/\\(foo\\)\\(bar\\)/\\2\\1/g' | sd '(foo)(bar)' '$2$1' | | Preview trước khi áp dụng | Không có | sd -p 'old' 'new' file |\nCác Tính Năng Nổi Bật CủA sd Không cần escape dấu /: sd 'http://localhost:3000' 'https://api.example.com' hoạt động bình thường Preview mode (-p): Xem thay đổi trước khi áp dụng — cực kỳ quan trọng cho refactoring Recursive: sd 'pattern' 'replacement' **/*.js thay thế tất cả file JavaScript Syntax regex hiện đại: Sử dụng Rust regex engine, hỗ trợ capture groups với $1, $2 So Sánh: sd vs sed vs perl -pi # Thay thế đơn giản — sd rõ ràng hơn sed -i 's/old/new/g' file.txt # sed sd 'old' 'new' file.txt # sd — đơn giản hơn perl -pi -e 's/old/new/g' file.txt # perl # Thay thế có dấu / trong pattern sed -i 's/http:\\/\\/localhost/http:\\/\\/127.0.0.1/g' file # sed — escape hỗn loạn sd 'http://localhost' 'http://127.0.0.1' file # sd — không cần escape # Thay thế recursive trong nhiều file find . -name \"*.js\" -exec sed -i 's/var/const/g' {} + # sed sd 'var' 'const' **/*.js # sd Tìm Kiếm Trong IDE Và Editor Hiện Đại VS Code: Global Search Với Regex VS Code sử dụng ripgrep làm backend cho tính năng global search (Ctrl+Shift+F), hỗ trợ regex, include/exclude patterns, và replace across files. Điểm mạnh: tích hợp sâu với refactoring — sau khi tìm, bạn có thể rename symbol hoặc extract function ngay lập tức.\nJetBrains: Structural Search And Replace Các IDE của JetBrains (IntelliJ IDEA, PyCharm, WebStorm) cung cấp Structural Search and Replace (SSR) — tìm kiếm dựa trên cấu trúc cú pháp AST thay vì text thuần. Ví dụ, bạn có thể tìm “tất cả vòng lặp for có 3 statements trong body” hoặc “tất cả hàm gọi method X với argument kiểu String” — những truy vấn không thể thực hiện bằng regex.\nNeoVim: Telescope Với Live Grep Trong hệ sinh thái NeoVim, Telescope kết hợp với ripgrep tạo ra trải nghiệm tìm kiếm code tuyệt vờii ngay trong editor. Telescope live_grep tìm kiếm toàn bộ project theo thờii gian thực khi bạn gõ.\nCác Nền Tảng Tìm Kiếm Code Quy Mô Lớn Sourcegraph: Nền Tảng Trí Tuệ Code Sourcegraph là nền tảng tìm kiếm và phân tích code dành cho doanh nghiệp, hỗ trợ tìm kiếm across hàng nghìn repository. Tính năng nổi bật: code intelligence (hover để xem definition, references), batch changes (refactoring trên quy mô lớn), và Code Insights (theo dõi xu hướng code theo thờii gian). Sourcegraph miễn phí cho team nhỏ (dưới 10 users); gói Enterprise có giá tùy chỉnh.\nGitHub Code Search GitHub cung cấp Code Search mới với regex support, symbol search, và path filtering. Ví dụ: language:rust repo:tokio-rs/tokio fn spawn tìm hàm spawn trong repository tokio, giới hạn file Rust. Đây là công cụ miễn phí và mạnh mẽ cho việc tìm kiếm trong mã nguồn mở.\nLivegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ Livegrep là công cụ tự host cho phép tìm kiếm regex trên codebase lớn (hàng triệu dòng code) gần như tức thờii. Được sử dụng nội bộ tại nhiều công ty lớn như Stripe và Google. Livegrep phù hợp cho tổ chức có codebase monorepo lớn cần tìm kiếm nhanh.\nCác Workflow Tìm Kiếm Thực Tế Workflow Hàng Ngày: rg + fzf + bat # 1. Tìm kiếm file eza --files | fzf --preview 'bat --style=numbers --color=always {}' # 2. Tìm kiếm nội dung grep_func() { rg --line-number --no-heading --color=always \"$1\" | \\ fzf --ansi --delimiter ':' --preview 'bat --style=numbers --color=always --highlight-line {2} {1}' } # 3. Xem nội dung file cat() { bat \"$@\"; } Workflow Refactoring Hàng Loạt: rg + sd # Bước 1: Tìm tất cả file chứa pattern cần thay đổi rg \"oldFunctionName\" -l # Bước 2: Xem preview thay đổi sd -p \"oldFunctionName\" \"newFunctionName\" $(rg \"oldFunctionName\" -l) # Bước 3: Áp dụng thay đổi sd \"oldFunctionName\" \"newFunctionName\" $(rg \"oldFunctionName\" -l) # Bước 4: Kiểm tra bằng test npm test Tìm Kiếm Lịch Sử Git # Tìm commit thêm/xóa một dòng code cụ thể git log -S \"function name\" --oneline # Tìm commit thay đổi một pattern regex git log -G \"pattern\" --oneline # Tìm trong tất cả các branch git grep \"pattern\" $( git branch -a | cut -c3- ) # Tìm khi một file được đề cập git log --all --full-history -- \"**/config.ts\" Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. ripgrep (rg): Tìm kiếm code siêu tốc trên toàn bộ codebase 2. fzf: Lọc và chọn tương tác từ bất kỳ danh sách nào 3. sd: Thay thế text đơn giản, trực quan hơn sed\nKết hợp ba công cụ này với bat (cat nâng cao) tạo ra workflow tìm kiếm và duyệt code mượt mà mà không cần rờii terminal. Bổ sung GitHub Code Search hoặc Sourcegraph khi cần tìm kiếm across nhiều repository hoặc codebase monorepo khổng lồ.\nTương lai của code search đang hướng về AI-powered search — các công cụ như GitHub Copilot Chat cho phép tìm kiếm bằng ngôn ngữ tự nhiên (“tìm hàm xử lý authentication trong project này”). Tuy nhiên, công cụ CLI truyền thống vẫn sẽ giữ vị trí không thể thay thế nhờ tốc độ, độ tin cậy, và khả năng tích hợp vào workflow tự động hóa.\nFAQ ripgrep có nhanh hơn grep không? Có, ripgrep nhanh hơn grep khoảng 10 lần trong hầu hết các tình huống tìm kiếm codebase thực tế. Sự khác biệt đến từ: (1) ripgrep song song hóa mặc định sử dụng nhiều CPU core; (2) ripgrep tôn trọng .gitignore nên quét ít file hơn; (3) ripgrep được viết bằng Rust với memory management tối ưu. Tuy nhiên, grep vẫn có mặt trên mọi hệ thống và không cần cài đặt.\nCông cụ nào tốt nhất để tìm kiếm code trong nhiều file? ripgrep (rg) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều file nhờ tốc độ nhanh, tôn trọng .gitignore, và cú pháp đơn giản. Kết hợp với fzf để có trải nghiệm tương tác. Nếu cần tìm kiếm across nhiều repository, GitHub Code Search hoặc Sourcegraph là lựa chọn phù hợp.\nLàm thế nào để thay thế text trong nhiều file từ dòng lệnh? Sử dụng sd cho cú pháp đơn giản nhất: sd \"oldText\" \"newText\" $(rg \"oldText\" -l). Lệnh rg -l liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag -p (preview) trước để xem thay đổi: sd -p \"old\" \"new\" $(rg \"old\" -l). Nếu không có sd, dùng ````perl -pi -e ’s/old/new/g\" $(rg “old” -l)```.\nCó thể dùng ripgrep với VS Code không? VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc định (global search và file search). Bạn không cần cấu hình gì thêm. Trong terminal tích hợp của VS Code, bạn có thể cài ripgrep và sử dụng trực tiếp. Ngoài ra, extension “ripgrep” cho phép tìm kiếm nâng cao với các tùy chọn ripgrep từ command palette.\nack, ag và rg khác nhau như thế nào? Đây là ba thế hệ công cụ tìm kiếm code: ack (Perl, ~2006) là ngườii tiên phong với .gitignore support và file type detection; ag — The Silver Searcher (C, ~2011) nhanh hơn ack 3-5x nhờ song song hóa; ripgrep (Rust, ~2016) nhanh hơn tất cả, hỗ trợ Unicode tốt hơn, và được bảo trì tích cực nhất. Ngày nay, ripgrep là lựa chọn được khuyến nghị cho hầu hết use case.\nTài Liệu Tham Khảo ripgrep GitHub Repository fzf GitHub Repository sd GitHub Repository ack — Beyond grep The Silver Searcher GitHub Sourcegraph GitHub Code Search Livegrep GitHub Repository Hạ Tầng Đề Xuất Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - DigitalOcean — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.\nHTStack — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây. Hostinger — VPS giá tốt cho thị trường Việt Nam. Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd và Các Lựa Chọn Thay Thế Hiện Đại”, “datePublished”: “2026-05-18”, “dateModified”: “2026-05-18”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives\" } } ",
+  "wordCount" : "2836",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>14 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/code-search-replace-tools-grep-modern-alternatives/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#t%e1%ba%a1i-sao-grep-kh%c3%b4ng-c%c3%b2n-%c4%91%e1%bb%a7-cho-developer" aria-label="Tại Sao grep Không Còn Đủ Cho Developer?">Tại Sao grep Không Còn Đủ Cho Developer?</a></li>
+            <li>
+                <a href="#grep-n%e1%bb%81n-t%e1%ba%a3ng-b%e1%ba%a5t-di%e1%bb%87t" aria-label="grep: Nền Tảng Bất Diệt">grep: Nền Tảng Bất Diệt</a><ul>
+                    
+            <li>
+                <a href="#c%c3%ba-ph%c3%a1p-c%c6%a1-b%e1%ba%a3n-v%c3%a0-c%c3%a1c-flags-th%c3%b4ng-d%e1%bb%a5ng" aria-label="Cú Pháp Cơ Bản Và Các Flags Thông Dụng">Cú Pháp Cơ Bản Và Các Flags Thông Dụng</a></li>
+            <li>
+                <a href="#khi-n%c3%a0o-grep-v%e1%ba%abn-l%c3%a0-l%e1%bb%b1a-ch%e1%bb%8dn-%c4%91%c3%bang" aria-label="Khi Nào grep Vẫn Là Lựa Chọn Đúng?">Khi Nào grep Vẫn Là Lựa Chọn Đúng?</a></li></ul>
+            </li>
+            <li>
+                <a href="#ack-grep-d%c3%a0nh-ri%c3%aang-cho-developer" aria-label="ack: grep Dành Riêng Cho Developer">ack: grep Dành Riêng Cho Developer</a></li>
+            <li>
+                <a href="#the-silver-searcher-ag-t%e1%bb%91c-%c4%91%e1%bb%99-l%c3%aan-ng%c3%b4i" aria-label="The Silver Searcher (ag): Tốc Độ Lên Ngôi">The Silver Searcher (ag): Tốc Độ Lên Ngôi</a></li>
+            <li>
+                <a href="#ripgrep-rg-ti%c3%aau-chu%e1%ba%a9n-m%e1%bb%9bi" aria-label="ripgrep (rg): Tiêu Chuẩn Mới">ripgrep (rg): Tiêu Chuẩn Mới</a><ul>
+                    
+            <li>
+                <a href="#t%e1%ba%a1i-sao-ripgrep-th%e1%bb%91ng-tr%e1%bb%8b-code-search-ng%c3%a0y-nay" aria-label="Tại Sao ripgrep Thống Trị Code Search Ngày Nay?">Tại Sao ripgrep Thống Trị Code Search Ngày Nay?</a></li>
+            <li>
+                <a href="#b%e1%ba%a3ng-benchmark-grep-vs-ack-vs-ag-vs-ripgrep" aria-label="Bảng Benchmark: grep vs ack vs ag vs ripgrep">Bảng Benchmark: grep vs ack vs ag vs ripgrep</a></li>
+            <li>
+                <a href="#c%c3%a1c-pattern-t%c3%acm-ki%e1%ba%bfm-th%c3%b4ng-d%e1%bb%a5ng-v%e1%bb%9bi-ripgrep" aria-label="Các Pattern Tìm Kiếm Thông Dụng Với ripgrep">Các Pattern Tìm Kiếm Thông Dụng Với ripgrep</a></li>
+            <li>
+                <a href="#file-c%e1%ba%a5u-h%c3%acnh-ripgreprc" aria-label="File Cấu Hình .ripgreprc">File Cấu Hình .ripgreprc</a></li></ul>
+            </li>
+            <li>
+                <a href="#fzf-c%c3%a1ch-m%e1%ba%a1ng-t%c3%acm-ki%e1%ba%bfm-t%c6%b0%c6%a1ng-t%c3%a1c" aria-label="fzf: Cách Mạng Tìm Kiếm Tương Tác">fzf: Cách Mạng Tìm Kiếm Tương Tác</a><ul>
+                    
+            <li>
+                <a href="#fzf-kh%c3%b4ng-ph%e1%ba%a3i-c%c3%b4ng-c%e1%bb%a5-t%c3%acm-ki%e1%ba%bfm--n%c3%b3-l%c3%a0-cu%e1%bb%99c-c%c3%a1ch-m%e1%ba%a1ng" aria-label="fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng">fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng</a></li>
+            <li>
+                <a href="#combo-ripgrep--fzf--bat-workflow-t%c3%acm-ki%e1%ba%bfm-ho%c3%a0n-h%e1%ba%a3o" aria-label="Combo ripgrep &#43; fzf &#43; bat: Workflow Tìm Kiếm Hoàn Hảo">Combo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo</a></li>
+            <li>
+                <a href="#key-bindings-m%e1%ba%b7c-%c4%91%e1%bb%8bnh" aria-label="Key Bindings Mặc Định">Key Bindings Mặc Định</a></li></ul>
+            </li>
+            <li>
+                <a href="#sd-thay-th%e1%ba%bf-find--replace-tr%e1%bb%b1c-quan" aria-label="sd: Thay Thế Find &amp; Replace Trực Quan">sd: Thay Thế Find &amp; Replace Trực Quan</a><ul>
+                    
+            <li>
+                <a href="#t%e1%ba%a1i-sao-sd-thay-th%e1%ba%bf-sed-cho-h%e1%ba%a7u-h%e1%ba%bft-t%c3%a1c-v%e1%bb%a5" aria-label="Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?">Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?</a></li>
+            <li>
+                <a href="#c%c3%a1c-t%c3%adnh-n%c4%83ng-n%e1%bb%95i-b%e1%ba%adt-c%e1%bb%a7a-sd" aria-label="Các Tính Năng Nổi Bật CủA sd">Các Tính Năng Nổi Bật CủA sd</a></li>
+            <li>
+                <a href="#so-s%c3%a1nh-sd-vs-sed-vs-perl--pi" aria-label="So Sánh: sd vs sed vs perl -pi">So Sánh: sd vs sed vs perl -pi</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%acm-ki%e1%ba%bfm-trong-ide-v%c3%a0-editor-hi%e1%bb%87n-%c4%91%e1%ba%a1i" aria-label="Tìm Kiếm Trong IDE Và Editor Hiện Đại">Tìm Kiếm Trong IDE Và Editor Hiện Đại</a><ul>
+                    
+            <li>
+                <a href="#vs-code-global-search-v%e1%bb%9bi-regex" aria-label="VS Code: Global Search Với Regex">VS Code: Global Search Với Regex</a></li>
+            <li>
+                <a href="#jetbrains-structural-search-and-replace" aria-label="JetBrains: Structural Search And Replace">JetBrains: Structural Search And Replace</a></li>
+            <li>
+                <a href="#neovim-telescope-v%e1%bb%9bi-live-grep" aria-label="NeoVim: Telescope Với Live Grep">NeoVim: Telescope Với Live Grep</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a1c-n%e1%bb%81n-t%e1%ba%a3ng-t%c3%acm-ki%e1%ba%bfm-code-quy-m%c3%b4-l%e1%bb%9bn" aria-label="Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn">Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn</a><ul>
+                    
+            <li>
+                <a href="#sourcegraph-n%e1%bb%81n-t%e1%ba%a3ng-tr%c3%ad-tu%e1%bb%87-code" aria-label="Sourcegraph: Nền Tảng Trí Tuệ Code">Sourcegraph: Nền Tảng Trí Tuệ Code</a></li>
+            <li>
+                <a href="#github-code-search" aria-label="GitHub Code Search">GitHub Code Search</a></li>
+            <li>
+                <a href="#livegrep-t%c3%acm-ki%e1%ba%bfm-regex-tr%c3%aan-codebase-kh%e1%bb%95ng-l%e1%bb%93" aria-label="Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ">Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a1c-workflow-t%c3%acm-ki%e1%ba%bfm-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Các Workflow Tìm Kiếm Thực Tế">Các Workflow Tìm Kiếm Thực Tế</a><ul>
+                    
+            <li>
+                <a href="#workflow-h%c3%a0ng-ng%c3%a0y-rg--fzf--bat" aria-label="Workflow Hàng Ngày: rg &#43; fzf &#43; bat">Workflow Hàng Ngày: rg + fzf + bat</a></li>
+            <li>
+                <a href="#workflow-refactoring-h%c3%a0ng-lo%e1%ba%a1t-rg--sd" aria-label="Workflow Refactoring Hàng Loạt: rg &#43; sd">Workflow Refactoring Hàng Loạt: rg + sd</a></li>
+            <li>
+                <a href="#t%c3%acm-ki%e1%ba%bfm-l%e1%bb%8bch-s%e1%bb%ad-git" aria-label="Tìm Kiếm Lịch Sử Git">Tìm Kiếm Lịch Sử Git</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn-x%c3%a2y-d%e1%bb%b1ng-b%e1%bb%99-c%c3%b4ng-c%e1%bb%a5-t%c3%acm-ki%e1%ba%bfm-c%e1%bb%a7a-b%e1%ba%a1n" aria-label="Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn">Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#ripgrep-c%c3%b3-nhanh-h%c6%a1n-grep-kh%c3%b4ng" aria-label="ripgrep có nhanh hơn grep không?">ripgrep có nhanh hơn grep không?</a></li>
+            <li>
+                <a href="#c%c3%b4ng-c%e1%bb%a5-n%c3%a0o-t%e1%bb%91t-nh%e1%ba%a5t-%c4%91%e1%bb%83-t%c3%acm-ki%e1%ba%bfm-code-trong-nhi%e1%bb%81u-file" aria-label="Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?">Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-thay-th%e1%ba%bf-text-trong-nhi%e1%bb%81u-file-t%e1%bb%ab-d%c3%b2ng-l%e1%bb%87nh" aria-label="Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?">Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?</a></li>
+            <li>
+                <a href="#c%c3%b3-th%e1%bb%83-d%c3%b9ng-ripgrep-v%e1%bb%9bi-vs-code-kh%c3%b4ng" aria-label="Có thể dùng ripgrep với VS Code không?">Có thể dùng ripgrep với VS Code không?</a></li>
+            <li>
+                <a href="#ack-ag-v%c3%a0-rg-kh%c3%a1c-nhau-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="ack, ag và rg khác nhau như thế nào?">ack, ag và rg khác nhau như thế nào?</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Tài Liệu Tham Khảo">Tài Liệu Tham Khảo</a></li>
+            <li>
+                <a href="#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hạ Tầng Đề Xuất">Hạ Tầng Đề Xuất</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>{&lt;/* resource-info */&gt;}</p>
+<p>Tìm kiếm trong codebase là một trong những thao tác thường xuyên nhất của lập trình viên. Dù là truy tìm hàm được gọi ở đâu, tìm kiếm TODO cần xử lý, hay refactor tên biến trên toàn bộ dự án — một công cụ tìm kiếm nhanh và đáng tin cậy có thể tiết kiệm hàng giờ mỗi tuần.</p>
+<p>Từ ```grep<code>— công cụ 50 năm tuổi có mặt trên mọi hệ thống Unix — đến [ripgrep](https://github.com/BurntSushi/ripgrep) viết bằng Rust hiện đại, [fzf](https://github.com/junegunn/fzf) mang tính tương tác, và [sd](https://github.com/chmln/sd) thay thế</code>sed```` — hệ sinh thái công cụ tìm kiếm code đã phát triển vượt bậc. Bài viết này dẫn bạn qua lộ trình tiến hóa của công cụ tìm kiếm code và giúp xây dựng workflow tối ưu.</p>
+<h2 id="tại-sao-grep-không-còn-đủ-cho-developer">Tại Sao grep Không Còn Đủ Cho Developer?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-grep-không-còn-đủ-cho-developer">#</a></h2>
+<p><code>grep</code> là công cụ tuyệt vờii cho việc tìm kiếm đơn giản trong một hoặc vài file. Tuy nhiên, khi làm việc với codebase hiện đại, <code>grep</code> gặp phải nhiều hạn chế: - <strong>Không tự động đệ quy</strong>: Phải thêm flag <code>-r</code> hoặc kết hợp với <code>find</code></p>
+<ul>
+<li><strong>Không tôn trọng .gitignore</strong>: Tìm kiếm vào cả <code>node_modules/</code>, <code>.git/</code>, <code>vendor/</code>, tạo ra kết quả nhiễu</li>
+<li><strong>Tốc độ chậm hơn</strong>: Không song song hóa, không tối ưu cho large codebase</li>
+<li><strong>Xử lý Unicode kém</strong>: Gặp vấn đề với file UTF-8 có BOM</li>
+<li><strong>Output không tối ưu</strong>: Cú pháp flags phức tạp, màu sắc cần bật thủ công</li>
+</ul>
+<p>Các công cụ hiện đại sinh ra để giải quyết chính xác những vấn đề này, trong khi vẫn giữ nguyên sức mạnh của regex.</p>
+<h2 id="grep-nền-tảng-bất-diệt">grep: Nền Tảng Bất Diệt<a hidden class="anchor" aria-hidden="true" href="#grep-nền-tảng-bất-diệt">#</a></h2>
+<h3 id="cú-pháp-cơ-bản-và-các-flags-thông-dụng">Cú Pháp Cơ Bản Và Các Flags Thông Dụng<a hidden class="anchor" aria-hidden="true" href="#cú-pháp-cơ-bản-và-các-flags-thông-dụng">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tìm kiếm đơn giản</span>
+</span></span><span style="display:flex;"><span>grep <span style="color:#e6db74">&#34;pattern&#34;</span> file.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm đệ quy trong thư mục</span>
+</span></span><span style="display:flex;"><span>grep -r <span style="color:#e6db74">&#34;pattern&#34;</span> ./src/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hiển thị số dòng, tên file, màu sắc</span>
+</span></span><span style="display:flex;"><span>grep -rn --color<span style="color:#f92672">=</span>auto <span style="color:#e6db74">&#34;pattern&#34;</span> ./src/
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm toàn bộ từ (word boundary)</span>
+</span></span><span style="display:flex;"><span>grep -w <span style="color:#e6db74">&#34;class&#34;</span> *.js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bỏ qua case</span>
+</span></span><span style="display:flex;"><span>grep -i <span style="color:#e6db74">&#34;error&#34;</span> log.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Đếm số kết quả</span>
+</span></span><span style="display:flex;"><span>grep -c <span style="color:#e6db74">&#34;TODO&#34;</span> *.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm file KHÔNG chứa pattern</span>
+</span></span><span style="display:flex;"><span>grep -L <span style="color:#e6db74">&#34;pattern&#34;</span> *.txt
+</span></span></code></pre></div><h3 id="khi-nào-grep-vẫn-là-lựa-chọn-đúng">Khi Nào grep Vẫn Là Lựa Chọn Đúng?<a hidden class="anchor" aria-hidden="true" href="#khi-nào-grep-vẫn-là-lựa-chọn-đúng">#</a></h3>
+<ul>
+<li><strong>Scripting và pipeline</strong>: grep có mặt trên mọi hệ thống Unix, không cần cài đặt</li>
+<li><strong>Simple file search</strong>: Tìm trong một vài file, không cần .gitignore</li>
+<li><strong>Remote servers</strong>: SSH vào server không có ripgrep hoặc ag cài sẵn</li>
+<li><strong>POSIX compliance</strong>: Khi cần đảm bảo script chạy trên mọi nền tảng</li>
+</ul>
+<h2 id="ack-grep-dành-riêng-cho-developer">ack: grep Dành Riêng Cho Developer<a hidden class="anchor" aria-hidden="true" href="#ack-grep-dành-riêng-cho-developer">#</a></h2>
+<p><a href="https://beyondgrep.com">ack</a> (viết bằng Perl) là bước tiến đầu tiên trong việc tạo công cụ tìm kiếm &ldquo;developer-friendly&rdquo;: - <strong>Tự động đệ quy</strong>: Không cần flag <code>-r</code></p>
+<ul>
+<li><strong>Tôn trọng .gitignore</strong>: Tự động bỏ qua file trong <code>.gitignore</code> và các thư mục như <code>.git/</code>, <code>node_modules/</code></li>
+<li><strong>Nhận diện file type</strong>: <code>--js</code> tìm trong file JavaScript, <code>--py</code> cho Python, <code>--html</code> cho HTML</li>
+<li><strong>Output có màu</strong>: Mặc định highlight kết quả</li>
+<li><strong>Hiển thị số dòng</strong>: Mặc định</li>
+</ul>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt</span>
+</span></span><span style="display:flex;"><span>cpan App::Ack          <span style="color:#75715e"># macOS/Linux có Perl</span>
+</span></span><span style="display:flex;"><span>brew install ack       <span style="color:#75715e"># macOS với Homebrew</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ví dụ sử dụng</span>
+</span></span><span style="display:flex;"><span>ack <span style="color:#e6db74">&#34;class User&#34;</span> --js        <span style="color:#75715e"># Tìm trong file JavaScript</span>
+</span></span><span style="display:flex;"><span>ack <span style="color:#e6db74">&#34;def &#34;</span> --py -C <span style="color:#ae81ff">2</span>          <span style="color:#75715e"># Tìm trong Python, hiển thị 2 dòng context</span>
+</span></span><span style="display:flex;"><span>ack <span style="color:#e6db74">&#34;TODO|FIXME&#34;</span>              <span style="color:#75715e"># Tìm TODO hoặc FIXME</span>
+</span></span></code></pre></div><p>ack đặt nền móng cho thế hệ công cụ tiếp theo, mặc dù hiện tại đã bị vượt mặt về tốc độ.</p>
+<h2 id="the-silver-searcher-ag-tốc-độ-lên-ngôi">The Silver Searcher (ag): Tốc Độ Lên Ngôi<a hidden class="anchor" aria-hidden="true" href="#the-silver-searcher-ag-tốc-độ-lên-ngôi">#</a></h2>
+<p><a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher</a> (<code>ag</code>) được viết bằng C, nhanh hơn ack từ 3-5 lần nhờ song song hóa và tối ưu hệ thống file. <code>ag</code> giữ lại tất cả ưu điểm của ack và bổ sung tốc độ.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt</span>
+</span></span><span style="display:flex;"><span>brew install the_silver_searcher    <span style="color:#75715e"># macOS</span>
+</span></span><span style="display:flex;"><span>apt install silversearcher-ag       <span style="color:#75715e"># Ubuntu/Debian</span>
+</span></span><span style="display:flex;"><span>pacman -S the_silver_searcher       <span style="color:#75715e"># Arch</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Cú pháp tương tự ack</span>
+</span></span><span style="display:flex;"><span>ag <span style="color:#e6db74">&#34;pattern&#34;</span>                        <span style="color:#75715e"># Tìm đệ quy, tôn trọng .gitignore</span>
+</span></span><span style="display:flex;"><span>ag -i <span style="color:#e6db74">&#34;pattern&#34;</span>                     <span style="color:#75715e"># Không phân biệt hoa thường</span>
+</span></span><span style="display:flex;"><span>ag --js <span style="color:#e6db74">&#34;pattern&#34;</span>                   <span style="color:#75715e"># Chỉ tìm trong JavaScript</span>
+</span></span><span style="display:flex;"><span>ag -l <span style="color:#e6db74">&#34;pattern&#34;</span>                     <span style="color:#75715e"># Chỉ liệt kê tên file</span>
+</span></span><span style="display:flex;"><span>ag -C <span style="color:#ae81ff">3</span> <span style="color:#e6db74">&#34;pattern&#34;</span>                   <span style="color:#75715e"># Hiển thị 3 dòng context</span>
+</span></span></code></pre></div><p>Tuy nhiên, dự án ag hiện ít được bảo trì tích cực so với ripgrep — commit cuối cùng thường cách đây nhiều tháng.</p>
+<h2 id="ripgrep-rg-tiêu-chuẩn-mới">ripgrep (rg): Tiêu Chuẩn Mới<a hidden class="anchor" aria-hidden="true" href="#ripgrep-rg-tiêu-chuẩn-mới">#</a></h2>
+<h3 id="tại-sao-ripgrep-thống-trị-code-search-ngày-nay">Tại Sao ripgrep Thống Trị Code Search Ngày Nay?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-ripgrep-thống-trị-code-search-ngày-nay">#</a></h3>
+<p><a href="https://github.com/BurntSushi/ripgrep">ripgrep</a> (<code>rg</code>) được viết bằng Rust bởi Andrew Gallant, hiện là công cụ tìm kiếm code phổ biến nhất trong cộng đồng developer. Lý do chiếm ưu thế: 1. <strong>Tốc độ cực nhanh</strong>: Nhanh hơn grep 10x, nhanh hơn ag ~2-3x trong hầu hết benchmarks
 2. <strong>Song song hóa tự động</strong>: Sử dụng tất cả CPU core có sẵn
 3. <strong>Smart defaults</strong>: Đệ quy, hiển thị số dòng, tôn trọng .gitignore, hidden files — tất cả là mặc định
 4. <strong>Unicode support tuyệt vờii</strong>: Xử lý đa ngôn ngữ tốt hơn bất kỳ đối thủ nào
 5. <strong>Type filtering linh hoạt</strong>: <code>--type</code>, <code>--type-add</code> cho phép định nghĩa loại file tùy chỉnh
 6. <strong>Configuration file</strong>: Hỗ trợ <code>.ripgreprc</code> để lưu cấu hình mặc định
-7. <strong>Integration hoàn hảo</strong>: Backend search cho VS Code, fzf, Vim, Emacs</p><h3 id=bảng-benchmark-grep-vs-ack-vs-ag-vs-ripgrep>Bảng Benchmark: grep vs ack vs ag vs ripgrep<a hidden class=anchor aria-hidden=true href=#bảng-benchmark-grep-vs-ack-vs-ag-vs-ripgrep>#</a></h3><table><thead><tr><th>Công cụ</th><th>Ngôn ngữ</th><th>Kích thước code tìm kiếm</th><th>Thờii gian tương đối</th><th>Đệ quy mặc định</th><th>.gitignore</th><th>Unicode</th></tr></thead><tbody><tr><td>grep</td><td>C</td><td>Linux kernel (~3GB)</td><td>1x (baseline)</td><td>Không</td><td>Không</td><td>Hạn chế</td></tr><tr><td>ack</td><td>Perl</td><td>Linux kernel</td><td>~0.5x grep (chậm hơn)</td><td>Có</td><td>Có</td><td>Tốt</td></tr><tr><td>ag</td><td>C</td><td>Linux kernel</td><td>~0.2x grep</td><td>Có</td><td>Có</td><td>Tốt</td></tr><tr><td><strong>ripgrep</strong></td><td><strong>Rust</strong></td><td><strong>Linux kernel</strong></td><td><strong>~0.1x grep (10x nhanh)</strong></td><td><strong>Có</strong></td><td><strong>Có</strong></td><td><strong>Xuất sắc</strong></td></tr></tbody></table><blockquote><p>Dữ liệu benchmark từ <a href=https://github.com/BurntSushi/ripgrep#quick-examples-comparing-tools>ripgrep GitHub repository</a>, thử nghiệm tìm kiếm <code>fn run</code> trong Linux kernel source tree.</p></blockquote><h3 id=các-pattern-tìm-kiếm-thông-dụng-với-ripgrep>Các Pattern Tìm Kiếm Thông Dụng Với ripgrep<a hidden class=anchor aria-hidden=true href=#các-pattern-tìm-kiếm-thông-dụng-với-ripgrep>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tìm kiếm cơ bản — đệ quy, tôn trọng .gitignore mặc định</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;function name&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm trong loại file cụ thể (js, py, rs, go...)</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;class User&#34;</span> --type js
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc nhiều loại file</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;import&#34;</span> -t py -t js
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hiển thị context (dòng trước/sau)</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;TODO&#34;</span> -C <span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chỉ liệt kê tên file (không nội dung)</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;pattern&#34;</span> -l
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm với regex</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;^export\s+(const|let|function)&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm và thay thế (kết hợp với sd hoặc perl)</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;oldPattern&#34;</span> -l | xargs sd <span style=color:#e6db74>&#34;oldPattern&#34;</span> <span style=color:#e6db74>&#34;newPattern&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm trong file ẩn (không .gitignore)</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;pattern&#34;</span> --hidden
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Thêm loại file tùy chỉnh trong .ripgreprc</span>
-</span></span><span style=display:flex><span>--type-add
-</span></span><span style=display:flex><span>web:*.<span style=color:#f92672>{</span>html,css,js,jsx,ts,tsx,vue<span style=color:#f92672>}</span>
-</span></span></code></pre></div><h3 id=file-cấu-hình-ripgreprc>File Cấu Hình .ripgreprc<a hidden class=anchor aria-hidden=true href=#file-cấu-hình-ripgreprc>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.ripgreprc</span>
-</span></span><span style=display:flex><span>--max-columns<span style=color:#f92672>=</span><span style=color:#ae81ff>150</span>
-</span></span><span style=display:flex><span>--max-columns-preview
-</span></span><span style=display:flex><span>--type-add
-</span></span><span style=display:flex><span>web:*.<span style=color:#f92672>{</span>html,css,js,jsx,ts,tsx,vue,svelte<span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>--smart-case
-</span></span><span style=display:flex><span>--follow
-</span></span><span style=display:flex><span>--hidden
-</span></span><span style=display:flex><span>--glob<span style=color:#f92672>=</span>!.git/
-</span></span><span style=display:flex><span>--glob<span style=color:#f92672>=</span>!node_modules/
-</span></span><span style=display:flex><span>--glob<span style=color:#f92672>=</span>!vendor/
-</span></span><span style=display:flex><span>--glob<span style=color:#f92672>=</span>!.next/
-</span></span><span style=display:flex><span>--glob<span style=color:#f92672>=</span>!dist/
-</span></span></code></pre></div><p>Kết hợp với biến môi trường: <code>export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc</code></p><h2 id=fzf-cách-mạng-tìm-kiếm-tương-tác>fzf: Cách Mạng Tìm Kiếm Tương Tác<a hidden class=anchor aria-hidden=true href=#fzf-cách-mạng-tìm-kiếm-tương-tác>#</a></h2><h3 id=fzf-không-phải-công-cụ-tìm-kiếm--nó-là-cuộc-cách-mạng>fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng<a hidden class=anchor aria-hidden=true href=#fzf-không-phải-công-cụ-tìm-kiếm--nó-là-cuộc-cách-mạng>#</a></h3><p><a href=https://github.com/junegunn/fzf>fzf</a> khác biệt với ripgrep ở chỗ: <strong>fzf không quét file system</strong>. Thay vào đó, fzf nhận một danh sách đầu vào (từ stdin) và cho phép bạn <strong>lọc tương tác</strong> theo thờii gian thực khi gõ. Điều này tạo ra workflow tìm kiếm hoàn hảo: một công cụ (rg, fd, find) tạo danh sách, fzf giúp bạn chọn từ danh sách đó.</p><h3 id=combo-ripgrep--fzf--bat-workflow-tìm-kiếm-hoàn-hảo>Combo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo<a hidden class=anchor aria-hidden=true href=#combo-ripgrep--fzf--bat-workflow-tìm-kiếm-hoàn-hảo>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tìm file và xem preview với syntax highlighting</span>
-</span></span><span style=display:flex><span>rg --files | fzf --preview <span style=color:#e6db74>&#39;bat --style=numbers --color=always {}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm kiếm nội dung file với preview</span>
-</span></span><span style=display:flex><span>rg --line-number --no-heading --smart-case <span style=color:#e6db74>&#34;pattern&#34;</span> | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  fzf --delimiter <span style=color:#e6db74>&#39;:&#39;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>      --preview <span style=color:#e6db74>&#39;bat --style=numbers --color=always --highlight-line {2} {1}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Duyệt Git branches</span>
-</span></span><span style=display:flex><span> git branch | fzf --preview <span style=color:#e6db74>&#39; git log --oneline --graph --decorate {1}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Duyệt Git commits</span>
-</span></span><span style=display:flex><span> git log --oneline | fzf --preview <span style=color:#e6db74>&#39; git show --stat {1}&#39;</span>
-</span></span></code></pre></div><h3 id=key-bindings-mặc-định>Key Bindings Mặc Định<a hidden class=anchor aria-hidden=true href=#key-bindings-mặc-định>#</a></h3><table><thead><tr><th>Phím tắt</th><th>Chức năng</th></tr></thead><tbody><tr><td><code>Ctrl+T</code></td><td>Chèn file đã chọn vào dòng lệnh</td></tr><tr><td><code>Alt+C</code></td><td>Chuyển đến thư mục đã chọn (<code>cd</code>)</td></tr><tr><td><code>Ctrl+R</code></td><td>Tìm kiếm tương tác trong lịch sử lệnh</td></tr><tr><td><code>Tab</code></td><td>Chọn nhiều mục (multi-select)</td></tr><tr><td><code>Ctrl+/</code></td><td>Chuyển đổi giữa match chính xác và fuzzy</td></tr></tbody></table><h2 id=sd-thay-thế-find--replace-trực-quan>sd: Thay Thế Find & Replace Trực Quan<a hidden class=anchor aria-hidden=true href=#sd-thay-thế-find--replace-trực-quan>#</a></h2><h3 id=tại-sao-sd-thay-thế-sed-cho-hầu-hết-tác-vụ>Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?<a hidden class=anchor aria-hidden=true href=#tại-sao-sd-thay-thế-sed-cho-hầu-hết-tác-vụ>#</a></h3><p><a href=https://github.com/chmln/sd>sd</a> là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn <code>sed</code> đáng kể: | Tác vụ | sed | sd |
+7. <strong>Integration hoàn hảo</strong>: Backend search cho VS Code, fzf, Vim, Emacs</p>
+<h3 id="bảng-benchmark-grep-vs-ack-vs-ag-vs-ripgrep">Bảng Benchmark: grep vs ack vs ag vs ripgrep<a hidden class="anchor" aria-hidden="true" href="#bảng-benchmark-grep-vs-ack-vs-ag-vs-ripgrep">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Công cụ</th>
+					<th>Ngôn ngữ</th>
+					<th>Kích thước code tìm kiếm</th>
+					<th>Thờii gian tương đối</th>
+					<th>Đệ quy mặc định</th>
+					<th>.gitignore</th>
+					<th>Unicode</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>grep</td>
+					<td>C</td>
+					<td>Linux kernel (~3GB)</td>
+					<td>1x (baseline)</td>
+					<td>Không</td>
+					<td>Không</td>
+					<td>Hạn chế</td>
+			</tr>
+			<tr>
+					<td>ack</td>
+					<td>Perl</td>
+					<td>Linux kernel</td>
+					<td>~0.5x grep (chậm hơn)</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Tốt</td>
+			</tr>
+			<tr>
+					<td>ag</td>
+					<td>C</td>
+					<td>Linux kernel</td>
+					<td>~0.2x grep</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Tốt</td>
+			</tr>
+			<tr>
+					<td><strong>ripgrep</strong></td>
+					<td><strong>Rust</strong></td>
+					<td><strong>Linux kernel</strong></td>
+					<td><strong>~0.1x grep (10x nhanh)</strong></td>
+					<td><strong>Có</strong></td>
+					<td><strong>Có</strong></td>
+					<td><strong>Xuất sắc</strong></td>
+			</tr>
+	</tbody>
+</table>
+<blockquote>
+<p>Dữ liệu benchmark từ <a href="https://github.com/BurntSushi/ripgrep#quick-examples-comparing-tools">ripgrep GitHub repository</a>, thử nghiệm tìm kiếm <code>fn run</code> trong Linux kernel source tree.</p>
+</blockquote>
+<h3 id="các-pattern-tìm-kiếm-thông-dụng-với-ripgrep">Các Pattern Tìm Kiếm Thông Dụng Với ripgrep<a hidden class="anchor" aria-hidden="true" href="#các-pattern-tìm-kiếm-thông-dụng-với-ripgrep">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tìm kiếm cơ bản — đệ quy, tôn trọng .gitignore mặc định</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;function name&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm trong loại file cụ thể (js, py, rs, go...)</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;class User&#34;</span> --type js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc nhiều loại file</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;import&#34;</span> -t py -t js
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hiển thị context (dòng trước/sau)</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;TODO&#34;</span> -C <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chỉ liệt kê tên file (không nội dung)</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;pattern&#34;</span> -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm với regex</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;^export\s+(const|let|function)&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm và thay thế (kết hợp với sd hoặc perl)</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;oldPattern&#34;</span> -l | xargs sd <span style="color:#e6db74">&#34;oldPattern&#34;</span> <span style="color:#e6db74">&#34;newPattern&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm trong file ẩn (không .gitignore)</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;pattern&#34;</span> --hidden
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Thêm loại file tùy chỉnh trong .ripgreprc</span>
+</span></span><span style="display:flex;"><span>--type-add
+</span></span><span style="display:flex;"><span>web:*.<span style="color:#f92672">{</span>html,css,js,jsx,ts,tsx,vue<span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="file-cấu-hình-ripgreprc">File Cấu Hình .ripgreprc<a hidden class="anchor" aria-hidden="true" href="#file-cấu-hình-ripgreprc">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.ripgreprc</span>
+</span></span><span style="display:flex;"><span>--max-columns<span style="color:#f92672">=</span><span style="color:#ae81ff">150</span>
+</span></span><span style="display:flex;"><span>--max-columns-preview
+</span></span><span style="display:flex;"><span>--type-add
+</span></span><span style="display:flex;"><span>web:*.<span style="color:#f92672">{</span>html,css,js,jsx,ts,tsx,vue,svelte<span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>--smart-case
+</span></span><span style="display:flex;"><span>--follow
+</span></span><span style="display:flex;"><span>--hidden
+</span></span><span style="display:flex;"><span>--glob<span style="color:#f92672">=</span>!.git/
+</span></span><span style="display:flex;"><span>--glob<span style="color:#f92672">=</span>!node_modules/
+</span></span><span style="display:flex;"><span>--glob<span style="color:#f92672">=</span>!vendor/
+</span></span><span style="display:flex;"><span>--glob<span style="color:#f92672">=</span>!.next/
+</span></span><span style="display:flex;"><span>--glob<span style="color:#f92672">=</span>!dist/
+</span></span></code></pre></div><p>Kết hợp với biến môi trường: <code>export RIPGREP_CONFIG_PATH=$HOME/.ripgreprc</code></p>
+<h2 id="fzf-cách-mạng-tìm-kiếm-tương-tác">fzf: Cách Mạng Tìm Kiếm Tương Tác<a hidden class="anchor" aria-hidden="true" href="#fzf-cách-mạng-tìm-kiếm-tương-tác">#</a></h2>
+<h3 id="fzf-không-phải-công-cụ-tìm-kiếm--nó-là-cuộc-cách-mạng">fzf Không Phải Công Cụ Tìm Kiếm — Nó Là Cuộc Cách Mạng<a hidden class="anchor" aria-hidden="true" href="#fzf-không-phải-công-cụ-tìm-kiếm--nó-là-cuộc-cách-mạng">#</a></h3>
+<p><a href="https://github.com/junegunn/fzf">fzf</a> khác biệt với ripgrep ở chỗ: <strong>fzf không quét file system</strong>. Thay vào đó, fzf nhận một danh sách đầu vào (từ stdin) và cho phép bạn <strong>lọc tương tác</strong> theo thờii gian thực khi gõ. Điều này tạo ra workflow tìm kiếm hoàn hảo: một công cụ (rg, fd, find) tạo danh sách, fzf giúp bạn chọn từ danh sách đó.</p>
+<h3 id="combo-ripgrep--fzf--bat-workflow-tìm-kiếm-hoàn-hảo">Combo ripgrep + fzf + bat: Workflow Tìm Kiếm Hoàn Hảo<a hidden class="anchor" aria-hidden="true" href="#combo-ripgrep--fzf--bat-workflow-tìm-kiếm-hoàn-hảo">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tìm file và xem preview với syntax highlighting</span>
+</span></span><span style="display:flex;"><span>rg --files | fzf --preview <span style="color:#e6db74">&#39;bat --style=numbers --color=always {}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm kiếm nội dung file với preview</span>
+</span></span><span style="display:flex;"><span>rg --line-number --no-heading --smart-case <span style="color:#e6db74">&#34;pattern&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  fzf --delimiter <span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>      --preview <span style="color:#e6db74">&#39;bat --style=numbers --color=always --highlight-line {2} {1}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Duyệt Git branches</span>
+</span></span><span style="display:flex;"><span> git branch | fzf --preview <span style="color:#e6db74">&#39; git log --oneline --graph --decorate {1}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Duyệt Git commits</span>
+</span></span><span style="display:flex;"><span> git log --oneline | fzf --preview <span style="color:#e6db74">&#39; git show --stat {1}&#39;</span>
+</span></span></code></pre></div><h3 id="key-bindings-mặc-định">Key Bindings Mặc Định<a hidden class="anchor" aria-hidden="true" href="#key-bindings-mặc-định">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Phím tắt</th>
+					<th>Chức năng</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>Ctrl+T</code></td>
+					<td>Chèn file đã chọn vào dòng lệnh</td>
+			</tr>
+			<tr>
+					<td><code>Alt+C</code></td>
+					<td>Chuyển đến thư mục đã chọn (<code>cd</code>)</td>
+			</tr>
+			<tr>
+					<td><code>Ctrl+R</code></td>
+					<td>Tìm kiếm tương tác trong lịch sử lệnh</td>
+			</tr>
+			<tr>
+					<td><code>Tab</code></td>
+					<td>Chọn nhiều mục (multi-select)</td>
+			</tr>
+			<tr>
+					<td><code>Ctrl+/</code></td>
+					<td>Chuyển đổi giữa match chính xác và fuzzy</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="sd-thay-thế-find--replace-trực-quan">sd: Thay Thế Find &amp; Replace Trực Quan<a hidden class="anchor" aria-hidden="true" href="#sd-thay-thế-find--replace-trực-quan">#</a></h2>
+<h3 id="tại-sao-sd-thay-thế-sed-cho-hầu-hết-tác-vụ">Tại Sao sd Thay Thế sed Cho Hầu Hết Tác Vụ?<a hidden class="anchor" aria-hidden="true" href="#tại-sao-sd-thay-thế-sed-cho-hầu-hết-tác-vụ">#</a></h3>
+<p><a href="https://github.com/chmln/sd">sd</a> là công cụ tìm và thay thế dòng lệnh với cú pháp đơn giản hơn <code>sed</code> đáng kể: | Tác vụ | sed | sd |
 |&mdash;&mdash;&ndash;|&mdash;&ndash;|&mdash;&ndash;|
 | Thay thế đơn giản | <code>sed 's/old/new/g'</code> | <code>sd 'old' 'new'</code> |
 | Thay thế file | <code>sed -i 's/old/new/g' file</code> | <code>sd 'old' 'new' file</code> |
 | Thay thế đệ quy | <code>find . -exec sed -i 's/old/new/g' {} +</code> | <code>sd 'old' 'new' **/*.rs</code> |
 | Regex phức tạp | <code>sed 's/\(foo\)\(bar\)/\2\1/g'</code> | <code>sd '(foo)(bar)' '$2$1'</code> |
-| Preview trước khi áp dụng | Không có | <code>sd -p 'old' 'new' file</code> |</p><h3 id=các-tính-năng-nổi-bật-của-sd>Các Tính Năng Nổi Bật CủA sd<a hidden class=anchor aria-hidden=true href=#các-tính-năng-nổi-bật-của-sd>#</a></h3><ul><li><strong>Không cần escape dấu <code>/</code></strong>: <code>sd 'http://localhost:3000' 'https://api.example.com'</code> hoạt động bình thường</li><li><strong>Preview mode</strong> (<code>-p</code>): Xem thay đổi trước khi áp dụng — cực kỳ quan trọng cho refactoring</li><li><strong>Recursive</strong>: <code>sd 'pattern' 'replacement' **/*.js</code> thay thế tất cả file JavaScript</li><li><strong>Syntax regex hiện đại</strong>: Sử dụng Rust regex engine, hỗ trợ capture groups với <code>$1</code>, <code>$2</code></li></ul><h3 id=so-sánh-sd-vs-sed-vs-perl--pi>So Sánh: sd vs sed vs perl -pi<a hidden class=anchor aria-hidden=true href=#so-sánh-sd-vs-sed-vs-perl--pi>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Thay thế đơn giản — sd rõ ràng hơn</span>
-</span></span><span style=display:flex><span>sed -i <span style=color:#e6db74>&#39;s/old/new/g&#39;</span> file.txt           <span style=color:#75715e># sed</span>
-</span></span><span style=display:flex><span>sd <span style=color:#e6db74>&#39;old&#39;</span> <span style=color:#e6db74>&#39;new&#39;</span> file.txt                  <span style=color:#75715e># sd — đơn giản hơn</span>
-</span></span><span style=display:flex><span>perl -pi -e <span style=color:#e6db74>&#39;s/old/new/g&#39;</span> file.txt      <span style=color:#75715e># perl</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Thay thế có dấu / trong pattern</span>
-</span></span><span style=display:flex><span>sed -i <span style=color:#e6db74>&#39;s/http:\/\/localhost/http:\/\/127.0.0.1/g&#39;</span> file  <span style=color:#75715e># sed — escape hỗn loạn</span>
-</span></span><span style=display:flex><span>sd <span style=color:#e6db74>&#39;http://localhost&#39;</span> <span style=color:#e6db74>&#39;http://127.0.0.1&#39;</span> file             <span style=color:#75715e># sd — không cần escape</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Thay thế recursive trong nhiều file</span>
-</span></span><span style=display:flex><span>find . -name <span style=color:#e6db74>&#34;*.js&#34;</span> -exec sed -i <span style=color:#e6db74>&#39;s/var/const/g&#39;</span> <span style=color:#f92672>{}</span> +     <span style=color:#75715e># sed</span>
-</span></span><span style=display:flex><span>sd <span style=color:#e6db74>&#39;var&#39;</span> <span style=color:#e6db74>&#39;const&#39;</span> **/*.js                                   <span style=color:#75715e># sd</span>
-</span></span></code></pre></div><h2 id=tìm-kiếm-trong-ide-và-editor-hiện-đại>Tìm Kiếm Trong IDE Và Editor Hiện Đại<a hidden class=anchor aria-hidden=true href=#tìm-kiếm-trong-ide-và-editor-hiện-đại>#</a></h2><h3 id=vs-code-global-search-với-regex>VS Code: Global Search Với Regex<a hidden class=anchor aria-hidden=true href=#vs-code-global-search-với-regex>#</a></h3><p>VS Code sử dụng ripgrep làm backend cho tính năng global search (<code>Ctrl+Shift+F</code>), hỗ trợ regex, include/exclude patterns, và replace across files. Điểm mạnh: tích hợp sâu với refactoring — sau khi tìm, bạn có thể rename symbol hoặc extract function ngay lập tức.</p><h3 id=jetbrains-structural-search-and-replace>JetBrains: Structural Search And Replace<a hidden class=anchor aria-hidden=true href=#jetbrains-structural-search-and-replace>#</a></h3><p>Các IDE của JetBrains (IntelliJ IDEA, PyCharm, WebStorm) cung cấp <strong>Structural Search and Replace</strong> (SSR) — tìm kiếm dựa trên cấu trúc cú pháp AST thay vì text thuần. Ví dụ, bạn có thể tìm &ldquo;tất cả vòng lặp for có 3 statements trong body&rdquo; hoặc &ldquo;tất cả hàm gọi method X với argument kiểu String&rdquo; — những truy vấn không thể thực hiện bằng regex.</p><h3 id=neovim-telescope-với-live-grep>NeoVim: Telescope Với Live Grep<a hidden class=anchor aria-hidden=true href=#neovim-telescope-với-live-grep>#</a></h3><p>Trong hệ sinh thái NeoVim, <a href=https://github.com/nvim-telescope/telescope.nvim>Telescope</a> kết hợp với ripgrep tạo ra trải nghiệm tìm kiếm code tuyệt vờii ngay trong editor. <code>Telescope live_grep</code> tìm kiếm toàn bộ project theo thờii gian thực khi bạn gõ.</p><h2 id=các-nền-tảng-tìm-kiếm-code-quy-mô-lớn>Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn<a hidden class=anchor aria-hidden=true href=#các-nền-tảng-tìm-kiếm-code-quy-mô-lớn>#</a></h2><h3 id=sourcegraph-nền-tảng-trí-tuệ-code>Sourcegraph: Nền Tảng Trí Tuệ Code<a hidden class=anchor aria-hidden=true href=#sourcegraph-nền-tảng-trí-tuệ-code>#</a></h3><p><a href=https://about.sourcegraph.com>Sourcegraph</a> là nền tảng tìm kiếm và phân tích code dành cho doanh nghiệp, hỗ trợ tìm kiếm across hàng nghìn repository. Tính năng nổi bật: <strong>code intelligence</strong> (hover để xem definition, references), <strong>batch changes</strong> (refactoring trên quy mô lớn), và <strong>Code Insights</strong> (theo dõi xu hướng code theo thờii gian). Sourcegraph miễn phí cho team nhỏ (dưới 10 users); gói Enterprise có giá tùy chỉnh.</p><h3 id=github-code-search>GitHub Code Search<a hidden class=anchor aria-hidden=true href=#github-code-search>#</a></h3><p>GitHub cung cấp <a href=https://github.com/features/code-search>Code Search</a> mới với regex support, symbol search, và path filtering. Ví dụ: <code>language:rust repo:tokio-rs/tokio fn spawn</code> tìm hàm <code>spawn</code> trong repository tokio, giới hạn file Rust. Đây là công cụ miễn phí và mạnh mẽ cho việc tìm kiếm trong mã nguồn mở.</p><h3 id=livegrep-tìm-kiếm-regex-trên-codebase-khổng-lồ>Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ<a hidden class=anchor aria-hidden=true href=#livegrep-tìm-kiếm-regex-trên-codebase-khổng-lồ>#</a></h3><p><a href=https://github.com/livegrep/livegrep>Livegrep</a> là công cụ tự host cho phép tìm kiếm regex trên codebase lớn (hàng triệu dòng code) gần như tức thờii. Được sử dụng nội bộ tại nhiều công ty lớn như Stripe và Google. Livegrep phù hợp cho tổ chức có codebase monorepo lớn cần tìm kiếm nhanh.</p><h2 id=các-workflow-tìm-kiếm-thực-tế>Các Workflow Tìm Kiếm Thực Tế<a hidden class=anchor aria-hidden=true href=#các-workflow-tìm-kiếm-thực-tế>#</a></h2><h3 id=workflow-hàng-ngày-rg--fzf--bat>Workflow Hàng Ngày: rg + fzf + bat<a hidden class=anchor aria-hidden=true href=#workflow-hàng-ngày-rg--fzf--bat>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 1. Tìm kiếm file</span>
-</span></span><span style=display:flex><span>eza --files | fzf --preview <span style=color:#e6db74>&#39;bat --style=numbers --color=always {}&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 2. Tìm kiếm nội dung</span>
-</span></span><span style=display:flex><span>grep_func<span style=color:#f92672>()</span> <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  rg --line-number --no-heading --color<span style=color:#f92672>=</span>always <span style=color:#e6db74>&#34;</span>$1<span style=color:#e6db74>&#34;</span> | <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    fzf --ansi --delimiter <span style=color:#e6db74>&#39;:&#39;</span> --preview <span style=color:#e6db74>&#39;bat --style=numbers --color=always --highlight-line {2} {1}&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 3. Xem nội dung file</span>
-</span></span><span style=display:flex><span>cat<span style=color:#f92672>()</span> <span style=color:#f92672>{</span> bat <span style=color:#e6db74>&#34;</span>$@<span style=color:#e6db74>&#34;</span>; <span style=color:#f92672>}</span>
-</span></span></code></pre></div><h3 id=workflow-refactoring-hàng-loạt-rg--sd>Workflow Refactoring Hàng Loạt: rg + sd<a hidden class=anchor aria-hidden=true href=#workflow-refactoring-hàng-loạt-rg--sd>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Bước 1: Tìm tất cả file chứa pattern cần thay đổi</span>
-</span></span><span style=display:flex><span>rg <span style=color:#e6db74>&#34;oldFunctionName&#34;</span> -l
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bước 2: Xem preview thay đổi</span>
-</span></span><span style=display:flex><span>sd -p <span style=color:#e6db74>&#34;oldFunctionName&#34;</span> <span style=color:#e6db74>&#34;newFunctionName&#34;</span> <span style=color:#66d9ef>$(</span>rg <span style=color:#e6db74>&#34;oldFunctionName&#34;</span> -l<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bước 3: Áp dụng thay đổi</span>
-</span></span><span style=display:flex><span>sd <span style=color:#e6db74>&#34;oldFunctionName&#34;</span> <span style=color:#e6db74>&#34;newFunctionName&#34;</span> <span style=color:#66d9ef>$(</span>rg <span style=color:#e6db74>&#34;oldFunctionName&#34;</span> -l<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Bước 4: Kiểm tra bằng test</span>
-</span></span><span style=display:flex><span> npm test
-</span></span></code></pre></div><h3 id=tìm-kiếm-lịch-sử-git>Tìm Kiếm Lịch Sử Git<a hidden class=anchor aria-hidden=true href=#tìm-kiếm-lịch-sử-git>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tìm commit thêm/xóa một dòng code cụ thể</span>
-</span></span><span style=display:flex><span> git log -S <span style=color:#e6db74>&#34;function name&#34;</span> --oneline
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm commit thay đổi một pattern regex</span>
-</span></span><span style=display:flex><span> git log -G <span style=color:#e6db74>&#34;pattern&#34;</span> --oneline
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm trong tất cả các branch</span>
-</span></span><span style=display:flex><span> git grep <span style=color:#e6db74>&#34;pattern&#34;</span> <span style=color:#66d9ef>$(</span> git branch -a | cut -c3- <span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm khi một file được đề cập</span>
-</span></span><span style=display:flex><span> git log --all --full-history -- <span style=color:#e6db74>&#34;**/config.ts&#34;</span>
-</span></span></code></pre></div><h2 id=kết-luận-xây-dựng-bộ-công-cụ-tìm-kiếm-của-bạn>Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn<a hidden class=anchor aria-hidden=true href=#kết-luận-xây-dựng-bộ-công-cụ-tìm-kiếm-của-bạn>#</a></h2><p>Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. <strong>ripgrep</strong> (<code>rg</code>): Tìm kiếm code siêu tốc trên toàn bộ codebase
+| Preview trước khi áp dụng | Không có | <code>sd -p 'old' 'new' file</code> |</p>
+<h3 id="các-tính-năng-nổi-bật-của-sd">Các Tính Năng Nổi Bật CủA sd<a hidden class="anchor" aria-hidden="true" href="#các-tính-năng-nổi-bật-của-sd">#</a></h3>
+<ul>
+<li><strong>Không cần escape dấu <code>/</code></strong>: <code>sd 'http://localhost:3000' 'https://api.example.com'</code> hoạt động bình thường</li>
+<li><strong>Preview mode</strong> (<code>-p</code>): Xem thay đổi trước khi áp dụng — cực kỳ quan trọng cho refactoring</li>
+<li><strong>Recursive</strong>: <code>sd 'pattern' 'replacement' **/*.js</code> thay thế tất cả file JavaScript</li>
+<li><strong>Syntax regex hiện đại</strong>: Sử dụng Rust regex engine, hỗ trợ capture groups với <code>$1</code>, <code>$2</code></li>
+</ul>
+<h3 id="so-sánh-sd-vs-sed-vs-perl--pi">So Sánh: sd vs sed vs perl -pi<a hidden class="anchor" aria-hidden="true" href="#so-sánh-sd-vs-sed-vs-perl--pi">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Thay thế đơn giản — sd rõ ràng hơn</span>
+</span></span><span style="display:flex;"><span>sed -i <span style="color:#e6db74">&#39;s/old/new/g&#39;</span> file.txt           <span style="color:#75715e"># sed</span>
+</span></span><span style="display:flex;"><span>sd <span style="color:#e6db74">&#39;old&#39;</span> <span style="color:#e6db74">&#39;new&#39;</span> file.txt                  <span style="color:#75715e"># sd — đơn giản hơn</span>
+</span></span><span style="display:flex;"><span>perl -pi -e <span style="color:#e6db74">&#39;s/old/new/g&#39;</span> file.txt      <span style="color:#75715e"># perl</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Thay thế có dấu / trong pattern</span>
+</span></span><span style="display:flex;"><span>sed -i <span style="color:#e6db74">&#39;s/http:\/\/localhost/http:\/\/127.0.0.1/g&#39;</span> file  <span style="color:#75715e"># sed — escape hỗn loạn</span>
+</span></span><span style="display:flex;"><span>sd <span style="color:#e6db74">&#39;http://localhost&#39;</span> <span style="color:#e6db74">&#39;http://127.0.0.1&#39;</span> file             <span style="color:#75715e"># sd — không cần escape</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Thay thế recursive trong nhiều file</span>
+</span></span><span style="display:flex;"><span>find . -name <span style="color:#e6db74">&#34;*.js&#34;</span> -exec sed -i <span style="color:#e6db74">&#39;s/var/const/g&#39;</span> <span style="color:#f92672">{}</span> +     <span style="color:#75715e"># sed</span>
+</span></span><span style="display:flex;"><span>sd <span style="color:#e6db74">&#39;var&#39;</span> <span style="color:#e6db74">&#39;const&#39;</span> **/*.js                                   <span style="color:#75715e"># sd</span>
+</span></span></code></pre></div><h2 id="tìm-kiếm-trong-ide-và-editor-hiện-đại">Tìm Kiếm Trong IDE Và Editor Hiện Đại<a hidden class="anchor" aria-hidden="true" href="#tìm-kiếm-trong-ide-và-editor-hiện-đại">#</a></h2>
+<h3 id="vs-code-global-search-với-regex">VS Code: Global Search Với Regex<a hidden class="anchor" aria-hidden="true" href="#vs-code-global-search-với-regex">#</a></h3>
+<p>VS Code sử dụng ripgrep làm backend cho tính năng global search (<code>Ctrl+Shift+F</code>), hỗ trợ regex, include/exclude patterns, và replace across files. Điểm mạnh: tích hợp sâu với refactoring — sau khi tìm, bạn có thể rename symbol hoặc extract function ngay lập tức.</p>
+<h3 id="jetbrains-structural-search-and-replace">JetBrains: Structural Search And Replace<a hidden class="anchor" aria-hidden="true" href="#jetbrains-structural-search-and-replace">#</a></h3>
+<p>Các IDE của JetBrains (IntelliJ IDEA, PyCharm, WebStorm) cung cấp <strong>Structural Search and Replace</strong> (SSR) — tìm kiếm dựa trên cấu trúc cú pháp AST thay vì text thuần. Ví dụ, bạn có thể tìm &ldquo;tất cả vòng lặp for có 3 statements trong body&rdquo; hoặc &ldquo;tất cả hàm gọi method X với argument kiểu String&rdquo; — những truy vấn không thể thực hiện bằng regex.</p>
+<h3 id="neovim-telescope-với-live-grep">NeoVim: Telescope Với Live Grep<a hidden class="anchor" aria-hidden="true" href="#neovim-telescope-với-live-grep">#</a></h3>
+<p>Trong hệ sinh thái NeoVim, <a href="https://github.com/nvim-telescope/telescope.nvim">Telescope</a> kết hợp với ripgrep tạo ra trải nghiệm tìm kiếm code tuyệt vờii ngay trong editor. <code>Telescope live_grep</code> tìm kiếm toàn bộ project theo thờii gian thực khi bạn gõ.</p>
+<h2 id="các-nền-tảng-tìm-kiếm-code-quy-mô-lớn">Các Nền Tảng Tìm Kiếm Code Quy Mô Lớn<a hidden class="anchor" aria-hidden="true" href="#các-nền-tảng-tìm-kiếm-code-quy-mô-lớn">#</a></h2>
+<h3 id="sourcegraph-nền-tảng-trí-tuệ-code">Sourcegraph: Nền Tảng Trí Tuệ Code<a hidden class="anchor" aria-hidden="true" href="#sourcegraph-nền-tảng-trí-tuệ-code">#</a></h3>
+<p><a href="https://about.sourcegraph.com">Sourcegraph</a> là nền tảng tìm kiếm và phân tích code dành cho doanh nghiệp, hỗ trợ tìm kiếm across hàng nghìn repository. Tính năng nổi bật: <strong>code intelligence</strong> (hover để xem definition, references), <strong>batch changes</strong> (refactoring trên quy mô lớn), và <strong>Code Insights</strong> (theo dõi xu hướng code theo thờii gian). Sourcegraph miễn phí cho team nhỏ (dưới 10 users); gói Enterprise có giá tùy chỉnh.</p>
+<h3 id="github-code-search">GitHub Code Search<a hidden class="anchor" aria-hidden="true" href="#github-code-search">#</a></h3>
+<p>GitHub cung cấp <a href="https://github.com/features/code-search">Code Search</a> mới với regex support, symbol search, và path filtering. Ví dụ: <code>language:rust repo:tokio-rs/tokio fn spawn</code> tìm hàm <code>spawn</code> trong repository tokio, giới hạn file Rust. Đây là công cụ miễn phí và mạnh mẽ cho việc tìm kiếm trong mã nguồn mở.</p>
+<h3 id="livegrep-tìm-kiếm-regex-trên-codebase-khổng-lồ">Livegrep: Tìm Kiếm Regex Trên Codebase Khổng Lồ<a hidden class="anchor" aria-hidden="true" href="#livegrep-tìm-kiếm-regex-trên-codebase-khổng-lồ">#</a></h3>
+<p><a href="https://github.com/livegrep/livegrep">Livegrep</a> là công cụ tự host cho phép tìm kiếm regex trên codebase lớn (hàng triệu dòng code) gần như tức thờii. Được sử dụng nội bộ tại nhiều công ty lớn như Stripe và Google. Livegrep phù hợp cho tổ chức có codebase monorepo lớn cần tìm kiếm nhanh.</p>
+<h2 id="các-workflow-tìm-kiếm-thực-tế">Các Workflow Tìm Kiếm Thực Tế<a hidden class="anchor" aria-hidden="true" href="#các-workflow-tìm-kiếm-thực-tế">#</a></h2>
+<h3 id="workflow-hàng-ngày-rg--fzf--bat">Workflow Hàng Ngày: rg + fzf + bat<a hidden class="anchor" aria-hidden="true" href="#workflow-hàng-ngày-rg--fzf--bat">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Tìm kiếm file</span>
+</span></span><span style="display:flex;"><span>eza --files | fzf --preview <span style="color:#e6db74">&#39;bat --style=numbers --color=always {}&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Tìm kiếm nội dung</span>
+</span></span><span style="display:flex;"><span>grep_func<span style="color:#f92672">()</span> <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  rg --line-number --no-heading --color<span style="color:#f92672">=</span>always <span style="color:#e6db74">&#34;</span>$1<span style="color:#e6db74">&#34;</span> | <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    fzf --ansi --delimiter <span style="color:#e6db74">&#39;:&#39;</span> --preview <span style="color:#e6db74">&#39;bat --style=numbers --color=always --highlight-line {2} {1}&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Xem nội dung file</span>
+</span></span><span style="display:flex;"><span>cat<span style="color:#f92672">()</span> <span style="color:#f92672">{</span> bat <span style="color:#e6db74">&#34;</span>$@<span style="color:#e6db74">&#34;</span>; <span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="workflow-refactoring-hàng-loạt-rg--sd">Workflow Refactoring Hàng Loạt: rg + sd<a hidden class="anchor" aria-hidden="true" href="#workflow-refactoring-hàng-loạt-rg--sd">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Bước 1: Tìm tất cả file chứa pattern cần thay đổi</span>
+</span></span><span style="display:flex;"><span>rg <span style="color:#e6db74">&#34;oldFunctionName&#34;</span> -l
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bước 2: Xem preview thay đổi</span>
+</span></span><span style="display:flex;"><span>sd -p <span style="color:#e6db74">&#34;oldFunctionName&#34;</span> <span style="color:#e6db74">&#34;newFunctionName&#34;</span> <span style="color:#66d9ef">$(</span>rg <span style="color:#e6db74">&#34;oldFunctionName&#34;</span> -l<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bước 3: Áp dụng thay đổi</span>
+</span></span><span style="display:flex;"><span>sd <span style="color:#e6db74">&#34;oldFunctionName&#34;</span> <span style="color:#e6db74">&#34;newFunctionName&#34;</span> <span style="color:#66d9ef">$(</span>rg <span style="color:#e6db74">&#34;oldFunctionName&#34;</span> -l<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Bước 4: Kiểm tra bằng test</span>
+</span></span><span style="display:flex;"><span> npm test
+</span></span></code></pre></div><h3 id="tìm-kiếm-lịch-sử-git">Tìm Kiếm Lịch Sử Git<a hidden class="anchor" aria-hidden="true" href="#tìm-kiếm-lịch-sử-git">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tìm commit thêm/xóa một dòng code cụ thể</span>
+</span></span><span style="display:flex;"><span> git log -S <span style="color:#e6db74">&#34;function name&#34;</span> --oneline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm commit thay đổi một pattern regex</span>
+</span></span><span style="display:flex;"><span> git log -G <span style="color:#e6db74">&#34;pattern&#34;</span> --oneline
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm trong tất cả các branch</span>
+</span></span><span style="display:flex;"><span> git grep <span style="color:#e6db74">&#34;pattern&#34;</span> <span style="color:#66d9ef">$(</span> git branch -a | cut -c3- <span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm khi một file được đề cập</span>
+</span></span><span style="display:flex;"><span> git log --all --full-history -- <span style="color:#e6db74">&#34;**/config.ts&#34;</span>
+</span></span></code></pre></div><h2 id="kết-luận-xây-dựng-bộ-công-cụ-tìm-kiếm-của-bạn">Kết Luận: Xây Dựng Bộ Công Cụ Tìm Kiếm CủA Bạn<a hidden class="anchor" aria-hidden="true" href="#kết-luận-xây-dựng-bộ-công-cụ-tìm-kiếm-của-bạn">#</a></h2>
+<p>Bộ công cụ tìm kiếm code hiệu quả nhất năm 2025 gồm ba thành phần cốt lõi: 1. <strong>ripgrep</strong> (<code>rg</code>): Tìm kiếm code siêu tốc trên toàn bộ codebase
 2. <strong>fzf</strong>: Lọc và chọn tương tác từ bất kỳ danh sách nào
-3. <strong>sd</strong>: Thay thế text đơn giản, trực quan hơn sed</p><p>Kết hợp ba công cụ này với <strong>bat</strong> (cat nâng cao) tạo ra workflow tìm kiếm và duyệt code mượt mà mà không cần rờii terminal. Bổ sung <strong>GitHub Code Search</strong> hoặc <strong>Sourcegraph</strong> khi cần tìm kiếm across nhiều repository hoặc codebase monorepo khổng lồ.</p><p>Tương lai của code search đang hướng về <strong>AI-powered search</strong> — các công cụ như GitHub Copilot Chat cho phép tìm kiếm bằng ngôn ngữ tự nhiên (&ldquo;tìm hàm xử lý authentication trong project này&rdquo;). Tuy nhiên, công cụ CLI truyền thống vẫn sẽ giữ vị trí không thể thay thế nhờ tốc độ, độ tin cậy, và khả năng tích hợp vào workflow tự động hóa.</p><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=ripgrep-có-nhanh-hơn-grep-không>ripgrep có nhanh hơn grep không?<a hidden class=anchor aria-hidden=true href=#ripgrep-có-nhanh-hơn-grep-không>#</a></h3><p>Có, ripgrep nhanh hơn grep khoảng 10 lần trong hầu hết các tình huống tìm kiếm codebase thực tế. Sự khác biệt đến từ: (1) ripgrep song song hóa mặc định sử dụng nhiều CPU core; (2) ripgrep tôn trọng .gitignore nên quét ít file hơn; (3) ripgrep được viết bằng Rust với memory management tối ưu. Tuy nhiên, grep vẫn có mặt trên mọi hệ thống và không cần cài đặt.</p><h3 id=công-cụ-nào-tốt-nhất-để-tìm-kiếm-code-trong-nhiều-file>Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?<a hidden class=anchor aria-hidden=true href=#công-cụ-nào-tốt-nhất-để-tìm-kiếm-code-trong-nhiều-file>#</a></h3><p>ripgrep (<code>rg</code>) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều file nhờ tốc độ nhanh, tôn trọng .gitignore, và cú pháp đơn giản. Kết hợp với fzf để có trải nghiệm tương tác. Nếu cần tìm kiếm across nhiều repository, GitHub Code Search hoặc Sourcegraph là lựa chọn phù hợp.</p><h3 id=làm-thế-nào-để-thay-thế-text-trong-nhiều-file-từ-dòng-lệnh>Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?<a hidden class=anchor aria-hidden=true href=#làm-thế-nào-để-thay-thế-text-trong-nhiều-file-từ-dòng-lệnh>#</a></h3><p>Sử dụng <strong>sd</strong> cho cú pháp đơn giản nhất: <code>sd "oldText" "newText" $(rg "oldText" -l)</code>. Lệnh <code>rg -l</code> liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag <code>-p</code> (preview) trước để xem thay đổi: <code>sd -p "old" "new" $(rg "old" -l)</code>. Nếu không có sd, dùng ````perl -pi -e &rsquo;s/old/new/g" $(rg &ldquo;old&rdquo; -l)```.</p><h3 id=có-thể-dùng-ripgrep-với-vs-code-không>Có thể dùng ripgrep với VS Code không?<a hidden class=anchor aria-hidden=true href=#có-thể-dùng-ripgrep-với-vs-code-không>#</a></h3><p>VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc định (global search và file search). Bạn không cần cấu hình gì thêm. Trong terminal tích hợp của VS Code, bạn có thể cài ripgrep và sử dụng trực tiếp. Ngoài ra, extension &ldquo;ripgrep&rdquo; cho phép tìm kiếm nâng cao với các tùy chọn ripgrep từ command palette.</p><h3 id=ack-ag-và-rg-khác-nhau-như-thế-nào>ack, ag và rg khác nhau như thế nào?<a hidden class=anchor aria-hidden=true href=#ack-ag-và-rg-khác-nhau-như-thế-nào>#</a></h3><p>Đây là ba thế hệ công cụ tìm kiếm code: <strong>ack</strong> (Perl, ~2006) là ngườii tiên phong với .gitignore support và file type detection; <strong>ag — The Silver Searcher</strong> (C, ~2011) nhanh hơn ack 3-5x nhờ song song hóa; <strong>ripgrep</strong> (Rust, ~2016) nhanh hơn tất cả, hỗ trợ Unicode tốt hơn, và được bảo trì tích cực nhất. Ngày nay, <strong>ripgrep là lựa chọn được khuyến nghị</strong> cho hầu hết use case.</p><h2 id=tài-liệu-tham-khảo>Tài Liệu Tham Khảo<a hidden class=anchor aria-hidden=true href=#tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://github.com/BurntSushi/ripgrep>ripgrep GitHub Repository</a></li><li><a href=https://github.com/junegunn/fzf>fzf GitHub Repository</a></li><li><a href=https://github.com/chmln/sd>sd GitHub Repository</a></li><li><a href=https://beyondgrep.com>ack — Beyond grep</a></li><li><a href=https://github.com/ggreer/the_silver_searcher>The Silver Searcher GitHub</a></li><li><a href=https://about.sourcegraph.com>Sourcegraph</a></li><li><a href=https://github.com/features/code-search>GitHub Code Search</a></li><li><a href=https://github.com/livegrep/livegrep>Livegrep GitHub Repository</a></li></ul><hr><h2 id=hạ-tầng-đề-xuất>Hạ Tầng Đề Xuất<a hidden class=anchor aria-hidden=true href=#hạ-tầng-đề-xuất>#</a></h2><p>Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.</li><li><strong><a href="https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN">Hostinger</a></strong> — VPS giá tốt cho thị trường Việt Nam.</li></ul><p><em>Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+3. <strong>sd</strong>: Thay thế text đơn giản, trực quan hơn sed</p>
+<p>Kết hợp ba công cụ này với <strong>bat</strong> (cat nâng cao) tạo ra workflow tìm kiếm và duyệt code mượt mà mà không cần rờii terminal. Bổ sung <strong>GitHub Code Search</strong> hoặc <strong>Sourcegraph</strong> khi cần tìm kiếm across nhiều repository hoặc codebase monorepo khổng lồ.</p>
+<p>Tương lai của code search đang hướng về <strong>AI-powered search</strong> — các công cụ như GitHub Copilot Chat cho phép tìm kiếm bằng ngôn ngữ tự nhiên (&ldquo;tìm hàm xử lý authentication trong project này&rdquo;). Tuy nhiên, công cụ CLI truyền thống vẫn sẽ giữ vị trí không thể thay thế nhờ tốc độ, độ tin cậy, và khả năng tích hợp vào workflow tự động hóa.</p>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="ripgrep-có-nhanh-hơn-grep-không">ripgrep có nhanh hơn grep không?<a hidden class="anchor" aria-hidden="true" href="#ripgrep-có-nhanh-hơn-grep-không">#</a></h3>
+<p>Có, ripgrep nhanh hơn grep khoảng 10 lần trong hầu hết các tình huống tìm kiếm codebase thực tế. Sự khác biệt đến từ: (1) ripgrep song song hóa mặc định sử dụng nhiều CPU core; (2) ripgrep tôn trọng .gitignore nên quét ít file hơn; (3) ripgrep được viết bằng Rust với memory management tối ưu. Tuy nhiên, grep vẫn có mặt trên mọi hệ thống và không cần cài đặt.</p>
+<h3 id="công-cụ-nào-tốt-nhất-để-tìm-kiếm-code-trong-nhiều-file">Công cụ nào tốt nhất để tìm kiếm code trong nhiều file?<a hidden class="anchor" aria-hidden="true" href="#công-cụ-nào-tốt-nhất-để-tìm-kiếm-code-trong-nhiều-file">#</a></h3>
+<p>ripgrep (<code>rg</code>) là lựa chọn tốt nhất cho tìm kiếm code trong nhiều file nhờ tốc độ nhanh, tôn trọng .gitignore, và cú pháp đơn giản. Kết hợp với fzf để có trải nghiệm tương tác. Nếu cần tìm kiếm across nhiều repository, GitHub Code Search hoặc Sourcegraph là lựa chọn phù hợp.</p>
+<h3 id="làm-thế-nào-để-thay-thế-text-trong-nhiều-file-từ-dòng-lệnh">Làm thế nào để thay thế text trong nhiều file từ dòng lệnh?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-để-thay-thế-text-trong-nhiều-file-từ-dòng-lệnh">#</a></h3>
+<p>Sử dụng <strong>sd</strong> cho cú pháp đơn giản nhất: <code>sd &quot;oldText&quot; &quot;newText&quot; $(rg &quot;oldText&quot; -l)</code>. Lệnh <code>rg -l</code> liệt kê tất cả file chứa pattern, sau đó sd thay thế trong từng file. Luôn thêm flag <code>-p</code> (preview) trước để xem thay đổi: <code>sd -p &quot;old&quot; &quot;new&quot; $(rg &quot;old&quot; -l)</code>. Nếu không có sd, dùng ````perl -pi -e &rsquo;s/old/new/g&quot; $(rg &ldquo;old&rdquo; -l)```.</p>
+<h3 id="có-thể-dùng-ripgrep-với-vs-code-không">Có thể dùng ripgrep với VS Code không?<a hidden class="anchor" aria-hidden="true" href="#có-thể-dùng-ripgrep-với-vs-code-không">#</a></h3>
+<p>VS Code đã sử dụng ripgrep làm backend cho tính năng tìm kiếm mặc định (global search và file search). Bạn không cần cấu hình gì thêm. Trong terminal tích hợp của VS Code, bạn có thể cài ripgrep và sử dụng trực tiếp. Ngoài ra, extension &ldquo;ripgrep&rdquo; cho phép tìm kiếm nâng cao với các tùy chọn ripgrep từ command palette.</p>
+<h3 id="ack-ag-và-rg-khác-nhau-như-thế-nào">ack, ag và rg khác nhau như thế nào?<a hidden class="anchor" aria-hidden="true" href="#ack-ag-và-rg-khác-nhau-như-thế-nào">#</a></h3>
+<p>Đây là ba thế hệ công cụ tìm kiếm code: <strong>ack</strong> (Perl, ~2006) là ngườii tiên phong với .gitignore support và file type detection; <strong>ag — The Silver Searcher</strong> (C, ~2011) nhanh hơn ack 3-5x nhờ song song hóa; <strong>ripgrep</strong> (Rust, ~2016) nhanh hơn tất cả, hỗ trợ Unicode tốt hơn, và được bảo trì tích cực nhất. Ngày nay, <strong>ripgrep là lựa chọn được khuyến nghị</strong> cho hầu hết use case.</p>
+<h2 id="tài-liệu-tham-khảo">Tài Liệu Tham Khảo<a hidden class="anchor" aria-hidden="true" href="#tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://github.com/BurntSushi/ripgrep">ripgrep GitHub Repository</a></li>
+<li><a href="https://github.com/junegunn/fzf">fzf GitHub Repository</a></li>
+<li><a href="https://github.com/chmln/sd">sd GitHub Repository</a></li>
+<li><a href="https://beyondgrep.com">ack — Beyond grep</a></li>
+<li><a href="https://github.com/ggreer/the_silver_searcher">The Silver Searcher GitHub</a></li>
+<li><a href="https://about.sourcegraph.com">Sourcegraph</a></li>
+<li><a href="https://github.com/features/code-search">GitHub Code Search</a></li>
+<li><a href="https://github.com/livegrep/livegrep">Livegrep GitHub Repository</a></li>
+</ul>
+<hr>
+<h2 id="hạ-tầng-đề-xuất">Hạ Tầng Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hạ-tầng-đề-xuất">#</a></h2>
+<p>Để chạy các công cụ trên 24/7 ổn định, lựa chọn hạ tầng rất quan trọng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 tín dụng miễn phí 60 ngày, 14+ region toàn cầu.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp. dibi8.com cũng host ở đây.</li>
+<li><strong><a href="https://www.hostinger.com/vn?REFERRALCODE=22RPIAOJIYJN">Hostinger</a></strong> — VPS giá tốt cho thị trường Việt Nam.</li>
+</ul>
+<p><em>Đây là affiliate link, không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Công Cụ Tìm Kiếm và Thay Thế Mã: Từ grep đến ripgrep, sd và Các Lựa Chọn Thay Thế Hiện Đại&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-18&rdquo;,
@@ -170,18 +663,164 @@
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives%22>https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives%22">https://dibi8.com/vi/resources/code-search-replace-tools-grep-modern-alternatives"</a>
 }
-}</script></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/codebase-memory-mcp-deep-code-intelligence/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

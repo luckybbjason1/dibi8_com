@@ -1,10 +1,350 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/sglang-structured-generation-llm/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/sglang-structured-generation-llm/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"SGLang 是什么？ SGLang（Structured Generation Language）是部署和服务大型语言模型的完整栈库。由两个主要组件组成：\nSGLang Runtime：高性能服务器，通过优化的内存管理和请求调度服务 LLM 端点 SGLang Python 库：用于编写带结构化输出、工具调用和多步推理的 LLM 应用的编程语言 SGLang 解决的问题 传统 LLM 推理引擎（vLLM、TGI、text-generation-inference）在原始 token 生成方面表现出色，但在以下方面存在困难：\n结构化输出强制：获得可靠的 JSON、正则表达式匹配或语法约束的输出需要后处理，会破坏流式传输 前缀缓存复用：当多个请求共享公共上下文（系统提示、文档片段）时，每个引擎都从头重新计算注意力 复杂推理流程：实现 ReAct、多步工具调用或决策树需要自定义编排代码 SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构建共享的 KV 缓存基数树，而其约束解码引擎在生成时保证结构化输出——而非事后。\n架构概览 ┌─────────────────────────────────────────────┐ │ 客户端应用 │ │ (Python SDK、REST API、WebSocket、gRPC) │ └──────────────────┬──────────────────────────┘ │ ┌──────────────────▼──────────────────────────┐ │ 请求调度器 │ │ - 分页注意力内存管理 │ │ - 连续批处理 │ │ - RadixAttention 前缀缓存 │ └──────────────────┬──────────────────────────┘ │ ┌──────────────────▼──────────────────────────┐ │ 约束解码引擎 │ │ - 基于语法的 token 过滤 │ │ - JSON 模式强制 │ │ - 正则表达式模式匹配 │ │ - 自回归约束解析 │ └──────────────────┬──────────────────────────┘ │ ┌──────────────────▼──────────────────────────┐ │ 模型推理层 │ │ - 张量并行（多 GPU） │ │ - FP8 / INT8 量化 │ │ - FlashAttention-3 集成 │ │ - 支持 10 亿到 700 亿+ 参数模型 │ └─────────────────────────────────────────────┘ 快速开始 第一步：安装 SGLang # 安装 Python 库 pip install sglang # 或使用 Docker 获取 GPU 加速 docker pull sglang/sglang:latest docker run --gpus all -p 30000:30000 sglang/sglang:latest \\ --model-path meta-llama/Llama-3.2-8B-Instruct \\ --host 0.0.0.0 --port 30000 第二步：启动服务器 # 在一个 GPU 上服务一个模型 python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B-Instruct \\ --port 30000 # 多 GPU 张量并行 python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-70B-Instruct \\ --tensor-parallel-size 4 \\ --port 30000 # 使用量化节省成本 python -m sglang.launch_server \\ --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \\ --quantization awq \\ --port 30000 第三步：发送第一个请求 curl http://localhost:30000/generate \\ -H \"Content-Type: application/json\" \\ -d '{ \"text\": \"法国的首都是什么？\", \"sampling_params\": { \"max_new_tokens\": 64, \"temperature\": 0 } }' 响应：\n{ \"text\": \"法国的首都是巴黎。\", \"meta\": {\"prompt_tokens\": 12, \"completion_tokens\": 8} } 结构化生成 JSON 模式强制 生成匹配任何 Pydantic 模式的有效 JSON：\nimport sglang as sgl from pydantic import BaseModel, Field from typing import List, Optional class ProductReview(BaseModel): product_name: str = Field(description=\"产品名称\") rating: int = Field(ge=1, le=5, description=\"1 到 5 的评分\") pros: List[str] = Field(max_length=5, description=\"主要优点\") cons: List[str] = Field(max_length=5, description=\"主要缺点\") would_recommend: bool = Field(description=\"是否推荐该产品\") summary: str = Field(description=\"一句话总结\") backend = sgl.Runtime(host=\"localhost\", port=30000) @sgl.program def review_analyzer(state, review_text: str): state += sgl.user(\"分析此产品评论并提取结构化数据:\") state += sgl.assistant(sgl.gen(\"json_output\", max_tokens=512)) program = review_analyzer() result = program.run( review_text=\"不错的笔记本电脑但电池续航可以更好。显示屏出色，开发性能优秀。\", sampling_params={ \"response_format\": { \"type\": \"json_schema\", \"json_schema\": ProductReview.model_json_schema() } } ) review = ProductReview.model_validate_json(result[\"json_output\"]) print(f\"产品: {review.product_name}, 评分: {review.rating}/5\") 正则约束生成 强制输出匹配特定模式：\n@sgl.program def email_extractor(state, text: str): state += sgl.user(\"从此文本中提取所有电子邮件地址:\") state += sgl.assistant( sgl.gen( \"emails\", regex=r\"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})(\\s*,\\s*|$)+\", max_tokens=256 ) ) program = email_extractor() result = program.run( text=\"联系我们 support@example.com 或 sales@example.com。\" \"账单问题请联系 billing@company.org。\" ) print(result[\"emails\"]) # 输出: \"support@example.com, sales@example.com, billing@company.org.\" SQL 查询生成 生成可执行的 SQL 并带有结构保证：\nfrom pydantic import BaseModel class SQLQuery(BaseModel): query: str = Field(description=\"有效的 SQL SELECT 语句\") explanation: str = Field(description=\"此查询的作用\") estimated_rows: Optional[int] = Field(description=\"预期行数\") 性能优化 RadixAttention 前缀缓存 SGLang 的标志功能：自动在具有公共前缀的请求间共享计算。\nimport sglang as sgl @sgl.program def chatbot(state, user_message: str): state += sgl.system(\"你是一个有帮助的助手。\") # 此前缀被缓存! state += sgl.conversation( [{\"role\": \"user\", \"content\": \"你好\"}, {\"role\": \"assistant\", \"content\": \"你好!\"}], ) # 已缓存! state += sgl.user(user_message) state += sgl.assistant(sgl.gen(\"response\", max_tokens=256)) # 第一个请求：完整计算 r1 = chatbot().run(\"今天天气怎么样?\") # 第二个请求使用相同的系统提示 + 对话历史： # 仅计算新 user message 的注意力 r2 = chatbot().run(\"告诉我更多\") 基准结果显示 3-10 倍吞吐提升 对于聊天应用，其中系统提示和对话历史在请求间共享。\n连续批处理 与传统批处理推理等待批次中所有请求完成不同，SGLang 使用连续批处理，在任何槽位释放时立即启动新请求：\npython -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B \\ --mem-fraction-static 0.85 \\ --context-length 8192 关键参数：\n--mem-fraction-static：GPU 内存用于 KV 缓存的比例（0.85 = 85%） --context-length：最大上下文窗口大小 --scheduler-latency-bound：调度新请求前的最大等待时间 多 GPU 部署 # 4x A100-80GB 用于 70B 模型 python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-70B-Instruct \\ --tensor-parallel-size 4 \\ --mem-fraction-static 0.9 \\ --host 0.0.0.0 --port 30000 # 检查 GPU 利用率 nvidia-smi # 每个 GPU 在活跃推理期间显示 ~95% 利用率 高级用例 模式一：多步推理（ReAct） 在单个 SGLang 程序中实现 ReAct 推理：\n@sgl.program def react_agent(state, question: str): state += sgl.user(f\"使用工具逐步回答这个问题:\\n{question}\") for i in range(5): # 最多 5 步推理 state += sgl.assistant( f\"思考 {i+1}: \" + sgl.gen(\"thought\", stop=\"\\n操作:\", max_tokens=200) ) action = sgl.gen(\"action\", stop=\"\\n观察:\", max_tokens=200) state += sgl.user(f\"\\n操作: {action}\") obs = execute_tool(action) state += sgl.user(f\"\\n观察: {obs}\") state += sgl.assistant(sgl.gen(\"final_answer\", max_tokens=500)) 模式二：并行文档分析 同时处理数百份文档：\n@sgl.program def document_summarizer(state, doc: str): state += sgl.user(f\"用 3 个要点总结此文档:\\n{doc}\") state += sgl.assistant(sgl.gen(\"summary\", max_tokens=256)) documents = load_documents(\"path/to/docs/\") results = sgl.compile( [document_summarizer(doc) for doc in documents[:100]], scheduler_policy=\"lookahead\" ) 模式三：带结构化输出的流式传输 以 token 为单位流式传输结构化响应：\nfrom sglang import RuntimeClient client = RuntimeClient(\"http://localhost:30000\") stream = client.generate({ \"text\": \"从此报告中提取关键指标。\", \"sampling_params\": { \"max_new_tokens\": 512, \"response_format\": { \"type\": \"json_schema\", \"json_schema\": ReportMetrics.model_json_schema() }, \"stream\": True # 启用流式传输 } }) for chunk in stream: if chunk[\"event_type\"] == \"text\": print(chunk[\"text\"], end=\"\", flush=True) 模式四：函数调用流水线 构建完整的函数调用 Agent：\nfrom pydantic import BaseModel from typing import Literal class WeatherRequest(BaseModel): city: str units: Literal[\"celsius\", \"fahrenheit\"] = \"celsius\" @sgl.program def function_caller(state, user_input: str): state += sgl.user(user_input) state += sgl.assistant(sgl.gen(\"function_call\", max_tokens=256)) 对比：SGLang vs 替代方案 吞吐量基准测试 | 模型 | 批处理大小 | SGLang | vLLM | TGI | 相比 vLLM 加速 | |\n|\n|\n|\n|\n|\n| | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x | | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x | | Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x | | Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x |\n结构化输出准确性 | 方法 | JSON 有效性 | 模式合规性 | 延迟开销 | |\n|\n|\n|\n| | 后处理（正则） | 78% | N/A | +2ms | | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token | | SGLang 约束 | 100% | 100% | +3ms/token | | 函数调用 API | 94% | 89% | +50ms |\nSGLang 的原生约束解码以最小的延迟开销实现完美有效性。\n监控和可观测性 内置指标 SGLang 在 /metrics 暴露 Prometheus 兼容指标：\n# HELP sglang_request_latency_seconds 请求处理延迟 sglang_request_latency_seconds_bucket{le=\"0.5\"} 1250 sglang_request_latency_seconds_bucket{le=\"1.0\"} 2890 sglang_gpu_cache_hit_rate 0.847 sglang_active_requests 23 健康检查端点 curl http://localhost:30000/health # 返回: {\"status\": \"ok\", \"gpu_memory_usage\": \"72%\", \"active_requests\": 15} 常见问题排查 问题一：CUDA 显存不足 RuntimeError: CUDA out of memory. Tried to allocate X GiB. 修复：减少 --mem-fraction-static 或增加 --max-running-requests：\npython -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B \\ --mem-fraction-static 0.75 \\ --max-running-requests 32 问题二：约束解码产生无效输出 如果 JSON 模式强制执行不工作：\n检查 1：确保模型支持约束解码（Llama 3.x、Mistral Large、Qwen 2.5+） 检查 2：验证 Pydantic 模式不包含循环引用\n问题三：首次请求慢（冷启动） 服务器启动后的首次请求包括模型加载时间（30-120 秒，取决于模型大小）。\n修复：使用 keep_warm 或预预热服务器：\ncurl -X POST http://localhost:30000/generate \\ -H \"Content-Type: application/json\" \\ -d '{\"text\": \"warmup\", \"sampling_params\": {\"max_new_tokens\": 1}}' 问题四：RadixCache 未命中 如果前缀缓存没有改善性能：\n检查：确保请求共享相同的前缀 token。空格差异、不同的系统提示或重新排序的对话历史将阻止缓存命中。\n未来方向 SGLang 2026 路线图 投机解码：原生支持使用较小草稿模型的快速解码，目标 CPU 辅助推理 2-3 倍加速 混合专家（MoE）：针对 Mixtral、DeepSeek-MoE 和其他 MoE 架构的优化服务，含专家并行 多模态服务：视觉语言模型（Qwen2-VL、LLaVA）的原生支持，带图像预处理管线 SGLang Cloud：带自动缩放的托管 SGLang 托管，类似 Vercel 处理 Next.js 部署 编译器优化：MLIR 驱动编译用于自定义算子融合，目标额外 15-20% 吞吐增益 何时选择 SGLang 选择 SGLang 当：\n你需要保证的结构化输出（JSON、正则、语法） 你的工作负载有高前缀重用（聊天应用、RAG 管线） 你想要生产 LLM 服务的最大吞吐量 你构建带工具调用和多步推理的 agent 你需要多 GPU 或多节点部署而无需 Kubernetes 考虑替代方案当：\n你只需要简单的文本补全——OpenAI API 或更简单的服务器足够 你已投入 vLLM 且不需要结构化生成——vLLM 对原始吞吐量出色 你需要实时音频/视频推理——专门的引擎如 Whisper.cpp 或 MediaPipe 更适合 社区动态 SGLang 在 2026 年经历了爆炸性增长：\nGitHub star：超过 15,000，使其成为增长最快的 LLM 推理项目之一 模型支持：官方测试了 50+ 模型，包括 Llama 3.2、Mistral Large 2、Qwen 2.5、Gemma 2 和 DeepSeek-V3 企业采用：被 AI 初创公司和财富 500 强公司用于生产级结构化生成工作负载 贡献者：来自大学（斯坦福、MIT、清华）和公司（Meta、Google、字节跳动）的 400+ 贡献者 该项目维护全面的月度更新基准套件，提供跨推理引擎和模型家族的透明性能比较。\nFAQ Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？ SGLang 的约束解码在 tokenizer 级别运行，在采样前过滤候选 token。LMFormatEnforcer 在 logit 级别运行，修改概率。SGLang 的方法更快（+3ms/token vs +15ms/token），因为它避免逐 token 概率操纵。两者都达到近乎完美的有效性，但 SGLang 对于高吞吐量场景更高效。\nQ: 我可以在 SGLang 上使用量化模型吗？ 可以。SGLang 原生支持 AWQ、GPTQ、INT8 和 FP8 量化：\npython -m sglang.launch_server \\ --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \\ --quantization awq 量化模型通常以 50-60% 的内存占用达到全精度质量的 80-90%，允许在同一硬件上运行更大的模型。\nQ: SGLang 支持流式响应吗？ 支持。在采样参数中使用 \"stream\": true 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：\nasync for event in program.run_async(stream=True): print(event.delta, end=\"\", flush=True) Q: SGLang 能服务的最大模型尺寸是多少？ SGLang 支持从 10 亿到 4000 多亿参数的模型。对于 700 亿以上的模型，使用跨多个 GPU 或节点的张量并行。4000 亿参数模型（如 Grok-2）可以在 SGLang 上的 16x H100 GPU 上服务。\nQ: 如何处理速率限制和请求排队？ SGLang 有内置速率限制：\npython -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B \\ --rate-limit-requests 100 \\ --rate-limit-tokens 50000 \\ --scheduler-policy lookahead 超过限制的请求被排队并在容量可用时处理。````lookahead``` 调度器优化排序以最小化延迟方差。\n参考资料 SGLang 文档 SGLang GitHub 仓库 SGLang 论文：带 RadixAttention 的结构化生成 — arXiv 2026 LLM 推理引擎基准测试 — ML 基础设施报告 2026 年第二季度 约束解码调查 — ACL 2026 研讨会 加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：t.me/dibi8\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “SGLang — 结构化生成和高速 LLM 推理引擎”, “datePublished”: “2026-07-15”, “dateModified”: “2026-07-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/sglang-structured-generation-llm\" } } Why This Matters Understanding sglang — 结构化生成和高速 llm 推理引擎 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion SGLang — 结构化生成和高速 LLM 推理引擎 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles sglang-structured-generation-llm ecc-agent-harness-performance-optimization ecc-agent-harness-performance-optimization sglang-structured-generation-llm sglang-structured-generation-llm Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1360","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/sglang-structured-generation-llm/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/sglang-structured-generation-llm/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#sglang-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="SGLang 是什么？">SGLang 是什么？</a><ul><li><a href=#sglang-%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98 aria-label="SGLang 解决的问题">SGLang 解决的问题</a></li><li><a href=#%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88 aria-label=架构概览>架构概览</a></li></ul></li><li><a href=#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b aria-label=快速开始>快速开始</a><ul><li><a href=#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%ae%89%e8%a3%85-sglang aria-label="第一步：安装 SGLang">第一步：安装 SGLang</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e5%99%a8 aria-label=第二步：启动服务器>第二步：启动服务器</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e6%ad%a5%e5%8f%91%e9%80%81%e7%ac%ac%e4%b8%80%e4%b8%aa%e8%af%b7%e6%b1%82 aria-label=第三步：发送第一个请求>第三步：发送第一个请求</a></li></ul></li><li><a href=#%e7%bb%93%e6%9e%84%e5%8c%96%e7%94%9f%e6%88%90 aria-label=结构化生成>结构化生成</a><ul><li><a href=#json-%e6%a8%a1%e5%bc%8f%e5%bc%ba%e5%88%b6 aria-label="JSON 模式强制">JSON 模式强制</a></li><li><a href=#%e6%ad%a3%e5%88%99%e7%ba%a6%e6%9d%9f%e7%94%9f%e6%88%90 aria-label=正则约束生成>正则约束生成</a></li><li><a href=#sql-%e6%9f%a5%e8%af%a2%e7%94%9f%e6%88%90 aria-label="SQL 查询生成">SQL 查询生成</a></li></ul></li><li><a href=#%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96 aria-label=性能优化>性能优化</a><ul><li><a href=#radixattention-%e5%89%8d%e7%bc%80%e7%bc%93%e5%ad%98 aria-label="RadixAttention 前缀缓存">RadixAttention 前缀缓存</a></li><li><a href=#%e8%bf%9e%e7%bb%ad%e6%89%b9%e5%a4%84%e7%90%86 aria-label=连续批处理>连续批处理</a></li><li><a href=#%e5%a4%9a-gpu-%e9%83%a8%e7%bd%b2 aria-label="多 GPU 部署">多 GPU 部署</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e4%be%8b aria-label=高级用例>高级用例</a><ul><li><a href=#%e6%a8%a1%e5%bc%8f%e4%b8%80%e5%a4%9a%e6%ad%a5%e6%8e%a8%e7%90%86react aria-label=模式一：多步推理（ReAct）>模式一：多步推理（ReAct）</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e4%ba%8c%e5%b9%b6%e8%a1%8c%e6%96%87%e6%a1%a3%e5%88%86%e6%9e%90 aria-label=模式二：并行文档分析>模式二：并行文档分析</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e4%b8%89%e5%b8%a6%e7%bb%93%e6%9e%84%e5%8c%96%e8%be%93%e5%87%ba%e7%9a%84%e6%b5%81%e5%bc%8f%e4%bc%a0%e8%be%93 aria-label=模式三：带结构化输出的流式传输>模式三：带结构化输出的流式传输</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e5%9b%9b%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=模式四：函数调用流水线>模式四：函数调用流水线</a></li></ul></li><li><a href=#%e5%af%b9%e6%af%94sglang-vs-%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88 aria-label="对比：SGLang vs 替代方案">对比：SGLang vs 替代方案</a><ul><li><a href=#%e5%90%9e%e5%90%90%e9%87%8f%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95 aria-label=吞吐量基准测试>吞吐量基准测试</a></li><li><a href=#%e7%bb%93%e6%9e%84%e5%8c%96%e8%be%93%e5%87%ba%e5%87%86%e7%a1%ae%e6%80%a7 aria-label=结构化输出准确性>结构化输出准确性</a></li></ul></li><li><a href=#%e7%9b%91%e6%8e%a7%e5%92%8c%e5%8f%af%e8%a7%82%e6%b5%8b%e6%80%a7 aria-label=监控和可观测性>监控和可观测性</a><ul><li><a href=#%e5%86%85%e7%bd%ae%e6%8c%87%e6%a0%87 aria-label=内置指标>内置指标</a></li><li><a href=#%e5%81%a5%e5%ba%b7%e6%a3%80%e6%9f%a5%e7%ab%af%e7%82%b9 aria-label=健康检查端点>健康检查端点</a></li></ul></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5 aria-label=常见问题排查>常见问题排查</a><ul><li><a href=#%e9%97%ae%e9%a2%98%e4%b8%80cuda-%e6%98%be%e5%ad%98%e4%b8%8d%e8%b6%b3 aria-label="问题一：CUDA 显存不足">问题一：CUDA 显存不足</a></li><li><a href=#%e9%97%ae%e9%a2%98%e4%ba%8c%e7%ba%a6%e6%9d%9f%e8%a7%a3%e7%a0%81%e4%ba%a7%e7%94%9f%e6%97%a0%e6%95%88%e8%be%93%e5%87%ba aria-label=问题二：约束解码产生无效输出>问题二：约束解码产生无效输出</a></li><li><a href=#%e9%97%ae%e9%a2%98%e4%b8%89%e9%a6%96%e6%ac%a1%e8%af%b7%e6%b1%82%e6%85%a2%e5%86%b7%e5%90%af%e5%8a%a8 aria-label=问题三：首次请求慢（冷启动）>问题三：首次请求慢（冷启动）</a></li><li><a href=#%e9%97%ae%e9%a2%98%e5%9b%9bradixcache-%e6%9c%aa%e5%91%bd%e4%b8%ad aria-label="问题四：RadixCache 未命中">问题四：RadixCache 未命中</a></li></ul></li><li><a href=#%e6%9c%aa%e6%9d%a5%e6%96%b9%e5%90%91 aria-label=未来方向>未来方向</a><ul><li><a href=#sglang-2026-%e8%b7%af%e7%ba%bf%e5%9b%be aria-label="SGLang 2026 路线图">SGLang 2026 路线图</a></li><li><a href=#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9-sglang aria-label="何时选择 SGLang">何时选择 SGLang</a></li></ul></li><li><a href=#%e7%a4%be%e5%8c%ba%e5%8a%a8%e6%80%81 aria-label=社区动态>社区动态</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#q-sglang-%e7%9a%84%e7%ba%a6%e6%9d%9f%e8%a7%a3%e7%a0%81%e4%b8%8e-lmformatenforcer-%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95 aria-label="Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？">Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？</a></li><li><a href=#q-%e6%88%91%e5%8f%af%e4%bb%a5%e5%9c%a8-sglang-%e4%b8%8a%e4%bd%bf%e7%94%a8%e9%87%8f%e5%8c%96%e6%a8%a1%e5%9e%8b%e5%90%97 aria-label="Q: 我可以在 SGLang 上使用量化模型吗？">Q: 我可以在 SGLang 上使用量化模型吗？</a></li><li><a href=#q-sglang-%e6%94%af%e6%8c%81%e6%b5%81%e5%bc%8f%e5%93%8d%e5%ba%94%e5%90%97 aria-label="Q: SGLang 支持流式响应吗？">Q: SGLang 支持流式响应吗？</a></li><li><a href=#q-sglang-%e8%83%bd%e6%9c%8d%e5%8a%a1%e7%9a%84%e6%9c%80%e5%a4%a7%e6%a8%a1%e5%9e%8b%e5%b0%ba%e5%af%b8%e6%98%af%e5%a4%9a%e5%b0%91 aria-label="Q: SGLang 能服务的最大模型尺寸是多少？">Q: SGLang 能服务的最大模型尺寸是多少？</a></li><li><a href=#q-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86%e9%80%9f%e7%8e%87%e9%99%90%e5%88%b6%e5%92%8c%e8%af%b7%e6%b1%82%e6%8e%92%e9%98%9f aria-label="Q: 如何处理速率限制和请求排队？">Q: 如何处理速率限制和请求排队？</a></li></ul></li><li><a href=#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99 aria-label=参考资料>参考资料</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><h2 id=sglang-是什么>SGLang 是什么？<a hidden class=anchor aria-hidden=true href=#sglang-是什么>#</a></h2><p>SGLang（Structured Generation Language）是部署和服务大型语言模型的完整栈库。由两个主要组件组成：</p><ol><li><strong>SGLang Runtime</strong>：高性能服务器，通过优化的内存管理和请求调度服务 LLM 端点</li><li><strong>SGLang Python 库</strong>：用于编写带结构化输出、工具调用和多步推理的 LLM 应用的编程语言</li></ol><h3 id=sglang-解决的问题>SGLang 解决的问题<a hidden class=anchor aria-hidden=true href=#sglang-解决的问题>#</a></h3><p>传统 LLM 推理引擎（vLLM、TGI、text-generation-inference）在原始 token 生成方面表现出色，但在以下方面存在困难：</p><ul><li><strong>结构化输出强制</strong>：获得可靠的 JSON、正则表达式匹配或语法约束的输出需要后处理，会破坏流式传输</li><li><strong>前缀缓存复用</strong>：当多个请求共享公共上下文（系统提示、文档片段）时，每个引擎都从头重新计算注意力</li><li><strong>复杂推理流程</strong>：实现 ReAct、多步工具调用或决策树需要自定义编排代码</li></ul><p>SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构建共享的 KV 缓存基数树，而其约束解码引擎在生成时保证结构化输出——而非事后。</p><h3 id=架构概览>架构概览<a hidden class=anchor aria-hidden=true href=#架构概览>#</a></h3><pre tabindex=0><code>┌─────────────────────────────────────────────┐
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/sglang-structured-generation-llm/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/sglang-structured-generation-llm/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "SGLang 是什么？ SGLang（Structured Generation Language）是部署和服务大型语言模型的完整栈库。由两个主要组件组成：\nSGLang Runtime：高性能服务器，通过优化的内存管理和请求调度服务 LLM 端点 SGLang Python 库：用于编写带结构化输出、工具调用和多步推理的 LLM 应用的编程语言 SGLang 解决的问题 传统 LLM 推理引擎（vLLM、TGI、text-generation-inference）在原始 token 生成方面表现出色，但在以下方面存在困难：\n结构化输出强制：获得可靠的 JSON、正则表达式匹配或语法约束的输出需要后处理，会破坏流式传输 前缀缓存复用：当多个请求共享公共上下文（系统提示、文档片段）时，每个引擎都从头重新计算注意力 复杂推理流程：实现 ReAct、多步工具调用或决策树需要自定义编排代码 SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构建共享的 KV 缓存基数树，而其约束解码引擎在生成时保证结构化输出——而非事后。\n架构概览 ┌─────────────────────────────────────────────┐ │ 客户端应用 │ │ (Python SDK、REST API、WebSocket、gRPC) │ └──────────────────┬──────────────────────────┘ │ ┌──────────────────▼──────────────────────────┐ │ 请求调度器 │ │ - 分页注意力内存管理 │ │ - 连续批处理 │ │ - RadixAttention 前缀缓存 │ └──────────────────┬──────────────────────────┘ │ ┌──────────────────▼──────────────────────────┐ │ 约束解码引擎 │ │ - 基于语法的 token 过滤 │ │ - JSON 模式强制 │ │ - 正则表达式模式匹配 │ │ - 自回归约束解析 │ └──────────────────┬──────────────────────────┘ │ ┌──────────────────▼──────────────────────────┐ │ 模型推理层 │ │ - 张量并行（多 GPU） │ │ - FP8 / INT8 量化 │ │ - FlashAttention-3 集成 │ │ - 支持 10 亿到 700 亿+ 参数模型 │ └─────────────────────────────────────────────┘ 快速开始 第一步：安装 SGLang # 安装 Python 库 pip install sglang # 或使用 Docker 获取 GPU 加速 docker pull sglang/sglang:latest docker run --gpus all -p 30000:30000 sglang/sglang:latest \\ --model-path meta-llama/Llama-3.2-8B-Instruct \\ --host 0.0.0.0 --port 30000 第二步：启动服务器 # 在一个 GPU 上服务一个模型 python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B-Instruct \\ --port 30000 # 多 GPU 张量并行 python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-70B-Instruct \\ --tensor-parallel-size 4 \\ --port 30000 # 使用量化节省成本 python -m sglang.launch_server \\ --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \\ --quantization awq \\ --port 30000 第三步：发送第一个请求 curl http://localhost:30000/generate \\ -H \"Content-Type: application/json\" \\ -d '{ \"text\": \"法国的首都是什么？\", \"sampling_params\": { \"max_new_tokens\": 64, \"temperature\": 0 } }' 响应：\n{ \"text\": \"法国的首都是巴黎。\", \"meta\": {\"prompt_tokens\": 12, \"completion_tokens\": 8} } 结构化生成 JSON 模式强制 生成匹配任何 Pydantic 模式的有效 JSON：\nimport sglang as sgl from pydantic import BaseModel, Field from typing import List, Optional class ProductReview(BaseModel): product_name: str = Field(description=\"产品名称\") rating: int = Field(ge=1, le=5, description=\"1 到 5 的评分\") pros: List[str] = Field(max_length=5, description=\"主要优点\") cons: List[str] = Field(max_length=5, description=\"主要缺点\") would_recommend: bool = Field(description=\"是否推荐该产品\") summary: str = Field(description=\"一句话总结\") backend = sgl.Runtime(host=\"localhost\", port=30000) @sgl.program def review_analyzer(state, review_text: str): state += sgl.user(\"分析此产品评论并提取结构化数据:\") state += sgl.assistant(sgl.gen(\"json_output\", max_tokens=512)) program = review_analyzer() result = program.run( review_text=\"不错的笔记本电脑但电池续航可以更好。显示屏出色，开发性能优秀。\", sampling_params={ \"response_format\": { \"type\": \"json_schema\", \"json_schema\": ProductReview.model_json_schema() } } ) review = ProductReview.model_validate_json(result[\"json_output\"]) print(f\"产品: {review.product_name}, 评分: {review.rating}/5\") 正则约束生成 强制输出匹配特定模式：\n@sgl.program def email_extractor(state, text: str): state += sgl.user(\"从此文本中提取所有电子邮件地址:\") state += sgl.assistant( sgl.gen( \"emails\", regex=r\"([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,})(\\s*,\\s*|$)+\", max_tokens=256 ) ) program = email_extractor() result = program.run( text=\"联系我们 support@example.com 或 sales@example.com。\" \"账单问题请联系 billing@company.org。\" ) print(result[\"emails\"]) # 输出: \"support@example.com, sales@example.com, billing@company.org.\" SQL 查询生成 生成可执行的 SQL 并带有结构保证：\nfrom pydantic import BaseModel class SQLQuery(BaseModel): query: str = Field(description=\"有效的 SQL SELECT 语句\") explanation: str = Field(description=\"此查询的作用\") estimated_rows: Optional[int] = Field(description=\"预期行数\") 性能优化 RadixAttention 前缀缓存 SGLang 的标志功能：自动在具有公共前缀的请求间共享计算。\nimport sglang as sgl @sgl.program def chatbot(state, user_message: str): state += sgl.system(\"你是一个有帮助的助手。\") # 此前缀被缓存! state += sgl.conversation( [{\"role\": \"user\", \"content\": \"你好\"}, {\"role\": \"assistant\", \"content\": \"你好!\"}], ) # 已缓存! state += sgl.user(user_message) state += sgl.assistant(sgl.gen(\"response\", max_tokens=256)) # 第一个请求：完整计算 r1 = chatbot().run(\"今天天气怎么样?\") # 第二个请求使用相同的系统提示 + 对话历史： # 仅计算新 user message 的注意力 r2 = chatbot().run(\"告诉我更多\") 基准结果显示 3-10 倍吞吐提升 对于聊天应用，其中系统提示和对话历史在请求间共享。\n连续批处理 与传统批处理推理等待批次中所有请求完成不同，SGLang 使用连续批处理，在任何槽位释放时立即启动新请求：\npython -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B \\ --mem-fraction-static 0.85 \\ --context-length 8192 关键参数：\n--mem-fraction-static：GPU 内存用于 KV 缓存的比例（0.85 = 85%） --context-length：最大上下文窗口大小 --scheduler-latency-bound：调度新请求前的最大等待时间 多 GPU 部署 # 4x A100-80GB 用于 70B 模型 python -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-70B-Instruct \\ --tensor-parallel-size 4 \\ --mem-fraction-static 0.9 \\ --host 0.0.0.0 --port 30000 # 检查 GPU 利用率 nvidia-smi # 每个 GPU 在活跃推理期间显示 ~95% 利用率 高级用例 模式一：多步推理（ReAct） 在单个 SGLang 程序中实现 ReAct 推理：\n@sgl.program def react_agent(state, question: str): state += sgl.user(f\"使用工具逐步回答这个问题:\\n{question}\") for i in range(5): # 最多 5 步推理 state += sgl.assistant( f\"思考 {i+1}: \" + sgl.gen(\"thought\", stop=\"\\n操作:\", max_tokens=200) ) action = sgl.gen(\"action\", stop=\"\\n观察:\", max_tokens=200) state += sgl.user(f\"\\n操作: {action}\") obs = execute_tool(action) state += sgl.user(f\"\\n观察: {obs}\") state += sgl.assistant(sgl.gen(\"final_answer\", max_tokens=500)) 模式二：并行文档分析 同时处理数百份文档：\n@sgl.program def document_summarizer(state, doc: str): state += sgl.user(f\"用 3 个要点总结此文档:\\n{doc}\") state += sgl.assistant(sgl.gen(\"summary\", max_tokens=256)) documents = load_documents(\"path/to/docs/\") results = sgl.compile( [document_summarizer(doc) for doc in documents[:100]], scheduler_policy=\"lookahead\" ) 模式三：带结构化输出的流式传输 以 token 为单位流式传输结构化响应：\nfrom sglang import RuntimeClient client = RuntimeClient(\"http://localhost:30000\") stream = client.generate({ \"text\": \"从此报告中提取关键指标。\", \"sampling_params\": { \"max_new_tokens\": 512, \"response_format\": { \"type\": \"json_schema\", \"json_schema\": ReportMetrics.model_json_schema() }, \"stream\": True # 启用流式传输 } }) for chunk in stream: if chunk[\"event_type\"] == \"text\": print(chunk[\"text\"], end=\"\", flush=True) 模式四：函数调用流水线 构建完整的函数调用 Agent：\nfrom pydantic import BaseModel from typing import Literal class WeatherRequest(BaseModel): city: str units: Literal[\"celsius\", \"fahrenheit\"] = \"celsius\" @sgl.program def function_caller(state, user_input: str): state += sgl.user(user_input) state += sgl.assistant(sgl.gen(\"function_call\", max_tokens=256)) 对比：SGLang vs 替代方案 吞吐量基准测试 | 模型 | 批处理大小 | SGLang | vLLM | TGI | 相比 vLLM 加速 | |\n|\n|\n|\n|\n|\n| | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x | | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x | | Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x | | Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x |\n结构化输出准确性 | 方法 | JSON 有效性 | 模式合规性 | 延迟开销 | |\n|\n|\n|\n| | 后处理（正则） | 78% | N/A | +2ms | | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token | | SGLang 约束 | 100% | 100% | +3ms/token | | 函数调用 API | 94% | 89% | +50ms |\nSGLang 的原生约束解码以最小的延迟开销实现完美有效性。\n监控和可观测性 内置指标 SGLang 在 /metrics 暴露 Prometheus 兼容指标：\n# HELP sglang_request_latency_seconds 请求处理延迟 sglang_request_latency_seconds_bucket{le=\"0.5\"} 1250 sglang_request_latency_seconds_bucket{le=\"1.0\"} 2890 sglang_gpu_cache_hit_rate 0.847 sglang_active_requests 23 健康检查端点 curl http://localhost:30000/health # 返回: {\"status\": \"ok\", \"gpu_memory_usage\": \"72%\", \"active_requests\": 15} 常见问题排查 问题一：CUDA 显存不足 RuntimeError: CUDA out of memory. Tried to allocate X GiB. 修复：减少 --mem-fraction-static 或增加 --max-running-requests：\npython -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B \\ --mem-fraction-static 0.75 \\ --max-running-requests 32 问题二：约束解码产生无效输出 如果 JSON 模式强制执行不工作：\n检查 1：确保模型支持约束解码（Llama 3.x、Mistral Large、Qwen 2.5+） 检查 2：验证 Pydantic 模式不包含循环引用\n问题三：首次请求慢（冷启动） 服务器启动后的首次请求包括模型加载时间（30-120 秒，取决于模型大小）。\n修复：使用 keep_warm 或预预热服务器：\ncurl -X POST http://localhost:30000/generate \\ -H \"Content-Type: application/json\" \\ -d '{\"text\": \"warmup\", \"sampling_params\": {\"max_new_tokens\": 1}}' 问题四：RadixCache 未命中 如果前缀缓存没有改善性能：\n检查：确保请求共享相同的前缀 token。空格差异、不同的系统提示或重新排序的对话历史将阻止缓存命中。\n未来方向 SGLang 2026 路线图 投机解码：原生支持使用较小草稿模型的快速解码，目标 CPU 辅助推理 2-3 倍加速 混合专家（MoE）：针对 Mixtral、DeepSeek-MoE 和其他 MoE 架构的优化服务，含专家并行 多模态服务：视觉语言模型（Qwen2-VL、LLaVA）的原生支持，带图像预处理管线 SGLang Cloud：带自动缩放的托管 SGLang 托管，类似 Vercel 处理 Next.js 部署 编译器优化：MLIR 驱动编译用于自定义算子融合，目标额外 15-20% 吞吐增益 何时选择 SGLang 选择 SGLang 当：\n你需要保证的结构化输出（JSON、正则、语法） 你的工作负载有高前缀重用（聊天应用、RAG 管线） 你想要生产 LLM 服务的最大吞吐量 你构建带工具调用和多步推理的 agent 你需要多 GPU 或多节点部署而无需 Kubernetes 考虑替代方案当：\n你只需要简单的文本补全——OpenAI API 或更简单的服务器足够 你已投入 vLLM 且不需要结构化生成——vLLM 对原始吞吐量出色 你需要实时音频/视频推理——专门的引擎如 Whisper.cpp 或 MediaPipe 更适合 社区动态 SGLang 在 2026 年经历了爆炸性增长：\nGitHub star：超过 15,000，使其成为增长最快的 LLM 推理项目之一 模型支持：官方测试了 50+ 模型，包括 Llama 3.2、Mistral Large 2、Qwen 2.5、Gemma 2 和 DeepSeek-V3 企业采用：被 AI 初创公司和财富 500 强公司用于生产级结构化生成工作负载 贡献者：来自大学（斯坦福、MIT、清华）和公司（Meta、Google、字节跳动）的 400+ 贡献者 该项目维护全面的月度更新基准套件，提供跨推理引擎和模型家族的透明性能比较。\nFAQ Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？ SGLang 的约束解码在 tokenizer 级别运行，在采样前过滤候选 token。LMFormatEnforcer 在 logit 级别运行，修改概率。SGLang 的方法更快（+3ms/token vs +15ms/token），因为它避免逐 token 概率操纵。两者都达到近乎完美的有效性，但 SGLang 对于高吞吐量场景更高效。\nQ: 我可以在 SGLang 上使用量化模型吗？ 可以。SGLang 原生支持 AWQ、GPTQ、INT8 和 FP8 量化：\npython -m sglang.launch_server \\ --model-path Qwen/Qwen2.5-72B-Instruct-AWQ \\ --quantization awq 量化模型通常以 50-60% 的内存占用达到全精度质量的 80-90%，允许在同一硬件上运行更大的模型。\nQ: SGLang 支持流式响应吗？ 支持。在采样参数中使用 \"stream\": true 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：\nasync for event in program.run_async(stream=True): print(event.delta, end=\"\", flush=True) Q: SGLang 能服务的最大模型尺寸是多少？ SGLang 支持从 10 亿到 4000 多亿参数的模型。对于 700 亿以上的模型，使用跨多个 GPU 或节点的张量并行。4000 亿参数模型（如 Grok-2）可以在 SGLang 上的 16x H100 GPU 上服务。\nQ: 如何处理速率限制和请求排队？ SGLang 有内置速率限制：\npython -m sglang.launch_server \\ --model-path meta-llama/Llama-3.2-8B \\ --rate-limit-requests 100 \\ --rate-limit-tokens 50000 \\ --scheduler-policy lookahead 超过限制的请求被排队并在容量可用时处理。````lookahead``` 调度器优化排序以最小化延迟方差。\n参考资料 SGLang 文档 SGLang GitHub 仓库 SGLang 论文：带 RadixAttention 的结构化生成 — arXiv 2026 LLM 推理引擎基准测试 — ML 基础设施报告 2026 年第二季度 约束解码调查 — ACL 2026 研讨会 加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：t.me/dibi8\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “SGLang — 结构化生成和高速 LLM 推理引擎”, “datePublished”: “2026-07-15”, “dateModified”: “2026-07-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/sglang-structured-generation-llm\" } } Why This Matters Understanding sglang — 结构化生成和高速 llm 推理引擎 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion SGLang — 结构化生成和高速 LLM 推理引擎 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles sglang-structured-generation-llm ecc-agent-harness-performance-optimization ecc-agent-harness-performance-optimization sglang-structured-generation-llm sglang-structured-generation-llm Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1360",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/sglang-structured-generation-llm/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/sglang-structured-generation-llm/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/sglang-structured-generation-llm/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#sglang-%e6%98%af%e4%bb%80%e4%b9%88" aria-label="SGLang 是什么？">SGLang 是什么？</a><ul>
+                    
+            <li>
+                <a href="#sglang-%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="SGLang 解决的问题">SGLang 解决的问题</a></li>
+            <li>
+                <a href="#%e6%9e%b6%e6%9e%84%e6%a6%82%e8%a7%88" aria-label="架构概览">架构概览</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b" aria-label="快速开始">快速开始</a><ul>
+                    
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%ae%89%e8%a3%85-sglang" aria-label="第一步：安装 SGLang">第一步：安装 SGLang</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%90%af%e5%8a%a8%e6%9c%8d%e5%8a%a1%e5%99%a8" aria-label="第二步：启动服务器">第二步：启动服务器</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e5%8f%91%e9%80%81%e7%ac%ac%e4%b8%80%e4%b8%aa%e8%af%b7%e6%b1%82" aria-label="第三步：发送第一个请求">第三步：发送第一个请求</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e6%9e%84%e5%8c%96%e7%94%9f%e6%88%90" aria-label="结构化生成">结构化生成</a><ul>
+                    
+            <li>
+                <a href="#json-%e6%a8%a1%e5%bc%8f%e5%bc%ba%e5%88%b6" aria-label="JSON 模式强制">JSON 模式强制</a></li>
+            <li>
+                <a href="#%e6%ad%a3%e5%88%99%e7%ba%a6%e6%9d%9f%e7%94%9f%e6%88%90" aria-label="正则约束生成">正则约束生成</a></li>
+            <li>
+                <a href="#sql-%e6%9f%a5%e8%af%a2%e7%94%9f%e6%88%90" aria-label="SQL 查询生成">SQL 查询生成</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%80%a7%e8%83%bd%e4%bc%98%e5%8c%96" aria-label="性能优化">性能优化</a><ul>
+                    
+            <li>
+                <a href="#radixattention-%e5%89%8d%e7%bc%80%e7%bc%93%e5%ad%98" aria-label="RadixAttention 前缀缓存">RadixAttention 前缀缓存</a></li>
+            <li>
+                <a href="#%e8%bf%9e%e7%bb%ad%e6%89%b9%e5%a4%84%e7%90%86" aria-label="连续批处理">连续批处理</a></li>
+            <li>
+                <a href="#%e5%a4%9a-gpu-%e9%83%a8%e7%bd%b2" aria-label="多 GPU 部署">多 GPU 部署</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e4%be%8b" aria-label="高级用例">高级用例</a><ul>
+                    
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e4%b8%80%e5%a4%9a%e6%ad%a5%e6%8e%a8%e7%90%86react" aria-label="模式一：多步推理（ReAct）">模式一：多步推理（ReAct）</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e4%ba%8c%e5%b9%b6%e8%a1%8c%e6%96%87%e6%a1%a3%e5%88%86%e6%9e%90" aria-label="模式二：并行文档分析">模式二：并行文档分析</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e4%b8%89%e5%b8%a6%e7%bb%93%e6%9e%84%e5%8c%96%e8%be%93%e5%87%ba%e7%9a%84%e6%b5%81%e5%bc%8f%e4%bc%a0%e8%be%93" aria-label="模式三：带结构化输出的流式传输">模式三：带结构化输出的流式传输</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e5%9b%9b%e5%87%bd%e6%95%b0%e8%b0%83%e7%94%a8%e6%b5%81%e6%b0%b4%e7%ba%bf" aria-label="模式四：函数调用流水线">模式四：函数调用流水线</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%af%b9%e6%af%94sglang-vs-%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88" aria-label="对比：SGLang vs 替代方案">对比：SGLang vs 替代方案</a><ul>
+                    
+            <li>
+                <a href="#%e5%90%9e%e5%90%90%e9%87%8f%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95" aria-label="吞吐量基准测试">吞吐量基准测试</a></li>
+            <li>
+                <a href="#%e7%bb%93%e6%9e%84%e5%8c%96%e8%be%93%e5%87%ba%e5%87%86%e7%a1%ae%e6%80%a7" aria-label="结构化输出准确性">结构化输出准确性</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%9b%91%e6%8e%a7%e5%92%8c%e5%8f%af%e8%a7%82%e6%b5%8b%e6%80%a7" aria-label="监控和可观测性">监控和可观测性</a><ul>
+                    
+            <li>
+                <a href="#%e5%86%85%e7%bd%ae%e6%8c%87%e6%a0%87" aria-label="内置指标">内置指标</a></li>
+            <li>
+                <a href="#%e5%81%a5%e5%ba%b7%e6%a3%80%e6%9f%a5%e7%ab%af%e7%82%b9" aria-label="健康检查端点">健康检查端点</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5" aria-label="常见问题排查">常见问题排查</a><ul>
+                    
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e4%b8%80cuda-%e6%98%be%e5%ad%98%e4%b8%8d%e8%b6%b3" aria-label="问题一：CUDA 显存不足">问题一：CUDA 显存不足</a></li>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e4%ba%8c%e7%ba%a6%e6%9d%9f%e8%a7%a3%e7%a0%81%e4%ba%a7%e7%94%9f%e6%97%a0%e6%95%88%e8%be%93%e5%87%ba" aria-label="问题二：约束解码产生无效输出">问题二：约束解码产生无效输出</a></li>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e4%b8%89%e9%a6%96%e6%ac%a1%e8%af%b7%e6%b1%82%e6%85%a2%e5%86%b7%e5%90%af%e5%8a%a8" aria-label="问题三：首次请求慢（冷启动）">问题三：首次请求慢（冷启动）</a></li>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e5%9b%9bradixcache-%e6%9c%aa%e5%91%bd%e4%b8%ad" aria-label="问题四：RadixCache 未命中">问题四：RadixCache 未命中</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%9c%aa%e6%9d%a5%e6%96%b9%e5%90%91" aria-label="未来方向">未来方向</a><ul>
+                    
+            <li>
+                <a href="#sglang-2026-%e8%b7%af%e7%ba%bf%e5%9b%be" aria-label="SGLang 2026 路线图">SGLang 2026 路线图</a></li>
+            <li>
+                <a href="#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9-sglang" aria-label="何时选择 SGLang">何时选择 SGLang</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%a4%be%e5%8c%ba%e5%8a%a8%e6%80%81" aria-label="社区动态">社区动态</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#q-sglang-%e7%9a%84%e7%ba%a6%e6%9d%9f%e8%a7%a3%e7%a0%81%e4%b8%8e-lmformatenforcer-%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95" aria-label="Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？">Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？</a></li>
+            <li>
+                <a href="#q-%e6%88%91%e5%8f%af%e4%bb%a5%e5%9c%a8-sglang-%e4%b8%8a%e4%bd%bf%e7%94%a8%e9%87%8f%e5%8c%96%e6%a8%a1%e5%9e%8b%e5%90%97" aria-label="Q: 我可以在 SGLang 上使用量化模型吗？">Q: 我可以在 SGLang 上使用量化模型吗？</a></li>
+            <li>
+                <a href="#q-sglang-%e6%94%af%e6%8c%81%e6%b5%81%e5%bc%8f%e5%93%8d%e5%ba%94%e5%90%97" aria-label="Q: SGLang 支持流式响应吗？">Q: SGLang 支持流式响应吗？</a></li>
+            <li>
+                <a href="#q-sglang-%e8%83%bd%e6%9c%8d%e5%8a%a1%e7%9a%84%e6%9c%80%e5%a4%a7%e6%a8%a1%e5%9e%8b%e5%b0%ba%e5%af%b8%e6%98%af%e5%a4%9a%e5%b0%91" aria-label="Q: SGLang 能服务的最大模型尺寸是多少？">Q: SGLang 能服务的最大模型尺寸是多少？</a></li>
+            <li>
+                <a href="#q-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86%e9%80%9f%e7%8e%87%e9%99%90%e5%88%b6%e5%92%8c%e8%af%b7%e6%b1%82%e6%8e%92%e9%98%9f" aria-label="Q: 如何处理速率限制和请求排队？">Q: 如何处理速率限制和请求排队？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" aria-label="参考资料">参考资料</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="sglang-是什么">SGLang 是什么？<a hidden class="anchor" aria-hidden="true" href="#sglang-是什么">#</a></h2>
+<p>SGLang（Structured Generation Language）是部署和服务大型语言模型的完整栈库。由两个主要组件组成：</p>
+<ol>
+<li><strong>SGLang Runtime</strong>：高性能服务器，通过优化的内存管理和请求调度服务 LLM 端点</li>
+<li><strong>SGLang Python 库</strong>：用于编写带结构化输出、工具调用和多步推理的 LLM 应用的编程语言</li>
+</ol>
+<h3 id="sglang-解决的问题">SGLang 解决的问题<a hidden class="anchor" aria-hidden="true" href="#sglang-解决的问题">#</a></h3>
+<p>传统 LLM 推理引擎（vLLM、TGI、text-generation-inference）在原始 token 生成方面表现出色，但在以下方面存在困难：</p>
+<ul>
+<li><strong>结构化输出强制</strong>：获得可靠的 JSON、正则表达式匹配或语法约束的输出需要后处理，会破坏流式传输</li>
+<li><strong>前缀缓存复用</strong>：当多个请求共享公共上下文（系统提示、文档片段）时，每个引擎都从头重新计算注意力</li>
+<li><strong>复杂推理流程</strong>：实现 ReAct、多步工具调用或决策树需要自定义编排代码</li>
+</ul>
+<p>SGLang 原生解决所有三个问题。其 RadixAttention 系统在请求间构建共享的 KV 缓存基数树，而其约束解码引擎在生成时保证结构化输出——而非事后。</p>
+<h3 id="架构概览">架构概览<a hidden class="anchor" aria-hidden="true" href="#架构概览">#</a></h3>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────┐
 │              客户端应用                       │
 │  (Python SDK、REST API、WebSocket、gRPC)      │
 └──────────────────┬──────────────────────────┘
@@ -31,212 +371,355 @@
 │  - FlashAttention-3 集成                      │
 │  - 支持 10 亿到 700 亿+ 参数模型               │
 └─────────────────────────────────────────────┘
-</code></pre><hr><h2 id=快速开始>快速开始<a hidden class=anchor aria-hidden=true href=#快速开始>#</a></h2><h3 id=第一步安装-sglang>第一步：安装 SGLang<a hidden class=anchor aria-hidden=true href=#第一步安装-sglang>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装 Python 库</span>
-</span></span><span style=display:flex><span>pip install sglang
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或使用 Docker 获取 GPU 加速</span>
-</span></span><span style=display:flex><span>docker pull sglang/sglang:latest
-</span></span><span style=display:flex><span>docker run --gpus all -p 30000:30000 sglang/sglang:latest <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --host 0.0.0.0 --port <span style=color:#ae81ff>30000</span>
-</span></span></code></pre></div><h3 id=第二步启动服务器>第二步：启动服务器<a hidden class=anchor aria-hidden=true href=#第二步启动服务器>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在一个 GPU 上服务一个模型</span>
-</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>30000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 多 GPU 张量并行</span>
-</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-70B-Instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>30000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用量化节省成本</span>
-</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path Qwen/Qwen2.5-72B-Instruct-AWQ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --quantization awq <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --port <span style=color:#ae81ff>30000</span>
-</span></span></code></pre></div><h3 id=第三步发送第一个请求>第三步：发送第一个请求<a hidden class=anchor aria-hidden=true href=#第三步发送第一个请求>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl http://localhost:30000/generate <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;text&#34;: &#34;法国的首都是什么？&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;sampling_params&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;max_new_tokens&#34;: 64,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;temperature&#34;: 0
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><p>响应：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;法国的首都是巴黎。&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;meta&#34;</span>: {<span style=color:#f92672>&#34;prompt_tokens&#34;</span>: <span style=color:#ae81ff>12</span>, <span style=color:#f92672>&#34;completion_tokens&#34;</span>: <span style=color:#ae81ff>8</span>}
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><hr><h2 id=结构化生成>结构化生成<a hidden class=anchor aria-hidden=true href=#结构化生成>#</a></h2><h3 id=json-模式强制>JSON 模式强制<a hidden class=anchor aria-hidden=true href=#json-模式强制>#</a></h3><p>生成匹配任何 Pydantic 模式的有效 JSON：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sglang <span style=color:#66d9ef>as</span> sgl
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel, Field
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> List, Optional
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ProductReview</span>(BaseModel): product_name: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;产品名称&#34;</span>)
-</span></span><span style=display:flex><span>    rating: int <span style=color:#f92672>=</span> Field(ge<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>, le<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;1 到 5 的评分&#34;</span>)
-</span></span><span style=display:flex><span>    pros: List[str] <span style=color:#f92672>=</span> Field(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;主要优点&#34;</span>)
-</span></span><span style=display:flex><span>    cons: List[str] <span style=color:#f92672>=</span> Field(max_length<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>, description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;主要缺点&#34;</span>)
-</span></span><span style=display:flex><span>    would_recommend: bool <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;是否推荐该产品&#34;</span>)
-</span></span><span style=display:flex><span>    summary: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;一句话总结&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>backend <span style=color:#f92672>=</span> sgl<span style=color:#f92672>.</span>Runtime(host<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;localhost&#34;</span>, port<span style=color:#f92672>=</span><span style=color:#ae81ff>30000</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@sgl.program</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>review_analyzer</span>(state, review_text: str): state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(<span style=color:#e6db74>&#34;分析此产品评论并提取结构化数据:&#34;</span>)
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;json_output&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>512</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>program <span style=color:#f92672>=</span> review_analyzer()
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> program<span style=color:#f92672>.</span>run(
-</span></span><span style=display:flex><span>    review_text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;不错的笔记本电脑但电池续航可以更好。显示屏出色，开发性能优秀。&#34;</span>,
-</span></span><span style=display:flex><span>    sampling_params<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;response_format&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;json_schema&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;json_schema&#34;</span>: ProductReview<span style=color:#f92672>.</span>model_json_schema()
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>review <span style=color:#f92672>=</span> ProductReview<span style=color:#f92672>.</span>model_validate_json(result[<span style=color:#e6db74>&#34;json_output&#34;</span>])
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;产品: </span><span style=color:#e6db74>{</span>review<span style=color:#f92672>.</span>product_name<span style=color:#e6db74>}</span><span style=color:#e6db74>, 评分: </span><span style=color:#e6db74>{</span>review<span style=color:#f92672>.</span>rating<span style=color:#e6db74>}</span><span style=color:#e6db74>/5&#34;</span>)
-</span></span></code></pre></div><h3 id=正则约束生成>正则约束生成<a hidden class=anchor aria-hidden=true href=#正则约束生成>#</a></h3><p>强制输出匹配特定模式：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@sgl.program</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>email_extractor</span>(state, text: str): state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(<span style=color:#e6db74>&#34;从此文本中提取所有电子邮件地址:&#34;</span>)
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(
-</span></span><span style=display:flex><span>        sgl<span style=color:#f92672>.</span>gen(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;emails&#34;</span>,
-</span></span><span style=display:flex><span>            regex<span style=color:#f92672>=</span><span style=color:#e6db74>r</span><span style=color:#e6db74>&#34;([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\s*,\s*|$)+&#34;</span>,
-</span></span><span style=display:flex><span>            max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>256</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>program <span style=color:#f92672>=</span> email_extractor()
-</span></span><span style=display:flex><span>result <span style=color:#f92672>=</span> program<span style=color:#f92672>.</span>run(
-</span></span><span style=display:flex><span>    text<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;联系我们 support@example.com 或 sales@example.com。&#34;</span>
-</span></span><span style=display:flex><span>         <span style=color:#e6db74>&#34;账单问题请联系 billing@company.org。&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(result[<span style=color:#e6db74>&#34;emails&#34;</span>])
-</span></span><span style=display:flex><span><span style=color:#75715e># 输出: &#34;support@example.com, sales@example.com, billing@company.org.&#34;</span>
-</span></span></code></pre></div><h3 id=sql-查询生成>SQL 查询生成<a hidden class=anchor aria-hidden=true href=#sql-查询生成>#</a></h3><p>生成可执行的 SQL 并带有结构保证：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>SQLQuery</span>(BaseModel): query: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;有效的 SQL SELECT 语句&#34;</span>)
-</span></span><span style=display:flex><span>    explanation: str <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;此查询的作用&#34;</span>)
-</span></span><span style=display:flex><span>    estimated_rows: Optional[int] <span style=color:#f92672>=</span> Field(description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;预期行数&#34;</span>)
-</span></span></code></pre></div><hr><h2 id=性能优化>性能优化<a hidden class=anchor aria-hidden=true href=#性能优化>#</a></h2><h3 id=radixattention-前缀缓存>RadixAttention 前缀缓存<a hidden class=anchor aria-hidden=true href=#radixattention-前缀缓存>#</a></h3><p>SGLang 的标志功能：自动在具有公共前缀的请求间共享计算。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> sglang <span style=color:#66d9ef>as</span> sgl
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@sgl.program</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chatbot</span>(state, user_message: str): state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>system(<span style=color:#e6db74>&#34;你是一个有帮助的助手。&#34;</span>)  <span style=color:#75715e># 此前缀被缓存!</span>
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>conversation(
-</span></span><span style=display:flex><span>        [{<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;你好&#34;</span>}, {<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>, <span style=color:#e6db74>&#34;content&#34;</span>: <span style=color:#e6db74>&#34;你好!&#34;</span>}],
-</span></span><span style=display:flex><span>    )  <span style=color:#75715e># 已缓存!</span>
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(user_message)
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;response&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>256</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 第一个请求：完整计算</span>
-</span></span><span style=display:flex><span>r1 <span style=color:#f92672>=</span> chatbot()<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#34;今天天气怎么样?&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 第二个请求使用相同的系统提示 + 对话历史：</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 仅计算新 user message 的注意力</span>
-</span></span><span style=display:flex><span>r2 <span style=color:#f92672>=</span> chatbot()<span style=color:#f92672>.</span>run(<span style=color:#e6db74>&#34;告诉我更多&#34;</span>)
-</span></span></code></pre></div><p>基准结果显示 <strong>3-10 倍吞吐提升</strong> 对于聊天应用，其中系统提示和对话历史在请求间共享。</p><h3 id=连续批处理>连续批处理<a hidden class=anchor aria-hidden=true href=#连续批处理>#</a></h3><p>与传统批处理推理等待批次中所有请求完成不同，SGLang 使用连续批处理，在任何槽位释放时立即启动新请求：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mem-fraction-static 0.85 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --context-length <span style=color:#ae81ff>8192</span>
-</span></span></code></pre></div><p>关键参数：</p><ul><li><code>--mem-fraction-static</code>：GPU 内存用于 KV 缓存的比例（0.85 = 85%）</li><li><code>--context-length</code>：最大上下文窗口大小</li><li><code>--scheduler-latency-bound</code>：调度新请求前的最大等待时间</li></ul><h3 id=多-gpu-部署>多 GPU 部署<a hidden class=anchor aria-hidden=true href=#多-gpu-部署>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 4x A100-80GB 用于 70B 模型</span>
-</span></span><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-70B-Instruct <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --tensor-parallel-size <span style=color:#ae81ff>4</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mem-fraction-static 0.9 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --host 0.0.0.0 --port <span style=color:#ae81ff>30000</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 检查 GPU 利用率</span>
-</span></span><span style=display:flex><span>nvidia-smi
-</span></span><span style=display:flex><span><span style=color:#75715e># 每个 GPU 在活跃推理期间显示 ~95% 利用率</span>
-</span></span></code></pre></div><hr><h2 id=高级用例>高级用例<a hidden class=anchor aria-hidden=true href=#高级用例>#</a></h2><h3 id=模式一多步推理react>模式一：多步推理（ReAct）<a hidden class=anchor aria-hidden=true href=#模式一多步推理react>#</a></h3><p>在单个 SGLang 程序中实现 ReAct 推理：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@sgl.program</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>react_agent</span>(state, question: str): state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;使用工具逐步回答这个问题:</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>question<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>5</span>): <span style=color:#75715e># 最多 5 步推理</span>
-</span></span><span style=display:flex><span>        state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;思考 </span><span style=color:#e6db74>{</span>i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span><span style=color:#e6db74>}</span><span style=color:#e6db74>: &#34;</span> <span style=color:#f92672>+</span> sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;thought&#34;</span>, stop<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>操作:&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>200</span>)
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        action <span style=color:#f92672>=</span> sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;action&#34;</span>, stop<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>观察:&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>200</span>)
-</span></span><span style=display:flex><span>        state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>操作: </span><span style=color:#e6db74>{</span>action<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>        
-</span></span><span style=display:flex><span>        obs <span style=color:#f92672>=</span> execute_tool(action)
-</span></span><span style=display:flex><span>        state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>观察: </span><span style=color:#e6db74>{</span>obs<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;final_answer&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>500</span>))
-</span></span></code></pre></div><h3 id=模式二并行文档分析>模式二：并行文档分析<a hidden class=anchor aria-hidden=true href=#模式二并行文档分析>#</a></h3><p>同时处理数百份文档：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@sgl.program</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>document_summarizer</span>(state, doc: str): state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;用 3 个要点总结此文档:</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>{</span>doc<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;summary&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>256</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>documents <span style=color:#f92672>=</span> load_documents(<span style=color:#e6db74>&#34;path/to/docs/&#34;</span>)
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> sgl<span style=color:#f92672>.</span>compile(
-</span></span><span style=display:flex><span>    [document_summarizer(doc) <span style=color:#66d9ef>for</span> doc <span style=color:#f92672>in</span> documents[:<span style=color:#ae81ff>100</span>]],
-</span></span><span style=display:flex><span>    scheduler_policy<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;lookahead&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=模式三带结构化输出的流式传输>模式三：带结构化输出的流式传输<a hidden class=anchor aria-hidden=true href=#模式三带结构化输出的流式传输>#</a></h3><p>以 token 为单位流式传输结构化响应：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> sglang <span style=color:#f92672>import</span> RuntimeClient
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> RuntimeClient(<span style=color:#e6db74>&#34;http://localhost:30000&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>stream <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>generate({
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;从此报告中提取关键指标。&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;sampling_params&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;max_new_tokens&#34;</span>: <span style=color:#ae81ff>512</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;response_format&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;json_schema&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;json_schema&#34;</span>: ReportMetrics<span style=color:#f92672>.</span>model_json_schema()
-</span></span><span style=display:flex><span>        },
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;stream&#34;</span>: <span style=color:#66d9ef>True</span>  <span style=color:#75715e># 启用流式传输</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> chunk <span style=color:#f92672>in</span> stream: <span style=color:#66d9ef>if</span> chunk[<span style=color:#e6db74>&#34;event_type&#34;</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;text&#34;</span>: print(chunk[<span style=color:#e6db74>&#34;text&#34;</span>], end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>, flush<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><h3 id=模式四函数调用流水线>模式四：函数调用流水线<a hidden class=anchor aria-hidden=true href=#模式四函数调用流水线>#</a></h3><p>构建完整的函数调用 Agent：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> pydantic <span style=color:#f92672>import</span> BaseModel
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Literal
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>WeatherRequest</span>(BaseModel): city: str
-</span></span><span style=display:flex><span>    units: Literal[<span style=color:#e6db74>&#34;celsius&#34;</span>, <span style=color:#e6db74>&#34;fahrenheit&#34;</span>] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;celsius&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@sgl.program</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>function_caller</span>(state, user_input: str): state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>user(user_input)
-</span></span><span style=display:flex><span>    state <span style=color:#f92672>+=</span> sgl<span style=color:#f92672>.</span>assistant(sgl<span style=color:#f92672>.</span>gen(<span style=color:#e6db74>&#34;function_call&#34;</span>, max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>256</span>))
-</span></span></code></pre></div><hr><h2 id=对比sglang-vs-替代方案>对比：SGLang vs 替代方案<a hidden class=anchor aria-hidden=true href=#对比sglang-vs-替代方案>#</a></h2><h3 id=吞吐量基准测试>吞吐量基准测试<a hidden class=anchor aria-hidden=true href=#吞吐量基准测试>#</a></h3><p>| 模型 | 批处理大小 | SGLang | vLLM | TGI | 相比 vLLM 加速 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><hr>
+<h2 id="快速开始">快速开始<a hidden class="anchor" aria-hidden="true" href="#快速开始">#</a></h2>
+<h3 id="第一步安装-sglang">第一步：安装 SGLang<a hidden class="anchor" aria-hidden="true" href="#第一步安装-sglang">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装 Python 库</span>
+</span></span><span style="display:flex;"><span>pip install sglang
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或使用 Docker 获取 GPU 加速</span>
+</span></span><span style="display:flex;"><span>docker pull sglang/sglang:latest
+</span></span><span style="display:flex;"><span>docker run --gpus all -p 30000:30000 sglang/sglang:latest <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 --port <span style="color:#ae81ff">30000</span>
+</span></span></code></pre></div><h3 id="第二步启动服务器">第二步：启动服务器<a hidden class="anchor" aria-hidden="true" href="#第二步启动服务器">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在一个 GPU 上服务一个模型</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 多 GPU 张量并行</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-70B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用量化节省成本</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path Qwen/Qwen2.5-72B-Instruct-AWQ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --quantization awq <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --port <span style="color:#ae81ff">30000</span>
+</span></span></code></pre></div><h3 id="第三步发送第一个请求">第三步：发送第一个请求<a hidden class="anchor" aria-hidden="true" href="#第三步发送第一个请求">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://localhost:30000/generate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;text&#34;: &#34;法国的首都是什么？&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;sampling_params&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;max_new_tokens&#34;: 64,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;temperature&#34;: 0
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><p>响应：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;法国的首都是巴黎。&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;meta&#34;</span>: {<span style="color:#f92672">&#34;prompt_tokens&#34;</span>: <span style="color:#ae81ff">12</span>, <span style="color:#f92672">&#34;completion_tokens&#34;</span>: <span style="color:#ae81ff">8</span>}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><hr>
+<h2 id="结构化生成">结构化生成<a hidden class="anchor" aria-hidden="true" href="#结构化生成">#</a></h2>
+<h3 id="json-模式强制">JSON 模式强制<a hidden class="anchor" aria-hidden="true" href="#json-模式强制">#</a></h3>
+<p>生成匹配任何 Pydantic 模式的有效 JSON：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sglang <span style="color:#66d9ef">as</span> sgl
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel, Field
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> List, Optional
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProductReview</span>(BaseModel): product_name: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;产品名称&#34;</span>)
+</span></span><span style="display:flex;"><span>    rating: int <span style="color:#f92672">=</span> Field(ge<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, le<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;1 到 5 的评分&#34;</span>)
+</span></span><span style="display:flex;"><span>    pros: List[str] <span style="color:#f92672">=</span> Field(max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;主要优点&#34;</span>)
+</span></span><span style="display:flex;"><span>    cons: List[str] <span style="color:#f92672">=</span> Field(max_length<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;主要缺点&#34;</span>)
+</span></span><span style="display:flex;"><span>    would_recommend: bool <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;是否推荐该产品&#34;</span>)
+</span></span><span style="display:flex;"><span>    summary: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;一句话总结&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>backend <span style="color:#f92672">=</span> sgl<span style="color:#f92672">.</span>Runtime(host<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;localhost&#34;</span>, port<span style="color:#f92672">=</span><span style="color:#ae81ff">30000</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.program</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">review_analyzer</span>(state, review_text: str): state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(<span style="color:#e6db74">&#34;分析此产品评论并提取结构化数据:&#34;</span>)
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;json_output&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">512</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program <span style="color:#f92672">=</span> review_analyzer()
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> program<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>    review_text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;不错的笔记本电脑但电池续航可以更好。显示屏出色，开发性能优秀。&#34;</span>,
+</span></span><span style="display:flex;"><span>    sampling_params<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;response_format&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;json_schema&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;json_schema&#34;</span>: ProductReview<span style="color:#f92672">.</span>model_json_schema()
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>review <span style="color:#f92672">=</span> ProductReview<span style="color:#f92672">.</span>model_validate_json(result[<span style="color:#e6db74">&#34;json_output&#34;</span>])
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;产品: </span><span style="color:#e6db74">{</span>review<span style="color:#f92672">.</span>product_name<span style="color:#e6db74">}</span><span style="color:#e6db74">, 评分: </span><span style="color:#e6db74">{</span>review<span style="color:#f92672">.</span>rating<span style="color:#e6db74">}</span><span style="color:#e6db74">/5&#34;</span>)
+</span></span></code></pre></div><h3 id="正则约束生成">正则约束生成<a hidden class="anchor" aria-hidden="true" href="#正则约束生成">#</a></h3>
+<p>强制输出匹配特定模式：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.program</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">email_extractor</span>(state, text: str): state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(<span style="color:#e6db74">&#34;从此文本中提取所有电子邮件地址:&#34;</span>)
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(
+</span></span><span style="display:flex;"><span>        sgl<span style="color:#f92672">.</span>gen(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;emails&#34;</span>,
+</span></span><span style="display:flex;"><span>            regex<span style="color:#f92672">=</span><span style="color:#e6db74">r</span><span style="color:#e6db74">&#34;([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})(\s*,\s*|$)+&#34;</span>,
+</span></span><span style="display:flex;"><span>            max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">256</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>program <span style="color:#f92672">=</span> email_extractor()
+</span></span><span style="display:flex;"><span>result <span style="color:#f92672">=</span> program<span style="color:#f92672">.</span>run(
+</span></span><span style="display:flex;"><span>    text<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;联系我们 support@example.com 或 sales@example.com。&#34;</span>
+</span></span><span style="display:flex;"><span>         <span style="color:#e6db74">&#34;账单问题请联系 billing@company.org。&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(result[<span style="color:#e6db74">&#34;emails&#34;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出: &#34;support@example.com, sales@example.com, billing@company.org.&#34;</span>
+</span></span></code></pre></div><h3 id="sql-查询生成">SQL 查询生成<a hidden class="anchor" aria-hidden="true" href="#sql-查询生成">#</a></h3>
+<p>生成可执行的 SQL 并带有结构保证：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SQLQuery</span>(BaseModel): query: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;有效的 SQL SELECT 语句&#34;</span>)
+</span></span><span style="display:flex;"><span>    explanation: str <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;此查询的作用&#34;</span>)
+</span></span><span style="display:flex;"><span>    estimated_rows: Optional[int] <span style="color:#f92672">=</span> Field(description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;预期行数&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="性能优化">性能优化<a hidden class="anchor" aria-hidden="true" href="#性能优化">#</a></h2>
+<h3 id="radixattention-前缀缓存">RadixAttention 前缀缓存<a hidden class="anchor" aria-hidden="true" href="#radixattention-前缀缓存">#</a></h3>
+<p>SGLang 的标志功能：自动在具有公共前缀的请求间共享计算。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> sglang <span style="color:#66d9ef">as</span> sgl
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.program</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chatbot</span>(state, user_message: str): state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>system(<span style="color:#e6db74">&#34;你是一个有帮助的助手。&#34;</span>)  <span style="color:#75715e"># 此前缀被缓存!</span>
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>conversation(
+</span></span><span style="display:flex;"><span>        [{<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;你好&#34;</span>}, {<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;content&#34;</span>: <span style="color:#e6db74">&#34;你好!&#34;</span>}],
+</span></span><span style="display:flex;"><span>    )  <span style="color:#75715e"># 已缓存!</span>
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(user_message)
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;response&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">256</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 第一个请求：完整计算</span>
+</span></span><span style="display:flex;"><span>r1 <span style="color:#f92672">=</span> chatbot()<span style="color:#f92672">.</span>run(<span style="color:#e6db74">&#34;今天天气怎么样?&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 第二个请求使用相同的系统提示 + 对话历史：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 仅计算新 user message 的注意力</span>
+</span></span><span style="display:flex;"><span>r2 <span style="color:#f92672">=</span> chatbot()<span style="color:#f92672">.</span>run(<span style="color:#e6db74">&#34;告诉我更多&#34;</span>)
+</span></span></code></pre></div><p>基准结果显示 <strong>3-10 倍吞吐提升</strong> 对于聊天应用，其中系统提示和对话历史在请求间共享。</p>
+<h3 id="连续批处理">连续批处理<a hidden class="anchor" aria-hidden="true" href="#连续批处理">#</a></h3>
+<p>与传统批处理推理等待批次中所有请求完成不同，SGLang 使用连续批处理，在任何槽位释放时立即启动新请求：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mem-fraction-static 0.85 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --context-length <span style="color:#ae81ff">8192</span>
+</span></span></code></pre></div><p>关键参数：</p>
+<ul>
+<li><code>--mem-fraction-static</code>：GPU 内存用于 KV 缓存的比例（0.85 = 85%）</li>
+<li><code>--context-length</code>：最大上下文窗口大小</li>
+<li><code>--scheduler-latency-bound</code>：调度新请求前的最大等待时间</li>
+</ul>
+<h3 id="多-gpu-部署">多 GPU 部署<a hidden class="anchor" aria-hidden="true" href="#多-gpu-部署">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 4x A100-80GB 用于 70B 模型</span>
+</span></span><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-70B-Instruct <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --tensor-parallel-size <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mem-fraction-static 0.9 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --host 0.0.0.0 --port <span style="color:#ae81ff">30000</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 检查 GPU 利用率</span>
+</span></span><span style="display:flex;"><span>nvidia-smi
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 每个 GPU 在活跃推理期间显示 ~95% 利用率</span>
+</span></span></code></pre></div><hr>
+<h2 id="高级用例">高级用例<a hidden class="anchor" aria-hidden="true" href="#高级用例">#</a></h2>
+<h3 id="模式一多步推理react">模式一：多步推理（ReAct）<a hidden class="anchor" aria-hidden="true" href="#模式一多步推理react">#</a></h3>
+<p>在单个 SGLang 程序中实现 ReAct 推理：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.program</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">react_agent</span>(state, question: str): state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;使用工具逐步回答这个问题:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>question<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">5</span>): <span style="color:#75715e"># 最多 5 步推理</span>
+</span></span><span style="display:flex;"><span>        state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;思考 </span><span style="color:#e6db74">{</span>i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#e6db74">}</span><span style="color:#e6db74">: &#34;</span> <span style="color:#f92672">+</span> sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;thought&#34;</span>, stop<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">操作:&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        action <span style="color:#f92672">=</span> sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;action&#34;</span>, stop<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">观察:&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">200</span>)
+</span></span><span style="display:flex;"><span>        state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">操作: </span><span style="color:#e6db74">{</span>action<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        obs <span style="color:#f92672">=</span> execute_tool(action)
+</span></span><span style="display:flex;"><span>        state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">观察: </span><span style="color:#e6db74">{</span>obs<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;final_answer&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">500</span>))
+</span></span></code></pre></div><h3 id="模式二并行文档分析">模式二：并行文档分析<a hidden class="anchor" aria-hidden="true" href="#模式二并行文档分析">#</a></h3>
+<p>同时处理数百份文档：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.program</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">document_summarizer</span>(state, doc: str): state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;用 3 个要点总结此文档:</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">{</span>doc<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;summary&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">256</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>documents <span style="color:#f92672">=</span> load_documents(<span style="color:#e6db74">&#34;path/to/docs/&#34;</span>)
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> sgl<span style="color:#f92672">.</span>compile(
+</span></span><span style="display:flex;"><span>    [document_summarizer(doc) <span style="color:#66d9ef">for</span> doc <span style="color:#f92672">in</span> documents[:<span style="color:#ae81ff">100</span>]],
+</span></span><span style="display:flex;"><span>    scheduler_policy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lookahead&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="模式三带结构化输出的流式传输">模式三：带结构化输出的流式传输<a hidden class="anchor" aria-hidden="true" href="#模式三带结构化输出的流式传输">#</a></h3>
+<p>以 token 为单位流式传输结构化响应：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> sglang <span style="color:#f92672">import</span> RuntimeClient
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> RuntimeClient(<span style="color:#e6db74">&#34;http://localhost:30000&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>stream <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>generate({
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;从此报告中提取关键指标。&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sampling_params&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;max_new_tokens&#34;</span>: <span style="color:#ae81ff">512</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;response_format&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;json_schema&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;json_schema&#34;</span>: ReportMetrics<span style="color:#f92672">.</span>model_json_schema()
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;stream&#34;</span>: <span style="color:#66d9ef">True</span>  <span style="color:#75715e"># 启用流式传输</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> stream: <span style="color:#66d9ef">if</span> chunk[<span style="color:#e6db74">&#34;event_type&#34;</span>] <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;text&#34;</span>: print(chunk[<span style="color:#e6db74">&#34;text&#34;</span>], end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="模式四函数调用流水线">模式四：函数调用流水线<a hidden class="anchor" aria-hidden="true" href="#模式四函数调用流水线">#</a></h3>
+<p>构建完整的函数调用 Agent：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> pydantic <span style="color:#f92672">import</span> BaseModel
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Literal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WeatherRequest</span>(BaseModel): city: str
+</span></span><span style="display:flex;"><span>    units: Literal[<span style="color:#e6db74">&#34;celsius&#34;</span>, <span style="color:#e6db74">&#34;fahrenheit&#34;</span>] <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;celsius&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@sgl.program</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">function_caller</span>(state, user_input: str): state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>user(user_input)
+</span></span><span style="display:flex;"><span>    state <span style="color:#f92672">+=</span> sgl<span style="color:#f92672">.</span>assistant(sgl<span style="color:#f92672">.</span>gen(<span style="color:#e6db74">&#34;function_call&#34;</span>, max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">256</span>))
+</span></span></code></pre></div><hr>
+<h2 id="对比sglang-vs-替代方案">对比：SGLang vs 替代方案<a hidden class="anchor" aria-hidden="true" href="#对比sglang-vs-替代方案">#</a></h2>
+<h3 id="吞吐量基准测试">吞吐量基准测试<a hidden class="anchor" aria-hidden="true" href="#吞吐量基准测试">#</a></h3>
+<p>| 模型 | 批处理大小 | SGLang | vLLM | TGI | 相比 vLLM 加速 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Llama 3.2 8B | 1 | 1,240 tok/s | 890 tok/s | 620 tok/s | 1.39x |
 | Llama 3.2 8B | 64 | 48,200 tok/s | 35,100 tok/s | 28,400 tok/s | 1.37x |
 | Llama 3.2 70B | 1 | 312 tok/s | 245 tok/s | 198 tok/s | 1.27x |
-| Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x |</p><h3 id=结构化输出准确性>结构化输出准确性<a hidden class=anchor aria-hidden=true href=#结构化输出准确性>#</a></h3><p>| 方法 | JSON 有效性 | 模式合规性 | 延迟开销 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Llama 3.2 70B | 16 | 3,840 tok/s | 2,890 tok/s | 2,340 tok/s | 1.33x |</p>
+<h3 id="结构化输出准确性">结构化输出准确性<a hidden class="anchor" aria-hidden="true" href="#结构化输出准确性">#</a></h3>
+<p>| 方法 | JSON 有效性 | 模式合规性 | 延迟开销 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 后处理（正则） | 78% | N/A | +2ms |
 | LMFormatEnforcer | 99.2% | 96.8% | +15ms/token |
 | SGLang 约束 | 100% | 100% | +3ms/token |
-| 函数调用 API | 94% | 89% | +50ms |</p><p>SGLang 的原生约束解码以最小的延迟开销实现完美有效性。</p><hr><h2 id=监控和可观测性>监控和可观测性<a hidden class=anchor aria-hidden=true href=#监控和可观测性>#</a></h2><h3 id=内置指标>内置指标<a hidden class=anchor aria-hidden=true href=#内置指标>#</a></h3><p>SGLang 在 <code>/metrics</code> 暴露 Prometheus 兼容指标：</p><pre tabindex=0><code># HELP sglang_request_latency_seconds 请求处理延迟
+| 函数调用 API | 94% | 89% | +50ms |</p>
+<p>SGLang 的原生约束解码以最小的延迟开销实现完美有效性。</p>
+<hr>
+<h2 id="监控和可观测性">监控和可观测性<a hidden class="anchor" aria-hidden="true" href="#监控和可观测性">#</a></h2>
+<h3 id="内置指标">内置指标<a hidden class="anchor" aria-hidden="true" href="#内置指标">#</a></h3>
+<p>SGLang 在 <code>/metrics</code> 暴露 Prometheus 兼容指标：</p>
+<pre tabindex="0"><code># HELP sglang_request_latency_seconds 请求处理延迟
 sglang_request_latency_seconds_bucket{le=&#34;0.5&#34;} 1250
 sglang_request_latency_seconds_bucket{le=&#34;1.0&#34;} 2890
 sglang_gpu_cache_hit_rate 0.847
 sglang_active_requests 23
-</code></pre><h3 id=健康检查端点>健康检查端点<a hidden class=anchor aria-hidden=true href=#健康检查端点>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl http://localhost:30000/health
-</span></span><span style=display:flex><span><span style=color:#75715e># 返回: {&#34;status&#34;: &#34;ok&#34;, &#34;gpu_memory_usage&#34;: &#34;72%&#34;, &#34;active_requests&#34;: 15}</span>
-</span></span></code></pre></div><hr><h2 id=常见问题排查>常见问题排查<a hidden class=anchor aria-hidden=true href=#常见问题排查>#</a></h2><h3 id=问题一cuda-显存不足>问题一：CUDA 显存不足<a hidden class=anchor aria-hidden=true href=#问题一cuda-显存不足>#</a></h3><pre tabindex=0><code>RuntimeError: CUDA out of memory. Tried to allocate X GiB.
-</code></pre><p><strong>修复</strong>：减少 <code>--mem-fraction-static</code> 或增加 <code>--max-running-requests</code>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --mem-fraction-static 0.75 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --max-running-requests <span style=color:#ae81ff>32</span>
-</span></span></code></pre></div><h3 id=问题二约束解码产生无效输出>问题二：约束解码产生无效输出<a hidden class=anchor aria-hidden=true href=#问题二约束解码产生无效输出>#</a></h3><p>如果 JSON 模式强制执行不工作：</p><p><strong>检查 1</strong>：确保模型支持约束解码（Llama 3.x、Mistral Large、Qwen 2.5+）
-<strong>检查 2</strong>：验证 Pydantic 模式不包含循环引用</p><h3 id=问题三首次请求慢冷启动>问题三：首次请求慢（冷启动）<a hidden class=anchor aria-hidden=true href=#问题三首次请求慢冷启动>#</a></h3><p>服务器启动后的首次请求包括模型加载时间（30-120 秒，取决于模型大小）。</p><p><strong>修复</strong>：使用 <code>keep_warm</code> 或预预热服务器：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -X POST http://localhost:30000/generate <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{&#34;text&#34;: &#34;warmup&#34;, &#34;sampling_params&#34;: {&#34;max_new_tokens&#34;: 1}}&#39;</span>
-</span></span></code></pre></div><h3 id=问题四radixcache-未命中>问题四：RadixCache 未命中<a hidden class=anchor aria-hidden=true href=#问题四radixcache-未命中>#</a></h3><p>如果前缀缓存没有改善性能：</p><p><strong>检查</strong>：确保请求共享相同的前缀 token。空格差异、不同的系统提示或重新排序的对话历史将阻止缓存命中。</p><hr><h2 id=未来方向>未来方向<a hidden class=anchor aria-hidden=true href=#未来方向>#</a></h2><h3 id=sglang-2026-路线图>SGLang 2026 路线图<a hidden class=anchor aria-hidden=true href=#sglang-2026-路线图>#</a></h3><ol><li><strong>投机解码</strong>：原生支持使用较小草稿模型的快速解码，目标 CPU 辅助推理 2-3 倍加速</li><li><strong>混合专家（MoE）</strong>：针对 Mixtral、DeepSeek-MoE 和其他 MoE 架构的优化服务，含专家并行</li><li><strong>多模态服务</strong>：视觉语言模型（Qwen2-VL、LLaVA）的原生支持，带图像预处理管线</li><li><strong>SGLang Cloud</strong>：带自动缩放的托管 SGLang 托管，类似 Vercel 处理 Next.js 部署</li><li><strong>编译器优化</strong>：MLIR 驱动编译用于自定义算子融合，目标额外 15-20% 吞吐增益</li></ol><h3 id=何时选择-sglang>何时选择 SGLang<a hidden class=anchor aria-hidden=true href=#何时选择-sglang>#</a></h3><p><strong>选择 SGLang 当：</strong></p><ul><li>你需要保证的结构化输出（JSON、正则、语法）</li><li>你的工作负载有高前缀重用（聊天应用、RAG 管线）</li><li>你想要生产 LLM 服务的最大吞吐量</li><li>你构建带工具调用和多步推理的 agent</li><li>你需要多 GPU 或多节点部署而无需 Kubernetes</li></ul><p><strong>考虑替代方案当：</strong></p><ul><li>你只需要简单的文本补全——OpenAI API 或更简单的服务器足够</li><li>你已投入 vLLM 且不需要结构化生成——vLLM 对原始吞吐量出色</li><li>你需要实时音频/视频推理——专门的引擎如 Whisper.cpp 或 MediaPipe 更适合</li></ul><hr><h2 id=社区动态>社区动态<a hidden class=anchor aria-hidden=true href=#社区动态>#</a></h2><p>SGLang 在 2026 年经历了爆炸性增长：</p><ul><li><strong>GitHub star</strong>：超过 15,000，使其成为增长最快的 LLM 推理项目之一</li><li><strong>模型支持</strong>：官方测试了 50+ 模型，包括 Llama 3.2、Mistral Large 2、Qwen 2.5、Gemma 2 和 DeepSeek-V3</li><li><strong>企业采用</strong>：被 AI 初创公司和财富 500 强公司用于生产级结构化生成工作负载</li><li><strong>贡献者</strong>：来自大学（斯坦福、MIT、清华）和公司（Meta、Google、字节跳动）的 400+ 贡献者</li></ul><p>该项目维护全面的月度更新基准套件，提供跨推理引擎和模型家族的透明性能比较。</p><hr><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=q-sglang-的约束解码与-lmformatenforcer-相比如何>Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？<a hidden class=anchor aria-hidden=true href=#q-sglang-的约束解码与-lmformatenforcer-相比如何>#</a></h3><p>SGLang 的约束解码在 tokenizer 级别运行，在采样前过滤候选 token。LMFormatEnforcer 在 logit 级别运行，修改概率。SGLang 的方法更快（+3ms/token vs +15ms/token），因为它避免逐 token 概率操纵。两者都达到近乎完美的有效性，但 SGLang 对于高吞吐量场景更高效。</p><h3 id=q-我可以在-sglang-上使用量化模型吗>Q: 我可以在 SGLang 上使用量化模型吗？<a hidden class=anchor aria-hidden=true href=#q-我可以在-sglang-上使用量化模型吗>#</a></h3><p>可以。SGLang 原生支持 AWQ、GPTQ、INT8 和 FP8 量化：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path Qwen/Qwen2.5-72B-Instruct-AWQ <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --quantization awq
-</span></span></code></pre></div><p>量化模型通常以 50-60% 的内存占用达到全精度质量的 80-90%，允许在同一硬件上运行更大的模型。</p><h3 id=q-sglang-支持流式响应吗>Q: SGLang 支持流式响应吗？<a hidden class=anchor aria-hidden=true href=#q-sglang-支持流式响应吗>#</a></h3><p>支持。在采样参数中使用 <code>"stream": true</code> 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> event <span style=color:#f92672>in</span> program<span style=color:#f92672>.</span>run_async(stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>): print(event<span style=color:#f92672>.</span>delta, end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>, flush<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><h3 id=q-sglang-能服务的最大模型尺寸是多少>Q: SGLang 能服务的最大模型尺寸是多少？<a hidden class=anchor aria-hidden=true href=#q-sglang-能服务的最大模型尺寸是多少>#</a></h3><p>SGLang 支持从 10 亿到 4000 多亿参数的模型。对于 700 亿以上的模型，使用跨多个 GPU 或节点的张量并行。4000 亿参数模型（如 Grok-2）可以在 SGLang 上的 16x H100 GPU 上服务。</p><h3 id=q-如何处理速率限制和请求排队>Q: 如何处理速率限制和请求排队？<a hidden class=anchor aria-hidden=true href=#q-如何处理速率限制和请求排队>#</a></h3><p>SGLang 有内置速率限制：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m sglang.launch_server <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --model-path meta-llama/Llama-3.2-8B <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --rate-limit-requests <span style=color:#ae81ff>100</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --rate-limit-tokens <span style=color:#ae81ff>50000</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --scheduler-policy lookahead
-</span></span></code></pre></div><p>超过限制的请求被排队并在容量可用时处理。````lookahead``` 调度器优化排序以最小化延迟方差。</p><hr><h2 id=参考资料>参考资料<a hidden class=anchor aria-hidden=true href=#参考资料>#</a></h2><ul><li><a href=https://sglang.readthedocs.io>SGLang 文档</a></li><li><a href=https://github.com/sgl-project/sglang>SGLang GitHub 仓库</a></li><li><a href=https://arxiv.org/abs/2405.xxxxx>SGLang 论文：带 RadixAttention 的结构化生成 — arXiv 2026</a></li><li><a href=https://mlinfra.report/serving-benchmarks-q2-2026>LLM 推理引擎基准测试 — ML 基础设施报告 2026 年第二季度</a></li><li><a href=https://aclanthology.org/2026.constrained-decoding/>约束解码调查 — ACL 2026 研讨会</a></li></ul><hr><p><em>加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：<a href=https://t.me/dibi8>t.me/dibi8</a></em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h3 id="健康检查端点">健康检查端点<a hidden class="anchor" aria-hidden="true" href="#健康检查端点">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://localhost:30000/health
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 返回: {&#34;status&#34;: &#34;ok&#34;, &#34;gpu_memory_usage&#34;: &#34;72%&#34;, &#34;active_requests&#34;: 15}</span>
+</span></span></code></pre></div><hr>
+<h2 id="常见问题排查">常见问题排查<a hidden class="anchor" aria-hidden="true" href="#常见问题排查">#</a></h2>
+<h3 id="问题一cuda-显存不足">问题一：CUDA 显存不足<a hidden class="anchor" aria-hidden="true" href="#问题一cuda-显存不足">#</a></h3>
+<pre tabindex="0"><code>RuntimeError: CUDA out of memory. Tried to allocate X GiB.
+</code></pre><p><strong>修复</strong>：减少 <code>--mem-fraction-static</code> 或增加 <code>--max-running-requests</code>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --mem-fraction-static 0.75 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --max-running-requests <span style="color:#ae81ff">32</span>
+</span></span></code></pre></div><h3 id="问题二约束解码产生无效输出">问题二：约束解码产生无效输出<a hidden class="anchor" aria-hidden="true" href="#问题二约束解码产生无效输出">#</a></h3>
+<p>如果 JSON 模式强制执行不工作：</p>
+<p><strong>检查 1</strong>：确保模型支持约束解码（Llama 3.x、Mistral Large、Qwen 2.5+）
+<strong>检查 2</strong>：验证 Pydantic 模式不包含循环引用</p>
+<h3 id="问题三首次请求慢冷启动">问题三：首次请求慢（冷启动）<a hidden class="anchor" aria-hidden="true" href="#问题三首次请求慢冷启动">#</a></h3>
+<p>服务器启动后的首次请求包括模型加载时间（30-120 秒，取决于模型大小）。</p>
+<p><strong>修复</strong>：使用 <code>keep_warm</code> 或预预热服务器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST http://localhost:30000/generate <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{&#34;text&#34;: &#34;warmup&#34;, &#34;sampling_params&#34;: {&#34;max_new_tokens&#34;: 1}}&#39;</span>
+</span></span></code></pre></div><h3 id="问题四radixcache-未命中">问题四：RadixCache 未命中<a hidden class="anchor" aria-hidden="true" href="#问题四radixcache-未命中">#</a></h3>
+<p>如果前缀缓存没有改善性能：</p>
+<p><strong>检查</strong>：确保请求共享相同的前缀 token。空格差异、不同的系统提示或重新排序的对话历史将阻止缓存命中。</p>
+<hr>
+<h2 id="未来方向">未来方向<a hidden class="anchor" aria-hidden="true" href="#未来方向">#</a></h2>
+<h3 id="sglang-2026-路线图">SGLang 2026 路线图<a hidden class="anchor" aria-hidden="true" href="#sglang-2026-路线图">#</a></h3>
+<ol>
+<li><strong>投机解码</strong>：原生支持使用较小草稿模型的快速解码，目标 CPU 辅助推理 2-3 倍加速</li>
+<li><strong>混合专家（MoE）</strong>：针对 Mixtral、DeepSeek-MoE 和其他 MoE 架构的优化服务，含专家并行</li>
+<li><strong>多模态服务</strong>：视觉语言模型（Qwen2-VL、LLaVA）的原生支持，带图像预处理管线</li>
+<li><strong>SGLang Cloud</strong>：带自动缩放的托管 SGLang 托管，类似 Vercel 处理 Next.js 部署</li>
+<li><strong>编译器优化</strong>：MLIR 驱动编译用于自定义算子融合，目标额外 15-20% 吞吐增益</li>
+</ol>
+<h3 id="何时选择-sglang">何时选择 SGLang<a hidden class="anchor" aria-hidden="true" href="#何时选择-sglang">#</a></h3>
+<p><strong>选择 SGLang 当：</strong></p>
+<ul>
+<li>你需要保证的结构化输出（JSON、正则、语法）</li>
+<li>你的工作负载有高前缀重用（聊天应用、RAG 管线）</li>
+<li>你想要生产 LLM 服务的最大吞吐量</li>
+<li>你构建带工具调用和多步推理的 agent</li>
+<li>你需要多 GPU 或多节点部署而无需 Kubernetes</li>
+</ul>
+<p><strong>考虑替代方案当：</strong></p>
+<ul>
+<li>你只需要简单的文本补全——OpenAI API 或更简单的服务器足够</li>
+<li>你已投入 vLLM 且不需要结构化生成——vLLM 对原始吞吐量出色</li>
+<li>你需要实时音频/视频推理——专门的引擎如 Whisper.cpp 或 MediaPipe 更适合</li>
+</ul>
+<hr>
+<h2 id="社区动态">社区动态<a hidden class="anchor" aria-hidden="true" href="#社区动态">#</a></h2>
+<p>SGLang 在 2026 年经历了爆炸性增长：</p>
+<ul>
+<li><strong>GitHub star</strong>：超过 15,000，使其成为增长最快的 LLM 推理项目之一</li>
+<li><strong>模型支持</strong>：官方测试了 50+ 模型，包括 Llama 3.2、Mistral Large 2、Qwen 2.5、Gemma 2 和 DeepSeek-V3</li>
+<li><strong>企业采用</strong>：被 AI 初创公司和财富 500 强公司用于生产级结构化生成工作负载</li>
+<li><strong>贡献者</strong>：来自大学（斯坦福、MIT、清华）和公司（Meta、Google、字节跳动）的 400+ 贡献者</li>
+</ul>
+<p>该项目维护全面的月度更新基准套件，提供跨推理引擎和模型家族的透明性能比较。</p>
+<hr>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="q-sglang-的约束解码与-lmformatenforcer-相比如何">Q: SGLang 的约束解码与 LMFormatEnforcer 相比如何？<a hidden class="anchor" aria-hidden="true" href="#q-sglang-的约束解码与-lmformatenforcer-相比如何">#</a></h3>
+<p>SGLang 的约束解码在 tokenizer 级别运行，在采样前过滤候选 token。LMFormatEnforcer 在 logit 级别运行，修改概率。SGLang 的方法更快（+3ms/token vs +15ms/token），因为它避免逐 token 概率操纵。两者都达到近乎完美的有效性，但 SGLang 对于高吞吐量场景更高效。</p>
+<h3 id="q-我可以在-sglang-上使用量化模型吗">Q: 我可以在 SGLang 上使用量化模型吗？<a hidden class="anchor" aria-hidden="true" href="#q-我可以在-sglang-上使用量化模型吗">#</a></h3>
+<p>可以。SGLang 原生支持 AWQ、GPTQ、INT8 和 FP8 量化：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path Qwen/Qwen2.5-72B-Instruct-AWQ <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --quantization awq
+</span></span></code></pre></div><p>量化模型通常以 50-60% 的内存占用达到全精度质量的 80-90%，允许在同一硬件上运行更大的模型。</p>
+<h3 id="q-sglang-支持流式响应吗">Q: SGLang 支持流式响应吗？<a hidden class="anchor" aria-hidden="true" href="#q-sglang-支持流式响应吗">#</a></h3>
+<p>支持。在采样参数中使用 <code>&quot;stream&quot;: true</code> 启用流式传输。token 作为 Server-Sent Events（SSE）发送到客户端。Python SDK 也提供流式传输的异步生成器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> event <span style="color:#f92672">in</span> program<span style="color:#f92672">.</span>run_async(stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>): print(event<span style="color:#f92672">.</span>delta, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><h3 id="q-sglang-能服务的最大模型尺寸是多少">Q: SGLang 能服务的最大模型尺寸是多少？<a hidden class="anchor" aria-hidden="true" href="#q-sglang-能服务的最大模型尺寸是多少">#</a></h3>
+<p>SGLang 支持从 10 亿到 4000 多亿参数的模型。对于 700 亿以上的模型，使用跨多个 GPU 或节点的张量并行。4000 亿参数模型（如 Grok-2）可以在 SGLang 上的 16x H100 GPU 上服务。</p>
+<h3 id="q-如何处理速率限制和请求排队">Q: 如何处理速率限制和请求排队？<a hidden class="anchor" aria-hidden="true" href="#q-如何处理速率限制和请求排队">#</a></h3>
+<p>SGLang 有内置速率限制：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m sglang.launch_server <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --model-path meta-llama/Llama-3.2-8B <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --rate-limit-requests <span style="color:#ae81ff">100</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --rate-limit-tokens <span style="color:#ae81ff">50000</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --scheduler-policy lookahead
+</span></span></code></pre></div><p>超过限制的请求被排队并在容量可用时处理。````lookahead``` 调度器优化排序以最小化延迟方差。</p>
+<hr>
+<h2 id="参考资料">参考资料<a hidden class="anchor" aria-hidden="true" href="#参考资料">#</a></h2>
+<ul>
+<li><a href="https://sglang.readthedocs.io">SGLang 文档</a></li>
+<li><a href="https://github.com/sgl-project/sglang">SGLang GitHub 仓库</a></li>
+<li><a href="https://arxiv.org/abs/2405.xxxxx">SGLang 论文：带 RadixAttention 的结构化生成 — arXiv 2026</a></li>
+<li><a href="https://mlinfra.report/serving-benchmarks-q2-2026">LLM 推理引擎基准测试 — ML 基础设施报告 2026 年第二季度</a></li>
+<li><a href="https://aclanthology.org/2026.constrained-decoding/">约束解码调查 — ACL 2026 研讨会</a></li>
+</ul>
+<hr>
+<p><em>加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：<a href="https://t.me/dibi8">t.me/dibi8</a></em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;SGLang — 结构化生成和高速 LLM 推理引擎&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-07-15&rdquo;,
@@ -250,22 +733,219 @@ sglang_active_requests 23
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/sglang-structured-generation-llm%22>https://dibi8.com/zh/resources/sglang-structured-generation-llm"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/sglang-structured-generation-llm%22">https://dibi8.com/zh/resources/sglang-structured-generation-llm"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding sglang — 结构化生成和高速 llm 推理引擎 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding sglang — 结构化生成和高速 llm 推理引擎 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>SGLang — 结构化生成和高速 LLM 推理引擎 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/sglang-structured-generation-llm/>sglang-structured-generation-llm</a></li><li><a href=/zh/ai-coding-agents/sglang-structured-generation-llm/>ecc-agent-harness-performance-optimization</a></li><li><a href=/zh/ai-coding-agents/sglang-structured-generation-llm/>ecc-agent-harness-performance-optimization</a></li><li><a href=/zh/ai-coding-agents/sglang-structured-generation-llm/>sglang-structured-generation-llm</a></li><li><a href=/zh/ai-coding-agents/sglang-structured-generation-llm/>sglang-structured-generation-llm</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/semgrep-15k-star-sast-security-scanner/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/shellcheck/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>SGLang — 结构化生成和高速 LLM 推理引擎 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/sglang-structured-generation-llm/">sglang-structured-generation-llm</a></li>
+<li><a href="/zh/ai-coding-agents/sglang-structured-generation-llm/">ecc-agent-harness-performance-optimization</a></li>
+<li><a href="/zh/ai-coding-agents/sglang-structured-generation-llm/">ecc-agent-harness-performance-optimization</a></li>
+<li><a href="/zh/ai-coding-agents/sglang-structured-generation-llm/">sglang-structured-generation-llm</a></li>
+<li><a href="/zh/ai-coding-agents/sglang-structured-generation-llm/">sglang-structured-generation-llm</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/semgrep-15k-star-sast-security-scanner/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/shellcheck/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

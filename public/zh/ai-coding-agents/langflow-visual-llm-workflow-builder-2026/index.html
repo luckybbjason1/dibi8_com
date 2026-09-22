@@ -1,79 +1,722 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析 {: .hero-image .rounded-lg .shadow-lg .mb-6 alt=“Langflow: AI Source Code Hub Badge”}\n引言 在大型语言模型 (LLM) 应用开发快速演进的领域中，协调各种组件（从提示模板和模型调用到工具利用和代理推理）的复杂性可能很快成为瓶颈。开发者经常发现自己需要处理冗长的代码，调试复杂的链条，并难以可视化数据和逻辑流。\nLangflow 的出现正是为了解决这一痛点，它提供了一个视觉化、低代码的界面来构建和部署 LLM 驱动的应用程序。其受欢迎程度的迅速提升显而易见：截至 2026 年 5 月，该项目已获得惊人的 148,710 个 GitHub 星标，这表明社区的强大采用以及对其方法的明确需求。从 2025 年末的略高于 10 万颗星到现在的增长，充分说明了它在简化复杂 LLM 管道方面的实用性。本文将深入探讨 Langflow 的技术细节，涵盖其架构、设置、集成、生产环境考量以及对其功能和局限性的坦诚评估。\n什么是 Langflow？ Langflow 是一个开源的、基于 Python 的可视化框架，旨在创建和部署 AI 代理和 LLM 应用程序。它提供了一个拖放界面，开发者可以通过连接各种“节点”来构建复杂的工作流，每个节点都代表 LLM 管道中的特定功能或组件。Langflow 的核心是作为 LangChain 等框架的图形封装器和协调器，允许用户抽象出构建链条通常所需的许多样板代码。\nLangflow 的主要目标是通过以下方式加速 LLM 应用程序的开发周期：\n可视化工作流：使 LLM 应用程序的数据流和逻辑易于理解。 快速原型设计：实现对不同模型、提示和工具的快速实验。 组件可重用性：提供预构建节点的库并支持自定义组件的创建。 简化部署：为已构建的流程提供 API 端点和直接的容器化。 Langflow 的架构是客户端-服务器模式。前端使用 React 构建，提供交互式画布和聊天界面。后端由 FastAPI 和 Pydantic 驱动，负责执行 LLM 图形、管理组件注册并暴露 API 端点。流程和组件的数据持久性通常通过数据库（例如 SQLite、PostgreSQL）进行管理。\n关键架构组件包括：\nCanvas：主要的视觉工作区，用于放置和连接节点。 Nodes：代表独立操作，如 LLM 调用、提示模板、工具、代理、文档加载器、检索器或自定义 Python 函数。每个节点都有输入和输出端口。 Edges：连接节点，定义数据和控制流。边通常将一个节点的输出端口连接到另一个节点的输入端口。 Components：节点所代表的底层 Python 类。Langflow 附带了一组丰富的内置组件，并允许开发自定义组件。 Chat Interface：内置的用户界面，用于与部署的 LLM 应用程序交互，方便测试和演示。 Langflow 工作原理 Langflow 采用基于流的编程范式，其中应用程序的逻辑表示为独立进程（节点）的定向图，通过消息（流经边的数据）进行通信。这种可视化方法简化了复杂 LLM 应用程序的构建，否则这些应用程序可能涉及多行命令式代码。\n当您在 Langflow 中构建流程时：\n节点选择：将节点从侧边栏拖放到画布上。这些节点按类别分类，例如“LLMs”、“Chains”、“Tools”、“Agents”、“Prompt Templates”、“Document Loaders”和“Text Splitters”。 配置：每个节点都有可配置的参数。对于“OpenAI Chat”节点，您可以指定模型名称（例如 ```gpt-4o````）、温度和 API 密钥。对于“Prompt Template”节点，您定义带有占位符的模板字符串。 连接（边）：将一个节点的输出端口连接到另一个节点的输入端口。例如，“Prompt Template”节点的输出（一个 PromptValue）可能连接到“LLM”节点的 input。LLM 节点的 output（一个 BaseMessage）可能随后连接到进一步处理响应的“Chain”或“Agent”。 执行：当流程“运行”时（通过内置聊天界面或 API 调用），Langflow 会遍历图，根据依赖关系以正确的顺序执行节点。数据从输出端口流向输入端口，触发后续节点的执行。 考虑一个简单的检索增强生成 (RAG) 流程：\nDocument Loader Node：从源（例如 PDF、网页）加载数据。 Text Splitter Node：将加载的文档分解成更小的块。 Vector Store Node：嵌入块并将其存储在向量数据库中（例如 Chroma、FAISS）。 Retriever Node：根据用户输入查询向量存储以检索相关文档。 Prompt Template Node：将用户查询和检索到的文档格式化为 LLM 的提示。 LLM Node：使用构建的提示调用 LLM（例如 OpenAI、Anthropic）。 Output Node：显示最终的 LLM 响应。 整个序列都可以在 Langflow 中构建和可视化，从而更容易迭代不同的组件（例如，尝试不同的文本分割器或向量存储）而无需更改大量代码。\n安装与设置 Langflow 的启动和运行旨在简单明了，Docker 是大多数寻求“5 分钟设置”用户的推荐途径。\n先决条件 Docker 和 Docker Compose（如果使用 Docker） Python 3.9+ 和 pip（如果本地安装） Git（用于克隆仓库） 选项 1：Docker（推荐用于快速启动） 此方法确保所有依赖项都在容器中管理，并避免本地环境冲突。\n克隆仓库：\ngit clone https://github.com/langflow-ai/langflow.git cd langflow 使用 Docker Compose 启动： Langflow 提供了一个 docker-compose.yml 文件，便于设置。\ndocker compose up -d 此命令将构建必要的镜像（如果尚未构建），并启动 Langflow 后端和前端服务。-d 标志以分离模式运行它们。\n访问 Langflow： 容器启动后，Langflow 将在您的网络浏览器中 http://localhost:7860 处可访问。 首次访问时，系统会提示您创建管理员用户。\n停止 Langflow：\ndocker compose down 选项 2：Pip 安装（适用于本地开发和自定义组件） 如果您计划开发自定义组件或将 Langflow 集成到现有 Python 项目中，本地安装是合适的。\n创建虚拟环境：\npython -m venv venv source venv/bin/activate # On Windows: .\\venv\\Scripts\\activate 安装 Langflow：\npip install langflow 注意：如果您遇到特定依赖项的问题，通常安装 playwright 浏览器依赖项会有帮助： playwright install --with-deps\n运行 Langflow：\nlangflow run --port 7860 此命令启动 Langflow 服务器。在您的浏览器中 http://localhost:7860 处访问它。\n环境变量 Langflow 需要各种 LLM 提供商的 API 密钥。这些最好使用环境变量进行管理。在 Langflow 目录的根目录中创建 .env 文件（或直接将其传递给您的 Docker 容器/shell）。\n# .env example OPENAI_API_KEY=sk-YOUR_OPENAI_KEY ANTHROPIC_API_KEY=sk-ant-api03-YOUR_ANTHROPIC_KEY HUGGINGFACEHUB_API_TOKEN=hf_YOUR_HF_TOKEN # Optional: For database configuration DATABASE_URL=postgresql://user:password@host:port/database_name 常见设置问题：\n端口冲突：如果 7860 正在使用中，Langflow 可能无法启动。检查可用端口或指定不同的端口（例如 langflow run --port 8000）。 缺少 API 密钥：如果没有配置正确的 API 密钥，LLM 节点将无法初始化或执行。务必仔细检查您的 .env 文件并确保已加载。 依赖项问题 (Pip)：偶尔，特定的库版本可能会冲突。使用全新的虚拟环境并首先安装 langflow 通常可以解决这些问题。 对于希望将 Langflow 部署到云环境的用户，在虚拟专用服务器 (VPS) 上设置 Docker 容器是一种常见方法。像 DigitalOcean 这样的提供商提供了简单的 droplet 创建和 Docker 工具，使得在几分钟内即可公开访问 Langflow 实例成为可能。\n与 LangChain、OpenAI、Hugging Face、Anthropic 的集成 Langflow 的强大之处在于它与流行的 AI 框架和模型的深度集成。它将这些库的复杂性抽象为直观的节点，使开发者能够专注于工作流逻辑而不是 API 细节。\nLangChain Langflow 构建在 LangChain 之上。Langflow 中的每个节点都对应于 LangChain 生态系统中的一个组件或概念（例如 LLM、PromptTemplate、Chain、Agent、Tool、DocumentLoader、VectorStore）。这意味着您在 Langflow 中构建的任何流程理论上都可以转换为 LangChain Python 代码，尽管需要更多努力。\n示例：Langflow 中的简单 LangChain 序列\n拖动一个“Prompt Template”节点。 设置 template：“What is the capital of {country}?” 添加 country 作为变量。 拖动一个“OpenAI Chat”节点。 选择 gpt-3.5-turbo 作为模型。 将 Prompt Template 的 PromptValue 输出连接到 OpenAI Chat 节点的 input。 将 OpenAI Chat 节点的 output 连接到“Chat Output”节点。 这种可视化设置直接反映了 LangChain 中的 chain = PromptTemplate(...) | ChatOpenAI(...)。\nOpenAI OpenAI 的模型是许多 LLM 应用程序的核心，Langflow 提供了直接节点来与它们交互。\n使用 ChatOpenAI 节点：\n确保您的 OPENAI_API_KEY 已在 .env 文件或环境中设置。 将“OpenAI Chat”节点拖到画布上。 配置其参数： model_name：gpt-4o（或 gpt-3.5-turbo 等） temperature：0.7 max_tokens：512 streaming：True（用于实时输出） 您还可以将其 input 连接到一个 BaseMessage 列表，用于多轮对话。 Hugging Face Langflow 与 Hugging Face 生态系统集成，允许通过 HuggingFaceHub 访问大量开源模型，并通过 HuggingFacePipeline 访问本地模型。\n使用 HuggingFaceHub 节点：\n设置您的 HUGGINGFACEHUB_API_TOKEN 环境变量。 拖动一个“HuggingFace Hub”节点。 配置： repo_id：指定模型仓库，例如 google/flan-t5-large。 task：text2text-generation temperature：0.7 这允许您直接在流程中利用 Hugging Face Hub 上托管的模型。对于本地模型或特定硬件加速，HuggingFace Pipeline 节点更合适。 Anthropic Anthropic 的 Claude 模型也易于集成到 Langflow 流程中。\n使用 ChatAnthropic 节点：\n确保您的 ANTHROPIC_API_KEY 已设置。 拖动一个“Chat Anthropic”节点。 配置： model_name：claude-3-opus-20240229（或 claude-3-sonnet-20240229 等） temperature：0.7 max_tokens_to_sample：1024 与 OpenAI 类似，此节点接受 BaseMessage 输入用于对话流程。 这些集成突出了 Langflow 的灵活性，允许开发者在单个可视化工作流中混合和匹配来自不同提供商和框架的组件。这对于比较模型性能或构建混合 AI 应用程序至关重要。\n基准测试 / 真实用例 虽然 Langflow 本身是一个编排层，但其性能主要取决于底层的 LLM 提供商和图的复杂性。然而，效率的提高来自于快速开发和迭代。\n开发效率： 测试过 Langflow 的开发者报告了显著的时间节省，通常将复杂 LLM 应用程序的初始原型设计阶段缩短 50-70%。构建一个在 Python 中可能需要数小时编码和调试的 RAG 管道，可以在 15-30 分钟内通过可视化方式组装和测试。这种速度直接转化为更多的迭代和更快地实现生产就绪解决方案。\n性能考量：\n延迟：主要的延迟因素是 LLM API 调用本身。具有多个顺序 LLM 调用的流程将具有累积延迟。Langflow 用于图遍历和节点执行的开销通常在低个位数毫秒范围内，与 LLM 的网络调用相比可以忽略不计。 并发性：Langflow 的 FastAPI 后端可以处理多个并发请求，但底层 LLM 提供商的速率限制和您的服务器资源将是最终的瓶颈。对于高吞吐量场景，使用像 Nginx 和 Gunicorn 这样的健壮 Web 服务器，并可能跨多个实例部署是关键。 真实用例：\n客户支持聊天机器人：\n流程：用户查询 -\u003e 检索器（来自产品文档）-\u003e 提示模板 -\u003e LLM（用于答案生成）-\u003e 输出。 优点：无需代码更改即可快速试验不同的检索策略（例如，Chroma、Pinecone 等向量存储）和 LLM 模型。GitHub 上的社区讨论（例如 Issue #1234: RAG performance optimization）经常详细说明 Langflow 用户如何迭代 RAG 参数。 内容生成和摘要：\n流程：文档加载器 -\u003e 文本分割器 -\u003e 摘要链（LLM + 提示）-\u003e 输出。 优点：轻松构建用于处理大型文档、提取关键信息或生成摘要的管道。不同的摘要技术可以作为节点进行切换。 代理工作流：\n流程：用户输入 -\u003e 代理（带 Web Search、Calculator、Code Interpreter 等工具）-\u003e LLM 进行推理 -\u003e 工具执行 -\u003e 最终答案。 优点：Langflow 的可视化界面擅长协调使用多个工具并做出动态决策的复杂代理。当可视化时，调试代理的思维过程变得更加清晰。 提示工程和 A/B 测试：\n流程：输入 -\u003e 提示模板 A -\u003e LLM -\u003e 输出 A；输入 -\u003e 提示模板 B -\u003e LLM -\u003e 输出 B。 优点：使用相同的 LLM 快速并排比较不同的提示策略，或使用相同的提示比较不同的 LLM。这对于提示优化非常宝贵。 一位开发者在一个最近的项目中报告说：“我们使用 Langflow 将 LLM 应用程序开发时间缩短了近 60%。仅可视化调试对于以前需要数天才能理清的复杂代理流程来说，就是一项颠覆性的改变。”（根据 2026 年 5 月 Langflow Discord 频道中的社区讨论）。\n高级用法 / 生产环境强化 除了本地原型设计之外，Langflow 还提供了高级用法和健壮生产部署的功能和注意事项。\n自定义组件 Langflow 最强大的功能之一是创建自定义组件的能力。这允许开发者集成专有逻辑、特定数据源或默认节点未涵盖的专用工具。\n创建自定义组件的步骤：\n创建 Python 文件：将其放置在 Langflow 可访问的目录中（例如 custom_components/my_tool.py）。 定义组件类：继承自 CustomCustomComponent（或更简单情况下的 CustomComponent）并使用 @component 装饰器。 实现 build 方法：此方法定义组件的逻辑并返回输出。 注册组件：Langflow 会自动发现指定目录中的组件。 示例：自定义网页抓取工具\n# custom_components/web_scraper.py from langflow import CustomCustomComponent from langflow.field_typing import Tool, Prompt from typing import Dict, Any class WebScraperTool(CustomCustomComponent): display_name: str = \"Web Scraper Tool\" description: \"Technical guide and comparison.\" def build_config(self) -\u003e Dict[str, Any]: return { \"url\": {\"display_name\": \"URL\", \"field_type\": \"str\", \"required\": True}, \"selector\": {\"display_name\": \"CSS Selector (Optional)\", \"field_type\": \"str\", \"required\": False}, } def build(self, url: str, selector: str = None) -\u003e Tool: try: from bs4 import BeautifulSoup import requests def scrape_webpage(input_url: str, css_selector: str = None) -\u003e str: \"\"\"Scrapes text content from a given URL, optionally filtered by a CSS selector.\"\"\" response = requests.get(input_url, timeout=10) response.raise_for_status() # Raise an exception for HTTP errors soup = BeautifulSoup(response.text, 'html.parser') if css_selector: elements = soup.select(css_selector) return \"\\n\".join([elem.get_text(separator=\" \", strip=True) for elem in elements]) else: return soup.get_text(separator=\" \", strip=True) # Return a LangChain Tool object return Tool( name=\"web_scraper\", description=\"Use this tool to scrape text content from a URL. Input should be a URL string.\", func=lambda u: scrape_webpage(u, selector) ) except ImportError: raise ImportError(\"Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````\") except Exception as e: # Log the error and re-raise or return an informative message print(f\"Error in WebScraperTool: {e}\") return Tool( name=\"error_tool\", description=\"Web scraper tool failed.\", func=lambda u: f\"Error scraping {u}: {e}\" ) 要启用此功能，请确保您的 langflow 实例知道 custom_components 目录，通常通过设置 LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS 环境变量或将其放置在默认的 components 目录中。\nAPI 访问与部署 Langflow 中保存的每个流程都可以作为 REST API 端点暴露。这允许外部应用程序与您的 LLM 工作流交互，而无需访问 Langflow UI。\n通过 API 访问流程：\n在 Langflow UI 中保存您的流程。 转到该流程的“Deploy”选项卡。您将看到 API 端点 URL。 然后，您可以向此端点发出 POST 请求。 示例 curl 请求：\ncurl -X POST \"http://localhost:7860/api/v1/run/{flow_id}\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"input\": { \"question\": \"What is the capital of France?\" }, \"stream\": false }' 将 {flow_id} 替换为您已部署流程的实际 ID。input JSON 结构取决于您的流程“Input”节点中定义的输入变量。\n对于生产部署，请考虑：\n反向代理：使用 Nginx 或 Caddy 将请求代理到 Langflow，处理 SSL 终止，并可能添加速率限制。 进程管理器：使用 Gunicorn 或 Uvicorn 运行 Langflow，以实现更好的进程管理和并发性。 容器编排：使用 Docker Compose（如设置中所示）或 Kubernetes 进行部署，以实现可伸缩性、高可用性和更简单的管理。像 HTStack 这样的平台可以为这些部署提供必要的基础设施，尤其是在需要本地模型专用 GPU 资源时。 身份验证：Langflow 具有内置用户管理功能。对于 API 访问，您可以在反向代理层实现 API 密钥或与 OAuth/OIDC 提供商集成。 监控与日志记录 在生产环境中，应用程序健康和性能的可视性至关重要。\nLangflow 日志：Langflow 后端将日志打印到 stdout/stderr。配置您的部署环境以捕获这些日志（例如，到文件，或转发到集中式日志系统，如 ELK stack、Grafana Loki）。 LLM 提供商日志：监控您的 LLM 提供商仪表板，了解 API 使用情况、延迟和错误率。 应用程序性能监控 (APM)：与 Prometheus/Grafana、Datadog 或 New Relic 等工具集成，以监控 Langflow 实例的服务器资源、请求延迟和错误率。 在处理外部 API 调用，特别是 LLM 时，使用代理服务通常是有益的。WebShare 可以提供强大的代理解决方案，可以集成到您的部署中，以管理 IP 轮换、地理路由，或者仅仅在访问外部 LLM API 之前添加另一层网络控制。\n与替代方案的比较 Langflow 是旨在简化 LLM 应用程序开发的众多工具之一。以下是它与一些主要替代方案的比较：\n特性 / 工具 Langflow FlowiseAI Chainlit Dify 可视化构建器 是（拖放节点图） 是（拖放节点图） 否（代码优先，然后 UI 交互） 是（基于画布的工作流） 核心框架 LangChain LangChain LangChain, LlamaIndex, OpenAI Assistant API RAG, Agents, Workflows (内部引擎) 自定义组件 是（通过 CustomComponent 的 Python 代码） 是（通过自定义工具的 Python 代码） 是（任何 Python 代码） 是（工具、函数、提示变量） API 暴露 是（每个流程的 REST API） 是（每个流程的 REST API） 是（Websocket, HTTP/REST 通过 FastAPI） 是（REST API, OpenAI 兼容 API） 部署模型 自托管 (Docker, Pip) 自托管 (Docker, npm) 自托管 (Python 应用程序) 自托管 (Docker), 托管云 目标受众 开发者、研究人员 (LangChain 用户) 开发者、非技术用户 开发者 (Python 优先) 开发者、产品经理 社区星标 (截至 2026 年 5 月) 148,710 40,000+ 25,000+ 15,000+ 定价模式 开源 (MIT License) 开源 (MIT License) 开源 (MIT License) 开源 (Apache 2.0), 商业云 主要区别：\nLangflow vs. FlowiseAI：这两者在视觉化、以 LangChain 为中心的方法上非常相似。FlowiseAI 通常具有略微更“无代码”的感觉，侧重于非开发者的易用性，而 Langflow 更倾向于开发者中心的功能，例如通过 Python 代码实现自定义组件和更强大的 API 以进行集成。Langflow 的社区（星标数）明显更大，表明其在开发者中更受欢迎。 Langflow vs. Chainlit：Chainlit 从根本上不同。它是一个 Python 库，帮助开发者围绕现有 Python 代码（LangChain、LlamaIndex 等）构建一个美观、交互式的聊天 UI。它是代码优先的，提供一个用于测试和演示的 UI 层。Langflow 是视觉优先的，生成底层逻辑。开发者通常将 Chainlit 与 LangChain 或 LlamaIndex 一起使用，而 Langflow 则取代了手动编写复杂 LangChain 编排代码的需要。 Langflow vs. Dify：Dify 提供了一个更广泛的平台，包括可视化工作流构建器、RAG 功能、代理和托管云服务。虽然它有一个可视化画布，但 Dify 通常更像一个完整的应用程序平台，有时对底层 LangChain 组件的精细控制不如 Langflow。Dify 除了开源版本外，还提供商业云服务，面向寻求托管解决方案的企业。Langflow 仍然是纯粹的开源和自托管。 对于深入 LangChain 生态系统并喜欢以可视化方式构建和迭代的开发者来说，Langflow 在低代码便捷性和高代码可扩展性之间提供了引人注目的平衡。\n局限性 / 客观评估 尽管 Langflow 是一个强大的工具，但重要的是要认识到其当前的局限性以及它可能不是理想解决方案的领域。\n大规模复杂性：对于极其庞大或高度互连的图，可视化画布可能会变得令人不知所措。即使有视觉提示，调试意大利面条式图中的数据流问题也可能具有挑战性。截至 2026 年 5 月，用于高级图分析或自动化布局优化的工具仍在发展中。 版本控制挑战：虽然流程可以导出为 JSON 文件，但将其集成到传统的基于 Git 的版本控制系统中可能很麻烦。合并不同版本 JSON 流程文件中的更改很困难，可能导致团队环境中的冲突。这需要仔细协调或外部工具。 对 LangChain 的依赖：Langflow 的架构与 LangChain 紧密耦合。虽然这通过 LangChain 庞大的生态系统提供了巨大的灵活性，但这也意味着 Langflow 继承了 LangChain 的局限性或破坏性更改。如果开发者需要使用完全脱离 LangChain 的框架，除非自定义组件弥补了这一差距，否则 Langflow 的实用性会降低。 有限的原生多租户：截至当前版本（v0.8.2，发布于 2026-04-15），Langflow 的内置用户管理主要用于 UI 的访问控制。它不提供强大的原生多租户功能，例如严格的数据隔离或每个租户的资源配额，而这些功能通常是 SaaS 应用程序所必需的。实现这一点需要在 Langflow 的 API 之上进行大量的自定义开发。 调试复杂的自定义组件：虽然自定义组件功能强大，但调试其中的问题需要回到 Python 代码中。可视化界面不会直接显示自定义组件的内部错误；您将依赖服务器日志。这可能会打破高度定制化流程部分的“可视化调试”范式。 极端吞吐量的性能：虽然 Langflow 的后端是用 FastAPI 构建的，性能良好，但对于非常高吞吐量、低延迟的场景，图遍历和 Python 执行的开销可能大于手动优化、编译的应用程序。对于大多数 LLM 应用程序，LLM API 调用延迟占主导地位，使得 Langflow 开销可以忽略不计，但对于特殊情况，这可能是一个因素。 尽管有这些方面，但对于快速原型设计、视觉理解以及加速大多数 LLM 驱动的代理和应用程序的开发，Langflow 提供了显著的优势。开发者在规划大规模或高度专业化的部署时应了解这些局限性。\n常见问题 我可以用 Langflow 构建什么样的应用程序？ Langflow 适用于构建各种 LLM 应用程序，包括对话式 AI 代理、用于文档问答的 RAG 系统、内容生成工具、智能数据提取管道以及利用多个工具的复杂代理工作流。\nLangflow 是 LangChain 的替代品吗？ 不，Langflow 构建在 LangChain 之上。它提供了一个可视化界面来构建基于 LangChain 的应用程序，抽象掉了大部分代码。您仍然可以从 LangChain 的生态系统和功能中受益，但您以图形方式而不是纯粹通过代码与它们交互。\n如何将 Langflow 应用程序部署到生产环境？ 部署 Langflow 的推荐方法是使用 Docker 和 Docker Compose，或将其集成到 Kubernetes 集群中。您可以将单个流程公开为 REST API 端点，允许您的前端或其他服务与它们交互。Nginx 等反向代理通常用于 SSL 和域管理。\n我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？ 是的，Langflow 完全支持自定义组件。您可以编写自己的 Python 类，这些类继承自 CustomComponent 或 CustomCustomComponent，定义自定义逻辑、工具或数据加载器，然后将它们作为节点暴露在 Langflow UI 中。\nLangflow 和 FlowiseAI 的主要区别是什么？ Langflow 和 FlowiseAI 都提供基于 LangChain 的 LLM 工作流可视化构建器。Langflow 通常因其强大的 Python 自定义组件集成和更大的社区而更受开发者欢迎，而 FlowiseAI 有时被认为对非开发者更友好。Langflow 的 GitHub 星标数也明显更多。\n结论 Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令人印象深刻的 148,710 个 GitHub 星标证明了这一点。它有效地弥合了复杂 LLM 框架与可访问应用程序开发之间的鸿沟，使开发者能够以前所未有的速度可视化构建、迭代和部署复杂的 AI 代理和工作流。从 RAG 系统的快速原型设计到多工具代理的编排，Langflow 显著减少了所需的时间和复杂性。\n尽管它有其局限性，特别是在流程的版本控制和极端扩展方面，但其在可视化开发、自定义组件可扩展性以及与主流 LLM 提供商无缝集成方面的优势使其成为宝贵的资产。对于任何希望在不牺牲控制或灵活性的情况下加速 LLM 应用程序开发的开发者而言，Langflow 都提供了一个引人注目的解决方案。\n加入 dibi8 中文 Telegram 群，了解更多关于 AI 工具和框架的讨论。\n来源与延伸阅读 Langflow GitHub 仓库：https://github.com/langflow-ai/langflow Langflow 官方文档：https://docs.langflow.org/ Langflow GitHub 讨论区：https://github.com/langflow-ai/langflow/discussions（查看具体问题，如 ````Issue #1234: RAG performance optimization```） 内部链接候选： LangChain 深度解析 构建 RAG 应用 使用 Docker 部署 LLM 应用 AI 代理简介 披露：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n","wordCount":"1402","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#langflow148k-%e6%98%9f%e6%a0%87%e7%9a%84%e8%a7%86%e8%a7%89%e5%8c%96-llm-%e5%b7%a5%e4%bd%9c%e6%b5%812026-%e6%8a%80%e6%9c%af%e6%b7%b1%e5%ba%a6%e8%a7%a3%e6%9e%90 aria-label="Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析">Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析</a><ul><li><a href=#%e5%bc%95%e8%a8%80 aria-label=引言>引言</a></li><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-langflow aria-label="什么是 Langflow？">什么是 Langflow？</a></li><li><a href=#langflow-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="Langflow 工作原理">Langflow 工作原理</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae aria-label=安装与设置>安装与设置</a><ul><li><a href=#%e5%85%88%e5%86%b3%e6%9d%a1%e4%bb%b6 aria-label=先决条件>先决条件</a></li><li><a href=#%e9%80%89%e9%a1%b9-1docker%e6%8e%a8%e8%8d%90%e7%94%a8%e4%ba%8e%e5%bf%ab%e9%80%9f%e5%90%af%e5%8a%a8 aria-label="选项 1：Docker（推荐用于快速启动）">选项 1：Docker（推荐用于快速启动）</a></li><li><a href=#%e9%80%89%e9%a1%b9-2pip-%e5%ae%89%e8%a3%85%e9%80%82%e7%94%a8%e4%ba%8e%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e5%92%8c%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6 aria-label="选项 2：Pip 安装（适用于本地开发和自定义组件）">选项 2：Pip 安装（适用于本地开发和自定义组件）</a></li><li><a href=#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f aria-label=环境变量>环境变量</a></li></ul></li><li><a href=#%e4%b8%8e-langchainopenaihugging-faceanthropic-%e7%9a%84%e9%9b%86%e6%88%90 aria-label="与 LangChain、OpenAI、Hugging Face、Anthropic 的集成">与 LangChain、OpenAI、Hugging Face、Anthropic 的集成</a><ul><li><a href=#langchain aria-label=LangChain>LangChain</a></li><li><a href=#openai aria-label=OpenAI>OpenAI</a></li><li><a href=#hugging-face aria-label="Hugging Face">Hugging Face</a></li><li><a href=#anthropic aria-label=Anthropic>Anthropic</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b aria-label="基准测试 / 真实用例">基准测试 / 真实用例</a></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%bc%ba%e5%8c%96 aria-label="高级用法 / 生产环境强化">高级用法 / 生产环境强化</a><ul><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6 aria-label=自定义组件>自定义组件</a></li><li><a href=#api-%e8%ae%bf%e9%97%ae%e4%b8%8e%e9%83%a8%e7%bd%b2 aria-label="API 访问与部署">API 访问与部署</a></li><li><a href=#%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97%e8%ae%b0%e5%bd%95 aria-label=监控与日志记录>监控与日志记录</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e6%af%94%e8%be%83 aria-label=与替代方案的比较>与替代方案的比较</a></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7--%e5%ae%a2%e8%a7%82%e8%af%84%e4%bc%b0 aria-label="局限性 / 客观评估">局限性 / 客观评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a><ul><li><a href=#%e6%88%91%e5%8f%af%e4%bb%a5%e7%94%a8-langflow-%e6%9e%84%e5%bb%ba%e4%bb%80%e4%b9%88%e6%a0%b7%e7%9a%84%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f aria-label="我可以用 Langflow 构建什么样的应用程序？">我可以用 Langflow 构建什么样的应用程序？</a></li><li><a href=#langflow-%e6%98%af-langchain-%e7%9a%84%e6%9b%bf%e4%bb%a3%e5%93%81%e5%90%97 aria-label="Langflow 是 LangChain 的替代品吗？">Langflow 是 LangChain 的替代品吗？</a></li><li><a href=#%e5%a6%82%e4%bd%95%e5%b0%86-langflow-%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e9%83%a8%e7%bd%b2%e5%88%b0%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83 aria-label="如何将 Langflow 应用程序部署到生产环境？">如何将 Langflow 应用程序部署到生产环境？</a></li><li><a href=#%e6%88%91%e5%8f%af%e4%bb%a5%e5%b0%86%e8%87%aa%e5%b7%b1%e7%9a%84%e8%87%aa%e5%ae%9a%e4%b9%89-python-%e4%bb%a3%e7%a0%81%e4%b8%8e-langflow-%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8%e5%90%97 aria-label="我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？">我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？</a></li><li><a href=#langflow-%e5%92%8c-flowiseai-%e7%9a%84%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Langflow 和 FlowiseAI 的主要区别是什么？">Langflow 和 FlowiseAI 的主要区别是什么？</a></li></ul></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a><ul><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#%e5%86%85%e9%83%a8%e9%93%be%e6%8e%a5%e5%80%99%e9%80%89 aria-label=内部链接候选：>内部链接候选：</a></li></ul></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=langflow148k-星标的视觉化-llm-工作流2026-技术深度解析>Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析<a hidden class=anchor aria-hidden=true href=#langflow148k-星标的视觉化-llm-工作流2026-技术深度解析>#</a></h1><p><img alt="Langflow：AI 源代码中心徽章" loading=lazy src=https://deepwiki.com/badge.svg>{: .hero-image .rounded-lg .shadow-lg .mb-6 alt=&ldquo;Langflow: AI Source Code Hub Badge&rdquo;}</p><h2 id=引言>引言<a hidden class=anchor aria-hidden=true href=#引言>#</a></h2><p>在大型语言模型 (LLM) 应用开发快速演进的领域中，协调各种组件（从提示模板和模型调用到工具利用和代理推理）的复杂性可能很快成为瓶颈。开发者经常发现自己需要处理冗长的代码，调试复杂的链条，并难以可视化数据和逻辑流。</p><p>Langflow 的出现正是为了解决这一痛点，它提供了一个视觉化、低代码的界面来构建和部署 LLM 驱动的应用程序。其受欢迎程度的迅速提升显而易见：截至 2026 年 5 月，该项目已获得惊人的 148,710 个 GitHub 星标，这表明社区的强大采用以及对其方法的明确需求。从 2025 年末的略高于 10 万颗星到现在的增长，充分说明了它在简化复杂 LLM 管道方面的实用性。本文将深入探讨 Langflow 的技术细节，涵盖其架构、设置、集成、生产环境考量以及对其功能和局限性的坦诚评估。</p><h2 id=什么是-langflow>什么是 Langflow？<a hidden class=anchor aria-hidden=true href=#什么是-langflow>#</a></h2><p>Langflow 是一个开源的、基于 Python 的可视化框架，旨在创建和部署 AI 代理和 LLM 应用程序。它提供了一个拖放界面，开发者可以通过连接各种“节点”来构建复杂的工作流，每个节点都代表 LLM 管道中的特定功能或组件。Langflow 的核心是作为 LangChain 等框架的图形封装器和协调器，允许用户抽象出构建链条通常所需的许多样板代码。</p><p>Langflow 的主要目标是通过以下方式加速 LLM 应用程序的开发周期：</p><ol><li><strong>可视化工作流</strong>：使 LLM 应用程序的数据流和逻辑易于理解。</li><li><strong>快速原型设计</strong>：实现对不同模型、提示和工具的快速实验。</li><li><strong>组件可重用性</strong>：提供预构建节点的库并支持自定义组件的创建。</li><li><strong>简化部署</strong>：为已构建的流程提供 API 端点和直接的容器化。</li></ol><p>Langflow 的架构是客户端-服务器模式。前端使用 React 构建，提供交互式画布和聊天界面。后端由 FastAPI 和 Pydantic 驱动，负责执行 LLM 图形、管理组件注册并暴露 API 端点。流程和组件的数据持久性通常通过数据库（例如 SQLite、PostgreSQL）进行管理。</p><p>关键架构组件包括：</p><ul><li><strong>Canvas</strong>：主要的视觉工作区，用于放置和连接节点。</li><li><strong>Nodes</strong>：代表独立操作，如 LLM 调用、提示模板、工具、代理、文档加载器、检索器或自定义 Python 函数。每个节点都有输入和输出端口。</li><li><strong>Edges</strong>：连接节点，定义数据和控制流。边通常将一个节点的输出端口连接到另一个节点的输入端口。</li><li><strong>Components</strong>：节点所代表的底层 Python 类。Langflow 附带了一组丰富的内置组件，并允许开发自定义组件。</li><li><strong>Chat Interface</strong>：内置的用户界面，用于与部署的 LLM 应用程序交互，方便测试和演示。</li></ul><h2 id=langflow-工作原理>Langflow 工作原理<a hidden class=anchor aria-hidden=true href=#langflow-工作原理>#</a></h2><p>Langflow 采用基于流的编程范式，其中应用程序的逻辑表示为独立进程（节点）的定向图，通过消息（流经边的数据）进行通信。这种可视化方法简化了复杂 LLM 应用程序的构建，否则这些应用程序可能涉及多行命令式代码。</p><p>当您在 Langflow 中构建流程时：</p><ol><li><strong>节点选择</strong>：将节点从侧边栏拖放到画布上。这些节点按类别分类，例如“LLMs”、“Chains”、“Tools”、“Agents”、“Prompt Templates”、“Document Loaders”和“Text Splitters”。</li><li><strong>配置</strong>：每个节点都有可配置的参数。对于“OpenAI Chat”节点，您可以指定模型名称（例如 ```gpt-4o````）、温度和 API 密钥。对于“Prompt Template”节点，您定义带有占位符的模板字符串。</li><li><strong>连接（边）</strong>：将一个节点的输出端口连接到另一个节点的输入端口。例如，“Prompt Template”节点的输出（一个 <code>PromptValue</code>）可能连接到“LLM”节点的 <code>input</code>。LLM 节点的 <code>output</code>（一个 <code>BaseMessage</code>）可能随后连接到进一步处理响应的“Chain”或“Agent”。</li><li><strong>执行</strong>：当流程“运行”时（通过内置聊天界面或 API 调用），Langflow 会遍历图，根据依赖关系以正确的顺序执行节点。数据从输出端口流向输入端口，触发后续节点的执行。</li></ol><p>考虑一个简单的检索增强生成 (RAG) 流程：</p><ul><li><strong>Document Loader Node</strong>：从源（例如 PDF、网页）加载数据。</li><li><strong>Text Splitter Node</strong>：将加载的文档分解成更小的块。</li><li><strong>Vector Store Node</strong>：嵌入块并将其存储在向量数据库中（例如 Chroma、FAISS）。</li><li><strong>Retriever Node</strong>：根据用户输入查询向量存储以检索相关文档。</li><li><strong>Prompt Template Node</strong>：将用户查询和检索到的文档格式化为 LLM 的提示。</li><li><strong>LLM Node</strong>：使用构建的提示调用 LLM（例如 OpenAI、Anthropic）。</li><li><strong>Output Node</strong>：显示最终的 LLM 响应。</li></ul><p>整个序列都可以在 Langflow 中构建和可视化，从而更容易迭代不同的组件（例如，尝试不同的文本分割器或向量存储）而无需更改大量代码。</p><h2 id=安装与设置>安装与设置<a hidden class=anchor aria-hidden=true href=#安装与设置>#</a></h2><p>Langflow 的启动和运行旨在简单明了，Docker 是大多数寻求“5 分钟设置”用户的推荐途径。</p><h3 id=先决条件>先决条件<a hidden class=anchor aria-hidden=true href=#先决条件>#</a></h3><ul><li>Docker 和 Docker Compose（如果使用 Docker）</li><li>Python 3.9+ 和 <code>pip</code>（如果本地安装）</li><li>Git（用于克隆仓库）</li></ul><h3 id=选项-1docker推荐用于快速启动>选项 1：Docker（推荐用于快速启动）<a hidden class=anchor aria-hidden=true href=#选项-1docker推荐用于快速启动>#</a></h3><p>此方法确保所有依赖项都在容器中管理，并避免本地环境冲突。</p><ol><li><p><strong>克隆仓库</strong>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>git clone https://github.com/langflow-ai/langflow.git
-</span></span><span style=display:flex><span>cd langflow
-</span></span></code></pre></div></li><li><p><strong>使用 Docker Compose 启动</strong>：
-Langflow 提供了一个 <code>docker-compose.yml</code> 文件，便于设置。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker compose up -d
-</span></span></code></pre></div><p>此命令将构建必要的镜像（如果尚未构建），并启动 Langflow 后端和前端服务。<code>-d</code> 标志以分离模式运行它们。</p></li><li><p><strong>访问 Langflow</strong>：
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析 {: .hero-image .rounded-lg .shadow-lg .mb-6 alt=“Langflow: AI Source Code Hub Badge”}\n引言 在大型语言模型 (LLM) 应用开发快速演进的领域中，协调各种组件（从提示模板和模型调用到工具利用和代理推理）的复杂性可能很快成为瓶颈。开发者经常发现自己需要处理冗长的代码，调试复杂的链条，并难以可视化数据和逻辑流。\nLangflow 的出现正是为了解决这一痛点，它提供了一个视觉化、低代码的界面来构建和部署 LLM 驱动的应用程序。其受欢迎程度的迅速提升显而易见：截至 2026 年 5 月，该项目已获得惊人的 148,710 个 GitHub 星标，这表明社区的强大采用以及对其方法的明确需求。从 2025 年末的略高于 10 万颗星到现在的增长，充分说明了它在简化复杂 LLM 管道方面的实用性。本文将深入探讨 Langflow 的技术细节，涵盖其架构、设置、集成、生产环境考量以及对其功能和局限性的坦诚评估。\n什么是 Langflow？ Langflow 是一个开源的、基于 Python 的可视化框架，旨在创建和部署 AI 代理和 LLM 应用程序。它提供了一个拖放界面，开发者可以通过连接各种“节点”来构建复杂的工作流，每个节点都代表 LLM 管道中的特定功能或组件。Langflow 的核心是作为 LangChain 等框架的图形封装器和协调器，允许用户抽象出构建链条通常所需的许多样板代码。\nLangflow 的主要目标是通过以下方式加速 LLM 应用程序的开发周期：\n可视化工作流：使 LLM 应用程序的数据流和逻辑易于理解。 快速原型设计：实现对不同模型、提示和工具的快速实验。 组件可重用性：提供预构建节点的库并支持自定义组件的创建。 简化部署：为已构建的流程提供 API 端点和直接的容器化。 Langflow 的架构是客户端-服务器模式。前端使用 React 构建，提供交互式画布和聊天界面。后端由 FastAPI 和 Pydantic 驱动，负责执行 LLM 图形、管理组件注册并暴露 API 端点。流程和组件的数据持久性通常通过数据库（例如 SQLite、PostgreSQL）进行管理。\n关键架构组件包括：\nCanvas：主要的视觉工作区，用于放置和连接节点。 Nodes：代表独立操作，如 LLM 调用、提示模板、工具、代理、文档加载器、检索器或自定义 Python 函数。每个节点都有输入和输出端口。 Edges：连接节点，定义数据和控制流。边通常将一个节点的输出端口连接到另一个节点的输入端口。 Components：节点所代表的底层 Python 类。Langflow 附带了一组丰富的内置组件，并允许开发自定义组件。 Chat Interface：内置的用户界面，用于与部署的 LLM 应用程序交互，方便测试和演示。 Langflow 工作原理 Langflow 采用基于流的编程范式，其中应用程序的逻辑表示为独立进程（节点）的定向图，通过消息（流经边的数据）进行通信。这种可视化方法简化了复杂 LLM 应用程序的构建，否则这些应用程序可能涉及多行命令式代码。\n当您在 Langflow 中构建流程时：\n节点选择：将节点从侧边栏拖放到画布上。这些节点按类别分类，例如“LLMs”、“Chains”、“Tools”、“Agents”、“Prompt Templates”、“Document Loaders”和“Text Splitters”。 配置：每个节点都有可配置的参数。对于“OpenAI Chat”节点，您可以指定模型名称（例如 ```gpt-4o````）、温度和 API 密钥。对于“Prompt Template”节点，您定义带有占位符的模板字符串。 连接（边）：将一个节点的输出端口连接到另一个节点的输入端口。例如，“Prompt Template”节点的输出（一个 PromptValue）可能连接到“LLM”节点的 input。LLM 节点的 output（一个 BaseMessage）可能随后连接到进一步处理响应的“Chain”或“Agent”。 执行：当流程“运行”时（通过内置聊天界面或 API 调用），Langflow 会遍历图，根据依赖关系以正确的顺序执行节点。数据从输出端口流向输入端口，触发后续节点的执行。 考虑一个简单的检索增强生成 (RAG) 流程：\nDocument Loader Node：从源（例如 PDF、网页）加载数据。 Text Splitter Node：将加载的文档分解成更小的块。 Vector Store Node：嵌入块并将其存储在向量数据库中（例如 Chroma、FAISS）。 Retriever Node：根据用户输入查询向量存储以检索相关文档。 Prompt Template Node：将用户查询和检索到的文档格式化为 LLM 的提示。 LLM Node：使用构建的提示调用 LLM（例如 OpenAI、Anthropic）。 Output Node：显示最终的 LLM 响应。 整个序列都可以在 Langflow 中构建和可视化，从而更容易迭代不同的组件（例如，尝试不同的文本分割器或向量存储）而无需更改大量代码。\n安装与设置 Langflow 的启动和运行旨在简单明了，Docker 是大多数寻求“5 分钟设置”用户的推荐途径。\n先决条件 Docker 和 Docker Compose（如果使用 Docker） Python 3.9+ 和 pip（如果本地安装） Git（用于克隆仓库） 选项 1：Docker（推荐用于快速启动） 此方法确保所有依赖项都在容器中管理，并避免本地环境冲突。\n克隆仓库：\ngit clone https://github.com/langflow-ai/langflow.git cd langflow 使用 Docker Compose 启动： Langflow 提供了一个 docker-compose.yml 文件，便于设置。\ndocker compose up -d 此命令将构建必要的镜像（如果尚未构建），并启动 Langflow 后端和前端服务。-d 标志以分离模式运行它们。\n访问 Langflow： 容器启动后，Langflow 将在您的网络浏览器中 http://localhost:7860 处可访问。 首次访问时，系统会提示您创建管理员用户。\n停止 Langflow：\ndocker compose down 选项 2：Pip 安装（适用于本地开发和自定义组件） 如果您计划开发自定义组件或将 Langflow 集成到现有 Python 项目中，本地安装是合适的。\n创建虚拟环境：\npython -m venv venv source venv/bin/activate # On Windows: .\\venv\\Scripts\\activate 安装 Langflow：\npip install langflow 注意：如果您遇到特定依赖项的问题，通常安装 playwright 浏览器依赖项会有帮助： playwright install --with-deps\n运行 Langflow：\nlangflow run --port 7860 此命令启动 Langflow 服务器。在您的浏览器中 http://localhost:7860 处访问它。\n环境变量 Langflow 需要各种 LLM 提供商的 API 密钥。这些最好使用环境变量进行管理。在 Langflow 目录的根目录中创建 .env 文件（或直接将其传递给您的 Docker 容器/shell）。\n# .env example OPENAI_API_KEY=sk-YOUR_OPENAI_KEY ANTHROPIC_API_KEY=sk-ant-api03-YOUR_ANTHROPIC_KEY HUGGINGFACEHUB_API_TOKEN=hf_YOUR_HF_TOKEN # Optional: For database configuration DATABASE_URL=postgresql://user:password@host:port/database_name 常见设置问题：\n端口冲突：如果 7860 正在使用中，Langflow 可能无法启动。检查可用端口或指定不同的端口（例如 langflow run --port 8000）。 缺少 API 密钥：如果没有配置正确的 API 密钥，LLM 节点将无法初始化或执行。务必仔细检查您的 .env 文件并确保已加载。 依赖项问题 (Pip)：偶尔，特定的库版本可能会冲突。使用全新的虚拟环境并首先安装 langflow 通常可以解决这些问题。 对于希望将 Langflow 部署到云环境的用户，在虚拟专用服务器 (VPS) 上设置 Docker 容器是一种常见方法。像 DigitalOcean 这样的提供商提供了简单的 droplet 创建和 Docker 工具，使得在几分钟内即可公开访问 Langflow 实例成为可能。\n与 LangChain、OpenAI、Hugging Face、Anthropic 的集成 Langflow 的强大之处在于它与流行的 AI 框架和模型的深度集成。它将这些库的复杂性抽象为直观的节点，使开发者能够专注于工作流逻辑而不是 API 细节。\nLangChain Langflow 构建在 LangChain 之上。Langflow 中的每个节点都对应于 LangChain 生态系统中的一个组件或概念（例如 LLM、PromptTemplate、Chain、Agent、Tool、DocumentLoader、VectorStore）。这意味着您在 Langflow 中构建的任何流程理论上都可以转换为 LangChain Python 代码，尽管需要更多努力。\n示例：Langflow 中的简单 LangChain 序列\n拖动一个“Prompt Template”节点。 设置 template：“What is the capital of {country}?” 添加 country 作为变量。 拖动一个“OpenAI Chat”节点。 选择 gpt-3.5-turbo 作为模型。 将 Prompt Template 的 PromptValue 输出连接到 OpenAI Chat 节点的 input。 将 OpenAI Chat 节点的 output 连接到“Chat Output”节点。 这种可视化设置直接反映了 LangChain 中的 chain = PromptTemplate(...) | ChatOpenAI(...)。\nOpenAI OpenAI 的模型是许多 LLM 应用程序的核心，Langflow 提供了直接节点来与它们交互。\n使用 ChatOpenAI 节点：\n确保您的 OPENAI_API_KEY 已在 .env 文件或环境中设置。 将“OpenAI Chat”节点拖到画布上。 配置其参数： model_name：gpt-4o（或 gpt-3.5-turbo 等） temperature：0.7 max_tokens：512 streaming：True（用于实时输出） 您还可以将其 input 连接到一个 BaseMessage 列表，用于多轮对话。 Hugging Face Langflow 与 Hugging Face 生态系统集成，允许通过 HuggingFaceHub 访问大量开源模型，并通过 HuggingFacePipeline 访问本地模型。\n使用 HuggingFaceHub 节点：\n设置您的 HUGGINGFACEHUB_API_TOKEN 环境变量。 拖动一个“HuggingFace Hub”节点。 配置： repo_id：指定模型仓库，例如 google/flan-t5-large。 task：text2text-generation temperature：0.7 这允许您直接在流程中利用 Hugging Face Hub 上托管的模型。对于本地模型或特定硬件加速，HuggingFace Pipeline 节点更合适。 Anthropic Anthropic 的 Claude 模型也易于集成到 Langflow 流程中。\n使用 ChatAnthropic 节点：\n确保您的 ANTHROPIC_API_KEY 已设置。 拖动一个“Chat Anthropic”节点。 配置： model_name：claude-3-opus-20240229（或 claude-3-sonnet-20240229 等） temperature：0.7 max_tokens_to_sample：1024 与 OpenAI 类似，此节点接受 BaseMessage 输入用于对话流程。 这些集成突出了 Langflow 的灵活性，允许开发者在单个可视化工作流中混合和匹配来自不同提供商和框架的组件。这对于比较模型性能或构建混合 AI 应用程序至关重要。\n基准测试 / 真实用例 虽然 Langflow 本身是一个编排层，但其性能主要取决于底层的 LLM 提供商和图的复杂性。然而，效率的提高来自于快速开发和迭代。\n开发效率： 测试过 Langflow 的开发者报告了显著的时间节省，通常将复杂 LLM 应用程序的初始原型设计阶段缩短 50-70%。构建一个在 Python 中可能需要数小时编码和调试的 RAG 管道，可以在 15-30 分钟内通过可视化方式组装和测试。这种速度直接转化为更多的迭代和更快地实现生产就绪解决方案。\n性能考量：\n延迟：主要的延迟因素是 LLM API 调用本身。具有多个顺序 LLM 调用的流程将具有累积延迟。Langflow 用于图遍历和节点执行的开销通常在低个位数毫秒范围内，与 LLM 的网络调用相比可以忽略不计。 并发性：Langflow 的 FastAPI 后端可以处理多个并发请求，但底层 LLM 提供商的速率限制和您的服务器资源将是最终的瓶颈。对于高吞吐量场景，使用像 Nginx 和 Gunicorn 这样的健壮 Web 服务器，并可能跨多个实例部署是关键。 真实用例：\n客户支持聊天机器人：\n流程：用户查询 -\u003e 检索器（来自产品文档）-\u003e 提示模板 -\u003e LLM（用于答案生成）-\u003e 输出。 优点：无需代码更改即可快速试验不同的检索策略（例如，Chroma、Pinecone 等向量存储）和 LLM 模型。GitHub 上的社区讨论（例如 Issue #1234: RAG performance optimization）经常详细说明 Langflow 用户如何迭代 RAG 参数。 内容生成和摘要：\n流程：文档加载器 -\u003e 文本分割器 -\u003e 摘要链（LLM + 提示）-\u003e 输出。 优点：轻松构建用于处理大型文档、提取关键信息或生成摘要的管道。不同的摘要技术可以作为节点进行切换。 代理工作流：\n流程：用户输入 -\u003e 代理（带 Web Search、Calculator、Code Interpreter 等工具）-\u003e LLM 进行推理 -\u003e 工具执行 -\u003e 最终答案。 优点：Langflow 的可视化界面擅长协调使用多个工具并做出动态决策的复杂代理。当可视化时，调试代理的思维过程变得更加清晰。 提示工程和 A/B 测试：\n流程：输入 -\u003e 提示模板 A -\u003e LLM -\u003e 输出 A；输入 -\u003e 提示模板 B -\u003e LLM -\u003e 输出 B。 优点：使用相同的 LLM 快速并排比较不同的提示策略，或使用相同的提示比较不同的 LLM。这对于提示优化非常宝贵。 一位开发者在一个最近的项目中报告说：“我们使用 Langflow 将 LLM 应用程序开发时间缩短了近 60%。仅可视化调试对于以前需要数天才能理清的复杂代理流程来说，就是一项颠覆性的改变。”（根据 2026 年 5 月 Langflow Discord 频道中的社区讨论）。\n高级用法 / 生产环境强化 除了本地原型设计之外，Langflow 还提供了高级用法和健壮生产部署的功能和注意事项。\n自定义组件 Langflow 最强大的功能之一是创建自定义组件的能力。这允许开发者集成专有逻辑、特定数据源或默认节点未涵盖的专用工具。\n创建自定义组件的步骤：\n创建 Python 文件：将其放置在 Langflow 可访问的目录中（例如 custom_components/my_tool.py）。 定义组件类：继承自 CustomCustomComponent（或更简单情况下的 CustomComponent）并使用 @component 装饰器。 实现 build 方法：此方法定义组件的逻辑并返回输出。 注册组件：Langflow 会自动发现指定目录中的组件。 示例：自定义网页抓取工具\n# custom_components/web_scraper.py from langflow import CustomCustomComponent from langflow.field_typing import Tool, Prompt from typing import Dict, Any class WebScraperTool(CustomCustomComponent): display_name: str = \"Web Scraper Tool\" description: \"Technical guide and comparison.\" def build_config(self) -\u003e Dict[str, Any]: return { \"url\": {\"display_name\": \"URL\", \"field_type\": \"str\", \"required\": True}, \"selector\": {\"display_name\": \"CSS Selector (Optional)\", \"field_type\": \"str\", \"required\": False}, } def build(self, url: str, selector: str = None) -\u003e Tool: try: from bs4 import BeautifulSoup import requests def scrape_webpage(input_url: str, css_selector: str = None) -\u003e str: \"\"\"Scrapes text content from a given URL, optionally filtered by a CSS selector.\"\"\" response = requests.get(input_url, timeout=10) response.raise_for_status() # Raise an exception for HTTP errors soup = BeautifulSoup(response.text, 'html.parser') if css_selector: elements = soup.select(css_selector) return \"\\n\".join([elem.get_text(separator=\" \", strip=True) for elem in elements]) else: return soup.get_text(separator=\" \", strip=True) # Return a LangChain Tool object return Tool( name=\"web_scraper\", description=\"Use this tool to scrape text content from a URL. Input should be a URL string.\", func=lambda u: scrape_webpage(u, selector) ) except ImportError: raise ImportError(\"Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````\") except Exception as e: # Log the error and re-raise or return an informative message print(f\"Error in WebScraperTool: {e}\") return Tool( name=\"error_tool\", description=\"Web scraper tool failed.\", func=lambda u: f\"Error scraping {u}: {e}\" ) 要启用此功能，请确保您的 langflow 实例知道 custom_components 目录，通常通过设置 LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS 环境变量或将其放置在默认的 components 目录中。\nAPI 访问与部署 Langflow 中保存的每个流程都可以作为 REST API 端点暴露。这允许外部应用程序与您的 LLM 工作流交互，而无需访问 Langflow UI。\n通过 API 访问流程：\n在 Langflow UI 中保存您的流程。 转到该流程的“Deploy”选项卡。您将看到 API 端点 URL。 然后，您可以向此端点发出 POST 请求。 示例 curl 请求：\ncurl -X POST \"http://localhost:7860/api/v1/run/{flow_id}\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"input\": { \"question\": \"What is the capital of France?\" }, \"stream\": false }' 将 {flow_id} 替换为您已部署流程的实际 ID。input JSON 结构取决于您的流程“Input”节点中定义的输入变量。\n对于生产部署，请考虑：\n反向代理：使用 Nginx 或 Caddy 将请求代理到 Langflow，处理 SSL 终止，并可能添加速率限制。 进程管理器：使用 Gunicorn 或 Uvicorn 运行 Langflow，以实现更好的进程管理和并发性。 容器编排：使用 Docker Compose（如设置中所示）或 Kubernetes 进行部署，以实现可伸缩性、高可用性和更简单的管理。像 HTStack 这样的平台可以为这些部署提供必要的基础设施，尤其是在需要本地模型专用 GPU 资源时。 身份验证：Langflow 具有内置用户管理功能。对于 API 访问，您可以在反向代理层实现 API 密钥或与 OAuth/OIDC 提供商集成。 监控与日志记录 在生产环境中，应用程序健康和性能的可视性至关重要。\nLangflow 日志：Langflow 后端将日志打印到 stdout/stderr。配置您的部署环境以捕获这些日志（例如，到文件，或转发到集中式日志系统，如 ELK stack、Grafana Loki）。 LLM 提供商日志：监控您的 LLM 提供商仪表板，了解 API 使用情况、延迟和错误率。 应用程序性能监控 (APM)：与 Prometheus/Grafana、Datadog 或 New Relic 等工具集成，以监控 Langflow 实例的服务器资源、请求延迟和错误率。 在处理外部 API 调用，特别是 LLM 时，使用代理服务通常是有益的。WebShare 可以提供强大的代理解决方案，可以集成到您的部署中，以管理 IP 轮换、地理路由，或者仅仅在访问外部 LLM API 之前添加另一层网络控制。\n与替代方案的比较 Langflow 是旨在简化 LLM 应用程序开发的众多工具之一。以下是它与一些主要替代方案的比较：\n特性 / 工具 Langflow FlowiseAI Chainlit Dify 可视化构建器 是（拖放节点图） 是（拖放节点图） 否（代码优先，然后 UI 交互） 是（基于画布的工作流） 核心框架 LangChain LangChain LangChain, LlamaIndex, OpenAI Assistant API RAG, Agents, Workflows (内部引擎) 自定义组件 是（通过 CustomComponent 的 Python 代码） 是（通过自定义工具的 Python 代码） 是（任何 Python 代码） 是（工具、函数、提示变量） API 暴露 是（每个流程的 REST API） 是（每个流程的 REST API） 是（Websocket, HTTP/REST 通过 FastAPI） 是（REST API, OpenAI 兼容 API） 部署模型 自托管 (Docker, Pip) 自托管 (Docker, npm) 自托管 (Python 应用程序) 自托管 (Docker), 托管云 目标受众 开发者、研究人员 (LangChain 用户) 开发者、非技术用户 开发者 (Python 优先) 开发者、产品经理 社区星标 (截至 2026 年 5 月) 148,710 40,000+ 25,000+ 15,000+ 定价模式 开源 (MIT License) 开源 (MIT License) 开源 (MIT License) 开源 (Apache 2.0), 商业云 主要区别：\nLangflow vs. FlowiseAI：这两者在视觉化、以 LangChain 为中心的方法上非常相似。FlowiseAI 通常具有略微更“无代码”的感觉，侧重于非开发者的易用性，而 Langflow 更倾向于开发者中心的功能，例如通过 Python 代码实现自定义组件和更强大的 API 以进行集成。Langflow 的社区（星标数）明显更大，表明其在开发者中更受欢迎。 Langflow vs. Chainlit：Chainlit 从根本上不同。它是一个 Python 库，帮助开发者围绕现有 Python 代码（LangChain、LlamaIndex 等）构建一个美观、交互式的聊天 UI。它是代码优先的，提供一个用于测试和演示的 UI 层。Langflow 是视觉优先的，生成底层逻辑。开发者通常将 Chainlit 与 LangChain 或 LlamaIndex 一起使用，而 Langflow 则取代了手动编写复杂 LangChain 编排代码的需要。 Langflow vs. Dify：Dify 提供了一个更广泛的平台，包括可视化工作流构建器、RAG 功能、代理和托管云服务。虽然它有一个可视化画布，但 Dify 通常更像一个完整的应用程序平台，有时对底层 LangChain 组件的精细控制不如 Langflow。Dify 除了开源版本外，还提供商业云服务，面向寻求托管解决方案的企业。Langflow 仍然是纯粹的开源和自托管。 对于深入 LangChain 生态系统并喜欢以可视化方式构建和迭代的开发者来说，Langflow 在低代码便捷性和高代码可扩展性之间提供了引人注目的平衡。\n局限性 / 客观评估 尽管 Langflow 是一个强大的工具，但重要的是要认识到其当前的局限性以及它可能不是理想解决方案的领域。\n大规模复杂性：对于极其庞大或高度互连的图，可视化画布可能会变得令人不知所措。即使有视觉提示，调试意大利面条式图中的数据流问题也可能具有挑战性。截至 2026 年 5 月，用于高级图分析或自动化布局优化的工具仍在发展中。 版本控制挑战：虽然流程可以导出为 JSON 文件，但将其集成到传统的基于 Git 的版本控制系统中可能很麻烦。合并不同版本 JSON 流程文件中的更改很困难，可能导致团队环境中的冲突。这需要仔细协调或外部工具。 对 LangChain 的依赖：Langflow 的架构与 LangChain 紧密耦合。虽然这通过 LangChain 庞大的生态系统提供了巨大的灵活性，但这也意味着 Langflow 继承了 LangChain 的局限性或破坏性更改。如果开发者需要使用完全脱离 LangChain 的框架，除非自定义组件弥补了这一差距，否则 Langflow 的实用性会降低。 有限的原生多租户：截至当前版本（v0.8.2，发布于 2026-04-15），Langflow 的内置用户管理主要用于 UI 的访问控制。它不提供强大的原生多租户功能，例如严格的数据隔离或每个租户的资源配额，而这些功能通常是 SaaS 应用程序所必需的。实现这一点需要在 Langflow 的 API 之上进行大量的自定义开发。 调试复杂的自定义组件：虽然自定义组件功能强大，但调试其中的问题需要回到 Python 代码中。可视化界面不会直接显示自定义组件的内部错误；您将依赖服务器日志。这可能会打破高度定制化流程部分的“可视化调试”范式。 极端吞吐量的性能：虽然 Langflow 的后端是用 FastAPI 构建的，性能良好，但对于非常高吞吐量、低延迟的场景，图遍历和 Python 执行的开销可能大于手动优化、编译的应用程序。对于大多数 LLM 应用程序，LLM API 调用延迟占主导地位，使得 Langflow 开销可以忽略不计，但对于特殊情况，这可能是一个因素。 尽管有这些方面，但对于快速原型设计、视觉理解以及加速大多数 LLM 驱动的代理和应用程序的开发，Langflow 提供了显著的优势。开发者在规划大规模或高度专业化的部署时应了解这些局限性。\n常见问题 我可以用 Langflow 构建什么样的应用程序？ Langflow 适用于构建各种 LLM 应用程序，包括对话式 AI 代理、用于文档问答的 RAG 系统、内容生成工具、智能数据提取管道以及利用多个工具的复杂代理工作流。\nLangflow 是 LangChain 的替代品吗？ 不，Langflow 构建在 LangChain 之上。它提供了一个可视化界面来构建基于 LangChain 的应用程序，抽象掉了大部分代码。您仍然可以从 LangChain 的生态系统和功能中受益，但您以图形方式而不是纯粹通过代码与它们交互。\n如何将 Langflow 应用程序部署到生产环境？ 部署 Langflow 的推荐方法是使用 Docker 和 Docker Compose，或将其集成到 Kubernetes 集群中。您可以将单个流程公开为 REST API 端点，允许您的前端或其他服务与它们交互。Nginx 等反向代理通常用于 SSL 和域管理。\n我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？ 是的，Langflow 完全支持自定义组件。您可以编写自己的 Python 类，这些类继承自 CustomComponent 或 CustomCustomComponent，定义自定义逻辑、工具或数据加载器，然后将它们作为节点暴露在 Langflow UI 中。\nLangflow 和 FlowiseAI 的主要区别是什么？ Langflow 和 FlowiseAI 都提供基于 LangChain 的 LLM 工作流可视化构建器。Langflow 通常因其强大的 Python 自定义组件集成和更大的社区而更受开发者欢迎，而 FlowiseAI 有时被认为对非开发者更友好。Langflow 的 GitHub 星标数也明显更多。\n结论 Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令人印象深刻的 148,710 个 GitHub 星标证明了这一点。它有效地弥合了复杂 LLM 框架与可访问应用程序开发之间的鸿沟，使开发者能够以前所未有的速度可视化构建、迭代和部署复杂的 AI 代理和工作流。从 RAG 系统的快速原型设计到多工具代理的编排，Langflow 显著减少了所需的时间和复杂性。\n尽管它有其局限性，特别是在流程的版本控制和极端扩展方面，但其在可视化开发、自定义组件可扩展性以及与主流 LLM 提供商无缝集成方面的优势使其成为宝贵的资产。对于任何希望在不牺牲控制或灵活性的情况下加速 LLM 应用程序开发的开发者而言，Langflow 都提供了一个引人注目的解决方案。\n加入 dibi8 中文 Telegram 群，了解更多关于 AI 工具和框架的讨论。\n来源与延伸阅读 Langflow GitHub 仓库：https://github.com/langflow-ai/langflow Langflow 官方文档：https://docs.langflow.org/ Langflow GitHub 讨论区：https://github.com/langflow-ai/langflow/discussions（查看具体问题，如 ````Issue #1234: RAG performance optimization```） 内部链接候选： LangChain 深度解析 构建 RAG 应用 使用 Docker 部署 LLM 应用 AI 代理简介 披露：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析”, “datePublished”: “2026-05-23”, “dateModified”: “2026-05-23”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：LangChain和LlamaIndex哪个更好？\nLangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。\n问：如何评估LLM框架的性能？\n基准测试包括：推理速度、准确率、资源消耗、可扩展性。\n问：开源LLM框架的商业使用限制？\n大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。\n问：是否需要GPU才能运行LLM框架？\n推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。\n问：企业级部署的最佳实践？\n使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。\n",
+  "wordCount" : "1402",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#langflow148k-%e6%98%9f%e6%a0%87%e7%9a%84%e8%a7%86%e8%a7%89%e5%8c%96-llm-%e5%b7%a5%e4%bd%9c%e6%b5%812026-%e6%8a%80%e6%9c%af%e6%b7%b1%e5%ba%a6%e8%a7%a3%e6%9e%90" aria-label="Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析">Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析</a><ul>
+                    
+            <li>
+                <a href="#%e5%bc%95%e8%a8%80" aria-label="引言">引言</a></li>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af-langflow" aria-label="什么是 Langflow？">什么是 Langflow？</a></li>
+            <li>
+                <a href="#langflow-%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="Langflow 工作原理">Langflow 工作原理</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae" aria-label="安装与设置">安装与设置</a><ul>
+                    
+            <li>
+                <a href="#%e5%85%88%e5%86%b3%e6%9d%a1%e4%bb%b6" aria-label="先决条件">先决条件</a></li>
+            <li>
+                <a href="#%e9%80%89%e9%a1%b9-1docker%e6%8e%a8%e8%8d%90%e7%94%a8%e4%ba%8e%e5%bf%ab%e9%80%9f%e5%90%af%e5%8a%a8" aria-label="选项 1：Docker（推荐用于快速启动）">选项 1：Docker（推荐用于快速启动）</a></li>
+            <li>
+                <a href="#%e9%80%89%e9%a1%b9-2pip-%e5%ae%89%e8%a3%85%e9%80%82%e7%94%a8%e4%ba%8e%e6%9c%ac%e5%9c%b0%e5%bc%80%e5%8f%91%e5%92%8c%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6" aria-label="选项 2：Pip 安装（适用于本地开发和自定义组件）">选项 2：Pip 安装（适用于本地开发和自定义组件）</a></li>
+            <li>
+                <a href="#%e7%8e%af%e5%a2%83%e5%8f%98%e9%87%8f" aria-label="环境变量">环境变量</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e-langchainopenaihugging-faceanthropic-%e7%9a%84%e9%9b%86%e6%88%90" aria-label="与 LangChain、OpenAI、Hugging Face、Anthropic 的集成">与 LangChain、OpenAI、Hugging Face、Anthropic 的集成</a><ul>
+                    
+            <li>
+                <a href="#langchain" aria-label="LangChain">LangChain</a></li>
+            <li>
+                <a href="#openai" aria-label="OpenAI">OpenAI</a></li>
+            <li>
+                <a href="#hugging-face" aria-label="Hugging Face">Hugging Face</a></li>
+            <li>
+                <a href="#anthropic" aria-label="Anthropic">Anthropic</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95--%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b" aria-label="基准测试 / 真实用例">基准测试 / 真实用例</a></li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95--%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%bc%ba%e5%8c%96" aria-label="高级用法 / 生产环境强化">高级用法 / 生产环境强化</a><ul>
+                    
+            <li>
+                <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e7%bb%84%e4%bb%b6" aria-label="自定义组件">自定义组件</a></li>
+            <li>
+                <a href="#api-%e8%ae%bf%e9%97%ae%e4%b8%8e%e9%83%a8%e7%bd%b2" aria-label="API 访问与部署">API 访问与部署</a></li>
+            <li>
+                <a href="#%e7%9b%91%e6%8e%a7%e4%b8%8e%e6%97%a5%e5%bf%97%e8%ae%b0%e5%bd%95" aria-label="监控与日志记录">监控与日志记录</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e6%af%94%e8%be%83" aria-label="与替代方案的比较">与替代方案的比较</a></li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7--%e5%ae%a2%e8%a7%82%e8%af%84%e4%bc%b0" aria-label="局限性 / 客观评估">局限性 / 客观评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98" aria-label="常见问题">常见问题</a><ul>
+                    
+            <li>
+                <a href="#%e6%88%91%e5%8f%af%e4%bb%a5%e7%94%a8-langflow-%e6%9e%84%e5%bb%ba%e4%bb%80%e4%b9%88%e6%a0%b7%e7%9a%84%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f" aria-label="我可以用 Langflow 构建什么样的应用程序？">我可以用 Langflow 构建什么样的应用程序？</a></li>
+            <li>
+                <a href="#langflow-%e6%98%af-langchain-%e7%9a%84%e6%9b%bf%e4%bb%a3%e5%93%81%e5%90%97" aria-label="Langflow 是 LangChain 的替代品吗？">Langflow 是 LangChain 的替代品吗？</a></li>
+            <li>
+                <a href="#%e5%a6%82%e4%bd%95%e5%b0%86-langflow-%e5%ba%94%e7%94%a8%e7%a8%8b%e5%ba%8f%e9%83%a8%e7%bd%b2%e5%88%b0%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83" aria-label="如何将 Langflow 应用程序部署到生产环境？">如何将 Langflow 应用程序部署到生产环境？</a></li>
+            <li>
+                <a href="#%e6%88%91%e5%8f%af%e4%bb%a5%e5%b0%86%e8%87%aa%e5%b7%b1%e7%9a%84%e8%87%aa%e5%ae%9a%e4%b9%89-python-%e4%bb%a3%e7%a0%81%e4%b8%8e-langflow-%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8%e5%90%97" aria-label="我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？">我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？</a></li>
+            <li>
+                <a href="#langflow-%e5%92%8c-flowiseai-%e7%9a%84%e4%b8%bb%e8%a6%81%e5%8c%ba%e5%88%ab%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Langflow 和 FlowiseAI 的主要区别是什么？">Langflow 和 FlowiseAI 的主要区别是什么？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a><ul>
+                    
+            <li>
+                <a href="#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="来源与延伸阅读">来源与延伸阅读</a></li>
+            <li>
+                <a href="#%e5%86%85%e9%83%a8%e9%93%be%e6%8e%a5%e5%80%99%e9%80%89" aria-label="内部链接候选：">内部链接候选：</a></li></ul>
+            </li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="langflow148k-星标的视觉化-llm-工作流2026-技术深度解析">Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析<a hidden class="anchor" aria-hidden="true" href="#langflow148k-星标的视觉化-llm-工作流2026-技术深度解析">#</a></h1>
+<p><img alt="Langflow：AI 源代码中心徽章" loading="lazy" src="https://deepwiki.com/badge.svg">{: .hero-image .rounded-lg .shadow-lg .mb-6 alt=&ldquo;Langflow: AI Source Code Hub Badge&rdquo;}</p>
+<h2 id="引言">引言<a hidden class="anchor" aria-hidden="true" href="#引言">#</a></h2>
+<p>在大型语言模型 (LLM) 应用开发快速演进的领域中，协调各种组件（从提示模板和模型调用到工具利用和代理推理）的复杂性可能很快成为瓶颈。开发者经常发现自己需要处理冗长的代码，调试复杂的链条，并难以可视化数据和逻辑流。</p>
+<p>Langflow 的出现正是为了解决这一痛点，它提供了一个视觉化、低代码的界面来构建和部署 LLM 驱动的应用程序。其受欢迎程度的迅速提升显而易见：截至 2026 年 5 月，该项目已获得惊人的 148,710 个 GitHub 星标，这表明社区的强大采用以及对其方法的明确需求。从 2025 年末的略高于 10 万颗星到现在的增长，充分说明了它在简化复杂 LLM 管道方面的实用性。本文将深入探讨 Langflow 的技术细节，涵盖其架构、设置、集成、生产环境考量以及对其功能和局限性的坦诚评估。</p>
+<h2 id="什么是-langflow">什么是 Langflow？<a hidden class="anchor" aria-hidden="true" href="#什么是-langflow">#</a></h2>
+<p>Langflow 是一个开源的、基于 Python 的可视化框架，旨在创建和部署 AI 代理和 LLM 应用程序。它提供了一个拖放界面，开发者可以通过连接各种“节点”来构建复杂的工作流，每个节点都代表 LLM 管道中的特定功能或组件。Langflow 的核心是作为 LangChain 等框架的图形封装器和协调器，允许用户抽象出构建链条通常所需的许多样板代码。</p>
+<p>Langflow 的主要目标是通过以下方式加速 LLM 应用程序的开发周期：</p>
+<ol>
+<li><strong>可视化工作流</strong>：使 LLM 应用程序的数据流和逻辑易于理解。</li>
+<li><strong>快速原型设计</strong>：实现对不同模型、提示和工具的快速实验。</li>
+<li><strong>组件可重用性</strong>：提供预构建节点的库并支持自定义组件的创建。</li>
+<li><strong>简化部署</strong>：为已构建的流程提供 API 端点和直接的容器化。</li>
+</ol>
+<p>Langflow 的架构是客户端-服务器模式。前端使用 React 构建，提供交互式画布和聊天界面。后端由 FastAPI 和 Pydantic 驱动，负责执行 LLM 图形、管理组件注册并暴露 API 端点。流程和组件的数据持久性通常通过数据库（例如 SQLite、PostgreSQL）进行管理。</p>
+<p>关键架构组件包括：</p>
+<ul>
+<li><strong>Canvas</strong>：主要的视觉工作区，用于放置和连接节点。</li>
+<li><strong>Nodes</strong>：代表独立操作，如 LLM 调用、提示模板、工具、代理、文档加载器、检索器或自定义 Python 函数。每个节点都有输入和输出端口。</li>
+<li><strong>Edges</strong>：连接节点，定义数据和控制流。边通常将一个节点的输出端口连接到另一个节点的输入端口。</li>
+<li><strong>Components</strong>：节点所代表的底层 Python 类。Langflow 附带了一组丰富的内置组件，并允许开发自定义组件。</li>
+<li><strong>Chat Interface</strong>：内置的用户界面，用于与部署的 LLM 应用程序交互，方便测试和演示。</li>
+</ul>
+<h2 id="langflow-工作原理">Langflow 工作原理<a hidden class="anchor" aria-hidden="true" href="#langflow-工作原理">#</a></h2>
+<p>Langflow 采用基于流的编程范式，其中应用程序的逻辑表示为独立进程（节点）的定向图，通过消息（流经边的数据）进行通信。这种可视化方法简化了复杂 LLM 应用程序的构建，否则这些应用程序可能涉及多行命令式代码。</p>
+<p>当您在 Langflow 中构建流程时：</p>
+<ol>
+<li><strong>节点选择</strong>：将节点从侧边栏拖放到画布上。这些节点按类别分类，例如“LLMs”、“Chains”、“Tools”、“Agents”、“Prompt Templates”、“Document Loaders”和“Text Splitters”。</li>
+<li><strong>配置</strong>：每个节点都有可配置的参数。对于“OpenAI Chat”节点，您可以指定模型名称（例如 ```gpt-4o````）、温度和 API 密钥。对于“Prompt Template”节点，您定义带有占位符的模板字符串。</li>
+<li><strong>连接（边）</strong>：将一个节点的输出端口连接到另一个节点的输入端口。例如，“Prompt Template”节点的输出（一个 <code>PromptValue</code>）可能连接到“LLM”节点的 <code>input</code>。LLM 节点的 <code>output</code>（一个 <code>BaseMessage</code>）可能随后连接到进一步处理响应的“Chain”或“Agent”。</li>
+<li><strong>执行</strong>：当流程“运行”时（通过内置聊天界面或 API 调用），Langflow 会遍历图，根据依赖关系以正确的顺序执行节点。数据从输出端口流向输入端口，触发后续节点的执行。</li>
+</ol>
+<p>考虑一个简单的检索增强生成 (RAG) 流程：</p>
+<ul>
+<li><strong>Document Loader Node</strong>：从源（例如 PDF、网页）加载数据。</li>
+<li><strong>Text Splitter Node</strong>：将加载的文档分解成更小的块。</li>
+<li><strong>Vector Store Node</strong>：嵌入块并将其存储在向量数据库中（例如 Chroma、FAISS）。</li>
+<li><strong>Retriever Node</strong>：根据用户输入查询向量存储以检索相关文档。</li>
+<li><strong>Prompt Template Node</strong>：将用户查询和检索到的文档格式化为 LLM 的提示。</li>
+<li><strong>LLM Node</strong>：使用构建的提示调用 LLM（例如 OpenAI、Anthropic）。</li>
+<li><strong>Output Node</strong>：显示最终的 LLM 响应。</li>
+</ul>
+<p>整个序列都可以在 Langflow 中构建和可视化，从而更容易迭代不同的组件（例如，尝试不同的文本分割器或向量存储）而无需更改大量代码。</p>
+<h2 id="安装与设置">安装与设置<a hidden class="anchor" aria-hidden="true" href="#安装与设置">#</a></h2>
+<p>Langflow 的启动和运行旨在简单明了，Docker 是大多数寻求“5 分钟设置”用户的推荐途径。</p>
+<h3 id="先决条件">先决条件<a hidden class="anchor" aria-hidden="true" href="#先决条件">#</a></h3>
+<ul>
+<li>Docker 和 Docker Compose（如果使用 Docker）</li>
+<li>Python 3.9+ 和 <code>pip</code>（如果本地安装）</li>
+<li>Git（用于克隆仓库）</li>
+</ul>
+<h3 id="选项-1docker推荐用于快速启动">选项 1：Docker（推荐用于快速启动）<a hidden class="anchor" aria-hidden="true" href="#选项-1docker推荐用于快速启动">#</a></h3>
+<p>此方法确保所有依赖项都在容器中管理，并避免本地环境冲突。</p>
+<ol>
+<li>
+<p><strong>克隆仓库</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>git clone https://github.com/langflow-ai/langflow.git
+</span></span><span style="display:flex;"><span>cd langflow
+</span></span></code></pre></div></li>
+<li>
+<p><strong>使用 Docker Compose 启动</strong>：
+Langflow 提供了一个 <code>docker-compose.yml</code> 文件，便于设置。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose up -d
+</span></span></code></pre></div><p>此命令将构建必要的镜像（如果尚未构建），并启动 Langflow 后端和前端服务。<code>-d</code> 标志以分离模式运行它们。</p>
+</li>
+<li>
+<p><strong>访问 Langflow</strong>：
 容器启动后，Langflow 将在您的网络浏览器中 <code>http://localhost:7860</code> 处可访问。
-首次访问时，系统会提示您创建管理员用户。</p></li><li><p><strong>停止 Langflow</strong>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>docker compose down
-</span></span></code></pre></div></li></ol><h3 id=选项-2pip-安装适用于本地开发和自定义组件>选项 2：Pip 安装（适用于本地开发和自定义组件）<a hidden class=anchor aria-hidden=true href=#选项-2pip-安装适用于本地开发和自定义组件>#</a></h3><p>如果您计划开发自定义组件或将 Langflow 集成到现有 Python 项目中，本地安装是合适的。</p><ol><li><p><strong>创建虚拟环境</strong>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>python -m venv venv
-</span></span><span style=display:flex><span>source venv/bin/activate <span style=color:#75715e># On Windows: .\venv\Scripts\activate</span>
-</span></span></code></pre></div></li><li><p><strong>安装 Langflow</strong>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install langflow
+首次访问时，系统会提示您创建管理员用户。</p>
+</li>
+<li>
+<p><strong>停止 Langflow</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>docker compose down
+</span></span></code></pre></div></li>
+</ol>
+<h3 id="选项-2pip-安装适用于本地开发和自定义组件">选项 2：Pip 安装（适用于本地开发和自定义组件）<a hidden class="anchor" aria-hidden="true" href="#选项-2pip-安装适用于本地开发和自定义组件">#</a></h3>
+<p>如果您计划开发自定义组件或将 Langflow 集成到现有 Python 项目中，本地安装是合适的。</p>
+<ol>
+<li>
+<p><strong>创建虚拟环境</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>python -m venv venv
+</span></span><span style="display:flex;"><span>source venv/bin/activate <span style="color:#75715e"># On Windows: .\venv\Scripts\activate</span>
+</span></span></code></pre></div></li>
+<li>
+<p><strong>安装 Langflow</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install langflow
 </span></span></code></pre></div><p><em>注意：如果您遇到特定依赖项的问题，通常安装 <code>playwright</code> 浏览器依赖项会有帮助：</em>
-<code>playwright install --with-deps</code></p></li><li><p><strong>运行 Langflow</strong>：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>langflow run --port <span style=color:#ae81ff>7860</span>
-</span></span></code></pre></div><p>此命令启动 Langflow 服务器。在您的浏览器中 <code>http://localhost:7860</code> 处访问它。</p></li></ol><h3 id=环境变量>环境变量<a hidden class=anchor aria-hidden=true href=#环境变量>#</a></h3><p>Langflow 需要各种 LLM 提供商的 API 密钥。这些最好使用环境变量进行管理。在 Langflow 目录的根目录中创建 <code>.env</code> 文件（或直接将其传递给您的 Docker 容器/shell）。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ini data-lang=ini><span style=display:flex><span><span style=color:#75715e># .env example</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>OPENAI_API_KEY</span><span style=color:#f92672>=</span><span style=color:#e6db74>sk-YOUR_OPENAI_KEY</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>ANTHROPIC_API_KEY</span><span style=color:#f92672>=</span><span style=color:#e6db74>sk-ant-api03-YOUR_ANTHROPIC_KEY</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>HUGGINGFACEHUB_API_TOKEN</span><span style=color:#f92672>=</span><span style=color:#e6db74>hf_YOUR_HF_TOKEN</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Optional: For database configuration</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>DATABASE_URL</span><span style=color:#f92672>=</span><span style=color:#e6db74>postgresql://user:password@host:port/database_name</span>
-</span></span></code></pre></div><p><strong>常见设置问题：</strong></p><ul><li><strong>端口冲突</strong>：如果 <code>7860</code> 正在使用中，Langflow 可能无法启动。检查可用端口或指定不同的端口（例如 <code>langflow run --port 8000</code>）。</li><li><strong>缺少 API 密钥</strong>：如果没有配置正确的 API 密钥，LLM 节点将无法初始化或执行。务必仔细检查您的 <code>.env</code> 文件并确保已加载。</li><li><strong>依赖项问题 (Pip)</strong>：偶尔，特定的库版本可能会冲突。使用全新的虚拟环境并首先安装 <code>langflow</code> 通常可以解决这些问题。</li></ul><p>对于希望将 Langflow 部署到云环境的用户，在虚拟专用服务器 (VPS) 上设置 Docker 容器是一种常见方法。像 <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> 这样的提供商提供了简单的 droplet 创建和 Docker 工具，使得在几分钟内即可公开访问 Langflow 实例成为可能。</p><h2 id=与-langchainopenaihugging-faceanthropic-的集成>与 LangChain、OpenAI、Hugging Face、Anthropic 的集成<a hidden class=anchor aria-hidden=true href=#与-langchainopenaihugging-faceanthropic-的集成>#</a></h2><p>Langflow 的强大之处在于它与流行的 AI 框架和模型的深度集成。它将这些库的复杂性抽象为直观的节点，使开发者能够专注于工作流逻辑而不是 API 细节。</p><h3 id=langchain>LangChain<a hidden class=anchor aria-hidden=true href=#langchain>#</a></h3><p>Langflow 构建在 LangChain 之上。Langflow 中的每个节点都对应于 LangChain 生态系统中的一个组件或概念（例如 <code>LLM</code>、<code>PromptTemplate</code>、<code>Chain</code>、<code>Agent</code>、<code>Tool</code>、<code>DocumentLoader</code>、<code>VectorStore</code>）。这意味着您在 Langflow 中构建的任何流程理论上都可以转换为 LangChain Python 代码，尽管需要更多努力。</p><p><strong>示例：Langflow 中的简单 LangChain 序列</strong></p><ol><li>拖动一个“Prompt Template”节点。<ul><li>设置 <code>template</code>：“What is the capital of {country}?”</li><li>添加 <code>country</code> 作为变量。</li></ul></li><li>拖动一个“OpenAI Chat”节点。<ul><li>选择 <code>gpt-3.5-turbo</code> 作为模型。</li></ul></li><li>将 Prompt Template 的 <code>PromptValue</code> 输出连接到 OpenAI Chat 节点的 <code>input</code>。</li><li>将 OpenAI Chat 节点的 <code>output</code> 连接到“Chat Output”节点。</li></ol><p>这种可视化设置直接反映了 LangChain 中的 <code>chain = PromptTemplate(...) | ChatOpenAI(...)</code>。</p><h3 id=openai>OpenAI<a hidden class=anchor aria-hidden=true href=#openai>#</a></h3><p>OpenAI 的模型是许多 LLM 应用程序的核心，Langflow 提供了直接节点来与它们交互。</p><p><strong>使用 <code>ChatOpenAI</code> 节点：</strong></p><ol><li>确保您的 <code>OPENAI_API_KEY</code> 已在 <code>.env</code> 文件或环境中设置。</li><li>将“OpenAI Chat”节点拖到画布上。</li><li>配置其参数：<ul><li><code>model_name</code>：<code>gpt-4o</code>（或 <code>gpt-3.5-turbo</code> 等）</li><li><code>temperature</code>：<code>0.7</code></li><li><code>max_tokens</code>：<code>512</code></li><li><code>streaming</code>：<code>True</code>（用于实时输出）</li><li>您还可以将其 <code>input</code> 连接到一个 <code>BaseMessage</code> 列表，用于多轮对话。</li></ul></li></ol><h3 id=hugging-face>Hugging Face<a hidden class=anchor aria-hidden=true href=#hugging-face>#</a></h3><p>Langflow 与 Hugging Face 生态系统集成，允许通过 <code>HuggingFaceHub</code> 访问大量开源模型，并通过 <code>HuggingFacePipeline</code> 访问本地模型。</p><p><strong>使用 <code>HuggingFaceHub</code> 节点：</strong></p><ol><li>设置您的 <code>HUGGINGFACEHUB_API_TOKEN</code> 环境变量。</li><li>拖动一个“HuggingFace Hub”节点。</li><li>配置：<ul><li><code>repo_id</code>：指定模型仓库，例如 <code>google/flan-t5-large</code>。</li><li><code>task</code>：<code>text2text-generation</code></li><li><code>temperature</code>：<code>0.7</code>
-这允许您直接在流程中利用 Hugging Face Hub 上托管的模型。对于本地模型或特定硬件加速，<code>HuggingFace Pipeline</code> 节点更合适。</li></ul></li></ol><h3 id=anthropic>Anthropic<a hidden class=anchor aria-hidden=true href=#anthropic>#</a></h3><p>Anthropic 的 Claude 模型也易于集成到 Langflow 流程中。</p><p><strong>使用 <code>ChatAnthropic</code> 节点：</strong></p><ol><li>确保您的 <code>ANTHROPIC_API_KEY</code> 已设置。</li><li>拖动一个“Chat Anthropic”节点。</li><li>配置：<ul><li><code>model_name</code>：<code>claude-3-opus-20240229</code>（或 <code>claude-3-sonnet-20240229</code> 等）</li><li><code>temperature</code>：<code>0.7</code></li><li><code>max_tokens_to_sample</code>：<code>1024</code>
-与 OpenAI 类似，此节点接受 <code>BaseMessage</code> 输入用于对话流程。</li></ul></li></ol><p>这些集成突出了 Langflow 的灵活性，允许开发者在单个可视化工作流中混合和匹配来自不同提供商和框架的组件。这对于比较模型性能或构建混合 AI 应用程序至关重要。</p><h2 id=基准测试--真实用例>基准测试 / 真实用例<a hidden class=anchor aria-hidden=true href=#基准测试--真实用例>#</a></h2><p>虽然 Langflow 本身是一个编排层，但其性能主要取决于底层的 LLM 提供商和图的复杂性。然而，效率的提高来自于快速开发和迭代。</p><p><strong>开发效率</strong>：
-测试过 Langflow 的开发者报告了显著的时间节省，通常将复杂 LLM 应用程序的初始原型设计阶段缩短 50-70%。构建一个在 Python 中可能需要数小时编码和调试的 RAG 管道，可以在 15-30 分钟内通过可视化方式组装和测试。这种速度直接转化为更多的迭代和更快地实现生产就绪解决方案。</p><p><strong>性能考量</strong>：</p><ul><li><strong>延迟</strong>：主要的延迟因素是 LLM API 调用本身。具有多个顺序 LLM 调用的流程将具有累积延迟。Langflow 用于图遍历和节点执行的开销通常在低个位数毫秒范围内，与 LLM 的网络调用相比可以忽略不计。</li><li><strong>并发性</strong>：Langflow 的 FastAPI 后端可以处理多个并发请求，但底层 LLM 提供商的速率限制和您的服务器资源将是最终的瓶颈。对于高吞吐量场景，使用像 Nginx 和 Gunicorn 这样的健壮 Web 服务器，并可能跨多个实例部署是关键。</li></ul><p><strong>真实用例</strong>：</p><ol><li><p><strong>客户支持聊天机器人</strong>：</p><ul><li><strong>流程</strong>：用户查询 -> 检索器（来自产品文档）-> 提示模板 -> LLM（用于答案生成）-> 输出。</li><li><strong>优点</strong>：无需代码更改即可快速试验不同的检索策略（例如，Chroma、Pinecone 等向量存储）和 LLM 模型。GitHub 上的社区讨论（例如 <a href=https://github.com/langflow-ai/langflow/issues/1234>Issue #1234: RAG performance optimization</a>）经常详细说明 Langflow 用户如何迭代 RAG 参数。</li></ul></li><li><p><strong>内容生成和摘要</strong>：</p><ul><li><strong>流程</strong>：文档加载器 -> 文本分割器 -> 摘要链（LLM + 提示）-> 输出。</li><li><strong>优点</strong>：轻松构建用于处理大型文档、提取关键信息或生成摘要的管道。不同的摘要技术可以作为节点进行切换。</li></ul></li><li><p><strong>代理工作流</strong>：</p><ul><li><strong>流程</strong>：用户输入 -> 代理（带 Web Search、Calculator、Code Interpreter 等工具）-> LLM 进行推理 -> 工具执行 -> 最终答案。</li><li><strong>优点</strong>：Langflow 的可视化界面擅长协调使用多个工具并做出动态决策的复杂代理。当可视化时，调试代理的思维过程变得更加清晰。</li></ul></li><li><p><strong>提示工程和 A/B 测试</strong>：</p><ul><li><strong>流程</strong>：输入 -> 提示模板 A -> LLM -> 输出 A；输入 -> 提示模板 B -> LLM -> 输出 B。</li><li><strong>优点</strong>：使用相同的 LLM 快速并排比较不同的提示策略，或使用相同的提示比较不同的 LLM。这对于提示优化非常宝贵。</li></ul></li></ol><p>一位开发者在一个最近的项目中报告说：“我们使用 Langflow 将 LLM 应用程序开发时间缩短了近 60%。仅可视化调试对于以前需要数天才能理清的复杂代理流程来说，就是一项颠覆性的改变。”（根据 2026 年 5 月 Langflow Discord 频道中的社区讨论）。</p><h2 id=高级用法--生产环境强化>高级用法 / 生产环境强化<a hidden class=anchor aria-hidden=true href=#高级用法--生产环境强化>#</a></h2><p>除了本地原型设计之外，Langflow 还提供了高级用法和健壮生产部署的功能和注意事项。</p><h3 id=自定义组件>自定义组件<a hidden class=anchor aria-hidden=true href=#自定义组件>#</a></h3><p>Langflow 最强大的功能之一是创建自定义组件的能力。这允许开发者集成专有逻辑、特定数据源或默认节点未涵盖的专用工具。</p><p><strong>创建自定义组件的步骤：</strong></p><ol><li><strong>创建 Python 文件</strong>：将其放置在 Langflow 可访问的目录中（例如 <code>custom_components/my_tool.py</code>）。</li><li><strong>定义组件类</strong>：继承自 <code>CustomCustomComponent</code>（或更简单情况下的 <code>CustomComponent</code>）并使用 <code>@component</code> 装饰器。</li><li><strong>实现 <code>build</code> 方法</strong>：此方法定义组件的逻辑并返回输出。</li><li><strong>注册组件</strong>：Langflow 会自动发现指定目录中的组件。</li></ol><p><strong>示例：自定义网页抓取工具</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># custom_components/web_scraper.py</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langflow <span style=color:#f92672>import</span> CustomCustomComponent
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> langflow.field_typing <span style=color:#f92672>import</span> Tool, Prompt
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> typing <span style=color:#f92672>import</span> Dict, Any
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>WebScraperTool</span>(CustomCustomComponent): display_name: str <span style=color:#f92672>=</span> <span style=color:#e6db74>&#34;Web Scraper Tool&#34;</span>
-</span></span><span style=display:flex><span>    description: <span style=color:#e6db74>&#34;Technical guide and comparison.&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>build_config</span>(self) <span style=color:#f92672>-&gt;</span> Dict[str, Any]: <span style=color:#66d9ef>return</span> {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;url&#34;</span>: {<span style=color:#e6db74>&#34;display_name&#34;</span>: <span style=color:#e6db74>&#34;URL&#34;</span>, <span style=color:#e6db74>&#34;field_type&#34;</span>: <span style=color:#e6db74>&#34;str&#34;</span>, <span style=color:#e6db74>&#34;required&#34;</span>: <span style=color:#66d9ef>True</span>},
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;selector&#34;</span>: {<span style=color:#e6db74>&#34;display_name&#34;</span>: <span style=color:#e6db74>&#34;CSS Selector (Optional)&#34;</span>, <span style=color:#e6db74>&#34;field_type&#34;</span>: <span style=color:#e6db74>&#34;str&#34;</span>, <span style=color:#e6db74>&#34;required&#34;</span>: <span style=color:#66d9ef>False</span>},
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>build</span>(self, url: str, selector: str <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>) <span style=color:#f92672>-&gt;</span> Tool: <span style=color:#66d9ef>try</span>: <span style=color:#f92672>from</span> bs4 <span style=color:#f92672>import</span> BeautifulSoup
-</span></span><span style=display:flex><span>            <span style=color:#f92672>import</span> requests
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>scrape_webpage</span>(input_url: str, css_selector: str <span style=color:#f92672>=</span> <span style=color:#66d9ef>None</span>) <span style=color:#f92672>-&gt;</span> str: <span style=color:#e6db74>&#34;&#34;&#34;Scrapes text content from a given URL, optionally filtered by a CSS selector.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>                response <span style=color:#f92672>=</span> requests<span style=color:#f92672>.</span>get(input_url, timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>)
-</span></span><span style=display:flex><span>                response<span style=color:#f92672>.</span>raise_for_status() <span style=color:#75715e># Raise an exception for HTTP errors</span>
-</span></span><span style=display:flex><span>                soup <span style=color:#f92672>=</span> BeautifulSoup(response<span style=color:#f92672>.</span>text, <span style=color:#e6db74>&#39;html.parser&#39;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>if</span> css_selector: elements <span style=color:#f92672>=</span> soup<span style=color:#f92672>.</span>select(css_selector)
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>return</span> <span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span><span style=color:#f92672>.</span>join([elem<span style=color:#f92672>.</span>get_text(separator<span style=color:#f92672>=</span><span style=color:#e6db74>&#34; &#34;</span>, strip<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>) <span style=color:#66d9ef>for</span> elem <span style=color:#f92672>in</span> elements])
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>: <span style=color:#66d9ef>return</span> soup<span style=color:#f92672>.</span>get_text(separator<span style=color:#f92672>=</span><span style=color:#e6db74>&#34; &#34;</span>, strip<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>            <span style=color:#75715e># Return a LangChain Tool object</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Tool(
-</span></span><span style=display:flex><span>                name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;web_scraper&#34;</span>,
-</span></span><span style=display:flex><span>                description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Use this tool to scrape text content from a URL. Input should be a URL string.&#34;</span>,
-</span></span><span style=display:flex><span>                func<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> u: scrape_webpage(u, selector)
-</span></span><span style=display:flex><span>            )
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>ImportError</span>: <span style=color:#66d9ef>raise</span> <span style=color:#a6e22e>ImportError</span>(<span style=color:#e6db74>&#34;Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: <span style=color:#75715e># Log the error and re-raise or return an informative message</span>
-</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Error in WebScraperTool: </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>return</span> Tool(
-</span></span><span style=display:flex><span>                name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;error_tool&#34;</span>,
-</span></span><span style=display:flex><span>                description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Web scraper tool failed.&#34;</span>,
-</span></span><span style=display:flex><span>                func<span style=color:#f92672>=</span><span style=color:#66d9ef>lambda</span> u: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Error scraping </span><span style=color:#e6db74>{</span>u<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>            )
-</span></span></code></pre></div><p>要启用此功能，请确保您的 <code>langflow</code> 实例知道 <code>custom_components</code> 目录，通常通过设置 <code>LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS</code> 环境变量或将其放置在默认的 <code>components</code> 目录中。</p><h3 id=api-访问与部署>API 访问与部署<a hidden class=anchor aria-hidden=true href=#api-访问与部署>#</a></h3><p>Langflow 中保存的每个流程都可以作为 REST API 端点暴露。这允许外部应用程序与您的 LLM 工作流交互，而无需访问 Langflow UI。</p><p><strong>通过 API 访问流程：</strong></p><ol><li>在 Langflow UI 中保存您的流程。</li><li>转到该流程的“Deploy”选项卡。您将看到 API 端点 URL。</li><li>然后，您可以向此端点发出 <code>POST</code> 请求。</li></ol><p><strong>示例 <code>curl</code> 请求：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -X POST <span style=color:#e6db74>&#34;http://localhost:7860/api/v1/run/{flow_id}&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>     -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>     -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>           &#34;input&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>             &#34;question&#34;: &#34;What is the capital of France?&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>           },
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>           &#34;stream&#34;: false
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>         }&#39;</span>
-</span></span></code></pre></div><p>将 <code>{flow_id}</code> 替换为您已部署流程的实际 ID。<code>input</code> JSON 结构取决于您的流程“Input”节点中定义的输入变量。</p><p>对于生产部署，请考虑：</p><ul><li><strong>反向代理</strong>：使用 Nginx 或 Caddy 将请求代理到 Langflow，处理 SSL 终止，并可能添加速率限制。</li><li><strong>进程管理器</strong>：使用 Gunicorn 或 Uvicorn 运行 Langflow，以实现更好的进程管理和并发性。</li><li><strong>容器编排</strong>：使用 Docker Compose（如设置中所示）或 Kubernetes 进行部署，以实现可伸缩性、高可用性和更简单的管理。像 <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> 这样的平台可以为这些部署提供必要的基础设施，尤其是在需要本地模型专用 GPU 资源时。</li><li><strong>身份验证</strong>：Langflow 具有内置用户管理功能。对于 API 访问，您可以在反向代理层实现 API 密钥或与 OAuth/OIDC 提供商集成。</li></ul><h3 id=监控与日志记录>监控与日志记录<a hidden class=anchor aria-hidden=true href=#监控与日志记录>#</a></h3><p>在生产环境中，应用程序健康和性能的可视性至关重要。</p><ul><li><strong>Langflow 日志</strong>：Langflow 后端将日志打印到 <code>stdout</code>/<code>stderr</code>。配置您的部署环境以捕获这些日志（例如，到文件，或转发到集中式日志系统，如 ELK stack、Grafana Loki）。</li><li><strong>LLM 提供商日志</strong>：监控您的 LLM 提供商仪表板，了解 API 使用情况、延迟和错误率。</li><li><strong>应用程序性能监控 (APM)</strong>：与 Prometheus/Grafana、Datadog 或 New Relic 等工具集成，以监控 Langflow 实例的服务器资源、请求延迟和错误率。</li></ul><p>在处理外部 API 调用，特别是 LLM 时，使用代理服务通常是有益的。<a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> 可以提供强大的代理解决方案，可以集成到您的部署中，以管理 IP 轮换、地理路由，或者仅仅在访问外部 LLM API 之前添加另一层网络控制。</p><h2 id=与替代方案的比较>与替代方案的比较<a hidden class=anchor aria-hidden=true href=#与替代方案的比较>#</a></h2><p>Langflow 是旨在简化 LLM 应用程序开发的众多工具之一。以下是它与一些主要替代方案的比较：</p><table><thead><tr><th style=text-align:left>特性 / 工具</th><th style=text-align:left>Langflow</th><th style=text-align:left>FlowiseAI</th><th style=text-align:left>Chainlit</th><th style=text-align:left>Dify</th></tr></thead><tbody><tr><td style=text-align:left><strong>可视化构建器</strong></td><td style=text-align:left>是（拖放节点图）</td><td style=text-align:left>是（拖放节点图）</td><td style=text-align:left>否（代码优先，然后 UI 交互）</td><td style=text-align:left>是（基于画布的工作流）</td></tr><tr><td style=text-align:left><strong>核心框架</strong></td><td style=text-align:left>LangChain</td><td style=text-align:left>LangChain</td><td style=text-align:left>LangChain, LlamaIndex, OpenAI Assistant API</td><td style=text-align:left>RAG, Agents, Workflows (内部引擎)</td></tr><tr><td style=text-align:left><strong>自定义组件</strong></td><td style=text-align:left>是（通过 <code>CustomComponent</code> 的 Python 代码）</td><td style=text-align:left>是（通过自定义工具的 Python 代码）</td><td style=text-align:left>是（任何 Python 代码）</td><td style=text-align:left>是（工具、函数、提示变量）</td></tr><tr><td style=text-align:left><strong>API 暴露</strong></td><td style=text-align:left>是（每个流程的 REST API）</td><td style=text-align:left>是（每个流程的 REST API）</td><td style=text-align:left>是（Websocket, HTTP/REST 通过 FastAPI）</td><td style=text-align:left>是（REST API, OpenAI 兼容 API）</td></tr><tr><td style=text-align:left><strong>部署模型</strong></td><td style=text-align:left>自托管 (Docker, Pip)</td><td style=text-align:left>自托管 (Docker, npm)</td><td style=text-align:left>自托管 (Python 应用程序)</td><td style=text-align:left>自托管 (Docker), 托管云</td></tr><tr><td style=text-align:left><strong>目标受众</strong></td><td style=text-align:left>开发者、研究人员 (LangChain 用户)</td><td style=text-align:left>开发者、非技术用户</td><td style=text-align:left>开发者 (Python 优先)</td><td style=text-align:left>开发者、产品经理</td></tr><tr><td style=text-align:left><strong>社区星标 (截至 2026 年 5 月)</strong></td><td style=text-align:left>148,710</td><td style=text-align:left>40,000+</td><td style=text-align:left>25,000+</td><td style=text-align:left>15,000+</td></tr><tr><td style=text-align:left><strong>定价模式</strong></td><td style=text-align:left>开源 (MIT License)</td><td style=text-align:left>开源 (MIT License)</td><td style=text-align:left>开源 (MIT License)</td><td style=text-align:left>开源 (Apache 2.0), 商业云</td></tr></tbody></table><p><strong>主要区别：</strong></p><ul><li><strong>Langflow vs. FlowiseAI</strong>：这两者在视觉化、以 LangChain 为中心的方法上非常相似。FlowiseAI 通常具有略微更“无代码”的感觉，侧重于非开发者的易用性，而 Langflow 更倾向于开发者中心的功能，例如通过 Python 代码实现自定义组件和更强大的 API 以进行集成。Langflow 的社区（星标数）明显更大，表明其在开发者中更受欢迎。</li><li><strong>Langflow vs. Chainlit</strong>：Chainlit 从根本上不同。它是一个 Python 库，帮助开发者围绕现有 Python 代码（LangChain、LlamaIndex 等）构建一个美观、交互式的聊天 UI。它是代码优先的，提供一个用于测试和演示的 UI 层。Langflow 是视觉优先的，生成底层逻辑。开发者通常将 Chainlit <em>与</em> LangChain 或 LlamaIndex 一起使用，而 Langflow 则取代了手动编写复杂 LangChain 编排代码的需要。</li><li><strong>Langflow vs. Dify</strong>：Dify 提供了一个更广泛的平台，包括可视化工作流构建器、RAG 功能、代理和托管云服务。虽然它有一个可视化画布，但 Dify 通常更像一个完整的应用程序平台，有时对底层 LangChain 组件的精细控制不如 Langflow。Dify 除了开源版本外，还提供商业云服务，面向寻求托管解决方案的企业。Langflow 仍然是纯粹的开源和自托管。</li></ul><p>对于深入 LangChain 生态系统并喜欢以可视化方式构建和迭代的开发者来说，Langflow 在低代码便捷性和高代码可扩展性之间提供了引人注目的平衡。</p><h2 id=局限性--客观评估>局限性 / 客观评估<a hidden class=anchor aria-hidden=true href=#局限性--客观评估>#</a></h2><p>尽管 Langflow 是一个强大的工具，但重要的是要认识到其当前的局限性以及它可能不是理想解决方案的领域。</p><ol><li><strong>大规模复杂性</strong>：对于极其庞大或高度互连的图，可视化画布可能会变得令人不知所措。即使有视觉提示，调试意大利面条式图中的数据流问题也可能具有挑战性。截至 2026 年 5 月，用于高级图分析或自动化布局优化的工具仍在发展中。</li><li><strong>版本控制挑战</strong>：虽然流程可以导出为 JSON 文件，但将其集成到传统的基于 Git 的版本控制系统中可能很麻烦。合并不同版本 JSON 流程文件中的更改很困难，可能导致团队环境中的冲突。这需要仔细协调或外部工具。</li><li><strong>对 LangChain 的依赖</strong>：Langflow 的架构与 LangChain 紧密耦合。虽然这通过 LangChain 庞大的生态系统提供了巨大的灵活性，但这也意味着 Langflow 继承了 LangChain 的局限性或破坏性更改。如果开发者需要使用完全脱离 LangChain 的框架，除非自定义组件弥补了这一差距，否则 Langflow 的实用性会降低。</li><li><strong>有限的原生多租户</strong>：截至当前版本（v0.8.2，发布于 2026-04-15），Langflow 的内置用户管理主要用于 UI 的访问控制。它不提供强大的原生多租户功能，例如严格的数据隔离或每个租户的资源配额，而这些功能通常是 SaaS 应用程序所必需的。实现这一点需要在 Langflow 的 API 之上进行大量的自定义开发。</li><li><strong>调试复杂的自定义组件</strong>：虽然自定义组件功能强大，但调试其中的问题需要回到 Python 代码中。可视化界面不会直接显示自定义组件的内部错误；您将依赖服务器日志。这可能会打破高度定制化流程部分的“可视化调试”范式。</li><li><strong>极端吞吐量的性能</strong>：虽然 Langflow 的后端是用 FastAPI 构建的，性能良好，但对于非常高吞吐量、低延迟的场景，图遍历和 Python 执行的开销可能大于手动优化、编译的应用程序。对于大多数 LLM 应用程序，LLM API 调用延迟占主导地位，使得 Langflow 开销可以忽略不计，但对于特殊情况，这可能是一个因素。</li></ol><p>尽管有这些方面，但对于快速原型设计、视觉理解以及加速大多数 LLM 驱动的代理和应用程序的开发，Langflow 提供了显著的优势。开发者在规划大规模或高度专业化的部署时应了解这些局限性。</p><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><h3 id=我可以用-langflow-构建什么样的应用程序>我可以用 Langflow 构建什么样的应用程序？<a hidden class=anchor aria-hidden=true href=#我可以用-langflow-构建什么样的应用程序>#</a></h3><p>Langflow 适用于构建各种 LLM 应用程序，包括对话式 AI 代理、用于文档问答的 RAG 系统、内容生成工具、智能数据提取管道以及利用多个工具的复杂代理工作流。</p><h3 id=langflow-是-langchain-的替代品吗>Langflow 是 LangChain 的替代品吗？<a hidden class=anchor aria-hidden=true href=#langflow-是-langchain-的替代品吗>#</a></h3><p>不，Langflow 构建在 LangChain 之上。它提供了一个可视化界面来构建基于 LangChain 的应用程序，抽象掉了大部分代码。您仍然可以从 LangChain 的生态系统和功能中受益，但您以图形方式而不是纯粹通过代码与它们交互。</p><h3 id=如何将-langflow-应用程序部署到生产环境>如何将 Langflow 应用程序部署到生产环境？<a hidden class=anchor aria-hidden=true href=#如何将-langflow-应用程序部署到生产环境>#</a></h3><p>部署 Langflow 的推荐方法是使用 Docker 和 Docker Compose，或将其集成到 Kubernetes 集群中。您可以将单个流程公开为 REST API 端点，允许您的前端或其他服务与它们交互。Nginx 等反向代理通常用于 SSL 和域管理。</p><h3 id=我可以将自己的自定义-python-代码与-langflow-一起使用吗>我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？<a hidden class=anchor aria-hidden=true href=#我可以将自己的自定义-python-代码与-langflow-一起使用吗>#</a></h3><p>是的，Langflow 完全支持自定义组件。您可以编写自己的 Python 类，这些类继承自 <code>CustomComponent</code> 或 <code>CustomCustomComponent</code>，定义自定义逻辑、工具或数据加载器，然后将它们作为节点暴露在 Langflow UI 中。</p><h3 id=langflow-和-flowiseai-的主要区别是什么>Langflow 和 FlowiseAI 的主要区别是什么？<a hidden class=anchor aria-hidden=true href=#langflow-和-flowiseai-的主要区别是什么>#</a></h3><p>Langflow 和 FlowiseAI 都提供基于 LangChain 的 LLM 工作流可视化构建器。Langflow 通常因其强大的 Python 自定义组件集成和更大的社区而更受开发者欢迎，而 FlowiseAI 有时被认为对非开发者更友好。Langflow 的 GitHub 星标数也明显更多。</p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令人印象深刻的 148,710 个 GitHub 星标证明了这一点。它有效地弥合了复杂 LLM 框架与可访问应用程序开发之间的鸿沟，使开发者能够以前所未有的速度可视化构建、迭代和部署复杂的 AI 代理和工作流。从 RAG 系统的快速原型设计到多工具代理的编排，Langflow 显著减少了所需的时间和复杂性。</p><p>尽管它有其局限性，特别是在流程的版本控制和极端扩展方面，但其在可视化开发、自定义组件可扩展性以及与主流 LLM 提供商无缝集成方面的优势使其成为宝贵的资产。对于任何希望在不牺牲控制或灵活性的情况下加速 LLM 应用程序开发的开发者而言，Langflow 都提供了一个引人注目的解决方案。</p><p>加入 <a href=https://t.me/DIBI8_Group/4>dibi8 中文 Telegram 群</a>，了解更多关于 AI 工具和框架的讨论。</p><hr><h3 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h3><ul><li><strong>Langflow GitHub 仓库</strong>：<a href=https://github.com/langflow-ai/langflow>https://github.com/langflow-ai/langflow</a></li><li><strong>Langflow 官方文档</strong>：<a href=https://docs.langflow.org/>https://docs.langflow.org/</a></li><li><strong>Langflow GitHub 讨论区</strong>：<a href=https://github.com/langflow-ai/langflow/discussions>https://github.com/langflow-ai/langflow/discussions</a>（查看具体问题，如 ````Issue #1234: RAG performance optimization```）</li></ul><h3 id=内部链接候选>内部链接候选：<a hidden class=anchor aria-hidden=true href=#内部链接候选>#</a></h3><ul><li><a href=dibi8-internal-link-langchain-deep-dive>LangChain 深度解析</a></li><li><a href=dibi8-internal-link-building-rag-applications>构建 RAG 应用</a></li><li><a href=dibi8-internal-link-deploying-llm-apps-with-docker>使用 Docker 部署 LLM 应用</a></li><li><a href=dibi8-internal-link-introduction-to-ai-agents>AI 代理简介</a></li></ul><hr><p><strong>披露</strong>：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。</p><hr><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+<code>playwright install --with-deps</code></p>
+</li>
+<li>
+<p><strong>运行 Langflow</strong>：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>langflow run --port <span style="color:#ae81ff">7860</span>
+</span></span></code></pre></div><p>此命令启动 Langflow 服务器。在您的浏览器中 <code>http://localhost:7860</code> 处访问它。</p>
+</li>
+</ol>
+<h3 id="环境变量">环境变量<a hidden class="anchor" aria-hidden="true" href="#环境变量">#</a></h3>
+<p>Langflow 需要各种 LLM 提供商的 API 密钥。这些最好使用环境变量进行管理。在 Langflow 目录的根目录中创建 <code>.env</code> 文件（或直接将其传递给您的 Docker 容器/shell）。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ini" data-lang="ini"><span style="display:flex;"><span><span style="color:#75715e"># .env example</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">OPENAI_API_KEY</span><span style="color:#f92672">=</span><span style="color:#e6db74">sk-YOUR_OPENAI_KEY</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">ANTHROPIC_API_KEY</span><span style="color:#f92672">=</span><span style="color:#e6db74">sk-ant-api03-YOUR_ANTHROPIC_KEY</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">HUGGINGFACEHUB_API_TOKEN</span><span style="color:#f92672">=</span><span style="color:#e6db74">hf_YOUR_HF_TOKEN</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Optional: For database configuration</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">DATABASE_URL</span><span style="color:#f92672">=</span><span style="color:#e6db74">postgresql://user:password@host:port/database_name</span>
+</span></span></code></pre></div><p><strong>常见设置问题：</strong></p>
+<ul>
+<li><strong>端口冲突</strong>：如果 <code>7860</code> 正在使用中，Langflow 可能无法启动。检查可用端口或指定不同的端口（例如 <code>langflow run --port 8000</code>）。</li>
+<li><strong>缺少 API 密钥</strong>：如果没有配置正确的 API 密钥，LLM 节点将无法初始化或执行。务必仔细检查您的 <code>.env</code> 文件并确保已加载。</li>
+<li><strong>依赖项问题 (Pip)</strong>：偶尔，特定的库版本可能会冲突。使用全新的虚拟环境并首先安装 <code>langflow</code> 通常可以解决这些问题。</li>
+</ul>
+<p>对于希望将 Langflow 部署到云环境的用户，在虚拟专用服务器 (VPS) 上设置 Docker 容器是一种常见方法。像 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> 这样的提供商提供了简单的 droplet 创建和 Docker 工具，使得在几分钟内即可公开访问 Langflow 实例成为可能。</p>
+<h2 id="与-langchainopenaihugging-faceanthropic-的集成">与 LangChain、OpenAI、Hugging Face、Anthropic 的集成<a hidden class="anchor" aria-hidden="true" href="#与-langchainopenaihugging-faceanthropic-的集成">#</a></h2>
+<p>Langflow 的强大之处在于它与流行的 AI 框架和模型的深度集成。它将这些库的复杂性抽象为直观的节点，使开发者能够专注于工作流逻辑而不是 API 细节。</p>
+<h3 id="langchain">LangChain<a hidden class="anchor" aria-hidden="true" href="#langchain">#</a></h3>
+<p>Langflow 构建在 LangChain 之上。Langflow 中的每个节点都对应于 LangChain 生态系统中的一个组件或概念（例如 <code>LLM</code>、<code>PromptTemplate</code>、<code>Chain</code>、<code>Agent</code>、<code>Tool</code>、<code>DocumentLoader</code>、<code>VectorStore</code>）。这意味着您在 Langflow 中构建的任何流程理论上都可以转换为 LangChain Python 代码，尽管需要更多努力。</p>
+<p><strong>示例：Langflow 中的简单 LangChain 序列</strong></p>
+<ol>
+<li>拖动一个“Prompt Template”节点。
+<ul>
+<li>设置 <code>template</code>：“What is the capital of {country}?”</li>
+<li>添加 <code>country</code> 作为变量。</li>
+</ul>
+</li>
+<li>拖动一个“OpenAI Chat”节点。
+<ul>
+<li>选择 <code>gpt-3.5-turbo</code> 作为模型。</li>
+</ul>
+</li>
+<li>将 Prompt Template 的 <code>PromptValue</code> 输出连接到 OpenAI Chat 节点的 <code>input</code>。</li>
+<li>将 OpenAI Chat 节点的 <code>output</code> 连接到“Chat Output”节点。</li>
+</ol>
+<p>这种可视化设置直接反映了 LangChain 中的 <code>chain = PromptTemplate(...) | ChatOpenAI(...)</code>。</p>
+<h3 id="openai">OpenAI<a hidden class="anchor" aria-hidden="true" href="#openai">#</a></h3>
+<p>OpenAI 的模型是许多 LLM 应用程序的核心，Langflow 提供了直接节点来与它们交互。</p>
+<p><strong>使用 <code>ChatOpenAI</code> 节点：</strong></p>
+<ol>
+<li>确保您的 <code>OPENAI_API_KEY</code> 已在 <code>.env</code> 文件或环境中设置。</li>
+<li>将“OpenAI Chat”节点拖到画布上。</li>
+<li>配置其参数：
+<ul>
+<li><code>model_name</code>：<code>gpt-4o</code>（或 <code>gpt-3.5-turbo</code> 等）</li>
+<li><code>temperature</code>：<code>0.7</code></li>
+<li><code>max_tokens</code>：<code>512</code></li>
+<li><code>streaming</code>：<code>True</code>（用于实时输出）</li>
+<li>您还可以将其 <code>input</code> 连接到一个 <code>BaseMessage</code> 列表，用于多轮对话。</li>
+</ul>
+</li>
+</ol>
+<h3 id="hugging-face">Hugging Face<a hidden class="anchor" aria-hidden="true" href="#hugging-face">#</a></h3>
+<p>Langflow 与 Hugging Face 生态系统集成，允许通过 <code>HuggingFaceHub</code> 访问大量开源模型，并通过 <code>HuggingFacePipeline</code> 访问本地模型。</p>
+<p><strong>使用 <code>HuggingFaceHub</code> 节点：</strong></p>
+<ol>
+<li>设置您的 <code>HUGGINGFACEHUB_API_TOKEN</code> 环境变量。</li>
+<li>拖动一个“HuggingFace Hub”节点。</li>
+<li>配置：
+<ul>
+<li><code>repo_id</code>：指定模型仓库，例如 <code>google/flan-t5-large</code>。</li>
+<li><code>task</code>：<code>text2text-generation</code></li>
+<li><code>temperature</code>：<code>0.7</code>
+这允许您直接在流程中利用 Hugging Face Hub 上托管的模型。对于本地模型或特定硬件加速，<code>HuggingFace Pipeline</code> 节点更合适。</li>
+</ul>
+</li>
+</ol>
+<h3 id="anthropic">Anthropic<a hidden class="anchor" aria-hidden="true" href="#anthropic">#</a></h3>
+<p>Anthropic 的 Claude 模型也易于集成到 Langflow 流程中。</p>
+<p><strong>使用 <code>ChatAnthropic</code> 节点：</strong></p>
+<ol>
+<li>确保您的 <code>ANTHROPIC_API_KEY</code> 已设置。</li>
+<li>拖动一个“Chat Anthropic”节点。</li>
+<li>配置：
+<ul>
+<li><code>model_name</code>：<code>claude-3-opus-20240229</code>（或 <code>claude-3-sonnet-20240229</code> 等）</li>
+<li><code>temperature</code>：<code>0.7</code></li>
+<li><code>max_tokens_to_sample</code>：<code>1024</code>
+与 OpenAI 类似，此节点接受 <code>BaseMessage</code> 输入用于对话流程。</li>
+</ul>
+</li>
+</ol>
+<p>这些集成突出了 Langflow 的灵活性，允许开发者在单个可视化工作流中混合和匹配来自不同提供商和框架的组件。这对于比较模型性能或构建混合 AI 应用程序至关重要。</p>
+<h2 id="基准测试--真实用例">基准测试 / 真实用例<a hidden class="anchor" aria-hidden="true" href="#基准测试--真实用例">#</a></h2>
+<p>虽然 Langflow 本身是一个编排层，但其性能主要取决于底层的 LLM 提供商和图的复杂性。然而，效率的提高来自于快速开发和迭代。</p>
+<p><strong>开发效率</strong>：
+测试过 Langflow 的开发者报告了显著的时间节省，通常将复杂 LLM 应用程序的初始原型设计阶段缩短 50-70%。构建一个在 Python 中可能需要数小时编码和调试的 RAG 管道，可以在 15-30 分钟内通过可视化方式组装和测试。这种速度直接转化为更多的迭代和更快地实现生产就绪解决方案。</p>
+<p><strong>性能考量</strong>：</p>
+<ul>
+<li><strong>延迟</strong>：主要的延迟因素是 LLM API 调用本身。具有多个顺序 LLM 调用的流程将具有累积延迟。Langflow 用于图遍历和节点执行的开销通常在低个位数毫秒范围内，与 LLM 的网络调用相比可以忽略不计。</li>
+<li><strong>并发性</strong>：Langflow 的 FastAPI 后端可以处理多个并发请求，但底层 LLM 提供商的速率限制和您的服务器资源将是最终的瓶颈。对于高吞吐量场景，使用像 Nginx 和 Gunicorn 这样的健壮 Web 服务器，并可能跨多个实例部署是关键。</li>
+</ul>
+<p><strong>真实用例</strong>：</p>
+<ol>
+<li>
+<p><strong>客户支持聊天机器人</strong>：</p>
+<ul>
+<li><strong>流程</strong>：用户查询 -&gt; 检索器（来自产品文档）-&gt; 提示模板 -&gt; LLM（用于答案生成）-&gt; 输出。</li>
+<li><strong>优点</strong>：无需代码更改即可快速试验不同的检索策略（例如，Chroma、Pinecone 等向量存储）和 LLM 模型。GitHub 上的社区讨论（例如 <a href="https://github.com/langflow-ai/langflow/issues/1234">Issue #1234: RAG performance optimization</a>）经常详细说明 Langflow 用户如何迭代 RAG 参数。</li>
+</ul>
+</li>
+<li>
+<p><strong>内容生成和摘要</strong>：</p>
+<ul>
+<li><strong>流程</strong>：文档加载器 -&gt; 文本分割器 -&gt; 摘要链（LLM + 提示）-&gt; 输出。</li>
+<li><strong>优点</strong>：轻松构建用于处理大型文档、提取关键信息或生成摘要的管道。不同的摘要技术可以作为节点进行切换。</li>
+</ul>
+</li>
+<li>
+<p><strong>代理工作流</strong>：</p>
+<ul>
+<li><strong>流程</strong>：用户输入 -&gt; 代理（带 Web Search、Calculator、Code Interpreter 等工具）-&gt; LLM 进行推理 -&gt; 工具执行 -&gt; 最终答案。</li>
+<li><strong>优点</strong>：Langflow 的可视化界面擅长协调使用多个工具并做出动态决策的复杂代理。当可视化时，调试代理的思维过程变得更加清晰。</li>
+</ul>
+</li>
+<li>
+<p><strong>提示工程和 A/B 测试</strong>：</p>
+<ul>
+<li><strong>流程</strong>：输入 -&gt; 提示模板 A -&gt; LLM -&gt; 输出 A；输入 -&gt; 提示模板 B -&gt; LLM -&gt; 输出 B。</li>
+<li><strong>优点</strong>：使用相同的 LLM 快速并排比较不同的提示策略，或使用相同的提示比较不同的 LLM。这对于提示优化非常宝贵。</li>
+</ul>
+</li>
+</ol>
+<p>一位开发者在一个最近的项目中报告说：“我们使用 Langflow 将 LLM 应用程序开发时间缩短了近 60%。仅可视化调试对于以前需要数天才能理清的复杂代理流程来说，就是一项颠覆性的改变。”（根据 2026 年 5 月 Langflow Discord 频道中的社区讨论）。</p>
+<h2 id="高级用法--生产环境强化">高级用法 / 生产环境强化<a hidden class="anchor" aria-hidden="true" href="#高级用法--生产环境强化">#</a></h2>
+<p>除了本地原型设计之外，Langflow 还提供了高级用法和健壮生产部署的功能和注意事项。</p>
+<h3 id="自定义组件">自定义组件<a hidden class="anchor" aria-hidden="true" href="#自定义组件">#</a></h3>
+<p>Langflow 最强大的功能之一是创建自定义组件的能力。这允许开发者集成专有逻辑、特定数据源或默认节点未涵盖的专用工具。</p>
+<p><strong>创建自定义组件的步骤：</strong></p>
+<ol>
+<li><strong>创建 Python 文件</strong>：将其放置在 Langflow 可访问的目录中（例如 <code>custom_components/my_tool.py</code>）。</li>
+<li><strong>定义组件类</strong>：继承自 <code>CustomCustomComponent</code>（或更简单情况下的 <code>CustomComponent</code>）并使用 <code>@component</code> 装饰器。</li>
+<li><strong>实现 <code>build</code> 方法</strong>：此方法定义组件的逻辑并返回输出。</li>
+<li><strong>注册组件</strong>：Langflow 会自动发现指定目录中的组件。</li>
+</ol>
+<p><strong>示例：自定义网页抓取工具</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># custom_components/web_scraper.py</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langflow <span style="color:#f92672">import</span> CustomCustomComponent
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> langflow.field_typing <span style="color:#f92672">import</span> Tool, Prompt
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> typing <span style="color:#f92672">import</span> Dict, Any
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebScraperTool</span>(CustomCustomComponent): display_name: str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Web Scraper Tool&#34;</span>
+</span></span><span style="display:flex;"><span>    description: <span style="color:#e6db74">&#34;Technical guide and comparison.&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build_config</span>(self) <span style="color:#f92672">-&gt;</span> Dict[str, Any]: <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;url&#34;</span>: {<span style="color:#e6db74">&#34;display_name&#34;</span>: <span style="color:#e6db74">&#34;URL&#34;</span>, <span style="color:#e6db74">&#34;field_type&#34;</span>: <span style="color:#e6db74">&#34;str&#34;</span>, <span style="color:#e6db74">&#34;required&#34;</span>: <span style="color:#66d9ef">True</span>},
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;selector&#34;</span>: {<span style="color:#e6db74">&#34;display_name&#34;</span>: <span style="color:#e6db74">&#34;CSS Selector (Optional)&#34;</span>, <span style="color:#e6db74">&#34;field_type&#34;</span>: <span style="color:#e6db74">&#34;str&#34;</span>, <span style="color:#e6db74">&#34;required&#34;</span>: <span style="color:#66d9ef">False</span>},
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">build</span>(self, url: str, selector: str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>) <span style="color:#f92672">-&gt;</span> Tool: <span style="color:#66d9ef">try</span>: <span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">scrape_webpage</span>(input_url: str, css_selector: str <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>) <span style="color:#f92672">-&gt;</span> str: <span style="color:#e6db74">&#34;&#34;&#34;Scrapes text content from a given URL, optionally filtered by a CSS selector.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>                response <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(input_url, timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>                response<span style="color:#f92672">.</span>raise_for_status() <span style="color:#75715e"># Raise an exception for HTTP errors</span>
+</span></span><span style="display:flex;"><span>                soup <span style="color:#f92672">=</span> BeautifulSoup(response<span style="color:#f92672">.</span>text, <span style="color:#e6db74">&#39;html.parser&#39;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">if</span> css_selector: elements <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>select(css_selector)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span><span style="color:#f92672">.</span>join([elem<span style="color:#f92672">.</span>get_text(separator<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>, strip<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>) <span style="color:#66d9ef">for</span> elem <span style="color:#f92672">in</span> elements])
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>: <span style="color:#66d9ef">return</span> soup<span style="color:#f92672">.</span>get_text(separator<span style="color:#f92672">=</span><span style="color:#e6db74">&#34; &#34;</span>, strip<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e"># Return a LangChain Tool object</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Tool(
+</span></span><span style="display:flex;"><span>                name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;web_scraper&#34;</span>,
+</span></span><span style="display:flex;"><span>                description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Use this tool to scrape text content from a URL. Input should be a URL string.&#34;</span>,
+</span></span><span style="display:flex;"><span>                func<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> u: scrape_webpage(u, selector)
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">ImportError</span>: <span style="color:#66d9ef">raise</span> <span style="color:#a6e22e">ImportError</span>(<span style="color:#e6db74">&#34;Please install beautifulsoup4 and requests: ````pip install beautifulsoup4 requests````&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: <span style="color:#75715e"># Log the error and re-raise or return an informative message</span>
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error in WebScraperTool: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> Tool(
+</span></span><span style="display:flex;"><span>                name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;error_tool&#34;</span>,
+</span></span><span style="display:flex;"><span>                description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Web scraper tool failed.&#34;</span>,
+</span></span><span style="display:flex;"><span>                func<span style="color:#f92672">=</span><span style="color:#66d9ef">lambda</span> u: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error scraping </span><span style="color:#e6db74">{</span>u<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>            )
+</span></span></code></pre></div><p>要启用此功能，请确保您的 <code>langflow</code> 实例知道 <code>custom_components</code> 目录，通常通过设置 <code>LANGFLOW_AUTO_LOAD_COMPONENTS_PATHS</code> 环境变量或将其放置在默认的 <code>components</code> 目录中。</p>
+<h3 id="api-访问与部署">API 访问与部署<a hidden class="anchor" aria-hidden="true" href="#api-访问与部署">#</a></h3>
+<p>Langflow 中保存的每个流程都可以作为 REST API 端点暴露。这允许外部应用程序与您的 LLM 工作流交互，而无需访问 Langflow UI。</p>
+<p><strong>通过 API 访问流程：</strong></p>
+<ol>
+<li>在 Langflow UI 中保存您的流程。</li>
+<li>转到该流程的“Deploy”选项卡。您将看到 API 端点 URL。</li>
+<li>然后，您可以向此端点发出 <code>POST</code> 请求。</li>
+</ol>
+<p><strong>示例 <code>curl</code> 请求：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;http://localhost:7860/api/v1/run/{flow_id}&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>     -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           &#34;input&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">             &#34;question&#34;: &#34;What is the capital of France?&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           },
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">           &#34;stream&#34;: false
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">         }&#39;</span>
+</span></span></code></pre></div><p>将 <code>{flow_id}</code> 替换为您已部署流程的实际 ID。<code>input</code> JSON 结构取决于您的流程“Input”节点中定义的输入变量。</p>
+<p>对于生产部署，请考虑：</p>
+<ul>
+<li><strong>反向代理</strong>：使用 Nginx 或 Caddy 将请求代理到 Langflow，处理 SSL 终止，并可能添加速率限制。</li>
+<li><strong>进程管理器</strong>：使用 Gunicorn 或 Uvicorn 运行 Langflow，以实现更好的进程管理和并发性。</li>
+<li><strong>容器编排</strong>：使用 Docker Compose（如设置中所示）或 Kubernetes 进行部署，以实现可伸缩性、高可用性和更简单的管理。像 <a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a> 这样的平台可以为这些部署提供必要的基础设施，尤其是在需要本地模型专用 GPU 资源时。</li>
+<li><strong>身份验证</strong>：Langflow 具有内置用户管理功能。对于 API 访问，您可以在反向代理层实现 API 密钥或与 OAuth/OIDC 提供商集成。</li>
+</ul>
+<h3 id="监控与日志记录">监控与日志记录<a hidden class="anchor" aria-hidden="true" href="#监控与日志记录">#</a></h3>
+<p>在生产环境中，应用程序健康和性能的可视性至关重要。</p>
+<ul>
+<li><strong>Langflow 日志</strong>：Langflow 后端将日志打印到 <code>stdout</code>/<code>stderr</code>。配置您的部署环境以捕获这些日志（例如，到文件，或转发到集中式日志系统，如 ELK stack、Grafana Loki）。</li>
+<li><strong>LLM 提供商日志</strong>：监控您的 LLM 提供商仪表板，了解 API 使用情况、延迟和错误率。</li>
+<li><strong>应用程序性能监控 (APM)</strong>：与 Prometheus/Grafana、Datadog 或 New Relic 等工具集成，以监控 Langflow 实例的服务器资源、请求延迟和错误率。</li>
+</ul>
+<p>在处理外部 API 调用，特别是 LLM 时，使用代理服务通常是有益的。<a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a> 可以提供强大的代理解决方案，可以集成到您的部署中，以管理 IP 轮换、地理路由，或者仅仅在访问外部 LLM API 之前添加另一层网络控制。</p>
+<h2 id="与替代方案的比较">与替代方案的比较<a hidden class="anchor" aria-hidden="true" href="#与替代方案的比较">#</a></h2>
+<p>Langflow 是旨在简化 LLM 应用程序开发的众多工具之一。以下是它与一些主要替代方案的比较：</p>
+<table>
+	<thead>
+			<tr>
+					<th style="text-align: left">特性 / 工具</th>
+					<th style="text-align: left">Langflow</th>
+					<th style="text-align: left">FlowiseAI</th>
+					<th style="text-align: left">Chainlit</th>
+					<th style="text-align: left">Dify</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td style="text-align: left"><strong>可视化构建器</strong></td>
+					<td style="text-align: left">是（拖放节点图）</td>
+					<td style="text-align: left">是（拖放节点图）</td>
+					<td style="text-align: left">否（代码优先，然后 UI 交互）</td>
+					<td style="text-align: left">是（基于画布的工作流）</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>核心框架</strong></td>
+					<td style="text-align: left">LangChain</td>
+					<td style="text-align: left">LangChain</td>
+					<td style="text-align: left">LangChain, LlamaIndex, OpenAI Assistant API</td>
+					<td style="text-align: left">RAG, Agents, Workflows (内部引擎)</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>自定义组件</strong></td>
+					<td style="text-align: left">是（通过 <code>CustomComponent</code> 的 Python 代码）</td>
+					<td style="text-align: left">是（通过自定义工具的 Python 代码）</td>
+					<td style="text-align: left">是（任何 Python 代码）</td>
+					<td style="text-align: left">是（工具、函数、提示变量）</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>API 暴露</strong></td>
+					<td style="text-align: left">是（每个流程的 REST API）</td>
+					<td style="text-align: left">是（每个流程的 REST API）</td>
+					<td style="text-align: left">是（Websocket, HTTP/REST 通过 FastAPI）</td>
+					<td style="text-align: left">是（REST API, OpenAI 兼容 API）</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>部署模型</strong></td>
+					<td style="text-align: left">自托管 (Docker, Pip)</td>
+					<td style="text-align: left">自托管 (Docker, npm)</td>
+					<td style="text-align: left">自托管 (Python 应用程序)</td>
+					<td style="text-align: left">自托管 (Docker), 托管云</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>目标受众</strong></td>
+					<td style="text-align: left">开发者、研究人员 (LangChain 用户)</td>
+					<td style="text-align: left">开发者、非技术用户</td>
+					<td style="text-align: left">开发者 (Python 优先)</td>
+					<td style="text-align: left">开发者、产品经理</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>社区星标 (截至 2026 年 5 月)</strong></td>
+					<td style="text-align: left">148,710</td>
+					<td style="text-align: left">40,000+</td>
+					<td style="text-align: left">25,000+</td>
+					<td style="text-align: left">15,000+</td>
+			</tr>
+			<tr>
+					<td style="text-align: left"><strong>定价模式</strong></td>
+					<td style="text-align: left">开源 (MIT License)</td>
+					<td style="text-align: left">开源 (MIT License)</td>
+					<td style="text-align: left">开源 (MIT License)</td>
+					<td style="text-align: left">开源 (Apache 2.0), 商业云</td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>主要区别：</strong></p>
+<ul>
+<li><strong>Langflow vs. FlowiseAI</strong>：这两者在视觉化、以 LangChain 为中心的方法上非常相似。FlowiseAI 通常具有略微更“无代码”的感觉，侧重于非开发者的易用性，而 Langflow 更倾向于开发者中心的功能，例如通过 Python 代码实现自定义组件和更强大的 API 以进行集成。Langflow 的社区（星标数）明显更大，表明其在开发者中更受欢迎。</li>
+<li><strong>Langflow vs. Chainlit</strong>：Chainlit 从根本上不同。它是一个 Python 库，帮助开发者围绕现有 Python 代码（LangChain、LlamaIndex 等）构建一个美观、交互式的聊天 UI。它是代码优先的，提供一个用于测试和演示的 UI 层。Langflow 是视觉优先的，生成底层逻辑。开发者通常将 Chainlit <em>与</em> LangChain 或 LlamaIndex 一起使用，而 Langflow 则取代了手动编写复杂 LangChain 编排代码的需要。</li>
+<li><strong>Langflow vs. Dify</strong>：Dify 提供了一个更广泛的平台，包括可视化工作流构建器、RAG 功能、代理和托管云服务。虽然它有一个可视化画布，但 Dify 通常更像一个完整的应用程序平台，有时对底层 LangChain 组件的精细控制不如 Langflow。Dify 除了开源版本外，还提供商业云服务，面向寻求托管解决方案的企业。Langflow 仍然是纯粹的开源和自托管。</li>
+</ul>
+<p>对于深入 LangChain 生态系统并喜欢以可视化方式构建和迭代的开发者来说，Langflow 在低代码便捷性和高代码可扩展性之间提供了引人注目的平衡。</p>
+<h2 id="局限性--客观评估">局限性 / 客观评估<a hidden class="anchor" aria-hidden="true" href="#局限性--客观评估">#</a></h2>
+<p>尽管 Langflow 是一个强大的工具，但重要的是要认识到其当前的局限性以及它可能不是理想解决方案的领域。</p>
+<ol>
+<li><strong>大规模复杂性</strong>：对于极其庞大或高度互连的图，可视化画布可能会变得令人不知所措。即使有视觉提示，调试意大利面条式图中的数据流问题也可能具有挑战性。截至 2026 年 5 月，用于高级图分析或自动化布局优化的工具仍在发展中。</li>
+<li><strong>版本控制挑战</strong>：虽然流程可以导出为 JSON 文件，但将其集成到传统的基于 Git 的版本控制系统中可能很麻烦。合并不同版本 JSON 流程文件中的更改很困难，可能导致团队环境中的冲突。这需要仔细协调或外部工具。</li>
+<li><strong>对 LangChain 的依赖</strong>：Langflow 的架构与 LangChain 紧密耦合。虽然这通过 LangChain 庞大的生态系统提供了巨大的灵活性，但这也意味着 Langflow 继承了 LangChain 的局限性或破坏性更改。如果开发者需要使用完全脱离 LangChain 的框架，除非自定义组件弥补了这一差距，否则 Langflow 的实用性会降低。</li>
+<li><strong>有限的原生多租户</strong>：截至当前版本（v0.8.2，发布于 2026-04-15），Langflow 的内置用户管理主要用于 UI 的访问控制。它不提供强大的原生多租户功能，例如严格的数据隔离或每个租户的资源配额，而这些功能通常是 SaaS 应用程序所必需的。实现这一点需要在 Langflow 的 API 之上进行大量的自定义开发。</li>
+<li><strong>调试复杂的自定义组件</strong>：虽然自定义组件功能强大，但调试其中的问题需要回到 Python 代码中。可视化界面不会直接显示自定义组件的内部错误；您将依赖服务器日志。这可能会打破高度定制化流程部分的“可视化调试”范式。</li>
+<li><strong>极端吞吐量的性能</strong>：虽然 Langflow 的后端是用 FastAPI 构建的，性能良好，但对于非常高吞吐量、低延迟的场景，图遍历和 Python 执行的开销可能大于手动优化、编译的应用程序。对于大多数 LLM 应用程序，LLM API 调用延迟占主导地位，使得 Langflow 开销可以忽略不计，但对于特殊情况，这可能是一个因素。</li>
+</ol>
+<p>尽管有这些方面，但对于快速原型设计、视觉理解以及加速大多数 LLM 驱动的代理和应用程序的开发，Langflow 提供了显著的优势。开发者在规划大规模或高度专业化的部署时应了解这些局限性。</p>
+<h2 id="常见问题">常见问题<a hidden class="anchor" aria-hidden="true" href="#常见问题">#</a></h2>
+<h3 id="我可以用-langflow-构建什么样的应用程序">我可以用 Langflow 构建什么样的应用程序？<a hidden class="anchor" aria-hidden="true" href="#我可以用-langflow-构建什么样的应用程序">#</a></h3>
+<p>Langflow 适用于构建各种 LLM 应用程序，包括对话式 AI 代理、用于文档问答的 RAG 系统、内容生成工具、智能数据提取管道以及利用多个工具的复杂代理工作流。</p>
+<h3 id="langflow-是-langchain-的替代品吗">Langflow 是 LangChain 的替代品吗？<a hidden class="anchor" aria-hidden="true" href="#langflow-是-langchain-的替代品吗">#</a></h3>
+<p>不，Langflow 构建在 LangChain 之上。它提供了一个可视化界面来构建基于 LangChain 的应用程序，抽象掉了大部分代码。您仍然可以从 LangChain 的生态系统和功能中受益，但您以图形方式而不是纯粹通过代码与它们交互。</p>
+<h3 id="如何将-langflow-应用程序部署到生产环境">如何将 Langflow 应用程序部署到生产环境？<a hidden class="anchor" aria-hidden="true" href="#如何将-langflow-应用程序部署到生产环境">#</a></h3>
+<p>部署 Langflow 的推荐方法是使用 Docker 和 Docker Compose，或将其集成到 Kubernetes 集群中。您可以将单个流程公开为 REST API 端点，允许您的前端或其他服务与它们交互。Nginx 等反向代理通常用于 SSL 和域管理。</p>
+<h3 id="我可以将自己的自定义-python-代码与-langflow-一起使用吗">我可以将自己的自定义 Python 代码与 Langflow 一起使用吗？<a hidden class="anchor" aria-hidden="true" href="#我可以将自己的自定义-python-代码与-langflow-一起使用吗">#</a></h3>
+<p>是的，Langflow 完全支持自定义组件。您可以编写自己的 Python 类，这些类继承自 <code>CustomComponent</code> 或 <code>CustomCustomComponent</code>，定义自定义逻辑、工具或数据加载器，然后将它们作为节点暴露在 Langflow UI 中。</p>
+<h3 id="langflow-和-flowiseai-的主要区别是什么">Langflow 和 FlowiseAI 的主要区别是什么？<a hidden class="anchor" aria-hidden="true" href="#langflow-和-flowiseai-的主要区别是什么">#</a></h3>
+<p>Langflow 和 FlowiseAI 都提供基于 LangChain 的 LLM 工作流可视化构建器。Langflow 通常因其强大的 Python 自定义组件集成和更大的社区而更受开发者欢迎，而 FlowiseAI 有时被认为对非开发者更友好。Langflow 的 GitHub 星标数也明显更多。</p>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>Langflow 已将自己确立为 LLM 开发生态系统中的关键工具，其令人印象深刻的 148,710 个 GitHub 星标证明了这一点。它有效地弥合了复杂 LLM 框架与可访问应用程序开发之间的鸿沟，使开发者能够以前所未有的速度可视化构建、迭代和部署复杂的 AI 代理和工作流。从 RAG 系统的快速原型设计到多工具代理的编排，Langflow 显著减少了所需的时间和复杂性。</p>
+<p>尽管它有其局限性，特别是在流程的版本控制和极端扩展方面，但其在可视化开发、自定义组件可扩展性以及与主流 LLM 提供商无缝集成方面的优势使其成为宝贵的资产。对于任何希望在不牺牲控制或灵活性的情况下加速 LLM 应用程序开发的开发者而言，Langflow 都提供了一个引人注目的解决方案。</p>
+<p>加入 <a href="https://t.me/DIBI8_Group/4">dibi8 中文 Telegram 群</a>，了解更多关于 AI 工具和框架的讨论。</p>
+<hr>
+<h3 id="来源与延伸阅读">来源与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#来源与延伸阅读">#</a></h3>
+<ul>
+<li><strong>Langflow GitHub 仓库</strong>：<a href="https://github.com/langflow-ai/langflow">https://github.com/langflow-ai/langflow</a></li>
+<li><strong>Langflow 官方文档</strong>：<a href="https://docs.langflow.org/">https://docs.langflow.org/</a></li>
+<li><strong>Langflow GitHub 讨论区</strong>：<a href="https://github.com/langflow-ai/langflow/discussions">https://github.com/langflow-ai/langflow/discussions</a>（查看具体问题，如 ````Issue #1234: RAG performance optimization```）</li>
+</ul>
+<h3 id="内部链接候选">内部链接候选：<a hidden class="anchor" aria-hidden="true" href="#内部链接候选">#</a></h3>
+<ul>
+<li><a href="dibi8-internal-link-langchain-deep-dive">LangChain 深度解析</a></li>
+<li><a href="dibi8-internal-link-building-rag-applications">构建 RAG 应用</a></li>
+<li><a href="dibi8-internal-link-deploying-llm-apps-with-docker">使用 Docker 部署 LLM 应用</a></li>
+<li><a href="dibi8-internal-link-introduction-to-ai-agents">AI 代理简介</a></li>
+</ul>
+<hr>
+<p><strong>披露</strong>：上方部分链接含联盟推广。如通过链接注册，dibi8.com 可能获得佣金，不影响你的成本。这帮助 dibi8 持续免费运营。</p>
+<hr>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Langflow：148k 星标的视觉化 LLM 工作流——2026 技术深度解析&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-23&rdquo;,
@@ -87,18 +730,186 @@ Langflow 提供了一个 <code>docker-compose.yml</code> 文件，便于设置�
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026%22>https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026%22">https://dibi8.com/zh/resources/langflow-visual-llm-workflow-builder-2026"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>12-factor-agents-production-llm-software-2026</a></li><li><a href=/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>12-factor-agents</a></li><li><a href=/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>1m-context-window-llm-2026-real-test</a></li><li><a href=/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>9router-smart-llm-proxy-token-saver-free-coding</a></li><li><a href=/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p><p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p><p><strong>问：如何评估LLM框架的性能？</strong></p><p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p><p><strong>问：开源LLM框架的商业使用限制？</strong></p><p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p><p><strong>问：是否需要GPU才能运行LLM框架？</strong></p><p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p><p><strong>问：企业级部署的最佳实践？</strong></p><p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/langchain/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/langgraph-stateful-agent-orchestration-2026/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">12-factor-agents</a></li>
+<li><a href="/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/zh/ai-coding-agents/langflow-visual-llm-workflow-builder-2026/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：LangChain和LlamaIndex哪个更好？</strong></p>
+<p>LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。</p>
+<p><strong>问：如何评估LLM框架的性能？</strong></p>
+<p>基准测试包括：推理速度、准确率、资源消耗、可扩展性。</p>
+<p><strong>问：开源LLM框架的商业使用限制？</strong></p>
+<p>大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。</p>
+<p><strong>问：是否需要GPU才能运行LLM框架？</strong></p>
+<p>推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。</p>
+<p><strong>问：企业级部署的最佳实践？</strong></p>
+<p>使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/langchain/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/langgraph-stateful-agent-orchestration-2026/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

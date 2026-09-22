@@ -1,10 +1,265 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/promptfoo-llm-frameworks-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/promptfoo-llm-frameworks-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/promptfoo-llm-frameworks-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“llm-frameworks”] tags: [\"] aliases:\n/posts/promptfoo-llm-frameworks-2026/ faqs: - q: ‘Làm sao cài và chạy promptfoo cục bộ?’ a: ‘Con đường nhanh nhất là không cần cài: bash npx promptfoo@latest init --example getting-started Để cài toàn cục\", “dùng npm install -g promptfoo (hoặc brew install promptfoo”, “hoặc pip install promptfoo). Sau đó chạy promptfoo eval để đánh giá và promptfoo view để mở trình xem cục bộ.’ q: ‘Tôi có thể dùng promptfoo với mô hình của riêng mình không?’ a: ‘Có. Promptfoo hỗ trợ nhiều provider — OpenAI”, “Anthropic”, “Google”, “DeepSeek”, “các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách providers của promptfooconfig.yaml và cung cấp khóa API tương ứng qua biến môi trường.’ q: ‘Promptfoo so sánh hiệu năng giữa các mô hình khác nhau như thế nào?’ a: ‘Bạn liệt kê nhiều mục dưới providers”, “và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó promptfoo view hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion”, “để bạn so sánh trực tiếp trên đầu vào của chính mình.’ q: ‘Có cách nào tích hợp promptfoo vào pipeline CI/CD không?’ a: ‘Có. Vì promptfoo là một CLI”, “bạn có thể chạy npx promptfoo@latest eval trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.’ q: ‘Làm sao đóng góp cho dự án promptfoo?’ a: ‘Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại hướng dẫn đóng góp”.\" Giới thiệu Nếu bạn xây dựng ứng dụng với các mô hình như GPT, Claude, Gemini hay DeepSeek, hẳn bạn biết rằng “trông ổn trong playground” hoàn toàn khác với “chạy ổn định trong môi trường production”. Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Nó thay thế kiểu làm mò mẫm bằng các cấu hình kiểm thử khai báo mà bạn có thể chạy cục bộ và cài vào CI/CD. Trong hướng dẫn này, chúng ta sẽ cài đặt nó, viết ```promptfooconfig.yaml````, chạy một lần đánh giá, so sánh các mô hình, rồi khởi chạy một lượt quét red-team.\nPromptfoo là gì? Promptfoo là một CLI và thư viện để đánh giá và red-team các ứng dụng LLM. Bạn chỉ cần mô tả prompt của mình, các provider (mô hình) muốn chạy, cùng một bộ test case kèm assertion. Promptfoo sẽ chạy mọi prompt qua mọi test case, kiểm tra từng assertion, rồi cho bạn một bảng so sánh song song mức độ hoạt động của từng mô hình.\nCác khả năng cốt lõi gồm: - Đánh giá — chạy prompt trên nhiều provider và chấm điểm đầu ra bằng assertion (khớp chính xác, chứa chuỗi, độ tương đồng ngữ nghĩa, rubric chấm bằng LLM, v.v.).\nSo sánh mô hình — so sánh GPT, Claude, Gemini, DeepSeek và nhiều mô hình khác trên cùng một đầu vào. Red-team — tạo các test case đối kháng để dò tìm lỗ hổng của ứng dụng trước khi phát hành. Tích hợp CI/CD — cấu hình khai báo chạy được ở bất cứ nơi nào có terminal, kể cả GitHub Actions. Dự án được viết bằng TypeScript, phát hành theo giấy phép MIT và do nhóm promptfoo duy trì.\nPromptfoo hoạt động thế nào Quy trình ưu tiên cấu hình: 1. Cấu hình khai báo — một tệp promptfooconfig.yaml duy nhất định nghĩa prompts, providers và tests. Với các trường hợp thông thường, bạn không cần viết code kết dính.\nGiao diện dòng lệnh (CLI) — promptfoo eval chạy lần đánh giá. Nó in bảng kết quả ra terminal và lưu kết quả cục bộ.\nTrình xem web cục bộ — promptfoo view mở một giao diện web cục bộ trực quan hóa kết quả đánh giá, giúp bạn so sánh đầu ra của từng mô hình theo từng ô.\nDưới đây là một promptfooconfig.yaml tối giản: `````yaml\npromptfooconfig.yaml description: “Technical guide and comparison.” prompts: - “What is the capital of ?”\n“Explain quantum mechanics in one sentence.” providers: - openai:gpt-4o-mini\nanthropic:messages:claude-3-5-sonnet-20241022 tests: - vars: country: France assert: - type: contains value: Paris\nCấu hình này chạy cả hai prompt trên cả hai provider. Với prompt đầu tiên, nó thay thế ```````` và khẳng định rằng đầu ra có chứa \"Paris\". Khóa API được đọc từ biến môi trường (ví dụ ````OPENAI_API_KEY```` và ````ANTHROPIC_API_KEY````), không lưu trong tệp cấu hình. ![](https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png) - Source Code: [promptfoo GitHub](https://github.com/promptfoo/promptfoo) ![promptfoo self-grading, via dibi8.com](https://www.promptfoo.dev/img/docs/self-grading.gif) *Giao diện tự chấm điểm của promptfoo (nguồn: kho promptfoo/promptfoo, do dibi8 phân tích tổng hợp)* ## Cài đặt \u0026 Thiết lập Nếu muốn chạy promptfoo như một tác vụ production theo lịch, bạn cần một máy luôn bật — có thể khởi tạo một máy trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) (tài khoản mới có tín dụng dùng thử miễn phí), hoặc dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho VPS Hồng Kông độ trễ thấp (cùng IDC đang host dibi8.com). Promptfoo cần Node.js ``^20.20.0`` hoặc ``\u003e=22.22.0``. Kiểm tra phiên bản: `````bash node -v Nếu cần Node.js, hãy tải từ trang chủ chính thức.\nCài đặt Cách nhanh nhất để dùng thử promptfoo là không cài gì cả: `````bash npx promptfoo@latest init –example getting-started\nNếu muốn cài toàn cục, chọn cách phù hợp với môi trường của bạn: `````bash # npm npm install -g promptfoo # Homebrew brew install promptfoo # pip pip install promptfoo Thiết lập khóa API Promptfoo đọc thông tin xác thực provider từ biến môi trường. Với OpenAI: `````bash export OPENAI_API_KEY=sk-abc123\nHãy dùng biến tương ứng với provider bạn đang kiểm thử (ví dụ ````ANTHROPIC_API_KEY```` cho Claude). Nếu quên đặt khóa, khi chạy đánh giá provider sẽ trả về lỗi xác thực — chỉ cần đặt biến rồi chạy lại. ### Chạy lần đánh giá đầu tiên Sau khi ``init``, thư mục của bạn sẽ có một ``promptfooconfig.yaml``. Chạy đánh giá và mở trình xem: `````bash promptfoo eval promptfoo view promptfoo eval in kết quả ra terminal; promptfoo view mở một giao diện web cục bộ để so sánh song song đầy đủ hơn. Nếu gặp khó, hãy xem tài liệu hoặc mở issue trên GitHub.\nCách dùng cốt lõi Ví dụ 1: Một assertion đơn giản Tạo cấu hình kiểm tra một chuỗi con kỳ vọng: `````yaml\npromptfooconfig.yaml description: “Technical guide and comparison.” prompts: - “What is the capital of ?”\nproviders: - openai:gpt-4o-mini\ntests: - vars: country: France assert: - type: contains value: Paris\nChạy: `````bash promptfoo eval Promptfoo thực thi test case và báo cáo assertion có vượt qua hay không.\nVí dụ 2: So sánh mô hình với nhiều loại assertion Bạn có thể liệt kê nhiều provider và phối hợp nhiều loại assertion — chính xác, ngữ nghĩa và chấm bằng LLM: `````yaml\npromptfooconfig.yaml description: “Technical guide and comparison.” prompts: - “Answer concisely: \"\nproviders: - openai:gpt-4o\nanthropic:messages:claude-3-5-sonnet-20241022 defaultTest: assert: - type: llm-rubric value: does not describe itself as an AI, model, or chatbot\ntests: - vars: question: “What is the meaning of life?” assert: - type: similar value: “It depends on the person” threshold: 0.6\nChạy cùng lệnh đó rồi dùng ``promptfoo view`` để so sánh hai mô hình theo từng ô: `````bash promptfoo eval Ví dụ 3: Chạy trong pipeline CI/CD Ở đâu có terminal thì promptfoo chạy được ở đó. Dưới đây là một workflow GitHub Actions làm hỏng (fail) bản build nếu assertion thất bại: `````yaml\n.github/workflows/eval.yml name: Promptfoo Eval\non: push: branches: [ main ] pull_request: branches: [ main ]\njobs: eval: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4\n- name: Set up Node.js uses: actions/setup-node@v4 with: node-version: 22 - name: Run promptfoo eval env: OPENAI_API_KEY: $ run: npx promptfoo@latest eval Nó chạy bộ đánh giá của bạn ở mỗi lần push và pull request, bắt lỗi hồi quy trước khi gộp code. ## Red-Team Ngoài đánh giá thông thường, promptfoo có thể tạo các test case đối kháng để dò tìm những lỗ hổng như prompt injection, jailbreak và đầu ra không an toàn. Quy trình red-team có các lệnh con riêng: `````bash # Mở giao diện thiết lập để cấu hình mục tiêu và loại tấn công npx promptfoo@latest redteam setup # Hoặc cấu hình mà không cần GUI promptfoo redteam init --no-gui # Tạo các case đối kháng và chạy chúng lên mục tiêu promptfoo redteam run # Xem báo cáo các phát hiện promptfoo redteam report Báo cáo phân nhóm các phát hiện theo loại lỗ hổng và mức độ nghiêm trọng, kèm các biện pháp khắc phục được gợi ý.\nBenchmark \u0026 Sử dụng thực tế Promptfoo được dùng rộng rãi để đánh giá prompt và mô hình. Tuy vậy, điểm mấu chốt không phải là dựa vào một bảng xếp hạng duy nhất, mà là benchmark trên chính prompt và test case của bạn — những con số đáng giá đến từ ứng dụng của bạn, không phải từ một bộ thử nghiệm chung chung.\nMột quy trình tiêu biểu trông như sau: `````bash npx promptfoo@latest eval \u0026\u0026 npx promptfoo@latest view\nChạy toàn bộ tập kiểm thử trên các mô hình ứng viên, rồi mở trình xem để thấy chính xác mỗi mô hình vượt qua hay thất bại ở prompt nào, case nào. Vì cấu hình mang tính khai báo, cùng một bộ kiểm thử chạy cục bộ lúc phát triển và chạy trên CI ở mỗi lần commit. ![promptfoo red team dashboard, via dibi8.com](https://www.promptfoo.dev/img/redteam-dashboard@2x.jpg) *Bảng điều khiển red-team của promptfoo (nguồn: kho promptfoo/promptfoo, do dibi8 phân tích tổng hợp)* ## So sánh với các lựa chọn khác Bạn cũng có thể xem bài tổng hợp [các công cụ mã nguồn mở liên quan](dibi8-internal-link) của chúng tôi. Khi chọn công cụ đánh giá và red-team LLM, sức hút chính của promptfoo là sự kết hợp giữa cấu hình khai báo, quy trình ưu tiên cục bộ và khả năng red-team tích hợp sẵn. | Hạng mục | promptfoo | |-----------------------|---------------------------------------------------------------------------| | **Số Star** | 21,825 | | **Giấy phép** | MIT | | **Bên duy trì** | promptfoo | | **Ngôn ngữ** | TypeScript | | **Nhánh mặc định** | main | | **Kiểu cấu hình** | ````promptfooconfig.yaml```` khai báo (prompts / providers / tests / assert) | | **Giao diện** | CLI (````promptfoo eval```` / ````view````) cùng việc dùng như thư viện | | **Phạm vi mô hình** | GPT, Claude, Gemini, DeepSeek và nhiều provider khác | | **Red-team** | Tích hợp sẵn (các lệnh con ````promptfoo redteam````) | | **CI/CD** | Chạy ở mọi terminal; hỗ trợ GitHub Actions hạng nhất | ### Phân tích chi tiết - **Số Star** — promptfoo có khoảng 21,825 star trên GitHub, một tín hiệu mạnh cho thấy mức độ phổ biến trong giới phát triển LLM. - **Cấu hình khai báo** — định nghĩa các bài kiểm thử trong ````promptfooconfig.yaml```` giúp bộ đánh giá của bạn được quản lý phiên bản cùng với code, để cùng một bộ kiểm tra chạy được cả cục bộ lẫn trên CI. ## Hạn chế \u0026 Đánh giá thẳng thắn Promptfoo là một công cụ giàu năng lực, nhưng vẫn có những đánh đổi đáng lưu ý: 1. **Cấu hình phình to theo độ phức tạp** — định dạng khai báo rất tốt cho trường hợp thông thường, nhưng các bộ lớn với nhiều provider, biến động và assertion tùy biến sẽ trở nên dài dòng. Bạn thường phải tách prompt và test case ra các tệp riêng. 2. **Bạn tự lo việc truy cập mô hình** — promptfoo điều phối việc đánh giá nhưng dựa vào khóa API và hạn mức provider của bạn. Chi phí và giới hạn tốc độ là phần của bạn. 3. **Chạy đánh giá tốn token và thời gian** — một bộ lớn trải trên nhiều provider tạo ra rất nhiều lệnh gọi API. Trên các tập kiểm thử lớn, độ trễ và chi phí sẽ tích lũy. 4. **Thiết kế assertion cần cân nhắc** — rubric chấm bằng LLM (````llm-rubric````) và kiểm tra ngữ nghĩa rất mạnh nhưng không tất định; để có assertion đáng tin và có ý nghĩa cần lặp đi lặp lại. 5. **Đang tiến hóa tích cực** — promptfoo phát hành thường xuyên. Điều đó nghĩa là cải tiến nhanh, nhưng đôi khi có thay đổi gây phá vỡ; hãy ghim một phiên bản trong CI để ổn định. Đây là những điều đáng cân nhắc trước khi chuẩn hóa nó. ## Kết luận Promptfoo biến việc kiểm thử prompt và mô hình từ chuyện đoán mò thành một quy trình có thể tái lập và quản lý phiên bản. Chỉ với một ````promptfooconfig.yaml````, bạn có thể đánh giá prompt, so sánh GPT, Claude, Gemini và DeepSeek trên dữ liệu của chính mình, và red-team ứng dụng để tìm lỗ hổng — tất cả ngay trong CLI và CI/CD. Bước tiếp theo tốt nhất là chạy ````npx promptfoo@latest init --example getting-started```, trỏ nó vào prompt của bạn, rồi mở trình xem để thấy các mô hình thực sự hoạt động ra sao. Việc scraping quy mô lớn cần proxy luân phiên — [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) là lựa chọn tiêu chuẩn. - Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để nhận tin về các công cụ AI mã nguồn mở. - Đọc tiếp: [các hướng dẫn liên quan trên dibi8](dibi8-internal-link). * * * **Nguồn \u0026 Đọc thêm**: - Kho GitHub: https://github.com/promptfoo/promptfoo - Tài liệu chính thức / README: https://github.com/promptfoo/promptfoo#readme *Một số liên kết ở trên là liên kết tiếp thị. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không tốn thêm chi phí nào. Điều này giúp duy trì website và giữ cho nội dung miễn phí.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Promptfoo: Kiểm thử, Đánh giá \u0026 Red-Team Prompt LLM của bạn — Hướng dẫn thực chiến 2026\", \"datePublished\": \"2026-06-02\", \"dateModified\": \"2026-06-02\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/promptfoo-llm-frameworks-2026\" } } ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ","wordCount":"2413","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>12 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/promptfoo-llm-frameworks-2026/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/promptfoo-llm-frameworks-2026/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/promptfoo-llm-frameworks-2026/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#promptfoo-l%c3%a0-g%c3%ac aria-label="Promptfoo là gì?">Promptfoo là gì?</a></li><li><a href=#promptfoo-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-th%e1%ba%bf-n%c3%a0o aria-label="Promptfoo hoạt động thế nào">Promptfoo hoạt động thế nào</a></li></ul><li><a href=#promptfooconfigyaml aria-label=promptfooconfig.yaml>promptfooconfig.yaml</a><ul><ul><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t aria-label="Cài đặt">Cài đặt</a></li><li><a href=#thi%e1%ba%bft-l%e1%ba%adp-kh%c3%b3a-api aria-label="Thiết lập khóa API">Thiết lập khóa API</a></li></ul><li><a href=#c%c3%a1ch-d%c3%b9ng-c%e1%bb%91t-l%c3%b5i aria-label="Cách dùng cốt lõi">Cách dùng cốt lõi</a><ul><li><a href=#v%c3%ad-d%e1%bb%a5-1-m%e1%bb%99t-assertion-%c4%91%c6%a1n-gi%e1%ba%a3n aria-label="Ví dụ 1: Một assertion đơn giản">Ví dụ 1: Một assertion đơn giản</a></li></ul></li></ul></li><li><a href=#promptfooconfigyaml-1 aria-label=promptfooconfig.yaml>promptfooconfig.yaml</a><ul><ul><li><a href=#v%c3%ad-d%e1%bb%a5-2-so-s%c3%a1nh-m%c3%b4-h%c3%acnh-v%e1%bb%9bi-nhi%e1%bb%81u-lo%e1%ba%a1i-assertion aria-label="Ví dụ 2: So sánh mô hình với nhiều loại assertion">Ví dụ 2: So sánh mô hình với nhiều loại assertion</a></li></ul></ul></li><li><a href=#promptfooconfigyaml-2 aria-label=promptfooconfig.yaml>promptfooconfig.yaml</a><ul><ul><li><a href=#v%c3%ad-d%e1%bb%a5-3-ch%e1%ba%a1y-trong-pipeline-cicd aria-label="Ví dụ 3: Chạy trong pipeline CI/CD">Ví dụ 3: Chạy trong pipeline CI/CD</a></li></ul></ul></li><li><a href=#githubworkflowsevalyml aria-label=.github/workflows/eval.yml>.github/workflows/eval.yml</a><ul><li><a href=#benchmark--s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark & Sử dụng thực tế">Benchmark & Sử dụng thực tế</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/promptfoo-llm-frameworks-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/promptfoo-llm-frameworks-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/promptfoo-llm-frameworks-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“llm-frameworks”] tags: [\"] aliases:\n/posts/promptfoo-llm-frameworks-2026/ faqs: - q: ‘Làm sao cài và chạy promptfoo cục bộ?’ a: ‘Con đường nhanh nhất là không cần cài: bash npx promptfoo@latest init --example getting-started Để cài toàn cục\", “dùng npm install -g promptfoo (hoặc brew install promptfoo”, “hoặc pip install promptfoo). Sau đó chạy promptfoo eval để đánh giá và promptfoo view để mở trình xem cục bộ.’ q: ‘Tôi có thể dùng promptfoo với mô hình của riêng mình không?’ a: ‘Có. Promptfoo hỗ trợ nhiều provider — OpenAI”, “Anthropic”, “Google”, “DeepSeek”, “các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách providers của promptfooconfig.yaml và cung cấp khóa API tương ứng qua biến môi trường.’ q: ‘Promptfoo so sánh hiệu năng giữa các mô hình khác nhau như thế nào?’ a: ‘Bạn liệt kê nhiều mục dưới providers”, “và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó promptfoo view hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion”, “để bạn so sánh trực tiếp trên đầu vào của chính mình.’ q: ‘Có cách nào tích hợp promptfoo vào pipeline CI/CD không?’ a: ‘Có. Vì promptfoo là một CLI”, “bạn có thể chạy npx promptfoo@latest eval trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.’ q: ‘Làm sao đóng góp cho dự án promptfoo?’ a: ‘Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại hướng dẫn đóng góp”.\" Giới thiệu Nếu bạn xây dựng ứng dụng với các mô hình như GPT, Claude, Gemini hay DeepSeek, hẳn bạn biết rằng “trông ổn trong playground” hoàn toàn khác với “chạy ổn định trong môi trường production”. Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Nó thay thế kiểu làm mò mẫm bằng các cấu hình kiểm thử khai báo mà bạn có thể chạy cục bộ và cài vào CI/CD. Trong hướng dẫn này, chúng ta sẽ cài đặt nó, viết ```promptfooconfig.yaml````, chạy một lần đánh giá, so sánh các mô hình, rồi khởi chạy một lượt quét red-team.\nPromptfoo là gì? Promptfoo là một CLI và thư viện để đánh giá và red-team các ứng dụng LLM. Bạn chỉ cần mô tả prompt của mình, các provider (mô hình) muốn chạy, cùng một bộ test case kèm assertion. Promptfoo sẽ chạy mọi prompt qua mọi test case, kiểm tra từng assertion, rồi cho bạn một bảng so sánh song song mức độ hoạt động của từng mô hình.\nCác khả năng cốt lõi gồm: - Đánh giá — chạy prompt trên nhiều provider và chấm điểm đầu ra bằng assertion (khớp chính xác, chứa chuỗi, độ tương đồng ngữ nghĩa, rubric chấm bằng LLM, v.v.).\nSo sánh mô hình — so sánh GPT, Claude, Gemini, DeepSeek và nhiều mô hình khác trên cùng một đầu vào. Red-team — tạo các test case đối kháng để dò tìm lỗ hổng của ứng dụng trước khi phát hành. Tích hợp CI/CD — cấu hình khai báo chạy được ở bất cứ nơi nào có terminal, kể cả GitHub Actions. Dự án được viết bằng TypeScript, phát hành theo giấy phép MIT và do nhóm promptfoo duy trì.\nPromptfoo hoạt động thế nào Quy trình ưu tiên cấu hình: 1. Cấu hình khai báo — một tệp promptfooconfig.yaml duy nhất định nghĩa prompts, providers và tests. Với các trường hợp thông thường, bạn không cần viết code kết dính.\nGiao diện dòng lệnh (CLI) — promptfoo eval chạy lần đánh giá. Nó in bảng kết quả ra terminal và lưu kết quả cục bộ.\nTrình xem web cục bộ — promptfoo view mở một giao diện web cục bộ trực quan hóa kết quả đánh giá, giúp bạn so sánh đầu ra của từng mô hình theo từng ô.\nDưới đây là một promptfooconfig.yaml tối giản: `````yaml\npromptfooconfig.yaml description: “Technical guide and comparison.” prompts: - “What is the capital of ?”\n“Explain quantum mechanics in one sentence.” providers: - openai:gpt-4o-mini\nanthropic:messages:claude-3-5-sonnet-20241022 tests: - vars: country: France assert: - type: contains value: Paris\nCấu hình này chạy cả hai prompt trên cả hai provider. Với prompt đầu tiên, nó thay thế ```````` và khẳng định rằng đầu ra có chứa \"Paris\". Khóa API được đọc từ biến môi trường (ví dụ ````OPENAI_API_KEY```` và ````ANTHROPIC_API_KEY````), không lưu trong tệp cấu hình. ![](https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png) - Source Code: [promptfoo GitHub](https://github.com/promptfoo/promptfoo) ![promptfoo self-grading, via dibi8.com](https://www.promptfoo.dev/img/docs/self-grading.gif) *Giao diện tự chấm điểm của promptfoo (nguồn: kho promptfoo/promptfoo, do dibi8 phân tích tổng hợp)* ## Cài đặt \u0026 Thiết lập Nếu muốn chạy promptfoo như một tác vụ production theo lịch, bạn cần một máy luôn bật — có thể khởi tạo một máy trên [DigitalOcean](https://m.do.co/c/eca87ac14ee0) (tài khoản mới có tín dụng dùng thử miễn phí), hoặc dùng [HTStack](https://my.htstack.com/aff.php?aff=27187) cho VPS Hồng Kông độ trễ thấp (cùng IDC đang host dibi8.com). Promptfoo cần Node.js ``^20.20.0`` hoặc ``\u003e=22.22.0``. Kiểm tra phiên bản: `````bash node -v Nếu cần Node.js, hãy tải từ trang chủ chính thức.\nCài đặt Cách nhanh nhất để dùng thử promptfoo là không cài gì cả: `````bash npx promptfoo@latest init –example getting-started\nNếu muốn cài toàn cục, chọn cách phù hợp với môi trường của bạn: `````bash # npm npm install -g promptfoo # Homebrew brew install promptfoo # pip pip install promptfoo Thiết lập khóa API Promptfoo đọc thông tin xác thực provider từ biến môi trường. Với OpenAI: `````bash export OPENAI_API_KEY=sk-abc123\nHãy dùng biến tương ứng với provider bạn đang kiểm thử (ví dụ ````ANTHROPIC_API_KEY```` cho Claude). Nếu quên đặt khóa, khi chạy đánh giá provider sẽ trả về lỗi xác thực — chỉ cần đặt biến rồi chạy lại. ### Chạy lần đánh giá đầu tiên Sau khi ``init``, thư mục của bạn sẽ có một ``promptfooconfig.yaml``. Chạy đánh giá và mở trình xem: `````bash promptfoo eval promptfoo view promptfoo eval in kết quả ra terminal; promptfoo view mở một giao diện web cục bộ để so sánh song song đầy đủ hơn. Nếu gặp khó, hãy xem tài liệu hoặc mở issue trên GitHub.\nCách dùng cốt lõi Ví dụ 1: Một assertion đơn giản Tạo cấu hình kiểm tra một chuỗi con kỳ vọng: `````yaml\npromptfooconfig.yaml description: “Technical guide and comparison.” prompts: - “What is the capital of ?”\nproviders: - openai:gpt-4o-mini\ntests: - vars: country: France assert: - type: contains value: Paris\nChạy: `````bash promptfoo eval Promptfoo thực thi test case và báo cáo assertion có vượt qua hay không.\nVí dụ 2: So sánh mô hình với nhiều loại assertion Bạn có thể liệt kê nhiều provider và phối hợp nhiều loại assertion — chính xác, ngữ nghĩa và chấm bằng LLM: `````yaml\npromptfooconfig.yaml description: “Technical guide and comparison.” prompts: - “Answer concisely: \"\nproviders: - openai:gpt-4o\nanthropic:messages:claude-3-5-sonnet-20241022 defaultTest: assert: - type: llm-rubric value: does not describe itself as an AI, model, or chatbot\ntests: - vars: question: “What is the meaning of life?” assert: - type: similar value: “It depends on the person” threshold: 0.6\nChạy cùng lệnh đó rồi dùng ``promptfoo view`` để so sánh hai mô hình theo từng ô: `````bash promptfoo eval Ví dụ 3: Chạy trong pipeline CI/CD Ở đâu có terminal thì promptfoo chạy được ở đó. Dưới đây là một workflow GitHub Actions làm hỏng (fail) bản build nếu assertion thất bại: `````yaml\n.github/workflows/eval.yml name: Promptfoo Eval\non: push: branches: [ main ] pull_request: branches: [ main ]\njobs: eval: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4\n- name: Set up Node.js uses: actions/setup-node@v4 with: node-version: 22 - name: Run promptfoo eval env: OPENAI_API_KEY: $ run: npx promptfoo@latest eval Nó chạy bộ đánh giá của bạn ở mỗi lần push và pull request, bắt lỗi hồi quy trước khi gộp code. ## Red-Team Ngoài đánh giá thông thường, promptfoo có thể tạo các test case đối kháng để dò tìm những lỗ hổng như prompt injection, jailbreak và đầu ra không an toàn. Quy trình red-team có các lệnh con riêng: `````bash # Mở giao diện thiết lập để cấu hình mục tiêu và loại tấn công npx promptfoo@latest redteam setup # Hoặc cấu hình mà không cần GUI promptfoo redteam init --no-gui # Tạo các case đối kháng và chạy chúng lên mục tiêu promptfoo redteam run # Xem báo cáo các phát hiện promptfoo redteam report Báo cáo phân nhóm các phát hiện theo loại lỗ hổng và mức độ nghiêm trọng, kèm các biện pháp khắc phục được gợi ý.\nBenchmark \u0026 Sử dụng thực tế Promptfoo được dùng rộng rãi để đánh giá prompt và mô hình. Tuy vậy, điểm mấu chốt không phải là dựa vào một bảng xếp hạng duy nhất, mà là benchmark trên chính prompt và test case của bạn — những con số đáng giá đến từ ứng dụng của bạn, không phải từ một bộ thử nghiệm chung chung.\nMột quy trình tiêu biểu trông như sau: `````bash npx promptfoo@latest eval \u0026\u0026 npx promptfoo@latest view\nChạy toàn bộ tập kiểm thử trên các mô hình ứng viên, rồi mở trình xem để thấy chính xác mỗi mô hình vượt qua hay thất bại ở prompt nào, case nào. Vì cấu hình mang tính khai báo, cùng một bộ kiểm thử chạy cục bộ lúc phát triển và chạy trên CI ở mỗi lần commit. ![promptfoo red team dashboard, via dibi8.com](https://www.promptfoo.dev/img/redteam-dashboard@2x.jpg) *Bảng điều khiển red-team của promptfoo (nguồn: kho promptfoo/promptfoo, do dibi8 phân tích tổng hợp)* ## So sánh với các lựa chọn khác Bạn cũng có thể xem bài tổng hợp [các công cụ mã nguồn mở liên quan](dibi8-internal-link) của chúng tôi. Khi chọn công cụ đánh giá và red-team LLM, sức hút chính của promptfoo là sự kết hợp giữa cấu hình khai báo, quy trình ưu tiên cục bộ và khả năng red-team tích hợp sẵn. | Hạng mục | promptfoo | |-----------------------|---------------------------------------------------------------------------| | **Số Star** | 21,825 | | **Giấy phép** | MIT | | **Bên duy trì** | promptfoo | | **Ngôn ngữ** | TypeScript | | **Nhánh mặc định** | main | | **Kiểu cấu hình** | ````promptfooconfig.yaml```` khai báo (prompts / providers / tests / assert) | | **Giao diện** | CLI (````promptfoo eval```` / ````view````) cùng việc dùng như thư viện | | **Phạm vi mô hình** | GPT, Claude, Gemini, DeepSeek và nhiều provider khác | | **Red-team** | Tích hợp sẵn (các lệnh con ````promptfoo redteam````) | | **CI/CD** | Chạy ở mọi terminal; hỗ trợ GitHub Actions hạng nhất | ### Phân tích chi tiết - **Số Star** — promptfoo có khoảng 21,825 star trên GitHub, một tín hiệu mạnh cho thấy mức độ phổ biến trong giới phát triển LLM. - **Cấu hình khai báo** — định nghĩa các bài kiểm thử trong ````promptfooconfig.yaml```` giúp bộ đánh giá của bạn được quản lý phiên bản cùng với code, để cùng một bộ kiểm tra chạy được cả cục bộ lẫn trên CI. ## Hạn chế \u0026 Đánh giá thẳng thắn Promptfoo là một công cụ giàu năng lực, nhưng vẫn có những đánh đổi đáng lưu ý: 1. **Cấu hình phình to theo độ phức tạp** — định dạng khai báo rất tốt cho trường hợp thông thường, nhưng các bộ lớn với nhiều provider, biến động và assertion tùy biến sẽ trở nên dài dòng. Bạn thường phải tách prompt và test case ra các tệp riêng. 2. **Bạn tự lo việc truy cập mô hình** — promptfoo điều phối việc đánh giá nhưng dựa vào khóa API và hạn mức provider của bạn. Chi phí và giới hạn tốc độ là phần của bạn. 3. **Chạy đánh giá tốn token và thời gian** — một bộ lớn trải trên nhiều provider tạo ra rất nhiều lệnh gọi API. Trên các tập kiểm thử lớn, độ trễ và chi phí sẽ tích lũy. 4. **Thiết kế assertion cần cân nhắc** — rubric chấm bằng LLM (````llm-rubric````) và kiểm tra ngữ nghĩa rất mạnh nhưng không tất định; để có assertion đáng tin và có ý nghĩa cần lặp đi lặp lại. 5. **Đang tiến hóa tích cực** — promptfoo phát hành thường xuyên. Điều đó nghĩa là cải tiến nhanh, nhưng đôi khi có thay đổi gây phá vỡ; hãy ghim một phiên bản trong CI để ổn định. Đây là những điều đáng cân nhắc trước khi chuẩn hóa nó. ## Kết luận Promptfoo biến việc kiểm thử prompt và mô hình từ chuyện đoán mò thành một quy trình có thể tái lập và quản lý phiên bản. Chỉ với một ````promptfooconfig.yaml````, bạn có thể đánh giá prompt, so sánh GPT, Claude, Gemini và DeepSeek trên dữ liệu của chính mình, và red-team ứng dụng để tìm lỗ hổng — tất cả ngay trong CLI và CI/CD. Bước tiếp theo tốt nhất là chạy ````npx promptfoo@latest init --example getting-started```, trỏ nó vào prompt của bạn, rồi mở trình xem để thấy các mô hình thực sự hoạt động ra sao. Việc scraping quy mô lớn cần proxy luân phiên — [WebShare](https://www.webshare.io/?referral_code=oa14d5f0wx4f) là lựa chọn tiêu chuẩn. - Tham gia [nhóm Telegram tiếng Anh của dibi8](https://t.me/DIBI8_Group/2) để nhận tin về các công cụ AI mã nguồn mở. - Đọc tiếp: [các hướng dẫn liên quan trên dibi8](dibi8-internal-link). * * * **Nguồn \u0026 Đọc thêm**: - Kho GitHub: https://github.com/promptfoo/promptfoo - Tài liệu chính thức / README: https://github.com/promptfoo/promptfoo#readme *Một số liên kết ở trên là liên kết tiếp thị. dibi8.com có thể nhận hoa hồng nếu bạn đăng ký, mà bạn không tốn thêm chi phí nào. Điều này giúp duy trì website và giữ cho nội dung miễn phí.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Promptfoo: Kiểm thử, Đánh giá \u0026 Red-Team Prompt LLM của bạn — Hướng dẫn thực chiến 2026\", \"datePublished\": \"2026-06-02\", \"dateModified\": \"2026-06-02\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/promptfoo-llm-frameworks-2026\" } } ## Frequently Asked Questions (FAQ) **问：LangChain和LlamaIndex哪个更好？** LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据检索优化。 **问：如何评估LLM框架的性能？** 基准测试包括：推理速度、准确率、资源消耗、可扩展性。 **问：开源LLM框架的商业使用限制？** 大多数采用MIT/Apache许可，可商业使用，但需保留版权信息。 **问：是否需要GPU才能运行LLM框架？** 推理需要GPU以获得最佳性能，但部分框架支持CPU模式（较慢）。 **问：企业级部署的最佳实践？** 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。 ",
+  "wordCount" : "2413",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/promptfoo-llm-frameworks-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>12 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/promptfoo-llm-frameworks-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/promptfoo-llm-frameworks-2026/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/promptfoo-llm-frameworks-2026/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
+            <li>
+                <a href="#promptfoo-l%c3%a0-g%c3%ac" aria-label="Promptfoo là gì?">Promptfoo là gì?</a></li>
+            <li>
+                <a href="#promptfoo-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-th%e1%ba%bf-n%c3%a0o" aria-label="Promptfoo hoạt động thế nào">Promptfoo hoạt động thế nào</a></li></ul>
+                
+            <li>
+                <a href="#promptfooconfigyaml" aria-label="promptfooconfig.yaml">promptfooconfig.yaml</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t" aria-label="Cài đặt">Cài đặt</a></li>
+            <li>
+                <a href="#thi%e1%ba%bft-l%e1%ba%adp-kh%c3%b3a-api" aria-label="Thiết lập khóa API">Thiết lập khóa API</a></li></ul>
+                
+            <li>
+                <a href="#c%c3%a1ch-d%c3%b9ng-c%e1%bb%91t-l%c3%b5i" aria-label="Cách dùng cốt lõi">Cách dùng cốt lõi</a><ul>
+                    
+            <li>
+                <a href="#v%c3%ad-d%e1%bb%a5-1-m%e1%bb%99t-assertion-%c4%91%c6%a1n-gi%e1%ba%a3n" aria-label="Ví dụ 1: Một assertion đơn giản">Ví dụ 1: Một assertion đơn giản</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#promptfooconfigyaml-1" aria-label="promptfooconfig.yaml">promptfooconfig.yaml</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#v%c3%ad-d%e1%bb%a5-2-so-s%c3%a1nh-m%c3%b4-h%c3%acnh-v%e1%bb%9bi-nhi%e1%bb%81u-lo%e1%ba%a1i-assertion" aria-label="Ví dụ 2: So sánh mô hình với nhiều loại assertion">Ví dụ 2: So sánh mô hình với nhiều loại assertion</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#promptfooconfigyaml-2" aria-label="promptfooconfig.yaml">promptfooconfig.yaml</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#v%c3%ad-d%e1%bb%a5-3-ch%e1%ba%a1y-trong-pipeline-cicd" aria-label="Ví dụ 3: Chạy trong pipeline CI/CD">Ví dụ 3: Chạy trong pipeline CI/CD</a></li></ul>
+                </ul>
+            </li>
+            <li>
+                <a href="#githubworkflowsevalyml" aria-label=".github/workflows/eval.yml">.github/workflows/eval.yml</a><ul>
+                    
+            <li>
+                <a href="#benchmark--s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark &amp; Sử dụng thực tế">Benchmark &amp; Sử dụng thực tế</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-06-02T00:00:00+08:00
 lastmod: 2026-06-02T00:00:00+08:00
@@ -20,17 +275,58 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-06-02&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
-tags: ["]
-aliases:</p><ul><li>/posts/promptfoo-llm-frameworks-2026/
+tags: [&quot;]
+aliases:</p>
+<ul>
+<li>/posts/promptfoo-llm-frameworks-2026/
 faqs: - q: &lsquo;Làm sao cài và chạy promptfoo cục bộ?&rsquo;
-a: &lsquo;Con đường nhanh nhất là không cần cài: <code>bash npx promptfoo@latest init --example getting-started </code>Để cài toàn cục", &ldquo;dùng <code>npm install -g promptfoo</code> (hoặc <code>brew install promptfoo</code>&rdquo;, &ldquo;hoặc <code>pip install promptfoo</code>). Sau đó chạy <code>promptfoo eval</code> để đánh giá và <code>promptfoo view</code> để mở trình xem cục bộ.&rsquo;</li><li>q: &lsquo;Tôi có thể dùng promptfoo với mô hình của riêng mình không?&rsquo;
-a: &lsquo;Có. Promptfoo hỗ trợ nhiều provider — OpenAI&rdquo;, &ldquo;Anthropic&rdquo;, &ldquo;Google&rdquo;, &ldquo;DeepSeek&rdquo;, &ldquo;các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách <code>providers</code> của <code>promptfooconfig.yaml</code> và cung cấp khóa API tương ứng qua biến môi trường.&rsquo;</li><li>q: &lsquo;Promptfoo so sánh hiệu năng giữa các mô hình khác nhau như thế nào?&rsquo;
-a: &lsquo;Bạn liệt kê nhiều mục dưới <code>providers</code>&rdquo;, &ldquo;và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó <code>promptfoo view</code> hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion&rdquo;, &ldquo;để bạn so sánh trực tiếp trên đầu vào của chính mình.&rsquo;</li><li>q: &lsquo;Có cách nào tích hợp promptfoo vào pipeline CI/CD không?&rsquo;
-a: &lsquo;Có. Vì promptfoo là một CLI&rdquo;, &ldquo;bạn có thể chạy <code>npx promptfoo@latest eval</code> trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.&rsquo;</li><li>q: &lsquo;Làm sao đóng góp cho dự án promptfoo?&rsquo;
-a: &lsquo;Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại <a href=https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md>hướng dẫn đóng góp&rdquo;</a>."</li></ul><hr><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Nếu bạn xây dựng ứng dụng với các mô hình như GPT, Claude, Gemini hay DeepSeek, hẳn bạn biết rằng &ldquo;trông ổn trong playground&rdquo; hoàn toàn khác với &ldquo;chạy ổn định trong môi trường production&rdquo;. Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Nó thay thế kiểu làm mò mẫm bằng các cấu hình kiểm thử khai báo mà bạn có thể chạy cục bộ và cài vào CI/CD. Trong hướng dẫn này, chúng ta sẽ cài đặt nó, viết ```promptfooconfig.yaml````, chạy một lần đánh giá, so sánh các mô hình, rồi khởi chạy một lượt quét red-team.</p><h2 id=promptfoo-là-gì>Promptfoo là gì?<a hidden class=anchor aria-hidden=true href=#promptfoo-là-gì>#</a></h2><p>Promptfoo là một CLI và thư viện để đánh giá và red-team các ứng dụng LLM. Bạn chỉ cần mô tả prompt của mình, các provider (mô hình) muốn chạy, cùng một bộ test case kèm assertion. Promptfoo sẽ chạy mọi prompt qua mọi test case, kiểm tra từng assertion, rồi cho bạn một bảng so sánh song song mức độ hoạt động của từng mô hình.</p><p>Các khả năng cốt lõi gồm: - <strong>Đánh giá</strong> — chạy prompt trên nhiều provider và chấm điểm đầu ra bằng assertion (khớp chính xác, chứa chuỗi, độ tương đồng ngữ nghĩa, rubric chấm bằng LLM, v.v.).</p><ul><li><strong>So sánh mô hình</strong> — so sánh GPT, Claude, Gemini, DeepSeek và nhiều mô hình khác trên cùng một đầu vào.</li><li><strong>Red-team</strong> — tạo các test case đối kháng để dò tìm lỗ hổng của ứng dụng trước khi phát hành.</li><li><strong>Tích hợp CI/CD</strong> — cấu hình khai báo chạy được ở bất cứ nơi nào có terminal, kể cả GitHub Actions.</li></ul><p>Dự án được viết bằng TypeScript, phát hành theo giấy phép MIT và do nhóm promptfoo duy trì.</p><h2 id=promptfoo-hoạt-động-thế-nào>Promptfoo hoạt động thế nào<a hidden class=anchor aria-hidden=true href=#promptfoo-hoạt-động-thế-nào>#</a></h2><p>Quy trình ưu tiên cấu hình: 1. <strong>Cấu hình khai báo</strong> — một tệp <code>promptfooconfig.yaml</code> duy nhất định nghĩa <code>prompts</code>, <code>providers</code> và <code>tests</code>. Với các trường hợp thông thường, bạn không cần viết code kết dính.</p><ol start=2><li><p><strong>Giao diện dòng lệnh (CLI)</strong> — <code>promptfoo eval</code> chạy lần đánh giá. Nó in bảng kết quả ra terminal và lưu kết quả cục bộ.</p></li><li><p><strong>Trình xem web cục bộ</strong> — <code>promptfoo view</code> mở một giao diện web cục bộ trực quan hóa kết quả đánh giá, giúp bạn so sánh đầu ra của từng mô hình theo từng ô.</p></li></ol><p>Dưới đây là một <code>promptfooconfig.yaml</code> tối giản: `````yaml</p><h1 id=promptfooconfigyaml>promptfooconfig.yaml<a hidden class=anchor aria-hidden=true href=#promptfooconfigyaml>#</a></h1><p>description: &ldquo;Technical guide and comparison.&rdquo;
-prompts: - &ldquo;What is the capital of ?&rdquo;</p><ul><li>&ldquo;Explain quantum mechanics in one sentence.&rdquo;</li></ul><p>providers: - openai:gpt-4o-mini</p><ul><li>anthropic:messages:claude-3-5-sonnet-20241022</li></ul><p>tests: - vars: country: France
+a: &lsquo;Con đường nhanh nhất là không cần cài: <code>bash npx promptfoo@latest init --example getting-started </code> Để cài toàn cục&quot;, &ldquo;dùng <code>npm install -g promptfoo</code> (hoặc <code>brew install promptfoo</code>&rdquo;, &ldquo;hoặc <code>pip install promptfoo</code>). Sau đó chạy <code>promptfoo eval</code> để đánh giá và <code>promptfoo view</code> để mở trình xem cục bộ.&rsquo;</li>
+<li>q: &lsquo;Tôi có thể dùng promptfoo với mô hình của riêng mình không?&rsquo;
+a: &lsquo;Có. Promptfoo hỗ trợ nhiều provider — OpenAI&rdquo;, &ldquo;Anthropic&rdquo;, &ldquo;Google&rdquo;, &ldquo;DeepSeek&rdquo;, &ldquo;các mô hình cục bộ và hơn thế. Bạn khai báo từng cái trong danh sách <code>providers</code> của <code>promptfooconfig.yaml</code> và cung cấp khóa API tương ứng qua biến môi trường.&rsquo;</li>
+<li>q: &lsquo;Promptfoo so sánh hiệu năng giữa các mô hình khác nhau như thế nào?&rsquo;
+a: &lsquo;Bạn liệt kê nhiều mục dưới <code>providers</code>&rdquo;, &ldquo;và promptfoo chạy mọi prompt cùng mọi test case lên từng mục. Sau đó <code>promptfoo view</code> hiển thị các đầu ra song song kèm trạng thái đạt/không đạt theo từng assertion&rdquo;, &ldquo;để bạn so sánh trực tiếp trên đầu vào của chính mình.&rsquo;</li>
+<li>q: &lsquo;Có cách nào tích hợp promptfoo vào pipeline CI/CD không?&rsquo;
+a: &lsquo;Có. Vì promptfoo là một CLI&rdquo;, &ldquo;bạn có thể chạy <code>npx promptfoo@latest eval</code> trong bất kỳ pipeline nào. Nó thường được cài vào GitHub Actions để mỗi lần push hay pull request đều chạy bộ đánh giá của bạn.&rsquo;</li>
+<li>q: &lsquo;Làm sao đóng góp cho dự án promptfoo?&rsquo;
+a: &lsquo;Mọi đóng góp đều được hoan nghênh. Bạn có thể mở issue hoặc gửi pull request trên GitHub. Xem chi tiết tại <a href="https://github.com/promptfoo/promptfoo/blob/main/CONTRIBUTING.md">hướng dẫn đóng góp&rdquo;</a>.&quot;</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Nếu bạn xây dựng ứng dụng với các mô hình như GPT, Claude, Gemini hay DeepSeek, hẳn bạn biết rằng &ldquo;trông ổn trong playground&rdquo; hoàn toàn khác với &ldquo;chạy ổn định trong môi trường production&rdquo;. Promptfoo là một CLI và thư viện mã nguồn mở để đánh giá và red-team các ứng dụng LLM. Nó thay thế kiểu làm mò mẫm bằng các cấu hình kiểm thử khai báo mà bạn có thể chạy cục bộ và cài vào CI/CD. Trong hướng dẫn này, chúng ta sẽ cài đặt nó, viết ```promptfooconfig.yaml````, chạy một lần đánh giá, so sánh các mô hình, rồi khởi chạy một lượt quét red-team.</p>
+<h2 id="promptfoo-là-gì">Promptfoo là gì?<a hidden class="anchor" aria-hidden="true" href="#promptfoo-là-gì">#</a></h2>
+<p>Promptfoo là một CLI và thư viện để đánh giá và red-team các ứng dụng LLM. Bạn chỉ cần mô tả prompt của mình, các provider (mô hình) muốn chạy, cùng một bộ test case kèm assertion. Promptfoo sẽ chạy mọi prompt qua mọi test case, kiểm tra từng assertion, rồi cho bạn một bảng so sánh song song mức độ hoạt động của từng mô hình.</p>
+<p>Các khả năng cốt lõi gồm: - <strong>Đánh giá</strong> — chạy prompt trên nhiều provider và chấm điểm đầu ra bằng assertion (khớp chính xác, chứa chuỗi, độ tương đồng ngữ nghĩa, rubric chấm bằng LLM, v.v.).</p>
+<ul>
+<li><strong>So sánh mô hình</strong> — so sánh GPT, Claude, Gemini, DeepSeek và nhiều mô hình khác trên cùng một đầu vào.</li>
+<li><strong>Red-team</strong> — tạo các test case đối kháng để dò tìm lỗ hổng của ứng dụng trước khi phát hành.</li>
+<li><strong>Tích hợp CI/CD</strong> — cấu hình khai báo chạy được ở bất cứ nơi nào có terminal, kể cả GitHub Actions.</li>
+</ul>
+<p>Dự án được viết bằng TypeScript, phát hành theo giấy phép MIT và do nhóm promptfoo duy trì.</p>
+<h2 id="promptfoo-hoạt-động-thế-nào">Promptfoo hoạt động thế nào<a hidden class="anchor" aria-hidden="true" href="#promptfoo-hoạt-động-thế-nào">#</a></h2>
+<p>Quy trình ưu tiên cấu hình: 1. <strong>Cấu hình khai báo</strong> — một tệp <code>promptfooconfig.yaml</code> duy nhất định nghĩa <code>prompts</code>, <code>providers</code> và <code>tests</code>. Với các trường hợp thông thường, bạn không cần viết code kết dính.</p>
+<ol start="2">
+<li>
+<p><strong>Giao diện dòng lệnh (CLI)</strong> — <code>promptfoo eval</code> chạy lần đánh giá. Nó in bảng kết quả ra terminal và lưu kết quả cục bộ.</p>
+</li>
+<li>
+<p><strong>Trình xem web cục bộ</strong> — <code>promptfoo view</code> mở một giao diện web cục bộ trực quan hóa kết quả đánh giá, giúp bạn so sánh đầu ra của từng mô hình theo từng ô.</p>
+</li>
+</ol>
+<p>Dưới đây là một <code>promptfooconfig.yaml</code> tối giản: `````yaml</p>
+<h1 id="promptfooconfigyaml">promptfooconfig.yaml<a hidden class="anchor" aria-hidden="true" href="#promptfooconfigyaml">#</a></h1>
+<p>description: &ldquo;Technical guide and comparison.&rdquo;
+prompts: - &ldquo;What is the capital of ?&rdquo;</p>
+<ul>
+<li>&ldquo;Explain quantum mechanics in one sentence.&rdquo;</li>
+</ul>
+<p>providers: - openai:gpt-4o-mini</p>
+<ul>
+<li>anthropic:messages:claude-3-5-sonnet-20241022</li>
+</ul>
+<p>tests: - vars: country: France
 assert: - type: contains
-value: Paris</p><pre tabindex=0><code>
+value: Paris</p>
+<pre tabindex="0"><code>
 Cấu hình này chạy cả hai prompt trên cả hai provider. Với prompt đầu tiên, nó thay thế ```````` và khẳng định rằng đầu ra có chứa &#34;Paris&#34;. Khóa API được đọc từ biến môi trường (ví dụ ````OPENAI_API_KEY```` và ````ANTHROPIC_API_KEY````), không lưu trong tệp cấu hình.
 
 ![](https://raw.githubusercontent.com/promptfoo/promptfoo/main/site/static/img/claude-vs-gpt-example@2x.png)
@@ -46,8 +342,11 @@ Nếu muốn chạy promptfoo như một tác vụ production theo lịch, bạn
 
 Promptfoo cần Node.js ``^20.20.0`` hoặc ``&gt;=22.22.0``. Kiểm tra phiên bản: `````bash
 node -v
-</code></pre><p>Nếu cần Node.js, hãy tải từ <a href=https://nodejs.org/>trang chủ chính thức</a>.</p><h3 id=cài-đặt>Cài đặt<a hidden class=anchor aria-hidden=true href=#cài-đặt>#</a></h3><p>Cách nhanh nhất để dùng thử promptfoo là không cài gì cả: `````bash
-npx promptfoo@latest init &ndash;example getting-started</p><pre tabindex=0><code>
+</code></pre><p>Nếu cần Node.js, hãy tải từ <a href="https://nodejs.org/">trang chủ chính thức</a>.</p>
+<h3 id="cài-đặt">Cài đặt<a hidden class="anchor" aria-hidden="true" href="#cài-đặt">#</a></h3>
+<p>Cách nhanh nhất để dùng thử promptfoo là không cài gì cả: `````bash
+npx promptfoo@latest init &ndash;example getting-started</p>
+<pre tabindex="0"><code>
 Nếu muốn cài toàn cục, chọn cách phù hợp với môi trường của bạn: `````bash
 # npm
 npm install -g promptfoo
@@ -57,8 +356,10 @@ brew install promptfoo
 
 # pip
 pip install promptfoo
-</code></pre><h3 id=thiết-lập-khóa-api>Thiết lập khóa API<a hidden class=anchor aria-hidden=true href=#thiết-lập-khóa-api>#</a></h3><p>Promptfoo đọc thông tin xác thực provider từ biến môi trường. Với OpenAI: `````bash
-export OPENAI_API_KEY=sk-abc123</p><pre tabindex=0><code>
+</code></pre><h3 id="thiết-lập-khóa-api">Thiết lập khóa API<a hidden class="anchor" aria-hidden="true" href="#thiết-lập-khóa-api">#</a></h3>
+<p>Promptfoo đọc thông tin xác thực provider từ biến môi trường. Với OpenAI: `````bash
+export OPENAI_API_KEY=sk-abc123</p>
+<pre tabindex="0"><code>
 Hãy dùng biến tương ứng với provider bạn đang kiểm thử (ví dụ ````ANTHROPIC_API_KEY```` cho Claude). Nếu quên đặt khóa, khi chạy đánh giá provider sẽ trả về lỗi xác thực — chỉ cần đặt biến rồi chạy lại.
 
 ### Chạy lần đánh giá đầu tiên
@@ -66,31 +367,57 @@ Hãy dùng biến tương ứng với provider bạn đang kiểm thử (ví d�
 Sau khi ``init``, thư mục của bạn sẽ có một ``promptfooconfig.yaml``. Chạy đánh giá và mở trình xem: `````bash
 promptfoo eval
 promptfoo view
-</code></pre><p><code>promptfoo eval</code> in kết quả ra terminal; <code>promptfoo view</code> mở một giao diện web cục bộ để so sánh song song đầy đủ hơn. Nếu gặp khó, hãy xem <a href=https://www.promptfoo.dev/docs/>tài liệu</a> hoặc mở issue trên GitHub.</p><h2 id=cách-dùng-cốt-lõi>Cách dùng cốt lõi<a hidden class=anchor aria-hidden=true href=#cách-dùng-cốt-lõi>#</a></h2><h3 id=ví-dụ-1-một-assertion-đơn-giản>Ví dụ 1: Một assertion đơn giản<a hidden class=anchor aria-hidden=true href=#ví-dụ-1-một-assertion-đơn-giản>#</a></h3><p>Tạo cấu hình kiểm tra một chuỗi con kỳ vọng: `````yaml</p><h1 id=promptfooconfigyaml-1>promptfooconfig.yaml<a hidden class=anchor aria-hidden=true href=#promptfooconfigyaml-1>#</a></h1><p>description: &ldquo;Technical guide and comparison.&rdquo;
-prompts: - &ldquo;What is the capital of ?&rdquo;</p><p>providers: - openai:gpt-4o-mini</p><p>tests: - vars: country: France
+</code></pre><p><code>promptfoo eval</code> in kết quả ra terminal; <code>promptfoo view</code> mở một giao diện web cục bộ để so sánh song song đầy đủ hơn. Nếu gặp khó, hãy xem <a href="https://www.promptfoo.dev/docs/">tài liệu</a> hoặc mở issue trên GitHub.</p>
+<h2 id="cách-dùng-cốt-lõi">Cách dùng cốt lõi<a hidden class="anchor" aria-hidden="true" href="#cách-dùng-cốt-lõi">#</a></h2>
+<h3 id="ví-dụ-1-một-assertion-đơn-giản">Ví dụ 1: Một assertion đơn giản<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-1-một-assertion-đơn-giản">#</a></h3>
+<p>Tạo cấu hình kiểm tra một chuỗi con kỳ vọng: `````yaml</p>
+<h1 id="promptfooconfigyaml-1">promptfooconfig.yaml<a hidden class="anchor" aria-hidden="true" href="#promptfooconfigyaml-1">#</a></h1>
+<p>description: &ldquo;Technical guide and comparison.&rdquo;
+prompts: - &ldquo;What is the capital of ?&rdquo;</p>
+<p>providers: - openai:gpt-4o-mini</p>
+<p>tests: - vars: country: France
 assert: - type: contains
-value: Paris</p><pre tabindex=0><code>
+value: Paris</p>
+<pre tabindex="0"><code>
 Chạy: `````bash
 promptfoo eval
-</code></pre><p>Promptfoo thực thi test case và báo cáo assertion có vượt qua hay không.</p><h3 id=ví-dụ-2-so-sánh-mô-hình-với-nhiều-loại-assertion>Ví dụ 2: So sánh mô hình với nhiều loại assertion<a hidden class=anchor aria-hidden=true href=#ví-dụ-2-so-sánh-mô-hình-với-nhiều-loại-assertion>#</a></h3><p>Bạn có thể liệt kê nhiều provider và phối hợp nhiều loại assertion — chính xác, ngữ nghĩa và chấm bằng LLM: `````yaml</p><h1 id=promptfooconfigyaml-2>promptfooconfig.yaml<a hidden class=anchor aria-hidden=true href=#promptfooconfigyaml-2>#</a></h1><p>description: &ldquo;Technical guide and comparison.&rdquo;
-prompts: - &ldquo;Answer concisely: "</p><p>providers: - openai:gpt-4o</p><ul><li>anthropic:messages:claude-3-5-sonnet-20241022</li></ul><p>defaultTest: assert: - type: llm-rubric
-value: does not describe itself as an AI, model, or chatbot</p><p>tests: - vars: question: &ldquo;What is the meaning of life?&rdquo;
+</code></pre><p>Promptfoo thực thi test case và báo cáo assertion có vượt qua hay không.</p>
+<h3 id="ví-dụ-2-so-sánh-mô-hình-với-nhiều-loại-assertion">Ví dụ 2: So sánh mô hình với nhiều loại assertion<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-2-so-sánh-mô-hình-với-nhiều-loại-assertion">#</a></h3>
+<p>Bạn có thể liệt kê nhiều provider và phối hợp nhiều loại assertion — chính xác, ngữ nghĩa và chấm bằng LLM: `````yaml</p>
+<h1 id="promptfooconfigyaml-2">promptfooconfig.yaml<a hidden class="anchor" aria-hidden="true" href="#promptfooconfigyaml-2">#</a></h1>
+<p>description: &ldquo;Technical guide and comparison.&rdquo;
+prompts: - &ldquo;Answer concisely: &quot;</p>
+<p>providers: - openai:gpt-4o</p>
+<ul>
+<li>anthropic:messages:claude-3-5-sonnet-20241022</li>
+</ul>
+<p>defaultTest: assert: - type: llm-rubric
+value: does not describe itself as an AI, model, or chatbot</p>
+<p>tests: - vars: question: &ldquo;What is the meaning of life?&rdquo;
 assert: - type: similar
 value: &ldquo;It depends on the person&rdquo;
-threshold: 0.6</p><pre tabindex=0><code>
+threshold: 0.6</p>
+<pre tabindex="0"><code>
 Chạy cùng lệnh đó rồi dùng ``promptfoo view`` để so sánh hai mô hình theo từng ô: `````bash
 promptfoo eval
-</code></pre><h3 id=ví-dụ-3-chạy-trong-pipeline-cicd>Ví dụ 3: Chạy trong pipeline CI/CD<a hidden class=anchor aria-hidden=true href=#ví-dụ-3-chạy-trong-pipeline-cicd>#</a></h3><p>Ở đâu có terminal thì promptfoo chạy được ở đó. Dưới đây là một workflow GitHub Actions làm hỏng (fail) bản build nếu assertion thất bại: `````yaml</p><h1 id=githubworkflowsevalyml>.github/workflows/eval.yml<a hidden class=anchor aria-hidden=true href=#githubworkflowsevalyml>#</a></h1><p>name: Promptfoo Eval</p><p>on: push: branches: [ main ]
-pull_request: branches: [ main ]</p><p>jobs: eval: runs-on: ubuntu-latest
+</code></pre><h3 id="ví-dụ-3-chạy-trong-pipeline-cicd">Ví dụ 3: Chạy trong pipeline CI/CD<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-3-chạy-trong-pipeline-cicd">#</a></h3>
+<p>Ở đâu có terminal thì promptfoo chạy được ở đó. Dưới đây là một workflow GitHub Actions làm hỏng (fail) bản build nếu assertion thất bại: `````yaml</p>
+<h1 id="githubworkflowsevalyml">.github/workflows/eval.yml<a hidden class="anchor" aria-hidden="true" href="#githubworkflowsevalyml">#</a></h1>
+<p>name: Promptfoo Eval</p>
+<p>on: push: branches: [ main ]
+pull_request: branches: [ main ]</p>
+<p>jobs: eval: runs-on: ubuntu-latest
 steps: - name: Checkout repository
-uses: actions/checkout@v4</p><pre><code>  - name: Set up Node.js
+uses: actions/checkout@v4</p>
+<pre><code>  - name: Set up Node.js
     uses: actions/setup-node@v4
     with: node-version: 22
 
   - name: Run promptfoo eval
     env: OPENAI_API_KEY: $
     run: npx promptfoo@latest eval
-</code></pre><pre tabindex=0><code>
+</code></pre>
+<pre tabindex="0"><code>
 Nó chạy bộ đánh giá của bạn ở mỗi lần push và pull request, bắt lỗi hồi quy trước khi gộp code.
 
 ## Red-Team
@@ -107,8 +434,12 @@ promptfoo redteam run
 
 # Xem báo cáo các phát hiện
 promptfoo redteam report
-</code></pre><p>Báo cáo phân nhóm các phát hiện theo loại lỗ hổng và mức độ nghiêm trọng, kèm các biện pháp khắc phục được gợi ý.</p><h2 id=benchmark--sử-dụng-thực-tế>Benchmark & Sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#benchmark--sử-dụng-thực-tế>#</a></h2><p>Promptfoo được dùng rộng rãi để đánh giá prompt và mô hình. Tuy vậy, điểm mấu chốt không phải là dựa vào một bảng xếp hạng duy nhất, mà là benchmark trên <em>chính prompt và test case của bạn</em> — những con số đáng giá đến từ ứng dụng của bạn, không phải từ một bộ thử nghiệm chung chung.</p><p>Một quy trình tiêu biểu trông như sau: `````bash
-npx promptfoo@latest eval && npx promptfoo@latest view</p><pre tabindex=0><code>
+</code></pre><p>Báo cáo phân nhóm các phát hiện theo loại lỗ hổng và mức độ nghiêm trọng, kèm các biện pháp khắc phục được gợi ý.</p>
+<h2 id="benchmark--sử-dụng-thực-tế">Benchmark &amp; Sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--sử-dụng-thực-tế">#</a></h2>
+<p>Promptfoo được dùng rộng rãi để đánh giá prompt và mô hình. Tuy vậy, điểm mấu chốt không phải là dựa vào một bảng xếp hạng duy nhất, mà là benchmark trên <em>chính prompt và test case của bạn</em> — những con số đáng giá đến từ ứng dụng của bạn, không phải từ một bộ thử nghiệm chung chung.</p>
+<p>Một quy trình tiêu biểu trông như sau: `````bash
+npx promptfoo@latest eval &amp;&amp; npx promptfoo@latest view</p>
+<pre tabindex="0"><code>
 Chạy toàn bộ tập kiểm thử trên các mô hình ứng viên, rồi mở trình xem để thấy chính xác mỗi mô hình vượt qua hay thất bại ở prompt nào, case nào. Vì cấu hình mang tính khai báo, cùng một bộ kiểm thử chạy cục bộ lúc phát triển và chạy trên CI ở mỗi lần commit.
 
 ![promptfoo red team dashboard, via dibi8.com](https://www.promptfoo.dev/img/redteam-dashboard@2x.jpg)
@@ -210,11 +541,155 @@ LangChain适合复杂工作流和Agent构建，LlamaIndex专注于RAG和数据�
 **问：企业级部署的最佳实践？**
 
 使用Kubernetes容器化、API网关、监控告警、自动伸缩、以及灰度发布。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/prompt-optimizer/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/prompts-chat/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/prompt-optimizer/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/prompts-chat/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

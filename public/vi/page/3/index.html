@@ -1,27 +1,378 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/vi/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="vi"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/vi/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“agno”, “ai-agent”, “python-sdk”, “multi-agent”, “mã-nguồn-mở”, “framework-nhẹ”, “nền-tảng-agent”, “ollama”, “openai”] aliases:
-/vi/posts/agno/ Chọn một framework AI Agent vào năm 2026 giống như đi qua một bãi mìn. Trong 18 tháng qua, hàng chục thư viện đã xuất hiện hứa hẹn “đơn giản hóa” việc phát triển agent, nhưng hầu hết lại tạo thêm nhiều lớp trừu tượng hơn giá trị thực tế. Các nhóm phát triển báo cáo rằng họ đã dành hàng tuần để học ngữ nghĩa điều phối dựa trên đồ thị, chỉ để phát hiện rằng use case của họ chỉ cần một vòng lặp gọi công cụ nhẹ nhàng. Agno (trước đây là Phidata) phá vỡ sự ồn ào này bằng triết lý ưu tiên runtime: xây dựng agent nhanh, chạy chúng như các dịch vụ, và kiểm soát toàn bộ stack của bạn. Với 40.233 GitHub Star, 452 ngườI đóng góp, và giấy phép Apache-2.0 mới, Agno đã trở thành framework hàng đầu cho các nhóm Python triển khai hệ thống agent production. Hướng dẫn agno tutorial này đi qua agno setup, kiến trúc, ví dụ code thực tế, benchmark agno vs crewai, và những sự thật về nơi lightweight ai framework này còn thiếu sót.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/agno/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-04T00:00:00+08:00 lastmod: 2026-06-04T00:00:00+08:00 tech_stack: - AI Agents
-LLM Governance Security application_domain: Collections source_version: ’' licensing_model: Open Source license_type: CC-BY-4.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-04” draft: false categories: [“collections”] tags: [“ai agent”, “đạo đức ai”, “ai có trách nhiệm”, “quản trị ai”, “an toàn agent”, “căn chỉnh”, “quy tắc đạo đức”] aliases: /vi/posts/ai-agent-code-of-ethics/ faqs: - q: ‘Đạo đức AI agent khác gì với đạo đức chatbot?’ a: ‘Chatbot tạo ra văn bản; agent thực hiện hành động — nó gọi công cụ, chuyển tiền, gửi email, sửa tệp và gây ra hậu quả trong thế giới thực. Đạo đức chatbot chủ yếu xoay quanh “nói gì” (thiên kiến, độc hại, thông tin sai). Đạo đức agent xoay quanh “làm gì”: cấp quyền, tính đảo ngược, và trách nhiệm cho các hành động không thể hoàn tác. Bề mặt gây hại thuộc về vận hành chứ không chỉ thông tin, nên biện pháp kiểm soát phải là kiểm soát kỹ thuật, không phải bộ lọc nội dung.’ q: ‘Cấp quyền tối thiểu cho một AI agent là gì?’ a: ‘Cấp quyền tối thiểu nghĩa là agent chỉ được trao đúng phạm vi quyền hẹp nhất cần cho tác vụ trước mắt, giới hạn cả về thời gian lẫn phạm vi ảnh hưởng, thay vì quyền truy cập thường trực rộng rãi. Trên thực tế: dùng thông tin xác thực theo từng tác vụ thay cho API key dài hạn, mặc định chỉ đọc và phải nâng quyền tường minh để ghi, đặt trần chi tiêu, dùng danh sách trắng cho công cụ và tên miền, tự hết hạn khi tác vụ kết thúc. Nếu agent bị xâm phạm hoặc lệch hướng, cấp quyền tối thiểu sẽ giới hạn thiệt hại.’ q: ‘AI agent có nên luôn yêu cầu con người phê duyệt trước khi hành động?’ a: ‘Không — chặn mọi hành động sẽ phá hủy giá trị của tự động hóa. Mô hình đúng là phân tầng theo rủi ro: để agent tự hành với các thao tác rủi ro thấp, có thể đảo ngược (đọc dữ liệu, soạn thảo), yêu cầu con người xác nhận với các thao tác rủi ro cao hoặc không thể đảo ngược (gửi tin nhắn ra ngoài, thanh toán, xóa, triển khai production), và làm cho mọi hành động tự hành đều có thể kiểm toán sau đó. Ranh giới là tính đảo ngược, không phải phê duyệt hàng loạt.’ q: ‘Ai chịu trách nhiệm khi một AI agent tự hành gây hại?’ a: ‘Trách nhiệm không thể đẩy cho agent — nó không phải chủ thể đạo đức hay pháp lý. Trách nhiệm thuộc về người vận hành đã triển khai nó, lập trình viên đã xây dựng nó, và tổ chức hưởng lợi từ nó. Một agent có đạo đức làm cho điều này trở nên cưỡng chế được: duy trì một chuỗi không gián đoạn nơi mọi hành động truy về một danh tính được cấp quyền, một quyết định được ghi log, và một người chủ có tên. “AI đã làm” không bao giờ là câu trả lời hợp lệ.’ q: ‘Mặc định an toàn khi lỗi của một AI agent là gì?’ a: ‘Mặc định an toàn khi lỗi nghĩa là khi agent không chắc chắn, mất ngữ cảnh, gặp lỗi, hoặc vượt ngưỡng tin cậy, nó dừng lại và báo cáo thay vì đoán rồi tiếp tục. Với thao tác không thể đảo ngược, thất bại nên mặc định thành “không hành động”. Một nút dừng khẩn cấp có thể chặn agent giữa chừng, và các thao tác idempotent có thể thử lại an toàn, là biểu hiện kỹ thuật tối thiểu của nguyên tắc này.’ q: ‘Những nguyên tắc đạo đức này có thể cưỡng chế bằng mã không, hay chỉ là hướng dẫn?’ a: ‘Phần lớn đều cưỡng chế được bằng mã. Cấp quyền tối thiểu là thông tin xác thực giới hạn phạm vi và danh sách trắng; khả năng kiểm toán là ghi log có cấu trúc cho mọi lệnh gọi công cụ; tính đảo ngược là cổng phê duyệt phân tầng rủi ro cộng hoàn tác/idempotent; tự chủ có giới hạn là trần tốc độ và chi tiêu; an toàn khi lỗi là ngưỡng tin cậy và nút dừng khẩn. Chỉ có ý định đằng sau — quyết định hành động nào là rủi ro cao — mới cần phán đoán của con người. Đạo đức không cưỡng chế được chỉ là trang trí." Bộ Quy Tắc Đạo Đức cho AI Agent (2026): Khung Quản Trị Thực Tiễn cho Agent Tự Hành Về tài liệu này: Đây là một bộ quy tắc đạo đức thực tiễn dành cho kỹ sư xây dựng và vận hành các AI agent tự hành — những hệ thống thực hiện hành động, không chỉ sinh văn bản. Nó được viết để cưỡng chế được, không phải để treo cao. Mỗi nguyên tắc dưới đây ánh xạ tới một biện pháp kiểm soát bạn có thể đưa vào codebase trước khi phát hành.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-code-of-ethics/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap…”, “description”: ““So sánh song song 5 khung tác nhân AI nguồn mở hàng đầu vào năm 2026. Số lượng sao thực, ví dụ mã, điểm chuẩn hiệu suất và hướng dẫn thực tế để chọn khung phù hợp cho dự án của bạn.””, “datePublished”: “2026-06-30T00:00:00+09:00”, “dateModified”: “2026-06-30T00:00:00+09:00”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/tools/ai-agent-frameworks-comparison-2026/" }, “url”: “https://dibi8.com/vi/tools/ai-agent-frameworks-comparison-2026/", “image”: “https://picsum.photos/seed/ai-agent-frameworks-comparison-2026/1200x630", “keywords”: “ai-agents,frameworks,comparison,langchain,crewai,autogen,llamaindex,langgraph”, “articleSection”: “llm-frameworks” } ...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>29 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-frameworks-comparison-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Letta, Mem0, ‘A-MEM’, ‘Vector DB’, Python] application_domain: LLM Frameworks source_version: “Letta 0.8 / Mem0 0.2 / A-MEM 1.3” licensing_model: Mã nguồn mở license_type: ‘Apache-2.0 / MIT’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“ai-agent”, “memory”, “persistence”, “letta”, “mem0”, “2026”] aliases:
-/vi/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/ faq: - q: “Tại sao AI Agent cần bộ nhớ bền vững?” a: “Không có persistence, mỗi phiên đều bắt đầu lại từ con số không — Agent không nhớ tùy chọn, quyết định hay ngữ cảnh của hôm qua. Với các cộng tác dài hạn (đối tác coding, trợ lý nghiên cứu, chatbot phục vụ khách hàng), bộ nhớ bền vững là ranh giới giữa ‘công cụ’ và ‘đối tác’.” q: “Ba framework này khác nhau ở cách tiếp cận thế nào?” a: “Letta dùng phân cấp bộ nhớ kiểu OS (core / archival / recall). Mem0 tập trung vào trải nghiệm lập trình viên với API add/search đơn giản. A-MEM nghiêng nghiên cứu với cơ chế quên chủ động và suy giảm. Cả ba giải cùng một vấn đề theo những cách khác nhau.” q: “Tôi có thể chỉ dùng MCP memory server thay thế được không?” a: “Với case một người / nhẹ: được. MCP memory server chính thức đơn giản hơn nhưng thiếu chấm điểm truy hồi, suy giảm và suy luận xuyên phiên. Với Agent đa lượt phức tạp, các framework chuyên biệt như Letta hay Mem0 thắng.” q: “Bộ nhớ Agent có đáng để gánh độ phức tạp không?” a: “Với hầu hết Agent production phục vụ người dùng thực: có, đáng kể. Khoảng cách chất lượng giữa ’nhớ bạn’ và ‘bắt đầu từ đầu’ là rất lớn. Với tác vụ một lần hoặc workflow đơn giản: không đáng phức tạp.” Bộ nhớ bền vững cho AI Agent 2026: Letta vs Mem0 vs A-MEM Meta Description: Agent không có bộ nhớ khởi động lại từ 0. Đã kiểm thử Letta, Mem0, A-MEM trên workload đa phiên. Ai thực sự giữ ngữ cảnh, rẻ hơn, khi nào nên tự viết.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>7 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-memory-persistence-letta-mem0-a-mem-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-22T00:00:00+08:00 lastmod: 2026-05-22T00:00:00+08:00 tech_stack: [Python, TypeScript, PostgreSQL, ‘Vector databases’, MCP] application_domain: Llm Frameworks source_version: ’’ licensing_model: Open Source license_type: Apache-2.0 / MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“ai-agents”, “memory-systems”, “mem0”, “agentmemory”, “hindsight”, “mempalace”, “mcp”, “rag”, “vector-database”, “persistent-memory”, “open-source”, “llm-infrastructure”] aliases:
-/vi/posts/ai-agent-memory-systems-2026/ /vi/resources/dev-utils/ai-agent-memory-systems-2026/ faqs: - q: ‘Sự khác biệt giữa Mem0, agentmemory, Hindsight, MemPalace?’ a: ‘Mem0 dẫn đầu về tích hợp framework (21 framework, 20 vector backend). agentmemory chuyên dụng coding agent qua MCP native. Hindsight có độ chính xác recall cao nhất với bộ nhớ sinh học 3 loại + 4 chiến lược truy xuất. MemPalace dẫn đầu quy mô cộng đồng (52K+ stars) với bộ nhớ vector semantic ổn định, tài liệu đầy đủ.’ q: ‘Có cần memory layer cho AI agent production không?’ a: ‘Có nếu agent cần liên tục đa phiên, quan hệ khách hàng dài hạn, hoặc tích lũy chuyên môn miền. Agent không trạng thái OK cho tác vụ đơn lẻ nhưng chạm trần kiến trúc cho việc thực sự. Gartner dự đoán 40% ứng dụng doanh nghiệp tích hợp AI agent định hướng nhiệm vụ cuối 2026 — memory là điều kiện tiên quyết.’ q: ‘Memory layer nào tích hợp Claude Code?’ a: ‘agentmemory là MCP native và phát hành chuyên cho Claude Code, Cursor, Codex CLI, Windsurf và 11+ agent client khác. Dùng progressive context injection giảm 60%+ giải thích lặp trong dự án codebase dài.’ q: ‘Chi phí memory layer cho AI agent?’ a: ‘Cả 4 giải pháp hàng đầu (Mem0, agentmemory, Hindsight, MemPalace) đều mã nguồn mở Apache-2.0 hoặc MIT. Chỉ trả phí hosting (vector DB + Postgres) và token LLM API cho retrieval. Mem0 còn có tier cloud managed.’ q: ‘Memory layer có giảm hóa đơn token LLM không?’ a: ‘Có — nâng cấp thuật toán Mem0 tháng 4 2026 cho độ chính xác LoCoMo 92.5% với ~7K token/query so với ~26K token full-context. Giảm 73% token đồng thời độ chính xác cao hơn. Ở quy mô inference, đây là khác biệt mô hình kinh doanh, không phải cải tiến biên." Hệ Thống Bộ Nhớ AI Agent 2026: So Sánh Mem0 / agentmemory / Hindsight / MemPalace Quick Answer Q: Hệ thống bộ nhớ AI agent tốt nhất năm 2026?
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-memory-systems-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Hệ Thống Bộ Nhớ AI Agent 2026: Hướng Dẫn Thực Chiến Từ Zero đến Production Agent AI không nhớ được việc hôm qua làm gì thì cũng chỉ là công cụ dùng một lần. Năm 2026, bộ nhớ lâu dài không còn là “tính năng cao cấp” — nó là đường ống nước, là điện, là hạ tầng không thể thiếu.
-Tại Sao Bộ Nhớ Agent AI Đột Ngột Bùng Nổ Tháng 5/2026 Hai năm qua, cộng đồng kỹ sư AI tập trung tối ưu cách agent suy nghĩ — lập luận đa bước, gọi công cụ linh hoạt, tốc độ inference nhanh hơn. Nhưng chúng ta bỏ qua một sự thật đơn giản: mỗi phiên chat kết thúc, agent lại thành tờ giấy trắng.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-memory-systems-open-source-infrastructure-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{&lt;/* resource-info */>}
-Meta Description: Khám phá hệ sinh thái AI Agent Skills hot nhất 2026. Hướng dẫn cài đặt và sử dụng mattpocock/skills, obra/superpowers, agentmemory cho Claude Code, Cursor và Codex CLI. Bài viết SEO tối ưu với từ khóa dài và ví dụ thực tế.
-Ngày xuất bản: 16 tháng 5 năm 2026 Thời gian đọc: 12 phút Từ khóa chính: AI Agent Skills, Claude Code Skills hướng dẫn, mattpocock skills tutorial, kỹ năng AI coding agent, công cụ lập trình AI 2026, Cursor Skills cài đặt, Codex CLI Skills, AI agent workflow
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-skills-2026-developer-guide/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Kỹ năng AI Agent là gì? Từ hộp đen đến Lego hành vi có thể lắp ráp Khái niệm cốt lõi: Mã hóa trực giác chuyên gia thành rào chắn cho agent Vấn đề cơ bản của các trợ lý lập trình AI truyền thống là thiếu trạng thái, thiếu rào chắn và không có bộ nhớ. Mỗi cuộc trò chuyện bắt đầu từ một tờ giấy trắng. AI lặp lại cùng một lỗi, force push lên nhánh main, và chạy ```rm -rf```` trên môi trường production.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>11 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Python
-TypeScript Docker PostgreSQL application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“ai agent”, “tool chain”, “langgraph”, “mcp”, “stack”, “collection”] aliases: /posts/ai-agent-tool-chain/ “AI agent” ngừng là chủ đề nghiên cứu năm 2025 và trở thành category kỹ thuật production năm 2026. Các team ship agent tự trị thực sự — bot hỗ trợ khách hàng sống sót restart, coding agent refactor qua trăm file, research agent chạy hàng giờ — hội tụ về một stack nhất quán đáng kinh ngạc. Bộ sưu tập này lắp ráp nó.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>11 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-agent-tool-chain/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [‘Claude Code’, Cursor, ‘Codex CLI’, ‘Gemini CLI’, MCP] application_domain: Dev Utils source_version: “Claude Code 1.0 / Cursor Pro / Codex CLI 0.42 / Gemini CLI 1.0” licensing_model: ‘Commercial / Mixed’ license_type: ‘Proprietary + Open-source CLIs’ last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“claude-code”, “cursor”, “codex-cli”, “gemini-cli”, “ai-coding”, “agent”, “2026”] aliases:
-/vi/posts/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/ faq: - q: “AI coding agent nào tốt nhất Q2 2026?” a: “Không có người chiến thắng duy nhất. Claude Code 1.0 dẫn đầu refactor long-context (200K+ context, tool use mạnh). Cursor Pro thắng về raw IDE ergonomics và độ trễ tab-completion. OpenAI Codex CLI tối ưu cho workflow shell-heavy và tích hợp tốt với GPT-5. Gemini CLI rẻ nhất và có context window 1M+. Hầu hết developer dùng 2 trong 4 — thường là Claude Code + Cursor.” q: “Chi phí hàng tháng cho heavy user là bao nhiêu?” a: “Heavy use (3+ giờ/ngày): Claude Code khoảng $200/tháng (Anthropic Max plan), Cursor Pro $20/tháng + chi phí API (~$50-150 add-on), Codex CLI khoảng $80-150/tháng (ChatGPT Plus + API), Gemini CLI ~$0-30/tháng (free tier rất hào phóng). Full stack ~$250-350/tháng. Hầu hết hợp nhất xuống 2 tool để tiết kiệm.” q: “Cả 4 có hỗ trợ MCP không?” a: “Giữa 2026 đều có nhưng độ trưởng thành khác nhau. Tích hợp MCP của Claude Code trưởng thành nhất (Anthropic là nhà reference). Cursor thêm MCP vững chắc đầu 2026. Lớp MCP của Codex CLI hoạt động nhưng streaming tools chậm hơn. Hỗ trợ MCP của Gemini CLI mới nhất và ít được test nhất nhưng đang cải thiện nhanh.” q: “Indie developer ngân sách hạn chế nên dùng gì?” a: “Cho công việc tier-1: Gemini CLI (chỉ free tier cover hầu hết dự án indie). Cho chỉnh sửa nhanh tích hợp IDE: Cursor Pro free tier. Bỏ qua Claude Code Max ($200/tháng) trừ khi cần refactor 200K-token hàng tuần. Codex CLI ChatGPT Plus tier ổn nhưng không tạo khác biệt.” q: “Còn agent open source như Aider / Cline / Roo Code thì sao?” a: “Cả 4 đều viable năm 2026 — Aider stable nhất với người dùng terminal, Cline tích hợp trực tiếp VS Code, Roo Code là fork với workflow template mạnh. Cạnh tranh bằng model-agnostic (mang API key của bạn) + rẻ hơn đáng kể. Trade-off: ít polish hơn 4 agent thương mại nhưng không seat fee + kiểm soát hoàn toàn.” q: “Context window lớn nhất giữa 2026 là?” a: “Gemini 2.5 Pro và Gemini CLI có context 1M+ token (lớn nhất rõ ràng). Claude Sonnet 4.6 (hoặc Opus 4.7) và Claude Code 1.0 hỗ trợ 1M token (1M-context tier). Cursor Pro mặc định 200K. GPT-5 và Codex CLI 256K. Với monorepo cực lớn, ưu thế context của Gemini CLI là thật, nhưng độ tin cậy tool-use vẫn tụt sau.” AI Coding 2026 Q2 Đối Đầu: Claude Code 1.0 vs Cursor Pro vs Codex CLI vs Gemini CLI Meta Description: Đánh giá ngang hàng 4 AI coding agent giữa 2026. Test 5 workflow trên cùng codebase 50K LOC TypeScript, hỗ trợ MCP, kinh tế context, giá, lĩnh vực thắng thật sự của từng tool.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>10 phút</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/vi/ai-coding-agents/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/vi/page/2/>«&nbsp;Trang trước&nbsp;
-</a><a class=next href=https://dibi8.com/vi/page/4/>Trang tiếp theo&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/vi/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/vi/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““RAG Systems 2026: Advanced Techniques for Production Dep…”, “description”: ““Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.””, “datePublished”: “2026-09-20”, “dateModified”: “2026-09-20”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/cn/tools/2026-09-20-rag-systems-2026/&#34; }, “url”: “https://dibi8.com/cn/tools/2026-09-20-rag-systems-2026/&#34;, “image”: “https://picsum.photos/seed/2026-09-20-rag-systems-2026/1200x630&#34;, “keywords”: “rag,retrieval-augmented-generation,llm,production,2026”, “articleSection”: “llm-frameworks” } ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>5 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/2026-09-20-rag-systems-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00&#43;08:00 lastmod: 2026-05-23T00:00:00&#43;08:00 tech_stack: [] application_domain: LLM Frameworks source_version: ’&#39; licensing_model: Mixed Open Source license_type: Various (per-component) file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-23” draft: false categories: [“llm-frameworks”] tags: [“hub article”, “local-first-ai”, “production-ai”, “self-hosted-ai”, “ai-architecture”, “ai-stack-2026”, “agent-infrastructure”, “codegraph”, “12-factor-agents”, “supertonic”, “cc-switch”, “rtk”, “agentmemory”, “mempalace”, “mcp”, “ds4”, “opencode”, “hermes-agent”] aliases:
+/vi/posts/2026-local-first-ai-stack-production-architecture/ Local-First AI Stack 2026: Kiến trúc tham chiếu cho production (kèm 14 tool open-source) Vì sao “cứ gọi OpenAI là xong” không còn work nữa Suốt hai năm qua, công thức thống trị để build sản phẩm có LLM bên trong vẫn là năm dòng Python quen thuộc: import OpenAI client, paste API key, viết system prompt, ship. Công thức đó vẫn ổn cho prototype. Nhưng nó không còn đủ cho sản phẩm cần scale, sản phẩm ở ngành bị regulated, sản phẩm ở khu vực mà API bị rate-limit hoặc không vào được, hoặc sản phẩm cần unit economics sống sót qua vòng Series A.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/2026-local-first-ai-stack-production-architecture/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Docker
+Go Java JavaScript Rust TypeScript application_domain: “Llm Frameworks” source_version: &#34;&#34; licensing_model: “Open Source” license_type: “MIT” file_size: “3.2 MB” file_md5: &#34;&#34; download_url: “https://github.com/rtk-ai/rtk&#34; backup_url: &#34;” last_maintained: “2026-05-15” draft: false aliases: /vi/posts/9router-smart-llm-proxy-token-saver-free-coding/ faqs: - q: ‘9Router là gì và nó hoạt động như thế nào?’ a: ‘9Router là một smart proxy mã nguồn mở, tự lưu trữ, nằm giữa công cụ lập trình AI của bạn và các nhà cung cấp model, mặc định chạy trên localhost:20128. Thay vì gọi trực tiếp Claude hay OpenAI, công cụ của bạn gửi yêu cầu đến 9Router, và 9Router định tuyến chúng qua hơn 40 nhà cung cấp bằng logic fallback thông minh cùng khả năng nén token.’ q: ‘Sử dụng 9Router có tốn tiền không?’ a: ‘Không. Phần mềm 9Router miễn phí vĩnh viễn theo giấy phép mã nguồn mở MIT và được tự lưu trữ trên phần cứng của riêng bạn. Nó không có hạ tầng tính phí và không bao giờ thu tiền của bạn; bạn chỉ trả trực tiếp cho các nhà cung cấp đối với bất kỳ gói đăng ký hay API key nào bạn cấu hình, còn các nhà cung cấp miễn phí vẫn miễn phí. Các con số chi phí trên dashboard là một công cụ theo dõi mức tiết kiệm, cho thấy việc sử dụng API trả phí tương đương sẽ tốn bao nhiêu.’ q: ‘9Router giảm mức sử dụng token AI được bao nhiêu?’ a: ‘Thông qua tính năng nén RTK tích hợp sẵn, 9Router nén các kết quả đầu ra của công cụ như git diff, kết quả grep và danh sách thư mục trước khi chúng đến LLM, tiết kiệm 20-40% token đầu vào mỗi yêu cầu. Chế độ Caveman tùy chọn giảm tới 65% lượng đầu ra dài dòng của model, và các lập trình viên thực hiện hơn 500 lệnh gọi mỗi ngày cho biết mức tiêu thụ model thực tế giảm 40-60%.’ q: ‘Những công cụ lập trình AI và IDE nào hoạt động với 9Router?’ a: ‘Bất kỳ công cụ nào hỗ trợ endpoint API tương thích OpenAI tùy chỉnh đều có thể kết nối với 9Router qua http://localhost:20128/v1. Các công cụ được hỗ trợ bao gồm Claude Code, OpenAI Codex CLI, Cursor IDE, GitHub Copilot, Cline, Continue, Roo Code, Antigravity, Droid, Kilo Code và OpenCode.’ q: ‘Tôi có thể dùng 9Router để lập trình AI với chi phí hàng tháng bằng không không?’ a: ‘Có. Bạn có thể xây dựng một combo chỉ dùng các nhà cung cấp miễn phí như Kiro AI (miễn phí không giới hạn qua AWS Builder ID, Google, hoặc GitHub OAuth, không cần API key), OpenCode Free (passthrough không cần xác thực), và Vertex AI ($300 tín dụng Google Cloud miễn phí). Kết hợp với nén RTK, giải pháp này mang lại phản hồi chất lượng production với chi phí đúng nghĩa $0 mỗi tháng.’ {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>TL;DR Academic Research Skills biến Claude Code thành một trợ lý nghiên cứu có thể tìm kiếm bài báo, trích xuất kết quả chính, tổng hợp tài liệu và tạo bản tổng quan toàn diện. Với 31.628 sao, nó tự động hóa những phần tốn thời gian nhất của nghiên cứu học thuật.
+TL;DR: 31.628 sao — framework tự động hóa nghiên cứu có hỗ trợ AI dẫn đầu.
+Academic Research Skills Là Gì? Academic Research Skills là một hệ thống kỹ năng mô-đun được thiết kế đặc biệt cho Claude Code, tự động hóa quy trình nghiên cứu trọn gói. Thay vì phải manually tìm kiếm PubMed, arXiv và Google Scholar, sau đó đọc từng bài báo, rồi tổng hợp kết quả thành một bản tổng quan mạch lạc, framework này kết nối các kỹ năng chuyên biệt xử lý từng bước.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/academic-research-skills/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“act”, “github-actions”, “ci-cd”, “docker”, “phat-trien-local”, “devops”, “kiem-tra”, “tu-dong-hoa”] aliases:
+/vi/posts/act/ Giới thiệu Mọi lập trình viên từng viết workflow GitHub Actions đều biết nỗi đau này: bạn sửa đổi ```.github/workflows/ci.yml````, commit, push, đợi 3-5 phút để runner thực thi, rồi chứng kiến nó thất bại ở bước 4 vì thiếu biến môi trường hoặc lỗi đánh máy trong lệnh shell. Vòng phản hồi chậm, tiêu tốn phút GitHub Actions của bạn, và làm ô nhiễm lịch sử commit bằng những thông điệp “fix CI”. Năm 2026, khi pipeline CI/CD kiểm soát mọi lần triển khai, sự kém hiệu quả này không còn được chấp nhận. act, công cụ dòng lệnh được Casey Lee và tổ chức nektos phát triển bằng Go, giải quyết vấn đề này bằng cách chạy workflow GitHub Actions local trong container Docker — tái tạo chính xác các biến môi trường, bố cục filesystem và hành vi runner của GitHub. Với 70,410 sao trên GitHub và hệ sinh thái tích hợp phát triển mạnh, act đã trở thành công cụ tiêu chuẩn cho phát triển CI/CD local.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>16 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/act/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“activepieces”, “tự động hóa workflow”, “giải pháp thay thế zapier”, “self-hosted”, “docker”, “no-code”, “mã nguồn mở”, “typescript”, “ai actions”, “webhooks”] aliases:
+/vi/posts/activepieces-workflow-automation/ Giới thiệu: Vấn đề $2,340/năm với tự động hóa workflow Năm 2025, gói Team của Zapier có giá $195/tháng ($2,340/năm) cho chỉ 50,000 tác vụ. Thêm 200,000 tác vụ và bạn phải trả $990/tháng — gần $12,000 mỗi năm chỉ để kết nối API. Đây không phải chi phí công cụ; đây là một khoản lương kỹ sư thứ hai chi cho các HTTP request.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>17 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/activepieces-workflow-automation/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AFFiNE 2026: The Open-Source Notion&#43;Miro Hybrid for AI-E… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MPL-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“affine”, “knowledge-base”, “whiteboard”, “self-hosted”, “docker”, “notion-alternative”, “miro-alternative”, “crdt”, “local-first”, “ai-writing”] aliases:
+/posts/affine-knowledge-base-whiteboard/- Introduction: The Knowledge Management Mess of 2026 The average developer uses 4.3 different tools to manage notes, tasks, and whiteboards. Notion for docs. Miro for whiteboards. Linear for tasks. A separate AI chatbot for writing help. Context-switching kills flow, and your data is scattered across proprietary servers you do not control.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>13 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/affine-knowledge-base-whiteboard/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Agency Agents: 125K&#43; Star Open-Source AI Agency Framework” description: “Technical guide and comparison.” date: 2026-07-03T09:00:00&#43;09:00 lastmod: 2026-07-03T09:00:00&#43;09:00 slug: agency-agents-complete-ai-agency-framework category: dev-utils tags: [“ai-agents”, “open-source”, “automation”, “multi-agent”, “agency”] tech_stack: - Bash
+Python Shell Editor’s Disclosure: This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>11 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/agency-agents-complete-ai-agency-framework/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” AI Agent truy cập ngay YouTube, Twitter, Reddit, Xiaohongshu, Bilibili và hơn 15 nền tảng khác. date: 2026-05-15T04:20:25&#43;09:00 lastmod: 2026-05-15T04:20:25&#43;09:00 tech_stack: - Docker
+Go JavaScript application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-15” draft: false aliases: /vi/posts/agent-reach-ai-agent-internet-access/ /vi/posts/agent-reach/ faqs: - q: ‘Agent Reach là gì và nó làm được gì?’ a: ‘Agent Reach là một công cụ scaffolding mã nguồn mở theo giấy phép MIT do Panniantong tạo ra, giúp các AI agent truy cập tức thì vào hơn 15 nền tảng internet chỉ với một lệnh duy nhất. Nó tự động chọn, cài đặt và cấu hình công cụ mã nguồn mở tốt nhất cho từng nền tảng, thay vì bọc chúng trong một lớp trừu tượng.’ q: ‘Agent Reach hỗ trợ những nền tảng nào?’ a: ‘Nó hỗ trợ hơn 15 nền tảng, bao gồm Web, YouTube, RSS, GitHub, Twitter/X, Reddit, Bilibili, Xiaohongshu, Douyin, LinkedIn, WeChat, Weibo, V2EX, Xueqiu, chuyển lời nói thành văn bản cho Podcast, và tìm kiếm web bằng AI. Khả năng của nó trải dài từ đọc trang web và trích xuất phụ đề YouTube đến tìm kiếm tweet, đọc bình luận Reddit và đăng bài trên Xiaohongshu.’ q: ‘Cài đặt Agent Reach như thế nào?’ a: ‘Bạn có thể cài đặt bằng một lệnh qua npx với ‘’npx skills add Panniantong/Agent-Reach’’, hoặc bằng cách clone repo GitHub. Sau đó agent sẽ cài CLI agent-reach qua pip, phát hiện và cài các phụ thuộc hệ thống (Node.js, gh CLI, mcporter), cấu hình tìm kiếm Exa MCP, đăng ký SKILL.md, và chạy ‘‘agent-reach doctor’’ để xác minh thiết lập.’ q: ‘Agent Reach lưu trữ thông tin xác thực và giữ chúng an toàn như thế nào?’ a: ‘Cookie và token được lưu cục bộ trong ~/.agent-reach/config.yaml với quyền tệp 600. Toàn bộ mã nguồn và các phụ thuộc đều là mã nguồn mở và có thể kiểm toán, và Agent Reach khuyến nghị dùng các tài khoản chuyên dụng dùng một lần cho những nền tảng dựa trên cookie để giảm rủi ro bị cấm.’ q: ‘Agent Reach tương thích với những AI agent và công cụ lập trình nào?’ a: ‘Agent Reach hoạt động với Claude Code, GitHub Copilot, OpenAI Codex CLI, Cursor, Windsurf, Gemini CLI, và bất kỳ agent nào tương thích MCP. Mỗi nền tảng được triển khai dưới dạng một tệp channel độc lập, có thể thay thế, nên bạn có thể thay công cụ nền tảng bên dưới cho bất kỳ nền tảng nào mà không bị khóa (lock-in).’ {&lt;/* resource-info */&gt;}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>10 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/agent-reach-ai-agent-internet-access/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Agent-Reach: Truy Cập Internet Miễn Phí Cho Agent AI Của Bạn Bạn có nhớ khi trợ lý AI của bạn chỉ có thể nói về những gì nó biết tại thời điểm huấn luyện không? Tôi từng cảm thấy frustrate khi xem Claude hoặc GPT-4 vật lộn với thông tin thời gian thực. Họ sẽ đoán sai hoặc lịch sự từ chối giúp đỡ.
+Sau đó tôi tìm thấy Agent-Reach.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/vi/ai-coding-agents/agent-reach-internet-access-ai-agents/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/vi/page/2/">
+      «&nbsp;Trang trước&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/vi/page/4/">Trang tiếp theo&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

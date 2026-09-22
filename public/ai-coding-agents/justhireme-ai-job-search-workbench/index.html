@@ -1,50 +1,435 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/justhireme-ai-job-search-workbench/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/justhireme-ai-job-search-workbench/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/justhireme-ai-job-search-workbench/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - JavaScript\nPython TypeScript application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “50.9 MB” file_md5: \"\" download_url: “https://github.com/vasu-devs/JustHireMe.git\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /posts/justhireme-ai-job-search-workbench/ faqs: - q: ‘Is JustHireMe free and open source?’ a: ‘Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.’ q: ‘Does JustHireMe require an AI API key or send my data to the cloud?’ a: ‘No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.’ q: ‘Which job platforms can JustHireMe scrape listings from?’ a: ‘It automatically aggregates jobs from LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, company career pages, and remote-work sections. A deduplication algorithm merges the same role when it appears across multiple platforms.’ q: ‘How does JustHireMe’’s job matching score work?’ a: ‘It uses semantic understanding rather than keyword matching, comparing your skills, experience, salary expectations, and career goals against each job’’s requirements. Each listing receives a 0-100 score so you can focus on roles above 80.’ q: ‘What technology stack is JustHireMe built on?’ a: ‘The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.’ {\u003c/* resource-info */\u003e}\n问题：找工作就是一份全职工作 投 100 份简历，收到 2 个面试，0 个 Offer。这不是你的问题，是系统的问题。\n每个招聘网站都是孤岛：\nLinkedIn：高级搜索要付费 Indeed：重复职位、过期信息 Glassdoor：薪资数据滞后 公司官网：每个都要重新填写 招聘邮件：99% 已读不回 更痛苦的是：每投一份都要重新写简历、重新写求职信、重新研究公司。\n解决方案：JustHireMe JustHireMe 是一个开源的 AI 求职智能工作台。本地优先、隐私安全、一键自动投递。\n核心理念：让 AI 做重复工作，你只做决策。\n核心功能 1. 智能职位抓取 自动从多个平台抓取职位：\nLinkedIn、Indeed、Glassdoor AngelList、Hacker News 公司招聘页面 远程工作专区 去重算法：同一职位在不同平台出现，自动合并。\n2. AI 匹配度评分 不是关键词匹配，是真正的语义理解：\n你的技能 vs 职位要求 你的经验 vs 职位级别 你的薪资期望 vs 预算范围 你的职业目标 vs 公司方向 评分 0-100，只看 80 分以上的职位。\n3. 简历自动定制 根据每个职位重写简历：\n突出相关技能 调整项目描述 匹配关键词 优化排版格式 不是模板填充，是真正的 AI 重写。\n4. 求职信生成 每封求职信都是独一无二的：\n研究公司背景 引用具体项目 展示相关经验 表达真诚兴趣 HR 看得出来是模板还是用心写的。\n5. 本地 CRM 管理 所有数据存在本地：\nSQLite 数据库 职位历史记录 投递状态跟踪 面试日程管理 隐私优先：你的数据不会上传到云端。\n技术架构 | 层级 | 技术 | |\n|\n| | 桌面端 | Tauri 2 + React 19 + TypeScript | | 后端 | Python 3.13 + FastAPI + WebSockets | | 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 | | AI 模型 | 本地 LLM + 语义搜索 | | 自动化 | Playwright 浏览器自动化 |\n本地优先：所有 AI 计算在本地完成，无需 API Key。\n安装使用 # 克隆仓库 git clone https://github.com/vasu-devs/JustHireMe.git cd JustHireMe # 安装前端依赖 npm install # 启动开发服务器 npm run dev # 启动桌面应用 npm run tauri dev 使用流程 设置 profile：上传简历，填写技能和目标 配置抓取源：选择要监控的招聘平台 运行抓取：AI 自动抓取最新职位 查看匹配：按匹配度排序，筛选高分配职位 一键申请：AI 生成定制材料，自动投递 跟踪进度：CRM 管理所有申请状态 为什么开源？ 求职不应该被平台垄断：\n数据所有权：你的简历、你的数据 算法透明：知道 AI 如何评分 免费使用：没有订阅费、没有隐藏费用 社区驱动：大家一起改进 适合谁用？ 求职者：想投更多、更好、更快 自由职业者：寻找合同和项目 转行人士：需要针对性定制简历 应届生：不知道从何开始 资深人士：想被动接收高质量机会 相关文章 Agent Reach：让你的 AI Agent 一键连接互联网 Free Claude Code：不花一分钱，让顶级 AI 帮你写代码 OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活 项目地址：github.com/vasu-devs/JustHireMe\nStars：471 ⭐ | Forks：91 | 语言：Python 47.3%, TypeScript 27.5%\nRecommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. Affiliate link — supports dibi8.com at no cost to you.\nReferences \u0026 Sources JustHireMe Tauri React FastAPI Playwright Kuzu LanceDB SQLite { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/justhireme-ai-job-search-workbench\" } } Why This Matters Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n","wordCount":"771","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/justhireme-ai-job-search-workbench/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/justhireme-ai-job-search-workbench/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/justhireme-ai-job-search-workbench/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#%e9%97%ae%e9%a2%98%e6%89%be%e5%b7%a5%e4%bd%9c%e5%b0%b1%e6%98%af%e4%b8%80%e4%bb%bd%e5%85%a8%e8%81%8c%e5%b7%a5%e4%bd%9c aria-label=问题：找工作就是一份全职工作>问题：找工作就是一份全职工作</a></li><li><a href=#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88justhireme aria-label=解决方案：JustHireMe>解决方案：JustHireMe</a></li><li><a href=#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd aria-label=核心功能>核心功能</a><ul><li><a href=#1-%e6%99%ba%e8%83%bd%e8%81%8c%e4%bd%8d%e6%8a%93%e5%8f%96 aria-label="1. 智能职位抓取">1. 智能职位抓取</a></li><li><a href=#2-ai-%e5%8c%b9%e9%85%8d%e5%ba%a6%e8%af%84%e5%88%86 aria-label="2. AI 匹配度评分">2. AI 匹配度评分</a></li><li><a href=#3-%e7%ae%80%e5%8e%86%e8%87%aa%e5%8a%a8%e5%ae%9a%e5%88%b6 aria-label="3. 简历自动定制">3. 简历自动定制</a></li><li><a href=#4-%e6%b1%82%e8%81%8c%e4%bf%a1%e7%94%9f%e6%88%90 aria-label="4. 求职信生成">4. 求职信生成</a></li><li><a href=#5-%e6%9c%ac%e5%9c%b0-crm-%e7%ae%a1%e7%90%86 aria-label="5. 本地 CRM 管理">5. 本地 CRM 管理</a></li></ul></li><li><a href=#%e6%8a%80%e6%9c%af%e6%9e%b6%e6%9e%84 aria-label=技术架构>技术架构</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8 aria-label=安装使用>安装使用</a></li><li><a href=#%e4%bd%bf%e7%94%a8%e6%b5%81%e7%a8%8b aria-label=使用流程>使用流程</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bc%80%e6%ba%90 aria-label=为什么开源？>为什么开源？</a></li><li><a href=#%e9%80%82%e5%90%88%e8%b0%81%e7%94%a8 aria-label=适合谁用？>适合谁用？</a></li><li><a href=#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0 aria-label=相关文章>相关文章</a></li><li><a href=#recommended-tools aria-label="Recommended Tools">Recommended Tools</a></li><li><a href=#references--sources aria-label="References & Sources">References & Sources</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/justhireme-ai-job-search-workbench/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/justhireme-ai-job-search-workbench/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/justhireme-ai-job-search-workbench/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - JavaScript\nPython TypeScript application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: “50.9 MB” file_md5: \"\" download_url: “https://github.com/vasu-devs/JustHireMe.git\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /posts/justhireme-ai-job-search-workbench/ faqs: - q: ‘Is JustHireMe free and open source?’ a: ‘Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.’ q: ‘Does JustHireMe require an AI API key or send my data to the cloud?’ a: ‘No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.’ q: ‘Which job platforms can JustHireMe scrape listings from?’ a: ‘It automatically aggregates jobs from LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, company career pages, and remote-work sections. A deduplication algorithm merges the same role when it appears across multiple platforms.’ q: ‘How does JustHireMe’’s job matching score work?’ a: ‘It uses semantic understanding rather than keyword matching, comparing your skills, experience, salary expectations, and career goals against each job’’s requirements. Each listing receives a 0-100 score so you can focus on roles above 80.’ q: ‘What technology stack is JustHireMe built on?’ a: ‘The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.’ {\u003c/* resource-info */\u003e}\n问题：找工作就是一份全职工作 投 100 份简历，收到 2 个面试，0 个 Offer。这不是你的问题，是系统的问题。\n每个招聘网站都是孤岛：\nLinkedIn：高级搜索要付费 Indeed：重复职位、过期信息 Glassdoor：薪资数据滞后 公司官网：每个都要重新填写 招聘邮件：99% 已读不回 更痛苦的是：每投一份都要重新写简历、重新写求职信、重新研究公司。\n解决方案：JustHireMe JustHireMe 是一个开源的 AI 求职智能工作台。本地优先、隐私安全、一键自动投递。\n核心理念：让 AI 做重复工作，你只做决策。\n核心功能 1. 智能职位抓取 自动从多个平台抓取职位：\nLinkedIn、Indeed、Glassdoor AngelList、Hacker News 公司招聘页面 远程工作专区 去重算法：同一职位在不同平台出现，自动合并。\n2. AI 匹配度评分 不是关键词匹配，是真正的语义理解：\n你的技能 vs 职位要求 你的经验 vs 职位级别 你的薪资期望 vs 预算范围 你的职业目标 vs 公司方向 评分 0-100，只看 80 分以上的职位。\n3. 简历自动定制 根据每个职位重写简历：\n突出相关技能 调整项目描述 匹配关键词 优化排版格式 不是模板填充，是真正的 AI 重写。\n4. 求职信生成 每封求职信都是独一无二的：\n研究公司背景 引用具体项目 展示相关经验 表达真诚兴趣 HR 看得出来是模板还是用心写的。\n5. 本地 CRM 管理 所有数据存在本地：\nSQLite 数据库 职位历史记录 投递状态跟踪 面试日程管理 隐私优先：你的数据不会上传到云端。\n技术架构 | 层级 | 技术 | |\n|\n| | 桌面端 | Tauri 2 + React 19 + TypeScript | | 后端 | Python 3.13 + FastAPI + WebSockets | | 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 | | AI 模型 | 本地 LLM + 语义搜索 | | 自动化 | Playwright 浏览器自动化 |\n本地优先：所有 AI 计算在本地完成，无需 API Key。\n安装使用 # 克隆仓库 git clone https://github.com/vasu-devs/JustHireMe.git cd JustHireMe # 安装前端依赖 npm install # 启动开发服务器 npm run dev # 启动桌面应用 npm run tauri dev 使用流程 设置 profile：上传简历，填写技能和目标 配置抓取源：选择要监控的招聘平台 运行抓取：AI 自动抓取最新职位 查看匹配：按匹配度排序，筛选高分配职位 一键申请：AI 生成定制材料，自动投递 跟踪进度：CRM 管理所有申请状态 为什么开源？ 求职不应该被平台垄断：\n数据所有权：你的简历、你的数据 算法透明：知道 AI 如何评分 免费使用：没有订阅费、没有隐藏费用 社区驱动：大家一起改进 适合谁用？ 求职者：想投更多、更好、更快 自由职业者：寻找合同和项目 转行人士：需要针对性定制简历 应届生：不知道从何开始 资深人士：想被动接收高质量机会 相关文章 Agent Reach：让你的 AI Agent 一键连接互联网 Free Claude Code：不花一分钱，让顶级 AI 帮你写代码 OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活 项目地址：github.com/vasu-devs/JustHireMe\nStars：471 ⭐ | Forks：91 | 语言：Python 47.3%, TypeScript 27.5%\nRecommended Tools For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.\n**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing. Affiliate link — supports dibi8.com at no cost to you.\nReferences \u0026 Sources JustHireMe Tauri React FastAPI Playwright Kuzu LanceDB SQLite { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer”, “datePublished”: “2026-05-15”, “dateModified”: “2026-05-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/justhireme-ai-job-search-workbench\" } } Why This Matters Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\n",
+  "wordCount" : "771",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/justhireme-ai-job-search-workbench/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>4 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/justhireme-ai-job-search-workbench/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/justhireme-ai-job-search-workbench/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/justhireme-ai-job-search-workbench/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e6%89%be%e5%b7%a5%e4%bd%9c%e5%b0%b1%e6%98%af%e4%b8%80%e4%bb%bd%e5%85%a8%e8%81%8c%e5%b7%a5%e4%bd%9c" aria-label="问题：找工作就是一份全职工作">问题：找工作就是一份全职工作</a></li>
+            <li>
+                <a href="#%e8%a7%a3%e5%86%b3%e6%96%b9%e6%a1%88justhireme" aria-label="解决方案：JustHireMe">解决方案：JustHireMe</a></li>
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e5%8a%9f%e8%83%bd" aria-label="核心功能">核心功能</a><ul>
+                    
+            <li>
+                <a href="#1-%e6%99%ba%e8%83%bd%e8%81%8c%e4%bd%8d%e6%8a%93%e5%8f%96" aria-label="1. 智能职位抓取">1. 智能职位抓取</a></li>
+            <li>
+                <a href="#2-ai-%e5%8c%b9%e9%85%8d%e5%ba%a6%e8%af%84%e5%88%86" aria-label="2. AI 匹配度评分">2. AI 匹配度评分</a></li>
+            <li>
+                <a href="#3-%e7%ae%80%e5%8e%86%e8%87%aa%e5%8a%a8%e5%ae%9a%e5%88%b6" aria-label="3. 简历自动定制">3. 简历自动定制</a></li>
+            <li>
+                <a href="#4-%e6%b1%82%e8%81%8c%e4%bf%a1%e7%94%9f%e6%88%90" aria-label="4. 求职信生成">4. 求职信生成</a></li>
+            <li>
+                <a href="#5-%e6%9c%ac%e5%9c%b0-crm-%e7%ae%a1%e7%90%86" aria-label="5. 本地 CRM 管理">5. 本地 CRM 管理</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%8a%80%e6%9c%af%e6%9e%b6%e6%9e%84" aria-label="技术架构">技术架构</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%bd%bf%e7%94%a8" aria-label="安装使用">安装使用</a></li>
+            <li>
+                <a href="#%e4%bd%bf%e7%94%a8%e6%b5%81%e7%a8%8b" aria-label="使用流程">使用流程</a></li>
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e5%bc%80%e6%ba%90" aria-label="为什么开源？">为什么开源？</a></li>
+            <li>
+                <a href="#%e9%80%82%e5%90%88%e8%b0%81%e7%94%a8" aria-label="适合谁用？">适合谁用？</a></li>
+            <li>
+                <a href="#%e7%9b%b8%e5%85%b3%e6%96%87%e7%ab%a0" aria-label="相关文章">相关文章</a></li>
+            <li>
+                <a href="#recommended-tools" aria-label="Recommended Tools">Recommended Tools</a></li>
+            <li>
+                <a href="#references--sources" aria-label="References &amp; Sources">References &amp; Sources</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - JavaScript</p><ul><li>Python</li><li>TypeScript
+tech_stack: - JavaScript</p>
+<ul>
+<li>Python</li>
+<li>TypeScript
 application_domain: &ldquo;Ai Tools&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
 file_size: &ldquo;50.9 MB&rdquo;
-file_md5: ""
-download_url: &ldquo;<a href=https://github.com/vasu-devs/JustHireMe.git%22>https://github.com/vasu-devs/JustHireMe.git"</a>
-backup_url: "&rdquo;
+file_md5: &quot;&quot;
+download_url: &ldquo;<a href="https://github.com/vasu-devs/JustHireMe.git%22">https://github.com/vasu-devs/JustHireMe.git"</a>
+backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</li><li>/posts/justhireme-ai-job-search-workbench/
+aliases:</li>
+<li>/posts/justhireme-ai-job-search-workbench/
 faqs: - q: &lsquo;Is JustHireMe free and open source?&rsquo;
-a: &lsquo;Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.&rsquo;</li><li>q: &lsquo;Does JustHireMe require an AI API key or send my data to the cloud?&rsquo;
-a: &lsquo;No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.&rsquo;</li><li>q: &lsquo;Which job platforms can JustHireMe scrape listings from?&rsquo;
-a: &lsquo;It automatically aggregates jobs from LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, company career pages, and remote-work sections. A deduplication algorithm merges the same role when it appears across multiple platforms.&rsquo;</li><li>q: &lsquo;How does JustHireMe&rsquo;&rsquo;s job matching score work?&rsquo;
-a: &lsquo;It uses semantic understanding rather than keyword matching, comparing your skills, experience, salary expectations, and career goals against each job&rsquo;&rsquo;s requirements. Each listing receives a 0-100 score so you can focus on roles above 80.&rsquo;</li><li>q: &lsquo;What technology stack is JustHireMe built on?&rsquo;
-a: &lsquo;The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.&rsquo;</li></ul><hr><p>{&lt;/* resource-info */>}</p><h2 id=问题找工作就是一份全职工作>问题：找工作就是一份全职工作<a hidden class=anchor aria-hidden=true href=#问题找工作就是一份全职工作>#</a></h2><p>投 100 份简历，收到 2 个面试，0 个 Offer。这不是你的问题，是系统的问题。</p><p>每个招聘网站都是孤岛：</p><ul><li><strong>LinkedIn</strong>：高级搜索要付费</li><li><strong>Indeed</strong>：重复职位、过期信息</li><li><strong>Glassdoor</strong>：薪资数据滞后</li><li><strong>公司官网</strong>：每个都要重新填写</li><li><strong>招聘邮件</strong>：99% 已读不回</li></ul><p>更痛苦的是：每投一份都要<strong>重新写简历</strong>、<strong>重新写求职信</strong>、<strong>重新研究公司</strong>。</p><h2 id=解决方案justhireme>解决方案：JustHireMe<a hidden class=anchor aria-hidden=true href=#解决方案justhireme>#</a></h2><p><strong>JustHireMe</strong> 是一个开源的 AI 求职智能工作台。本地优先、隐私安全、一键自动投递。</p><p><strong>核心理念</strong>：让 AI 做重复工作，你只做决策。</p><h2 id=核心功能>核心功能<a hidden class=anchor aria-hidden=true href=#核心功能>#</a></h2><h3 id=1-智能职位抓取>1. 智能职位抓取<a hidden class=anchor aria-hidden=true href=#1-智能职位抓取>#</a></h3><p>自动从多个平台抓取职位：</p><ul><li>LinkedIn、Indeed、Glassdoor</li><li>AngelList、Hacker News</li><li>公司招聘页面</li><li>远程工作专区</li></ul><p><strong>去重算法</strong>：同一职位在不同平台出现，自动合并。</p><h3 id=2-ai-匹配度评分>2. AI 匹配度评分<a hidden class=anchor aria-hidden=true href=#2-ai-匹配度评分>#</a></h3><p>不是关键词匹配，是真正的<strong>语义理解</strong>：</p><ul><li>你的技能 vs 职位要求</li><li>你的经验 vs 职位级别</li><li>你的薪资期望 vs 预算范围</li><li>你的职业目标 vs 公司方向</li></ul><p>评分 0-100，只看 80 分以上的职位。</p><h3 id=3-简历自动定制>3. 简历自动定制<a hidden class=anchor aria-hidden=true href=#3-简历自动定制>#</a></h3><p>根据每个职位<strong>重写简历</strong>：</p><ul><li>突出相关技能</li><li>调整项目描述</li><li>匹配关键词</li><li>优化排版格式</li></ul><p>不是模板填充，是<strong>真正的 AI 重写</strong>。</p><h3 id=4-求职信生成>4. 求职信生成<a hidden class=anchor aria-hidden=true href=#4-求职信生成>#</a></h3><p>每封求职信都是<strong>独一无二</strong>的：</p><ul><li>研究公司背景</li><li>引用具体项目</li><li>展示相关经验</li><li>表达真诚兴趣</li></ul><p>HR 看得出来是模板还是用心写的。</p><h3 id=5-本地-crm-管理>5. 本地 CRM 管理<a hidden class=anchor aria-hidden=true href=#5-本地-crm-管理>#</a></h3><p>所有数据存在本地：</p><ul><li>SQLite 数据库</li><li>职位历史记录</li><li>投递状态跟踪</li><li>面试日程管理</li></ul><p><strong>隐私优先</strong>：你的数据不会上传到云端。</p><h2 id=技术架构>技术架构<a hidden class=anchor aria-hidden=true href=#技术架构>#</a></h2><p>| 层级 | 技术 |
-|</p><hr><p>|</p><hr><p>|
+a: &lsquo;Yes. JustHireMe is open source under the MIT license, with no subscription fees or hidden costs. You own your resume and data, and the scoring algorithm is transparent.&rsquo;</li>
+<li>q: &lsquo;Does JustHireMe require an AI API key or send my data to the cloud?&rsquo;
+a: &lsquo;No. JustHireMe is local-first: all AI computation runs locally with no API key required, and your data is stored on your machine in a local SQLite database rather than uploaded to the cloud.&rsquo;</li>
+<li>q: &lsquo;Which job platforms can JustHireMe scrape listings from?&rsquo;
+a: &lsquo;It automatically aggregates jobs from LinkedIn, Indeed, Glassdoor, AngelList, Hacker News, company career pages, and remote-work sections. A deduplication algorithm merges the same role when it appears across multiple platforms.&rsquo;</li>
+<li>q: &lsquo;How does JustHireMe&rsquo;&rsquo;s job matching score work?&rsquo;
+a: &lsquo;It uses semantic understanding rather than keyword matching, comparing your skills, experience, salary expectations, and career goals against each job&rsquo;&rsquo;s requirements. Each listing receives a 0-100 score so you can focus on roles above 80.&rsquo;</li>
+<li>q: &lsquo;What technology stack is JustHireMe built on?&rsquo;
+a: &lsquo;The desktop app uses Tauri 2 with React 19 and TypeScript; the backend runs Python 3.13 with FastAPI and WebSockets; data is stored in SQLite plus a Kuzu graph database and LanceDB vector store; and Playwright handles browser automation for scraping and applying.&rsquo;</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="问题找工作就是一份全职工作">问题：找工作就是一份全职工作<a hidden class="anchor" aria-hidden="true" href="#问题找工作就是一份全职工作">#</a></h2>
+<p>投 100 份简历，收到 2 个面试，0 个 Offer。这不是你的问题，是系统的问题。</p>
+<p>每个招聘网站都是孤岛：</p>
+<ul>
+<li><strong>LinkedIn</strong>：高级搜索要付费</li>
+<li><strong>Indeed</strong>：重复职位、过期信息</li>
+<li><strong>Glassdoor</strong>：薪资数据滞后</li>
+<li><strong>公司官网</strong>：每个都要重新填写</li>
+<li><strong>招聘邮件</strong>：99% 已读不回</li>
+</ul>
+<p>更痛苦的是：每投一份都要<strong>重新写简历</strong>、<strong>重新写求职信</strong>、<strong>重新研究公司</strong>。</p>
+<h2 id="解决方案justhireme">解决方案：JustHireMe<a hidden class="anchor" aria-hidden="true" href="#解决方案justhireme">#</a></h2>
+<p><strong>JustHireMe</strong> 是一个开源的 AI 求职智能工作台。本地优先、隐私安全、一键自动投递。</p>
+<p><strong>核心理念</strong>：让 AI 做重复工作，你只做决策。</p>
+<h2 id="核心功能">核心功能<a hidden class="anchor" aria-hidden="true" href="#核心功能">#</a></h2>
+<h3 id="1-智能职位抓取">1. 智能职位抓取<a hidden class="anchor" aria-hidden="true" href="#1-智能职位抓取">#</a></h3>
+<p>自动从多个平台抓取职位：</p>
+<ul>
+<li>LinkedIn、Indeed、Glassdoor</li>
+<li>AngelList、Hacker News</li>
+<li>公司招聘页面</li>
+<li>远程工作专区</li>
+</ul>
+<p><strong>去重算法</strong>：同一职位在不同平台出现，自动合并。</p>
+<h3 id="2-ai-匹配度评分">2. AI 匹配度评分<a hidden class="anchor" aria-hidden="true" href="#2-ai-匹配度评分">#</a></h3>
+<p>不是关键词匹配，是真正的<strong>语义理解</strong>：</p>
+<ul>
+<li>你的技能 vs 职位要求</li>
+<li>你的经验 vs 职位级别</li>
+<li>你的薪资期望 vs 预算范围</li>
+<li>你的职业目标 vs 公司方向</li>
+</ul>
+<p>评分 0-100，只看 80 分以上的职位。</p>
+<h3 id="3-简历自动定制">3. 简历自动定制<a hidden class="anchor" aria-hidden="true" href="#3-简历自动定制">#</a></h3>
+<p>根据每个职位<strong>重写简历</strong>：</p>
+<ul>
+<li>突出相关技能</li>
+<li>调整项目描述</li>
+<li>匹配关键词</li>
+<li>优化排版格式</li>
+</ul>
+<p>不是模板填充，是<strong>真正的 AI 重写</strong>。</p>
+<h3 id="4-求职信生成">4. 求职信生成<a hidden class="anchor" aria-hidden="true" href="#4-求职信生成">#</a></h3>
+<p>每封求职信都是<strong>独一无二</strong>的：</p>
+<ul>
+<li>研究公司背景</li>
+<li>引用具体项目</li>
+<li>展示相关经验</li>
+<li>表达真诚兴趣</li>
+</ul>
+<p>HR 看得出来是模板还是用心写的。</p>
+<h3 id="5-本地-crm-管理">5. 本地 CRM 管理<a hidden class="anchor" aria-hidden="true" href="#5-本地-crm-管理">#</a></h3>
+<p>所有数据存在本地：</p>
+<ul>
+<li>SQLite 数据库</li>
+<li>职位历史记录</li>
+<li>投递状态跟踪</li>
+<li>面试日程管理</li>
+</ul>
+<p><strong>隐私优先</strong>：你的数据不会上传到云端。</p>
+<h2 id="技术架构">技术架构<a hidden class="anchor" aria-hidden="true" href="#技术架构">#</a></h2>
+<p>| 层级 | 技术 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 桌面端 | Tauri 2 + React 19 + TypeScript |
 | 后端 | Python 3.13 + FastAPI + WebSockets |
 | 数据库 | SQLite + Kuzu 图数据库 + LanceDB 向量库 |
 | AI 模型 | 本地 LLM + 语义搜索 |
-| 自动化 | Playwright 浏览器自动化 |</p><p><strong>本地优先</strong>：所有 AI 计算在本地完成，无需 API Key。</p><h2 id=安装使用>安装使用<a hidden class=anchor aria-hidden=true href=#安装使用>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 克隆仓库</span>
-</span></span><span style=display:flex><span>git clone https://github.com/vasu-devs/JustHireMe.git
-</span></span><span style=display:flex><span>cd JustHireMe
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 安装前端依赖</span>
-</span></span><span style=display:flex><span>npm install
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动开发服务器</span>
-</span></span><span style=display:flex><span>npm run dev
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动桌面应用</span>
-</span></span><span style=display:flex><span>npm run tauri dev
-</span></span></code></pre></div><h2 id=使用流程>使用流程<a hidden class=anchor aria-hidden=true href=#使用流程>#</a></h2><ol><li><strong>设置 profile</strong>：上传简历，填写技能和目标</li><li><strong>配置抓取源</strong>：选择要监控的招聘平台</li><li><strong>运行抓取</strong>：AI 自动抓取最新职位</li><li><strong>查看匹配</strong>：按匹配度排序，筛选高分配职位</li><li><strong>一键申请</strong>：AI 生成定制材料，自动投递</li><li><strong>跟踪进度</strong>：CRM 管理所有申请状态</li></ol><h2 id=为什么开源>为什么开源？<a hidden class=anchor aria-hidden=true href=#为什么开源>#</a></h2><p>求职不应该被平台垄断：</p><ul><li><strong>数据所有权</strong>：你的简历、你的数据</li><li><strong>算法透明</strong>：知道 AI 如何评分</li><li><strong>免费使用</strong>：没有订阅费、没有隐藏费用</li><li><strong>社区驱动</strong>：大家一起改进</li></ul><h2 id=适合谁用>适合谁用？<a hidden class=anchor aria-hidden=true href=#适合谁用>#</a></h2><ul><li><strong>求职者</strong>：想投更多、更好、更快</li><li><strong>自由职业者</strong>：寻找合同和项目</li><li><strong>转行人士</strong>：需要针对性定制简历</li><li><strong>应届生</strong>：不知道从何开始</li><li><strong>资深人士</strong>：想被动接收高质量机会</li></ul><h2 id=相关文章>相关文章<a hidden class=anchor aria-hidden=true href=#相关文章>#</a></h2><ul><li><a href=/resources/llm-frameworks/agent-reach-ai-agent-internet-access/>Agent Reach：让你的 AI Agent 一键连接互联网</a></li><li><a href=/resources/ai-tools/free-claude-code-open-source-proxy/>Free Claude Code：不花一分钱，让顶级 AI 帮你写代码</a></li><li><a href=/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/>OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活</a></li></ul><hr><p><strong>项目地址</strong>：<a href=https://github.com/vasu-devs/JustHireMe>github.com/vasu-devs/JustHireMe</a></p><p><strong>Stars</strong>：471 ⭐ | <strong>Forks</strong>：91 | <strong>语言</strong>：Python 47.3%, TypeScript 27.5%</p><hr><h2 id=recommended-tools>Recommended Tools<a hidden class=anchor aria-hidden=true href=#recommended-tools>#</a></h2><p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p><ul><li>**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.</li></ul><p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p><h2 id=references--sources>References & Sources<a hidden class=anchor aria-hidden=true href=#references--sources>#</a></h2><ul><li><a href=https://github.com/vasu-devs/JustHireMe>JustHireMe</a></li><li><a href=https://github.com/tauri-apps/tauri>Tauri</a></li><li><a href=https://github.com/facebook/react>React</a></li><li><a href=https://github.com/fastapi/fastapi>FastAPI</a></li><li><a href=https://github.com/microsoft/playwright>Playwright</a></li><li><a href=https://github.com/kuzudb/kuzu>Kuzu</a></li><li><a href=https://github.com/lancedb/lancedb>LanceDB</a></li><li><a href=https://www.sqlite.org/>SQLite</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 自动化 | Playwright 浏览器自动化 |</p>
+<p><strong>本地优先</strong>：所有 AI 计算在本地完成，无需 API Key。</p>
+<h2 id="安装使用">安装使用<a hidden class="anchor" aria-hidden="true" href="#安装使用">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 克隆仓库</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/vasu-devs/JustHireMe.git
+</span></span><span style="display:flex;"><span>cd JustHireMe
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 安装前端依赖</span>
+</span></span><span style="display:flex;"><span>npm install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动开发服务器</span>
+</span></span><span style="display:flex;"><span>npm run dev
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动桌面应用</span>
+</span></span><span style="display:flex;"><span>npm run tauri dev
+</span></span></code></pre></div><h2 id="使用流程">使用流程<a hidden class="anchor" aria-hidden="true" href="#使用流程">#</a></h2>
+<ol>
+<li><strong>设置 profile</strong>：上传简历，填写技能和目标</li>
+<li><strong>配置抓取源</strong>：选择要监控的招聘平台</li>
+<li><strong>运行抓取</strong>：AI 自动抓取最新职位</li>
+<li><strong>查看匹配</strong>：按匹配度排序，筛选高分配职位</li>
+<li><strong>一键申请</strong>：AI 生成定制材料，自动投递</li>
+<li><strong>跟踪进度</strong>：CRM 管理所有申请状态</li>
+</ol>
+<h2 id="为什么开源">为什么开源？<a hidden class="anchor" aria-hidden="true" href="#为什么开源">#</a></h2>
+<p>求职不应该被平台垄断：</p>
+<ul>
+<li><strong>数据所有权</strong>：你的简历、你的数据</li>
+<li><strong>算法透明</strong>：知道 AI 如何评分</li>
+<li><strong>免费使用</strong>：没有订阅费、没有隐藏费用</li>
+<li><strong>社区驱动</strong>：大家一起改进</li>
+</ul>
+<h2 id="适合谁用">适合谁用？<a hidden class="anchor" aria-hidden="true" href="#适合谁用">#</a></h2>
+<ul>
+<li><strong>求职者</strong>：想投更多、更好、更快</li>
+<li><strong>自由职业者</strong>：寻找合同和项目</li>
+<li><strong>转行人士</strong>：需要针对性定制简历</li>
+<li><strong>应届生</strong>：不知道从何开始</li>
+<li><strong>资深人士</strong>：想被动接收高质量机会</li>
+</ul>
+<h2 id="相关文章">相关文章<a hidden class="anchor" aria-hidden="true" href="#相关文章">#</a></h2>
+<ul>
+<li><a href="/resources/llm-frameworks/agent-reach-ai-agent-internet-access/">Agent Reach：让你的 AI Agent 一键连接互联网</a></li>
+<li><a href="/resources/ai-tools/free-claude-code-open-source-proxy/">Free Claude Code：不花一分钱，让顶级 AI 帮你写代码</a></li>
+<li><a href="/resources/llm-frameworks/awesome-openclaw-usecases-ai-agent-daily-life/">OpenClaw 42 个真实用例：AI 代理已经这样改变我们的生活</a></li>
+</ul>
+<hr>
+<p><strong>项目地址</strong>：<a href="https://github.com/vasu-devs/JustHireMe">github.com/vasu-devs/JustHireMe</a></p>
+<p><strong>Stars</strong>：471 ⭐ | <strong>Forks</strong>：91 | <strong>语言</strong>：Python 47.3%, TypeScript 27.5%</p>
+<hr>
+<h2 id="recommended-tools">Recommended Tools<a hidden class="anchor" aria-hidden="true" href="#recommended-tools">#</a></h2>
+<p>For developers building or deploying open-source AI tools, we recommend: - **** — $200 free credit for new users, 14+ global regions, one-click GPU/CPU droplets ideal for AI workloads.</p>
+<ul>
+<li>**** — Anthropic Claude / OpenAI / DeepSeek API proxy. Most AI tools above (chatbots, code gen, translation, search, etc) need an LLM API key — this proxy delivers stable access to top models at ~30% of official pricing.</li>
+</ul>
+<p><em>Affiliate link — supports dibi8.com at no cost to you.</em></p>
+<h2 id="references--sources">References &amp; Sources<a hidden class="anchor" aria-hidden="true" href="#references--sources">#</a></h2>
+<ul>
+<li><a href="https://github.com/vasu-devs/JustHireMe">JustHireMe</a></li>
+<li><a href="https://github.com/tauri-apps/tauri">Tauri</a></li>
+<li><a href="https://github.com/facebook/react">React</a></li>
+<li><a href="https://github.com/fastapi/fastapi">FastAPI</a></li>
+<li><a href="https://github.com/microsoft/playwright">Playwright</a></li>
+<li><a href="https://github.com/kuzudb/kuzu">Kuzu</a></li>
+<li><a href="https://github.com/lancedb/lancedb">LanceDB</a></li>
+<li><a href="https://www.sqlite.org/">SQLite</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-15&rdquo;,
@@ -58,22 +443,208 @@ a: &lsquo;The desktop app uses Tauri 2 with React 19 and TypeScript; the backend
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/justhireme-ai-job-search-workbench%22>https://dibi8.com/resources/justhireme-ai-job-search-workbench"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/justhireme-ai-job-search-workbench%22">https://dibi8.com/resources/justhireme-ai-job-search-workbench"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding justhireme：ai 帮你自动找工作，从投递到拿到 offer is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/jupyter-notebook-alternatives-comparison/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/knowledge-base-stack/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>JustHireMe：AI 帮你自动找工作，从投递到拿到 Offer represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/jupyter-notebook-alternatives-comparison/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/knowledge-base-stack/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

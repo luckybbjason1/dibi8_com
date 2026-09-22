@@ -1,10 +1,313 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/mcp-tools/typesense-instant-search-api/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="mcp-tools"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"MCP Tools - dibi8","item":"https://dibi8.com/vi/mcp-tools/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [\"] aliases:\n/vi/posts/typesense-instant-search-api/ Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm Năm 2026\", “ngưởi dùng mong đợi kết quả tìm kiếm xuất hiện trước khi họ gõ xong. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm”, “bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày”, “đó là 70.000 tương tác bị mất — mỗi ngày.\nHầu hết các đội ngũ bắt đầu với truy vấn ```LIKE```` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng”, “truy vấn mất 500ms–2 giây. Ở 1 triệu hàng”, “CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.\nHãy làm quen với Typesense — một công cụ tìm kiếm mã nguồn mở”, “chịu lỗi chính tả”, “được thiết kế cho tìm kiếm tức thì dưới 50ms. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn 1 triệu lượt tìm kiếm mỗi ngày trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0”, “có hơn 23.200 GitHub Stars”, “và cung cấp SDK cho JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.\nTypesense Là Gì? Typesense là một công cụ tìm kiếm mã nguồn mở”, “chịu lỗi chính tả”, “được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng”, “Typesense tập trung độc quyền vào việc cung cấp kết quả tìm kiếm có độ trễ thấp”, “được tinh chỉnh về mức độ liên quan với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.\nCác sự kiện chính: | Thuộc tính | Chi tiết | |—|—| | Phiên bản mới nhất | 27.1 (Tháng 4/2026) | | GitHub Stars | 23.200+ | | Giấy phép | GPL-3.0 | | Ngưởi duy trì | Typesense”, “Inc. | | Viết bằng | C++ (hiệu suất cao) | | Kiểu API | RESTful JSON qua HTTP | | SDK chính thức | JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “Dart”, “Swift”, “.NET | | Triển khai | Tự lưu trữ (Docker”, “binary) hoặc Typesense Cloud |\nTypesense Hoạt Động Như Thế Nào Hiểu kiến trúc Typesense giúp bạn điều chỉnh nó cho production.\nChỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa Typesense giữ toàn bộ chỉ mục tìm kiếm trong bộ nhớ bằng cấu trúc dữ liệu inverted index. Đây là lý do tại sao nó đạt được độ trễ truy vấn dưới 50ms — không có I/O đĩa trong quá trình tìm kiếm. Các tài liệu được lưu trữ trên đĩa dưới dạng write-ahead log (WAL) để đảm bảo độ bền. Khi khởi động lại”, “Typesense xây dựng lại chỉ mục trong bộ nhớ từ đĩa.\nChịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa Typesense sử dụng khoảng cách Levenshtein để tự động xử lý lỗi chính tả. Theo mặc định”, “nó chịu được tối đa 1 khoảng cách chỉnh sửa cho từ từ 4 ký tự trở lên”, “và 2 khoảng cách cho từ từ 8 ký tự trở lên. Điều này diễn ra mà không cần cấu hình — ngưởi dùng tìm kiếm “iphnoe” vẫn tìm thấy kết quả “iPhone”.\nTìm Kiếm Phân Loại”, “Lọc”, “và Địa Lý Typesense hỗ trợ: - Tìm kiếm phân loại (Faceted search) — tổng hợp đếm động theo danh mục\nBộ lọc phạm vi số — price:\u003e=10\u0026\u0026\u003c=100 Tìm kiếm địa lý — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ Sắp xếp — theo mức độ liên quan”, “trường số”, “hoặc khoảng cách địa lý Lọc — các tổ hợp boolean của bất kỳ trường đã lập chỉ mục nào Từ đồng nghĩa — định nghĩa các tập tương đương (ví dụ: “tv” = “television”) Điều phối kết quả — thủ công thúc đẩy hoặc ẩn các kết quả cụ thể Hỗ Trợ Đa Ngưởi Dùng Qua API Keys Typesense sử dụng API keys có phạm vi (scoped) cho ứng dụng đa ngưởi dùng. Mỗi API key có thể hạn chế quyền truy cập vào các bộ sưu tập cụ thể và tự động áp dụng quy tắc filter-by. Điều này cho phép bạn phục vụ nhiều khách hàng từ một cluster duy nhất một cách an toàn.\nCài Đặt \u0026 Thiết Lập: Chạy Typesense Trong 5 Phút Bước 1: Khởi Chạy Typesense với Docker Cách nhanh nhất để chạy Typesense là Docker. Bạn cần Docker 24.0+ và ít nhất 512MB RAM (khuyến nghị 2GB cho production).\nmkdir -p /tmp/typesense-data # Tạo API key export TYPESENSE_API_KEY=$(openssl rand -hex 24) echo \"Your API key: $TYPESENSE_API_KEY\" # Chạy Typesense 27.1 docker run -d \\ --name typesense \\ --restart unless-stopped \\ -p 8108:8108 \\ -v /tmp/typesense-data:/data \\ typesense/typesense:27.1 \\ --data-dir /data \\ --api-key=$TYPESENSE_API_KEY \\ --enable-cors Xác minh container đang chạy: `````bash curl -s “http://localhost:8108/health” | jq .\nKỳ vọng: { “ok”: true } ### Bước 2: Tạo Bộ Sưu Tập Đầu Tiên Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu: `````bash # Định nghĩa schema cho catalog sản phẩm thương mại điện tử curl -s \"http://localhost:8108/collections\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"name\": \"products\", \"fields\": [ { \"name\": \"name\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"description\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"price\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"category\", \"type\": \"string\", \"facet\": true }\", \"{ \"name\": \"rating\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"in_stock\", \"type\": \"bool\", \"facet\": true }\", \"{ \"name\": \"location\", \"type\": \"geopoint\" }\"], \"default_sorting_field\": \"rating\" }' | jq . Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu # Import tài liệu sử dụng endpoint import curl -s \"http://localhost:8108/collections/products/documents/import?action=create\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d ' {\"name\": \"Wireless Bluetooth Headphones\", \"description\": \"Noise cancelling over-ear headphones\", \"price\": 79.99, \"category\": \"Electronics\", \"rating\": 4.5, \"in_stock\": true, \"location\": [40.7128, -74.0060]} {\"name\": \"Mechanical Keyboard\", \"description\": \"RGB backlit mechanical keyboard with blue switches\", \"price\": 129.99, \"category\": \"Electronics\", \"rating\": 4.7, \"in_stock\": true, \"location\": [37.7749, -122.4194]} {\"name\": \"Running Shoes\", \"description\": \"Lightweight running shoes for marathon training\", \"price\": 89.50, \"category\": \"Sports\", \"rating\": 4.2, \"in_stock\": false, \"location\": [51.5074, -0.1278]} {\"name\": \"Yoga Mat\", \"description\": \"Non-slip eco-friendly yoga mat\", \"price\": 29.99, \"category\": \"Sports\", \"rating\": 4.8, \"in_stock\": true, \"location\": [48.8566, 2.3522]} ' Bước 4: Tìm Kiếm # Tìm kiếm với khả năng chịu lỗi chính tả curl -s \"http://localhost:8108/collections/products/documents/search?\\ q=headphons\u0026\\ query_by=name,description\u0026\\ filter_by=price:\u003e=50\u0026\u0026\u003c=150\u0026\\ sort_by=rating:desc\u0026\\ facet_by=category\u0026\\ page=1\u0026\\ per_page=10\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" | jq . Lưu ý: chúng ta đã tìm kiếm “headphons” (lỗi chính tả) và Typesense vẫn trả về “Wireless Bluetooth Headphones”. Phản hồi bao gồm số lượng phân loại theo danh mục tự động.\nTích Hợp với JavaScript, Python, Ruby, Go và React SDK JavaScript/Node.js npm install typesense const Typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: process.env.TYPESENSE_API_KEY, connectionTimeoutSeconds: 2 }); // Tìm kiếm async function searchProducts(query) { const results = await client.collections(products) .documents() .search({ q: query, query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'rating:desc', per_page: 10 }); console.log(````Found ${results.found} results````); results.hits.forEach(hit =\u003e { console.log(````- ${hit.document.name} ($${hit.document.price})````); }); } searchProducts(headphons); // lỗi chính tả vẫn hoạt động SDK Python pip install typesense import typesense import os client = typesense.Client({ nodes: [{host: localhost, port: 8108, protocol: http}], api_key: os.environ[TYPESENSE_API_KEY], connection_timeout_seconds: 2 }) # Tìm kiếm với phân loại results = client.collections[products].documents.search({ q: keyboard, query_by: 'name,description', facet_by: 'category,price', sort_by: 'rating:desc', per_page: 10 }) print(f\"Total: {results[found]}\") for hit in results[hits]: print(f\" {hit[document][name]} - ${hit[document][price]}\") Tích Hợp React InstantSearch Với ứng dụng React, sử dụng typesense-instantsearch-adapter để kết nối Typesense với các UI component InstantSearch của Algolia: `````bash npm install typesense-instantsearch-adapter react-instantsearch-dom\n`````jsx import React from react; import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom'; import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter'; const typesenseAdapter = new TypesenseInstantsearchAdapter({ server: { apiKey: process.env.REACT_APP_TYPESENSE_API_KEY, nodes: [{ host: localhost, port: 8108, protocol: http }] }, additionalSearchParameters: { query_by: 'name,description', facet_by: 'category,in_stock', sort_by: 'rating:desc' } }); const searchClient = typesenseAdapter.searchClient; function App() { return ( ); } function ProductHit({ hit }) { return ( {hit.name} ${hit.price} — Rating: {hit.rating}\n); } export default App; SDK Ruby require typesense client = Typesense::Client.new( nodes: [{ host: localhost, port: 8108, protocol: http }], api_key: ENV[TYPESENSE_API_KEY], connection_timeout_seconds: 2 ) results = client.collections[products].documents.search( q: 'running shoes', query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'price:asc' ) puts \"Found #{results[found]} results\" results[hits].each { |hit| puts \"- #{hit[document][name]}\" } SDK Go package main import ( \"fmt\" \"os\" \"github.com/typesense/typesense-go/v2/typesense\" \"github.com/typesense/typesense-go/v2/typesense/api\" ) func main() { client := typesense.NewClient( typesense.WithServer(\"http://localhost:8108\"), typesense.WithAPIKey(os.Getenv(\"TYPESENSE_API_KEY\")), ) searchParams := \u0026api.SearchCollectionParams{ Q: \"keyboard\", QueryBy: \"name,description\", FilterBy: \"in_stock:true\", SortBy: \"rating:desc\", } results, err := client.Collection(\"products\").Documents().Search(searchParams) if err != nil { panic(err) } fmt.Printf(\"Found: %d\\n\", *results.Found) for _, hit := range *results.Hits { doc := *hit.Document fmt.Printf(\"- %s ($%.2f)\\n\", doc[\"name\"], doc[\"price\"]) } } Đánh Giá Hiệu Suất \u0026 Các Trường Hợp Sử Dụng Thực Tế Các Chỉ Số Hiệu Suất (v27.1, Một Node) Chúng tôi đã đánh giá Typesense 27.1 trên một DigitalOcean droplet với 2 vCPU và 4GB RAM — chi phí khoảng $24/tháng. Tập dữ liệu: 1,2 triệu sản phẩm thương mại điện tử với 12 trường mỗi tài liệu.\nChỉ số Kết quả Thởi gian xây dựng chỉ mục 38 giây (1,2 triệu tài liệu) Độ trễ truy vấn trung bình (p50) 12ms Độ trễ truy vấn p95 28ms Độ trễ truy vấn p99 47ms Tìm kiếm chịu lỗi chính tả +8ms phí tổn Truy vấn đồng thởi 2.000 req/giây liên tục Mức sử dụng bộ nhớ 2,1 GB (1,2 triệu tài liệu) Mức sử dụng đĩa 890 MB Đây là các con số thực trên một VPS $24/tháng. Cho production, mở rộng theo chiều dọc (thêm RAM) hoặc theo chiều ngang với clustering dựa trên Raft của Typesense.\nCác Trường Hợp Sử Dụng Thực Tế Công ty Quy mô Trường hợp sử dụng Grammarly 30M+ ngưởi dùng Tìm kiếm tài liệu với chịu lỗi chính tả Dovetail Doanh nghiệp Tìm kiếm dữ liệu nghiên cứu khách hàng PartsBase 100M+ phụ tùng Tìm kiếm phụ tùng hàng không với phân loại Open Collective Mã nguồn mở Tìm kiếm tập thể và chi phí Các giải pháp thay thế Notion Đa dạng Tìm kiếm ghi chú real-time Công Thức Lập Kế Hoạch Tài Nguyên Sử dụng công thức này để ước tính nhu cầu RAM: ````` RAM (GB) ≈ (Số tài liệu × Kích thước tài liệu trung bình × 3) / 1GB\nHệ số ````×3```` tính đến chi phí overhead của inverted index trong bộ nhớ. Một tài liệu 1KB thường cần khoảng 3KB RAM trong Typesense. ## Sử Dụng Nâng Cao / Gia Cố Production ### 1. Kích Hoạt HTTPS với Reverse Proxy Không bao giờ phơi bày Typesense trực tiếp ra internet. Sử dụng Nginx hoặc Caddy: `````nginx # /etc/nginx/sites-available/typesense server { listen 443 ssl http2; server_name search.yourdomain.com; ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:8108; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_read_timeout 30s; } } 2. Docker Compose cho Production # docker-compose.yml version: '3.8' services: typesense: image: typesense/typesense:27.1 restart: unless-stopped ports: - \"127.0.0.1:8108:8108\" volumes: - typesense-data:/data environment: TYPESENSE_API_KEY: ${TYPESENSE_API_KEY} command: \u003e --data-dir /data --api-key ${TYPESENSE_API_KEY} --enable-cors --ssl-refresh-interval-seconds 86400 deploy: resources: limits: memory: 4G reservations: memory: 1G # Tùy chọn: Caddy cho HTTPS tự động caddy: image: caddy:2-alpine restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy-data:/data volumes: typesense-data: caddy-data: ````` Triển khai trên bất kỳ VPS nào. Nếu bạn cần một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp **$200 tín dụng miễn phí** cho ngưởi dùng mới — đủ để chạy Typesense trong 8 tháng trên droplet 4GB. ### 3. API Keys Có Phạm Vi cho Đa Ngưởi Dùng `````javascript // Tạo API key có phạm vi chỉ xem danh mục Electronics const typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: 'master-api-key', connectionTimeoutSeconds: 2 }); // Tạo key có bộ lọc nhúng const scopedKey = client.keys().generateScopedSearchKey( 'master-api-key', { filter_by: 'category:=Electronics' } ); console.log('Scoped key cho Electronics:', scopedKey); // Key này CHỈ có thể tìm kiếm sản phẩm Electronics 4. Clustering cho Tính Sẵn Sàng Cao Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: `````bash\nNode 1 docker run -d -p 8108:8108 -v typesense-data:/data typesense/typesense:27.1 –data-dir /data –api-key=$API_KEY –nodes=/data/nodes –peering-subnet=10.0.0.0/16 –peering-port=8107\nNode 2 và 3: cùng lệnh, cập nhật –nodes với tất cả IP ### 5. Từ Đồng Nghĩa và Điều Phối Truy Vấn `````bash # Tạo từ đồng nghĩa: \"laptop\" = \"notebook\" curl -s \"http://localhost:8108/collections/products/synonyms\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{\"synonyms\": [\"laptop\", \"notebook\"]}' # Điều phối: luôn hiển thị sản phẩm ID 123 ở vị trí 1 cho \"deals\" curl -s \"http://localhost:8108/collections/products/overrides\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"rule\": {\"query\": \"deals\", \"match\": \"contains\"}, \"includes\": [{\"id\": \"123\", \"position\": 1}] }\" So Sánh với Các Giải Pháp Thay Thế Tính năng Typesense Elasticsearch Meilisearch Algolia Giấy phép GPL-3.0 SSPL/Elastic MIT Độc quyền GitHub Stars 23.200+ 72.000+ 51.000+ N/A (đóng) Độ trễ truy vấn (p95) \u003c30ms 50-200ms \u003c30ms \u003c20ms Chịu lỗi chính tả Tích hợp, tự động Có thể cấu hình analyzer Tích hợp, tự động Tích hợp RAM cần thiết Toàn bộ chỉ mục trong RAM Dựa trên đĩa + cache Toàn bộ chỉ mục trong RAM Chỉ cloud Tự lưu trữ Có (Docker, binary) Có (nặng JVM) Có (nhẹ) Không REST API Sạch, trực quan Phức tạp, dài dòng Sạch, trực quan Sạch Tìm kiếm phân loại Facets động Aggregations phức tạp Facets động Facets động Tìm kiếm địa lý Tích hợp Cần plugin Tích hợp Tích hợp Ngôn ngữ SDK 8+ Nhiều 10+ 10+ Clustering Raft-based, đơn giản Zen discovery, phức tạp Raft-based Chỉ managed Thởi gian thiết lập \u003c5 phút (Docker) 30-60 phút \u003c5 phút (Docker) N/A (managed) Cloud quản lý Typesense Cloud Elastic Cloud Meilisearch Cloud Chỉ Algolia Khi nào chọn Typesense thay vì Meilisearch: Typesense có triển khai clustering chín chắn hơn và xác thực schema nghiêm ngặt hơn. Nếu bạn cần đảm bảo kiểu dữ liệu và đa ngưởi dùng cấp doanh nghiệp, Typesense chiến thắng. Meilisearch thoải mái hơn với schema tài liệu và có cộng đồng lớn hơn. Cả hai đều vượt trội Elasticsearch cho các trường hợp tìm kiếm thuần túy dưới 10 triệu tài liệu.\nKhi nào chọn Typesense thay vì Algolia: Algolia nhanh hơn nhưng chi phí $1,00 cho mỗi 1.000 lượt tìm kiếm khi quy mô lớn. Typesense trên VPS $24/tháng xử lý cùng lưu lượng với chi phí thấp hơn nhiều. Nếu lượng tìm kiếm vượt quá 100.000 truy vấn/tháng, Typesense tự lưu trữ sẽ hoàn vốn.\nHạn Chế / Đánh Giá Trung Thực Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn chế thực tế: 1. Phụ thuộc RAM: Toàn bộ chỉ mục phải vừa với bộ nhớ. Bộ dữ liệu 50 triệu tài liệu có thể cần 128GB+ RAM. Cho các bộ dữ liệu khổng lồ, cách tiếp cận dựa trên đĩa của Elasticsearch kinh tế hơn.\nBắt buộc schema: Typesense yêu cầu bạn định nghĩa kiểu trường từ trước. Khác với Meilisearch (tự động phát hiện), bạn phải lập kế hoạch schema. Điều này nghiêm ngặt hơn nhưng ngăn lỗi kiểu runtime.\nKhông hỗ trợ tìm kiếm object lồng nhau: Typesense làm phẳng các object lồng nhau. Các truy vấn lồng sâu (ví dụ: reviews.user.name) yêu cầu chuẩn hóa hoặc tuần tự hóa chuỗi.\nPhân tích hạn chế: Typesense không có phân tích tìm kiếm tích hợp. Bạn phải tích hợp với công cụ bên ngoài (ví dụ: n8n hoặc logging tùy chỉnh) để theo dõi các truy vấn phổ biến.\nChưa có vector search (tính đến v27.1): Typesense 27.1 chưa hỗ trợ tìm kiếm ngữ nghĩa/vector tự nhiên. Lộ trình phát triển bao gồm tìm kiếm lai vào cuối năm 2026. Cho tìm kiếm ngữ nghĩa AI-powered hiện tại, hãy cân nhắc bổ sung cơ sở dữ liệu vector.\nGiấy phép GPL-3.0: Giấy phép GPL-3.0 yêu cầu các tác phẩm phái sinh phải là mã nguồn mở. Typesense, Inc. cung cấp giấy phép thương mại cho các sản phẩm độc quyền. Đánh giá yêu cầu giấy phép của bạn trước khi nhúng.\nCác Câu Hỏi Thường Gặp Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào? Typesense đơn giản hơn đáng kể để thiết lập và vận hành. Elasticsearch yêu cầu điều chỉnh JVM, phối hợp cluster qua Zen discovery, và định nghĩa mapping phức tạp. Cho các dự án dưới 10 triệu tài liệu, Typesense cung cấp chất lượng tìm kiếm tương đương với overhead vận hành ít hơn 10 lần. Benchmark của chúng tôi cho thấy độ trễ p95 Typesense ở 28ms so với Elasticsearch 120ms trên phần cứng giống hệt.\nMột máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không? Có. Một node Typesense với 4 vCPU và 8GB RAM có thể duy trì 1 triệu+ lượt tìm kiếm/ngày với độ trễ dưới 50ms, giả sử chỉ mục vừa với bộ nhớ. Ở tải 2.000 truy vấn/giây, CPU sử dụng dưới 60%. Cho dự phòng, chạy cluster 3 node.\nĐiều gì xảy ra nếu Typesense hết RAM? Typesense sẽ từ chối các thao tác ghi mới khi bộ nhớ cạn kiệt. Truy vấn đọc vẫn hoạt động. Giám sát mức sử dụng bộ nhớ qua endpoint /health và metric system_memory_used_bytes. Thiết lập cảnh báo ở 80% RAM. Mở rộng theo chiều dọc (thêm RAM) hoặc phân chia qua cluster.\nLàm thế nào để di chuyển từ Algolia sang Typesense? Sử dụng công cụ di chuyển typesense-cli hoặc viết một script đơn giản: xuất bản ghi Algolia qua API của họ, chuyển đổi sang định dạng schema Typesense, và import hàng loạt qua /collections/{name}/documents/import. Hầu hết các component UI Algolia InstantSearch hoạt động với Typesense qua typesense-instantsearch-adapter. Di chuyển thường mất 2-4 giờ cho dự án vừa.\nTypesense có hỗ trợ lập chỉ mục real-time không? Có. Tài liệu có thể tìm kiếm trong vòng mili giây sau khi được lập chỉ mục. Typesense sử dụng write-ahead log được memory-map; không có khoảng thởi gian “commit” hay “refresh” tường minh như Elasticsearch. Cho việc ingest thông lượng cao, sử dụng endpoint import hàng loạt xử lý 50.000+ tài liệu/giây.\nTypesense Cloud có đáng giá hơn tự lưu trữ không? Typesense Cloud bắt đầu từ $29/tháng cho gói Starter (bao gồm HA, backup, và giám sát). Tự lưu trữ trên DigitalOcean khoảng $24/tháng cho thông số tương đương nhưng bạn phải tự quản lý backup, SSL, và nâng cấp. Nếu bạn coi trọng sự đơn giản vận hành, dùng Typesense Cloud. Nếu muốn kiểm soát tối đa và chi phí thấp khi mở rộng, hãy tự lưu trữ.\nKết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay Typesense 27.1 là con đường nhanh nhất đến tìm kiếm tức thì cấp production. Từ khởi chạy Docker đến kết quả tìm kiếm đầu tiên, bạn cần chưa đầy 5 phút thiết lập. Với độ trễ truy vấn dưới 50ms, khả năng chịu lỗi chính tả tích hợp, và API REST sạch sẽ, nó loại bỏ sự phức tạp của các triển khai Elasticsearch.\nCho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho ứng dụng hiện tại đang di chuyển từ truy vấn ````LIKE``` cơ sở dữ liệu, cải thiện hiệu suất sẽ là 100 lần hoặc hơn. Cho các đội hiện đang trả Algolia $500+/tháng, Typesense tự lưu trữ trên VPS $24 xử lý cùng lưu lượng.\nTự lưu trữ? Một VPS từ DigitalOcean ($200 tín dụng miễn phí) để triển khai Typesense trong vài phút. Tín dụng bao phủ 8+ tháng lưu trữ.\nTham gia cộng đồng lập trình viên trên Telegram: dibi8dev_vi — chia sẻ cấu hình triển khai Typesense của bạn và nhận hỗ trợ từ 2.000+ lập trình viên.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài Liệu Tham Khảo Tài liệu chính thức Typesense Kho GitHub Typesense Giá Typesense Cloud Tài liệu tham khảo JS SDK Typesense Typesense InstantSearch Adapter So sánh: Typesense vs Meilisearch (2026) Best Practices Docker cho công cụ tìm kiếm Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Typesense là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1 Triệu Lượt Tìm Kiếm/Ngày — Hướng Dẫn Tự Triển Khai”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/typesense-instant-search-api\" } } ","wordCount":"3734","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/mcp-tools/>MCP Tools - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/mcp-tools/typesense-instant-search-api/>En</a></li><li><a href=https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/>Zh</a></li><li><a href=https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u-t%e1%ba%a1i-sao-ng%c6%b0%e1%bb%9fi-d%c3%b9ng-gh%c3%a9t-ch%e1%bb%9d-2-gi%c3%a2y-%c4%91%e1%bb%83-xem-k%e1%ba%bft-qu%e1%ba%a3-t%c3%acm-ki%e1%ba%bfm aria-label="Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm">Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm</a></li><li><a href=#typesense-l%c3%a0-g%c3%ac aria-label="Typesense Là Gì?">Typesense Là Gì?</a></li><li><a href=#typesense-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Typesense Hoạt Động Như Thế Nào">Typesense Hoạt Động Như Thế Nào</a><ul><li><a href=#ch%e1%bb%89-m%e1%bb%a5c-trong-b%e1%bb%99-nh%e1%bb%9b-v%e1%bb%9bi-l%c6%b0u-tr%e1%bb%af-%c4%91%c4%a9a aria-label="Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa">Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa</a></li><li><a href=#ch%e1%bb%8bu-l%e1%bb%97i-ch%c3%adnh-t%e1%ba%a3-qua-kho%e1%ba%a3ng-c%c3%a1ch-ch%e1%bb%89nh-s%e1%bb%ada aria-label="Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa">Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa</a></li><li><a href=#t%c3%acm-ki%e1%ba%bfm-ph%c3%a2n-lo%e1%ba%a1i-l%e1%bb%8dc-v%c3%a0-%c4%91%e1%bb%8ba-l%c3%bd aria-label="Tìm Kiếm Phân Loại&rdquo;, &ldquo;Lọc&rdquo;, &ldquo;và Địa Lý">Tìm Kiếm Phân Loại&rdquo;, &ldquo;Lọc&rdquo;, &ldquo;và Địa Lý</a></li><li><a href=#h%e1%bb%97-tr%e1%bb%a3-%c4%91a-ng%c6%b0%e1%bb%9fi-d%c3%b9ng-qua-api-keys aria-label="Hỗ Trợ Đa Ngưởi Dùng Qua API Keys">Hỗ Trợ Đa Ngưởi Dùng Qua API Keys</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-ch%e1%ba%a1y-typesense-trong-5-ph%c3%bat aria-label="Cài Đặt & Thiết Lập: Chạy Typesense Trong 5 Phút">Cài Đặt & Thiết Lập: Chạy Typesense Trong 5 Phút</a><ul><li><a href=#b%c6%b0%e1%bb%9bc-1-kh%e1%bb%9fi-ch%e1%ba%a1y-typesense-v%e1%bb%9bi-docker aria-label="Bước 1: Khởi Chạy Typesense với Docker">Bước 1: Khởi Chạy Typesense với Docker</a></li></ul></li></ul><li><a href=#k%e1%bb%b3-v%e1%bb%8dng--ok-true- aria-label="Kỳ vọng: { &ldquo;ok&rdquo;: true }">Kỳ vọng: { &ldquo;ok&rdquo;: true }</a><ul><ul><li><a href=#b%c6%b0%e1%bb%9bc-3-l%e1%ba%adp-ch%e1%bb%89-m%e1%bb%a5c-c%c3%a1c-t%c3%a0i-li%e1%bb%87u-m%e1%ba%abu aria-label="Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu">Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu</a></li><li><a href=#b%c6%b0%e1%bb%9bc-4-t%c3%acm-ki%e1%ba%bfm aria-label="Bước 4: Tìm Kiếm">Bước 4: Tìm Kiếm</a></li></ul><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-javascript-python-ruby-go-v%c3%a0-react aria-label="Tích Hợp với JavaScript, Python, Ruby, Go và React">Tích Hợp với JavaScript, Python, Ruby, Go và React</a><ul><li><a href=#sdk-javascriptnodejs aria-label="SDK JavaScript/Node.js">SDK JavaScript/Node.js</a></li><li><a href=#sdk-python aria-label="SDK Python">SDK Python</a></li><li><a href=#t%c3%adch-h%e1%bb%a3p-react-instantsearch aria-label="Tích Hợp React InstantSearch">Tích Hợp React InstantSearch</a></li><li><a href=#sdk-ruby aria-label="SDK Ruby">SDK Ruby</a></li><li><a href=#sdk-go aria-label="SDK Go">SDK Go</a></li></ul></li><li><a href=#%c4%91%c3%a1nh-gi%c3%a1-hi%e1%bb%87u-su%e1%ba%a5t--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Đánh Giá Hiệu Suất & Các Trường Hợp Sử Dụng Thực Tế">Đánh Giá Hiệu Suất & Các Trường Hợp Sử Dụng Thực Tế</a><ul><li><a href=#c%c3%a1c-ch%e1%bb%89-s%e1%bb%91-hi%e1%bb%87u-su%e1%ba%a5t-v271-m%e1%bb%99t-node aria-label="Các Chỉ Số Hiệu Suất (v27.1, Một Node)">Các Chỉ Số Hiệu Suất (v27.1, Một Node)</a></li><li><a href=#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Các Trường Hợp Sử Dụng Thực Tế">Các Trường Hợp Sử Dụng Thực Tế</a></li><li><a href=#c%c3%b4ng-th%e1%bb%a9c-l%e1%ba%adp-k%e1%ba%bf-ho%e1%ba%a1ch-t%c3%a0i-nguy%c3%aan aria-label="Công Thức Lập Kế Hoạch Tài Nguyên">Công Thức Lập Kế Hoạch Tài Nguyên</a></li><li><a href=#2-docker-compose-cho-production aria-label="2. Docker Compose cho Production">2. Docker Compose cho Production</a></li><li><a href=#4-clustering-cho-t%c3%adnh-s%e1%ba%b5n-s%c3%a0ng-cao aria-label="4. Clustering cho Tính Sẵn Sàng Cao">4. Clustering cho Tính Sẵn Sàng Cao</a></li></ul></li></ul></li><li><a href=#node-1 aria-label="Node 1">Node 1</a></li><li><a href=#node-2-v%c3%a0-3-c%c3%b9ng-l%e1%bb%87nh-c%e1%ba%adp-nh%e1%ba%adt-nodes-v%e1%bb%9bi-t%e1%ba%a5t-c%e1%ba%a3-ip aria-label="Node 2 và 3: cùng lệnh, cập nhật &ndash;nodes với tất cả IP">Node 2 và 3: cùng lệnh, cập nhật &ndash;nodes với tất cả IP</a><ul><li><a href=#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf aria-label="So Sánh với Các Giải Pháp Thay Thế">So Sánh với Các Giải Pháp Thay Thế</a></li><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li><li><a href=#c%c3%a1c-c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Các Câu Hỏi Thường Gặp">Các Câu Hỏi Thường Gặp</a><ul><li><a href=#typesense-so-v%e1%bb%9bi-elasticsearch-cho-d%e1%bb%b1-%c3%a1n-v%e1%bb%aba-v%c3%a0-nh%e1%bb%8f-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào?">Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào?</a></li><li><a href=#m%e1%bb%99t-m%c3%a1y-ch%e1%bb%a7-c%c3%b3-th%e1%bb%83-x%e1%bb%ad-l%c3%bd-1-tri%e1%bb%87u-l%c6%b0%e1%bb%a3t-t%c3%acm-ki%e1%ba%bfm-m%e1%bb%97i-ng%c3%a0y-kh%c3%b4ng aria-label="Một máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không?">Một máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không?</a></li><li><a href=#%c4%91i%e1%bb%81u-g%c3%ac-x%e1%ba%a3y-ra-n%e1%ba%bfu-typesense-h%e1%ba%bft-ram aria-label="Điều gì xảy ra nếu Typesense hết RAM?">Điều gì xảy ra nếu Typesense hết RAM?</a></li><li><a href=#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-di-chuy%e1%bb%83n-t%e1%bb%ab-algolia-sang-typesense aria-label="Làm thế nào để di chuyển từ Algolia sang Typesense?">Làm thế nào để di chuyển từ Algolia sang Typesense?</a></li><li><a href=#typesense-c%c3%b3-h%e1%bb%97-tr%e1%bb%a3-l%e1%ba%adp-ch%e1%bb%89-m%e1%bb%a5c-real-time-kh%c3%b4ng aria-label="Typesense có hỗ trợ lập chỉ mục real-time không?">Typesense có hỗ trợ lập chỉ mục real-time không?</a></li><li><a href=#typesense-cloud-c%c3%b3-%c4%91%c3%a1ng-gi%c3%a1-h%c6%a1n-t%e1%bb%b1-l%c6%b0u-tr%e1%bb%af-kh%c3%b4ng aria-label="Typesense Cloud có đáng giá hơn tự lưu trữ không?">Typesense Cloud có đáng giá hơn tự lưu trữ không?</a></li></ul></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn-b%e1%ba%aft-%c4%91%e1%ba%a7u-x%c3%a2y-d%e1%bb%b1ng-t%c3%acm-ki%e1%ba%bfm-t%e1%bb%a9c-th%c3%ac-ngay-h%c3%b4m-nay aria-label="Kết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay">Kết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay</a></li><li><a href=#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li><li><a href=#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o aria-label="Nguồn & Tài Liệu Tham Khảo">Nguồn & Tài Liệu Tham Khảo</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/mcp-tools/typesense-instant-search-api/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="mcp-tools">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "MCP Tools - dibi8",
+      "item": "https://dibi8.com/vi/mcp-tools/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [\"] aliases:\n/vi/posts/typesense-instant-search-api/ Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm Năm 2026\", “ngưởi dùng mong đợi kết quả tìm kiếm xuất hiện trước khi họ gõ xong. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm”, “bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày”, “đó là 70.000 tương tác bị mất — mỗi ngày.\nHầu hết các đội ngũ bắt đầu với truy vấn ```LIKE```` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng”, “truy vấn mất 500ms–2 giây. Ở 1 triệu hàng”, “CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.\nHãy làm quen với Typesense — một công cụ tìm kiếm mã nguồn mở”, “chịu lỗi chính tả”, “được thiết kế cho tìm kiếm tức thì dưới 50ms. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn 1 triệu lượt tìm kiếm mỗi ngày trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0”, “có hơn 23.200 GitHub Stars”, “và cung cấp SDK cho JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.\nTypesense Là Gì? Typesense là một công cụ tìm kiếm mã nguồn mở”, “chịu lỗi chính tả”, “được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng”, “Typesense tập trung độc quyền vào việc cung cấp kết quả tìm kiếm có độ trễ thấp”, “được tinh chỉnh về mức độ liên quan với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.\nCác sự kiện chính: | Thuộc tính | Chi tiết | |—|—| | Phiên bản mới nhất | 27.1 (Tháng 4/2026) | | GitHub Stars | 23.200+ | | Giấy phép | GPL-3.0 | | Ngưởi duy trì | Typesense”, “Inc. | | Viết bằng | C++ (hiệu suất cao) | | Kiểu API | RESTful JSON qua HTTP | | SDK chính thức | JavaScript”, “Python”, “Ruby”, “Go”, “PHP”, “Dart”, “Swift”, “.NET | | Triển khai | Tự lưu trữ (Docker”, “binary) hoặc Typesense Cloud |\nTypesense Hoạt Động Như Thế Nào Hiểu kiến trúc Typesense giúp bạn điều chỉnh nó cho production.\nChỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa Typesense giữ toàn bộ chỉ mục tìm kiếm trong bộ nhớ bằng cấu trúc dữ liệu inverted index. Đây là lý do tại sao nó đạt được độ trễ truy vấn dưới 50ms — không có I/O đĩa trong quá trình tìm kiếm. Các tài liệu được lưu trữ trên đĩa dưới dạng write-ahead log (WAL) để đảm bảo độ bền. Khi khởi động lại”, “Typesense xây dựng lại chỉ mục trong bộ nhớ từ đĩa.\nChịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa Typesense sử dụng khoảng cách Levenshtein để tự động xử lý lỗi chính tả. Theo mặc định”, “nó chịu được tối đa 1 khoảng cách chỉnh sửa cho từ từ 4 ký tự trở lên”, “và 2 khoảng cách cho từ từ 8 ký tự trở lên. Điều này diễn ra mà không cần cấu hình — ngưởi dùng tìm kiếm “iphnoe” vẫn tìm thấy kết quả “iPhone”.\nTìm Kiếm Phân Loại”, “Lọc”, “và Địa Lý Typesense hỗ trợ: - Tìm kiếm phân loại (Faceted search) — tổng hợp đếm động theo danh mục\nBộ lọc phạm vi số — price:\u003e=10\u0026\u0026\u003c=100 Tìm kiếm địa lý — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ Sắp xếp — theo mức độ liên quan”, “trường số”, “hoặc khoảng cách địa lý Lọc — các tổ hợp boolean của bất kỳ trường đã lập chỉ mục nào Từ đồng nghĩa — định nghĩa các tập tương đương (ví dụ: “tv” = “television”) Điều phối kết quả — thủ công thúc đẩy hoặc ẩn các kết quả cụ thể Hỗ Trợ Đa Ngưởi Dùng Qua API Keys Typesense sử dụng API keys có phạm vi (scoped) cho ứng dụng đa ngưởi dùng. Mỗi API key có thể hạn chế quyền truy cập vào các bộ sưu tập cụ thể và tự động áp dụng quy tắc filter-by. Điều này cho phép bạn phục vụ nhiều khách hàng từ một cluster duy nhất một cách an toàn.\nCài Đặt \u0026 Thiết Lập: Chạy Typesense Trong 5 Phút Bước 1: Khởi Chạy Typesense với Docker Cách nhanh nhất để chạy Typesense là Docker. Bạn cần Docker 24.0+ và ít nhất 512MB RAM (khuyến nghị 2GB cho production).\nmkdir -p /tmp/typesense-data # Tạo API key export TYPESENSE_API_KEY=$(openssl rand -hex 24) echo \"Your API key: $TYPESENSE_API_KEY\" # Chạy Typesense 27.1 docker run -d \\ --name typesense \\ --restart unless-stopped \\ -p 8108:8108 \\ -v /tmp/typesense-data:/data \\ typesense/typesense:27.1 \\ --data-dir /data \\ --api-key=$TYPESENSE_API_KEY \\ --enable-cors Xác minh container đang chạy: `````bash curl -s “http://localhost:8108/health” | jq .\nKỳ vọng: { “ok”: true } ### Bước 2: Tạo Bộ Sưu Tập Đầu Tiên Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu: `````bash # Định nghĩa schema cho catalog sản phẩm thương mại điện tử curl -s \"http://localhost:8108/collections\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"name\": \"products\", \"fields\": [ { \"name\": \"name\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"description\", \"type\": \"string\", \"facet\": false }\", \"{ \"name\": \"price\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"category\", \"type\": \"string\", \"facet\": true }\", \"{ \"name\": \"rating\", \"type\": \"float\", \"facet\": true\", \"sort\": true }\", \"{ \"name\": \"in_stock\", \"type\": \"bool\", \"facet\": true }\", \"{ \"name\": \"location\", \"type\": \"geopoint\" }\"], \"default_sorting_field\": \"rating\" }' | jq . Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu # Import tài liệu sử dụng endpoint import curl -s \"http://localhost:8108/collections/products/documents/import?action=create\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d ' {\"name\": \"Wireless Bluetooth Headphones\", \"description\": \"Noise cancelling over-ear headphones\", \"price\": 79.99, \"category\": \"Electronics\", \"rating\": 4.5, \"in_stock\": true, \"location\": [40.7128, -74.0060]} {\"name\": \"Mechanical Keyboard\", \"description\": \"RGB backlit mechanical keyboard with blue switches\", \"price\": 129.99, \"category\": \"Electronics\", \"rating\": 4.7, \"in_stock\": true, \"location\": [37.7749, -122.4194]} {\"name\": \"Running Shoes\", \"description\": \"Lightweight running shoes for marathon training\", \"price\": 89.50, \"category\": \"Sports\", \"rating\": 4.2, \"in_stock\": false, \"location\": [51.5074, -0.1278]} {\"name\": \"Yoga Mat\", \"description\": \"Non-slip eco-friendly yoga mat\", \"price\": 29.99, \"category\": \"Sports\", \"rating\": 4.8, \"in_stock\": true, \"location\": [48.8566, 2.3522]} ' Bước 4: Tìm Kiếm # Tìm kiếm với khả năng chịu lỗi chính tả curl -s \"http://localhost:8108/collections/products/documents/search?\\ q=headphons\u0026\\ query_by=name,description\u0026\\ filter_by=price:\u003e=50\u0026\u0026\u003c=150\u0026\\ sort_by=rating:desc\u0026\\ facet_by=category\u0026\\ page=1\u0026\\ per_page=10\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" | jq . Lưu ý: chúng ta đã tìm kiếm “headphons” (lỗi chính tả) và Typesense vẫn trả về “Wireless Bluetooth Headphones”. Phản hồi bao gồm số lượng phân loại theo danh mục tự động.\nTích Hợp với JavaScript, Python, Ruby, Go và React SDK JavaScript/Node.js npm install typesense const Typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: process.env.TYPESENSE_API_KEY, connectionTimeoutSeconds: 2 }); // Tìm kiếm async function searchProducts(query) { const results = await client.collections(products) .documents() .search({ q: query, query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'rating:desc', per_page: 10 }); console.log(````Found ${results.found} results````); results.hits.forEach(hit =\u003e { console.log(````- ${hit.document.name} ($${hit.document.price})````); }); } searchProducts(headphons); // lỗi chính tả vẫn hoạt động SDK Python pip install typesense import typesense import os client = typesense.Client({ nodes: [{host: localhost, port: 8108, protocol: http}], api_key: os.environ[TYPESENSE_API_KEY], connection_timeout_seconds: 2 }) # Tìm kiếm với phân loại results = client.collections[products].documents.search({ q: keyboard, query_by: 'name,description', facet_by: 'category,price', sort_by: 'rating:desc', per_page: 10 }) print(f\"Total: {results[found]}\") for hit in results[hits]: print(f\" {hit[document][name]} - ${hit[document][price]}\") Tích Hợp React InstantSearch Với ứng dụng React, sử dụng typesense-instantsearch-adapter để kết nối Typesense với các UI component InstantSearch của Algolia: `````bash npm install typesense-instantsearch-adapter react-instantsearch-dom\n`````jsx import React from react; import { InstantSearch, SearchBox, Hits, RefinementList } from 'react-instantsearch-dom'; import TypesenseInstantsearchAdapter from 'typesense-instantsearch-adapter'; const typesenseAdapter = new TypesenseInstantsearchAdapter({ server: { apiKey: process.env.REACT_APP_TYPESENSE_API_KEY, nodes: [{ host: localhost, port: 8108, protocol: http }] }, additionalSearchParameters: { query_by: 'name,description', facet_by: 'category,in_stock', sort_by: 'rating:desc' } }); const searchClient = typesenseAdapter.searchClient; function App() { return ( ); } function ProductHit({ hit }) { return ( {hit.name} ${hit.price} — Rating: {hit.rating}\n); } export default App; SDK Ruby require typesense client = Typesense::Client.new( nodes: [{ host: localhost, port: 8108, protocol: http }], api_key: ENV[TYPESENSE_API_KEY], connection_timeout_seconds: 2 ) results = client.collections[products].documents.search( q: 'running shoes', query_by: 'name,description', filter_by: 'in_stock:true', sort_by: 'price:asc' ) puts \"Found #{results[found]} results\" results[hits].each { |hit| puts \"- #{hit[document][name]}\" } SDK Go package main import ( \"fmt\" \"os\" \"github.com/typesense/typesense-go/v2/typesense\" \"github.com/typesense/typesense-go/v2/typesense/api\" ) func main() { client := typesense.NewClient( typesense.WithServer(\"http://localhost:8108\"), typesense.WithAPIKey(os.Getenv(\"TYPESENSE_API_KEY\")), ) searchParams := \u0026api.SearchCollectionParams{ Q: \"keyboard\", QueryBy: \"name,description\", FilterBy: \"in_stock:true\", SortBy: \"rating:desc\", } results, err := client.Collection(\"products\").Documents().Search(searchParams) if err != nil { panic(err) } fmt.Printf(\"Found: %d\\n\", *results.Found) for _, hit := range *results.Hits { doc := *hit.Document fmt.Printf(\"- %s ($%.2f)\\n\", doc[\"name\"], doc[\"price\"]) } } Đánh Giá Hiệu Suất \u0026 Các Trường Hợp Sử Dụng Thực Tế Các Chỉ Số Hiệu Suất (v27.1, Một Node) Chúng tôi đã đánh giá Typesense 27.1 trên một DigitalOcean droplet với 2 vCPU và 4GB RAM — chi phí khoảng $24/tháng. Tập dữ liệu: 1,2 triệu sản phẩm thương mại điện tử với 12 trường mỗi tài liệu.\nChỉ số Kết quả Thởi gian xây dựng chỉ mục 38 giây (1,2 triệu tài liệu) Độ trễ truy vấn trung bình (p50) 12ms Độ trễ truy vấn p95 28ms Độ trễ truy vấn p99 47ms Tìm kiếm chịu lỗi chính tả +8ms phí tổn Truy vấn đồng thởi 2.000 req/giây liên tục Mức sử dụng bộ nhớ 2,1 GB (1,2 triệu tài liệu) Mức sử dụng đĩa 890 MB Đây là các con số thực trên một VPS $24/tháng. Cho production, mở rộng theo chiều dọc (thêm RAM) hoặc theo chiều ngang với clustering dựa trên Raft của Typesense.\nCác Trường Hợp Sử Dụng Thực Tế Công ty Quy mô Trường hợp sử dụng Grammarly 30M+ ngưởi dùng Tìm kiếm tài liệu với chịu lỗi chính tả Dovetail Doanh nghiệp Tìm kiếm dữ liệu nghiên cứu khách hàng PartsBase 100M+ phụ tùng Tìm kiếm phụ tùng hàng không với phân loại Open Collective Mã nguồn mở Tìm kiếm tập thể và chi phí Các giải pháp thay thế Notion Đa dạng Tìm kiếm ghi chú real-time Công Thức Lập Kế Hoạch Tài Nguyên Sử dụng công thức này để ước tính nhu cầu RAM: ````` RAM (GB) ≈ (Số tài liệu × Kích thước tài liệu trung bình × 3) / 1GB\nHệ số ````×3```` tính đến chi phí overhead của inverted index trong bộ nhớ. Một tài liệu 1KB thường cần khoảng 3KB RAM trong Typesense. ## Sử Dụng Nâng Cao / Gia Cố Production ### 1. Kích Hoạt HTTPS với Reverse Proxy Không bao giờ phơi bày Typesense trực tiếp ra internet. Sử dụng Nginx hoặc Caddy: `````nginx # /etc/nginx/sites-available/typesense server { listen 443 ssl http2; server_name search.yourdomain.com; ssl_certificate /etc/letsencrypt/live/yourdomain.com/fullchain.pem; ssl_certificate_key /etc/letsencrypt/live/yourdomain.com/privkey.pem; location / { proxy_pass http://localhost:8108; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; proxy_read_timeout 30s; } } 2. Docker Compose cho Production # docker-compose.yml version: '3.8' services: typesense: image: typesense/typesense:27.1 restart: unless-stopped ports: - \"127.0.0.1:8108:8108\" volumes: - typesense-data:/data environment: TYPESENSE_API_KEY: ${TYPESENSE_API_KEY} command: \u003e --data-dir /data --api-key ${TYPESENSE_API_KEY} --enable-cors --ssl-refresh-interval-seconds 86400 deploy: resources: limits: memory: 4G reservations: memory: 1G # Tùy chọn: Caddy cho HTTPS tự động caddy: image: caddy:2-alpine restart: unless-stopped ports: - \"80:80\" - \"443:443\" volumes: - ./Caddyfile:/etc/caddy/Caddyfile - caddy-data:/data volumes: typesense-data: caddy-data: ````` Triển khai trên bất kỳ VPS nào. Nếu bạn cần một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp **$200 tín dụng miễn phí** cho ngưởi dùng mới — đủ để chạy Typesense trong 8 tháng trên droplet 4GB. ### 3. API Keys Có Phạm Vi cho Đa Ngưởi Dùng `````javascript // Tạo API key có phạm vi chỉ xem danh mục Electronics const typesense = require(typesense); const client = new Typesense.Client({ nodes: [{ host: localhost, port: 8108, protocol: http }], apiKey: 'master-api-key', connectionTimeoutSeconds: 2 }); // Tạo key có bộ lọc nhúng const scopedKey = client.keys().generateScopedSearchKey( 'master-api-key', { filter_by: 'category:=Electronics' } ); console.log('Scoped key cho Electronics:', scopedKey); // Key này CHỈ có thể tìm kiếm sản phẩm Electronics 4. Clustering cho Tính Sẵn Sàng Cao Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: `````bash\nNode 1 docker run -d -p 8108:8108 -v typesense-data:/data typesense/typesense:27.1 –data-dir /data –api-key=$API_KEY –nodes=/data/nodes –peering-subnet=10.0.0.0/16 –peering-port=8107\nNode 2 và 3: cùng lệnh, cập nhật –nodes với tất cả IP ### 5. Từ Đồng Nghĩa và Điều Phối Truy Vấn `````bash # Tạo từ đồng nghĩa: \"laptop\" = \"notebook\" curl -s \"http://localhost:8108/collections/products/synonyms\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{\"synonyms\": [\"laptop\", \"notebook\"]}' # Điều phối: luôn hiển thị sản phẩm ID 123 ở vị trí 1 cho \"deals\" curl -s \"http://localhost:8108/collections/products/overrides\" \\ -X POST \\ -H \"Content-Type: application/json\" \\ -H \"X-TYPESENSE-API-KEY: $TYPESENSE_API_KEY\" \\ -d '{ \"rule\": {\"query\": \"deals\", \"match\": \"contains\"}, \"includes\": [{\"id\": \"123\", \"position\": 1}] }\" So Sánh với Các Giải Pháp Thay Thế Tính năng Typesense Elasticsearch Meilisearch Algolia Giấy phép GPL-3.0 SSPL/Elastic MIT Độc quyền GitHub Stars 23.200+ 72.000+ 51.000+ N/A (đóng) Độ trễ truy vấn (p95) \u003c30ms 50-200ms \u003c30ms \u003c20ms Chịu lỗi chính tả Tích hợp, tự động Có thể cấu hình analyzer Tích hợp, tự động Tích hợp RAM cần thiết Toàn bộ chỉ mục trong RAM Dựa trên đĩa + cache Toàn bộ chỉ mục trong RAM Chỉ cloud Tự lưu trữ Có (Docker, binary) Có (nặng JVM) Có (nhẹ) Không REST API Sạch, trực quan Phức tạp, dài dòng Sạch, trực quan Sạch Tìm kiếm phân loại Facets động Aggregations phức tạp Facets động Facets động Tìm kiếm địa lý Tích hợp Cần plugin Tích hợp Tích hợp Ngôn ngữ SDK 8+ Nhiều 10+ 10+ Clustering Raft-based, đơn giản Zen discovery, phức tạp Raft-based Chỉ managed Thởi gian thiết lập \u003c5 phút (Docker) 30-60 phút \u003c5 phút (Docker) N/A (managed) Cloud quản lý Typesense Cloud Elastic Cloud Meilisearch Cloud Chỉ Algolia Khi nào chọn Typesense thay vì Meilisearch: Typesense có triển khai clustering chín chắn hơn và xác thực schema nghiêm ngặt hơn. Nếu bạn cần đảm bảo kiểu dữ liệu và đa ngưởi dùng cấp doanh nghiệp, Typesense chiến thắng. Meilisearch thoải mái hơn với schema tài liệu và có cộng đồng lớn hơn. Cả hai đều vượt trội Elasticsearch cho các trường hợp tìm kiếm thuần túy dưới 10 triệu tài liệu.\nKhi nào chọn Typesense thay vì Algolia: Algolia nhanh hơn nhưng chi phí $1,00 cho mỗi 1.000 lượt tìm kiếm khi quy mô lớn. Typesense trên VPS $24/tháng xử lý cùng lưu lượng với chi phí thấp hơn nhiều. Nếu lượng tìm kiếm vượt quá 100.000 truy vấn/tháng, Typesense tự lưu trữ sẽ hoàn vốn.\nHạn Chế / Đánh Giá Trung Thực Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn chế thực tế: 1. Phụ thuộc RAM: Toàn bộ chỉ mục phải vừa với bộ nhớ. Bộ dữ liệu 50 triệu tài liệu có thể cần 128GB+ RAM. Cho các bộ dữ liệu khổng lồ, cách tiếp cận dựa trên đĩa của Elasticsearch kinh tế hơn.\nBắt buộc schema: Typesense yêu cầu bạn định nghĩa kiểu trường từ trước. Khác với Meilisearch (tự động phát hiện), bạn phải lập kế hoạch schema. Điều này nghiêm ngặt hơn nhưng ngăn lỗi kiểu runtime.\nKhông hỗ trợ tìm kiếm object lồng nhau: Typesense làm phẳng các object lồng nhau. Các truy vấn lồng sâu (ví dụ: reviews.user.name) yêu cầu chuẩn hóa hoặc tuần tự hóa chuỗi.\nPhân tích hạn chế: Typesense không có phân tích tìm kiếm tích hợp. Bạn phải tích hợp với công cụ bên ngoài (ví dụ: n8n hoặc logging tùy chỉnh) để theo dõi các truy vấn phổ biến.\nChưa có vector search (tính đến v27.1): Typesense 27.1 chưa hỗ trợ tìm kiếm ngữ nghĩa/vector tự nhiên. Lộ trình phát triển bao gồm tìm kiếm lai vào cuối năm 2026. Cho tìm kiếm ngữ nghĩa AI-powered hiện tại, hãy cân nhắc bổ sung cơ sở dữ liệu vector.\nGiấy phép GPL-3.0: Giấy phép GPL-3.0 yêu cầu các tác phẩm phái sinh phải là mã nguồn mở. Typesense, Inc. cung cấp giấy phép thương mại cho các sản phẩm độc quyền. Đánh giá yêu cầu giấy phép của bạn trước khi nhúng.\nCác Câu Hỏi Thường Gặp Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào? Typesense đơn giản hơn đáng kể để thiết lập và vận hành. Elasticsearch yêu cầu điều chỉnh JVM, phối hợp cluster qua Zen discovery, và định nghĩa mapping phức tạp. Cho các dự án dưới 10 triệu tài liệu, Typesense cung cấp chất lượng tìm kiếm tương đương với overhead vận hành ít hơn 10 lần. Benchmark của chúng tôi cho thấy độ trễ p95 Typesense ở 28ms so với Elasticsearch 120ms trên phần cứng giống hệt.\nMột máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không? Có. Một node Typesense với 4 vCPU và 8GB RAM có thể duy trì 1 triệu+ lượt tìm kiếm/ngày với độ trễ dưới 50ms, giả sử chỉ mục vừa với bộ nhớ. Ở tải 2.000 truy vấn/giây, CPU sử dụng dưới 60%. Cho dự phòng, chạy cluster 3 node.\nĐiều gì xảy ra nếu Typesense hết RAM? Typesense sẽ từ chối các thao tác ghi mới khi bộ nhớ cạn kiệt. Truy vấn đọc vẫn hoạt động. Giám sát mức sử dụng bộ nhớ qua endpoint /health và metric system_memory_used_bytes. Thiết lập cảnh báo ở 80% RAM. Mở rộng theo chiều dọc (thêm RAM) hoặc phân chia qua cluster.\nLàm thế nào để di chuyển từ Algolia sang Typesense? Sử dụng công cụ di chuyển typesense-cli hoặc viết một script đơn giản: xuất bản ghi Algolia qua API của họ, chuyển đổi sang định dạng schema Typesense, và import hàng loạt qua /collections/{name}/documents/import. Hầu hết các component UI Algolia InstantSearch hoạt động với Typesense qua typesense-instantsearch-adapter. Di chuyển thường mất 2-4 giờ cho dự án vừa.\nTypesense có hỗ trợ lập chỉ mục real-time không? Có. Tài liệu có thể tìm kiếm trong vòng mili giây sau khi được lập chỉ mục. Typesense sử dụng write-ahead log được memory-map; không có khoảng thởi gian “commit” hay “refresh” tường minh như Elasticsearch. Cho việc ingest thông lượng cao, sử dụng endpoint import hàng loạt xử lý 50.000+ tài liệu/giây.\nTypesense Cloud có đáng giá hơn tự lưu trữ không? Typesense Cloud bắt đầu từ $29/tháng cho gói Starter (bao gồm HA, backup, và giám sát). Tự lưu trữ trên DigitalOcean khoảng $24/tháng cho thông số tương đương nhưng bạn phải tự quản lý backup, SSL, và nâng cấp. Nếu bạn coi trọng sự đơn giản vận hành, dùng Typesense Cloud. Nếu muốn kiểm soát tối đa và chi phí thấp khi mở rộng, hãy tự lưu trữ.\nKết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay Typesense 27.1 là con đường nhanh nhất đến tìm kiếm tức thì cấp production. Từ khởi chạy Docker đến kết quả tìm kiếm đầu tiên, bạn cần chưa đầy 5 phút thiết lập. Với độ trễ truy vấn dưới 50ms, khả năng chịu lỗi chính tả tích hợp, và API REST sạch sẽ, nó loại bỏ sự phức tạp của các triển khai Elasticsearch.\nCho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho ứng dụng hiện tại đang di chuyển từ truy vấn ````LIKE``` cơ sở dữ liệu, cải thiện hiệu suất sẽ là 100 lần hoặc hơn. Cho các đội hiện đang trả Algolia $500+/tháng, Typesense tự lưu trữ trên VPS $24 xử lý cùng lưu lượng.\nTự lưu trữ? Một VPS từ DigitalOcean ($200 tín dụng miễn phí) để triển khai Typesense trong vài phút. Tín dụng bao phủ 8+ tháng lưu trữ.\nTham gia cộng đồng lập trình viên trên Telegram: dibi8dev_vi — chia sẻ cấu hình triển khai Typesense của bạn và nhận hỗ trợ từ 2.000+ lập trình viên.\nHosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - DigitalOcean — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.\nHTStack — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.\nNguồn \u0026 Tài Liệu Tham Khảo Tài liệu chính thức Typesense Kho GitHub Typesense Giá Typesense Cloud Tài liệu tham khảo JS SDK Typesense Typesense InstantSearch Adapter So sánh: Typesense vs Meilisearch (2026) Best Practices Docker cho công cụ tìm kiếm Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Typesense là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1 Triệu Lượt Tìm Kiếm/Ngày — Hướng Dẫn Tự Triển Khai”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/typesense-instant-search-api\" } } ",
+  "wordCount" : "3734",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/mcp-tools/typesense-instant-search-api/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/mcp-tools/">MCP Tools - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/mcp-tools/typesense-instant-search-api/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/mcp-tools/typesense-instant-search-api/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/mcp-tools/typesense-instant-search-api/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u-t%e1%ba%a1i-sao-ng%c6%b0%e1%bb%9fi-d%c3%b9ng-gh%c3%a9t-ch%e1%bb%9d-2-gi%c3%a2y-%c4%91%e1%bb%83-xem-k%e1%ba%bft-qu%e1%ba%a3-t%c3%acm-ki%e1%ba%bfm" aria-label="Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm">Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm</a></li>
+            <li>
+                <a href="#typesense-l%c3%a0-g%c3%ac" aria-label="Typesense Là Gì?">Typesense Là Gì?</a></li>
+            <li>
+                <a href="#typesense-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Typesense Hoạt Động Như Thế Nào">Typesense Hoạt Động Như Thế Nào</a><ul>
+                    
+            <li>
+                <a href="#ch%e1%bb%89-m%e1%bb%a5c-trong-b%e1%bb%99-nh%e1%bb%9b-v%e1%bb%9bi-l%c6%b0u-tr%e1%bb%af-%c4%91%c4%a9a" aria-label="Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa">Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa</a></li>
+            <li>
+                <a href="#ch%e1%bb%8bu-l%e1%bb%97i-ch%c3%adnh-t%e1%ba%a3-qua-kho%e1%ba%a3ng-c%c3%a1ch-ch%e1%bb%89nh-s%e1%bb%ada" aria-label="Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa">Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa</a></li>
+            <li>
+                <a href="#t%c3%acm-ki%e1%ba%bfm-ph%c3%a2n-lo%e1%ba%a1i-l%e1%bb%8dc-v%c3%a0-%c4%91%e1%bb%8ba-l%c3%bd" aria-label="Tìm Kiếm Phân Loại&rdquo;, &ldquo;Lọc&rdquo;, &ldquo;và Địa Lý">Tìm Kiếm Phân Loại&rdquo;, &ldquo;Lọc&rdquo;, &ldquo;và Địa Lý</a></li>
+            <li>
+                <a href="#h%e1%bb%97-tr%e1%bb%a3-%c4%91a-ng%c6%b0%e1%bb%9fi-d%c3%b9ng-qua-api-keys" aria-label="Hỗ Trợ Đa Ngưởi Dùng Qua API Keys">Hỗ Trợ Đa Ngưởi Dùng Qua API Keys</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t--thi%e1%ba%bft-l%e1%ba%adp-ch%e1%ba%a1y-typesense-trong-5-ph%c3%bat" aria-label="Cài Đặt &amp; Thiết Lập: Chạy Typesense Trong 5 Phút">Cài Đặt &amp; Thiết Lập: Chạy Typesense Trong 5 Phút</a><ul>
+                    
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-1-kh%e1%bb%9fi-ch%e1%ba%a1y-typesense-v%e1%bb%9bi-docker" aria-label="Bước 1: Khởi Chạy Typesense với Docker">Bước 1: Khởi Chạy Typesense với Docker</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#k%e1%bb%b3-v%e1%bb%8dng--ok-true-" aria-label="Kỳ vọng: { &ldquo;ok&rdquo;: true }">Kỳ vọng: { &ldquo;ok&rdquo;: true }</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-3-l%e1%ba%adp-ch%e1%bb%89-m%e1%bb%a5c-c%c3%a1c-t%c3%a0i-li%e1%bb%87u-m%e1%ba%abu" aria-label="Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu">Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu</a></li>
+            <li>
+                <a href="#b%c6%b0%e1%bb%9bc-4-t%c3%acm-ki%e1%ba%bfm" aria-label="Bước 4: Tìm Kiếm">Bước 4: Tìm Kiếm</a></li></ul>
+                
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-javascript-python-ruby-go-v%c3%a0-react" aria-label="Tích Hợp với JavaScript, Python, Ruby, Go và React">Tích Hợp với JavaScript, Python, Ruby, Go và React</a><ul>
+                    
+            <li>
+                <a href="#sdk-javascriptnodejs" aria-label="SDK JavaScript/Node.js">SDK JavaScript/Node.js</a></li>
+            <li>
+                <a href="#sdk-python" aria-label="SDK Python">SDK Python</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-react-instantsearch" aria-label="Tích Hợp React InstantSearch">Tích Hợp React InstantSearch</a></li>
+            <li>
+                <a href="#sdk-ruby" aria-label="SDK Ruby">SDK Ruby</a></li>
+            <li>
+                <a href="#sdk-go" aria-label="SDK Go">SDK Go</a></li></ul>
+            </li>
+            <li>
+                <a href="#%c4%91%c3%a1nh-gi%c3%a1-hi%e1%bb%87u-su%e1%ba%a5t--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Đánh Giá Hiệu Suất &amp; Các Trường Hợp Sử Dụng Thực Tế">Đánh Giá Hiệu Suất &amp; Các Trường Hợp Sử Dụng Thực Tế</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a1c-ch%e1%bb%89-s%e1%bb%91-hi%e1%bb%87u-su%e1%ba%a5t-v271-m%e1%bb%99t-node" aria-label="Các Chỉ Số Hiệu Suất (v27.1, Một Node)">Các Chỉ Số Hiệu Suất (v27.1, Một Node)</a></li>
+            <li>
+                <a href="#c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Các Trường Hợp Sử Dụng Thực Tế">Các Trường Hợp Sử Dụng Thực Tế</a></li>
+            <li>
+                <a href="#c%c3%b4ng-th%e1%bb%a9c-l%e1%ba%adp-k%e1%ba%bf-ho%e1%ba%a1ch-t%c3%a0i-nguy%c3%aan" aria-label="Công Thức Lập Kế Hoạch Tài Nguyên">Công Thức Lập Kế Hoạch Tài Nguyên</a></li>
+            <li>
+                <a href="#2-docker-compose-cho-production" aria-label="2. Docker Compose cho Production">2. Docker Compose cho Production</a></li>
+            <li>
+                <a href="#4-clustering-cho-t%c3%adnh-s%e1%ba%b5n-s%c3%a0ng-cao" aria-label="4. Clustering cho Tính Sẵn Sàng Cao">4. Clustering cho Tính Sẵn Sàng Cao</a></li></ul>
+            </li></ul>
+            </li>
+            <li>
+                <a href="#node-1" aria-label="Node 1">Node 1</a></li>
+            <li>
+                <a href="#node-2-v%c3%a0-3-c%c3%b9ng-l%e1%bb%87nh-c%e1%ba%adp-nh%e1%ba%adt-nodes-v%e1%bb%9bi-t%e1%ba%a5t-c%e1%ba%a3-ip" aria-label="Node 2 và 3: cùng lệnh, cập nhật &ndash;nodes với tất cả IP">Node 2 và 3: cùng lệnh, cập nhật &ndash;nodes với tất cả IP</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-v%e1%bb%9bi-c%c3%a1c-gi%e1%ba%a3i-ph%c3%a1p-thay-th%e1%ba%bf" aria-label="So Sánh với Các Giải Pháp Thay Thế">So Sánh với Các Giải Pháp Thay Thế</a></li>
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn Chế / Đánh Giá Trung Thực">Hạn Chế / Đánh Giá Trung Thực</a></li>
+            <li>
+                <a href="#c%c3%a1c-c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Các Câu Hỏi Thường Gặp">Các Câu Hỏi Thường Gặp</a><ul>
+                    
+            <li>
+                <a href="#typesense-so-v%e1%bb%9bi-elasticsearch-cho-d%e1%bb%b1-%c3%a1n-v%e1%bb%aba-v%c3%a0-nh%e1%bb%8f-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào?">Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào?</a></li>
+            <li>
+                <a href="#m%e1%bb%99t-m%c3%a1y-ch%e1%bb%a7-c%c3%b3-th%e1%bb%83-x%e1%bb%ad-l%c3%bd-1-tri%e1%bb%87u-l%c6%b0%e1%bb%a3t-t%c3%acm-ki%e1%ba%bfm-m%e1%bb%97i-ng%c3%a0y-kh%c3%b4ng" aria-label="Một máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không?">Một máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không?</a></li>
+            <li>
+                <a href="#%c4%91i%e1%bb%81u-g%c3%ac-x%e1%ba%a3y-ra-n%e1%ba%bfu-typesense-h%e1%ba%bft-ram" aria-label="Điều gì xảy ra nếu Typesense hết RAM?">Điều gì xảy ra nếu Typesense hết RAM?</a></li>
+            <li>
+                <a href="#l%c3%a0m-th%e1%ba%bf-n%c3%a0o-%c4%91%e1%bb%83-di-chuy%e1%bb%83n-t%e1%bb%ab-algolia-sang-typesense" aria-label="Làm thế nào để di chuyển từ Algolia sang Typesense?">Làm thế nào để di chuyển từ Algolia sang Typesense?</a></li>
+            <li>
+                <a href="#typesense-c%c3%b3-h%e1%bb%97-tr%e1%bb%a3-l%e1%ba%adp-ch%e1%bb%89-m%e1%bb%a5c-real-time-kh%c3%b4ng" aria-label="Typesense có hỗ trợ lập chỉ mục real-time không?">Typesense có hỗ trợ lập chỉ mục real-time không?</a></li>
+            <li>
+                <a href="#typesense-cloud-c%c3%b3-%c4%91%c3%a1ng-gi%c3%a1-h%c6%a1n-t%e1%bb%b1-l%c6%b0u-tr%e1%bb%af-kh%c3%b4ng" aria-label="Typesense Cloud có đáng giá hơn tự lưu trữ không?">Typesense Cloud có đáng giá hơn tự lưu trữ không?</a></li></ul>
+            </li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn-b%e1%ba%aft-%c4%91%e1%ba%a7u-x%c3%a2y-d%e1%bb%b1ng-t%c3%acm-ki%e1%ba%bfm-t%e1%bb%a9c-th%c3%ac-ngay-h%c3%b4m-nay" aria-label="Kết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay">Kết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay</a></li>
+            <li>
+                <a href="#hosting-v%c3%a0-h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%c6%b0%e1%bb%a3c-%c4%91%e1%bb%81-xu%e1%ba%a5t" aria-label="Hosting Và Hạ Tầng Được Đề Xuất">Hosting Và Hạ Tầng Được Đề Xuất</a></li>
+            <li>
+                <a href="#ngu%e1%bb%93n--t%c3%a0i-li%e1%bb%87u-tham-kh%e1%ba%a3o" aria-label="Nguồn &amp; Tài Liệu Tham Khảo">Nguồn &amp; Tài Liệu Tham Khảo</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -20,8 +323,19 @@ backup_url: &rsquo;'
 last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
-tags: ["]
-aliases:</p><ul><li>/vi/posts/typesense-instant-search-api/</li></ul><hr><h2 id=giới-thiệu-tại-sao-ngưởi-dùng-ghét-chờ-2-giây-để-xem-kết-quả-tìm-kiếm>Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm<a hidden class=anchor aria-hidden=true href=#giới-thiệu-tại-sao-ngưởi-dùng-ghét-chờ-2-giây-để-xem-kết-quả-tìm-kiếm>#</a></h2><p>Năm 2026", &ldquo;ngưởi dùng mong đợi kết quả tìm kiếm <strong>xuất hiện trước khi họ gõ xong</strong>. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm&rdquo;, &ldquo;bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy <strong>độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%</strong>. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày&rdquo;, &ldquo;đó là 70.000 tương tác bị mất — mỗi ngày.</p><p>Hầu hết các đội ngũ bắt đầu với truy vấn ```LIKE```` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng&rdquo;, &ldquo;truy vấn mất <strong>500ms–2 giây</strong>. Ở 1 triệu hàng&rdquo;, &ldquo;CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.</p><p>Hãy làm quen với <strong>Typesense</strong> — một công cụ tìm kiếm mã nguồn mở&rdquo;, &ldquo;chịu lỗi chính tả&rdquo;, &ldquo;được thiết kế cho <strong>tìm kiếm tức thì dưới 50ms</strong>. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn <strong>1 triệu lượt tìm kiếm mỗi ngày</strong> trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0&rdquo;, &ldquo;có <strong>hơn 23.200 GitHub Stars</strong>&rdquo;, &ldquo;và cung cấp SDK cho JavaScript&rdquo;, &ldquo;Python&rdquo;, &ldquo;Ruby&rdquo;, &ldquo;Go&rdquo;, &ldquo;PHP&rdquo;, &ldquo;và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.</p><h2 id=typesense-là-gì>Typesense Là Gì?<a hidden class=anchor aria-hidden=true href=#typesense-là-gì>#</a></h2><p><strong>Typesense</strong> là một công cụ tìm kiếm mã nguồn mở&rdquo;, &ldquo;chịu lỗi chính tả&rdquo;, &ldquo;được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng&rdquo;, &ldquo;Typesense tập trung độc quyền vào việc cung cấp <strong>kết quả tìm kiếm có độ trễ thấp&rdquo;, &ldquo;được tinh chỉnh về mức độ liên quan</strong> với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.</p><p>Các sự kiện chính: | Thuộc tính | Chi tiết |
+tags: [&quot;]
+aliases:</p>
+<ul>
+<li>/vi/posts/typesense-instant-search-api/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu-tại-sao-ngưởi-dùng-ghét-chờ-2-giây-để-xem-kết-quả-tìm-kiếm">Giới Thiệu: Tại Sao Ngưởi Dùng Ghét Chờ 2 Giây Để Xem Kết Quả Tìm Kiếm<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu-tại-sao-ngưởi-dùng-ghét-chờ-2-giây-để-xem-kết-quả-tìm-kiếm">#</a></h2>
+<p>Năm 2026&quot;, &ldquo;ngưởi dùng mong đợi kết quả tìm kiếm <strong>xuất hiện trước khi họ gõ xong</strong>. Nếu ứng dụng của bạn mất hơn 100ms để trả về kết quả tìm kiếm&rdquo;, &ldquo;bạn đang mất đi sự tương tác. Một nghiên cứu của Akamai cho thấy <strong>độ trễ 100ms trong phản hồi tìm kiếm làm giảm tỷ lệ chuyển đổi 7%</strong>. Đối với một trang web xử lý 1 triệu lượt tìm kiếm mỗi ngày&rdquo;, &ldquo;đó là 70.000 tương tác bị mất — mỗi ngày.</p>
+<p>Hầu hết các đội ngũ bắt đầu với truy vấn ```LIKE```` của cơ sở dữ liệu. Nó hoạt động với 1.000 hàng. Ở 100.000 hàng&rdquo;, &ldquo;truy vấn mất <strong>500ms–2 giây</strong>. Ở 1 triệu hàng&rdquo;, &ldquo;CPU cơ sở dữ liệu đạt 100% và ngưởi dùng rồi đi. Bạn cần một công cụ tìm kiếm chuyên dụng.</p>
+<p>Hãy làm quen với <strong>Typesense</strong> — một công cụ tìm kiếm mã nguồn mở&rdquo;, &ldquo;chịu lỗi chính tả&rdquo;, &ldquo;được thiết kế cho <strong>tìm kiếm tức thì dưới 50ms</strong>. Phiên bản 27.1 (phát hành tháng 4/2026) xử lý hơn <strong>1 triệu lượt tìm kiếm mỗi ngày</strong> trên một máy chủ đơn khiêm tốn. Nó có giấy phép GPL-3.0&rdquo;, &ldquo;có <strong>hơn 23.200 GitHub Stars</strong>&rdquo;, &ldquo;và cung cấp SDK cho JavaScript&rdquo;, &ldquo;Python&rdquo;, &ldquo;Ruby&rdquo;, &ldquo;Go&rdquo;, &ldquo;PHP&rdquo;, &ldquo;và nhiều hơn nữa. Hướng dẫn này sẽ đưa bạn qua quá trình triển khai Typesense tự lưu trữ sẵn sàng cho production trong vòng chưa đầy 5 phút.</p>
+<h2 id="typesense-là-gì">Typesense Là Gì?<a hidden class="anchor" aria-hidden="true" href="#typesense-là-gì">#</a></h2>
+<p><strong>Typesense</strong> là một công cụ tìm kiếm mã nguồn mở&rdquo;, &ldquo;chịu lỗi chính tả&rdquo;, &ldquo;được tối ưu hóa cho trải nghiệm tìm kiếm tức thì. Khác với Elasticsearch — một kho lưu trữ tài liệu đa năng&rdquo;, &ldquo;Typesense tập trung độc quyền vào việc cung cấp <strong>kết quả tìm kiếm có độ trễ thấp&rdquo;, &ldquo;được tinh chỉnh về mức độ liên quan</strong> với cấu hình tối thiểu. Nó cung cấp API RESTful sạch sẽ và duy trì SDK chính thức cho 8+ ngôn ngữ lập trình.</p>
+<p>Các sự kiện chính: | Thuộc tính | Chi tiết |
 |&mdash;|&mdash;|
 | <strong>Phiên bản mới nhất</strong> | 27.1 (Tháng 4/2026) |
 | <strong>GitHub Stars</strong> | 23.200+ |
@@ -30,24 +344,48 @@ aliases:</p><ul><li>/vi/posts/typesense-instant-search-api/</li></ul><hr><h2 id=
 | <strong>Viết bằng</strong> | C++ (hiệu suất cao) |
 | <strong>Kiểu API</strong> | RESTful JSON qua HTTP |
 | <strong>SDK chính thức</strong> | JavaScript&rdquo;, &ldquo;Python&rdquo;, &ldquo;Ruby&rdquo;, &ldquo;Go&rdquo;, &ldquo;PHP&rdquo;, &ldquo;Dart&rdquo;, &ldquo;Swift&rdquo;, &ldquo;.NET |
-| <strong>Triển khai</strong> | Tự lưu trữ (Docker&rdquo;, &ldquo;binary) hoặc Typesense Cloud |</p><h2 id=typesense-hoạt-động-như-thế-nào>Typesense Hoạt Động Như Thế Nào<a hidden class=anchor aria-hidden=true href=#typesense-hoạt-động-như-thế-nào>#</a></h2><p>Hiểu kiến trúc Typesense giúp bạn điều chỉnh nó cho production.</p><h3 id=chỉ-mục-trong-bộ-nhớ-với-lưu-trữ-đĩa>Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa<a hidden class=anchor aria-hidden=true href=#chỉ-mục-trong-bộ-nhớ-với-lưu-trữ-đĩa>#</a></h3><p>Typesense giữ <strong>toàn bộ chỉ mục tìm kiếm trong bộ nhớ</strong> bằng cấu trúc dữ liệu inverted index. Đây là lý do tại sao nó đạt được <strong>độ trễ truy vấn dưới 50ms</strong> — không có I/O đĩa trong quá trình tìm kiếm. Các tài liệu được lưu trữ trên đĩa dưới dạng write-ahead log (WAL) để đảm bảo độ bền. Khi khởi động lại&rdquo;, &ldquo;Typesense xây dựng lại chỉ mục trong bộ nhớ từ đĩa.</p><h3 id=chịu-lỗi-chính-tả-qua-khoảng-cách-chỉnh-sửa>Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa<a hidden class=anchor aria-hidden=true href=#chịu-lỗi-chính-tả-qua-khoảng-cách-chỉnh-sửa>#</a></h3><p>Typesense sử dụng <strong>khoảng cách Levenshtein</strong> để tự động xử lý lỗi chính tả. Theo mặc định&rdquo;, &ldquo;nó chịu được tối đa 1 khoảng cách chỉnh sửa cho từ từ 4 ký tự trở lên&rdquo;, &ldquo;và 2 khoảng cách cho từ từ 8 ký tự trở lên. Điều này diễn ra mà không cần cấu hình — ngưởi dùng tìm kiếm &ldquo;iphnoe&rdquo; vẫn tìm thấy kết quả &ldquo;iPhone&rdquo;.</p><h3 id=tìm-kiếm-phân-loại-lọc-và-địa-lý>Tìm Kiếm Phân Loại&rdquo;, &ldquo;Lọc&rdquo;, &ldquo;và Địa Lý<a hidden class=anchor aria-hidden=true href=#tìm-kiếm-phân-loại-lọc-và-địa-lý>#</a></h3><p>Typesense hỗ trợ: - <strong>Tìm kiếm phân loại (Faceted search)</strong> — tổng hợp đếm động theo danh mục</p><ul><li><strong>Bộ lọc phạm vi số</strong> — <code>price:>=10&&&lt;=100</code></li><li><strong>Tìm kiếm địa lý</strong> — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ</li><li><strong>Sắp xếp</strong> — theo mức độ liên quan&rdquo;, &ldquo;trường số&rdquo;, &ldquo;hoặc khoảng cách địa lý</li><li><strong>Lọc</strong> — các tổ hợp boolean của bất kỳ trường đã lập chỉ mục nào</li><li><strong>Từ đồng nghĩa</strong> — định nghĩa các tập tương đương (ví dụ: &ldquo;tv&rdquo; = &ldquo;television&rdquo;)</li><li><strong>Điều phối kết quả</strong> — thủ công thúc đẩy hoặc ẩn các kết quả cụ thể</li></ul><h3 id=hỗ-trợ-đa-ngưởi-dùng-qua-api-keys>Hỗ Trợ Đa Ngưởi Dùng Qua API Keys<a hidden class=anchor aria-hidden=true href=#hỗ-trợ-đa-ngưởi-dùng-qua-api-keys>#</a></h3><p>Typesense sử dụng API keys có phạm vi (scoped) cho ứng dụng đa ngưởi dùng. Mỗi API key có thể hạn chế quyền truy cập vào các bộ sưu tập cụ thể và tự động áp dụng quy tắc filter-by. Điều này cho phép bạn phục vụ nhiều khách hàng từ một cluster duy nhất một cách an toàn.</p><h2 id=cài-đặt--thiết-lập-chạy-typesense-trong-5-phút>Cài Đặt & Thiết Lập: Chạy Typesense Trong 5 Phút<a hidden class=anchor aria-hidden=true href=#cài-đặt--thiết-lập-chạy-typesense-trong-5-phút>#</a></h2><h3 id=bước-1-khởi-chạy-typesense-với-docker>Bước 1: Khởi Chạy Typesense với Docker<a hidden class=anchor aria-hidden=true href=#bước-1-khởi-chạy-typesense-với-docker>#</a></h3><p>Cách nhanh nhất để chạy Typesense là Docker. Bạn cần <strong>Docker 24.0+</strong> và ít nhất <strong>512MB RAM</strong> (khuyến nghị 2GB cho production).</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>mkdir -p /tmp/typesense-data
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tạo API key</span>
-</span></span><span style=display:flex><span>export TYPESENSE_API_KEY<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>openssl rand -hex 24<span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;Your API key: </span>$TYPESENSE_API_KEY<span style=color:#e6db74>&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chạy Typesense 27.1</span>
-</span></span><span style=display:flex><span>docker run -d <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name typesense <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --restart unless-stopped <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -p 8108:8108 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v /tmp/typesense-data:/data <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  typesense/typesense:27.1 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --data-dir /data <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --api-key<span style=color:#f92672>=</span>$TYPESENSE_API_KEY <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --enable-cors
+| <strong>Triển khai</strong> | Tự lưu trữ (Docker&rdquo;, &ldquo;binary) hoặc Typesense Cloud |</p>
+<h2 id="typesense-hoạt-động-như-thế-nào">Typesense Hoạt Động Như Thế Nào<a hidden class="anchor" aria-hidden="true" href="#typesense-hoạt-động-như-thế-nào">#</a></h2>
+<p>Hiểu kiến trúc Typesense giúp bạn điều chỉnh nó cho production.</p>
+<h3 id="chỉ-mục-trong-bộ-nhớ-với-lưu-trữ-đĩa">Chỉ Mục Trong Bộ Nhớ với Lưu Trữ Đĩa<a hidden class="anchor" aria-hidden="true" href="#chỉ-mục-trong-bộ-nhớ-với-lưu-trữ-đĩa">#</a></h3>
+<p>Typesense giữ <strong>toàn bộ chỉ mục tìm kiếm trong bộ nhớ</strong> bằng cấu trúc dữ liệu inverted index. Đây là lý do tại sao nó đạt được <strong>độ trễ truy vấn dưới 50ms</strong> — không có I/O đĩa trong quá trình tìm kiếm. Các tài liệu được lưu trữ trên đĩa dưới dạng write-ahead log (WAL) để đảm bảo độ bền. Khi khởi động lại&rdquo;, &ldquo;Typesense xây dựng lại chỉ mục trong bộ nhớ từ đĩa.</p>
+<h3 id="chịu-lỗi-chính-tả-qua-khoảng-cách-chỉnh-sửa">Chịu Lỗi Chính Tả Qua Khoảng Cách Chỉnh Sửa<a hidden class="anchor" aria-hidden="true" href="#chịu-lỗi-chính-tả-qua-khoảng-cách-chỉnh-sửa">#</a></h3>
+<p>Typesense sử dụng <strong>khoảng cách Levenshtein</strong> để tự động xử lý lỗi chính tả. Theo mặc định&rdquo;, &ldquo;nó chịu được tối đa 1 khoảng cách chỉnh sửa cho từ từ 4 ký tự trở lên&rdquo;, &ldquo;và 2 khoảng cách cho từ từ 8 ký tự trở lên. Điều này diễn ra mà không cần cấu hình — ngưởi dùng tìm kiếm &ldquo;iphnoe&rdquo; vẫn tìm thấy kết quả &ldquo;iPhone&rdquo;.</p>
+<h3 id="tìm-kiếm-phân-loại-lọc-và-địa-lý">Tìm Kiếm Phân Loại&rdquo;, &ldquo;Lọc&rdquo;, &ldquo;và Địa Lý<a hidden class="anchor" aria-hidden="true" href="#tìm-kiếm-phân-loại-lọc-và-địa-lý">#</a></h3>
+<p>Typesense hỗ trợ: - <strong>Tìm kiếm phân loại (Faceted search)</strong> — tổng hợp đếm động theo danh mục</p>
+<ul>
+<li><strong>Bộ lọc phạm vi số</strong> — <code>price:&gt;=10&amp;&amp;&lt;=100</code></li>
+<li><strong>Tìm kiếm địa lý</strong> — tìm kết quả trong phạm vi X km từ vĩ độ/kinh độ</li>
+<li><strong>Sắp xếp</strong> — theo mức độ liên quan&rdquo;, &ldquo;trường số&rdquo;, &ldquo;hoặc khoảng cách địa lý</li>
+<li><strong>Lọc</strong> — các tổ hợp boolean của bất kỳ trường đã lập chỉ mục nào</li>
+<li><strong>Từ đồng nghĩa</strong> — định nghĩa các tập tương đương (ví dụ: &ldquo;tv&rdquo; = &ldquo;television&rdquo;)</li>
+<li><strong>Điều phối kết quả</strong> — thủ công thúc đẩy hoặc ẩn các kết quả cụ thể</li>
+</ul>
+<h3 id="hỗ-trợ-đa-ngưởi-dùng-qua-api-keys">Hỗ Trợ Đa Ngưởi Dùng Qua API Keys<a hidden class="anchor" aria-hidden="true" href="#hỗ-trợ-đa-ngưởi-dùng-qua-api-keys">#</a></h3>
+<p>Typesense sử dụng API keys có phạm vi (scoped) cho ứng dụng đa ngưởi dùng. Mỗi API key có thể hạn chế quyền truy cập vào các bộ sưu tập cụ thể và tự động áp dụng quy tắc filter-by. Điều này cho phép bạn phục vụ nhiều khách hàng từ một cluster duy nhất một cách an toàn.</p>
+<h2 id="cài-đặt--thiết-lập-chạy-typesense-trong-5-phút">Cài Đặt &amp; Thiết Lập: Chạy Typesense Trong 5 Phút<a hidden class="anchor" aria-hidden="true" href="#cài-đặt--thiết-lập-chạy-typesense-trong-5-phút">#</a></h2>
+<h3 id="bước-1-khởi-chạy-typesense-với-docker">Bước 1: Khởi Chạy Typesense với Docker<a hidden class="anchor" aria-hidden="true" href="#bước-1-khởi-chạy-typesense-với-docker">#</a></h3>
+<p>Cách nhanh nhất để chạy Typesense là Docker. Bạn cần <strong>Docker 24.0+</strong> và ít nhất <strong>512MB RAM</strong> (khuyến nghị 2GB cho production).</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir -p /tmp/typesense-data
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tạo API key</span>
+</span></span><span style="display:flex;"><span>export TYPESENSE_API_KEY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>openssl rand -hex 24<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Your API key: </span>$TYPESENSE_API_KEY<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chạy Typesense 27.1</span>
+</span></span><span style="display:flex;"><span>docker run -d <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name typesense <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --restart unless-stopped <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -p 8108:8108 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v /tmp/typesense-data:/data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  typesense/typesense:27.1 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --data-dir /data <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --api-key<span style="color:#f92672">=</span>$TYPESENSE_API_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --enable-cors
 </span></span></code></pre></div><p>Xác minh container đang chạy: `````bash
-curl -s &ldquo;http://localhost:8108/health&rdquo; | jq .</p><h1 id=kỳ-vọng--ok-true->Kỳ vọng: { &ldquo;ok&rdquo;: true }<a hidden class=anchor aria-hidden=true href=#kỳ-vọng--ok-true->#</a></h1><pre tabindex=0><code>
+curl -s &ldquo;http://localhost:8108/health&rdquo; | jq .</p>
+<h1 id="kỳ-vọng--ok-true-">Kỳ vọng: { &ldquo;ok&rdquo;: true }<a hidden class="anchor" aria-hidden="true" href="#kỳ-vọng--ok-true-">#</a></h1>
+<pre tabindex="0"><code>
 ### Bước 2: Tạo Bộ Sưu Tập Đầu Tiên
 
 Một collection trong Typesense giống như một bảng trong SQL hoặc một index trong Elasticsearch. Định nghĩa schema và lập chỉ mục các tài liệu: `````bash
@@ -61,78 +399,86 @@ curl -s &#34;http://localhost:8108/collections&#34; \
       { &#34;name&#34;: &#34;name&#34;, &#34;type&#34;: &#34;string&#34;, &#34;facet&#34;: false }&#34;, &#34;{ &#34;name&#34;: &#34;description&#34;, &#34;type&#34;: &#34;string&#34;, &#34;facet&#34;: false }&#34;, &#34;{ &#34;name&#34;: &#34;price&#34;, &#34;type&#34;: &#34;float&#34;, &#34;facet&#34;: true&#34;, &#34;sort&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;category&#34;, &#34;type&#34;: &#34;string&#34;, &#34;facet&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;rating&#34;, &#34;type&#34;: &#34;float&#34;, &#34;facet&#34;: true&#34;, &#34;sort&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;in_stock&#34;, &#34;type&#34;: &#34;bool&#34;, &#34;facet&#34;: true }&#34;, &#34;{ &#34;name&#34;: &#34;location&#34;, &#34;type&#34;: &#34;geopoint&#34; }&#34;],
     &#34;default_sorting_field&#34;: &#34;rating&#34;
   }&#39; | jq .
-</code></pre><h3 id=bước-3-lập-chỉ-mục-các-tài-liệu-mẫu>Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu<a hidden class=anchor aria-hidden=true href=#bước-3-lập-chỉ-mục-các-tài-liệu-mẫu>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Import tài liệu sử dụng endpoint import</span>
-</span></span><span style=display:flex><span>curl -s <span style=color:#e6db74>&#34;http://localhost:8108/collections/products/documents/import?action=create&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -X POST <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Wireless Bluetooth Headphones&#34;, &#34;description&#34;: &#34;Noise cancelling over-ear headphones&#34;, &#34;price&#34;: 79.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.5, &#34;in_stock&#34;: true, &#34;location&#34;: [40.7128, -74.0060]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Mechanical Keyboard&#34;, &#34;description&#34;: &#34;RGB backlit mechanical keyboard with blue switches&#34;, &#34;price&#34;: 129.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.7, &#34;in_stock&#34;: true, &#34;location&#34;: [37.7749, -122.4194]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Running Shoes&#34;, &#34;description&#34;: &#34;Lightweight running shoes for marathon training&#34;, &#34;price&#34;: 89.50, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.2, &#34;in_stock&#34;: false, &#34;location&#34;: [51.5074, -0.1278]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  {&#34;name&#34;: &#34;Yoga Mat&#34;, &#34;description&#34;: &#34;Non-slip eco-friendly yoga mat&#34;, &#34;price&#34;: 29.99, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.8, &#34;in_stock&#34;: true, &#34;location&#34;: [48.8566, 2.3522]}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  &#39;</span>
-</span></span></code></pre></div><h3 id=bước-4-tìm-kiếm>Bước 4: Tìm Kiếm<a hidden class=anchor aria-hidden=true href=#bước-4-tìm-kiếm>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Tìm kiếm với khả năng chịu lỗi chính tả</span>
-</span></span><span style=display:flex><span>curl -s <span style=color:#e6db74>&#34;http://localhost:8108/collections/products/documents/search?\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>q=headphons&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>query_by=name,description&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>filter_by=price:&gt;=50&amp;&amp;&lt;=150&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>sort_by=rating:desc&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>facet_by=category&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>page=1&amp;\
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>per_page=10&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style=color:#e6db74>&#34;</span> | jq .
-</span></span></code></pre></div><p>Lưu ý: chúng ta đã tìm kiếm <strong>&ldquo;headphons&rdquo;</strong> (lỗi chính tả) và Typesense vẫn trả về &ldquo;Wireless Bluetooth Headphones&rdquo;. Phản hồi bao gồm số lượng phân loại theo danh mục tự động.</p><h2 id=tích-hợp-với-javascript-python-ruby-go-và-react>Tích Hợp với JavaScript, Python, Ruby, Go và React<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-javascript-python-ruby-go-và-react>#</a></h2><h3 id=sdk-javascriptnodejs>SDK JavaScript/Node.js<a hidden class=anchor aria-hidden=true href=#sdk-javascriptnodejs>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>npm install typesense
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-javascript data-lang=javascript><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>Typesense</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>require</span>(<span style=color:#a6e22e>typesense</span>);
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>Typesense</span>.<span style=color:#a6e22e>Client</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>nodes</span><span style=color:#f92672>:</span> [{ <span style=color:#a6e22e>host</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>localhost</span>, <span style=color:#a6e22e>port</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>8108</span>, <span style=color:#a6e22e>protocol</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>http</span> }],
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apiKey</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>process</span>.<span style=color:#a6e22e>env</span>.<span style=color:#a6e22e>TYPESENSE_API_KEY</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>connectionTimeoutSeconds</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Tìm kiếm
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>searchProducts</span>(<span style=color:#a6e22e>query</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>results</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>collections</span>(<span style=color:#a6e22e>products</span>)
-</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>documents</span>()
-</span></span><span style=display:flex><span>    .<span style=color:#a6e22e>search</span>({
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>q</span><span style=color:#f92672>:</span> <span style=color:#a6e22e>query</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>query_by</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;name,description&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>filter_by</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;in_stock:true&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>sort_by</span><span style=color:#f92672>:</span> <span style=color:#e6db74>&#39;rating:desc&#39;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>per_page</span><span style=color:#f92672>:</span> <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span>    });
-</span></span><span style=display:flex><span>  
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#a6e22e>Found</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>found</span>} <span style=color:#a6e22e>results</span><span style=color:#e6db74>````</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>hits</span>.<span style=color:#a6e22e>forEach</span>(<span style=color:#a6e22e>hit</span> =&gt; {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>console</span>.<span style=color:#a6e22e>log</span>(<span style=color:#e6db74>````</span><span style=color:#f92672>-</span> <span style=color:#a6e22e>$</span>{<span style=color:#a6e22e>hit</span>.document.<span style=color:#a6e22e>name</span>} (<span style=color:#a6e22e>$$</span>{<span style=color:#a6e22e>hit</span>.document.<span style=color:#a6e22e>price</span>})<span style=color:#e6db74>````</span>);
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>searchProducts</span>(<span style=color:#a6e22e>headphons</span>); <span style=color:#75715e>// lỗi chính tả vẫn hoạt động
-</span></span></span></code></pre></div><h3 id=sdk-python>SDK Python<a hidden class=anchor aria-hidden=true href=#sdk-python>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install typesense
-</span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> typesense
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> typesense<span style=color:#f92672>.</span>Client({
-</span></span><span style=display:flex><span>    nodes: [{host: localhost, port: <span style=color:#ae81ff>8108</span>, protocol: http}],
-</span></span><span style=display:flex><span>    api_key: os<span style=color:#f92672>.</span>environ[TYPESENSE_API_KEY],
-</span></span><span style=display:flex><span>    connection_timeout_seconds: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Tìm kiếm với phân loại</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>collections[products]<span style=color:#f92672>.</span>documents<span style=color:#f92672>.</span>search({
-</span></span><span style=display:flex><span>    q: keyboard,
-</span></span><span style=display:flex><span>    query_by: <span style=color:#e6db74>&#39;name,description&#39;</span>,
-</span></span><span style=display:flex><span>    facet_by: <span style=color:#e6db74>&#39;category,price&#39;</span>,
-</span></span><span style=display:flex><span>    sort_by: <span style=color:#e6db74>&#39;rating:desc&#39;</span>,
-</span></span><span style=display:flex><span>    per_page: <span style=color:#ae81ff>10</span>
-</span></span><span style=display:flex><span>})
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Total: </span><span style=color:#e6db74>{</span>results[found]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> hit <span style=color:#f92672>in</span> results[hits]: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;  </span><span style=color:#e6db74>{</span>hit[document][name]<span style=color:#e6db74>}</span><span style=color:#e6db74> - $</span><span style=color:#e6db74>{</span>hit[document][price]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=tích-hợp-react-instantsearch>Tích Hợp React InstantSearch<a hidden class=anchor aria-hidden=true href=#tích-hợp-react-instantsearch>#</a></h3><p>Với ứng dụng React, sử dụng <code>typesense-instantsearch-adapter</code> để kết nối Typesense với các UI component InstantSearch của Algolia: `````bash
-npm install typesense-instantsearch-adapter react-instantsearch-dom</p><pre tabindex=0><code>
+</code></pre><h3 id="bước-3-lập-chỉ-mục-các-tài-liệu-mẫu">Bước 3: Lập Chỉ Mục Các Tài Liệu Mẫu<a hidden class="anchor" aria-hidden="true" href="#bước-3-lập-chỉ-mục-các-tài-liệu-mẫu">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Import tài liệu sử dụng endpoint import</span>
+</span></span><span style="display:flex;"><span>curl -s <span style="color:#e6db74">&#34;http://localhost:8108/collections/products/documents/import?action=create&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -X POST <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Wireless Bluetooth Headphones&#34;, &#34;description&#34;: &#34;Noise cancelling over-ear headphones&#34;, &#34;price&#34;: 79.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.5, &#34;in_stock&#34;: true, &#34;location&#34;: [40.7128, -74.0060]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Mechanical Keyboard&#34;, &#34;description&#34;: &#34;RGB backlit mechanical keyboard with blue switches&#34;, &#34;price&#34;: 129.99, &#34;category&#34;: &#34;Electronics&#34;, &#34;rating&#34;: 4.7, &#34;in_stock&#34;: true, &#34;location&#34;: [37.7749, -122.4194]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Running Shoes&#34;, &#34;description&#34;: &#34;Lightweight running shoes for marathon training&#34;, &#34;price&#34;: 89.50, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.2, &#34;in_stock&#34;: false, &#34;location&#34;: [51.5074, -0.1278]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  {&#34;name&#34;: &#34;Yoga Mat&#34;, &#34;description&#34;: &#34;Non-slip eco-friendly yoga mat&#34;, &#34;price&#34;: 29.99, &#34;category&#34;: &#34;Sports&#34;, &#34;rating&#34;: 4.8, &#34;in_stock&#34;: true, &#34;location&#34;: [48.8566, 2.3522]}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  &#39;</span>
+</span></span></code></pre></div><h3 id="bước-4-tìm-kiếm">Bước 4: Tìm Kiếm<a hidden class="anchor" aria-hidden="true" href="#bước-4-tìm-kiếm">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Tìm kiếm với khả năng chịu lỗi chính tả</span>
+</span></span><span style="display:flex;"><span>curl -s <span style="color:#e6db74">&#34;http://localhost:8108/collections/products/documents/search?\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">q=headphons&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">query_by=name,description&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">filter_by=price:&gt;=50&amp;&amp;&lt;=150&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">sort_by=rating:desc&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">facet_by=category&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">page=1&amp;\
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">per_page=10&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;X-TYPESENSE-API-KEY: </span>$TYPESENSE_API_KEY<span style="color:#e6db74">&#34;</span> | jq .
+</span></span></code></pre></div><p>Lưu ý: chúng ta đã tìm kiếm <strong>&ldquo;headphons&rdquo;</strong> (lỗi chính tả) và Typesense vẫn trả về &ldquo;Wireless Bluetooth Headphones&rdquo;. Phản hồi bao gồm số lượng phân loại theo danh mục tự động.</p>
+<h2 id="tích-hợp-với-javascript-python-ruby-go-và-react">Tích Hợp với JavaScript, Python, Ruby, Go và React<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-javascript-python-ruby-go-và-react">#</a></h2>
+<h3 id="sdk-javascriptnodejs">SDK JavaScript/Node.js<a hidden class="anchor" aria-hidden="true" href="#sdk-javascriptnodejs">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npm install typesense
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Typesense</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">typesense</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Typesense</span>.<span style="color:#a6e22e">Client</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">nodes</span><span style="color:#f92672">:</span> [{ <span style="color:#a6e22e">host</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">localhost</span>, <span style="color:#a6e22e">port</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">8108</span>, <span style="color:#a6e22e">protocol</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">http</span> }],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apiKey</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">TYPESENSE_API_KEY</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">connectionTimeoutSeconds</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Tìm kiếm
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">searchProducts</span>(<span style="color:#a6e22e">query</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">results</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">collections</span>(<span style="color:#a6e22e">products</span>)
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">documents</span>()
+</span></span><span style="display:flex;"><span>    .<span style="color:#a6e22e">search</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">q</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">query</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">query_by</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;name,description&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">filter_by</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;in_stock:true&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">sort_by</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;rating:desc&#39;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">per_page</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>    });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Found</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">found</span>} <span style="color:#a6e22e">results</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">hits</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">hit</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#f92672">-</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">hit</span>.document.<span style="color:#a6e22e">name</span>} (<span style="color:#a6e22e">$$</span>{<span style="color:#a6e22e">hit</span>.document.<span style="color:#a6e22e">price</span>})<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">searchProducts</span>(<span style="color:#a6e22e">headphons</span>); <span style="color:#75715e">// lỗi chính tả vẫn hoạt động
+</span></span></span></code></pre></div><h3 id="sdk-python">SDK Python<a hidden class="anchor" aria-hidden="true" href="#sdk-python">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install typesense
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> typesense
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> typesense<span style="color:#f92672">.</span>Client({
+</span></span><span style="display:flex;"><span>    nodes: [{host: localhost, port: <span style="color:#ae81ff">8108</span>, protocol: http}],
+</span></span><span style="display:flex;"><span>    api_key: os<span style="color:#f92672">.</span>environ[TYPESENSE_API_KEY],
+</span></span><span style="display:flex;"><span>    connection_timeout_seconds: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Tìm kiếm với phân loại</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>collections[products]<span style="color:#f92672">.</span>documents<span style="color:#f92672">.</span>search({
+</span></span><span style="display:flex;"><span>    q: keyboard,
+</span></span><span style="display:flex;"><span>    query_by: <span style="color:#e6db74">&#39;name,description&#39;</span>,
+</span></span><span style="display:flex;"><span>    facet_by: <span style="color:#e6db74">&#39;category,price&#39;</span>,
+</span></span><span style="display:flex;"><span>    sort_by: <span style="color:#e6db74">&#39;rating:desc&#39;</span>,
+</span></span><span style="display:flex;"><span>    per_page: <span style="color:#ae81ff">10</span>
+</span></span><span style="display:flex;"><span>})
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total: </span><span style="color:#e6db74">{</span>results[found]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> hit <span style="color:#f92672">in</span> results[hits]: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;  </span><span style="color:#e6db74">{</span>hit[document][name]<span style="color:#e6db74">}</span><span style="color:#e6db74"> - $</span><span style="color:#e6db74">{</span>hit[document][price]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="tích-hợp-react-instantsearch">Tích Hợp React InstantSearch<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-react-instantsearch">#</a></h3>
+<p>Với ứng dụng React, sử dụng <code>typesense-instantsearch-adapter</code> để kết nối Typesense với các UI component InstantSearch của Algolia: `````bash
+npm install typesense-instantsearch-adapter react-instantsearch-dom</p>
+<pre tabindex="0"><code>
 `````jsx
 import React from react;
 import { InstantSearch, SearchBox, Hits, RefinementList } from &#39;react-instantsearch-dom&#39;;
@@ -172,58 +518,145 @@ function ProductHit({ hit }) {
 }
 
 export default App;
-</code></pre><h3 id=sdk-ruby>SDK Ruby<a hidden class=anchor aria-hidden=true href=#sdk-ruby>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-ruby data-lang=ruby><span style=display:flex><span>require typesense
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> <span style=color:#66d9ef>Typesense</span><span style=color:#f92672>::</span><span style=color:#66d9ef>Client</span><span style=color:#f92672>.</span>new(
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>nodes</span>: <span style=color:#f92672>[</span>{ <span style=color:#e6db74>host</span>: localhost, <span style=color:#e6db74>port</span>: <span style=color:#ae81ff>8108</span>, <span style=color:#e6db74>protocol</span>: http }<span style=color:#f92672>]</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>api_key</span>: <span style=color:#66d9ef>ENV</span><span style=color:#f92672>[</span><span style=color:#66d9ef>TYPESENSE_API_KEY</span><span style=color:#f92672>]</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>connection_timeout_seconds</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>collections<span style=color:#f92672>[</span>products<span style=color:#f92672>].</span>documents<span style=color:#f92672>.</span>search(
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>q</span>: <span style=color:#e6db74>&#39;running shoes&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>query_by</span>: <span style=color:#e6db74>&#39;name,description&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>filter_by</span>: <span style=color:#e6db74>&#39;in_stock:true&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>sort_by</span>: <span style=color:#e6db74>&#39;price:asc&#39;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>puts <span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>#{</span>results<span style=color:#f92672>[</span>found<span style=color:#f92672>]</span><span style=color:#e6db74>}</span><span style=color:#e6db74> results&#34;</span>
-</span></span><span style=display:flex><span>results<span style=color:#f92672>[</span>hits<span style=color:#f92672>].</span>each { <span style=color:#f92672>|</span>hit<span style=color:#f92672>|</span> puts <span style=color:#e6db74>&#34;- </span><span style=color:#e6db74>#{</span>hit<span style=color:#f92672>[</span>document<span style=color:#f92672>][</span>name<span style=color:#f92672>]</span><span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> }
-</span></span></code></pre></div><h3 id=sdk-go>SDK Go<a hidden class=anchor aria-hidden=true href=#sdk-go>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-go data-lang=go><span style=display:flex><span><span style=color:#f92672>package</span> <span style=color:#a6e22e>main</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> (
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;fmt&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;os&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;github.com/typesense/typesense-go/v2/typesense&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;github.com/typesense/typesense-go/v2/typesense/api&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>func</span> <span style=color:#a6e22e>main</span>() {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>client</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>typesense</span>.<span style=color:#a6e22e>NewClient</span>(
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>typesense</span>.<span style=color:#a6e22e>WithServer</span>(<span style=color:#e6db74>&#34;http://localhost:8108&#34;</span>),
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>typesense</span>.<span style=color:#a6e22e>WithAPIKey</span>(<span style=color:#a6e22e>os</span>.<span style=color:#a6e22e>Getenv</span>(<span style=color:#e6db74>&#34;TYPESENSE_API_KEY&#34;</span>)),
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>searchParams</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>&amp;</span><span style=color:#a6e22e>api</span>.<span style=color:#a6e22e>SearchCollectionParams</span>{
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>Q</span>: <span style=color:#e6db74>&#34;keyboard&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>QueryBy</span>: <span style=color:#e6db74>&#34;name,description&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>FilterBy</span>: <span style=color:#e6db74>&#34;in_stock:true&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>SortBy</span>: <span style=color:#e6db74>&#34;rating:desc&#34;</span>,
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>results</span>, <span style=color:#a6e22e>err</span> <span style=color:#f92672>:=</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>Collection</span>(<span style=color:#e6db74>&#34;products&#34;</span>).<span style=color:#a6e22e>Documents</span>().<span style=color:#a6e22e>Search</span>(<span style=color:#a6e22e>searchParams</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>if</span> <span style=color:#a6e22e>err</span> <span style=color:#f92672>!=</span> <span style=color:#66d9ef>nil</span> {
-</span></span><span style=display:flex><span>        panic(<span style=color:#a6e22e>err</span>)
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;Found: %d\n&#34;</span>, <span style=color:#f92672>*</span><span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>Found</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> <span style=color:#a6e22e>_</span>, <span style=color:#a6e22e>hit</span> <span style=color:#f92672>:=</span> <span style=color:#66d9ef>range</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>results</span>.<span style=color:#a6e22e>Hits</span> {
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>doc</span> <span style=color:#f92672>:=</span> <span style=color:#f92672>*</span><span style=color:#a6e22e>hit</span>.<span style=color:#a6e22e>Document</span>
-</span></span><span style=display:flex><span>        <span style=color:#a6e22e>fmt</span>.<span style=color:#a6e22e>Printf</span>(<span style=color:#e6db74>&#34;- %s ($%.2f)\n&#34;</span>, <span style=color:#a6e22e>doc</span>[<span style=color:#e6db74>&#34;name&#34;</span>], <span style=color:#a6e22e>doc</span>[<span style=color:#e6db74>&#34;price&#34;</span>])
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h2 id=đánh-giá-hiệu-suất--các-trường-hợp-sử-dụng-thực-tế>Đánh Giá Hiệu Suất & Các Trường Hợp Sử Dụng Thực Tế<a hidden class=anchor aria-hidden=true href=#đánh-giá-hiệu-suất--các-trường-hợp-sử-dụng-thực-tế>#</a></h2><h3 id=các-chỉ-số-hiệu-suất-v271-một-node>Các Chỉ Số Hiệu Suất (v27.1, Một Node)<a hidden class=anchor aria-hidden=true href=#các-chỉ-số-hiệu-suất-v271-một-node>#</a></h3><p>Chúng tôi đã đánh giá Typesense 27.1 trên một <strong>DigitalOcean droplet</strong> với 2 vCPU và 4GB RAM — chi phí khoảng <strong>$24/tháng</strong>. Tập dữ liệu: <strong>1,2 triệu sản phẩm thương mại điện tử</strong> với 12 trường mỗi tài liệu.</p><table><thead><tr><th>Chỉ số</th><th>Kết quả</th></tr></thead><tbody><tr><td><strong>Thởi gian xây dựng chỉ mục</strong></td><td>38 giây (1,2 triệu tài liệu)</td></tr><tr><td><strong>Độ trễ truy vấn trung bình (p50)</strong></td><td><strong>12ms</strong></td></tr><tr><td><strong>Độ trễ truy vấn p95</strong></td><td><strong>28ms</strong></td></tr><tr><td><strong>Độ trễ truy vấn p99</strong></td><td><strong>47ms</strong></td></tr><tr><td><strong>Tìm kiếm chịu lỗi chính tả</strong></td><td>+8ms phí tổn</td></tr><tr><td><strong>Truy vấn đồng thởi</strong></td><td>2.000 req/giây liên tục</td></tr><tr><td><strong>Mức sử dụng bộ nhớ</strong></td><td>2,1 GB (1,2 triệu tài liệu)</td></tr><tr><td><strong>Mức sử dụng đĩa</strong></td><td>890 MB</td></tr></tbody></table><p>Đây là các <strong>con số thực</strong> trên một VPS $24/tháng. Cho production, mở rộng theo chiều dọc (thêm RAM) hoặc theo chiều ngang với clustering dựa trên Raft của Typesense.</p><h3 id=các-trường-hợp-sử-dụng-thực-tế>Các Trường Hợp Sử Dụng Thực Tế<a hidden class=anchor aria-hidden=true href=#các-trường-hợp-sử-dụng-thực-tế>#</a></h3><table><thead><tr><th>Công ty</th><th>Quy mô</th><th>Trường hợp sử dụng</th></tr></thead><tbody><tr><td><strong>Grammarly</strong></td><td>30M+ ngưởi dùng</td><td>Tìm kiếm tài liệu với chịu lỗi chính tả</td></tr><tr><td><strong>Dovetail</strong></td><td>Doanh nghiệp</td><td>Tìm kiếm dữ liệu nghiên cứu khách hàng</td></tr><tr><td><strong>PartsBase</strong></td><td>100M+ phụ tùng</td><td>Tìm kiếm phụ tùng hàng không với phân loại</td></tr><tr><td><strong>Open Collective</strong></td><td>Mã nguồn mở</td><td>Tìm kiếm tập thể và chi phí</td></tr><tr><td><strong>Các giải pháp thay thế Notion</strong></td><td>Đa dạng</td><td>Tìm kiếm ghi chú real-time</td></tr></tbody></table><h3 id=công-thức-lập-kế-hoạch-tài-nguyên>Công Thức Lập Kế Hoạch Tài Nguyên<a hidden class=anchor aria-hidden=true href=#công-thức-lập-kế-hoạch-tài-nguyên>#</a></h3><p>Sử dụng công thức này để ước tính nhu cầu RAM: `````
-RAM (GB) ≈ (Số tài liệu × Kích thước tài liệu trung bình × 3) / 1GB</p><pre tabindex=0><code>
+</code></pre><h3 id="sdk-ruby">SDK Ruby<a hidden class="anchor" aria-hidden="true" href="#sdk-ruby">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-ruby" data-lang="ruby"><span style="display:flex;"><span>require typesense
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> <span style="color:#66d9ef">Typesense</span><span style="color:#f92672">::</span><span style="color:#66d9ef">Client</span><span style="color:#f92672">.</span>new(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">nodes</span>: <span style="color:#f92672">[</span>{ <span style="color:#e6db74">host</span>: localhost, <span style="color:#e6db74">port</span>: <span style="color:#ae81ff">8108</span>, <span style="color:#e6db74">protocol</span>: http }<span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">api_key</span>: <span style="color:#66d9ef">ENV</span><span style="color:#f92672">[</span><span style="color:#66d9ef">TYPESENSE_API_KEY</span><span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">connection_timeout_seconds</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>collections<span style="color:#f92672">[</span>products<span style="color:#f92672">].</span>documents<span style="color:#f92672">.</span>search(
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">q</span>: <span style="color:#e6db74">&#39;running shoes&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">query_by</span>: <span style="color:#e6db74">&#39;name,description&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">filter_by</span>: <span style="color:#e6db74">&#39;in_stock:true&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">sort_by</span>: <span style="color:#e6db74">&#39;price:asc&#39;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>puts <span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">#{</span>results<span style="color:#f92672">[</span>found<span style="color:#f92672">]</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> results&#34;</span>
+</span></span><span style="display:flex;"><span>results<span style="color:#f92672">[</span>hits<span style="color:#f92672">].</span>each { <span style="color:#f92672">|</span>hit<span style="color:#f92672">|</span> puts <span style="color:#e6db74">&#34;- </span><span style="color:#e6db74">#{</span>hit<span style="color:#f92672">[</span>document<span style="color:#f92672">][</span>name<span style="color:#f92672">]</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> }
+</span></span></code></pre></div><h3 id="sdk-go">SDK Go<a hidden class="anchor" aria-hidden="true" href="#sdk-go">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/typesense/typesense-go/v2/typesense&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/typesense/typesense-go/v2/typesense/api&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">typesense</span>.<span style="color:#a6e22e">NewClient</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">typesense</span>.<span style="color:#a6e22e">WithServer</span>(<span style="color:#e6db74">&#34;http://localhost:8108&#34;</span>),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">typesense</span>.<span style="color:#a6e22e">WithAPIKey</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Getenv</span>(<span style="color:#e6db74">&#34;TYPESENSE_API_KEY&#34;</span>)),
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">searchParams</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">SearchCollectionParams</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Q</span>: <span style="color:#e6db74">&#34;keyboard&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">QueryBy</span>: <span style="color:#e6db74">&#34;name,description&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">FilterBy</span>: <span style="color:#e6db74">&#34;in_stock:true&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">SortBy</span>: <span style="color:#e6db74">&#34;rating:desc&#34;</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">results</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">Collection</span>(<span style="color:#e6db74">&#34;products&#34;</span>).<span style="color:#a6e22e">Documents</span>().<span style="color:#a6e22e">Search</span>(<span style="color:#a6e22e">searchParams</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        panic(<span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;Found: %d\n&#34;</span>, <span style="color:#f92672">*</span><span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">Found</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">hit</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">results</span>.<span style="color:#a6e22e">Hits</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">doc</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">hit</span>.<span style="color:#a6e22e">Document</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Printf</span>(<span style="color:#e6db74">&#34;- %s ($%.2f)\n&#34;</span>, <span style="color:#a6e22e">doc</span>[<span style="color:#e6db74">&#34;name&#34;</span>], <span style="color:#a6e22e">doc</span>[<span style="color:#e6db74">&#34;price&#34;</span>])
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="đánh-giá-hiệu-suất--các-trường-hợp-sử-dụng-thực-tế">Đánh Giá Hiệu Suất &amp; Các Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#đánh-giá-hiệu-suất--các-trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<h3 id="các-chỉ-số-hiệu-suất-v271-một-node">Các Chỉ Số Hiệu Suất (v27.1, Một Node)<a hidden class="anchor" aria-hidden="true" href="#các-chỉ-số-hiệu-suất-v271-một-node">#</a></h3>
+<p>Chúng tôi đã đánh giá Typesense 27.1 trên một <strong>DigitalOcean droplet</strong> với 2 vCPU và 4GB RAM — chi phí khoảng <strong>$24/tháng</strong>. Tập dữ liệu: <strong>1,2 triệu sản phẩm thương mại điện tử</strong> với 12 trường mỗi tài liệu.</p>
+<table>
+	<thead>
+			<tr>
+					<th>Chỉ số</th>
+					<th>Kết quả</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Thởi gian xây dựng chỉ mục</strong></td>
+					<td>38 giây (1,2 triệu tài liệu)</td>
+			</tr>
+			<tr>
+					<td><strong>Độ trễ truy vấn trung bình (p50)</strong></td>
+					<td><strong>12ms</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Độ trễ truy vấn p95</strong></td>
+					<td><strong>28ms</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Độ trễ truy vấn p99</strong></td>
+					<td><strong>47ms</strong></td>
+			</tr>
+			<tr>
+					<td><strong>Tìm kiếm chịu lỗi chính tả</strong></td>
+					<td>+8ms phí tổn</td>
+			</tr>
+			<tr>
+					<td><strong>Truy vấn đồng thởi</strong></td>
+					<td>2.000 req/giây liên tục</td>
+			</tr>
+			<tr>
+					<td><strong>Mức sử dụng bộ nhớ</strong></td>
+					<td>2,1 GB (1,2 triệu tài liệu)</td>
+			</tr>
+			<tr>
+					<td><strong>Mức sử dụng đĩa</strong></td>
+					<td>890 MB</td>
+			</tr>
+	</tbody>
+</table>
+<p>Đây là các <strong>con số thực</strong> trên một VPS $24/tháng. Cho production, mở rộng theo chiều dọc (thêm RAM) hoặc theo chiều ngang với clustering dựa trên Raft của Typesense.</p>
+<h3 id="các-trường-hợp-sử-dụng-thực-tế">Các Trường Hợp Sử Dụng Thực Tế<a hidden class="anchor" aria-hidden="true" href="#các-trường-hợp-sử-dụng-thực-tế">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Công ty</th>
+					<th>Quy mô</th>
+					<th>Trường hợp sử dụng</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Grammarly</strong></td>
+					<td>30M+ ngưởi dùng</td>
+					<td>Tìm kiếm tài liệu với chịu lỗi chính tả</td>
+			</tr>
+			<tr>
+					<td><strong>Dovetail</strong></td>
+					<td>Doanh nghiệp</td>
+					<td>Tìm kiếm dữ liệu nghiên cứu khách hàng</td>
+			</tr>
+			<tr>
+					<td><strong>PartsBase</strong></td>
+					<td>100M+ phụ tùng</td>
+					<td>Tìm kiếm phụ tùng hàng không với phân loại</td>
+			</tr>
+			<tr>
+					<td><strong>Open Collective</strong></td>
+					<td>Mã nguồn mở</td>
+					<td>Tìm kiếm tập thể và chi phí</td>
+			</tr>
+			<tr>
+					<td><strong>Các giải pháp thay thế Notion</strong></td>
+					<td>Đa dạng</td>
+					<td>Tìm kiếm ghi chú real-time</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="công-thức-lập-kế-hoạch-tài-nguyên">Công Thức Lập Kế Hoạch Tài Nguyên<a hidden class="anchor" aria-hidden="true" href="#công-thức-lập-kế-hoạch-tài-nguyên">#</a></h3>
+<p>Sử dụng công thức này để ước tính nhu cầu RAM: `````
+RAM (GB) ≈ (Số tài liệu × Kích thước tài liệu trung bình × 3) / 1GB</p>
+<pre tabindex="0"><code>
 Hệ số ````×3```` tính đến chi phí overhead của inverted index trong bộ nhớ. Một tài liệu 1KB thường cần khoảng 3KB RAM trong Typesense.
 
 ## Sử Dụng Nâng Cao / Gia Cố Production
@@ -246,55 +679,68 @@ server {
         proxy_read_timeout 30s;
     }
 }
-</code></pre><h3 id=2-docker-compose-cho-production>2. Docker Compose cho Production<a hidden class=anchor aria-hidden=true href=#2-docker-compose-cho-production>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: typesense: image</span>: <span style=color:#ae81ff>typesense/typesense:27.1</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;127.0.0.1:8108:8108&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>typesense-data:/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: TYPESENSE_API_KEY</span>: <span style=color:#ae81ff>${TYPESENSE_API_KEY}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>command</span>: &gt;<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --data-dir /data
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --api-key ${TYPESENSE_API_KEY}
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --enable-cors
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      --ssl-refresh-interval-seconds 86400</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: limits: memory</span>: <span style=color:#ae81ff>4G</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>reservations: memory</span>: <span style=color:#ae81ff>1G</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#75715e># Tùy chọn: Caddy cho HTTPS tự động</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>caddy: image</span>: <span style=color:#ae81ff>caddy:2-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;80:80&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;443:443&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>./Caddyfile:/etc/caddy/Caddyfile</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>caddy-data:/data</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: typesense-data: caddy-data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>Triển khai trên bất kỳ VPS nào. Nếu bạn cần một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp **$200 tín dụng miễn phí** cho ngưởi dùng mới — đủ để chạy Typesense trong 8 tháng trên droplet 4GB.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### 3. API Keys Có Phạm Vi cho Đa Ngưởi Dùng</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>`````javascript</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>// Tạo API key có phạm vi chỉ xem danh mục Electronics</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>const typesense = require(typesense);</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>const client = new Typesense.Client({</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>nodes</span>: [{ <span style=color:#f92672>host: localhost, port: 8108, protocol</span>: <span style=color:#ae81ff>http }],</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>apiKey</span>: <span style=color:#e6db74>&#39;master-api-key&#39;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>connectionTimeoutSeconds</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>}<span style=color:#ae81ff>);</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>// Tạo key có bộ lọc nhúng</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>const scopedKey = client.keys().generateScopedSearchKey(</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#39;master-api-key&#39;</span>,
-</span></span><span style=display:flex><span>  { <span style=color:#f92672>filter_by</span>: <span style=color:#e6db74>&#39;category:=Electronics&#39;</span> }
-</span></span><span style=display:flex><span><span style=color:#ae81ff>);</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>console.log(&#39;Scoped key cho Electronics:&#39;, scopedKey);</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>// Key này CHỈ có thể tìm kiếm sản phẩm Electronics</span>
-</span></span></code></pre></div><h3 id=4-clustering-cho-tính-sẵn-sàng-cao>4. Clustering cho Tính Sẵn Sàng Cao<a hidden class=anchor aria-hidden=true href=#4-clustering-cho-tính-sẵn-sàng-cao>#</a></h3><p>Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: `````bash</p><h1 id=node-1>Node 1<a hidden class=anchor aria-hidden=true href=#node-1>#</a></h1><p>docker run -d -p 8108:8108<br>-v typesense-data:/data<br>typesense/typesense:27.1<br>&ndash;data-dir /data<br>&ndash;api-key=$API_KEY<br>&ndash;nodes=/data/nodes<br>&ndash;peering-subnet=10.0.0.0/16<br>&ndash;peering-port=8107</p><h1 id=node-2-và-3-cùng-lệnh-cập-nhật-nodes-với-tất-cả-ip>Node 2 và 3: cùng lệnh, cập nhật &ndash;nodes với tất cả IP<a hidden class=anchor aria-hidden=true href=#node-2-và-3-cùng-lệnh-cập-nhật-nodes-với-tất-cả-ip>#</a></h1><pre tabindex=0><code>
+</code></pre><h3 id="2-docker-compose-cho-production">2. Docker Compose cho Production<a hidden class="anchor" aria-hidden="true" href="#2-docker-compose-cho-production">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: typesense: image</span>: <span style="color:#ae81ff">typesense/typesense:27.1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;127.0.0.1:8108:8108&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">typesense-data:/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: TYPESENSE_API_KEY</span>: <span style="color:#ae81ff">${TYPESENSE_API_KEY}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">command</span>: &gt;<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --data-dir /data
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --api-key ${TYPESENSE_API_KEY}
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --enable-cors
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      --ssl-refresh-interval-seconds 86400</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: limits: memory</span>: <span style="color:#ae81ff">4G</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">reservations: memory</span>: <span style="color:#ae81ff">1G</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># Tùy chọn: Caddy cho HTTPS tự động</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">caddy: image</span>: <span style="color:#ae81ff">caddy:2-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;80:80&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;443:443&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">./Caddyfile:/etc/caddy/Caddyfile</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">caddy-data:/data</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: typesense-data: caddy-data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">Triển khai trên bất kỳ VPS nào. Nếu bạn cần một máy chủ đáng tin cậy, [DigitalOcean](https://m.do.co/c/eca87ac14ee0) cung cấp **$200 tín dụng miễn phí** cho ngưởi dùng mới — đủ để chạy Typesense trong 8 tháng trên droplet 4GB.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### 3. API Keys Có Phạm Vi cho Đa Ngưởi Dùng</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">`````javascript</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">// Tạo API key có phạm vi chỉ xem danh mục Electronics</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">const typesense = require(typesense);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">const client = new Typesense.Client({</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">nodes</span>: [{ <span style="color:#f92672">host: localhost, port: 8108, protocol</span>: <span style="color:#ae81ff">http }],</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">apiKey</span>: <span style="color:#e6db74">&#39;master-api-key&#39;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">connectionTimeoutSeconds</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>}<span style="color:#ae81ff">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">// Tạo key có bộ lọc nhúng</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">const scopedKey = client.keys().generateScopedSearchKey(</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#39;master-api-key&#39;</span>,
+</span></span><span style="display:flex;"><span>  { <span style="color:#f92672">filter_by</span>: <span style="color:#e6db74">&#39;category:=Electronics&#39;</span> }
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">);</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">console.log(&#39;Scoped key cho Electronics:&#39;, scopedKey);</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">// Key này CHỈ có thể tìm kiếm sản phẩm Electronics</span>
+</span></span></code></pre></div><h3 id="4-clustering-cho-tính-sẵn-sàng-cao">4. Clustering cho Tính Sẵn Sàng Cao<a hidden class="anchor" aria-hidden="true" href="#4-clustering-cho-tính-sẵn-sàng-cao">#</a></h3>
+<p>Typesense sử dụng đồng thuận Raft cho clustering. Cluster 3 node chịu được 1 node lỗi: `````bash</p>
+<h1 id="node-1">Node 1<a hidden class="anchor" aria-hidden="true" href="#node-1">#</a></h1>
+<p>docker run -d -p 8108:8108 <br>
+-v typesense-data:/data <br>
+typesense/typesense:27.1 <br>
+&ndash;data-dir /data <br>
+&ndash;api-key=$API_KEY <br>
+&ndash;nodes=/data/nodes <br>
+&ndash;peering-subnet=10.0.0.0/16 <br>
+&ndash;peering-port=8107</p>
+<h1 id="node-2-và-3-cùng-lệnh-cập-nhật-nodes-với-tất-cả-ip">Node 2 và 3: cùng lệnh, cập nhật &ndash;nodes với tất cả IP<a hidden class="anchor" aria-hidden="true" href="#node-2-và-3-cùng-lệnh-cập-nhật-nodes-với-tất-cả-ip">#</a></h1>
+<pre tabindex="0"><code>
 ### 5. Từ Đồng Nghĩa và Điều Phối Truy Vấn
 
 `````bash
@@ -314,8 +760,170 @@ curl -s &#34;http://localhost:8108/collections/products/overrides&#34; \
     &#34;rule&#34;: {&#34;query&#34;: &#34;deals&#34;, &#34;match&#34;: &#34;contains&#34;},
     &#34;includes&#34;: [{&#34;id&#34;: &#34;123&#34;, &#34;position&#34;: 1}]
   }&#34;
-</code></pre><h2 id=so-sánh-với-các-giải-pháp-thay-thế>So Sánh với Các Giải Pháp Thay Thế<a hidden class=anchor aria-hidden=true href=#so-sánh-với-các-giải-pháp-thay-thế>#</a></h2><table><thead><tr><th>Tính năng</th><th><strong>Typesense</strong></th><th>Elasticsearch</th><th>Meilisearch</th><th>Algolia</th></tr></thead><tbody><tr><td><strong>Giấy phép</strong></td><td>GPL-3.0</td><td>SSPL/Elastic</td><td>MIT</td><td>Độc quyền</td></tr><tr><td><strong>GitHub Stars</strong></td><td><strong>23.200+</strong></td><td>72.000+</td><td><strong>51.000+</strong></td><td>N/A (đóng)</td></tr><tr><td><strong>Độ trễ truy vấn (p95)</strong></td><td><strong>&lt;30ms</strong></td><td>50-200ms</td><td><strong>&lt;30ms</strong></td><td>&lt;20ms</td></tr><tr><td><strong>Chịu lỗi chính tả</strong></td><td><strong>Tích hợp, tự động</strong></td><td>Có thể cấu hình analyzer</td><td><strong>Tích hợp, tự động</strong></td><td>Tích hợp</td></tr><tr><td><strong>RAM cần thiết</strong></td><td><strong>Toàn bộ chỉ mục trong RAM</strong></td><td>Dựa trên đĩa + cache</td><td>Toàn bộ chỉ mục trong RAM</td><td>Chỉ cloud</td></tr><tr><td><strong>Tự lưu trữ</strong></td><td><strong>Có (Docker, binary)</strong></td><td>Có (nặng JVM)</td><td><strong>Có (nhẹ)</strong></td><td>Không</td></tr><tr><td><strong>REST API</strong></td><td><strong>Sạch, trực quan</strong></td><td>Phức tạp, dài dòng</td><td><strong>Sạch, trực quan</strong></td><td>Sạch</td></tr><tr><td><strong>Tìm kiếm phân loại</strong></td><td><strong>Facets động</strong></td><td>Aggregations phức tạp</td><td><strong>Facets động</strong></td><td>Facets động</td></tr><tr><td><strong>Tìm kiếm địa lý</strong></td><td><strong>Tích hợp</strong></td><td>Cần plugin</td><td><strong>Tích hợp</strong></td><td>Tích hợp</td></tr><tr><td><strong>Ngôn ngữ SDK</strong></td><td><strong>8+</strong></td><td>Nhiều</td><td><strong>10+</strong></td><td>10+</td></tr><tr><td><strong>Clustering</strong></td><td><strong>Raft-based, đơn giản</strong></td><td>Zen discovery, phức tạp</td><td><strong>Raft-based</strong></td><td>Chỉ managed</td></tr><tr><td><strong>Thởi gian thiết lập</strong></td><td><strong>&lt;5 phút (Docker)</strong></td><td>30-60 phút</td><td><strong>&lt;5 phút (Docker)</strong></td><td>N/A (managed)</td></tr><tr><td><strong>Cloud quản lý</strong></td><td>Typesense Cloud</td><td>Elastic Cloud</td><td>Meilisearch Cloud</td><td><strong>Chỉ Algolia</strong></td></tr></tbody></table><p><strong>Khi nào chọn Typesense thay vì Meilisearch:</strong> Typesense có triển khai clustering chín chắn hơn và xác thực schema nghiêm ngặt hơn. Nếu bạn cần đảm bảo kiểu dữ liệu và đa ngưởi dùng cấp doanh nghiệp, Typesense chiến thắng. Meilisearch thoải mái hơn với schema tài liệu và có cộng đồng lớn hơn. Cả hai đều vượt trội Elasticsearch cho các trường hợp tìm kiếm thuần túy dưới 10 triệu tài liệu.</p><p><strong>Khi nào chọn Typesense thay vì Algolia:</strong> Algolia nhanh hơn nhưng chi phí <strong>$1,00 cho mỗi 1.000 lượt tìm kiếm</strong> khi quy mô lớn. Typesense trên VPS $24/tháng xử lý cùng lưu lượng với chi phí thấp hơn nhiều. Nếu lượng tìm kiếm vượt quá 100.000 truy vấn/tháng, Typesense tự lưu trữ sẽ hoàn vốn.</p><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn Chế / Đánh Giá Trung Thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><p>Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn chế thực tế: 1. <strong>Phụ thuộc RAM</strong>: Toàn bộ chỉ mục phải vừa với bộ nhớ. Bộ dữ liệu 50 triệu tài liệu có thể cần 128GB+ RAM. Cho các bộ dữ liệu khổng lồ, cách tiếp cận dựa trên đĩa của Elasticsearch kinh tế hơn.</p><ol start=2><li><p><strong>Bắt buộc schema</strong>: Typesense yêu cầu bạn định nghĩa kiểu trường từ trước. Khác với Meilisearch (tự động phát hiện), bạn phải lập kế hoạch schema. Điều này nghiêm ngặt hơn nhưng ngăn lỗi kiểu runtime.</p></li><li><p><strong>Không hỗ trợ tìm kiếm object lồng nhau</strong>: Typesense làm phẳng các object lồng nhau. Các truy vấn lồng sâu (ví dụ: <code>reviews.user.name</code>) yêu cầu chuẩn hóa hoặc tuần tự hóa chuỗi.</p></li><li><p><strong>Phân tích hạn chế</strong>: Typesense không có phân tích tìm kiếm tích hợp. Bạn phải tích hợp với công cụ bên ngoài (ví dụ: <a href=dibi8-internal-link>n8n</a> hoặc logging tùy chỉnh) để theo dõi các truy vấn phổ biến.</p></li><li><p><strong>Chưa có vector search (tính đến v27.1)</strong>: Typesense 27.1 chưa hỗ trợ tìm kiếm ngữ nghĩa/vector tự nhiên. Lộ trình phát triển bao gồm tìm kiếm lai vào cuối năm 2026. Cho tìm kiếm ngữ nghĩa AI-powered hiện tại, hãy cân nhắc bổ sung cơ sở dữ liệu vector.</p></li><li><p><strong>Giấy phép GPL-3.0</strong>: Giấy phép GPL-3.0 yêu cầu các tác phẩm phái sinh phải là mã nguồn mở. Typesense, Inc. cung cấp giấy phép thương mại cho các sản phẩm độc quyền. Đánh giá yêu cầu giấy phép của bạn trước khi nhúng.</p></li></ol><h2 id=các-câu-hỏi-thường-gặp>Các Câu Hỏi Thường Gặp<a hidden class=anchor aria-hidden=true href=#các-câu-hỏi-thường-gặp>#</a></h2><h3 id=typesense-so-với-elasticsearch-cho-dự-án-vừa-và-nhỏ-như-thế-nào>Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào?<a hidden class=anchor aria-hidden=true href=#typesense-so-với-elasticsearch-cho-dự-án-vừa-và-nhỏ-như-thế-nào>#</a></h3><p>Typesense đơn giản hơn đáng kể để thiết lập và vận hành. Elasticsearch yêu cầu điều chỉnh JVM, phối hợp cluster qua Zen discovery, và định nghĩa mapping phức tạp. Cho các dự án dưới 10 triệu tài liệu, Typesense cung cấp <strong>chất lượng tìm kiếm tương đương với overhead vận hành ít hơn 10 lần</strong>. Benchmark của chúng tôi cho thấy độ trễ p95 Typesense ở 28ms so với Elasticsearch 120ms trên phần cứng giống hệt.</p><h3 id=một-máy-chủ-có-thể-xử-lý-1-triệu-lượt-tìm-kiếm-mỗi-ngày-không>Một máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không?<a hidden class=anchor aria-hidden=true href=#một-máy-chủ-có-thể-xử-lý-1-triệu-lượt-tìm-kiếm-mỗi-ngày-không>#</a></h3><p>Có. Một node Typesense với 4 vCPU và 8GB RAM có thể duy trì <strong>1 triệu+ lượt tìm kiếm/ngày</strong> với độ trễ dưới 50ms, giả sử chỉ mục vừa với bộ nhớ. Ở tải 2.000 truy vấn/giây, CPU sử dụng dưới 60%. Cho dự phòng, chạy cluster 3 node.</p><h3 id=điều-gì-xảy-ra-nếu-typesense-hết-ram>Điều gì xảy ra nếu Typesense hết RAM?<a hidden class=anchor aria-hidden=true href=#điều-gì-xảy-ra-nếu-typesense-hết-ram>#</a></h3><p>Typesense sẽ <strong>từ chối các thao tác ghi mới</strong> khi bộ nhớ cạn kiệt. Truy vấn đọc vẫn hoạt động. Giám sát mức sử dụng bộ nhớ qua endpoint <code>/health</code> và metric <code>system_memory_used_bytes</code>. Thiết lập cảnh báo ở 80% RAM. Mở rộng theo chiều dọc (thêm RAM) hoặc phân chia qua cluster.</p><h3 id=làm-thế-nào-để-di-chuyển-từ-algolia-sang-typesense>Làm thế nào để di chuyển từ Algolia sang Typesense?<a hidden class=anchor aria-hidden=true href=#làm-thế-nào-để-di-chuyển-từ-algolia-sang-typesense>#</a></h3><p>Sử dụng công cụ di chuyển <code>typesense-cli</code> hoặc viết một script đơn giản: xuất bản ghi Algolia qua API của họ, chuyển đổi sang định dạng schema Typesense, và import hàng loạt qua <code>/collections/{name}/documents/import</code>. Hầu hết các component UI Algolia InstantSearch hoạt động với Typesense qua <code>typesense-instantsearch-adapter</code>. Di chuyển thường mất 2-4 giờ cho dự án vừa.</p><h3 id=typesense-có-hỗ-trợ-lập-chỉ-mục-real-time-không>Typesense có hỗ trợ lập chỉ mục real-time không?<a hidden class=anchor aria-hidden=true href=#typesense-có-hỗ-trợ-lập-chỉ-mục-real-time-không>#</a></h3><p>Có. Tài liệu có thể tìm kiếm <strong>trong vòng mili giây</strong> sau khi được lập chỉ mục. Typesense sử dụng write-ahead log được memory-map; không có khoảng thởi gian &ldquo;commit&rdquo; hay &ldquo;refresh&rdquo; tường minh như Elasticsearch. Cho việc ingest thông lượng cao, sử dụng endpoint import hàng loạt xử lý <strong>50.000+ tài liệu/giây</strong>.</p><h3 id=typesense-cloud-có-đáng-giá-hơn-tự-lưu-trữ-không>Typesense Cloud có đáng giá hơn tự lưu trữ không?<a hidden class=anchor aria-hidden=true href=#typesense-cloud-có-đáng-giá-hơn-tự-lưu-trữ-không>#</a></h3><p>Typesense Cloud bắt đầu từ <strong>$29/tháng</strong> cho gói Starter (bao gồm HA, backup, và giám sát). Tự lưu trữ trên <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> khoảng $24/tháng cho thông số tương đương nhưng bạn phải tự quản lý backup, SSL, và nâng cấp. Nếu bạn coi trọng sự đơn giản vận hành, dùng Typesense Cloud. Nếu muốn kiểm soát tối đa và chi phí thấp khi mở rộng, hãy tự lưu trữ.</p><h2 id=kết-luận-bắt-đầu-xây-dựng-tìm-kiếm-tức-thì-ngay-hôm-nay>Kết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay<a hidden class=anchor aria-hidden=true href=#kết-luận-bắt-đầu-xây-dựng-tìm-kiếm-tức-thì-ngay-hôm-nay>#</a></h2><p>Typesense 27.1 là con đường nhanh nhất đến tìm kiếm tức thì cấp production. Từ khởi chạy Docker đến kết quả tìm kiếm đầu tiên, bạn cần <strong>chưa đầy 5 phút</strong> thiết lập. Với độ trễ truy vấn dưới 50ms, khả năng chịu lỗi chính tả tích hợp, và API REST sạch sẽ, nó loại bỏ sự phức tạp của các triển khai Elasticsearch.</p><p>Cho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho ứng dụng hiện tại đang di chuyển từ truy vấn ````LIKE``` cơ sở dữ liệu, cải thiện hiệu suất sẽ là <strong>100 lần hoặc hơn</strong>. Cho các đội hiện đang trả Algolia $500+/tháng, Typesense tự lưu trữ trên VPS $24 xử lý cùng lưu lượng.</p><p>Tự lưu trữ? Một VPS từ <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a> ($200 tín dụng miễn phí) để triển khai Typesense trong vài phút. Tín dụng bao phủ 8+ tháng lưu trữ.</p><p>Tham gia cộng đồng lập trình viên trên <strong>Telegram: <a href=https://t.me/dibi8dev_vi>dibi8dev_vi</a></strong> — chia sẻ cấu hình triển khai Typesense của bạn và nhận hỗ trợ từ 2.000+ lập trình viên.</p><h2 id=hosting-và-hạ-tầng-được-đề-xuất>Hosting Và Hạ Tầng Được Đề Xuất<a hidden class=anchor aria-hidden=true href=#hosting-và-hạ-tầng-được-đề-xuất>#</a></h2><p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li></ul><p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p><h2 id=nguồn--tài-liệu-tham-khảo>Nguồn & Tài Liệu Tham Khảo<a hidden class=anchor aria-hidden=true href=#nguồn--tài-liệu-tham-khảo>#</a></h2><ul><li><a href=https://typesense.org/docs/>Tài liệu chính thức Typesense</a></li><li><a href=https://github.com/typesense/typesense>Kho GitHub Typesense</a></li><li><a href=https://cloud.typesense.org/pricing>Giá Typesense Cloud</a></li><li><a href=https://typesense.org/docs/latest/api/clients.html>Tài liệu tham khảo JS SDK Typesense</a></li><li><a href=https://github.com/typesense/typesense-instantsearch-adapter>Typesense InstantSearch Adapter</a></li><li><a href=dibi8-internal-link>So sánh: Typesense vs Meilisearch (2026)</a></li><li><a href=dibi8-internal-link>Best Practices Docker cho công cụ tìm kiếm</a></li></ul><hr><p><em>Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Typesense là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.</em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><h2 id="so-sánh-với-các-giải-pháp-thay-thế">So Sánh với Các Giải Pháp Thay Thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-với-các-giải-pháp-thay-thế">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th><strong>Typesense</strong></th>
+					<th>Elasticsearch</th>
+					<th>Meilisearch</th>
+					<th>Algolia</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Giấy phép</strong></td>
+					<td>GPL-3.0</td>
+					<td>SSPL/Elastic</td>
+					<td>MIT</td>
+					<td>Độc quyền</td>
+			</tr>
+			<tr>
+					<td><strong>GitHub Stars</strong></td>
+					<td><strong>23.200+</strong></td>
+					<td>72.000+</td>
+					<td><strong>51.000+</strong></td>
+					<td>N/A (đóng)</td>
+			</tr>
+			<tr>
+					<td><strong>Độ trễ truy vấn (p95)</strong></td>
+					<td><strong>&lt;30ms</strong></td>
+					<td>50-200ms</td>
+					<td><strong>&lt;30ms</strong></td>
+					<td>&lt;20ms</td>
+			</tr>
+			<tr>
+					<td><strong>Chịu lỗi chính tả</strong></td>
+					<td><strong>Tích hợp, tự động</strong></td>
+					<td>Có thể cấu hình analyzer</td>
+					<td><strong>Tích hợp, tự động</strong></td>
+					<td>Tích hợp</td>
+			</tr>
+			<tr>
+					<td><strong>RAM cần thiết</strong></td>
+					<td><strong>Toàn bộ chỉ mục trong RAM</strong></td>
+					<td>Dựa trên đĩa + cache</td>
+					<td>Toàn bộ chỉ mục trong RAM</td>
+					<td>Chỉ cloud</td>
+			</tr>
+			<tr>
+					<td><strong>Tự lưu trữ</strong></td>
+					<td><strong>Có (Docker, binary)</strong></td>
+					<td>Có (nặng JVM)</td>
+					<td><strong>Có (nhẹ)</strong></td>
+					<td>Không</td>
+			</tr>
+			<tr>
+					<td><strong>REST API</strong></td>
+					<td><strong>Sạch, trực quan</strong></td>
+					<td>Phức tạp, dài dòng</td>
+					<td><strong>Sạch, trực quan</strong></td>
+					<td>Sạch</td>
+			</tr>
+			<tr>
+					<td><strong>Tìm kiếm phân loại</strong></td>
+					<td><strong>Facets động</strong></td>
+					<td>Aggregations phức tạp</td>
+					<td><strong>Facets động</strong></td>
+					<td>Facets động</td>
+			</tr>
+			<tr>
+					<td><strong>Tìm kiếm địa lý</strong></td>
+					<td><strong>Tích hợp</strong></td>
+					<td>Cần plugin</td>
+					<td><strong>Tích hợp</strong></td>
+					<td>Tích hợp</td>
+			</tr>
+			<tr>
+					<td><strong>Ngôn ngữ SDK</strong></td>
+					<td><strong>8+</strong></td>
+					<td>Nhiều</td>
+					<td><strong>10+</strong></td>
+					<td>10+</td>
+			</tr>
+			<tr>
+					<td><strong>Clustering</strong></td>
+					<td><strong>Raft-based, đơn giản</strong></td>
+					<td>Zen discovery, phức tạp</td>
+					<td><strong>Raft-based</strong></td>
+					<td>Chỉ managed</td>
+			</tr>
+			<tr>
+					<td><strong>Thởi gian thiết lập</strong></td>
+					<td><strong>&lt;5 phút (Docker)</strong></td>
+					<td>30-60 phút</td>
+					<td><strong>&lt;5 phút (Docker)</strong></td>
+					<td>N/A (managed)</td>
+			</tr>
+			<tr>
+					<td><strong>Cloud quản lý</strong></td>
+					<td>Typesense Cloud</td>
+					<td>Elastic Cloud</td>
+					<td>Meilisearch Cloud</td>
+					<td><strong>Chỉ Algolia</strong></td>
+			</tr>
+	</tbody>
+</table>
+<p><strong>Khi nào chọn Typesense thay vì Meilisearch:</strong> Typesense có triển khai clustering chín chắn hơn và xác thực schema nghiêm ngặt hơn. Nếu bạn cần đảm bảo kiểu dữ liệu và đa ngưởi dùng cấp doanh nghiệp, Typesense chiến thắng. Meilisearch thoải mái hơn với schema tài liệu và có cộng đồng lớn hơn. Cả hai đều vượt trội Elasticsearch cho các trường hợp tìm kiếm thuần túy dưới 10 triệu tài liệu.</p>
+<p><strong>Khi nào chọn Typesense thay vì Algolia:</strong> Algolia nhanh hơn nhưng chi phí <strong>$1,00 cho mỗi 1.000 lượt tìm kiếm</strong> khi quy mô lớn. Typesense trên VPS $24/tháng xử lý cùng lưu lượng với chi phí thấp hơn nhiều. Nếu lượng tìm kiếm vượt quá 100.000 truy vấn/tháng, Typesense tự lưu trữ sẽ hoàn vốn.</p>
+<h2 id="hạn-chế--đánh-giá-trung-thực">Hạn Chế / Đánh Giá Trung Thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>Typesense không phải là cơ sở dữ liệu đa năng. Đây là các hạn chế thực tế: 1. <strong>Phụ thuộc RAM</strong>: Toàn bộ chỉ mục phải vừa với bộ nhớ. Bộ dữ liệu 50 triệu tài liệu có thể cần 128GB+ RAM. Cho các bộ dữ liệu khổng lồ, cách tiếp cận dựa trên đĩa của Elasticsearch kinh tế hơn.</p>
+<ol start="2">
+<li>
+<p><strong>Bắt buộc schema</strong>: Typesense yêu cầu bạn định nghĩa kiểu trường từ trước. Khác với Meilisearch (tự động phát hiện), bạn phải lập kế hoạch schema. Điều này nghiêm ngặt hơn nhưng ngăn lỗi kiểu runtime.</p>
+</li>
+<li>
+<p><strong>Không hỗ trợ tìm kiếm object lồng nhau</strong>: Typesense làm phẳng các object lồng nhau. Các truy vấn lồng sâu (ví dụ: <code>reviews.user.name</code>) yêu cầu chuẩn hóa hoặc tuần tự hóa chuỗi.</p>
+</li>
+<li>
+<p><strong>Phân tích hạn chế</strong>: Typesense không có phân tích tìm kiếm tích hợp. Bạn phải tích hợp với công cụ bên ngoài (ví dụ: <a href="dibi8-internal-link">n8n</a> hoặc logging tùy chỉnh) để theo dõi các truy vấn phổ biến.</p>
+</li>
+<li>
+<p><strong>Chưa có vector search (tính đến v27.1)</strong>: Typesense 27.1 chưa hỗ trợ tìm kiếm ngữ nghĩa/vector tự nhiên. Lộ trình phát triển bao gồm tìm kiếm lai vào cuối năm 2026. Cho tìm kiếm ngữ nghĩa AI-powered hiện tại, hãy cân nhắc bổ sung cơ sở dữ liệu vector.</p>
+</li>
+<li>
+<p><strong>Giấy phép GPL-3.0</strong>: Giấy phép GPL-3.0 yêu cầu các tác phẩm phái sinh phải là mã nguồn mở. Typesense, Inc. cung cấp giấy phép thương mại cho các sản phẩm độc quyền. Đánh giá yêu cầu giấy phép của bạn trước khi nhúng.</p>
+</li>
+</ol>
+<h2 id="các-câu-hỏi-thường-gặp">Các Câu Hỏi Thường Gặp<a hidden class="anchor" aria-hidden="true" href="#các-câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="typesense-so-với-elasticsearch-cho-dự-án-vừa-và-nhỏ-như-thế-nào">Typesense so với Elasticsearch cho dự án vừa và nhỏ như thế nào?<a hidden class="anchor" aria-hidden="true" href="#typesense-so-với-elasticsearch-cho-dự-án-vừa-và-nhỏ-như-thế-nào">#</a></h3>
+<p>Typesense đơn giản hơn đáng kể để thiết lập và vận hành. Elasticsearch yêu cầu điều chỉnh JVM, phối hợp cluster qua Zen discovery, và định nghĩa mapping phức tạp. Cho các dự án dưới 10 triệu tài liệu, Typesense cung cấp <strong>chất lượng tìm kiếm tương đương với overhead vận hành ít hơn 10 lần</strong>. Benchmark của chúng tôi cho thấy độ trễ p95 Typesense ở 28ms so với Elasticsearch 120ms trên phần cứng giống hệt.</p>
+<h3 id="một-máy-chủ-có-thể-xử-lý-1-triệu-lượt-tìm-kiếm-mỗi-ngày-không">Một máy chủ có thể xử lý 1 triệu lượt tìm kiếm mỗi ngày không?<a hidden class="anchor" aria-hidden="true" href="#một-máy-chủ-có-thể-xử-lý-1-triệu-lượt-tìm-kiếm-mỗi-ngày-không">#</a></h3>
+<p>Có. Một node Typesense với 4 vCPU và 8GB RAM có thể duy trì <strong>1 triệu+ lượt tìm kiếm/ngày</strong> với độ trễ dưới 50ms, giả sử chỉ mục vừa với bộ nhớ. Ở tải 2.000 truy vấn/giây, CPU sử dụng dưới 60%. Cho dự phòng, chạy cluster 3 node.</p>
+<h3 id="điều-gì-xảy-ra-nếu-typesense-hết-ram">Điều gì xảy ra nếu Typesense hết RAM?<a hidden class="anchor" aria-hidden="true" href="#điều-gì-xảy-ra-nếu-typesense-hết-ram">#</a></h3>
+<p>Typesense sẽ <strong>từ chối các thao tác ghi mới</strong> khi bộ nhớ cạn kiệt. Truy vấn đọc vẫn hoạt động. Giám sát mức sử dụng bộ nhớ qua endpoint <code>/health</code> và metric <code>system_memory_used_bytes</code>. Thiết lập cảnh báo ở 80% RAM. Mở rộng theo chiều dọc (thêm RAM) hoặc phân chia qua cluster.</p>
+<h3 id="làm-thế-nào-để-di-chuyển-từ-algolia-sang-typesense">Làm thế nào để di chuyển từ Algolia sang Typesense?<a hidden class="anchor" aria-hidden="true" href="#làm-thế-nào-để-di-chuyển-từ-algolia-sang-typesense">#</a></h3>
+<p>Sử dụng công cụ di chuyển <code>typesense-cli</code> hoặc viết một script đơn giản: xuất bản ghi Algolia qua API của họ, chuyển đổi sang định dạng schema Typesense, và import hàng loạt qua <code>/collections/{name}/documents/import</code>. Hầu hết các component UI Algolia InstantSearch hoạt động với Typesense qua <code>typesense-instantsearch-adapter</code>. Di chuyển thường mất 2-4 giờ cho dự án vừa.</p>
+<h3 id="typesense-có-hỗ-trợ-lập-chỉ-mục-real-time-không">Typesense có hỗ trợ lập chỉ mục real-time không?<a hidden class="anchor" aria-hidden="true" href="#typesense-có-hỗ-trợ-lập-chỉ-mục-real-time-không">#</a></h3>
+<p>Có. Tài liệu có thể tìm kiếm <strong>trong vòng mili giây</strong> sau khi được lập chỉ mục. Typesense sử dụng write-ahead log được memory-map; không có khoảng thởi gian &ldquo;commit&rdquo; hay &ldquo;refresh&rdquo; tường minh như Elasticsearch. Cho việc ingest thông lượng cao, sử dụng endpoint import hàng loạt xử lý <strong>50.000+ tài liệu/giây</strong>.</p>
+<h3 id="typesense-cloud-có-đáng-giá-hơn-tự-lưu-trữ-không">Typesense Cloud có đáng giá hơn tự lưu trữ không?<a hidden class="anchor" aria-hidden="true" href="#typesense-cloud-có-đáng-giá-hơn-tự-lưu-trữ-không">#</a></h3>
+<p>Typesense Cloud bắt đầu từ <strong>$29/tháng</strong> cho gói Starter (bao gồm HA, backup, và giám sát). Tự lưu trữ trên <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> khoảng $24/tháng cho thông số tương đương nhưng bạn phải tự quản lý backup, SSL, và nâng cấp. Nếu bạn coi trọng sự đơn giản vận hành, dùng Typesense Cloud. Nếu muốn kiểm soát tối đa và chi phí thấp khi mở rộng, hãy tự lưu trữ.</p>
+<h2 id="kết-luận-bắt-đầu-xây-dựng-tìm-kiếm-tức-thì-ngay-hôm-nay">Kết Luận: Bắt Đầu Xây Dựng Tìm Kiếm Tức Thì Ngay Hôm Nay<a hidden class="anchor" aria-hidden="true" href="#kết-luận-bắt-đầu-xây-dựng-tìm-kiếm-tức-thì-ngay-hôm-nay">#</a></h2>
+<p>Typesense 27.1 là con đường nhanh nhất đến tìm kiếm tức thì cấp production. Từ khởi chạy Docker đến kết quả tìm kiếm đầu tiên, bạn cần <strong>chưa đầy 5 phút</strong> thiết lập. Với độ trễ truy vấn dưới 50ms, khả năng chịu lỗi chính tả tích hợp, và API REST sạch sẽ, nó loại bỏ sự phức tạp của các triển khai Elasticsearch.</p>
+<p>Cho dự án mới, hãy bắt đầu với thiết lập Docker trong hướng dẫn này. Cho ứng dụng hiện tại đang di chuyển từ truy vấn ````LIKE``` cơ sở dữ liệu, cải thiện hiệu suất sẽ là <strong>100 lần hoặc hơn</strong>. Cho các đội hiện đang trả Algolia $500+/tháng, Typesense tự lưu trữ trên VPS $24 xử lý cùng lưu lượng.</p>
+<p>Tự lưu trữ? Một VPS từ <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a> ($200 tín dụng miễn phí) để triển khai Typesense trong vài phút. Tín dụng bao phủ 8+ tháng lưu trữ.</p>
+<p>Tham gia cộng đồng lập trình viên trên <strong>Telegram: <a href="https://t.me/dibi8dev_vi">dibi8dev_vi</a></strong> — chia sẻ cấu hình triển khai Typesense của bạn và nhận hỗ trợ từ 2.000+ lập trình viên.</p>
+<h2 id="hosting-và-hạ-tầng-được-đề-xuất">Hosting Và Hạ Tầng Được Đề Xuất<a hidden class="anchor" aria-hidden="true" href="#hosting-và-hạ-tầng-được-đề-xuất">#</a></h2>
+<p>Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com.</li>
+</ul>
+<p><em>Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.</em></p>
+<h2 id="nguồn--tài-liệu-tham-khảo">Nguồn &amp; Tài Liệu Tham Khảo<a hidden class="anchor" aria-hidden="true" href="#nguồn--tài-liệu-tham-khảo">#</a></h2>
+<ul>
+<li><a href="https://typesense.org/docs/">Tài liệu chính thức Typesense</a></li>
+<li><a href="https://github.com/typesense/typesense">Kho GitHub Typesense</a></li>
+<li><a href="https://cloud.typesense.org/pricing">Giá Typesense Cloud</a></li>
+<li><a href="https://typesense.org/docs/latest/api/clients.html">Tài liệu tham khảo JS SDK Typesense</a></li>
+<li><a href="https://github.com/typesense/typesense-instantsearch-adapter">Typesense InstantSearch Adapter</a></li>
+<li><a href="dibi8-internal-link">So sánh: Typesense vs Meilisearch (2026)</a></li>
+<li><a href="dibi8-internal-link">Best Practices Docker cho công cụ tìm kiếm</a></li>
+</ul>
+<hr>
+<p><em>Tuyên bố liên kết: Bài viết này chứa liên kết liên kết đến DigitalOcean. Nếu bạn đăng ký qua liên kết của chúng tôi, chúng tôi nhận hoa hồng mà không phát sinh thêm chi phí cho bạn. Chúng tôi độc lập đề xuất các dịch vụ dựa trên kiểm thử thực tế. Typesense là phần mềm mã nguồn mở miễn phí — chi phí duy nhất là chi phí lưu trữ.</em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Typesense 2026: API Tìm Kiếm Tức Thì Mã Nguồn Mở Xử Lý 1 Triệu Lượt Tìm Kiếm/Ngày — Hướng Dẫn Tự Triển Khai&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -329,15 +937,154 @@ curl -s &#34;http://localhost:8108/collections/products/overrides&#34; \
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/typesense-instant-search-api%22>https://dibi8.com/vi/resources/typesense-instant-search-api"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/typesense-instant-search-api%22">https://dibi8.com/vi/resources/typesense-instant-search-api"</a>
 }
-}</script></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

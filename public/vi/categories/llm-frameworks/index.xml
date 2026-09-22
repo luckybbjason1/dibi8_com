@@ -1,1 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Llm-Frameworks on Dibi8</title><link>https://dibi8.com/vi/categories/llm-frameworks/</link><description>Recent content in Llm-Frameworks on Dibi8</description><generator>Hugo</generator><language>vi</language><lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/vi/categories/llm-frameworks/index.xml" rel="self" type="application/rss+xml"/><item><title>AI Coding Agents 2026: Claude Code vs Cursor vs Codex - Complete Comparison</title><link>https://dibi8.com/vi/ai-coding-agents-comparison/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/ai-coding-agents-comparison/</guid><description>In-depth comparison of the three leading AI coding agents in 2026. Learn which tool fits your workflow: terminal-first Claude Code, IDE-native Cursor, or cloud-autonomous Codex. Real benchmarks, pricing analysis, and team recommendations.</description></item><item><title>LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo</title><link>https://dibi8.com/vi/langchain-vs-llamaindex-vs-langgraph/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/langchain-vs-llamaindex-vs-langgraph/</guid><description>Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, escolha o framework ideal para o seu projeto.</description></item><item><title>RAG Systems 2026: Advanced Techniques for Production Deployment</title><link>https://dibi8.com/vi/rag-systems-2026/</link><pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/rag-systems-2026/</guid><description>Advanced RAG implementation patterns for 2026: hybrid retrieval, query expansion, re-ranking, and multi-modal retrieval. Real production examples and benchmarks.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Llm-Frameworks on Dibi8</title>
+    <link>https://dibi8.com/vi/categories/llm-frameworks/</link>
+    <description>Recent content in Llm-Frameworks on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/vi/categories/llm-frameworks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AI Coding Agents 2026: Claude Code vs Cursor vs Codex - So Sánh Hoàn Chỉnh</title>
+      <link>https://dibi8.com/vi/ai-coding-agents-comparison/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/ai-coding-agents-comparison/</guid>
+      <description>So sánh chi tiết ba công cụ AI coding agent hàng đầu năm 2026. Tìm hiểu công cụ nào phù hợp với quy trình làm việc của bạn: terminal-first Claude Code, IDE-native Cursor, hay cloud-autonomous Codex. Benchmark thực tế, phân tích giá cả và khuyến nghị cho team.</description>
+    </item>
+    <item>
+      <title>LangChain vs LlamaIndex vs LangGraph 2026: Guia de Comparação Completo</title>
+      <link>https://dibi8.com/vi/langchain-vs-llamaindex-vs-langgraph/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/langchain-vs-llamaindex-vs-langgraph/</guid>
+      <description>Comparação profunda dos três principais frameworks LLM em 2026. De RAG a orquestração de agentes, escolha o framework ideal para o seu projeto.</description>
+    </item>
+    <item>
+      <title>RAG Systems 2026: Kỹ Thuật Nâng Cao Cho Triển Khai Production</title>
+      <link>https://dibi8.com/vi/rag-systems-2026/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/rag-systems-2026/</guid>
+      <description>Mẫu triển khai RAG nâng cao cho năm 2026: truy xuất lai, mở rộng truy vấn, sắp xếp lại và truy xuất đa phương tiện. Ví dụ production thực tế và benchmark.</description>
+    </item>
+  </channel>
+</rss>

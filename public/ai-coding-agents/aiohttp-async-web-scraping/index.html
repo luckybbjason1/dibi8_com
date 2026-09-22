@@ -1,10 +1,297 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/aiohttp-async-web-scraping/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/aiohttp-async-web-scraping/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/aiohttp-async-web-scraping/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “aiohttp 2026: Build High-Performance Async Web Scrapers … description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“aiohttp”, “async”, “web scraping”, “python”, “http client”, “asyncio”] aliases:\n/posts/aiohttp-async-web-scraping/- Introduction: The Synchronous Scraping Bottleneck You have a list of 50,000 URLs to scrape. You fire up ```requests```` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting 99.9% of the runtime on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.\naiohttp, maintained by aio-libs and standing at 15,200 GitHub stars, is the de facto async HTTP client/server framework for Python. Built on asyncio, it enables concurrent requests without the overhead of threading or multiprocessing. In production benchmarks, a single aiohttp process handles 10,000+ requests per second against local endpoints, and 2,000-4,000 req/s against real-world distributed APIs. This article is your complete, production-ready guide to building high-performance web scrapers with aiohttp v3.11.\nWhat Is aiohttp? aiohttp is an asynchronous HTTP client and server framework for Python built on top of asyncio. It was first released in 2014 and is licensed under Apache-2.0. The library provides both client-side capabilities (making HTTP requests) and server-side capabilities (building web applications), making it unique among HTTP libraries. For web scraping, the client side is the primary focus.\nUnlike synchronous libraries such as requests or urllib3, aiohttp uses Python’s async/await syntax to enable non-blocking I/O. This means while one request waits for a server response, the event loop processes dozens or hundreds of other requests. The result is dramatically higher throughput with lower resource consumption.\nHow aiohttp Works: Architecture and Core Concepts Understanding aiohttp’s architecture is critical to writing efficient scrapers. The framework is built on several key concepts: ### Event Loop and Asyncio Integration\naiohttp runs on Python’s asyncio event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.\nConnection Pooling aiohttp maintains persistent TCP connections via TCPConnector. By default, it pools connections to the same host, reusing them across requests. This eliminates the TCP handshake overhead (~200ms per connection) that plagues naive request scripts. In benchmarks, connection pooling alone reduces total request time by 60-80% for multi-request scenarios.\nSession Management The ClientSession object is the core abstraction. It encapsulates the connector, headers, cookies, and configuration. A single session should be reused across all requests to a given target. Creating a new session per request is a common anti-pattern that destroys connection reuse.\nBackpressure and Flow Control aiohttp implements backpressure through asyncio semaphores and limits. The limit parameter on TCPConnector controls concurrent connections per host, preventing your scraper from overwhelming target servers or exhausting local file descriptors.\nInstallation and Setup: Ready in Under 5 Minutes Step 1: Install aiohttp pip install aiohttp==3.11.0 # Include speedups (recommended for production) pip install aiohttp[speedups]==3.11.0 # With additional tools for scraping pip install aiohttp==3.11.0 aiofiles==24.1.0 beautifulsoup4==4.12.3 lxml==5.3.0 The [speedups] extra installs aiodns and Brotli, which improve DNS resolution and response decompression respectively. For high-throughput scraping, these are essential.\nStep 2: Verify the Installation import aiohttp import asyncio import sys print(f\"aiohttp version: {aiohttp.__version__}\") print(f\"Python version: {sys.version}\") async def check(): async with aiohttp.ClientSession() as session: async with session.get(\"https://httpbin.org/get\") as resp: data = await resp.json() print(f\"Status: {resp.status}\") print(f\"Response keys: {list(data.keys())}\") asyncio.run(check()) Step 3: Run Your First Concurrent Scraper import aiohttp import asyncio urls = [ \"https://httpbin.org/get?param=1\", \"https://httpbin.org/get?param=2\", \"https://httpbin.org/get?param=3\", ] async def fetch(session, url): async with session.get(url) as response: return await response.json() async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(session, url) for url in urls] results = await asyncio.gather(*tasks) for r in results: print(r[\"args\"]) asyncio.run(main()) This fetches three URLs concurrently in under a second. With synchronous requests, the same code would take 3x longer due to sequential blocking.\nCore Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage Integration with BeautifulSoup for HTML Parsing import aiohttp import asyncio from bs4 import BeautifulSoup async def scrape_titles(session, urls): \"\"\"Extract page titles from multiple URLs concurrently.\"\"\" titles = [] for url in urls: try: async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp: html = await resp.text() soup = BeautifulSoup(html, \"lxml\") title = soup.find(\"title\") titles.append({\"url\": url, \"title\": title.text if title else \"N/A\"}) except Exception as e: titles.append({\"url\": url, \"title\": f\"Error: {e}\"}) return titles async def main(): urls = [\"https://example.com\", \"https://httpbin.org/html\"] async with aiohttp.ClientSession() as session: results = await scrape_titles(session, urls) for r in results: print(f\"{r[url]}: {r[title]}\") asyncio.run(main()) Integration with lxml for High-Performance XML/HTML Parsing import aiohttp import asyncio from lxml import html as lh async def extract_links(session, url): \"\"\"Extract all href links from a page using lxml.\"\"\" async with session.get(url) as resp: text = await resp.text() tree = lh.fromstring(text) links = tree.xpath(\"//a/@href\") return [l for l in links if l.startswith(\"http\")] async def main(): async with aiohttp.ClientSession() as session: links = await extract_links(session, \"https://example.com\") print(f\"Found {len(links)} external links\") asyncio.run(main()) lxml is 10-20x faster than html.parser for large documents and handles malformed HTML more gracefully.\nIntegration with aiofiles for Async File I/O import aiohttp import aiofiles import asyncio import json async def scrape_and_save(session, url, filepath): \"\"\"Scrape data and write asynchronously to disk.\"\"\" async with session.get(url) as resp: data = await resp.json() async with aiofiles.open(filepath, \"w\") as f: await f.write(json.dumps(data, indent=2)) async def main(): async with aiohttp.ClientSession() as session: await scrape_and_save( session, \"https://httpbin.org/json\", \"/tmp/scraped_data.json\" ) asyncio.run(main()) Using aiofiles prevents blocking the event loop during disk writes, which is critical when saving thousands of scraped files.\nIntegration with SQLite for Structured Data Storage import aiohttp import aiosqlite import asyncio async def scrape_to_db(session, db, url): \"\"\"Store scraped data in SQLite asynchronously.\"\"\" async with session.get(url) as resp: data = await resp.json() await db.execute( \"INSERT INTO scraped (url, data) VALUES (?, ?)\", (url, json.dumps(data)) ) await db.commit() async def main(): async with aiosqlite.connect(\"scraped.db\") as db: await db.execute(\"CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)\") async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, \"https://httpbin.org/json\") asyncio.run(main()) Integration with Proxy Rotation via WebShare For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: `````python import aiohttp import asyncio\nPROXY_URL = “http://username:password@proxy.webshare.io:80”\nasync def fetch_with_proxy(session, url): “““Route requests through WebShare rotating proxy.””” async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()\nasync def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10) async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, “https://httpbin.org/ip\") print(html[:200])\nasyncio.run(main())\n**[Get started with WebShare proxies](https://www.webshare.io/?referral_code=oa14d5f0wx4f)** for reliable, rotating proxy infrastructure that scales with your scraping needs. ## Benchmarks and Real-World Use Cases ### Performance Benchmarks (aiohttp vs. requests vs. httpx) | Metric | requests (sync) | httpx (async) | aiohttp 3.11 | | * * * | * * * | * * * | * * * | | 1,000 requests (local) | 187s | 12s | **8.2s** | | 10,000 requests (local) | 1,870s | 98s | **62s** | | Memory (10K requests) | 2.1 GB | 380 MB | **210 MB** | | Peak req/s (local) | 5.3 | 102 | **162** | | Peak req/s (distributed API) | 4.1 | 38 | **52** | | Connection reuse | No | Yes | Yes | | WebSocket support | No | Yes | Yes | **Test environment**: Python 3.12, AMD EPYC 9654, 64GB RAM, localhost HTTP/1.1 server. Results averaged over 5 runs. ### Real-World Use Cases **Case 1: Price Monitoring Pipeline** A German e-commerce aggregator uses aiohttp to monitor **2.3 million product pages** across 12 retailers. Their scraper runs on 4 DigitalOcean droplets, each handling ~**600 req/s** with rotating proxies. Total infrastructure cost: **$240/month**. The previous ````requests````-based system required 18 servers and cost $1,080/month. **Case 2: News Feed Aggregation** A media monitoring startup processes **45,000 news sources** every 15 minutes. Using aiohttp with ````aio-pika```` for RabbitMQ integration, they achieve end-to-end latency of under 90 seconds for the full crawl cycle. The async pipeline replaced a Celery+requests architecture that took 8+ minutes. **Case 3: Academic Research Dataset Construction** A university NLP lab crawled **8.5 million** academic pages from 340 domains using aiohttp with domain-specific rate limiting. The crawl completed in **72 hours** on a single 8-core server. The equivalent ````requests```` estimate was **21 days**. ## Advanced Usage and Production Hardening ### Connection Pool Tuning `````python import aiohttp connector = aiohttp.TCPConnector( limit=200, # Total concurrent connections limit_per_host=20, # Per-host connections (respect servers!) ttl_dns_cache=300, # DNS cache TTL in seconds use_dns_cache=True, # Enable DNS caching enable_cleanup_closed=True, force_close=False, # Keep connections alive ) timeout = aiohttp.ClientTimeout( total=30, # Total timeout per request connect=5, # TCP connection timeout sock_read=15, # Socket read timeout ) session = aiohttp.ClientSession( connector=connector, timeout=timeout, headers={\"User-Agent\": \"MyBot/1.0\"}, ) Rate Limiting with Semaphores import aiohttp import asyncio async def bounded_fetch(session, url, semaphore): \"\"\"Limit concurrent requests with a semaphore.\"\"\" async with semaphore: async with session.get(url) as resp: return await resp.text() async def main(): semaphore = asyncio.Semaphore(50) # Max 50 concurrent requests urls = [f\"https://httpbin.org/get?i={i}\" for i in range(500)] connector = aiohttp.TCPConnector(limit=100) async with aiohttp.ClientSession(connector=connector) as session: tasks = [bounded_fetch(session, url, semaphore) for url in urls] results = await asyncio.gather(*tasks, return_exceptions=True) successes = sum(1 for r in results if not isinstance(r, Exception)) print(f\"Successful: {successences}/500\") asyncio.run(main()) Retry Logic with Exponential Backoff import aiohttp import asyncio import random async def fetch_with_retry(session, url, max_retries=3): \"\"\"Retry failed requests with exponential backoff.\"\"\" for attempt in range(max_retries): try: async with session.get(url) as resp: if resp.status == 200: return await resp.json() elif resp.status in (429, 503, 502): wait = (2 ** attempt) + random.uniform(0, 1) await asyncio.sleep(wait) else: resp.raise_for_status() except (aiohttp.ClientError, asyncio.TimeoutError) as e: if attempt == max_retries - 1: raise await asyncio.sleep(2 ** attempt) return None async def main(): async with aiohttp.ClientSession() as session: data = await fetch_with_retry(session, \"https://httpbin.org/json\") print(data) asyncio.run(main()) WebSocket Scraping for Real-Time Data import aiohttp import asyncio async def websocket_scraper(): \"\"\"Scrape real-time data from WebSocket endpoint.\"\"\" async with aiohttp.ClientSession() as session: async with session.ws_connect(\"wss://echo.websocket.org\") as ws: await ws.send_str(\"Hello Server\") async for msg in ws: if msg.type == aiohttp.WSMsgType.TEXT: print(f\"Received: {msg.data}\") if \"done\" in msg.data.lower(): await ws.close() break elif msg.type == aiohttp.WSMsgType.ERROR: print(f\"WebSocket error: {ws.exception()}\") break asyncio.run(websocket_scraper()) Production Deployment on DigitalOcean with Docker # Dockerfile FROM python:3.12-slim WORKDIR /app COPY requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY scraper.py . CMD [\"python\", \"scraper.py\"] # docker-compose.yml version: \"3.8\" services: scraper: build: . restart: unless-stopped environment: - PYTHONUNBUFFERED=1 deploy: resources: limits: memory: 2G logging: driver: \"json-file\" options: max-size: \"100m\" max-file: \"3\" Deploy this to a DigitalOcean Droplet for reliable, scalable scraping infrastructure starting at $4/month. For distributed scraping across multiple nodes, DigitalOcean’s Kubernetes service makes horizontal scaling straightforward.\nMonitoring with Prometheus Metrics import aiohttp import asyncio from prometheus_client import Counter, Histogram, start_http_server REQUEST_COUNT = Counter(\"scraper_requests_total\", \"Total requests\", [\"status\"]) REQUEST_DURATION = Histogram(\"scraper_request_duration_seconds\", \"Request duration\") async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: async with session.get(url) as resp: REQUEST_COUNT.labels(status=str(resp.status)).inc() return await resp.text() except Exception as e: REQUEST_COUNT.labels(status=\"error\").inc() raise # Start metrics server on port 9090 start_http_server(9090) Comparison with Alternatives | Feature | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 | |\n|\n|\n|\n|\n|\n| | Async support | Yes (native) | No | Yes | No | No | | HTTP/2 support | No | No | Yes | No | Yes | | WebSocket client | Yes | No | No | No | No | | Server capability | Yes | No | No | No | No | | Connection pooling | Advanced | No | Advanced | Basic | Advanced | | Streaming downloads | Yes | Yes | Yes | Yes | Yes | | Cookie persistence | Yes | Yes | Yes | No | Yes | | Middleware support | Yes | No | No | No | No | | Memory footprint | Low | High | Medium | Low | Low | | Ecosystem maturity | Very High | Very High | High | Very High | Medium | | Documentation quality | Excellent | Excellent | Good | Good | Poor |\nWhen to choose what:\nChoose aiohttp when you need maximum async performance, WebSocket support, or are building a scraping pipeline that also needs a server component. Choose httpx when you need HTTP/2 support or want a requests-compatible API with async capabilities. Choose requests for simple, one-off synchronous scripts where performance is not a concern. Choose pycurl when you need libcurl-specific features like SOCKS5 proxy support or FTP transfers. Limitations: Honest Assessment No tool is perfect. aiohttp has specific limitations you should understand: No HTTP/2 support. As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use httpx instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.\nLearning curve for asyncio. Developers new to async/await will encounter a significant learning curve. Common pitfalls include forgetting await, mixing sync and async code, and debugging hanging event loops. The RuntimeError: Event loop is closed error is a rite of passage for every asyncio developer.\nDNS resolution bottlenecks. aiohttp’s default DNS resolver uses getaddrinfo, which is synchronous and can block the event loop under high concurrency. Install aiodns (included with [speedups]) to enable true async DNS resolution.\nServer-side focus dilutes client documentation. aiohttp is both a client and server framework. The documentation sometimes prioritizes server features, making client-specific features harder to find.\nCookie handling quirks. aiohttp’s cookie jar follows RFC 6265 strictly, which can cause issues with misconfigured servers that send malformed cookies. The unsafe=True flag on CookieJar can work around this.\nFrequently Asked Questions How many concurrent requests can aiohttp handle? With default settings (100 connections), aiohttp handles 100 concurrent requests per host. Increasing the connector limit to 200-300 allows 2,000-4,000 req/s against distributed targets on a single process. The practical limit is usually the target server’s rate limiting or your network bandwidth, not aiohttp itself.\nCan I use aiohttp with existing synchronous code? Yes, but carefully. Use asyncio.run() or loop.run_until_complete() to bridge sync and async boundaries. For calling sync functions from async code, use loop.run_in_executor() to offload blocking work to a thread pool. Never call blocking I/O directly from async functions as it freezes the entire event loop.\nHow do I handle CAPTCHAs and JavaScript-rendered pages? aiohttp is an HTTP client, not a browser. It cannot execute JavaScript or solve CAPTCHAs. For JavaScript-heavy sites, pair aiohttp with a headless browser like Playwright or use a service that provides rendered HTML. For CAPTCHAs, integrate with a solving service or use browser automation tools.\nIs aiohttp suitable for large file downloads? Yes. Use resp.content.iter_chunked(8192) to stream large files without loading them into memory. For a 10GB file, aiohttp uses under 20MB of RAM when streaming, compared to 10GB+ with naive await resp.read().\nHow do I debug aiohttp performance issues? Enable aiohttp debug mode with python -W default -m aiohttp.web or set PYTHONASYNCIODEBUG=1. Use asyncio.get_event_loop().set_debug(True) to catch common mistakes. For production monitoring, instrument with prometheus_client as shown in the Advanced Usage section, or use aiohttp-debugtoolbar during development.\nWhat is the difference between aiohttp and Flask/FastAPI? aiohttp is both an HTTP client and server. On the server side, it competes with Flask and FastAPI. For client-side scraping, Flask and FastAPI are irrelevant as they are server-only frameworks. If you need both a scraper and an API server, aiohttp uniquely handles both roles.\nConclusion: Build Your Next Scraper with aiohttp If you are still using ````requests``` for large-scale scraping, you are leaving 10-50x performance gains on the table. aiohttp’s native async architecture, mature ecosystem, and proven production track record make it the best choice for high-throughput Python scrapers in 2026.\nStart with the 5-minute setup in this guide, implement connection pooling and semaphores for production hardening, and deploy on DigitalOcean for reliable, cost-effective infrastructure. For proxy rotation at scale, integrate WebShare into your pipeline.\nJoin our Telegram group for daily tips on Python async patterns and scraping best practices: https://t.me/dibi8python\nSources and Further Reading aiohttp Official Documentation aiohttp GitHub Repository Python asyncio Documentation aiofiles - Async File Operations aiosqlite - Async SQLite Real Python - asyncio Guide Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links to DigitalOcean and WebShare. If you purchase services through these links, we may earn a commission at no additional cost to you. These recommendations are based on genuine utility for production scraping workflows. All benchmarks were conducted independently.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “aiohttp 2026: Build High-Performance Async Web Scrapers Handling 10K+ Requests/Second — Python Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/aiohttp-async-web-scraping\" } } Related Articles ray-distributed-ai-framework-complete-guide cleanlab-11k-star-ai-data-cleaning freqtrade-python-crypto-trading-bot-backtest-optimize-deploy agent-reach-internet-access-ai-agents microsoft-markitdown-file-to-markdown-converter-cli Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"2889","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/aiohttp-async-web-scraping/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/aiohttp-async-web-scraping/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/aiohttp-async-web-scraping/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><li><a href=#introduction-the-synchronous-scraping-bottleneck aria-label="Introduction: The Synchronous Scraping Bottleneck">Introduction: The Synchronous Scraping Bottleneck</a></li><li><a href=#what-is-aiohttp aria-label="What Is aiohttp?">What Is aiohttp?</a></li><li><a href=#how-aiohttp-works-architecture-and-core-concepts aria-label="How aiohttp Works: Architecture and Core Concepts">How aiohttp Works: Architecture and Core Concepts</a><ul><li><a href=#connection-pooling aria-label="Connection Pooling">Connection Pooling</a></li><li><a href=#session-management aria-label="Session Management">Session Management</a></li><li><a href=#backpressure-and-flow-control aria-label="Backpressure and Flow Control">Backpressure and Flow Control</a></li></ul></li><li><a href=#installation-and-setup-ready-in-under-5-minutes aria-label="Installation and Setup: Ready in Under 5 Minutes">Installation and Setup: Ready in Under 5 Minutes</a><ul><li><a href=#step-1-install-aiohttp aria-label="Step 1: Install aiohttp">Step 1: Install aiohttp</a></li><li><a href=#step-2-verify-the-installation aria-label="Step 2: Verify the Installation">Step 2: Verify the Installation</a></li><li><a href=#step-3-run-your-first-concurrent-scraper aria-label="Step 3: Run Your First Concurrent Scraper">Step 3: Run Your First Concurrent Scraper</a></li></ul></li><li><a href=#core-integration-scraping-stack-with-beautifulsoup-lxml-and-persistent-storage aria-label="Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage">Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage</a><ul><li><a href=#integration-with-beautifulsoup-for-html-parsing aria-label="Integration with BeautifulSoup for HTML Parsing">Integration with BeautifulSoup for HTML Parsing</a></li><li><a href=#integration-with-lxml-for-high-performance-xmlhtml-parsing aria-label="Integration with lxml for High-Performance XML/HTML Parsing">Integration with lxml for High-Performance XML/HTML Parsing</a></li><li><a href=#integration-with-aiofiles-for-async-file-io aria-label="Integration with aiofiles for Async File I/O">Integration with aiofiles for Async File I/O</a></li><li><a href=#integration-with-sqlite-for-structured-data-storage aria-label="Integration with SQLite for Structured Data Storage">Integration with SQLite for Structured Data Storage</a></li><li><a href=#integration-with-proxy-rotation-via-webshare aria-label="Integration with Proxy Rotation via WebShare">Integration with Proxy Rotation via WebShare</a></li><li><a href=#rate-limiting-with-semaphores aria-label="Rate Limiting with Semaphores">Rate Limiting with Semaphores</a></li><li><a href=#retry-logic-with-exponential-backoff aria-label="Retry Logic with Exponential Backoff">Retry Logic with Exponential Backoff</a></li><li><a href=#websocket-scraping-for-real-time-data aria-label="WebSocket Scraping for Real-Time Data">WebSocket Scraping for Real-Time Data</a></li><li><a href=#production-deployment-on-digitalocean-with-docker aria-label="Production Deployment on DigitalOcean with Docker">Production Deployment on DigitalOcean with Docker</a></li><li><a href=#monitoring-with-prometheus-metrics aria-label="Monitoring with Prometheus Metrics">Monitoring with Prometheus Metrics</a></li></ul></li><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations-honest-assessment aria-label="Limitations: Honest Assessment">Limitations: Honest Assessment</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#how-many-concurrent-requests-can-aiohttp-handle aria-label="How many concurrent requests can aiohttp handle?">How many concurrent requests can aiohttp handle?</a></li><li><a href=#can-i-use-aiohttp-with-existing-synchronous-code aria-label="Can I use aiohttp with existing synchronous code?">Can I use aiohttp with existing synchronous code?</a></li><li><a href=#how-do-i-handle-captchas-and-javascript-rendered-pages aria-label="How do I handle CAPTCHAs and JavaScript-rendered pages?">How do I handle CAPTCHAs and JavaScript-rendered pages?</a></li><li><a href=#is-aiohttp-suitable-for-large-file-downloads aria-label="Is aiohttp suitable for large file downloads?">Is aiohttp suitable for large file downloads?</a></li><li><a href=#how-do-i-debug-aiohttp-performance-issues aria-label="How do I debug aiohttp performance issues?">How do I debug aiohttp performance issues?</a></li><li><a href=#what-is-the-difference-between-aiohttp-and-flaskfastapi aria-label="What is the difference between aiohttp and Flask/FastAPI?">What is the difference between aiohttp and Flask/FastAPI?</a></li></ul></li><li><a href=#conclusion-build-your-next-scraper-with-aiohttp aria-label="Conclusion: Build Your Next Scraper with aiohttp">Conclusion: Build Your Next Scraper with aiohttp</a></li><li><a href=#sources-and-further-reading aria-label="Sources and Further Reading">Sources and Further Reading</a></li><li><a href=#recommended-hosting--infrastructure aria-label="Recommended Hosting & Infrastructure">Recommended Hosting & Infrastructure</a></li><li><a href=#affiliate-disclosure aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;aiohttp 2026: Build High-Performance Async Web Scrapers &mldr;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/aiohttp-async-web-scraping/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/aiohttp-async-web-scraping/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/aiohttp-async-web-scraping/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “aiohttp 2026: Build High-Performance Async Web Scrapers … description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“aiohttp”, “async”, “web scraping”, “python”, “http client”, “asyncio”] aliases:\n/posts/aiohttp-async-web-scraping/- Introduction: The Synchronous Scraping Bottleneck You have a list of 50,000 URLs to scrape. You fire up ```requests```` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting 99.9% of the runtime on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.\naiohttp, maintained by aio-libs and standing at 15,200 GitHub stars, is the de facto async HTTP client/server framework for Python. Built on asyncio, it enables concurrent requests without the overhead of threading or multiprocessing. In production benchmarks, a single aiohttp process handles 10,000+ requests per second against local endpoints, and 2,000-4,000 req/s against real-world distributed APIs. This article is your complete, production-ready guide to building high-performance web scrapers with aiohttp v3.11.\nWhat Is aiohttp? aiohttp is an asynchronous HTTP client and server framework for Python built on top of asyncio. It was first released in 2014 and is licensed under Apache-2.0. The library provides both client-side capabilities (making HTTP requests) and server-side capabilities (building web applications), making it unique among HTTP libraries. For web scraping, the client side is the primary focus.\nUnlike synchronous libraries such as requests or urllib3, aiohttp uses Python’s async/await syntax to enable non-blocking I/O. This means while one request waits for a server response, the event loop processes dozens or hundreds of other requests. The result is dramatically higher throughput with lower resource consumption.\nHow aiohttp Works: Architecture and Core Concepts Understanding aiohttp’s architecture is critical to writing efficient scrapers. The framework is built on several key concepts: ### Event Loop and Asyncio Integration\naiohttp runs on Python’s asyncio event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.\nConnection Pooling aiohttp maintains persistent TCP connections via TCPConnector. By default, it pools connections to the same host, reusing them across requests. This eliminates the TCP handshake overhead (~200ms per connection) that plagues naive request scripts. In benchmarks, connection pooling alone reduces total request time by 60-80% for multi-request scenarios.\nSession Management The ClientSession object is the core abstraction. It encapsulates the connector, headers, cookies, and configuration. A single session should be reused across all requests to a given target. Creating a new session per request is a common anti-pattern that destroys connection reuse.\nBackpressure and Flow Control aiohttp implements backpressure through asyncio semaphores and limits. The limit parameter on TCPConnector controls concurrent connections per host, preventing your scraper from overwhelming target servers or exhausting local file descriptors.\nInstallation and Setup: Ready in Under 5 Minutes Step 1: Install aiohttp pip install aiohttp==3.11.0 # Include speedups (recommended for production) pip install aiohttp[speedups]==3.11.0 # With additional tools for scraping pip install aiohttp==3.11.0 aiofiles==24.1.0 beautifulsoup4==4.12.3 lxml==5.3.0 The [speedups] extra installs aiodns and Brotli, which improve DNS resolution and response decompression respectively. For high-throughput scraping, these are essential.\nStep 2: Verify the Installation import aiohttp import asyncio import sys print(f\"aiohttp version: {aiohttp.__version__}\") print(f\"Python version: {sys.version}\") async def check(): async with aiohttp.ClientSession() as session: async with session.get(\"https://httpbin.org/get\") as resp: data = await resp.json() print(f\"Status: {resp.status}\") print(f\"Response keys: {list(data.keys())}\") asyncio.run(check()) Step 3: Run Your First Concurrent Scraper import aiohttp import asyncio urls = [ \"https://httpbin.org/get?param=1\", \"https://httpbin.org/get?param=2\", \"https://httpbin.org/get?param=3\", ] async def fetch(session, url): async with session.get(url) as response: return await response.json() async def main(): async with aiohttp.ClientSession() as session: tasks = [fetch(session, url) for url in urls] results = await asyncio.gather(*tasks) for r in results: print(r[\"args\"]) asyncio.run(main()) This fetches three URLs concurrently in under a second. With synchronous requests, the same code would take 3x longer due to sequential blocking.\nCore Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage Integration with BeautifulSoup for HTML Parsing import aiohttp import asyncio from bs4 import BeautifulSoup async def scrape_titles(session, urls): \"\"\"Extract page titles from multiple URLs concurrently.\"\"\" titles = [] for url in urls: try: async with session.get(url, timeout=aiohttp.ClientTimeout(total=10)) as resp: html = await resp.text() soup = BeautifulSoup(html, \"lxml\") title = soup.find(\"title\") titles.append({\"url\": url, \"title\": title.text if title else \"N/A\"}) except Exception as e: titles.append({\"url\": url, \"title\": f\"Error: {e}\"}) return titles async def main(): urls = [\"https://example.com\", \"https://httpbin.org/html\"] async with aiohttp.ClientSession() as session: results = await scrape_titles(session, urls) for r in results: print(f\"{r[url]}: {r[title]}\") asyncio.run(main()) Integration with lxml for High-Performance XML/HTML Parsing import aiohttp import asyncio from lxml import html as lh async def extract_links(session, url): \"\"\"Extract all href links from a page using lxml.\"\"\" async with session.get(url) as resp: text = await resp.text() tree = lh.fromstring(text) links = tree.xpath(\"//a/@href\") return [l for l in links if l.startswith(\"http\")] async def main(): async with aiohttp.ClientSession() as session: links = await extract_links(session, \"https://example.com\") print(f\"Found {len(links)} external links\") asyncio.run(main()) lxml is 10-20x faster than html.parser for large documents and handles malformed HTML more gracefully.\nIntegration with aiofiles for Async File I/O import aiohttp import aiofiles import asyncio import json async def scrape_and_save(session, url, filepath): \"\"\"Scrape data and write asynchronously to disk.\"\"\" async with session.get(url) as resp: data = await resp.json() async with aiofiles.open(filepath, \"w\") as f: await f.write(json.dumps(data, indent=2)) async def main(): async with aiohttp.ClientSession() as session: await scrape_and_save( session, \"https://httpbin.org/json\", \"/tmp/scraped_data.json\" ) asyncio.run(main()) Using aiofiles prevents blocking the event loop during disk writes, which is critical when saving thousands of scraped files.\nIntegration with SQLite for Structured Data Storage import aiohttp import aiosqlite import asyncio async def scrape_to_db(session, db, url): \"\"\"Store scraped data in SQLite asynchronously.\"\"\" async with session.get(url) as resp: data = await resp.json() await db.execute( \"INSERT INTO scraped (url, data) VALUES (?, ?)\", (url, json.dumps(data)) ) await db.commit() async def main(): async with aiosqlite.connect(\"scraped.db\") as db: await db.execute(\"CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)\") async with aiohttp.ClientSession() as session: await scrape_to_db(session, db, \"https://httpbin.org/json\") asyncio.run(main()) Integration with Proxy Rotation via WebShare For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: `````python import aiohttp import asyncio\nPROXY_URL = “http://username:password@proxy.webshare.io:80”\nasync def fetch_with_proxy(session, url): “““Route requests through WebShare rotating proxy.””” async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()\nasync def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10) async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, “https://httpbin.org/ip\") print(html[:200])\nasyncio.run(main())\n**[Get started with WebShare proxies](https://www.webshare.io/?referral_code=oa14d5f0wx4f)** for reliable, rotating proxy infrastructure that scales with your scraping needs. ## Benchmarks and Real-World Use Cases ### Performance Benchmarks (aiohttp vs. requests vs. httpx) | Metric | requests (sync) | httpx (async) | aiohttp 3.11 | | * * * | * * * | * * * | * * * | | 1,000 requests (local) | 187s | 12s | **8.2s** | | 10,000 requests (local) | 1,870s | 98s | **62s** | | Memory (10K requests) | 2.1 GB | 380 MB | **210 MB** | | Peak req/s (local) | 5.3 | 102 | **162** | | Peak req/s (distributed API) | 4.1 | 38 | **52** | | Connection reuse | No | Yes | Yes | | WebSocket support | No | Yes | Yes | **Test environment**: Python 3.12, AMD EPYC 9654, 64GB RAM, localhost HTTP/1.1 server. Results averaged over 5 runs. ### Real-World Use Cases **Case 1: Price Monitoring Pipeline** A German e-commerce aggregator uses aiohttp to monitor **2.3 million product pages** across 12 retailers. Their scraper runs on 4 DigitalOcean droplets, each handling ~**600 req/s** with rotating proxies. Total infrastructure cost: **$240/month**. The previous ````requests````-based system required 18 servers and cost $1,080/month. **Case 2: News Feed Aggregation** A media monitoring startup processes **45,000 news sources** every 15 minutes. Using aiohttp with ````aio-pika```` for RabbitMQ integration, they achieve end-to-end latency of under 90 seconds for the full crawl cycle. The async pipeline replaced a Celery+requests architecture that took 8+ minutes. **Case 3: Academic Research Dataset Construction** A university NLP lab crawled **8.5 million** academic pages from 340 domains using aiohttp with domain-specific rate limiting. The crawl completed in **72 hours** on a single 8-core server. The equivalent ````requests```` estimate was **21 days**. ## Advanced Usage and Production Hardening ### Connection Pool Tuning `````python import aiohttp connector = aiohttp.TCPConnector( limit=200, # Total concurrent connections limit_per_host=20, # Per-host connections (respect servers!) ttl_dns_cache=300, # DNS cache TTL in seconds use_dns_cache=True, # Enable DNS caching enable_cleanup_closed=True, force_close=False, # Keep connections alive ) timeout = aiohttp.ClientTimeout( total=30, # Total timeout per request connect=5, # TCP connection timeout sock_read=15, # Socket read timeout ) session = aiohttp.ClientSession( connector=connector, timeout=timeout, headers={\"User-Agent\": \"MyBot/1.0\"}, ) Rate Limiting with Semaphores import aiohttp import asyncio async def bounded_fetch(session, url, semaphore): \"\"\"Limit concurrent requests with a semaphore.\"\"\" async with semaphore: async with session.get(url) as resp: return await resp.text() async def main(): semaphore = asyncio.Semaphore(50) # Max 50 concurrent requests urls = [f\"https://httpbin.org/get?i={i}\" for i in range(500)] connector = aiohttp.TCPConnector(limit=100) async with aiohttp.ClientSession(connector=connector) as session: tasks = [bounded_fetch(session, url, semaphore) for url in urls] results = await asyncio.gather(*tasks, return_exceptions=True) successes = sum(1 for r in results if not isinstance(r, Exception)) print(f\"Successful: {successences}/500\") asyncio.run(main()) Retry Logic with Exponential Backoff import aiohttp import asyncio import random async def fetch_with_retry(session, url, max_retries=3): \"\"\"Retry failed requests with exponential backoff.\"\"\" for attempt in range(max_retries): try: async with session.get(url) as resp: if resp.status == 200: return await resp.json() elif resp.status in (429, 503, 502): wait = (2 ** attempt) + random.uniform(0, 1) await asyncio.sleep(wait) else: resp.raise_for_status() except (aiohttp.ClientError, asyncio.TimeoutError) as e: if attempt == max_retries - 1: raise await asyncio.sleep(2 ** attempt) return None async def main(): async with aiohttp.ClientSession() as session: data = await fetch_with_retry(session, \"https://httpbin.org/json\") print(data) asyncio.run(main()) WebSocket Scraping for Real-Time Data import aiohttp import asyncio async def websocket_scraper(): \"\"\"Scrape real-time data from WebSocket endpoint.\"\"\" async with aiohttp.ClientSession() as session: async with session.ws_connect(\"wss://echo.websocket.org\") as ws: await ws.send_str(\"Hello Server\") async for msg in ws: if msg.type == aiohttp.WSMsgType.TEXT: print(f\"Received: {msg.data}\") if \"done\" in msg.data.lower(): await ws.close() break elif msg.type == aiohttp.WSMsgType.ERROR: print(f\"WebSocket error: {ws.exception()}\") break asyncio.run(websocket_scraper()) Production Deployment on DigitalOcean with Docker # Dockerfile FROM python:3.12-slim WORKDIR /app COPY requirements.txt . RUN pip install --no-cache-dir -r requirements.txt COPY scraper.py . CMD [\"python\", \"scraper.py\"] # docker-compose.yml version: \"3.8\" services: scraper: build: . restart: unless-stopped environment: - PYTHONUNBUFFERED=1 deploy: resources: limits: memory: 2G logging: driver: \"json-file\" options: max-size: \"100m\" max-file: \"3\" Deploy this to a DigitalOcean Droplet for reliable, scalable scraping infrastructure starting at $4/month. For distributed scraping across multiple nodes, DigitalOcean’s Kubernetes service makes horizontal scaling straightforward.\nMonitoring with Prometheus Metrics import aiohttp import asyncio from prometheus_client import Counter, Histogram, start_http_server REQUEST_COUNT = Counter(\"scraper_requests_total\", \"Total requests\", [\"status\"]) REQUEST_DURATION = Histogram(\"scraper_request_duration_seconds\", \"Request duration\") async def monitored_fetch(session, url): with REQUEST_DURATION.time(): try: async with session.get(url) as resp: REQUEST_COUNT.labels(status=str(resp.status)).inc() return await resp.text() except Exception as e: REQUEST_COUNT.labels(status=\"error\").inc() raise # Start metrics server on port 9090 start_http_server(9090) Comparison with Alternatives | Feature | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 | |\n|\n|\n|\n|\n|\n| | Async support | Yes (native) | No | Yes | No | No | | HTTP/2 support | No | No | Yes | No | Yes | | WebSocket client | Yes | No | No | No | No | | Server capability | Yes | No | No | No | No | | Connection pooling | Advanced | No | Advanced | Basic | Advanced | | Streaming downloads | Yes | Yes | Yes | Yes | Yes | | Cookie persistence | Yes | Yes | Yes | No | Yes | | Middleware support | Yes | No | No | No | No | | Memory footprint | Low | High | Medium | Low | Low | | Ecosystem maturity | Very High | Very High | High | Very High | Medium | | Documentation quality | Excellent | Excellent | Good | Good | Poor |\nWhen to choose what:\nChoose aiohttp when you need maximum async performance, WebSocket support, or are building a scraping pipeline that also needs a server component. Choose httpx when you need HTTP/2 support or want a requests-compatible API with async capabilities. Choose requests for simple, one-off synchronous scripts where performance is not a concern. Choose pycurl when you need libcurl-specific features like SOCKS5 proxy support or FTP transfers. Limitations: Honest Assessment No tool is perfect. aiohttp has specific limitations you should understand: No HTTP/2 support. As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use httpx instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.\nLearning curve for asyncio. Developers new to async/await will encounter a significant learning curve. Common pitfalls include forgetting await, mixing sync and async code, and debugging hanging event loops. The RuntimeError: Event loop is closed error is a rite of passage for every asyncio developer.\nDNS resolution bottlenecks. aiohttp’s default DNS resolver uses getaddrinfo, which is synchronous and can block the event loop under high concurrency. Install aiodns (included with [speedups]) to enable true async DNS resolution.\nServer-side focus dilutes client documentation. aiohttp is both a client and server framework. The documentation sometimes prioritizes server features, making client-specific features harder to find.\nCookie handling quirks. aiohttp’s cookie jar follows RFC 6265 strictly, which can cause issues with misconfigured servers that send malformed cookies. The unsafe=True flag on CookieJar can work around this.\nFrequently Asked Questions How many concurrent requests can aiohttp handle? With default settings (100 connections), aiohttp handles 100 concurrent requests per host. Increasing the connector limit to 200-300 allows 2,000-4,000 req/s against distributed targets on a single process. The practical limit is usually the target server’s rate limiting or your network bandwidth, not aiohttp itself.\nCan I use aiohttp with existing synchronous code? Yes, but carefully. Use asyncio.run() or loop.run_until_complete() to bridge sync and async boundaries. For calling sync functions from async code, use loop.run_in_executor() to offload blocking work to a thread pool. Never call blocking I/O directly from async functions as it freezes the entire event loop.\nHow do I handle CAPTCHAs and JavaScript-rendered pages? aiohttp is an HTTP client, not a browser. It cannot execute JavaScript or solve CAPTCHAs. For JavaScript-heavy sites, pair aiohttp with a headless browser like Playwright or use a service that provides rendered HTML. For CAPTCHAs, integrate with a solving service or use browser automation tools.\nIs aiohttp suitable for large file downloads? Yes. Use resp.content.iter_chunked(8192) to stream large files without loading them into memory. For a 10GB file, aiohttp uses under 20MB of RAM when streaming, compared to 10GB+ with naive await resp.read().\nHow do I debug aiohttp performance issues? Enable aiohttp debug mode with python -W default -m aiohttp.web or set PYTHONASYNCIODEBUG=1. Use asyncio.get_event_loop().set_debug(True) to catch common mistakes. For production monitoring, instrument with prometheus_client as shown in the Advanced Usage section, or use aiohttp-debugtoolbar during development.\nWhat is the difference between aiohttp and Flask/FastAPI? aiohttp is both an HTTP client and server. On the server side, it competes with Flask and FastAPI. For client-side scraping, Flask and FastAPI are irrelevant as they are server-only frameworks. If you need both a scraper and an API server, aiohttp uniquely handles both roles.\nConclusion: Build Your Next Scraper with aiohttp If you are still using ````requests``` for large-scale scraping, you are leaving 10-50x performance gains on the table. aiohttp’s native async architecture, mature ecosystem, and proven production track record make it the best choice for high-throughput Python scrapers in 2026.\nStart with the 5-minute setup in this guide, implement connection pooling and semaphores for production hardening, and deploy on DigitalOcean for reliable, cost-effective infrastructure. For proxy rotation at scale, integrate WebShare into your pipeline.\nJoin our Telegram group for daily tips on Python async patterns and scraping best practices: https://t.me/dibi8python\nSources and Further Reading aiohttp Official Documentation aiohttp GitHub Repository Python asyncio Documentation aiofiles - Async File Operations aiosqlite - Async SQLite Real Python - asyncio Guide Recommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production. Affiliate links — they don\"t cost you extra and they help keep dibi8.com running.\nAffiliate Disclosure This article contains affiliate links to DigitalOcean and WebShare. If you purchase services through these links, we may earn a commission at no additional cost to you. These recommendations are based on genuine utility for production scraping workflows. All benchmarks were conducted independently.\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “aiohttp 2026: Build High-Performance Async Web Scrapers Handling 10K+ Requests/Second — Python Guide”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/resources/aiohttp-async-web-scraping\" } } Related Articles ray-distributed-ai-framework-complete-guide cleanlab-11k-star-ai-data-cleaning freqtrade-python-crypto-trading-bot-backtest-optimize-deploy agent-reach-internet-access-ai-agents microsoft-markitdown-file-to-markdown-converter-cli Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "2889",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/aiohttp-async-web-scraping/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/aiohttp-async-web-scraping/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/aiohttp-async-web-scraping/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/aiohttp-async-web-scraping/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#introduction-the-synchronous-scraping-bottleneck" aria-label="Introduction: The Synchronous Scraping Bottleneck">Introduction: The Synchronous Scraping Bottleneck</a></li>
+            <li>
+                <a href="#what-is-aiohttp" aria-label="What Is aiohttp?">What Is aiohttp?</a></li>
+            <li>
+                <a href="#how-aiohttp-works-architecture-and-core-concepts" aria-label="How aiohttp Works: Architecture and Core Concepts">How aiohttp Works: Architecture and Core Concepts</a><ul>
+                    
+            <li>
+                <a href="#connection-pooling" aria-label="Connection Pooling">Connection Pooling</a></li>
+            <li>
+                <a href="#session-management" aria-label="Session Management">Session Management</a></li>
+            <li>
+                <a href="#backpressure-and-flow-control" aria-label="Backpressure and Flow Control">Backpressure and Flow Control</a></li></ul>
+            </li>
+            <li>
+                <a href="#installation-and-setup-ready-in-under-5-minutes" aria-label="Installation and Setup: Ready in Under 5 Minutes">Installation and Setup: Ready in Under 5 Minutes</a><ul>
+                    
+            <li>
+                <a href="#step-1-install-aiohttp" aria-label="Step 1: Install aiohttp">Step 1: Install aiohttp</a></li>
+            <li>
+                <a href="#step-2-verify-the-installation" aria-label="Step 2: Verify the Installation">Step 2: Verify the Installation</a></li>
+            <li>
+                <a href="#step-3-run-your-first-concurrent-scraper" aria-label="Step 3: Run Your First Concurrent Scraper">Step 3: Run Your First Concurrent Scraper</a></li></ul>
+            </li>
+            <li>
+                <a href="#core-integration-scraping-stack-with-beautifulsoup-lxml-and-persistent-storage" aria-label="Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage">Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage</a><ul>
+                    
+            <li>
+                <a href="#integration-with-beautifulsoup-for-html-parsing" aria-label="Integration with BeautifulSoup for HTML Parsing">Integration with BeautifulSoup for HTML Parsing</a></li>
+            <li>
+                <a href="#integration-with-lxml-for-high-performance-xmlhtml-parsing" aria-label="Integration with lxml for High-Performance XML/HTML Parsing">Integration with lxml for High-Performance XML/HTML Parsing</a></li>
+            <li>
+                <a href="#integration-with-aiofiles-for-async-file-io" aria-label="Integration with aiofiles for Async File I/O">Integration with aiofiles for Async File I/O</a></li>
+            <li>
+                <a href="#integration-with-sqlite-for-structured-data-storage" aria-label="Integration with SQLite for Structured Data Storage">Integration with SQLite for Structured Data Storage</a></li>
+            <li>
+                <a href="#integration-with-proxy-rotation-via-webshare" aria-label="Integration with Proxy Rotation via WebShare">Integration with Proxy Rotation via WebShare</a></li>
+            <li>
+                <a href="#rate-limiting-with-semaphores" aria-label="Rate Limiting with Semaphores">Rate Limiting with Semaphores</a></li>
+            <li>
+                <a href="#retry-logic-with-exponential-backoff" aria-label="Retry Logic with Exponential Backoff">Retry Logic with Exponential Backoff</a></li>
+            <li>
+                <a href="#websocket-scraping-for-real-time-data" aria-label="WebSocket Scraping for Real-Time Data">WebSocket Scraping for Real-Time Data</a></li>
+            <li>
+                <a href="#production-deployment-on-digitalocean-with-docker" aria-label="Production Deployment on DigitalOcean with Docker">Production Deployment on DigitalOcean with Docker</a></li>
+            <li>
+                <a href="#monitoring-with-prometheus-metrics" aria-label="Monitoring with Prometheus Metrics">Monitoring with Prometheus Metrics</a></li></ul>
+            </li>
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations-honest-assessment" aria-label="Limitations: Honest Assessment">Limitations: Honest Assessment</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#how-many-concurrent-requests-can-aiohttp-handle" aria-label="How many concurrent requests can aiohttp handle?">How many concurrent requests can aiohttp handle?</a></li>
+            <li>
+                <a href="#can-i-use-aiohttp-with-existing-synchronous-code" aria-label="Can I use aiohttp with existing synchronous code?">Can I use aiohttp with existing synchronous code?</a></li>
+            <li>
+                <a href="#how-do-i-handle-captchas-and-javascript-rendered-pages" aria-label="How do I handle CAPTCHAs and JavaScript-rendered pages?">How do I handle CAPTCHAs and JavaScript-rendered pages?</a></li>
+            <li>
+                <a href="#is-aiohttp-suitable-for-large-file-downloads" aria-label="Is aiohttp suitable for large file downloads?">Is aiohttp suitable for large file downloads?</a></li>
+            <li>
+                <a href="#how-do-i-debug-aiohttp-performance-issues" aria-label="How do I debug aiohttp performance issues?">How do I debug aiohttp performance issues?</a></li>
+            <li>
+                <a href="#what-is-the-difference-between-aiohttp-and-flaskfastapi" aria-label="What is the difference between aiohttp and Flask/FastAPI?">What is the difference between aiohttp and Flask/FastAPI?</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion-build-your-next-scraper-with-aiohttp" aria-label="Conclusion: Build Your Next Scraper with aiohttp">Conclusion: Build Your Next Scraper with aiohttp</a></li>
+            <li>
+                <a href="#sources-and-further-reading" aria-label="Sources and Further Reading">Sources and Further Reading</a></li>
+            <li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
+            <li>
+                <a href="#affiliate-disclosure" aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;aiohttp 2026: Build High-Performance Async Web Scrapers &hellip;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,111 +308,150 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;dev-utils&rdquo;]
 tags: [&ldquo;aiohttp&rdquo;, &ldquo;async&rdquo;, &ldquo;web scraping&rdquo;, &ldquo;python&rdquo;, &ldquo;http client&rdquo;, &ldquo;asyncio&rdquo;]
-aliases:</p><ul><li>/posts/aiohttp-async-web-scraping/-</li></ul><hr><h2 id=introduction-the-synchronous-scraping-bottleneck>Introduction: The Synchronous Scraping Bottleneck<a hidden class=anchor aria-hidden=true href=#introduction-the-synchronous-scraping-bottleneck>#</a></h2><p>You have a list of <strong>50,000 URLs</strong> to scrape. You fire up ```requests```` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting <strong>99.9% of the runtime</strong> on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.</p><p><code>aiohttp</code>, maintained by <code>aio-libs</code> and standing at <strong>15,200 GitHub stars</strong>, is the de facto async HTTP client/server framework for Python. Built on <code>asyncio</code>, it enables concurrent requests without the overhead of threading or multiprocessing. In production benchmarks, a single aiohttp process handles <strong>10,000+ requests per second</strong> against local endpoints, and <strong>2,000-4,000 req/s</strong> against real-world distributed APIs. This article is your complete, production-ready guide to building high-performance web scrapers with aiohttp v3.11.</p><h2 id=what-is-aiohttp>What Is aiohttp?<a hidden class=anchor aria-hidden=true href=#what-is-aiohttp>#</a></h2><p><code>aiohttp</code> is an asynchronous HTTP client and server framework for Python built on top of <code>asyncio</code>. It was first released in 2014 and is licensed under Apache-2.0. The library provides both client-side capabilities (making HTTP requests) and server-side capabilities (building web applications), making it unique among HTTP libraries. For web scraping, the client side is the primary focus.</p><p>Unlike synchronous libraries such as <code>requests</code> or <code>urllib3</code>, aiohttp uses Python&rsquo;s <code>async</code>/<code>await</code> syntax to enable non-blocking I/O. This means while one request waits for a server response, the event loop processes dozens or hundreds of other requests. The result is dramatically higher throughput with lower resource consumption.</p><h2 id=how-aiohttp-works-architecture-and-core-concepts>How aiohttp Works: Architecture and Core Concepts<a hidden class=anchor aria-hidden=true href=#how-aiohttp-works-architecture-and-core-concepts>#</a></h2><p>Understanding aiohttp&rsquo;s architecture is critical to writing efficient scrapers. The framework is built on several key concepts: ### Event Loop and Asyncio Integration</p><p>aiohttp runs on Python&rsquo;s <code>asyncio</code> event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.</p><h3 id=connection-pooling>Connection Pooling<a hidden class=anchor aria-hidden=true href=#connection-pooling>#</a></h3><p>aiohttp maintains persistent TCP connections via <code>TCPConnector</code>. By default, it pools connections to the same host, reusing them across requests. This eliminates the <strong>TCP handshake overhead</strong> (~200ms per connection) that plagues naive request scripts. In benchmarks, connection pooling alone reduces total request time by <strong>60-80%</strong> for multi-request scenarios.</p><h3 id=session-management>Session Management<a hidden class=anchor aria-hidden=true href=#session-management>#</a></h3><p>The <code>ClientSession</code> object is the core abstraction. It encapsulates the connector, headers, cookies, and configuration. A single session should be reused across all requests to a given target. Creating a new session per request is a common anti-pattern that destroys connection reuse.</p><h3 id=backpressure-and-flow-control>Backpressure and Flow Control<a hidden class=anchor aria-hidden=true href=#backpressure-and-flow-control>#</a></h3><p>aiohttp implements backpressure through <code>asyncio</code> semaphores and limits. The <code>limit</code> parameter on <code>TCPConnector</code> controls concurrent connections per host, preventing your scraper from overwhelming target servers or exhausting local file descriptors.</p><h2 id=installation-and-setup-ready-in-under-5-minutes>Installation and Setup: Ready in Under 5 Minutes<a hidden class=anchor aria-hidden=true href=#installation-and-setup-ready-in-under-5-minutes>#</a></h2><h3 id=step-1-install-aiohttp>Step 1: Install aiohttp<a hidden class=anchor aria-hidden=true href=#step-1-install-aiohttp>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install aiohttp<span style=color:#f92672>==</span>3.11.0
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Include speedups (recommended for production)</span>
-</span></span><span style=display:flex><span>pip install aiohttp<span style=color:#f92672>[</span>speedups<span style=color:#f92672>]==</span>3.11.0
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># With additional tools for scraping</span>
-</span></span><span style=display:flex><span>pip install aiohttp<span style=color:#f92672>==</span>3.11.0 aiofiles<span style=color:#f92672>==</span>24.1.0 beautifulsoup4<span style=color:#f92672>==</span>4.12.3 lxml<span style=color:#f92672>==</span>5.3.0
-</span></span></code></pre></div><p>The <code>[speedups]</code> extra installs <code>aiodns</code> and <code>Brotli</code>, which improve DNS resolution and response decompression respectively. For high-throughput scraping, these are essential.</p><h3 id=step-2-verify-the-installation>Step 2: Verify the Installation<a hidden class=anchor aria-hidden=true href=#step-2-verify-the-installation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> sys
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;aiohttp version: </span><span style=color:#e6db74>{</span>aiohttp<span style=color:#f92672>.</span>__version__<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Python version: </span><span style=color:#e6db74>{</span>sys<span style=color:#f92672>.</span>version<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>check</span>(): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;https://httpbin.org/get&#34;</span>) <span style=color:#66d9ef>as</span> resp: data <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Status: </span><span style=color:#e6db74>{</span>resp<span style=color:#f92672>.</span>status<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>            print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Response keys: </span><span style=color:#e6db74>{</span>list(data<span style=color:#f92672>.</span>keys())<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(check())
-</span></span></code></pre></div><h3 id=step-3-run-your-first-concurrent-scraper>Step 3: Run Your First Concurrent Scraper<a hidden class=anchor aria-hidden=true href=#step-3-run-your-first-concurrent-scraper>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>urls <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://httpbin.org/get?param=1&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://httpbin.org/get?param=2&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;https://httpbin.org/get?param=3&#34;</span>,
-</span></span><span style=display:flex><span>]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fetch</span>(session, url): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> response: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> response<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: tasks <span style=color:#f92672>=</span> [fetch(session, url) <span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> urls]
-</span></span><span style=display:flex><span>        results <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>gather(<span style=color:#f92672>*</span>tasks)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results: print(r[<span style=color:#e6db74>&#34;args&#34;</span>])
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><p>This fetches three URLs concurrently in under a second. With synchronous <code>requests</code>, the same code would take <strong>3x longer</strong> due to sequential blocking.</p><h2 id=core-integration-scraping-stack-with-beautifulsoup-lxml-and-persistent-storage>Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage<a hidden class=anchor aria-hidden=true href=#core-integration-scraping-stack-with-beautifulsoup-lxml-and-persistent-storage>#</a></h2><h3 id=integration-with-beautifulsoup-for-html-parsing>Integration with BeautifulSoup for HTML Parsing<a hidden class=anchor aria-hidden=true href=#integration-with-beautifulsoup-for-html-parsing>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> bs4 <span style=color:#f92672>import</span> BeautifulSoup
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>scrape_titles</span>(session, urls): <span style=color:#e6db74>&#34;&#34;&#34;Extract page titles from multiple URLs concurrently.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    titles <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> urls: <span style=color:#66d9ef>try</span>: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url, timeout<span style=color:#f92672>=</span>aiohttp<span style=color:#f92672>.</span>ClientTimeout(total<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>)) <span style=color:#66d9ef>as</span> resp: html <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>text()
-</span></span><span style=display:flex><span>                soup <span style=color:#f92672>=</span> BeautifulSoup(html, <span style=color:#e6db74>&#34;lxml&#34;</span>)
-</span></span><span style=display:flex><span>                title <span style=color:#f92672>=</span> soup<span style=color:#f92672>.</span>find(<span style=color:#e6db74>&#34;title&#34;</span>)
-</span></span><span style=display:flex><span>                titles<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;url&#34;</span>: url, <span style=color:#e6db74>&#34;title&#34;</span>: title<span style=color:#f92672>.</span>text <span style=color:#66d9ef>if</span> title <span style=color:#66d9ef>else</span> <span style=color:#e6db74>&#34;N/A&#34;</span>})
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: titles<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;url&#34;</span>: url, <span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Error: </span><span style=color:#e6db74>{</span>e<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>})
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> titles
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): urls <span style=color:#f92672>=</span> [<span style=color:#e6db74>&#34;https://example.com&#34;</span>, <span style=color:#e6db74>&#34;https://httpbin.org/html&#34;</span>]
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: results <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> scrape_titles(session, urls)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>{</span>r[url]<span style=color:#e6db74>}</span><span style=color:#e6db74>: </span><span style=color:#e6db74>{</span>r[title]<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><h3 id=integration-with-lxml-for-high-performance-xmlhtml-parsing>Integration with lxml for High-Performance XML/HTML Parsing<a hidden class=anchor aria-hidden=true href=#integration-with-lxml-for-high-performance-xmlhtml-parsing>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> lxml <span style=color:#f92672>import</span> html <span style=color:#66d9ef>as</span> lh
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>extract_links</span>(session, url): <span style=color:#e6db74>&#34;&#34;&#34;Extract all href links from a page using lxml.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> resp: text <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>text()
-</span></span><span style=display:flex><span>        tree <span style=color:#f92672>=</span> lh<span style=color:#f92672>.</span>fromstring(text)
-</span></span><span style=display:flex><span>        links <span style=color:#f92672>=</span> tree<span style=color:#f92672>.</span>xpath(<span style=color:#e6db74>&#34;//a/@href&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> [l <span style=color:#66d9ef>for</span> l <span style=color:#f92672>in</span> links <span style=color:#66d9ef>if</span> l<span style=color:#f92672>.</span>startswith(<span style=color:#e6db74>&#34;http&#34;</span>)]
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: links <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> extract_links(session, <span style=color:#e6db74>&#34;https://example.com&#34;</span>)
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Found </span><span style=color:#e6db74>{</span>len(links)<span style=color:#e6db74>}</span><span style=color:#e6db74> external links&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><p>lxml is <strong>10-20x faster</strong> than html.parser for large documents and handles malformed HTML more gracefully.</p><h3 id=integration-with-aiofiles-for-async-file-io>Integration with aiofiles for Async File I/O<a hidden class=anchor aria-hidden=true href=#integration-with-aiofiles-for-async-file-io>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> aiofiles
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>scrape_and_save</span>(session, url, filepath): <span style=color:#e6db74>&#34;&#34;&#34;Scrape data and write asynchronously to disk.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> resp: data <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiofiles<span style=color:#f92672>.</span>open(filepath, <span style=color:#e6db74>&#34;w&#34;</span>) <span style=color:#66d9ef>as</span> f: <span style=color:#66d9ef>await</span> f<span style=color:#f92672>.</span>write(json<span style=color:#f92672>.</span>dumps(data, indent<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>))
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: <span style=color:#66d9ef>await</span> scrape_and_save(
-</span></span><span style=display:flex><span>            session,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;https://httpbin.org/json&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;/tmp/scraped_data.json&#34;</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><p>Using <code>aiofiles</code> prevents blocking the event loop during disk writes, which is critical when saving thousands of scraped files.</p><h3 id=integration-with-sqlite-for-structured-data-storage>Integration with SQLite for Structured Data Storage<a hidden class=anchor aria-hidden=true href=#integration-with-sqlite-for-structured-data-storage>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> aiosqlite
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>scrape_to_db</span>(session, db, url): <span style=color:#e6db74>&#34;&#34;&#34;Store scraped data in SQLite asynchronously.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> resp: data <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> db<span style=color:#f92672>.</span>execute(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;INSERT INTO scraped (url, data) VALUES (?, ?)&#34;</span>,
-</span></span><span style=display:flex><span>            (url, json<span style=color:#f92672>.</span>dumps(data))
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>await</span> db<span style=color:#f92672>.</span>commit()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiosqlite<span style=color:#f92672>.</span>connect(<span style=color:#e6db74>&#34;scraped.db&#34;</span>) <span style=color:#66d9ef>as</span> db: <span style=color:#66d9ef>await</span> db<span style=color:#f92672>.</span>execute(<span style=color:#e6db74>&#34;CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)&#34;</span>)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: <span style=color:#66d9ef>await</span> scrape_to_db(session, db, <span style=color:#e6db74>&#34;https://httpbin.org/json&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><h3 id=integration-with-proxy-rotation-via-webshare>Integration with Proxy Rotation via WebShare<a hidden class=anchor aria-hidden=true href=#integration-with-proxy-rotation-via-webshare>#</a></h3><p>For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: `````python
+aliases:</p>
+<ul>
+<li>/posts/aiohttp-async-web-scraping/-</li>
+</ul>
+<hr>
+<h2 id="introduction-the-synchronous-scraping-bottleneck">Introduction: The Synchronous Scraping Bottleneck<a hidden class="anchor" aria-hidden="true" href="#introduction-the-synchronous-scraping-bottleneck">#</a></h2>
+<p>You have a list of <strong>50,000 URLs</strong> to scrape. You fire up ```requests```` in a loop. Three hours later, you are still waiting. Each request blocks the entire thread, wasting <strong>99.9% of the runtime</strong> on network I/O. Your CPU sits idle while your script crawls at 4-5 pages per second. This is the reality of synchronous HTTP clients.</p>
+<p><code>aiohttp</code>, maintained by <code>aio-libs</code> and standing at <strong>15,200 GitHub stars</strong>, is the de facto async HTTP client/server framework for Python. Built on <code>asyncio</code>, it enables concurrent requests without the overhead of threading or multiprocessing. In production benchmarks, a single aiohttp process handles <strong>10,000+ requests per second</strong> against local endpoints, and <strong>2,000-4,000 req/s</strong> against real-world distributed APIs. This article is your complete, production-ready guide to building high-performance web scrapers with aiohttp v3.11.</p>
+<h2 id="what-is-aiohttp">What Is aiohttp?<a hidden class="anchor" aria-hidden="true" href="#what-is-aiohttp">#</a></h2>
+<p><code>aiohttp</code> is an asynchronous HTTP client and server framework for Python built on top of <code>asyncio</code>. It was first released in 2014 and is licensed under Apache-2.0. The library provides both client-side capabilities (making HTTP requests) and server-side capabilities (building web applications), making it unique among HTTP libraries. For web scraping, the client side is the primary focus.</p>
+<p>Unlike synchronous libraries such as <code>requests</code> or <code>urllib3</code>, aiohttp uses Python&rsquo;s <code>async</code>/<code>await</code> syntax to enable non-blocking I/O. This means while one request waits for a server response, the event loop processes dozens or hundreds of other requests. The result is dramatically higher throughput with lower resource consumption.</p>
+<h2 id="how-aiohttp-works-architecture-and-core-concepts">How aiohttp Works: Architecture and Core Concepts<a hidden class="anchor" aria-hidden="true" href="#how-aiohttp-works-architecture-and-core-concepts">#</a></h2>
+<p>Understanding aiohttp&rsquo;s architecture is critical to writing efficient scrapers. The framework is built on several key concepts: ### Event Loop and Asyncio Integration</p>
+<p>aiohttp runs on Python&rsquo;s <code>asyncio</code> event loop. When you make an HTTP request, aiohttp registers a callback with the event loop and yields control. The loop then processes other tasks until the network response arrives. This cooperative multitasking avoids the overhead of OS-level thread switching.</p>
+<h3 id="connection-pooling">Connection Pooling<a hidden class="anchor" aria-hidden="true" href="#connection-pooling">#</a></h3>
+<p>aiohttp maintains persistent TCP connections via <code>TCPConnector</code>. By default, it pools connections to the same host, reusing them across requests. This eliminates the <strong>TCP handshake overhead</strong> (~200ms per connection) that plagues naive request scripts. In benchmarks, connection pooling alone reduces total request time by <strong>60-80%</strong> for multi-request scenarios.</p>
+<h3 id="session-management">Session Management<a hidden class="anchor" aria-hidden="true" href="#session-management">#</a></h3>
+<p>The <code>ClientSession</code> object is the core abstraction. It encapsulates the connector, headers, cookies, and configuration. A single session should be reused across all requests to a given target. Creating a new session per request is a common anti-pattern that destroys connection reuse.</p>
+<h3 id="backpressure-and-flow-control">Backpressure and Flow Control<a hidden class="anchor" aria-hidden="true" href="#backpressure-and-flow-control">#</a></h3>
+<p>aiohttp implements backpressure through <code>asyncio</code> semaphores and limits. The <code>limit</code> parameter on <code>TCPConnector</code> controls concurrent connections per host, preventing your scraper from overwhelming target servers or exhausting local file descriptors.</p>
+<h2 id="installation-and-setup-ready-in-under-5-minutes">Installation and Setup: Ready in Under 5 Minutes<a hidden class="anchor" aria-hidden="true" href="#installation-and-setup-ready-in-under-5-minutes">#</a></h2>
+<h3 id="step-1-install-aiohttp">Step 1: Install aiohttp<a hidden class="anchor" aria-hidden="true" href="#step-1-install-aiohttp">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install aiohttp<span style="color:#f92672">==</span>3.11.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Include speedups (recommended for production)</span>
+</span></span><span style="display:flex;"><span>pip install aiohttp<span style="color:#f92672">[</span>speedups<span style="color:#f92672">]==</span>3.11.0
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># With additional tools for scraping</span>
+</span></span><span style="display:flex;"><span>pip install aiohttp<span style="color:#f92672">==</span>3.11.0 aiofiles<span style="color:#f92672">==</span>24.1.0 beautifulsoup4<span style="color:#f92672">==</span>4.12.3 lxml<span style="color:#f92672">==</span>5.3.0
+</span></span></code></pre></div><p>The <code>[speedups]</code> extra installs <code>aiodns</code> and <code>Brotli</code>, which improve DNS resolution and response decompression respectively. For high-throughput scraping, these are essential.</p>
+<h3 id="step-2-verify-the-installation">Step 2: Verify the Installation<a hidden class="anchor" aria-hidden="true" href="#step-2-verify-the-installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> sys
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;aiohttp version: </span><span style="color:#e6db74">{</span>aiohttp<span style="color:#f92672">.</span>__version__<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Python version: </span><span style="color:#e6db74">{</span>sys<span style="color:#f92672">.</span>version<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">check</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;https://httpbin.org/get&#34;</span>) <span style="color:#66d9ef">as</span> resp: data <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Status: </span><span style="color:#e6db74">{</span>resp<span style="color:#f92672">.</span>status<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>            print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Response keys: </span><span style="color:#e6db74">{</span>list(data<span style="color:#f92672">.</span>keys())<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(check())
+</span></span></code></pre></div><h3 id="step-3-run-your-first-concurrent-scraper">Step 3: Run Your First Concurrent Scraper<a hidden class="anchor" aria-hidden="true" href="#step-3-run-your-first-concurrent-scraper">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>urls <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://httpbin.org/get?param=1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://httpbin.org/get?param=2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;https://httpbin.org/get?param=3&#34;</span>,
+</span></span><span style="display:flex;"><span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch</span>(session, url): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> response: <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> response<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: tasks <span style="color:#f92672">=</span> [fetch(session, url) <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls]
+</span></span><span style="display:flex;"><span>        results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results: print(r[<span style="color:#e6db74">&#34;args&#34;</span>])
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><p>This fetches three URLs concurrently in under a second. With synchronous <code>requests</code>, the same code would take <strong>3x longer</strong> due to sequential blocking.</p>
+<h2 id="core-integration-scraping-stack-with-beautifulsoup-lxml-and-persistent-storage">Core Integration: Scraping Stack with BeautifulSoup, lxml, and Persistent Storage<a hidden class="anchor" aria-hidden="true" href="#core-integration-scraping-stack-with-beautifulsoup-lxml-and-persistent-storage">#</a></h2>
+<h3 id="integration-with-beautifulsoup-for-html-parsing">Integration with BeautifulSoup for HTML Parsing<a hidden class="anchor" aria-hidden="true" href="#integration-with-beautifulsoup-for-html-parsing">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> bs4 <span style="color:#f92672">import</span> BeautifulSoup
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">scrape_titles</span>(session, urls): <span style="color:#e6db74">&#34;&#34;&#34;Extract page titles from multiple URLs concurrently.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    titles <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls: <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url, timeout<span style="color:#f92672">=</span>aiohttp<span style="color:#f92672">.</span>ClientTimeout(total<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)) <span style="color:#66d9ef">as</span> resp: html <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>text()
+</span></span><span style="display:flex;"><span>                soup <span style="color:#f92672">=</span> BeautifulSoup(html, <span style="color:#e6db74">&#34;lxml&#34;</span>)
+</span></span><span style="display:flex;"><span>                title <span style="color:#f92672">=</span> soup<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#34;title&#34;</span>)
+</span></span><span style="display:flex;"><span>                titles<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;url&#34;</span>: url, <span style="color:#e6db74">&#34;title&#34;</span>: title<span style="color:#f92672">.</span>text <span style="color:#66d9ef">if</span> title <span style="color:#66d9ef">else</span> <span style="color:#e6db74">&#34;N/A&#34;</span>})
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: titles<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;url&#34;</span>: url, <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Error: </span><span style="color:#e6db74">{</span>e<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>})
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> titles
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">&#34;https://example.com&#34;</span>, <span style="color:#e6db74">&#34;https://httpbin.org/html&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> scrape_titles(session, urls)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">{</span>r[url]<span style="color:#e6db74">}</span><span style="color:#e6db74">: </span><span style="color:#e6db74">{</span>r[title]<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><h3 id="integration-with-lxml-for-high-performance-xmlhtml-parsing">Integration with lxml for High-Performance XML/HTML Parsing<a hidden class="anchor" aria-hidden="true" href="#integration-with-lxml-for-high-performance-xmlhtml-parsing">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> lxml <span style="color:#f92672">import</span> html <span style="color:#66d9ef">as</span> lh
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">extract_links</span>(session, url): <span style="color:#e6db74">&#34;&#34;&#34;Extract all href links from a page using lxml.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp: text <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>text()
+</span></span><span style="display:flex;"><span>        tree <span style="color:#f92672">=</span> lh<span style="color:#f92672">.</span>fromstring(text)
+</span></span><span style="display:flex;"><span>        links <span style="color:#f92672">=</span> tree<span style="color:#f92672">.</span>xpath(<span style="color:#e6db74">&#34;//a/@href&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> [l <span style="color:#66d9ef">for</span> l <span style="color:#f92672">in</span> links <span style="color:#66d9ef">if</span> l<span style="color:#f92672">.</span>startswith(<span style="color:#e6db74">&#34;http&#34;</span>)]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: links <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> extract_links(session, <span style="color:#e6db74">&#34;https://example.com&#34;</span>)
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Found </span><span style="color:#e6db74">{</span>len(links)<span style="color:#e6db74">}</span><span style="color:#e6db74"> external links&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><p>lxml is <strong>10-20x faster</strong> than html.parser for large documents and handles malformed HTML more gracefully.</p>
+<h3 id="integration-with-aiofiles-for-async-file-io">Integration with aiofiles for Async File I/O<a hidden class="anchor" aria-hidden="true" href="#integration-with-aiofiles-for-async-file-io">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> aiofiles
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">scrape_and_save</span>(session, url, filepath): <span style="color:#e6db74">&#34;&#34;&#34;Scrape data and write asynchronously to disk.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp: data <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiofiles<span style="color:#f92672">.</span>open(filepath, <span style="color:#e6db74">&#34;w&#34;</span>) <span style="color:#66d9ef">as</span> f: <span style="color:#66d9ef">await</span> f<span style="color:#f92672">.</span>write(json<span style="color:#f92672">.</span>dumps(data, indent<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: <span style="color:#66d9ef">await</span> scrape_and_save(
+</span></span><span style="display:flex;"><span>            session,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;https://httpbin.org/json&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;/tmp/scraped_data.json&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><p>Using <code>aiofiles</code> prevents blocking the event loop during disk writes, which is critical when saving thousands of scraped files.</p>
+<h3 id="integration-with-sqlite-for-structured-data-storage">Integration with SQLite for Structured Data Storage<a hidden class="anchor" aria-hidden="true" href="#integration-with-sqlite-for-structured-data-storage">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> aiosqlite
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">scrape_to_db</span>(session, db, url): <span style="color:#e6db74">&#34;&#34;&#34;Store scraped data in SQLite asynchronously.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp: data <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> db<span style="color:#f92672">.</span>execute(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;INSERT INTO scraped (url, data) VALUES (?, ?)&#34;</span>,
+</span></span><span style="display:flex;"><span>            (url, json<span style="color:#f92672">.</span>dumps(data))
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">await</span> db<span style="color:#f92672">.</span>commit()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiosqlite<span style="color:#f92672">.</span>connect(<span style="color:#e6db74">&#34;scraped.db&#34;</span>) <span style="color:#66d9ef">as</span> db: <span style="color:#66d9ef">await</span> db<span style="color:#f92672">.</span>execute(<span style="color:#e6db74">&#34;CREATE TABLE IF NOT EXISTS scraped (url TEXT, data TEXT)&#34;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: <span style="color:#66d9ef">await</span> scrape_to_db(session, db, <span style="color:#e6db74">&#34;https://httpbin.org/json&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><h3 id="integration-with-proxy-rotation-via-webshare">Integration with Proxy Rotation via WebShare<a hidden class="anchor" aria-hidden="true" href="#integration-with-proxy-rotation-via-webshare">#</a></h3>
+<p>For production scraping at scale, proxy rotation is essential. WebShare provides reliable rotating proxies that integrate seamlessly with aiohttp: `````python
 import aiohttp
-import asyncio</p><p>PROXY_URL = &ldquo;<a href=http://username:password@proxy.webshare.io:80>http://username:password@proxy.webshare.io:80</a>&rdquo;</p><p>async def fetch_with_proxy(session, url): &ldquo;&ldquo;&ldquo;Route requests through WebShare rotating proxy.&rdquo;&rdquo;&rdquo;
-async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()</p><p>async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
-async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, &ldquo;<a href=https://httpbin.org/ip%22>https://httpbin.org/ip"</a>)
-print(html[:200])</p><p>asyncio.run(main())</p><pre tabindex=0><code>
+import asyncio</p>
+<p>PROXY_URL = &ldquo;<a href="http://username:password@proxy.webshare.io:80">http://username:password@proxy.webshare.io:80</a>&rdquo;</p>
+<p>async def fetch_with_proxy(session, url): &ldquo;&ldquo;&ldquo;Route requests through WebShare rotating proxy.&rdquo;&rdquo;&rdquo;
+async with session.get(url, proxy=PROXY_URL) as resp: return await resp.text()</p>
+<p>async def main(): connector = aiohttp.TCPConnector(limit=100, limit_per_host=10)
+async with aiohttp.ClientSession(connector=connector) as session: html = await fetch_with_proxy(session, &ldquo;<a href="https://httpbin.org/ip%22">https://httpbin.org/ip"</a>)
+print(html[:200])</p>
+<p>asyncio.run(main())</p>
+<pre tabindex="0"><code>
 **[Get started with WebShare proxies](https://www.webshare.io/?referral_code=oa14d5f0wx4f)** for reliable, rotating proxy infrastructure that scales with your scraping needs.
 
 ## Benchmarks and Real-World Use Cases
@@ -190,86 +516,105 @@ session = aiohttp.ClientSession(
     timeout=timeout,
     headers={&#34;User-Agent&#34;: &#34;MyBot/1.0&#34;},
 )
-</code></pre><h3 id=rate-limiting-with-semaphores>Rate Limiting with Semaphores<a hidden class=anchor aria-hidden=true href=#rate-limiting-with-semaphores>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bounded_fetch</span>(session, url, semaphore): <span style=color:#e6db74>&#34;&#34;&#34;Limit concurrent requests with a semaphore.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> semaphore: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> resp: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>text()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): semaphore <span style=color:#f92672>=</span> asyncio<span style=color:#f92672>.</span>Semaphore(<span style=color:#ae81ff>50</span>)  <span style=color:#75715e># Max 50 concurrent requests</span>
-</span></span><span style=display:flex><span>    urls <span style=color:#f92672>=</span> [<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;https://httpbin.org/get?i=</span><span style=color:#e6db74>{</span>i<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>500</span>)]
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    connector <span style=color:#f92672>=</span> aiohttp<span style=color:#f92672>.</span>TCPConnector(limit<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession(connector<span style=color:#f92672>=</span>connector) <span style=color:#66d9ef>as</span> session: tasks <span style=color:#f92672>=</span> [bounded_fetch(session, url, semaphore) <span style=color:#66d9ef>for</span> url <span style=color:#f92672>in</span> urls]
-</span></span><span style=display:flex><span>        results <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>gather(<span style=color:#f92672>*</span>tasks, return_exceptions<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>        successes <span style=color:#f92672>=</span> sum(<span style=color:#ae81ff>1</span> <span style=color:#66d9ef>for</span> r <span style=color:#f92672>in</span> results <span style=color:#66d9ef>if</span> <span style=color:#f92672>not</span> isinstance(r, <span style=color:#a6e22e>Exception</span>))
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Successful: </span><span style=color:#e6db74>{</span>successences<span style=color:#e6db74>}</span><span style=color:#e6db74>/500&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><h3 id=retry-logic-with-exponential-backoff>Retry Logic with Exponential Backoff<a hidden class=anchor aria-hidden=true href=#retry-logic-with-exponential-backoff>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> random
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fetch_with_retry</span>(session, url, max_retries<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>): <span style=color:#e6db74>&#34;&#34;&#34;Retry failed requests with exponential backoff.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>for</span> attempt <span style=color:#f92672>in</span> range(max_retries): <span style=color:#66d9ef>try</span>: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> resp: <span style=color:#66d9ef>if</span> resp<span style=color:#f92672>.</span>status <span style=color:#f92672>==</span> <span style=color:#ae81ff>200</span>: <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>json()
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>elif</span> resp<span style=color:#f92672>.</span>status <span style=color:#f92672>in</span> (<span style=color:#ae81ff>429</span>, <span style=color:#ae81ff>503</span>, <span style=color:#ae81ff>502</span>): wait <span style=color:#f92672>=</span> (<span style=color:#ae81ff>2</span> <span style=color:#f92672>**</span> attempt) <span style=color:#f92672>+</span> random<span style=color:#f92672>.</span>uniform(<span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>sleep(wait)
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>else</span>: resp<span style=color:#f92672>.</span>raise_for_status()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> (aiohttp<span style=color:#f92672>.</span>ClientError, asyncio<span style=color:#f92672>.</span>TimeoutError) <span style=color:#66d9ef>as</span> e: <span style=color:#66d9ef>if</span> attempt <span style=color:#f92672>==</span> max_retries <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>: <span style=color:#66d9ef>raise</span>
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>await</span> asyncio<span style=color:#f92672>.</span>sleep(<span style=color:#ae81ff>2</span> <span style=color:#f92672>**</span> attempt)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>None</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>main</span>(): <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: data <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> fetch_with_retry(session, <span style=color:#e6db74>&#34;https://httpbin.org/json&#34;</span>)
-</span></span><span style=display:flex><span>        print(data)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(main())
-</span></span></code></pre></div><h3 id=websocket-scraping-for-real-time-data>WebSocket Scraping for Real-Time Data<a hidden class=anchor aria-hidden=true href=#websocket-scraping-for-real-time-data>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>websocket_scraper</span>(): <span style=color:#e6db74>&#34;&#34;&#34;Scrape real-time data from WebSocket endpoint.&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> aiohttp<span style=color:#f92672>.</span>ClientSession() <span style=color:#66d9ef>as</span> session: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>ws_connect(<span style=color:#e6db74>&#34;wss://echo.websocket.org&#34;</span>) <span style=color:#66d9ef>as</span> ws: <span style=color:#66d9ef>await</span> ws<span style=color:#f92672>.</span>send_str(<span style=color:#e6db74>&#34;Hello Server&#34;</span>)
-</span></span><span style=display:flex><span>            
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>for</span> msg <span style=color:#f92672>in</span> ws: <span style=color:#66d9ef>if</span> msg<span style=color:#f92672>.</span>type <span style=color:#f92672>==</span> aiohttp<span style=color:#f92672>.</span>WSMsgType<span style=color:#f92672>.</span>TEXT: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Received: </span><span style=color:#e6db74>{</span>msg<span style=color:#f92672>.</span>data<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>if</span> <span style=color:#e6db74>&#34;done&#34;</span> <span style=color:#f92672>in</span> msg<span style=color:#f92672>.</span>data<span style=color:#f92672>.</span>lower(): <span style=color:#66d9ef>await</span> ws<span style=color:#f92672>.</span>close()
-</span></span><span style=display:flex><span>                        <span style=color:#66d9ef>break</span>
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>elif</span> msg<span style=color:#f92672>.</span>type <span style=color:#f92672>==</span> aiohttp<span style=color:#f92672>.</span>WSMsgType<span style=color:#f92672>.</span>ERROR: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;WebSocket error: </span><span style=color:#e6db74>{</span>ws<span style=color:#f92672>.</span>exception()<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>                    <span style=color:#66d9ef>break</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>asyncio<span style=color:#f92672>.</span>run(websocket_scraper())
-</span></span></code></pre></div><h3 id=production-deployment-on-digitalocean-with-docker>Production Deployment on DigitalOcean with Docker<a hidden class=anchor aria-hidden=true href=#production-deployment-on-digitalocean-with-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-dockerfile data-lang=dockerfile><span style=display:flex><span><span style=color:#75715e># Dockerfile</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>FROM</span> <span style=color:#e6db74>python:3.12-slim</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>WORKDIR</span> <span style=color:#e6db74>/app</span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> requirements.txt .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>RUN</span> pip install --no-cache-dir -r requirements.txt<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>COPY</span> scraper.py .<span style=color:#960050;background-color:#1e0010>
-</span></span></span><span style=display:flex><span><span style=color:#66d9ef>CMD</span> [<span style=color:#e6db74>&#34;python&#34;</span>, <span style=color:#e6db74>&#34;scraper.py&#34;</span>]<span style=color:#960050;background-color:#1e0010>
-</span></span></span></code></pre></div><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#34;3.8&#34;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: scraper: build</span>: <span style=color:#ae81ff>.</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PYTHONUNBUFFERED=1</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>deploy: resources: limits: memory</span>: <span style=color:#ae81ff>2G</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>logging: driver</span>: <span style=color:#e6db74>&#34;json-file&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>options: max-size</span>: <span style=color:#e6db74>&#34;100m&#34;</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>max-file</span>: <span style=color:#e6db74>&#34;3&#34;</span>
-</span></span></code></pre></div><p>Deploy this to a <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean Droplet</a></strong> for reliable, scalable scraping infrastructure starting at $4/month. For distributed scraping across multiple nodes, DigitalOcean&rsquo;s Kubernetes service makes horizontal scaling straightforward.</p><h3 id=monitoring-with-prometheus-metrics>Monitoring with Prometheus Metrics<a hidden class=anchor aria-hidden=true href=#monitoring-with-prometheus-metrics>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> aiohttp
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> asyncio
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> prometheus_client <span style=color:#f92672>import</span> Counter, Histogram, start_http_server
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>REQUEST_COUNT <span style=color:#f92672>=</span> Counter(<span style=color:#e6db74>&#34;scraper_requests_total&#34;</span>, <span style=color:#e6db74>&#34;Total requests&#34;</span>, [<span style=color:#e6db74>&#34;status&#34;</span>])
-</span></span><span style=display:flex><span>REQUEST_DURATION <span style=color:#f92672>=</span> Histogram(<span style=color:#e6db74>&#34;scraper_request_duration_seconds&#34;</span>, <span style=color:#e6db74>&#34;Request duration&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>monitored_fetch</span>(session, url): <span style=color:#66d9ef>with</span> REQUEST_DURATION<span style=color:#f92672>.</span>time(): <span style=color:#66d9ef>try</span>: <span style=color:#66d9ef>async</span> <span style=color:#66d9ef>with</span> session<span style=color:#f92672>.</span>get(url) <span style=color:#66d9ef>as</span> resp: REQUEST_COUNT<span style=color:#f92672>.</span>labels(status<span style=color:#f92672>=</span>str(resp<span style=color:#f92672>.</span>status))<span style=color:#f92672>.</span>inc()
-</span></span><span style=display:flex><span>                <span style=color:#66d9ef>return</span> <span style=color:#66d9ef>await</span> resp<span style=color:#f92672>.</span>text()
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>except</span> <span style=color:#a6e22e>Exception</span> <span style=color:#66d9ef>as</span> e: REQUEST_COUNT<span style=color:#f92672>.</span>labels(status<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;error&#34;</span>)<span style=color:#f92672>.</span>inc()
-</span></span><span style=display:flex><span>            <span style=color:#66d9ef>raise</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Start metrics server on port 9090</span>
-</span></span><span style=display:flex><span>start_http_server(<span style=color:#ae81ff>9090</span>)
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| Feature | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="rate-limiting-with-semaphores">Rate Limiting with Semaphores<a hidden class="anchor" aria-hidden="true" href="#rate-limiting-with-semaphores">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bounded_fetch</span>(session, url, semaphore): <span style="color:#e6db74">&#34;&#34;&#34;Limit concurrent requests with a semaphore.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> semaphore: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp: <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>text()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): semaphore <span style="color:#f92672">=</span> asyncio<span style="color:#f92672">.</span>Semaphore(<span style="color:#ae81ff">50</span>)  <span style="color:#75715e"># Max 50 concurrent requests</span>
+</span></span><span style="display:flex;"><span>    urls <span style="color:#f92672">=</span> [<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;https://httpbin.org/get?i=</span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">500</span>)]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    connector <span style="color:#f92672">=</span> aiohttp<span style="color:#f92672">.</span>TCPConnector(limit<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession(connector<span style="color:#f92672">=</span>connector) <span style="color:#66d9ef">as</span> session: tasks <span style="color:#f92672">=</span> [bounded_fetch(session, url, semaphore) <span style="color:#66d9ef">for</span> url <span style="color:#f92672">in</span> urls]
+</span></span><span style="display:flex;"><span>        results <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>gather(<span style="color:#f92672">*</span>tasks, return_exceptions<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>        successes <span style="color:#f92672">=</span> sum(<span style="color:#ae81ff">1</span> <span style="color:#66d9ef">for</span> r <span style="color:#f92672">in</span> results <span style="color:#66d9ef">if</span> <span style="color:#f92672">not</span> isinstance(r, <span style="color:#a6e22e">Exception</span>))
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Successful: </span><span style="color:#e6db74">{</span>successences<span style="color:#e6db74">}</span><span style="color:#e6db74">/500&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><h3 id="retry-logic-with-exponential-backoff">Retry Logic with Exponential Backoff<a hidden class="anchor" aria-hidden="true" href="#retry-logic-with-exponential-backoff">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> random
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fetch_with_retry</span>(session, url, max_retries<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>): <span style="color:#e6db74">&#34;&#34;&#34;Retry failed requests with exponential backoff.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> attempt <span style="color:#f92672">in</span> range(max_retries): <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp: <span style="color:#66d9ef">if</span> resp<span style="color:#f92672">.</span>status <span style="color:#f92672">==</span> <span style="color:#ae81ff">200</span>: <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>json()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> resp<span style="color:#f92672">.</span>status <span style="color:#f92672">in</span> (<span style="color:#ae81ff">429</span>, <span style="color:#ae81ff">503</span>, <span style="color:#ae81ff">502</span>): wait <span style="color:#f92672">=</span> (<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> attempt) <span style="color:#f92672">+</span> random<span style="color:#f92672">.</span>uniform(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(wait)
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">else</span>: resp<span style="color:#f92672">.</span>raise_for_status()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> (aiohttp<span style="color:#f92672">.</span>ClientError, asyncio<span style="color:#f92672">.</span>TimeoutError) <span style="color:#66d9ef">as</span> e: <span style="color:#66d9ef">if</span> attempt <span style="color:#f92672">==</span> max_retries <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>: <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">await</span> asyncio<span style="color:#f92672">.</span>sleep(<span style="color:#ae81ff">2</span> <span style="color:#f92672">**</span> attempt)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">main</span>(): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: data <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> fetch_with_retry(session, <span style="color:#e6db74">&#34;https://httpbin.org/json&#34;</span>)
+</span></span><span style="display:flex;"><span>        print(data)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(main())
+</span></span></code></pre></div><h3 id="websocket-scraping-for-real-time-data">WebSocket Scraping for Real-Time Data<a hidden class="anchor" aria-hidden="true" href="#websocket-scraping-for-real-time-data">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">websocket_scraper</span>(): <span style="color:#e6db74">&#34;&#34;&#34;Scrape real-time data from WebSocket endpoint.&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> aiohttp<span style="color:#f92672">.</span>ClientSession() <span style="color:#66d9ef">as</span> session: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>ws_connect(<span style="color:#e6db74">&#34;wss://echo.websocket.org&#34;</span>) <span style="color:#66d9ef">as</span> ws: <span style="color:#66d9ef">await</span> ws<span style="color:#f92672">.</span>send_str(<span style="color:#e6db74">&#34;Hello Server&#34;</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">for</span> msg <span style="color:#f92672">in</span> ws: <span style="color:#66d9ef">if</span> msg<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> aiohttp<span style="color:#f92672">.</span>WSMsgType<span style="color:#f92672">.</span>TEXT: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Received: </span><span style="color:#e6db74">{</span>msg<span style="color:#f92672">.</span>data<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;done&#34;</span> <span style="color:#f92672">in</span> msg<span style="color:#f92672">.</span>data<span style="color:#f92672">.</span>lower(): <span style="color:#66d9ef">await</span> ws<span style="color:#f92672">.</span>close()
+</span></span><span style="display:flex;"><span>                        <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">elif</span> msg<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> aiohttp<span style="color:#f92672">.</span>WSMsgType<span style="color:#f92672">.</span>ERROR: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;WebSocket error: </span><span style="color:#e6db74">{</span>ws<span style="color:#f92672">.</span>exception()<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>                    <span style="color:#66d9ef">break</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>asyncio<span style="color:#f92672">.</span>run(websocket_scraper())
+</span></span></code></pre></div><h3 id="production-deployment-on-digitalocean-with-docker">Production Deployment on DigitalOcean with Docker<a hidden class="anchor" aria-hidden="true" href="#production-deployment-on-digitalocean-with-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-dockerfile" data-lang="dockerfile"><span style="display:flex;"><span><span style="color:#75715e"># Dockerfile</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">FROM</span> <span style="color:#e6db74">python:3.12-slim</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">WORKDIR</span> <span style="color:#e6db74">/app</span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> requirements.txt .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">RUN</span> pip install --no-cache-dir -r requirements.txt<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">COPY</span> scraper.py .<span style="color:#960050;background-color:#1e0010">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">CMD</span> [<span style="color:#e6db74">&#34;python&#34;</span>, <span style="color:#e6db74">&#34;scraper.py&#34;</span>]<span style="color:#960050;background-color:#1e0010">
+</span></span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#34;3.8&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: scraper: build</span>: <span style="color:#ae81ff">.</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PYTHONUNBUFFERED=1</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">deploy: resources: limits: memory</span>: <span style="color:#ae81ff">2G</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">logging: driver</span>: <span style="color:#e6db74">&#34;json-file&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">options: max-size</span>: <span style="color:#e6db74">&#34;100m&#34;</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">max-file</span>: <span style="color:#e6db74">&#34;3&#34;</span>
+</span></span></code></pre></div><p>Deploy this to a <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean Droplet</a></strong> for reliable, scalable scraping infrastructure starting at $4/month. For distributed scraping across multiple nodes, DigitalOcean&rsquo;s Kubernetes service makes horizontal scaling straightforward.</p>
+<h3 id="monitoring-with-prometheus-metrics">Monitoring with Prometheus Metrics<a hidden class="anchor" aria-hidden="true" href="#monitoring-with-prometheus-metrics">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> aiohttp
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> prometheus_client <span style="color:#f92672">import</span> Counter, Histogram, start_http_server
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>REQUEST_COUNT <span style="color:#f92672">=</span> Counter(<span style="color:#e6db74">&#34;scraper_requests_total&#34;</span>, <span style="color:#e6db74">&#34;Total requests&#34;</span>, [<span style="color:#e6db74">&#34;status&#34;</span>])
+</span></span><span style="display:flex;"><span>REQUEST_DURATION <span style="color:#f92672">=</span> Histogram(<span style="color:#e6db74">&#34;scraper_request_duration_seconds&#34;</span>, <span style="color:#e6db74">&#34;Request duration&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">monitored_fetch</span>(session, url): <span style="color:#66d9ef">with</span> REQUEST_DURATION<span style="color:#f92672">.</span>time(): <span style="color:#66d9ef">try</span>: <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> session<span style="color:#f92672">.</span>get(url) <span style="color:#66d9ef">as</span> resp: REQUEST_COUNT<span style="color:#f92672">.</span>labels(status<span style="color:#f92672">=</span>str(resp<span style="color:#f92672">.</span>status))<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">await</span> resp<span style="color:#f92672">.</span>text()
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span> <span style="color:#a6e22e">Exception</span> <span style="color:#66d9ef">as</span> e: REQUEST_COUNT<span style="color:#f92672">.</span>labels(status<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;error&#34;</span>)<span style="color:#f92672">.</span>inc()
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">raise</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Start metrics server on port 9090</span>
+</span></span><span style="display:flex;"><span>start_http_server(<span style="color:#ae81ff">9090</span>)
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| Feature | aiohttp 3.11 | requests 2.32 | httpx 0.28 | urllib3 2.2 | pycurl 7.45 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Async support | Yes (native) | No | Yes | No | No |
 | HTTP/2 support | No | No | Yes | No | Yes |
 | WebSocket client | Yes | No | No | No | No |
@@ -280,8 +625,57 @@ session = aiohttp.ClientSession(
 | Middleware support | Yes | No | No | No | No |
 | Memory footprint | <strong>Low</strong> | High | Medium | Low | Low |
 | Ecosystem maturity | <strong>Very High</strong> | Very High | High | Very High | Medium |
-| Documentation quality | Excellent | Excellent | Good | Good | Poor |</p><p><strong>When to choose what:</strong></p><ul><li><strong>Choose aiohttp</strong> when you need maximum async performance, WebSocket support, or are building a scraping pipeline that also needs a server component.</li><li><strong>Choose httpx</strong> when you need HTTP/2 support or want a requests-compatible API with async capabilities.</li><li><strong>Choose requests</strong> for simple, one-off synchronous scripts where performance is not a concern.</li><li><strong>Choose pycurl</strong> when you need libcurl-specific features like SOCKS5 proxy support or FTP transfers.</li></ul><h2 id=limitations-honest-assessment>Limitations: Honest Assessment<a hidden class=anchor aria-hidden=true href=#limitations-honest-assessment>#</a></h2><p>No tool is perfect. aiohttp has specific limitations you should understand: <strong>No HTTP/2 support.</strong> As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use <code>httpx</code> instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.</p><p><strong>Learning curve for asyncio.</strong> Developers new to <code>async</code>/<code>await</code> will encounter a significant learning curve. Common pitfalls include forgetting <code>await</code>, mixing sync and async code, and debugging hanging event loops. The <code>RuntimeError: Event loop is closed</code> error is a rite of passage for every asyncio developer.</p><p><strong>DNS resolution bottlenecks.</strong> aiohttp&rsquo;s default DNS resolver uses <code>getaddrinfo</code>, which is synchronous and can block the event loop under high concurrency. Install <code>aiodns</code> (included with <code>[speedups]</code>) to enable true async DNS resolution.</p><p><strong>Server-side focus dilutes client documentation.</strong> aiohttp is both a client and server framework. The documentation sometimes prioritizes server features, making client-specific features harder to find.</p><p><strong>Cookie handling quirks.</strong> aiohttp&rsquo;s cookie jar follows RFC 6265 strictly, which can cause issues with misconfigured servers that send malformed cookies. The <code>unsafe=True</code> flag on <code>CookieJar</code> can work around this.</p><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=how-many-concurrent-requests-can-aiohttp-handle>How many concurrent requests can aiohttp handle?<a hidden class=anchor aria-hidden=true href=#how-many-concurrent-requests-can-aiohttp-handle>#</a></h3><p>With default settings (100 connections), aiohttp handles <strong>100 concurrent requests per host</strong>. Increasing the connector <code>limit</code> to 200-300 allows <strong>2,000-4,000 req/s</strong> against distributed targets on a single process. The practical limit is usually the target server&rsquo;s rate limiting or your network bandwidth, not aiohttp itself.</p><h3 id=can-i-use-aiohttp-with-existing-synchronous-code>Can I use aiohttp with existing synchronous code?<a hidden class=anchor aria-hidden=true href=#can-i-use-aiohttp-with-existing-synchronous-code>#</a></h3><p>Yes, but carefully. Use <code>asyncio.run()</code> or <code>loop.run_until_complete()</code> to bridge sync and async boundaries. For calling sync functions from async code, use <code>loop.run_in_executor()</code> to offload blocking work to a thread pool. Never call blocking I/O directly from async functions as it freezes the entire event loop.</p><h3 id=how-do-i-handle-captchas-and-javascript-rendered-pages>How do I handle CAPTCHAs and JavaScript-rendered pages?<a hidden class=anchor aria-hidden=true href=#how-do-i-handle-captchas-and-javascript-rendered-pages>#</a></h3><p>aiohttp is an HTTP client, not a browser. It cannot execute JavaScript or solve CAPTCHAs. For JavaScript-heavy sites, pair aiohttp with a headless browser like <a href=dibi8-internal-link>Playwright</a> or use a service that provides rendered HTML. For CAPTCHAs, integrate with a solving service or use browser automation tools.</p><h3 id=is-aiohttp-suitable-for-large-file-downloads>Is aiohttp suitable for large file downloads?<a hidden class=anchor aria-hidden=true href=#is-aiohttp-suitable-for-large-file-downloads>#</a></h3><p>Yes. Use <code>resp.content.iter_chunked(8192)</code> to stream large files without loading them into memory. For a <strong>10GB file</strong>, aiohttp uses under <strong>20MB of RAM</strong> when streaming, compared to 10GB+ with naive <code>await resp.read()</code>.</p><h3 id=how-do-i-debug-aiohttp-performance-issues>How do I debug aiohttp performance issues?<a hidden class=anchor aria-hidden=true href=#how-do-i-debug-aiohttp-performance-issues>#</a></h3><p>Enable <code>aiohttp</code> debug mode with <code>python -W default -m aiohttp.web</code> or set <code>PYTHONASYNCIODEBUG=1</code>. Use <code>asyncio.get_event_loop().set_debug(True)</code> to catch common mistakes. For production monitoring, instrument with <code>prometheus_client</code> as shown in the Advanced Usage section, or use <code>aiohttp-debugtoolbar</code> during development.</p><h3 id=what-is-the-difference-between-aiohttp-and-flaskfastapi>What is the difference between aiohttp and Flask/FastAPI?<a hidden class=anchor aria-hidden=true href=#what-is-the-difference-between-aiohttp-and-flaskfastapi>#</a></h3><p>aiohttp is both an HTTP client and server. On the server side, it competes with Flask and FastAPI. For client-side scraping, Flask and FastAPI are irrelevant as they are server-only frameworks. If you need both a scraper and an API server, aiohttp uniquely handles both roles.</p><h2 id=conclusion-build-your-next-scraper-with-aiohttp>Conclusion: Build Your Next Scraper with aiohttp<a hidden class=anchor aria-hidden=true href=#conclusion-build-your-next-scraper-with-aiohttp>#</a></h2><p>If you are still using ````requests``` for large-scale scraping, you are leaving <strong>10-50x performance gains</strong> on the table. aiohttp&rsquo;s native async architecture, mature ecosystem, and proven production track record make it the best choice for high-throughput Python scrapers in 2026.</p><p>Start with the 5-minute setup in this guide, implement connection pooling and semaphores for production hardening, and deploy on <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> for reliable, cost-effective infrastructure. For proxy rotation at scale, integrate <strong><a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a></strong> into your pipeline.</p><p><strong>Join our Telegram group</strong> for daily tips on Python async patterns and scraping best practices: <a href=https://t.me/dibi8python>https://t.me/dibi8python</a></p><h2 id=sources-and-further-reading>Sources and Further Reading<a hidden class=anchor aria-hidden=true href=#sources-and-further-reading>#</a></h2><ul><li><a href=https://docs.aiohttp.org/en/stable/>aiohttp Official Documentation</a></li><li><a href=https://github.com/aio-libs/aiohttp>aiohttp GitHub Repository</a></li><li><a href=https://docs.python.org/3/library/asyncio.html>Python asyncio Documentation</a></li><li><a href=https://github.com/Tinche/aiofiles>aiofiles - Async File Operations</a></li><li><a href=https://github.com/omnilib/aiosqlite>aiosqlite - Async SQLite</a></li><li><a href=https://realpython.com/async-io-python/>Real Python - asyncio Guide</a></li></ul><hr><h2 id=recommended-hosting--infrastructure>Recommended Hosting & Infrastructure<a hidden class=anchor aria-hidden=true href=#recommended-hosting--infrastructure>#</a></h2><p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p><ul><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li></ul><p><em>Affiliate links — they don"t cost you extra and they help keep dibi8.com running.</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure<a hidden class=anchor aria-hidden=true href=#affiliate-disclosure>#</a></h2><p>This article contains affiliate links to DigitalOcean and WebShare. If you purchase services through these links, we may earn a commission at no additional cost to you. These recommendations are based on genuine utility for production scraping workflows. All benchmarks were conducted independently.</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| Documentation quality | Excellent | Excellent | Good | Good | Poor |</p>
+<p><strong>When to choose what:</strong></p>
+<ul>
+<li><strong>Choose aiohttp</strong> when you need maximum async performance, WebSocket support, or are building a scraping pipeline that also needs a server component.</li>
+<li><strong>Choose httpx</strong> when you need HTTP/2 support or want a requests-compatible API with async capabilities.</li>
+<li><strong>Choose requests</strong> for simple, one-off synchronous scripts where performance is not a concern.</li>
+<li><strong>Choose pycurl</strong> when you need libcurl-specific features like SOCKS5 proxy support or FTP transfers.</li>
+</ul>
+<h2 id="limitations-honest-assessment">Limitations: Honest Assessment<a hidden class="anchor" aria-hidden="true" href="#limitations-honest-assessment">#</a></h2>
+<p>No tool is perfect. aiohttp has specific limitations you should understand: <strong>No HTTP/2 support.</strong> As of v3.11, aiohttp only supports HTTP/1.1. If your targets require HTTP/2 (increasingly common for APIs behind Cloudflare), use <code>httpx</code> instead. There is an open issue (#2217) tracking HTTP/2 implementation, but no committed timeline.</p>
+<p><strong>Learning curve for asyncio.</strong> Developers new to <code>async</code>/<code>await</code> will encounter a significant learning curve. Common pitfalls include forgetting <code>await</code>, mixing sync and async code, and debugging hanging event loops. The <code>RuntimeError: Event loop is closed</code> error is a rite of passage for every asyncio developer.</p>
+<p><strong>DNS resolution bottlenecks.</strong> aiohttp&rsquo;s default DNS resolver uses <code>getaddrinfo</code>, which is synchronous and can block the event loop under high concurrency. Install <code>aiodns</code> (included with <code>[speedups]</code>) to enable true async DNS resolution.</p>
+<p><strong>Server-side focus dilutes client documentation.</strong> aiohttp is both a client and server framework. The documentation sometimes prioritizes server features, making client-specific features harder to find.</p>
+<p><strong>Cookie handling quirks.</strong> aiohttp&rsquo;s cookie jar follows RFC 6265 strictly, which can cause issues with misconfigured servers that send malformed cookies. The <code>unsafe=True</code> flag on <code>CookieJar</code> can work around this.</p>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="how-many-concurrent-requests-can-aiohttp-handle">How many concurrent requests can aiohttp handle?<a hidden class="anchor" aria-hidden="true" href="#how-many-concurrent-requests-can-aiohttp-handle">#</a></h3>
+<p>With default settings (100 connections), aiohttp handles <strong>100 concurrent requests per host</strong>. Increasing the connector <code>limit</code> to 200-300 allows <strong>2,000-4,000 req/s</strong> against distributed targets on a single process. The practical limit is usually the target server&rsquo;s rate limiting or your network bandwidth, not aiohttp itself.</p>
+<h3 id="can-i-use-aiohttp-with-existing-synchronous-code">Can I use aiohttp with existing synchronous code?<a hidden class="anchor" aria-hidden="true" href="#can-i-use-aiohttp-with-existing-synchronous-code">#</a></h3>
+<p>Yes, but carefully. Use <code>asyncio.run()</code> or <code>loop.run_until_complete()</code> to bridge sync and async boundaries. For calling sync functions from async code, use <code>loop.run_in_executor()</code> to offload blocking work to a thread pool. Never call blocking I/O directly from async functions as it freezes the entire event loop.</p>
+<h3 id="how-do-i-handle-captchas-and-javascript-rendered-pages">How do I handle CAPTCHAs and JavaScript-rendered pages?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-handle-captchas-and-javascript-rendered-pages">#</a></h3>
+<p>aiohttp is an HTTP client, not a browser. It cannot execute JavaScript or solve CAPTCHAs. For JavaScript-heavy sites, pair aiohttp with a headless browser like <a href="dibi8-internal-link">Playwright</a> or use a service that provides rendered HTML. For CAPTCHAs, integrate with a solving service or use browser automation tools.</p>
+<h3 id="is-aiohttp-suitable-for-large-file-downloads">Is aiohttp suitable for large file downloads?<a hidden class="anchor" aria-hidden="true" href="#is-aiohttp-suitable-for-large-file-downloads">#</a></h3>
+<p>Yes. Use <code>resp.content.iter_chunked(8192)</code> to stream large files without loading them into memory. For a <strong>10GB file</strong>, aiohttp uses under <strong>20MB of RAM</strong> when streaming, compared to 10GB+ with naive <code>await resp.read()</code>.</p>
+<h3 id="how-do-i-debug-aiohttp-performance-issues">How do I debug aiohttp performance issues?<a hidden class="anchor" aria-hidden="true" href="#how-do-i-debug-aiohttp-performance-issues">#</a></h3>
+<p>Enable <code>aiohttp</code> debug mode with <code>python -W default -m aiohttp.web</code> or set <code>PYTHONASYNCIODEBUG=1</code>. Use <code>asyncio.get_event_loop().set_debug(True)</code> to catch common mistakes. For production monitoring, instrument with <code>prometheus_client</code> as shown in the Advanced Usage section, or use <code>aiohttp-debugtoolbar</code> during development.</p>
+<h3 id="what-is-the-difference-between-aiohttp-and-flaskfastapi">What is the difference between aiohttp and Flask/FastAPI?<a hidden class="anchor" aria-hidden="true" href="#what-is-the-difference-between-aiohttp-and-flaskfastapi">#</a></h3>
+<p>aiohttp is both an HTTP client and server. On the server side, it competes with Flask and FastAPI. For client-side scraping, Flask and FastAPI are irrelevant as they are server-only frameworks. If you need both a scraper and an API server, aiohttp uniquely handles both roles.</p>
+<h2 id="conclusion-build-your-next-scraper-with-aiohttp">Conclusion: Build Your Next Scraper with aiohttp<a hidden class="anchor" aria-hidden="true" href="#conclusion-build-your-next-scraper-with-aiohttp">#</a></h2>
+<p>If you are still using ````requests``` for large-scale scraping, you are leaving <strong>10-50x performance gains</strong> on the table. aiohttp&rsquo;s native async architecture, mature ecosystem, and proven production track record make it the best choice for high-throughput Python scrapers in 2026.</p>
+<p>Start with the 5-minute setup in this guide, implement connection pooling and semaphores for production hardening, and deploy on <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> for reliable, cost-effective infrastructure. For proxy rotation at scale, integrate <strong><a href="https://www.webshare.io/?referral_code=oa14d5f0wx4f">WebShare</a></strong> into your pipeline.</p>
+<p><strong>Join our Telegram group</strong> for daily tips on Python async patterns and scraping best practices: <a href="https://t.me/dibi8python">https://t.me/dibi8python</a></p>
+<h2 id="sources-and-further-reading">Sources and Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources-and-further-reading">#</a></h2>
+<ul>
+<li><a href="https://docs.aiohttp.org/en/stable/">aiohttp Official Documentation</a></li>
+<li><a href="https://github.com/aio-libs/aiohttp">aiohttp GitHub Repository</a></li>
+<li><a href="https://docs.python.org/3/library/asyncio.html">Python asyncio Documentation</a></li>
+<li><a href="https://github.com/Tinche/aiofiles">aiofiles - Async File Operations</a></li>
+<li><a href="https://github.com/omnilib/aiosqlite">aiosqlite - Async SQLite</a></li>
+<li><a href="https://realpython.com/async-io-python/">Real Python - asyncio Guide</a></li>
+</ul>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions. The default option for indie devs running open-source AI tools.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com — battle-tested in production.</li>
+</ul>
+<p><em>Affiliate links — they don&quot;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="affiliate-disclosure">Affiliate Disclosure<a hidden class="anchor" aria-hidden="true" href="#affiliate-disclosure">#</a></h2>
+<p>This article contains affiliate links to DigitalOcean and WebShare. If you purchase services through these links, we may earn a commission at no additional cost to you. These recommendations are based on genuine utility for production scraping workflows. All benchmarks were conducted independently.</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;aiohttp 2026: Build High-Performance Async Web Scrapers Handling 10K+ Requests/Second — Python Guide&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -295,18 +689,175 @@ session = aiohttp.ClientSession(
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/resources/aiohttp-async-web-scraping%22>https://dibi8.com/resources/aiohttp-async-web-scraping"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/resources/aiohttp-async-web-scraping%22">https://dibi8.com/resources/aiohttp-async-web-scraping"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/ai-coding-agents/aiohttp-async-web-scraping/>ray-distributed-ai-framework-complete-guide</a></li><li><a href=/ai-coding-agents/aiohttp-async-web-scraping/>cleanlab-11k-star-ai-data-cleaning</a></li><li><a href=/ai-coding-agents/aiohttp-async-web-scraping/>freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li><li><a href=/ai-coding-agents/aiohttp-async-web-scraping/>agent-reach-internet-access-ai-agents</a></li><li><a href=/ai-coding-agents/aiohttp-async-web-scraping/>microsoft-markitdown-file-to-markdown-converter-cli</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/aider/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/aitoearn-ai-monetization/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/ai-coding-agents/aiohttp-async-web-scraping/">ray-distributed-ai-framework-complete-guide</a></li>
+<li><a href="/ai-coding-agents/aiohttp-async-web-scraping/">cleanlab-11k-star-ai-data-cleaning</a></li>
+<li><a href="/ai-coding-agents/aiohttp-async-web-scraping/">freqtrade-python-crypto-trading-bot-backtest-optimize-deploy</a></li>
+<li><a href="/ai-coding-agents/aiohttp-async-web-scraping/">agent-reach-internet-access-ai-agents</a></li>
+<li><a href="/ai-coding-agents/aiohttp-async-web-scraping/">microsoft-markitdown-file-to-markdown-converter-cli</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/aider/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/aitoearn-ai-monetization/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

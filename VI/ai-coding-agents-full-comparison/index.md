@@ -2,65 +2,65 @@
 title: "AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex"
 date: "2026-09-20"
 authors: ["dibi8 Team"]
-description: "Complete comparison of OpenCode (45K stars), Claude Code, Cursor, and Codex AI coding agents. Benchmarks, pricing, and decision framework."
-tags: [ai-coding, comparison, 2026, opencode, claude-code, cursor, codex]
+description: "So sánh toàn diện OpenCode (45K stars), Claude Code, Cursor và Codex AI coding agents. Benchmark, giá cả và khung quyết định."
+tags: [ai-coding, so-sanh, 2026, opencode, claude-code, cursor, codex]
 categories: [ai-tools, dev-utils]
 image: "https://picsum.photos/seed/ai-coding/1200x630"
-source: "Original research and analysis"
+source: "Nghiên cứu và phân tích gốc"
 source_url: "https://github.com/opencode-ai/opencode"
 reading_time: 12
-language: "en"
+language: "vi"
 ---
 
 # AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex
 
-## Introduction
+## Giới thiệu
 
-The AI coding tool landscape has exploded in 2026, with four major players dominating the conversation:
+Khung cảnh công cụ mã hóa AI đã bùng nổ vào năm 2026, với bốn ông lớn chiếm lĩnh cuộc trò chuyện:
 
-1. **Claude Code** (Anthropic) - Terminal-first coding agent
-2. **Cursor** - AI-native IDE built on VS Code
-3. **Codex CLI** (OpenAI) - Rust-based coding terminal
-4. **OpenCode** (OSS) - Open-source Go CLI (45K+ GitHub stars)
+1. **Claude Code** (Anthropic) - Agent mã hóa terminal-first
+2. **Cursor** - IDE-native AI được xây dựng trên VS Code
+3. **Codex CLI** (OpenAI) - Terminal mã hóa dựa trên Rust
+4. **OpenCode** (OSS) - Go CLI mã nguồn mở (45K+ GitHub stars)
 
-Each takes a different philosophy on how AI should interact with code. Let's break down the real differences.
+Mỗi công cụ có một triết lý khác nhau về cách AI nên tương tác với mã nguồn. Hãy cùng phân tích những khác biệt thực sự.
 
-## Quick Comparison Table
+## Bảng So sánh Nhanh
 
-| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-|---------|-------------|--------|-----------|----------|
-| **Price** | $20/month | $20/month | Free | Free |
-| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
-| **Languages** | TypeScript | TypeScript | Rust + TS | Go |
-| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
-| **Codebase** | ~500K lines | ~150K lines | ~80K lines | ~30K lines |
-| **LLM Support** | Claude only | Multi-model | OpenAI only | Anthropic + OpenAI |
-| **Security** | Permission prompts | UI approval | OS sandbox | Channel-based approval |
+| Tính năng | Claude Code | Cursor | Codex CLI | OpenCode |
+|-----------|-------------|--------|-----------|----------|
+| **Giá** | $20/tháng | $20/tháng | Miễn phí | Miễn phí |
+| **Giao diện** | CLI + IDE | Full IDE | CLI | CLI |
+| **Ngôn ngữ** | TypeScript | TypeScript | Rust + TS | Go |
+| **Giấy phép** | Độc quyền | Thương mại | Apache 2.0 | MIT |
+| **Codebase** | ~500K dòng | ~150K dòng | ~80K dòng | ~30K dòng |
+| **Hỗ trợ LLM** | Claude only | Multi-model | OpenAI only | Anthropic + OpenAI |
+| **Bảo mật** | Prompt quyền truy cập | UI approval | OS sandbox | Channel-based approval |
 | **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
 
-## Deep Dive: OpenCode
+## Phân tích sâu: OpenCode
 
-**OpenCode** is the dark horse of 2026. With 45,000+ GitHub stars and a clean 30K-line Go codebase, it's the most customizable option.
+**OpenCode** là con ngựa đen của năm 2026. Với hơn 45.000 GitHub stars và codebase Go sạch sẽ 30K dòng, đây là tùy chọn tùy chỉnh mạnh mẽ nhất.
 
-### Why OpenCode?
+### Tại sao chọn OpenCode?
 
-- **Full transparency**: You can read the entire codebase in a day
-- **Multi-provider support**: Works with Anthropic, OpenAI, and others
-- **MCP integration**: Connects to any tool via Model Context Protocol
-- **SQLite sessions**: All conversations stored locally
+- **Minh bạch toàn phần**: Bạn có thể đọc toàn bộ codebase trong một ngày
+- **Hỗ trợ đa nhà cung cấp**: Hoạt động với Anthropic, OpenAI và các dịch vụ khác
+- **Tích hợp MCP**: Kết nối với bất kỳ công cụ nào qua Model Context Protocol
+- **Session SQLite**: Tất cả cuộc trò chuyện được lưu trữ cục bộ
 
 ```bash
-# Install OpenCode
+# Cài đặt OpenCode
 git clone https://github.com/opencode-ai/opencode.git
 cd opencode
 go build
 ./opencode --version
 ```
 
-### Use Case: Custom Agent Development
+### Trường hợp sử dụng: Phát triển Agent tùy chỉnh
 
 ```go
-// OpenCode's architecture makes it easy to extend
+// Kiến trúc OpenCode cho phép mở rộng dễ dàng
 type Agent struct {
     Model     string
     Tools     []Tool
@@ -69,180 +69,180 @@ type Agent struct {
 }
 
 func (a *Agent) Run(prompt string) (*Result, error) {
-    // Clear separation between AI and infrastructure
+    // Tách biệt rõ ràng giữa AI và hạ tầng
     context := a.BuildContext(prompt)
     response := a.Model.Generate(context, a.Tools)
     return a.ProcessResponse(response)
 }
 ```
 
-## Claude Code: The Enterprise Choice
+## Claude Code: Lựa chọn Doanh nghiệp
 
-Claude Code dominates complex reasoning tasks and large refactoring projects.
+Claude Code dẫn đầu trong các tác vụ suy luận phức tạp và dự án refactoring quy mô lớn.
 
-### Key Features
+### Tính năng chính
 
-- **200K context window**: Handles entire codebases
-- **MCP servers**: Connect to databases, APIs, tools
-- **Sub-agents**: Parallel processing for complex tasks
-- **Skill authoring**: Create custom behaviors
+- **200K context window**: Xử lý toàn bộ codebase
+- **MCP servers**: Kết nối cơ sở dữ liệu, API, công cụ
+- **Sub-agents**: Xử lý song song cho tác vụ phức tạp
+- **Skill authoring**: Tạo hành vi tùy chỉnh
 
 ```bash
-# Claude Code commands
+# Các lệnh Claude Code
 claude "refactor auth module to use JWT"
 claude "review PR #123 for security issues"
 claude "explain this codebase architecture"
 ```
 
-### Security Model
+### Mô hình bảo mật
 
-Claude Code uses mandatory permission prompts:
-- Every file modification requires approval
-- Command execution needs confirmation
-- Hooks allow custom validation logic
+Claude Code sử dụng prompt quyền truy cập bắt buộc:
+- Mọi thay đổi file đều yêu cầu phê duyệt
+- Thực thi lệnh cần xác nhận
+- Hooks cho phép logic xác thực tùy chỉnh
 
-## Cursor: The IDE Revolution
+## Cursor: Cuộc cách mạng IDE
 
-Cursor reimagined the IDE itself, not just adding AI on top.
+Cursor tái imagine chính IDE, không chỉ thêm AI lên trên.
 
-### What Makes Cursor Different
+### Điều làm Cursor khác biệt
 
-- **Composer 2.5**: Multi-agent parallel processing
-- **Bugbot**: Automated code review (3x faster in 2026)
-- **Tab completions**: Context-aware code suggestions
-- **VM-based agents**: Cloud workers for heavy tasks
+- **Composer 2.5**: Xử lý song song multi-agent
+- **Bugbot**: Review mã tự động (nhanh hơn 3x vào năm 2026)
+- **Tab completions**: Gợi ý mã nhận thức ngữ cảnh
+- **VM-based agents**: Cloud workers cho tác vụ nặng
 
-### Real-World Performance
+### Hiệu suất thực tế
 
 ```python
-# Cursor excels at:
-- Large codebase navigation
-- Multi-file refactoring
-- Bug detection (10% better than peers)
-- Team collaboration features
+# Cursor xuất sắc trong:
+- Điều hướng codebase lớn
+- Refactoring đa file
+- Phát hiện bug (tốt hơn 10% so với đối thủ)
+- Tính năng hợp tác nhóm
 ```
 
-**Fortune 500 adoption**: Over 50% of Fortune 500 companies use Cursor. Endorsed by Jensen Huang (NVIDIA) and Patrick Collison (Stripe).
+**Triển khai Fortune 500**: Hơn 50% công ty Fortune 500 đang sử dụng Cursor. Được Jensen Huang (NVIDIA) và Patrick Collison (Stripe) chứng nhận.
 
-## Codex CLI: OpenAI's Terminal Entry
+## Codex CLI: Cửa sổ Terminal của OpenAI
 
-Codex brings OpenAI's models to your terminal with a Rust-powered TUI.
+Codex mang các mô hình OpenAI đến terminal của bạn với TUI được tăng tốc bởi Rust.
 
-### Architecture
+### Kiến trúc
 
 ```rust
-// Codex defines 25+ tool handlers
+// Codex định nghĩa 25+ tool handlers
 struct Codex {
     model: String,
     tools: Vec<ToolHandler>,
     sandbox: FileSystemSandbox,
 }
 
-// Notable tools:
+// Các tools đáng chú ý:
 // - apply_patch (unified diff format)
 // - spawn_agents_on_csv (batch operations)
-// - MCP integration
+// - Tích hợp MCP
 ```
 
-### When to Use Codex
+### Khi nào nên dùng Codex
 
-- Fast iteration cycles
-- Terminal-focused workflow
-- Need OpenAI models specifically
-- Want Rust-based performance
+- Chu kỳ lặp nhanh
+- Workflow tập trung terminal
+- Cần mô hình OpenAI cụ thể
+- Muốn hiệu suất dựa trên Rust
 
-## Cost Comparison (Monthly)
+## So sánh Chi phí (Tháng)
 
-| Tool | Individual | Team | Enterprise |
-|------|-----------|------|------------|
-| Claude Code | $20 | $40/user | Custom |
-| Cursor | $20 | $40/user | Custom |
-| Codex | Free | Free | Free |
-| OpenCode | Free | Free | Free |
+| Công cụ | Cá nhân | Team | Enterprise |
+|---------|---------|------|------------|
+| Claude Code | $20 | $40/người | Tùy chỉnh |
+| Cursor | $20 | $40/người | Tùy chỉnh |
+| Codex | Miễn phí | Miễn phí | Miễn phí |
+| OpenCode | Miễn phí | Miễn phí | Miễn phí |
 
-**Real cost analysis:**
-- Claude Code + API: ~$50-100/month for heavy usage
-- Cursor Pro: $20/month (model costs separate)
-- Codex: Free (pay for OpenAI API)
-- OpenCode: Free (pay for API or use local models)
+**Phân tích chi phí thực tế:**
+- Claude Code + API: ~$50-100/tháng cho usage nặng
+- Cursor Pro: $20/tháng (chi phí model riêng)
+- Codex: Miễn phí (trả cho OpenAI API)
+- OpenCode: Miễn phí (trả cho API hoặc dùng local models)
 
-## Performance Benchmarks (2026)
+## Benchmark Hiệu suất (2026)
 
-| Task | Claude Code | Cursor | Codex | OpenCode |
-|------|-------------|--------|-------|----------|
-| Simple fix | 2.1s | 1.8s | 1.5s | 1.6s |
+| Tác vụ | Claude Code | Cursor | Codex | OpenCode |
+|--------|-------------|--------|-------|----------|
+| Fix đơn giản | 2.1s | 1.8s | 1.5s | 1.6s |
 | Refactor module | 15s | 12s | 18s | 14s |
 | Generate test | 8s | 6s | 7s | 9s |
-| Complex agent task | 45s | 60s | 50s | 35s |
+| Tác vụ agent phức tạp | 45s | 60s | 50s | 35s |
 
-**Winner by category:**
-- Speed: **Codex** (2x faster on simple tasks)
-- Reasoning: **Claude Code** (better complex task handling)
-- UX: **Cursor** (richest feature set)
-- Customization: **OpenCode** (source code accessible)
+**Người chiến thắng theo danh mục:**
+- Tốc độ: **Codex** (nhanh gấp 2 lần trên tác vụ đơn giản)
+- Suy luận: **Claude Code** (xử lý tác vụ phức tạp tốt hơn)
+- UX: **Cursor** (tập hợp tính năng phong phú nhất)
+- Tùy chỉnh: **OpenCode** (source code có thể truy cập)
 
-## Decision Framework
+## Khung Quyết định
 
-### Choose Claude Code if:
-- You need the best reasoning for complex architectures
-- Your team values security and permission controls
-- You're willing to pay for premium features
-- You work primarily in terminal environments
+### Chọn Claude Code nếu:
+- Bạn cần suy luận tốt nhất cho kiến trúc phức tạp
+- Đội nhóm đánh giá cao bảo mật và kiểm soát quyền truy cập
+- Sẵn sàng trả tiền cho tính năng cao cấp
+- Làm việc chủ yếu trong môi trường terminal
 
-### Choose Cursor if:
-- You want a full IDE experience
-- Your team uses VS Code already
-- You need multi-agent parallel processing
-- Budget allows $20-40/month per user
+### Chọn Cursor nếu:
+- Bạn muốn trải nghiệm IDE trọn vẹn
+- Đội nhóm đã dùng VS Code
+- Cần xử lý song song multi-agent
+- Ngân sách cho phép $20-40/tháng mỗi người
 
-### Choose Codex if:
-- You prefer terminal-only workflow
-- You need OpenAI models specifically
-- You want Rust-based performance
-- Budget is a concern (free core)
+### Chọn Codex nếu:
+- Bạn thích workflow chỉ terminal
+- Cần mô hình OpenAI cụ thể
+- Muốn hiệu suất dựa trên Rust
+- Ngân sách là vấn đề (core miễn phí)
 
-### Choose OpenCode if:
-- You want full control and transparency
-- You need multi-provider flexibility
-- You're building custom agent solutions
-- You prefer open-source software
+### Chọn OpenCode nếu:
+- Bạn muốn kiểm soát và minh bạch hoàn toàn
+- Cần linh hoạt đa nhà cung cấp
+- Đang xây dựng giải pháp agent tùy chỉnh
+- Ưu tiên phần mềm mã nguồn mở
 
 ## FAQ
 
-**问：Can I use multiple tools?**
-Yes. Many teams use Cursor for daily work + Claude Code for complex architectural tasks.
+**Hỏi: Tôi có thể dùng nhiều công cụ cùng lúc không?**
+Có. Nhiều đội nhóm dùng Cursor cho công việc hàng ngày + Claude Code cho tác vụ kiến trúc phức tạp.
 
-**问：Which is best for beginners?**
-Cursor has the gentlest learning curve. OpenCode is best if you want to learn from source.
+**Hỏi: Cái nào tốt nhất cho người mới bắt đầu?**
+Cursor có đường cong học tập nhẹ nhàng nhất. OpenCode tốt nhất nếu bạn muốn học từ source code.
 
-**问：Will models become commoditized?**
-Yes. The differentiators are shifting from model quality to harness features (multi-agent, security, context management).
+**Hỏi: Các mô hình có trở thành hàng hóa không?**
+Có. Điểm khác biệt đang chuyển từ chất lượng mô hình sang tính năng harness (multi-agent, bảo mật, quản lý context).
 
-**问：Which has the best security?**
-Codex uses OS-level sandboxing. Claude Code uses permission prompts. Both have merit.
+**Hỏi: Cái nào có bảo mật tốt nhất?**
+Codex dùng OS-level sandboxing. Claude Code dùng permission prompts. Cả hai đều có ưu điểm riêng.
 
-**问：What's the best free option?**
-OpenCode and Codex are both free. OpenCode offers more customization; Codex offers better speed.
+**Hỏi: Lựa chọn miễn phí tốt nhất là gì?**
+OpenCode và Codex đều miễn phí. OpenCode cung cấp tùy chỉnh nhiều hơn; Codex cung cấp tốc độ tốt hơn.
 
-## Conclusion
+## Kết luận
 
-The 2026 AI coding tool landscape offers something for everyone:
+Khung cảnh công cụ mã hóa AI 2026 mang đến thứ gì đó cho mọi người:
 
-- **OpenCode** leads in transparency and customization
-- **Claude Code** excels at complex reasoning and enterprise features
-- **Cursor** dominates in user experience and IDE integration
-- **Codex** offers speed and open-source flexibility
+- **OpenCode** dẫn đầu về minh bạch và tùy chỉnh
+- **Claude Code** xuất sắc về suy luận phức tạp và tính năng doanh nghiệp
+- **Cursor** chiếm ưu thế về trải nghiệm người dùng và tích hợp IDE
+- **Codex** mang lại tốc độ và linh hoạt mã nguồn mở
 
-Choose based on your workflow, not just features. Test each for 1 week before committing.
+Hãy chọn dựa trên workflow của bạn, không chỉ dựa trên tính năng. Thử mỗi công cụ trong 1 tuần trước khi cam kết.
 
-**Recommendation**: Start with OpenCode (free) + Claude Code ($20) combo for best results.
+**Khuyến nghị**: Bắt đầu với combo OpenCode (miễn phí) + Claude Code ($20) để có kết quả tốt nhất.
 
 ---
 
-**Sources:**
+**Nguồn:**
 - OpenCode GitHub: github.com/opencode-ai/opencode (45K stars)
 - Claude Code: claude.ai/code
-- Cursor: cursor.com (June 2026 features)
+- Cursor: cursor.com (tính năng tháng 6/2026)
 - Codex CLI: github.com/openai/codex
 
-**Last Updated:** September 20, 2026
+**Cập nhật lần cuối:** 20 tháng 9, 2026

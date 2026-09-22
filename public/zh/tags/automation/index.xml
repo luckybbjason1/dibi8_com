@@ -1,1 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Automation on Dibi8</title><link>https://dibi8.com/zh/tags/automation/</link><description>Recent content in Automation on Dibi8</description><generator>Hugo</generator><language>zh</language><lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/zh/tags/automation/index.xml" rel="self" type="application/rss+xml"/><item><title>n8n：2026年工作流自动化平台（205K Stars）</title><link>https://dibi8.com/zh/n8n-workflow-automation/</link><pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/zh/n8n-workflow-automation/</guid><description>n8n是带原生AI功能的fair-code工作流自动化平台。400+集成，可自托管，支持可视化构建+自定义代码。获得205K GitHub stars。</description></item><item><title>Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）</title><link>https://dibi8.com/zh/agent-reach-internet-access-for-ai-agents-2026/</link><pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/zh/agent-reach-internet-access-for-ai-agents-2026/</guid><description>Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。</description></item><item><title>DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南</title><link>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</link><pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</guid><description>DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Automation on Dibi8</title>
+    <link>https://dibi8.com/zh/tags/automation/</link>
+    <description>Recent content in Automation on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>zh</language>
+    <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/zh/tags/automation/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>n8n：2026年工作流自动化平台（205K Stars）</title>
+      <link>https://dibi8.com/zh/n8n-workflow-automation/</link>
+      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/zh/n8n-workflow-automation/</guid>
+      <description>n8n是带原生AI功能的fair-code工作流自动化平台。400&#43;集成，可自托管，支持可视化构建&#43;自定义代码。获得205K GitHub stars。</description>
+    </item>
+    <item>
+      <title>Agent-Reach：让AI Agent看清整个互联网的神器（83K Star，零API成本）</title>
+      <link>https://dibi8.com/zh/agent-reach-internet-access-for-ai-agents-2026/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/zh/agent-reach-internet-access-for-ai-agents-2026/</guid>
+      <description>Agent-Reach 是一个 Python CLI 工具，让你的 AI Agent 无需付费 API 就能搜索 Twitter、Reddit、YouTube、GitHub、B站和小红书。2026 年如何将它集成到你的工作流中。</description>
+    </item>
+    <item>
+      <title>DeepSeek Harness：229K星插件生态，让一切皆可扩展 — 2026完整部署指南</title>
+      <link>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/zh/deepseek-harness-plugin-ecosystem-2026-zh/</guid>
+      <description>DeepSeek Harness (DSH)是2026年增长最快的AI Agent框架，GitHub星数突破229K。学习如何构建自定义插件、集成Claude Code/Cursor/Codex，分钟级交付生产级Agent。</description>
+    </item>
+  </channel>
+</rss>

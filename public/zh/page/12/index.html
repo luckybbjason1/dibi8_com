@@ -1,50 +1,400 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/zh/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/zh/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Codebase-Memory-MCP：AI 编码代理的高性能代码智能 在人工智能辅助软件开发快速发展的格局中，一个瓶颈仍然顽固地存在：**人工智能编码代理如何有效地理解和导航大型代码库？**逐文件搜索或简单的 RAG 系统等传统方法浪费了大量的令牌，产生碎片化的上下文，并且难以理解结构代码。
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/zh/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/zh/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Codebase-Memory-MCP：AI 编码代理的高性能代码智能 在人工智能辅助软件开发快速发展的格局中，一个瓶颈仍然顽固地存在：**人工智能编码代理如何有效地理解和导航大型代码库？**逐文件搜索或简单的 RAG 系统等传统方法浪费了大量的令牌，产生碎片化的上下文，并且难以理解结构代码。
 输入 codebase-memory-mcp — 一款革命性的 MCP（模型上下文协议）服务器，它改变了 AI 编码代理与代码交互的方式。 仅今天，该项目就有 7,100 多个 GitHub star 和新增 2,300 个 star，代表了代码智能的前沿。
 在这份综合指南中，我们将探讨 codebase-memory-mcp 的特殊之处、如何安装和配置它、将其与替代方案进行比较，并提供展示其强大功能的真实示例。
 什么是代码库-内存-MCP？ Codebase-memory-mcp 是专为 AI 编码代理构建的 高性能代码智能引擎。 与依赖逐个文件读取或基本文本搜索的传统方法不同，它使用树托管 AST 分析构建整个代码库的持久知识图。
 结果是惊人的：
 只需 3 分钟即可索引 Linux 内核（2800 万行代码，75,000 个文件） 在 1 毫秒内回答结构查询 与逐个文件搜索相比，令牌使用量减少了 120 倍 支持 158 种编程语言开箱即用 零依赖 - 作为单个静态二进制文件发布 关键架构组件 该系统结合了多项尖端技术：
-Tree-Sitter AST 解析：使用直接编译到二进制文件中的供应商 Tree-Sitter 语法，消除运行时依赖问题 混合 LSP 集成：为 Python、TypeScript、JavaScript、PHP、C#、Go、C、C++、Java、Kotlin 和 Rust 添加语义类型解析 内存优先管道：采用 LZ4 压缩、内存中 SQLite 和融合 Aho-Corasick 模式匹配来实现极快的索引 持久化知识图谱：将函数、类、调用链、HTTP 路由和跨服务关系存储为图节点和边 安装指南 codebase-memory-mcp 的最大优势之一是它的简单性。 不需要 Docker，不需要 API 密钥，也不需要复杂的配置。 以下是如何开始：
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>CodeGraph：从代码库构建知识图谱 引言 每个软件项目的复杂度都超出了人类认知的极限。新团队成员往往需要数周时间才能弄清楚一个函数的位置以及它如何与系统的其余部分连接。CodeGraph 是一款开源工具，它将整个代码库转化为一个可导航的知识图谱，让你一眼就能看清类、函数、接口和包之间的关系。CodeGraph 使用 Kotlin 编写，为需要深度理解代码库的开发者提供了强大的 CLI 工具和一个程序化 API。
-什么是 CodeGraph？ CodeGraph 是一个 Kotlin 原生的库和 CLI 工具，它解析你的源代码并构建全面的图表示。可以把它想象成你代码的通用图数据库：每个节点是一个程序元素（类、函数、包、接口），每条边代表一种关系（继承、实现、调用、依赖）。有了这种图结构，你可以在几毫秒内回答诸如"哪些类实现了这个接口？“和"这个包的传递依赖是什么？“这样的问题。
+Tree-Sitter AST 解析：使用直接编译到二进制文件中的供应商 Tree-Sitter 语法，消除运行时依赖问题 混合 LSP 集成：为 Python、TypeScript、JavaScript、PHP、C#、Go、C、C&#43;&#43;、Java、Kotlin 和 Rust 添加语义类型解析 内存优先管道：采用 LZ4 压缩、内存中 SQLite 和融合 Aho-Corasick 模式匹配来实现极快的索引 持久化知识图谱：将函数、类、调用链、HTTP 路由和跨服务关系存储为图节点和边 安装指南 codebase-memory-mcp 的最大优势之一是它的简单性。 不需要 Docker，不需要 API 密钥，也不需要复杂的配置。 以下是如何开始：
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>CodeGraph：从代码库构建知识图谱 引言 每个软件项目的复杂度都超出了人类认知的极限。新团队成员往往需要数周时间才能弄清楚一个函数的位置以及它如何与系统的其余部分连接。CodeGraph 是一款开源工具，它将整个代码库转化为一个可导航的知识图谱，让你一眼就能看清类、函数、接口和包之间的关系。CodeGraph 使用 Kotlin 编写，为需要深度理解代码库的开发者提供了强大的 CLI 工具和一个程序化 API。
+什么是 CodeGraph？ CodeGraph 是一个 Kotlin 原生的库和 CLI 工具，它解析你的源代码并构建全面的图表示。可以把它想象成你代码的通用图数据库：每个节点是一个程序元素（类、函数、包、接口），每条边代表一种关系（继承、实现、调用、依赖）。有了这种图结构，你可以在几毫秒内回答诸如&#34;哪些类实现了这个接口？“和&#34;这个包的传递依赖是什么？“这样的问题。
 该工具支持 Kotlin、Java，并且可以扩展到其他 JVM 语言。它使用 Kotlin 编译器自身的解析基础设施，因此它理解你代码的完整语义上下文，而不仅仅是表面上的文本模式。
 想要了解更多代码分析工具，请参阅我们的 dibi8-internal-link。
 核心功能 CodeGraph 在精简的包中集成了令人惊讶的丰富功能：
 自动代码解析：从源代码构建完整的依赖图 查询 API：程序化查询以查找节点、遍历关系和过滤结果 CLI 工具：一条命令生成图并从终端进行交互式查询 导出功能：将图导出为 JSON、DOT（Graphviz）或 GraphML 格式 增量更新：仅重建更改的部分以实现快速增量分析 IDE 集成：可用作库来驱动 IDE 插件 自定义查询：使用内置的图查询语言编写自己的查询 安装 安装 CodeGraph 非常简单。最常见的方法是通过 Gradle 插件或 Maven 依赖。你也可以直接下载 CLI JAR 文件。
 通过 Gradle 安装 在 ```build.gradle.kts```` 中将 CodeGraph 添加为依赖项：
-plugins { id("org.jetbrains.kotlin.jvm") version "1.9.22" } dependencies { implementation("io.codegraph:codegraph-core:1.2.0") implementation("io.codegraph:codegraph-cli:1.2.0") } 通过 Maven 安装 &lt;dependency> &lt;groupId>io.codegraph&lt;/groupId> &lt;artifactId>codegraph-core&lt;/artifactId> &lt;version>1.2.0&lt;/version> &lt;/dependency> 安装 CLI 工具 下载最新的 CLI JAR 文件并直接运行：
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/codegraph-pre-indexed-code-knowledge-graph-ai-agents/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: “v0.9.3” licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-22” draft: false categories: [“dev-utils”] tags: [“codegraph”, “claude-code”, “ai-coding-agent”, “code-graph”, “token-savings”, “mcp”, “hermes-agent”, “cursor”, “codex-cli”, “opencode”, “developer-productivity”] aliases:
-/zh/posts/codegraph-pre-indexed-knowledge-graph-2026/- 问题：AI 编码代理正在"grep"中烧钱 如果你在用 Claude Code、Cursor Pro 或者通过 OpenAI 跑 Codex CLI，你一定有过这种体验：每次代理需要"理解"一个代码库，它会启动 Explore 阶段——```Glob 找文件、Grep 找符号、Read```` 加载上下文。每一次工具调用都是一次往返。每一次往返就是 token——请求的 payload 加上塞回上下文的响应。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/codegraph-pre-indexed-knowledge-graph-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>**Editor’s Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
+plugins { id(&#34;org.jetbrains.kotlin.jvm&#34;) version &#34;1.9.22&#34; } dependencies { implementation(&#34;io.codegraph:codegraph-core:1.2.0&#34;) implementation(&#34;io.codegraph:codegraph-cli:1.2.0&#34;) } 通过 Maven 安装 &lt;dependency&gt; &lt;groupId&gt;io.codegraph&lt;/groupId&gt; &lt;artifactId&gt;codegraph-core&lt;/artifactId&gt; &lt;version&gt;1.2.0&lt;/version&gt; &lt;/dependency&gt; 安装 CLI 工具 下载最新的 CLI JAR 文件并直接运行：
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/codegraph-pre-indexed-code-knowledge-graph-ai-agents/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00&#43;08:00 lastmod: 2026-05-23T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: “v0.9.3” licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-22” draft: false categories: [“dev-utils”] tags: [“codegraph”, “claude-code”, “ai-coding-agent”, “code-graph”, “token-savings”, “mcp”, “hermes-agent”, “cursor”, “codex-cli”, “opencode”, “developer-productivity”] aliases:
+/zh/posts/codegraph-pre-indexed-knowledge-graph-2026/- 问题：AI 编码代理正在&#34;grep&#34;中烧钱 如果你在用 Claude Code、Cursor Pro 或者通过 OpenAI 跑 Codex CLI，你一定有过这种体验：每次代理需要&#34;理解&#34;一个代码库，它会启动 Explore 阶段——```Glob 找文件、Grep 找符号、Read```` 加载上下文。每一次工具调用都是一次往返。每一次往返就是 token——请求的 payload 加上塞回上下文的响应。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/codegraph-pre-indexed-knowledge-graph-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p> **Editor’s Disclosure: ** This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.
 编者披露： 此分析使用截至 2026 年 6 月 30 日公开的 GitHub 数据（星数、提交频率、分叉数）。所有代码示例都经过测试和验证。我们可以通过附属链接赚取佣金。
 长篇大论；博士 Cognee（超过 26K 颗星）是一个Open Source AI 记忆平台，为智能体提供持久、不断发展的知识。与检索静态文档的传统 RAG 系统不同，Cognee 构建了动态知识图，该知识图随着代理与新信息的交互而增长和适应。它使人工智能代理能够记住过去的对话，从经验中学习，并通过相互关联的知识进行推理——使我们更接近true正智能的长期人工智能助手。
 康尼是什么？ Cognee 是 AI 代理的内存基础设施层。它位于您的代理及其数据源之间，提供：
 持久记忆： 代理记住跨会话和对话的信息 **知识图：**信息被组织为互连的实体和关系，而不仅仅是向量 自动学习： Cognee 从新数据中提取见解，无需手动标记 记忆推理： 代理可以查询其知识图以进行上下文理解 该项目的诞生是因为观察到大多数人工智能应用程序都患有健忘症——它们不记得以前的对话中发生了什么，也无法建立随着时间的推移积累的知识。 Cognee 通过提供持续、发展和连接的内存层来解决这个问题。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/cognee-ai-memory-platform/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“colly”, “go”, “网页抓取”, “爬虫”, “golang”, “scrapy”, “基准测试”, “代理”] aliases:
-/zh/posts/colly/- 简介 十多年来，Python 一直主导着网页抓取领域。Scrapy、BeautifulSoup 和 Selenium 成为了默认技术栈——直到团队开始撞上同一堵墙：内存膨胀、GIL 竞争和部署复杂性。Go 改变了这个等式。Colly 是一款专为 Go 构建的抓取框架，目前拥有 25,302 个 GitHub Stars，并已证明可以在单核 CPU 上每秒处理 1,000+ 请求。本 colly 教程将涵盖安装、与 Scrapy 和 Puppeteer 的基准测试对比、生产环境加固以及你在部署到生产环境之前需要了解的客观局限性。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/colly/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, PyTorch, CUDA] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“ai-tools”] tags: [“comfyui”, “图像生成”, “视频生成”, “节点式”, “工作流”, “开源”] aliases:
-/posts/comfyui-node-based-ai-image-2026/- 如果 AUTOMATIC1111 是"AI 图像生成的 Photoshop"（打字生图），ComfyUI 就是 “生成式 AI 的 Blender 节点编辑器” —— 你把工作流当有向图来搭，对每个模型、采样器、条件步、后处理都有显式控制。114k GitHub 星，GPL-3.0，支持 2024-2026 出的几乎所有生成式 AI 模型家族：SD 1.x、SDXL、SD3/3.5、Flux（1 & 2）、Wan、Hunyuan（图/视频/3D）、PixArt、AuraFlow、LTX-Video。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/comfyui-node-based-ai-image-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“comfyui”, “stable diffusion”, “ai 图像生成”, “节点式界面”, “docker”, “flux”, “sdxl”, “机器学习”] aliases:
-/zh/posts/comfyui/ /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/- Introduction Stable Diffusion 的工作流是破碎的。大多数工具把图像生成管线藏在一个"一刀切"的界面后面，逼你点来点去、等待出图、然后祈祷结果符合预期。当你需要批量处理 500 张风格一致的商品图、对特定区域进行重绘、并上采样到 4K 分辨率时，点点点的图形界面会在重压之下崩溃。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/cognee-ai-memory-platform/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“colly”, “go”, “网页抓取”, “爬虫”, “golang”, “scrapy”, “基准测试”, “代理”] aliases:
+/zh/posts/colly/- 简介 十多年来，Python 一直主导着网页抓取领域。Scrapy、BeautifulSoup 和 Selenium 成为了默认技术栈——直到团队开始撞上同一堵墙：内存膨胀、GIL 竞争和部署复杂性。Go 改变了这个等式。Colly 是一款专为 Go 构建的抓取框架，目前拥有 25,302 个 GitHub Stars，并已证明可以在单核 CPU 上每秒处理 1,000&#43; 请求。本 colly 教程将涵盖安装、与 Scrapy 和 Puppeteer 的基准测试对比、生产环境加固以及你在部署到生产环境之前需要了解的客观局限性。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/colly/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: [Python, PyTorch, CUDA] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: GPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“ai-tools”] tags: [“comfyui”, “图像生成”, “视频生成”, “节点式”, “工作流”, “开源”] aliases:
+/posts/comfyui-node-based-ai-image-2026/- 如果 AUTOMATIC1111 是&#34;AI 图像生成的 Photoshop&#34;（打字生图），ComfyUI 就是 “生成式 AI 的 Blender 节点编辑器” —— 你把工作流当有向图来搭，对每个模型、采样器、条件步、后处理都有显式控制。114k GitHub 星，GPL-3.0，支持 2024-2026 出的几乎所有生成式 AI 模型家族：SD 1.x、SDXL、SD3/3.5、Flux（1 &amp; 2）、Wan、Hunyuan（图/视频/3D）、PixArt、AuraFlow、LTX-Video。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/comfyui-node-based-ai-image-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Ai Tools source_version: ’&#39; licensing_model: Open Source license_type: GPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“ai-tools”] tags: [“comfyui”, “stable diffusion”, “ai 图像生成”, “节点式界面”, “docker”, “flux”, “sdxl”, “机器学习”] aliases:
+/zh/posts/comfyui/ /zh/resources/ai-tools/comfyui-architecture-node-based-ai-image/- Introduction Stable Diffusion 的工作流是破碎的。大多数工具把图像生成管线藏在一个&#34;一刀切&#34;的界面后面，逼你点来点去、等待出图、然后祈祷结果符合预期。当你需要批量处理 500 张风格一致的商品图、对特定区域进行重绘、并上采样到 4K 分辨率时，点点点的图形界面会在重压之下崩溃。
 ComfyUI 默认的文生图工作流界面，展示节点式图像生成环境。
 ComfyUI 通过节点式架构解决了这个问题，它将图像生成视为一个可视化编程问题。每一个操作——加载模型、采样、上采样、人脸修复——都是画布上的一个节点。将它们连接起来，你就得到了一个可复现、可分享、可自动化的工作流。凭借 GitHub 上超过 87,200 颗 Star，它已经成为生产级 AI 图像管线的主流开源界面。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/comfyui/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Compound Engineering：多代理编排插件 — 2026 指南 Compound Engineering（20,000+ 星标）是一个多代理编排插件，通过结构化的规划-审查-复合循环协调 AI 编码代理（Claude Code、Codex、Cursor）。它的哲学很简单：在编写代码之前进行充分规划，仔细审查，并记录学习成果，使未来的工作变得更容易。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/comfyui/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Compound Engineering：多代理编排插件 — 2026 指南 Compound Engineering（20,000&#43; 星标）是一个多代理编排插件，通过结构化的规划-审查-复合循环协调 AI 编码代理（Claude Code、Codex、Cursor）。它的哲学很简单：在编写代码之前进行充分规划，仔细审查，并记录学习成果，使未来的工作变得更容易。
 Compound Engineering 是什么？ Compound Engineering 是一组 9 个专用命令，将你的 AI 编码代理从简单的代码生成器转变为有纪律的工程合作伙伴。每个命令针对开发生命周期的特定阶段：
 传统开发： 想法 → 代码 → 修复 Bug → 重复（技术债累积） Compound Engineering： 策略 → 构思 → 头脑风暴 → 规划 → 执行 → 审查 → 复合 → 重复（技术债减少） 核心见解是工程价值的 80% 来自规划和审查，而非执行。传统的 AI 编码工具直接跳到写代码，产生快速的结果但会累积技术债。Compound Engineering 强制代理在输入之前先思考。
 该插件跨多个 AI 编码工具工作：
 Claude Code：通过市场安装（/plugin marketplace add EveryInc/compound-engineering-plugin） Cursor：通过插件市场安装（/add-plugin compound-engineering） Codex：三步设置，包括市场注册、代理安装和插件启用 每个代理共享相同的命令集和知识库，因此在工具之间切换时不会丢失上下文。对于可扩展的多代理部署，HTStack 提供支持多个代理实例的基础设施。
 每个命令针对开发生命周期的特定阶段：
 该项目基于一个单一原则：每项工程工作都应使后续工作更容易，而不是更难。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/compound-engineering-multi-agent-coding-claude-codex-cursor/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“continue.dev”, “ai编程助手”, “vs-code插件”, “jetbrains插件”, “开源”, “ollama本地部署”, “copilot替代品”, “本地大模型”, “mcp协议”] aliases:
-/zh/posts/continue/- 引言 用过 GitHub Copilot 的开发者都知道 AI 辅助编程带来的效率提升 —— 但同样清楚其中的痛点：每月 10-19 美元、代码发送到微软服务、无法更换模型、完全不支持离线运行。2026 年，受监管行业的工程团队正在与纯云端工具碰壁。Continue.dev 应运而生：一款 Apache-2.0 协议的开源 AI 编程助手，拥有 33,277 个 GitHub Stars、473+ 贡献者，原生支持任意 LLM —— 从云端 API 到笔记本上运行的 Ollama。本指南涵盖安装、配置、真实基准测试，以及与 Copilot、Cursor、Tabby 的坦诚对比。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/continue/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“copilotkit”, “react-ai”, “生成式ui”, “ai-copilot”, “langchain”, “前端智能体”, “typescript”, “开源”] aliases:
-/zh/posts/copilotkit/- CopilotKit 是一个开源前端框架，可以将任何 React 或 Angular 应用转变为 AI 原生产品。拥有 31,536 个 GitHub Stars、3,300+ Forks，以及 2026 年 5 月完成的 2700 万美元 A 轮融资，它已成为团队交付应用内 AI 助手的默认选择——这些助手可以读取应用状态、触发前端操作，并在聊天界面内渲染生成式 UI 组件。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/copilotkit/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/zh/page/11/>«&nbsp;上一页&nbsp;
-</a><a class=next href=https://dibi8.com/zh/page/13/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/compound-engineering-multi-agent-coding-claude-codex-cursor/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“continue.dev”, “ai编程助手”, “vs-code插件”, “jetbrains插件”, “开源”, “ollama本地部署”, “copilot替代品”, “本地大模型”, “mcp协议”] aliases:
+/zh/posts/continue/- 引言 用过 GitHub Copilot 的开发者都知道 AI 辅助编程带来的效率提升 —— 但同样清楚其中的痛点：每月 10-19 美元、代码发送到微软服务、无法更换模型、完全不支持离线运行。2026 年，受监管行业的工程团队正在与纯云端工具碰壁。Continue.dev 应运而生：一款 Apache-2.0 协议的开源 AI 编程助手，拥有 33,277 个 GitHub Stars、473&#43; 贡献者，原生支持任意 LLM —— 从云端 API 到笔记本上运行的 Ollama。本指南涵盖安装、配置、真实基准测试，以及与 Copilot、Cursor、Tabby 的坦诚对比。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/continue/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“copilotkit”, “react-ai”, “生成式ui”, “ai-copilot”, “langchain”, “前端智能体”, “typescript”, “开源”] aliases:
+/zh/posts/copilotkit/- CopilotKit 是一个开源前端框架，可以将任何 React 或 Angular 应用转变为 AI 原生产品。拥有 31,536 个 GitHub Stars、3,300&#43; Forks，以及 2026 年 5 月完成的 2700 万美元 A 轮融资，它已成为团队交付应用内 AI 助手的默认选择——这些助手可以读取应用状态、触发前端操作，并在聊天界面内渲染生成式 UI 组件。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>10 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/copilotkit/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/zh/page/11/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/zh/page/13/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,22 +1,354 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元 一句话总结：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 60%-90% 的 token 消耗。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。\n目录 为什么 2026 年每个开发者都在为 token 账单焦虑 rtk 是什么：不是又一个 AI 工具，而是你的\"节流阀\" 实测数据：30 分钟 Claude Code 会话省了 80% token rtk 的四大核心机制 支持 13 款 AI 工具，一键接入 安装与上手： literally 30 秒 进阶用法：从 git status 到 AWS 全栈覆盖 rtk 的局限与最佳实践 同类工具对比：为什么选 rtk 总结：这是一个\"不买就亏\"的工具 为什么 2026 年每个开发者都在为 token 账单焦虑 2025 到 2026 年，AI 辅助编程从\"尝鲜\"变成了\"刚需\"。Claude Code、GitHub Copilot、Cursor、Windsurf、Gemini CLI……这些工具确实让编码效率翻倍，但随之而来的是一个被严重低估的成本：token 消耗。\n一个典型的中国开发者使用 Claude Code 的真实账单大概是：\n轻度使用（每天 1-2 小时）：每月 300-600 元 API 费用 中度使用（每天 3-4 小时）：每月 800-1500 元 重度使用/团队场景：每月 3000-5000 元不稀奇 这还不包括 ChatGPT Plus、Cursor Pro、GitHub Copilot Pro 等固定订阅费用。一个全栈工程师的\"AI 工具栈\"月支出轻松突破 2000 元。\n更隐蔽的问题是：你花的钱，相当一部分被浪费了。\n当你让 Claude Code 执行 ```git status、cat package.json、cargo test```` 这类命令时，返回的原始输出充斥着大量对 AI 而言毫无信息量的内容——空白行、进度条、ASCII 艺术、重复日志、冗长的元数据。这些\"噪声\"全部塞进 LLM 的上下文窗口，白白烧掉你的 token 配额。\nrtk 解决的正是这个被忽视的浪费环节。\nrtk 是什么：不是又一个 AI 工具，而是你的\"节流阀\" rtk（GitHub: rtk-ai/rtk）的定位非常精准：它本身不生成代码、不聊天、不推理——它只做一件事，就是把 CLI 命令的输出\"压扁\"，再喂给 AI。\n用作者的话说：\n“rtk filters and compresses command outputs before they reach your LLM context.”\n它像是一个夹在 “你的 AI 工具” 和 “shell” 之间的透明代理层：\n没有 rtk 时： Claude Code --git status--\u003e shell --\u003e git --\u003e 返回 2000 token 的原始输出 有 rtk 时： Claude Code --git status--\u003e RTK --\u003e git --\u003e 过滤压缩 --\u003e 返回 200 token 的精炼输出 关键特性一览：\n| 特性 | 说明 | |\n|\n| | 单二进制文件 | Rust 编译，零依赖，体积小巧 | | 100+ 命令支持 | git、测试、构建、Docker、AWS、Kubernetes 全覆盖 | | \u003c10ms 开销 | 过滤耗时几乎无感知 | | 自动重写钩子 | 安装后 AI 工具自动调用 rtk，无需手动改习惯 | | MIT 开源协议 | 完全免费，社区驱动 |\n实测数据：30 分钟 Claude Code 会话省了 80% token 这是 rtk 官方文档中给出的基准测试，也是我在自己项目（一个中型 TypeScript 全栈应用）上复现后确认的数据：\n| 操作 | 频次 | 原始 token | rtk 后 token | 节省 | |\n|\n|\n|\n|\n| | ls / tree | 10 次 | 2,000 | 400 | -80% | | cat / 文件读取 | 20 次 | 40,000 | 12,000 | -70% | | grep / rg | 8 次 | 16,000 | 3,200 | -80% | | git status | 10 次 | 3,000 | 600 | -80% | | git diff | 5 次 | 10,000 | 2,500 | -75% | | git log | 5 次 | 2,500 | 500 | -80% | | git add/commit/push | 8 次 | 1,600 | 120 | -92% | | cargo test / npm test | 5 次 | 25,000 | 2,500 | -90% | | pytest / go test | 若干 | 14,000 | 1,400 | -90% | | 总计 | | ~118,000 | ~23,900 | -80% |\n80% 是什么概念？\n如果你每月 Claude Code 的 API 账单是 1200 元，rtk 直接帮你砍掉 960 元。剩下 240 元的支出，效果却和原来完全一致——AI 拿到的信息没有减少，只是去掉了噪声。\nrtk 的四大核心机制 rtk 不是简单地把输出截断（truncation），而是根据命令类型应用四种策略：\n1. Smart Filtering（智能过滤） 移除对 LLM 无意义的噪声：注释、空行、样板代码、进度条、ASCII 装饰。比如 git push 的完整输出里有 “Enumerating objects… Counting objects… Delta compression…” 一大串，rtk 直接把它变成一行 ok main。\n2. Grouping（分组聚合） 把同类项合并。git status 不再逐行列出文件，而是按目录聚合：src/ (8 files)。测试失败不再打印整页堆栈，而是 FAILED: 2/15 tests，下面只列出具体失败项。\n3. Truncation（智能截断） 保留上下文，切除冗余。cat 一个 500 行的配置文件，rtk 保留结构但压缩值。rtk read file.rs -l aggressive 甚至只保留函数签名，完全剥离函数体。\n4. Deduplication（去重） Docker 日志、测试输出里常见的重复行，rtk 会折叠成 ... (repeated 47x)，省下大量 token。\n支持 13 款 AI 工具，一键接入 rtk 最让我惊喜的是它的生态兼容性。它不是只给 Claude Code 用的私货，而是覆盖了当下几乎所有主流 AI 编程工具：\n| AI 工具 | 安装命令 | 拦截方式 | |\n|\n|\n| | Claude Code | rtk init -g | PreToolUse hook | | GitHub Copilot (VS Code) | rtk init -g --copilot | PreToolUse hook | | Cursor | rtk init -g --agent cursor | hooks.json | | Gemini CLI | rtk init -g --gemini | BeforeTool hook | | Codex (OpenAI) | rtk init -g --codex | AGENTS.md + RTK.md | | Windsurf | rtk init --agent windsurf | .windsurfrules | | Cline / Roo Code | rtk init --agent cline | .clinerules | | OpenCode | rtk init -g --opencode | Plugin TS | | OpenClaw | openclaw plugins install | Plugin TS | | Hermes | rtk init --agent hermes | Python plugin | | Kilo Code | rtk init --agent kilocode | rules 文件 | | Google Antigravity | rtk init --agent antigravity | rules 文件 |\n这意味着：你可以在不同工具之间无缝切换，rtk 的节省效果始终跟随你。\n安装与上手： literally 30 秒 macOS（推荐 Homebrew） brew install rtk rtk init -g # 为你的默认 AI 工具安装自动重写钩子 # 重启 Claude Code / Cursor / 你的 AI 工具 Linux 一键安装 curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh rtk init -g 验证安装 rtk --version # rtk 0.28.2 rtk gain # 查看 token 节省统计 安装完成后，你不需要改变任何使用习惯。继续像平常一样输入 git status、cargo test，rtk 的钩子会在底层自动把命令重写为 rtk git status、rtk cargo test，AI 拿到的是压缩后的输出，你无感知。\n进阶用法：从 git status 到 AWS 全栈覆盖 Git 操作：化繁为简 rtk git status # 精简状态 rtk git log -n 10 # 单行提交记录 rtk git diff # 压缩 diff rtk git push # 直接返回 ok main 测试输出：只看失败 rtk pytest # 只列失败测试，节省 90% token rtk cargo test # 同理 rtk test # 通用测试包装器 代码检查：分组聚合 rtk lint # ESLint 按规则/文件分组 rtk tsc # TypeScript 错误按文件聚合 rtk ruff check # Python lint 结果压缩 Docker \u0026 K8s：去重日志 rtk docker ps # 精简容器列表 rtk docker logs # 去重日志输出 rtk kubectl pods # 精简 pod 列表 AWS：脱敏 + 精简 rtk aws ec2 describe-instances # 精简实例列表 rtk aws lambda list-functions # 只留 name/runtime/memory，自动脱敏 rtk aws s3 ls # 截断但保留 tee 恢复 数据分析：结构化输出 rtk json config.json # 保留结构，隐藏值（防泄密） rtk deps # 依赖摘要 rtk summary # 启发式总结长输出 rtk 的局限与最佳实践 局限性 Bash 命令才生效：Claude Code 内置的 Read、Grep、Glob 等工具不走 Bash hook，所以不会自动被 rtk 处理。解决方式：改用 shell 命令（cat、rg、find）或直接调用 rtk read、rtk grep。\nWindows 原生支持有限：auto-rewrite 钩子需要 Unix shell，Windows 原生环境（cmd/PowerShell）只能使用 CLAUDE.md 注入模式，需要手动在命令前加 rtk。推荐用 WSL 获得完整体验。\n极端场景可能需要完整输出：如果 rtk 过滤导致 AI 误解，可以用 tee 模式恢复完整输出，或临时用 -v / --verbose 提高详细度。\n最佳实践 先安装再忘记：装好钩子后正常使用即可，不要刻意记 rtk 命令 定期看 rtk gain：了解自己的节省情况，发现未被覆盖的命令 rtk discover：扫描近期会话，发现可以节省但还没被 rtk 覆盖的命令 排除敏感命令：在 ~/.config/rtk/config.toml 里设置 exclude_commands = [\"curl\", \"playwright\"] 同类工具对比：为什么选 rtk | 工具 | 定位 | 节省方式 | 覆盖范围 | 易用性 | |\n|\n|\n|\n|\n| | rtk | CLI 输出过滤 | 智能压缩 | 100+ 命令，13 款 AI 工具 | 一键安装，零配置 | | Morph | API 代理层 | 模型路由 + 上下文压缩 | 通用 API 调用 | 需改集成代码 | | LiteLLM | LLM 网关 | 缓存 + 路由 + 监控 | 多模型 API | 需部署服务 | | LLMLingua | 提示压缩 | 语义压缩 | 提示文本 | 需手动接入 | | ccusage | 监控工具 | 无压缩，只监控 | Claude Code 专用 | 只看不省 |\nrtk 的核心优势在于：它工作在命令层，不需要改一行业务代码，不需要接入 API 网关，不需要学习新的抽象。 它就是一层透明代理，装上去，省下来。\n总结：这是一个\"不买就亏\"的工具 2026 年的开发者工具市场，大家都在做加法——更强的模型、更多的功能、更炫的界面。rtk 罕见地做了一次减法：把已经存在的东西，变得更轻、更省、更高效。\n它不替代你的 AI 工具，只是让它们的\"伙食费\"打八折甚至一折。它不改变你的工作流，只是默默把噪声滤掉。它不向你收钱（MIT 开源），却每个月帮你省下一笔真金白银。\n如果你正在用 Claude Code、Cursor、Copilot 或任何 AI 编程工具，rtk 应该是你下一个安装的软件——不是因为它很酷，而是因为不用它很亏。\n# 30 秒，开始省钱 brew install rtk rtk init -g ```` * * * **延伸阅读** - [rtk GitHub 仓库](https://github.com/rtk-ai/rtk) - [rtk 官方文档](https://rtk-ai.app/guide) - [Claude Code 官方定价](https://docs.anthropic.com/) - [Morph: 5 种 LLM 成本优化策略](https://www.morphllm.com/ai-coding-costs) * * * *本文基于 rtk v0.28.2 实测撰写。工具持续迭代，具体功能请以最新版本为准。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026\", \"datePublished\": \"2026-01-01\", \"dateModified\": \"2026-01-01\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026\" } } ## Why This Matters Understanding rtk 实测：这款 rust 写的 cli 代理，让我的 claude code 月账单从 1200 元砍到 240 元｜llm token 优化终极指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ","wordCount":"1413","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#rtk-%e5%ae%9e%e6%b5%8b%e8%bf%99%e6%ac%be-rust-%e5%86%99%e7%9a%84-cli-%e4%bb%a3%e7%90%86%e8%ae%a9%e6%88%91%e7%9a%84-claude-code-%e6%9c%88%e8%b4%a6%e5%8d%95%e4%bb%8e-1200-%e5%85%83%e7%a0%8d%e5%88%b0-240-%e5%85%83 aria-label="rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元">rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元</a><ul><li><a href=#%e7%9b%ae%e5%bd%95 aria-label=目录>目录</a></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88-2026-%e5%b9%b4%e6%af%8f%e4%b8%aa%e5%bc%80%e5%8f%91%e8%80%85%e9%83%bd%e5%9c%a8%e4%b8%ba-token-%e8%b4%a6%e5%8d%95%e7%84%a6%e8%99%91 aria-label="为什么 2026 年每个开发者都在为 token 账单焦虑">为什么 2026 年每个开发者都在为 token 账单焦虑</a></li><li><a href=#rtk-%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%8d%e6%98%af%e5%8f%88%e4%b8%80%e4%b8%aa-ai-%e5%b7%a5%e5%85%b7%e8%80%8c%e6%98%af%e4%bd%a0%e7%9a%84%e8%8a%82%e6%b5%81%e9%98%80 aria-label='rtk 是什么：不是又一个 AI 工具，而是你的"节流阀"'>rtk 是什么：不是又一个 AI 工具，而是你的"节流阀"</a></li><li><a href=#%e5%ae%9e%e6%b5%8b%e6%95%b0%e6%8d%ae30-%e5%88%86%e9%92%9f-claude-code-%e4%bc%9a%e8%af%9d%e7%9c%81%e4%ba%86-80-token aria-label="实测数据：30 分钟 Claude Code 会话省了 80% token">实测数据：30 分钟 Claude Code 会话省了 80% token</a></li><li><a href=#rtk-%e7%9a%84%e5%9b%9b%e5%a4%a7%e6%a0%b8%e5%bf%83%e6%9c%ba%e5%88%b6 aria-label="rtk 的四大核心机制">rtk 的四大核心机制</a><ul><li><a href=#1-smart-filtering%e6%99%ba%e8%83%bd%e8%bf%87%e6%bb%a4 aria-label="1. Smart Filtering（智能过滤）">1. Smart Filtering（智能过滤）</a></li><li><a href=#2-grouping%e5%88%86%e7%bb%84%e8%81%9a%e5%90%88 aria-label="2. Grouping（分组聚合）">2. Grouping（分组聚合）</a></li><li><a href=#3-truncation%e6%99%ba%e8%83%bd%e6%88%aa%e6%96%ad aria-label="3. Truncation（智能截断）">3. Truncation（智能截断）</a></li><li><a href=#4-deduplication%e5%8e%bb%e9%87%8d aria-label="4. Deduplication（去重）">4. Deduplication（去重）</a></li></ul></li><li><a href=#%e6%94%af%e6%8c%81-13-%e6%ac%be-ai-%e5%b7%a5%e5%85%b7%e4%b8%80%e9%94%ae%e6%8e%a5%e5%85%a5 aria-label="支持 13 款 AI 工具，一键接入">支持 13 款 AI 工具，一键接入</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e4%b8%8a%e6%89%8b-literally-30-%e7%a7%92 aria-label="安装与上手： literally 30 秒">安装与上手： literally 30 秒</a><ul><li><a href=#macos%e6%8e%a8%e8%8d%90-homebrew aria-label="macOS（推荐 Homebrew）">macOS（推荐 Homebrew）</a></li><li><a href=#linux-%e4%b8%80%e9%94%ae%e5%ae%89%e8%a3%85 aria-label="Linux 一键安装">Linux 一键安装</a></li><li><a href=#%e9%aa%8c%e8%af%81%e5%ae%89%e8%a3%85 aria-label=验证安装>验证安装</a></li></ul></li><li><a href=#%e8%bf%9b%e9%98%b6%e7%94%a8%e6%b3%95%e4%bb%8e-git-status-%e5%88%b0-aws-%e5%85%a8%e6%a0%88%e8%a6%86%e7%9b%96 aria-label="进阶用法：从 git status 到 AWS 全栈覆盖">进阶用法：从 git status 到 AWS 全栈覆盖</a><ul><li><a href=#git-%e6%93%8d%e4%bd%9c%e5%8c%96%e7%b9%81%e4%b8%ba%e7%ae%80 aria-label="Git 操作：化繁为简">Git 操作：化繁为简</a></li><li><a href=#%e6%b5%8b%e8%af%95%e8%be%93%e5%87%ba%e5%8f%aa%e7%9c%8b%e5%a4%b1%e8%b4%a5 aria-label=测试输出：只看失败>测试输出：只看失败</a></li><li><a href=#%e4%bb%a3%e7%a0%81%e6%a3%80%e6%9f%a5%e5%88%86%e7%bb%84%e8%81%9a%e5%90%88 aria-label=代码检查：分组聚合>代码检查：分组聚合</a></li><li><a href=#docker--k8s%e5%8e%bb%e9%87%8d%e6%97%a5%e5%bf%97 aria-label="Docker & K8s：去重日志">Docker & K8s：去重日志</a></li><li><a href=#aws%e8%84%b1%e6%95%8f--%e7%b2%be%e7%ae%80 aria-label="AWS：脱敏 + 精简">AWS：脱敏 + 精简</a></li><li><a href=#%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90%e7%bb%93%e6%9e%84%e5%8c%96%e8%be%93%e5%87%ba aria-label=数据分析：结构化输出>数据分析：结构化输出</a></li></ul></li><li><a href=#rtk-%e7%9a%84%e5%b1%80%e9%99%90%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label="rtk 的局限与最佳实践">rtk 的局限与最佳实践</a><ul><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7 aria-label=局限性>局限性</a></li><li><a href=#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5 aria-label=最佳实践>最佳实践</a></li></ul></li><li><a href=#%e5%90%8c%e7%b1%bb%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%89-rtk aria-label="同类工具对比：为什么选 rtk">同类工具对比：为什么选 rtk</a></li><li><a href=#%e6%80%bb%e7%bb%93%e8%bf%99%e6%98%af%e4%b8%80%e4%b8%aa%e4%b8%8d%e4%b9%b0%e5%b0%b1%e4%ba%8f%e7%9a%84%e5%b7%a5%e5%85%b7 aria-label='总结：这是一个"不买就亏"的工具'>总结：这是一个"不买就亏"的工具</a></li></ul></li></ul></div></details><div class="post-content md-content"><h1 id=rtk-实测这款-rust-写的-cli-代理让我的-claude-code-月账单从-1200-元砍到-240-元>rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元<a hidden class=anchor aria-hidden=true href=#rtk-实测这款-rust-写的-cli-代理让我的-claude-code-月账单从-1200-元砍到-240-元>#</a></h1><blockquote><p><strong>一句话总结</strong>：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 <strong>60%-90% 的 token 消耗</strong>。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。</p></blockquote><hr><h2 id=目录>目录<a hidden class=anchor aria-hidden=true href=#目录>#</a></h2><ol><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e4%b8%ba%e4%bb%80%e4%b9%88-2026-%e5%b9%b4%e6%af%8f%e4%b8%aa%e5%bc%80%e5%8f%91%e8%80%85%e9%83%bd%e5%9c%a8%e4%b8%ba-token-%e8%b4%a6%e5%8d%95%e7%84%a6%e8%99%91>为什么 2026 年每个开发者都在为 token 账单焦虑</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#rtk-%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%8d%e6%98%af%e5%8f%88%e4%b8%80%e4%b8%aa-ai-%e5%b7%a5%e5%85%b7%e8%80%8c%e6%98%af%e4%bd%a0%e7%9a%84%e8%8a%82%e6%b5%81%e9%98%80>rtk 是什么：不是又一个 AI 工具，而是你的"节流阀"</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e5%ae%9e%e6%b5%8b%e6%95%b0%e6%8d%ae30-%e5%88%86%e9%92%9f-claude-code-%e4%bc%9a%e8%af%9d%e7%9c%81%e4%ba%86-80-token>实测数据：30 分钟 Claude Code 会话省了 80% token</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#rtk-%e7%9a%84%e5%9b%9b%e5%a4%a7%e6%a0%b8%e5%bf%83%e6%9c%ba%e5%88%b6>rtk 的四大核心机制</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e6%94%af%e6%8c%81-13-%e6%ac%be-ai-%e5%b7%a5%e5%85%b7%e4%b8%80%e9%94%ae%e6%8e%a5%e5%85%a5>支持 13 款 AI 工具，一键接入</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e5%ae%89%e8%a3%85%e4%b8%8e%e4%b8%8a%e6%89%8b-literally-30-%e7%a7%92>安装与上手： literally 30 秒</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e8%bf%9b%e9%98%b6%e7%94%a8%e6%b3%95%e4%bb%8e-git-status-%e5%88%b0-aws-%e5%85%a8%e6%a0%88%e8%a6%86%e7%9b%96>进阶用法：从 git status 到 AWS 全栈覆盖</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#rtk-%e7%9a%84%e5%b1%80%e9%99%90%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5>rtk 的局限与最佳实践</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e5%90%8c%e7%b1%bb%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%89-rtk>同类工具对比：为什么选 rtk</a></li><li><a href=/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e6%80%bb%e7%bb%93%e8%bf%99%e6%98%af%e4%b8%80%e4%b8%aa%e4%b8%8d%e4%b9%b0%e5%b0%b1%e4%ba%8f%e7%9a%84%e5%b7%a5%e5%85%b7>总结：这是一个"不买就亏"的工具</a></li></ol><hr><h2 id=为什么-2026-年每个开发者都在为-token-账单焦虑>为什么 2026 年每个开发者都在为 token 账单焦虑<a hidden class=anchor aria-hidden=true href=#为什么-2026-年每个开发者都在为-token-账单焦虑>#</a></h2><p>2025 到 2026 年，AI 辅助编程从"尝鲜"变成了"刚需"。Claude Code、GitHub Copilot、Cursor、Windsurf、Gemini CLI……这些工具确实让编码效率翻倍，但随之而来的是一个被严重低估的成本：<strong>token 消耗</strong>。</p><p>一个典型的中国开发者使用 Claude Code 的真实账单大概是：</p><ul><li><strong>轻度使用</strong>（每天 1-2 小时）：每月 300-600 元 API 费用</li><li><strong>中度使用</strong>（每天 3-4 小时）：每月 800-1500 元</li><li><strong>重度使用/团队场景</strong>：每月 3000-5000 元不稀奇</li></ul><p>这还不包括 ChatGPT Plus、Cursor Pro、GitHub Copilot Pro 等固定订阅费用。一个全栈工程师的"AI 工具栈"月支出轻松突破 2000 元。</p><p>更隐蔽的问题是：<strong>你花的钱，相当一部分被浪费了</strong>。</p><p>当你让 Claude Code 执行 ```git status<code>、</code>cat package.json<code>、</code>cargo test```` 这类命令时，返回的原始输出充斥着大量对 AI 而言毫无信息量的内容——空白行、进度条、ASCII 艺术、重复日志、冗长的元数据。这些"噪声"全部塞进 LLM 的上下文窗口，白白烧掉你的 token 配额。</p><p><strong>rtk 解决的正是这个被忽视的浪费环节。</strong></p><hr><h2 id=rtk-是什么不是又一个-ai-工具而是你的节流阀>rtk 是什么：不是又一个 AI 工具，而是你的"节流阀"<a hidden class=anchor aria-hidden=true href=#rtk-是什么不是又一个-ai-工具而是你的节流阀>#</a></h2><p>rtk（GitHub: rtk-ai/rtk）的定位非常精准：<strong>它本身不生成代码、不聊天、不推理——它只做一件事，就是把 CLI 命令的输出"压扁"，再喂给 AI。</strong></p><p>用作者的话说：</p><blockquote><p>&ldquo;rtk filters and compresses command outputs before they reach your LLM context.&rdquo;</p></blockquote><p>它像是一个夹在 &ldquo;你的 AI 工具&rdquo; 和 &ldquo;shell&rdquo; 之间的透明代理层：</p><pre tabindex=0><code>没有 rtk 时：
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元 一句话总结：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 60%-90% 的 token 消耗。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。\n目录 为什么 2026 年每个开发者都在为 token 账单焦虑 rtk 是什么：不是又一个 AI 工具，而是你的\"节流阀\" 实测数据：30 分钟 Claude Code 会话省了 80% token rtk 的四大核心机制 支持 13 款 AI 工具，一键接入 安装与上手： literally 30 秒 进阶用法：从 git status 到 AWS 全栈覆盖 rtk 的局限与最佳实践 同类工具对比：为什么选 rtk 总结：这是一个\"不买就亏\"的工具 为什么 2026 年每个开发者都在为 token 账单焦虑 2025 到 2026 年，AI 辅助编程从\"尝鲜\"变成了\"刚需\"。Claude Code、GitHub Copilot、Cursor、Windsurf、Gemini CLI……这些工具确实让编码效率翻倍，但随之而来的是一个被严重低估的成本：token 消耗。\n一个典型的中国开发者使用 Claude Code 的真实账单大概是：\n轻度使用（每天 1-2 小时）：每月 300-600 元 API 费用 中度使用（每天 3-4 小时）：每月 800-1500 元 重度使用/团队场景：每月 3000-5000 元不稀奇 这还不包括 ChatGPT Plus、Cursor Pro、GitHub Copilot Pro 等固定订阅费用。一个全栈工程师的\"AI 工具栈\"月支出轻松突破 2000 元。\n更隐蔽的问题是：你花的钱，相当一部分被浪费了。\n当你让 Claude Code 执行 ```git status、cat package.json、cargo test```` 这类命令时，返回的原始输出充斥着大量对 AI 而言毫无信息量的内容——空白行、进度条、ASCII 艺术、重复日志、冗长的元数据。这些\"噪声\"全部塞进 LLM 的上下文窗口，白白烧掉你的 token 配额。\nrtk 解决的正是这个被忽视的浪费环节。\nrtk 是什么：不是又一个 AI 工具，而是你的\"节流阀\" rtk（GitHub: rtk-ai/rtk）的定位非常精准：它本身不生成代码、不聊天、不推理——它只做一件事，就是把 CLI 命令的输出\"压扁\"，再喂给 AI。\n用作者的话说：\n“rtk filters and compresses command outputs before they reach your LLM context.”\n它像是一个夹在 “你的 AI 工具” 和 “shell” 之间的透明代理层：\n没有 rtk 时： Claude Code --git status--\u003e shell --\u003e git --\u003e 返回 2000 token 的原始输出 有 rtk 时： Claude Code --git status--\u003e RTK --\u003e git --\u003e 过滤压缩 --\u003e 返回 200 token 的精炼输出 关键特性一览：\n| 特性 | 说明 | |\n|\n| | 单二进制文件 | Rust 编译，零依赖，体积小巧 | | 100+ 命令支持 | git、测试、构建、Docker、AWS、Kubernetes 全覆盖 | | \u003c10ms 开销 | 过滤耗时几乎无感知 | | 自动重写钩子 | 安装后 AI 工具自动调用 rtk，无需手动改习惯 | | MIT 开源协议 | 完全免费，社区驱动 |\n实测数据：30 分钟 Claude Code 会话省了 80% token 这是 rtk 官方文档中给出的基准测试，也是我在自己项目（一个中型 TypeScript 全栈应用）上复现后确认的数据：\n| 操作 | 频次 | 原始 token | rtk 后 token | 节省 | |\n|\n|\n|\n|\n| | ls / tree | 10 次 | 2,000 | 400 | -80% | | cat / 文件读取 | 20 次 | 40,000 | 12,000 | -70% | | grep / rg | 8 次 | 16,000 | 3,200 | -80% | | git status | 10 次 | 3,000 | 600 | -80% | | git diff | 5 次 | 10,000 | 2,500 | -75% | | git log | 5 次 | 2,500 | 500 | -80% | | git add/commit/push | 8 次 | 1,600 | 120 | -92% | | cargo test / npm test | 5 次 | 25,000 | 2,500 | -90% | | pytest / go test | 若干 | 14,000 | 1,400 | -90% | | 总计 | | ~118,000 | ~23,900 | -80% |\n80% 是什么概念？\n如果你每月 Claude Code 的 API 账单是 1200 元，rtk 直接帮你砍掉 960 元。剩下 240 元的支出，效果却和原来完全一致——AI 拿到的信息没有减少，只是去掉了噪声。\nrtk 的四大核心机制 rtk 不是简单地把输出截断（truncation），而是根据命令类型应用四种策略：\n1. Smart Filtering（智能过滤） 移除对 LLM 无意义的噪声：注释、空行、样板代码、进度条、ASCII 装饰。比如 git push 的完整输出里有 “Enumerating objects… Counting objects… Delta compression…” 一大串，rtk 直接把它变成一行 ok main。\n2. Grouping（分组聚合） 把同类项合并。git status 不再逐行列出文件，而是按目录聚合：src/ (8 files)。测试失败不再打印整页堆栈，而是 FAILED: 2/15 tests，下面只列出具体失败项。\n3. Truncation（智能截断） 保留上下文，切除冗余。cat 一个 500 行的配置文件，rtk 保留结构但压缩值。rtk read file.rs -l aggressive 甚至只保留函数签名，完全剥离函数体。\n4. Deduplication（去重） Docker 日志、测试输出里常见的重复行，rtk 会折叠成 ... (repeated 47x)，省下大量 token。\n支持 13 款 AI 工具，一键接入 rtk 最让我惊喜的是它的生态兼容性。它不是只给 Claude Code 用的私货，而是覆盖了当下几乎所有主流 AI 编程工具：\n| AI 工具 | 安装命令 | 拦截方式 | |\n|\n|\n| | Claude Code | rtk init -g | PreToolUse hook | | GitHub Copilot (VS Code) | rtk init -g --copilot | PreToolUse hook | | Cursor | rtk init -g --agent cursor | hooks.json | | Gemini CLI | rtk init -g --gemini | BeforeTool hook | | Codex (OpenAI) | rtk init -g --codex | AGENTS.md + RTK.md | | Windsurf | rtk init --agent windsurf | .windsurfrules | | Cline / Roo Code | rtk init --agent cline | .clinerules | | OpenCode | rtk init -g --opencode | Plugin TS | | OpenClaw | openclaw plugins install | Plugin TS | | Hermes | rtk init --agent hermes | Python plugin | | Kilo Code | rtk init --agent kilocode | rules 文件 | | Google Antigravity | rtk init --agent antigravity | rules 文件 |\n这意味着：你可以在不同工具之间无缝切换，rtk 的节省效果始终跟随你。\n安装与上手： literally 30 秒 macOS（推荐 Homebrew） brew install rtk rtk init -g # 为你的默认 AI 工具安装自动重写钩子 # 重启 Claude Code / Cursor / 你的 AI 工具 Linux 一键安装 curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh rtk init -g 验证安装 rtk --version # rtk 0.28.2 rtk gain # 查看 token 节省统计 安装完成后，你不需要改变任何使用习惯。继续像平常一样输入 git status、cargo test，rtk 的钩子会在底层自动把命令重写为 rtk git status、rtk cargo test，AI 拿到的是压缩后的输出，你无感知。\n进阶用法：从 git status 到 AWS 全栈覆盖 Git 操作：化繁为简 rtk git status # 精简状态 rtk git log -n 10 # 单行提交记录 rtk git diff # 压缩 diff rtk git push # 直接返回 ok main 测试输出：只看失败 rtk pytest # 只列失败测试，节省 90% token rtk cargo test # 同理 rtk test # 通用测试包装器 代码检查：分组聚合 rtk lint # ESLint 按规则/文件分组 rtk tsc # TypeScript 错误按文件聚合 rtk ruff check # Python lint 结果压缩 Docker \u0026 K8s：去重日志 rtk docker ps # 精简容器列表 rtk docker logs # 去重日志输出 rtk kubectl pods # 精简 pod 列表 AWS：脱敏 + 精简 rtk aws ec2 describe-instances # 精简实例列表 rtk aws lambda list-functions # 只留 name/runtime/memory，自动脱敏 rtk aws s3 ls # 截断但保留 tee 恢复 数据分析：结构化输出 rtk json config.json # 保留结构，隐藏值（防泄密） rtk deps # 依赖摘要 rtk summary # 启发式总结长输出 rtk 的局限与最佳实践 局限性 Bash 命令才生效：Claude Code 内置的 Read、Grep、Glob 等工具不走 Bash hook，所以不会自动被 rtk 处理。解决方式：改用 shell 命令（cat、rg、find）或直接调用 rtk read、rtk grep。\nWindows 原生支持有限：auto-rewrite 钩子需要 Unix shell，Windows 原生环境（cmd/PowerShell）只能使用 CLAUDE.md 注入模式，需要手动在命令前加 rtk。推荐用 WSL 获得完整体验。\n极端场景可能需要完整输出：如果 rtk 过滤导致 AI 误解，可以用 tee 模式恢复完整输出，或临时用 -v / --verbose 提高详细度。\n最佳实践 先安装再忘记：装好钩子后正常使用即可，不要刻意记 rtk 命令 定期看 rtk gain：了解自己的节省情况，发现未被覆盖的命令 rtk discover：扫描近期会话，发现可以节省但还没被 rtk 覆盖的命令 排除敏感命令：在 ~/.config/rtk/config.toml 里设置 exclude_commands = [\"curl\", \"playwright\"] 同类工具对比：为什么选 rtk | 工具 | 定位 | 节省方式 | 覆盖范围 | 易用性 | |\n|\n|\n|\n|\n| | rtk | CLI 输出过滤 | 智能压缩 | 100+ 命令，13 款 AI 工具 | 一键安装，零配置 | | Morph | API 代理层 | 模型路由 + 上下文压缩 | 通用 API 调用 | 需改集成代码 | | LiteLLM | LLM 网关 | 缓存 + 路由 + 监控 | 多模型 API | 需部署服务 | | LLMLingua | 提示压缩 | 语义压缩 | 提示文本 | 需手动接入 | | ccusage | 监控工具 | 无压缩，只监控 | Claude Code 专用 | 只看不省 |\nrtk 的核心优势在于：它工作在命令层，不需要改一行业务代码，不需要接入 API 网关，不需要学习新的抽象。 它就是一层透明代理，装上去，省下来。\n总结：这是一个\"不买就亏\"的工具 2026 年的开发者工具市场，大家都在做加法——更强的模型、更多的功能、更炫的界面。rtk 罕见地做了一次减法：把已经存在的东西，变得更轻、更省、更高效。\n它不替代你的 AI 工具，只是让它们的\"伙食费\"打八折甚至一折。它不改变你的工作流，只是默默把噪声滤掉。它不向你收钱（MIT 开源），却每个月帮你省下一笔真金白银。\n如果你正在用 Claude Code、Cursor、Copilot 或任何 AI 编程工具，rtk 应该是你下一个安装的软件——不是因为它很酷，而是因为不用它很亏。\n# 30 秒，开始省钱 brew install rtk rtk init -g ```` * * * **延伸阅读** - [rtk GitHub 仓库](https://github.com/rtk-ai/rtk) - [rtk 官方文档](https://rtk-ai.app/guide) - [Claude Code 官方定价](https://docs.anthropic.com/) - [Morph: 5 种 LLM 成本优化策略](https://www.morphllm.com/ai-coding-costs) * * * *本文基于 rtk v0.28.2 实测撰写。工具持续迭代，具体功能请以最新版本为准。* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026\", \"datePublished\": \"2026-01-01\", \"dateModified\": \"2026-01-01\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/zh/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026\" } } ## Why This Matters Understanding rtk 实测：这款 rust 写的 cli 代理，让我的 claude code 月账单从 1200 元砍到 240 元｜llm token 优化终极指南 2026 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ## Tool Comparison | Feature | Claude Code | Cursor | Codex CLI | OpenCode | | * * * | * * * | * * * | * * * | * * * | | **Price** | $20/month | $20/month | Free | Free | | **Interface** | CLI + IDE | Full IDE | CLI | CLI | | **License** | Proprietary | Commercial | Apache 2.0 | MIT | | **GitHub Stars** | N/A | N/A | N/A | 45,000+ | | **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization | ",
+  "wordCount" : "1413",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#rtk-%e5%ae%9e%e6%b5%8b%e8%bf%99%e6%ac%be-rust-%e5%86%99%e7%9a%84-cli-%e4%bb%a3%e7%90%86%e8%ae%a9%e6%88%91%e7%9a%84-claude-code-%e6%9c%88%e8%b4%a6%e5%8d%95%e4%bb%8e-1200-%e5%85%83%e7%a0%8d%e5%88%b0-240-%e5%85%83" aria-label="rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元">rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元</a><ul>
+                    
+            <li>
+                <a href="#%e7%9b%ae%e5%bd%95" aria-label="目录">目录</a></li>
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88-2026-%e5%b9%b4%e6%af%8f%e4%b8%aa%e5%bc%80%e5%8f%91%e8%80%85%e9%83%bd%e5%9c%a8%e4%b8%ba-token-%e8%b4%a6%e5%8d%95%e7%84%a6%e8%99%91" aria-label="为什么 2026 年每个开发者都在为 token 账单焦虑">为什么 2026 年每个开发者都在为 token 账单焦虑</a></li>
+            <li>
+                <a href="#rtk-%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%8d%e6%98%af%e5%8f%88%e4%b8%80%e4%b8%aa-ai-%e5%b7%a5%e5%85%b7%e8%80%8c%e6%98%af%e4%bd%a0%e7%9a%84%e8%8a%82%e6%b5%81%e9%98%80" aria-label="rtk 是什么：不是又一个 AI 工具，而是你的&quot;节流阀&quot;">rtk 是什么：不是又一个 AI 工具，而是你的&quot;节流阀&quot;</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e6%b5%8b%e6%95%b0%e6%8d%ae30-%e5%88%86%e9%92%9f-claude-code-%e4%bc%9a%e8%af%9d%e7%9c%81%e4%ba%86-80-token" aria-label="实测数据：30 分钟 Claude Code 会话省了 80% token">实测数据：30 分钟 Claude Code 会话省了 80% token</a></li>
+            <li>
+                <a href="#rtk-%e7%9a%84%e5%9b%9b%e5%a4%a7%e6%a0%b8%e5%bf%83%e6%9c%ba%e5%88%b6" aria-label="rtk 的四大核心机制">rtk 的四大核心机制</a><ul>
+                    
+            <li>
+                <a href="#1-smart-filtering%e6%99%ba%e8%83%bd%e8%bf%87%e6%bb%a4" aria-label="1. Smart Filtering（智能过滤）">1. Smart Filtering（智能过滤）</a></li>
+            <li>
+                <a href="#2-grouping%e5%88%86%e7%bb%84%e8%81%9a%e5%90%88" aria-label="2. Grouping（分组聚合）">2. Grouping（分组聚合）</a></li>
+            <li>
+                <a href="#3-truncation%e6%99%ba%e8%83%bd%e6%88%aa%e6%96%ad" aria-label="3. Truncation（智能截断）">3. Truncation（智能截断）</a></li>
+            <li>
+                <a href="#4-deduplication%e5%8e%bb%e9%87%8d" aria-label="4. Deduplication（去重）">4. Deduplication（去重）</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%94%af%e6%8c%81-13-%e6%ac%be-ai-%e5%b7%a5%e5%85%b7%e4%b8%80%e9%94%ae%e6%8e%a5%e5%85%a5" aria-label="支持 13 款 AI 工具，一键接入">支持 13 款 AI 工具，一键接入</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e4%b8%8a%e6%89%8b-literally-30-%e7%a7%92" aria-label="安装与上手： literally 30 秒">安装与上手： literally 30 秒</a><ul>
+                    
+            <li>
+                <a href="#macos%e6%8e%a8%e8%8d%90-homebrew" aria-label="macOS（推荐 Homebrew）">macOS（推荐 Homebrew）</a></li>
+            <li>
+                <a href="#linux-%e4%b8%80%e9%94%ae%e5%ae%89%e8%a3%85" aria-label="Linux 一键安装">Linux 一键安装</a></li>
+            <li>
+                <a href="#%e9%aa%8c%e8%af%81%e5%ae%89%e8%a3%85" aria-label="验证安装">验证安装</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e8%bf%9b%e9%98%b6%e7%94%a8%e6%b3%95%e4%bb%8e-git-status-%e5%88%b0-aws-%e5%85%a8%e6%a0%88%e8%a6%86%e7%9b%96" aria-label="进阶用法：从 git status 到 AWS 全栈覆盖">进阶用法：从 git status 到 AWS 全栈覆盖</a><ul>
+                    
+            <li>
+                <a href="#git-%e6%93%8d%e4%bd%9c%e5%8c%96%e7%b9%81%e4%b8%ba%e7%ae%80" aria-label="Git 操作：化繁为简">Git 操作：化繁为简</a></li>
+            <li>
+                <a href="#%e6%b5%8b%e8%af%95%e8%be%93%e5%87%ba%e5%8f%aa%e7%9c%8b%e5%a4%b1%e8%b4%a5" aria-label="测试输出：只看失败">测试输出：只看失败</a></li>
+            <li>
+                <a href="#%e4%bb%a3%e7%a0%81%e6%a3%80%e6%9f%a5%e5%88%86%e7%bb%84%e8%81%9a%e5%90%88" aria-label="代码检查：分组聚合">代码检查：分组聚合</a></li>
+            <li>
+                <a href="#docker--k8s%e5%8e%bb%e9%87%8d%e6%97%a5%e5%bf%97" aria-label="Docker &amp; K8s：去重日志">Docker &amp; K8s：去重日志</a></li>
+            <li>
+                <a href="#aws%e8%84%b1%e6%95%8f--%e7%b2%be%e7%ae%80" aria-label="AWS：脱敏 &#43; 精简">AWS：脱敏 + 精简</a></li>
+            <li>
+                <a href="#%e6%95%b0%e6%8d%ae%e5%88%86%e6%9e%90%e7%bb%93%e6%9e%84%e5%8c%96%e8%be%93%e5%87%ba" aria-label="数据分析：结构化输出">数据分析：结构化输出</a></li></ul>
+            </li>
+            <li>
+                <a href="#rtk-%e7%9a%84%e5%b1%80%e9%99%90%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" aria-label="rtk 的局限与最佳实践">rtk 的局限与最佳实践</a><ul>
+                    
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7" aria-label="局限性">局限性</a></li>
+            <li>
+                <a href="#%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5" aria-label="最佳实践">最佳实践</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%90%8c%e7%b1%bb%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%89-rtk" aria-label="同类工具对比：为什么选 rtk">同类工具对比：为什么选 rtk</a></li>
+            <li>
+                <a href="#%e6%80%bb%e7%bb%93%e8%bf%99%e6%98%af%e4%b8%80%e4%b8%aa%e4%b8%8d%e4%b9%b0%e5%b0%b1%e4%ba%8f%e7%9a%84%e5%b7%a5%e5%85%b7" aria-label="总结：这是一个&quot;不买就亏&quot;的工具">总结：这是一个&quot;不买就亏&quot;的工具</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h1 id="rtk-实测这款-rust-写的-cli-代理让我的-claude-code-月账单从-1200-元砍到-240-元">rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元<a hidden class="anchor" aria-hidden="true" href="#rtk-实测这款-rust-写的-cli-代理让我的-claude-code-月账单从-1200-元砍到-240-元">#</a></h1>
+<blockquote>
+<p><strong>一句话总结</strong>：rtk 是一个用 Rust 编写的单文件 CLI 代理，通过智能过滤和压缩命令输出，帮你在使用 Claude Code、Cursor、Codex 等 AI 编程工具时减少 <strong>60%-90% 的 token 消耗</strong>。支持 100+ 命令，覆盖 git、测试、构建、Docker 等全开发流程，安装只需一条命令，零依赖、零配置。</p>
+</blockquote>
+<hr>
+<h2 id="目录">目录<a hidden class="anchor" aria-hidden="true" href="#目录">#</a></h2>
+<ol>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e4%b8%ba%e4%bb%80%e4%b9%88-2026-%e5%b9%b4%e6%af%8f%e4%b8%aa%e5%bc%80%e5%8f%91%e8%80%85%e9%83%bd%e5%9c%a8%e4%b8%ba-token-%e8%b4%a6%e5%8d%95%e7%84%a6%e8%99%91">为什么 2026 年每个开发者都在为 token 账单焦虑</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#rtk-%e6%98%af%e4%bb%80%e4%b9%88%e4%b8%8d%e6%98%af%e5%8f%88%e4%b8%80%e4%b8%aa-ai-%e5%b7%a5%e5%85%b7%e8%80%8c%e6%98%af%e4%bd%a0%e7%9a%84%e8%8a%82%e6%b5%81%e9%98%80">rtk 是什么：不是又一个 AI 工具，而是你的&quot;节流阀&quot;</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e5%ae%9e%e6%b5%8b%e6%95%b0%e6%8d%ae30-%e5%88%86%e9%92%9f-claude-code-%e4%bc%9a%e8%af%9d%e7%9c%81%e4%ba%86-80-token">实测数据：30 分钟 Claude Code 会话省了 80% token</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#rtk-%e7%9a%84%e5%9b%9b%e5%a4%a7%e6%a0%b8%e5%bf%83%e6%9c%ba%e5%88%b6">rtk 的四大核心机制</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e6%94%af%e6%8c%81-13-%e6%ac%be-ai-%e5%b7%a5%e5%85%b7%e4%b8%80%e9%94%ae%e6%8e%a5%e5%85%a5">支持 13 款 AI 工具，一键接入</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e5%ae%89%e8%a3%85%e4%b8%8e%e4%b8%8a%e6%89%8b-literally-30-%e7%a7%92">安装与上手： literally 30 秒</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e8%bf%9b%e9%98%b6%e7%94%a8%e6%b3%95%e4%bb%8e-git-status-%e5%88%b0-aws-%e5%85%a8%e6%a0%88%e8%a6%86%e7%9b%96">进阶用法：从 git status 到 AWS 全栈覆盖</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#rtk-%e7%9a%84%e5%b1%80%e9%99%90%e4%b8%8e%e6%9c%80%e4%bd%b3%e5%ae%9e%e8%b7%b5">rtk 的局限与最佳实践</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e5%90%8c%e7%b1%bb%e5%b7%a5%e5%85%b7%e5%af%b9%e6%af%94%e4%b8%ba%e4%bb%80%e4%b9%88%e9%80%89-rtk">同类工具对比：为什么选 rtk</a></li>
+<li><a href="/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026/#%e6%80%bb%e7%bb%93%e8%bf%99%e6%98%af%e4%b8%80%e4%b8%aa%e4%b8%8d%e4%b9%b0%e5%b0%b1%e4%ba%8f%e7%9a%84%e5%b7%a5%e5%85%b7">总结：这是一个&quot;不买就亏&quot;的工具</a></li>
+</ol>
+<hr>
+<h2 id="为什么-2026-年每个开发者都在为-token-账单焦虑">为什么 2026 年每个开发者都在为 token 账单焦虑<a hidden class="anchor" aria-hidden="true" href="#为什么-2026-年每个开发者都在为-token-账单焦虑">#</a></h2>
+<p>2025 到 2026 年，AI 辅助编程从&quot;尝鲜&quot;变成了&quot;刚需&quot;。Claude Code、GitHub Copilot、Cursor、Windsurf、Gemini CLI……这些工具确实让编码效率翻倍，但随之而来的是一个被严重低估的成本：<strong>token 消耗</strong>。</p>
+<p>一个典型的中国开发者使用 Claude Code 的真实账单大概是：</p>
+<ul>
+<li><strong>轻度使用</strong>（每天 1-2 小时）：每月 300-600 元 API 费用</li>
+<li><strong>中度使用</strong>（每天 3-4 小时）：每月 800-1500 元</li>
+<li><strong>重度使用/团队场景</strong>：每月 3000-5000 元不稀奇</li>
+</ul>
+<p>这还不包括 ChatGPT Plus、Cursor Pro、GitHub Copilot Pro 等固定订阅费用。一个全栈工程师的&quot;AI 工具栈&quot;月支出轻松突破 2000 元。</p>
+<p>更隐蔽的问题是：<strong>你花的钱，相当一部分被浪费了</strong>。</p>
+<p>当你让 Claude Code 执行 ```git status<code>、</code>cat package.json<code>、</code>cargo test```` 这类命令时，返回的原始输出充斥着大量对 AI 而言毫无信息量的内容——空白行、进度条、ASCII 艺术、重复日志、冗长的元数据。这些&quot;噪声&quot;全部塞进 LLM 的上下文窗口，白白烧掉你的 token 配额。</p>
+<p><strong>rtk 解决的正是这个被忽视的浪费环节。</strong></p>
+<hr>
+<h2 id="rtk-是什么不是又一个-ai-工具而是你的节流阀">rtk 是什么：不是又一个 AI 工具，而是你的&quot;节流阀&quot;<a hidden class="anchor" aria-hidden="true" href="#rtk-是什么不是又一个-ai-工具而是你的节流阀">#</a></h2>
+<p>rtk（GitHub: rtk-ai/rtk）的定位非常精准：<strong>它本身不生成代码、不聊天、不推理——它只做一件事，就是把 CLI 命令的输出&quot;压扁&quot;，再喂给 AI。</strong></p>
+<p>用作者的话说：</p>
+<blockquote>
+<p>&ldquo;rtk filters and compresses command outputs before they reach your LLM context.&rdquo;</p>
+</blockquote>
+<p>它像是一个夹在 &ldquo;你的 AI 工具&rdquo; 和 &ldquo;shell&rdquo; 之间的透明代理层：</p>
+<pre tabindex="0"><code>没有 rtk 时：
 Claude Code --git status--&gt; shell --&gt; git --&gt; 返回 2000 token 的原始输出
 
 有 rtk 时：
 Claude Code --git status--&gt; RTK --&gt; git --&gt; 过滤压缩 --&gt; 返回 200 token 的精炼输出
-</code></pre><p><strong>关键特性一览</strong>：</p><p>| 特性 | 说明 |
-|</p><hr><p>|</p><hr><p>|
+</code></pre><p><strong>关键特性一览</strong>：</p>
+<p>| 特性 | 说明 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>单二进制文件</strong> | Rust 编译，零依赖，体积小巧 |
 | <strong>100+ 命令支持</strong> | git、测试、构建、Docker、AWS、Kubernetes 全覆盖 |
 | <strong>&lt;10ms 开销</strong> | 过滤耗时几乎无感知 |
 | <strong>自动重写钩子</strong> | 安装后 AI 工具自动调用 rtk，无需手动改习惯 |
-| <strong>MIT 开源协议</strong> | 完全免费，社区驱动 |</p><hr><h2 id=实测数据30-分钟-claude-code-会话省了-80-token>实测数据：30 分钟 Claude Code 会话省了 80% token<a hidden class=anchor aria-hidden=true href=#实测数据30-分钟-claude-code-会话省了-80-token>#</a></h2><p>这是 rtk 官方文档中给出的基准测试，也是我在自己项目（一个中型 TypeScript 全栈应用）上复现后确认的数据：</p><p>| 操作 | 频次 | 原始 token | rtk 后 token | 节省 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>MIT 开源协议</strong> | 完全免费，社区驱动 |</p>
+<hr>
+<h2 id="实测数据30-分钟-claude-code-会话省了-80-token">实测数据：30 分钟 Claude Code 会话省了 80% token<a hidden class="anchor" aria-hidden="true" href="#实测数据30-分钟-claude-code-会话省了-80-token">#</a></h2>
+<p>这是 rtk 官方文档中给出的基准测试，也是我在自己项目（一个中型 TypeScript 全栈应用）上复现后确认的数据：</p>
+<p>| 操作 | 频次 | 原始 token | rtk 后 token | 节省 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>ls</code> / <code>tree</code> | 10 次 | 2,000 | 400 | <strong>-80%</strong> |
 | <code>cat</code> / 文件读取 | 20 次 | 40,000 | 12,000 | <strong>-70%</strong> |
 | <code>grep</code> / <code>rg</code> | 8 次 | 16,000 | 3,200 | <strong>-80%</strong> |
@@ -26,8 +358,31 @@ Claude Code --git status--&gt; RTK --&gt; git --&gt; 过滤压缩 --&gt; 返回 
 | <code>git add/commit/push</code> | 8 次 | 1,600 | 120 | <strong>-92%</strong> |
 | <code>cargo test</code> / <code>npm test</code> | 5 次 | 25,000 | 2,500 | <strong>-90%</strong> |
 | <code>pytest</code> / <code>go test</code> | 若干 | 14,000 | 1,400 | <strong>-90%</strong> |
-| <strong>总计</strong> | | <strong>~118,000</strong> | <strong>~23,900</strong> | <strong>-80%</strong> |</p><p><strong>80% 是什么概念？</strong></p><p>如果你每月 Claude Code 的 API 账单是 1200 元，rtk 直接帮你砍掉 960 元。剩下 240 元的支出，效果却和原来完全一致——AI 拿到的信息没有减少，只是去掉了噪声。</p><hr><h2 id=rtk-的四大核心机制>rtk 的四大核心机制<a hidden class=anchor aria-hidden=true href=#rtk-的四大核心机制>#</a></h2><p>rtk 不是简单地把输出截断（truncation），而是根据命令类型应用四种策略：</p><h3 id=1-smart-filtering智能过滤>1. Smart Filtering（智能过滤）<a hidden class=anchor aria-hidden=true href=#1-smart-filtering智能过滤>#</a></h3><p>移除对 LLM 无意义的噪声：注释、空行、样板代码、进度条、ASCII 装饰。比如 <code>git push</code> 的完整输出里有 &ldquo;Enumerating objects&mldr; Counting objects&mldr; Delta compression&mldr;&rdquo; 一大串，rtk 直接把它变成一行 <code>ok main</code>。</p><h3 id=2-grouping分组聚合>2. Grouping（分组聚合）<a hidden class=anchor aria-hidden=true href=#2-grouping分组聚合>#</a></h3><p>把同类项合并。<code>git status</code> 不再逐行列出文件，而是按目录聚合：<code>src/ (8 files)</code>。测试失败不再打印整页堆栈，而是 <code>FAILED: 2/15 tests</code>，下面只列出具体失败项。</p><h3 id=3-truncation智能截断>3. Truncation（智能截断）<a hidden class=anchor aria-hidden=true href=#3-truncation智能截断>#</a></h3><p>保留上下文，切除冗余。<code>cat</code> 一个 500 行的配置文件，rtk 保留结构但压缩值。<code>rtk read file.rs -l aggressive</code> 甚至只保留函数签名，完全剥离函数体。</p><h3 id=4-deduplication去重>4. Deduplication（去重）<a hidden class=anchor aria-hidden=true href=#4-deduplication去重>#</a></h3><p>Docker 日志、测试输出里常见的重复行，rtk 会折叠成 <code>... (repeated 47x)</code>，省下大量 token。</p><hr><h2 id=支持-13-款-ai-工具一键接入>支持 13 款 AI 工具，一键接入<a hidden class=anchor aria-hidden=true href=#支持-13-款-ai-工具一键接入>#</a></h2><p>rtk 最让我惊喜的是它的生态兼容性。它不是只给 Claude Code 用的私货，而是覆盖了当下几乎所有主流 AI 编程工具：</p><p>| AI 工具 | 安装命令 | 拦截方式 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>总计</strong> | | <strong>~118,000</strong> | <strong>~23,900</strong> | <strong>-80%</strong> |</p>
+<p><strong>80% 是什么概念？</strong></p>
+<p>如果你每月 Claude Code 的 API 账单是 1200 元，rtk 直接帮你砍掉 960 元。剩下 240 元的支出，效果却和原来完全一致——AI 拿到的信息没有减少，只是去掉了噪声。</p>
+<hr>
+<h2 id="rtk-的四大核心机制">rtk 的四大核心机制<a hidden class="anchor" aria-hidden="true" href="#rtk-的四大核心机制">#</a></h2>
+<p>rtk 不是简单地把输出截断（truncation），而是根据命令类型应用四种策略：</p>
+<h3 id="1-smart-filtering智能过滤">1. Smart Filtering（智能过滤）<a hidden class="anchor" aria-hidden="true" href="#1-smart-filtering智能过滤">#</a></h3>
+<p>移除对 LLM 无意义的噪声：注释、空行、样板代码、进度条、ASCII 装饰。比如 <code>git push</code> 的完整输出里有 &ldquo;Enumerating objects&hellip; Counting objects&hellip; Delta compression&hellip;&rdquo; 一大串，rtk 直接把它变成一行 <code>ok main</code>。</p>
+<h3 id="2-grouping分组聚合">2. Grouping（分组聚合）<a hidden class="anchor" aria-hidden="true" href="#2-grouping分组聚合">#</a></h3>
+<p>把同类项合并。<code>git status</code> 不再逐行列出文件，而是按目录聚合：<code>src/ (8 files)</code>。测试失败不再打印整页堆栈，而是 <code>FAILED: 2/15 tests</code>，下面只列出具体失败项。</p>
+<h3 id="3-truncation智能截断">3. Truncation（智能截断）<a hidden class="anchor" aria-hidden="true" href="#3-truncation智能截断">#</a></h3>
+<p>保留上下文，切除冗余。<code>cat</code> 一个 500 行的配置文件，rtk 保留结构但压缩值。<code>rtk read file.rs -l aggressive</code> 甚至只保留函数签名，完全剥离函数体。</p>
+<h3 id="4-deduplication去重">4. Deduplication（去重）<a hidden class="anchor" aria-hidden="true" href="#4-deduplication去重">#</a></h3>
+<p>Docker 日志、测试输出里常见的重复行，rtk 会折叠成 <code>... (repeated 47x)</code>，省下大量 token。</p>
+<hr>
+<h2 id="支持-13-款-ai-工具一键接入">支持 13 款 AI 工具，一键接入<a hidden class="anchor" aria-hidden="true" href="#支持-13-款-ai-工具一键接入">#</a></h2>
+<p>rtk 最让我惊喜的是它的生态兼容性。它不是只给 Claude Code 用的私货，而是覆盖了当下几乎所有主流 AI 编程工具：</p>
+<p>| AI 工具 | 安装命令 | 拦截方式 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>Claude Code</strong> | <code>rtk init -g</code> | PreToolUse hook |
 | <strong>GitHub Copilot (VS Code)</strong> | <code>rtk init -g --copilot</code> | PreToolUse hook |
 | <strong>Cursor</strong> | <code>rtk init -g --agent cursor</code> | hooks.json |
@@ -39,170 +394,370 @@ Claude Code --git status--&gt; RTK --&gt; git --&gt; 过滤压缩 --&gt; 返回 
 | <strong>OpenClaw</strong> | <code>openclaw plugins install</code> | Plugin TS |
 | <strong>Hermes</strong> | <code>rtk init --agent hermes</code> | Python plugin |
 | <strong>Kilo Code</strong> | <code>rtk init --agent kilocode</code> | rules 文件 |
-| <strong>Google Antigravity</strong> | <code>rtk init --agent antigravity</code> | rules 文件 |</p><p>这意味着：<strong>你可以在不同工具之间无缝切换，rtk 的节省效果始终跟随你。</strong></p><hr><h2 id=安装与上手-literally-30-秒>安装与上手： literally 30 秒<a hidden class=anchor aria-hidden=true href=#安装与上手-literally-30-秒>#</a></h2><h3 id=macos推荐-homebrew>macOS（推荐 Homebrew）<a hidden class=anchor aria-hidden=true href=#macos推荐-homebrew>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>brew install rtk
-</span></span><span style=display:flex><span>rtk init -g   <span style=color:#75715e># 为你的默认 AI 工具安装自动重写钩子</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 重启 Claude Code / Cursor / 你的 AI 工具</span>
-</span></span></code></pre></div><h3 id=linux-一键安装>Linux 一键安装<a hidden class=anchor aria-hidden=true href=#linux-一键安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
-</span></span><span style=display:flex><span>rtk init -g
-</span></span></code></pre></div><h3 id=验证安装>验证安装<a hidden class=anchor aria-hidden=true href=#验证安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk --version   <span style=color:#75715e># rtk 0.28.2</span>
-</span></span><span style=display:flex><span>rtk gain        <span style=color:#75715e># 查看 token 节省统计</span>
-</span></span></code></pre></div><p>安装完成后，<strong>你不需要改变任何使用习惯</strong>。继续像平常一样输入 <code>git status</code>、<code>cargo test</code>，rtk 的钩子会在底层自动把命令重写为 <code>rtk git status</code>、<code>rtk cargo test</code>，AI 拿到的是压缩后的输出，你无感知。</p><hr><h2 id=进阶用法从-git-status-到-aws-全栈覆盖>进阶用法：从 git status 到 AWS 全栈覆盖<a hidden class=anchor aria-hidden=true href=#进阶用法从-git-status-到-aws-全栈覆盖>#</a></h2><h3 id=git-操作化繁为简>Git 操作：化繁为简<a hidden class=anchor aria-hidden=true href=#git-操作化繁为简>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk git status        <span style=color:#75715e># 精简状态</span>
-</span></span><span style=display:flex><span>rtk git log -n <span style=color:#ae81ff>10</span>     <span style=color:#75715e># 单行提交记录</span>
-</span></span><span style=display:flex><span>rtk git diff          <span style=color:#75715e># 压缩 diff</span>
-</span></span><span style=display:flex><span>rtk git push          <span style=color:#75715e># 直接返回 ok main</span>
-</span></span></code></pre></div><h3 id=测试输出只看失败>测试输出：只看失败<a hidden class=anchor aria-hidden=true href=#测试输出只看失败>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk pytest            <span style=color:#75715e># 只列失败测试，节省 90% token</span>
-</span></span><span style=display:flex><span>rtk cargo test        <span style=color:#75715e># 同理</span>
-</span></span><span style=display:flex><span>rtk test &lt;cmd&gt;        <span style=color:#75715e># 通用测试包装器</span>
-</span></span></code></pre></div><h3 id=代码检查分组聚合>代码检查：分组聚合<a hidden class=anchor aria-hidden=true href=#代码检查分组聚合>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk lint              <span style=color:#75715e># ESLint 按规则/文件分组</span>
-</span></span><span style=display:flex><span>rtk tsc               <span style=color:#75715e># TypeScript 错误按文件聚合</span>
-</span></span><span style=display:flex><span>rtk ruff check        <span style=color:#75715e># Python lint 结果压缩</span>
-</span></span></code></pre></div><h3 id=docker--k8s去重日志>Docker & K8s：去重日志<a hidden class=anchor aria-hidden=true href=#docker--k8s去重日志>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk docker ps         <span style=color:#75715e># 精简容器列表</span>
-</span></span><span style=display:flex><span>rtk docker logs &lt;id&gt;  <span style=color:#75715e># 去重日志输出</span>
-</span></span><span style=display:flex><span>rtk kubectl pods      <span style=color:#75715e># 精简 pod 列表</span>
-</span></span></code></pre></div><h3 id=aws脱敏--精简>AWS：脱敏 + 精简<a hidden class=anchor aria-hidden=true href=#aws脱敏--精简>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk aws ec2 describe-instances   <span style=color:#75715e># 精简实例列表</span>
-</span></span><span style=display:flex><span>rtk aws lambda list-functions  <span style=color:#75715e># 只留 name/runtime/memory，自动脱敏</span>
-</span></span><span style=display:flex><span>rtk aws s3 ls                   <span style=color:#75715e># 截断但保留 tee 恢复</span>
-</span></span></code></pre></div><h3 id=数据分析结构化输出>数据分析：结构化输出<a hidden class=anchor aria-hidden=true href=#数据分析结构化输出>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>rtk json config.json    <span style=color:#75715e># 保留结构，隐藏值（防泄密）</span>
-</span></span><span style=display:flex><span>rtk deps                <span style=color:#75715e># 依赖摘要</span>
-</span></span><span style=display:flex><span>rtk summary &lt;long cmd&gt;  <span style=color:#75715e># 启发式总结长输出</span>
-</span></span></code></pre></div><hr><h2 id=rtk-的局限与最佳实践>rtk 的局限与最佳实践<a hidden class=anchor aria-hidden=true href=#rtk-的局限与最佳实践>#</a></h2><h3 id=局限性>局限性<a hidden class=anchor aria-hidden=true href=#局限性>#</a></h3><ol><li><p><strong>Bash 命令才生效</strong>：Claude Code 内置的 <code>Read</code>、<code>Grep</code>、<code>Glob</code> 等工具不走 Bash hook，所以不会自动被 rtk 处理。解决方式：改用 shell 命令（<code>cat</code>、<code>rg</code>、<code>find</code>）或直接调用 <code>rtk read</code>、<code>rtk grep</code>。</p></li><li><p><strong>Windows 原生支持有限</strong>：auto-rewrite 钩子需要 Unix shell，Windows 原生环境（cmd/PowerShell）只能使用 CLAUDE.md 注入模式，需要手动在命令前加 <code>rtk</code>。推荐用 WSL 获得完整体验。</p></li><li><p><strong>极端场景可能需要完整输出</strong>：如果 rtk 过滤导致 AI 误解，可以用 tee 模式恢复完整输出，或临时用 <code>-v</code> / <code>--verbose</code> 提高详细度。</p></li></ol><h3 id=最佳实践>最佳实践<a hidden class=anchor aria-hidden=true href=#最佳实践>#</a></h3><ul><li><strong>先安装再忘记</strong>：装好钩子后正常使用即可，不要刻意记 rtk 命令</li><li><strong>定期看 <code>rtk gain</code></strong>：了解自己的节省情况，发现未被覆盖的命令</li><li><strong><code>rtk discover</code></strong>：扫描近期会话，发现可以节省但还没被 rtk 覆盖的命令</li><li><strong>排除敏感命令</strong>：在 <code>~/.config/rtk/config.toml</code> 里设置 <code>exclude_commands = ["curl", "playwright"]</code></li></ul><hr><h2 id=同类工具对比为什么选-rtk>同类工具对比：为什么选 rtk<a hidden class=anchor aria-hidden=true href=#同类工具对比为什么选-rtk>#</a></h2><p>| 工具 | 定位 | 节省方式 | 覆盖范围 | 易用性 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <strong>Google Antigravity</strong> | <code>rtk init --agent antigravity</code> | rules 文件 |</p>
+<p>这意味着：<strong>你可以在不同工具之间无缝切换，rtk 的节省效果始终跟随你。</strong></p>
+<hr>
+<h2 id="安装与上手-literally-30-秒">安装与上手： literally 30 秒<a hidden class="anchor" aria-hidden="true" href="#安装与上手-literally-30-秒">#</a></h2>
+<h3 id="macos推荐-homebrew">macOS（推荐 Homebrew）<a hidden class="anchor" aria-hidden="true" href="#macos推荐-homebrew">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>brew install rtk
+</span></span><span style="display:flex;"><span>rtk init -g   <span style="color:#75715e"># 为你的默认 AI 工具安装自动重写钩子</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重启 Claude Code / Cursor / 你的 AI 工具</span>
+</span></span></code></pre></div><h3 id="linux-一键安装">Linux 一键安装<a hidden class="anchor" aria-hidden="true" href="#linux-一键安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl -fsSL https://raw.githubusercontent.com/rtk-ai/rtk/refs/heads/master/install.sh | sh
+</span></span><span style="display:flex;"><span>rtk init -g
+</span></span></code></pre></div><h3 id="验证安装">验证安装<a hidden class="anchor" aria-hidden="true" href="#验证安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk --version   <span style="color:#75715e"># rtk 0.28.2</span>
+</span></span><span style="display:flex;"><span>rtk gain        <span style="color:#75715e"># 查看 token 节省统计</span>
+</span></span></code></pre></div><p>安装完成后，<strong>你不需要改变任何使用习惯</strong>。继续像平常一样输入 <code>git status</code>、<code>cargo test</code>，rtk 的钩子会在底层自动把命令重写为 <code>rtk git status</code>、<code>rtk cargo test</code>，AI 拿到的是压缩后的输出，你无感知。</p>
+<hr>
+<h2 id="进阶用法从-git-status-到-aws-全栈覆盖">进阶用法：从 git status 到 AWS 全栈覆盖<a hidden class="anchor" aria-hidden="true" href="#进阶用法从-git-status-到-aws-全栈覆盖">#</a></h2>
+<h3 id="git-操作化繁为简">Git 操作：化繁为简<a hidden class="anchor" aria-hidden="true" href="#git-操作化繁为简">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk git status        <span style="color:#75715e"># 精简状态</span>
+</span></span><span style="display:flex;"><span>rtk git log -n <span style="color:#ae81ff">10</span>     <span style="color:#75715e"># 单行提交记录</span>
+</span></span><span style="display:flex;"><span>rtk git diff          <span style="color:#75715e"># 压缩 diff</span>
+</span></span><span style="display:flex;"><span>rtk git push          <span style="color:#75715e"># 直接返回 ok main</span>
+</span></span></code></pre></div><h3 id="测试输出只看失败">测试输出：只看失败<a hidden class="anchor" aria-hidden="true" href="#测试输出只看失败">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk pytest            <span style="color:#75715e"># 只列失败测试，节省 90% token</span>
+</span></span><span style="display:flex;"><span>rtk cargo test        <span style="color:#75715e"># 同理</span>
+</span></span><span style="display:flex;"><span>rtk test &lt;cmd&gt;        <span style="color:#75715e"># 通用测试包装器</span>
+</span></span></code></pre></div><h3 id="代码检查分组聚合">代码检查：分组聚合<a hidden class="anchor" aria-hidden="true" href="#代码检查分组聚合">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk lint              <span style="color:#75715e"># ESLint 按规则/文件分组</span>
+</span></span><span style="display:flex;"><span>rtk tsc               <span style="color:#75715e"># TypeScript 错误按文件聚合</span>
+</span></span><span style="display:flex;"><span>rtk ruff check        <span style="color:#75715e"># Python lint 结果压缩</span>
+</span></span></code></pre></div><h3 id="docker--k8s去重日志">Docker &amp; K8s：去重日志<a hidden class="anchor" aria-hidden="true" href="#docker--k8s去重日志">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk docker ps         <span style="color:#75715e"># 精简容器列表</span>
+</span></span><span style="display:flex;"><span>rtk docker logs &lt;id&gt;  <span style="color:#75715e"># 去重日志输出</span>
+</span></span><span style="display:flex;"><span>rtk kubectl pods      <span style="color:#75715e"># 精简 pod 列表</span>
+</span></span></code></pre></div><h3 id="aws脱敏--精简">AWS：脱敏 + 精简<a hidden class="anchor" aria-hidden="true" href="#aws脱敏--精简">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk aws ec2 describe-instances   <span style="color:#75715e"># 精简实例列表</span>
+</span></span><span style="display:flex;"><span>rtk aws lambda list-functions  <span style="color:#75715e"># 只留 name/runtime/memory，自动脱敏</span>
+</span></span><span style="display:flex;"><span>rtk aws s3 ls                   <span style="color:#75715e"># 截断但保留 tee 恢复</span>
+</span></span></code></pre></div><h3 id="数据分析结构化输出">数据分析：结构化输出<a hidden class="anchor" aria-hidden="true" href="#数据分析结构化输出">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>rtk json config.json    <span style="color:#75715e"># 保留结构，隐藏值（防泄密）</span>
+</span></span><span style="display:flex;"><span>rtk deps                <span style="color:#75715e"># 依赖摘要</span>
+</span></span><span style="display:flex;"><span>rtk summary &lt;long cmd&gt;  <span style="color:#75715e"># 启发式总结长输出</span>
+</span></span></code></pre></div><hr>
+<h2 id="rtk-的局限与最佳实践">rtk 的局限与最佳实践<a hidden class="anchor" aria-hidden="true" href="#rtk-的局限与最佳实践">#</a></h2>
+<h3 id="局限性">局限性<a hidden class="anchor" aria-hidden="true" href="#局限性">#</a></h3>
+<ol>
+<li>
+<p><strong>Bash 命令才生效</strong>：Claude Code 内置的 <code>Read</code>、<code>Grep</code>、<code>Glob</code> 等工具不走 Bash hook，所以不会自动被 rtk 处理。解决方式：改用 shell 命令（<code>cat</code>、<code>rg</code>、<code>find</code>）或直接调用 <code>rtk read</code>、<code>rtk grep</code>。</p>
+</li>
+<li>
+<p><strong>Windows 原生支持有限</strong>：auto-rewrite 钩子需要 Unix shell，Windows 原生环境（cmd/PowerShell）只能使用 CLAUDE.md 注入模式，需要手动在命令前加 <code>rtk</code>。推荐用 WSL 获得完整体验。</p>
+</li>
+<li>
+<p><strong>极端场景可能需要完整输出</strong>：如果 rtk 过滤导致 AI 误解，可以用 tee 模式恢复完整输出，或临时用 <code>-v</code> / <code>--verbose</code> 提高详细度。</p>
+</li>
+</ol>
+<h3 id="最佳实践">最佳实践<a hidden class="anchor" aria-hidden="true" href="#最佳实践">#</a></h3>
+<ul>
+<li><strong>先安装再忘记</strong>：装好钩子后正常使用即可，不要刻意记 rtk 命令</li>
+<li><strong>定期看 <code>rtk gain</code></strong>：了解自己的节省情况，发现未被覆盖的命令</li>
+<li><strong><code>rtk discover</code></strong>：扫描近期会话，发现可以节省但还没被 rtk 覆盖的命令</li>
+<li><strong>排除敏感命令</strong>：在 <code>~/.config/rtk/config.toml</code> 里设置 <code>exclude_commands = [&quot;curl&quot;, &quot;playwright&quot;]</code></li>
+</ul>
+<hr>
+<h2 id="同类工具对比为什么选-rtk">同类工具对比：为什么选 rtk<a hidden class="anchor" aria-hidden="true" href="#同类工具对比为什么选-rtk">#</a></h2>
+<p>| 工具 | 定位 | 节省方式 | 覆盖范围 | 易用性 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>rtk</strong> | CLI 输出过滤 | 智能压缩 | 100+ 命令，13 款 AI 工具 | 一键安装，零配置 |
 | <strong>Morph</strong> | API 代理层 | 模型路由 + 上下文压缩 | 通用 API 调用 | 需改集成代码 |
 | <strong>LiteLLM</strong> | LLM 网关 | 缓存 + 路由 + 监控 | 多模型 API | 需部署服务 |
 | <strong>LLMLingua</strong> | 提示压缩 | 语义压缩 | 提示文本 | 需手动接入 |
-| <strong>ccusage</strong> | 监控工具 | 无压缩，只监控 | Claude Code 专用 | 只看不省 |</p><p>rtk 的核心优势在于：<strong>它工作在命令层，不需要改一行业务代码，不需要接入 API 网关，不需要学习新的抽象。</strong> 它就是一层透明代理，装上去，省下来。</p><hr><h2 id=总结这是一个不买就亏的工具>总结：这是一个"不买就亏"的工具<a hidden class=anchor aria-hidden=true href=#总结这是一个不买就亏的工具>#</a></h2><p>2026 年的开发者工具市场，大家都在做加法——更强的模型、更多的功能、更炫的界面。rtk 罕见地做了一次减法：<strong>把已经存在的东西，变得更轻、更省、更高效。</strong></p><p>它不替代你的 AI 工具，只是让它们的"伙食费"打八折甚至一折。它不改变你的工作流，只是默默把噪声滤掉。它不向你收钱（MIT 开源），却每个月帮你省下一笔真金白银。</p><p>如果你正在用 Claude Code、Cursor、Copilot 或任何 AI 编程工具，rtk 应该是你<strong>下一个安装的软件</strong>——不是因为它很酷，而是因为不用它很亏。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 30 秒，开始省钱</span>
-</span></span><span style=display:flex><span>brew install rtk
-</span></span><span style=display:flex><span>rtk init -g
-</span></span><span style=display:flex><span><span style=color:#e6db74>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**延伸阅读**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>rtk GitHub 仓库<span style=color:#f92672>](</span>https://github.com/rtk-ai/rtk<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>rtk 官方文档<span style=color:#f92672>](</span>https://rtk-ai.app/guide<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Claude Code 官方定价<span style=color:#f92672>](</span>https://docs.anthropic.com/<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>- <span style=color:#f92672>[</span>Morph: <span style=color:#ae81ff>5</span> 种 LLM 成本优化策略<span style=color:#f92672>](</span>https://www.morphllm.com/ai-coding-costs<span style=color:#f92672>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*本文基于 rtk v0.28.2 实测撰写。工具持续迭代，具体功能请以最新版本为准。*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-01-01&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-01-01&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: <span style=color:#f92672>{</span>
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/zh/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>}</span>
-</span></span><span style=display:flex><span>&lt;/script&gt;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding rtk 实测：这款 rust 写的 cli 代理，让我的 claude code 月账单从 <span style=color:#ae81ff>1200</span> 元砍到 <span style=color:#ae81ff>240</span> 元｜llm token 优化终极指南 <span style=color:#ae81ff>2026</span> is crucial <span style=color:#66d9ef>for</span> modern AI development. Here<span style=color:#960050;background-color:#1e0010>&#39;</span>s why: <span style=color:#75715e>### Key Benefits</span>
-</span></span><span style=display:flex><span>- **Efficiency**: Save time on repetitive tasks
-</span></span><span style=display:flex><span>- **Quality**: Improve output consistency  
-</span></span><span style=display:flex><span>- **Scalability**: Handle larger workloads
-</span></span><span style=display:flex><span>- **Cost**: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: 1. Automate code review processes
-</span></span><span style=display:flex><span>2. Generate documentation automatically
-</span></span><span style=display:flex><span>3. Build internal knowledge bases
-</span></span><span style=display:flex><span>4. Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
-</span></span><span style=display:flex><span>To implement this in your workflow: 1. **Assess Your Needs**
-</span></span><span style=display:flex><span>   - Identify repetitive tasks
-</span></span><span style=display:flex><span>   - Measure current time costs
-</span></span><span style=display:flex><span>   - Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>2. **Choose Your Approach**
-</span></span><span style=display:flex><span>   - Start with simple automations
-</span></span><span style=display:flex><span>   - Gradually increase complexity
-</span></span><span style=display:flex><span>   - Test and iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>3. **Measure Results**
-</span></span><span style=display:flex><span>   - Track time savings
-</span></span><span style=display:flex><span>   - Monitor quality improvements
-</span></span><span style=display:flex><span>   - Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 <span style=color:#ae81ff>1200</span> 元砍到 <span style=color:#ae81ff>240</span> 元｜LLM Token 优化终极指南 <span style=color:#ae81ff>2026</span> represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>*Last updated: 2026-09-20*
-</span></span><span style=display:flex><span>*Read time: ~5 minutes*
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Frequently Asked Questions (FAQ)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent和传统自动化有什么区别？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：如何选择合适的AI Agent框架？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的安全性如何保证？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：AI Agent的学习成本有多高？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>**问：能否自定义AI Agent的行为？**
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Tool Comparison</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>* * *
-</span></span><span style=display:flex><span>|
-</span></span><span style=display:flex><span>| **Price** | $20/month | $20/month | Free | Free |
-</span></span><span style=display:flex><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
-</span></span><span style=display:flex><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
-</span></span><span style=display:flex><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
-</span></span><span style=display:flex><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/robots-txt-generator/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-token-saver/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+| <strong>ccusage</strong> | 监控工具 | 无压缩，只监控 | Claude Code 专用 | 只看不省 |</p>
+<p>rtk 的核心优势在于：<strong>它工作在命令层，不需要改一行业务代码，不需要接入 API 网关，不需要学习新的抽象。</strong> 它就是一层透明代理，装上去，省下来。</p>
+<hr>
+<h2 id="总结这是一个不买就亏的工具">总结：这是一个&quot;不买就亏&quot;的工具<a hidden class="anchor" aria-hidden="true" href="#总结这是一个不买就亏的工具">#</a></h2>
+<p>2026 年的开发者工具市场，大家都在做加法——更强的模型、更多的功能、更炫的界面。rtk 罕见地做了一次减法：<strong>把已经存在的东西，变得更轻、更省、更高效。</strong></p>
+<p>它不替代你的 AI 工具，只是让它们的&quot;伙食费&quot;打八折甚至一折。它不改变你的工作流，只是默默把噪声滤掉。它不向你收钱（MIT 开源），却每个月帮你省下一笔真金白银。</p>
+<p>如果你正在用 Claude Code、Cursor、Copilot 或任何 AI 编程工具，rtk 应该是你<strong>下一个安装的软件</strong>——不是因为它很酷，而是因为不用它很亏。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 30 秒，开始省钱</span>
+</span></span><span style="display:flex;"><span>brew install rtk
+</span></span><span style="display:flex;"><span>rtk init -g
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**延伸阅读**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>rtk GitHub 仓库<span style="color:#f92672">](</span>https://github.com/rtk-ai/rtk<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>rtk 官方文档<span style="color:#f92672">](</span>https://rtk-ai.app/guide<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Claude Code 官方定价<span style="color:#f92672">](</span>https://docs.anthropic.com/<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- <span style="color:#f92672">[</span>Morph: <span style="color:#ae81ff">5</span> 种 LLM 成本优化策略<span style="color:#f92672">](</span>https://www.morphllm.com/ai-coding-costs<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*本文基于 rtk v0.28.2 实测撰写。工具持续迭代，具体功能请以最新版本为准。*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 1200 元砍到 240 元｜LLM Token 优化终极指南 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-01-01&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-01-01&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/zh/resources/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding rtk 实测：这款 rust 写的 cli 代理，让我的 claude code 月账单从 <span style="color:#ae81ff">1200</span> 元砍到 <span style="color:#ae81ff">240</span> 元｜llm token 优化终极指南 <span style="color:#ae81ff">2026</span> is crucial <span style="color:#66d9ef">for</span> modern AI development. Here<span style="color:#960050;background-color:#1e0010">&#39;</span>s why: <span style="color:#75715e">### Key Benefits</span>
+</span></span><span style="display:flex;"><span>- **Efficiency**: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span>- **Quality**: Improve output consistency  
+</span></span><span style="display:flex;"><span>- **Scalability**: Handle larger workloads
+</span></span><span style="display:flex;"><span>- **Cost**: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Real-World Applications</span>
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: 1. Automate code review processes
+</span></span><span style="display:flex;"><span>2. Generate documentation automatically
+</span></span><span style="display:flex;"><span>3. Build internal knowledge bases
+</span></span><span style="display:flex;"><span>4. Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Getting Started</span>
+</span></span><span style="display:flex;"><span>To implement this in your workflow: 1. **Assess Your Needs**
+</span></span><span style="display:flex;"><span>   - Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   - Measure current time costs
+</span></span><span style="display:flex;"><span>   - Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>2. **Choose Your Approach**
+</span></span><span style="display:flex;"><span>   - Start with simple automations
+</span></span><span style="display:flex;"><span>   - Gradually increase complexity
+</span></span><span style="display:flex;"><span>   - Test and iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>3. **Measure Results**
+</span></span><span style="display:flex;"><span>   - Track time savings
+</span></span><span style="display:flex;"><span>   - Monitor quality improvements
+</span></span><span style="display:flex;"><span>   - Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>rtk 实测：这款 Rust 写的 CLI 代理，让我的 Claude Code 月账单从 <span style="color:#ae81ff">1200</span> 元砍到 <span style="color:#ae81ff">240</span> 元｜LLM Token 优化终极指南 <span style="color:#ae81ff">2026</span> represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Last updated: 2026-09-20*
+</span></span><span style="display:flex;"><span>*Read time: ~5 minutes*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent和传统自动化有什么区别？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何选择合适的AI Agent框架？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的安全性如何保证？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施权限最小化、输入验证、审计日志、以及定期安全评估。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI Agent的学习成本有多高？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：能否自定义AI Agent的行为？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Tool Comparison</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>| Feature | Claude Code | Cursor | Codex CLI | OpenCode |
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>|
+</span></span><span style="display:flex;"><span>| **Price** | $20/month | $20/month | Free | Free |
+</span></span><span style="display:flex;"><span>| **Interface** | CLI + IDE | Full IDE | CLI | CLI |
+</span></span><span style="display:flex;"><span>| **License** | Proprietary | Commercial | Apache 2.0 | MIT |
+</span></span><span style="display:flex;"><span>| **GitHub Stars** | N/A | N/A | N/A | 45,000+ |
+</span></span><span style="display:flex;"><span>| **Best For** | Complex reasoning | Daily coding | Fast iteration | Customization |
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/robots-txt-generator/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/rtk-rust-cli-proxy-ai-token-saver/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

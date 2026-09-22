@@ -1,34 +1,535 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Ponytail：将AI Agent变成'最懒高级工程师' | Dibi8</title><meta name=keywords content="github,ponytail,minimal-code,claude-code,efficiency"><meta name=description content="DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。'他不说话。他写一行。它工作。'"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ponytail-lazy-dev/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ponytail-lazy-dev/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ponytail-lazy-dev/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ponytail-lazy-dev/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ponytail-lazy-dev/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Ponytail：将AI Agent变成'最懒高级工程师'"><meta property="og:description" content="DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。'他不说话。他写一行。它工作。'"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:published_time" content="2026-09-22T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-22T00:00:00+00:00"><meta property="article:tag" content="Github"><meta property="article:tag" content="Ponytail"><meta property="article:tag" content="Minimal-Code"><meta property="article:tag" content="Claude-Code"><meta property="article:tag" content="Efficiency"><meta name=twitter:card content="summary"><meta name=twitter:title content="Ponytail：将AI Agent变成'最懒高级工程师'"><meta name=twitter:description content="DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。'他不说话。他写一行。它工作。'"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Ponytail：将AI Agent变成'最懒高级工程师'","item":"https://dibi8.com/zh/ponytail-lazy-dev/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ponytail：将AI Agent变成'最懒高级工程师'","name":"Ponytail：将AI Agent变成\u0027最懒高级工程师\u0027","description":"DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。'他不说话。他写一行。它工作。'","keywords":["github","ponytail","minimal-code","claude-code","efficiency"],"articleBody":"Ponytail是什么？ Ponytail 由 DietrichGebert 开发，已获得 144,072 stars 在GitHub上。概念：“让你的AI agent像最懒的高级工程师一样思考——只写必要的代码行，不加多余内容。”\n口号： “他不说话。他写一行。它工作。”\nPonytail解决的问题 当你要求agent\"做一个日期选择器\"时，通常agent会：\n安装 flatpickr 包 编写包装组件 添加样式表 开始讨论时区 创建15-20行代码 使用Ponytail：\n\u003cinput type=\"date\"\u003e 只有一行。浏览器已经有内置日期选择器。\n基准测试结果 使用真实agent（Claude Code Haiku 4.5）修改真实仓库（FastAPI + React模板）测量：\n指标 Ponytail 基线 改进 代码行数 -54% - 减少54% 使用的tokens -22% - 减少22% 成本 -20% - 减少20% 时间 -27% - 快27% 安全性 100% 100% 相同 注意： 在某些情况下（如日期选择器），Ponytail比基线过度工程减少高达94%的LOC。\nPonytail如何工作？ 核心原则 优先使用内置功能 — 先用浏览器/OS的内置功能 最多一个依赖 — 不需要时不添加包 不过度工程 — 最简单的解决方案够用 质疑一切 — 实现前问\"真的需要这个吗？\" 实际示例 请求： “做一个注册表单”\n❌ 基线（无Ponytail）：\nimport { useForm } from 'react-hook-form'; import { zodResolver } from '@hookform/resolvers/zod'; import { z } from 'zod'; import { Button } from '@/components/ui/button'; import { Input } from '@/components/ui/input'; // ... 150行代码 const formSchema = z.object({ email: z.string().email(), password: z.string().min(8), // ... 复杂验证 }); ✅ Ponytail方法：\n\u003cform action=\"/api/register\" method=\"POST\"\u003e \u003cinput name=\"email\" type=\"email\" required /\u003e \u003cinput name=\"password\" type=\"password\" required minLength={8} /\u003e \u003cbutton type=\"submit\"\u003e注册\u003c/button\u003e \u003c/form\u003e 安装 # 通过npm安装 npm install -g @dietrichgebert/ponytail # 或与agent一起使用 npx ponytail 支持20+ agents Ponytail兼容：\nClaude Code ✅ Cursor ✅ Codex ✅ Gemini CLI ✅ Windsurf ✅ OpenCode ✅ 以及15个其他agents… 为什么Ponytail有效？ 防止过度工程 — agent通常默认选择复杂解决方案 节省成本 — 更少代码 = 更少tokens = 更便宜 易于维护 — 更少代码 = 更少bug 快速交付 — 做得快，部署得快 人性化思维 — 像真正的高级工程师一样思考 与ECC和RTK比较 工具 重点 节省 使用场景 Ponytail 代码简洁 -54% LOC，-20% 成本 所有项目 ECC 工程系统 广泛优化 大型团队 RTK Token减少 -60-90% tokens agent密集型工作流 建议： 三个都用！Ponytail减少代码，RTK减少token，ECC管理工作流。\n结论 Ponytail是任何使用AI编码agent的开发者必备的技能。它教导agent如何\"聪明地偷懒\"——做尽可能少的事，以尽可能高的效率完成。\n链接： github.com/DietrichGebert/ponytail 网站： ponytail.dev\n","wordCount":"225","inLanguage":"zh","datePublished":"2026-09-22T00:00:00Z","dateModified":"2026-09-22T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ponytail-lazy-dev/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">Ponytail：将AI Agent变成'最懒高级工程师'</h1><div class=post-description>DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。'他不说话。他写一行。它工作。'</div><div class=post-meta><span title='2026-09-22 00:00:00 +0000 UTC'>2026年9月22日</span>&nbsp;·&nbsp;<span>2 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ponytail-lazy-dev/>En</a></li><li><a href=https://dibi8.com/vi/ponytail-lazy-dev/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#ponytail%e6%98%af%e4%bb%80%e4%b9%88 aria-label=Ponytail是什么？>Ponytail是什么？</a></li><li><a href=#ponytail%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98 aria-label=Ponytail解决的问题>Ponytail解决的问题</a></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e7%bb%93%e6%9e%9c aria-label=基准测试结果>基准测试结果</a></li><li><a href=#ponytail%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c aria-label=Ponytail如何工作？>Ponytail如何工作？</a><ul><li><a href=#%e6%a0%b8%e5%bf%83%e5%8e%9f%e5%88%99 aria-label=核心原则>核心原则</a></li><li><a href=#%e5%ae%9e%e9%99%85%e7%a4%ba%e4%be%8b aria-label=实际示例>实际示例</a></li></ul></li><li><a href=#%e5%ae%89%e8%a3%85 aria-label=安装>安装</a><ul><li><a href=#%e6%94%af%e6%8c%8120-agents aria-label="支持20+ agents">支持20+ agents</a></li></ul></li><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88ponytail%e6%9c%89%e6%95%88 aria-label=为什么Ponytail有效？>为什么Ponytail有效？</a></li><li><a href=#%e4%b8%8eecc%e5%92%8crtk%e6%af%94%e8%be%83 aria-label=与ECC和RTK比较>与ECC和RTK比较</a></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li></ul></div></details><div class="post-content md-content"><h2 id=ponytail是什么>Ponytail是什么？<a hidden class=anchor aria-hidden=true href=#ponytail是什么>#</a></h2><p><strong>Ponytail</strong> 由 <code>DietrichGebert</code> 开发，已获得 <strong>144,072 stars</strong> 在GitHub上。概念：&ldquo;让你的AI agent像最懒的高级工程师一样思考——只写必要的代码行，不加多余内容。&rdquo;</p><p><img alt="Ponytail Logo" loading=lazy src=https://raw.githubusercontent.com/DietrichGebert/ponytail/main/assets/logo.png></p><blockquote><p><strong>口号：</strong> &ldquo;他不说话。他写一行。它工作。&rdquo;</p></blockquote><h2 id=ponytail解决的问题>Ponytail解决的问题<a hidden class=anchor aria-hidden=true href=#ponytail解决的问题>#</a></h2><p>当你要求agent"做一个日期选择器"时，通常agent会：</p><ol><li>安装 <code>flatpickr</code> 包</li><li>编写包装组件</li><li>添加样式表</li><li>开始讨论时区</li><li>创建15-20行代码</li></ol><p><strong>使用Ponytail：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span><span style=color:#75715e>&lt;!-- ponytail: browser has one --&gt;</span>
-</span></span><span style=display:flex><span>&lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;date&#34;</span>&gt;
-</span></span></code></pre></div><p>只有一行。浏览器已经有内置日期选择器。</p><h2 id=基准测试结果>基准测试结果<a hidden class=anchor aria-hidden=true href=#基准测试结果>#</a></h2><p>使用真实agent（Claude Code Haiku 4.5）修改真实仓库（FastAPI + React模板）测量：</p><table><thead><tr><th>指标</th><th>Ponytail</th><th>基线</th><th>改进</th></tr></thead><tbody><tr><td>代码行数</td><td>-54%</td><td>-</td><td><strong>减少54%</strong></td></tr><tr><td>使用的tokens</td><td>-22%</td><td>-</td><td><strong>减少22%</strong></td></tr><tr><td>成本</td><td>-20%</td><td>-</td><td><strong>减少20%</strong></td></tr><tr><td>时间</td><td>-27%</td><td>-</td><td><strong>快27%</strong></td></tr><tr><td>安全性</td><td>100%</td><td>100%</td><td>相同</td></tr></tbody></table><blockquote><p><strong>注意：</strong> 在某些情况下（如日期选择器），Ponytail比基线过度工程<strong>减少高达94%的LOC</strong>。</p></blockquote><h2 id=ponytail如何工作>Ponytail如何工作？<a hidden class=anchor aria-hidden=true href=#ponytail如何工作>#</a></h2><h3 id=核心原则>核心原则<a hidden class=anchor aria-hidden=true href=#核心原则>#</a></h3><ol><li><strong>优先使用内置功能</strong> — 先用浏览器/OS的内置功能</li><li><strong>最多一个依赖</strong> — 不需要时不添加包</li><li><strong>不过度工程</strong> — 最简单的解决方案够用</li><li><strong>质疑一切</strong> — 实现前问"真的需要这个吗？"</li></ol><h3 id=实际示例>实际示例<a hidden class=anchor aria-hidden=true href=#实际示例>#</a></h3><p><strong>请求：</strong> &ldquo;做一个注册表单&rdquo;</p><p>❌ <strong>基线（无Ponytail）：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-tsx data-lang=tsx><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>useForm</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;react-hook-form&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>zodResolver</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@hookform/resolvers/zod&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>z</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;zod&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Button</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@/components/ui/button&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>Input</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#39;@/components/ui/input&#39;</span>;
-</span></span><span style=display:flex><span><span style=color:#75715e>// ... 150行代码
-</span></span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>formSchema</span> <span style=color:#f92672>=</span> <span style=color:#a6e22e>z</span>.<span style=color:#66d9ef>object</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>email</span>: <span style=color:#66d9ef>z.string</span>().<span style=color:#a6e22e>email</span>(),
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>password</span>: <span style=color:#66d9ef>z.string</span>().<span style=color:#a6e22e>min</span>(<span style=color:#ae81ff>8</span>),
-</span></span><span style=display:flex><span>  <span style=color:#75715e>// ... 复杂验证
-</span></span></span><span style=display:flex><span>});
-</span></span></code></pre></div><p>✅ <strong>Ponytail方法：</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-tsx data-lang=tsx><span style=display:flex><span>&lt;<span style=color:#f92672>form</span> <span style=color:#a6e22e>action</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;/api/register&#34;</span> <span style=color:#a6e22e>method</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;POST&#34;</span>&gt;
-</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;email&#34;</span> <span style=color:#a6e22e>required</span> /&gt;
-</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>input</span> <span style=color:#a6e22e>name</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;password&#34;</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;password&#34;</span> <span style=color:#a6e22e>required</span> <span style=color:#a6e22e>minLength</span><span style=color:#f92672>=</span>{<span style=color:#ae81ff>8</span>} /&gt;
-</span></span><span style=display:flex><span>  &lt;<span style=color:#f92672>button</span> <span style=color:#a6e22e>type</span><span style=color:#f92672>=</span><span style=color:#e6db74>&#34;submit&#34;</span>&gt;<span style=color:#960050;background-color:#1e0010>注册</span>&lt;/<span style=color:#f92672>button</span>&gt;
-</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>form</span>&gt;
-</span></span></code></pre></div><h2 id=安装>安装<a hidden class=anchor aria-hidden=true href=#安装>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过npm安装</span>
-</span></span><span style=display:flex><span>npm install -g @dietrichgebert/ponytail
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或与agent一起使用</span>
-</span></span><span style=display:flex><span>npx ponytail
-</span></span></code></pre></div><h3 id=支持20-agents>支持20+ agents<a hidden class=anchor aria-hidden=true href=#支持20-agents>#</a></h3><p>Ponytail兼容：</p><ul><li>Claude Code ✅</li><li>Cursor ✅</li><li>Codex ✅</li><li>Gemini CLI ✅</li><li>Windsurf ✅</li><li>OpenCode ✅</li><li>以及15个其他agents&mldr;</li></ul><h2 id=为什么ponytail有效>为什么Ponytail有效？<a hidden class=anchor aria-hidden=true href=#为什么ponytail有效>#</a></h2><ol><li><strong>防止过度工程</strong> — agent通常默认选择复杂解决方案</li><li><strong>节省成本</strong> — 更少代码 = 更少tokens = 更便宜</li><li><strong>易于维护</strong> — 更少代码 = 更少bug</li><li><strong>快速交付</strong> — 做得快，部署得快</li><li><strong>人性化思维</strong> — 像真正的高级工程师一样思考</li></ol><h2 id=与ecc和rtk比较>与ECC和RTK比较<a hidden class=anchor aria-hidden=true href=#与ecc和rtk比较>#</a></h2><table><thead><tr><th>工具</th><th>重点</th><th>节省</th><th>使用场景</th></tr></thead><tbody><tr><td><strong>Ponytail</strong></td><td>代码简洁</td><td>-54% LOC，-20% 成本</td><td>所有项目</td></tr><tr><td><strong>ECC</strong></td><td>工程系统</td><td>广泛优化</td><td>大型团队</td></tr><tr><td><strong>RTK</strong></td><td>Token减少</td><td>-60-90% tokens</td><td>agent密集型工作流</td></tr></tbody></table><blockquote><p><strong>建议：</strong> 三个都用！Ponytail减少代码，RTK减少token，ECC管理工作流。</p></blockquote><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>Ponytail是任何使用AI编码agent的开发者<strong>必备</strong>的技能。它教导agent如何"聪明地偷懒"——做尽可能少的事，以尽可能高的效率完成。</p><p><strong>链接：</strong> <a href=https://github.com/DietrichGebert/ponytail>github.com/DietrichGebert/ponytail</a>
-<strong>网站：</strong> <a href=https://ponytail.dev>ponytail.dev</a></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/github/>Github</a></li><li><a href=https://dibi8.com/zh/tags/ponytail/>Ponytail</a></li><li><a href=https://dibi8.com/zh/tags/minimal-code/>Minimal-Code</a></li><li><a href=https://dibi8.com/zh/tags/claude-code/>Claude-Code</a></li><li><a href=https://dibi8.com/zh/tags/efficiency/>Efficiency</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Ponytail：将AI Agent变成&#39;最懒高级工程师&#39; | Dibi8</title>
+<meta name="keywords" content="github, ponytail, minimal-code, claude-code, efficiency">
+<meta name="description" content="DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。&#39;他不说话。他写一行。它工作。&#39;">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ponytail-lazy-dev/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ponytail-lazy-dev/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ponytail-lazy-dev/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ponytail-lazy-dev/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ponytail-lazy-dev/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ponytail-lazy-dev/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Ponytail：将AI Agent变成&#39;最懒高级工程师&#39;">
+  <meta property="og:description" content="DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。&#39;他不说话。他写一行。它工作。&#39;">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-22T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-22T00:00:00+00:00">
+    <meta property="article:tag" content="Github">
+    <meta property="article:tag" content="Ponytail">
+    <meta property="article:tag" content="Minimal-Code">
+    <meta property="article:tag" content="Claude-Code">
+    <meta property="article:tag" content="Efficiency">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Ponytail：将AI Agent变成&#39;最懒高级工程师&#39;">
+  <meta name="twitter:description" content="DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。&#39;他不说话。他写一行。它工作。&#39;">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Ponytail：将AI Agent变成'最懒高级工程师'",
+      "item": "https://dibi8.com/zh/ponytail-lazy-dev/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Ponytail：将AI Agent变成'最懒高级工程师'",
+  "name": "Ponytail：将AI Agent变成\u0027最懒高级工程师\u0027",
+  "description": "DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。'他不说话。他写一行。它工作。'",
+  "keywords": [
+    "github", "ponytail", "minimal-code", "claude-code", "efficiency"
+  ],
+  "articleBody": "Ponytail是什么？ Ponytail 由 DietrichGebert 开发，已获得 144,072 stars 在GitHub上。概念：“让你的AI agent像最懒的高级工程师一样思考——只写必要的代码行，不加多余内容。”\n口号： “他不说话。他写一行。它工作。”\nPonytail解决的问题 当你要求agent\"做一个日期选择器\"时，通常agent会：\n安装 flatpickr 包 编写包装组件 添加样式表 开始讨论时区 创建15-20行代码 使用Ponytail：\n\u003cinput type=\"date\"\u003e 只有一行。浏览器已经有内置日期选择器。\n基准测试结果 使用真实agent（Claude Code Haiku 4.5）修改真实仓库（FastAPI + React模板）测量：\n指标 Ponytail 基线 改进 代码行数 -54% - 减少54% 使用的tokens -22% - 减少22% 成本 -20% - 减少20% 时间 -27% - 快27% 安全性 100% 100% 相同 注意： 在某些情况下（如日期选择器），Ponytail比基线过度工程减少高达94%的LOC。\nPonytail如何工作？ 核心原则 优先使用内置功能 — 先用浏览器/OS的内置功能 最多一个依赖 — 不需要时不添加包 不过度工程 — 最简单的解决方案够用 质疑一切 — 实现前问\"真的需要这个吗？\" 实际示例 请求： “做一个注册表单”\n❌ 基线（无Ponytail）：\nimport { useForm } from 'react-hook-form'; import { zodResolver } from '@hookform/resolvers/zod'; import { z } from 'zod'; import { Button } from '@/components/ui/button'; import { Input } from '@/components/ui/input'; // ... 150行代码 const formSchema = z.object({ email: z.string().email(), password: z.string().min(8), // ... 复杂验证 }); ✅ Ponytail方法：\n\u003cform action=\"/api/register\" method=\"POST\"\u003e \u003cinput name=\"email\" type=\"email\" required /\u003e \u003cinput name=\"password\" type=\"password\" required minLength={8} /\u003e \u003cbutton type=\"submit\"\u003e注册\u003c/button\u003e \u003c/form\u003e 安装 # 通过npm安装 npm install -g @dietrichgebert/ponytail # 或与agent一起使用 npx ponytail 支持20+ agents Ponytail兼容：\nClaude Code ✅ Cursor ✅ Codex ✅ Gemini CLI ✅ Windsurf ✅ OpenCode ✅ 以及15个其他agents… 为什么Ponytail有效？ 防止过度工程 — agent通常默认选择复杂解决方案 节省成本 — 更少代码 = 更少tokens = 更便宜 易于维护 — 更少代码 = 更少bug 快速交付 — 做得快，部署得快 人性化思维 — 像真正的高级工程师一样思考 与ECC和RTK比较 工具 重点 节省 使用场景 Ponytail 代码简洁 -54% LOC，-20% 成本 所有项目 ECC 工程系统 广泛优化 大型团队 RTK Token减少 -60-90% tokens agent密集型工作流 建议： 三个都用！Ponytail减少代码，RTK减少token，ECC管理工作流。\n结论 Ponytail是任何使用AI编码agent的开发者必备的技能。它教导agent如何\"聪明地偷懒\"——做尽可能少的事，以尽可能高的效率完成。\n链接： github.com/DietrichGebert/ponytail 网站： ponytail.dev\n",
+  "wordCount" : "225",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-22T00:00:00Z",
+  "dateModified": "2026-09-22T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ponytail-lazy-dev/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      Ponytail：将AI Agent变成&#39;最懒高级工程师&#39;
+    </h1>
+    <div class="post-description">
+      DietrichGebert的Ponytail获得144K stars。技能强制agent编写最少代码——最少54% LOC，最快27%，最便宜20%。&#39;他不说话。他写一行。它工作。&#39;
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-22 00:00:00 +0000 UTC'>2026年9月22日</span>&nbsp;·&nbsp;<span>2 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ponytail-lazy-dev/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ponytail-lazy-dev/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ponytail-lazy-dev/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#ponytail%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Ponytail是什么？">Ponytail是什么？</a></li>
+            <li>
+                <a href="#ponytail%e8%a7%a3%e5%86%b3%e7%9a%84%e9%97%ae%e9%a2%98" aria-label="Ponytail解决的问题">Ponytail解决的问题</a></li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e7%bb%93%e6%9e%9c" aria-label="基准测试结果">基准测试结果</a></li>
+            <li>
+                <a href="#ponytail%e5%a6%82%e4%bd%95%e5%b7%a5%e4%bd%9c" aria-label="Ponytail如何工作？">Ponytail如何工作？</a><ul>
+                    
+            <li>
+                <a href="#%e6%a0%b8%e5%bf%83%e5%8e%9f%e5%88%99" aria-label="核心原则">核心原则</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e9%99%85%e7%a4%ba%e4%be%8b" aria-label="实际示例">实际示例</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85" aria-label="安装">安装</a><ul>
+                    
+            <li>
+                <a href="#%e6%94%af%e6%8c%8120-agents" aria-label="支持20&#43; agents">支持20+ agents</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88ponytail%e6%9c%89%e6%95%88" aria-label="为什么Ponytail有效？">为什么Ponytail有效？</a></li>
+            <li>
+                <a href="#%e4%b8%8eecc%e5%92%8crtk%e6%af%94%e8%be%83" aria-label="与ECC和RTK比较">与ECC和RTK比较</a></li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="ponytail是什么">Ponytail是什么？<a hidden class="anchor" aria-hidden="true" href="#ponytail是什么">#</a></h2>
+<p><strong>Ponytail</strong> 由 <code>DietrichGebert</code> 开发，已获得 <strong>144,072 stars</strong> 在GitHub上。概念：&ldquo;让你的AI agent像最懒的高级工程师一样思考——只写必要的代码行，不加多余内容。&rdquo;</p>
+<p><img alt="Ponytail Logo" loading="lazy" src="https://raw.githubusercontent.com/DietrichGebert/ponytail/main/assets/logo.png"></p>
+<blockquote>
+<p><strong>口号：</strong> &ldquo;他不说话。他写一行。它工作。&rdquo;</p>
+</blockquote>
+<h2 id="ponytail解决的问题">Ponytail解决的问题<a hidden class="anchor" aria-hidden="true" href="#ponytail解决的问题">#</a></h2>
+<p>当你要求agent&quot;做一个日期选择器&quot;时，通常agent会：</p>
+<ol>
+<li>安装 <code>flatpickr</code> 包</li>
+<li>编写包装组件</li>
+<li>添加样式表</li>
+<li>开始讨论时区</li>
+<li>创建15-20行代码</li>
+</ol>
+<p><strong>使用Ponytail：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!-- ponytail: browser has one --&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;date&#34;</span>&gt;
+</span></span></code></pre></div><p>只有一行。浏览器已经有内置日期选择器。</p>
+<h2 id="基准测试结果">基准测试结果<a hidden class="anchor" aria-hidden="true" href="#基准测试结果">#</a></h2>
+<p>使用真实agent（Claude Code Haiku 4.5）修改真实仓库（FastAPI + React模板）测量：</p>
+<table>
+	<thead>
+			<tr>
+					<th>指标</th>
+					<th>Ponytail</th>
+					<th>基线</th>
+					<th>改进</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>代码行数</td>
+					<td>-54%</td>
+					<td>-</td>
+					<td><strong>减少54%</strong></td>
+			</tr>
+			<tr>
+					<td>使用的tokens</td>
+					<td>-22%</td>
+					<td>-</td>
+					<td><strong>减少22%</strong></td>
+			</tr>
+			<tr>
+					<td>成本</td>
+					<td>-20%</td>
+					<td>-</td>
+					<td><strong>减少20%</strong></td>
+			</tr>
+			<tr>
+					<td>时间</td>
+					<td>-27%</td>
+					<td>-</td>
+					<td><strong>快27%</strong></td>
+			</tr>
+			<tr>
+					<td>安全性</td>
+					<td>100%</td>
+					<td>100%</td>
+					<td>相同</td>
+			</tr>
+	</tbody>
+</table>
+<blockquote>
+<p><strong>注意：</strong> 在某些情况下（如日期选择器），Ponytail比基线过度工程<strong>减少高达94%的LOC</strong>。</p>
+</blockquote>
+<h2 id="ponytail如何工作">Ponytail如何工作？<a hidden class="anchor" aria-hidden="true" href="#ponytail如何工作">#</a></h2>
+<h3 id="核心原则">核心原则<a hidden class="anchor" aria-hidden="true" href="#核心原则">#</a></h3>
+<ol>
+<li><strong>优先使用内置功能</strong> — 先用浏览器/OS的内置功能</li>
+<li><strong>最多一个依赖</strong> — 不需要时不添加包</li>
+<li><strong>不过度工程</strong> — 最简单的解决方案够用</li>
+<li><strong>质疑一切</strong> — 实现前问&quot;真的需要这个吗？&quot;</li>
+</ol>
+<h3 id="实际示例">实际示例<a hidden class="anchor" aria-hidden="true" href="#实际示例">#</a></h3>
+<p><strong>请求：</strong> &ldquo;做一个注册表单&rdquo;</p>
+<p>❌ <strong>基线（无Ponytail）：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">useForm</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;react-hook-form&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">zodResolver</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@hookform/resolvers/zod&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">z</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;zod&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Button</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@/components/ui/button&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Input</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@/components/ui/input&#39;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// ... 150行代码
+</span></span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">formSchema</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">z</span>.<span style="color:#66d9ef">object</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">email</span>(),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">password</span>: <span style="color:#66d9ef">z.string</span>().<span style="color:#a6e22e">min</span>(<span style="color:#ae81ff">8</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ... 复杂验证
+</span></span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><p>✅ <strong>Ponytail方法：</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-tsx" data-lang="tsx"><span style="display:flex;"><span>&lt;<span style="color:#f92672">form</span> <span style="color:#a6e22e">action</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;/api/register&#34;</span> <span style="color:#a6e22e">method</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POST&#34;</span>&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;email&#34;</span> <span style="color:#a6e22e">required</span> /&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">input</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;password&#34;</span> <span style="color:#a6e22e">required</span> <span style="color:#a6e22e">minLength</span><span style="color:#f92672">=</span>{<span style="color:#ae81ff">8</span>} /&gt;
+</span></span><span style="display:flex;"><span>  &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;submit&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">注册</span>&lt;/<span style="color:#f92672">button</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">form</span>&gt;
+</span></span></code></pre></div><h2 id="安装">安装<a hidden class="anchor" aria-hidden="true" href="#安装">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过npm安装</span>
+</span></span><span style="display:flex;"><span>npm install -g @dietrichgebert/ponytail
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或与agent一起使用</span>
+</span></span><span style="display:flex;"><span>npx ponytail
+</span></span></code></pre></div><h3 id="支持20-agents">支持20+ agents<a hidden class="anchor" aria-hidden="true" href="#支持20-agents">#</a></h3>
+<p>Ponytail兼容：</p>
+<ul>
+<li>Claude Code ✅</li>
+<li>Cursor ✅</li>
+<li>Codex ✅</li>
+<li>Gemini CLI ✅</li>
+<li>Windsurf ✅</li>
+<li>OpenCode ✅</li>
+<li>以及15个其他agents&hellip;</li>
+</ul>
+<h2 id="为什么ponytail有效">为什么Ponytail有效？<a hidden class="anchor" aria-hidden="true" href="#为什么ponytail有效">#</a></h2>
+<ol>
+<li><strong>防止过度工程</strong> — agent通常默认选择复杂解决方案</li>
+<li><strong>节省成本</strong> — 更少代码 = 更少tokens = 更便宜</li>
+<li><strong>易于维护</strong> — 更少代码 = 更少bug</li>
+<li><strong>快速交付</strong> — 做得快，部署得快</li>
+<li><strong>人性化思维</strong> — 像真正的高级工程师一样思考</li>
+</ol>
+<h2 id="与ecc和rtk比较">与ECC和RTK比较<a hidden class="anchor" aria-hidden="true" href="#与ecc和rtk比较">#</a></h2>
+<table>
+	<thead>
+			<tr>
+					<th>工具</th>
+					<th>重点</th>
+					<th>节省</th>
+					<th>使用场景</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>Ponytail</strong></td>
+					<td>代码简洁</td>
+					<td>-54% LOC，-20% 成本</td>
+					<td>所有项目</td>
+			</tr>
+			<tr>
+					<td><strong>ECC</strong></td>
+					<td>工程系统</td>
+					<td>广泛优化</td>
+					<td>大型团队</td>
+			</tr>
+			<tr>
+					<td><strong>RTK</strong></td>
+					<td>Token减少</td>
+					<td>-60-90% tokens</td>
+					<td>agent密集型工作流</td>
+			</tr>
+	</tbody>
+</table>
+<blockquote>
+<p><strong>建议：</strong> 三个都用！Ponytail减少代码，RTK减少token，ECC管理工作流。</p>
+</blockquote>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>Ponytail是任何使用AI编码agent的开发者<strong>必备</strong>的技能。它教导agent如何&quot;聪明地偷懒&quot;——做尽可能少的事，以尽可能高的效率完成。</p>
+<p><strong>链接：</strong> <a href="https://github.com/DietrichGebert/ponytail">github.com/DietrichGebert/ponytail</a>
+<strong>网站：</strong> <a href="https://ponytail.dev">ponytail.dev</a></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/github/">Github</a></li>
+      <li><a href="https://dibi8.com/zh/tags/ponytail/">Ponytail</a></li>
+      <li><a href="https://dibi8.com/zh/tags/minimal-code/">Minimal-Code</a></li>
+      <li><a href="https://dibi8.com/zh/tags/claude-code/">Claude-Code</a></li>
+      <li><a href="https://dibi8.com/zh/tags/efficiency/">Efficiency</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

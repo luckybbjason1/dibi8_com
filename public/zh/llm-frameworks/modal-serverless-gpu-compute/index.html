@@ -1,245 +1,724 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/modal-serverless-gpu-compute/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/llm-frameworks/modal-serverless-gpu-compute/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/zh/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"Modal 是什么？ Modal 是专为机器学习和数据密集型工作负载设计的无服务器计算平台。与传统云服务商不同——你需要预配虚拟机、管理 Kubernetes 集群或配置自动伸缩组——Modal 将所有基础设施抽象为简单的 Python 装饰器。\n核心理念很简单：你的代码就是基础设施定义。写一个 Python 函数，添加几个装饰器指定资源需求（GPU 类型、内存、超时），然后部署。Modal 自动配置正确的容器，根据传入请求进行弹性伸缩，并按实际使用的计算时间按秒计费。\n为什么无服务器 GPU 对 AI 至关重要 GPU 基础设施历来是 AI 开发的最大瓶颈。传统方法需要：\n预配 GPU 实例（闲置成本高昂） 管理 Kubernetes 集群进行编排（运维复杂度高） 处理推理端点的冷启动（延迟问题） 从零扩展到数千并发请求（手动调优） Modal 通过将 GPU 视为一等无服务器原语来解决所有这些问题。你只为 GPU 实际运行推理或训练的秒数付费，没有最低消费承诺。\nimport modal # 定义预装 PyTorch 和 CUDA 的容器镜像 stub = modal.Stub(\"my-modal-app\") image = modal.Image.debian_slim().pip_install( \"torch\", \"transformers\", \"accelerate\" ) 与替代方案的关键差异 | 特性 | Modal | AWS SageMaker | Google Vertex AI | Lambda GPU | |\n|\n|\n|\n|\n| | Python 原生 API | ✅ | ❌(控制台/CLI) | ❌(控制台/CLI) | ❌(YAML) | | 零冷启动* | ✅(预热池) | ❌ | ❌ | ❌ | | 按秒计费 | ✅ | ❌(最小小时) | ❌(最小小时) | ✅ | | 多 GPU 弹性伸缩 | ✅(最高 8xH100) | ✅ | ✅ | ❌(单 GPU) | | 交互式开发 | ✅(modal serve) | ❌ | ❌ | ❌ |\n*预热池将冷启动减少到大多数模型低于 2 秒。\nModal 的核心设计理念 Modal 的设计哲学源于一个简单观察：ML 工程师不应该成为 DevOps 专家。当你写 @stub.function(gpu=\"A100\") 时，Modal 在后台完成了所有复杂工作——从容器镜像构建到 GPU 驱动安装、网络配置、负载均衡和健康检查。\n这种抽象层带来的另一个关键优势是可移植性。你在本地笔记本中编写的代码几乎不需要修改即可部署到生产环境。无需编写 Dockerfile、Kubernetes YAML 或 Terraform 配置。这种开发到部署的无缝体验让原型迭代速度提高了 5-10 倍。\n实际使用场景分析 让我们看几个真实世界的用例：\n场景一：每周批量嵌入生成 一家创业公司需要为 50 万条产品评论生成嵌入向量。使用传统方法，他们需要在 EC2 上预置 A100 实例并运行 8 小时，花费约 $40。使用 Modal，他们只需编写一个函数，设置 3600 秒超时，Modal 自动分配 GPU 并在完成后释放资源，实际成本仅约 $8。\n场景二：实时聊天机器人端点 一个教育平台需要为 10,000 名学生提供 AI 辅导。使用 Modal 的 keep_warm 功能，他们保持 3 个 A10G 容器始终热启动，平均响应时间低于 800ms。在低峰时段（深夜），容器自动缩放到零，成本降至每天不到 $2。\n场景三：模型微调流水线 一家金融科技公司需要微调 Llama 3.2 以理解金融术语。通过 Modal 的 H100 支持，他们在 4 小时内完成训练，成本约 $16。如果使用 Spot 实例，还需要处理中断风险和自定义脚本。\n快速开始：第一个 Modal 应用 第一步：安装和认证 # 安装 Modal Python SDK pip install modal-client # 使用 Modal 账户进行认证 modal setup Modal 为新账户提供免费额度——通常足以运行数小时的 A10G 计算用于测试。\n第二步：编写简单的推理函数 import modal from transformers import AutoModelForCausalLM, AutoTokenizer stub = modal.Stub(\"llm-inference\") # 在容器启动时预加载模型 @stub.cls( image=modal.Image.debian_slim().pip_install(\"transformers\", \"torch\", \"accelerate\"), gpu=\"A10G\", memory=8192 ) class LLMEndpoint: @modal.enter() def load_model(self): self.model = AutoModelForCausalLM.from_pretrained( \"meta-llama/Llama-3.2-3B-Instruct\", torch_dtype=\"auto\", device_map=\"auto\" ) self.tokenizer = AutoTokenizer.from_pretrained(\"meta-llama/Llama-3.2-3B-Instruct\") @modal.method() def generate(self, prompt: str, max_tokens: int = 512) -\u003e str: inputs = self.tokenizer(prompt, return_tensors=\"pt\").to(self.model.device) outputs = self.model.generate(**inputs, max_new_tokens=max_tokens) return self.tokenizer.decode(outputs[0], skip_special_tokens=True) 这种基于类的方法让模型在请求间保持内存加载状态，消除了困扰无服务器 LLM 部署的多分钟冷启动惩罚。\n第三步：部署和测试 # 将应用部署到 Modal 云端 modal deploy my_app.py # 从命令行测试 modal run my_app::LLMEndpoint.generate --prompt \"解释量子计算\" --max_tokens 256 部署后，Modal 为你的端点分配一个公共 URL。任何客户端都可以通过 HTTP REST API 调用它。\n部署模式 模式一：高吞吐推理端点 对于生产级 LLM 服务，使用 Modal 内置的并发和请求队列：\n@stub.cls( gpu=\"L4\", concurrency_limit=20, allow_concurrent_inputs=10, keep_warm=2 # 至少保持 2 个容器预热 ) class ProductionLLM: @modal.enter() def load_model(self): self.model = load_optimized_model() # 你的优化逻辑 self.tokenizer = AutoTokenizer.from_pretrained(\"your-model\") @modal.web_endpoint(method=\"POST\") def infer(self, req: dict): prompt = req.get(\"prompt\", \"\") result = self.model.generate(prompt, max_tokens=req.get(\"max_tokens\", 256)) return {\"response\": result} 关键设置：\nkeep_warm=2：确保 2 个容器保持热状态以应对突发流量 allow_concurrent_inputs=10：每个容器处理 10 个并发请求 concurrency_limit=20：最多 20 个容器总量（成本控制） 模式二：批量处理流水线 通过 LLM 处理数千份文档：\n@stub.function( image=image, gpu=\"A100-80GB\", timeout=3600, # 最长 1 小时 retries=2 ) def batch_embed(docs: list[str]) -\u003e list[list[float]]: \"\"\"处理一批文档并返回嵌入向量。\"\"\" model = get_embedding_model() return model.encode(docs, batch_size=64).tolist() # 运行批量任务 results = batch_embed.remote([f\"文档 {i}\" for i in range(10000)]) Modal 自动处理分块、重试失败批次，并在多个 GPU 容器间并行化。\n模式三：微调任务 @stub.function( gpu=\"H100-80GB\", memory=16384, timeout=14400 # 4 小时 ) def run_finetune(dataset_path: str, output_dir: str): \"\"\"在数据集上运行 LoRA 微调。\"\"\" from trl import SFTTrainer from peft import LoraConfig model = AutoModelForCausalLM.from_pretrained(\"meta-llama/Llama-3.2-3B\") tokenizer = AutoTokenizer.from_pretrained(\"meta-llama/Llama-3.2-3B\") peft_config = LoraConfig( r=16, lora_alpha=32, target_modules=[\"q_proj\", \"v_proj\"], lora_dropout=0.05, bias=\"none\", task_type=\"CAUSAL_LM\" ) trainer = SFTTrainer( model=model, tokenizer=tokenizer, train_dataset=load_dataset(dataset_path), peft_config=peft_config, args=TrainingArguments(output_dir=output_dir, num_train_epochs=3) ) trainer.train() trainer.save_model(output_dir) 使用 modal run finetune.py --dataset_path s3://my-bucket/data --output_dir /mnt/output 部署。Modal 将输出目录挂载到持久化存储。\n定价和成本优化 理解 Modal 的定价模式 Modal 根据容器实际使用的资源收费：\n| 资源 | 价格（约） | |\n|\n| | A10G GPU | $0.60/小时 | | L4 GPU | $0.80/小时 | | A100-80GB | $2.50/小时 | | H100 GPU | $4.00/小时 | | vCPU（每秒） | $0.000025/秒 | | 内存（每 GB 小时） | $0.003/GB 小时 |\n以上为约值；查看 modal.com/pricing 获取最新费率。\n成本优化策略 策略一：合理选择 GPU 规格\n# 不要用 H100 跑 3B 参数模型 # 改用 A10G——节省 75% 成本 @stub.function(gpu=\"A10G\", memory=4096) def light_inference(prompt: str): model = load_small_model() # 3B 参数轻松容纳 return model.generate(prompt) # 仅大规模微调时使用 H100 @stub.function(gpu=\"H100-80GB\", memory=32768) def heavy_finetune(config: dict): return run_large_scale_training(config) 策略二：战略性使用 keep_warm\n# 可预测流量：仅在业务时段保持预热 @stub.function(gpu=\"L4\", keep_warm=1) def production_endpoint(): ... # 突发流量：提高 concurrency_limit @stub.function(gpu=\"L4\", concurrency_limit=50, keep_warm=3) def bursty_endpoint(): ... 策略三：使用 @stub.cls 复用容器\n基于类的方法将状态保留在内存中，避免重复加载模型。这对 LLM 工作负载至关重要——加载模型需要 2-5 分钟。\n# ❌ 不好：每次调用都加载模型 @stub.function(gpu=\"A10G\") def bad_approach(prompt: str): model = load_model() # 每次调用重新加载！ return model.generate(prompt) # ✅ 好：加载一次，跨请求复用 @stub.cls(gpu=\"A10G\") class GoodApproach: @modal.enter() def setup(self): self.model = load_model() # 启动时加载一次 @modal.method() def generate(self, prompt: str): return self.model.generate(prompt) # 复用已加载的模型 真实世界成本对比 | 工作负载 | AWS EC2 (p4d) | Modal | 节省 | |\n|\n|\n|\n| | Llama 3.2 3B 推理（100 请求/分钟） | $2,200/月（常驻） | $180/月（按需） | 92% | | 微调 8 小时任务 | $200（预留） | $20（实际使用） | 90% | | 批量嵌入 100 万文档 | $500（集群管理） | $85（纯计算） | 83% |\n高级功能 密钥管理 永远不要硬编码 API 密钥。Modal 的密钥管理器在运行时注入凭据：\nimport modal stub = modal.Stub(\"secret-demo\") @stub.function( secrets=[ modal.Secret.from_name(\"huggingface-token\"), modal.Secret.from_name(\"openai-key\"), ] ) def secure_inference(prompt: str): import os hf_token = os.environ[\"HF_TOKEN\"] # 从密钥注入 openai_key = os.environ[\"OPENAI_API_KEY\"] return call_api(prompt, hf_token, openai_key) 一次性创建密钥：\nmodal secret create huggingface-token HF_TOKEN=your_token_here modal secret create openai-key OPENAI_API_KEY=sk-... 持久化存储的卷挂载 Modal 卷提供跨函数调用的共享持久化文件系统：\n# 为模型检查点创建卷 checkpoint_volume = modal.Volume.from_name(\"model-checkpoints\", create_if_missing=True) @stub.function( gpu=\"A100-80GB\", volumes={\"/checkpoints\": checkpoint_volume}, timeout=7200 ) def fine_tune_and_save(dataset_url: str): # 加载数据集 dataset = load_dataset(dataset_url) # 训练并保存到挂载卷 trainer.train() trainer.save_model(\"/checkpoints/final-model\") print(f\"检查点已保存到卷。大小: {os.path.getsize('/checkpoints/final-model')}\") # 从另一个函数访问保存的模型 @stub.function(volumes={\"/checkpoints\": checkpoint_volume}) def load_and_infer(prompt: str): model = AutoModelForCausalLM.from_pretrained(\"/checkpoints/final-model\") return model.generate(prompt) 卷在函数调用间持久化数据，非常适合模型检查点、数据集和缓存目录。\n出口控制 管理出站网络访问以确保安全和成本：\n@stub.function( gpu=\"L4\", network_mounts={\"/etc/resolv.conf\": modal.NetworkMount()}, blocked_subnets=[\"169.254.0.0/16\"], # 阻止元数据服务 allowed_domains=[\"api.openai.com\"] # 仅允许特定域名 ) def restricted_inference(prompt: str): return call_openai(prompt) 自定义 Docker 镜像 对于 pip_install 无法覆盖的复杂依赖：\ncustom_image = ( modal.Image.from_dockerhub(\"nvidia/cuda:12.2.0-devel-ubuntu22.04\") .apt_install(\"git\", \"cmake\", \"build-essential\") .pip_install(\"torch\", \"transformers\", \"bitsandbytes\") .copy_local_dir(\"./my-custom-model\", \"/app/model\") ) @stub.function(image=custom_image, gpu=\"A100-80GB\") def custom_model_inference(request: dict): model = torch.load(\"/app/model/best.pt\") return model.predict(request[\"input\"]) 常见问题排查 问题一：推理期间容器 OOM 崩溃 错误：因内存限制超出而终止容器 修复：增加内存分配并启用交换：\n@stub.cls( gpu=\"A100-80GB\", memory=32768, # 大模型需要 32GB RAM ephemeral_disk=100_000 # 模型权重需要 100GB 磁盘 ) class LargeModel: @modal.enter() def load(self): self.model = AutoModel.from_pretrained( \"big-model\", torch_dtype=torch.float16, # 使用半精度 device_map=\"auto\" ) 问题二：首次请求冷启动慢 警告：首次请求耗时 180 秒（模型加载） 修复：使用 keep_warm 预预热容器：\n@stub.cls( gpu=\"A10G\", keep_warm=3, # 始终保持 3 个预热容器 timeout=600 ) class WarmEndpoint: @modal.enter() def load(self): self.model = load_model() print(\"模型加载成功\") 问题三：长时间微调任务超时 错误：函数在 3600 秒后超时 修复：增加超时并使用卷保存检查点：\n@stub.function( gpu=\"H100-80GB\", timeout=28800, # 8 小时 volumes={\"/data\": modal.Volume.from_name(\"training-data\")} ) def long_training_job(config_path: str): for epoch in range(10): train_epoch(config_path) if epoch % 2 == 0: save_checkpoint(f\"/data/checkpoint-{epoch}\") 问题四：并发限流 错误：太多并发输入（限制：10） 修复：调整并发设置：\n@stub.cls( gpu=\"L4\", concurrency_limit=100, # 最大容器数 allow_concurrent_inputs=20, # 每个容器的请求数 keep_warm=5 # 预热池大小 ) class ScalableEndpoint: @modal.method() def handle(self, request: dict): return process(request) 未来方向 Modal 2026 路线图 Modal 持续大力投资 ML 基础设施。即将推出的关键功能包括：\n多节点分布式训练：原生支持跨 8+ GPU 的训练，自动数据并行 GPU 共享：低流量时段通过时间切片提升 GPU 利用率 自定义 GPU 类型：支持下一代 GPU（Blackwell B200） 边缘部署：将 Modal 函数部署到边缘节点，实现亚 50ms 推理延迟 原生向量数据库集成：基于 Modal 存储层的内置向量搜索 何时选择 Modal 选择 Modal 当：\n你想在数小时内而非数周内交付 ML 工作负载 你的工作负载是间歇性的（批量任务、低频推理） 你需要 GPU 访问而无需集群管理 你的团队以 Python 为主，希望最小化 DevOps 考虑替代方案当：\n你需要绝对最低延迟（\u003c10ms）——裸金属或专用实例胜出 你有可预测的 24/7 高吞吐量——预留实例可能更便宜 你需要自定义内核修改——Modal 使用标准容器镜像 你深度投入特定云的生态系统——原生服务可能集成更好 社区动态 无服务器 GPU 领域正在迅速升温。2026 年年中，多家新进入者加入市场：\nRunPod Serverless 推出有竞争力的 GPU 定价，A10G 起价 $0.30/小时 Replicate 将其预打包 ML 模型库扩展到 500+ 个 AWS Lambda GPU 宣布 Graviton4 + Inferentia2 组合全面可用 尽管竞争加剧，Modal 在开发者体验方面仍保持领先——Python 原生 API 意味着团队无需学习 YAML、Helm 图表或 Terraform，就能从原型快速走向生产。\nModal 上的社区驱动模型注册表已增长到超过 2,000 个模型，涵盖从 LLM 到扩散模型到语音识别的所有领域。用户可以用一行 Python 代码浏览、测试和部署任何注册模型。\nFAQ Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？ Modal 消除了管理 GPU 实例的运维开销。在 EC2 上，你需要处理抢占式实例中断、驱动更新、GPU 监控和自动伸缩配置。使用 Modal，所有这些都被抽象掉了——你只需编写 Python 函数。对于间歇性工作负载，Modal 通常便宜 70-90%，因为你只为实际计算时间付费，而不是让实例全天候运行。\nQ: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？ 可以。Modal 与 Hugging Face 模型无缝协作。只需在镜像中安装 transformers 库，然后使用标准的 AutoModel.from_pretrained() API 加载模型。你也可以将 Hugging Face token 作为 Modal 密钥挂载以访问私有模型。许多用户报告 100 亿参数以下模型的加载时间为 30-60 秒。\nQ: 如果 GPU 容器在请求中途崩溃怎么办？ Modal 使用可配置的重试策略自动重试失败的容器。对于推理端点，你可以在函数定义中设置 retries=3。对于训练任务，Modal 支持基于检查点的恢复——将检查点保存到 Modal 卷，重试时从上次检查点恢复，而不是从头重启。\nQ: 有免费层可以用于测试吗？ Modal 为新账户提供免费额度，通常足以获得 10-20 小时的 A10G 计算。这足以在承诺付费之前原型化和测试大多数 ML 工作负载。无需信用卡即可开始。\nQ: 如何监控和调试运行的 Modal 函数？ Modal 在 modal.com/apps 提供 Web 仪表板，显示实时指标：调用次数、延迟百分位数、错误率和 GPU 利用率。你还可以从 CLI 直接流式传输日志 ````modal logs ```，并为错误阈值或成本限制设置警报。\nQ: 我可以在本地或隔离环境中运行 Modal 函数吗？ 目前，Modal 仅在其托管云基础设施上运行。他们不提供本地部署选项。对于隔离环境，考虑使用带 Kubernetes 的 vLLM 或 Ray Serve，它们可以在你自己的基础设施内完全运行。\n参考资料 Modal 官方文档 Modal GitHub 示例 Modal 定价页面 无服务器 GPU 计算调查 — ACM Queue 2026 云 GPU 成本对比 — ML 基础设施报告 2026 年第二季度 加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：t.me/dibi8\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线”, “datePublished”: “2026-07-15”, “dateModified”: “2026-07-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/modal-serverless-gpu-compute\" } } Why This Matters Understanding modal 无服务器 gpu 计算 — 零基础设施运行 ml 流水线 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles google-jax-complete-guide ray-distributed-ai-framework-complete-guide modal-serverless-gpu-compute temporal-ai-workflow-orchestration cleanlab-11k-star-ai-data-cleaning Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1377","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/>En</a></li><li><a href=https://dibi8.com/ko/llm-frameworks/modal-serverless-gpu-compute/>Ko</a></li><li><a href=https://dibi8.com/vi/llm-frameworks/modal-serverless-gpu-compute/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#modal-%e6%98%af%e4%bb%80%e4%b9%88 aria-label="Modal 是什么？">Modal 是什么？</a><ul><li><a href=#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%97%a0%e6%9c%8d%e5%8a%a1%e5%99%a8-gpu-%e5%af%b9-ai-%e8%87%b3%e5%85%b3%e9%87%8d%e8%a6%81 aria-label="为什么无服务器 GPU 对 AI 至关重要">为什么无服务器 GPU 对 AI 至关重要</a></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e5%85%b3%e9%94%ae%e5%b7%ae%e5%bc%82 aria-label=与替代方案的关键差异>与替代方案的关键差异</a></li><li><a href=#modal-%e7%9a%84%e6%a0%b8%e5%bf%83%e8%ae%be%e8%ae%a1%e7%90%86%e5%bf%b5 aria-label="Modal 的核心设计理念">Modal 的核心设计理念</a></li><li><a href=#%e5%ae%9e%e9%99%85%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af%e5%88%86%e6%9e%90 aria-label=实际使用场景分析>实际使用场景分析</a></li></ul></li><li><a href=#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e7%ac%ac%e4%b8%80%e4%b8%aa-modal-%e5%ba%94%e7%94%a8 aria-label="快速开始：第一个 Modal 应用">快速开始：第一个 Modal 应用</a><ul><li><a href=#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%ae%89%e8%a3%85%e5%92%8c%e8%ae%a4%e8%af%81 aria-label=第一步：安装和认证>第一步：安装和认证</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e7%bc%96%e5%86%99%e7%ae%80%e5%8d%95%e7%9a%84%e6%8e%a8%e7%90%86%e5%87%bd%e6%95%b0 aria-label=第二步：编写简单的推理函数>第二步：编写简单的推理函数</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e6%ad%a5%e9%83%a8%e7%bd%b2%e5%92%8c%e6%b5%8b%e8%af%95 aria-label=第三步：部署和测试>第三步：部署和测试</a></li></ul></li><li><a href=#%e9%83%a8%e7%bd%b2%e6%a8%a1%e5%bc%8f aria-label=部署模式>部署模式</a><ul><li><a href=#%e6%a8%a1%e5%bc%8f%e4%b8%80%e9%ab%98%e5%90%9e%e5%90%90%e6%8e%a8%e7%90%86%e7%ab%af%e7%82%b9 aria-label=模式一：高吞吐推理端点>模式一：高吞吐推理端点</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e4%ba%8c%e6%89%b9%e9%87%8f%e5%a4%84%e7%90%86%e6%b5%81%e6%b0%b4%e7%ba%bf aria-label=模式二：批量处理流水线>模式二：批量处理流水线</a></li><li><a href=#%e6%a8%a1%e5%bc%8f%e4%b8%89%e5%be%ae%e8%b0%83%e4%bb%bb%e5%8a%a1 aria-label=模式三：微调任务>模式三：微调任务</a></li></ul></li><li><a href=#%e5%ae%9a%e4%bb%b7%e5%92%8c%e6%88%90%e6%9c%ac%e4%bc%98%e5%8c%96 aria-label=定价和成本优化>定价和成本优化</a><ul><li><a href=#%e7%90%86%e8%a7%a3-modal-%e7%9a%84%e5%ae%9a%e4%bb%b7%e6%a8%a1%e5%bc%8f aria-label="理解 Modal 的定价模式">理解 Modal 的定价模式</a></li><li><a href=#%e6%88%90%e6%9c%ac%e4%bc%98%e5%8c%96%e7%ad%96%e7%95%a5 aria-label=成本优化策略>成本优化策略</a></li><li><a href=#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e6%88%90%e6%9c%ac%e5%af%b9%e6%af%94 aria-label=真实世界成本对比>真实世界成本对比</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd aria-label=高级功能>高级功能</a><ul><li><a href=#%e5%af%86%e9%92%a5%e7%ae%a1%e7%90%86 aria-label=密钥管理>密钥管理</a></li><li><a href=#%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8%e7%9a%84%e5%8d%b7%e6%8c%82%e8%bd%bd aria-label=持久化存储的卷挂载>持久化存储的卷挂载</a></li><li><a href=#%e5%87%ba%e5%8f%a3%e6%8e%a7%e5%88%b6 aria-label=出口控制>出口控制</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89-docker-%e9%95%9c%e5%83%8f aria-label="自定义 Docker 镜像">自定义 Docker 镜像</a></li></ul></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5 aria-label=常见问题排查>常见问题排查</a><ul><li><a href=#%e9%97%ae%e9%a2%98%e4%b8%80%e6%8e%a8%e7%90%86%e6%9c%9f%e9%97%b4%e5%ae%b9%e5%99%a8-oom-%e5%b4%a9%e6%ba%83 aria-label="问题一：推理期间容器 OOM 崩溃">问题一：推理期间容器 OOM 崩溃</a></li><li><a href=#%e9%97%ae%e9%a2%98%e4%ba%8c%e9%a6%96%e6%ac%a1%e8%af%b7%e6%b1%82%e5%86%b7%e5%90%af%e5%8a%a8%e6%85%a2 aria-label=问题二：首次请求冷启动慢>问题二：首次请求冷启动慢</a></li><li><a href=#%e9%97%ae%e9%a2%98%e4%b8%89%e9%95%bf%e6%97%b6%e9%97%b4%e5%be%ae%e8%b0%83%e4%bb%bb%e5%8a%a1%e8%b6%85%e6%97%b6 aria-label=问题三：长时间微调任务超时>问题三：长时间微调任务超时</a></li><li><a href=#%e9%97%ae%e9%a2%98%e5%9b%9b%e5%b9%b6%e5%8f%91%e9%99%90%e6%b5%81 aria-label=问题四：并发限流>问题四：并发限流</a></li></ul></li><li><a href=#%e6%9c%aa%e6%9d%a5%e6%96%b9%e5%90%91 aria-label=未来方向>未来方向</a><ul><li><a href=#modal-2026-%e8%b7%af%e7%ba%bf%e5%9b%be aria-label="Modal 2026 路线图">Modal 2026 路线图</a></li><li><a href=#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9-modal aria-label="何时选择 Modal">何时选择 Modal</a></li></ul></li><li><a href=#%e7%a4%be%e5%8c%ba%e5%8a%a8%e6%80%81 aria-label=社区动态>社区动态</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#q-modal-%e4%b8%8e%e7%9b%b4%e6%8e%a5%e5%9c%a8-aws-ec2-%e4%b8%8a%e8%bf%90%e8%a1%8c-gpu-%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95 aria-label="Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？">Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？</a></li><li><a href=#q-%e6%88%91%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8-modal-%e5%8a%a0%e8%bd%bd%e7%8e%b0%e6%9c%89%e7%9a%84-hugging-face-%e6%a8%a1%e5%9e%8b%e5%90%97 aria-label="Q: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？">Q: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？</a></li><li><a href=#q-%e5%a6%82%e6%9e%9c-gpu-%e5%ae%b9%e5%99%a8%e5%9c%a8%e8%af%b7%e6%b1%82%e4%b8%ad%e9%80%94%e5%b4%a9%e6%ba%83%e6%80%8e%e4%b9%88%e5%8a%9e aria-label="Q: 如果 GPU 容器在请求中途崩溃怎么办？">Q: 如果 GPU 容器在请求中途崩溃怎么办？</a></li><li><a href=#q-%e6%9c%89%e5%85%8d%e8%b4%b9%e5%b1%82%e5%8f%af%e4%bb%a5%e7%94%a8%e4%ba%8e%e6%b5%8b%e8%af%95%e5%90%97 aria-label="Q: 有免费层可以用于测试吗？">Q: 有免费层可以用于测试吗？</a></li><li><a href=#q-%e5%a6%82%e4%bd%95%e7%9b%91%e6%8e%a7%e5%92%8c%e8%b0%83%e8%af%95%e8%bf%90%e8%a1%8c%e7%9a%84-modal-%e5%87%bd%e6%95%b0 aria-label="Q: 如何监控和调试运行的 Modal 函数？">Q: 如何监控和调试运行的 Modal 函数？</a></li><li><a href=#q-%e6%88%91%e5%8f%af%e4%bb%a5%e5%9c%a8%e6%9c%ac%e5%9c%b0%e6%88%96%e9%9a%94%e7%a6%bb%e7%8e%af%e5%a2%83%e4%b8%ad%e8%bf%90%e8%a1%8c-modal-%e5%87%bd%e6%95%b0%e5%90%97 aria-label="Q: 我可以在本地或隔离环境中运行 Modal 函数吗？">Q: 我可以在本地或隔离环境中运行 Modal 函数吗？</a></li></ul></li><li><a href=#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99 aria-label=参考资料>参考资料</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><h2 id=modal-是什么>Modal 是什么？<a hidden class=anchor aria-hidden=true href=#modal-是什么>#</a></h2><p>Modal 是专为机器学习和数据密集型工作负载设计的无服务器计算平台。与传统云服务商不同——你需要预配虚拟机、管理 Kubernetes 集群或配置自动伸缩组——Modal 将所有基础设施抽象为简单的 Python 装饰器。</p><p>核心理念很简单：<strong>你的代码就是基础设施定义</strong>。写一个 Python 函数，添加几个装饰器指定资源需求（GPU 类型、内存、超时），然后部署。Modal 自动配置正确的容器，根据传入请求进行弹性伸缩，并按实际使用的计算时间按秒计费。</p><h3 id=为什么无服务器-gpu-对-ai-至关重要>为什么无服务器 GPU 对 AI 至关重要<a hidden class=anchor aria-hidden=true href=#为什么无服务器-gpu-对-ai-至关重要>#</a></h3><p>GPU 基础设施历来是 AI 开发的最大瓶颈。传统方法需要：</p><ul><li>预配 GPU 实例（闲置成本高昂）</li><li>管理 Kubernetes 集群进行编排（运维复杂度高）</li><li>处理推理端点的冷启动（延迟问题）</li><li>从零扩展到数千并发请求（手动调优）</li></ul><p>Modal 通过将 GPU 视为一等无服务器原语来解决所有这些问题。你只为 GPU 实际运行推理或训练的秒数付费，没有最低消费承诺。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> modal
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 定义预装 PyTorch 和 CUDA 的容器镜像</span>
-</span></span><span style=display:flex><span>stub <span style=color:#f92672>=</span> modal<span style=color:#f92672>.</span>Stub(<span style=color:#e6db74>&#34;my-modal-app&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>image <span style=color:#f92672>=</span> modal<span style=color:#f92672>.</span>Image<span style=color:#f92672>.</span>debian_slim()<span style=color:#f92672>.</span>pip_install(
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;torch&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;transformers&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;accelerate&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=与替代方案的关键差异>与替代方案的关键差异<a hidden class=anchor aria-hidden=true href=#与替代方案的关键差异>#</a></h3><p>| 特性 | Modal | AWS SageMaker | Google Vertex AI | Lambda GPU |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/modal-serverless-gpu-compute/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/llm-frameworks/modal-serverless-gpu-compute/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/zh/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "Modal 是什么？ Modal 是专为机器学习和数据密集型工作负载设计的无服务器计算平台。与传统云服务商不同——你需要预配虚拟机、管理 Kubernetes 集群或配置自动伸缩组——Modal 将所有基础设施抽象为简单的 Python 装饰器。\n核心理念很简单：你的代码就是基础设施定义。写一个 Python 函数，添加几个装饰器指定资源需求（GPU 类型、内存、超时），然后部署。Modal 自动配置正确的容器，根据传入请求进行弹性伸缩，并按实际使用的计算时间按秒计费。\n为什么无服务器 GPU 对 AI 至关重要 GPU 基础设施历来是 AI 开发的最大瓶颈。传统方法需要：\n预配 GPU 实例（闲置成本高昂） 管理 Kubernetes 集群进行编排（运维复杂度高） 处理推理端点的冷启动（延迟问题） 从零扩展到数千并发请求（手动调优） Modal 通过将 GPU 视为一等无服务器原语来解决所有这些问题。你只为 GPU 实际运行推理或训练的秒数付费，没有最低消费承诺。\nimport modal # 定义预装 PyTorch 和 CUDA 的容器镜像 stub = modal.Stub(\"my-modal-app\") image = modal.Image.debian_slim().pip_install( \"torch\", \"transformers\", \"accelerate\" ) 与替代方案的关键差异 | 特性 | Modal | AWS SageMaker | Google Vertex AI | Lambda GPU | |\n|\n|\n|\n|\n| | Python 原生 API | ✅ | ❌(控制台/CLI) | ❌(控制台/CLI) | ❌(YAML) | | 零冷启动* | ✅(预热池) | ❌ | ❌ | ❌ | | 按秒计费 | ✅ | ❌(最小小时) | ❌(最小小时) | ✅ | | 多 GPU 弹性伸缩 | ✅(最高 8xH100) | ✅ | ✅ | ❌(单 GPU) | | 交互式开发 | ✅(modal serve) | ❌ | ❌ | ❌ |\n*预热池将冷启动减少到大多数模型低于 2 秒。\nModal 的核心设计理念 Modal 的设计哲学源于一个简单观察：ML 工程师不应该成为 DevOps 专家。当你写 @stub.function(gpu=\"A100\") 时，Modal 在后台完成了所有复杂工作——从容器镜像构建到 GPU 驱动安装、网络配置、负载均衡和健康检查。\n这种抽象层带来的另一个关键优势是可移植性。你在本地笔记本中编写的代码几乎不需要修改即可部署到生产环境。无需编写 Dockerfile、Kubernetes YAML 或 Terraform 配置。这种开发到部署的无缝体验让原型迭代速度提高了 5-10 倍。\n实际使用场景分析 让我们看几个真实世界的用例：\n场景一：每周批量嵌入生成 一家创业公司需要为 50 万条产品评论生成嵌入向量。使用传统方法，他们需要在 EC2 上预置 A100 实例并运行 8 小时，花费约 $40。使用 Modal，他们只需编写一个函数，设置 3600 秒超时，Modal 自动分配 GPU 并在完成后释放资源，实际成本仅约 $8。\n场景二：实时聊天机器人端点 一个教育平台需要为 10,000 名学生提供 AI 辅导。使用 Modal 的 keep_warm 功能，他们保持 3 个 A10G 容器始终热启动，平均响应时间低于 800ms。在低峰时段（深夜），容器自动缩放到零，成本降至每天不到 $2。\n场景三：模型微调流水线 一家金融科技公司需要微调 Llama 3.2 以理解金融术语。通过 Modal 的 H100 支持，他们在 4 小时内完成训练，成本约 $16。如果使用 Spot 实例，还需要处理中断风险和自定义脚本。\n快速开始：第一个 Modal 应用 第一步：安装和认证 # 安装 Modal Python SDK pip install modal-client # 使用 Modal 账户进行认证 modal setup Modal 为新账户提供免费额度——通常足以运行数小时的 A10G 计算用于测试。\n第二步：编写简单的推理函数 import modal from transformers import AutoModelForCausalLM, AutoTokenizer stub = modal.Stub(\"llm-inference\") # 在容器启动时预加载模型 @stub.cls( image=modal.Image.debian_slim().pip_install(\"transformers\", \"torch\", \"accelerate\"), gpu=\"A10G\", memory=8192 ) class LLMEndpoint: @modal.enter() def load_model(self): self.model = AutoModelForCausalLM.from_pretrained( \"meta-llama/Llama-3.2-3B-Instruct\", torch_dtype=\"auto\", device_map=\"auto\" ) self.tokenizer = AutoTokenizer.from_pretrained(\"meta-llama/Llama-3.2-3B-Instruct\") @modal.method() def generate(self, prompt: str, max_tokens: int = 512) -\u003e str: inputs = self.tokenizer(prompt, return_tensors=\"pt\").to(self.model.device) outputs = self.model.generate(**inputs, max_new_tokens=max_tokens) return self.tokenizer.decode(outputs[0], skip_special_tokens=True) 这种基于类的方法让模型在请求间保持内存加载状态，消除了困扰无服务器 LLM 部署的多分钟冷启动惩罚。\n第三步：部署和测试 # 将应用部署到 Modal 云端 modal deploy my_app.py # 从命令行测试 modal run my_app::LLMEndpoint.generate --prompt \"解释量子计算\" --max_tokens 256 部署后，Modal 为你的端点分配一个公共 URL。任何客户端都可以通过 HTTP REST API 调用它。\n部署模式 模式一：高吞吐推理端点 对于生产级 LLM 服务，使用 Modal 内置的并发和请求队列：\n@stub.cls( gpu=\"L4\", concurrency_limit=20, allow_concurrent_inputs=10, keep_warm=2 # 至少保持 2 个容器预热 ) class ProductionLLM: @modal.enter() def load_model(self): self.model = load_optimized_model() # 你的优化逻辑 self.tokenizer = AutoTokenizer.from_pretrained(\"your-model\") @modal.web_endpoint(method=\"POST\") def infer(self, req: dict): prompt = req.get(\"prompt\", \"\") result = self.model.generate(prompt, max_tokens=req.get(\"max_tokens\", 256)) return {\"response\": result} 关键设置：\nkeep_warm=2：确保 2 个容器保持热状态以应对突发流量 allow_concurrent_inputs=10：每个容器处理 10 个并发请求 concurrency_limit=20：最多 20 个容器总量（成本控制） 模式二：批量处理流水线 通过 LLM 处理数千份文档：\n@stub.function( image=image, gpu=\"A100-80GB\", timeout=3600, # 最长 1 小时 retries=2 ) def batch_embed(docs: list[str]) -\u003e list[list[float]]: \"\"\"处理一批文档并返回嵌入向量。\"\"\" model = get_embedding_model() return model.encode(docs, batch_size=64).tolist() # 运行批量任务 results = batch_embed.remote([f\"文档 {i}\" for i in range(10000)]) Modal 自动处理分块、重试失败批次，并在多个 GPU 容器间并行化。\n模式三：微调任务 @stub.function( gpu=\"H100-80GB\", memory=16384, timeout=14400 # 4 小时 ) def run_finetune(dataset_path: str, output_dir: str): \"\"\"在数据集上运行 LoRA 微调。\"\"\" from trl import SFTTrainer from peft import LoraConfig model = AutoModelForCausalLM.from_pretrained(\"meta-llama/Llama-3.2-3B\") tokenizer = AutoTokenizer.from_pretrained(\"meta-llama/Llama-3.2-3B\") peft_config = LoraConfig( r=16, lora_alpha=32, target_modules=[\"q_proj\", \"v_proj\"], lora_dropout=0.05, bias=\"none\", task_type=\"CAUSAL_LM\" ) trainer = SFTTrainer( model=model, tokenizer=tokenizer, train_dataset=load_dataset(dataset_path), peft_config=peft_config, args=TrainingArguments(output_dir=output_dir, num_train_epochs=3) ) trainer.train() trainer.save_model(output_dir) 使用 modal run finetune.py --dataset_path s3://my-bucket/data --output_dir /mnt/output 部署。Modal 将输出目录挂载到持久化存储。\n定价和成本优化 理解 Modal 的定价模式 Modal 根据容器实际使用的资源收费：\n| 资源 | 价格（约） | |\n|\n| | A10G GPU | $0.60/小时 | | L4 GPU | $0.80/小时 | | A100-80GB | $2.50/小时 | | H100 GPU | $4.00/小时 | | vCPU（每秒） | $0.000025/秒 | | 内存（每 GB 小时） | $0.003/GB 小时 |\n以上为约值；查看 modal.com/pricing 获取最新费率。\n成本优化策略 策略一：合理选择 GPU 规格\n# 不要用 H100 跑 3B 参数模型 # 改用 A10G——节省 75% 成本 @stub.function(gpu=\"A10G\", memory=4096) def light_inference(prompt: str): model = load_small_model() # 3B 参数轻松容纳 return model.generate(prompt) # 仅大规模微调时使用 H100 @stub.function(gpu=\"H100-80GB\", memory=32768) def heavy_finetune(config: dict): return run_large_scale_training(config) 策略二：战略性使用 keep_warm\n# 可预测流量：仅在业务时段保持预热 @stub.function(gpu=\"L4\", keep_warm=1) def production_endpoint(): ... # 突发流量：提高 concurrency_limit @stub.function(gpu=\"L4\", concurrency_limit=50, keep_warm=3) def bursty_endpoint(): ... 策略三：使用 @stub.cls 复用容器\n基于类的方法将状态保留在内存中，避免重复加载模型。这对 LLM 工作负载至关重要——加载模型需要 2-5 分钟。\n# ❌ 不好：每次调用都加载模型 @stub.function(gpu=\"A10G\") def bad_approach(prompt: str): model = load_model() # 每次调用重新加载！ return model.generate(prompt) # ✅ 好：加载一次，跨请求复用 @stub.cls(gpu=\"A10G\") class GoodApproach: @modal.enter() def setup(self): self.model = load_model() # 启动时加载一次 @modal.method() def generate(self, prompt: str): return self.model.generate(prompt) # 复用已加载的模型 真实世界成本对比 | 工作负载 | AWS EC2 (p4d) | Modal | 节省 | |\n|\n|\n|\n| | Llama 3.2 3B 推理（100 请求/分钟） | $2,200/月（常驻） | $180/月（按需） | 92% | | 微调 8 小时任务 | $200（预留） | $20（实际使用） | 90% | | 批量嵌入 100 万文档 | $500（集群管理） | $85（纯计算） | 83% |\n高级功能 密钥管理 永远不要硬编码 API 密钥。Modal 的密钥管理器在运行时注入凭据：\nimport modal stub = modal.Stub(\"secret-demo\") @stub.function( secrets=[ modal.Secret.from_name(\"huggingface-token\"), modal.Secret.from_name(\"openai-key\"), ] ) def secure_inference(prompt: str): import os hf_token = os.environ[\"HF_TOKEN\"] # 从密钥注入 openai_key = os.environ[\"OPENAI_API_KEY\"] return call_api(prompt, hf_token, openai_key) 一次性创建密钥：\nmodal secret create huggingface-token HF_TOKEN=your_token_here modal secret create openai-key OPENAI_API_KEY=sk-... 持久化存储的卷挂载 Modal 卷提供跨函数调用的共享持久化文件系统：\n# 为模型检查点创建卷 checkpoint_volume = modal.Volume.from_name(\"model-checkpoints\", create_if_missing=True) @stub.function( gpu=\"A100-80GB\", volumes={\"/checkpoints\": checkpoint_volume}, timeout=7200 ) def fine_tune_and_save(dataset_url: str): # 加载数据集 dataset = load_dataset(dataset_url) # 训练并保存到挂载卷 trainer.train() trainer.save_model(\"/checkpoints/final-model\") print(f\"检查点已保存到卷。大小: {os.path.getsize('/checkpoints/final-model')}\") # 从另一个函数访问保存的模型 @stub.function(volumes={\"/checkpoints\": checkpoint_volume}) def load_and_infer(prompt: str): model = AutoModelForCausalLM.from_pretrained(\"/checkpoints/final-model\") return model.generate(prompt) 卷在函数调用间持久化数据，非常适合模型检查点、数据集和缓存目录。\n出口控制 管理出站网络访问以确保安全和成本：\n@stub.function( gpu=\"L4\", network_mounts={\"/etc/resolv.conf\": modal.NetworkMount()}, blocked_subnets=[\"169.254.0.0/16\"], # 阻止元数据服务 allowed_domains=[\"api.openai.com\"] # 仅允许特定域名 ) def restricted_inference(prompt: str): return call_openai(prompt) 自定义 Docker 镜像 对于 pip_install 无法覆盖的复杂依赖：\ncustom_image = ( modal.Image.from_dockerhub(\"nvidia/cuda:12.2.0-devel-ubuntu22.04\") .apt_install(\"git\", \"cmake\", \"build-essential\") .pip_install(\"torch\", \"transformers\", \"bitsandbytes\") .copy_local_dir(\"./my-custom-model\", \"/app/model\") ) @stub.function(image=custom_image, gpu=\"A100-80GB\") def custom_model_inference(request: dict): model = torch.load(\"/app/model/best.pt\") return model.predict(request[\"input\"]) 常见问题排查 问题一：推理期间容器 OOM 崩溃 错误：因内存限制超出而终止容器 修复：增加内存分配并启用交换：\n@stub.cls( gpu=\"A100-80GB\", memory=32768, # 大模型需要 32GB RAM ephemeral_disk=100_000 # 模型权重需要 100GB 磁盘 ) class LargeModel: @modal.enter() def load(self): self.model = AutoModel.from_pretrained( \"big-model\", torch_dtype=torch.float16, # 使用半精度 device_map=\"auto\" ) 问题二：首次请求冷启动慢 警告：首次请求耗时 180 秒（模型加载） 修复：使用 keep_warm 预预热容器：\n@stub.cls( gpu=\"A10G\", keep_warm=3, # 始终保持 3 个预热容器 timeout=600 ) class WarmEndpoint: @modal.enter() def load(self): self.model = load_model() print(\"模型加载成功\") 问题三：长时间微调任务超时 错误：函数在 3600 秒后超时 修复：增加超时并使用卷保存检查点：\n@stub.function( gpu=\"H100-80GB\", timeout=28800, # 8 小时 volumes={\"/data\": modal.Volume.from_name(\"training-data\")} ) def long_training_job(config_path: str): for epoch in range(10): train_epoch(config_path) if epoch % 2 == 0: save_checkpoint(f\"/data/checkpoint-{epoch}\") 问题四：并发限流 错误：太多并发输入（限制：10） 修复：调整并发设置：\n@stub.cls( gpu=\"L4\", concurrency_limit=100, # 最大容器数 allow_concurrent_inputs=20, # 每个容器的请求数 keep_warm=5 # 预热池大小 ) class ScalableEndpoint: @modal.method() def handle(self, request: dict): return process(request) 未来方向 Modal 2026 路线图 Modal 持续大力投资 ML 基础设施。即将推出的关键功能包括：\n多节点分布式训练：原生支持跨 8+ GPU 的训练，自动数据并行 GPU 共享：低流量时段通过时间切片提升 GPU 利用率 自定义 GPU 类型：支持下一代 GPU（Blackwell B200） 边缘部署：将 Modal 函数部署到边缘节点，实现亚 50ms 推理延迟 原生向量数据库集成：基于 Modal 存储层的内置向量搜索 何时选择 Modal 选择 Modal 当：\n你想在数小时内而非数周内交付 ML 工作负载 你的工作负载是间歇性的（批量任务、低频推理） 你需要 GPU 访问而无需集群管理 你的团队以 Python 为主，希望最小化 DevOps 考虑替代方案当：\n你需要绝对最低延迟（\u003c10ms）——裸金属或专用实例胜出 你有可预测的 24/7 高吞吐量——预留实例可能更便宜 你需要自定义内核修改——Modal 使用标准容器镜像 你深度投入特定云的生态系统——原生服务可能集成更好 社区动态 无服务器 GPU 领域正在迅速升温。2026 年年中，多家新进入者加入市场：\nRunPod Serverless 推出有竞争力的 GPU 定价，A10G 起价 $0.30/小时 Replicate 将其预打包 ML 模型库扩展到 500+ 个 AWS Lambda GPU 宣布 Graviton4 + Inferentia2 组合全面可用 尽管竞争加剧，Modal 在开发者体验方面仍保持领先——Python 原生 API 意味着团队无需学习 YAML、Helm 图表或 Terraform，就能从原型快速走向生产。\nModal 上的社区驱动模型注册表已增长到超过 2,000 个模型，涵盖从 LLM 到扩散模型到语音识别的所有领域。用户可以用一行 Python 代码浏览、测试和部署任何注册模型。\nFAQ Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？ Modal 消除了管理 GPU 实例的运维开销。在 EC2 上，你需要处理抢占式实例中断、驱动更新、GPU 监控和自动伸缩配置。使用 Modal，所有这些都被抽象掉了——你只需编写 Python 函数。对于间歇性工作负载，Modal 通常便宜 70-90%，因为你只为实际计算时间付费，而不是让实例全天候运行。\nQ: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？ 可以。Modal 与 Hugging Face 模型无缝协作。只需在镜像中安装 transformers 库，然后使用标准的 AutoModel.from_pretrained() API 加载模型。你也可以将 Hugging Face token 作为 Modal 密钥挂载以访问私有模型。许多用户报告 100 亿参数以下模型的加载时间为 30-60 秒。\nQ: 如果 GPU 容器在请求中途崩溃怎么办？ Modal 使用可配置的重试策略自动重试失败的容器。对于推理端点，你可以在函数定义中设置 retries=3。对于训练任务，Modal 支持基于检查点的恢复——将检查点保存到 Modal 卷，重试时从上次检查点恢复，而不是从头重启。\nQ: 有免费层可以用于测试吗？ Modal 为新账户提供免费额度，通常足以获得 10-20 小时的 A10G 计算。这足以在承诺付费之前原型化和测试大多数 ML 工作负载。无需信用卡即可开始。\nQ: 如何监控和调试运行的 Modal 函数？ Modal 在 modal.com/apps 提供 Web 仪表板，显示实时指标：调用次数、延迟百分位数、错误率和 GPU 利用率。你还可以从 CLI 直接流式传输日志 ````modal logs ```，并为错误阈值或成本限制设置警报。\nQ: 我可以在本地或隔离环境中运行 Modal 函数吗？ 目前，Modal 仅在其托管云基础设施上运行。他们不提供本地部署选项。对于隔离环境，考虑使用带 Kubernetes 的 vLLM 或 Ray Serve，它们可以在你自己的基础设施内完全运行。\n参考资料 Modal 官方文档 Modal GitHub 示例 Modal 定价页面 无服务器 GPU 计算调查 — ACM Queue 2026 云 GPU 成本对比 — ML 基础设施报告 2026 年第二季度 加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：t.me/dibi8\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线”, “datePublished”: “2026-07-15”, “dateModified”: “2026-07-15”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/modal-serverless-gpu-compute\" } } Why This Matters Understanding modal 无服务器 gpu 计算 — 零基础设施运行 ml 流水线 is crucial for modern AI development. Here’s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~6 minutes\nRelated Articles google-jax-complete-guide ray-distributed-ai-framework-complete-guide modal-serverless-gpu-compute temporal-ai-workflow-orchestration cleanlab-11k-star-ai-data-cleaning Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1377",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/llm-frameworks/modal-serverless-gpu-compute/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>7 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/llm-frameworks/modal-serverless-gpu-compute/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/llm-frameworks/modal-serverless-gpu-compute/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/llm-frameworks/modal-serverless-gpu-compute/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#modal-%e6%98%af%e4%bb%80%e4%b9%88" aria-label="Modal 是什么？">Modal 是什么？</a><ul>
+                    
+            <li>
+                <a href="#%e4%b8%ba%e4%bb%80%e4%b9%88%e6%97%a0%e6%9c%8d%e5%8a%a1%e5%99%a8-gpu-%e5%af%b9-ai-%e8%87%b3%e5%85%b3%e9%87%8d%e8%a6%81" aria-label="为什么无服务器 GPU 对 AI 至关重要">为什么无服务器 GPU 对 AI 至关重要</a></li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e6%96%b9%e6%a1%88%e7%9a%84%e5%85%b3%e9%94%ae%e5%b7%ae%e5%bc%82" aria-label="与替代方案的关键差异">与替代方案的关键差异</a></li>
+            <li>
+                <a href="#modal-%e7%9a%84%e6%a0%b8%e5%bf%83%e8%ae%be%e8%ae%a1%e7%90%86%e5%bf%b5" aria-label="Modal 的核心设计理念">Modal 的核心设计理念</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e9%99%85%e4%bd%bf%e7%94%a8%e5%9c%ba%e6%99%af%e5%88%86%e6%9e%90" aria-label="实际使用场景分析">实际使用场景分析</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%bf%ab%e9%80%9f%e5%bc%80%e5%a7%8b%e7%ac%ac%e4%b8%80%e4%b8%aa-modal-%e5%ba%94%e7%94%a8" aria-label="快速开始：第一个 Modal 应用">快速开始：第一个 Modal 应用</a><ul>
+                    
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%ae%89%e8%a3%85%e5%92%8c%e8%ae%a4%e8%af%81" aria-label="第一步：安装和认证">第一步：安装和认证</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e7%bc%96%e5%86%99%e7%ae%80%e5%8d%95%e7%9a%84%e6%8e%a8%e7%90%86%e5%87%bd%e6%95%b0" aria-label="第二步：编写简单的推理函数">第二步：编写简单的推理函数</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e9%83%a8%e7%bd%b2%e5%92%8c%e6%b5%8b%e8%af%95" aria-label="第三步：部署和测试">第三步：部署和测试</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%83%a8%e7%bd%b2%e6%a8%a1%e5%bc%8f" aria-label="部署模式">部署模式</a><ul>
+                    
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e4%b8%80%e9%ab%98%e5%90%9e%e5%90%90%e6%8e%a8%e7%90%86%e7%ab%af%e7%82%b9" aria-label="模式一：高吞吐推理端点">模式一：高吞吐推理端点</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e4%ba%8c%e6%89%b9%e9%87%8f%e5%a4%84%e7%90%86%e6%b5%81%e6%b0%b4%e7%ba%bf" aria-label="模式二：批量处理流水线">模式二：批量处理流水线</a></li>
+            <li>
+                <a href="#%e6%a8%a1%e5%bc%8f%e4%b8%89%e5%be%ae%e8%b0%83%e4%bb%bb%e5%8a%a1" aria-label="模式三：微调任务">模式三：微调任务</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%ae%9a%e4%bb%b7%e5%92%8c%e6%88%90%e6%9c%ac%e4%bc%98%e5%8c%96" aria-label="定价和成本优化">定价和成本优化</a><ul>
+                    
+            <li>
+                <a href="#%e7%90%86%e8%a7%a3-modal-%e7%9a%84%e5%ae%9a%e4%bb%b7%e6%a8%a1%e5%bc%8f" aria-label="理解 Modal 的定价模式">理解 Modal 的定价模式</a></li>
+            <li>
+                <a href="#%e6%88%90%e6%9c%ac%e4%bc%98%e5%8c%96%e7%ad%96%e7%95%a5" aria-label="成本优化策略">成本优化策略</a></li>
+            <li>
+                <a href="#%e7%9c%9f%e5%ae%9e%e4%b8%96%e7%95%8c%e6%88%90%e6%9c%ac%e5%af%b9%e6%af%94" aria-label="真实世界成本对比">真实世界成本对比</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e5%8a%9f%e8%83%bd" aria-label="高级功能">高级功能</a><ul>
+                    
+            <li>
+                <a href="#%e5%af%86%e9%92%a5%e7%ae%a1%e7%90%86" aria-label="密钥管理">密钥管理</a></li>
+            <li>
+                <a href="#%e6%8c%81%e4%b9%85%e5%8c%96%e5%ad%98%e5%82%a8%e7%9a%84%e5%8d%b7%e6%8c%82%e8%bd%bd" aria-label="持久化存储的卷挂载">持久化存储的卷挂载</a></li>
+            <li>
+                <a href="#%e5%87%ba%e5%8f%a3%e6%8e%a7%e5%88%b6" aria-label="出口控制">出口控制</a></li>
+            <li>
+                <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89-docker-%e9%95%9c%e5%83%8f" aria-label="自定义 Docker 镜像">自定义 Docker 镜像</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98%e6%8e%92%e6%9f%a5" aria-label="常见问题排查">常见问题排查</a><ul>
+                    
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e4%b8%80%e6%8e%a8%e7%90%86%e6%9c%9f%e9%97%b4%e5%ae%b9%e5%99%a8-oom-%e5%b4%a9%e6%ba%83" aria-label="问题一：推理期间容器 OOM 崩溃">问题一：推理期间容器 OOM 崩溃</a></li>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e4%ba%8c%e9%a6%96%e6%ac%a1%e8%af%b7%e6%b1%82%e5%86%b7%e5%90%af%e5%8a%a8%e6%85%a2" aria-label="问题二：首次请求冷启动慢">问题二：首次请求冷启动慢</a></li>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e4%b8%89%e9%95%bf%e6%97%b6%e9%97%b4%e5%be%ae%e8%b0%83%e4%bb%bb%e5%8a%a1%e8%b6%85%e6%97%b6" aria-label="问题三：长时间微调任务超时">问题三：长时间微调任务超时</a></li>
+            <li>
+                <a href="#%e9%97%ae%e9%a2%98%e5%9b%9b%e5%b9%b6%e5%8f%91%e9%99%90%e6%b5%81" aria-label="问题四：并发限流">问题四：并发限流</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e6%9c%aa%e6%9d%a5%e6%96%b9%e5%90%91" aria-label="未来方向">未来方向</a><ul>
+                    
+            <li>
+                <a href="#modal-2026-%e8%b7%af%e7%ba%bf%e5%9b%be" aria-label="Modal 2026 路线图">Modal 2026 路线图</a></li>
+            <li>
+                <a href="#%e4%bd%95%e6%97%b6%e9%80%89%e6%8b%a9-modal" aria-label="何时选择 Modal">何时选择 Modal</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e7%a4%be%e5%8c%ba%e5%8a%a8%e6%80%81" aria-label="社区动态">社区动态</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#q-modal-%e4%b8%8e%e7%9b%b4%e6%8e%a5%e5%9c%a8-aws-ec2-%e4%b8%8a%e8%bf%90%e8%a1%8c-gpu-%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95" aria-label="Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？">Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？</a></li>
+            <li>
+                <a href="#q-%e6%88%91%e5%8f%af%e4%bb%a5%e4%bd%bf%e7%94%a8-modal-%e5%8a%a0%e8%bd%bd%e7%8e%b0%e6%9c%89%e7%9a%84-hugging-face-%e6%a8%a1%e5%9e%8b%e5%90%97" aria-label="Q: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？">Q: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？</a></li>
+            <li>
+                <a href="#q-%e5%a6%82%e6%9e%9c-gpu-%e5%ae%b9%e5%99%a8%e5%9c%a8%e8%af%b7%e6%b1%82%e4%b8%ad%e9%80%94%e5%b4%a9%e6%ba%83%e6%80%8e%e4%b9%88%e5%8a%9e" aria-label="Q: 如果 GPU 容器在请求中途崩溃怎么办？">Q: 如果 GPU 容器在请求中途崩溃怎么办？</a></li>
+            <li>
+                <a href="#q-%e6%9c%89%e5%85%8d%e8%b4%b9%e5%b1%82%e5%8f%af%e4%bb%a5%e7%94%a8%e4%ba%8e%e6%b5%8b%e8%af%95%e5%90%97" aria-label="Q: 有免费层可以用于测试吗？">Q: 有免费层可以用于测试吗？</a></li>
+            <li>
+                <a href="#q-%e5%a6%82%e4%bd%95%e7%9b%91%e6%8e%a7%e5%92%8c%e8%b0%83%e8%af%95%e8%bf%90%e8%a1%8c%e7%9a%84-modal-%e5%87%bd%e6%95%b0" aria-label="Q: 如何监控和调试运行的 Modal 函数？">Q: 如何监控和调试运行的 Modal 函数？</a></li>
+            <li>
+                <a href="#q-%e6%88%91%e5%8f%af%e4%bb%a5%e5%9c%a8%e6%9c%ac%e5%9c%b0%e6%88%96%e9%9a%94%e7%a6%bb%e7%8e%af%e5%a2%83%e4%b8%ad%e8%bf%90%e8%a1%8c-modal-%e5%87%bd%e6%95%b0%e5%90%97" aria-label="Q: 我可以在本地或隔离环境中运行 Modal 函数吗？">Q: 我可以在本地或隔离环境中运行 Modal 函数吗？</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%8f%82%e8%80%83%e8%b5%84%e6%96%99" aria-label="参考资料">参考资料</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><h2 id="modal-是什么">Modal 是什么？<a hidden class="anchor" aria-hidden="true" href="#modal-是什么">#</a></h2>
+<p>Modal 是专为机器学习和数据密集型工作负载设计的无服务器计算平台。与传统云服务商不同——你需要预配虚拟机、管理 Kubernetes 集群或配置自动伸缩组——Modal 将所有基础设施抽象为简单的 Python 装饰器。</p>
+<p>核心理念很简单：<strong>你的代码就是基础设施定义</strong>。写一个 Python 函数，添加几个装饰器指定资源需求（GPU 类型、内存、超时），然后部署。Modal 自动配置正确的容器，根据传入请求进行弹性伸缩，并按实际使用的计算时间按秒计费。</p>
+<h3 id="为什么无服务器-gpu-对-ai-至关重要">为什么无服务器 GPU 对 AI 至关重要<a hidden class="anchor" aria-hidden="true" href="#为什么无服务器-gpu-对-ai-至关重要">#</a></h3>
+<p>GPU 基础设施历来是 AI 开发的最大瓶颈。传统方法需要：</p>
+<ul>
+<li>预配 GPU 实例（闲置成本高昂）</li>
+<li>管理 Kubernetes 集群进行编排（运维复杂度高）</li>
+<li>处理推理端点的冷启动（延迟问题）</li>
+<li>从零扩展到数千并发请求（手动调优）</li>
+</ul>
+<p>Modal 通过将 GPU 视为一等无服务器原语来解决所有这些问题。你只为 GPU 实际运行推理或训练的秒数付费，没有最低消费承诺。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> modal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 定义预装 PyTorch 和 CUDA 的容器镜像</span>
+</span></span><span style="display:flex;"><span>stub <span style="color:#f92672">=</span> modal<span style="color:#f92672">.</span>Stub(<span style="color:#e6db74">&#34;my-modal-app&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>image <span style="color:#f92672">=</span> modal<span style="color:#f92672">.</span>Image<span style="color:#f92672">.</span>debian_slim()<span style="color:#f92672">.</span>pip_install(
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;torch&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;transformers&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;accelerate&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="与替代方案的关键差异">与替代方案的关键差异<a hidden class="anchor" aria-hidden="true" href="#与替代方案的关键差异">#</a></h3>
+<p>| 特性 | Modal | AWS SageMaker | Google Vertex AI | Lambda GPU |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Python 原生 API | ✅ | ❌(控制台/CLI) | ❌(控制台/CLI) | ❌(YAML) |
 | 零冷启动* | ✅(预热池) | ❌ | ❌ | ❌ |
 | 按秒计费 | ✅ | ❌(最小小时) | ❌(最小小时) | ✅ |
 | 多 GPU 弹性伸缩 | ✅(最高 8xH100) | ✅ | ✅ | ❌(单 GPU) |
-| 交互式开发 | ✅(<code>modal serve</code>) | ❌ | ❌ | ❌ |</p><p><em>*预热池将冷启动减少到大多数模型低于 2 秒。</em></p><h3 id=modal-的核心设计理念>Modal 的核心设计理念<a hidden class=anchor aria-hidden=true href=#modal-的核心设计理念>#</a></h3><p>Modal 的设计哲学源于一个简单观察：ML 工程师不应该成为 DevOps 专家。当你写 <code>@stub.function(gpu="A100")</code> 时，Modal 在后台完成了所有复杂工作——从容器镜像构建到 GPU 驱动安装、网络配置、负载均衡和健康检查。</p><p>这种抽象层带来的另一个关键优势是<strong>可移植性</strong>。你在本地笔记本中编写的代码几乎不需要修改即可部署到生产环境。无需编写 Dockerfile、Kubernetes YAML 或 Terraform 配置。这种开发到部署的无缝体验让原型迭代速度提高了 5-10 倍。</p><h3 id=实际使用场景分析>实际使用场景分析<a hidden class=anchor aria-hidden=true href=#实际使用场景分析>#</a></h3><p>让我们看几个真实世界的用例：</p><p><strong>场景一：每周批量嵌入生成</strong>
-一家创业公司需要为 50 万条产品评论生成嵌入向量。使用传统方法，他们需要在 EC2 上预置 A100 实例并运行 8 小时，花费约 $40。使用 Modal，他们只需编写一个函数，设置 3600 秒超时，Modal 自动分配 GPU 并在完成后释放资源，实际成本仅约 $8。</p><p><strong>场景二：实时聊天机器人端点</strong>
-一个教育平台需要为 10,000 名学生提供 AI 辅导。使用 Modal 的 <code>keep_warm</code> 功能，他们保持 3 个 A10G 容器始终热启动，平均响应时间低于 800ms。在低峰时段（深夜），容器自动缩放到零，成本降至每天不到 $2。</p><p><strong>场景三：模型微调流水线</strong>
-一家金融科技公司需要微调 Llama 3.2 以理解金融术语。通过 Modal 的 H100 支持，他们在 4 小时内完成训练，成本约 $16。如果使用 Spot 实例，还需要处理中断风险和自定义脚本。</p><hr><h2 id=快速开始第一个-modal-应用>快速开始：第一个 Modal 应用<a hidden class=anchor aria-hidden=true href=#快速开始第一个-modal-应用>#</a></h2><h3 id=第一步安装和认证>第一步：安装和认证<a hidden class=anchor aria-hidden=true href=#第一步安装和认证>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装 Modal Python SDK</span>
-</span></span><span style=display:flex><span>pip install modal-client
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用 Modal 账户进行认证</span>
-</span></span><span style=display:flex><span>modal setup
-</span></span></code></pre></div><p>Modal 为新账户提供免费额度——通常足以运行数小时的 A10G 计算用于测试。</p><h3 id=第二步编写简单的推理函数>第二步：编写简单的推理函数<a hidden class=anchor aria-hidden=true href=#第二步编写简单的推理函数>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> modal
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> transformers <span style=color:#f92672>import</span> AutoModelForCausalLM, AutoTokenizer
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>stub <span style=color:#f92672>=</span> modal<span style=color:#f92672>.</span>Stub(<span style=color:#e6db74>&#34;llm-inference&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在容器启动时预加载模型</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.cls</span>(
-</span></span><span style=display:flex><span>    image<span style=color:#f92672>=</span>modal<span style=color:#f92672>.</span>Image<span style=color:#f92672>.</span>debian_slim()<span style=color:#f92672>.</span>pip_install(<span style=color:#e6db74>&#34;transformers&#34;</span>, <span style=color:#e6db74>&#34;torch&#34;</span>, <span style=color:#e6db74>&#34;accelerate&#34;</span>),
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A10G&#34;</span>,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#ae81ff>8192</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LLMEndpoint</span>: <span style=color:#a6e22e>@modal.enter</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>load_model</span>(self): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> AutoModelForCausalLM<span style=color:#f92672>.</span>from_pretrained(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;meta-llama/Llama-3.2-3B-Instruct&#34;</span>,
-</span></span><span style=display:flex><span>            torch_dtype<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>,
-</span></span><span style=display:flex><span>            device_map<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;meta-llama/Llama-3.2-3B-Instruct&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@modal.method</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate</span>(self, prompt: str, max_tokens: int <span style=color:#f92672>=</span> <span style=color:#ae81ff>512</span>) <span style=color:#f92672>-&gt;</span> str: inputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>tokenizer(prompt, return_tensors<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pt&#34;</span>)<span style=color:#f92672>.</span>to(self<span style=color:#f92672>.</span>model<span style=color:#f92672>.</span>device)
-</span></span><span style=display:flex><span>        outputs <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>model<span style=color:#f92672>.</span>generate(<span style=color:#f92672>**</span>inputs, max_new_tokens<span style=color:#f92672>=</span>max_tokens)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>tokenizer<span style=color:#f92672>.</span>decode(outputs[<span style=color:#ae81ff>0</span>], skip_special_tokens<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span></code></pre></div><p>这种基于类的方法让模型在请求间保持内存加载状态，消除了困扰无服务器 LLM 部署的多分钟冷启动惩罚。</p><h3 id=第三步部署和测试>第三步：部署和测试<a hidden class=anchor aria-hidden=true href=#第三步部署和测试>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 将应用部署到 Modal 云端</span>
-</span></span><span style=display:flex><span>modal deploy my_app.py
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 从命令行测试</span>
-</span></span><span style=display:flex><span>modal run my_app::LLMEndpoint.generate --prompt <span style=color:#e6db74>&#34;解释量子计算&#34;</span> --max_tokens <span style=color:#ae81ff>256</span>
-</span></span></code></pre></div><p>部署后，Modal 为你的端点分配一个公共 URL。任何客户端都可以通过 HTTP REST API 调用它。</p><hr><h2 id=部署模式>部署模式<a hidden class=anchor aria-hidden=true href=#部署模式>#</a></h2><h3 id=模式一高吞吐推理端点>模式一：高吞吐推理端点<a hidden class=anchor aria-hidden=true href=#模式一高吞吐推理端点>#</a></h3><p>对于生产级 LLM 服务，使用 Modal 内置的并发和请求队列：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.cls</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;L4&#34;</span>,
-</span></span><span style=display:flex><span>    concurrency_limit<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>,
-</span></span><span style=display:flex><span>    allow_concurrent_inputs<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    keep_warm<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>  <span style=color:#75715e># 至少保持 2 个容器预热</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ProductionLLM</span>: <span style=color:#a6e22e>@modal.enter</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>load_model</span>(self): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> load_optimized_model()  <span style=color:#75715e># 你的优化逻辑</span>
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;your-model&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@modal.web_endpoint</span>(method<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;POST&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>infer</span>(self, req: dict): prompt <span style=color:#f92672>=</span> req<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;prompt&#34;</span>, <span style=color:#e6db74>&#34;&#34;</span>)
-</span></span><span style=display:flex><span>        result <span style=color:#f92672>=</span> self<span style=color:#f92672>.</span>model<span style=color:#f92672>.</span>generate(prompt, max_tokens<span style=color:#f92672>=</span>req<span style=color:#f92672>.</span>get(<span style=color:#e6db74>&#34;max_tokens&#34;</span>, <span style=color:#ae81ff>256</span>))
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>return</span> {<span style=color:#e6db74>&#34;response&#34;</span>: result}
-</span></span></code></pre></div><p>关键设置：</p><ul><li><code>keep_warm=2</code>：确保 2 个容器保持热状态以应对突发流量</li><li><code>allow_concurrent_inputs=10</code>：每个容器处理 10 个并发请求</li><li><code>concurrency_limit=20</code>：最多 20 个容器总量（成本控制）</li></ul><h3 id=模式二批量处理流水线>模式二：批量处理流水线<a hidden class=anchor aria-hidden=true href=#模式二批量处理流水线>#</a></h3><p>通过 LLM 处理数千份文档：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(
-</span></span><span style=display:flex><span>    image<span style=color:#f92672>=</span>image,
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A100-80GB&#34;</span>,
-</span></span><span style=display:flex><span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>3600</span>,  <span style=color:#75715e># 最长 1 小时</span>
-</span></span><span style=display:flex><span>    retries<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>batch_embed</span>(docs: list[str]) <span style=color:#f92672>-&gt;</span> list[list[float]]: <span style=color:#e6db74>&#34;&#34;&#34;处理一批文档并返回嵌入向量。&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> get_embedding_model()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> model<span style=color:#f92672>.</span>encode(docs, batch_size<span style=color:#f92672>=</span><span style=color:#ae81ff>64</span>)<span style=color:#f92672>.</span>tolist()
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 运行批量任务</span>
-</span></span><span style=display:flex><span>results <span style=color:#f92672>=</span> batch_embed<span style=color:#f92672>.</span>remote([<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;文档 </span><span style=color:#e6db74>{</span>i<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#66d9ef>for</span> i <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>10000</span>)])
-</span></span></code></pre></div><p>Modal 自动处理分块、重试失败批次，并在多个 GPU 容器间并行化。</p><h3 id=模式三微调任务>模式三：微调任务<a hidden class=anchor aria-hidden=true href=#模式三微调任务>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;H100-80GB&#34;</span>,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#ae81ff>16384</span>,
-</span></span><span style=display:flex><span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>14400</span>  <span style=color:#75715e># 4 小时</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>run_finetune</span>(dataset_path: str, output_dir: str): <span style=color:#e6db74>&#34;&#34;&#34;在数据集上运行 LoRA 微调。&#34;&#34;&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>from</span> trl <span style=color:#f92672>import</span> SFTTrainer
-</span></span><span style=display:flex><span>    <span style=color:#f92672>from</span> peft <span style=color:#f92672>import</span> LoraConfig
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    model <span style=color:#f92672>=</span> AutoModelForCausalLM<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;meta-llama/Llama-3.2-3B&#34;</span>)
-</span></span><span style=display:flex><span>    tokenizer <span style=color:#f92672>=</span> AutoTokenizer<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;meta-llama/Llama-3.2-3B&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    peft_config <span style=color:#f92672>=</span> LoraConfig(
-</span></span><span style=display:flex><span>        r<span style=color:#f92672>=</span><span style=color:#ae81ff>16</span>, lora_alpha<span style=color:#f92672>=</span><span style=color:#ae81ff>32</span>, target_modules<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;q_proj&#34;</span>, <span style=color:#e6db74>&#34;v_proj&#34;</span>],
-</span></span><span style=display:flex><span>        lora_dropout<span style=color:#f92672>=</span><span style=color:#ae81ff>0.05</span>, bias<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;none&#34;</span>, task_type<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;CAUSAL_LM&#34;</span>
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>    trainer <span style=color:#f92672>=</span> SFTTrainer(
-</span></span><span style=display:flex><span>        model<span style=color:#f92672>=</span>model, tokenizer<span style=color:#f92672>=</span>tokenizer,
-</span></span><span style=display:flex><span>        train_dataset<span style=color:#f92672>=</span>load_dataset(dataset_path),
-</span></span><span style=display:flex><span>        peft_config<span style=color:#f92672>=</span>peft_config,
-</span></span><span style=display:flex><span>        args<span style=color:#f92672>=</span>TrainingArguments(output_dir<span style=color:#f92672>=</span>output_dir, num_train_epochs<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>)
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    trainer<span style=color:#f92672>.</span>train()
-</span></span><span style=display:flex><span>    trainer<span style=color:#f92672>.</span>save_model(output_dir)
-</span></span></code></pre></div><p>使用 <code>modal run finetune.py --dataset_path s3://my-bucket/data --output_dir /mnt/output</code> 部署。Modal 将输出目录挂载到持久化存储。</p><hr><h2 id=定价和成本优化>定价和成本优化<a hidden class=anchor aria-hidden=true href=#定价和成本优化>#</a></h2><h3 id=理解-modal-的定价模式>理解 Modal 的定价模式<a hidden class=anchor aria-hidden=true href=#理解-modal-的定价模式>#</a></h3><p>Modal 根据容器实际使用的资源收费：</p><p>| 资源 | 价格（约） |
-|</p><hr><p>|</p><hr><p>|
+| 交互式开发 | ✅(<code>modal serve</code>) | ❌ | ❌ | ❌ |</p>
+<p><em>*预热池将冷启动减少到大多数模型低于 2 秒。</em></p>
+<h3 id="modal-的核心设计理念">Modal 的核心设计理念<a hidden class="anchor" aria-hidden="true" href="#modal-的核心设计理念">#</a></h3>
+<p>Modal 的设计哲学源于一个简单观察：ML 工程师不应该成为 DevOps 专家。当你写 <code>@stub.function(gpu=&quot;A100&quot;)</code> 时，Modal 在后台完成了所有复杂工作——从容器镜像构建到 GPU 驱动安装、网络配置、负载均衡和健康检查。</p>
+<p>这种抽象层带来的另一个关键优势是<strong>可移植性</strong>。你在本地笔记本中编写的代码几乎不需要修改即可部署到生产环境。无需编写 Dockerfile、Kubernetes YAML 或 Terraform 配置。这种开发到部署的无缝体验让原型迭代速度提高了 5-10 倍。</p>
+<h3 id="实际使用场景分析">实际使用场景分析<a hidden class="anchor" aria-hidden="true" href="#实际使用场景分析">#</a></h3>
+<p>让我们看几个真实世界的用例：</p>
+<p><strong>场景一：每周批量嵌入生成</strong>
+一家创业公司需要为 50 万条产品评论生成嵌入向量。使用传统方法，他们需要在 EC2 上预置 A100 实例并运行 8 小时，花费约 $40。使用 Modal，他们只需编写一个函数，设置 3600 秒超时，Modal 自动分配 GPU 并在完成后释放资源，实际成本仅约 $8。</p>
+<p><strong>场景二：实时聊天机器人端点</strong>
+一个教育平台需要为 10,000 名学生提供 AI 辅导。使用 Modal 的 <code>keep_warm</code> 功能，他们保持 3 个 A10G 容器始终热启动，平均响应时间低于 800ms。在低峰时段（深夜），容器自动缩放到零，成本降至每天不到 $2。</p>
+<p><strong>场景三：模型微调流水线</strong>
+一家金融科技公司需要微调 Llama 3.2 以理解金融术语。通过 Modal 的 H100 支持，他们在 4 小时内完成训练，成本约 $16。如果使用 Spot 实例，还需要处理中断风险和自定义脚本。</p>
+<hr>
+<h2 id="快速开始第一个-modal-应用">快速开始：第一个 Modal 应用<a hidden class="anchor" aria-hidden="true" href="#快速开始第一个-modal-应用">#</a></h2>
+<h3 id="第一步安装和认证">第一步：安装和认证<a hidden class="anchor" aria-hidden="true" href="#第一步安装和认证">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装 Modal Python SDK</span>
+</span></span><span style="display:flex;"><span>pip install modal-client
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用 Modal 账户进行认证</span>
+</span></span><span style="display:flex;"><span>modal setup
+</span></span></code></pre></div><p>Modal 为新账户提供免费额度——通常足以运行数小时的 A10G 计算用于测试。</p>
+<h3 id="第二步编写简单的推理函数">第二步：编写简单的推理函数<a hidden class="anchor" aria-hidden="true" href="#第二步编写简单的推理函数">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> modal
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> transformers <span style="color:#f92672">import</span> AutoModelForCausalLM, AutoTokenizer
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>stub <span style="color:#f92672">=</span> modal<span style="color:#f92672">.</span>Stub(<span style="color:#e6db74">&#34;llm-inference&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在容器启动时预加载模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.cls</span>(
+</span></span><span style="display:flex;"><span>    image<span style="color:#f92672">=</span>modal<span style="color:#f92672">.</span>Image<span style="color:#f92672">.</span>debian_slim()<span style="color:#f92672">.</span>pip_install(<span style="color:#e6db74">&#34;transformers&#34;</span>, <span style="color:#e6db74">&#34;torch&#34;</span>, <span style="color:#e6db74">&#34;accelerate&#34;</span>),
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A10G&#34;</span>,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#ae81ff">8192</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LLMEndpoint</span>: <span style="color:#a6e22e">@modal.enter</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_model</span>(self): self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> AutoModelForCausalLM<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;meta-llama/Llama-3.2-3B-Instruct&#34;</span>,
+</span></span><span style="display:flex;"><span>            torch_dtype<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>,
+</span></span><span style="display:flex;"><span>            device_map<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>tokenizer <span style="color:#f92672">=</span> AutoTokenizer<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;meta-llama/Llama-3.2-3B-Instruct&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@modal.method</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>(self, prompt: str, max_tokens: int <span style="color:#f92672">=</span> <span style="color:#ae81ff">512</span>) <span style="color:#f92672">-&gt;</span> str: inputs <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>tokenizer(prompt, return_tensors<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pt&#34;</span>)<span style="color:#f92672">.</span>to(self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>device)
+</span></span><span style="display:flex;"><span>        outputs <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>generate(<span style="color:#f92672">**</span>inputs, max_new_tokens<span style="color:#f92672">=</span>max_tokens)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>tokenizer<span style="color:#f92672">.</span>decode(outputs[<span style="color:#ae81ff">0</span>], skip_special_tokens<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p>这种基于类的方法让模型在请求间保持内存加载状态，消除了困扰无服务器 LLM 部署的多分钟冷启动惩罚。</p>
+<h3 id="第三步部署和测试">第三步：部署和测试<a hidden class="anchor" aria-hidden="true" href="#第三步部署和测试">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 将应用部署到 Modal 云端</span>
+</span></span><span style="display:flex;"><span>modal deploy my_app.py
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从命令行测试</span>
+</span></span><span style="display:flex;"><span>modal run my_app::LLMEndpoint.generate --prompt <span style="color:#e6db74">&#34;解释量子计算&#34;</span> --max_tokens <span style="color:#ae81ff">256</span>
+</span></span></code></pre></div><p>部署后，Modal 为你的端点分配一个公共 URL。任何客户端都可以通过 HTTP REST API 调用它。</p>
+<hr>
+<h2 id="部署模式">部署模式<a hidden class="anchor" aria-hidden="true" href="#部署模式">#</a></h2>
+<h3 id="模式一高吞吐推理端点">模式一：高吞吐推理端点<a hidden class="anchor" aria-hidden="true" href="#模式一高吞吐推理端点">#</a></h3>
+<p>对于生产级 LLM 服务，使用 Modal 内置的并发和请求队列：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.cls</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L4&#34;</span>,
+</span></span><span style="display:flex;"><span>    concurrency_limit<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,
+</span></span><span style="display:flex;"><span>    allow_concurrent_inputs<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    keep_warm<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>  <span style="color:#75715e"># 至少保持 2 个容器预热</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ProductionLLM</span>: <span style="color:#a6e22e">@modal.enter</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_model</span>(self): self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> load_optimized_model()  <span style="color:#75715e"># 你的优化逻辑</span>
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>tokenizer <span style="color:#f92672">=</span> AutoTokenizer<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;your-model&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@modal.web_endpoint</span>(method<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;POST&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">infer</span>(self, req: dict): prompt <span style="color:#f92672">=</span> req<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;prompt&#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>        result <span style="color:#f92672">=</span> self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>generate(prompt, max_tokens<span style="color:#f92672">=</span>req<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#34;max_tokens&#34;</span>, <span style="color:#ae81ff">256</span>))
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> {<span style="color:#e6db74">&#34;response&#34;</span>: result}
+</span></span></code></pre></div><p>关键设置：</p>
+<ul>
+<li><code>keep_warm=2</code>：确保 2 个容器保持热状态以应对突发流量</li>
+<li><code>allow_concurrent_inputs=10</code>：每个容器处理 10 个并发请求</li>
+<li><code>concurrency_limit=20</code>：最多 20 个容器总量（成本控制）</li>
+</ul>
+<h3 id="模式二批量处理流水线">模式二：批量处理流水线<a hidden class="anchor" aria-hidden="true" href="#模式二批量处理流水线">#</a></h3>
+<p>通过 LLM 处理数千份文档：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(
+</span></span><span style="display:flex;"><span>    image<span style="color:#f92672">=</span>image,
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A100-80GB&#34;</span>,
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">3600</span>,  <span style="color:#75715e"># 最长 1 小时</span>
+</span></span><span style="display:flex;"><span>    retries<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">batch_embed</span>(docs: list[str]) <span style="color:#f92672">-&gt;</span> list[list[float]]: <span style="color:#e6db74">&#34;&#34;&#34;处理一批文档并返回嵌入向量。&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> get_embedding_model()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> model<span style="color:#f92672">.</span>encode(docs, batch_size<span style="color:#f92672">=</span><span style="color:#ae81ff">64</span>)<span style="color:#f92672">.</span>tolist()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 运行批量任务</span>
+</span></span><span style="display:flex;"><span>results <span style="color:#f92672">=</span> batch_embed<span style="color:#f92672">.</span>remote([<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;文档 </span><span style="color:#e6db74">{</span>i<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10000</span>)])
+</span></span></code></pre></div><p>Modal 自动处理分块、重试失败批次，并在多个 GPU 容器间并行化。</p>
+<h3 id="模式三微调任务">模式三：微调任务<a hidden class="anchor" aria-hidden="true" href="#模式三微调任务">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H100-80GB&#34;</span>,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#ae81ff">16384</span>,
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">14400</span>  <span style="color:#75715e"># 4 小时</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">run_finetune</span>(dataset_path: str, output_dir: str): <span style="color:#e6db74">&#34;&#34;&#34;在数据集上运行 LoRA 微调。&#34;&#34;&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> trl <span style="color:#f92672">import</span> SFTTrainer
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">from</span> peft <span style="color:#f92672">import</span> LoraConfig
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    model <span style="color:#f92672">=</span> AutoModelForCausalLM<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;meta-llama/Llama-3.2-3B&#34;</span>)
+</span></span><span style="display:flex;"><span>    tokenizer <span style="color:#f92672">=</span> AutoTokenizer<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;meta-llama/Llama-3.2-3B&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    peft_config <span style="color:#f92672">=</span> LoraConfig(
+</span></span><span style="display:flex;"><span>        r<span style="color:#f92672">=</span><span style="color:#ae81ff">16</span>, lora_alpha<span style="color:#f92672">=</span><span style="color:#ae81ff">32</span>, target_modules<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;q_proj&#34;</span>, <span style="color:#e6db74">&#34;v_proj&#34;</span>],
+</span></span><span style="display:flex;"><span>        lora_dropout<span style="color:#f92672">=</span><span style="color:#ae81ff">0.05</span>, bias<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;none&#34;</span>, task_type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CAUSAL_LM&#34;</span>
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    trainer <span style="color:#f92672">=</span> SFTTrainer(
+</span></span><span style="display:flex;"><span>        model<span style="color:#f92672">=</span>model, tokenizer<span style="color:#f92672">=</span>tokenizer,
+</span></span><span style="display:flex;"><span>        train_dataset<span style="color:#f92672">=</span>load_dataset(dataset_path),
+</span></span><span style="display:flex;"><span>        peft_config<span style="color:#f92672">=</span>peft_config,
+</span></span><span style="display:flex;"><span>        args<span style="color:#f92672">=</span>TrainingArguments(output_dir<span style="color:#f92672">=</span>output_dir, num_train_epochs<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    trainer<span style="color:#f92672">.</span>train()
+</span></span><span style="display:flex;"><span>    trainer<span style="color:#f92672">.</span>save_model(output_dir)
+</span></span></code></pre></div><p>使用 <code>modal run finetune.py --dataset_path s3://my-bucket/data --output_dir /mnt/output</code> 部署。Modal 将输出目录挂载到持久化存储。</p>
+<hr>
+<h2 id="定价和成本优化">定价和成本优化<a hidden class="anchor" aria-hidden="true" href="#定价和成本优化">#</a></h2>
+<h3 id="理解-modal-的定价模式">理解 Modal 的定价模式<a hidden class="anchor" aria-hidden="true" href="#理解-modal-的定价模式">#</a></h3>
+<p>Modal 根据容器实际使用的资源收费：</p>
+<p>| 资源 | 价格（约） |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | A10G GPU | $0.60/小时 |
 | L4 GPU | $0.80/小时 |
 | A100-80GB | $2.50/小时 |
 | H100 GPU | $4.00/小时 |
 | vCPU（每秒） | $0.000025/秒 |
-| 内存（每 GB 小时） | $0.003/GB 小时 |</p><p><em>以上为约值；查看 <a href=https://modal.com/pricing>modal.com/pricing</a> 获取最新费率。</em></p><h3 id=成本优化策略>成本优化策略<a hidden class=anchor aria-hidden=true href=#成本优化策略>#</a></h3><p><strong>策略一：合理选择 GPU 规格</strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 不要用 H100 跑 3B 参数模型</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 改用 A10G——节省 75% 成本</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A10G&#34;</span>, memory<span style=color:#f92672>=</span><span style=color:#ae81ff>4096</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>light_inference</span>(prompt: str): model <span style=color:#f92672>=</span> load_small_model()  <span style=color:#75715e># 3B 参数轻松容纳</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> model<span style=color:#f92672>.</span>generate(prompt)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 仅大规模微调时使用 H100</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;H100-80GB&#34;</span>, memory<span style=color:#f92672>=</span><span style=color:#ae81ff>32768</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>heavy_finetune</span>(config: dict): <span style=color:#66d9ef>return</span> run_large_scale_training(config)
-</span></span></code></pre></div><p><strong>策略二：战略性使用 <code>keep_warm</code></strong></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 可预测流量：仅在业务时段保持预热</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;L4&#34;</span>, keep_warm<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>production_endpoint</span>(): <span style=color:#f92672>...</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 突发流量：提高 concurrency_limit</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;L4&#34;</span>, concurrency_limit<span style=color:#f92672>=</span><span style=color:#ae81ff>50</span>, keep_warm<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bursty_endpoint</span>(): <span style=color:#f92672>...</span>
-</span></span></code></pre></div><p><strong>策略三：使用 <code>@stub.cls</code> 复用容器</strong></p><p>基于类的方法将状态保留在内存中，避免重复加载模型。这对 LLM 工作负载至关重要——加载模型需要 2-5 分钟。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># ❌ 不好：每次调用都加载模型</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A10G&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>bad_approach</span>(prompt: str): model <span style=color:#f92672>=</span> load_model()  <span style=color:#75715e># 每次调用重新加载！</span>
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> model<span style=color:#f92672>.</span>generate(prompt)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ✅ 好：加载一次，跨请求复用</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.cls</span>(gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A10G&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>GoodApproach</span>: <span style=color:#a6e22e>@modal.enter</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>setup</span>(self): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> load_model()  <span style=color:#75715e># 启动时加载一次</span>
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>@modal.method</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>generate</span>(self, prompt: str): <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>model<span style=color:#f92672>.</span>generate(prompt)  <span style=color:#75715e># 复用已加载的模型</span>
-</span></span></code></pre></div><h3 id=真实世界成本对比>真实世界成本对比<a hidden class=anchor aria-hidden=true href=#真实世界成本对比>#</a></h3><p>| 工作负载 | AWS EC2 (p4d) | Modal | 节省 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 内存（每 GB 小时） | $0.003/GB 小时 |</p>
+<p><em>以上为约值；查看 <a href="https://modal.com/pricing">modal.com/pricing</a> 获取最新费率。</em></p>
+<h3 id="成本优化策略">成本优化策略<a hidden class="anchor" aria-hidden="true" href="#成本优化策略">#</a></h3>
+<p><strong>策略一：合理选择 GPU 规格</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 不要用 H100 跑 3B 参数模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 改用 A10G——节省 75% 成本</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A10G&#34;</span>, memory<span style="color:#f92672">=</span><span style="color:#ae81ff">4096</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">light_inference</span>(prompt: str): model <span style="color:#f92672">=</span> load_small_model()  <span style="color:#75715e"># 3B 参数轻松容纳</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> model<span style="color:#f92672">.</span>generate(prompt)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 仅大规模微调时使用 H100</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H100-80GB&#34;</span>, memory<span style="color:#f92672">=</span><span style="color:#ae81ff">32768</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">heavy_finetune</span>(config: dict): <span style="color:#66d9ef">return</span> run_large_scale_training(config)
+</span></span></code></pre></div><p><strong>策略二：战略性使用 <code>keep_warm</code></strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 可预测流量：仅在业务时段保持预热</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L4&#34;</span>, keep_warm<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">production_endpoint</span>(): <span style="color:#f92672">...</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 突发流量：提高 concurrency_limit</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L4&#34;</span>, concurrency_limit<span style="color:#f92672">=</span><span style="color:#ae81ff">50</span>, keep_warm<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bursty_endpoint</span>(): <span style="color:#f92672">...</span>
+</span></span></code></pre></div><p><strong>策略三：使用 <code>@stub.cls</code> 复用容器</strong></p>
+<p>基于类的方法将状态保留在内存中，避免重复加载模型。这对 LLM 工作负载至关重要——加载模型需要 2-5 分钟。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># ❌ 不好：每次调用都加载模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A10G&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">bad_approach</span>(prompt: str): model <span style="color:#f92672">=</span> load_model()  <span style="color:#75715e"># 每次调用重新加载！</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> model<span style="color:#f92672">.</span>generate(prompt)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ✅ 好：加载一次，跨请求复用</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.cls</span>(gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A10G&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">GoodApproach</span>: <span style="color:#a6e22e">@modal.enter</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">setup</span>(self): self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> load_model()  <span style="color:#75715e"># 启动时加载一次</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">@modal.method</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>(self, prompt: str): <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>model<span style="color:#f92672">.</span>generate(prompt)  <span style="color:#75715e"># 复用已加载的模型</span>
+</span></span></code></pre></div><h3 id="真实世界成本对比">真实世界成本对比<a hidden class="anchor" aria-hidden="true" href="#真实世界成本对比">#</a></h3>
+<p>| 工作负载 | AWS EC2 (p4d) | Modal | 节省 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Llama 3.2 3B 推理（100 请求/分钟） | $2,200/月（常驻） | $180/月（按需） | 92% |
 | 微调 8 小时任务 | $200（预留） | $20（实际使用） | 90% |
-| 批量嵌入 100 万文档 | $500（集群管理） | $85（纯计算） | 83% |</p><hr><h2 id=高级功能>高级功能<a hidden class=anchor aria-hidden=true href=#高级功能>#</a></h2><h3 id=密钥管理>密钥管理<a hidden class=anchor aria-hidden=true href=#密钥管理>#</a></h3><p>永远不要硬编码 API 密钥。Modal 的密钥管理器在运行时注入凭据：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> modal
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>stub <span style=color:#f92672>=</span> modal<span style=color:#f92672>.</span>Stub(<span style=color:#e6db74>&#34;secret-demo&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(
-</span></span><span style=display:flex><span>    secrets<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        modal<span style=color:#f92672>.</span>Secret<span style=color:#f92672>.</span>from_name(<span style=color:#e6db74>&#34;huggingface-token&#34;</span>),
-</span></span><span style=display:flex><span>        modal<span style=color:#f92672>.</span>Secret<span style=color:#f92672>.</span>from_name(<span style=color:#e6db74>&#34;openai-key&#34;</span>),
-</span></span><span style=display:flex><span>    ]
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>secure_inference</span>(prompt: str): <span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span>    hf_token <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;HF_TOKEN&#34;</span>]  <span style=color:#75715e># 从密钥注入</span>
-</span></span><span style=display:flex><span>    openai_key <span style=color:#f92672>=</span> os<span style=color:#f92672>.</span>environ[<span style=color:#e6db74>&#34;OPENAI_API_KEY&#34;</span>]
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> call_api(prompt, hf_token, openai_key)
-</span></span></code></pre></div><p>一次性创建密钥：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>modal secret create huggingface-token HF_TOKEN<span style=color:#f92672>=</span>your_token_here
-</span></span><span style=display:flex><span>modal secret create openai-key OPENAI_API_KEY<span style=color:#f92672>=</span>sk-...
-</span></span></code></pre></div><h3 id=持久化存储的卷挂载>持久化存储的卷挂载<a hidden class=anchor aria-hidden=true href=#持久化存储的卷挂载>#</a></h3><p>Modal 卷提供跨函数调用的共享持久化文件系统：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 为模型检查点创建卷</span>
-</span></span><span style=display:flex><span>checkpoint_volume <span style=color:#f92672>=</span> modal<span style=color:#f92672>.</span>Volume<span style=color:#f92672>.</span>from_name(<span style=color:#e6db74>&#34;model-checkpoints&#34;</span>, create_if_missing<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A100-80GB&#34;</span>,
-</span></span><span style=display:flex><span>    volumes<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;/checkpoints&#34;</span>: checkpoint_volume},
-</span></span><span style=display:flex><span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>7200</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>fine_tune_and_save</span>(dataset_url: str): <span style=color:#75715e># 加载数据集</span>
-</span></span><span style=display:flex><span>    dataset <span style=color:#f92672>=</span> load_dataset(dataset_url)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 训练并保存到挂载卷</span>
-</span></span><span style=display:flex><span>    trainer<span style=color:#f92672>.</span>train()
-</span></span><span style=display:flex><span>    trainer<span style=color:#f92672>.</span>save_model(<span style=color:#e6db74>&#34;/checkpoints/final-model&#34;</span>)
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;检查点已保存到卷。大小: </span><span style=color:#e6db74>{</span>os<span style=color:#f92672>.</span>path<span style=color:#f92672>.</span>getsize(<span style=color:#e6db74>&#39;/checkpoints/final-model&#39;</span>)<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 从另一个函数访问保存的模型</span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(volumes<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;/checkpoints&#34;</span>: checkpoint_volume})
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>load_and_infer</span>(prompt: str): model <span style=color:#f92672>=</span> AutoModelForCausalLM<span style=color:#f92672>.</span>from_pretrained(<span style=color:#e6db74>&#34;/checkpoints/final-model&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> model<span style=color:#f92672>.</span>generate(prompt)
-</span></span></code></pre></div><p>卷在函数调用间持久化数据，非常适合模型检查点、数据集和缓存目录。</p><h3 id=出口控制>出口控制<a hidden class=anchor aria-hidden=true href=#出口控制>#</a></h3><p>管理出站网络访问以确保安全和成本：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;L4&#34;</span>,
-</span></span><span style=display:flex><span>    network_mounts<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;/etc/resolv.conf&#34;</span>: modal<span style=color:#f92672>.</span>NetworkMount()},
-</span></span><span style=display:flex><span>    blocked_subnets<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;169.254.0.0/16&#34;</span>],  <span style=color:#75715e># 阻止元数据服务</span>
-</span></span><span style=display:flex><span>    allowed_domains<span style=color:#f92672>=</span>[<span style=color:#e6db74>&#34;api.openai.com&#34;</span>]   <span style=color:#75715e># 仅允许特定域名</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>restricted_inference</span>(prompt: str): <span style=color:#66d9ef>return</span> call_openai(prompt)
-</span></span></code></pre></div><h3 id=自定义-docker-镜像>自定义 Docker 镜像<a hidden class=anchor aria-hidden=true href=#自定义-docker-镜像>#</a></h3><p>对于 <code>pip_install</code> 无法覆盖的复杂依赖：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>custom_image <span style=color:#f92672>=</span> (
-</span></span><span style=display:flex><span>    modal<span style=color:#f92672>.</span>Image<span style=color:#f92672>.</span>from_dockerhub(<span style=color:#e6db74>&#34;nvidia/cuda:12.2.0-devel-ubuntu22.04&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#f92672>.</span>apt_install(<span style=color:#e6db74>&#34;git&#34;</span>, <span style=color:#e6db74>&#34;cmake&#34;</span>, <span style=color:#e6db74>&#34;build-essential&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#f92672>.</span>pip_install(<span style=color:#e6db74>&#34;torch&#34;</span>, <span style=color:#e6db74>&#34;transformers&#34;</span>, <span style=color:#e6db74>&#34;bitsandbytes&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#f92672>.</span>copy_local_dir(<span style=color:#e6db74>&#34;./my-custom-model&#34;</span>, <span style=color:#e6db74>&#34;/app/model&#34;</span>)
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(image<span style=color:#f92672>=</span>custom_image, gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A100-80GB&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>custom_model_inference</span>(request: dict): model <span style=color:#f92672>=</span> torch<span style=color:#f92672>.</span>load(<span style=color:#e6db74>&#34;/app/model/best.pt&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> model<span style=color:#f92672>.</span>predict(request[<span style=color:#e6db74>&#34;input&#34;</span>])
-</span></span></code></pre></div><hr><h2 id=常见问题排查>常见问题排查<a hidden class=anchor aria-hidden=true href=#常见问题排查>#</a></h2><h3 id=问题一推理期间容器-oom-崩溃>问题一：推理期间容器 OOM 崩溃<a hidden class=anchor aria-hidden=true href=#问题一推理期间容器-oom-崩溃>#</a></h3><pre tabindex=0><code>错误：因内存限制超出而终止容器
-</code></pre><p><strong>修复</strong>：增加内存分配并启用交换：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.cls</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A100-80GB&#34;</span>,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span><span style=color:#ae81ff>32768</span>,  <span style=color:#75715e># 大模型需要 32GB RAM</span>
-</span></span><span style=display:flex><span>    ephemeral_disk<span style=color:#f92672>=</span><span style=color:#ae81ff>100_000</span>  <span style=color:#75715e># 模型权重需要 100GB 磁盘</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>LargeModel</span>: <span style=color:#a6e22e>@modal.enter</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>load</span>(self): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> AutoModel<span style=color:#f92672>.</span>from_pretrained(
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;big-model&#34;</span>,
-</span></span><span style=display:flex><span>            torch_dtype<span style=color:#f92672>=</span>torch<span style=color:#f92672>.</span>float16,  <span style=color:#75715e># 使用半精度</span>
-</span></span><span style=display:flex><span>            device_map<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;auto&#34;</span>
-</span></span><span style=display:flex><span>        )
-</span></span></code></pre></div><h3 id=问题二首次请求冷启动慢>问题二：首次请求冷启动慢<a hidden class=anchor aria-hidden=true href=#问题二首次请求冷启动慢>#</a></h3><pre tabindex=0><code>警告：首次请求耗时 180 秒（模型加载）
-</code></pre><p><strong>修复</strong>：使用 <code>keep_warm</code> 预预热容器：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.cls</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;A10G&#34;</span>,
-</span></span><span style=display:flex><span>    keep_warm<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>,  <span style=color:#75715e># 始终保持 3 个预热容器</span>
-</span></span><span style=display:flex><span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>600</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>WarmEndpoint</span>: <span style=color:#a6e22e>@modal.enter</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>load</span>(self): self<span style=color:#f92672>.</span>model <span style=color:#f92672>=</span> load_model()
-</span></span><span style=display:flex><span>        print(<span style=color:#e6db74>&#34;模型加载成功&#34;</span>)
-</span></span></code></pre></div><h3 id=问题三长时间微调任务超时>问题三：长时间微调任务超时<a hidden class=anchor aria-hidden=true href=#问题三长时间微调任务超时>#</a></h3><pre tabindex=0><code>错误：函数在 3600 秒后超时
-</code></pre><p><strong>修复</strong>：增加超时并使用卷保存检查点：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.function</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;H100-80GB&#34;</span>,
-</span></span><span style=display:flex><span>    timeout<span style=color:#f92672>=</span><span style=color:#ae81ff>28800</span>,  <span style=color:#75715e># 8 小时</span>
-</span></span><span style=display:flex><span>    volumes<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;/data&#34;</span>: modal<span style=color:#f92672>.</span>Volume<span style=color:#f92672>.</span>from_name(<span style=color:#e6db74>&#34;training-data&#34;</span>)}
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>long_training_job</span>(config_path: str): <span style=color:#66d9ef>for</span> epoch <span style=color:#f92672>in</span> range(<span style=color:#ae81ff>10</span>): train_epoch(config_path)
-</span></span><span style=display:flex><span>        <span style=color:#66d9ef>if</span> epoch <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>: save_checkpoint(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;/data/checkpoint-</span><span style=color:#e6db74>{</span>epoch<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=问题四并发限流>问题四：并发限流<a hidden class=anchor aria-hidden=true href=#问题四并发限流>#</a></h3><pre tabindex=0><code>错误：太多并发输入（限制：10）
-</code></pre><p><strong>修复</strong>：调整并发设置：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#a6e22e>@stub.cls</span>(
-</span></span><span style=display:flex><span>    gpu<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;L4&#34;</span>,
-</span></span><span style=display:flex><span>    concurrency_limit<span style=color:#f92672>=</span><span style=color:#ae81ff>100</span>,       <span style=color:#75715e># 最大容器数</span>
-</span></span><span style=display:flex><span>    allow_concurrent_inputs<span style=color:#f92672>=</span><span style=color:#ae81ff>20</span>,  <span style=color:#75715e># 每个容器的请求数</span>
-</span></span><span style=display:flex><span>    keep_warm<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>                  <span style=color:#75715e># 预热池大小</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>ScalableEndpoint</span>: <span style=color:#a6e22e>@modal.method</span>()
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>handle</span>(self, request: dict): <span style=color:#66d9ef>return</span> process(request)
-</span></span></code></pre></div><hr><h2 id=未来方向>未来方向<a hidden class=anchor aria-hidden=true href=#未来方向>#</a></h2><h3 id=modal-2026-路线图>Modal 2026 路线图<a hidden class=anchor aria-hidden=true href=#modal-2026-路线图>#</a></h3><p>Modal 持续大力投资 ML 基础设施。即将推出的关键功能包括：</p><ol><li><strong>多节点分布式训练</strong>：原生支持跨 8+ GPU 的训练，自动数据并行</li><li><strong>GPU 共享</strong>：低流量时段通过时间切片提升 GPU 利用率</li><li><strong>自定义 GPU 类型</strong>：支持下一代 GPU（Blackwell B200）</li><li><strong>边缘部署</strong>：将 Modal 函数部署到边缘节点，实现亚 50ms 推理延迟</li><li><strong>原生向量数据库集成</strong>：基于 Modal 存储层的内置向量搜索</li></ol><h3 id=何时选择-modal>何时选择 Modal<a hidden class=anchor aria-hidden=true href=#何时选择-modal>#</a></h3><p><strong>选择 Modal 当：</strong></p><ul><li>你想在数小时内而非数周内交付 ML 工作负载</li><li>你的工作负载是间歇性的（批量任务、低频推理）</li><li>你需要 GPU 访问而无需集群管理</li><li>你的团队以 Python 为主，希望最小化 DevOps</li></ul><p><strong>考虑替代方案当：</strong></p><ul><li>你需要绝对最低延迟（&lt;10ms）——裸金属或专用实例胜出</li><li>你有可预测的 24/7 高吞吐量——预留实例可能更便宜</li><li>你需要自定义内核修改——Modal 使用标准容器镜像</li><li>你深度投入特定云的生态系统——原生服务可能集成更好</li></ul><hr><h2 id=社区动态>社区动态<a hidden class=anchor aria-hidden=true href=#社区动态>#</a></h2><p>无服务器 GPU 领域正在迅速升温。2026 年年中，多家新进入者加入市场：</p><ul><li><strong>RunPod Serverless</strong> 推出有竞争力的 GPU 定价，A10G 起价 $0.30/小时</li><li><strong>Replicate</strong> 将其预打包 ML 模型库扩展到 500+ 个</li><li><strong>AWS Lambda GPU</strong> 宣布 Graviton4 + Inferentia2 组合全面可用</li></ul><p>尽管竞争加剧，Modal 在开发者体验方面仍保持领先——Python 原生 API 意味着团队无需学习 YAML、Helm 图表或 Terraform，就能从原型快速走向生产。</p><p>Modal 上的社区驱动模型注册表已增长到超过 2,000 个模型，涵盖从 LLM 到扩散模型到语音识别的所有领域。用户可以用一行 Python 代码浏览、测试和部署任何注册模型。</p><hr><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=q-modal-与直接在-aws-ec2-上运行-gpu-相比如何>Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？<a hidden class=anchor aria-hidden=true href=#q-modal-与直接在-aws-ec2-上运行-gpu-相比如何>#</a></h3><p>Modal 消除了管理 GPU 实例的运维开销。在 EC2 上，你需要处理抢占式实例中断、驱动更新、GPU 监控和自动伸缩配置。使用 Modal，所有这些都被抽象掉了——你只需编写 Python 函数。对于间歇性工作负载，Modal 通常便宜 70-90%，因为你只为实际计算时间付费，而不是让实例全天候运行。</p><h3 id=q-我可以使用-modal-加载现有的-hugging-face-模型吗>Q: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？<a hidden class=anchor aria-hidden=true href=#q-我可以使用-modal-加载现有的-hugging-face-模型吗>#</a></h3><p>可以。Modal 与 Hugging Face 模型无缝协作。只需在镜像中安装 <code>transformers</code> 库，然后使用标准的 <code>AutoModel.from_pretrained()</code> API 加载模型。你也可以将 Hugging Face token 作为 Modal 密钥挂载以访问私有模型。许多用户报告 100 亿参数以下模型的加载时间为 30-60 秒。</p><h3 id=q-如果-gpu-容器在请求中途崩溃怎么办>Q: 如果 GPU 容器在请求中途崩溃怎么办？<a hidden class=anchor aria-hidden=true href=#q-如果-gpu-容器在请求中途崩溃怎么办>#</a></h3><p>Modal 使用可配置的重试策略自动重试失败的容器。对于推理端点，你可以在函数定义中设置 <code>retries=3</code>。对于训练任务，Modal 支持基于检查点的恢复——将检查点保存到 Modal 卷，重试时从上次检查点恢复，而不是从头重启。</p><h3 id=q-有免费层可以用于测试吗>Q: 有免费层可以用于测试吗？<a hidden class=anchor aria-hidden=true href=#q-有免费层可以用于测试吗>#</a></h3><p>Modal 为新账户提供免费额度，通常足以获得 10-20 小时的 A10G 计算。这足以在承诺付费之前原型化和测试大多数 ML 工作负载。无需信用卡即可开始。</p><h3 id=q-如何监控和调试运行的-modal-函数>Q: 如何监控和调试运行的 Modal 函数？<a hidden class=anchor aria-hidden=true href=#q-如何监控和调试运行的-modal-函数>#</a></h3><p>Modal 在 <code>modal.com/apps</code> 提供 Web 仪表板，显示实时指标：调用次数、延迟百分位数、错误率和 GPU 利用率。你还可以从 CLI 直接流式传输日志 ````modal logs <app-name>```，并为错误阈值或成本限制设置警报。</p><h3 id=q-我可以在本地或隔离环境中运行-modal-函数吗>Q: 我可以在本地或隔离环境中运行 Modal 函数吗？<a hidden class=anchor aria-hidden=true href=#q-我可以在本地或隔离环境中运行-modal-函数吗>#</a></h3><p>目前，Modal 仅在其托管云基础设施上运行。他们不提供本地部署选项。对于隔离环境，考虑使用带 Kubernetes 的 vLLM 或 Ray Serve，它们可以在你自己的基础设施内完全运行。</p><hr><h2 id=参考资料>参考资料<a hidden class=anchor aria-hidden=true href=#参考资料>#</a></h2><ul><li><a href=https://modal.com/docs>Modal 官方文档</a></li><li><a href=https://github.com/modal-labs/modal-examples>Modal GitHub 示例</a></li><li><a href=https://modal.com/pricing>Modal 定价页面</a></li><li><a href=https://dl.acm.org/doi/10.1145/serverless-gpu-2026>无服务器 GPU 计算调查 — ACM Queue 2026</a></li><li><a href=https://mlinfra.report/gpu-costs-q2-2026>云 GPU 成本对比 — ML 基础设施报告 2026 年第二季度</a></li></ul><hr><p><em>加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：<a href=https://t.me/dibi8>t.me/dibi8</a></em></p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 批量嵌入 100 万文档 | $500（集群管理） | $85（纯计算） | 83% |</p>
+<hr>
+<h2 id="高级功能">高级功能<a hidden class="anchor" aria-hidden="true" href="#高级功能">#</a></h2>
+<h3 id="密钥管理">密钥管理<a hidden class="anchor" aria-hidden="true" href="#密钥管理">#</a></h3>
+<p>永远不要硬编码 API 密钥。Modal 的密钥管理器在运行时注入凭据：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> modal
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>stub <span style="color:#f92672">=</span> modal<span style="color:#f92672">.</span>Stub(<span style="color:#e6db74">&#34;secret-demo&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(
+</span></span><span style="display:flex;"><span>    secrets<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        modal<span style="color:#f92672">.</span>Secret<span style="color:#f92672">.</span>from_name(<span style="color:#e6db74">&#34;huggingface-token&#34;</span>),
+</span></span><span style="display:flex;"><span>        modal<span style="color:#f92672">.</span>Secret<span style="color:#f92672">.</span>from_name(<span style="color:#e6db74">&#34;openai-key&#34;</span>),
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">secure_inference</span>(prompt: str): <span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span>    hf_token <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;HF_TOKEN&#34;</span>]  <span style="color:#75715e"># 从密钥注入</span>
+</span></span><span style="display:flex;"><span>    openai_key <span style="color:#f92672">=</span> os<span style="color:#f92672">.</span>environ[<span style="color:#e6db74">&#34;OPENAI_API_KEY&#34;</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> call_api(prompt, hf_token, openai_key)
+</span></span></code></pre></div><p>一次性创建密钥：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>modal secret create huggingface-token HF_TOKEN<span style="color:#f92672">=</span>your_token_here
+</span></span><span style="display:flex;"><span>modal secret create openai-key OPENAI_API_KEY<span style="color:#f92672">=</span>sk-...
+</span></span></code></pre></div><h3 id="持久化存储的卷挂载">持久化存储的卷挂载<a hidden class="anchor" aria-hidden="true" href="#持久化存储的卷挂载">#</a></h3>
+<p>Modal 卷提供跨函数调用的共享持久化文件系统：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 为模型检查点创建卷</span>
+</span></span><span style="display:flex;"><span>checkpoint_volume <span style="color:#f92672">=</span> modal<span style="color:#f92672">.</span>Volume<span style="color:#f92672">.</span>from_name(<span style="color:#e6db74">&#34;model-checkpoints&#34;</span>, create_if_missing<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A100-80GB&#34;</span>,
+</span></span><span style="display:flex;"><span>    volumes<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;/checkpoints&#34;</span>: checkpoint_volume},
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">7200</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">fine_tune_and_save</span>(dataset_url: str): <span style="color:#75715e"># 加载数据集</span>
+</span></span><span style="display:flex;"><span>    dataset <span style="color:#f92672">=</span> load_dataset(dataset_url)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 训练并保存到挂载卷</span>
+</span></span><span style="display:flex;"><span>    trainer<span style="color:#f92672">.</span>train()
+</span></span><span style="display:flex;"><span>    trainer<span style="color:#f92672">.</span>save_model(<span style="color:#e6db74">&#34;/checkpoints/final-model&#34;</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;检查点已保存到卷。大小: </span><span style="color:#e6db74">{</span>os<span style="color:#f92672">.</span>path<span style="color:#f92672">.</span>getsize(<span style="color:#e6db74">&#39;/checkpoints/final-model&#39;</span>)<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 从另一个函数访问保存的模型</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(volumes<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;/checkpoints&#34;</span>: checkpoint_volume})
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load_and_infer</span>(prompt: str): model <span style="color:#f92672">=</span> AutoModelForCausalLM<span style="color:#f92672">.</span>from_pretrained(<span style="color:#e6db74">&#34;/checkpoints/final-model&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> model<span style="color:#f92672">.</span>generate(prompt)
+</span></span></code></pre></div><p>卷在函数调用间持久化数据，非常适合模型检查点、数据集和缓存目录。</p>
+<h3 id="出口控制">出口控制<a hidden class="anchor" aria-hidden="true" href="#出口控制">#</a></h3>
+<p>管理出站网络访问以确保安全和成本：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L4&#34;</span>,
+</span></span><span style="display:flex;"><span>    network_mounts<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;/etc/resolv.conf&#34;</span>: modal<span style="color:#f92672">.</span>NetworkMount()},
+</span></span><span style="display:flex;"><span>    blocked_subnets<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;169.254.0.0/16&#34;</span>],  <span style="color:#75715e"># 阻止元数据服务</span>
+</span></span><span style="display:flex;"><span>    allowed_domains<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;api.openai.com&#34;</span>]   <span style="color:#75715e"># 仅允许特定域名</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">restricted_inference</span>(prompt: str): <span style="color:#66d9ef">return</span> call_openai(prompt)
+</span></span></code></pre></div><h3 id="自定义-docker-镜像">自定义 Docker 镜像<a hidden class="anchor" aria-hidden="true" href="#自定义-docker-镜像">#</a></h3>
+<p>对于 <code>pip_install</code> 无法覆盖的复杂依赖：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>custom_image <span style="color:#f92672">=</span> (
+</span></span><span style="display:flex;"><span>    modal<span style="color:#f92672">.</span>Image<span style="color:#f92672">.</span>from_dockerhub(<span style="color:#e6db74">&#34;nvidia/cuda:12.2.0-devel-ubuntu22.04&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>apt_install(<span style="color:#e6db74">&#34;git&#34;</span>, <span style="color:#e6db74">&#34;cmake&#34;</span>, <span style="color:#e6db74">&#34;build-essential&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>pip_install(<span style="color:#e6db74">&#34;torch&#34;</span>, <span style="color:#e6db74">&#34;transformers&#34;</span>, <span style="color:#e6db74">&#34;bitsandbytes&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">.</span>copy_local_dir(<span style="color:#e6db74">&#34;./my-custom-model&#34;</span>, <span style="color:#e6db74">&#34;/app/model&#34;</span>)
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(image<span style="color:#f92672">=</span>custom_image, gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A100-80GB&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">custom_model_inference</span>(request: dict): model <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;/app/model/best.pt&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> model<span style="color:#f92672">.</span>predict(request[<span style="color:#e6db74">&#34;input&#34;</span>])
+</span></span></code></pre></div><hr>
+<h2 id="常见问题排查">常见问题排查<a hidden class="anchor" aria-hidden="true" href="#常见问题排查">#</a></h2>
+<h3 id="问题一推理期间容器-oom-崩溃">问题一：推理期间容器 OOM 崩溃<a hidden class="anchor" aria-hidden="true" href="#问题一推理期间容器-oom-崩溃">#</a></h3>
+<pre tabindex="0"><code>错误：因内存限制超出而终止容器
+</code></pre><p><strong>修复</strong>：增加内存分配并启用交换：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.cls</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A100-80GB&#34;</span>,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span><span style="color:#ae81ff">32768</span>,  <span style="color:#75715e"># 大模型需要 32GB RAM</span>
+</span></span><span style="display:flex;"><span>    ephemeral_disk<span style="color:#f92672">=</span><span style="color:#ae81ff">100_000</span>  <span style="color:#75715e"># 模型权重需要 100GB 磁盘</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">LargeModel</span>: <span style="color:#a6e22e">@modal.enter</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load</span>(self): self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> AutoModel<span style="color:#f92672">.</span>from_pretrained(
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;big-model&#34;</span>,
+</span></span><span style="display:flex;"><span>            torch_dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>float16,  <span style="color:#75715e"># 使用半精度</span>
+</span></span><span style="display:flex;"><span>            device_map<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;auto&#34;</span>
+</span></span><span style="display:flex;"><span>        )
+</span></span></code></pre></div><h3 id="问题二首次请求冷启动慢">问题二：首次请求冷启动慢<a hidden class="anchor" aria-hidden="true" href="#问题二首次请求冷启动慢">#</a></h3>
+<pre tabindex="0"><code>警告：首次请求耗时 180 秒（模型加载）
+</code></pre><p><strong>修复</strong>：使用 <code>keep_warm</code> 预预热容器：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.cls</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;A10G&#34;</span>,
+</span></span><span style="display:flex;"><span>    keep_warm<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>,  <span style="color:#75715e"># 始终保持 3 个预热容器</span>
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">600</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WarmEndpoint</span>: <span style="color:#a6e22e">@modal.enter</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">load</span>(self): self<span style="color:#f92672">.</span>model <span style="color:#f92672">=</span> load_model()
+</span></span><span style="display:flex;"><span>        print(<span style="color:#e6db74">&#34;模型加载成功&#34;</span>)
+</span></span></code></pre></div><h3 id="问题三长时间微调任务超时">问题三：长时间微调任务超时<a hidden class="anchor" aria-hidden="true" href="#问题三长时间微调任务超时">#</a></h3>
+<pre tabindex="0"><code>错误：函数在 3600 秒后超时
+</code></pre><p><strong>修复</strong>：增加超时并使用卷保存检查点：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.function</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;H100-80GB&#34;</span>,
+</span></span><span style="display:flex;"><span>    timeout<span style="color:#f92672">=</span><span style="color:#ae81ff">28800</span>,  <span style="color:#75715e"># 8 小时</span>
+</span></span><span style="display:flex;"><span>    volumes<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;/data&#34;</span>: modal<span style="color:#f92672">.</span>Volume<span style="color:#f92672">.</span>from_name(<span style="color:#e6db74">&#34;training-data&#34;</span>)}
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">long_training_job</span>(config_path: str): <span style="color:#66d9ef">for</span> epoch <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">10</span>): train_epoch(config_path)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> epoch <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>: save_checkpoint(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;/data/checkpoint-</span><span style="color:#e6db74">{</span>epoch<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="问题四并发限流">问题四：并发限流<a hidden class="anchor" aria-hidden="true" href="#问题四并发限流">#</a></h3>
+<pre tabindex="0"><code>错误：太多并发输入（限制：10）
+</code></pre><p><strong>修复</strong>：调整并发设置：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#a6e22e">@stub.cls</span>(
+</span></span><span style="display:flex;"><span>    gpu<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;L4&#34;</span>,
+</span></span><span style="display:flex;"><span>    concurrency_limit<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>,       <span style="color:#75715e"># 最大容器数</span>
+</span></span><span style="display:flex;"><span>    allow_concurrent_inputs<span style="color:#f92672">=</span><span style="color:#ae81ff">20</span>,  <span style="color:#75715e"># 每个容器的请求数</span>
+</span></span><span style="display:flex;"><span>    keep_warm<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>                  <span style="color:#75715e"># 预热池大小</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScalableEndpoint</span>: <span style="color:#a6e22e">@modal.method</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">handle</span>(self, request: dict): <span style="color:#66d9ef">return</span> process(request)
+</span></span></code></pre></div><hr>
+<h2 id="未来方向">未来方向<a hidden class="anchor" aria-hidden="true" href="#未来方向">#</a></h2>
+<h3 id="modal-2026-路线图">Modal 2026 路线图<a hidden class="anchor" aria-hidden="true" href="#modal-2026-路线图">#</a></h3>
+<p>Modal 持续大力投资 ML 基础设施。即将推出的关键功能包括：</p>
+<ol>
+<li><strong>多节点分布式训练</strong>：原生支持跨 8+ GPU 的训练，自动数据并行</li>
+<li><strong>GPU 共享</strong>：低流量时段通过时间切片提升 GPU 利用率</li>
+<li><strong>自定义 GPU 类型</strong>：支持下一代 GPU（Blackwell B200）</li>
+<li><strong>边缘部署</strong>：将 Modal 函数部署到边缘节点，实现亚 50ms 推理延迟</li>
+<li><strong>原生向量数据库集成</strong>：基于 Modal 存储层的内置向量搜索</li>
+</ol>
+<h3 id="何时选择-modal">何时选择 Modal<a hidden class="anchor" aria-hidden="true" href="#何时选择-modal">#</a></h3>
+<p><strong>选择 Modal 当：</strong></p>
+<ul>
+<li>你想在数小时内而非数周内交付 ML 工作负载</li>
+<li>你的工作负载是间歇性的（批量任务、低频推理）</li>
+<li>你需要 GPU 访问而无需集群管理</li>
+<li>你的团队以 Python 为主，希望最小化 DevOps</li>
+</ul>
+<p><strong>考虑替代方案当：</strong></p>
+<ul>
+<li>你需要绝对最低延迟（&lt;10ms）——裸金属或专用实例胜出</li>
+<li>你有可预测的 24/7 高吞吐量——预留实例可能更便宜</li>
+<li>你需要自定义内核修改——Modal 使用标准容器镜像</li>
+<li>你深度投入特定云的生态系统——原生服务可能集成更好</li>
+</ul>
+<hr>
+<h2 id="社区动态">社区动态<a hidden class="anchor" aria-hidden="true" href="#社区动态">#</a></h2>
+<p>无服务器 GPU 领域正在迅速升温。2026 年年中，多家新进入者加入市场：</p>
+<ul>
+<li><strong>RunPod Serverless</strong> 推出有竞争力的 GPU 定价，A10G 起价 $0.30/小时</li>
+<li><strong>Replicate</strong> 将其预打包 ML 模型库扩展到 500+ 个</li>
+<li><strong>AWS Lambda GPU</strong> 宣布 Graviton4 + Inferentia2 组合全面可用</li>
+</ul>
+<p>尽管竞争加剧，Modal 在开发者体验方面仍保持领先——Python 原生 API 意味着团队无需学习 YAML、Helm 图表或 Terraform，就能从原型快速走向生产。</p>
+<p>Modal 上的社区驱动模型注册表已增长到超过 2,000 个模型，涵盖从 LLM 到扩散模型到语音识别的所有领域。用户可以用一行 Python 代码浏览、测试和部署任何注册模型。</p>
+<hr>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="q-modal-与直接在-aws-ec2-上运行-gpu-相比如何">Q: Modal 与直接在 AWS EC2 上运行 GPU 相比如何？<a hidden class="anchor" aria-hidden="true" href="#q-modal-与直接在-aws-ec2-上运行-gpu-相比如何">#</a></h3>
+<p>Modal 消除了管理 GPU 实例的运维开销。在 EC2 上，你需要处理抢占式实例中断、驱动更新、GPU 监控和自动伸缩配置。使用 Modal，所有这些都被抽象掉了——你只需编写 Python 函数。对于间歇性工作负载，Modal 通常便宜 70-90%，因为你只为实际计算时间付费，而不是让实例全天候运行。</p>
+<h3 id="q-我可以使用-modal-加载现有的-hugging-face-模型吗">Q: 我可以使用 Modal 加载现有的 Hugging Face 模型吗？<a hidden class="anchor" aria-hidden="true" href="#q-我可以使用-modal-加载现有的-hugging-face-模型吗">#</a></h3>
+<p>可以。Modal 与 Hugging Face 模型无缝协作。只需在镜像中安装 <code>transformers</code> 库，然后使用标准的 <code>AutoModel.from_pretrained()</code> API 加载模型。你也可以将 Hugging Face token 作为 Modal 密钥挂载以访问私有模型。许多用户报告 100 亿参数以下模型的加载时间为 30-60 秒。</p>
+<h3 id="q-如果-gpu-容器在请求中途崩溃怎么办">Q: 如果 GPU 容器在请求中途崩溃怎么办？<a hidden class="anchor" aria-hidden="true" href="#q-如果-gpu-容器在请求中途崩溃怎么办">#</a></h3>
+<p>Modal 使用可配置的重试策略自动重试失败的容器。对于推理端点，你可以在函数定义中设置 <code>retries=3</code>。对于训练任务，Modal 支持基于检查点的恢复——将检查点保存到 Modal 卷，重试时从上次检查点恢复，而不是从头重启。</p>
+<h3 id="q-有免费层可以用于测试吗">Q: 有免费层可以用于测试吗？<a hidden class="anchor" aria-hidden="true" href="#q-有免费层可以用于测试吗">#</a></h3>
+<p>Modal 为新账户提供免费额度，通常足以获得 10-20 小时的 A10G 计算。这足以在承诺付费之前原型化和测试大多数 ML 工作负载。无需信用卡即可开始。</p>
+<h3 id="q-如何监控和调试运行的-modal-函数">Q: 如何监控和调试运行的 Modal 函数？<a hidden class="anchor" aria-hidden="true" href="#q-如何监控和调试运行的-modal-函数">#</a></h3>
+<p>Modal 在 <code>modal.com/apps</code> 提供 Web 仪表板，显示实时指标：调用次数、延迟百分位数、错误率和 GPU 利用率。你还可以从 CLI 直接流式传输日志 ````modal logs <app-name>```，并为错误阈值或成本限制设置警报。</p>
+<h3 id="q-我可以在本地或隔离环境中运行-modal-函数吗">Q: 我可以在本地或隔离环境中运行 Modal 函数吗？<a hidden class="anchor" aria-hidden="true" href="#q-我可以在本地或隔离环境中运行-modal-函数吗">#</a></h3>
+<p>目前，Modal 仅在其托管云基础设施上运行。他们不提供本地部署选项。对于隔离环境，考虑使用带 Kubernetes 的 vLLM 或 Ray Serve，它们可以在你自己的基础设施内完全运行。</p>
+<hr>
+<h2 id="参考资料">参考资料<a hidden class="anchor" aria-hidden="true" href="#参考资料">#</a></h2>
+<ul>
+<li><a href="https://modal.com/docs">Modal 官方文档</a></li>
+<li><a href="https://github.com/modal-labs/modal-examples">Modal GitHub 示例</a></li>
+<li><a href="https://modal.com/pricing">Modal 定价页面</a></li>
+<li><a href="https://dl.acm.org/doi/10.1145/serverless-gpu-2026">无服务器 GPU 计算调查 — ACM Queue 2026</a></li>
+<li><a href="https://mlinfra.report/gpu-costs-q2-2026">云 GPU 成本对比 — ML 基础设施报告 2026 年第二季度</a></li>
+</ul>
+<hr>
+<p><em>加入我们的 Telegram 群组获取实时 AI 工具讨论和部署技巧：<a href="https://t.me/dibi8">t.me/dibi8</a></em></p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-07-15&rdquo;,
@@ -253,19 +732,209 @@
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/modal-serverless-gpu-compute%22>https://dibi8.com/zh/resources/modal-serverless-gpu-compute"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/modal-serverless-gpu-compute%22">https://dibi8.com/zh/resources/modal-serverless-gpu-compute"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding modal 无服务器 gpu 计算 — 零基础设施运行 ml 流水线 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding modal 无服务器 gpu 计算 — 零基础设施运行 ml 流水线 is crucial for modern AI development. Here&rsquo;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~6 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/llm-frameworks/modal-serverless-gpu-compute/>google-jax-complete-guide</a></li><li><a href=/zh/llm-frameworks/modal-serverless-gpu-compute/>ray-distributed-ai-framework-complete-guide</a></li><li><a href=/zh/llm-frameworks/modal-serverless-gpu-compute/>modal-serverless-gpu-compute</a></li><li><a href=/zh/llm-frameworks/modal-serverless-gpu-compute/>temporal-ai-workflow-orchestration</a></li><li><a href=/zh/llm-frameworks/modal-serverless-gpu-compute/>cleanlab-11k-star-ai-data-cleaning</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>Modal 无服务器 GPU 计算 — 零基础设施运行 ML 流水线 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~6 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/llm-frameworks/modal-serverless-gpu-compute/">google-jax-complete-guide</a></li>
+<li><a href="/zh/llm-frameworks/modal-serverless-gpu-compute/">ray-distributed-ai-framework-complete-guide</a></li>
+<li><a href="/zh/llm-frameworks/modal-serverless-gpu-compute/">modal-serverless-gpu-compute</a></li>
+<li><a href="/zh/llm-frameworks/modal-serverless-gpu-compute/">temporal-ai-workflow-orchestration</a></li>
+<li><a href="/zh/llm-frameworks/modal-serverless-gpu-compute/">cleanlab-11k-star-ai-data-cleaning</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

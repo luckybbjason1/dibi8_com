@@ -1,35 +1,382 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/ko/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="ko"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/ko/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{&lt;/* resource-info */>}
-서론: 이건 단순한 도구 업데이트가 아니다 “AI가 코드를 짠다"는 것을 여전히 깃허브 코파일럿의 자동완성 정도로 이해하고 있다면, 지난 6개월간 벌어진 변화의 절반도 놓친 셈이다.
-2026년 초부터 지금까지 AI 코딩 보조 도구 영역은 “똑똑한 자동완성"에서 “자율 소프트웨어 엔지니어링"으로 본질적인 도약을 이뤘다. 클로드 코드의 스킬 생태계는 실험적 기능에서 3,000개 이상의 공개 스킬을 보유한 마켓플레이스로 진화했다. 오픈AI는 코덱스 CLI를 완전히 재설계했고, 구글은 제미나이 3 프로와 안티그래비티 에이전트 플랫폼을 내놓았다. 오픈소스 진영에서는 헤르메스 에이전트가 단 일주일에 3.2만 스타를 추가하며 6.5만 스타를 돌파했고, 안드레이 카파시의 개인 스킬 저장소는 일주일 만에 4.4만 스타를 획득했다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-coding-agent-landscape-2026-skills-mcp-opensource/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [‘Claude Code’, Cursor, ‘Codex CLI’, ‘OpenAI API’, ‘Anthropic API’] application_domain: Dev Utils source_version: “May 2026 30-day window” licensing_model: Commercial license_type: Proprietary last_maintained: “2026-05-25” draft: false categories: [“dev-utils”] tags: [“ai-coding”, “claude-code”, “cursor”, “codex-cli”, “pricing”, “2026”] aliases:
-/kr/posts/ai-coding-agent-monthly-bill-2026-real-receipts/ faq: - q: “Claude Max($200)는 API 종량제 대비 가치가 있나요?” a: “임계치: 평일 기준 Claude Code를 약 3시간 이상 쓰면 Max가 유리합니다. 그 이하면 Sonnet 4.6 기반 API 종량제가 $80-150 구간에 들어옵니다. 하루 4시간을 넘기면 API 대비 실질적인 절감이 발생합니다.” q: “30일 추적에서 가장 놀라웠던 점은?” a: “Cursor Pro의 탭 자동완성은 $20 요금제에서 사실상 무료이지만, 두 번째 달 에이전트 실행에서 API 초과 비용이 $67 발생했습니다. ‘저렴한 IDE’라는 인상 뒤에는 에이전트 기능을 본격적으로 쓸 때 드러나는 실제 비용이 숨어 있습니다.” q: “1인 개발자가 세 가지를 모두 구독해야 할까요?” a: “아니요. 두 개가 최적입니다. 일반적인 조합: Claude Code + Cursor($220/월). 세 가지 스택은 Codex CLI의 터미널 통합이 우위를 갖는 셸 중심 자동화 워크로드가 명확할 때만 의미가 있습니다.” q: “작업 유형별 사용 비중은 실제로 어떻게 나뉘나요?” a: “30일 비중: 약 60% 리팩터 + 신규 기능(Claude Code), 약 25% 인라인 편집 + 탭 자동완성(Cursor), 약 15% 셸/데브옵스 스크립트(Codex CLI). 이 비중이 Claude Code가 가장 많이 쓰이는 이유를 설명합니다 — 리팩터링이 AI 가치가 복리로 쌓이는 영역이기 때문입니다.” q: “무제한 Max 플랜에 숨은 비용이 있나요?” a: “두 가지: (1) Anthropic은 지속적 버스트 사용 후 속도를 제한합니다 — 실용적 상한은 하루 약 5-6시간 집중 에이전트 루프입니다. (2) 긴 컨텍스트(200K+ 토큰)는 월 한도를 더 빨리 소진합니다. 일반 워크플로에서는 둘 다 드뭅니다.” q: “2026년 5월 가격 정책에서 이전 리뷰에 없던 변화는?” a: “Anthropic은 4월 말 Max 플랜 속도 제한을 조정했습니다(더 느슨하고 여유가 큼). OpenAI의 Codex CLI는 완전 종량제로 이동(Pro 티어 폐지). Cursor는 API 크레딧이 포함된 $50 Business 티어를 추가했습니다. 세 가지 변화 모두 Q1 리뷰 대비 임계치 계산을 바꿔놓습니다.” AI 코딩 에이전트 월 청구서 2026: 실측 30일 영수증 메타 설명: Claude Max($200), ChatGPT Plus + Codex CLI($165), Cursor Pro + API($87)의 30일 실측 청구서. 작업별 비용, 손익분기점, 전환의 임계치.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-coding-agent-monthly-bill-2026-real-receipts/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>AI 코딩 윤리 2026: 기업 정책 가이드 메타 디스크립션: 기업은 AI 허용 / 제한 / 금지 진영으로 갈립니다. 각 정책의 실제 모습, 선택 방법, IP/컴플라이언스 함정을 실무 관점에서 정리합니다.
-2026년에 이르러 대부분의 기업은 AI 코딩 도구에 대한 입장을 갖게 되었지만, 구현 방식은 크게 다릅니다. 이 글은 세 가지 주요 정책 진영, 실제 법률 및 IP 고려사항, 그리고 자신의 상황에 맞는 정책을 고르는 방법을 짚어줍니다.
-⚡ 핵심 요약 세 정책 진영: 감사 하 허용(테크 기업에서 가장 흔함), 엔터프라이즈 티어로 제한(금융/헬스), 클라우드 AI 금지(국방/기밀).
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-coding-ethics-corporate-policy-guide-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-22T00:00:00+08:00 lastmod: 2026-05-22T00:00:00+08:00 tech_stack: [‘VS Code’, JetBrains, ‘Terminal CLI’, ‘Native editors’] application_domain: Llm Frameworks source_version: ’’ licensing_model: Mixed license_type: Various file_size: ’’ file_md5: ’’ download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“cursor”, “cursor-alternatives”, “claude-code”, “cline”, “github-copilot”, “windsurf”, “continue-dev”, “zed”, “ai-coding”, “ai-ide”, “developer-tools”, “comparison”] aliases:
-/kr/posts/ai-coding-tools-2026/ /kr/resources/dev-utils/ai-coding-tools-cursor-alternatives-2026/ faqs: - q: ‘2026년 개발자들이 Cursor를 떠나는 이유?’ a: ‘Cursor의 2025년 중반 크레딧 기반 가격 전환으로 Pro 사용자의 월 실효 사용량이 500 req에서 225 req로 떨어졌습니다. 같은 $20에 효용 -55%. 신뢰 손상이 수학 문제보다 더 큽니다 — 개발자는 돈을 내는 것을 꺼리지 않지만 도구가 중간에 규칙을 바꾸는 것을 싫어합니다.’ q: ‘최고의 무료 Cursor 대안은?’ a: ‘Cline (5M+ 설치, Apache 2.0 라이선스, BYOK). 기반 API(Anthropic/OpenAI) 비용만 지불하면 되며, 일반적으로 Cursor 번들 가격보다 3-5배 저렴합니다. Continue.dev도 무료 오픈소스 코어가 있습니다.’ q: ‘Claude Code가 객관적으로 Cursor보다 나은가요?’ a: ‘벤치마크에서는 그렇습니다 (80.8% vs ~65% SWE-bench Verified). 일상 사용은 워크플로에 따라 다릅니다 — Claude Code에는 GUI가 없어서 비주얼 diff와 인라인 편집에 의존한다면 Cursor가 더 자연스럽게 느껴질 수 있습니다.’ q: ‘가장 저렴한 유료 AI 코딩 도구는?’ a: ‘GitHub Copilot ($10/월)이 가장 저렴한 유료 티어이며 매월 2K 자동완성 + 50 chat 요청 무료. Cline은 BYOK로 자체 API 키를 제공하면 완전 무료.’ q: ‘AI 코딩 도구를 완전히 오프라인으로 실행할 수 있나요?’ a: ‘네 - Cline + Ollama/LM Studio 로컬 모델로 가능. Continue.dev도 로컬 모델을 지원합니다. 구독 없음, 완전한 프라이버시. 하지만 프로덕션 품질을 위해서는 32GB RAM + 16GB VRAM (RTX 4080 / Apple M2 Max)이 필요합니다.’ 2026 AI 코딩 도구 대전: Cursor 독주 종료 — 7가지 최고 대안 완벽 비교 Quick Answer Q: 2026년 최고의 Cursor 대안은?
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>10 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-coding-tools-cursor-alternatives-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-18T00:00:00+08:00 lastmod: 2026-05-18T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-18” draft: false categories: [“ai-tools”] tags: [“ai 콘텐츠 탐지”, “gptzero”, “turnitin”, “copyleaks”, “ai 탐지기”, “콘텐츠 검증”] aliases:
-/kr/posts/ai-content-detector-tools/ 2025년 최고의 AI 콘텐츠 탐지 도구 비교: GPTZero, Turnitin AI, Copyleaks 등 {&lt;/* resource-info */>}
-챗GPT, Claude, Gemini 등 생성형 AI가 일상화되면서 AI가 작성한 콘텐츠를 신뢰할 수 있는 도구로 식별하는需求이 급증하고 있습니다. 학계에서는 논문의 독창성을 검증해야 하고, 출판사와 SEO 에이전시는 콘텐츠의 인간 작성 여부를 확인해야 합니다. 이 글에서는 2025년 현재 가장 많이 사용되는 AI 콘텐츠 탐지 도구를 과학적 원리부터 실제 비교까지 심층 분석합니다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-content-detector-tools/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>2025년 최고의 AI 고객 서비스 챗봇 도구: Intercom, Zendesk AI 등 {&lt;/* resource-info */>}
-고객 서비스 산업이 AI로 급속 재편되고 있다. Grand View Research에 따른, 글로벌 AI 챗봇 시장 규모는 2025년 53억 달러에서 2030년까지 연평균 23.3% 성장해 150억 달러에 이를 전망이다. 24시간 응대, 다국어 지원, 인걉비 절감이라는 삼박자를 동시에 달성하는 AI 챗봇은 이커머스부터 SaaS, 금융업계까지 폭넓게 도입되고 있다. 본 기사에서는 2025년 시장을 주도하는 6대 AI 고객 서비스 챗봇 플랫폼을 비교 분석한다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-customer-service-chatbot-tools/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>2025년 최고의 AI 데이터 분석 도구: ChatGPT, Julius, Tableau AI 등 {&lt;/* resource-info */>}
-데이터 분석의 문턱이 극적으로 낮아지고 있다. 수년 전만 합필도 Python이나 R을 익혀야 가능했던 통계 분석과 시각화가, 이제는 자연어로 명령하는 것만으로 완성된다. 2025년 AI 데이터 분석 도구 시장은 기업용 BI 플랫폼부터 개인용 대화형 분석 도구까지 폭넓은 스펙트럼을 형성하고 있다. 본 기사에서는 현재 시장을 이끄는 6대 AI 데이터 분석 도구를 기능, 가격, 사용 사례 중심으로 비교한다.
-AI가 데이터 분석을 어떻게 변화시키는가? Excel에서 AI 기반 인사이트로 기업 데이터 분석의 역사는 Excel 스프레드시트에서 시작했다. 1985년 Excel 출시 이후 40년간 피벗 테이블과 VLOOKUP 함수는 데이터 분석의 기본 도구였다. 그러나 2023년 이후 ChatGPT의 Code Interpreter(현재 Advanced Data Analysis) 등장부터 데이터 분석의 민주화가 가속화됐다. 2025년 현재, Gartner는 전 세계 기업의 65% 이상이 AI 기반 데이터 분석 도구를 도입했거나 도입을 계획 중이라고 발표했다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-data-analysis-tools-2025/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>2025년 최고의 AI 개발 도구 및 IDE 플러그인: 코드 생성을 넘어서 {&lt;/* resource-info */>}
-소프트웨어 개발의 패러다임이 AI로 급변하고 있다. 단순한 코드 자동완성을 넘어 코드 리뷰, 보안 분석, 테스트 생성, 문서화까지 AI가 개발자의 워크플로우 전반을 재구성하고 있다. GitHub의 2024년 보고서에 따른, 전 세계 개발자의 92%가 업무 중 AI 도구를 사용하고 있으며, Copilot을 사용하는 개발자의 작업 완료 속도는 평균 55% 빠른 것으로 나타났다. 본 기사에서는 2025년 개발자가 반드시 알아야 할 AI 개발 도구를 카테고리별로 정리한다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-developer-tools-ide-plugins-2025/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>TL;DR 스크래치 AI 엔지니어링은 프로덕션 수준의 AI 시스템을 구축하기 위한 포괄적이고 실무 중심의 커리큘럼입니다. 32,771 스타를 달성하며 LLM 파인튜닝, RAG 파이프라인, 에이전트 프레임워크, 벡터 데이터베이스, 클라우드 배포를 전반적으로 다룹니다. 이 프로젝트는 추상적인 이론이 아닌 실용적인 코드 예시를 제공합니다.
-TL;DR: 32,771 스타 — GitHub에서 가장 완전한 무료 AI 엔지니어링 커리큘럼입니다.
-스크래치 AI 엔지니어링이란? 스크래치 AI 엔지니어링은 AI 시스템을 처음부터 구축하는 방법을 가르치는 교육용 레포지토리입니다. 복잡성을 추상화하는 고수준 튜토리얼과 달리, 이 프로젝트는 스스로 핵심 알고리즘을 구현하도록 유도합니다: 처음부터 트랜스포머, 경사 하강법, 주의 메커니즘, 검색 증강 생성을 직접 작성합니다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-engineering-from-scratch/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-18T00:00:00+08:00 lastmod: 2026-05-18T00:00:00+08:00 tech_stack: [] application_domain: Ai Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-18” draft: false categories: [“ai-tools”] tags: [“ai 회의 어시스턴트”, “ai 회의 기록”, “otter.ai”, “fireflies”, “fathom”, “회의 자동화”] aliases:
-/kr/posts/ai-meeting-assistant-tools/ 2025년 최고의 AI 회의 어시스턴트 도구 비교: Otter.ai, Fireflies, Fathom 등 {&lt;/* resource-info */>}
-원격 근무와 하이브리드 업무 방식이 정착되면서 회의의 효율성은 기업 생산성의 핵심 변수가 되었습니다. 그러나 회의록 작성, 실천 항목 추적, 결정 사항 공유 등은 여전히 많은 시간과 인력을 소모합니다. AI 회의 어시스턴트는 음성을 텍스트로 실시간 전사하고, 핵심 내용을 요약하며, 실행 항목까지 자동으로 추출하여 이러한 문제를 해결합니다. 이 글에서는 2025년 현재 가장 주목받는 AI 회의 도구를 심층 비교합니다.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ko/ai-coding-agents/ai-meeting-assistant-tools/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/ko/page/3/>«&nbsp;이전 페이지&nbsp;
-</a><a class=next href=https://dibi8.com/ko/page/5/>다음 페이지&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/ko/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/ko/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Addy Osmani의 Agent Skills: 프로덕션 등급 접근법 저는 AI 코딩 어시스턴트가 채팅과 함께 한 종류의 화려한 자동 완성이라고 생각했습니다. 그런 다음 Addy Osmani가 Agent Skills 프레임워크를 발행했고 제가 잘못되었음을 보여줬습니다.
+이건 그냥 또 다른 도구가 아닙니다 — 이것은 신뢰할 수 있는 AI 워크플로우를 구축하는 완전한 철학입니다. 다른 프로젝트가 기능을 추가하는 동안, Addy는 실제로 중요한 것에 집중했습니다: 프로덕션에서 AI 어시스턴트를 실제로 작동하게 만들기.
+Addy Osmani는 누구입니까? 들어가기 앞서, 왜 이것이 중요한지 이해해 봅시다: - 전 Google Chrome 엔지니어
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agent-skills-production-workflows/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
+서론: 당신의 AI 프로그래밍 도우미는 왜 계속 “기억상실&#34;인가 Claude Code나 Cursor를 매일 쓰는 개발자라면 한결같이 겪는 문제가 있다. 20분 동안 프로젝트 아키텍처, 네이밍 컨벤션, 방금 해결한 버그 해결법을 설명하고 나면 에이전트가 이해한다. 진도가 나간다. 그러고 터미널을 끈다.
+다음날? 백지 상태. 에이전트는 모든 것을 잊어버린다. 매번 새로운 사람에게 똑같은 설명을 반복하는 수업 선생님 신세가 된다.
+이것은 버그가 아니다—현재 대부분의 AI 코딩 에이전트는 상태를 유지하지 않는(stateless) 구조로 설계되었기 때문이다. 모든 대화를 독립적인 트랜잭션으로 처리하며, 학습된 지식을 다음 세션으로 전달할 메커니즘이 없다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-mcp-persistent-memory-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>AgentMemory: AI 코딩 에이전트를 위한 persistente 메모리 시스템 1위 — 22,000 스타의 실제 벤치마크 — 2026 실전 가이드 ┌──────────────────────────────────────────────────────┐ │ AgentMemory 아키텍처 │ │ │ │ ┌────────────┐ ┌────────────┐ ┌──────────────┐ │ │ │ 세션 1 │ │ 세션 2 │ │ 세션 N │ │ │ │ (Claude) │ │ (Codex) │ │ (OpenCode) │ │ │ └─────┬──────┘ └─────┬──────┘ └──────┬───────┘ │ │ │ │ │ │ │ ▼ ▼ ▼ │ │ ┌───────────────────────────────────────────────┐ │ │ │ 메모리 저장 레이어 │ │ │ │ • 벡터 DB (임베딩) │ │ │ │ • 그래프 DB (관계) │ │ │ │ • 키-값 (사실, 결정) │ │ │ └───────────────────────┬───────────────────────┘ │ │ │ 쿼리 및 검색 │ │ ┌───────────────────────▼───────────────────────┐ │ │ │ 에이전트가 메모리에서 컨텍스트 획득 │ │ │ │ &#34;지난번에 인증 버그를 수정했죠...&#34; │ │ │ └───────────────────────────────────────────────┘ │ └──────────────────────────────────────────────────────┘ AgentMemory: 세션 → 메모리 저장 → 컨텍스트 인지 에이전트
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“agno”, “ai-agent”, “python-sdk”, “multi-agent”, “오픈소스”, “경량 프레임워크”, “agent-platform”, “ollama”, “openai”] aliases:
+/kr/posts/agno/ 2026년에 AI 에이전트 프레임워크를 선택하는 것은 지뢰밭을 탐색하는 것과 같습니다. 지난 18개월 동안 수십 개의 라이브러리가 “에이전트 개발을 단순화&#34;하겠다고 약속하며 등장했지만, 대부분은 가치보다 더 많은 추상화를 도입했습니다. 팀들은 그래프 기반 오케스트레이션 의미론을 배우는 데 수 주일을 소비한 끝에, 그들의 사용 사례가 단순한 경량 도구 호출 루프 이상이 아니었다는 것을 발견한다고 보고합니다. Agno(이전 Phidata)는 런타임 우선 철학으로 이 소음을 끊어냅니다: 에이전트를 빠르게 빌드하고, 서비스로 실행하고, 전체 스택을 완전히 제어하세요. 40,233개의 GitHub Star, 452명의 기여자, 그리고 새로운 Apache-2.0 라이선스를 통해 Agno는 Python 팀이 프로덕션 에이전트 시스템을 배포하는 데 있어 선호하는 프레임워크가 되었습니다. 이 가이드 — 2026년 agno tutorial —는 agno setup, 아키텍처, 실제 코드 예제, agno vs crewai 벤치마크 비교, 그리고 이 lightweight ai framework의 부족한 부분에 대한 진실한 분석을 다룹니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>12 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/agno/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-04T00:00:00&#43;08:00 lastmod: 2026-06-04T00:00:00&#43;08:00 tech_stack: - AI Agents
+LLM Governance Security application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: CC-BY-4.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-04” draft: false categories: [“collections”] tags: [“ai에이전트”, “ai윤리”, “책임있는ai”, “ai거버넌스”, “에이전트보안”, “정렬”, “윤리강령”] aliases: /kr/posts/ai-agent-code-of-ethics/ faqs: - q: ‘AI 에이전트 윤리는 챗봇 윤리와 어떻게 다른가요?’ a: ‘챗봇은 텍스트를 생성하지만 에이전트는 행동을 실행합니다 — 도구를 호출하고, 돈을 옮기고, 이메일을 보내고, 파일을 수정하고, 현실의 결과를 일으킵니다. 챗봇 윤리는 주로 “무엇을 말하는가”(편향, 유해성, 허위정보)에 관한 것이고, 에이전트 윤리는 “무엇을 하는가&#34;에 관한 것입니다: 인가, 가역성, 그리고 되돌릴 수 없는 행동에 대한 책임. 위해의 표면이 정보가 아니라 운영 차원이므로, 통제 수단은 콘텐츠 필터가 아니라 엔지니어링 통제여야 합니다.’ q: ‘AI 에이전트의 최소 권한 인가란 무엇인가요?’ a: ‘최소 권한이란 에이전트가 눈앞의 작업에 필요한 가장 좁은 권한만, 그것도 시간과 영향 범위를 한정해 부여받는 것을 뜻합니다. 광범위한 상시 접근권 대신 말이죠. 실무적으로는: 장기 API 키 대신 작업별 단기 자격증명, 기본 읽기 전용에 쓰기는 명시적 권한 상승, 지출 상한, 도구·도메인 화이트리스트, 작업 종료 시 자동 만료. 에이전트가 탈취되거나 오작동해도 최소 권한이 피해를 가둡니다.’ q: ‘AI 에이전트는 행동 전에 항상 사람의 승인을 받아야 하나요?’ a: ‘아닙니다 — 모든 행동에 승인을 걸면 자동화의 가치가 사라집니다. 올바른 모델은 위험 등급제입니다: 저위험·가역적 작업(데이터 읽기, 초안 작성)은 자율적으로 두고, 고위험·비가역적 작업(외부 메시지 발송, 결제, 삭제, 프로덕션 배포)은 사람의 확인을 요구하며, 모든 자율 행동은 사후 감사 가능하게 합니다. 경계선은 “일괄 승인&#34;이 아니라 “가역성&#34;입니다.’ q: ‘자율 AI 에이전트가 피해를 일으키면 누가 책임지나요?’ a: ‘책임은 에이전트에게 떠넘길 수 없습니다 — 에이전트는 도덕적·법적 주체가 아닙니다. 책임은 그것을 배포한 운영자, 만든 개발자, 그로부터 이익을 얻는 조직에 있습니다. 윤리적인 에이전트는 이를 강제 가능하게 만듭니다: 모든 행동이 인가된 신원, 기록된 결정, 이름이 있는 사람 책임자로 추적되는 끊기지 않는 사슬을 유지함으로써. “AI가 했다&#34;는 결코 유효한 답이 아닙니다.’ q: ‘AI 에이전트의 페일세이프 기본값이란 무엇인가요?’ a: ‘페일세이프 기본값이란 에이전트가 불확실하거나, 맥락을 잃거나, 오류를 만나거나, 신뢰도 임계값 아래로 떨어졌을 때 추측해서 진행하는 대신 멈추고 보고하는 것입니다. 비가역적 작업에서 실패는 “행동하지 않음&#34;으로 기본 설정되어야 합니다. 에이전트를 실행 도중 멈추는 킬 스위치와, 안전하게 재시도할 수 있는 멱등 연산이 이 원칙의 최소한의 엔지니어링 표현입니다.’ q: ‘이 윤리 원칙들은 코드로 강제할 수 있나요, 아니면 그냥 지침인가요?’ a: ‘대부분은 코드로 강제할 수 있습니다. 최소 권한은 범위가 한정된 자격증명과 화이트리스트, 감사 가능성은 모든 도구 호출의 구조화된 로깅, 가역성은 위험 등급별 승인 게이트와 실행취소/멱등, 제한된 자율성은 속도·지출 상한, 페일세이프는 신뢰도 임계값과 킬 스위치입니다. 오직 그 뒤의 의도 — 어떤 행동이 고위험인지 판단하는 것 — 만 사람의 판단이 필요합니다. 강제할 수 없는 윤리는 장식일 뿐입니다.’ AI 에이전트 윤리 강령 (2026): 자율 에이전트를 위한 실전 거버넌스 프레임워크 이 문서에 대하여: 이것은 자율 AI 에이전트 — 텍스트만 생성하는 것이 아니라 행동을 실행하는 시스템 — 를 구축하고 운영하는 엔지니어를 위한 실전 윤리 강령입니다. 높이 내건 구호가 아니라 강제 가능하도록 쓰였습니다. 아래의 모든 원칙은 배포 전 코드베이스에 넣을 수 있는 하나의 통제 수단으로 매핑됩니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-code-of-ethics/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: ““LangChain vs CrewAI vs AutoGen vs LlamaIndex vs LangGrap…”, “description”: ““2026년 상위 5개 오픈 소스 AI 에이전트 프레임워크를 나란히 비교합니다. 실제 별 개수, 코드 예제, 성능 벤치마크 및 프로젝트에 적합한 프레임워크를 선택하기 위한 실용적인 지침입니다.”. Comprehensive guide covering features, pricing, and best practices for 2026.”, “datePublished”: “2026-06-30T00:00:00&#43;09:00”, “dateModified”: “2026-06-30T00:00:00&#43;09:00”, “author”: { “@type”: “Organization”, “name”: “dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png&#34; } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/&#34; }, “url”: “https://dibi8.com/kr/tools/ai-agent-frameworks-comparison-2026/&#34;, “image”: “https://picsum.photos/seed/ai-agent-frameworks-comparison-2026/1200x630&#34;, “keywords”: “ai-agents,frameworks,comparison,langchain,crewai,autogen,llamaindex,langgraph”, “articleSection”: “llm-frameworks” } ...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>20 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-frameworks-comparison-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Letta, Mem0, ‘A-MEM’, ‘Vector DB’, Python] application_domain: LLM Frameworks source_version: “Letta 0.8 / Mem0 0.2 / A-MEM 1.3” licensing_model: 오픈 소스 license_type: ‘Apache-2.0 / MIT’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“ai-agent”, “memory”, “persistence”, “letta”, “mem0”, “2026”] aliases:
+/kr/posts/ai-agent-memory-persistence-letta-mem0-a-mem-2026/ faq: - q: “AI Agent에 영속 메모리가 왜 필요한가요?” a: “영속화가 없으면 모든 세션이 0에서 다시 시작됩니다 — Agent는 어제의 선호, 결정, 컨텍스트를 기억하지 못합니다. 지속적인 협업(코딩 파트너, 리서치 어시스턴트, 고객 응대 챗봇)에서는 영속 메모리가 도구와 파트너를 가르는 분기점입니다.” q: “세 가지 접근 방식의 차이는?” a: “Letta는 OS 같은 메모리 계층(core / archival / recall)을 사용합니다. Mem0은 간단한 add/search API로 개발자 편의에 집중합니다. A-MEM은 능동적 망각과 감쇠를 가진 연구 지향형입니다. 셋 다 같은 문제를 다른 방식으로 풉니다.” q: “그냥 MCP memory server를 써도 되나요?” a: “1인 / 경량 케이스에는: 네. 공식 MCP memory server는 더 단순하지만 검색 스코어링, 감쇠, 세션 간 추론이 없습니다. 정교한 멀티턴 Agent에는 Letta나 Mem0 같은 전용 메모리 프레임워크가 이깁니다.” q: “Agent 메모리는 그 복잡도를 감수할 가치가 있나요?” a: “실사용자를 응대하는 프로덕션 Agent 대부분에서: 네, 실질적으로 가치 있습니다. ‘당신을 기억한다’와 ‘처음부터 시작한다’ 사이의 품질 격차는 큽니다. 일회성 작업이나 단순 워크플로에는: 복잡도를 감당할 가치가 없습니다.” AI Agent 메모리 영속화 2026: Letta vs Mem0 vs A-MEM Meta Description: 메모리 없는 Agent는 매번 0에서 다시 시작합니다. 멀티 세션 워크로드에서 Letta, Mem0, A-MEM 실측. 누가 진짜 컨텍스트를 유지하는지, 비용은 어떤지, 언제 직접 만들어야 하는지.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-memory-persistence-letta-mem0-a-mem-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-22T00:00:00&#43;08:00 lastmod: 2026-05-22T00:00:00&#43;08:00 tech_stack: [Python, TypeScript, PostgreSQL, ‘Vector databases’, MCP] application_domain: Llm Frameworks source_version: ’’ licensing_model: Open Source license_type: Apache-2.0 / MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“llm-frameworks”] tags: [“ai-agents”, “memory-systems”, “mem0”, “agentmemory”, “hindsight”, “mempalace”, “mcp”, “rag”, “vector-database”, “persistent-memory”, “open-source”, “llm-infrastructure”] aliases:
+/kr/posts/ai-agent-memory-systems-2026/ /kr/resources/dev-utils/ai-agent-memory-systems-2026/ faqs: - q: ‘Mem0, agentmemory, Hindsight, MemPalace의 차이?’ a: ‘Mem0는 프레임워크 통합이 가장 넓음(21 프레임워크, 20 벡터 백엔드). agentmemory는 코딩 에이전트에 특화되어 네이티브 MCP 사용. Hindsight는 recall 정확도가 가장 높고 생체모방 3종 메모리 &#43; 4전략 검색. MemPalace는 커뮤니티 규모(52K&#43; stars) 최고.’ q: ‘프로덕션에서 AI 에이전트 메모리 레이어가 필요한가요?’ a: ‘네, 에이전트가 멀티 세션 연속성, 장기 고객 관계, 도메인 전문성 축적이 필요하다면. 무상태 에이전트는 단발성 작업엔 괜찮지만 진짜 작업엔 한계. Gartner는 2026년 말까지 엔터프라이즈 앱의 40%가 작업 지향 AI 에이전트를 통합한다고 예측 — 메모리는 전제조건.’ q: ‘어떤 메모리 레이어가 Claude Code와 통합되나요?’ a: ‘agentmemory가 MCP 네이티브로 Claude Code, Cursor, Codex CLI, Windsurf 및 11&#43; 다른 에이전트 클라이언트에 특화. progressive context injection으로 장기 코드베이스 프로젝트에서 60%&#43; 반복 설명 감소.’ q: ‘AI 에이전트 메모리 레이어 비용은?’ a: ‘4대 솔루션(Mem0, agentmemory, Hindsight, MemPalace) 모두 Apache-2.0 또는 MIT 오픈소스. 호스팅(vector DB &#43; Postgres)과 검색 시 LLM API 토큰만 지불. Mem0는 매니지드 클라우드 티어도 제공.’ q: ‘메모리 레이어로 LLM 토큰 비용을 줄일 수 있나요?’ a: ‘네 — Mem0 2026-04 알고리즘 업그레이드로 LoCoMo 92.5% 정확도를 query당 ~7K 토큰으로 달성 (full-context ~26K 토큰 대비). 토큰 73% 감소하면서 정확도는 더 높음. inference 규모에서는 비즈니스 모델 차이지 한계적 개선이 아님.’ 2026 AI 에이전트 메모리 시스템 완벽 비교: Mem0 / agentmemory / Hindsight / MemPalace Quick Answer Q: 2026년 최고의 AI 에이전트 메모리 시스템은?
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-memory-systems-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2026년 AI 에이전트 메모리 시스템 완벽 가이드 대화만 끝나면 초기화되는 AI는 도구가 아니라 장난감이다. 2026년, 지속적 기억은 에이전트의 ‘선택 옵션’이 아니라 ‘기반 시설’이 되었다.
+왜 지금 AI 에이전트 메모리가 뜨는가 2년간 개발자들은 LLM이 ‘잘 생각하게’ 만드는 데 집중했다. 도구 사용(tool use), 멀티스텝 추론, 빠른 추론 속도. 하지만 근본적인 문제를 외면했다: 세션이 끝나면 에이전트는 모든 것을 잊는다.
+Claude Code나 Cursor, Codex CLI를 쓰는 개발자라면 누구나 겪어봤을 것이다. 새로운 대화창을 열면 프로젝트 구조부터 다시 설명해야 하고, 지난주에 함께 디버깅한 성능 병목도, 팀의 코딩 컨벤션도 모두 백지가 된다. 이것은 단순한 불편이 아니라 — 에이전트가 장기 프로젝트를 수행할 수 있는 천장이다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-memory-systems-open-source-infrastructure-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
+Meta Description: 2026년 가장 핫한 AI Agent Skills 생태계를 심층 분석합니다. mattpocock/skills부터 rohitg00/agentmemory까지, 클로드 코드 스킬의 설치와 사용법, 나만의 스킬 작성법을 단계별로 알려드립니다.
+발행일: 2026년 5월 16일 읽는 시간: 12분 키워드: AI 에이전트 스킬, 클로드 코드 스킬, Claude Code skills, mattpocock 스킬 튜토리얼, AI 코딩 에이전트 스킬팩, 커서 스킬 설치, 2026 AI 개발 도구 트렌드, 에이전트 워크플로우
+TL;DR 핵심 요약 2026년 5월, GitHub Trending은 2주 연속 AI Agent Skills가 점령했습니다. mattpocock/skills는 75,000&#43; Star로 1위를 지키고 있고, obra/superpowers는 188,000 Star로 가장 큰 커뮤니티를 형성했으며, rohitg00/agentmemory는 AI 코딩 에이전트의 가장 큰 고통인 기억 상실 문제를 해결했습니다. 스킬은 프롬프트가 아닙니다 — 반복 가능한 구조화된 워크플로우이며, 개발자와 AI의 협업 방식을 재정의하고 있습니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/ai-agent-skills-2026-developer-guide/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/ko/page/3/">
+      «&nbsp;이전 페이지&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/ko/page/5/">다음 페이지&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

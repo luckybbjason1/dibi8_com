@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/eigenlayer-restaking-defi/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/eigenlayer-restaking-defi/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/eigenlayer-restaking-defi/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/eigenlayer-restaking-defi/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/eigenlayer-restaking-defi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/eigenlayer-restaking-defi/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/ai-coding-agents/eigenlayer-restaking-defi/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": " Affiliate Disclosure: This article contains affiliate links to Binance and Minara. We may earn a commission when you register through these links — at no extra cost to you.\nWhat Is EigenLayer and Why Does It Matter? EigenLayer is the most significant innovation in Ethereum’s staking economy since proof-of-stake itself. Launched as a restaking protocol on Ethereum mainnet, EigenLayer enables ETH stakers to reuse their staked ETH to secure additional decentralized services — called Actively Validated Services (AVS) — beyond just Ethereum consensus. As of May 2026, EigenLayer has surpassed $20 billion in Total Value Locked (TVL), making it one of the largest DeFi protocols by secured capital.\nThe core idea is elegant yet powerful: instead of every new protocol needing to bootstrap its own validator set from scratch, EigenLayer allows them to inherit Ethereum’s economic security by leveraging the capital already staked by ETH validators. This concept, known as “shared security,” dramatically lowers the barrier to entry for new decentralized infrastructure while increasing capital efficiency for stakers who can now earn additional rewards on the same underlying stake.\nThe Restaking Mechanism: How It Works Under the Hood Restaking on EigenLayer works by allowing Ethereum validators to opt-in to securing additional protocols. When a validator restakes their ETH, they subject themselves to additional slashing conditions defined by each AVS they choose to validate.\nThe lifecycle of a restaked position follows these steps: ````bash\nStep 1: Stake ETH on Ethereum beacon chain Minimum 32 ETH for solo validators, or use liquid staking tokens (LSTs) Step 2: Deposit staked ETH into EigenLayer This can be native ETH or LSTs like stETH, rETH, cbETH curl -X POST https://api.eigenlayer.com/restake -H “Content-Type: application/json” -d ‘{ “strategy”: “0x93c4b944…”, “amount”: “1000000000000000000”, “staker”: “0xYourAddress…” }’\n`````solidity // Step 3: EigenLayer Strategy Manager deposits into underlying strategy // File: StrategyManager.sol (simplified) function depositIntoStrategy( IStrategy strategy, IERC20 token, uint256 amount ) external returns (uint256 shares) { // Transfer tokens from staker to strategy token.safeTransferFrom(msg.sender, address(strategy), amount); // Strategy deposits and returns shares shares = strategy.deposit(token, amount); // Record shares for the staker _addShares(msg.sender, strategy, shares); return shares; } // Step 4: Staker delegates to an operator // Operators run AVS validation software function delegateTo( address operator, SignatureWithExpiry memory stakerSignatureAndExpiry, bytes32 approverSignatureAndExpiry ) external { require(isOperator(operator), \"Operator not registered\"); delegationManager.delegateTo( operator, stakerSignatureAndExpiry, approverSignatureAndExpiry ); } // Step 5: Operator opts into AVS slashing conditions // AVS contracts define custom validation and slashing logic interface IAVSRegistry { function registerOperatorToAVS( address operator, bytes32 salt, uint256 expiry, bytes memory signature ) external; } // Operator opts into EigenDA AVS function optInToEigenDA(bytes memory blsPublicKey) external { eigenDARegistry.registerOperatorToAVS( msg.sender, keccak256(abi.encodePacked(block.timestamp)), block.timestamp + 7 days, blsSignature ); } Actively Validated Services (AVS): The Application Layer AVSs are the protocols and services that leverage EigenLayer’s shared security. They span a wide range of use cases from data availability to oracles, bridges, sequencers, and more. Each AVS defines its own validation logic, rewards structure, and slashing conditions.\nEigenDA: The Flagship Data Availability AVS EigenDA is the most prominent AVS built on EigenLayer. It provides a high-throughput, low-cost data availability solution for Ethereum rollups, serving as a decentralized alternative to centralized data availability solutions.\n// EigenDA disperser client - dispersing a blob to EigenDA package main import ( \"context\" \"fmt\" \"time\" disperser \"github.com/Layr-Labs/eigenda/api/grpc/disperser\" \"google.golang.org/grpc\" \"google.golang.org/grpc/credentials/insecure\" ) func disperseBlob(data []byte) (*disperser.BlobStatus, error) { conn, err := grpc.Dial(\"disperser.eigenda.io:443\", grpc.WithTransportCredentials(insecure.NewCredentials())) if err != nil { return nil, err } defer conn.Close() client := disperser.NewDisperserClient(conn) ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second) defer cancel() // Disperse blob with custom security parameters reply, err := client.DisperseBlob(ctx, \u0026disperser.DisperseBlobRequest{ Data: data, SecurityParams: []*disperser.SecurityParam{ { QuorumId: 0, AdversaryThreshold: 25, QuorumThreshold: 50, }, }, }) if err != nil { return nil, fmt.Errorf(\"disperse failed: %w\", err) } return reply.GetResult(), nil } # EigenDA retrieval client - verifying blob availability import asyncio import grpc from eigenda.api import retriever_pb2, retriever_pb2_grpc async def retrieve_blob(batch_header_hash bytes, blob_index int): async with grpc.aio.insecure_channel('retriever.eigenda.io:443') as channel: stub = retriever_pb2_grpc.RetrieverStub(channel) request = retriever_pb2.RetrieveBlobRequest( batch_header_hash=batch_header_hash, blob_index=blob_index ) response = await stub.RetrieveBlob(request) # Verify the blob against the claimed commitment assert verify_kzg_proof(response.blob, response.kzg_proof), \\ \"KZG proof verification failed\" return response.blob Building Your First AVS: Complete Developer Setup This section provides a step-by-step guide to building an AVS on EigenLayer. We’ll create a simple price oracle AVS that demonstrates the key patterns.\nPrerequisites # Required tools node --version # \u003e= 18.0.0 foundry --version # Forge 0.2.0+ go version # \u003e= 1.21 # Clone EigenLayer middleware and contracts git clone https://github.com/Layr-Labs/eigenlayer-contracts.git git clone https://github.com/Layr-Labs/eigenlayer-middleware.git cd eigenlayer-middleware \u0026\u0026 forge install \u0026\u0026 cd .. Step 1: AVS Contract Architecture // SPDX-License-Identifier: MIT pragma solidity ^0.8.19; import \"@eigenlayer-middleware/BLSSignatureChecker.sol\"; import \"@eigenlayer-middleware/OperatorStateRetriever.sol\"; import \"./IPriceOracleAVS.sol\"; contract PriceOracleAVS is BLSSignatureChecker, OperatorStateRetriever { // Price data submitted by operators struct PriceResponse { uint256 price; uint32 blockNumber; BN254.G1Point signature; BN254.G2Point pubkeyG2; } // Aggregated price with quorum metadata struct AggregatedPriceUpdate { uint256 aggregatedPrice; uint32 quorumBlockNumber; bytes metadata; } // Track latest confirmed prices per asset mapping(bytes32 =\u003e AggregatedPriceUpdate) public latestPrices; event PriceUpdated( bytes32 indexed assetId, uint256 price, uint32 quorumBlockNumber ); // Restaking integration IStakeRegistry public immutable stakeRegistry; IRegistryCoordinator public immutable registryCoordinator; constructor( address _stakeRegistry, address _registryCoordinator, address _blsSignatureChecker ) BLSSignatureChecker(_blsSignatureChecker) { stakeRegistry = IStakeRegistry(_stakeRegistry); registryRegistryCoordinator = IRegistryCoordinator(_registryCoordinator); } /// @notice Submit aggregated price response with BLS quorum certificate function confirmPriceUpdate( bytes32 assetId, uint256 proposedPrice, QuorumStakeTotals memory quorumStakeTotals, bytes32 apkHash, BN254.G1Point memory quorumApkIndices, BN254.G2Point memory nonSignerStakesAndSignature ) external { // Verify BLS quorum signature require( checkSignatures( keccak256(abi.encodePacked(assetId, proposedPrice)), quorumStakeTotals, apkHash, quorumApkIndices, nonSignerStakesAndSignature ), \"Quorum verification failed\" ); // Store aggregated price latestPrices[assetId] = AggregatedPriceUpdate({ aggregatedPrice: proposedPrice, quorumBlockNumber: uint32(block.number), metadata: abi.encode(quorumStakeTotals) }); emit PriceUpdated(assetId, proposedPrice, uint32(block.number)); } } Step 2: Operator Node Implementation // operator/price_task_generator.go package operator import ( \"context\" \"crypto/sha256\" \"encoding/json\" \"fmt\" \"math/big\" \"time\" \"github.com/Layr-Labs/eigensdk-go/chainio/clients\" \"github.com/Layr-Labs/eigensdk-go/crypto/bls\" \"github.com/Layr-Labs/eigensdk-go/logging\" ) type PriceTaskGenerator struct { logger logging.Logger ethClient *clients.EthereumClient blsKeypair *bls.KeyPair priceOracleAVS *PriceOracleAVSClient aggregatorRpcUrl string } func NewPriceTaskGenerator( logger logging.Logger, ethClient *clients.EthereumClient, blsKeypair *bls.KeyPair, aggregatorRpcUrl string, ) *PriceTaskGenerator { return \u0026PriceTaskGenerator{ logger: logger, ethClient: ethClient, blsKeypair: blsKeypair, aggregatorRpcUrl: aggregatorRpcUrl, } } // Generate and sign price response for a given task func (g *PriceTaskGenerator) ProcessNewTask( ctx context.Context, task PriceOracleTask, ) (*SignedPriceResponse, error) { // Fetch price from multiple CEX/DEX sources price, err := g.fetchAggregatedPrice(ctx, task.AssetId) if err != nil { return nil, fmt.Errorf(\"fetch price failed: %w\", err) } // Construct response digest responseDigest := g.calculateResponseDigest(task, price) // Sign with BLS12-381 keypair signature := g.blsKeypair.Sign(responseDigest) signedResponse := \u0026SignedPriceResponse{ TaskId: task.TaskId, AssetId: task.AssetId, Price: price, BlockNumber: task.CreationBlockNumber, Signature: signature, PubkeyG1: g.blsKeypair.GetPubKeyG1(), PubkeyG2: g.blsKeypair.GetPubKeyG2(), } g.logger.Info(\"Signed price response\", \"asset\", task.AssetId, \"price\", price, \"taskId\", task.TaskId, ) return signedResponse, nil } // fetchAggregatedPrice queries multiple sources and returns median func (g *PriceTaskGenerator) fetchAggregatedPrice( ctx context.Context, assetId string, ) (*big.Int, error) { sources := []PriceSource{ NewBinanceSource(), NewCoinbaseSource(), NewChainlinkSource(), } var prices []*big.Int for _, source := range sources { price, err := source.GetPrice(ctx, assetId) if err != nil { g.logger.Warn(\"Price source failed\", \"source\", source.Name(), \"err\", err) continue } prices = append(prices, price) } if len(prices) \u003c 2 { return nil, fmt.Errorf(\"insufficient price sources: got %d, need 2+\", len(prices)) } return calculateMedian(prices), nil } func (g *PriceTaskGenerator) calculateResponseDigest( task PriceOracleTask, price *big.Int, ) [32]byte { data := fmt.Sprintf(\"%s%s%s%d\", task.AssetId, price.String(), g.ethClient.GetAccountAddress().Hex(), task.CreationBlockNumber, ) return sha256.Sum256([]byte(data)) } Step 3: Aggregator Service // aggregator/aggregator.go package aggregator import ( \"context\" \"fmt\" \"sync\" \"github.com/Layr-Labs/eigensdk-go/logging\" \"github.com/Layr-Labs/eigensdk-go/types\" ) // Aggregator collects signed responses and builds quorum certificates type PriceAggregator struct { logger logging.Logger avsRegistry AVSRegistryReader priceOracleAVS *PriceOracleAVSContract // Task tracking tasks map[uint32]*TaskState tasksMu sync.RWMutex // Quorum configuration quorumThresholdPercentage uint32 aggregatePubkeyTimeout int64 } type TaskState struct { Task PriceOracleTask Responses map[types.Bytes32]*SignedPriceResponse AggregatedResponses map[uint8]*AggregatedPriceResponse Status TaskStatus } func (a *PriceAggregator) ProcessSignedPriceResponse( response *SignedPriceResponse, ) error { a.tasksMu.Lock() defer a.tasksMu.Unlock() taskState, exists := a.tasks[response.TaskId] if !exists { return fmt.Errorf(\"task %d not found\", response.TaskId) } if taskState.Status != TaskStatusPending { return fmt.Errorf(\"task %d already processed\", response.TaskId) } // Verify operator is registered and staked operatorStake, err := a.avsRegistry.GetOperatorStake( response.PubkeyG1, response.TaskId, ) if err != nil { return fmt.Errorf(\"stake check failed: %w\", err) } if operatorStake.IsZero() { return fmt.Errorf(\"operator has no stake\") } // Store response responseKey := types.Bytes32(response.Signature.Hash()) taskState.Responses[responseKey] = response a.logger.Info(\"Received signed response\", \"taskId\", response.TaskId, \"operator\", response.PubkeyG1.String()[:20], ) // Attempt aggregation return a.tryAggregateResponses(taskState) } func (a *PriceAggregator) tryAggregateResponses(state *TaskState) error { // Group responses by price value (within tolerance) priceGroups := make(map[string][]*SignedPriceResponse) for _, resp := range state.Responses { key := resp.Price.String() priceGroups[key] = append(priceGroups[key], resp) } // Find group with sufficient stake for _, group := range priceGroups { totalStake := big.NewInt(0) var signatures []bls.Signature var pubkeysG1 []bls.G1Point var pubkeysG2 []bls.G2Point for _, resp := range group { stake, _ := a.avsRegistry.GetOperatorStake(resp.PubkeyG1, state.Task.TaskId) totalStake.Add(totalStake, stake) signatures = append(signatures, resp.Signature) pubkeysG1 = append(pubkeysG1, resp.PubkeyG1) pubkeysG2 = append(pubkeysG2, resp.PubkeyG2) } // Check if quorum reached quorumStake, err := a.avsRegistry.GetQuorumStake(state.Task.TaskId) if err != nil { continue } threshold := new(big.Int).Mul(quorumStake, big.NewInt(int64(a.quorumThresholdPercentage))) threshold.Div(threshold, big.NewInt(100)) if totalStake.Cmp(threshold) \u003e= 0 { // Aggregate BLS signatures aggSig := bls.AggregateSignatures(signatures) aggPubkeyG1 := bls.AggregatePubkeysG1(pubkeysG1) // Send to chain return a.sendAggregatedResponse(state.Task, group[0].Price, aggSig, aggPubkeyG1, pubkeysG2) } } return nil // Not enough quorum yet } Step 4: Deployment Script #!/bin/bash # deploy_avs.sh - Deploy PriceOracle AVS to mainnet set -e # Configuration export PRIVATE_KEY=${PRIVATE_KEY:?\"PRIVATE_KEY required\"} export RPC_URL=${RPC_URL:-\"https://eth-mainnet.g.alchemy.com/v2/$ALCHEMY_KEY\"} export EIGENLAYER_DEPLOYMENT=$(cat eigenlayer_deployment_block.json) # Deploy registry contracts echo \"=== Deploying Registry Coordinator ===\" forge script script/DeployPriceOracleAVS.s.sol:DeployRegistry \\ --rpc-url $RPC_URL \\ --private-key $PRIVATE_KEY \\ --broadcast \\ --verify \\ -vvvv REGISTRY_COORDINATOR=$(cat broadcast/DeployPriceOracleAVS.s.sol/1/run-latest.json | jq -r '.transactions[0].contractAddress') # Deploy stake registry echo \"=== Deploying Stake Registry ===\" forge script script/DeployPriceOracleAVS.s.sol:DeployStakeRegistry \\ --rpc-url $RPC_URL \\ --private-key $PRIVATE_KEY \\ --broadcast \\ --verify \\ --sig \"run(address)\" $REGISTRY_COORDINATOR STAKE_REGISTRY=$(cat broadcast/DeployPriceOracleAVS.s.sol/1/run-latest.json | jq -r '.transactions[0].contractAddress') # Deploy main AVS contract echo \"=== Deploying PriceOracle AVS ===\" forge script script/DeployPriceOracleAVS.s.sol:DeployAVS \\ --rpc-url $RPC_URL \\ --private-key $PRIVATE_KEY \\ --broadcast \\ --verify \\ --sig \"run(address,address)\" $STAKE_REGISTRY $REGISTRY_COORDINATOR AVS_CONTRACT=$(cat broadcast/DeployPriceOracleAVS.s.sol/1/run-latest.json | jq -r '.transactions[0].contractAddress') echo \"=== Deployment Complete ===\" echo \"Registry Coordinator: $REGISTRY_COORDINATOR\" echo \"Stake Registry: $STAKE_REGISTRY\" echo \"PriceOracle AVS: $AVS_CONTRACT\" // script/DeployPriceOracleAVS.s.sol // SPDX-License-Identifier: MIT pragma solidity ^0.8.19; import \"forge-std/Script.sol\"; import \"../src/PriceOracleAVS.sol\"; contract DeployRegistry is Script { function run() external { vm.startBroadcast(); RegistryCoordinator registryCoordinator = new RegistryCoordinator( IStakeRegistry(address(0)), // Will be updated IBLSApkRegistry(address(0)), // Will be updated IIndexRegistry(address(0)), // Will be updated ISocketRegistry(address(0)) // Will be updated ); vm.stopBroadcast(); console.log(\"RegistryCoordinator deployed at:\", address(registryCoordinator)); } } contract DeployStakeRegistry is Script { function run(address registryCoordinator) external { vm.startBroadcast(); StakeRegistry stakeRegistry = new StakeRegistry( IRegistryCoordinator(registryCoordinator), IDelegationManager(EIGENLAYER_DELEGATION_MANAGER) ); vm.stopBroadcast(); console.log(\"StakeRegistry deployed at:\", address(stakeRegistry)); } } contract DeployAVS is Script { function run(address stakeRegistry, address registryCoordinator) external { vm.startBroadcast(); PriceOracleAVS priceOracleAVS = new PriceOracleAVS( stakeRegistry, registryCoordinator, EIGENLAYER_BLS_SIGNATURE_CHECKER ); vm.stopBroadcast(); console.log(\"PriceOracleAVS deployed at:\", address(priceOracleAVS)); } } Slashing Conditions and Risk Management One of the critical aspects of EigenLayer is the slashing mechanism. When operators opt into an AVS, they agree to additional slashing conditions beyond those of Ethereum consensus.\n// Custom slashing condition for PriceOracle AVS interface ISlasher { function freezeOperator(address operator) external; function resetFrozenStatus(address operator) external; } contract PriceOracleSlashing { struct SlashingRecord { bytes32 reason; uint32 blockNumber; uint256 stakeAmount; } mapping(address =\u003e SlashingRecord[]) public slashingHistory; // Slash conditions: // 1. Signing divergent prices for the same task // 2. Failing to respond within response window // 3. Signing prices beyond deviation threshold function slashDivergentResponse( address operator, PriceResponse memory response1, PriceResponse memory response2, BN254.G1Point memory signature1, BN254.G1Point memory signature2 ) external { require( verifyDoubleSigning(response1, response2, signature1, signature2), \"Not a valid double signing event\" ); // Calculate slash amount (100% of AVS-specific stake) uint256 slashAmount = getAVSStake(operator); // Record slashing slashingHistory[operator].push(SlashingRecord({ reason: keccak256(\"DIVERGENT_RESPONSE\"), blockNumber: uint32(block.number), stakeAmount: slashAmount })); // Execute slash through EigenLayer delegationManager.queueWithdrawals( operator, strategies, shares // reduced by slash amount ); emit OperatorSlashed(operator, slashAmount, \"DIVERGENT_RESPONSE\"); } } // Monitoring operator health and detecting slashable events package monitoring import ( \"context\" \"math/big\" \"time\" ) type SlashMonitor struct { ethClient *ethclient.Client avsContract *PriceOracleAVS alertWebhook string } func (m *SlashMonitor) StartMonitoring(ctx context.Context) { ticker := time.NewTicker(12 * time.Second) // Ethereum block time defer ticker.Stop() for { select { case \u003c-ctx.Done(): return case \u003c-ticker.C: m.checkForSlashableEvents(ctx) } } } func (m *SlashMonitor) checkForSlashableEvents(ctx context.Context) { // Check for price deviations \u003e 5% from median latestTasks, _ := m.avsContract.GetPendingTasks(nil) for _, task := range latestTasks { responses, _ := m.avsContract.GetTaskResponses(nil, task.TaskId) medianPrice := calculateMedianPrice(responses) for _, resp := range responses { deviation := new(big.Float).Quo( new(big.Float).Sub(resp.Price, medianPrice), medianPrice, ) deviation.Abs(deviation) threshold := big.NewFloat(0.05) // 5% threshold if deviation.Cmp(threshold) \u003e 0 { m.sendAlert(\"PRICE_DEVIATION\", resp.Operator, task, resp.Price) } } } } Rewards Distribution Mechanism EigenLayer’s rewards distribution allows AVS developers to incentivize operators for their validation work.\n// Rewards distribution contract for PriceOracle AVS contract PriceOracleRewards is IRewardsCoordinator { using SafeERC20 for IERC20; IERC20 public rewardToken; uint256 public rewardsPerBlock; struct OperatorRewardInfo { uint256 accumulatedRewards; uint256 lastUpdateBlock; uint256 tasksCompleted; } mapping(address =\u003e OperatorRewardInfo) public operatorRewards; event RewardsClaimed(address indexed operator, uint256 amount); event RewardsDistributed(uint256 totalAmount, uint256 blockNumber); function distributeRewards( uint32 taskId, address[] calldata participatingOperators, uint256[] calldata performanceScores ) external onlyOwner { require( participatingOperators.length == performanceScores.length, \"Length mismatch\" ); uint256 totalScore = 0; for (uint i = 0; i \u003c performanceScores.length; i++) { totalScore += performanceScores[i]; } uint256 totalReward = rewardsPerBlock * TASK_BLOCK_WINDOW; for (uint i = 0; i \u003c participatingOperators.length; i++) { uint256 operatorShare = (totalReward * performanceScores[i]) / totalScore; OperatorRewardInfo storage info = operatorRewards[participatingOperators[i]]; info.accumulatedRewards += operatorShare; info.lastUpdateBlock = uint32(block.number); info.tasksCompleted += 1; } emit RewardsDistributed(totalReward, block.number); } function claimRewards() external { OperatorRewardInfo storage info = operatorRewards[msg.sender]; uint256 amount = info.accumulatedRewards; require(amount \u003e 0, \"No rewards to claim\"); info.accumulatedRewards = 0; rewardToken.safeTransfer(msg.sender, amount); emit RewardsClaimed(msg.sender, amount); } } Liquid Restaking Tokens (LRT) Integration For users who don’t want to run their own validator infrastructure, Liquid Restaking Tokens provide an accessible entry point.\n// TypeScript SDK for LRT interactions import { ethers, Contract } from ethers; import { EigenLayerSDK } from '@eigenlayer/sdk'; const sdk = new EigenLayerSDK({ provider: new ethers.JsonRpcProvider('https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY'), network: mainnet }); // Deposit stETH into Renzo (ezETH) async function depositForLRT(stethAmount: bigint) { const renzo = await sdk.getLRTProtocol(renzo); const tx = await renzo.deposit({ token: stETH, amount: stethAmount, receiver: walletAddress, }); const receipt = await tx.wait(); console.log(````Deposited ${stethAmount} stETH, received ezETH````); console.log(````Transaction: ${receipt.hash}````); // Query underlying AVS exposure const avsExposure = await renzo.getAVSExposure(walletAddress); console.log('AVS allocations:', avsExposure); } // Check rewards across all AVS positions async function aggregateLRTYield() { const portfolio = await sdk.getLRTPortfolio(walletAddress); for (const position of portfolio.positions) { console.log(````\\n${position.lrtSymbol}:````); console.log(```` Balance: ${position.balance}````); console.log(```` Underlying ETH: ${position.underlyingETH}````); console.log(```` 30d Yield: ${position.thirtyDayYield}%````); console.log(```` AVS Exposure: ${position.avsAllocations.map(a =\u003e a.avsName).join(', ')}````); } } FAQ: Frequently Asked Questions About EigenLayer Q1: What is the minimum amount of ETH needed to restake on EigenLayer?\nA: For native restaking, you need a full validator’s worth of 32 ETH. However, EigenLayer supports Liquid Staking Tokens (LSTs) like stETH, rETH, and cbETH with no minimum — you can restake any amount. Liquid Restaking Tokens (LRTs) like ezETH and rsETH further lower the barrier, allowing deposits as small as 0.01 ETH equivalent.\nQ2: How do slashing risks work when restaking across multiple AVSs?\nA: Each AVS defines its own slashing conditions, and your staked ETH is subject to all conditions of every AVS you validate for simultaneously. The maximum slashable amount is capped per AVS, but multiple AVS commitments compound your risk exposure. The Slasher contract enforces conditions programmatically — common slashable offenses include downtime, attesting to invalid state transitions, and signing conflicting messages.\nQ3: What is the difference between EigenDA and other data availability solutions?\nA: EigenDA is a decentralized data availability layer secured by Ethereum’s staked capital through EigenLayer. Compared to Celestia (its own validator set) or EIP-4844 blobs (limited throughput), EigenDA offers: (1) Ethereum-grade economic security inherited via restaking, (2) horizontal scalability through disperser/retriever architecture, (3) flexible quorum configuration per rollup, and (4) significantly lower costs at scale — currently targeting 10 MB/s throughput at under $0.001 per blob.\nQ4: How are AVS rewards calculated and distributed?\nA: Each AVS operates its own rewards program, typically funded by protocol fees or inflationary token emissions. Rewards are distributed proportionally based on: (1) the amount of stake delegated to each operator, (2) the operator’s performance score (uptime, correct responses), and (3) the AVS-specific reward rate. The RewardsCoordinator contract handles claim distribution, and operators typically charge a delegation fee (5-15%) on rewards earned by their delegators.\nQ5: Can I withdraw my restaked ETH at any time?\nA: No — EigenLayer enforces an undelegation and withdrawal delay of approximately 7 days (an Ethereum “activation delay” epoch). This cooldown period serves as a security measure against flash loan attacks and gives the protocol time to process any pending slashing events. After initiating withdrawal, your funds complete the exit queue and become withdrawable to your wallet after the delay period elapses.\nQ6: What programming languages and frameworks are used to build AVSs?\nA: The smart contract layer uses Solidity (Foundry framework). Operator nodes are typically built in Go using the EigenSDK. BLS signature aggregation requires the eigen-crypto library. The reference EigenDA implementation uses Go for the disperser/retriever services and Rust for the node client. Docker and Kubernetes are standard for production deployments.\nQ7: How does operator selection and delegation work?\nA: Stakers browse registered operators in the DelegationManager and delegate their restaked position to an operator of choice. Operators must register with BLS public keys and minimum stake requirements. When selecting an operator, consider: commission rate (5-15%), AVS coverage (which AVSs they validate), historical performance (uptime %), and restaked amount (higher is generally more secure). You can redelegate instantly without unstaking.\nRecommended Hosting \u0026 Infrastructure Before you deploy any of the tools above into production, you’ll need solid infrastructure. Two options dibi8 actually uses and recommends: - DigitalOcean — $200 free credit for 60 days across 14+ global regions.\nHTStack — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com. Affiliate links — they don’t cost you extra and they help keep dibi8.com running.\nGetting Started: Your EigenLayer Checklist # 1. Set up development environment git clone https://github.com/Layr-Labs/eigenlayer-contracts.git cd eigenlayer-contracts \u0026\u0026 forge install # 2. Configure environment cp .env.example .env # Edit .env with your RPC endpoint and private key # 3. Run local testnet with EigenLayer contracts anvil --fork-url $MAINNET_RPC --block-time 12 forge script script/DeployEigenLayer.s.sol --rpc-url http://localhost:8545 --broadcast # 4. Deploy your AVS contracts forge script script/DeployYourAVS.s.sol --rpc-url http://localhost:8545 --broadcast # 5. Start operator node cd operator/ go run main.go --config config.yaml # 6. Monitor operations make telemetry # Opens Grafana dashboard at http://localhost:3000 ```` * * * *Disclaimer: This guide is for educational purposes only. Restaking involves significant smart contract risk, slashing risk, and protocol risk. Always conduct your own research before deploying capital or code. DYOR — Do Your Own Research.* **Ready to start building on EigenLayer?** - Register on [Binance](https://www.bsmkweb.cc/register?ref=DIBI8) to acquire ETH for staking - Explore automated AVS deployment with [Minara](https://minara.ai/r/OSXG4X) - Follow us on Telegram for the latest EigenLayer alpha: **@dibi8crypto** * * * *© 2026 dibi8.com | Built for DeFi developers, traders, and researchers.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"eigenlayer-restaking-defi\", \"datePublished\": \"2026-05-20\", \"dateModified\": \"2026-05-20\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/eigenlayer-restaking-defi\" } } ## Frequently Asked Questions (FAQ) **问：AI代码助手的安全性如何？** 代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。 **问：如何防止AI生成的代码包含漏洞？** 实施SAST扫描、代码审查、依赖审计、以及安全编码培训。 **问：敏感数据如何处理？** 使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。 **问：开源VS闭源AI工具的安全性对比？** 开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。 **问：AI工具的安全审计要点？** 检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。 ",
+  "wordCount" : "3162",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/ai-coding-agents/eigenlayer-restaking-defi/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>15 분</span>&nbsp;|&nbsp;<span>번역:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/eigenlayer-restaking-defi/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/eigenlayer-restaking-defi/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/eigenlayer-restaking-defi/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#what-is-eigenlayer-and-why-does-it-matter" aria-label="What Is EigenLayer and Why Does It Matter?">What Is EigenLayer and Why Does It Matter?</a></li>
+            <li>
+                <a href="#the-restaking-mechanism-how-it-works-under-the-hood" aria-label="The Restaking Mechanism: How It Works Under the Hood">The Restaking Mechanism: How It Works Under the Hood</a></li></ul>
+                
+            <li>
+                <a href="#step-1-stake-eth-on-ethereum-beacon-chain" aria-label="Step 1: Stake ETH on Ethereum beacon chain">Step 1: Stake ETH on Ethereum beacon chain</a></li>
+            <li>
+                <a href="#minimum-32-eth-for-solo-validators-or-use-liquid-staking-tokens-lsts" aria-label="Minimum 32 ETH for solo validators, or use liquid staking tokens (LSTs)">Minimum 32 ETH for solo validators, or use liquid staking tokens (LSTs)</a></li>
+            <li>
+                <a href="#step-2-deposit-staked-eth-into-eigenlayer" aria-label="Step 2: Deposit staked ETH into EigenLayer">Step 2: Deposit staked ETH into EigenLayer</a></li>
+            <li>
+                <a href="#this-can-be-native-eth-or-lsts-like-steth-reth-cbeth" aria-label="This can be native ETH or LSTs like stETH, rETH, cbETH">This can be native ETH or LSTs like stETH, rETH, cbETH</a><ul>
+                    
+            <li>
+                <a href="#actively-validated-services-avs-the-application-layer" aria-label="Actively Validated Services (AVS): The Application Layer">Actively Validated Services (AVS): The Application Layer</a><ul>
+                    
+            <li>
+                <a href="#eigenda-the-flagship-data-availability-avs" aria-label="EigenDA: The Flagship Data Availability AVS">EigenDA: The Flagship Data Availability AVS</a></li></ul>
+            </li>
+            <li>
+                <a href="#building-your-first-avs-complete-developer-setup" aria-label="Building Your First AVS: Complete Developer Setup">Building Your First AVS: Complete Developer Setup</a><ul>
+                    
+            <li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+            <li>
+                <a href="#step-1-avs-contract-architecture" aria-label="Step 1: AVS Contract Architecture">Step 1: AVS Contract Architecture</a></li>
+            <li>
+                <a href="#step-2-operator-node-implementation" aria-label="Step 2: Operator Node Implementation">Step 2: Operator Node Implementation</a></li>
+            <li>
+                <a href="#step-3-aggregator-service" aria-label="Step 3: Aggregator Service">Step 3: Aggregator Service</a></li>
+            <li>
+                <a href="#step-4-deployment-script" aria-label="Step 4: Deployment Script">Step 4: Deployment Script</a></li></ul>
+            </li>
+            <li>
+                <a href="#slashing-conditions-and-risk-management" aria-label="Slashing Conditions and Risk Management">Slashing Conditions and Risk Management</a></li>
+            <li>
+                <a href="#rewards-distribution-mechanism" aria-label="Rewards Distribution Mechanism">Rewards Distribution Mechanism</a></li>
+            <li>
+                <a href="#liquid-restaking-tokens-lrt-integration" aria-label="Liquid Restaking Tokens (LRT) Integration">Liquid Restaking Tokens (LRT) Integration</a></li>
+            <li>
+                <a href="#faq-frequently-asked-questions-about-eigenlayer" aria-label="FAQ: Frequently Asked Questions About EigenLayer">FAQ: Frequently Asked Questions About EigenLayer</a></li>
+            <li>
+                <a href="#recommended-hosting--infrastructure" aria-label="Recommended Hosting &amp; Infrastructure">Recommended Hosting &amp; Infrastructure</a></li>
+            <li>
+                <a href="#getting-started-your-eigenlayer-checklist" aria-label="Getting Started: Your EigenLayer Checklist">Getting Started: Your EigenLayer Checklist</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><blockquote>
+<p><strong>Affiliate Disclosure</strong>: This article contains affiliate links to <a href="https://www.bsmkweb.cc/register?ref=DIBI8">Binance</a> and <a href="https://minara.ai/r/OSXG4X">Minara</a>. We may earn a commission when you register through these links — at no extra cost to you.</p>
+</blockquote>
+<hr>
+<h2 id="what-is-eigenlayer-and-why-does-it-matter">What Is EigenLayer and Why Does It Matter?<a hidden class="anchor" aria-hidden="true" href="#what-is-eigenlayer-and-why-does-it-matter">#</a></h2>
+<p>EigenLayer is the most significant innovation in Ethereum&rsquo;s staking economy since proof-of-stake itself. Launched as a restaking protocol on Ethereum mainnet, EigenLayer enables ETH stakers to reuse their staked ETH to secure additional decentralized services — called Actively Validated Services (AVS) — beyond just Ethereum consensus. As of May 2026, EigenLayer has surpassed <strong>$20 billion in Total Value Locked (TVL)</strong>, making it one of the largest DeFi protocols by secured capital.</p>
+<p>The core idea is elegant yet powerful: instead of every new protocol needing to bootstrap its own validator set from scratch, EigenLayer allows them to <strong>inherit Ethereum&rsquo;s economic security</strong> by leveraging the capital already staked by ETH validators. This concept, known as &ldquo;shared security,&rdquo; dramatically lowers the barrier to entry for new decentralized infrastructure while increasing capital efficiency for stakers who can now earn additional rewards on the same underlying stake.</p>
+<h2 id="the-restaking-mechanism-how-it-works-under-the-hood">The Restaking Mechanism: How It Works Under the Hood<a hidden class="anchor" aria-hidden="true" href="#the-restaking-mechanism-how-it-works-under-the-hood">#</a></h2>
+<p>Restaking on EigenLayer works by allowing Ethereum validators to opt-in to securing additional protocols. When a validator restakes their ETH, they subject themselves to additional slashing conditions defined by each AVS they choose to validate.</p>
+<p>The lifecycle of a restaked position follows these steps: ````bash</p>
+<h1 id="step-1-stake-eth-on-ethereum-beacon-chain">Step 1: Stake ETH on Ethereum beacon chain<a hidden class="anchor" aria-hidden="true" href="#step-1-stake-eth-on-ethereum-beacon-chain">#</a></h1>
+<h1 id="minimum-32-eth-for-solo-validators-or-use-liquid-staking-tokens-lsts">Minimum 32 ETH for solo validators, or use liquid staking tokens (LSTs)<a hidden class="anchor" aria-hidden="true" href="#minimum-32-eth-for-solo-validators-or-use-liquid-staking-tokens-lsts">#</a></h1>
+<h1 id="step-2-deposit-staked-eth-into-eigenlayer">Step 2: Deposit staked ETH into EigenLayer<a hidden class="anchor" aria-hidden="true" href="#step-2-deposit-staked-eth-into-eigenlayer">#</a></h1>
+<h1 id="this-can-be-native-eth-or-lsts-like-steth-reth-cbeth">This can be native ETH or LSTs like stETH, rETH, cbETH<a hidden class="anchor" aria-hidden="true" href="#this-can-be-native-eth-or-lsts-like-steth-reth-cbeth">#</a></h1>
+<p>curl -X POST <a href="https://api.eigenlayer.com/restake">https://api.eigenlayer.com/restake</a> <br>
+-H &ldquo;Content-Type: application/json&rdquo; <br>
+-d &lsquo;{
+&ldquo;strategy&rdquo;: &ldquo;0x93c4b944&hellip;&rdquo;,
+&ldquo;amount&rdquo;: &ldquo;1000000000000000000&rdquo;,
+&ldquo;staker&rdquo;: &ldquo;0xYourAddress&hellip;&rdquo;
+}&rsquo;</p>
+<pre tabindex="0"><code>
+`````solidity
+// Step 3: EigenLayer Strategy Manager deposits into underlying strategy
+// File: StrategyManager.sol (simplified)
+function depositIntoStrategy(
+    IStrategy strategy,
+    IERC20 token,
+    uint256 amount
+) external returns (uint256 shares) {
+    // Transfer tokens from staker to strategy
+    token.safeTransferFrom(msg.sender, address(strategy), amount);
+    // Strategy deposits and returns shares
+    shares = strategy.deposit(token, amount);
+    // Record shares for the staker
+    _addShares(msg.sender, strategy, shares);
+    return shares;
+}
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// Step 4: Staker delegates to an operator
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Operators run AVS validation software
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">delegateTo</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">address</span> operator,
+</span></span><span style="display:flex;"><span>    SignatureWithExpiry <span style="color:#66d9ef">memory</span> stakerSignatureAndExpiry,
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">bytes32</span> approverSignatureAndExpiry
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>    require(isOperator(operator), <span style="color:#e6db74">&#34;Operator not registered&#34;</span>);
+</span></span><span style="display:flex;"><span>    delegationManager.delegateTo(
+</span></span><span style="display:flex;"><span>        operator, 
+</span></span><span style="display:flex;"><span>        stakerSignatureAndExpiry, 
+</span></span><span style="display:flex;"><span>        approverSignatureAndExpiry
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// Step 5: Operator opts into AVS slashing conditions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// AVS contracts define custom validation and slashing logic
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IAVSRegistry</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">registerOperatorToAVS</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">address</span> operator,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes32</span> salt,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> expiry,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes</span> <span style="color:#66d9ef">memory</span> signature
+</span></span><span style="display:flex;"><span>    ) <span style="color:#66d9ef">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Operator opts into EigenDA AVS
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">optInToEigenDA</span>(<span style="color:#66d9ef">bytes</span> <span style="color:#66d9ef">memory</span> blsPublicKey) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>    eigenDARegistry.registerOperatorToAVS(
+</span></span><span style="display:flex;"><span>        msg.sender,
+</span></span><span style="display:flex;"><span>        keccak256(abi.encodePacked(block.timestamp)),
+</span></span><span style="display:flex;"><span>        block.timestamp <span style="color:#f92672">+</span> <span style="color:#ae81ff">7</span> <span style="color:#66d9ef">days</span>,
+</span></span><span style="display:flex;"><span>        blsSignature
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="actively-validated-services-avs-the-application-layer">Actively Validated Services (AVS): The Application Layer<a hidden class="anchor" aria-hidden="true" href="#actively-validated-services-avs-the-application-layer">#</a></h2>
+<p>AVSs are the protocols and services that leverage EigenLayer&rsquo;s shared security. They span a wide range of use cases from data availability to oracles, bridges, sequencers, and more. Each AVS defines its own validation logic, rewards structure, and slashing conditions.</p>
+<h3 id="eigenda-the-flagship-data-availability-avs">EigenDA: The Flagship Data Availability AVS<a hidden class="anchor" aria-hidden="true" href="#eigenda-the-flagship-data-availability-avs">#</a></h3>
+<p>EigenDA is the most prominent AVS built on EigenLayer. It provides a high-throughput, low-cost data availability solution for Ethereum rollups, serving as a decentralized alternative to centralized data availability solutions.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// EigenDA disperser client - dispersing a blob to EigenDA</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">disperser</span> <span style="color:#e6db74">&#34;github.com/Layr-Labs/eigenda/api/grpc/disperser&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;google.golang.org/grpc&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;google.golang.org/grpc/credentials/insecure&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">disperseBlob</span>(<span style="color:#a6e22e">data</span> []<span style="color:#66d9ef">byte</span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">disperser</span>.<span style="color:#a6e22e">BlobStatus</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">conn</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">Dial</span>(<span style="color:#e6db74">&#34;disperser.eigenda.io:443&#34;</span>, 
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">grpc</span>.<span style="color:#a6e22e">WithTransportCredentials</span>(<span style="color:#a6e22e">insecure</span>.<span style="color:#a6e22e">NewCredentials</span>()))
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">err</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">conn</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">client</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">disperser</span>.<span style="color:#a6e22e">NewDisperserClient</span>(<span style="color:#a6e22e">conn</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">cancel</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">WithTimeout</span>(<span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Background</span>(), <span style="color:#ae81ff">30</span><span style="color:#f92672">*</span><span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">cancel</span>()
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Disperse blob with custom security parameters</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">reply</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">DisperseBlob</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">disperser</span>.<span style="color:#a6e22e">DisperseBlobRequest</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Data</span>: <span style="color:#a6e22e">data</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">SecurityParams</span>: []<span style="color:#f92672">*</span><span style="color:#a6e22e">disperser</span>.<span style="color:#a6e22e">SecurityParam</span>{
+</span></span><span style="display:flex;"><span>            {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">QuorumId</span>: <span style="color:#ae81ff">0</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">AdversaryThreshold</span>: <span style="color:#ae81ff">25</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">QuorumThreshold</span>: <span style="color:#ae81ff">50</span>,
+</span></span><span style="display:flex;"><span>            },
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;disperse failed: %w&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">reply</span>.<span style="color:#a6e22e">GetResult</span>(), <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># EigenDA retrieval client - verifying blob availability</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> asyncio
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> grpc
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> eigenda.api <span style="color:#f92672">import</span> retriever_pb2, retriever_pb2_grpc
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">retrieve_blob</span>(batch_header_hash bytes, blob_index int): <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">with</span> grpc<span style="color:#f92672">.</span>aio<span style="color:#f92672">.</span>insecure_channel(<span style="color:#e6db74">&#39;retriever.eigenda.io:443&#39;</span>) <span style="color:#66d9ef">as</span> channel: stub <span style="color:#f92672">=</span> retriever_pb2_grpc<span style="color:#f92672">.</span>RetrieverStub(channel)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        request <span style="color:#f92672">=</span> retriever_pb2<span style="color:#f92672">.</span>RetrieveBlobRequest(
+</span></span><span style="display:flex;"><span>            batch_header_hash<span style="color:#f92672">=</span>batch_header_hash,
+</span></span><span style="display:flex;"><span>            blob_index<span style="color:#f92672">=</span>blob_index
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> stub<span style="color:#f92672">.</span>RetrieveBlob(request)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Verify the blob against the claimed commitment</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">assert</span> verify_kzg_proof(response<span style="color:#f92672">.</span>blob, response<span style="color:#f92672">.</span>kzg_proof), \
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;KZG proof verification failed&#34;</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>blob
+</span></span></code></pre></div><h2 id="building-your-first-avs-complete-developer-setup">Building Your First AVS: Complete Developer Setup<a hidden class="anchor" aria-hidden="true" href="#building-your-first-avs-complete-developer-setup">#</a></h2>
+<p>This section provides a step-by-step guide to building an AVS on EigenLayer. We&rsquo;ll create a simple price oracle AVS that demonstrates the key patterns.</p>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Required tools</span>
+</span></span><span style="display:flex;"><span>node --version  <span style="color:#75715e"># &gt;= 18.0.0</span>
+</span></span><span style="display:flex;"><span>foundry --version  <span style="color:#75715e"># Forge 0.2.0+</span>
+</span></span><span style="display:flex;"><span>go version  <span style="color:#75715e"># &gt;= 1.21</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clone EigenLayer middleware and contracts</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
+</span></span><span style="display:flex;"><span>git clone https://github.com/Layr-Labs/eigenlayer-middleware.git
+</span></span><span style="display:flex;"><span>cd eigenlayer-middleware <span style="color:#f92672">&amp;&amp;</span> forge install <span style="color:#f92672">&amp;&amp;</span> cd ..
+</span></span></code></pre></div><h3 id="step-1-avs-contract-architecture">Step 1: AVS Contract Architecture<a hidden class="anchor" aria-hidden="true" href="#step-1-avs-contract-architecture">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// SPDX-License-Identifier: MIT
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">19</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;@eigenlayer-middleware/BLSSignatureChecker.sol&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;@eigenlayer-middleware/OperatorStateRetriever.sol&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;./IPriceOracleAVS.sol&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">PriceOracleAVS</span> <span style="color:#66d9ef">is</span> BLSSignatureChecker, OperatorStateRetriever {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Price data submitted by operators
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">PriceResponse</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> price;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint32</span> blockNumber;
+</span></span><span style="display:flex;"><span>        BN254.G1Point signature;
+</span></span><span style="display:flex;"><span>        BN254.G2Point pubkeyG2;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Aggregated price with quorum metadata
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">AggregatedPriceUpdate</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> aggregatedPrice;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint32</span> quorumBlockNumber;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes</span> metadata;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Track latest confirmed prices per asset
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">bytes32</span> <span style="color:#f92672">=&gt;</span> AggregatedPriceUpdate) <span style="color:#66d9ef">public</span> latestPrices;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">event</span> <span style="color:#a6e22e">PriceUpdated</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes32</span> <span style="color:#66d9ef">indexed</span> assetId,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> price,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint32</span> quorumBlockNumber
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Restaking integration
+</span></span></span><span style="display:flex;"><span>    IStakeRegistry <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">immutable</span> stakeRegistry;
+</span></span><span style="display:flex;"><span>    IRegistryCoordinator <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">immutable</span> registryCoordinator;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">constructor</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">address</span> _stakeRegistry,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">address</span> _registryCoordinator,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">address</span> _blsSignatureChecker
+</span></span><span style="display:flex;"><span>    ) BLSSignatureChecker(_blsSignatureChecker) {
+</span></span><span style="display:flex;"><span>        stakeRegistry <span style="color:#f92672">=</span> IStakeRegistry(_stakeRegistry);
+</span></span><span style="display:flex;"><span>        registryRegistryCoordinator <span style="color:#f92672">=</span> IRegistryCoordinator(_registryCoordinator);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">/// @notice Submit aggregated price response with BLS quorum certificate
+</span></span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">confirmPriceUpdate</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes32</span> assetId,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> proposedPrice,
+</span></span><span style="display:flex;"><span>        QuorumStakeTotals <span style="color:#66d9ef">memory</span> quorumStakeTotals,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes32</span> apkHash,
+</span></span><span style="display:flex;"><span>        BN254.G1Point <span style="color:#66d9ef">memory</span> quorumApkIndices,
+</span></span><span style="display:flex;"><span>        BN254.G2Point <span style="color:#66d9ef">memory</span> nonSignerStakesAndSignature
+</span></span><span style="display:flex;"><span>    ) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Verify BLS quorum signature
+</span></span></span><span style="display:flex;"><span>        require(
+</span></span><span style="display:flex;"><span>            checkSignatures(
+</span></span><span style="display:flex;"><span>                keccak256(abi.encodePacked(assetId, proposedPrice)),
+</span></span><span style="display:flex;"><span>                quorumStakeTotals,
+</span></span><span style="display:flex;"><span>                apkHash,
+</span></span><span style="display:flex;"><span>                quorumApkIndices,
+</span></span><span style="display:flex;"><span>                nonSignerStakesAndSignature
+</span></span><span style="display:flex;"><span>            ),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Quorum verification failed&#34;</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Store aggregated price
+</span></span></span><span style="display:flex;"><span>        latestPrices[assetId] <span style="color:#f92672">=</span> AggregatedPriceUpdate({
+</span></span><span style="display:flex;"><span>            aggregatedPrice<span style="color:#f92672">:</span> proposedPrice,
+</span></span><span style="display:flex;"><span>            quorumBlockNumber<span style="color:#f92672">:</span> <span style="color:#66d9ef">uint32</span>(block.number),
+</span></span><span style="display:flex;"><span>            metadata<span style="color:#f92672">:</span> abi.encode(quorumStakeTotals)
+</span></span><span style="display:flex;"><span>        });
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        emit PriceUpdated(assetId, proposedPrice, <span style="color:#66d9ef">uint32</span>(block.number));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="step-2-operator-node-implementation">Step 2: Operator Node Implementation<a hidden class="anchor" aria-hidden="true" href="#step-2-operator-node-implementation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// operator/price_task_generator.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">operator</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;crypto/sha256&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;encoding/json&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;math/big&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/Layr-Labs/eigensdk-go/chainio/clients&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/Layr-Labs/eigensdk-go/crypto/bls&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/Layr-Labs/eigensdk-go/logging&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PriceTaskGenerator</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logger</span>            <span style="color:#a6e22e">logging</span>.<span style="color:#a6e22e">Logger</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ethClient</span>         <span style="color:#f92672">*</span><span style="color:#a6e22e">clients</span>.<span style="color:#a6e22e">EthereumClient</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">blsKeypair</span>        <span style="color:#f92672">*</span><span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">KeyPair</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">priceOracleAVS</span>    <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceOracleAVSClient</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aggregatorRpcUrl</span>  <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">NewPriceTaskGenerator</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logger</span> <span style="color:#a6e22e">logging</span>.<span style="color:#a6e22e">Logger</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ethClient</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">clients</span>.<span style="color:#a6e22e">EthereumClient</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">blsKeypair</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">KeyPair</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aggregatorRpcUrl</span> <span style="color:#66d9ef">string</span>,
+</span></span><span style="display:flex;"><span>) <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceTaskGenerator</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">PriceTaskGenerator</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">logger</span>: <span style="color:#a6e22e">logger</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">ethClient</span>: <span style="color:#a6e22e">ethClient</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">blsKeypair</span>: <span style="color:#a6e22e">blsKeypair</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">aggregatorRpcUrl</span>: <span style="color:#a6e22e">aggregatorRpcUrl</span>,
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Generate and sign price response for a given task</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceTaskGenerator</span>) <span style="color:#a6e22e">ProcessNewTask</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">task</span> <span style="color:#a6e22e">PriceOracleTask</span>,
+</span></span><span style="display:flex;"><span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">SignedPriceResponse</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Fetch price from multiple CEX/DEX sources</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">price</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">fetchAggregatedPrice</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">AssetId</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;fetch price failed: %w&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Construct response digest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">responseDigest</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">calculateResponseDigest</span>(<span style="color:#a6e22e">task</span>, <span style="color:#a6e22e">price</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Sign with BLS12-381 keypair</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">signature</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">blsKeypair</span>.<span style="color:#a6e22e">Sign</span>(<span style="color:#a6e22e">responseDigest</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">signedResponse</span> <span style="color:#f92672">:=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">SignedPriceResponse</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">TaskId</span>: <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">TaskId</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">AssetId</span>: <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">AssetId</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Price</span>: <span style="color:#a6e22e">price</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">BlockNumber</span>: <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">CreationBlockNumber</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Signature</span>: <span style="color:#a6e22e">signature</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">PubkeyG1</span>: <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">blsKeypair</span>.<span style="color:#a6e22e">GetPubKeyG1</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">PubkeyG2</span>: <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">blsKeypair</span>.<span style="color:#a6e22e">GetPubKeyG2</span>(),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Info</span>(<span style="color:#e6db74">&#34;Signed price response&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;asset&#34;</span>, <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">AssetId</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;price&#34;</span>, <span style="color:#a6e22e">price</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;taskId&#34;</span>, <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">TaskId</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">signedResponse</span>, <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// fetchAggregatedPrice queries multiple sources and returns median</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceTaskGenerator</span>) <span style="color:#a6e22e">fetchAggregatedPrice</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assetId</span> <span style="color:#66d9ef">string</span>,
+</span></span><span style="display:flex;"><span>) (<span style="color:#f92672">*</span><span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Int</span>, <span style="color:#66d9ef">error</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sources</span> <span style="color:#f92672">:=</span> []<span style="color:#a6e22e">PriceSource</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">NewBinanceSource</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">NewCoinbaseSource</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">NewChainlinkSource</span>(),
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">prices</span> []<span style="color:#f92672">*</span><span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Int</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">source</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">sources</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">price</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">GetPrice</span>(<span style="color:#a6e22e">ctx</span>, <span style="color:#a6e22e">assetId</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Warn</span>(<span style="color:#e6db74">&#34;Price source failed&#34;</span>, <span style="color:#e6db74">&#34;source&#34;</span>, <span style="color:#a6e22e">source</span>.<span style="color:#a6e22e">Name</span>(), <span style="color:#e6db74">&#34;err&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">prices</span> = append(<span style="color:#a6e22e">prices</span>, <span style="color:#a6e22e">price</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">prices</span>) &lt; <span style="color:#ae81ff">2</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;insufficient price sources: got %d, need 2+&#34;</span>, len(<span style="color:#a6e22e">prices</span>))
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">calculateMedian</span>(<span style="color:#a6e22e">prices</span>), <span style="color:#66d9ef">nil</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">g</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceTaskGenerator</span>) <span style="color:#a6e22e">calculateResponseDigest</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">task</span> <span style="color:#a6e22e">PriceOracleTask</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">price</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Int</span>,
+</span></span><span style="display:flex;"><span>) [<span style="color:#ae81ff">32</span>]<span style="color:#66d9ef">byte</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Sprintf</span>(<span style="color:#e6db74">&#34;%s%s%s%d&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">AssetId</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">price</span>.<span style="color:#a6e22e">String</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">g</span>.<span style="color:#a6e22e">ethClient</span>.<span style="color:#a6e22e">GetAccountAddress</span>().<span style="color:#a6e22e">Hex</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">CreationBlockNumber</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sha256</span>.<span style="color:#a6e22e">Sum256</span>([]byte(<span style="color:#a6e22e">data</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="step-3-aggregator-service">Step 3: Aggregator Service<a hidden class="anchor" aria-hidden="true" href="#step-3-aggregator-service">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// aggregator/aggregator.go</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">aggregator</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;sync&#34;</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/Layr-Labs/eigensdk-go/logging&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;github.com/Layr-Labs/eigensdk-go/types&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Aggregator collects signed responses and builds quorum certificates</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">PriceAggregator</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">logger</span>           <span style="color:#a6e22e">logging</span>.<span style="color:#a6e22e">Logger</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">avsRegistry</span>      <span style="color:#a6e22e">AVSRegistryReader</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">priceOracleAVS</span>   <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceOracleAVSContract</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Task tracking</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tasks</span>        <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">uint32</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">TaskState</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">tasksMu</span>      <span style="color:#a6e22e">sync</span>.<span style="color:#a6e22e">RWMutex</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Quorum configuration</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">quorumThresholdPercentage</span> <span style="color:#66d9ef">uint32</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">aggregatePubkeyTimeout</span>    <span style="color:#66d9ef">int64</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">TaskState</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Task</span>              <span style="color:#a6e22e">PriceOracleTask</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Responses</span>         <span style="color:#66d9ef">map</span>[<span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">Bytes32</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">SignedPriceResponse</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">AggregatedResponses</span> <span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">uint8</span>]<span style="color:#f92672">*</span><span style="color:#a6e22e">AggregatedPriceResponse</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Status</span>            <span style="color:#a6e22e">TaskStatus</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceAggregator</span>) <span style="color:#a6e22e">ProcessSignedPriceResponse</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">response</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">SignedPriceResponse</span>,
+</span></span><span style="display:flex;"><span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">tasksMu</span>.<span style="color:#a6e22e">Lock</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">tasksMu</span>.<span style="color:#a6e22e">Unlock</span>()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">taskState</span>, <span style="color:#a6e22e">exists</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">tasks</span>[<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">TaskId</span>]
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> !<span style="color:#a6e22e">exists</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;task %d not found&#34;</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">TaskId</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">taskState</span>.<span style="color:#a6e22e">Status</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">TaskStatusPending</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;task %d already processed&#34;</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">TaskId</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Verify operator is registered and staked</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">operatorStake</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">avsRegistry</span>.<span style="color:#a6e22e">GetOperatorStake</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">PubkeyG1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">TaskId</span>,
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;stake check failed: %w&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">operatorStake</span>.<span style="color:#a6e22e">IsZero</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Errorf</span>(<span style="color:#e6db74">&#34;operator has no stake&#34;</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Store response</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">responseKey</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">types</span>.<span style="color:#a6e22e">Bytes32</span>(<span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">Signature</span>.<span style="color:#a6e22e">Hash</span>())
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">taskState</span>.<span style="color:#a6e22e">Responses</span>[<span style="color:#a6e22e">responseKey</span>] = <span style="color:#a6e22e">response</span>
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">logger</span>.<span style="color:#a6e22e">Info</span>(<span style="color:#e6db74">&#34;Received signed response&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;taskId&#34;</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">TaskId</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;operator&#34;</span>, <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">PubkeyG1</span>.<span style="color:#a6e22e">String</span>()[:<span style="color:#ae81ff">20</span>],
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Attempt aggregation</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">tryAggregateResponses</span>(<span style="color:#a6e22e">taskState</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">a</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceAggregator</span>) <span style="color:#a6e22e">tryAggregateResponses</span>(<span style="color:#a6e22e">state</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">TaskState</span>) <span style="color:#66d9ef">error</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Group responses by price value (within tolerance)</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">priceGroups</span> <span style="color:#f92672">:=</span> make(<span style="color:#66d9ef">map</span>[<span style="color:#66d9ef">string</span>][]<span style="color:#f92672">*</span><span style="color:#a6e22e">SignedPriceResponse</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">Responses</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">key</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Price</span>.<span style="color:#a6e22e">String</span>()
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">priceGroups</span>[<span style="color:#a6e22e">key</span>] = append(<span style="color:#a6e22e">priceGroups</span>[<span style="color:#a6e22e">key</span>], <span style="color:#a6e22e">resp</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Find group with sufficient stake</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">group</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">priceGroups</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">totalStake</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">signatures</span> []<span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">Signature</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pubkeysG1</span> []<span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">G1Point</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">pubkeysG2</span> []<span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">G2Point</span>
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">group</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">stake</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">avsRegistry</span>.<span style="color:#a6e22e">GetOperatorStake</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">PubkeyG1</span>, <span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">Task</span>.<span style="color:#a6e22e">TaskId</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">totalStake</span>.<span style="color:#a6e22e">Add</span>(<span style="color:#a6e22e">totalStake</span>, <span style="color:#a6e22e">stake</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">signatures</span> = append(<span style="color:#a6e22e">signatures</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Signature</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">pubkeysG1</span> = append(<span style="color:#a6e22e">pubkeysG1</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">PubkeyG1</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">pubkeysG2</span> = append(<span style="color:#a6e22e">pubkeysG2</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">PubkeyG2</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Check if quorum reached</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">quorumStake</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">avsRegistry</span>.<span style="color:#a6e22e">GetQuorumStake</span>(<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">Task</span>.<span style="color:#a6e22e">TaskId</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">threshold</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Int</span>).<span style="color:#a6e22e">Mul</span>(<span style="color:#a6e22e">quorumStake</span>, <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(int64(<span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">quorumThresholdPercentage</span>)))
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">threshold</span>.<span style="color:#a6e22e">Div</span>(<span style="color:#a6e22e">threshold</span>, <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewInt</span>(<span style="color:#ae81ff">100</span>))
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">totalStake</span>.<span style="color:#a6e22e">Cmp</span>(<span style="color:#a6e22e">threshold</span>) <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Aggregate BLS signatures</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">aggSig</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">AggregateSignatures</span>(<span style="color:#a6e22e">signatures</span>)
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">aggPubkeyG1</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">bls</span>.<span style="color:#a6e22e">AggregatePubkeysG1</span>(<span style="color:#a6e22e">pubkeysG1</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#75715e">// Send to chain</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">sendAggregatedResponse</span>(<span style="color:#a6e22e">state</span>.<span style="color:#a6e22e">Task</span>, <span style="color:#a6e22e">group</span>[<span style="color:#ae81ff">0</span>].<span style="color:#a6e22e">Price</span>, <span style="color:#a6e22e">aggSig</span>, <span style="color:#a6e22e">aggPubkeyG1</span>, <span style="color:#a6e22e">pubkeysG2</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">nil</span> <span style="color:#75715e">// Not enough quorum yet</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="step-4-deployment-script">Step 4: Deployment Script<a hidden class="anchor" aria-hidden="true" href="#step-4-deployment-script">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># deploy_avs.sh - Deploy PriceOracle AVS to mainnet</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>set -e
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configuration</span>
+</span></span><span style="display:flex;"><span>export PRIVATE_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>PRIVATE_KEY:?<span style="color:#e6db74">&#34;PRIVATE_KEY required&#34;</span><span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>export RPC_URL<span style="color:#f92672">=</span><span style="color:#e6db74">${</span>RPC_URL<span style="color:#66d9ef">:-</span><span style="color:#e6db74">&#34;https://eth-mainnet.g.alchemy.com/v2/</span>$ALCHEMY_KEY<span style="color:#e6db74">&#34;</span><span style="color:#e6db74">}</span>
+</span></span><span style="display:flex;"><span>export EIGENLAYER_DEPLOYMENT<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat eigenlayer_deployment_block.json<span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy registry contracts</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;=== Deploying Registry Coordinator ===&#34;</span>
+</span></span><span style="display:flex;"><span>forge script script/DeployPriceOracleAVS.s.sol:DeployRegistry <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --rpc-url $RPC_URL <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --private-key $PRIVATE_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --broadcast <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --verify <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    -vvvv
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>REGISTRY_COORDINATOR<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat broadcast/DeployPriceOracleAVS.s.sol/1/run-latest.json | jq -r <span style="color:#e6db74">&#39;.transactions[0].contractAddress&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy stake registry</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;=== Deploying Stake Registry ===&#34;</span>
+</span></span><span style="display:flex;"><span>forge script script/DeployPriceOracleAVS.s.sol:DeployStakeRegistry <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --rpc-url $RPC_URL <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --private-key $PRIVATE_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --broadcast <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --verify <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --sig <span style="color:#e6db74">&#34;run(address)&#34;</span> $REGISTRY_COORDINATOR
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>STAKE_REGISTRY<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat broadcast/DeployPriceOracleAVS.s.sol/1/run-latest.json | jq -r <span style="color:#e6db74">&#39;.transactions[0].contractAddress&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Deploy main AVS contract</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;=== Deploying PriceOracle AVS ===&#34;</span>
+</span></span><span style="display:flex;"><span>forge script script/DeployPriceOracleAVS.s.sol:DeployAVS <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --rpc-url $RPC_URL <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --private-key $PRIVATE_KEY <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --broadcast <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --verify <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    --sig <span style="color:#e6db74">&#34;run(address,address)&#34;</span> $STAKE_REGISTRY $REGISTRY_COORDINATOR
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>AVS_CONTRACT<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>cat broadcast/DeployPriceOracleAVS.s.sol/1/run-latest.json | jq -r <span style="color:#e6db74">&#39;.transactions[0].contractAddress&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;=== Deployment Complete ===&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Registry Coordinator: </span>$REGISTRY_COORDINATOR<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;Stake Registry: </span>$STAKE_REGISTRY<span style="color:#e6db74">&#34;</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;PriceOracle AVS: </span>$AVS_CONTRACT<span style="color:#e6db74">&#34;</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// script/DeployPriceOracleAVS.s.sol
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// SPDX-License-Identifier: MIT
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">pragma solidity</span> <span style="color:#f92672">^</span><span style="color:#ae81ff">0</span>.<span style="color:#ae81ff">8</span>.<span style="color:#ae81ff">19</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;forge-std/Script.sol&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> <span style="color:#e6db74">&#34;../src/PriceOracleAVS.sol&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">DeployRegistry</span> <span style="color:#66d9ef">is</span> Script {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">run</span>() <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>        vm.startBroadcast();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        RegistryCoordinator registryCoordinator <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> RegistryCoordinator(
+</span></span><span style="display:flex;"><span>            IStakeRegistry(<span style="color:#66d9ef">address</span>(<span style="color:#ae81ff">0</span>)), <span style="color:#75715e">// Will be updated
+</span></span></span><span style="display:flex;"><span>            IBLSApkRegistry(<span style="color:#66d9ef">address</span>(<span style="color:#ae81ff">0</span>)), <span style="color:#75715e">// Will be updated
+</span></span></span><span style="display:flex;"><span>            IIndexRegistry(<span style="color:#66d9ef">address</span>(<span style="color:#ae81ff">0</span>)),  <span style="color:#75715e">// Will be updated
+</span></span></span><span style="display:flex;"><span>            ISocketRegistry(<span style="color:#66d9ef">address</span>(<span style="color:#ae81ff">0</span>))  <span style="color:#75715e">// Will be updated
+</span></span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        vm.stopBroadcast();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#e6db74">&#34;RegistryCoordinator deployed at:&#34;</span>, <span style="color:#66d9ef">address</span>(registryCoordinator));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">DeployStakeRegistry</span> <span style="color:#66d9ef">is</span> Script {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">run</span>(<span style="color:#66d9ef">address</span> registryCoordinator) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>        vm.startBroadcast();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        StakeRegistry stakeRegistry <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> StakeRegistry(
+</span></span><span style="display:flex;"><span>            IRegistryCoordinator(registryCoordinator),
+</span></span><span style="display:flex;"><span>            IDelegationManager(EIGENLAYER_DELEGATION_MANAGER)
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        vm.stopBroadcast();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#e6db74">&#34;StakeRegistry deployed at:&#34;</span>, <span style="color:#66d9ef">address</span>(stakeRegistry));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">DeployAVS</span> <span style="color:#66d9ef">is</span> Script {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">run</span>(<span style="color:#66d9ef">address</span> stakeRegistry, <span style="color:#66d9ef">address</span> registryCoordinator) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>        vm.startBroadcast();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        PriceOracleAVS priceOracleAVS <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PriceOracleAVS(
+</span></span><span style="display:flex;"><span>            stakeRegistry,
+</span></span><span style="display:flex;"><span>            registryCoordinator,
+</span></span><span style="display:flex;"><span>            EIGENLAYER_BLS_SIGNATURE_CHECKER
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        vm.stopBroadcast();
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        console.log(<span style="color:#e6db74">&#34;PriceOracleAVS deployed at:&#34;</span>, <span style="color:#66d9ef">address</span>(priceOracleAVS));
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="slashing-conditions-and-risk-management">Slashing Conditions and Risk Management<a hidden class="anchor" aria-hidden="true" href="#slashing-conditions-and-risk-management">#</a></h2>
+<p>One of the critical aspects of EigenLayer is the slashing mechanism. When operators opt into an AVS, they agree to additional slashing conditions beyond those of Ethereum consensus.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// Custom slashing condition for PriceOracle AVS
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ISlasher</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">freezeOperator</span>(<span style="color:#66d9ef">address</span> operator) <span style="color:#66d9ef">external</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">resetFrozenStatus</span>(<span style="color:#66d9ef">address</span> operator) <span style="color:#66d9ef">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">PriceOracleSlashing</span> {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">SlashingRecord</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">bytes32</span> reason;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint32</span> blockNumber;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> stakeAmount;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">address</span> <span style="color:#f92672">=&gt;</span> SlashingRecord[]) <span style="color:#66d9ef">public</span> slashingHistory;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Slash conditions: // 1. Signing divergent prices for the same task
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 2. Failing to respond within response window
+</span></span></span><span style="display:flex;"><span>    <span style="color:#75715e">// 3. Signing prices beyond deviation threshold
+</span></span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">slashDivergentResponse</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">address</span> operator,
+</span></span><span style="display:flex;"><span>        PriceResponse <span style="color:#66d9ef">memory</span> response1,
+</span></span><span style="display:flex;"><span>        PriceResponse <span style="color:#66d9ef">memory</span> response2,
+</span></span><span style="display:flex;"><span>        BN254.G1Point <span style="color:#66d9ef">memory</span> signature1,
+</span></span><span style="display:flex;"><span>        BN254.G1Point <span style="color:#66d9ef">memory</span> signature2
+</span></span><span style="display:flex;"><span>    ) <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>        require(
+</span></span><span style="display:flex;"><span>            verifyDoubleSigning(response1, response2, signature1, signature2),
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Not a valid double signing event&#34;</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Calculate slash amount (100% of AVS-specific stake)
+</span></span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> slashAmount <span style="color:#f92672">=</span> getAVSStake(operator);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Record slashing
+</span></span></span><span style="display:flex;"><span>        slashingHistory[operator].push(SlashingRecord({
+</span></span><span style="display:flex;"><span>            reason<span style="color:#f92672">:</span> keccak256(<span style="color:#e6db74">&#34;DIVERGENT_RESPONSE&#34;</span>),
+</span></span><span style="display:flex;"><span>            blockNumber<span style="color:#f92672">:</span> <span style="color:#66d9ef">uint32</span>(block.number),
+</span></span><span style="display:flex;"><span>            stakeAmount<span style="color:#f92672">:</span> slashAmount
+</span></span><span style="display:flex;"><span>        }));
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">// Execute slash through EigenLayer
+</span></span></span><span style="display:flex;"><span>        delegationManager.queueWithdrawals(
+</span></span><span style="display:flex;"><span>            operator,
+</span></span><span style="display:flex;"><span>            strategies,
+</span></span><span style="display:flex;"><span>            shares <span style="color:#75715e">// reduced by slash amount
+</span></span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        emit OperatorSlashed(operator, slashAmount, <span style="color:#e6db74">&#34;DIVERGENT_RESPONSE&#34;</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#75715e">// Monitoring operator health and detecting slashable events</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">monitoring</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;context&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;math/big&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;time&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">SlashMonitor</span> <span style="color:#66d9ef">struct</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ethClient</span>       <span style="color:#f92672">*</span><span style="color:#a6e22e">ethclient</span>.<span style="color:#a6e22e">Client</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">avsContract</span>     <span style="color:#f92672">*</span><span style="color:#a6e22e">PriceOracleAVS</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">alertWebhook</span>    <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">SlashMonitor</span>) <span style="color:#a6e22e">StartMonitoring</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ticker</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">NewTicker</span>(<span style="color:#ae81ff">12</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">time</span>.<span style="color:#a6e22e">Second</span>) <span style="color:#75715e">// Ethereum block time</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">defer</span> <span style="color:#a6e22e">ticker</span>.<span style="color:#a6e22e">Stop</span>()
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">select</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ctx</span>.<span style="color:#a6e22e">Done</span>(): <span style="color:#66d9ef">return</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">case</span> <span style="color:#f92672">&lt;-</span><span style="color:#a6e22e">ticker</span>.<span style="color:#a6e22e">C</span>: <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">checkForSlashableEvents</span>(<span style="color:#a6e22e">ctx</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> (<span style="color:#a6e22e">m</span> <span style="color:#f92672">*</span><span style="color:#a6e22e">SlashMonitor</span>) <span style="color:#a6e22e">checkForSlashableEvents</span>(<span style="color:#a6e22e">ctx</span> <span style="color:#a6e22e">context</span>.<span style="color:#a6e22e">Context</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Check for price deviations &gt; 5% from median</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">latestTasks</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">avsContract</span>.<span style="color:#a6e22e">GetPendingTasks</span>(<span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">task</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">latestTasks</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">responses</span>, <span style="color:#a6e22e">_</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">avsContract</span>.<span style="color:#a6e22e">GetTaskResponses</span>(<span style="color:#66d9ef">nil</span>, <span style="color:#a6e22e">task</span>.<span style="color:#a6e22e">TaskId</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">medianPrice</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">calculateMedianPrice</span>(<span style="color:#a6e22e">responses</span>)
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">resp</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">responses</span> {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">deviation</span> <span style="color:#f92672">:=</span> new(<span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Float</span>).<span style="color:#a6e22e">Quo</span>(
+</span></span><span style="display:flex;"><span>                new(<span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">Float</span>).<span style="color:#a6e22e">Sub</span>(<span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Price</span>, <span style="color:#a6e22e">medianPrice</span>),
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">medianPrice</span>,
+</span></span><span style="display:flex;"><span>            )
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">deviation</span>.<span style="color:#a6e22e">Abs</span>(<span style="color:#a6e22e">deviation</span>)
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">threshold</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">big</span>.<span style="color:#a6e22e">NewFloat</span>(<span style="color:#ae81ff">0.05</span>) <span style="color:#75715e">// 5% threshold</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">deviation</span>.<span style="color:#a6e22e">Cmp</span>(<span style="color:#a6e22e">threshold</span>) &gt; <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">m</span>.<span style="color:#a6e22e">sendAlert</span>(<span style="color:#e6db74">&#34;PRICE_DEVIATION&#34;</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Operator</span>, <span style="color:#a6e22e">task</span>, <span style="color:#a6e22e">resp</span>.<span style="color:#a6e22e">Price</span>)
+</span></span><span style="display:flex;"><span>            }
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="rewards-distribution-mechanism">Rewards Distribution Mechanism<a hidden class="anchor" aria-hidden="true" href="#rewards-distribution-mechanism">#</a></h2>
+<p>EigenLayer&rsquo;s rewards distribution allows AVS developers to incentivize operators for their validation work.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-solidity" data-lang="solidity"><span style="display:flex;"><span><span style="color:#75715e">// Rewards distribution contract for PriceOracle AVS
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">contract</span> <span style="color:#a6e22e">PriceOracleRewards</span> <span style="color:#66d9ef">is</span> IRewardsCoordinator {
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">using</span> SafeERC20 <span style="color:#66d9ef">for</span> IERC20;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    IERC20 <span style="color:#66d9ef">public</span> rewardToken;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">uint256</span> <span style="color:#66d9ef">public</span> rewardsPerBlock;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">OperatorRewardInfo</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> accumulatedRewards;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> lastUpdateBlock;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> tasksCompleted;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">mapping</span>(<span style="color:#66d9ef">address</span> <span style="color:#f92672">=&gt;</span> OperatorRewardInfo) <span style="color:#66d9ef">public</span> operatorRewards;
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">event</span> <span style="color:#a6e22e">RewardsClaimed</span>(<span style="color:#66d9ef">address</span> <span style="color:#66d9ef">indexed</span> operator, <span style="color:#66d9ef">uint256</span> amount);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">event</span> <span style="color:#a6e22e">RewardsDistributed</span>(<span style="color:#66d9ef">uint256</span> totalAmount, <span style="color:#66d9ef">uint256</span> blockNumber);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">distributeRewards</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint32</span> taskId,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">address</span>[] calldata participatingOperators,
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span>[] calldata performanceScores
+</span></span><span style="display:flex;"><span>    ) <span style="color:#66d9ef">external</span> onlyOwner {
+</span></span><span style="display:flex;"><span>        require(
+</span></span><span style="display:flex;"><span>            participatingOperators.length <span style="color:#f92672">==</span> performanceScores.length,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Length mismatch&#34;</span>
+</span></span><span style="display:flex;"><span>        );
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> totalScore <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">uint</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> performanceScores.length; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            totalScore <span style="color:#f92672">+=</span> performanceScores[i];
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> totalReward <span style="color:#f92672">=</span> rewardsPerBlock <span style="color:#f92672">*</span> TASK_BLOCK_WINDOW;
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">uint</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> participatingOperators.length; i<span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">uint256</span> operatorShare <span style="color:#f92672">=</span> (totalReward <span style="color:#f92672">*</span> performanceScores[i]) <span style="color:#f92672">/</span> totalScore;
+</span></span><span style="display:flex;"><span>            
+</span></span><span style="display:flex;"><span>            OperatorRewardInfo <span style="color:#66d9ef">storage</span> info <span style="color:#f92672">=</span> operatorRewards[participatingOperators[i]];
+</span></span><span style="display:flex;"><span>            info.accumulatedRewards <span style="color:#f92672">+=</span> operatorShare;
+</span></span><span style="display:flex;"><span>            info.lastUpdateBlock <span style="color:#f92672">=</span> <span style="color:#66d9ef">uint32</span>(block.number);
+</span></span><span style="display:flex;"><span>            info.tasksCompleted <span style="color:#f92672">+=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        emit RewardsDistributed(totalReward, block.number);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">claimRewards</span>() <span style="color:#66d9ef">external</span> {
+</span></span><span style="display:flex;"><span>        OperatorRewardInfo <span style="color:#66d9ef">storage</span> info <span style="color:#f92672">=</span> operatorRewards[msg.sender];
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">uint256</span> amount <span style="color:#f92672">=</span> info.accumulatedRewards;
+</span></span><span style="display:flex;"><span>        require(amount <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>, <span style="color:#e6db74">&#34;No rewards to claim&#34;</span>);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        info.accumulatedRewards <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>        rewardToken.safeTransfer(msg.sender, amount);
+</span></span><span style="display:flex;"><span>        
+</span></span><span style="display:flex;"><span>        emit RewardsClaimed(msg.sender, amount);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="liquid-restaking-tokens-lrt-integration">Liquid Restaking Tokens (LRT) Integration<a hidden class="anchor" aria-hidden="true" href="#liquid-restaking-tokens-lrt-integration">#</a></h2>
+<p>For users who don&rsquo;t want to run their own validator infrastructure, Liquid Restaking Tokens provide an accessible entry point.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript SDK for LRT interactions
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">ethers</span>, <span style="color:#a6e22e">Contract</span> } <span style="color:#66d9ef">from</span> <span style="color:#a6e22e">ethers</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">EigenLayerSDK</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#39;@eigenlayer/sdk&#39;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sdk</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">EigenLayerSDK</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">provider</span>: <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">ethers</span>.<span style="color:#a6e22e">JsonRpcProvider</span>(<span style="color:#e6db74">&#39;https://eth-mainnet.g.alchemy.com/v2/YOUR_KEY&#39;</span>),
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">network</span>: <span style="color:#66d9ef">mainnet</span>
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Deposit stETH into Renzo (ezETH)
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">depositForLRT</span>(<span style="color:#a6e22e">stethAmount</span>: <span style="color:#66d9ef">bigint</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">renzo</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">sdk</span>.<span style="color:#a6e22e">getLRTProtocol</span>(<span style="color:#a6e22e">renzo</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">tx</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">renzo</span>.<span style="color:#a6e22e">deposit</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">token</span>: <span style="color:#66d9ef">stETH</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">amount</span>: <span style="color:#66d9ef">stethAmount</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">receiver</span>: <span style="color:#66d9ef">walletAddress</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">receipt</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">wait</span>();
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Deposited</span> <span style="color:#a6e22e">$</span>{<span style="color:#a6e22e">stethAmount</span>} <span style="color:#a6e22e">stETH</span>, <span style="color:#a6e22e">received</span> <span style="color:#a6e22e">ezETH</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#a6e22e">Transaction</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">receipt</span>.<span style="color:#a6e22e">hash</span>}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Query underlying AVS exposure
+</span></span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">avsExposure</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">renzo</span>.<span style="color:#a6e22e">getAVSExposure</span>(<span style="color:#a6e22e">walletAddress</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#39;AVS allocations:&#39;</span>, <span style="color:#a6e22e">avsExposure</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Check rewards across all AVS positions
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">aggregateLRTYield() {</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">portfolio</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">sdk</span>.<span style="color:#a6e22e">getLRTPortfolio</span>(<span style="color:#a6e22e">walletAddress</span>);
+</span></span><span style="display:flex;"><span>  
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">const</span> <span style="color:#a6e22e">position</span> <span style="color:#66d9ef">of</span> <span style="color:#a6e22e">portfolio</span>.<span style="color:#a6e22e">positions</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span><span style="color:#960050;background-color:#1e0010">\</span><span style="color:#a6e22e">n$</span>{<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">lrtSymbol</span>}<span style="color:#f92672">:</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span>  <span style="color:#a6e22e">Balance</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">balance</span>}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span>  <span style="color:#a6e22e">Underlying</span> <span style="color:#a6e22e">ETH</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">underlyingETH</span>}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span>  <span style="color:#ae81ff">30</span><span style="color:#a6e22e">d</span> <span style="color:#a6e22e">Yield</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">thirtyDayYield</span>}<span style="color:#f92672">%</span><span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">````</span>  <span style="color:#a6e22e">AVS</span> <span style="color:#a6e22e">Exposure</span>: <span style="color:#66d9ef">$</span>{<span style="color:#a6e22e">position</span>.<span style="color:#a6e22e">avsAllocations</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">a</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">a</span>.<span style="color:#a6e22e">avsName</span>).<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;, &#39;</span>)}<span style="color:#e6db74">````</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="faq-frequently-asked-questions-about-eigenlayer">FAQ: Frequently Asked Questions About EigenLayer<a hidden class="anchor" aria-hidden="true" href="#faq-frequently-asked-questions-about-eigenlayer">#</a></h2>
+<p><strong>Q1: What is the minimum amount of ETH needed to restake on EigenLayer?</strong></p>
+<p>A: For native restaking, you need a full validator&rsquo;s worth of 32 ETH. However, EigenLayer supports Liquid Staking Tokens (LSTs) like stETH, rETH, and cbETH with no minimum — you can restake any amount. Liquid Restaking Tokens (LRTs) like ezETH and rsETH further lower the barrier, allowing deposits as small as 0.01 ETH equivalent.</p>
+<p><strong>Q2: How do slashing risks work when restaking across multiple AVSs?</strong></p>
+<p>A: Each AVS defines its own slashing conditions, and your staked ETH is subject to all conditions of every AVS you validate for simultaneously. The maximum slashable amount is capped per AVS, but multiple AVS commitments compound your risk exposure. The <code>Slasher</code> contract enforces conditions programmatically — common slashable offenses include downtime, attesting to invalid state transitions, and signing conflicting messages.</p>
+<p><strong>Q3: What is the difference between EigenDA and other data availability solutions?</strong></p>
+<p>A: EigenDA is a decentralized data availability layer secured by Ethereum&rsquo;s staked capital through EigenLayer. Compared to Celestia (its own validator set) or EIP-4844 blobs (limited throughput), EigenDA offers: (1) Ethereum-grade economic security inherited via restaking, (2) horizontal scalability through disperser/retriever architecture, (3) flexible quorum configuration per rollup, and (4) significantly lower costs at scale — currently targeting 10 MB/s throughput at under $0.001 per blob.</p>
+<p><strong>Q4: How are AVS rewards calculated and distributed?</strong></p>
+<p>A: Each AVS operates its own rewards program, typically funded by protocol fees or inflationary token emissions. Rewards are distributed proportionally based on: (1) the amount of stake delegated to each operator, (2) the operator&rsquo;s performance score (uptime, correct responses), and (3) the AVS-specific reward rate. The <code>RewardsCoordinator</code> contract handles claim distribution, and operators typically charge a delegation fee (5-15%) on rewards earned by their delegators.</p>
+<p><strong>Q5: Can I withdraw my restaked ETH at any time?</strong></p>
+<p>A: No — EigenLayer enforces an undelegation and withdrawal delay of approximately 7 days (an Ethereum &ldquo;activation delay&rdquo; epoch). This cooldown period serves as a security measure against flash loan attacks and gives the protocol time to process any pending slashing events. After initiating withdrawal, your funds complete the exit queue and become withdrawable to your wallet after the delay period elapses.</p>
+<p><strong>Q6: What programming languages and frameworks are used to build AVSs?</strong></p>
+<p>A: The smart contract layer uses Solidity (Foundry framework). Operator nodes are typically built in Go using the EigenSDK. BLS signature aggregation requires the <code>eigen-crypto</code> library. The reference EigenDA implementation uses Go for the disperser/retriever services and Rust for the node client. Docker and Kubernetes are standard for production deployments.</p>
+<p><strong>Q7: How does operator selection and delegation work?</strong></p>
+<p>A: Stakers browse registered operators in the <code>DelegationManager</code> and delegate their restaked position to an operator of choice. Operators must register with BLS public keys and minimum stake requirements. When selecting an operator, consider: commission rate (5-15%), AVS coverage (which AVSs they validate), historical performance (uptime %), and restaked amount (higher is generally more secure). You can redelegate instantly without unstaking.</p>
+<hr>
+<h2 id="recommended-hosting--infrastructure">Recommended Hosting &amp; Infrastructure<a hidden class="anchor" aria-hidden="true" href="#recommended-hosting--infrastructure">#</a></h2>
+<p>Before you deploy any of the tools above into production, you&rsquo;ll need solid infrastructure. Two options dibi8 actually uses and recommends: - <strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — $200 free credit for 60 days across 14+ global regions.</p>
+<ul>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — Hong Kong VPS with low-latency access from mainland China. This is the same IDC that hosts dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — they don&rsquo;t cost you extra and they help keep dibi8.com running.</em></p>
+<h2 id="getting-started-your-eigenlayer-checklist">Getting Started: Your EigenLayer Checklist<a hidden class="anchor" aria-hidden="true" href="#getting-started-your-eigenlayer-checklist">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 1. Set up development environment</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/Layr-Labs/eigenlayer-contracts.git
+</span></span><span style="display:flex;"><span>cd eigenlayer-contracts <span style="color:#f92672">&amp;&amp;</span> forge install
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 2. Configure environment</span>
+</span></span><span style="display:flex;"><span>cp .env.example .env
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Edit .env with your RPC endpoint and private key</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 3. Run local testnet with EigenLayer contracts</span>
+</span></span><span style="display:flex;"><span>anvil --fork-url $MAINNET_RPC --block-time <span style="color:#ae81ff">12</span>
+</span></span><span style="display:flex;"><span>forge script script/DeployEigenLayer.s.sol --rpc-url http://localhost:8545 --broadcast
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 4. Deploy your AVS contracts</span>
+</span></span><span style="display:flex;"><span>forge script script/DeployYourAVS.s.sol --rpc-url http://localhost:8545 --broadcast
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 5. Start operator node</span>
+</span></span><span style="display:flex;"><span>cd operator/
+</span></span><span style="display:flex;"><span>go run main.go --config config.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 6. Monitor operations</span>
+</span></span><span style="display:flex;"><span>make telemetry
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Opens Grafana dashboard at http://localhost:3000</span>
+</span></span><span style="display:flex;"><span><span style="color:#e6db74">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*Disclaimer: This guide is <span style="color:#66d9ef">for</span> educational purposes only. Restaking involves significant smart contract risk, slashing risk, and protocol risk. Always conduct your own research before deploying capital or code. DYOR — Do Your Own Research.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**Ready to start building on EigenLayer?** 
+</span></span><span style="display:flex;"><span>- Register on <span style="color:#f92672">[</span>Binance<span style="color:#f92672">](</span>https://www.bsmkweb.cc/register?ref<span style="color:#f92672">=</span>DIBI8<span style="color:#f92672">)</span> to acquire ETH <span style="color:#66d9ef">for</span> staking
+</span></span><span style="display:flex;"><span>- Explore automated AVS deployment with <span style="color:#f92672">[</span>Minara<span style="color:#f92672">](</span>https://minara.ai/r/OSXG4X<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>- Follow us on Telegram <span style="color:#66d9ef">for</span> the latest EigenLayer alpha: **@dibi8crypto**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>* * *
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>*© <span style="color:#ae81ff">2026</span> dibi8.com | Built <span style="color:#66d9ef">for</span> DeFi developers, traders, and researchers.*
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;eigenlayer-restaking-defi&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-20&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/resources/eigenlayer-restaking-defi&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>&lt;/script&gt;
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Frequently Asked Questions (FAQ)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI代码助手的安全性如何？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>代码不会上传到服务器（本地运行），但仍需注意依赖包安全、配置文件保护。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：如何防止AI生成的代码包含漏洞？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>实施SAST扫描、代码审查、依赖审计、以及安全编码培训。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：敏感数据如何处理？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>使用本地模型、环境变量管理密钥、避免在提示中包含敏感信息。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：开源VS闭源AI工具的安全性对比？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>开源可审计代码，闭源依赖供应商安全承诺。混合策略最佳。
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>**问：AI工具的安全审计要点？**
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>检查认证机制、数据传输加密、存储安全、访问控制、以及日志审计。
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai/">
+    <span class="title">« 이전 페이지</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ko/ai-coding-agents/exo-dev-utils-2026/">
+    <span class="title">다음 페이지 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

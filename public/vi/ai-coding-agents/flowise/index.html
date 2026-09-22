@@ -1,10 +1,318 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/flowise/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/flowise/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/flowise/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/flowise/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/flowise/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/flowise/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/flowise/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“flowise”, “langchain”, “ai agent”, “rag”, “docker”, “llm”, “mã nguồn mở”, “no-code”] aliases:\n/vi/posts/flowise/ /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/ Giới thiệu Xây dựng ứng dụng dựa trên LLM từng đòi hỏi viết hàng trăm dòng Python để kết nối thủ công các mô hình, vector database, retrieval chain và memory module. Flowise đã thay đổi hoàn toàn quy tắc này. Với 52.948 GitHub Stars và cộng đồng phát triển sôi nổi, Flowise là công cụ xây dựng AI agent trực quan mã nguồn mở, cho phép bạn xây dựng AI agent và pipeline RAG bằng cách kéo-thả, kết nối các node trên canvas —— không cần viết code. Dù bạn đang phát triển nguyên mẫu chatbot hỗ trợ khách hàng hay triển khai hệ thống hỏi đáp tài liệu trên VPS $5/tháng, hướng dẫn này sẽ giúp bạn thiết lập môi trường Flowise production-grade từ con số không trong vòng 5 phút.\nFlowise là gì? Flowise là công cụ xây dựng workflow LLM và AI agent trực quan mã nguồn mở dựa trên LangChain. Nó cung cấp canvas dạng node-based, mỗi thành phần —— mô hình chat, embeddings, vector store, công cụ, agent và chain —— được hiển thị dưới dạng node có thể kéo thả, kết nối để tạo thành pipeline có thể thực thi. Flowise hỗ trợ hơn 200 tích hợp LangChain bao gồm OpenAI, Anthropic, Ollama, Qdrant, Weaviate và Chroma, là một trong những công cụ xây dựng AI trực quan có khả năng tích hợp phong phú nhất hiện nay.\nFlowise hoạt động như thế nào Flowise sử dụng kiến trúc module, ánh xạ trực tiếp các node trực quan tới các lớp LangChain. Hiểu rõ kiến trúc này giúp bạn xây dựng flow phức tạp hơn và debug nhanh hơn.\nCanvas trực quan của Flowise với các node LLM được kết nối —— mỗi node tương ứng với một lớp LangChain\nGiao diện kéo-thả của Flowise trong thực tế —— xây dựng pipeline RAG mà không cần viết code\nCác thành phần cốt lõi Chat Models —— Công cụ LLM (OpenAI GPT-4o, Claude, mô hình local Ollama, Hugging Face, Bedrock, Gemini) Embeddings —— Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa (OpenAI, HuggingFace, Cohere) Vector Stores —— Lưu trữ embeddings để truy xuất (Chroma, Qdrant, Weaviate, Pinecone, pgvector) Document Loaders —— Nhập dữ liệu từ PDF, trang web, file text, Notion, Confluence Chains —— Điều phối các tác vụ LLM đa bước (Conversational Retrieval QA, LLM Chain) Agents —— Hệ thống suy luận tự chủ, chọn công cụ động (ReAct, OpenAI Functions) Memory —— Duy trì ngữ cảnh cuộc trò chuyện (Buffer Memory, Window Buffer, Redis-backed) Ba chế độ xây dựng Flowise cung cấp ba công cụ xây dựng trực quan: - Assistant —— Công cụ xây dựng chatbot thân thiện cho ngườ mới, hỗ trợ RAG. Tải lên tài liệu, cấu hình phản hồi và triển khai.\nChatflow —— Canvas node-based đầy đủ để xây dựng conversational AI tùy chỉnh với quyền kiểm soát tường minh mọi thành phần. Agentflow —— Workflow agent đa bước với logic điều kiện, vòng lặp, gọi công cụ và phê duyệt bởi con ngườ. Mọi flow bạn xây dựng tự động hiển thị REST API endpoint và widget chat có thể nhúng, giúp việc triển khai chỉ cần một cú click chuột.\nCài đặt và thiết lập Flowise cung cấp bốn phương pháp cài đặt. Mỗi phương pháp phù hợp với môi trường và trình độ khác nhau.\nPhương pháp 1: NPM (Nhanh nhất cho phát triển local) Yêu cầu Node.js v18.15.0 hoặc v20+. Đây là con đường nhanh nhất từ cài đặt đến canvas đang chạy.\n# Cài đặt Flowise toàn cục npm install -g flowise # Hoặc cài đặt phiên bản cụ thể npm install -g flowise@3.1.2 # Khởi động Flowise npx flowise start Mở http://localhost:3000 trong trình duyệt. Lần khởi động đầu tiên sẽ tự động tạo database SQLite tại ~/.flowise.\nPhương pháp 2: Docker (Khuyến nghị cho production) Đây là phương pháp triển khai đáng tin cậy nhất. Flowise cung cấp image chính thức trên Docker Hub với hỗ trợ đa kiến trúc.\n# Pull và chạy image chính thức docker run -d -p 3000:3000 \\ --name flowise \\ -e FLOWISE_USERNAME=admin \\ -e FLOWISE_PASSWORD=secure-password \\ flowiseai/flowise:latest Truy cập http://localhost:3000 và đăng nhập bằng thông tin bạn đã đặt.\nPhương pháp 3: Docker Compose (Production với database) Đối với triển khai lâu dài, sử dụng Docker Compose với PostgreSQL và volume mount.\n# docker-compose.yml version: '3.8' services: flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - DATABASE_TYPE=postgres - DATABASE_HOST=postgres - DATABASE_PORT=5432 - DATABASE_NAME=flowise - DATABASE_USER=flowise - DATABASE_PASSWORD=${DB_PASSWORD:-changeme} - FLOWISE_USERNAME=${FLOWISE_USER:-admin} - FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme} - SECRETKEY_PATH=/root/.flowise - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod} - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret} volumes: - flowise_data:/root/.flowise depends_on: - postgres restart: unless-stopped postgres: image: postgres:16-alpine environment: - POSTGRES_USER=flowise - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme} - POSTGRES_DB=flowise volumes: - postgres_data:/var/lib/postgresql/data restart: unless-stopped volumes: flowise_data: postgres_data: ````` Khởi động: `````bash docker compose up -d Phương pháp 4: Triển khai lên DigitalOcean Droplet Để có instance được lưu trữ trên cloud trên VPS đáng tin cậy, triển khai Flowise lên DigitalOcean chỉ trong vài phút.\n# Trên máy chủ Ubuntu 24.04 mới (2 vCPU / 2GB RAM / $12/tháng) apt update \u0026\u0026 apt install -y docker.io docker-compose # Clone repo Flowise git clone https://github.com/FlowiseAI/Flowise.git cd Flowise/docker # Copy template biến môi trường cp .env.example .env # Chỉnh sửa file cấu hình nano .env Ví dụ .env cho triển khai DigitalOcean: `````bash PORT=3000 DATABASE_TYPE=sqlite DATABASE_PATH=/root/.flowise SECRETKEY_PATH=/root/.flowise LOG_PATH=/root/.flowise/logs BLOB_STORAGE_PATH=/root/.flowise/storage FLOWISE_USERNAME=admin FLOWISE_PASSWORD=your-secure-password-here JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)\nKhởi động dịch vụ: `````bash docker compose up -d Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.\nBảng tham khảo biến môi trường Biến Mô tả Mặc định PORT Cổng máy chủ HTTP 3000 DATABASE_TYPE Công cụ database (sqlite, postgres) sqlite DATABASE_PATH Đường dẫn file SQLite ~/.flowise FLOWISE_USERNAME Tên ngườ dùng admin — FLOWISE_PASSWORD Mật khẩu admin — JWT_AUTH_TOKEN_SECRET Secret token truy cập tự động tạo JWT_REFRESH_TOKEN_SECRET Secret token làm mới tự động tạo BLOB_STORAGE_PATH Đường dẫn lưu trữ file upload ~/.flowise/storage DISABLE_FLOWISE_TELEMETRY Tắt thu thập dữ liệu ẩn danh false Tích hợp với công cụ phổ biến Tích hợp OpenAI Hầu hết ngườ dùng bắt đầu với mô hình OpenAI. Cấu hình API key trong Flowise UI tại Credentials, sau đó sử dụng node ChatOpenAI trong flow.\n# Thêm OpenAI API key dưới dạng biến môi trường (tùy chọn nhưng khuyến nghị) export OPENAI_API_KEY=sk-your-key-here Ollama (LLM cục bộ) Chạy mô hình local với Ollama loại bỏ chi phí API và giữ dữ liệu tại chỗ. Thiết lập này lý tưởng cho các triển khai nhạy cảm về quyền riêng tư.\n# docker-compose-ollama.yml version: '3.8' services: ollama: image: ollama/ollama:latest ports: - \"11434:11434\" volumes: - ollama_data:/root/.ollama restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - OLLAMA_BASE_URL=http://ollama:11434 depends_on: - ollama restart: unless-stopped volumes: ollama_data: ````` Pull mô hình và bắt đầu sử dụng: `````bash # Pull mô hình nhẹ để test docker exec -it ollama ollama pull qwen2:7b # Hoặc pull Llama 3 docker exec -it ollama ollama pull llama3.1:8b Trên canvas Flowise, chọn node ChatOllama và đặt tên mô hình thành qwen2:7b hoặc llama3.1:8b.\nChroma Vector Store (Thiết lập RAG) Đối với pipeline RAG production-grade, Chroma cung cấp vector database nhẹ hoạt động liền mạch với Flowise.\n# Thêm vào docker-compose.yml chroma: image: chromadb/chroma:latest ports: - \"8000:8000\" volumes: - chroma_data:/chroma/chroma restart: unless-stopped Xây dựng pipeline RAG trong Flowise: 1. Kéo thả node PDF Loader hoặc Text File 2. Kết nối với node Text Splitter (đặt chunk size 1000, overlap 200) 3. Kết nối với node OpenAI Embeddings (hoặc Ollama Embeddings) 4. Kết nối với node vector store Chroma 5. Thêm node Conversational Retrieval QA Chain 6. Kết nối Chat Model (ChatOpenAI hoặc ChatOllama) vào chain 7. Click Save và Run\nQdrant (Tìm kiếm vector có khả năng mở rộng) Đối với RAG có tìm kiếm hybrid thông lượng cao, Qdrant vượt trội hơn các store trong bộ nhớ.\n# Thêm Qdrant vào compose file qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_data:/qdrant/storage restart: unless-stopped Trong Flowise, sử dụng node vector store Qdrant với host http://qdrant:6333.\nWeaviate (Vector Database doanh nghiệp) weaviate: image: semitechnologies/weaviate:latest ports: - \"8080:8080\" environment: QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true PERSISTENCE_DATA_PATH: '/var/lib/weaviate' volumes: - weaviate_data:/var/lib/weaviate restart: unless-stopped Triển khai API Mọi flow tự động hiển thị REST API. Export chatflow của bạn và tích hợp ở bất kỳ đâu.\n# Test flow đã triển khai bằng curl curl -X POST \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"question\": \"Chính sách đổi trả như thế nào?\", \"overrideConfig\": { \"sessionId\": \"user_001\" } }' Phản hồi: `````json { “text”: “Theo tài liệu của chúng tôi, chính sách đổi trả cho phép đổi trả trong vòng 30 ngày kể từ ngày mua với biên lai gốc.”, “sourceDocuments”: [ { “pageContent”: “Chấp nhận đổi trả trong vòng 30 ngày sau khi mua…”, “metadata”: { “source”: “return-policy.pdf”, “page”: 3 } } ] }\nVí dụ Python SDK: `````python import requests FLOWISE_API = \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" def ask(question, session_id=\"user_001\"): resp = requests.post(FLOWISE_API, json={ \"question\": question, \"overrideConfig\": {\"sessionId\": session_id} }) return resp.json()[\"text\"] answer = ask(\"Các phương thức vận chuyển là gì?\") print(answer) Nhúng vào website Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào: Widget chat nhúng với tùy chỉnh giao diện —— triển khai lên bất kỳ website nào chỉ với một thẻ script\nimport Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js'; Chatbot.init({ chatflowid: 'your-chatflow-id', apiHost: 'https://your-flowise-server.com', theme: { button: { backgroundColor: '#3B81F6', right: 20, bottom: 20, size: medium }, chatWindow: { title: \"AI Tool Guide\" welcomeMessage: 'Xin chào! Tôi có thể giúp gì cho bạn?', backgroundColor: '#ffffff', height: 700, width: 400 } } }); \u003c/script\u003e Benchmark / Các trường hợp sử dụng thực tế Đặc tính hiệu suất Flowise dựa trên báo cáo cộng đồng và thử nghiệm của chúng tôi: | Chỉ số | Giá trị | Ghi chú | |——–|———|———| | Khởi động lạnh (Docker) | 3-5 giây | Trên VPS 2 vCPU | | Độ trễ phản hồi đầu tiên | 1.5-3 giây | Với GPT-4o, phụ thuộc prompt | | RAG query end-to-end | 2-4 giây | Chroma vector store, 1K chunks | | Ngườ dùng đồng thờ | 50-200 | Backend SQLite; dùng PostgreSQL cho quy mô lớn hơn | | Bộ nhớ (nhàn rỗi) | ~180 MB | Một container | | Bộ nhớ (hoạt động) | 300-600 MB | Phụ thuộc mô hình và context | | Thờ gian xây dựng flow RAG | 10-15 phút | Từ canvas trống đến chatbot hoạt động | | Cấu hình VPS tối thiểu | 1 vCPU / 1 GB RAM | VPS $4-5/tháng hoạt động tốt | | Cấu hình VPS production | 2 vCPU / 4 GB RAM | Khuyến nghị với PostgreSQL |\nSo sánh: Flowise vs các lựa chọn thay thế Tính năng Flowise Dify n8n LangChain GitHub Stars 52.948 50.000+ 49.500 110.000+ Giấy phép MIT Apache-2.0 Fair-code MIT Builder trực quan Canvas kéo-thả UI tập trung ứng dụng Trình soạn workflow Chỉ code Trường hợp sử dụng chính Chatbot LLM \u0026 RAG Ứng dụng AI full-stack Tự động hóa workflow SDK code-first LangChain Native Có (ánh xạ trực tiếp) Abstraction tùy chỉnh Qua node AI Chính là LangChain Hỗ trợ LLM 200+ (toàn bộ LangChain) 50+ 70+ node AI Mọi nhà cung cấp Vector Store Chroma, Qdrant, Weaviate, Pinecone, pgvector Knowledge base tích hợp Qua LangChain nodes Mọi store LLM cục bộ (Ollama) Node gốc Tích hợp gốc Qua HTTP request Gốc Widget chat nhúng Có (tự động tạo) Có Qua webhook Xây dựng thủ công REST API (tự động) Có Có Có Xây dựng thủ công Workflow đa agent Agentflow (tuần tự) Điều phối workflow Có (với node AI) LangGraph Lập lịch / Trigger Hạn chế Hạn chế Đầy đủ (cron, webhook) Thủ công Độ phức tạp self-host Thấp (1 container) Trung bình (đa dịch vụ) Thấp-Trung bình N/A (thư viện) RAM tối thiểu ~1 GB 4 GB 300 MB N/A Giá cloud (Starter) $35/tháng $59/tháng ~$24/tháng N/A UX ngườ không kỹ thuật Tốt Xuất sắc Tốt Yêu cầu lập trình Khi nào chọn công cụ nào Flowise: Tốt nhất cho các team xây dựng conversational AI (chatbot, RAG) muốn đường dẫn prototype-deployment nhanh nhất với khả năng tương thích LangChain đầy đủ. Dify: Chọn khi cần nền tảng ứng dụng AI full-stack với quản lý kiến thức tích hợp, quản lý phiên bản prompt và cộng tác nhóm. n8n: Chọn khi agent AI của bạn là một phần của pipeline tự động hóa rộng hơn với 400+ tích hợp SaaS, lập lịch và xử lý lỗi. LangChain: Sử dụng trực tiếp khi cần quyền kiểm soát code đầy đủ, quản lý phiên bản prompt và tích hợp CI/CD. Sử dụng nâng cao / Củng cố production Danh sách kiểm tra bảo mật Trước khi đưa Flowise ra internet, hoàn thành các bước sau: `````bash\n1. Bật xác thực (BẮT BUỘC) FLOWISE_USERNAME=admin FLOWISE_PASSWORD=$(openssl rand -base64 24)\n2. Đặt JWT secret mạnh JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)\n3. Chạy sau HTTPS với reverse proxy Đoạn cấu hình Nginx: server { listen 443 ssl http2; server_name flowise.yourdomain.com; ssl_certificate /path/to/cert.pem; ssl_certificate_key /path/to/key.pem; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } }\n4. Tắt telemetry nếu muốn DISABLE_FLOWISE_TELEMETRY=true\n5. Đặt CORS cho widget nhúng CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com\n### Mở rộng với Queue Mode Đối với triển khai lưu lượng cao, Flowise hỗ trợ xử lý dựa trên hàng đợi với Redis worker. `````yaml # docker-compose-queue.yml version: '3.8\" services: redis: image: redis:alpine restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped flowise-worker: image: flowiseai/flowise-worker:latest environment: - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped Mở rộng worker theo chiều ngang: `````bash docker compose -f docker-compose-queue.yml up -d –scale flowise-worker=3\n### Chiến lược sao lưu `````bash # Sao lưu database SQLite docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz # Sao lưu PostgreSQL docker exec flowise-postgres pg_dump -U flowise flowise \u003e flowise-db-$(date +%Y%m%d).sql # Tự động sao lưu hàng ngày qua cron (thêm vào crontab) 0 2 * * * /usr/local/bin/backup-flowise.sh \u003e\u003e /var/log/flowise-backup.log 2\u003e\u00261 Giám sát với Docker # Xem log theo thờ gian thực docker compose logs -f flowise # Kiểm tra sử dụng tài nguyên docker stats flowise # Health check endpoint curl http://localhost:3000/api/v1/ping Hạn chế / Đánh giá trung thực Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là những gì Flowise KHÔNG làm tốt: 1. Điều phối Multi-Agent phức tạp: Flowise Agentflow hỗ trợ agent tuần tự, nhưng các pattern multi-agent dạng chu kỳ (như trong LangGraph hoặc AutoGen) cần cách giải quyết thay thế. Các team xây dựng agent nghiên cứu hoặc hệ thống multi-agent tranh luận nên xem xét LangGraph trực tiếp.\nWorkflow phi-chat: Flowise được tối ưu hóa cho conversational AI. Xử lý tài liệu theo batch, pipeline ETL, hoặc chuyển đổi dữ liệu theo lịch phù hợp hơn với n8n hoặc Python script.\nQuản lý phiên bản: Các flow trực quan không thể diff trong Git như code. Hợp tác trong team lớn đòi hỏi kỷ luật trong việc export và quản lý phiên bản định nghĩa flow JSON thủ công.\nDebug nâng cao: Mặc dù Flowise hiển thị log thực thi, nhưng thiếu phân tích thờ gian từng node và theo dõi token usage mà Dify cung cấp. Debug lỗi retrieval phức tạp đòi hỏi đọc log thô.\nGovernance doanh nghiệp: RBAC tồn tại ở tier Pro, nhưng audit trail, framework tuân thủ (ISO 42001, EU AI Act), và quản lý fleet không phải tính năng hàng đầu. Các ngành được quy định có thể cần thêm lớp governance.\nPhụ thuộc LangChain: Flowise kế thừa hạn chế của LangChain. Nếu LangChain ngừng hỗ trợ một mô hình hoặc giới thiệu breaking change, Flowise cũng chịu ảnh hưởng. Sự kết hợp này là ưu điểm cho ngườ dùng LangChain nhưng là ràng buộc cho những ngườ khác.\nCâu hỏi thường gặp Cách cài đặt Flowise trên server không có Node.js? Sử dụng Docker. Image flowiseai/flowise chính thức đã đóng gói mọi dependency. Một lệnh docker run duy nhất là đủ, không cần cài Node.js, pnpm hay bất kỳ công cụ build nào trên host.\nFlowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không? Có. Flowise tích hợp gốc với Ollama. Khởi động container Ollama (hoặc instance local), pull bất kỳ mô hình GGUF nào, sau đó chọn node ChatOllama trên canvas Flowise. Dữ liệu của bạn không bao giờ rồi khỏi server —— không cần API key.\nFlowise vs Dify khi xây dựng chatbot RAG? Flowise thiết lập nhanh hơn (một container, không cần database) và cho phép kiểm soát tường minh mọi thành phần LangChain. Dify có giao diện knowledge base đánh bóng hơn với chunking tự động và debug tốt hơn. Chọn Flowise cho tốc độ và khả năng tương thích LangChain; chọn Dify cho cộng tác nhóm và quản lý kiến thức tích hợp.\nFlowise có miễn phí sử dụng thương mại không? Có. Flowise được phát hành theo giấy phép MIT. Bạn có thể tự host, chỉnh sửa, nhúng vào sản phẩm thương mại, bán dịch vụ dựa trên nó —— tất cả không phải trả phí cấp phép. Phiên bản cloud-hosted có gói trả phí từ $35/tháng.\nCấu hình server tối thiểu cho Flowise production là gì? VPS $5/tháng với 1 vCPU và 1 GB RAM xử lý tốt khối lượng công việc vừa và nhỏ với SQLite. Đối với production với PostgreSQL và ngườ dùng đồng thờ, nên cấp phát 2 vCPU và 4 GB RAM. Container Flowise tiêu thụ ~180 MB ở trạng thái nhàn rỗi; LLM (nếu tự host qua Ollama) tiêu thụ tài nguyên nhiều nhất.\nCó thể export chatbot Flowise dưới dạng API không? Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại /api/v1/prediction/{flow-id}. UI tạo snippet code curl, Python và JavaScript. Bạn cũng có thể export widget chat nhúng chỉ với một click.\nCách nâng cấp Flowise lên phiên bản mới? Triển khai Docker: Pull image mới nhất và khởi động lại: `````bash docker pull flowiseai/flowise:latest docker compose up -d\nCài đặt NPM: Chạy ````npm update -g flowise````. Luôn sao lưu thư mục ````~/.flowise```` trước khi nâng cấp. *Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.* ## Kết luận Flowise loại bỏ rào cản giữa ý tưởng và triển khai AI agent. Với 52.948 GitHub Stars, giấy phép MIT, và canvas trực quan ánh xạ trực tiếp đến mô hình thành phần LangChain, đây là lựa chọn thực tế cho các developer muốn phát hành chatbot LLM và hệ thống RAG mà không viết code boilerplate. Bắt đầu với ````npx flowise start```` cho prototype local. Chuyển sang Docker Compose với PostgreSQL cho production. Kết nối Ollama cho các triển khai hoàn toàn private, không cần API key. Và khi cần mở rộng, thêm Redis queue worker và các worker replica theo chiều ngang. **Các việc cần làm tuần này:** 1. Triển khai Flowise local với Docker (````docker run -p 3000:3000 flowiseai/flowise```) 2. Xây dựng pipeline RAG đầu tiên với PDF loader, text splitter và Chroma vector store 3. Export REST API và nhúng chat widget vào trang test 4. Tham gia [nhóm Telegram FlowiseAI](https://t.me/flowiseai) để được hỗ trợ cộng đồng và mẹo hàng tuần ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Nguồn \u0026 Tài liệu tham khảo 1. [Tài liệu chính thức Flowise](https://docs.flowiseai.com/) —— Tài liệu đầy đủ về cài đặt, cấu hình và API reference 2. [Flowise GitHub Repository](https://github.com/FlowiseAI/Flowise) —— Mã nguồn, issues và releases 3. [Giá Flowise Cloud](https://flowiseai.com/pricing) —— Các gói cloud-hosted và tính năng enterprise 4. [Tài liệu LangChain](https://js.langchain.com/) —— Framework nền tảng của Flowise 5. [Ollama Download](https://ollama.com/download) —— Runtime LLM local cho triển khai private 6. [Chroma Database](https://www.trychroma.com/) —— Vector database mã nguồn mở cho RAG 7. [Qdrant Vector Database](https://qdrant.tech/) —— Tìm kiếm vector hiệu suất cao cho production 8. [So sánh Flowise vs Dify](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) —— So sánh chi tiết bởi ToolHalla 9. [Tài liệu Flowise Embed Widget](https://www.npmjs.com/package/flowise-embed) —— Gói NPM để nhúng chatbot 10. [Hướng dẫn triển khai Docker trên DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Hướng dẫn cài Docker trên Ubuntu { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng Dẫn Cài Đặt 5 Phút 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/flowise\" } } * * * ## Related Articles - [12-factor-agents-production-llm-software-2026](flowise) - [12-factor-agents](flowise) - [1m-context-window-llm-2026-real-test](flowise) - [9router-smart-llm-proxy-token-saver-free-coding](flowise) - [ai-engineering-from-scratch](flowise) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ","wordCount":"3674","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/flowise/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/flowise/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/flowise/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/flowise/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><ul><li><a href=#gi%e1%bb%9bi-thi%e1%bb%87u aria-label="Giới thiệu">Giới thiệu</a></li><li><a href=#flowise-l%c3%a0-g%c3%ac aria-label="Flowise là gì?">Flowise là gì?</a></li><li><a href=#flowise-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o aria-label="Flowise hoạt động như thế nào">Flowise hoạt động như thế nào</a><ul><li><a href=#c%c3%a1c-th%c3%a0nh-ph%e1%ba%a7n-c%e1%bb%91t-l%c3%b5i aria-label="Các thành phần cốt lõi">Các thành phần cốt lõi</a></li><li><a href=#ba-ch%e1%ba%bf-%c4%91%e1%bb%99-x%c3%a2y-d%e1%bb%b1ng aria-label="Ba chế độ xây dựng">Ba chế độ xây dựng</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-v%c3%a0-thi%e1%ba%bft-l%e1%ba%adp aria-label="Cài đặt và thiết lập">Cài đặt và thiết lập</a><ul><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-1-npm-nhanh-nh%e1%ba%a5t-cho-ph%c3%a1t-tri%e1%bb%83n-local aria-label="Phương pháp 1: NPM (Nhanh nhất cho phát triển local)">Phương pháp 1: NPM (Nhanh nhất cho phát triển local)</a></li><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-2-docker-khuy%e1%ba%bfn-ngh%e1%bb%8b-cho-production aria-label="Phương pháp 2: Docker (Khuyến nghị cho production)">Phương pháp 2: Docker (Khuyến nghị cho production)</a></li><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-3-docker-compose-production-v%e1%bb%9bi-database aria-label="Phương pháp 3: Docker Compose (Production với database)">Phương pháp 3: Docker Compose (Production với database)</a></li><li><a href=#ph%c6%b0%c6%a1ng-ph%c3%a1p-4-tri%e1%bb%83n-khai-l%c3%aan-digitalocean-droplet aria-label="Phương pháp 4: Triển khai lên DigitalOcean Droplet">Phương pháp 4: Triển khai lên DigitalOcean Droplet</a></li><li><a href=#b%e1%ba%a3ng-tham-kh%e1%ba%a3o-bi%e1%ba%bfn-m%c3%b4i-tr%c6%b0%e1%bb%9dng aria-label="Bảng tham khảo biến môi trường">Bảng tham khảo biến môi trường</a></li></ul></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn aria-label="Tích hợp với công cụ phổ biến">Tích hợp với công cụ phổ biến</a><ul><li><a href=#t%c3%adch-h%e1%bb%a3p-openai aria-label="Tích hợp OpenAI">Tích hợp OpenAI</a></li><li><a href=#ollama-llm-c%e1%bb%a5c-b%e1%bb%99 aria-label="Ollama (LLM cục bộ)">Ollama (LLM cục bộ)</a></li><li><a href=#chroma-vector-store-thi%e1%ba%bft-l%e1%ba%adp-rag aria-label="Chroma Vector Store (Thiết lập RAG)">Chroma Vector Store (Thiết lập RAG)</a></li><li><a href=#qdrant-t%c3%acm-ki%e1%ba%bfm-vector-c%c3%b3-kh%e1%ba%a3-n%c4%83ng-m%e1%bb%9f-r%e1%bb%99ng aria-label="Qdrant (Tìm kiếm vector có khả năng mở rộng)">Qdrant (Tìm kiếm vector có khả năng mở rộng)</a></li><li><a href=#weaviate-vector-database-doanh-nghi%e1%bb%87p aria-label="Weaviate (Vector Database doanh nghiệp)">Weaviate (Vector Database doanh nghiệp)</a></li><li><a href=#tri%e1%bb%83n-khai-api aria-label="Triển khai API">Triển khai API</a></li><li><a href=#nh%c3%bang-v%c3%a0o-website aria-label="Nhúng vào website">Nhúng vào website</a></li></ul></li><li><a href=#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf aria-label="Benchmark / Các trường hợp sử dụng thực tế">Benchmark / Các trường hợp sử dụng thực tế</a><ul><li><a href=#so-s%c3%a1nh-flowise-vs-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf aria-label="So sánh: Flowise vs các lựa chọn thay thế">So sánh: Flowise vs các lựa chọn thay thế</a></li><li><a href=#khi-n%c3%a0o-ch%e1%bb%8dn-c%c3%b4ng-c%e1%bb%a5-n%c3%a0o aria-label="Khi nào chọn công cụ nào">Khi nào chọn công cụ nào</a></li></ul></li><li><a href=#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production aria-label="Sử dụng nâng cao / Củng cố production">Sử dụng nâng cao / Củng cố production</a><ul><li><a href=#danh-s%c3%a1ch-ki%e1%bb%83m-tra-b%e1%ba%a3o-m%e1%ba%adt aria-label="Danh sách kiểm tra bảo mật">Danh sách kiểm tra bảo mật</a></li></ul></li></ul><li><a href=#1-b%e1%ba%adt-x%c3%a1c-th%e1%bb%b1c-b%e1%ba%aft-bu%e1%bb%99c aria-label="1. Bật xác thực (BẮT BUỘC)">1. Bật xác thực (BẮT BUỘC)</a></li><li><a href=#2-%c4%91%e1%ba%b7t-jwt-secret-m%e1%ba%a1nh aria-label="2. Đặt JWT secret mạnh">2. Đặt JWT secret mạnh</a></li><li><a href=#3-ch%e1%ba%a1y-sau-https-v%e1%bb%9bi-reverse-proxy aria-label="3. Chạy sau HTTPS với reverse proxy">3. Chạy sau HTTPS với reverse proxy</a></li><li><a href=#%c4%91o%e1%ba%a1n-c%e1%ba%a5u-h%c3%acnh-nginx-server- aria-label="Đoạn cấu hình Nginx: server {">Đoạn cấu hình Nginx: server {</a></li><li><a href=#4-t%e1%ba%aft-telemetry-n%e1%ba%bfu-mu%e1%bb%91n aria-label="4. Tắt telemetry nếu muốn">4. Tắt telemetry nếu muốn</a></li><li><a href=#5-%c4%91%e1%ba%b7t-cors-cho-widget-nh%c3%bang aria-label="5. Đặt CORS cho widget nhúng">5. Đặt CORS cho widget nhúng</a><ul><ul><li><a href=#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-docker aria-label="Giám sát với Docker">Giám sát với Docker</a></li></ul><li><a href=#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li><li><a href=#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a><ul><li><a href=#c%c3%a1ch-c%c3%a0i-%c4%91%e1%ba%b7t-flowise-tr%c3%aan-server-kh%c3%b4ng-c%c3%b3-nodejs aria-label="Cách cài đặt Flowise trên server không có Node.js?">Cách cài đặt Flowise trên server không có Node.js?</a></li><li><a href=#flowise-c%c3%b3-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-v%e1%bb%9bi-llm-c%e1%bb%a5c-b%e1%bb%99-nh%c6%b0-llama-ho%e1%ba%b7c-qwen-kh%c3%b4ng aria-label="Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?">Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?</a></li><li><a href=#flowise-vs-dify-khi-x%c3%a2y-d%e1%bb%b1ng-chatbot-rag aria-label="Flowise vs Dify khi xây dựng chatbot RAG?">Flowise vs Dify khi xây dựng chatbot RAG?</a></li><li><a href=#flowise-c%c3%b3-mi%e1%bb%85n-ph%c3%ad-s%e1%bb%ad-d%e1%bb%a5ng-th%c6%b0%c6%a1ng-m%e1%ba%a1i-kh%c3%b4ng aria-label="Flowise có miễn phí sử dụng thương mại không?">Flowise có miễn phí sử dụng thương mại không?</a></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-server-t%e1%bb%91i-thi%e1%bb%83u-cho-flowise-production-l%c3%a0-g%c3%ac aria-label="Cấu hình server tối thiểu cho Flowise production là gì?">Cấu hình server tối thiểu cho Flowise production là gì?</a></li><li><a href=#c%c3%b3-th%e1%bb%83-export-chatbot-flowise-d%c6%b0%e1%bb%9bi-d%e1%ba%a1ng-api-kh%c3%b4ng aria-label="Có thể export chatbot Flowise dưới dạng API không?">Có thể export chatbot Flowise dưới dạng API không?</a></li><li><a href=#c%c3%a1ch-n%c3%a2ng-c%e1%ba%a5p-flowise-l%c3%aan-phi%c3%aan-b%e1%ba%a3n-m%e1%bb%9bi aria-label="Cách nâng cấp Flowise lên phiên bản mới?">Cách nâng cấp Flowise lên phiên bản mới?</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/flowise/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/flowise/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/flowise/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/flowise/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/flowise/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/flowise/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/flowise/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“llm-frameworks”] tags: [“flowise”, “langchain”, “ai agent”, “rag”, “docker”, “llm”, “mã nguồn mở”, “no-code”] aliases:\n/vi/posts/flowise/ /vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/ Giới thiệu Xây dựng ứng dụng dựa trên LLM từng đòi hỏi viết hàng trăm dòng Python để kết nối thủ công các mô hình, vector database, retrieval chain và memory module. Flowise đã thay đổi hoàn toàn quy tắc này. Với 52.948 GitHub Stars và cộng đồng phát triển sôi nổi, Flowise là công cụ xây dựng AI agent trực quan mã nguồn mở, cho phép bạn xây dựng AI agent và pipeline RAG bằng cách kéo-thả, kết nối các node trên canvas —— không cần viết code. Dù bạn đang phát triển nguyên mẫu chatbot hỗ trợ khách hàng hay triển khai hệ thống hỏi đáp tài liệu trên VPS $5/tháng, hướng dẫn này sẽ giúp bạn thiết lập môi trường Flowise production-grade từ con số không trong vòng 5 phút.\nFlowise là gì? Flowise là công cụ xây dựng workflow LLM và AI agent trực quan mã nguồn mở dựa trên LangChain. Nó cung cấp canvas dạng node-based, mỗi thành phần —— mô hình chat, embeddings, vector store, công cụ, agent và chain —— được hiển thị dưới dạng node có thể kéo thả, kết nối để tạo thành pipeline có thể thực thi. Flowise hỗ trợ hơn 200 tích hợp LangChain bao gồm OpenAI, Anthropic, Ollama, Qdrant, Weaviate và Chroma, là một trong những công cụ xây dựng AI trực quan có khả năng tích hợp phong phú nhất hiện nay.\nFlowise hoạt động như thế nào Flowise sử dụng kiến trúc module, ánh xạ trực tiếp các node trực quan tới các lớp LangChain. Hiểu rõ kiến trúc này giúp bạn xây dựng flow phức tạp hơn và debug nhanh hơn.\nCanvas trực quan của Flowise với các node LLM được kết nối —— mỗi node tương ứng với một lớp LangChain\nGiao diện kéo-thả của Flowise trong thực tế —— xây dựng pipeline RAG mà không cần viết code\nCác thành phần cốt lõi Chat Models —— Công cụ LLM (OpenAI GPT-4o, Claude, mô hình local Ollama, Hugging Face, Bedrock, Gemini) Embeddings —— Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa (OpenAI, HuggingFace, Cohere) Vector Stores —— Lưu trữ embeddings để truy xuất (Chroma, Qdrant, Weaviate, Pinecone, pgvector) Document Loaders —— Nhập dữ liệu từ PDF, trang web, file text, Notion, Confluence Chains —— Điều phối các tác vụ LLM đa bước (Conversational Retrieval QA, LLM Chain) Agents —— Hệ thống suy luận tự chủ, chọn công cụ động (ReAct, OpenAI Functions) Memory —— Duy trì ngữ cảnh cuộc trò chuyện (Buffer Memory, Window Buffer, Redis-backed) Ba chế độ xây dựng Flowise cung cấp ba công cụ xây dựng trực quan: - Assistant —— Công cụ xây dựng chatbot thân thiện cho ngườ mới, hỗ trợ RAG. Tải lên tài liệu, cấu hình phản hồi và triển khai.\nChatflow —— Canvas node-based đầy đủ để xây dựng conversational AI tùy chỉnh với quyền kiểm soát tường minh mọi thành phần. Agentflow —— Workflow agent đa bước với logic điều kiện, vòng lặp, gọi công cụ và phê duyệt bởi con ngườ. Mọi flow bạn xây dựng tự động hiển thị REST API endpoint và widget chat có thể nhúng, giúp việc triển khai chỉ cần một cú click chuột.\nCài đặt và thiết lập Flowise cung cấp bốn phương pháp cài đặt. Mỗi phương pháp phù hợp với môi trường và trình độ khác nhau.\nPhương pháp 1: NPM (Nhanh nhất cho phát triển local) Yêu cầu Node.js v18.15.0 hoặc v20+. Đây là con đường nhanh nhất từ cài đặt đến canvas đang chạy.\n# Cài đặt Flowise toàn cục npm install -g flowise # Hoặc cài đặt phiên bản cụ thể npm install -g flowise@3.1.2 # Khởi động Flowise npx flowise start Mở http://localhost:3000 trong trình duyệt. Lần khởi động đầu tiên sẽ tự động tạo database SQLite tại ~/.flowise.\nPhương pháp 2: Docker (Khuyến nghị cho production) Đây là phương pháp triển khai đáng tin cậy nhất. Flowise cung cấp image chính thức trên Docker Hub với hỗ trợ đa kiến trúc.\n# Pull và chạy image chính thức docker run -d -p 3000:3000 \\ --name flowise \\ -e FLOWISE_USERNAME=admin \\ -e FLOWISE_PASSWORD=secure-password \\ flowiseai/flowise:latest Truy cập http://localhost:3000 và đăng nhập bằng thông tin bạn đã đặt.\nPhương pháp 3: Docker Compose (Production với database) Đối với triển khai lâu dài, sử dụng Docker Compose với PostgreSQL và volume mount.\n# docker-compose.yml version: '3.8' services: flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - DATABASE_TYPE=postgres - DATABASE_HOST=postgres - DATABASE_PORT=5432 - DATABASE_NAME=flowise - DATABASE_USER=flowise - DATABASE_PASSWORD=${DB_PASSWORD:-changeme} - FLOWISE_USERNAME=${FLOWISE_USER:-admin} - FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme} - SECRETKEY_PATH=/root/.flowise - JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod} - JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret} volumes: - flowise_data:/root/.flowise depends_on: - postgres restart: unless-stopped postgres: image: postgres:16-alpine environment: - POSTGRES_USER=flowise - POSTGRES_PASSWORD=${DB_PASSWORD:-changeme} - POSTGRES_DB=flowise volumes: - postgres_data:/var/lib/postgresql/data restart: unless-stopped volumes: flowise_data: postgres_data: ````` Khởi động: `````bash docker compose up -d Phương pháp 4: Triển khai lên DigitalOcean Droplet Để có instance được lưu trữ trên cloud trên VPS đáng tin cậy, triển khai Flowise lên DigitalOcean chỉ trong vài phút.\n# Trên máy chủ Ubuntu 24.04 mới (2 vCPU / 2GB RAM / $12/tháng) apt update \u0026\u0026 apt install -y docker.io docker-compose # Clone repo Flowise git clone https://github.com/FlowiseAI/Flowise.git cd Flowise/docker # Copy template biến môi trường cp .env.example .env # Chỉnh sửa file cấu hình nano .env Ví dụ .env cho triển khai DigitalOcean: `````bash PORT=3000 DATABASE_TYPE=sqlite DATABASE_PATH=/root/.flowise SECRETKEY_PATH=/root/.flowise LOG_PATH=/root/.flowise/logs BLOB_STORAGE_PATH=/root/.flowise/storage FLOWISE_USERNAME=admin FLOWISE_PASSWORD=your-secure-password-here JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)\nKhởi động dịch vụ: `````bash docker compose up -d Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.\nBảng tham khảo biến môi trường Biến Mô tả Mặc định PORT Cổng máy chủ HTTP 3000 DATABASE_TYPE Công cụ database (sqlite, postgres) sqlite DATABASE_PATH Đường dẫn file SQLite ~/.flowise FLOWISE_USERNAME Tên ngườ dùng admin — FLOWISE_PASSWORD Mật khẩu admin — JWT_AUTH_TOKEN_SECRET Secret token truy cập tự động tạo JWT_REFRESH_TOKEN_SECRET Secret token làm mới tự động tạo BLOB_STORAGE_PATH Đường dẫn lưu trữ file upload ~/.flowise/storage DISABLE_FLOWISE_TELEMETRY Tắt thu thập dữ liệu ẩn danh false Tích hợp với công cụ phổ biến Tích hợp OpenAI Hầu hết ngườ dùng bắt đầu với mô hình OpenAI. Cấu hình API key trong Flowise UI tại Credentials, sau đó sử dụng node ChatOpenAI trong flow.\n# Thêm OpenAI API key dưới dạng biến môi trường (tùy chọn nhưng khuyến nghị) export OPENAI_API_KEY=sk-your-key-here Ollama (LLM cục bộ) Chạy mô hình local với Ollama loại bỏ chi phí API và giữ dữ liệu tại chỗ. Thiết lập này lý tưởng cho các triển khai nhạy cảm về quyền riêng tư.\n# docker-compose-ollama.yml version: '3.8' services: ollama: image: ollama/ollama:latest ports: - \"11434:11434\" volumes: - ollama_data:/root/.ollama restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - OLLAMA_BASE_URL=http://ollama:11434 depends_on: - ollama restart: unless-stopped volumes: ollama_data: ````` Pull mô hình và bắt đầu sử dụng: `````bash # Pull mô hình nhẹ để test docker exec -it ollama ollama pull qwen2:7b # Hoặc pull Llama 3 docker exec -it ollama ollama pull llama3.1:8b Trên canvas Flowise, chọn node ChatOllama và đặt tên mô hình thành qwen2:7b hoặc llama3.1:8b.\nChroma Vector Store (Thiết lập RAG) Đối với pipeline RAG production-grade, Chroma cung cấp vector database nhẹ hoạt động liền mạch với Flowise.\n# Thêm vào docker-compose.yml chroma: image: chromadb/chroma:latest ports: - \"8000:8000\" volumes: - chroma_data:/chroma/chroma restart: unless-stopped Xây dựng pipeline RAG trong Flowise: 1. Kéo thả node PDF Loader hoặc Text File 2. Kết nối với node Text Splitter (đặt chunk size 1000, overlap 200) 3. Kết nối với node OpenAI Embeddings (hoặc Ollama Embeddings) 4. Kết nối với node vector store Chroma 5. Thêm node Conversational Retrieval QA Chain 6. Kết nối Chat Model (ChatOpenAI hoặc ChatOllama) vào chain 7. Click Save và Run\nQdrant (Tìm kiếm vector có khả năng mở rộng) Đối với RAG có tìm kiếm hybrid thông lượng cao, Qdrant vượt trội hơn các store trong bộ nhớ.\n# Thêm Qdrant vào compose file qdrant: image: qdrant/qdrant:latest ports: - \"6333:6333\" - \"6334:6334\" volumes: - qdrant_data:/qdrant/storage restart: unless-stopped Trong Flowise, sử dụng node vector store Qdrant với host http://qdrant:6333.\nWeaviate (Vector Database doanh nghiệp) weaviate: image: semitechnologies/weaviate:latest ports: - \"8080:8080\" environment: QUERY_DEFAULTS_LIMIT: 25 AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED: true PERSISTENCE_DATA_PATH: '/var/lib/weaviate' volumes: - weaviate_data:/var/lib/weaviate restart: unless-stopped Triển khai API Mọi flow tự động hiển thị REST API. Export chatflow của bạn và tích hợp ở bất kỳ đâu.\n# Test flow đã triển khai bằng curl curl -X POST \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"question\": \"Chính sách đổi trả như thế nào?\", \"overrideConfig\": { \"sessionId\": \"user_001\" } }' Phản hồi: `````json { “text”: “Theo tài liệu của chúng tôi, chính sách đổi trả cho phép đổi trả trong vòng 30 ngày kể từ ngày mua với biên lai gốc.”, “sourceDocuments”: [ { “pageContent”: “Chấp nhận đổi trả trong vòng 30 ngày sau khi mua…”, “metadata”: { “source”: “return-policy.pdf”, “page”: 3 } } ] }\nVí dụ Python SDK: `````python import requests FLOWISE_API = \"http://localhost:3000/api/v1/prediction/your-chatflow-id\" def ask(question, session_id=\"user_001\"): resp = requests.post(FLOWISE_API, json={ \"question\": question, \"overrideConfig\": {\"sessionId\": session_id} }) return resp.json()[\"text\"] answer = ask(\"Các phương thức vận chuyển là gì?\") print(answer) Nhúng vào website Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào: Widget chat nhúng với tùy chỉnh giao diện —— triển khai lên bất kỳ website nào chỉ với một thẻ script\nimport Chatbot from 'https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js'; Chatbot.init({ chatflowid: 'your-chatflow-id', apiHost: 'https://your-flowise-server.com', theme: { button: { backgroundColor: '#3B81F6', right: 20, bottom: 20, size: medium }, chatWindow: { title: \"AI Tool Guide\" welcomeMessage: 'Xin chào! Tôi có thể giúp gì cho bạn?', backgroundColor: '#ffffff', height: 700, width: 400 } } }); \u003c/script\u003e Benchmark / Các trường hợp sử dụng thực tế Đặc tính hiệu suất Flowise dựa trên báo cáo cộng đồng và thử nghiệm của chúng tôi: | Chỉ số | Giá trị | Ghi chú | |——–|———|———| | Khởi động lạnh (Docker) | 3-5 giây | Trên VPS 2 vCPU | | Độ trễ phản hồi đầu tiên | 1.5-3 giây | Với GPT-4o, phụ thuộc prompt | | RAG query end-to-end | 2-4 giây | Chroma vector store, 1K chunks | | Ngườ dùng đồng thờ | 50-200 | Backend SQLite; dùng PostgreSQL cho quy mô lớn hơn | | Bộ nhớ (nhàn rỗi) | ~180 MB | Một container | | Bộ nhớ (hoạt động) | 300-600 MB | Phụ thuộc mô hình và context | | Thờ gian xây dựng flow RAG | 10-15 phút | Từ canvas trống đến chatbot hoạt động | | Cấu hình VPS tối thiểu | 1 vCPU / 1 GB RAM | VPS $4-5/tháng hoạt động tốt | | Cấu hình VPS production | 2 vCPU / 4 GB RAM | Khuyến nghị với PostgreSQL |\nSo sánh: Flowise vs các lựa chọn thay thế Tính năng Flowise Dify n8n LangChain GitHub Stars 52.948 50.000+ 49.500 110.000+ Giấy phép MIT Apache-2.0 Fair-code MIT Builder trực quan Canvas kéo-thả UI tập trung ứng dụng Trình soạn workflow Chỉ code Trường hợp sử dụng chính Chatbot LLM \u0026 RAG Ứng dụng AI full-stack Tự động hóa workflow SDK code-first LangChain Native Có (ánh xạ trực tiếp) Abstraction tùy chỉnh Qua node AI Chính là LangChain Hỗ trợ LLM 200+ (toàn bộ LangChain) 50+ 70+ node AI Mọi nhà cung cấp Vector Store Chroma, Qdrant, Weaviate, Pinecone, pgvector Knowledge base tích hợp Qua LangChain nodes Mọi store LLM cục bộ (Ollama) Node gốc Tích hợp gốc Qua HTTP request Gốc Widget chat nhúng Có (tự động tạo) Có Qua webhook Xây dựng thủ công REST API (tự động) Có Có Có Xây dựng thủ công Workflow đa agent Agentflow (tuần tự) Điều phối workflow Có (với node AI) LangGraph Lập lịch / Trigger Hạn chế Hạn chế Đầy đủ (cron, webhook) Thủ công Độ phức tạp self-host Thấp (1 container) Trung bình (đa dịch vụ) Thấp-Trung bình N/A (thư viện) RAM tối thiểu ~1 GB 4 GB 300 MB N/A Giá cloud (Starter) $35/tháng $59/tháng ~$24/tháng N/A UX ngườ không kỹ thuật Tốt Xuất sắc Tốt Yêu cầu lập trình Khi nào chọn công cụ nào Flowise: Tốt nhất cho các team xây dựng conversational AI (chatbot, RAG) muốn đường dẫn prototype-deployment nhanh nhất với khả năng tương thích LangChain đầy đủ. Dify: Chọn khi cần nền tảng ứng dụng AI full-stack với quản lý kiến thức tích hợp, quản lý phiên bản prompt và cộng tác nhóm. n8n: Chọn khi agent AI của bạn là một phần của pipeline tự động hóa rộng hơn với 400+ tích hợp SaaS, lập lịch và xử lý lỗi. LangChain: Sử dụng trực tiếp khi cần quyền kiểm soát code đầy đủ, quản lý phiên bản prompt và tích hợp CI/CD. Sử dụng nâng cao / Củng cố production Danh sách kiểm tra bảo mật Trước khi đưa Flowise ra internet, hoàn thành các bước sau: `````bash\n1. Bật xác thực (BẮT BUỘC) FLOWISE_USERNAME=admin FLOWISE_PASSWORD=$(openssl rand -base64 24)\n2. Đặt JWT secret mạnh JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64) JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)\n3. Chạy sau HTTPS với reverse proxy Đoạn cấu hình Nginx: server { listen 443 ssl http2; server_name flowise.yourdomain.com; ssl_certificate /path/to/cert.pem; ssl_certificate_key /path/to/key.pem; location / { proxy_pass http://localhost:3000; proxy_http_version 1.1; proxy_set_header Upgrade $http_upgrade; proxy_set_header Connection \"upgrade\"; proxy_set_header Host $host; proxy_set_header X-Real-IP $remote_addr; } }\n4. Tắt telemetry nếu muốn DISABLE_FLOWISE_TELEMETRY=true\n5. Đặt CORS cho widget nhúng CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com\n### Mở rộng với Queue Mode Đối với triển khai lưu lượng cao, Flowise hỗ trợ xử lý dựa trên hàng đợi với Redis worker. `````yaml # docker-compose-queue.yml version: '3.8\" services: redis: image: redis:alpine restart: unless-stopped flowise: image: flowiseai/flowise:latest ports: - \"3000:3000\" environment: - PORT=3000 - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped flowise-worker: image: flowiseai/flowise-worker:latest environment: - QUEUE_NAME=flowise-queue - QUEUE_REDIS_URL=redis://redis:6379 restart: unless-stopped Mở rộng worker theo chiều ngang: `````bash docker compose -f docker-compose-queue.yml up -d –scale flowise-worker=3\n### Chiến lược sao lưu `````bash # Sao lưu database SQLite docker exec flowise tar czf /tmp/backup.tar.gz /root/.flowise docker cp flowise:/tmp/backup.tar.gz ./flowise-backup-$(date +%Y%m%d).tar.gz # Sao lưu PostgreSQL docker exec flowise-postgres pg_dump -U flowise flowise \u003e flowise-db-$(date +%Y%m%d).sql # Tự động sao lưu hàng ngày qua cron (thêm vào crontab) 0 2 * * * /usr/local/bin/backup-flowise.sh \u003e\u003e /var/log/flowise-backup.log 2\u003e\u00261 Giám sát với Docker # Xem log theo thờ gian thực docker compose logs -f flowise # Kiểm tra sử dụng tài nguyên docker stats flowise # Health check endpoint curl http://localhost:3000/api/v1/ping Hạn chế / Đánh giá trung thực Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là những gì Flowise KHÔNG làm tốt: 1. Điều phối Multi-Agent phức tạp: Flowise Agentflow hỗ trợ agent tuần tự, nhưng các pattern multi-agent dạng chu kỳ (như trong LangGraph hoặc AutoGen) cần cách giải quyết thay thế. Các team xây dựng agent nghiên cứu hoặc hệ thống multi-agent tranh luận nên xem xét LangGraph trực tiếp.\nWorkflow phi-chat: Flowise được tối ưu hóa cho conversational AI. Xử lý tài liệu theo batch, pipeline ETL, hoặc chuyển đổi dữ liệu theo lịch phù hợp hơn với n8n hoặc Python script.\nQuản lý phiên bản: Các flow trực quan không thể diff trong Git như code. Hợp tác trong team lớn đòi hỏi kỷ luật trong việc export và quản lý phiên bản định nghĩa flow JSON thủ công.\nDebug nâng cao: Mặc dù Flowise hiển thị log thực thi, nhưng thiếu phân tích thờ gian từng node và theo dõi token usage mà Dify cung cấp. Debug lỗi retrieval phức tạp đòi hỏi đọc log thô.\nGovernance doanh nghiệp: RBAC tồn tại ở tier Pro, nhưng audit trail, framework tuân thủ (ISO 42001, EU AI Act), và quản lý fleet không phải tính năng hàng đầu. Các ngành được quy định có thể cần thêm lớp governance.\nPhụ thuộc LangChain: Flowise kế thừa hạn chế của LangChain. Nếu LangChain ngừng hỗ trợ một mô hình hoặc giới thiệu breaking change, Flowise cũng chịu ảnh hưởng. Sự kết hợp này là ưu điểm cho ngườ dùng LangChain nhưng là ràng buộc cho những ngườ khác.\nCâu hỏi thường gặp Cách cài đặt Flowise trên server không có Node.js? Sử dụng Docker. Image flowiseai/flowise chính thức đã đóng gói mọi dependency. Một lệnh docker run duy nhất là đủ, không cần cài Node.js, pnpm hay bất kỳ công cụ build nào trên host.\nFlowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không? Có. Flowise tích hợp gốc với Ollama. Khởi động container Ollama (hoặc instance local), pull bất kỳ mô hình GGUF nào, sau đó chọn node ChatOllama trên canvas Flowise. Dữ liệu của bạn không bao giờ rồi khỏi server —— không cần API key.\nFlowise vs Dify khi xây dựng chatbot RAG? Flowise thiết lập nhanh hơn (một container, không cần database) và cho phép kiểm soát tường minh mọi thành phần LangChain. Dify có giao diện knowledge base đánh bóng hơn với chunking tự động và debug tốt hơn. Chọn Flowise cho tốc độ và khả năng tương thích LangChain; chọn Dify cho cộng tác nhóm và quản lý kiến thức tích hợp.\nFlowise có miễn phí sử dụng thương mại không? Có. Flowise được phát hành theo giấy phép MIT. Bạn có thể tự host, chỉnh sửa, nhúng vào sản phẩm thương mại, bán dịch vụ dựa trên nó —— tất cả không phải trả phí cấp phép. Phiên bản cloud-hosted có gói trả phí từ $35/tháng.\nCấu hình server tối thiểu cho Flowise production là gì? VPS $5/tháng với 1 vCPU và 1 GB RAM xử lý tốt khối lượng công việc vừa và nhỏ với SQLite. Đối với production với PostgreSQL và ngườ dùng đồng thờ, nên cấp phát 2 vCPU và 4 GB RAM. Container Flowise tiêu thụ ~180 MB ở trạng thái nhàn rỗi; LLM (nếu tự host qua Ollama) tiêu thụ tài nguyên nhiều nhất.\nCó thể export chatbot Flowise dưới dạng API không? Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại /api/v1/prediction/{flow-id}. UI tạo snippet code curl, Python và JavaScript. Bạn cũng có thể export widget chat nhúng chỉ với một click.\nCách nâng cấp Flowise lên phiên bản mới? Triển khai Docker: Pull image mới nhất và khởi động lại: `````bash docker pull flowiseai/flowise:latest docker compose up -d\nCài đặt NPM: Chạy ````npm update -g flowise````. Luôn sao lưu thư mục ````~/.flowise```` trước khi nâng cấp. *Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.* ## Kết luận Flowise loại bỏ rào cản giữa ý tưởng và triển khai AI agent. Với 52.948 GitHub Stars, giấy phép MIT, và canvas trực quan ánh xạ trực tiếp đến mô hình thành phần LangChain, đây là lựa chọn thực tế cho các developer muốn phát hành chatbot LLM và hệ thống RAG mà không viết code boilerplate. Bắt đầu với ````npx flowise start```` cho prototype local. Chuyển sang Docker Compose với PostgreSQL cho production. Kết nối Ollama cho các triển khai hoàn toàn private, không cần API key. Và khi cần mở rộng, thêm Redis queue worker và các worker replica theo chiều ngang. **Các việc cần làm tuần này:** 1. Triển khai Flowise local với Docker (````docker run -p 3000:3000 flowiseai/flowise```) 2. Xây dựng pipeline RAG đầu tiên với PDF loader, text splitter và Chroma vector store 3. Export REST API và nhúng chat widget vào trang test 4. Tham gia [nhóm Telegram FlowiseAI](https://t.me/flowiseai) để được hỗ trợ cộng đồng và mẹo hàng tuần ## Hosting Và Hạ Tầng Được Đề Xuất Trước khi triển khai các công cụ trên vào production, bạn cần hạ tầng vững chắc. Hai lựa chọn dibi8 đang dùng: - **[DigitalOcean](https://m.do.co/c/eca87ac14ee0)** — Credit miễn phí $200 trong 60 ngày, 14+ khu vực toàn cầu. Lựa chọn mặc định cho dev chạy AI tools open source. - **[HTStack](https://my.htstack.com/aff.php?aff=27187)** — VPS Hong Kong, độ trễ thấp khi truy cập từ Trung Quốc. Cùng IDC đang host dibi8.com. *Liên kết tiếp thị — không tăng chi phí của bạn, giúp dibi8.com hoạt động.* ## Nguồn \u0026 Tài liệu tham khảo 1. [Tài liệu chính thức Flowise](https://docs.flowiseai.com/) —— Tài liệu đầy đủ về cài đặt, cấu hình và API reference 2. [Flowise GitHub Repository](https://github.com/FlowiseAI/Flowise) —— Mã nguồn, issues và releases 3. [Giá Flowise Cloud](https://flowiseai.com/pricing) —— Các gói cloud-hosted và tính năng enterprise 4. [Tài liệu LangChain](https://js.langchain.com/) —— Framework nền tảng của Flowise 5. [Ollama Download](https://ollama.com/download) —— Runtime LLM local cho triển khai private 6. [Chroma Database](https://www.trychroma.com/) —— Vector database mã nguồn mở cho RAG 7. [Qdrant Vector Database](https://qdrant.tech/) —— Tìm kiếm vector hiệu suất cao cho production 8. [So sánh Flowise vs Dify](https://toolhalla.ai/blog/dify-vs-flowise-vs-langflow-2026) —— So sánh chi tiết bởi ToolHalla 9. [Tài liệu Flowise Embed Widget](https://www.npmjs.com/package/flowise-embed) —— Gói NPM để nhúng chatbot 10. [Hướng dẫn triển khai Docker trên DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-24-04) —— Hướng dẫn cài Docker trên Ubuntu { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Flowise: 52K+ Stars Xây Dựng AI Agent Trực Quan — Hướng Dẫn Cài Đặt 5 Phút 2026\", \"datePublished\": \"2026-05-19\", \"dateModified\": \"2026-05-19\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/flowise\" } } * * * ## Related Articles - [12-factor-agents-production-llm-software-2026](flowise) - [12-factor-agents](flowise) - [1m-context-window-llm-2026-real-test](flowise) - [9router-smart-llm-proxy-token-saver-free-coding](flowise) - [ai-engineering-from-scratch](flowise) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ## Frequently Asked Questions (FAQ) **问：AI Agent和传统自动化有什么区别？** AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。 **问：如何选择合适的AI Agent框架？** 考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。 **问：AI Agent的安全性如何保证？** 实施权限最小化、输入验证、审计日志、以及定期安全评估。 **问：AI Agent的学习成本有多高？** 入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。 **问：能否自定义AI Agent的行为？** 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。 ",
+  "wordCount" : "3674",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/flowise/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>18 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/flowise/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/flowise/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/flowise/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#gi%e1%bb%9bi-thi%e1%bb%87u" aria-label="Giới thiệu">Giới thiệu</a></li>
+            <li>
+                <a href="#flowise-l%c3%a0-g%c3%ac" aria-label="Flowise là gì?">Flowise là gì?</a></li>
+            <li>
+                <a href="#flowise-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-nh%c6%b0-th%e1%ba%bf-n%c3%a0o" aria-label="Flowise hoạt động như thế nào">Flowise hoạt động như thế nào</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a1c-th%c3%a0nh-ph%e1%ba%a7n-c%e1%bb%91t-l%c3%b5i" aria-label="Các thành phần cốt lõi">Các thành phần cốt lõi</a></li>
+            <li>
+                <a href="#ba-ch%e1%ba%bf-%c4%91%e1%bb%99-x%c3%a2y-d%e1%bb%b1ng" aria-label="Ba chế độ xây dựng">Ba chế độ xây dựng</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-v%c3%a0-thi%e1%ba%bft-l%e1%ba%adp" aria-label="Cài đặt và thiết lập">Cài đặt và thiết lập</a><ul>
+                    
+            <li>
+                <a href="#ph%c6%b0%c6%a1ng-ph%c3%a1p-1-npm-nhanh-nh%e1%ba%a5t-cho-ph%c3%a1t-tri%e1%bb%83n-local" aria-label="Phương pháp 1: NPM (Nhanh nhất cho phát triển local)">Phương pháp 1: NPM (Nhanh nhất cho phát triển local)</a></li>
+            <li>
+                <a href="#ph%c6%b0%c6%a1ng-ph%c3%a1p-2-docker-khuy%e1%ba%bfn-ngh%e1%bb%8b-cho-production" aria-label="Phương pháp 2: Docker (Khuyến nghị cho production)">Phương pháp 2: Docker (Khuyến nghị cho production)</a></li>
+            <li>
+                <a href="#ph%c6%b0%c6%a1ng-ph%c3%a1p-3-docker-compose-production-v%e1%bb%9bi-database" aria-label="Phương pháp 3: Docker Compose (Production với database)">Phương pháp 3: Docker Compose (Production với database)</a></li>
+            <li>
+                <a href="#ph%c6%b0%c6%a1ng-ph%c3%a1p-4-tri%e1%bb%83n-khai-l%c3%aan-digitalocean-droplet" aria-label="Phương pháp 4: Triển khai lên DigitalOcean Droplet">Phương pháp 4: Triển khai lên DigitalOcean Droplet</a></li>
+            <li>
+                <a href="#b%e1%ba%a3ng-tham-kh%e1%ba%a3o-bi%e1%ba%bfn-m%c3%b4i-tr%c6%b0%e1%bb%9dng" aria-label="Bảng tham khảo biến môi trường">Bảng tham khảo biến môi trường</a></li></ul>
+            </li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-c%c3%b4ng-c%e1%bb%a5-ph%e1%bb%95-bi%e1%ba%bfn" aria-label="Tích hợp với công cụ phổ biến">Tích hợp với công cụ phổ biến</a><ul>
+                    
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-openai" aria-label="Tích hợp OpenAI">Tích hợp OpenAI</a></li>
+            <li>
+                <a href="#ollama-llm-c%e1%bb%a5c-b%e1%bb%99" aria-label="Ollama (LLM cục bộ)">Ollama (LLM cục bộ)</a></li>
+            <li>
+                <a href="#chroma-vector-store-thi%e1%ba%bft-l%e1%ba%adp-rag" aria-label="Chroma Vector Store (Thiết lập RAG)">Chroma Vector Store (Thiết lập RAG)</a></li>
+            <li>
+                <a href="#qdrant-t%c3%acm-ki%e1%ba%bfm-vector-c%c3%b3-kh%e1%ba%a3-n%c4%83ng-m%e1%bb%9f-r%e1%bb%99ng" aria-label="Qdrant (Tìm kiếm vector có khả năng mở rộng)">Qdrant (Tìm kiếm vector có khả năng mở rộng)</a></li>
+            <li>
+                <a href="#weaviate-vector-database-doanh-nghi%e1%bb%87p" aria-label="Weaviate (Vector Database doanh nghiệp)">Weaviate (Vector Database doanh nghiệp)</a></li>
+            <li>
+                <a href="#tri%e1%bb%83n-khai-api" aria-label="Triển khai API">Triển khai API</a></li>
+            <li>
+                <a href="#nh%c3%bang-v%c3%a0o-website" aria-label="Nhúng vào website">Nhúng vào website</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmark--c%c3%a1c-tr%c6%b0%e1%bb%9dng-h%e1%bb%a3p-s%e1%bb%ad-d%e1%bb%a5ng-th%e1%bb%b1c-t%e1%ba%bf" aria-label="Benchmark / Các trường hợp sử dụng thực tế">Benchmark / Các trường hợp sử dụng thực tế</a><ul>
+                    
+            <li>
+                <a href="#so-s%c3%a1nh-flowise-vs-c%c3%a1c-l%e1%bb%b1a-ch%e1%bb%8dn-thay-th%e1%ba%bf" aria-label="So sánh: Flowise vs các lựa chọn thay thế">So sánh: Flowise vs các lựa chọn thay thế</a></li>
+            <li>
+                <a href="#khi-n%c3%a0o-ch%e1%bb%8dn-c%c3%b4ng-c%e1%bb%a5-n%c3%a0o" aria-label="Khi nào chọn công cụ nào">Khi nào chọn công cụ nào</a></li></ul>
+            </li>
+            <li>
+                <a href="#s%e1%bb%ad-d%e1%bb%a5ng-n%c3%a2ng-cao--c%e1%bb%a7ng-c%e1%bb%91-production" aria-label="Sử dụng nâng cao / Củng cố production">Sử dụng nâng cao / Củng cố production</a><ul>
+                    
+            <li>
+                <a href="#danh-s%c3%a1ch-ki%e1%bb%83m-tra-b%e1%ba%a3o-m%e1%ba%adt" aria-label="Danh sách kiểm tra bảo mật">Danh sách kiểm tra bảo mật</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#1-b%e1%ba%adt-x%c3%a1c-th%e1%bb%b1c-b%e1%ba%aft-bu%e1%bb%99c" aria-label="1. Bật xác thực (BẮT BUỘC)">1. Bật xác thực (BẮT BUỘC)</a></li>
+            <li>
+                <a href="#2-%c4%91%e1%ba%b7t-jwt-secret-m%e1%ba%a1nh" aria-label="2. Đặt JWT secret mạnh">2. Đặt JWT secret mạnh</a></li>
+            <li>
+                <a href="#3-ch%e1%ba%a1y-sau-https-v%e1%bb%9bi-reverse-proxy" aria-label="3. Chạy sau HTTPS với reverse proxy">3. Chạy sau HTTPS với reverse proxy</a></li>
+            <li>
+                <a href="#%c4%91o%e1%ba%a1n-c%e1%ba%a5u-h%c3%acnh-nginx-server-" aria-label="Đoạn cấu hình Nginx: server {">Đoạn cấu hình Nginx: server {</a></li>
+            <li>
+                <a href="#4-t%e1%ba%aft-telemetry-n%e1%ba%bfu-mu%e1%bb%91n" aria-label="4. Tắt telemetry nếu muốn">4. Tắt telemetry nếu muốn</a></li>
+            <li>
+                <a href="#5-%c4%91%e1%ba%b7t-cors-cho-widget-nh%c3%bang" aria-label="5. Đặt CORS cho widget nhúng">5. Đặt CORS cho widget nhúng</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#gi%c3%a1m-s%c3%a1t-v%e1%bb%9bi-docker" aria-label="Giám sát với Docker">Giám sát với Docker</a></li></ul>
+                
+            <li>
+                <a href="#h%e1%ba%a1n-ch%e1%ba%bf--%c4%91%c3%a1nh-gi%c3%a1-trung-th%e1%bb%b1c" aria-label="Hạn chế / Đánh giá trung thực">Hạn chế / Đánh giá trung thực</a></li>
+            <li>
+                <a href="#c%c3%a2u-h%e1%bb%8fi-th%c6%b0%e1%bb%9dng-g%e1%ba%b7p" aria-label="Câu hỏi thường gặp">Câu hỏi thường gặp</a><ul>
+                    
+            <li>
+                <a href="#c%c3%a1ch-c%c3%a0i-%c4%91%e1%ba%b7t-flowise-tr%c3%aan-server-kh%c3%b4ng-c%c3%b3-nodejs" aria-label="Cách cài đặt Flowise trên server không có Node.js?">Cách cài đặt Flowise trên server không có Node.js?</a></li>
+            <li>
+                <a href="#flowise-c%c3%b3-ho%e1%ba%a1t-%c4%91%e1%bb%99ng-v%e1%bb%9bi-llm-c%e1%bb%a5c-b%e1%bb%99-nh%c6%b0-llama-ho%e1%ba%b7c-qwen-kh%c3%b4ng" aria-label="Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?">Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?</a></li>
+            <li>
+                <a href="#flowise-vs-dify-khi-x%c3%a2y-d%e1%bb%b1ng-chatbot-rag" aria-label="Flowise vs Dify khi xây dựng chatbot RAG?">Flowise vs Dify khi xây dựng chatbot RAG?</a></li>
+            <li>
+                <a href="#flowise-c%c3%b3-mi%e1%bb%85n-ph%c3%ad-s%e1%bb%ad-d%e1%bb%a5ng-th%c6%b0%c6%a1ng-m%e1%ba%a1i-kh%c3%b4ng" aria-label="Flowise có miễn phí sử dụng thương mại không?">Flowise có miễn phí sử dụng thương mại không?</a></li>
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-server-t%e1%bb%91i-thi%e1%bb%83u-cho-flowise-production-l%c3%a0-g%c3%ac" aria-label="Cấu hình server tối thiểu cho Flowise production là gì?">Cấu hình server tối thiểu cho Flowise production là gì?</a></li>
+            <li>
+                <a href="#c%c3%b3-th%e1%bb%83-export-chatbot-flowise-d%c6%b0%e1%bb%9bi-d%e1%ba%a1ng-api-kh%c3%b4ng" aria-label="Có thể export chatbot Flowise dưới dạng API không?">Có thể export chatbot Flowise dưới dạng API không?</a></li>
+            <li>
+                <a href="#c%c3%a1ch-n%c3%a2ng-c%e1%ba%a5p-flowise-l%c3%aan-phi%c3%aan-b%e1%ba%a3n-m%e1%bb%9bi" aria-label="Cách nâng cấp Flowise lên phiên bản mới?">Cách nâng cấp Flowise lên phiên bản mới?</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,65 +329,108 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;flowise&rdquo;, &ldquo;langchain&rdquo;, &ldquo;ai agent&rdquo;, &ldquo;rag&rdquo;, &ldquo;docker&rdquo;, &ldquo;llm&rdquo;, &ldquo;mã nguồn mở&rdquo;, &ldquo;no-code&rdquo;]
-aliases:</p><ul><li>/vi/posts/flowise/</li><li>/vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/</li></ul><hr><h2 id=giới-thiệu>Giới thiệu<a hidden class=anchor aria-hidden=true href=#giới-thiệu>#</a></h2><p>Xây dựng ứng dụng dựa trên LLM từng đòi hỏi viết hàng trăm dòng Python để kết nối thủ công các mô hình, vector database, retrieval chain và memory module. Flowise đã thay đổi hoàn toàn quy tắc này. Với 52.948 GitHub Stars và cộng đồng phát triển sôi nổi, Flowise là công cụ xây dựng AI agent trực quan mã nguồn mở, cho phép bạn xây dựng AI agent và pipeline RAG bằng cách kéo-thả, kết nối các node trên canvas —— không cần viết code. Dù bạn đang phát triển nguyên mẫu chatbot hỗ trợ khách hàng hay triển khai hệ thống hỏi đáp tài liệu trên VPS $5/tháng, hướng dẫn này sẽ giúp bạn thiết lập môi trường Flowise production-grade từ con số không trong vòng 5 phút.</p><h2 id=flowise-là-gì>Flowise là gì?<a hidden class=anchor aria-hidden=true href=#flowise-là-gì>#</a></h2><p>Flowise là công cụ xây dựng workflow LLM và AI agent trực quan mã nguồn mở dựa trên LangChain. Nó cung cấp canvas dạng node-based, mỗi thành phần —— mô hình chat, embeddings, vector store, công cụ, agent và chain —— được hiển thị dưới dạng node có thể kéo thả, kết nối để tạo thành pipeline có thể thực thi. Flowise hỗ trợ hơn 200 tích hợp LangChain bao gồm OpenAI, Anthropic, Ollama, Qdrant, Weaviate và Chroma, là một trong những công cụ xây dựng AI trực quan có khả năng tích hợp phong phú nhất hiện nay.</p><h2 id=flowise-hoạt-động-như-thế-nào>Flowise hoạt động như thế nào<a hidden class=anchor aria-hidden=true href=#flowise-hoạt-động-như-thế-nào>#</a></h2><p>Flowise sử dụng kiến trúc module, ánh xạ trực tiếp các node trực quan tới các lớp LangChain. Hiểu rõ kiến trúc này giúp bạn xây dựng flow phức tạp hơn và debug nhanh hơn.</p><p><img alt="Kiến trúc Flowise" loading=lazy src=https://raw.githubusercontent.com/FlowiseAI/Flowise/main/images/flowise.png>
-<em>Canvas trực quan của Flowise với các node LLM được kết nối —— mỗi node tương ứng với một lớp LangChain</em></p><p><img alt="Demo Canvas Flowise" loading=lazy src="https://docs.flowiseai.com/~gitbook/image?url=https%3A%2F%2F823733684-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F00tYLwhz5RyR7fJEhrWy%252Fuploads%252FDOgMs2ywc1bdE09oa10c%252FFlowiseIntro.gif%3Falt%3Dmedia%26token%3D55bbcbc6-e586-4a79-8923-20c2b39e7bf9&width=768&dpr=3&quality=100&sign=c6ac7b1&sv=2">
-<em>Giao diện kéo-thả của Flowise trong thực tế —— xây dựng pipeline RAG mà không cần viết code</em></p><h3 id=các-thành-phần-cốt-lõi>Các thành phần cốt lõi<a hidden class=anchor aria-hidden=true href=#các-thành-phần-cốt-lõi>#</a></h3><ol><li><strong>Chat Models</strong> —— Công cụ LLM (OpenAI GPT-4o, Claude, mô hình local Ollama, Hugging Face, Bedrock, Gemini)</li><li><strong>Embeddings</strong> —— Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa (OpenAI, HuggingFace, Cohere)</li><li><strong>Vector Stores</strong> —— Lưu trữ embeddings để truy xuất (Chroma, Qdrant, Weaviate, Pinecone, pgvector)</li><li><strong>Document Loaders</strong> —— Nhập dữ liệu từ PDF, trang web, file text, Notion, Confluence</li><li><strong>Chains</strong> —— Điều phối các tác vụ LLM đa bước (Conversational Retrieval QA, LLM Chain)</li><li><strong>Agents</strong> —— Hệ thống suy luận tự chủ, chọn công cụ động (ReAct, OpenAI Functions)</li><li><strong>Memory</strong> —— Duy trì ngữ cảnh cuộc trò chuyện (Buffer Memory, Window Buffer, Redis-backed)</li></ol><h3 id=ba-chế-độ-xây-dựng>Ba chế độ xây dựng<a hidden class=anchor aria-hidden=true href=#ba-chế-độ-xây-dựng>#</a></h3><p>Flowise cung cấp ba công cụ xây dựng trực quan: - <strong>Assistant</strong> —— Công cụ xây dựng chatbot thân thiện cho ngườ mới, hỗ trợ RAG. Tải lên tài liệu, cấu hình phản hồi và triển khai.</p><ul><li><strong>Chatflow</strong> —— Canvas node-based đầy đủ để xây dựng conversational AI tùy chỉnh với quyền kiểm soát tường minh mọi thành phần.</li><li><strong>Agentflow</strong> —— Workflow agent đa bước với logic điều kiện, vòng lặp, gọi công cụ và phê duyệt bởi con ngườ.</li></ul><p>Mọi flow bạn xây dựng tự động hiển thị REST API endpoint và widget chat có thể nhúng, giúp việc triển khai chỉ cần một cú click chuột.</p><h2 id=cài-đặt-và-thiết-lập>Cài đặt và thiết lập<a hidden class=anchor aria-hidden=true href=#cài-đặt-và-thiết-lập>#</a></h2><p>Flowise cung cấp bốn phương pháp cài đặt. Mỗi phương pháp phù hợp với môi trường và trình độ khác nhau.</p><h3 id=phương-pháp-1-npm-nhanh-nhất-cho-phát-triển-local>Phương pháp 1: NPM (Nhanh nhất cho phát triển local)<a hidden class=anchor aria-hidden=true href=#phương-pháp-1-npm-nhanh-nhất-cho-phát-triển-local>#</a></h3><p>Yêu cầu Node.js v18.15.0 hoặc v20+. Đây là con đường nhanh nhất từ cài đặt đến canvas đang chạy.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Cài đặt Flowise toàn cục</span>
-</span></span><span style=display:flex><span>npm install -g flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc cài đặt phiên bản cụ thể</span>
-</span></span><span style=display:flex><span>npm install -g flowise@3.1.2
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Khởi động Flowise</span>
-</span></span><span style=display:flex><span>npx flowise start
-</span></span></code></pre></div><p>Mở <code>http://localhost:3000</code> trong trình duyệt. Lần khởi động đầu tiên sẽ tự động tạo database SQLite tại <code>~/.flowise</code>.</p><h3 id=phương-pháp-2-docker-khuyến-nghị-cho-production>Phương pháp 2: Docker (Khuyến nghị cho production)<a hidden class=anchor aria-hidden=true href=#phương-pháp-2-docker-khuyến-nghị-cho-production>#</a></h3><p>Đây là phương pháp triển khai đáng tin cậy nhất. Flowise cung cấp image chính thức trên Docker Hub với hỗ trợ đa kiến trúc.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Pull và chạy image chính thức</span>
-</span></span><span style=display:flex><span>docker run -d -p 3000:3000 <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --name flowise <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e FLOWISE_USERNAME<span style=color:#f92672>=</span>admin <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -e FLOWISE_PASSWORD<span style=color:#f92672>=</span>secure-password <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  flowiseai/flowise:latest
-</span></span></code></pre></div><p>Truy cập <code>http://localhost:3000</code> và đăng nhập bằng thông tin bạn đã đặt.</p><h3 id=phương-pháp-3-docker-compose-production-với-database>Phương pháp 3: Docker Compose (Production với database)<a hidden class=anchor aria-hidden=true href=#phương-pháp-3-docker-compose-production-với-database>#</a></h3><p>Đối với triển khai lâu dài, sử dụng Docker Compose với PostgreSQL và volume mount.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_TYPE=postgres</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_HOST=postgres</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PORT=5432</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_NAME=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_USER=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>DATABASE_PASSWORD=${DB_PASSWORD:-changeme}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_USERNAME=${FLOWISE_USER:-admin}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>SECRETKEY_PATH=/root/.flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>flowise_data:/root/.flowise</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>postgres</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>postgres: image</span>: <span style=color:#ae81ff>postgres:16-alpine</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>POSTGRES_USER=flowise</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>POSTGRES_DB=flowise</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>postgres_data:/var/lib/postgresql/data</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: flowise_data: postgres_data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Khởi động</span>: <span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker compose up -d</span>
-</span></span></code></pre></div><h3 id=phương-pháp-4-triển-khai-lên-digitalocean-droplet>Phương pháp 4: Triển khai lên DigitalOcean Droplet<a hidden class=anchor aria-hidden=true href=#phương-pháp-4-triển-khai-lên-digitalocean-droplet>#</a></h3><p>Để có instance được lưu trữ trên cloud trên VPS đáng tin cậy, triển khai Flowise lên DigitalOcean chỉ trong vài phút.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Trên máy chủ Ubuntu 24.04 mới (2 vCPU / 2GB RAM / $12/tháng)</span>
-</span></span><span style=display:flex><span>apt update <span style=color:#f92672>&amp;&amp;</span> apt install -y docker.io docker-compose
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Clone repo Flowise</span>
-</span></span><span style=display:flex><span>git clone https://github.com/FlowiseAI/Flowise.git
-</span></span><span style=display:flex><span>cd Flowise/docker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Copy template biến môi trường</span>
-</span></span><span style=display:flex><span>cp .env.example .env
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Chỉnh sửa file cấu hình</span>
-</span></span><span style=display:flex><span>nano .env
+aliases:</p>
+<ul>
+<li>/vi/posts/flowise/</li>
+<li>/vi/resources/ai-tools/flowise-ai-workflow-builder-lowcode/</li>
+</ul>
+<hr>
+<h2 id="giới-thiệu">Giới thiệu<a hidden class="anchor" aria-hidden="true" href="#giới-thiệu">#</a></h2>
+<p>Xây dựng ứng dụng dựa trên LLM từng đòi hỏi viết hàng trăm dòng Python để kết nối thủ công các mô hình, vector database, retrieval chain và memory module. Flowise đã thay đổi hoàn toàn quy tắc này. Với 52.948 GitHub Stars và cộng đồng phát triển sôi nổi, Flowise là công cụ xây dựng AI agent trực quan mã nguồn mở, cho phép bạn xây dựng AI agent và pipeline RAG bằng cách kéo-thả, kết nối các node trên canvas —— không cần viết code. Dù bạn đang phát triển nguyên mẫu chatbot hỗ trợ khách hàng hay triển khai hệ thống hỏi đáp tài liệu trên VPS $5/tháng, hướng dẫn này sẽ giúp bạn thiết lập môi trường Flowise production-grade từ con số không trong vòng 5 phút.</p>
+<h2 id="flowise-là-gì">Flowise là gì?<a hidden class="anchor" aria-hidden="true" href="#flowise-là-gì">#</a></h2>
+<p>Flowise là công cụ xây dựng workflow LLM và AI agent trực quan mã nguồn mở dựa trên LangChain. Nó cung cấp canvas dạng node-based, mỗi thành phần —— mô hình chat, embeddings, vector store, công cụ, agent và chain —— được hiển thị dưới dạng node có thể kéo thả, kết nối để tạo thành pipeline có thể thực thi. Flowise hỗ trợ hơn 200 tích hợp LangChain bao gồm OpenAI, Anthropic, Ollama, Qdrant, Weaviate và Chroma, là một trong những công cụ xây dựng AI trực quan có khả năng tích hợp phong phú nhất hiện nay.</p>
+<h2 id="flowise-hoạt-động-như-thế-nào">Flowise hoạt động như thế nào<a hidden class="anchor" aria-hidden="true" href="#flowise-hoạt-động-như-thế-nào">#</a></h2>
+<p>Flowise sử dụng kiến trúc module, ánh xạ trực tiếp các node trực quan tới các lớp LangChain. Hiểu rõ kiến trúc này giúp bạn xây dựng flow phức tạp hơn và debug nhanh hơn.</p>
+<p><img alt="Kiến trúc Flowise" loading="lazy" src="https://raw.githubusercontent.com/FlowiseAI/Flowise/main/images/flowise.png">
+<em>Canvas trực quan của Flowise với các node LLM được kết nối —— mỗi node tương ứng với một lớp LangChain</em></p>
+<p><img alt="Demo Canvas Flowise" loading="lazy" src="https://docs.flowiseai.com/~gitbook/image?url=https%3A%2F%2F823733684-files.gitbook.io%2F%7E%2Ffiles%2Fv0%2Fb%2Fgitbook-x-prod.appspot.com%2Fo%2Fspaces%252F00tYLwhz5RyR7fJEhrWy%252Fuploads%252FDOgMs2ywc1bdE09oa10c%252FFlowiseIntro.gif%3Falt%3Dmedia%26token%3D55bbcbc6-e586-4a79-8923-20c2b39e7bf9&width=768&dpr=3&quality=100&sign=c6ac7b1&sv=2">
+<em>Giao diện kéo-thả của Flowise trong thực tế —— xây dựng pipeline RAG mà không cần viết code</em></p>
+<h3 id="các-thành-phần-cốt-lõi">Các thành phần cốt lõi<a hidden class="anchor" aria-hidden="true" href="#các-thành-phần-cốt-lõi">#</a></h3>
+<ol>
+<li><strong>Chat Models</strong> —— Công cụ LLM (OpenAI GPT-4o, Claude, mô hình local Ollama, Hugging Face, Bedrock, Gemini)</li>
+<li><strong>Embeddings</strong> —— Chuyển đổi văn bản thành vector để tìm kiếm ngữ nghĩa (OpenAI, HuggingFace, Cohere)</li>
+<li><strong>Vector Stores</strong> —— Lưu trữ embeddings để truy xuất (Chroma, Qdrant, Weaviate, Pinecone, pgvector)</li>
+<li><strong>Document Loaders</strong> —— Nhập dữ liệu từ PDF, trang web, file text, Notion, Confluence</li>
+<li><strong>Chains</strong> —— Điều phối các tác vụ LLM đa bước (Conversational Retrieval QA, LLM Chain)</li>
+<li><strong>Agents</strong> —— Hệ thống suy luận tự chủ, chọn công cụ động (ReAct, OpenAI Functions)</li>
+<li><strong>Memory</strong> —— Duy trì ngữ cảnh cuộc trò chuyện (Buffer Memory, Window Buffer, Redis-backed)</li>
+</ol>
+<h3 id="ba-chế-độ-xây-dựng">Ba chế độ xây dựng<a hidden class="anchor" aria-hidden="true" href="#ba-chế-độ-xây-dựng">#</a></h3>
+<p>Flowise cung cấp ba công cụ xây dựng trực quan: - <strong>Assistant</strong> —— Công cụ xây dựng chatbot thân thiện cho ngườ mới, hỗ trợ RAG. Tải lên tài liệu, cấu hình phản hồi và triển khai.</p>
+<ul>
+<li><strong>Chatflow</strong> —— Canvas node-based đầy đủ để xây dựng conversational AI tùy chỉnh với quyền kiểm soát tường minh mọi thành phần.</li>
+<li><strong>Agentflow</strong> —— Workflow agent đa bước với logic điều kiện, vòng lặp, gọi công cụ và phê duyệt bởi con ngườ.</li>
+</ul>
+<p>Mọi flow bạn xây dựng tự động hiển thị REST API endpoint và widget chat có thể nhúng, giúp việc triển khai chỉ cần một cú click chuột.</p>
+<h2 id="cài-đặt-và-thiết-lập">Cài đặt và thiết lập<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-và-thiết-lập">#</a></h2>
+<p>Flowise cung cấp bốn phương pháp cài đặt. Mỗi phương pháp phù hợp với môi trường và trình độ khác nhau.</p>
+<h3 id="phương-pháp-1-npm-nhanh-nhất-cho-phát-triển-local">Phương pháp 1: NPM (Nhanh nhất cho phát triển local)<a hidden class="anchor" aria-hidden="true" href="#phương-pháp-1-npm-nhanh-nhất-cho-phát-triển-local">#</a></h3>
+<p>Yêu cầu Node.js v18.15.0 hoặc v20+. Đây là con đường nhanh nhất từ cài đặt đến canvas đang chạy.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Cài đặt Flowise toàn cục</span>
+</span></span><span style="display:flex;"><span>npm install -g flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc cài đặt phiên bản cụ thể</span>
+</span></span><span style="display:flex;"><span>npm install -g flowise@3.1.2
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Khởi động Flowise</span>
+</span></span><span style="display:flex;"><span>npx flowise start
+</span></span></code></pre></div><p>Mở <code>http://localhost:3000</code> trong trình duyệt. Lần khởi động đầu tiên sẽ tự động tạo database SQLite tại <code>~/.flowise</code>.</p>
+<h3 id="phương-pháp-2-docker-khuyến-nghị-cho-production">Phương pháp 2: Docker (Khuyến nghị cho production)<a hidden class="anchor" aria-hidden="true" href="#phương-pháp-2-docker-khuyến-nghị-cho-production">#</a></h3>
+<p>Đây là phương pháp triển khai đáng tin cậy nhất. Flowise cung cấp image chính thức trên Docker Hub với hỗ trợ đa kiến trúc.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Pull và chạy image chính thức</span>
+</span></span><span style="display:flex;"><span>docker run -d -p 3000:3000 <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --name flowise <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e FLOWISE_USERNAME<span style="color:#f92672">=</span>admin <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -e FLOWISE_PASSWORD<span style="color:#f92672">=</span>secure-password <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  flowiseai/flowise:latest
+</span></span></code></pre></div><p>Truy cập <code>http://localhost:3000</code> và đăng nhập bằng thông tin bạn đã đặt.</p>
+<h3 id="phương-pháp-3-docker-compose-production-với-database">Phương pháp 3: Docker Compose (Production với database)<a hidden class="anchor" aria-hidden="true" href="#phương-pháp-3-docker-compose-production-với-database">#</a></h3>
+<p>Đối với triển khai lâu dài, sử dụng Docker Compose với PostgreSQL và volume mount.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_TYPE=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_HOST=postgres</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PORT=5432</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_NAME=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_USER=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">DATABASE_PASSWORD=${DB_PASSWORD:-changeme}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_USERNAME=${FLOWISE_USER:-admin}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">FLOWISE_PASSWORD=${FLOWISE_PASS:-changeme}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">SECRETKEY_PATH=/root/.flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">JWT_AUTH_TOKEN_SECRET=${JWT_SECRET:-random-secret-change-in-prod}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">JWT_REFRESH_TOKEN_SECRET=${JWT_REFRESH:-another-random-secret}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">flowise_data:/root/.flowise</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">postgres</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">postgres: image</span>: <span style="color:#ae81ff">postgres:16-alpine</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">POSTGRES_USER=flowise</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POSTGRES_PASSWORD=${DB_PASSWORD:-changeme}</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">POSTGRES_DB=flowise</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">postgres_data:/var/lib/postgresql/data</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: flowise_data: postgres_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Khởi động</span>: <span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker compose up -d</span>
+</span></span></code></pre></div><h3 id="phương-pháp-4-triển-khai-lên-digitalocean-droplet">Phương pháp 4: Triển khai lên DigitalOcean Droplet<a hidden class="anchor" aria-hidden="true" href="#phương-pháp-4-triển-khai-lên-digitalocean-droplet">#</a></h3>
+<p>Để có instance được lưu trữ trên cloud trên VPS đáng tin cậy, triển khai Flowise lên DigitalOcean chỉ trong vài phút.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Trên máy chủ Ubuntu 24.04 mới (2 vCPU / 2GB RAM / $12/tháng)</span>
+</span></span><span style="display:flex;"><span>apt update <span style="color:#f92672">&amp;&amp;</span> apt install -y docker.io docker-compose
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Clone repo Flowise</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/FlowiseAI/Flowise.git
+</span></span><span style="display:flex;"><span>cd Flowise/docker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Copy template biến môi trường</span>
+</span></span><span style="display:flex;"><span>cp .env.example .env
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Chỉnh sửa file cấu hình</span>
+</span></span><span style="display:flex;"><span>nano .env
 </span></span></code></pre></div><p>Ví dụ <code>.env</code> cho triển khai DigitalOcean: `````bash
 PORT=3000
 DATABASE_TYPE=sqlite
@@ -90,76 +441,151 @@ BLOB_STORAGE_PATH=/root/.flowise/storage
 FLOWISE_USERNAME=admin
 FLOWISE_PASSWORD=your-secure-password-here
 JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 32)
-JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)</p><pre tabindex=0><code>
+JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 32)</p>
+<pre tabindex="0"><code>
 Khởi động dịch vụ: `````bash
 docker compose up -d
-</code></pre><p><em>Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.</em></p><h3 id=bảng-tham-khảo-biến-môi-trường>Bảng tham khảo biến môi trường<a hidden class=anchor aria-hidden=true href=#bảng-tham-khảo-biến-môi-trường>#</a></h3><table><thead><tr><th>Biến</th><th>Mô tả</th><th>Mặc định</th></tr></thead><tbody><tr><td><code>PORT</code></td><td>Cổng máy chủ HTTP</td><td>3000</td></tr><tr><td><code>DATABASE_TYPE</code></td><td>Công cụ database (sqlite, postgres)</td><td>sqlite</td></tr><tr><td><code>DATABASE_PATH</code></td><td>Đường dẫn file SQLite</td><td>~/.flowise</td></tr><tr><td><code>FLOWISE_USERNAME</code></td><td>Tên ngườ dùng admin</td><td>—</td></tr><tr><td><code>FLOWISE_PASSWORD</code></td><td>Mật khẩu admin</td><td>—</td></tr><tr><td><code>JWT_AUTH_TOKEN_SECRET</code></td><td>Secret token truy cập</td><td>tự động tạo</td></tr><tr><td><code>JWT_REFRESH_TOKEN_SECRET</code></td><td>Secret token làm mới</td><td>tự động tạo</td></tr><tr><td><code>BLOB_STORAGE_PATH</code></td><td>Đường dẫn lưu trữ file upload</td><td>~/.flowise/storage</td></tr><tr><td><code>DISABLE_FLOWISE_TELEMETRY</code></td><td>Tắt thu thập dữ liệu ẩn danh</td><td>false</td></tr></tbody></table><h2 id=tích-hợp-với-công-cụ-phổ-biến>Tích hợp với công cụ phổ biến<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-công-cụ-phổ-biến>#</a></h2><h3 id=tích-hợp-openai>Tích hợp OpenAI<a hidden class=anchor aria-hidden=true href=#tích-hợp-openai>#</a></h3><p>Hầu hết ngườ dùng bắt đầu với mô hình OpenAI. Cấu hình API key trong Flowise UI tại Credentials, sau đó sử dụng node <code>ChatOpenAI</code> trong flow.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Thêm OpenAI API key dưới dạng biến môi trường (tùy chọn nhưng khuyến nghị)</span>
-</span></span><span style=display:flex><span>export OPENAI_API_KEY<span style=color:#f92672>=</span>sk-your-key-here
-</span></span></code></pre></div><h3 id=ollama-llm-cục-bộ>Ollama (LLM cục bộ)<a hidden class=anchor aria-hidden=true href=#ollama-llm-cục-bộ>#</a></h3><p>Chạy mô hình local với Ollama loại bỏ chi phí API và giữ dữ liệu tại chỗ. Thiết lập này lý tưởng cho các triển khai nhạy cảm về quyền riêng tư.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># docker-compose-ollama.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>version</span>: <span style=color:#e6db74>&#39;3.8&#39;</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>services: ollama: image</span>: <span style=color:#ae81ff>ollama/ollama:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;11434:11434&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>ollama_data:/root/.ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>flowise: image</span>: <span style=color:#ae81ff>flowiseai/flowise:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;3000:3000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment</span>: - <span style=color:#ae81ff>PORT=3000</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>OLLAMA_BASE_URL=http://ollama:11434</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>depends_on</span>: - <span style=color:#ae81ff>ollama</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>volumes: ollama_data</span>: <span style=color:#ae81ff>`````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>Pull mô hình và bắt đầu sử dụng</span>: <span style=color:#ae81ff>`````bash</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Pull mô hình nhẹ để test</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker exec -it ollama ollama pull qwen2:7b</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Hoặc pull Llama 3</span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>docker exec -it ollama ollama pull llama3.1:8b</span>
-</span></span></code></pre></div><p>Trên canvas Flowise, chọn node <code>ChatOllama</code> và đặt tên mô hình thành <code>qwen2:7b</code> hoặc <code>llama3.1:8b</code>.</p><h3 id=chroma-vector-store-thiết-lập-rag>Chroma Vector Store (Thiết lập RAG)<a hidden class=anchor aria-hidden=true href=#chroma-vector-store-thiết-lập-rag>#</a></h3><p>Đối với pipeline RAG production-grade, Chroma cung cấp vector database nhẹ hoạt động liền mạch với Flowise.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Thêm vào docker-compose.yml</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>chroma: image</span>: <span style=color:#ae81ff>chromadb/chroma:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8000:8000&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>chroma_data:/chroma/chroma</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
+</code></pre><p><em>Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.</em></p>
+<h3 id="bảng-tham-khảo-biến-môi-trường">Bảng tham khảo biến môi trường<a hidden class="anchor" aria-hidden="true" href="#bảng-tham-khảo-biến-môi-trường">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Biến</th>
+					<th>Mô tả</th>
+					<th>Mặc định</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><code>PORT</code></td>
+					<td>Cổng máy chủ HTTP</td>
+					<td>3000</td>
+			</tr>
+			<tr>
+					<td><code>DATABASE_TYPE</code></td>
+					<td>Công cụ database (sqlite, postgres)</td>
+					<td>sqlite</td>
+			</tr>
+			<tr>
+					<td><code>DATABASE_PATH</code></td>
+					<td>Đường dẫn file SQLite</td>
+					<td>~/.flowise</td>
+			</tr>
+			<tr>
+					<td><code>FLOWISE_USERNAME</code></td>
+					<td>Tên ngườ dùng admin</td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td><code>FLOWISE_PASSWORD</code></td>
+					<td>Mật khẩu admin</td>
+					<td>—</td>
+			</tr>
+			<tr>
+					<td><code>JWT_AUTH_TOKEN_SECRET</code></td>
+					<td>Secret token truy cập</td>
+					<td>tự động tạo</td>
+			</tr>
+			<tr>
+					<td><code>JWT_REFRESH_TOKEN_SECRET</code></td>
+					<td>Secret token làm mới</td>
+					<td>tự động tạo</td>
+			</tr>
+			<tr>
+					<td><code>BLOB_STORAGE_PATH</code></td>
+					<td>Đường dẫn lưu trữ file upload</td>
+					<td>~/.flowise/storage</td>
+			</tr>
+			<tr>
+					<td><code>DISABLE_FLOWISE_TELEMETRY</code></td>
+					<td>Tắt thu thập dữ liệu ẩn danh</td>
+					<td>false</td>
+			</tr>
+	</tbody>
+</table>
+<h2 id="tích-hợp-với-công-cụ-phổ-biến">Tích hợp với công cụ phổ biến<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-công-cụ-phổ-biến">#</a></h2>
+<h3 id="tích-hợp-openai">Tích hợp OpenAI<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-openai">#</a></h3>
+<p>Hầu hết ngườ dùng bắt đầu với mô hình OpenAI. Cấu hình API key trong Flowise UI tại Credentials, sau đó sử dụng node <code>ChatOpenAI</code> trong flow.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Thêm OpenAI API key dưới dạng biến môi trường (tùy chọn nhưng khuyến nghị)</span>
+</span></span><span style="display:flex;"><span>export OPENAI_API_KEY<span style="color:#f92672">=</span>sk-your-key-here
+</span></span></code></pre></div><h3 id="ollama-llm-cục-bộ">Ollama (LLM cục bộ)<a hidden class="anchor" aria-hidden="true" href="#ollama-llm-cục-bộ">#</a></h3>
+<p>Chạy mô hình local với Ollama loại bỏ chi phí API và giữ dữ liệu tại chỗ. Thiết lập này lý tưởng cho các triển khai nhạy cảm về quyền riêng tư.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># docker-compose-ollama.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">version</span>: <span style="color:#e6db74">&#39;3.8&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">services: ollama: image</span>: <span style="color:#ae81ff">ollama/ollama:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;11434:11434&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">ollama_data:/root/.ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">flowise: image</span>: <span style="color:#ae81ff">flowiseai/flowise:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;3000:3000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment</span>: - <span style="color:#ae81ff">PORT=3000</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">OLLAMA_BASE_URL=http://ollama:11434</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">depends_on</span>: - <span style="color:#ae81ff">ollama</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">volumes: ollama_data</span>: <span style="color:#ae81ff">`````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Pull mô hình và bắt đầu sử dụng</span>: <span style="color:#ae81ff">`````bash</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Pull mô hình nhẹ để test</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker exec -it ollama ollama pull qwen2:7b</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Hoặc pull Llama 3</span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">docker exec -it ollama ollama pull llama3.1:8b</span>
+</span></span></code></pre></div><p>Trên canvas Flowise, chọn node <code>ChatOllama</code> và đặt tên mô hình thành <code>qwen2:7b</code> hoặc <code>llama3.1:8b</code>.</p>
+<h3 id="chroma-vector-store-thiết-lập-rag">Chroma Vector Store (Thiết lập RAG)<a hidden class="anchor" aria-hidden="true" href="#chroma-vector-store-thiết-lập-rag">#</a></h3>
+<p>Đối với pipeline RAG production-grade, Chroma cung cấp vector database nhẹ hoạt động liền mạch với Flowise.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Thêm vào docker-compose.yml</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">chroma: image</span>: <span style="color:#ae81ff">chromadb/chroma:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8000:8000&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">chroma_data:/chroma/chroma</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
 </span></span></code></pre></div><p>Xây dựng pipeline RAG trong Flowise: 1. Kéo thả node <strong>PDF Loader</strong> hoặc <strong>Text File</strong>
 2. Kết nối với node <strong>Text Splitter</strong> (đặt chunk size 1000, overlap 200)
 3. Kết nối với node <strong>OpenAI Embeddings</strong> (hoặc <strong>Ollama Embeddings</strong>)
 4. Kết nối với node vector store <strong>Chroma</strong>
 5. Thêm node <strong>Conversational Retrieval QA Chain</strong>
 6. Kết nối <strong>Chat Model</strong> (ChatOpenAI hoặc ChatOllama) vào chain
-7. Click <strong>Save</strong> và <strong>Run</strong></p><h3 id=qdrant-tìm-kiếm-vector-có-khả-năng-mở-rộng>Qdrant (Tìm kiếm vector có khả năng mở rộng)<a hidden class=anchor aria-hidden=true href=#qdrant-tìm-kiếm-vector-có-khả-năng-mở-rộng>#</a></h3><p>Đối với RAG có tìm kiếm hybrid thông lượng cao, Qdrant vượt trội hơn các store trong bộ nhớ.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># Thêm Qdrant vào compose file</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>qdrant: image</span>: <span style=color:#ae81ff>qdrant/qdrant:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;6333:6333&#34;</span>
-</span></span><span style=display:flex><span>      - <span style=color:#e6db74>&#34;6334:6334&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>qdrant_data:/qdrant/storage</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><p>Trong Flowise, sử dụng node vector store <code>Qdrant</code> với host <code>http://qdrant:6333</code>.</p><h3 id=weaviate-vector-database-doanh-nghiệp>Weaviate (Vector Database doanh nghiệp)<a hidden class=anchor aria-hidden=true href=#weaviate-vector-database-doanh-nghiệp>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span>  <span style=color:#f92672>weaviate: image</span>: <span style=color:#ae81ff>semitechnologies/weaviate:latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>ports</span>: - <span style=color:#e6db74>&#34;8080:8080&#34;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>environment: QUERY_DEFAULTS_LIMIT</span>: <span style=color:#ae81ff>25</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>PERSISTENCE_DATA_PATH</span>: <span style=color:#e6db74>&#39;/var/lib/weaviate&#39;</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>volumes</span>: - <span style=color:#ae81ff>weaviate_data:/var/lib/weaviate</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>restart</span>: <span style=color:#ae81ff>unless-stopped</span>
-</span></span></code></pre></div><h3 id=triển-khai-api>Triển khai API<a hidden class=anchor aria-hidden=true href=#triển-khai-api>#</a></h3><p>Mọi flow tự động hiển thị REST API. Export chatflow của bạn và tích hợp ở bất kỳ đâu.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Test flow đã triển khai bằng curl</span>
-</span></span><span style=display:flex><span>curl -X POST <span style=color:#e6db74>&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;question&#34;: &#34;Chính sách đổi trả như thế nào?&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;overrideConfig&#34;: {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      &#34;sessionId&#34;: &#34;user_001&#34;
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
+7. Click <strong>Save</strong> và <strong>Run</strong></p>
+<h3 id="qdrant-tìm-kiếm-vector-có-khả-năng-mở-rộng">Qdrant (Tìm kiếm vector có khả năng mở rộng)<a hidden class="anchor" aria-hidden="true" href="#qdrant-tìm-kiếm-vector-có-khả-năng-mở-rộng">#</a></h3>
+<p>Đối với RAG có tìm kiếm hybrid thông lượng cao, Qdrant vượt trội hơn các store trong bộ nhớ.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Thêm Qdrant vào compose file</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">qdrant: image</span>: <span style="color:#ae81ff">qdrant/qdrant:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;6333:6333&#34;</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#e6db74">&#34;6334:6334&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">qdrant_data:/qdrant/storage</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><p>Trong Flowise, sử dụng node vector store <code>Qdrant</code> với host <code>http://qdrant:6333</code>.</p>
+<h3 id="weaviate-vector-database-doanh-nghiệp">Weaviate (Vector Database doanh nghiệp)<a hidden class="anchor" aria-hidden="true" href="#weaviate-vector-database-doanh-nghiệp">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span>  <span style="color:#f92672">weaviate: image</span>: <span style="color:#ae81ff">semitechnologies/weaviate:latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">ports</span>: - <span style="color:#e6db74">&#34;8080:8080&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">environment: QUERY_DEFAULTS_LIMIT</span>: <span style="color:#ae81ff">25</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">AUTHENTICATION_ANONYMOUS_ACCESS_ENABLED</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">PERSISTENCE_DATA_PATH</span>: <span style="color:#e6db74">&#39;/var/lib/weaviate&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">volumes</span>: - <span style="color:#ae81ff">weaviate_data:/var/lib/weaviate</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">restart</span>: <span style="color:#ae81ff">unless-stopped</span>
+</span></span></code></pre></div><h3 id="triển-khai-api">Triển khai API<a hidden class="anchor" aria-hidden="true" href="#triển-khai-api">#</a></h3>
+<p>Mọi flow tự động hiển thị REST API. Export chatflow của bạn và tích hợp ở bất kỳ đâu.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Test flow đã triển khai bằng curl</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;http://localhost:3000/api/v1/prediction/your-chatflow-id&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;question&#34;: &#34;Chính sách đổi trả như thế nào?&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;overrideConfig&#34;: {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      &#34;sessionId&#34;: &#34;user_001&#34;
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
 </span></span></code></pre></div><p>Phản hồi: `````json
 {
 &ldquo;text&rdquo;: &ldquo;Theo tài liệu của chúng tôi, chính sách đổi trả cho phép đổi trả trong vòng 30 ngày kể từ ngày mua với biên lai gốc.&rdquo;,
 &ldquo;sourceDocuments&rdquo;: [
 {
-&ldquo;pageContent&rdquo;: &ldquo;Chấp nhận đổi trả trong vòng 30 ngày sau khi mua&mldr;&rdquo;,
+&ldquo;pageContent&rdquo;: &ldquo;Chấp nhận đổi trả trong vòng 30 ngày sau khi mua&hellip;&rdquo;,
 &ldquo;metadata&rdquo;: { &ldquo;source&rdquo;: &ldquo;return-policy.pdf&rdquo;, &ldquo;page&rdquo;: 3 }
 }
 ]
-}</p><pre tabindex=0><code>
+}</p>
+<pre tabindex="0"><code>
 Ví dụ Python SDK: `````python
 import requests
 
@@ -173,29 +599,32 @@ def ask(question, session_id=&#34;user_001&#34;): resp = requests.post(FLOWISE_A
 
 answer = ask(&#34;Các phương thức vận chuyển là gì?&#34;)
 print(answer)
-</code></pre><h3 id=nhúng-vào-website>Nhúng vào website<a hidden class=anchor aria-hidden=true href=#nhúng-vào-website>#</a></h3><p>Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào: <img alt="Flowise Embed Widget" loading=lazy src=https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png>
-<em>Widget chat nhúng với tùy chỉnh giao diện —— triển khai lên bất kỳ website nào chỉ với một thẻ script</em></p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-html data-lang=html><span style=display:flex><span>import Chatbot from &#39;https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js&#39;;
-</span></span><span style=display:flex><span>  Chatbot.init({
-</span></span><span style=display:flex><span>    chatflowid: &#39;your-chatflow-id&#39;,
-</span></span><span style=display:flex><span>    apiHost: &#39;https://your-flowise-server.com&#39;,
-</span></span><span style=display:flex><span>    theme: {
-</span></span><span style=display:flex><span>      button: {
-</span></span><span style=display:flex><span>        backgroundColor: &#39;#3B81F6&#39;,
-</span></span><span style=display:flex><span>        right: 20,
-</span></span><span style=display:flex><span>        bottom: 20,
-</span></span><span style=display:flex><span>        size: medium
-</span></span><span style=display:flex><span>      },
-</span></span><span style=display:flex><span>      chatWindow: {
-</span></span><span style=display:flex><span>        title: &#34;AI Tool Guide&#34;
-</span></span><span style=display:flex><span>        welcomeMessage: &#39;Xin chào! Tôi có thể giúp gì cho bạn?&#39;,
-</span></span><span style=display:flex><span>        backgroundColor: &#39;#ffffff&#39;,
-</span></span><span style=display:flex><span>        height: 700,
-</span></span><span style=display:flex><span>        width: 400
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>&lt;/<span style=color:#f92672>script</span>&gt;
-</span></span></code></pre></div><h2 id=benchmark--các-trường-hợp-sử-dụng-thực-tế>Benchmark / Các trường hợp sử dụng thực tế<a hidden class=anchor aria-hidden=true href=#benchmark--các-trường-hợp-sử-dụng-thực-tế>#</a></h2><p>Đặc tính hiệu suất Flowise dựa trên báo cáo cộng đồng và thử nghiệm của chúng tôi: | Chỉ số | Giá trị | Ghi chú |
+</code></pre><h3 id="nhúng-vào-website">Nhúng vào website<a hidden class="anchor" aria-hidden="true" href="#nhúng-vào-website">#</a></h3>
+<p>Flowise tạo đoạn mã JavaScript nhúng cho mọi chatflow. Dán vào bất kỳ trang HTML nào: <img alt="Flowise Embed Widget" loading="lazy" src="https://raw.githubusercontent.com/FlowiseAI/FlowiseChatEmbed/main/assets/embedded-chat-config.png">
+<em>Widget chat nhúng với tùy chỉnh giao diện —— triển khai lên bất kỳ website nào chỉ với một thẻ script</em></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>import Chatbot from &#39;https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js&#39;;
+</span></span><span style="display:flex;"><span>  Chatbot.init({
+</span></span><span style="display:flex;"><span>    chatflowid: &#39;your-chatflow-id&#39;,
+</span></span><span style="display:flex;"><span>    apiHost: &#39;https://your-flowise-server.com&#39;,
+</span></span><span style="display:flex;"><span>    theme: {
+</span></span><span style="display:flex;"><span>      button: {
+</span></span><span style="display:flex;"><span>        backgroundColor: &#39;#3B81F6&#39;,
+</span></span><span style="display:flex;"><span>        right: 20,
+</span></span><span style="display:flex;"><span>        bottom: 20,
+</span></span><span style="display:flex;"><span>        size: medium
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      chatWindow: {
+</span></span><span style="display:flex;"><span>        title: &#34;AI Tool Guide&#34;
+</span></span><span style="display:flex;"><span>        welcomeMessage: &#39;Xin chào! Tôi có thể giúp gì cho bạn?&#39;,
+</span></span><span style="display:flex;"><span>        backgroundColor: &#39;#ffffff&#39;,
+</span></span><span style="display:flex;"><span>        height: 700,
+</span></span><span style="display:flex;"><span>        width: 400
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">script</span>&gt;
+</span></span></code></pre></div><h2 id="benchmark--các-trường-hợp-sử-dụng-thực-tế">Benchmark / Các trường hợp sử dụng thực tế<a hidden class="anchor" aria-hidden="true" href="#benchmark--các-trường-hợp-sử-dụng-thực-tế">#</a></h2>
+<p>Đặc tính hiệu suất Flowise dựa trên báo cáo cộng đồng và thử nghiệm của chúng tôi: | Chỉ số | Giá trị | Ghi chú |
 |&mdash;&mdash;&ndash;|&mdash;&mdash;&mdash;|&mdash;&mdash;&mdash;|
 | Khởi động lạnh (Docker) | 3-5 giây | Trên VPS 2 vCPU |
 | Độ trễ phản hồi đầu tiên | 1.5-3 giây | Với GPT-4o, phụ thuộc prompt |
@@ -205,9 +634,152 @@ print(answer)
 | Bộ nhớ (hoạt động) | 300-600 MB | Phụ thuộc mô hình và context |
 | Thờ gian xây dựng flow RAG | 10-15 phút | Từ canvas trống đến chatbot hoạt động |
 | Cấu hình VPS tối thiểu | 1 vCPU / 1 GB RAM | VPS $4-5/tháng hoạt động tốt |
-| Cấu hình VPS production | 2 vCPU / 4 GB RAM | Khuyến nghị với PostgreSQL |</p><h3 id=so-sánh-flowise-vs-các-lựa-chọn-thay-thế>So sánh: Flowise vs các lựa chọn thay thế<a hidden class=anchor aria-hidden=true href=#so-sánh-flowise-vs-các-lựa-chọn-thay-thế>#</a></h3><table><thead><tr><th>Tính năng</th><th>Flowise</th><th>Dify</th><th>n8n</th><th>LangChain</th></tr></thead><tbody><tr><td>GitHub Stars</td><td>52.948</td><td>50.000+</td><td>49.500</td><td>110.000+</td></tr><tr><td>Giấy phép</td><td>MIT</td><td>Apache-2.0</td><td>Fair-code</td><td>MIT</td></tr><tr><td>Builder trực quan</td><td>Canvas kéo-thả</td><td>UI tập trung ứng dụng</td><td>Trình soạn workflow</td><td>Chỉ code</td></tr><tr><td>Trường hợp sử dụng chính</td><td>Chatbot LLM & RAG</td><td>Ứng dụng AI full-stack</td><td>Tự động hóa workflow</td><td>SDK code-first</td></tr><tr><td>LangChain Native</td><td>Có (ánh xạ trực tiếp)</td><td>Abstraction tùy chỉnh</td><td>Qua node AI</td><td>Chính là LangChain</td></tr><tr><td>Hỗ trợ LLM</td><td>200+ (toàn bộ LangChain)</td><td>50+</td><td>70+ node AI</td><td>Mọi nhà cung cấp</td></tr><tr><td>Vector Store</td><td>Chroma, Qdrant, Weaviate, Pinecone, pgvector</td><td>Knowledge base tích hợp</td><td>Qua LangChain nodes</td><td>Mọi store</td></tr><tr><td>LLM cục bộ (Ollama)</td><td>Node gốc</td><td>Tích hợp gốc</td><td>Qua HTTP request</td><td>Gốc</td></tr><tr><td>Widget chat nhúng</td><td>Có (tự động tạo)</td><td>Có</td><td>Qua webhook</td><td>Xây dựng thủ công</td></tr><tr><td>REST API (tự động)</td><td>Có</td><td>Có</td><td>Có</td><td>Xây dựng thủ công</td></tr><tr><td>Workflow đa agent</td><td>Agentflow (tuần tự)</td><td>Điều phối workflow</td><td>Có (với node AI)</td><td>LangGraph</td></tr><tr><td>Lập lịch / Trigger</td><td>Hạn chế</td><td>Hạn chế</td><td>Đầy đủ (cron, webhook)</td><td>Thủ công</td></tr><tr><td>Độ phức tạp self-host</td><td>Thấp (1 container)</td><td>Trung bình (đa dịch vụ)</td><td>Thấp-Trung bình</td><td>N/A (thư viện)</td></tr><tr><td>RAM tối thiểu</td><td>~1 GB</td><td>4 GB</td><td>300 MB</td><td>N/A</td></tr><tr><td>Giá cloud (Starter)</td><td>$35/tháng</td><td>$59/tháng</td><td>~$24/tháng</td><td>N/A</td></tr><tr><td>UX ngườ không kỹ thuật</td><td>Tốt</td><td>Xuất sắc</td><td>Tốt</td><td>Yêu cầu lập trình</td></tr></tbody></table><h3 id=khi-nào-chọn-công-cụ-nào>Khi nào chọn công cụ nào<a hidden class=anchor aria-hidden=true href=#khi-nào-chọn-công-cụ-nào>#</a></h3><ul><li><strong>Flowise</strong>: Tốt nhất cho các team xây dựng conversational AI (chatbot, RAG) muốn đường dẫn prototype-deployment nhanh nhất với khả năng tương thích LangChain đầy đủ.</li><li><strong>Dify</strong>: Chọn khi cần nền tảng ứng dụng AI full-stack với quản lý kiến thức tích hợp, quản lý phiên bản prompt và cộng tác nhóm.</li><li><strong>n8n</strong>: Chọn khi agent AI của bạn là một phần của pipeline tự động hóa rộng hơn với 400+ tích hợp SaaS, lập lịch và xử lý lỗi.</li><li><strong>LangChain</strong>: Sử dụng trực tiếp khi cần quyền kiểm soát code đầy đủ, quản lý phiên bản prompt và tích hợp CI/CD.</li></ul><h2 id=sử-dụng-nâng-cao--củng-cố-production>Sử dụng nâng cao / Củng cố production<a hidden class=anchor aria-hidden=true href=#sử-dụng-nâng-cao--củng-cố-production>#</a></h2><h3 id=danh-sách-kiểm-tra-bảo-mật>Danh sách kiểm tra bảo mật<a hidden class=anchor aria-hidden=true href=#danh-sách-kiểm-tra-bảo-mật>#</a></h3><p>Trước khi đưa Flowise ra internet, hoàn thành các bước sau: `````bash</p><h1 id=1-bật-xác-thực-bắt-buộc>1. Bật xác thực (BẮT BUỘC)<a hidden class=anchor aria-hidden=true href=#1-bật-xác-thực-bắt-buộc>#</a></h1><p>FLOWISE_USERNAME=admin
-FLOWISE_PASSWORD=$(openssl rand -base64 24)</p><h1 id=2-đặt-jwt-secret-mạnh>2. Đặt JWT secret mạnh<a hidden class=anchor aria-hidden=true href=#2-đặt-jwt-secret-mạnh>#</a></h1><p>JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64)
-JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)</p><h1 id=3-chạy-sau-https-với-reverse-proxy>3. Chạy sau HTTPS với reverse proxy<a hidden class=anchor aria-hidden=true href=#3-chạy-sau-https-với-reverse-proxy>#</a></h1><h1 id=đoạn-cấu-hình-nginx-server->Đoạn cấu hình Nginx: server {<a hidden class=anchor aria-hidden=true href=#đoạn-cấu-hình-nginx-server->#</a></h1><pre><code>listen 443 ssl http2;
+| Cấu hình VPS production | 2 vCPU / 4 GB RAM | Khuyến nghị với PostgreSQL |</p>
+<h3 id="so-sánh-flowise-vs-các-lựa-chọn-thay-thế">So sánh: Flowise vs các lựa chọn thay thế<a hidden class="anchor" aria-hidden="true" href="#so-sánh-flowise-vs-các-lựa-chọn-thay-thế">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Tính năng</th>
+					<th>Flowise</th>
+					<th>Dify</th>
+					<th>n8n</th>
+					<th>LangChain</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td>GitHub Stars</td>
+					<td>52.948</td>
+					<td>50.000+</td>
+					<td>49.500</td>
+					<td>110.000+</td>
+			</tr>
+			<tr>
+					<td>Giấy phép</td>
+					<td>MIT</td>
+					<td>Apache-2.0</td>
+					<td>Fair-code</td>
+					<td>MIT</td>
+			</tr>
+			<tr>
+					<td>Builder trực quan</td>
+					<td>Canvas kéo-thả</td>
+					<td>UI tập trung ứng dụng</td>
+					<td>Trình soạn workflow</td>
+					<td>Chỉ code</td>
+			</tr>
+			<tr>
+					<td>Trường hợp sử dụng chính</td>
+					<td>Chatbot LLM &amp; RAG</td>
+					<td>Ứng dụng AI full-stack</td>
+					<td>Tự động hóa workflow</td>
+					<td>SDK code-first</td>
+			</tr>
+			<tr>
+					<td>LangChain Native</td>
+					<td>Có (ánh xạ trực tiếp)</td>
+					<td>Abstraction tùy chỉnh</td>
+					<td>Qua node AI</td>
+					<td>Chính là LangChain</td>
+			</tr>
+			<tr>
+					<td>Hỗ trợ LLM</td>
+					<td>200+ (toàn bộ LangChain)</td>
+					<td>50+</td>
+					<td>70+ node AI</td>
+					<td>Mọi nhà cung cấp</td>
+			</tr>
+			<tr>
+					<td>Vector Store</td>
+					<td>Chroma, Qdrant, Weaviate, Pinecone, pgvector</td>
+					<td>Knowledge base tích hợp</td>
+					<td>Qua LangChain nodes</td>
+					<td>Mọi store</td>
+			</tr>
+			<tr>
+					<td>LLM cục bộ (Ollama)</td>
+					<td>Node gốc</td>
+					<td>Tích hợp gốc</td>
+					<td>Qua HTTP request</td>
+					<td>Gốc</td>
+			</tr>
+			<tr>
+					<td>Widget chat nhúng</td>
+					<td>Có (tự động tạo)</td>
+					<td>Có</td>
+					<td>Qua webhook</td>
+					<td>Xây dựng thủ công</td>
+			</tr>
+			<tr>
+					<td>REST API (tự động)</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Có</td>
+					<td>Xây dựng thủ công</td>
+			</tr>
+			<tr>
+					<td>Workflow đa agent</td>
+					<td>Agentflow (tuần tự)</td>
+					<td>Điều phối workflow</td>
+					<td>Có (với node AI)</td>
+					<td>LangGraph</td>
+			</tr>
+			<tr>
+					<td>Lập lịch / Trigger</td>
+					<td>Hạn chế</td>
+					<td>Hạn chế</td>
+					<td>Đầy đủ (cron, webhook)</td>
+					<td>Thủ công</td>
+			</tr>
+			<tr>
+					<td>Độ phức tạp self-host</td>
+					<td>Thấp (1 container)</td>
+					<td>Trung bình (đa dịch vụ)</td>
+					<td>Thấp-Trung bình</td>
+					<td>N/A (thư viện)</td>
+			</tr>
+			<tr>
+					<td>RAM tối thiểu</td>
+					<td>~1 GB</td>
+					<td>4 GB</td>
+					<td>300 MB</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td>Giá cloud (Starter)</td>
+					<td>$35/tháng</td>
+					<td>$59/tháng</td>
+					<td>~$24/tháng</td>
+					<td>N/A</td>
+			</tr>
+			<tr>
+					<td>UX ngườ không kỹ thuật</td>
+					<td>Tốt</td>
+					<td>Xuất sắc</td>
+					<td>Tốt</td>
+					<td>Yêu cầu lập trình</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="khi-nào-chọn-công-cụ-nào">Khi nào chọn công cụ nào<a hidden class="anchor" aria-hidden="true" href="#khi-nào-chọn-công-cụ-nào">#</a></h3>
+<ul>
+<li><strong>Flowise</strong>: Tốt nhất cho các team xây dựng conversational AI (chatbot, RAG) muốn đường dẫn prototype-deployment nhanh nhất với khả năng tương thích LangChain đầy đủ.</li>
+<li><strong>Dify</strong>: Chọn khi cần nền tảng ứng dụng AI full-stack với quản lý kiến thức tích hợp, quản lý phiên bản prompt và cộng tác nhóm.</li>
+<li><strong>n8n</strong>: Chọn khi agent AI của bạn là một phần của pipeline tự động hóa rộng hơn với 400+ tích hợp SaaS, lập lịch và xử lý lỗi.</li>
+<li><strong>LangChain</strong>: Sử dụng trực tiếp khi cần quyền kiểm soát code đầy đủ, quản lý phiên bản prompt và tích hợp CI/CD.</li>
+</ul>
+<h2 id="sử-dụng-nâng-cao--củng-cố-production">Sử dụng nâng cao / Củng cố production<a hidden class="anchor" aria-hidden="true" href="#sử-dụng-nâng-cao--củng-cố-production">#</a></h2>
+<h3 id="danh-sách-kiểm-tra-bảo-mật">Danh sách kiểm tra bảo mật<a hidden class="anchor" aria-hidden="true" href="#danh-sách-kiểm-tra-bảo-mật">#</a></h3>
+<p>Trước khi đưa Flowise ra internet, hoàn thành các bước sau: `````bash</p>
+<h1 id="1-bật-xác-thực-bắt-buộc">1. Bật xác thực (BẮT BUỘC)<a hidden class="anchor" aria-hidden="true" href="#1-bật-xác-thực-bắt-buộc">#</a></h1>
+<p>FLOWISE_USERNAME=admin
+FLOWISE_PASSWORD=$(openssl rand -base64 24)</p>
+<h1 id="2-đặt-jwt-secret-mạnh">2. Đặt JWT secret mạnh<a hidden class="anchor" aria-hidden="true" href="#2-đặt-jwt-secret-mạnh">#</a></h1>
+<p>JWT_AUTH_TOKEN_SECRET=$(openssl rand -hex 64)
+JWT_REFRESH_TOKEN_SECRET=$(openssl rand -hex 64)</p>
+<h1 id="3-chạy-sau-https-với-reverse-proxy">3. Chạy sau HTTPS với reverse proxy<a hidden class="anchor" aria-hidden="true" href="#3-chạy-sau-https-với-reverse-proxy">#</a></h1>
+<h1 id="đoạn-cấu-hình-nginx-server-">Đoạn cấu hình Nginx: server {<a hidden class="anchor" aria-hidden="true" href="#đoạn-cấu-hình-nginx-server-">#</a></h1>
+<pre><code>listen 443 ssl http2;
 server_name flowise.yourdomain.com;
 
 ssl_certificate /path/to/cert.pem;
@@ -221,7 +793,13 @@ location / {
     proxy_set_header Host $host;
     proxy_set_header X-Real-IP $remote_addr;
 }
-</code></pre><p>}</p><h1 id=4-tắt-telemetry-nếu-muốn>4. Tắt telemetry nếu muốn<a hidden class=anchor aria-hidden=true href=#4-tắt-telemetry-nếu-muốn>#</a></h1><p>DISABLE_FLOWISE_TELEMETRY=true</p><h1 id=5-đặt-cors-cho-widget-nhúng>5. Đặt CORS cho widget nhúng<a hidden class=anchor aria-hidden=true href=#5-đặt-cors-cho-widget-nhúng>#</a></h1><p>CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com</p><pre tabindex=0><code>
+</code></pre>
+<p>}</p>
+<h1 id="4-tắt-telemetry-nếu-muốn">4. Tắt telemetry nếu muốn<a hidden class="anchor" aria-hidden="true" href="#4-tắt-telemetry-nếu-muốn">#</a></h1>
+<p>DISABLE_FLOWISE_TELEMETRY=true</p>
+<h1 id="5-đặt-cors-cho-widget-nhúng">5. Đặt CORS cho widget nhúng<a hidden class="anchor" aria-hidden="true" href="#5-đặt-cors-cho-widget-nhúng">#</a></h1>
+<p>CORS_ORIGINS=https://yourdomain.com,https://app.yourdomain.com</p>
+<pre tabindex="0"><code>
 ### Mở rộng với Queue Mode
 
 Đối với triển khai lưu lượng cao, Flowise hỗ trợ xử lý dựa trên hàng đợi với Redis worker.
@@ -244,7 +822,8 @@ services: redis: image: redis:alpine
       - QUEUE_REDIS_URL=redis://redis:6379
     restart: unless-stopped
 </code></pre><p>Mở rộng worker theo chiều ngang: `````bash
-docker compose -f docker-compose-queue.yml up -d &ndash;scale flowise-worker=3</p><pre tabindex=0><code>
+docker compose -f docker-compose-queue.yml up -d &ndash;scale flowise-worker=3</p>
+<pre tabindex="0"><code>
 ### Chiến lược sao lưu
 
 `````bash
@@ -257,17 +836,52 @@ docker exec flowise-postgres pg_dump -U flowise flowise &gt; flowise-db-$(date +
 
 # Tự động sao lưu hàng ngày qua cron (thêm vào crontab)
 0 2 * * * /usr/local/bin/backup-flowise.sh &gt;&gt; /var/log/flowise-backup.log 2&gt;&amp;1
-</code></pre><h3 id=giám-sát-với-docker>Giám sát với Docker<a hidden class=anchor aria-hidden=true href=#giám-sát-với-docker>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Xem log theo thờ gian thực</span>
-</span></span><span style=display:flex><span>docker compose logs -f flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Kiểm tra sử dụng tài nguyên</span>
-</span></span><span style=display:flex><span>docker stats flowise
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Health check endpoint</span>
-</span></span><span style=display:flex><span>curl http://localhost:3000/api/v1/ping
-</span></span></code></pre></div><h2 id=hạn-chế--đánh-giá-trung-thực>Hạn chế / Đánh giá trung thực<a hidden class=anchor aria-hidden=true href=#hạn-chế--đánh-giá-trung-thực>#</a></h2><p>Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là những gì Flowise KHÔNG làm tốt: 1. <strong>Điều phối Multi-Agent phức tạp</strong>: Flowise Agentflow hỗ trợ agent tuần tự, nhưng các pattern multi-agent dạng chu kỳ (như trong LangGraph hoặc AutoGen) cần cách giải quyết thay thế. Các team xây dựng agent nghiên cứu hoặc hệ thống multi-agent tranh luận nên xem xét LangGraph trực tiếp.</p><ol start=2><li><p><strong>Workflow phi-chat</strong>: Flowise được tối ưu hóa cho conversational AI. Xử lý tài liệu theo batch, pipeline ETL, hoặc chuyển đổi dữ liệu theo lịch phù hợp hơn với n8n hoặc Python script.</p></li><li><p><strong>Quản lý phiên bản</strong>: Các flow trực quan không thể diff trong Git như code. Hợp tác trong team lớn đòi hỏi kỷ luật trong việc export và quản lý phiên bản định nghĩa flow JSON thủ công.</p></li><li><p><strong>Debug nâng cao</strong>: Mặc dù Flowise hiển thị log thực thi, nhưng thiếu phân tích thờ gian từng node và theo dõi token usage mà Dify cung cấp. Debug lỗi retrieval phức tạp đòi hỏi đọc log thô.</p></li><li><p><strong>Governance doanh nghiệp</strong>: RBAC tồn tại ở tier Pro, nhưng audit trail, framework tuân thủ (ISO 42001, EU AI Act), và quản lý fleet không phải tính năng hàng đầu. Các ngành được quy định có thể cần thêm lớp governance.</p></li><li><p><strong>Phụ thuộc LangChain</strong>: Flowise kế thừa hạn chế của LangChain. Nếu LangChain ngừng hỗ trợ một mô hình hoặc giới thiệu breaking change, Flowise cũng chịu ảnh hưởng. Sự kết hợp này là ưu điểm cho ngườ dùng LangChain nhưng là ràng buộc cho những ngườ khác.</p></li></ol><h2 id=câu-hỏi-thường-gặp>Câu hỏi thường gặp<a hidden class=anchor aria-hidden=true href=#câu-hỏi-thường-gặp>#</a></h2><h3 id=cách-cài-đặt-flowise-trên-server-không-có-nodejs>Cách cài đặt Flowise trên server không có Node.js?<a hidden class=anchor aria-hidden=true href=#cách-cài-đặt-flowise-trên-server-không-có-nodejs>#</a></h3><p>Sử dụng Docker. Image <code>flowiseai/flowise</code> chính thức đã đóng gói mọi dependency. Một lệnh <code>docker run</code> duy nhất là đủ, không cần cài Node.js, pnpm hay bất kỳ công cụ build nào trên host.</p><h3 id=flowise-có-hoạt-động-với-llm-cục-bộ-như-llama-hoặc-qwen-không>Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?<a hidden class=anchor aria-hidden=true href=#flowise-có-hoạt-động-với-llm-cục-bộ-như-llama-hoặc-qwen-không>#</a></h3><p>Có. Flowise tích hợp gốc với Ollama. Khởi động container Ollama (hoặc instance local), pull bất kỳ mô hình GGUF nào, sau đó chọn node <code>ChatOllama</code> trên canvas Flowise. Dữ liệu của bạn không bao giờ rồi khỏi server —— không cần API key.</p><h3 id=flowise-vs-dify-khi-xây-dựng-chatbot-rag>Flowise vs Dify khi xây dựng chatbot RAG?<a hidden class=anchor aria-hidden=true href=#flowise-vs-dify-khi-xây-dựng-chatbot-rag>#</a></h3><p>Flowise thiết lập nhanh hơn (một container, không cần database) và cho phép kiểm soát tường minh mọi thành phần LangChain. Dify có giao diện knowledge base đánh bóng hơn với chunking tự động và debug tốt hơn. Chọn Flowise cho tốc độ và khả năng tương thích LangChain; chọn Dify cho cộng tác nhóm và quản lý kiến thức tích hợp.</p><h3 id=flowise-có-miễn-phí-sử-dụng-thương-mại-không>Flowise có miễn phí sử dụng thương mại không?<a hidden class=anchor aria-hidden=true href=#flowise-có-miễn-phí-sử-dụng-thương-mại-không>#</a></h3><p>Có. Flowise được phát hành theo giấy phép MIT. Bạn có thể tự host, chỉnh sửa, nhúng vào sản phẩm thương mại, bán dịch vụ dựa trên nó —— tất cả không phải trả phí cấp phép. Phiên bản cloud-hosted có gói trả phí từ $35/tháng.</p><h3 id=cấu-hình-server-tối-thiểu-cho-flowise-production-là-gì>Cấu hình server tối thiểu cho Flowise production là gì?<a hidden class=anchor aria-hidden=true href=#cấu-hình-server-tối-thiểu-cho-flowise-production-là-gì>#</a></h3><p>VPS $5/tháng với 1 vCPU và 1 GB RAM xử lý tốt khối lượng công việc vừa và nhỏ với SQLite. Đối với production với PostgreSQL và ngườ dùng đồng thờ, nên cấp phát 2 vCPU và 4 GB RAM. Container Flowise tiêu thụ ~180 MB ở trạng thái nhàn rỗi; LLM (nếu tự host qua Ollama) tiêu thụ tài nguyên nhiều nhất.</p><h3 id=có-thể-export-chatbot-flowise-dưới-dạng-api-không>Có thể export chatbot Flowise dưới dạng API không?<a hidden class=anchor aria-hidden=true href=#có-thể-export-chatbot-flowise-dưới-dạng-api-không>#</a></h3><p>Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại <code>/api/v1/prediction/{flow-id}</code>. UI tạo snippet code curl, Python và JavaScript. Bạn cũng có thể export widget chat nhúng chỉ với một click.</p><h3 id=cách-nâng-cấp-flowise-lên-phiên-bản-mới>Cách nâng cấp Flowise lên phiên bản mới?<a hidden class=anchor aria-hidden=true href=#cách-nâng-cấp-flowise-lên-phiên-bản-mới>#</a></h3><p>Triển khai Docker: Pull image mới nhất và khởi động lại: `````bash
+</code></pre><h3 id="giám-sát-với-docker">Giám sát với Docker<a hidden class="anchor" aria-hidden="true" href="#giám-sát-với-docker">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Xem log theo thờ gian thực</span>
+</span></span><span style="display:flex;"><span>docker compose logs -f flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Kiểm tra sử dụng tài nguyên</span>
+</span></span><span style="display:flex;"><span>docker stats flowise
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Health check endpoint</span>
+</span></span><span style="display:flex;"><span>curl http://localhost:3000/api/v1/ping
+</span></span></code></pre></div><h2 id="hạn-chế--đánh-giá-trung-thực">Hạn chế / Đánh giá trung thực<a hidden class="anchor" aria-hidden="true" href="#hạn-chế--đánh-giá-trung-thực">#</a></h2>
+<p>Flowise không phải công cụ phù hợp cho mọi dự án AI. Sau đây là những gì Flowise KHÔNG làm tốt: 1. <strong>Điều phối Multi-Agent phức tạp</strong>: Flowise Agentflow hỗ trợ agent tuần tự, nhưng các pattern multi-agent dạng chu kỳ (như trong LangGraph hoặc AutoGen) cần cách giải quyết thay thế. Các team xây dựng agent nghiên cứu hoặc hệ thống multi-agent tranh luận nên xem xét LangGraph trực tiếp.</p>
+<ol start="2">
+<li>
+<p><strong>Workflow phi-chat</strong>: Flowise được tối ưu hóa cho conversational AI. Xử lý tài liệu theo batch, pipeline ETL, hoặc chuyển đổi dữ liệu theo lịch phù hợp hơn với n8n hoặc Python script.</p>
+</li>
+<li>
+<p><strong>Quản lý phiên bản</strong>: Các flow trực quan không thể diff trong Git như code. Hợp tác trong team lớn đòi hỏi kỷ luật trong việc export và quản lý phiên bản định nghĩa flow JSON thủ công.</p>
+</li>
+<li>
+<p><strong>Debug nâng cao</strong>: Mặc dù Flowise hiển thị log thực thi, nhưng thiếu phân tích thờ gian từng node và theo dõi token usage mà Dify cung cấp. Debug lỗi retrieval phức tạp đòi hỏi đọc log thô.</p>
+</li>
+<li>
+<p><strong>Governance doanh nghiệp</strong>: RBAC tồn tại ở tier Pro, nhưng audit trail, framework tuân thủ (ISO 42001, EU AI Act), và quản lý fleet không phải tính năng hàng đầu. Các ngành được quy định có thể cần thêm lớp governance.</p>
+</li>
+<li>
+<p><strong>Phụ thuộc LangChain</strong>: Flowise kế thừa hạn chế của LangChain. Nếu LangChain ngừng hỗ trợ một mô hình hoặc giới thiệu breaking change, Flowise cũng chịu ảnh hưởng. Sự kết hợp này là ưu điểm cho ngườ dùng LangChain nhưng là ràng buộc cho những ngườ khác.</p>
+</li>
+</ol>
+<h2 id="câu-hỏi-thường-gặp">Câu hỏi thường gặp<a hidden class="anchor" aria-hidden="true" href="#câu-hỏi-thường-gặp">#</a></h2>
+<h3 id="cách-cài-đặt-flowise-trên-server-không-có-nodejs">Cách cài đặt Flowise trên server không có Node.js?<a hidden class="anchor" aria-hidden="true" href="#cách-cài-đặt-flowise-trên-server-không-có-nodejs">#</a></h3>
+<p>Sử dụng Docker. Image <code>flowiseai/flowise</code> chính thức đã đóng gói mọi dependency. Một lệnh <code>docker run</code> duy nhất là đủ, không cần cài Node.js, pnpm hay bất kỳ công cụ build nào trên host.</p>
+<h3 id="flowise-có-hoạt-động-với-llm-cục-bộ-như-llama-hoặc-qwen-không">Flowise có hoạt động với LLM cục bộ như Llama hoặc Qwen không?<a hidden class="anchor" aria-hidden="true" href="#flowise-có-hoạt-động-với-llm-cục-bộ-như-llama-hoặc-qwen-không">#</a></h3>
+<p>Có. Flowise tích hợp gốc với Ollama. Khởi động container Ollama (hoặc instance local), pull bất kỳ mô hình GGUF nào, sau đó chọn node <code>ChatOllama</code> trên canvas Flowise. Dữ liệu của bạn không bao giờ rồi khỏi server —— không cần API key.</p>
+<h3 id="flowise-vs-dify-khi-xây-dựng-chatbot-rag">Flowise vs Dify khi xây dựng chatbot RAG?<a hidden class="anchor" aria-hidden="true" href="#flowise-vs-dify-khi-xây-dựng-chatbot-rag">#</a></h3>
+<p>Flowise thiết lập nhanh hơn (một container, không cần database) và cho phép kiểm soát tường minh mọi thành phần LangChain. Dify có giao diện knowledge base đánh bóng hơn với chunking tự động và debug tốt hơn. Chọn Flowise cho tốc độ và khả năng tương thích LangChain; chọn Dify cho cộng tác nhóm và quản lý kiến thức tích hợp.</p>
+<h3 id="flowise-có-miễn-phí-sử-dụng-thương-mại-không">Flowise có miễn phí sử dụng thương mại không?<a hidden class="anchor" aria-hidden="true" href="#flowise-có-miễn-phí-sử-dụng-thương-mại-không">#</a></h3>
+<p>Có. Flowise được phát hành theo giấy phép MIT. Bạn có thể tự host, chỉnh sửa, nhúng vào sản phẩm thương mại, bán dịch vụ dựa trên nó —— tất cả không phải trả phí cấp phép. Phiên bản cloud-hosted có gói trả phí từ $35/tháng.</p>
+<h3 id="cấu-hình-server-tối-thiểu-cho-flowise-production-là-gì">Cấu hình server tối thiểu cho Flowise production là gì?<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-server-tối-thiểu-cho-flowise-production-là-gì">#</a></h3>
+<p>VPS $5/tháng với 1 vCPU và 1 GB RAM xử lý tốt khối lượng công việc vừa và nhỏ với SQLite. Đối với production với PostgreSQL và ngườ dùng đồng thờ, nên cấp phát 2 vCPU và 4 GB RAM. Container Flowise tiêu thụ ~180 MB ở trạng thái nhàn rỗi; LLM (nếu tự host qua Ollama) tiêu thụ tài nguyên nhiều nhất.</p>
+<h3 id="có-thể-export-chatbot-flowise-dưới-dạng-api-không">Có thể export chatbot Flowise dưới dạng API không?<a hidden class="anchor" aria-hidden="true" href="#có-thể-export-chatbot-flowise-dưới-dạng-api-không">#</a></h3>
+<p>Mọi Chatflow và Agentflow tự động nhận REST API endpoint tại <code>/api/v1/prediction/{flow-id}</code>. UI tạo snippet code curl, Python và JavaScript. Bạn cũng có thể export widget chat nhúng chỉ với một click.</p>
+<h3 id="cách-nâng-cấp-flowise-lên-phiên-bản-mới">Cách nâng cấp Flowise lên phiên bản mới?<a hidden class="anchor" aria-hidden="true" href="#cách-nâng-cấp-flowise-lên-phiên-bản-mới">#</a></h3>
+<p>Triển khai Docker: Pull image mới nhất và khởi động lại: `````bash
 docker pull flowiseai/flowise:latest
-docker compose up -d</p><pre tabindex=0><code>
+docker compose up -d</p>
+<pre tabindex="0"><code>
 Cài đặt NPM: Chạy ````npm update -g flowise````. Luôn sao lưu thư mục ````~/.flowise```` trước khi nâng cấp.
 
 *Tuyên bố: Một số liên kết trong bài viết này là liên kết affiliate. Chúng tôi có thể nhận được hoa hồng nhưng bạn không phải trả thêm phí. Chúng tôi chỉ giới thiệu các công cụ mà chính chúng tôi sử dụng.*
@@ -367,11 +981,155 @@ AI Agent具有自主决策能力，能够根据环境变化调整策略，而传
 **问：能否自定义AI Agent的行为？**
 
 是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/flowise-ai-workflow-builder-lowcode/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/free-llm-api-resources-ai-development/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/flowise-ai-workflow-builder-lowcode/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/free-llm-api-resources-ai-development/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

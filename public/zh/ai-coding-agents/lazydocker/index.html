@@ -1,10 +1,328 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/lazydocker/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/lazydocker/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/lazydocker/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/lazydocker/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/lazydocker/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/lazydocker/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/lazydocker/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"从命令行管理 Docker 意味着需要记住几十个参数、通过 ```grep过滤输出，并且不断在docker ps、docker logs和docker exec```` 之间切换。对于在终端中花费数小时的开发者来说，这种摩擦会累积。LazyDocker 通过一个二进制文件解决了这个问题，它将你的 Docker 工作流包装到一个键盘驱动的终端界面中 —— 无需浏览器、无需守护进程、无需设置开销。凭借超过 51,000 个 GitHub stars 和蓬勃发展的生态系统，它已成为 2026 年 Docker 管理的首选 TUI 工具。\n什么是 LazyDocker？ LazyDocker 是一个用于 Docker 和 Docker Compose 的终端用户界面（TUI），使用 Go 语言编写，基于 gocui 框架。它提供了一个可通过键盘导航的界面，用于查看容器、镜像、卷、网络和日志 —— 全部在终端内的分栏布局中。单个二进制文件通过 Docker CLI 使用的相同 API 直接连接到 Docker 守护进程。没有后台服务，没有开放端口，没有额外的攻击面。\nLazyDocker 由 Jesse Duffield 创建（也是 LazyGit 的作者），面向那些希望在不离开终端的情况下获得即时视觉反馈的开发者。它采用 MIT 许可证，积极维护，在 GitHub 上已积累 51,092 个 stars 和 1,600+ 个 forks。\nLazyDocker 的工作原理 LazyDocker 遵循简单的架构：二进制文件通过本地 Unix socket（/var/run/docker.sock）或 Windows 上的命名管道读取和写入 Docker Engine API。所有渲染都通过基于字符的 UI 框架在终端内完成。\n┌─────────────────────────────────────────┐ │ 终端 │ │ ┌──────────────────────────────────┐ │ │ │ LazyDocker TUI │ │ │ │ ┌────────┐ ┌────────────────┐ │ │ │ │ │容器 │ │ 日志 / 统计 │ │ │ │ │ ├────────┤ │ │ │ │ │ │ │镜像 │ │ 实时 │ │ │ │ │ ├────────┤ │ Docker API │ │ │ │ │ │卷 │ │ 输出 │ │ │ │ │ ├────────┤ │ │ │ │ │ │ │网络 │ │ │ │ │ │ │ └────────┘ └────────────────┘ │ │ │ └──────────────────────────────────┘ │ │ │ │ │ ┌─────────▼──────────┐ │ │ │ /var/run/docker.sock│ │ │ └─────────┬──────────┘ │ │ │ │ │ ┌─────────▼──────────┐ │ │ │ Docker 守护进程 │ │ │ └────────────────────┘ │ └─────────────────────────────────────────┘ 你需要了解的核心概念：\n面板（Panels）：左侧显示分类列表（容器、服务、镜像、卷、网络）。右侧显示所选项目的详细信息、日志或统计信息。 上下文感知操作：同一个按键根据聚焦的面板执行不同的操作。在容器上按 d 会移除容器；在镜像上按 d 会移除镜像。 Docker Compose 集成：当在有 docker-compose.yml 文件的目录中启动时，LazyDocker 按项目对服务进行分组，并添加 Compose 专用操作，如 up 和 down。 安装与设置 LazyDocker 可以在任何平台上在 60 秒内完成安装。你需要安装 Docker 并将你的用户添加到 docker 组（或具有对 Docker socket 的等效访问权限）。\n前置要求 # 验证 Docker 已安装并正在运行 docker --version docker ps # 将你的用户添加到 docker 组（Linux） sudo usermod -aG docker $USER # 注销并重新登录以使组更改生效 方法 1：Homebrew（macOS 和 Linux） # 使用官方 formula 获取频繁更新 brew install jesseduffield/lazydocker/lazydocker # 验证安装 lazydocker --version # 输出：Version: v0.24.5, Build date: 2026-04-15, Commit: abc1234 方法 2：官方安装脚本（Linux） # 自动安装到 ~/.local/bin curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash # 如果需要，添加到 PATH echo 'export PATH=$PATH:$HOME/.local/bin' \u003e\u003e ~/.bashrc source ~/.bashrc 方法 3：二进制下载（全平台） # 获取最新版本号 LAZYDOCKER_VERSION=$(curl -s \"https://api.github.com/repos/jesseduffield/lazydocker/releases/latest\" | grep '\"tag_name\":' | sed 's/.*\"v\\([^\"]*\\)\".*/\\1/') # 下载 Linux x86_64 二进制文件 curl -Lo lazydocker.tar.gz \"https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz\" # 解压并系统级安装 tar xf lazydocker.tar.gz lazydocker sudo install lazydocker /usr/local/bin/ rm lazydocker lazydocker.tar.gz 方法 4：Go 安装 # 需要 Go \u003e= 1.19 go install github.com/jesseduffield/lazydocker@latest # 二进制文件位于 ~/go/bin export PATH=$PATH:$HOME/go/bin 方法 5：Docker（沙箱模式） # 无需安装即可运行 —— 挂载 Docker socket 获取完整访问权限 docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock \\ -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker \\ lazyteam/lazydocker:latest # 创建 shell 别名以便使用 echo \"alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'\" \u003e\u003e ~/.bashrc 首次启动 # 启动 LazyDocker lazydocker # 使用调试输出启动以进行故障排除 lazydocker --debug 首次启动时，LazyDocker 会自动检测正在运行的容器并显示主界面。布局分为左侧导航面板和右侧内容面板，显示所选项目的日志或统计信息。\n基本快捷键 LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 hjkl，操作是单键触发。\n全局导航 | 按键 | 操作 | |\n|\n| | Tab / Shift+Tab | 在左侧面板之间循环 | | ↑ ↓ / k j | 在面板中导航项目 | | Enter | 聚焦主面板 / 选择 | | Escape / q | 返回 / 退出 | | [ / ] | 上一个 / 下一个标签页 | | ? | 显示帮助覆盖层 | | / | 过滤当前列表 |\n容器操作 | 按键 | 操作 | |\n|\n| | r | 重启容器 | | s | 停止容器 | | d | 移除容器（带确认） | | p | 暂停 / 恢复容器 | | e | 隐藏/显示已停止的容器 | | E | 进入容器（打开 shell） | | a | 附加到容器 | | m | 查看日志 | | u | 查看 CPU/内存统计 | | w | 在浏览器中打开暴露的端口 | | b | 查看批量命令 | | c | 运行自定义预定义命令 |\nDocker Compose 服务操作 | 按键 | 操作 | |\n|\n| | u | 启动服务 | | U | 启动整个项目 | | d | 移除服务容器 | | D | 关闭整个项目 | | s | 停止服务 | | S | 启动服务 | | r | 重启服务 | | R | 查看重启选项 | | E | 在服务容器中执行 shell |\n镜像和卷操作 | 按键 | 操作（镜像） | 操作（卷） | |\n|\n|\n| | d | 移除镜像 | 移除卷 | | p | 拉取最新镜像 | — | | Enter | 检查镜像详情 | 检查卷 |\n日志导航 | 按键 | 操作 | |\n|\n| | PageUp / PageDown | 滚动日志 | | g | 跳到日志开头 | | G | 跳到日志末尾 | | / | 在日志中搜索 | | n | 下一个搜索结果 | | [ / ] | 上一页 / 下一页日志 |\n配置与自定义 LazyDocker 将配置存储在平台特定的路径中。在项目面板中按 o（或按 e 在默认编辑器中编辑）可直接从 TUI 打开配置文件。\n配置文件位置 | 操作系统 | 路径 | |\n|\n| | Linux | ~/.config/lazydocker/config.yml | | macOS | ~/Library/Application Support/jesseduffield/lazydocker/config.yml | | Windows | C:\\Users\\\\AppData\\Roaming\\lazydocker\\config.yml |\n自定义主题配置 # ~/.config/lazydocker/config.yml gui: language: \"zh\" # auto | en | fr | de | es | pl | nl | tr | zh border: \"rounded\" # rounded | single | double | hidden theme: activeBorderColor: - cyan - bold inactiveBorderColor: - white selectedLineBgColor: - black selectedLineFgColor: - yellow optionsTextColor: - blue scrollHeight: 2 sidePanelWidth: 0.333 screenMode: \"normal\" # normal | half | fullscreen 日志显示设置 logs: timestamps: true since: \"60m\" # 显示最近 60 分钟的日志；'' = 全部时间 tail: \"200\" # 显示的行数 自定义命令 添加通过 c 键访问的自定义命令：\ncustomCommands: containers: - name: bash attach: true command: \"docker exec -it bash\" serviceNames: [] - name: debug-network attach: false command: \"docker inspect --format=': \\n'\" 可用的模板变量：、、、。\nPodman 支持 通过交换命令模板，LazyDocker 可与 Podman 配合使用：\ncommandTemplates: docker: \"podman\" dockerCompose: \"podman-compose\" containerInspect: \"podman inspect \" 与流行工具集成 Docker Compose 项目 LazyDocker 自动检测当前目录中的 docker-compose.yml 或 compose.yml。服务在服务面板中按项目分组显示，并带有项目级操作。这种集成对于本地微服务开发特别有价值，因为它消除了记住每个项目的 Compose 命令的需要。\n# 导航到你的 Compose 项目 cd ~/projects/my-app # 启动 —— 服务面板自动填充 lazydocker 在服务面板中：\n按 u 启动单个服务 按 U 启动整个项目 按 D 拆除整个堆栈 按 E 进入服务容器 按 R 查看重启选项（包括重启计数和策略） 按 w 在浏览器中打开服务暴露的第一个端口 对于具有多个 Compose 文件的复杂项目，你可以在启动前设置 COMPOSE_FILE 环境变量：\n# 使用多个 Compose 文件 export COMPOSE_FILE=docker-compose.yml:docker-compose.override.yml:docker-compose.prod.yml lazydocker Tmux 集成 对于 tmux 用户，添加按键绑定以在弹出窗口或分割中启动 LazyDocker：\n# ~/.tmux.conf # 在弹出窗口中打开 LazyDocker bind D display-popup -E -w 90% -h 90% \"lazydocker\" # 或在新垂直分割中打开 bind d split-window -h \"lazydocker\" 重新加载并使用 Ctrl+b D 打开：\ntmux source-file ~/.tmux.conf Zsh / Bash 别名 # ~/.bashrc 或 ~/.zshrc alias lzd=\"lazydocker\" alias lzd-logs=\"lazydocker --logs\" # 快速跳转到项目并启动 alias lzd-here=\"cd $PWD \u0026\u0026 lazydocker\" # 重新加载 shell 配置 source ~/.bashrc VS Code 集成 添加 VS Code 任务以在集成终端中启动 LazyDocker：\n// .vscode/tasks.json { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"LazyDocker\", \"type\": \"shell\", \"command\": \"lazydocker\", \"problemMatcher\": [], \"presentation\": { \"echo\": true, \"reveal\": \"always\", \"focus\": true, \"panel\": \"new\" } } ] } CI/CD 流水线集成 LazyDocker 在 GitHub Actions 中表现良好，用于调试构建期间的容器状态。虽然 LazyDocker 的 TUI 在 CI 环境中不是交互式的，但其底层命令可以与 Docker API 通信以提取结构化的容器信息。\n# .github/workflows/debug.yml name: Debug Containers on: workflow_dispatch jobs: debug: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install LazyDocker run: | curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash sudo mv ~/.local/bin/lazydocker /usr/local/bin/ - name: Start services run: docker compose up -d - name: Inspect with LazyDocker run: | lazydocker --version # 导出容器列表用于日志 docker ps --format \"table \\t\" - name: Capture container logs on failure if: failure() run: | docker compose logs --tail=500 \u003e container-logs.txt docker stats --no-stream \u003e container-stats.txt SSH 环境下的远程服务器管理 LazyDocker 在仅 SSH 访问的无头服务器上表现出色。与需要开放端口和运行 Web 服务的 Portainer 不同，LazyDocker 通过 SSH 隧道提供完整的 Docker 管理功能，不会在服务器上留下任何运行中的进程。\n# 通过 SSH 在远程服务器上启动 LazyDocker ssh -t user@remote-server \"lazydocker\" # 或者使用本地转发的 socket ssh -nNT -L /tmp/docker.sock:/var/run/docker.sock user@remote-server \u0026 DOCKER_HOST=unix:///tmp/docker.sock lazydocker 基准测试与真实用例 LazyDocker 的设计理念是零开销：它是一个客户端工具，运行时不驻留内存，退出后立即释放所有资源。这一点与需要长期运行后台服务的其他 Docker 管理工具有本质区别。\n资源开销对比 LazyDocker 几乎没有资源开销，因为它作为临时客户端进程运行 —— 而不是持久守护进程。\n| 场景 | 二进制大小 | 运行时内存 | 启动时间 | 后台进程 | |\n|\n|\n|\n|\n| | LazyDocker | ~15 MB | ~20 MB | \u003c200 ms | 无 | | Docker Desktop | ~1.5 GB | ~400-800 MB | 10-30 s | 是（虚拟机） | | Portainer CE | ~80 MB 镜像 | ~100-200 MB | 5-10 s | 是（容器） | | Rancher | ~300 MB 镜像 | ~500 MB+ | 30-60 s | 是（集群） |\n真实场景 场景 1：家庭实验室服务器（20 个容器） 开发者在无头 Ubuntu 服务器上管理媒体堆栈（Plex、Sonarr、Radarr、Traefik、Authelia）。LazyDocker 通过 SSH 提供即时容器状态、实时日志跟踪和快速重启，无需运行 Web 服务。资源占用：不运行时为零。这种模式特别适合树莓派或旧硬件等低功耗设备。\n场景 2：微服务开发（8 个服务） 团队本地运行 8 个 Docker Compose 服务。LazyDocker 按项目对服务进行分组，显示哪些容器正在重启，并让开发者通过单次按键进入故障服务。平均调试工作流从 45 秒的 CLI 输入减少到 5 秒的键盘导航。对于频繁重启和调试服务的开发者来说，这种效率提升在一天内可以节省大量时间。\n场景 3：CI/CD 调试 DevOps 工程师在 GitHub Actions 中使用 LazyDocker 捕获失败测试运行结束时的容器状态和日志。CI 中的 TUI 不是交互式的，但 --logs 导出和容器列表命令提供结构化的调试输出。\n高级用法与生产环境加固 通过 SSH 在远程主机上运行 LazyDocker 原生不支持远程 Docker 主机，但你可以通过 SSH 转发 Docker socket：\n# 将远程 Docker socket 转发到本地机器 ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server \u0026 # 让 LazyDocker 指向转发的 socket export DOCKER_HOST=unix:///tmp/docker_remote.sock lazydocker # 完成后清理 kill %1 rm /tmp/docker_remote.sock 或者直接使用 SSH context：\n# 为远程主机创建 Docker context docker context create remote --docker \"host=ssh://user@remote-server\" docker context use remote # LazyDocker 自动使用活动 context lazydocker 非 Root 用户设置 # 如果 docker 组不存在则创建 sudo groupadd -f docker # 添加当前用户 sudo usermod -aG docker $USER # 不注销即可应用（仅 Linux） newgrp docker # 验证 lazydocker 批量操作技巧 LazyDocker 的批量命令（按 b 键）允许你对多个容器或镜像同时执行操作。这在需要清理过期资源时特别有用：\n# 在 LazyDocker 中选择一个面板后按 b 键 # 可用的批量操作包括： # - 删除所有已停止的容器 # - 删除所有悬空镜像 # - 删除所有未使用的卷 # - 重启所有服务 自动化清理工作流 #!/bin/bash # ~/bin/docker-cleanup.sh # 与 LazyDocker 集成的一键清理脚本 echo \"移除已停止的容器...\" docker container prune -f echo \"移除悬空镜像...\" docker image prune -f echo \"移除未使用的卷...\" docker volume prune -f echo \"移除未使用的网络...\" docker network prune -f echo \"清理完成。剩余资源：\" docker system df 通过 LazyDocker 中的自定义命令绑定此脚本，实现一键访问。\n监控集成 通过将 docker stats 管道传输到 Prometheus Node Exporter textfile 收集器，将 LazyDocker 统计信息导出到外部监控：\n#!/bin/bash # 每 60 秒的 cron 任务 while true; do docker stats --no-stream --format \\ \"container_cpu_usage{name=\"\"} \\ncontainer_memory_usage{name=\"\"} \" \\ \u003e /var/lib/node_exporter/textfile_collector/docker_stats.prom sleep 60 done 与替代品对比 | 功能 | LazyDocker | Docker Desktop | Portainer CE | Rancher | |\n|\n|\n|\n|\n| | 界面 | 终端 TUI | 原生桌面 GUI | Web GUI | Web GUI | | 安装大小 | ~15 MB | ~1.5 GB | ~80 MB 镜像 | ~300 MB 镜像 | | 内存开销 | ~20 MB（临时） | ~400-800 MB | ~100-200 MB | ~500 MB+ | | 多主机 | 否（SSH 变通方案） | 有限 | 是（agents） | 是（集群） | | Kubernetes | 否 | 是（本地） | 是 | 是（主要） | | Docker Compose | 完整支持 | 完整支持 | 基于 Stack | 有限 | | 多用户 / RBAC | 否 | 否 | 是（BE 版） | 是 | | 通过 SSH 工作 | 是 | 否 | 通过浏览器 | 通过浏览器 | | 离线可用 | 是 | 是（本地） | UI 需要网络 | 需要网络 | | 开源协议 | MIT | 专有 | AGPL / SSPL | Apache-2.0 | | 启动时间 | \u003c200 ms | 10-30 s | 5-10 s | 30-60 s | | 最适合 | 终端用户 | 本地开发 | 团队管理 | 企业 K8s |\n局限性 / 诚实评估 LazyDocker 并不适合所有情况。以下是限制条件：\n无多主机管理：你无法从单个 LazyDocker 实例管理多个 Docker 主机。对此，请使用带有 agents 的 Portainer 或 Rancher。 无 Web 界面：LazyDocker 需要终端访问。如果你需要通过手机或平板管理容器，Portainer 的响应式 Web UI 是更好的选择。 无 RBAC 或用户管理：LazyDocker 继承你的 OS 用户的 Docker 权限。没有团队、角色或审计追踪的概念。 不支持 Kubernetes：LazyDocker 仅处理 Docker 和 Docker Compose。对于 Kubernetes 工作负载，请直接使用 k9s、Rancher 或 kubectl。 仅单用户：两个工程师不能同时使用同一个 LazyDocker 会话。每个用户运行自己的实例。 TUI 学习曲线：不熟悉键盘驱动界面（vim、tmux）的工程师可能会发现初始学习曲线比点击 Web UI 更陡峭。 偏读取，谨慎写入：虽然 LazyDocker 支持破坏性操作（移除、停止），但它会添加确认提示，与脚本化的 CLI 工作流相比，这些提示会降低批量操作的速度。 常见问题 Q: LazyDocker 会替代 Docker CLI 吗？\n不会。LazyDocker 通过提供视觉概览和快速操作来补充 CLI。对于脚本编写、自动化和 CI/CD 流水线，Docker CLI 仍然是正确的工具。许多开发者两者都用：LazyDocker 用于交互式探索，docker 命令用于可重现的工作流。\nQ: 我可以将 LazyDocker 与 Podman 一起使用吗？\n可以。通过配置覆盖，LazyDocker 支持 Podman。在 config.yml 中将 commandTemplates.docker 设置为 podman，将 commandTemplates.dockerCompose 设置为 podman-compose。一个名为 lazypodman 的社区包装器也可用于无缝的 Podman 集成。\nQ: 如何查看已崩溃容器的日志？\n导航到容器面板，按 e 切换已停止容器的可见性，选择已崩溃的容器，然后按 m 查看其日志。使用 g 跳到日志流的开头，G 跳到末尾。\nQ: 在生产环境中使用 LazyDocker 安全吗？\nLazyDocker 是安全的，因为它是一个没有后台服务的客户端工具。它使用你的用户具有的权限连接到 Docker socket。在生产环境中，限制 Docker socket 访问给授权用户，除非必要避免在生产主机上运行 LazyDocker，并优先选择只读操作（查看日志和统计信息）而非破坏性操作。\nQ: 我可以在 Docker 容器内运行 LazyDocker 吗？\n可以。将主机的 Docker socket 挂载到容器中，使用 -v /var/run/docker.sock:/var/run/docker.sock。这使 LazyDocker 可以完全查看主机容器。官方镜像是 lazyteam/lazydocker:latest。这种模式在隔离环境或快速测试中效果很好。\nQ: 为什么 LazyDocker 显示 “Cannot connect to Docker daemon”？\n当你的用户无法访问 /var/run/docker.sock 时会发生此错误。确保你的用户在 docker 组中，Docker 守护进程正在运行（sudo systemctl status docker），并且 DOCKER_HOST 环境变量未设置为无效值。在 macOS 上，验证 Docker Desktop 是否正在运行。\nQ: 如何自定义快捷键？\nLazyDocker 不完全支持通过配置进行按键重新映射，但你可以通过 config.yml 中的 customCommands 块添加自定义命令。对于与终端模拟器的冲突快捷键，配置你的终端以将原始按键传递给 TUI。\n结论 LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生的 Docker 管理。凭借 51,092 个 GitHub stars、单二进制分发和低于 200 毫秒的启动时间，它消除了浏览器标签页之间切换或记忆 CLI 参数的摩擦。对于个人开发者、家庭实验室操作员以及任何生活在终端中的人来说，它是工具集的一个实用补充。\n入门行动项：\n通过 Homebrew 或官方脚本安装 LazyDocker（60 秒内） 在有运行容器的项目中启动 lazydocker 记忆 5 个基本键：r（重启）、s（停止）、d（移除）、m（日志）、E（执行 shell） 按 o 打开配置并自定义主题和日志设置 为 ````lzd``` 添加 shell 别名并与 tmux 集成以实现弹出访问 加入 dibi8 Telegram 社区 分享你的 LazyDocker 工作流技巧，并从其他大规模管理容器的开发者那里获得帮助。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 LazyDocker GitHub 仓库 官方快捷键参考 配置文档 LazyDocker 安装指南 LazyDocker 官方网站 Portainer vs LazyDocker 对比（OneUptime） DataCamp LazyDocker 教程 LazyDocker Podman 扩展 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/lazydocker\" } } Related Articles apple-container trivy-production-security-scanner-2026 trivy-production-security-scanner-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1910","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/lazydocker/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/lazydocker/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/lazydocker/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/lazydocker/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#%e4%bb%80%e4%b9%88%e6%98%af-lazydocker aria-label="什么是 LazyDocker？">什么是 LazyDocker？</a></li><li><a href=#lazydocker-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86 aria-label="LazyDocker 的工作原理">LazyDocker 的工作原理</a></li><li><a href=#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae aria-label=安装与设置>安装与设置</a><ul><li><a href=#%e5%89%8d%e7%bd%ae%e8%a6%81%e6%b1%82 aria-label=前置要求>前置要求</a></li><li><a href=#%e6%96%b9%e6%b3%95-1homebrewmacos-%e5%92%8c-linux aria-label="方法 1：Homebrew（macOS 和 Linux）">方法 1：Homebrew（macOS 和 Linux）</a></li><li><a href=#%e6%96%b9%e6%b3%95-2%e5%ae%98%e6%96%b9%e5%ae%89%e8%a3%85%e8%84%9a%e6%9c%aclinux aria-label="方法 2：官方安装脚本（Linux）">方法 2：官方安装脚本（Linux）</a></li><li><a href=#%e6%96%b9%e6%b3%95-3%e4%ba%8c%e8%bf%9b%e5%88%b6%e4%b8%8b%e8%bd%bd%e5%85%a8%e5%b9%b3%e5%8f%b0 aria-label="方法 3：二进制下载（全平台）">方法 3：二进制下载（全平台）</a></li><li><a href=#%e6%96%b9%e6%b3%95-4go-%e5%ae%89%e8%a3%85 aria-label="方法 4：Go 安装">方法 4：Go 安装</a></li><li><a href=#%e6%96%b9%e6%b3%95-5docker%e6%b2%99%e7%ae%b1%e6%a8%a1%e5%bc%8f aria-label="方法 5：Docker（沙箱模式）">方法 5：Docker（沙箱模式）</a></li><li><a href=#%e9%a6%96%e6%ac%a1%e5%90%af%e5%8a%a8 aria-label=首次启动>首次启动</a></li></ul></li><li><a href=#%e5%9f%ba%e6%9c%ac%e5%bf%ab%e6%8d%b7%e9%94%ae aria-label=基本快捷键>基本快捷键</a><ul><li><a href=#%e5%85%a8%e5%b1%80%e5%af%bc%e8%88%aa aria-label=全局导航>全局导航</a></li><li><a href=#%e5%ae%b9%e5%99%a8%e6%93%8d%e4%bd%9c aria-label=容器操作>容器操作</a></li><li><a href=#docker-compose-%e6%9c%8d%e5%8a%a1%e6%93%8d%e4%bd%9c aria-label="Docker Compose 服务操作">Docker Compose 服务操作</a></li><li><a href=#%e9%95%9c%e5%83%8f%e5%92%8c%e5%8d%b7%e6%93%8d%e4%bd%9c aria-label=镜像和卷操作>镜像和卷操作</a></li><li><a href=#%e6%97%a5%e5%bf%97%e5%af%bc%e8%88%aa aria-label=日志导航>日志导航</a></li></ul></li><li><a href=#%e9%85%8d%e7%bd%ae%e4%b8%8e%e8%87%aa%e5%ae%9a%e4%b9%89 aria-label=配置与自定义>配置与自定义</a><ul><li><a href=#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae aria-label=配置文件位置>配置文件位置</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98%e9%85%8d%e7%bd%ae aria-label=自定义主题配置>自定义主题配置</a></li><li><a href=#%e6%97%a5%e5%bf%97%e6%98%be%e7%a4%ba%e8%ae%be%e7%bd%ae aria-label=日志显示设置>日志显示设置</a></li><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e5%91%bd%e4%bb%a4 aria-label=自定义命令>自定义命令</a></li><li><a href=#podman-%e6%94%af%e6%8c%81 aria-label="Podman 支持">Podman 支持</a></li></ul></li><li><a href=#%e4%b8%8e%e6%b5%81%e8%a1%8c%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90 aria-label=与流行工具集成>与流行工具集成</a><ul><li><a href=#docker-compose-%e9%a1%b9%e7%9b%ae aria-label="Docker Compose 项目">Docker Compose 项目</a></li><li><a href=#tmux-%e9%9b%86%e6%88%90 aria-label="Tmux 集成">Tmux 集成</a></li><li><a href=#zsh--bash-%e5%88%ab%e5%90%8d aria-label="Zsh / Bash 别名">Zsh / Bash 别名</a></li><li><a href=#vs-code-%e9%9b%86%e6%88%90 aria-label="VS Code 集成">VS Code 集成</a></li><li><a href=#cicd-%e6%b5%81%e6%b0%b4%e7%ba%bf%e9%9b%86%e6%88%90 aria-label="CI/CD 流水线集成">CI/CD 流水线集成</a></li><li><a href=#ssh-%e7%8e%af%e5%a2%83%e4%b8%8b%e7%9a%84%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%ae%a1%e7%90%86 aria-label="SSH 环境下的远程服务器管理">SSH 环境下的远程服务器管理</a></li></ul></li><li><a href=#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e4%b8%8e%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b aria-label=基准测试与真实用例>基准测试与真实用例</a><ul><li><a href=#%e8%b5%84%e6%ba%90%e5%bc%80%e9%94%80%e5%af%b9%e6%af%94 aria-label=资源开销对比>资源开销对比</a></li><li><a href=#%e7%9c%9f%e5%ae%9e%e5%9c%ba%e6%99%af aria-label=真实场景>真实场景</a></li></ul></li><li><a href=#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b8%8e%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba aria-label=高级用法与生产环境加固>高级用法与生产环境加固</a><ul><li><a href=#%e9%80%9a%e8%bf%87-ssh-%e5%9c%a8%e8%bf%9c%e7%a8%8b%e4%b8%bb%e6%9c%ba%e4%b8%8a%e8%bf%90%e8%a1%8c aria-label="通过 SSH 在远程主机上运行">通过 SSH 在远程主机上运行</a></li><li><a href=#%e9%9d%9e-root-%e7%94%a8%e6%88%b7%e8%ae%be%e7%bd%ae aria-label="非 Root 用户设置">非 Root 用户设置</a></li><li><a href=#%e6%89%b9%e9%87%8f%e6%93%8d%e4%bd%9c%e6%8a%80%e5%b7%a7 aria-label=批量操作技巧>批量操作技巧</a></li><li><a href=#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b8%85%e7%90%86%e5%b7%a5%e4%bd%9c%e6%b5%81 aria-label=自动化清理工作流>自动化清理工作流</a></li><li><a href=#%e7%9b%91%e6%8e%a7%e9%9b%86%e6%88%90 aria-label=监控集成>监控集成</a></li></ul></li><li><a href=#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%93%81%e5%af%b9%e6%af%94 aria-label=与替代品对比>与替代品对比</a></li><li><a href=#%e5%b1%80%e9%99%90%e6%80%a7--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0 aria-label="局限性 / 诚实评估">局限性 / 诚实评估</a></li><li><a href=#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98 aria-label=常见问题>常见问题</a></li><li><a href=#%e7%bb%93%e8%ae%ba aria-label=结论>结论</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb aria-label=来源与延伸阅读>来源与延伸阅读</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>从命令行管理 Docker 意味着需要记住几十个参数、通过 ```grep<code>过滤输出，并且不断在</code>docker ps<code>、</code>docker logs<code>和</code>docker exec```` 之间切换。对于在终端中花费数小时的开发者来说，这种摩擦会累积。LazyDocker 通过一个二进制文件解决了这个问题，它将你的 Docker 工作流包装到一个键盘驱动的终端界面中 —— 无需浏览器、无需守护进程、无需设置开销。凭借超过 51,000 个 GitHub stars 和蓬勃发展的生态系统，它已成为 2026 年 Docker 管理的首选 TUI 工具。</p><p><img alt="LazyDocker Banner" loading=lazy src=https://raw.githubusercontent.com/jesseduffield/lazydocker/master/docs/resources/split_assets/banner.png></p><h2 id=什么是-lazydocker>什么是 LazyDocker？<a hidden class=anchor aria-hidden=true href=#什么是-lazydocker>#</a></h2><p>LazyDocker 是一个用于 Docker 和 Docker Compose 的终端用户界面（TUI），使用 Go 语言编写，基于 <code>gocui</code> 框架。它提供了一个可通过键盘导航的界面，用于查看容器、镜像、卷、网络和日志 —— 全部在终端内的分栏布局中。单个二进制文件通过 Docker CLI 使用的相同 API 直接连接到 Docker 守护进程。没有后台服务，没有开放端口，没有额外的攻击面。</p><p>LazyDocker 由 Jesse Duffield 创建（也是 LazyGit 的作者），面向那些希望在不离开终端的情况下获得即时视觉反馈的开发者。它采用 MIT 许可证，积极维护，在 GitHub 上已积累 51,092 个 stars 和 1,600+ 个 forks。</p><h2 id=lazydocker-的工作原理>LazyDocker 的工作原理<a hidden class=anchor aria-hidden=true href=#lazydocker-的工作原理>#</a></h2><p>LazyDocker 遵循简单的架构：二进制文件通过本地 Unix socket（<code>/var/run/docker.sock</code>）或 Windows 上的命名管道读取和写入 Docker Engine API。所有渲染都通过基于字符的 UI 框架在终端内完成。</p><pre tabindex=0><code>┌─────────────────────────────────────────┐
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/lazydocker/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/lazydocker/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/lazydocker/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/lazydocker/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/lazydocker/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/lazydocker/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/lazydocker/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "从命令行管理 Docker 意味着需要记住几十个参数、通过 ```grep过滤输出，并且不断在docker ps、docker logs和docker exec```` 之间切换。对于在终端中花费数小时的开发者来说，这种摩擦会累积。LazyDocker 通过一个二进制文件解决了这个问题，它将你的 Docker 工作流包装到一个键盘驱动的终端界面中 —— 无需浏览器、无需守护进程、无需设置开销。凭借超过 51,000 个 GitHub stars 和蓬勃发展的生态系统，它已成为 2026 年 Docker 管理的首选 TUI 工具。\n什么是 LazyDocker？ LazyDocker 是一个用于 Docker 和 Docker Compose 的终端用户界面（TUI），使用 Go 语言编写，基于 gocui 框架。它提供了一个可通过键盘导航的界面，用于查看容器、镜像、卷、网络和日志 —— 全部在终端内的分栏布局中。单个二进制文件通过 Docker CLI 使用的相同 API 直接连接到 Docker 守护进程。没有后台服务，没有开放端口，没有额外的攻击面。\nLazyDocker 由 Jesse Duffield 创建（也是 LazyGit 的作者），面向那些希望在不离开终端的情况下获得即时视觉反馈的开发者。它采用 MIT 许可证，积极维护，在 GitHub 上已积累 51,092 个 stars 和 1,600+ 个 forks。\nLazyDocker 的工作原理 LazyDocker 遵循简单的架构：二进制文件通过本地 Unix socket（/var/run/docker.sock）或 Windows 上的命名管道读取和写入 Docker Engine API。所有渲染都通过基于字符的 UI 框架在终端内完成。\n┌─────────────────────────────────────────┐ │ 终端 │ │ ┌──────────────────────────────────┐ │ │ │ LazyDocker TUI │ │ │ │ ┌────────┐ ┌────────────────┐ │ │ │ │ │容器 │ │ 日志 / 统计 │ │ │ │ │ ├────────┤ │ │ │ │ │ │ │镜像 │ │ 实时 │ │ │ │ │ ├────────┤ │ Docker API │ │ │ │ │ │卷 │ │ 输出 │ │ │ │ │ ├────────┤ │ │ │ │ │ │ │网络 │ │ │ │ │ │ │ └────────┘ └────────────────┘ │ │ │ └──────────────────────────────────┘ │ │ │ │ │ ┌─────────▼──────────┐ │ │ │ /var/run/docker.sock│ │ │ └─────────┬──────────┘ │ │ │ │ │ ┌─────────▼──────────┐ │ │ │ Docker 守护进程 │ │ │ └────────────────────┘ │ └─────────────────────────────────────────┘ 你需要了解的核心概念：\n面板（Panels）：左侧显示分类列表（容器、服务、镜像、卷、网络）。右侧显示所选项目的详细信息、日志或统计信息。 上下文感知操作：同一个按键根据聚焦的面板执行不同的操作。在容器上按 d 会移除容器；在镜像上按 d 会移除镜像。 Docker Compose 集成：当在有 docker-compose.yml 文件的目录中启动时，LazyDocker 按项目对服务进行分组，并添加 Compose 专用操作，如 up 和 down。 安装与设置 LazyDocker 可以在任何平台上在 60 秒内完成安装。你需要安装 Docker 并将你的用户添加到 docker 组（或具有对 Docker socket 的等效访问权限）。\n前置要求 # 验证 Docker 已安装并正在运行 docker --version docker ps # 将你的用户添加到 docker 组（Linux） sudo usermod -aG docker $USER # 注销并重新登录以使组更改生效 方法 1：Homebrew（macOS 和 Linux） # 使用官方 formula 获取频繁更新 brew install jesseduffield/lazydocker/lazydocker # 验证安装 lazydocker --version # 输出：Version: v0.24.5, Build date: 2026-04-15, Commit: abc1234 方法 2：官方安装脚本（Linux） # 自动安装到 ~/.local/bin curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash # 如果需要，添加到 PATH echo 'export PATH=$PATH:$HOME/.local/bin' \u003e\u003e ~/.bashrc source ~/.bashrc 方法 3：二进制下载（全平台） # 获取最新版本号 LAZYDOCKER_VERSION=$(curl -s \"https://api.github.com/repos/jesseduffield/lazydocker/releases/latest\" | grep '\"tag_name\":' | sed 's/.*\"v\\([^\"]*\\)\".*/\\1/') # 下载 Linux x86_64 二进制文件 curl -Lo lazydocker.tar.gz \"https://github.com/jesseduffield/lazydocker/releases/download/v${LAZYDOCKER_VERSION}/lazydocker_${LAZYDOCKER_VERSION}_Linux_x86_64.tar.gz\" # 解压并系统级安装 tar xf lazydocker.tar.gz lazydocker sudo install lazydocker /usr/local/bin/ rm lazydocker lazydocker.tar.gz 方法 4：Go 安装 # 需要 Go \u003e= 1.19 go install github.com/jesseduffield/lazydocker@latest # 二进制文件位于 ~/go/bin export PATH=$PATH:$HOME/go/bin 方法 5：Docker（沙箱模式） # 无需安装即可运行 —— 挂载 Docker socket 获取完整访问权限 docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock \\ -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker \\ lazyteam/lazydocker:latest # 创建 shell 别名以便使用 echo \"alias lzd='docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker'\" \u003e\u003e ~/.bashrc 首次启动 # 启动 LazyDocker lazydocker # 使用调试输出启动以进行故障排除 lazydocker --debug 首次启动时，LazyDocker 会自动检测正在运行的容器并显示主界面。布局分为左侧导航面板和右侧内容面板，显示所选项目的日志或统计信息。\n基本快捷键 LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 hjkl，操作是单键触发。\n全局导航 | 按键 | 操作 | |\n|\n| | Tab / Shift+Tab | 在左侧面板之间循环 | | ↑ ↓ / k j | 在面板中导航项目 | | Enter | 聚焦主面板 / 选择 | | Escape / q | 返回 / 退出 | | [ / ] | 上一个 / 下一个标签页 | | ? | 显示帮助覆盖层 | | / | 过滤当前列表 |\n容器操作 | 按键 | 操作 | |\n|\n| | r | 重启容器 | | s | 停止容器 | | d | 移除容器（带确认） | | p | 暂停 / 恢复容器 | | e | 隐藏/显示已停止的容器 | | E | 进入容器（打开 shell） | | a | 附加到容器 | | m | 查看日志 | | u | 查看 CPU/内存统计 | | w | 在浏览器中打开暴露的端口 | | b | 查看批量命令 | | c | 运行自定义预定义命令 |\nDocker Compose 服务操作 | 按键 | 操作 | |\n|\n| | u | 启动服务 | | U | 启动整个项目 | | d | 移除服务容器 | | D | 关闭整个项目 | | s | 停止服务 | | S | 启动服务 | | r | 重启服务 | | R | 查看重启选项 | | E | 在服务容器中执行 shell |\n镜像和卷操作 | 按键 | 操作（镜像） | 操作（卷） | |\n|\n|\n| | d | 移除镜像 | 移除卷 | | p | 拉取最新镜像 | — | | Enter | 检查镜像详情 | 检查卷 |\n日志导航 | 按键 | 操作 | |\n|\n| | PageUp / PageDown | 滚动日志 | | g | 跳到日志开头 | | G | 跳到日志末尾 | | / | 在日志中搜索 | | n | 下一个搜索结果 | | [ / ] | 上一页 / 下一页日志 |\n配置与自定义 LazyDocker 将配置存储在平台特定的路径中。在项目面板中按 o（或按 e 在默认编辑器中编辑）可直接从 TUI 打开配置文件。\n配置文件位置 | 操作系统 | 路径 | |\n|\n| | Linux | ~/.config/lazydocker/config.yml | | macOS | ~/Library/Application Support/jesseduffield/lazydocker/config.yml | | Windows | C:\\Users\\\\AppData\\Roaming\\lazydocker\\config.yml |\n自定义主题配置 # ~/.config/lazydocker/config.yml gui: language: \"zh\" # auto | en | fr | de | es | pl | nl | tr | zh border: \"rounded\" # rounded | single | double | hidden theme: activeBorderColor: - cyan - bold inactiveBorderColor: - white selectedLineBgColor: - black selectedLineFgColor: - yellow optionsTextColor: - blue scrollHeight: 2 sidePanelWidth: 0.333 screenMode: \"normal\" # normal | half | fullscreen 日志显示设置 logs: timestamps: true since: \"60m\" # 显示最近 60 分钟的日志；'' = 全部时间 tail: \"200\" # 显示的行数 自定义命令 添加通过 c 键访问的自定义命令：\ncustomCommands: containers: - name: bash attach: true command: \"docker exec -it bash\" serviceNames: [] - name: debug-network attach: false command: \"docker inspect --format=': \\n'\" 可用的模板变量：、、、。\nPodman 支持 通过交换命令模板，LazyDocker 可与 Podman 配合使用：\ncommandTemplates: docker: \"podman\" dockerCompose: \"podman-compose\" containerInspect: \"podman inspect \" 与流行工具集成 Docker Compose 项目 LazyDocker 自动检测当前目录中的 docker-compose.yml 或 compose.yml。服务在服务面板中按项目分组显示，并带有项目级操作。这种集成对于本地微服务开发特别有价值，因为它消除了记住每个项目的 Compose 命令的需要。\n# 导航到你的 Compose 项目 cd ~/projects/my-app # 启动 —— 服务面板自动填充 lazydocker 在服务面板中：\n按 u 启动单个服务 按 U 启动整个项目 按 D 拆除整个堆栈 按 E 进入服务容器 按 R 查看重启选项（包括重启计数和策略） 按 w 在浏览器中打开服务暴露的第一个端口 对于具有多个 Compose 文件的复杂项目，你可以在启动前设置 COMPOSE_FILE 环境变量：\n# 使用多个 Compose 文件 export COMPOSE_FILE=docker-compose.yml:docker-compose.override.yml:docker-compose.prod.yml lazydocker Tmux 集成 对于 tmux 用户，添加按键绑定以在弹出窗口或分割中启动 LazyDocker：\n# ~/.tmux.conf # 在弹出窗口中打开 LazyDocker bind D display-popup -E -w 90% -h 90% \"lazydocker\" # 或在新垂直分割中打开 bind d split-window -h \"lazydocker\" 重新加载并使用 Ctrl+b D 打开：\ntmux source-file ~/.tmux.conf Zsh / Bash 别名 # ~/.bashrc 或 ~/.zshrc alias lzd=\"lazydocker\" alias lzd-logs=\"lazydocker --logs\" # 快速跳转到项目并启动 alias lzd-here=\"cd $PWD \u0026\u0026 lazydocker\" # 重新加载 shell 配置 source ~/.bashrc VS Code 集成 添加 VS Code 任务以在集成终端中启动 LazyDocker：\n// .vscode/tasks.json { \"version\": \"2.0.0\", \"tasks\": [ { \"label\": \"LazyDocker\", \"type\": \"shell\", \"command\": \"lazydocker\", \"problemMatcher\": [], \"presentation\": { \"echo\": true, \"reveal\": \"always\", \"focus\": true, \"panel\": \"new\" } } ] } CI/CD 流水线集成 LazyDocker 在 GitHub Actions 中表现良好，用于调试构建期间的容器状态。虽然 LazyDocker 的 TUI 在 CI 环境中不是交互式的，但其底层命令可以与 Docker API 通信以提取结构化的容器信息。\n# .github/workflows/debug.yml name: Debug Containers on: workflow_dispatch jobs: debug: runs-on: ubuntu-latest steps: - uses: actions/checkout@v4 - name: Install LazyDocker run: | curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash sudo mv ~/.local/bin/lazydocker /usr/local/bin/ - name: Start services run: docker compose up -d - name: Inspect with LazyDocker run: | lazydocker --version # 导出容器列表用于日志 docker ps --format \"table \\t\" - name: Capture container logs on failure if: failure() run: | docker compose logs --tail=500 \u003e container-logs.txt docker stats --no-stream \u003e container-stats.txt SSH 环境下的远程服务器管理 LazyDocker 在仅 SSH 访问的无头服务器上表现出色。与需要开放端口和运行 Web 服务的 Portainer 不同，LazyDocker 通过 SSH 隧道提供完整的 Docker 管理功能，不会在服务器上留下任何运行中的进程。\n# 通过 SSH 在远程服务器上启动 LazyDocker ssh -t user@remote-server \"lazydocker\" # 或者使用本地转发的 socket ssh -nNT -L /tmp/docker.sock:/var/run/docker.sock user@remote-server \u0026 DOCKER_HOST=unix:///tmp/docker.sock lazydocker 基准测试与真实用例 LazyDocker 的设计理念是零开销：它是一个客户端工具，运行时不驻留内存，退出后立即释放所有资源。这一点与需要长期运行后台服务的其他 Docker 管理工具有本质区别。\n资源开销对比 LazyDocker 几乎没有资源开销，因为它作为临时客户端进程运行 —— 而不是持久守护进程。\n| 场景 | 二进制大小 | 运行时内存 | 启动时间 | 后台进程 | |\n|\n|\n|\n|\n| | LazyDocker | ~15 MB | ~20 MB | \u003c200 ms | 无 | | Docker Desktop | ~1.5 GB | ~400-800 MB | 10-30 s | 是（虚拟机） | | Portainer CE | ~80 MB 镜像 | ~100-200 MB | 5-10 s | 是（容器） | | Rancher | ~300 MB 镜像 | ~500 MB+ | 30-60 s | 是（集群） |\n真实场景 场景 1：家庭实验室服务器（20 个容器） 开发者在无头 Ubuntu 服务器上管理媒体堆栈（Plex、Sonarr、Radarr、Traefik、Authelia）。LazyDocker 通过 SSH 提供即时容器状态、实时日志跟踪和快速重启，无需运行 Web 服务。资源占用：不运行时为零。这种模式特别适合树莓派或旧硬件等低功耗设备。\n场景 2：微服务开发（8 个服务） 团队本地运行 8 个 Docker Compose 服务。LazyDocker 按项目对服务进行分组，显示哪些容器正在重启，并让开发者通过单次按键进入故障服务。平均调试工作流从 45 秒的 CLI 输入减少到 5 秒的键盘导航。对于频繁重启和调试服务的开发者来说，这种效率提升在一天内可以节省大量时间。\n场景 3：CI/CD 调试 DevOps 工程师在 GitHub Actions 中使用 LazyDocker 捕获失败测试运行结束时的容器状态和日志。CI 中的 TUI 不是交互式的，但 --logs 导出和容器列表命令提供结构化的调试输出。\n高级用法与生产环境加固 通过 SSH 在远程主机上运行 LazyDocker 原生不支持远程 Docker 主机，但你可以通过 SSH 转发 Docker socket：\n# 将远程 Docker socket 转发到本地机器 ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server \u0026 # 让 LazyDocker 指向转发的 socket export DOCKER_HOST=unix:///tmp/docker_remote.sock lazydocker # 完成后清理 kill %1 rm /tmp/docker_remote.sock 或者直接使用 SSH context：\n# 为远程主机创建 Docker context docker context create remote --docker \"host=ssh://user@remote-server\" docker context use remote # LazyDocker 自动使用活动 context lazydocker 非 Root 用户设置 # 如果 docker 组不存在则创建 sudo groupadd -f docker # 添加当前用户 sudo usermod -aG docker $USER # 不注销即可应用（仅 Linux） newgrp docker # 验证 lazydocker 批量操作技巧 LazyDocker 的批量命令（按 b 键）允许你对多个容器或镜像同时执行操作。这在需要清理过期资源时特别有用：\n# 在 LazyDocker 中选择一个面板后按 b 键 # 可用的批量操作包括： # - 删除所有已停止的容器 # - 删除所有悬空镜像 # - 删除所有未使用的卷 # - 重启所有服务 自动化清理工作流 #!/bin/bash # ~/bin/docker-cleanup.sh # 与 LazyDocker 集成的一键清理脚本 echo \"移除已停止的容器...\" docker container prune -f echo \"移除悬空镜像...\" docker image prune -f echo \"移除未使用的卷...\" docker volume prune -f echo \"移除未使用的网络...\" docker network prune -f echo \"清理完成。剩余资源：\" docker system df 通过 LazyDocker 中的自定义命令绑定此脚本，实现一键访问。\n监控集成 通过将 docker stats 管道传输到 Prometheus Node Exporter textfile 收集器，将 LazyDocker 统计信息导出到外部监控：\n#!/bin/bash # 每 60 秒的 cron 任务 while true; do docker stats --no-stream --format \\ \"container_cpu_usage{name=\"\"} \\ncontainer_memory_usage{name=\"\"} \" \\ \u003e /var/lib/node_exporter/textfile_collector/docker_stats.prom sleep 60 done 与替代品对比 | 功能 | LazyDocker | Docker Desktop | Portainer CE | Rancher | |\n|\n|\n|\n|\n| | 界面 | 终端 TUI | 原生桌面 GUI | Web GUI | Web GUI | | 安装大小 | ~15 MB | ~1.5 GB | ~80 MB 镜像 | ~300 MB 镜像 | | 内存开销 | ~20 MB（临时） | ~400-800 MB | ~100-200 MB | ~500 MB+ | | 多主机 | 否（SSH 变通方案） | 有限 | 是（agents） | 是（集群） | | Kubernetes | 否 | 是（本地） | 是 | 是（主要） | | Docker Compose | 完整支持 | 完整支持 | 基于 Stack | 有限 | | 多用户 / RBAC | 否 | 否 | 是（BE 版） | 是 | | 通过 SSH 工作 | 是 | 否 | 通过浏览器 | 通过浏览器 | | 离线可用 | 是 | 是（本地） | UI 需要网络 | 需要网络 | | 开源协议 | MIT | 专有 | AGPL / SSPL | Apache-2.0 | | 启动时间 | \u003c200 ms | 10-30 s | 5-10 s | 30-60 s | | 最适合 | 终端用户 | 本地开发 | 团队管理 | 企业 K8s |\n局限性 / 诚实评估 LazyDocker 并不适合所有情况。以下是限制条件：\n无多主机管理：你无法从单个 LazyDocker 实例管理多个 Docker 主机。对此，请使用带有 agents 的 Portainer 或 Rancher。 无 Web 界面：LazyDocker 需要终端访问。如果你需要通过手机或平板管理容器，Portainer 的响应式 Web UI 是更好的选择。 无 RBAC 或用户管理：LazyDocker 继承你的 OS 用户的 Docker 权限。没有团队、角色或审计追踪的概念。 不支持 Kubernetes：LazyDocker 仅处理 Docker 和 Docker Compose。对于 Kubernetes 工作负载，请直接使用 k9s、Rancher 或 kubectl。 仅单用户：两个工程师不能同时使用同一个 LazyDocker 会话。每个用户运行自己的实例。 TUI 学习曲线：不熟悉键盘驱动界面（vim、tmux）的工程师可能会发现初始学习曲线比点击 Web UI 更陡峭。 偏读取，谨慎写入：虽然 LazyDocker 支持破坏性操作（移除、停止），但它会添加确认提示，与脚本化的 CLI 工作流相比，这些提示会降低批量操作的速度。 常见问题 Q: LazyDocker 会替代 Docker CLI 吗？\n不会。LazyDocker 通过提供视觉概览和快速操作来补充 CLI。对于脚本编写、自动化和 CI/CD 流水线，Docker CLI 仍然是正确的工具。许多开发者两者都用：LazyDocker 用于交互式探索，docker 命令用于可重现的工作流。\nQ: 我可以将 LazyDocker 与 Podman 一起使用吗？\n可以。通过配置覆盖，LazyDocker 支持 Podman。在 config.yml 中将 commandTemplates.docker 设置为 podman，将 commandTemplates.dockerCompose 设置为 podman-compose。一个名为 lazypodman 的社区包装器也可用于无缝的 Podman 集成。\nQ: 如何查看已崩溃容器的日志？\n导航到容器面板，按 e 切换已停止容器的可见性，选择已崩溃的容器，然后按 m 查看其日志。使用 g 跳到日志流的开头，G 跳到末尾。\nQ: 在生产环境中使用 LazyDocker 安全吗？\nLazyDocker 是安全的，因为它是一个没有后台服务的客户端工具。它使用你的用户具有的权限连接到 Docker socket。在生产环境中，限制 Docker socket 访问给授权用户，除非必要避免在生产主机上运行 LazyDocker，并优先选择只读操作（查看日志和统计信息）而非破坏性操作。\nQ: 我可以在 Docker 容器内运行 LazyDocker 吗？\n可以。将主机的 Docker socket 挂载到容器中，使用 -v /var/run/docker.sock:/var/run/docker.sock。这使 LazyDocker 可以完全查看主机容器。官方镜像是 lazyteam/lazydocker:latest。这种模式在隔离环境或快速测试中效果很好。\nQ: 为什么 LazyDocker 显示 “Cannot connect to Docker daemon”？\n当你的用户无法访问 /var/run/docker.sock 时会发生此错误。确保你的用户在 docker 组中，Docker 守护进程正在运行（sudo systemctl status docker），并且 DOCKER_HOST 环境变量未设置为无效值。在 macOS 上，验证 Docker Desktop 是否正在运行。\nQ: 如何自定义快捷键？\nLazyDocker 不完全支持通过配置进行按键重新映射，但你可以通过 config.yml 中的 customCommands 块添加自定义命令。对于与终端模拟器的冲突快捷键，配置你的终端以将原始按键传递给 TUI。\n结论 LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生的 Docker 管理。凭借 51,092 个 GitHub stars、单二进制分发和低于 200 毫秒的启动时间，它消除了浏览器标签页之间切换或记忆 CLI 参数的摩擦。对于个人开发者、家庭实验室操作员以及任何生活在终端中的人来说，它是工具集的一个实用补充。\n入门行动项：\n通过 Homebrew 或官方脚本安装 LazyDocker（60 秒内） 在有运行容器的项目中启动 lazydocker 记忆 5 个基本键：r（重启）、s（停止）、d（移除）、m（日志）、E（执行 shell） 按 o 打开配置并自定义主题和日志设置 为 ````lzd``` 添加 shell 别名并与 tmux 集成以实现弹出访问 加入 dibi8 Telegram 社区 分享你的 LazyDocker 工作流技巧，并从其他大规模管理容器的开发者那里获得帮助。\n推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\n来源与延伸阅读 LazyDocker GitHub 仓库 官方快捷键参考 配置文档 LazyDocker 安装指南 LazyDocker 官方网站 Portainer vs LazyDocker 对比（OneUptime） DataCamp LazyDocker 教程 LazyDocker Podman 扩展 { “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/lazydocker\" } } Related Articles apple-container trivy-production-security-scanner-2026 trivy-production-security-scanner-2026 freellmapi-openai-compatible-proxy-free-llm-tiers-2026 moneyprinterturbo-one-click-ai-video-generator Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1910",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/lazydocker/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/lazydocker/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/lazydocker/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/lazydocker/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#%e4%bb%80%e4%b9%88%e6%98%af-lazydocker" aria-label="什么是 LazyDocker？">什么是 LazyDocker？</a></li>
+            <li>
+                <a href="#lazydocker-%e7%9a%84%e5%b7%a5%e4%bd%9c%e5%8e%9f%e7%90%86" aria-label="LazyDocker 的工作原理">LazyDocker 的工作原理</a></li>
+            <li>
+                <a href="#%e5%ae%89%e8%a3%85%e4%b8%8e%e8%ae%be%e7%bd%ae" aria-label="安装与设置">安装与设置</a><ul>
+                    
+            <li>
+                <a href="#%e5%89%8d%e7%bd%ae%e8%a6%81%e6%b1%82" aria-label="前置要求">前置要求</a></li>
+            <li>
+                <a href="#%e6%96%b9%e6%b3%95-1homebrewmacos-%e5%92%8c-linux" aria-label="方法 1：Homebrew（macOS 和 Linux）">方法 1：Homebrew（macOS 和 Linux）</a></li>
+            <li>
+                <a href="#%e6%96%b9%e6%b3%95-2%e5%ae%98%e6%96%b9%e5%ae%89%e8%a3%85%e8%84%9a%e6%9c%aclinux" aria-label="方法 2：官方安装脚本（Linux）">方法 2：官方安装脚本（Linux）</a></li>
+            <li>
+                <a href="#%e6%96%b9%e6%b3%95-3%e4%ba%8c%e8%bf%9b%e5%88%b6%e4%b8%8b%e8%bd%bd%e5%85%a8%e5%b9%b3%e5%8f%b0" aria-label="方法 3：二进制下载（全平台）">方法 3：二进制下载（全平台）</a></li>
+            <li>
+                <a href="#%e6%96%b9%e6%b3%95-4go-%e5%ae%89%e8%a3%85" aria-label="方法 4：Go 安装">方法 4：Go 安装</a></li>
+            <li>
+                <a href="#%e6%96%b9%e6%b3%95-5docker%e6%b2%99%e7%ae%b1%e6%a8%a1%e5%bc%8f" aria-label="方法 5：Docker（沙箱模式）">方法 5：Docker（沙箱模式）</a></li>
+            <li>
+                <a href="#%e9%a6%96%e6%ac%a1%e5%90%af%e5%8a%a8" aria-label="首次启动">首次启动</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e6%9c%ac%e5%bf%ab%e6%8d%b7%e9%94%ae" aria-label="基本快捷键">基本快捷键</a><ul>
+                    
+            <li>
+                <a href="#%e5%85%a8%e5%b1%80%e5%af%bc%e8%88%aa" aria-label="全局导航">全局导航</a></li>
+            <li>
+                <a href="#%e5%ae%b9%e5%99%a8%e6%93%8d%e4%bd%9c" aria-label="容器操作">容器操作</a></li>
+            <li>
+                <a href="#docker-compose-%e6%9c%8d%e5%8a%a1%e6%93%8d%e4%bd%9c" aria-label="Docker Compose 服务操作">Docker Compose 服务操作</a></li>
+            <li>
+                <a href="#%e9%95%9c%e5%83%8f%e5%92%8c%e5%8d%b7%e6%93%8d%e4%bd%9c" aria-label="镜像和卷操作">镜像和卷操作</a></li>
+            <li>
+                <a href="#%e6%97%a5%e5%bf%97%e5%af%bc%e8%88%aa" aria-label="日志导航">日志导航</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e4%b8%8e%e8%87%aa%e5%ae%9a%e4%b9%89" aria-label="配置与自定义">配置与自定义</a><ul>
+                    
+            <li>
+                <a href="#%e9%85%8d%e7%bd%ae%e6%96%87%e4%bb%b6%e4%bd%8d%e7%bd%ae" aria-label="配置文件位置">配置文件位置</a></li>
+            <li>
+                <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e4%b8%bb%e9%a2%98%e9%85%8d%e7%bd%ae" aria-label="自定义主题配置">自定义主题配置</a></li>
+            <li>
+                <a href="#%e6%97%a5%e5%bf%97%e6%98%be%e7%a4%ba%e8%ae%be%e7%bd%ae" aria-label="日志显示设置">日志显示设置</a></li>
+            <li>
+                <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e5%91%bd%e4%bb%a4" aria-label="自定义命令">自定义命令</a></li>
+            <li>
+                <a href="#podman-%e6%94%af%e6%8c%81" aria-label="Podman 支持">Podman 支持</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%b5%81%e8%a1%8c%e5%b7%a5%e5%85%b7%e9%9b%86%e6%88%90" aria-label="与流行工具集成">与流行工具集成</a><ul>
+                    
+            <li>
+                <a href="#docker-compose-%e9%a1%b9%e7%9b%ae" aria-label="Docker Compose 项目">Docker Compose 项目</a></li>
+            <li>
+                <a href="#tmux-%e9%9b%86%e6%88%90" aria-label="Tmux 集成">Tmux 集成</a></li>
+            <li>
+                <a href="#zsh--bash-%e5%88%ab%e5%90%8d" aria-label="Zsh / Bash 别名">Zsh / Bash 别名</a></li>
+            <li>
+                <a href="#vs-code-%e9%9b%86%e6%88%90" aria-label="VS Code 集成">VS Code 集成</a></li>
+            <li>
+                <a href="#cicd-%e6%b5%81%e6%b0%b4%e7%ba%bf%e9%9b%86%e6%88%90" aria-label="CI/CD 流水线集成">CI/CD 流水线集成</a></li>
+            <li>
+                <a href="#ssh-%e7%8e%af%e5%a2%83%e4%b8%8b%e7%9a%84%e8%bf%9c%e7%a8%8b%e6%9c%8d%e5%8a%a1%e5%99%a8%e7%ae%a1%e7%90%86" aria-label="SSH 环境下的远程服务器管理">SSH 环境下的远程服务器管理</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95%e4%b8%8e%e7%9c%9f%e5%ae%9e%e7%94%a8%e4%be%8b" aria-label="基准测试与真实用例">基准测试与真实用例</a><ul>
+                    
+            <li>
+                <a href="#%e8%b5%84%e6%ba%90%e5%bc%80%e9%94%80%e5%af%b9%e6%af%94" aria-label="资源开销对比">资源开销对比</a></li>
+            <li>
+                <a href="#%e7%9c%9f%e5%ae%9e%e5%9c%ba%e6%99%af" aria-label="真实场景">真实场景</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e9%ab%98%e7%ba%a7%e7%94%a8%e6%b3%95%e4%b8%8e%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e5%8a%a0%e5%9b%ba" aria-label="高级用法与生产环境加固">高级用法与生产环境加固</a><ul>
+                    
+            <li>
+                <a href="#%e9%80%9a%e8%bf%87-ssh-%e5%9c%a8%e8%bf%9c%e7%a8%8b%e4%b8%bb%e6%9c%ba%e4%b8%8a%e8%bf%90%e8%a1%8c" aria-label="通过 SSH 在远程主机上运行">通过 SSH 在远程主机上运行</a></li>
+            <li>
+                <a href="#%e9%9d%9e-root-%e7%94%a8%e6%88%b7%e8%ae%be%e7%bd%ae" aria-label="非 Root 用户设置">非 Root 用户设置</a></li>
+            <li>
+                <a href="#%e6%89%b9%e9%87%8f%e6%93%8d%e4%bd%9c%e6%8a%80%e5%b7%a7" aria-label="批量操作技巧">批量操作技巧</a></li>
+            <li>
+                <a href="#%e8%87%aa%e5%8a%a8%e5%8c%96%e6%b8%85%e7%90%86%e5%b7%a5%e4%bd%9c%e6%b5%81" aria-label="自动化清理工作流">自动化清理工作流</a></li>
+            <li>
+                <a href="#%e7%9b%91%e6%8e%a7%e9%9b%86%e6%88%90" aria-label="监控集成">监控集成</a></li></ul>
+            </li>
+            <li>
+                <a href="#%e4%b8%8e%e6%9b%bf%e4%bb%a3%e5%93%81%e5%af%b9%e6%af%94" aria-label="与替代品对比">与替代品对比</a></li>
+            <li>
+                <a href="#%e5%b1%80%e9%99%90%e6%80%a7--%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0" aria-label="局限性 / 诚实评估">局限性 / 诚实评估</a></li>
+            <li>
+                <a href="#%e5%b8%b8%e8%a7%81%e9%97%ae%e9%a2%98" aria-label="常见问题">常见问题</a></li>
+            <li>
+                <a href="#%e7%bb%93%e8%ae%ba" aria-label="结论">结论</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#%e6%9d%a5%e6%ba%90%e4%b8%8e%e5%bb%b6%e4%bc%b8%e9%98%85%e8%af%bb" aria-label="来源与延伸阅读">来源与延伸阅读</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>从命令行管理 Docker 意味着需要记住几十个参数、通过 ```grep<code>过滤输出，并且不断在</code>docker ps<code>、</code>docker logs<code>和</code>docker exec```` 之间切换。对于在终端中花费数小时的开发者来说，这种摩擦会累积。LazyDocker 通过一个二进制文件解决了这个问题，它将你的 Docker 工作流包装到一个键盘驱动的终端界面中 —— 无需浏览器、无需守护进程、无需设置开销。凭借超过 51,000 个 GitHub stars 和蓬勃发展的生态系统，它已成为 2026 年 Docker 管理的首选 TUI 工具。</p>
+<p><img alt="LazyDocker Banner" loading="lazy" src="https://raw.githubusercontent.com/jesseduffield/lazydocker/master/docs/resources/split_assets/banner.png"></p>
+<h2 id="什么是-lazydocker">什么是 LazyDocker？<a hidden class="anchor" aria-hidden="true" href="#什么是-lazydocker">#</a></h2>
+<p>LazyDocker 是一个用于 Docker 和 Docker Compose 的终端用户界面（TUI），使用 Go 语言编写，基于 <code>gocui</code> 框架。它提供了一个可通过键盘导航的界面，用于查看容器、镜像、卷、网络和日志 —— 全部在终端内的分栏布局中。单个二进制文件通过 Docker CLI 使用的相同 API 直接连接到 Docker 守护进程。没有后台服务，没有开放端口，没有额外的攻击面。</p>
+<p>LazyDocker 由 Jesse Duffield 创建（也是 LazyGit 的作者），面向那些希望在不离开终端的情况下获得即时视觉反馈的开发者。它采用 MIT 许可证，积极维护，在 GitHub 上已积累 51,092 个 stars 和 1,600+ 个 forks。</p>
+<h2 id="lazydocker-的工作原理">LazyDocker 的工作原理<a hidden class="anchor" aria-hidden="true" href="#lazydocker-的工作原理">#</a></h2>
+<p>LazyDocker 遵循简单的架构：二进制文件通过本地 Unix socket（<code>/var/run/docker.sock</code>）或 Windows 上的命名管道读取和写入 Docker Engine API。所有渲染都通过基于字符的 UI 框架在终端内完成。</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────┐
 │              终端                       │
 │  ┌──────────────────────────────────┐   │
 │  │        LazyDocker TUI            │   │
@@ -27,62 +345,93 @@
 │         │   Docker 守护进程  │           │
 │         └────────────────────┘           │
 └─────────────────────────────────────────┘
-</code></pre><p>你需要了解的核心概念：</p><ul><li><strong>面板（Panels）</strong>：左侧显示分类列表（容器、服务、镜像、卷、网络）。右侧显示所选项目的详细信息、日志或统计信息。</li><li><strong>上下文感知操作</strong>：同一个按键根据聚焦的面板执行不同的操作。在容器上按 <code>d</code> 会移除容器；在镜像上按 <code>d</code> 会移除镜像。</li><li><strong>Docker Compose 集成</strong>：当在有 <code>docker-compose.yml</code> 文件的目录中启动时，LazyDocker 按项目对服务进行分组，并添加 Compose 专用操作，如 <code>up</code> 和 <code>down</code>。</li></ul><h2 id=安装与设置>安装与设置<a hidden class=anchor aria-hidden=true href=#安装与设置>#</a></h2><p>LazyDocker 可以在任何平台上在 60 秒内完成安装。你需要安装 Docker 并将你的用户添加到 <code>docker</code> 组（或具有对 Docker socket 的等效访问权限）。</p><h3 id=前置要求>前置要求<a hidden class=anchor aria-hidden=true href=#前置要求>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 验证 Docker 已安装并正在运行</span>
-</span></span><span style=display:flex><span>docker --version
-</span></span><span style=display:flex><span>docker ps
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 将你的用户添加到 docker 组（Linux）</span>
-</span></span><span style=display:flex><span>sudo usermod -aG docker $USER
-</span></span><span style=display:flex><span><span style=color:#75715e># 注销并重新登录以使组更改生效</span>
-</span></span></code></pre></div><h3 id=方法-1homebrewmacos-和-linux>方法 1：Homebrew（macOS 和 Linux）<a hidden class=anchor aria-hidden=true href=#方法-1homebrewmacos-和-linux>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 使用官方 formula 获取频繁更新</span>
-</span></span><span style=display:flex><span>brew install jesseduffield/lazydocker/lazydocker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证安装</span>
-</span></span><span style=display:flex><span>lazydocker --version
-</span></span><span style=display:flex><span><span style=color:#75715e># 输出：Version: v0.24.5, Build date: 2026-04-15, Commit: abc1234</span>
-</span></span></code></pre></div><h3 id=方法-2官方安装脚本linux>方法 2：官方安装脚本（Linux）<a hidden class=anchor aria-hidden=true href=#方法-2官方安装脚本linux>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 自动安装到 ~/.local/bin</span>
-</span></span><span style=display:flex><span>curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 如果需要，添加到 PATH</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#39;export PATH=$PATH:$HOME/.local/bin&#39;</span> &gt;&gt; ~/.bashrc
-</span></span><span style=display:flex><span>source ~/.bashrc
-</span></span></code></pre></div><h3 id=方法-3二进制下载全平台>方法 3：二进制下载（全平台）<a hidden class=anchor aria-hidden=true href=#方法-3二进制下载全平台>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 获取最新版本号</span>
-</span></span><span style=display:flex><span>LAZYDOCKER_VERSION<span style=color:#f92672>=</span><span style=color:#66d9ef>$(</span>curl -s <span style=color:#e6db74>&#34;https://api.github.com/repos/jesseduffield/lazydocker/releases/latest&#34;</span> | grep <span style=color:#e6db74>&#39;&#34;tag_name&#34;:&#39;</span> | sed <span style=color:#e6db74>&#39;s/.*&#34;v\([^&#34;]*\)&#34;.*/\1/&#39;</span><span style=color:#66d9ef>)</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 下载 Linux x86_64 二进制文件</span>
-</span></span><span style=display:flex><span>curl -Lo lazydocker.tar.gz <span style=color:#e6db74>&#34;https://github.com/jesseduffield/lazydocker/releases/download/v</span><span style=color:#e6db74>${</span>LAZYDOCKER_VERSION<span style=color:#e6db74>}</span><span style=color:#e6db74>/lazydocker_</span><span style=color:#e6db74>${</span>LAZYDOCKER_VERSION<span style=color:#e6db74>}</span><span style=color:#e6db74>_Linux_x86_64.tar.gz&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 解压并系统级安装</span>
-</span></span><span style=display:flex><span>tar xf lazydocker.tar.gz lazydocker
-</span></span><span style=display:flex><span>sudo install lazydocker /usr/local/bin/
-</span></span><span style=display:flex><span>rm lazydocker lazydocker.tar.gz
-</span></span></code></pre></div><h3 id=方法-4go-安装>方法 4：Go 安装<a hidden class=anchor aria-hidden=true href=#方法-4go-安装>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 需要 Go &gt;= 1.19</span>
-</span></span><span style=display:flex><span>go install github.com/jesseduffield/lazydocker@latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 二进制文件位于 ~/go/bin</span>
-</span></span><span style=display:flex><span>export PATH<span style=color:#f92672>=</span>$PATH:$HOME/go/bin
-</span></span></code></pre></div><h3 id=方法-5docker沙箱模式>方法 5：Docker（沙箱模式）<a hidden class=anchor aria-hidden=true href=#方法-5docker沙箱模式>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 无需安装即可运行 —— 挂载 Docker socket 获取完整访问权限</span>
-</span></span><span style=display:flex><span>docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  lazyteam/lazydocker:latest
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 创建 shell 别名以便使用</span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;alias lzd=&#39;docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker&#39;&#34;</span> &gt;&gt; ~/.bashrc
-</span></span></code></pre></div><h3 id=首次启动>首次启动<a hidden class=anchor aria-hidden=true href=#首次启动>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 启动 LazyDocker</span>
-</span></span><span style=display:flex><span>lazydocker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 使用调试输出启动以进行故障排除</span>
-</span></span><span style=display:flex><span>lazydocker --debug
-</span></span></code></pre></div><p>首次启动时，LazyDocker 会自动检测正在运行的容器并显示主界面。布局分为左侧导航面板和右侧内容面板，显示所选项目的日志或统计信息。</p><p><img alt="LazyDocker 界面演示" loading=lazy src=https://raw.githubusercontent.com/jesseduffield/lazydocker/master/assets/demo.gif></p><p><img alt="LazyDocker 截图" loading=lazy src=https://raw.githubusercontent.com/jesseduffield/lazydocker/master/docs/resources/split_assets/screenshot.png></p><h2 id=基本快捷键>基本快捷键<a hidden class=anchor aria-hidden=true href=#基本快捷键>#</a></h2><p>LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 <code>hjkl</code>，操作是单键触发。</p><h3 id=全局导航>全局导航<a hidden class=anchor aria-hidden=true href=#全局导航>#</a></h3><p>| 按键 | 操作 |
-|</p><hr><p>|</p><hr><p>|
+</code></pre><p>你需要了解的核心概念：</p>
+<ul>
+<li><strong>面板（Panels）</strong>：左侧显示分类列表（容器、服务、镜像、卷、网络）。右侧显示所选项目的详细信息、日志或统计信息。</li>
+<li><strong>上下文感知操作</strong>：同一个按键根据聚焦的面板执行不同的操作。在容器上按 <code>d</code> 会移除容器；在镜像上按 <code>d</code> 会移除镜像。</li>
+<li><strong>Docker Compose 集成</strong>：当在有 <code>docker-compose.yml</code> 文件的目录中启动时，LazyDocker 按项目对服务进行分组，并添加 Compose 专用操作，如 <code>up</code> 和 <code>down</code>。</li>
+</ul>
+<h2 id="安装与设置">安装与设置<a hidden class="anchor" aria-hidden="true" href="#安装与设置">#</a></h2>
+<p>LazyDocker 可以在任何平台上在 60 秒内完成安装。你需要安装 Docker 并将你的用户添加到 <code>docker</code> 组（或具有对 Docker socket 的等效访问权限）。</p>
+<h3 id="前置要求">前置要求<a hidden class="anchor" aria-hidden="true" href="#前置要求">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 验证 Docker 已安装并正在运行</span>
+</span></span><span style="display:flex;"><span>docker --version
+</span></span><span style="display:flex;"><span>docker ps
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 将你的用户添加到 docker 组（Linux）</span>
+</span></span><span style="display:flex;"><span>sudo usermod -aG docker $USER
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 注销并重新登录以使组更改生效</span>
+</span></span></code></pre></div><h3 id="方法-1homebrewmacos-和-linux">方法 1：Homebrew（macOS 和 Linux）<a hidden class="anchor" aria-hidden="true" href="#方法-1homebrewmacos-和-linux">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 使用官方 formula 获取频繁更新</span>
+</span></span><span style="display:flex;"><span>brew install jesseduffield/lazydocker/lazydocker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证安装</span>
+</span></span><span style="display:flex;"><span>lazydocker --version
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 输出：Version: v0.24.5, Build date: 2026-04-15, Commit: abc1234</span>
+</span></span></code></pre></div><h3 id="方法-2官方安装脚本linux">方法 2：官方安装脚本（Linux）<a hidden class="anchor" aria-hidden="true" href="#方法-2官方安装脚本linux">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 自动安装到 ~/.local/bin</span>
+</span></span><span style="display:flex;"><span>curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 如果需要，添加到 PATH</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;export PATH=$PATH:$HOME/.local/bin&#39;</span> &gt;&gt; ~/.bashrc
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span></code></pre></div><h3 id="方法-3二进制下载全平台">方法 3：二进制下载（全平台）<a hidden class="anchor" aria-hidden="true" href="#方法-3二进制下载全平台">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 获取最新版本号</span>
+</span></span><span style="display:flex;"><span>LAZYDOCKER_VERSION<span style="color:#f92672">=</span><span style="color:#66d9ef">$(</span>curl -s <span style="color:#e6db74">&#34;https://api.github.com/repos/jesseduffield/lazydocker/releases/latest&#34;</span> | grep <span style="color:#e6db74">&#39;&#34;tag_name&#34;:&#39;</span> | sed <span style="color:#e6db74">&#39;s/.*&#34;v\([^&#34;]*\)&#34;.*/\1/&#39;</span><span style="color:#66d9ef">)</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 下载 Linux x86_64 二进制文件</span>
+</span></span><span style="display:flex;"><span>curl -Lo lazydocker.tar.gz <span style="color:#e6db74">&#34;https://github.com/jesseduffield/lazydocker/releases/download/v</span><span style="color:#e6db74">${</span>LAZYDOCKER_VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">/lazydocker_</span><span style="color:#e6db74">${</span>LAZYDOCKER_VERSION<span style="color:#e6db74">}</span><span style="color:#e6db74">_Linux_x86_64.tar.gz&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 解压并系统级安装</span>
+</span></span><span style="display:flex;"><span>tar xf lazydocker.tar.gz lazydocker
+</span></span><span style="display:flex;"><span>sudo install lazydocker /usr/local/bin/
+</span></span><span style="display:flex;"><span>rm lazydocker lazydocker.tar.gz
+</span></span></code></pre></div><h3 id="方法-4go-安装">方法 4：Go 安装<a hidden class="anchor" aria-hidden="true" href="#方法-4go-安装">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 需要 Go &gt;= 1.19</span>
+</span></span><span style="display:flex;"><span>go install github.com/jesseduffield/lazydocker@latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 二进制文件位于 ~/go/bin</span>
+</span></span><span style="display:flex;"><span>export PATH<span style="color:#f92672">=</span>$PATH:$HOME/go/bin
+</span></span></code></pre></div><h3 id="方法-5docker沙箱模式">方法 5：Docker（沙箱模式）<a hidden class="anchor" aria-hidden="true" href="#方法-5docker沙箱模式">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 无需安装即可运行 —— 挂载 Docker socket 获取完整访问权限</span>
+</span></span><span style="display:flex;"><span>docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  lazyteam/lazydocker:latest
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建 shell 别名以便使用</span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;alias lzd=&#39;docker run --rm -it -v /var/run/docker.sock:/var/run/docker.sock -v ~/.config/lazydocker:/.config/jesseduffield/lazydocker lazyteam/lazydocker&#39;&#34;</span> &gt;&gt; ~/.bashrc
+</span></span></code></pre></div><h3 id="首次启动">首次启动<a hidden class="anchor" aria-hidden="true" href="#首次启动">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 启动 LazyDocker</span>
+</span></span><span style="display:flex;"><span>lazydocker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 使用调试输出启动以进行故障排除</span>
+</span></span><span style="display:flex;"><span>lazydocker --debug
+</span></span></code></pre></div><p>首次启动时，LazyDocker 会自动检测正在运行的容器并显示主界面。布局分为左侧导航面板和右侧内容面板，显示所选项目的日志或统计信息。</p>
+<p><img alt="LazyDocker 界面演示" loading="lazy" src="https://raw.githubusercontent.com/jesseduffield/lazydocker/master/assets/demo.gif"></p>
+<p><img alt="LazyDocker 截图" loading="lazy" src="https://raw.githubusercontent.com/jesseduffield/lazydocker/master/docs/resources/split_assets/screenshot.png"></p>
+<h2 id="基本快捷键">基本快捷键<a hidden class="anchor" aria-hidden="true" href="#基本快捷键">#</a></h2>
+<p>LazyDocker 的效率来自其类似 vim 的快捷键。导航使用方向键或 <code>hjkl</code>，操作是单键触发。</p>
+<h3 id="全局导航">全局导航<a hidden class="anchor" aria-hidden="true" href="#全局导航">#</a></h3>
+<p>| 按键 | 操作 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>Tab</code> / <code>Shift+Tab</code> | 在左侧面板之间循环 |
 | <code>↑</code> <code>↓</code> / <code>k</code> <code>j</code> | 在面板中导航项目 |
 | <code>Enter</code> | 聚焦主面板 / 选择 |
 | <code>Escape</code> / <code>q</code> | 返回 / 退出 |
 | <code>[</code> / <code>]</code> | 上一个 / 下一个标签页 |
 | <code>?</code> | 显示帮助覆盖层 |
-| <code>/</code> | 过滤当前列表 |</p><h3 id=容器操作>容器操作<a hidden class=anchor aria-hidden=true href=#容器操作>#</a></h3><p>| 按键 | 操作 |
-|</p><hr><p>|</p><hr><p>|
+| <code>/</code> | 过滤当前列表 |</p>
+<h3 id="容器操作">容器操作<a hidden class="anchor" aria-hidden="true" href="#容器操作">#</a></h3>
+<p>| 按键 | 操作 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>r</code> | 重启容器 |
 | <code>s</code> | 停止容器 |
 | <code>d</code> | 移除容器（带确认） |
@@ -94,8 +443,14 @@
 | <code>u</code> | 查看 CPU/内存统计 |
 | <code>w</code> | 在浏览器中打开暴露的端口 |
 | <code>b</code> | 查看批量命令 |
-| <code>c</code> | 运行自定义预定义命令 |</p><h3 id=docker-compose-服务操作>Docker Compose 服务操作<a hidden class=anchor aria-hidden=true href=#docker-compose-服务操作>#</a></h3><p>| 按键 | 操作 |
-|</p><hr><p>|</p><hr><p>|
+| <code>c</code> | 运行自定义预定义命令 |</p>
+<h3 id="docker-compose-服务操作">Docker Compose 服务操作<a hidden class="anchor" aria-hidden="true" href="#docker-compose-服务操作">#</a></h3>
+<p>| 按键 | 操作 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>u</code> | 启动服务 |
 | <code>U</code> | 启动整个项目 |
 | <code>d</code> | 移除服务容器 |
@@ -104,188 +459,282 @@
 | <code>S</code> | 启动服务 |
 | <code>r</code> | 重启服务 |
 | <code>R</code> | 查看重启选项 |
-| <code>E</code> | 在服务容器中执行 shell |</p><h3 id=镜像和卷操作>镜像和卷操作<a hidden class=anchor aria-hidden=true href=#镜像和卷操作>#</a></h3><p>| 按键 | 操作（镜像） | 操作（卷） |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| <code>E</code> | 在服务容器中执行 shell |</p>
+<h3 id="镜像和卷操作">镜像和卷操作<a hidden class="anchor" aria-hidden="true" href="#镜像和卷操作">#</a></h3>
+<p>| 按键 | 操作（镜像） | 操作（卷） |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>d</code> | 移除镜像 | 移除卷 |
 | <code>p</code> | 拉取最新镜像 | — |
-| <code>Enter</code> | 检查镜像详情 | 检查卷 |</p><h3 id=日志导航>日志导航<a hidden class=anchor aria-hidden=true href=#日志导航>#</a></h3><p>| 按键 | 操作 |
-|</p><hr><p>|</p><hr><p>|
+| <code>Enter</code> | 检查镜像详情 | 检查卷 |</p>
+<h3 id="日志导航">日志导航<a hidden class="anchor" aria-hidden="true" href="#日志导航">#</a></h3>
+<p>| 按键 | 操作 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <code>PageUp</code> / <code>PageDown</code> | 滚动日志 |
 | <code>g</code> | 跳到日志开头 |
 | <code>G</code> | 跳到日志末尾 |
 | <code>/</code> | 在日志中搜索 |
 | <code>n</code> | 下一个搜索结果 |
-| <code>[</code> / <code>]</code> | 上一页 / 下一页日志 |</p><h2 id=配置与自定义>配置与自定义<a hidden class=anchor aria-hidden=true href=#配置与自定义>#</a></h2><p>LazyDocker 将配置存储在平台特定的路径中。在项目面板中按 <code>o</code>（或按 <code>e</code> 在默认编辑器中编辑）可直接从 TUI 打开配置文件。</p><h3 id=配置文件位置>配置文件位置<a hidden class=anchor aria-hidden=true href=#配置文件位置>#</a></h3><p>| 操作系统 | 路径 |
-|</p><hr><p>|</p><hr><p>|
+| <code>[</code> / <code>]</code> | 上一页 / 下一页日志 |</p>
+<h2 id="配置与自定义">配置与自定义<a hidden class="anchor" aria-hidden="true" href="#配置与自定义">#</a></h2>
+<p>LazyDocker 将配置存储在平台特定的路径中。在项目面板中按 <code>o</code>（或按 <code>e</code> 在默认编辑器中编辑）可直接从 TUI 打开配置文件。</p>
+<h3 id="配置文件位置">配置文件位置<a hidden class="anchor" aria-hidden="true" href="#配置文件位置">#</a></h3>
+<p>| 操作系统 | 路径 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Linux | <code>~/.config/lazydocker/config.yml</code> |
 | macOS | <code>~/Library/Application Support/jesseduffield/lazydocker/config.yml</code> |
-| Windows | <code>C:\Users\&lt;User>\AppData\Roaming\lazydocker\config.yml</code> |</p><h3 id=自定义主题配置>自定义主题配置<a hidden class=anchor aria-hidden=true href=#自定义主题配置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># ~/.config/lazydocker/config.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>gui: language</span>: <span style=color:#e6db74>&#34;zh&#34;</span>  <span style=color:#75715e># auto | en | fr | de | es | pl | nl | tr | zh</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>border</span>: <span style=color:#e6db74>&#34;rounded&#34;</span>  <span style=color:#75715e># rounded | single | double | hidden</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>theme: activeBorderColor</span>: - <span style=color:#ae81ff>cyan</span>
-</span></span><span style=display:flex><span>      - <span style=color:#ae81ff>bold</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>inactiveBorderColor</span>: - <span style=color:#ae81ff>white</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>selectedLineBgColor</span>: - <span style=color:#ae81ff>black</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>selectedLineFgColor</span>: - <span style=color:#ae81ff>yellow</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>optionsTextColor</span>: - <span style=color:#ae81ff>blue</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>scrollHeight</span>: <span style=color:#ae81ff>2</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>sidePanelWidth</span>: <span style=color:#ae81ff>0.333</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>screenMode</span>: <span style=color:#e6db74>&#34;normal&#34;</span>  <span style=color:#75715e># normal | half | fullscreen</span>
-</span></span></code></pre></div><h3 id=日志显示设置>日志显示设置<a hidden class=anchor aria-hidden=true href=#日志显示设置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>logs: timestamps</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>since</span>: <span style=color:#e6db74>&#34;60m&#34;</span>    <span style=color:#75715e># 显示最近 60 分钟的日志；&#39;&#39; = 全部时间</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>tail</span>: <span style=color:#e6db74>&#34;200&#34;</span>     <span style=color:#75715e># 显示的行数</span>
-</span></span></code></pre></div><h3 id=自定义命令>自定义命令<a hidden class=anchor aria-hidden=true href=#自定义命令>#</a></h3><p>添加通过 <code>c</code> 键访问的自定义命令：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>customCommands: containers: - name</span>: <span style=color:#ae81ff>bash</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>attach</span>: <span style=color:#66d9ef>true</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>command</span>: <span style=color:#e6db74>&#34;docker exec -it  bash&#34;</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>serviceNames</span>: []
-</span></span><span style=display:flex><span>    - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>debug-network</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>attach</span>: <span style=color:#66d9ef>false</span>
-</span></span><span style=display:flex><span>      <span style=color:#f92672>command</span>: <span style=color:#e6db74>&#34;docker inspect  --format=&#39;: \n&#39;&#34;</span>
-</span></span></code></pre></div><p>可用的模板变量：<code>、</code>、<code>、</code>。</p><h3 id=podman-支持>Podman 支持<a hidden class=anchor aria-hidden=true href=#podman-支持>#</a></h3><p>通过交换命令模板，LazyDocker 可与 Podman 配合使用：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#f92672>commandTemplates: docker</span>: <span style=color:#e6db74>&#34;podman&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>dockerCompose</span>: <span style=color:#e6db74>&#34;podman-compose&#34;</span>
-</span></span><span style=display:flex><span>  <span style=color:#f92672>containerInspect</span>: <span style=color:#e6db74>&#34;podman inspect &#34;</span>
-</span></span></code></pre></div><h2 id=与流行工具集成>与流行工具集成<a hidden class=anchor aria-hidden=true href=#与流行工具集成>#</a></h2><h3 id=docker-compose-项目>Docker Compose 项目<a hidden class=anchor aria-hidden=true href=#docker-compose-项目>#</a></h3><p>LazyDocker 自动检测当前目录中的 <code>docker-compose.yml</code> 或 <code>compose.yml</code>。服务在服务面板中按项目分组显示，并带有项目级操作。这种集成对于本地微服务开发特别有价值，因为它消除了记住每个项目的 Compose 命令的需要。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 导航到你的 Compose 项目</span>
-</span></span><span style=display:flex><span>cd ~/projects/my-app
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 启动 —— 服务面板自动填充</span>
-</span></span><span style=display:flex><span>lazydocker
-</span></span></code></pre></div><p>在服务面板中：</p><ul><li>按 <code>u</code> 启动单个服务</li><li>按 <code>U</code> 启动整个项目</li><li>按 <code>D</code> 拆除整个堆栈</li><li>按 <code>E</code> 进入服务容器</li><li>按 <code>R</code> 查看重启选项（包括重启计数和策略）</li><li>按 <code>w</code> 在浏览器中打开服务暴露的第一个端口</li></ul><p>对于具有多个 Compose 文件的复杂项目，你可以在启动前设置 <code>COMPOSE_FILE</code> 环境变量：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 使用多个 Compose 文件</span>
-</span></span><span style=display:flex><span>export COMPOSE_FILE<span style=color:#f92672>=</span>docker-compose.yml:docker-compose.override.yml:docker-compose.prod.yml
-</span></span><span style=display:flex><span>lazydocker
-</span></span></code></pre></div><h3 id=tmux-集成>Tmux 集成<a hidden class=anchor aria-hidden=true href=#tmux-集成>#</a></h3><p>对于 tmux 用户，添加按键绑定以在弹出窗口或分割中启动 LazyDocker：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.tmux.conf</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 在弹出窗口中打开 LazyDocker</span>
-</span></span><span style=display:flex><span>bind D display-popup -E -w 90% -h 90% <span style=color:#e6db74>&#34;lazydocker&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或在新垂直分割中打开</span>
-</span></span><span style=display:flex><span>bind d split-window -h <span style=color:#e6db74>&#34;lazydocker&#34;</span>
-</span></span></code></pre></div><p>重新加载并使用 <code>Ctrl+b D</code> 打开：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>tmux source-file ~/.tmux.conf
-</span></span></code></pre></div><h3 id=zsh--bash-别名>Zsh / Bash 别名<a hidden class=anchor aria-hidden=true href=#zsh--bash-别名>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># ~/.bashrc 或 ~/.zshrc</span>
-</span></span><span style=display:flex><span>alias lzd<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;lazydocker&#34;</span>
-</span></span><span style=display:flex><span>alias lzd-logs<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;lazydocker --logs&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 快速跳转到项目并启动</span>
-</span></span><span style=display:flex><span>alias lzd-here<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cd </span>$PWD<span style=color:#e6db74> &amp;&amp; lazydocker&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 重新加载 shell 配置</span>
-</span></span><span style=display:flex><span>source ~/.bashrc
-</span></span></code></pre></div><h3 id=vs-code-集成>VS Code 集成<a hidden class=anchor aria-hidden=true href=#vs-code-集成>#</a></h3><p>添加 VS Code 任务以在集成终端中启动 LazyDocker：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-json data-lang=json><span style=display:flex><span><span style=color:#75715e>// .vscode/tasks.json
-</span></span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;2.0.0&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#f92672>&#34;tasks&#34;</span>: [
-</span></span><span style=display:flex><span>    {
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;label&#34;</span>: <span style=color:#e6db74>&#34;LazyDocker&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;shell&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;command&#34;</span>: <span style=color:#e6db74>&#34;lazydocker&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;problemMatcher&#34;</span>: [],
-</span></span><span style=display:flex><span>      <span style=color:#f92672>&#34;presentation&#34;</span>: {
-</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;echo&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;reveal&#34;</span>: <span style=color:#e6db74>&#34;always&#34;</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;focus&#34;</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>        <span style=color:#f92672>&#34;panel&#34;</span>: <span style=color:#e6db74>&#34;new&#34;</span>
-</span></span><span style=display:flex><span>      }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  ]
-</span></span><span style=display:flex><span>}
-</span></span></code></pre></div><h3 id=cicd-流水线集成>CI/CD 流水线集成<a hidden class=anchor aria-hidden=true href=#cicd-流水线集成>#</a></h3><p>LazyDocker 在 GitHub Actions 中表现良好，用于调试构建期间的容器状态。虽然 LazyDocker 的 TUI 在 CI 环境中不是交互式的，但其底层命令可以与 Docker API 通信以提取结构化的容器信息。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-yaml data-lang=yaml><span style=display:flex><span><span style=color:#75715e># .github/workflows/debug.yml</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>name</span>: <span style=color:#ae81ff>Debug Containers</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>on</span>: <span style=color:#ae81ff>workflow_dispatch</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>jobs: debug: runs-on</span>: <span style=color:#ae81ff>ubuntu-latest</span>
-</span></span><span style=display:flex><span>    <span style=color:#f92672>steps: - uses</span>: <span style=color:#ae81ff>actions/checkout@v4</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Install LazyDocker</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          sudo mv ~/.local/bin/lazydocker /usr/local/bin/</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Start services</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: <span style=color:#ae81ff>docker compose up -d</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Inspect with LazyDocker</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          lazydocker --version
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          # 导出容器列表用于日志
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker ps --format &#34;table \t&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>      - <span style=color:#f92672>name</span>: <span style=color:#ae81ff>Capture container logs on failure</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>if</span>: <span style=color:#ae81ff>failure()</span>
-</span></span><span style=display:flex><span>        <span style=color:#f92672>run</span>: |<span style=color:#e6db74>
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker compose logs --tail=500 &gt; container-logs.txt
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>          docker stats --no-stream &gt; container-stats.txt</span>
-</span></span></code></pre></div><h3 id=ssh-环境下的远程服务器管理>SSH 环境下的远程服务器管理<a hidden class=anchor aria-hidden=true href=#ssh-环境下的远程服务器管理>#</a></h3><p>LazyDocker 在仅 SSH 访问的无头服务器上表现出色。与需要开放端口和运行 Web 服务的 Portainer 不同，LazyDocker 通过 SSH 隧道提供完整的 Docker 管理功能，不会在服务器上留下任何运行中的进程。</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 通过 SSH 在远程服务器上启动 LazyDocker</span>
-</span></span><span style=display:flex><span>ssh -t user@remote-server <span style=color:#e6db74>&#34;lazydocker&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或者使用本地转发的 socket</span>
-</span></span><span style=display:flex><span>ssh -nNT -L /tmp/docker.sock:/var/run/docker.sock user@remote-server &amp;
-</span></span><span style=display:flex><span>DOCKER_HOST<span style=color:#f92672>=</span>unix:///tmp/docker.sock lazydocker
-</span></span></code></pre></div><h2 id=基准测试与真实用例>基准测试与真实用例<a hidden class=anchor aria-hidden=true href=#基准测试与真实用例>#</a></h2><p>LazyDocker 的设计理念是零开销：它是一个客户端工具，运行时不驻留内存，退出后立即释放所有资源。这一点与需要长期运行后台服务的其他 Docker 管理工具有本质区别。</p><h3 id=资源开销对比>资源开销对比<a hidden class=anchor aria-hidden=true href=#资源开销对比>#</a></h3><p>LazyDocker 几乎没有资源开销，因为它作为临时客户端进程运行 —— 而不是持久守护进程。</p><p>| 场景 | 二进制大小 | 运行时内存 | 启动时间 | 后台进程 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Windows | <code>C:\Users\&lt;User&gt;\AppData\Roaming\lazydocker\config.yml</code> |</p>
+<h3 id="自定义主题配置">自定义主题配置<a hidden class="anchor" aria-hidden="true" href="#自定义主题配置">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># ~/.config/lazydocker/config.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">gui: language</span>: <span style="color:#e6db74">&#34;zh&#34;</span>  <span style="color:#75715e"># auto | en | fr | de | es | pl | nl | tr | zh</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">border</span>: <span style="color:#e6db74">&#34;rounded&#34;</span>  <span style="color:#75715e"># rounded | single | double | hidden</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">theme: activeBorderColor</span>: - <span style="color:#ae81ff">cyan</span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#ae81ff">bold</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">inactiveBorderColor</span>: - <span style="color:#ae81ff">white</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">selectedLineBgColor</span>: - <span style="color:#ae81ff">black</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">selectedLineFgColor</span>: - <span style="color:#ae81ff">yellow</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">optionsTextColor</span>: - <span style="color:#ae81ff">blue</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">scrollHeight</span>: <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">sidePanelWidth</span>: <span style="color:#ae81ff">0.333</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">screenMode</span>: <span style="color:#e6db74">&#34;normal&#34;</span>  <span style="color:#75715e"># normal | half | fullscreen</span>
+</span></span></code></pre></div><h3 id="日志显示设置">日志显示设置<a hidden class="anchor" aria-hidden="true" href="#日志显示设置">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">logs: timestamps</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">since</span>: <span style="color:#e6db74">&#34;60m&#34;</span>    <span style="color:#75715e"># 显示最近 60 分钟的日志；&#39;&#39; = 全部时间</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">tail</span>: <span style="color:#e6db74">&#34;200&#34;</span>     <span style="color:#75715e"># 显示的行数</span>
+</span></span></code></pre></div><h3 id="自定义命令">自定义命令<a hidden class="anchor" aria-hidden="true" href="#自定义命令">#</a></h3>
+<p>添加通过 <code>c</code> 键访问的自定义命令：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">customCommands: containers: - name</span>: <span style="color:#ae81ff">bash</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">attach</span>: <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">command</span>: <span style="color:#e6db74">&#34;docker exec -it  bash&#34;</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">serviceNames</span>: []
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">debug-network</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">attach</span>: <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">command</span>: <span style="color:#e6db74">&#34;docker inspect  --format=&#39;: \n&#39;&#34;</span>
+</span></span></code></pre></div><p>可用的模板变量：<code>、</code>、<code>、</code>。</p>
+<h3 id="podman-支持">Podman 支持<a hidden class="anchor" aria-hidden="true" href="#podman-支持">#</a></h3>
+<p>通过交换命令模板，LazyDocker 可与 Podman 配合使用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">commandTemplates: docker</span>: <span style="color:#e6db74">&#34;podman&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">dockerCompose</span>: <span style="color:#e6db74">&#34;podman-compose&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">containerInspect</span>: <span style="color:#e6db74">&#34;podman inspect &#34;</span>
+</span></span></code></pre></div><h2 id="与流行工具集成">与流行工具集成<a hidden class="anchor" aria-hidden="true" href="#与流行工具集成">#</a></h2>
+<h3 id="docker-compose-项目">Docker Compose 项目<a hidden class="anchor" aria-hidden="true" href="#docker-compose-项目">#</a></h3>
+<p>LazyDocker 自动检测当前目录中的 <code>docker-compose.yml</code> 或 <code>compose.yml</code>。服务在服务面板中按项目分组显示，并带有项目级操作。这种集成对于本地微服务开发特别有价值，因为它消除了记住每个项目的 Compose 命令的需要。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 导航到你的 Compose 项目</span>
+</span></span><span style="display:flex;"><span>cd ~/projects/my-app
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 启动 —— 服务面板自动填充</span>
+</span></span><span style="display:flex;"><span>lazydocker
+</span></span></code></pre></div><p>在服务面板中：</p>
+<ul>
+<li>按 <code>u</code> 启动单个服务</li>
+<li>按 <code>U</code> 启动整个项目</li>
+<li>按 <code>D</code> 拆除整个堆栈</li>
+<li>按 <code>E</code> 进入服务容器</li>
+<li>按 <code>R</code> 查看重启选项（包括重启计数和策略）</li>
+<li>按 <code>w</code> 在浏览器中打开服务暴露的第一个端口</li>
+</ul>
+<p>对于具有多个 Compose 文件的复杂项目，你可以在启动前设置 <code>COMPOSE_FILE</code> 环境变量：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 使用多个 Compose 文件</span>
+</span></span><span style="display:flex;"><span>export COMPOSE_FILE<span style="color:#f92672">=</span>docker-compose.yml:docker-compose.override.yml:docker-compose.prod.yml
+</span></span><span style="display:flex;"><span>lazydocker
+</span></span></code></pre></div><h3 id="tmux-集成">Tmux 集成<a hidden class="anchor" aria-hidden="true" href="#tmux-集成">#</a></h3>
+<p>对于 tmux 用户，添加按键绑定以在弹出窗口或分割中启动 LazyDocker：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.tmux.conf</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 在弹出窗口中打开 LazyDocker</span>
+</span></span><span style="display:flex;"><span>bind D display-popup -E -w 90% -h 90% <span style="color:#e6db74">&#34;lazydocker&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或在新垂直分割中打开</span>
+</span></span><span style="display:flex;"><span>bind d split-window -h <span style="color:#e6db74">&#34;lazydocker&#34;</span>
+</span></span></code></pre></div><p>重新加载并使用 <code>Ctrl+b D</code> 打开：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>tmux source-file ~/.tmux.conf
+</span></span></code></pre></div><h3 id="zsh--bash-别名">Zsh / Bash 别名<a hidden class="anchor" aria-hidden="true" href="#zsh--bash-别名">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># ~/.bashrc 或 ~/.zshrc</span>
+</span></span><span style="display:flex;"><span>alias lzd<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lazydocker&#34;</span>
+</span></span><span style="display:flex;"><span>alias lzd-logs<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;lazydocker --logs&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 快速跳转到项目并启动</span>
+</span></span><span style="display:flex;"><span>alias lzd-here<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cd </span>$PWD<span style="color:#e6db74"> &amp;&amp; lazydocker&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重新加载 shell 配置</span>
+</span></span><span style="display:flex;"><span>source ~/.bashrc
+</span></span></code></pre></div><h3 id="vs-code-集成">VS Code 集成<a hidden class="anchor" aria-hidden="true" href="#vs-code-集成">#</a></h3>
+<p>添加 VS Code 任务以在集成终端中启动 LazyDocker：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#75715e">// .vscode/tasks.json
+</span></span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0.0&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">&#34;tasks&#34;</span>: [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;label&#34;</span>: <span style="color:#e6db74">&#34;LazyDocker&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;shell&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;command&#34;</span>: <span style="color:#e6db74">&#34;lazydocker&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;problemMatcher&#34;</span>: [],
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">&#34;presentation&#34;</span>: {
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;echo&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;reveal&#34;</span>: <span style="color:#e6db74">&#34;always&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;focus&#34;</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">&#34;panel&#34;</span>: <span style="color:#e6db74">&#34;new&#34;</span>
+</span></span><span style="display:flex;"><span>      }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="cicd-流水线集成">CI/CD 流水线集成<a hidden class="anchor" aria-hidden="true" href="#cicd-流水线集成">#</a></h3>
+<p>LazyDocker 在 GitHub Actions 中表现良好，用于调试构建期间的容器状态。虽然 LazyDocker 的 TUI 在 CI 环境中不是交互式的，但其底层命令可以与 Docker API 通信以提取结构化的容器信息。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># .github/workflows/debug.yml</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">name</span>: <span style="color:#ae81ff">Debug Containers</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">on</span>: <span style="color:#ae81ff">workflow_dispatch</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">jobs: debug: runs-on</span>: <span style="color:#ae81ff">ubuntu-latest</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">steps: - uses</span>: <span style="color:#ae81ff">actions/checkout@v4</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Install LazyDocker</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          curl https://raw.githubusercontent.com/jesseduffield/lazydocker/master/scripts/install_update_linux.sh | bash
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          sudo mv ~/.local/bin/lazydocker /usr/local/bin/</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Start services</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: <span style="color:#ae81ff">docker compose up -d</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Inspect with LazyDocker</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          lazydocker --version
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          # 导出容器列表用于日志
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          docker ps --format &#34;table \t&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">Capture container logs on failure</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">if</span>: <span style="color:#ae81ff">failure()</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">run</span>: |<span style="color:#e6db74">
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          docker compose logs --tail=500 &gt; container-logs.txt
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">          docker stats --no-stream &gt; container-stats.txt</span>
+</span></span></code></pre></div><h3 id="ssh-环境下的远程服务器管理">SSH 环境下的远程服务器管理<a hidden class="anchor" aria-hidden="true" href="#ssh-环境下的远程服务器管理">#</a></h3>
+<p>LazyDocker 在仅 SSH 访问的无头服务器上表现出色。与需要开放端口和运行 Web 服务的 Portainer 不同，LazyDocker 通过 SSH 隧道提供完整的 Docker 管理功能，不会在服务器上留下任何运行中的进程。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 通过 SSH 在远程服务器上启动 LazyDocker</span>
+</span></span><span style="display:flex;"><span>ssh -t user@remote-server <span style="color:#e6db74">&#34;lazydocker&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或者使用本地转发的 socket</span>
+</span></span><span style="display:flex;"><span>ssh -nNT -L /tmp/docker.sock:/var/run/docker.sock user@remote-server &amp;
+</span></span><span style="display:flex;"><span>DOCKER_HOST<span style="color:#f92672">=</span>unix:///tmp/docker.sock lazydocker
+</span></span></code></pre></div><h2 id="基准测试与真实用例">基准测试与真实用例<a hidden class="anchor" aria-hidden="true" href="#基准测试与真实用例">#</a></h2>
+<p>LazyDocker 的设计理念是零开销：它是一个客户端工具，运行时不驻留内存，退出后立即释放所有资源。这一点与需要长期运行后台服务的其他 Docker 管理工具有本质区别。</p>
+<h3 id="资源开销对比">资源开销对比<a hidden class="anchor" aria-hidden="true" href="#资源开销对比">#</a></h3>
+<p>LazyDocker 几乎没有资源开销，因为它作为临时客户端进程运行 —— 而不是持久守护进程。</p>
+<p>| 场景 | 二进制大小 | 运行时内存 | 启动时间 | 后台进程 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | LazyDocker | ~15 MB | ~20 MB | &lt;200 ms | 无 |
 | Docker Desktop | ~1.5 GB | ~400-800 MB | 10-30 s | 是（虚拟机） |
 | Portainer CE | ~80 MB 镜像 | ~100-200 MB | 5-10 s | 是（容器） |
-| Rancher | ~300 MB 镜像 | ~500 MB+ | 30-60 s | 是（集群） |</p><h3 id=真实场景>真实场景<a hidden class=anchor aria-hidden=true href=#真实场景>#</a></h3><p><strong>场景 1：家庭实验室服务器（20 个容器）</strong>
-开发者在无头 Ubuntu 服务器上管理媒体堆栈（Plex、Sonarr、Radarr、Traefik、Authelia）。LazyDocker 通过 SSH 提供即时容器状态、实时日志跟踪和快速重启，无需运行 Web 服务。资源占用：不运行时为零。这种模式特别适合树莓派或旧硬件等低功耗设备。</p><p><strong>场景 2：微服务开发（8 个服务）</strong>
-团队本地运行 8 个 Docker Compose 服务。LazyDocker 按项目对服务进行分组，显示哪些容器正在重启，并让开发者通过单次按键进入故障服务。平均调试工作流从 45 秒的 CLI 输入减少到 5 秒的键盘导航。对于频繁重启和调试服务的开发者来说，这种效率提升在一天内可以节省大量时间。</p><p><strong>场景 3：CI/CD 调试</strong>
-DevOps 工程师在 GitHub Actions 中使用 LazyDocker 捕获失败测试运行结束时的容器状态和日志。CI 中的 TUI 不是交互式的，但 <code>--logs</code> 导出和容器列表命令提供结构化的调试输出。</p><h2 id=高级用法与生产环境加固>高级用法与生产环境加固<a hidden class=anchor aria-hidden=true href=#高级用法与生产环境加固>#</a></h2><h3 id=通过-ssh-在远程主机上运行>通过 SSH 在远程主机上运行<a hidden class=anchor aria-hidden=true href=#通过-ssh-在远程主机上运行>#</a></h3><p>LazyDocker 原生不支持远程 Docker 主机，但你可以通过 SSH 转发 Docker socket：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 将远程 Docker socket 转发到本地机器</span>
-</span></span><span style=display:flex><span>ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server &amp;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 让 LazyDocker 指向转发的 socket</span>
-</span></span><span style=display:flex><span>export DOCKER_HOST<span style=color:#f92672>=</span>unix:///tmp/docker_remote.sock
-</span></span><span style=display:flex><span>lazydocker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 完成后清理</span>
-</span></span><span style=display:flex><span>kill %1
-</span></span><span style=display:flex><span>rm /tmp/docker_remote.sock
-</span></span></code></pre></div><p>或者直接使用 SSH context：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 为远程主机创建 Docker context</span>
-</span></span><span style=display:flex><span>docker context create remote --docker <span style=color:#e6db74>&#34;host=ssh://user@remote-server&#34;</span>
-</span></span><span style=display:flex><span>docker context use remote
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># LazyDocker 自动使用活动 context</span>
-</span></span><span style=display:flex><span>lazydocker
-</span></span></code></pre></div><h3 id=非-root-用户设置>非 Root 用户设置<a hidden class=anchor aria-hidden=true href=#非-root-用户设置>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 如果 docker 组不存在则创建</span>
-</span></span><span style=display:flex><span>sudo groupadd -f docker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 添加当前用户</span>
-</span></span><span style=display:flex><span>sudo usermod -aG docker $USER
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 不注销即可应用（仅 Linux）</span>
-</span></span><span style=display:flex><span>newgrp docker
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 验证</span>
-</span></span><span style=display:flex><span>lazydocker
-</span></span></code></pre></div><h3 id=批量操作技巧>批量操作技巧<a hidden class=anchor aria-hidden=true href=#批量操作技巧>#</a></h3><p>LazyDocker 的批量命令（按 <code>b</code> 键）允许你对多个容器或镜像同时执行操作。这在需要清理过期资源时特别有用：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 在 LazyDocker 中选择一个面板后按 b 键</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 可用的批量操作包括：</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 删除所有已停止的容器</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 删除所有悬空镜像</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 删除所有未使用的卷</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - 重启所有服务</span>
-</span></span></code></pre></div><h3 id=自动化清理工作流>自动化清理工作流<a hidden class=anchor aria-hidden=true href=#自动化清理工作流>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># ~/bin/docker-cleanup.sh</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 与 LazyDocker 集成的一键清理脚本</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;移除已停止的容器...&#34;</span>
-</span></span><span style=display:flex><span>docker container prune -f
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;移除悬空镜像...&#34;</span>
-</span></span><span style=display:flex><span>docker image prune -f
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;移除未使用的卷...&#34;</span>
-</span></span><span style=display:flex><span>docker volume prune -f
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;移除未使用的网络...&#34;</span>
-</span></span><span style=display:flex><span>docker network prune -f
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>echo <span style=color:#e6db74>&#34;清理完成。剩余资源：&#34;</span>
-</span></span><span style=display:flex><span>docker system df
-</span></span></code></pre></div><p>通过 LazyDocker 中的自定义命令绑定此脚本，实现一键访问。</p><h3 id=监控集成>监控集成<a hidden class=anchor aria-hidden=true href=#监控集成>#</a></h3><p>通过将 <code>docker stats</code> 管道传输到 Prometheus Node Exporter textfile 收集器，将 LazyDocker 统计信息导出到外部监控：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e>#!/bin/bash
-</span></span></span><span style=display:flex><span><span style=color:#75715e># 每 60 秒的 cron 任务</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>while</span> true; <span style=color:#66d9ef>do</span>
-</span></span><span style=display:flex><span>  docker stats --no-stream --format <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;container_cpu_usage{name=&#34;&#34;} \ncontainer_memory_usage{name=&#34;&#34;} &#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>    &gt; /var/lib/node_exporter/textfile_collector/docker_stats.prom
-</span></span><span style=display:flex><span>  sleep <span style=color:#ae81ff>60</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>done</span>
-</span></span></code></pre></div><h2 id=与替代品对比>与替代品对比<a hidden class=anchor aria-hidden=true href=#与替代品对比>#</a></h2><p>| 功能 | LazyDocker | Docker Desktop | Portainer CE | Rancher |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| Rancher | ~300 MB 镜像 | ~500 MB+ | 30-60 s | 是（集群） |</p>
+<h3 id="真实场景">真实场景<a hidden class="anchor" aria-hidden="true" href="#真实场景">#</a></h3>
+<p><strong>场景 1：家庭实验室服务器（20 个容器）</strong>
+开发者在无头 Ubuntu 服务器上管理媒体堆栈（Plex、Sonarr、Radarr、Traefik、Authelia）。LazyDocker 通过 SSH 提供即时容器状态、实时日志跟踪和快速重启，无需运行 Web 服务。资源占用：不运行时为零。这种模式特别适合树莓派或旧硬件等低功耗设备。</p>
+<p><strong>场景 2：微服务开发（8 个服务）</strong>
+团队本地运行 8 个 Docker Compose 服务。LazyDocker 按项目对服务进行分组，显示哪些容器正在重启，并让开发者通过单次按键进入故障服务。平均调试工作流从 45 秒的 CLI 输入减少到 5 秒的键盘导航。对于频繁重启和调试服务的开发者来说，这种效率提升在一天内可以节省大量时间。</p>
+<p><strong>场景 3：CI/CD 调试</strong>
+DevOps 工程师在 GitHub Actions 中使用 LazyDocker 捕获失败测试运行结束时的容器状态和日志。CI 中的 TUI 不是交互式的，但 <code>--logs</code> 导出和容器列表命令提供结构化的调试输出。</p>
+<h2 id="高级用法与生产环境加固">高级用法与生产环境加固<a hidden class="anchor" aria-hidden="true" href="#高级用法与生产环境加固">#</a></h2>
+<h3 id="通过-ssh-在远程主机上运行">通过 SSH 在远程主机上运行<a hidden class="anchor" aria-hidden="true" href="#通过-ssh-在远程主机上运行">#</a></h3>
+<p>LazyDocker 原生不支持远程 Docker 主机，但你可以通过 SSH 转发 Docker socket：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 将远程 Docker socket 转发到本地机器</span>
+</span></span><span style="display:flex;"><span>ssh -nNT -L /tmp/docker_remote.sock:/var/run/docker.sock user@remote-server &amp;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 让 LazyDocker 指向转发的 socket</span>
+</span></span><span style="display:flex;"><span>export DOCKER_HOST<span style="color:#f92672">=</span>unix:///tmp/docker_remote.sock
+</span></span><span style="display:flex;"><span>lazydocker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 完成后清理</span>
+</span></span><span style="display:flex;"><span>kill %1
+</span></span><span style="display:flex;"><span>rm /tmp/docker_remote.sock
+</span></span></code></pre></div><p>或者直接使用 SSH context：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 为远程主机创建 Docker context</span>
+</span></span><span style="display:flex;"><span>docker context create remote --docker <span style="color:#e6db74">&#34;host=ssh://user@remote-server&#34;</span>
+</span></span><span style="display:flex;"><span>docker context use remote
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># LazyDocker 自动使用活动 context</span>
+</span></span><span style="display:flex;"><span>lazydocker
+</span></span></code></pre></div><h3 id="非-root-用户设置">非 Root 用户设置<a hidden class="anchor" aria-hidden="true" href="#非-root-用户设置">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 如果 docker 组不存在则创建</span>
+</span></span><span style="display:flex;"><span>sudo groupadd -f docker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 添加当前用户</span>
+</span></span><span style="display:flex;"><span>sudo usermod -aG docker $USER
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 不注销即可应用（仅 Linux）</span>
+</span></span><span style="display:flex;"><span>newgrp docker
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 验证</span>
+</span></span><span style="display:flex;"><span>lazydocker
+</span></span></code></pre></div><h3 id="批量操作技巧">批量操作技巧<a hidden class="anchor" aria-hidden="true" href="#批量操作技巧">#</a></h3>
+<p>LazyDocker 的批量命令（按 <code>b</code> 键）允许你对多个容器或镜像同时执行操作。这在需要清理过期资源时特别有用：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 在 LazyDocker 中选择一个面板后按 b 键</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 可用的批量操作包括：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 删除所有已停止的容器</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 删除所有悬空镜像</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 删除所有未使用的卷</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - 重启所有服务</span>
+</span></span></code></pre></div><h3 id="自动化清理工作流">自动化清理工作流<a hidden class="anchor" aria-hidden="true" href="#自动化清理工作流">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># ~/bin/docker-cleanup.sh</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 与 LazyDocker 集成的一键清理脚本</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;移除已停止的容器...&#34;</span>
+</span></span><span style="display:flex;"><span>docker container prune -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;移除悬空镜像...&#34;</span>
+</span></span><span style="display:flex;"><span>docker image prune -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;移除未使用的卷...&#34;</span>
+</span></span><span style="display:flex;"><span>docker volume prune -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;移除未使用的网络...&#34;</span>
+</span></span><span style="display:flex;"><span>docker network prune -f
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>echo <span style="color:#e6db74">&#34;清理完成。剩余资源：&#34;</span>
+</span></span><span style="display:flex;"><span>docker system df
+</span></span></code></pre></div><p>通过 LazyDocker 中的自定义命令绑定此脚本，实现一键访问。</p>
+<h3 id="监控集成">监控集成<a hidden class="anchor" aria-hidden="true" href="#监控集成">#</a></h3>
+<p>通过将 <code>docker stats</code> 管道传输到 Prometheus Node Exporter textfile 收集器，将 LazyDocker 统计信息导出到外部监控：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"># 每 60 秒的 cron 任务</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> true; <span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  docker stats --no-stream --format <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;container_cpu_usage{name=&#34;&#34;} \ncontainer_memory_usage{name=&#34;&#34;} &#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>    &gt; /var/lib/node_exporter/textfile_collector/docker_stats.prom
+</span></span><span style="display:flex;"><span>  sleep <span style="color:#ae81ff">60</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><h2 id="与替代品对比">与替代品对比<a hidden class="anchor" aria-hidden="true" href="#与替代品对比">#</a></h2>
+<p>| 功能 | LazyDocker | Docker Desktop | Portainer CE | Rancher |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 界面 | 终端 TUI | 原生桌面 GUI | Web GUI | Web GUI |
 | 安装大小 | ~15 MB | ~1.5 GB | ~80 MB 镜像 | ~300 MB 镜像 |
 | 内存开销 | ~20 MB（临时） | ~400-800 MB | ~100-200 MB | ~500 MB+ |
@@ -297,8 +746,64 @@ DevOps 工程师在 GitHub Actions 中使用 LazyDocker 捕获失败测试运行
 | 离线可用 | 是 | 是（本地） | UI 需要网络 | 需要网络 |
 | 开源协议 | MIT | 专有 | AGPL / SSPL | Apache-2.0 |
 | 启动时间 | &lt;200 ms | 10-30 s | 5-10 s | 30-60 s |
-| 最适合 | 终端用户 | 本地开发 | 团队管理 | 企业 K8s |</p><h2 id=局限性--诚实评估>局限性 / 诚实评估<a hidden class=anchor aria-hidden=true href=#局限性--诚实评估>#</a></h2><p>LazyDocker 并不适合所有情况。以下是限制条件：</p><ul><li><strong>无多主机管理</strong>：你无法从单个 LazyDocker 实例管理多个 Docker 主机。对此，请使用带有 agents 的 Portainer 或 Rancher。</li><li><strong>无 Web 界面</strong>：LazyDocker 需要终端访问。如果你需要通过手机或平板管理容器，Portainer 的响应式 Web UI 是更好的选择。</li><li><strong>无 RBAC 或用户管理</strong>：LazyDocker 继承你的 OS 用户的 Docker 权限。没有团队、角色或审计追踪的概念。</li><li><strong>不支持 Kubernetes</strong>：LazyDocker 仅处理 Docker 和 Docker Compose。对于 Kubernetes 工作负载，请直接使用 <code>k9s</code>、Rancher 或 <code>kubectl</code>。</li><li><strong>仅单用户</strong>：两个工程师不能同时使用同一个 LazyDocker 会话。每个用户运行自己的实例。</li><li><strong>TUI 学习曲线</strong>：不熟悉键盘驱动界面（vim、tmux）的工程师可能会发现初始学习曲线比点击 Web UI 更陡峭。</li><li><strong>偏读取，谨慎写入</strong>：虽然 LazyDocker 支持破坏性操作（移除、停止），但它会添加确认提示，与脚本化的 CLI 工作流相比，这些提示会降低批量操作的速度。</li></ul><h2 id=常见问题>常见问题<a hidden class=anchor aria-hidden=true href=#常见问题>#</a></h2><p><strong>Q: LazyDocker 会替代 Docker CLI 吗？</strong></p><p>不会。LazyDocker 通过提供视觉概览和快速操作来补充 CLI。对于脚本编写、自动化和 CI/CD 流水线，Docker CLI 仍然是正确的工具。许多开发者两者都用：LazyDocker 用于交互式探索，<code>docker</code> 命令用于可重现的工作流。</p><p><strong>Q: 我可以将 LazyDocker 与 Podman 一起使用吗？</strong></p><p>可以。通过配置覆盖，LazyDocker 支持 Podman。在 <code>config.yml</code> 中将 <code>commandTemplates.docker</code> 设置为 <code>podman</code>，将 <code>commandTemplates.dockerCompose</code> 设置为 <code>podman-compose</code>。一个名为 <code>lazypodman</code> 的社区包装器也可用于无缝的 Podman 集成。</p><p><strong>Q: 如何查看已崩溃容器的日志？</strong></p><p>导航到容器面板，按 <code>e</code> 切换已停止容器的可见性，选择已崩溃的容器，然后按 <code>m</code> 查看其日志。使用 <code>g</code> 跳到日志流的开头，<code>G</code> 跳到末尾。</p><p><strong>Q: 在生产环境中使用 LazyDocker 安全吗？</strong></p><p>LazyDocker 是安全的，因为它是一个没有后台服务的客户端工具。它使用你的用户具有的权限连接到 Docker socket。在生产环境中，限制 Docker socket 访问给授权用户，除非必要避免在生产主机上运行 LazyDocker，并优先选择只读操作（查看日志和统计信息）而非破坏性操作。</p><p><strong>Q: 我可以在 Docker 容器内运行 LazyDocker 吗？</strong></p><p>可以。将主机的 Docker socket 挂载到容器中，使用 <code>-v /var/run/docker.sock:/var/run/docker.sock</code>。这使 LazyDocker 可以完全查看主机容器。官方镜像是 <code>lazyteam/lazydocker:latest</code>。这种模式在隔离环境或快速测试中效果很好。</p><p><strong>Q: 为什么 LazyDocker 显示 &ldquo;Cannot connect to Docker daemon&rdquo;？</strong></p><p>当你的用户无法访问 <code>/var/run/docker.sock</code> 时会发生此错误。确保你的用户在 <code>docker</code> 组中，Docker 守护进程正在运行（<code>sudo systemctl status docker</code>），并且 <code>DOCKER_HOST</code> 环境变量未设置为无效值。在 macOS 上，验证 Docker Desktop 是否正在运行。</p><p><strong>Q: 如何自定义快捷键？</strong></p><p>LazyDocker 不完全支持通过配置进行按键重新映射，但你可以通过 <code>config.yml</code> 中的 <code>customCommands</code> 块添加自定义命令。对于与终端模拟器的冲突快捷键，配置你的终端以将原始按键传递给 TUI。</p><h2 id=结论>结论<a hidden class=anchor aria-hidden=true href=#结论>#</a></h2><p>LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生的 Docker 管理。凭借 51,092 个 GitHub stars、单二进制分发和低于 200 毫秒的启动时间，它消除了浏览器标签页之间切换或记忆 CLI 参数的摩擦。对于个人开发者、家庭实验室操作员以及任何生活在终端中的人来说，它是工具集的一个实用补充。</p><p><strong>入门行动项：</strong></p><ol><li>通过 Homebrew 或官方脚本安装 LazyDocker（60 秒内）</li><li>在有运行容器的项目中启动 <code>lazydocker</code></li><li>记忆 5 个基本键：<code>r</code>（重启）、<code>s</code>（停止）、<code>d</code>（移除）、<code>m</code>（日志）、<code>E</code>（执行 shell）</li><li>按 <code>o</code> 打开配置并自定义主题和日志设置</li><li>为 ````lzd``` 添加 shell 别名并与 tmux 集成以实现弹出访问</li></ol><p>加入 <a href=https://t.me/dibi8_chat>dibi8 Telegram 社区</a> 分享你的 LazyDocker 工作流技巧，并从其他大规模管理容器的开发者那里获得帮助。</p><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=来源与延伸阅读>来源与延伸阅读<a hidden class=anchor aria-hidden=true href=#来源与延伸阅读>#</a></h2><ul><li><a href=https://github.com/jesseduffield/lazydocker>LazyDocker GitHub 仓库</a></li><li><a href=https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md>官方快捷键参考</a></li><li><a href=https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md>配置文档</a></li><li><a href=https://github.com/jesseduffield/lazydocker#installation>LazyDocker 安装指南</a></li><li><a href=https://lazydocker.com>LazyDocker 官方网站</a></li><li><a href=https://oneuptime.com/blog/post/2026-03-20-portainer-vs-lazydocker-terminal/view>Portainer vs LazyDocker 对比（OneUptime）</a></li><li><a href=https://www.datacamp.com/tutorial/lazydocker>DataCamp LazyDocker 教程</a></li><li><a href=https://github.com/szchan/lazydocker-podman>LazyDocker Podman 扩展</a></li></ul><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| 最适合 | 终端用户 | 本地开发 | 团队管理 | 企业 K8s |</p>
+<h2 id="局限性--诚实评估">局限性 / 诚实评估<a hidden class="anchor" aria-hidden="true" href="#局限性--诚实评估">#</a></h2>
+<p>LazyDocker 并不适合所有情况。以下是限制条件：</p>
+<ul>
+<li><strong>无多主机管理</strong>：你无法从单个 LazyDocker 实例管理多个 Docker 主机。对此，请使用带有 agents 的 Portainer 或 Rancher。</li>
+<li><strong>无 Web 界面</strong>：LazyDocker 需要终端访问。如果你需要通过手机或平板管理容器，Portainer 的响应式 Web UI 是更好的选择。</li>
+<li><strong>无 RBAC 或用户管理</strong>：LazyDocker 继承你的 OS 用户的 Docker 权限。没有团队、角色或审计追踪的概念。</li>
+<li><strong>不支持 Kubernetes</strong>：LazyDocker 仅处理 Docker 和 Docker Compose。对于 Kubernetes 工作负载，请直接使用 <code>k9s</code>、Rancher 或 <code>kubectl</code>。</li>
+<li><strong>仅单用户</strong>：两个工程师不能同时使用同一个 LazyDocker 会话。每个用户运行自己的实例。</li>
+<li><strong>TUI 学习曲线</strong>：不熟悉键盘驱动界面（vim、tmux）的工程师可能会发现初始学习曲线比点击 Web UI 更陡峭。</li>
+<li><strong>偏读取，谨慎写入</strong>：虽然 LazyDocker 支持破坏性操作（移除、停止），但它会添加确认提示，与脚本化的 CLI 工作流相比，这些提示会降低批量操作的速度。</li>
+</ul>
+<h2 id="常见问题">常见问题<a hidden class="anchor" aria-hidden="true" href="#常见问题">#</a></h2>
+<p><strong>Q: LazyDocker 会替代 Docker CLI 吗？</strong></p>
+<p>不会。LazyDocker 通过提供视觉概览和快速操作来补充 CLI。对于脚本编写、自动化和 CI/CD 流水线，Docker CLI 仍然是正确的工具。许多开发者两者都用：LazyDocker 用于交互式探索，<code>docker</code> 命令用于可重现的工作流。</p>
+<p><strong>Q: 我可以将 LazyDocker 与 Podman 一起使用吗？</strong></p>
+<p>可以。通过配置覆盖，LazyDocker 支持 Podman。在 <code>config.yml</code> 中将 <code>commandTemplates.docker</code> 设置为 <code>podman</code>，将 <code>commandTemplates.dockerCompose</code> 设置为 <code>podman-compose</code>。一个名为 <code>lazypodman</code> 的社区包装器也可用于无缝的 Podman 集成。</p>
+<p><strong>Q: 如何查看已崩溃容器的日志？</strong></p>
+<p>导航到容器面板，按 <code>e</code> 切换已停止容器的可见性，选择已崩溃的容器，然后按 <code>m</code> 查看其日志。使用 <code>g</code> 跳到日志流的开头，<code>G</code> 跳到末尾。</p>
+<p><strong>Q: 在生产环境中使用 LazyDocker 安全吗？</strong></p>
+<p>LazyDocker 是安全的，因为它是一个没有后台服务的客户端工具。它使用你的用户具有的权限连接到 Docker socket。在生产环境中，限制 Docker socket 访问给授权用户，除非必要避免在生产主机上运行 LazyDocker，并优先选择只读操作（查看日志和统计信息）而非破坏性操作。</p>
+<p><strong>Q: 我可以在 Docker 容器内运行 LazyDocker 吗？</strong></p>
+<p>可以。将主机的 Docker socket 挂载到容器中，使用 <code>-v /var/run/docker.sock:/var/run/docker.sock</code>。这使 LazyDocker 可以完全查看主机容器。官方镜像是 <code>lazyteam/lazydocker:latest</code>。这种模式在隔离环境或快速测试中效果很好。</p>
+<p><strong>Q: 为什么 LazyDocker 显示 &ldquo;Cannot connect to Docker daemon&rdquo;？</strong></p>
+<p>当你的用户无法访问 <code>/var/run/docker.sock</code> 时会发生此错误。确保你的用户在 <code>docker</code> 组中，Docker 守护进程正在运行（<code>sudo systemctl status docker</code>），并且 <code>DOCKER_HOST</code> 环境变量未设置为无效值。在 macOS 上，验证 Docker Desktop 是否正在运行。</p>
+<p><strong>Q: 如何自定义快捷键？</strong></p>
+<p>LazyDocker 不完全支持通过配置进行按键重新映射，但你可以通过 <code>config.yml</code> 中的 <code>customCommands</code> 块添加自定义命令。对于与终端模拟器的冲突快捷键，配置你的终端以将原始按键传递给 TUI。</p>
+<h2 id="结论">结论<a hidden class="anchor" aria-hidden="true" href="#结论">#</a></h2>
+<p>LazyDocker 填补了一个特定的细分市场：快速、轻量、终端原生的 Docker 管理。凭借 51,092 个 GitHub stars、单二进制分发和低于 200 毫秒的启动时间，它消除了浏览器标签页之间切换或记忆 CLI 参数的摩擦。对于个人开发者、家庭实验室操作员以及任何生活在终端中的人来说，它是工具集的一个实用补充。</p>
+<p><strong>入门行动项：</strong></p>
+<ol>
+<li>通过 Homebrew 或官方脚本安装 LazyDocker（60 秒内）</li>
+<li>在有运行容器的项目中启动 <code>lazydocker</code></li>
+<li>记忆 5 个基本键：<code>r</code>（重启）、<code>s</code>（停止）、<code>d</code>（移除）、<code>m</code>（日志）、<code>E</code>（执行 shell）</li>
+<li>按 <code>o</code> 打开配置并自定义主题和日志设置</li>
+<li>为 ````lzd``` 添加 shell 别名并与 tmux 集成以实现弹出访问</li>
+</ol>
+<p>加入 <a href="https://t.me/dibi8_chat">dibi8 Telegram 社区</a> 分享你的 LazyDocker 工作流技巧，并从其他大规模管理容器的开发者那里获得帮助。</p>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="来源与延伸阅读">来源与延伸阅读<a hidden class="anchor" aria-hidden="true" href="#来源与延伸阅读">#</a></h2>
+<ul>
+<li><a href="https://github.com/jesseduffield/lazydocker">LazyDocker GitHub 仓库</a></li>
+<li><a href="https://github.com/jesseduffield/lazydocker/blob/master/docs/keybindings/Keybindings_en.md">官方快捷键参考</a></li>
+<li><a href="https://github.com/jesseduffield/lazydocker/blob/master/docs/Config.md">配置文档</a></li>
+<li><a href="https://github.com/jesseduffield/lazydocker#installation">LazyDocker 安装指南</a></li>
+<li><a href="https://lazydocker.com">LazyDocker 官方网站</a></li>
+<li><a href="https://oneuptime.com/blog/post/2026-03-20-portainer-vs-lazydocker-terminal/view">Portainer vs LazyDocker 对比（OneUptime）</a></li>
+<li><a href="https://www.datacamp.com/tutorial/lazydocker">DataCamp LazyDocker 教程</a></li>
+<li><a href="https://github.com/szchan/lazydocker-podman">LazyDocker Podman 扩展</a></li>
+</ul>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;LazyDocker: 51,092 GitHub Stars — 完整终端 Docker UI 设置指南 2026&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -312,18 +817,175 @@ DevOps 工程师在 GitHub Actions 中使用 LazyDocker 捕获失败测试运行
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/lazydocker%22>https://dibi8.com/zh/resources/lazydocker"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/lazydocker%22">https://dibi8.com/zh/resources/lazydocker"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/lazydocker/>apple-container</a></li><li><a href=/zh/ai-coding-agents/lazydocker/>trivy-production-security-scanner-2026</a></li><li><a href=/zh/ai-coding-agents/lazydocker/>trivy-production-security-scanner-2026</a></li><li><a href=/zh/ai-coding-agents/lazydocker/>freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li><li><a href=/zh/ai-coding-agents/lazydocker/>moneyprinterturbo-one-click-ai-video-generator</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/last30days-skill-ai-agent-research-engine-social-media/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/libretranslate/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/lazydocker/">apple-container</a></li>
+<li><a href="/zh/ai-coding-agents/lazydocker/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/zh/ai-coding-agents/lazydocker/">trivy-production-security-scanner-2026</a></li>
+<li><a href="/zh/ai-coding-agents/lazydocker/">freellmapi-openai-compatible-proxy-free-llm-tiers-2026</a></li>
+<li><a href="/zh/ai-coding-agents/lazydocker/">moneyprinterturbo-one-click-ai-video-generator</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/last30days-skill-ai-agent-research-engine-social-media/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/libretranslate/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,10 +1,220 @@
-<!doctype html><html lang=ko dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=ko href=https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="ko"><meta property="og:type" content="article"><meta property="article:section" content="llm-frameworks"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"LLM Frameworks - dibi8","item":"https://dibi8.com/ko/llm-frameworks/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: “v2.0.0” licensing_model: Open Source license_type: MIT (code) / OpenRAIL-M (model) file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-01-06” draft: false categories: [“ai-tools”] tags: [“supertonic”, “text-to-speech”, “tts”, “on-device-ai”, “onnx”, “multilingual”, “open-source-tts”, “edge-ai”, “korean-tts”, “japanese-tts”] aliases:\n/kr/posts/supertonic-on-device-multilingual-tts-2026/ Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026) 온디바이스 TTS의 문제 수년간 “괜찮은” 다국어 TTS란 곧 남의 클라우드 API를 호출하는 일이었다 — Google Cloud TTS, Amazon Polly, ElevenLabs, OpenAI Voice. 음성은 자연스러웠고, 광대역에서 지연은 견딜 만했으며, 문자당 단가는 청구서가 날아오기 전까진 아무도 신경 쓰지 않을 만큼 작았다.\n균열은 세 군데서 드러났다. 프라이버시 — 모든 스크립트를 제3자에 보내는 건 의료, 법률, 규제 산업에선 선택지가 아니다. 지연 편차 — 네트워크가 흔들리면 음성이 끊긴다. 스케일에서의 비용 — 월 100시간 정도의 오디오를 합성하기 시작하면 문자당 청구서가 쌓인다. 그리고 오프라인 사용 — 차량, 항공기, 원격 시설, 키오스크 어디든 로컬 추론이 필수다. 끝.\n오픈소스 온디바이스 TTS도 따라잡고 있었지만 트레이드오프가 가혹했다: 영어 전용 미니 모델(Piper, Coqui의 소형 변종)이거나, 실용성을 확보하려면 GPU가 필수인 거대 다국어 모델(XTTS-v2, Bark)이거나. “빠르고, 다국어이며, 가볍고, 진짜 오픈 웨이트\"라는 sweet spot은 누구도 맞추지 못했다.\n한국 음성 AI 회사 Supertone Inc.가 만든 Supertonic (GitHub: ```supertone-inc/supertonic````, 9,900+ stars)은 2026년에 그 공백을 메울 가장 신뢰할 만한 후보다. 99M 파라미터, 31개 언어, ONNX 런타임, CPU에서 무리 없이 돌아간다 — README에 따르면 비행기 모드의 e-reader에서도 실시간 대비 0.3배(RTF) 성능을 낸다고 한다.\nSupertonic의 정체 ONNX로 익스포트된, flow-matching 기반 text-to-latent 모듈 + speech autoencoder. 구체적으로: - 총 99M 파라미터 — 몇 초 안에 로딩되고 평범한 CPU에서 실시간으로 돌아갈 만큼 작다. 참고로 XTTS-v2는 ~1.5B, Bark는 ~900M 수준.\n기본 제공 31개 언어: 아랍어, 불가리아어, 크로아티아어, 체코어, 덴마크어, 네덜란드어, 영어, 에스토니아어, 핀란드어, 프랑스어, 독일어, 그리스어, 힌디어, 헝가리어, 인도네시아어, 이탈리아어, 일본어, 한국어, 라트비아어, 리투아니아어, 폴란드어, 포르투갈어, 루마니아어, 러시아어, 슬로바키아어, 슬로베니아어, 스페인어, 스웨덴어, 터키어, 우크라이나어, 베트남어. 44.1kHz 오디오 출력 — 대부분의 “그럭저럭” TTS가 머무는 22kHz가 아니라 진짜 스튜디오 샘플레이트. 10개 표현 태그 — , , 등. 텍스트 안에 그대로 박아 넣으면 음성 클로닝을 다시 학습할 필요 없이 더 자연스러운 전달을 끌어낼 수 있다. lang=\"na\" 모드 — 언어 코드를 굳이 고르고 싶지 않을 때 쓰는 언어 비종속(language-agnostic) 생성. 라이선스: 코드는 MIT, 모델 가중치는 OpenRAIL-M. 이 분리가 중요하다. OpenRAIL-M은 “책임 있는 AI” 라이선스로 일부 유해 용도를 제한하지만 상업적 배포는 허용한다. 제품으로 출시하기 전엔 model card를 꼭 읽어둬라.\n성능 수치 Supertone Inc.가 자사 benchmark와 README에서 인용한 수치들: | 지표 | Supertonic | 일반 베이스라인 | |—|—|—| | 파라미터 수 | 99M | 0.7B–2B | | 발음 정확도 (Minimax-MLS-test, WER/CER) | 훨씬 큰 모델 대비 경쟁력 | — | | 런타임 메모리 | GPU 베이스라인 대비 현저히 적음 | — | | Onyx Boox Go 6 e-reader(비행기 모드) RTF | 0.3배 | 해당 없음 (실행 불가) | | CPU 지연 | A100 GPU 베이스라인과 경쟁력 | — |\ne-reader benchmark가 헤드라인 수치다 — “정말 어디서든 돌아간다\"는 시그널을 보내는 종류의 숫자. 최신 스마트폰 CPU라면 이것에 비하면 식은 죽 먹기여야 한다.\n런타임 커버리지 Supertonic은 “알아서 래핑하시오” 식이 아니라 실제 SDK 바인딩을 함께 출시하는 몇 안 되는 오픈 TTS 프로젝트 중 하나다. v2.0.0 기준: - Python (pip install supertonic) — 1차 통합\nNode.js — 서버 및 Electron 앱 Browser — 가능하면 WebGPU, 폴백은 WebAssembly Java — Android 및 JVM 백엔드 C++, C#, Go, Rust — 시스템 통합 Swift / iOS — 퍼스트파티 네이티브 바인딩 Flutter — 크로스플랫폼 모바일 2026년 애플리케이션 개발자가 TTS를 임베드하려는 거의 모든 자리를 커버한다. 무거운 일은 ONNX 런타임이 떠맡고, Supertonic은 모델별 접착제(glue)만 더한다.\n빠른 설치 (Python) pip install supertonic 의존성은 이것 하나로 끝. 모델은 첫 호출 시 다운로드된다: `````python from supertonic import TTS\ntts = TTS(auto_download=True) style = tts.get_voice_style(voice_name=“M1”)\ntext = “Supertonic is a lightning fast, on-device TTS system.”\nwav, duration = tts.synthesize( text=text, lang=“en”, voice_style=style, total_steps=8, speed=1.05, ) tts.save_audio(wav, “output.wav”)\n한국어가 필요하면 ````lang=\"en\"```` → ````lang=\"ko\"````로 바꾸면 된다. ````ja````, ````vi````, ````zh````도 동일. 보이스 스타일(````M1````)은 언어가 바뀌어도 일관성을 유지한다 — 다국어 캐릭터 음성을 만들 때 유용하다. 표현 태그를 쓰려면: `````python text = \"I can't believe it. That's incredible. Let me explain.\" ```` 모델이 태그를 텍스트 안에서 해석해 그에 맞는 표현을 음성에 입혀준다. * * * ## 다른 솔루션과의 비교 2026년 온디바이스 TTS 지형을 실제 결과물 기준으로 줄 세워보면: ### vs. Piper (40K+ stars) Piper는 온디바이스 TTS의 오랜 강자다. **Piper의 우위**: 보이스당 모델이 더 작다(수 MB), 영어 전용 케이스에서 배포가 더 단순. **Supertonic의 우위**: 훨씬 많은 언어, 더 강한 표현 제어, 더 높은 샘플레이트, 언어마다 모델 하나가 아니라 단일 모델로 전 언어를 처리. ### vs. XTTS-v2 (Coqui) XTTS-v2는 보이스 클로닝을 제공하지만 Supertonic은 이를 셀링 포인트로 내세우지 않는다. **XTTS-v2의 우위**: 보이스 클로닝 품질. **Supertonic의 우위**: CPU에서의 실용성, 멀티 런타임 SDK, 모델 크기, 라이선스 명확성. ### vs. Bark (Suno) Bark는 비음성 오디오(음악, 효과음)에서 인상적이다. **Bark의 우위**: 음성 너머의 스타일 폭. **Supertonic의 우위**: 속도, 배포 용이성, 그리고 Bark가 영어 위주인 반면 31개 언어 지원. ### vs. ElevenLabs / OpenAI / Google Cloud 보이스 클로닝 충실도와 최상위 음성의 순수 자연스러움에서는 클라우드 TTS가 여전히 앞선다. **Supertonic의 우위**: API 키 없음, 문자당 청구서 없음, 네트워크 의존성 없음, 완전한 프라이버시. * * * ## Supertonic이 못 하는 것 기대치를 맞추기 위해: - **샘플 기반 보이스 클로닝 없음.** 내장된 보이스 스타일 중에서 골라야 한다. 클로닝이 필요하면 XTTS-v2나 상용 API를 봐라. - **토큰 단위 스트리밍 합성 없음** — 공개 릴리스에서는 합성이 세그먼트 단위로만 이뤄진다. - **파인튜닝 도구가 제한적.** 모델 가중치는 OpenRAIL-M으로 오픈되어 있지만 학습 파이프라인 전체가 공개되어 있진 않다. - **22kHz 폴백 없음.** 항상 44.1kHz 출력. 더 낮은 대역폭이 필요하면 직접 리샘플해야 한다. * * * ## Supertonic이 빛나는 실전 케이스 - **음성 기능을 가진 모바일 앱** — 온보딩 내레이션, 접근성 읽어주기, 언어 학습. 단일 ONNX 파일 하나 묶으면 31개 언어 지원, 바이너리에 API 키 박을 일도 없다. - **의료·법률 도구** — 민감 문서를 디바이스 밖으로 한 발자국도 내보내지 않고 음성으로 읽어줄 수 있다. - **차량 및 기내 시스템** — 완전 오프라인 지원, graceful degradation 따위 신경 쓸 필요 없음. - **한국어 / 일본어 / 베트남어 / 중국어 로컬라이제이션** — 아시아 언어용 오픈소스 TTS의 공백은 그동안 뼈아팠는데, Supertonic이 모델 하나로 그 큰 덩어리를 메운다. - **엣지 IoT 디바이스** — 클라우드 연결 없는 키오스크, 사이니지, 스마트 스피커. * * * ## 누가 써야 하나 **그렇다, 설치해라, 만약 당신이:** - 음성 출력이 필요한 앱을 배포하는데 사용량에 비례해 늘어나는 클라우드 청구서가 싫다. - 프라이버시(규제 산업)나 오프라인(모바일, 기내, 엣지)이 필요하다. - 비영어권 시장용 로컬라이즈를 하는데 모델 서른 개보다 하나로 끝내고 싶다. - GPU 없이 스튜디오급 44.1kHz 오디오를 뽑고 싶다. **클라우드 TTS를 유지해라, 만약 당신이:** - 30초 샘플로 보이스 클로닝을 해야 한다. - ElevenLabs 라인업 최상위가 여전히 앞서는 초사실적 단일 보이스 콘텐츠를 만든다. - 스트리밍 부분 오디오가 필요하다(공개된 Supertonic 릴리스는 아직 노출하지 않음). * * * ## 결론 Supertonic은 2026년에 출시된 \"어디서든 돌아가는 단일 모델\" 오픈 TTS 중 가장 신뢰할 만한 후보다. 99M 파라미터 규모, 31개 언어, 멀티 런타임 SDK, e-reader에서의 0.3배 RTF — 이 조합은 그동안 거의 어떤 오픈 TTS도 도달하지 못한 \"그래, 이거 모바일 앱에 그대로 박아도 된다\" 영역에 Supertonic을 단단히 올려놓는다. 한국·일본·베트남, 그 외 TTS 지원이 박했던 언어 시장의 개발자들에게 더 큰 이야기는 따로 있다: 오픈소스 TTS와 클라우드 API 사이의 품질 격차가 극적으로 좁혀졌다는 사실. 5년 전엔 영어만이 오픈 TTS로 프로덕션이 가능한 유일한 언어였다. 2026년, Supertonic과 함께 그 명단은 이제 세계 대부분의 언어를 진짜로 포함한다. 프롬프트 측은 [온디바이스 LLM 런타임](https://dibi8.com/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/)과 묶으면, 클라우드 의존도 0인 완전 로컬 음성 에이전트 스택이 완성된다. * * * **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **라이선스**: MIT (코드) / OpenRAIL-M (가중치) · **최신**: v2.0.0 (2026-01-06) · **Stars**: 9.9K+ · **메인테이너**: Supertone Inc. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)\", \"datePublished\": \"2026-05-23\", \"dateModified\": \"2026-05-23\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/supertonic-on-device-multilingual-tts-2026\" } } ## Why This Matters Understanding supertonic 리뷰: onnx로 31개 언어를 돌리는 99m 파라미터 온디바이스 tts (2026) is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* ","wordCount":"1442","inLanguage":"ko","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ko/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/ko/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/ko/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/ko/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/ko/>홈</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ko/llm-frameworks/>LLM Frameworks - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>목차</span></summary><div class=inner><ul><li><a href=#supertonic-%eb%a6%ac%eb%b7%b0-onnx%eb%a1%9c-31%ea%b0%9c-%ec%96%b8%ec%96%b4%eb%a5%bc-%eb%8f%8c%eb%a6%ac%eb%8a%94-99m-%ed%8c%8c%eb%9d%bc%eb%af%b8%ed%84%b0-%ec%98%a8%eb%94%94%eb%b0%94%ec%9d%b4%ec%8a%a4-tts-2026 aria-label="Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)">Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)</a><ul><li><a href=#%ec%98%a8%eb%94%94%eb%b0%94%ec%9d%b4%ec%8a%a4-tts%ec%9d%98-%eb%ac%b8%ec%a0%9c aria-label="온디바이스 TTS의 문제">온디바이스 TTS의 문제</a></li><li><a href=#supertonic%ec%9d%98-%ec%a0%95%ec%b2%b4 aria-label="Supertonic의 정체">Supertonic의 정체</a></li><li><a href=#%ec%84%b1%eb%8a%a5-%ec%88%98%ec%b9%98 aria-label="성능 수치">성능 수치</a></li><li><a href=#%eb%9f%b0%ed%83%80%ec%9e%84-%ec%bb%a4%eb%b2%84%eb%a6%ac%ec%a7%80 aria-label="런타임 커버리지">런타임 커버리지</a></li><li><a href=#%eb%b9%a0%eb%a5%b8-%ec%84%a4%ec%b9%98-python aria-label="빠른 설치 (Python)">빠른 설치 (Python)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="llm-frameworks">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "LLM Frameworks - dibi8",
+      "item": "https://dibi8.com/ko/llm-frameworks/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: “v2.0.0” licensing_model: Open Source license_type: MIT (code) / OpenRAIL-M (model) file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-01-06” draft: false categories: [“ai-tools”] tags: [“supertonic”, “text-to-speech”, “tts”, “on-device-ai”, “onnx”, “multilingual”, “open-source-tts”, “edge-ai”, “korean-tts”, “japanese-tts”] aliases:\n/kr/posts/supertonic-on-device-multilingual-tts-2026/ Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026) 온디바이스 TTS의 문제 수년간 “괜찮은” 다국어 TTS란 곧 남의 클라우드 API를 호출하는 일이었다 — Google Cloud TTS, Amazon Polly, ElevenLabs, OpenAI Voice. 음성은 자연스러웠고, 광대역에서 지연은 견딜 만했으며, 문자당 단가는 청구서가 날아오기 전까진 아무도 신경 쓰지 않을 만큼 작았다.\n균열은 세 군데서 드러났다. 프라이버시 — 모든 스크립트를 제3자에 보내는 건 의료, 법률, 규제 산업에선 선택지가 아니다. 지연 편차 — 네트워크가 흔들리면 음성이 끊긴다. 스케일에서의 비용 — 월 100시간 정도의 오디오를 합성하기 시작하면 문자당 청구서가 쌓인다. 그리고 오프라인 사용 — 차량, 항공기, 원격 시설, 키오스크 어디든 로컬 추론이 필수다. 끝.\n오픈소스 온디바이스 TTS도 따라잡고 있었지만 트레이드오프가 가혹했다: 영어 전용 미니 모델(Piper, Coqui의 소형 변종)이거나, 실용성을 확보하려면 GPU가 필수인 거대 다국어 모델(XTTS-v2, Bark)이거나. “빠르고, 다국어이며, 가볍고, 진짜 오픈 웨이트\"라는 sweet spot은 누구도 맞추지 못했다.\n한국 음성 AI 회사 Supertone Inc.가 만든 Supertonic (GitHub: ```supertone-inc/supertonic````, 9,900+ stars)은 2026년에 그 공백을 메울 가장 신뢰할 만한 후보다. 99M 파라미터, 31개 언어, ONNX 런타임, CPU에서 무리 없이 돌아간다 — README에 따르면 비행기 모드의 e-reader에서도 실시간 대비 0.3배(RTF) 성능을 낸다고 한다.\nSupertonic의 정체 ONNX로 익스포트된, flow-matching 기반 text-to-latent 모듈 + speech autoencoder. 구체적으로: - 총 99M 파라미터 — 몇 초 안에 로딩되고 평범한 CPU에서 실시간으로 돌아갈 만큼 작다. 참고로 XTTS-v2는 ~1.5B, Bark는 ~900M 수준.\n기본 제공 31개 언어: 아랍어, 불가리아어, 크로아티아어, 체코어, 덴마크어, 네덜란드어, 영어, 에스토니아어, 핀란드어, 프랑스어, 독일어, 그리스어, 힌디어, 헝가리어, 인도네시아어, 이탈리아어, 일본어, 한국어, 라트비아어, 리투아니아어, 폴란드어, 포르투갈어, 루마니아어, 러시아어, 슬로바키아어, 슬로베니아어, 스페인어, 스웨덴어, 터키어, 우크라이나어, 베트남어. 44.1kHz 오디오 출력 — 대부분의 “그럭저럭” TTS가 머무는 22kHz가 아니라 진짜 스튜디오 샘플레이트. 10개 표현 태그 — , , 등. 텍스트 안에 그대로 박아 넣으면 음성 클로닝을 다시 학습할 필요 없이 더 자연스러운 전달을 끌어낼 수 있다. lang=\"na\" 모드 — 언어 코드를 굳이 고르고 싶지 않을 때 쓰는 언어 비종속(language-agnostic) 생성. 라이선스: 코드는 MIT, 모델 가중치는 OpenRAIL-M. 이 분리가 중요하다. OpenRAIL-M은 “책임 있는 AI” 라이선스로 일부 유해 용도를 제한하지만 상업적 배포는 허용한다. 제품으로 출시하기 전엔 model card를 꼭 읽어둬라.\n성능 수치 Supertone Inc.가 자사 benchmark와 README에서 인용한 수치들: | 지표 | Supertonic | 일반 베이스라인 | |—|—|—| | 파라미터 수 | 99M | 0.7B–2B | | 발음 정확도 (Minimax-MLS-test, WER/CER) | 훨씬 큰 모델 대비 경쟁력 | — | | 런타임 메모리 | GPU 베이스라인 대비 현저히 적음 | — | | Onyx Boox Go 6 e-reader(비행기 모드) RTF | 0.3배 | 해당 없음 (실행 불가) | | CPU 지연 | A100 GPU 베이스라인과 경쟁력 | — |\ne-reader benchmark가 헤드라인 수치다 — “정말 어디서든 돌아간다\"는 시그널을 보내는 종류의 숫자. 최신 스마트폰 CPU라면 이것에 비하면 식은 죽 먹기여야 한다.\n런타임 커버리지 Supertonic은 “알아서 래핑하시오” 식이 아니라 실제 SDK 바인딩을 함께 출시하는 몇 안 되는 오픈 TTS 프로젝트 중 하나다. v2.0.0 기준: - Python (pip install supertonic) — 1차 통합\nNode.js — 서버 및 Electron 앱 Browser — 가능하면 WebGPU, 폴백은 WebAssembly Java — Android 및 JVM 백엔드 C++, C#, Go, Rust — 시스템 통합 Swift / iOS — 퍼스트파티 네이티브 바인딩 Flutter — 크로스플랫폼 모바일 2026년 애플리케이션 개발자가 TTS를 임베드하려는 거의 모든 자리를 커버한다. 무거운 일은 ONNX 런타임이 떠맡고, Supertonic은 모델별 접착제(glue)만 더한다.\n빠른 설치 (Python) pip install supertonic 의존성은 이것 하나로 끝. 모델은 첫 호출 시 다운로드된다: `````python from supertonic import TTS\ntts = TTS(auto_download=True) style = tts.get_voice_style(voice_name=“M1”)\ntext = “Supertonic is a lightning fast, on-device TTS system.”\nwav, duration = tts.synthesize( text=text, lang=“en”, voice_style=style, total_steps=8, speed=1.05, ) tts.save_audio(wav, “output.wav”)\n한국어가 필요하면 ````lang=\"en\"```` → ````lang=\"ko\"````로 바꾸면 된다. ````ja````, ````vi````, ````zh````도 동일. 보이스 스타일(````M1````)은 언어가 바뀌어도 일관성을 유지한다 — 다국어 캐릭터 음성을 만들 때 유용하다. 표현 태그를 쓰려면: `````python text = \"I can't believe it. That's incredible. Let me explain.\" ```` 모델이 태그를 텍스트 안에서 해석해 그에 맞는 표현을 음성에 입혀준다. * * * ## 다른 솔루션과의 비교 2026년 온디바이스 TTS 지형을 실제 결과물 기준으로 줄 세워보면: ### vs. Piper (40K+ stars) Piper는 온디바이스 TTS의 오랜 강자다. **Piper의 우위**: 보이스당 모델이 더 작다(수 MB), 영어 전용 케이스에서 배포가 더 단순. **Supertonic의 우위**: 훨씬 많은 언어, 더 강한 표현 제어, 더 높은 샘플레이트, 언어마다 모델 하나가 아니라 단일 모델로 전 언어를 처리. ### vs. XTTS-v2 (Coqui) XTTS-v2는 보이스 클로닝을 제공하지만 Supertonic은 이를 셀링 포인트로 내세우지 않는다. **XTTS-v2의 우위**: 보이스 클로닝 품질. **Supertonic의 우위**: CPU에서의 실용성, 멀티 런타임 SDK, 모델 크기, 라이선스 명확성. ### vs. Bark (Suno) Bark는 비음성 오디오(음악, 효과음)에서 인상적이다. **Bark의 우위**: 음성 너머의 스타일 폭. **Supertonic의 우위**: 속도, 배포 용이성, 그리고 Bark가 영어 위주인 반면 31개 언어 지원. ### vs. ElevenLabs / OpenAI / Google Cloud 보이스 클로닝 충실도와 최상위 음성의 순수 자연스러움에서는 클라우드 TTS가 여전히 앞선다. **Supertonic의 우위**: API 키 없음, 문자당 청구서 없음, 네트워크 의존성 없음, 완전한 프라이버시. * * * ## Supertonic이 못 하는 것 기대치를 맞추기 위해: - **샘플 기반 보이스 클로닝 없음.** 내장된 보이스 스타일 중에서 골라야 한다. 클로닝이 필요하면 XTTS-v2나 상용 API를 봐라. - **토큰 단위 스트리밍 합성 없음** — 공개 릴리스에서는 합성이 세그먼트 단위로만 이뤄진다. - **파인튜닝 도구가 제한적.** 모델 가중치는 OpenRAIL-M으로 오픈되어 있지만 학습 파이프라인 전체가 공개되어 있진 않다. - **22kHz 폴백 없음.** 항상 44.1kHz 출력. 더 낮은 대역폭이 필요하면 직접 리샘플해야 한다. * * * ## Supertonic이 빛나는 실전 케이스 - **음성 기능을 가진 모바일 앱** — 온보딩 내레이션, 접근성 읽어주기, 언어 학습. 단일 ONNX 파일 하나 묶으면 31개 언어 지원, 바이너리에 API 키 박을 일도 없다. - **의료·법률 도구** — 민감 문서를 디바이스 밖으로 한 발자국도 내보내지 않고 음성으로 읽어줄 수 있다. - **차량 및 기내 시스템** — 완전 오프라인 지원, graceful degradation 따위 신경 쓸 필요 없음. - **한국어 / 일본어 / 베트남어 / 중국어 로컬라이제이션** — 아시아 언어용 오픈소스 TTS의 공백은 그동안 뼈아팠는데, Supertonic이 모델 하나로 그 큰 덩어리를 메운다. - **엣지 IoT 디바이스** — 클라우드 연결 없는 키오스크, 사이니지, 스마트 스피커. * * * ## 누가 써야 하나 **그렇다, 설치해라, 만약 당신이:** - 음성 출력이 필요한 앱을 배포하는데 사용량에 비례해 늘어나는 클라우드 청구서가 싫다. - 프라이버시(규제 산업)나 오프라인(모바일, 기내, 엣지)이 필요하다. - 비영어권 시장용 로컬라이즈를 하는데 모델 서른 개보다 하나로 끝내고 싶다. - GPU 없이 스튜디오급 44.1kHz 오디오를 뽑고 싶다. **클라우드 TTS를 유지해라, 만약 당신이:** - 30초 샘플로 보이스 클로닝을 해야 한다. - ElevenLabs 라인업 최상위가 여전히 앞서는 초사실적 단일 보이스 콘텐츠를 만든다. - 스트리밍 부분 오디오가 필요하다(공개된 Supertonic 릴리스는 아직 노출하지 않음). * * * ## 결론 Supertonic은 2026년에 출시된 \"어디서든 돌아가는 단일 모델\" 오픈 TTS 중 가장 신뢰할 만한 후보다. 99M 파라미터 규모, 31개 언어, 멀티 런타임 SDK, e-reader에서의 0.3배 RTF — 이 조합은 그동안 거의 어떤 오픈 TTS도 도달하지 못한 \"그래, 이거 모바일 앱에 그대로 박아도 된다\" 영역에 Supertonic을 단단히 올려놓는다. 한국·일본·베트남, 그 외 TTS 지원이 박했던 언어 시장의 개발자들에게 더 큰 이야기는 따로 있다: 오픈소스 TTS와 클라우드 API 사이의 품질 격차가 극적으로 좁혀졌다는 사실. 5년 전엔 영어만이 오픈 TTS로 프로덕션이 가능한 유일한 언어였다. 2026년, Supertonic과 함께 그 명단은 이제 세계 대부분의 언어를 진짜로 포함한다. 프롬프트 측은 [온디바이스 LLM 런타임](https://dibi8.com/kr/resources/llm-frameworks/local-llm-runner-comparison-2026/)과 묶으면, 클라우드 의존도 0인 완전 로컬 음성 에이전트 스택이 완성된다. * * * **GitHub**: [supertone-inc/supertonic](https://github.com/supertone-inc/supertonic) · **라이선스**: MIT (코드) / OpenRAIL-M (가중치) · **최신**: v2.0.0 (2026-01-06) · **Stars**: 9.9K+ · **메인테이너**: Supertone Inc. { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)\", \"datePublished\": \"2026-05-23\", \"dateModified\": \"2026-05-23\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/kr/resources/supertonic-on-device-multilingual-tts-2026\" } } ## Why This Matters Understanding supertonic 리뷰: onnx로 31개 언어를 돌리는 99m 파라미터 온디바이스 tts (2026) is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026) represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~6 minutes* ",
+  "wordCount" : "1442",
+  "inLanguage": "ko",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ko/llm-frameworks/supertonic-on-device-multilingual-tts-2026/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ko/llm-frameworks/">LLM Frameworks - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">목차</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#supertonic-%eb%a6%ac%eb%b7%b0-onnx%eb%a1%9c-31%ea%b0%9c-%ec%96%b8%ec%96%b4%eb%a5%bc-%eb%8f%8c%eb%a6%ac%eb%8a%94-99m-%ed%8c%8c%eb%9d%bc%eb%af%b8%ed%84%b0-%ec%98%a8%eb%94%94%eb%b0%94%ec%9d%b4%ec%8a%a4-tts-2026" aria-label="Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)">Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)</a><ul>
+                    
+            <li>
+                <a href="#%ec%98%a8%eb%94%94%eb%b0%94%ec%9d%b4%ec%8a%a4-tts%ec%9d%98-%eb%ac%b8%ec%a0%9c" aria-label="온디바이스 TTS의 문제">온디바이스 TTS의 문제</a></li>
+            <li>
+                <a href="#supertonic%ec%9d%98-%ec%a0%95%ec%b2%b4" aria-label="Supertonic의 정체">Supertonic의 정체</a></li>
+            <li>
+                <a href="#%ec%84%b1%eb%8a%a5-%ec%88%98%ec%b9%98" aria-label="성능 수치">성능 수치</a></li>
+            <li>
+                <a href="#%eb%9f%b0%ed%83%80%ec%9e%84-%ec%bb%a4%eb%b2%84%eb%a6%ac%ec%a7%80" aria-label="런타임 커버리지">런타임 커버리지</a></li>
+            <li>
+                <a href="#%eb%b9%a0%eb%a5%b8-%ec%84%a4%ec%b9%98-python" aria-label="빠른 설치 (Python)">빠른 설치 (Python)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-23T00:00:00+08:00
 lastmod: 2026-05-23T00:00:00+08:00
@@ -21,23 +231,66 @@ last_maintained: &ldquo;2026-01-06&rdquo;
 draft: false
 categories: [&ldquo;ai-tools&rdquo;]
 tags: [&ldquo;supertonic&rdquo;, &ldquo;text-to-speech&rdquo;, &ldquo;tts&rdquo;, &ldquo;on-device-ai&rdquo;, &ldquo;onnx&rdquo;, &ldquo;multilingual&rdquo;, &ldquo;open-source-tts&rdquo;, &ldquo;edge-ai&rdquo;, &ldquo;korean-tts&rdquo;, &ldquo;japanese-tts&rdquo;]
-aliases:</p><ul><li>/kr/posts/supertonic-on-device-multilingual-tts-2026/</li></ul><hr><h1 id=supertonic-리뷰-onnx로-31개-언어를-돌리는-99m-파라미터-온디바이스-tts-2026>Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)<a hidden class=anchor aria-hidden=true href=#supertonic-리뷰-onnx로-31개-언어를-돌리는-99m-파라미터-온디바이스-tts-2026>#</a></h1><h2 id=온디바이스-tts의-문제>온디바이스 TTS의 문제<a hidden class=anchor aria-hidden=true href=#온디바이스-tts의-문제>#</a></h2><p>수년간 &ldquo;괜찮은&rdquo; 다국어 TTS란 곧 남의 클라우드 API를 호출하는 일이었다 — Google Cloud TTS, Amazon Polly, ElevenLabs, OpenAI Voice. 음성은 자연스러웠고, 광대역에서 지연은 견딜 만했으며, 문자당 단가는 청구서가 날아오기 전까진 아무도 신경 쓰지 않을 만큼 작았다.</p><p>균열은 세 군데서 드러났다. <strong>프라이버시</strong> — 모든 스크립트를 제3자에 보내는 건 의료, 법률, 규제 산업에선 선택지가 아니다. <strong>지연 편차</strong> — 네트워크가 흔들리면 음성이 끊긴다. <strong>스케일에서의 비용</strong> — 월 100시간 정도의 오디오를 합성하기 시작하면 문자당 청구서가 쌓인다. 그리고 <strong>오프라인 사용</strong> — 차량, 항공기, 원격 시설, 키오스크 어디든 로컬 추론이 필수다. 끝.</p><p>오픈소스 온디바이스 TTS도 따라잡고 있었지만 트레이드오프가 가혹했다: 영어 전용 미니 모델(Piper, Coqui의 소형 변종)이거나, 실용성을 확보하려면 GPU가 필수인 거대 다국어 모델(XTTS-v2, Bark)이거나. &ldquo;빠르고, 다국어이며, 가볍고, 진짜 오픈 웨이트"라는 sweet spot은 누구도 맞추지 못했다.</p><p>한국 음성 AI 회사 Supertone Inc.가 만든 <a href=https://github.com/supertone-inc/supertonic><strong>Supertonic</strong></a> (GitHub: ```supertone-inc/supertonic````, <strong>9,900+ stars</strong>)은 2026년에 그 공백을 메울 가장 신뢰할 만한 후보다. 99M 파라미터, 31개 언어, ONNX 런타임, CPU에서 무리 없이 돌아간다 — README에 따르면 비행기 모드의 e-reader에서도 실시간 대비 0.3배(RTF) 성능을 낸다고 한다.</p><hr><h2 id=supertonic의-정체>Supertonic의 정체<a hidden class=anchor aria-hidden=true href=#supertonic의-정체>#</a></h2><p>ONNX로 익스포트된, flow-matching 기반 text-to-latent 모듈 + speech autoencoder. 구체적으로: - <strong>총 99M 파라미터</strong> — 몇 초 안에 로딩되고 평범한 CPU에서 실시간으로 돌아갈 만큼 작다. 참고로 XTTS-v2는 ~1.5B, Bark는 ~900M 수준.</p><ul><li><strong>기본 제공 31개 언어</strong>: 아랍어, 불가리아어, 크로아티아어, 체코어, 덴마크어, 네덜란드어, 영어, 에스토니아어, 핀란드어, 프랑스어, 독일어, 그리스어, 힌디어, 헝가리어, 인도네시아어, 이탈리아어, <strong>일본어</strong>, <strong>한국어</strong>, 라트비아어, 리투아니아어, 폴란드어, 포르투갈어, 루마니아어, 러시아어, 슬로바키아어, 슬로베니아어, 스페인어, 스웨덴어, 터키어, 우크라이나어, <strong>베트남어</strong>.</li><li><strong>44.1kHz 오디오 출력</strong> — 대부분의 &ldquo;그럭저럭&rdquo; TTS가 머무는 22kHz가 아니라 진짜 스튜디오 샘플레이트.</li><li><strong>10개 표현 태그</strong> — <code>&lt;laugh></code>, <code>&lt;breath></code>, <code>&lt;sigh></code> 등. 텍스트 안에 그대로 박아 넣으면 음성 클로닝을 다시 학습할 필요 없이 더 자연스러운 전달을 끌어낼 수 있다.</li><li><strong><code>lang="na"</code> 모드</strong> — 언어 코드를 굳이 고르고 싶지 않을 때 쓰는 언어 비종속(language-agnostic) 생성.</li></ul><p>라이선스: <strong>코드는 MIT, 모델 가중치는 OpenRAIL-M</strong>. 이 분리가 중요하다. OpenRAIL-M은 &ldquo;책임 있는 AI&rdquo; 라이선스로 일부 유해 용도를 제한하지만 상업적 배포는 허용한다. 제품으로 출시하기 전엔 model card를 꼭 읽어둬라.</p><hr><h2 id=성능-수치>성능 수치<a hidden class=anchor aria-hidden=true href=#성능-수치>#</a></h2><p>Supertone Inc.가 자사 benchmark와 README에서 인용한 수치들: | 지표 | Supertonic | 일반 베이스라인 |
+aliases:</p>
+<ul>
+<li>/kr/posts/supertonic-on-device-multilingual-tts-2026/</li>
+</ul>
+<hr>
+<h1 id="supertonic-리뷰-onnx로-31개-언어를-돌리는-99m-파라미터-온디바이스-tts-2026">Supertonic 리뷰: ONNX로 31개 언어를 돌리는 99M 파라미터 온디바이스 TTS (2026)<a hidden class="anchor" aria-hidden="true" href="#supertonic-리뷰-onnx로-31개-언어를-돌리는-99m-파라미터-온디바이스-tts-2026">#</a></h1>
+<h2 id="온디바이스-tts의-문제">온디바이스 TTS의 문제<a hidden class="anchor" aria-hidden="true" href="#온디바이스-tts의-문제">#</a></h2>
+<p>수년간 &ldquo;괜찮은&rdquo; 다국어 TTS란 곧 남의 클라우드 API를 호출하는 일이었다 — Google Cloud TTS, Amazon Polly, ElevenLabs, OpenAI Voice. 음성은 자연스러웠고, 광대역에서 지연은 견딜 만했으며, 문자당 단가는 청구서가 날아오기 전까진 아무도 신경 쓰지 않을 만큼 작았다.</p>
+<p>균열은 세 군데서 드러났다. <strong>프라이버시</strong> — 모든 스크립트를 제3자에 보내는 건 의료, 법률, 규제 산업에선 선택지가 아니다. <strong>지연 편차</strong> — 네트워크가 흔들리면 음성이 끊긴다. <strong>스케일에서의 비용</strong> — 월 100시간 정도의 오디오를 합성하기 시작하면 문자당 청구서가 쌓인다. 그리고 <strong>오프라인 사용</strong> — 차량, 항공기, 원격 시설, 키오스크 어디든 로컬 추론이 필수다. 끝.</p>
+<p>오픈소스 온디바이스 TTS도 따라잡고 있었지만 트레이드오프가 가혹했다: 영어 전용 미니 모델(Piper, Coqui의 소형 변종)이거나, 실용성을 확보하려면 GPU가 필수인 거대 다국어 모델(XTTS-v2, Bark)이거나. &ldquo;빠르고, 다국어이며, 가볍고, 진짜 오픈 웨이트&quot;라는 sweet spot은 누구도 맞추지 못했다.</p>
+<p>한국 음성 AI 회사 Supertone Inc.가 만든 <a href="https://github.com/supertone-inc/supertonic"><strong>Supertonic</strong></a> (GitHub: ```supertone-inc/supertonic````, <strong>9,900+ stars</strong>)은 2026년에 그 공백을 메울 가장 신뢰할 만한 후보다. 99M 파라미터, 31개 언어, ONNX 런타임, CPU에서 무리 없이 돌아간다 — README에 따르면 비행기 모드의 e-reader에서도 실시간 대비 0.3배(RTF) 성능을 낸다고 한다.</p>
+<hr>
+<h2 id="supertonic의-정체">Supertonic의 정체<a hidden class="anchor" aria-hidden="true" href="#supertonic의-정체">#</a></h2>
+<p>ONNX로 익스포트된, flow-matching 기반 text-to-latent 모듈 + speech autoencoder. 구체적으로: - <strong>총 99M 파라미터</strong> — 몇 초 안에 로딩되고 평범한 CPU에서 실시간으로 돌아갈 만큼 작다. 참고로 XTTS-v2는 ~1.5B, Bark는 ~900M 수준.</p>
+<ul>
+<li><strong>기본 제공 31개 언어</strong>: 아랍어, 불가리아어, 크로아티아어, 체코어, 덴마크어, 네덜란드어, 영어, 에스토니아어, 핀란드어, 프랑스어, 독일어, 그리스어, 힌디어, 헝가리어, 인도네시아어, 이탈리아어, <strong>일본어</strong>, <strong>한국어</strong>, 라트비아어, 리투아니아어, 폴란드어, 포르투갈어, 루마니아어, 러시아어, 슬로바키아어, 슬로베니아어, 스페인어, 스웨덴어, 터키어, 우크라이나어, <strong>베트남어</strong>.</li>
+<li><strong>44.1kHz 오디오 출력</strong> — 대부분의 &ldquo;그럭저럭&rdquo; TTS가 머무는 22kHz가 아니라 진짜 스튜디오 샘플레이트.</li>
+<li><strong>10개 표현 태그</strong> — <code>&lt;laugh&gt;</code>, <code>&lt;breath&gt;</code>, <code>&lt;sigh&gt;</code> 등. 텍스트 안에 그대로 박아 넣으면 음성 클로닝을 다시 학습할 필요 없이 더 자연스러운 전달을 끌어낼 수 있다.</li>
+<li><strong><code>lang=&quot;na&quot;</code> 모드</strong> — 언어 코드를 굳이 고르고 싶지 않을 때 쓰는 언어 비종속(language-agnostic) 생성.</li>
+</ul>
+<p>라이선스: <strong>코드는 MIT, 모델 가중치는 OpenRAIL-M</strong>. 이 분리가 중요하다. OpenRAIL-M은 &ldquo;책임 있는 AI&rdquo; 라이선스로 일부 유해 용도를 제한하지만 상업적 배포는 허용한다. 제품으로 출시하기 전엔 model card를 꼭 읽어둬라.</p>
+<hr>
+<h2 id="성능-수치">성능 수치<a hidden class="anchor" aria-hidden="true" href="#성능-수치">#</a></h2>
+<p>Supertone Inc.가 자사 benchmark와 README에서 인용한 수치들: | 지표 | Supertonic | 일반 베이스라인 |
 |&mdash;|&mdash;|&mdash;|
 | 파라미터 수 | 99M | 0.7B–2B |
 | 발음 정확도 (Minimax-MLS-test, WER/CER) | 훨씬 큰 모델 대비 경쟁력 | — |
 | 런타임 메모리 | GPU 베이스라인 대비 현저히 적음 | — |
 | Onyx Boox Go 6 e-reader(비행기 모드) RTF | 0.3배 | 해당 없음 (실행 불가) |
-| CPU 지연 | A100 GPU 베이스라인과 경쟁력 | — |</p><p>e-reader benchmark가 헤드라인 수치다 — &ldquo;정말 어디서든 돌아간다"는 시그널을 보내는 종류의 숫자. 최신 스마트폰 CPU라면 이것에 비하면 식은 죽 먹기여야 한다.</p><hr><h2 id=런타임-커버리지>런타임 커버리지<a hidden class=anchor aria-hidden=true href=#런타임-커버리지>#</a></h2><p>Supertonic은 &ldquo;알아서 래핑하시오&rdquo; 식이 아니라 실제 SDK 바인딩을 함께 출시하는 몇 안 되는 오픈 TTS 프로젝트 중 하나다. v2.0.0 기준: - <strong>Python</strong> (<code>pip install supertonic</code>) — 1차 통합</p><ul><li><strong>Node.js</strong> — 서버 및 Electron 앱</li><li><strong>Browser</strong> — 가능하면 WebGPU, 폴백은 WebAssembly</li><li><strong>Java</strong> — Android 및 JVM 백엔드</li><li><strong>C++</strong>, <strong>C#</strong>, <strong>Go</strong>, <strong>Rust</strong> — 시스템 통합</li><li><strong>Swift / iOS</strong> — 퍼스트파티 네이티브 바인딩</li><li><strong>Flutter</strong> — 크로스플랫폼 모바일</li></ul><p>2026년 애플리케이션 개발자가 TTS를 임베드하려는 거의 모든 자리를 커버한다. 무거운 일은 ONNX 런타임이 떠맡고, Supertonic은 모델별 접착제(glue)만 더한다.</p><hr><h2 id=빠른-설치-python>빠른 설치 (Python)<a hidden class=anchor aria-hidden=true href=#빠른-설치-python>#</a></h2><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span>pip install supertonic
+| CPU 지연 | A100 GPU 베이스라인과 경쟁력 | — |</p>
+<p>e-reader benchmark가 헤드라인 수치다 — &ldquo;정말 어디서든 돌아간다&quot;는 시그널을 보내는 종류의 숫자. 최신 스마트폰 CPU라면 이것에 비하면 식은 죽 먹기여야 한다.</p>
+<hr>
+<h2 id="런타임-커버리지">런타임 커버리지<a hidden class="anchor" aria-hidden="true" href="#런타임-커버리지">#</a></h2>
+<p>Supertonic은 &ldquo;알아서 래핑하시오&rdquo; 식이 아니라 실제 SDK 바인딩을 함께 출시하는 몇 안 되는 오픈 TTS 프로젝트 중 하나다. v2.0.0 기준: - <strong>Python</strong> (<code>pip install supertonic</code>) — 1차 통합</p>
+<ul>
+<li><strong>Node.js</strong> — 서버 및 Electron 앱</li>
+<li><strong>Browser</strong> — 가능하면 WebGPU, 폴백은 WebAssembly</li>
+<li><strong>Java</strong> — Android 및 JVM 백엔드</li>
+<li><strong>C++</strong>, <strong>C#</strong>, <strong>Go</strong>, <strong>Rust</strong> — 시스템 통합</li>
+<li><strong>Swift / iOS</strong> — 퍼스트파티 네이티브 바인딩</li>
+<li><strong>Flutter</strong> — 크로스플랫폼 모바일</li>
+</ul>
+<p>2026년 애플리케이션 개발자가 TTS를 임베드하려는 거의 모든 자리를 커버한다. 무거운 일은 ONNX 런타임이 떠맡고, Supertonic은 모델별 접착제(glue)만 더한다.</p>
+<hr>
+<h2 id="빠른-설치-python">빠른 설치 (Python)<a hidden class="anchor" aria-hidden="true" href="#빠른-설치-python">#</a></h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>pip install supertonic
 </span></span></code></pre></div><p>의존성은 이것 하나로 끝. 모델은 첫 호출 시 다운로드된다: `````python
-from supertonic import TTS</p><p>tts = TTS(auto_download=True)
-style = tts.get_voice_style(voice_name=&ldquo;M1&rdquo;)</p><p>text = &ldquo;Supertonic is a lightning fast, on-device TTS system.&rdquo;</p><p>wav, duration = tts.synthesize(
+from supertonic import TTS</p>
+<p>tts = TTS(auto_download=True)
+style = tts.get_voice_style(voice_name=&ldquo;M1&rdquo;)</p>
+<p>text = &ldquo;Supertonic is a lightning fast, on-device TTS system.&rdquo;</p>
+<p>wav, duration = tts.synthesize(
 text=text,
 lang=&ldquo;en&rdquo;,
 voice_style=style,
 total_steps=8,
 speed=1.05,
 )
-tts.save_audio(wav, &ldquo;output.wav&rdquo;)</p><pre tabindex=0><code>
+tts.save_audio(wav, &ldquo;output.wav&rdquo;)</p>
+<pre tabindex="0"><code>
 한국어가 필요하면 ````lang=&#34;en&#34;```` → ````lang=&#34;ko&#34;````로 바꾸면 된다. ````ja````, ````vi````, ````zh````도 동일. 보이스 스타일(````M1````)은 언어가 바뀌어도 일관성을 유지한다 — 다국어 캐릭터 음성을 만들 때 유용하다.
 
 표현 태그를 쓰려면: `````python
@@ -176,8 +429,145 @@ For the latest updates and community discussions, join our Telegram channel: htt
 
 *Last updated: 2026-09-20*
 *Read time: ~6 minutes*
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/ko/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/ko/tags/tools/>Tools</a></li></ul></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/ko/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="복사";function s(){t.innerHTML="복사 완료!",setTimeout(()=>{t.innerHTML="복사"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/ko/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/ko/tags/tools/">Tools</a></li>
+    </ul>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '복사';
+
+        function copyingDone() {
+            copybutton.innerHTML = '복사 완료!';
+            setTimeout(() => {
+                copybutton.innerHTML = '복사';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

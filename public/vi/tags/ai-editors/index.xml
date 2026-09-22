@@ -1,1 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Ai-Editors on Dibi8</title><link>https://dibi8.com/vi/tags/ai-editors/</link><description>Recent content in Ai-Editors on Dibi8</description><generator>Hugo</generator><language>vi</language><lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://dibi8.com/vi/tags/ai-editors/index.xml" rel="self" type="application/rss+xml"/><item><title>Addy Osmani Agent Skills: 96K-Star Framework For Production-Grade AI Coding Workflows</title><link>https://dibi8.com/vi/addy-osmani-agent-skills-production-guide-2026/</link><pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate><guid>https://dibi8.com/vi/addy-osmani-agent-skills-production-guide-2026/</guid><description>Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ai-Editors on Dibi8</title>
+    <link>https://dibi8.com/vi/tags/ai-editors/</link>
+    <description>Recent content in Ai-Editors on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>vi</language>
+    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/vi/tags/ai-editors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Addy Osmani Agent Skills: 96K-Star Framework For Production-Grade AI Coding Workflows</title>
+      <link>https://dibi8.com/vi/addy-osmani-agent-skills-production-guide-2026/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/vi/addy-osmani-agent-skills-production-guide-2026/</guid>
+      <description>Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.</description>
+    </item>
+  </channel>
+</rss>

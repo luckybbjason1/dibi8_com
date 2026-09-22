@@ -1,28 +1,378 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta name=generator content="Hugo 0.163.3"><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Dibi8</title><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Dibi8"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="en_us"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Dibi8"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Organization","name":"Dibi8","url":"https://dibi8.com/","description":"Hand-tested AI coding agent tools and open-source LLM frameworks","logo":"https://dibi8.com/favicon.ico","sameAs":[]}</script></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: BSD-3-Clause file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“web-scraping”, “python”, “crawler”, “async”, “docker”, “scrapy-tutorial”, “benchmark”, “data-pipeline”] aliases:
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head>
+	<meta name="generator" content="Hugo 0.163.3"><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Dibi8</title>
+
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Dibi8",
+  "url": "https://dibi8.com/",
+  "description": "Hand-tested AI coding agent tools and open-source LLM frameworks",
+  "logo": "https://dibi8.com/favicon.ico",
+  "sameAs": [
+      
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: BSD-3-Clause file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“web-scraping”, “python”, “crawler”, “async”, “docker”, “scrapy-tutorial”, “benchmark”, “data-pipeline”] aliases:
 /posts/scrapy/- When a single Python framework powers an estimated 34% of production scraping projects worldwide and maintains a 61,700-star GitHub repository, it warrants a closer look. Scrapy has been the workhorse of web crawling since 2008, but in 2026 the landscape includes modern browser automation tools like Playwright and proven libraries like BeautifulSoup. The question is no longer “Can Scrapy crawl?” — it is “Should you still pick Scrapy over the alternatives for your specific workload?”
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/scrapy/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Self-Hosted AI Coding Workflow: The Complete $6/Month St… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: - Docker
-Python TypeScript PostgreSQL application_domain: Collections source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“self-hosted”, “ai coding”, “stack”, “workflow”, “collection”] aliases: /posts/self-hosted-ai-coding-workflow/- If you’ve been paying $20/mo for Cursor + $80/mo for Claude Code Pro + $19/mo for Copilot + $50/mo for Replit credits + $120/mo for OpenAI API top-ups, you’re at $289/month of AI coding spend. After 12 months that’s $3,468 — for tools you don’t own, can’t audit, and can have rate-limited or shut off without notice.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/self-hosted-ai-coding-workflow/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00+08:00 lastmod: 2026-05-25T00:00:00+08:00 tech_stack: [Ollama, vLLM, LocalAI, ‘Llama 3.3’, CUDA] application_domain: LLM Frameworks source_version: “Ollama 0.4 / vLLM 0.7 / LocalAI 2.20” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“self-hosted”, “llm”, “ollama”, “vllm”, “localai”, “inference”, “2026”] aliases:
-/posts/self-hosted-llm-2026-ollama-vllm-localai/ faq: - q: “Which self-hosted LLM stack is best in 2026?” a: “Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code).” q: “What hardware do I actually need?” a: “For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices.” q: “Is self-hosting LLMs actually cheaper than API?” a: “Above ~10M tokens/month of usage, yes. Single H100 amortized + electricity + maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices.” q: “Can self-hosted models match commercial API quality?” a: “For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where ‘good enough’ wins over best: yes. Llama 3.3 + Llama 4 (when released) close the gap further.” q: “How long does setup take for each?” a: “Ollama: 10 minutes (one curl command + ollama pull). LocalAI: 30-45 minutes (Docker compose + model config). vLLM: 1-2 hours (Python env + CUDA matching + serving config). Initial setup pain is inversely correlated with production capability.” q: “Which is best for OpenAI API drop-in replacement?” a: “LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI’s URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support.” Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI Meta Description: Tested all three on RTX 4090 with Llama 3.3 70B. Real throughput, memory, setup time, plus when self-hosting is actually cheaper than API.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Semgrep: The 15K-Star SAST Tool That Finds 500+ Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready TL;DR Semgrep is an open-source static analysis toolkit with 15K+ GitHub stars that finds vulnerabilities in Python, JavaScript, TypeScript, Go, Java, and more. 500+ rule patterns, CLI-first design, CI/CD integration. It’s the most loved developer security tool available — fast, free, and self-hosted. With 15,453 stars and a 20-second average scan time, Semgrep is the go-to security scanner for modern engineering teams.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/semgrep-15k-star-sast-security-scanner/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>What Is SGLang? SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models. It consists of two main components: 1. SGLang Runtime: A high-performance server that serves LLM endpoints with optimized memory management and request scheduling 2. SGLang Python Library: A programming language for writing LLM applications with structured outputs, tool calling, and multi-step reasoning
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/scrapy/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Self-Hosted AI Coding Workflow: The Complete $6/Month St… description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: - Docker
+Python TypeScript PostgreSQL application_domain: Collections source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“collections”] tags: [“self-hosted”, “ai coding”, “stack”, “workflow”, “collection”] aliases: /posts/self-hosted-ai-coding-workflow/- If you’ve been paying $20/mo for Cursor &#43; $80/mo for Claude Code Pro &#43; $19/mo for Copilot &#43; $50/mo for Replit credits &#43; $120/mo for OpenAI API top-ups, you’re at $289/month of AI coding spend. After 12 months that’s $3,468 — for tools you don’t own, can’t audit, and can have rate-limited or shut off without notice.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/self-hosted-ai-coding-workflow/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Ollama, vLLM, LocalAI, ‘Llama 3.3’, CUDA] application_domain: LLM Frameworks source_version: “Ollama 0.4 / vLLM 0.7 / LocalAI 2.20” licensing_model: Open Source license_type: ‘MIT / Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“self-hosted”, “llm”, “ollama”, “vllm”, “localai”, “inference”, “2026”] aliases:
+/posts/self-hosted-llm-2026-ollama-vllm-localai/ faq: - q: “Which self-hosted LLM stack is best in 2026?” a: “Depends on workload. Ollama for hobby/dev (easiest setup, single-user). vLLM for production (highest throughput, multi-user). LocalAI for OpenAI API compatibility drop-in replacement (broad model support, swap target for existing OpenAI client code).” q: “What hardware do I actually need?” a: “For Llama 3.3 70B quantized (Q4): single RTX 4090 (24GB VRAM) handles it at usable speed (~25 tokens/sec). Production server: dual H100 or A100 80GB. Hobby: RTX 3090 (24GB) works for 70B at slower speed. For 8B models: any GPU with 8GB VRAM suffices.” q: “Is self-hosting LLMs actually cheaper than API?” a: “Above ~10M tokens/month of usage, yes. Single H100 amortized &#43; electricity &#43; maintenance comes to ~$0.0001/1K tokens. Anthropic Sonnet API is $0.003/1K input. Below 5M tokens/month, API wins because of underutilization. The break-even shifted with 2026 prices.” q: “Can self-hosted models match commercial API quality?” a: “For coding/reasoning: no. GPT-5, Claude Sonnet 4.6, Gemini 2.5 Pro outperform Llama 3.3 70B by 15-25% on benchmarks. For privacy-sensitive workloads where ‘good enough’ wins over best: yes. Llama 3.3 &#43; Llama 4 (when released) close the gap further.” q: “How long does setup take for each?” a: “Ollama: 10 minutes (one curl command &#43; ollama pull). LocalAI: 30-45 minutes (Docker compose &#43; model config). vLLM: 1-2 hours (Python env &#43; CUDA matching &#43; serving config). Initial setup pain is inversely correlated with production capability.” q: “Which is best for OpenAI API drop-in replacement?” a: “LocalAI by design — it exposes the OpenAI-compatible /v1/chat/completions endpoint. Point any OpenAI SDK at LocalAI’s URL and it just works. Ollama and vLLM also expose OpenAI-compatible endpoints in 2026 versions, but LocalAI has the longest track record and broadest model support.” Self-Hosted LLM 2026: Ollama vs vLLM vs LocalAI Meta Description: Tested all three on RTX 4090 with Llama 3.3 70B. Real throughput, memory, setup time, plus when self-hosting is actually cheaper than API.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>8 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Semgrep: The 15K-Star SAST Tool That Finds 500&#43; Vulnerabilities in Your Codebase in Under 30 Seconds — Fast, Lightweight, Production-Ready TL;DR Semgrep is an open-source static analysis toolkit with 15K&#43; GitHub stars that finds vulnerabilities in Python, JavaScript, TypeScript, Go, Java, and more. 500&#43; rule patterns, CLI-first design, CI/CD integration. It’s the most loved developer security tool available — fast, free, and self-hosted. With 15,453 stars and a 20-second average scan time, Semgrep is the go-to security scanner for modern engineering teams.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>10 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/semgrep-15k-star-sast-security-scanner/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>What Is SGLang? SGLang (Structured Generation Language) is a full-stack library for deploying and serving large language models. It consists of two main components: 1. SGLang Runtime: A high-performance server that serves LLM endpoints with optimized memory management and request scheduling 2. SGLang Python Library: A programming language for writing LLM applications with structured outputs, tool calling, and multi-step reasoning
 The Problem SGLang Solves Traditional LLM serving engines (vLLM, TGI, text-generation-inference) excel at raw token generation but struggle with: - Structured output enforcement: Getting reliable JSON, regex-matched, or grammar-constrained outputs requires post-processing that breaks streaming
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: GPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“shellcheck”, “bash”, “static-analysis”, “linting”, “shell-script”, “devops”, “ci-cd”, “docker”] aliases:
-/posts/shellcheck/- ShellCheck is the de facto standard for catching bugs in shell scripts before they hit production. With 39,456+ GitHub stars and a maintained open-source community, it is the most widely adopted static analysis tool for bash, sh, dash, and ksh scripts. This guide walks through installing ShellCheck, integrating it with editors and CI/CD pipelines, and hardening it for production use.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/shellcheck/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “SigNoz: The Open-Source APM Replacing Datadog at 10% Cos… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“signoz”, “apm”, “observability”, “distributed tracing”, “opentelemetry”, “datadog alternative”, “self-hosted”, “docker”, “kubernetes”, “metrics”, “logs”, “monitoring”] aliases:
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>13 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/sglang-structured-generation-llm/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: GPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“shellcheck”, “bash”, “static-analysis”, “linting”, “shell-script”, “devops”, “ci-cd”, “docker”] aliases:
+/posts/shellcheck/- ShellCheck is the de facto standard for catching bugs in shell scripts before they hit production. With 39,456&#43; GitHub stars and a maintained open-source community, it is the most widely adopted static analysis tool for bash, sh, dash, and ksh scripts. This guide walks through installing ShellCheck, integrating it with editors and CI/CD pipelines, and hardening it for production use.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>14 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/shellcheck/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “SigNoz: The Open-Source APM Replacing Datadog at 10% Cos… description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“dev-utils”] tags: [“signoz”, “apm”, “observability”, “distributed tracing”, “opentelemetry”, “datadog alternative”, “self-hosted”, “docker”, “kubernetes”, “metrics”, “logs”, “monitoring”] aliases:
 /posts/signoz-apm-observability-open-source/- Introduction: The $65,000/Year Observability Bill Nobody Talks About A mid-sized engineering team running 50 microservices on Kubernetes was paying Datadog $5,400/month ($65,000/year) for APM, distributed tracing, infrastructure monitoring, and log management. That number included per-host fees, per-span ingestion costs, and premium support. When they asked Datadog for a breakdown, the sales rep sent them a pricing calculator and said, “This is industry standard.”
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>16 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “SkillSpector: NVIDIA’s Open-Source Security Scanner for …” description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false lang: en category: dev-utils tags: [“security”, “ai-agents”, “scanner”, “vulnerability-detection”, “claude-code”, “codex”, “mcp”, “agent-skills”, “nvidia”] slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>16 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/signoz-apm-observability-open-source/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “SkillSpector: NVIDIA’s Open-Source Security Scanner for …” description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false lang: en category: dev-utils tags: [“security”, “ai-agents”, “scanner”, “vulnerability-detection”, “claude-code”, “codex”, “mcp”, “agent-skills”, “nvidia”] slug: skillspector-nvidia-open-source-security-scanner-ai-agent-skills
 SkillSpector: NVIDIA’s Open-Source Security Scanner for AI Agent Skills SkillSpector is a security scanning tool specifically designed for AI agent skills — the modular plugins and extensions that power frameworks like Claude Code, GitHub Copilot, Codex CLI, and Gemini CLI. Developed by NVIDIA with 10,273 GitHub stars, it addresses the growing security concerns around installing unvetted agent skills in production environments.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>5 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “Skyvern: Automate Browser Workflows with AI Agents (21K … description: “Technical guide and comparison.” date: 2026-06-02T00:00:00+08:00 lastmod: 2026-06-02T00:00:00+08:00 tech_stack: [] application_domain: Dev Utils source_version: ’' licensing_model: Open Source license_type: AGPL-3.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [”] aliases:
-/posts/skyvern-dev-utils-2026/ faqs: - q: ‘How do I install Skyvern-AI/skyvern?’ a: ‘Install with pip and run the quickstart: bash pip install "skyvern[all"]" skyvern quickstart The quickstart helps you configure an LLM provider and launches the local server and UI.’ q: ‘What are the system requirements for running Skyvern-AI/skyvern?’ a: ‘Skyvern needs Python 3.11+ and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.’ q: ‘Can I use Skyvern-AI/skyvern for commercial projects?’ a: ‘Yes. The AGPL-3.0 license permits commercial use, but if you modify Skyvern and distribute it or offer it as a network service, your changes must be released under AGPL-3.0. Teams that want to avoid that obligation can use the hosted cloud version instead.’ q: ‘How do I contribute to the Skyvern-AI/skyvern project?’ a: ‘Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.’ q: ‘Where can I find more information about using Skyvern-AI/skyvern?’ a: ‘See the official site at and the GitHub README, which both cover installation, the API, and example workflows in depth.’— Introduction Have you ever scripted a browser task with Selenium or Playwright, only to watch it break the moment the site changed a CSS class or moved a button? With over 21,803 stars on GitHub, Skyvern-AI/skyvern takes a different approach: instead of hard-coding selectors for every site, it uses large language models plus computer vision to understand a page the way a person would, then completes the task you describe in plain language. This guide walks you through setting up Skyvern and using its real API.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/></a></article><article class=post-entry><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>Spec Kit: GitHub’s Revolutionary Spec-Driven Development Toolkit Software development has always been plagued by a fundamental disconnect: what we specify rarely matches what we build. Requirements documents gather dust, PRDs become outdated within days, and the final product often diverges significantly from the original vision.
-Enter Spec Kit - GitHub’s groundbreaking open-source toolkit that flips this script entirely. With 114,000+ GitHub stars and rapid adoption, Spec Kit introduces Spec-Driven Development (SDD), a paradigm where specifications become executable artifacts that directly generate working implementations.
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/page/34/>«&nbsp;Prev&nbsp;
-</a><a class=next href=https://dibi8.com/page/36/>Next&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>5 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “Skyvern: Automate Browser Workflows with AI Agents (21K … description: “Technical guide and comparison.” date: 2026-06-02T00:00:00&#43;08:00 lastmod: 2026-06-02T00:00:00&#43;08:00 tech_stack: [] application_domain: Dev Utils source_version: ’&#39; licensing_model: Open Source license_type: AGPL-3.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-06-02” draft: false categories: [“dev-utils”] tags: [”] aliases:
+/posts/skyvern-dev-utils-2026/ faqs: - q: ‘How do I install Skyvern-AI/skyvern?’ a: ‘Install with pip and run the quickstart: bash pip install &#34;skyvern[all&#34;]&#34; skyvern quickstart The quickstart helps you configure an LLM provider and launches the local server and UI.’ q: ‘What are the system requirements for running Skyvern-AI/skyvern?’ a: ‘Skyvern needs Python 3.11&#43; and at least one LLM API key (OpenAI, Anthropic, Gemini, Bedrock, or a local model via Ollama). A modern machine with a few GB of RAM is enough for local use; production scheduling is best run on an always-on server.’ q: ‘Can I use Skyvern-AI/skyvern for commercial projects?’ a: ‘Yes. The AGPL-3.0 license permits commercial use, but if you modify Skyvern and distribute it or offer it as a network service, your changes must be released under AGPL-3.0. Teams that want to avoid that obligation can use the hosted cloud version instead.’ q: ‘How do I contribute to the Skyvern-AI/skyvern project?’ a: ‘Contributions are welcome. You can report issues or open pull requests on GitHub; the community is active and responsive to bug fixes and new features.’ q: ‘Where can I find more information about using Skyvern-AI/skyvern?’ a: ‘See the official site at and the GitHub README, which both cover installation, the API, and example workflows in depth.’— Introduction Have you ever scripted a browser task with Selenium or Playwright, only to watch it break the moment the site changed a CSS class or moved a button? With over 21,803 stars on GitHub, Skyvern-AI/skyvern takes a different approach: instead of hard-coding selectors for every site, it uses large language models plus computer vision to understand a page the way a person would, then completes the task you describe in plain language. This guide walks you through setting up Skyvern and using its real API.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>12 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/skyvern-dev-utils-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Spec Kit: GitHub’s Revolutionary Spec-Driven Development Toolkit Software development has always been plagued by a fundamental disconnect: what we specify rarely matches what we build. Requirements documents gather dust, PRDs become outdated within days, and the final product often diverges significantly from the original vision.
+Enter Spec Kit - GitHub’s groundbreaking open-source toolkit that flips this script entirely. With 114,000&#43; GitHub stars and rapid adoption, Spec Kit introduces Spec-Driven Development (SDD), a paradigm where specifications become executable artifacts that directly generate working implementations.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>9 min</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/page/34/">
+      «&nbsp;Prev&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/page/36/">Next&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

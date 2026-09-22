@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ko" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Coding Agents - dibi8 | Dibi8</title>
+<meta name="keywords" content="ai-coding-agents">
+<meta name="description" content="Hand-tested AI coding agents: OpenCode, Claude Code, Cursor, Codex, and more.">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ko/ai-coding-agents/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/ko/ai-coding-agents/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ko/ai-coding-agents/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Coding Agents - dibi8">
+  <meta property="og:description" content="Hand-tested AI coding agents: OpenCode, Claude Code, Cursor, Codex, and more.">
+  <meta property="og:locale" content="ko">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Coding Agents - dibi8">
+  <meta name="twitter:description" content="Hand-tested AI coding agents: OpenCode, Claude Code, Cursor, Codex, and more.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ko/ai-coding-agents/"
+    }
+  ]
+}
+</script>
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/ko/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/ko/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/ko/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/ko/">홈</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    AI Coding Agents - dibi8
+  </h1>
+  <div class="post-description">
+    Hand-tested AI coding agents: OpenCode, Claude Code, Cursor, Codex, and more.
+  </div>
+</header>
+<div class="post-content md-content"><h1 id="ai-coding-agents">AI Coding Agents<a hidden class="anchor" aria-hidden="true" href="#ai-coding-agents">#</a></h1>
+<p>Hand-tested AI coding agents: OpenCode, Claude Code, Cursor, Codex, and more.</p>
+<p><strong>Total tools: 349</strong></p>
+<ul>
+<li><a href="kr/ai-coding-agents/12-factor-agents">12 Factor Agents</a></li>
+<li><a href="kr/ai-coding-agents/1m-context-window-llm-2026-real-test">1M Context Window Llm 2026 Real Test</a></li>
+<li><a href="kr/ai-coding-agents/2026-06-29-trending-ai-agents">2026 06 29 Trending Ai Agents</a></li>
+<li><a href="kr/ai-coding-agents/2026-09-19-agent-reach">2026 09 19 Agent Reach</a></li>
+<li><a href="kr/ai-coding-agents/2026-09-19-agent-skills">2026 09 19 Agent Skills</a></li>
+<li><a href="kr/ai-coding-agents/2026-09-19-deepseek-harness">2026 09 19 Deepseek Harness</a></li>
+<li><a href="kr/ai-coding-agents/2026-09-20-ai-coding-agents-comparison">2026 09 20 Ai Coding Agents Comparison</a></li>
+<li><a href="kr/ai-coding-agents/2026-09-20-ai-coding-agents-full-comparison">2026 09 20 Ai Coding Agents Full Comparison</a></li>
+<li><a href="kr/ai-coding-agents/2026-local-first-ai-stack-production-architecture">2026 Local First Ai Stack Production Architecture</a></li>
+<li><a href="kr/ai-coding-agents/9router-smart-llm-proxy-token-saver-free-coding">9Router Smart Llm Proxy Token Saver Free Coding</a></li>
+<li><a href="kr/ai-coding-agents/about">About</a></li>
+<li><a href="kr/ai-coding-agents/academic-research-skills">Academic Research Skills</a></li>
+<li><a href="kr/ai-coding-agents/act">Act</a></li>
+<li><a href="kr/ai-coding-agents/activepieces-workflow-automation">Activepieces Workflow Automation</a></li>
+<li><a href="kr/ai-coding-agents/agent-reach-ai-agent-internet-access">Agent Reach Ai Agent Internet Access</a></li>
+<li><a href="kr/ai-coding-agents/agent-reach-internet-access-ai-agents">Agent Reach Internet Access Ai Agents</a></li>
+<li><a href="kr/ai-coding-agents/agent-skills-production-grade-ai-coding">Agent Skills Production Grade Ai Coding</a></li>
+<li><a href="kr/ai-coding-agents/agent-skills-production-workflows">Agent Skills Production Workflows</a></li>
+<li><a href="kr/ai-coding-agents/agentmemory-mcp-persistent-memory-2026">Agentmemory Mcp Persistent Memory 2026</a></li>
+<li><a href="kr/ai-coding-agents/agentmemory-persistent-memory-ai-coding-agents">Agentmemory Persistent Memory Ai Coding Agents</a></li>
+<li><a href="kr/ai-coding-agents/agno">Agno</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-code-of-ethics">Ai Agent Code Of Ethics</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-frameworks-comparison-2026">Ai Agent Frameworks Comparison 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-memory-persistence-letta-mem0-a-mem-2026">Ai Agent Memory Persistence Letta Mem0 A Mem 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-memory-systems-2026">Ai Agent Memory Systems 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-memory-systems-open-source-infrastructure-2026">Ai Agent Memory Systems Open Source Infrastructure 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-skills-2026-developer-guide">Ai Agent Skills 2026 Developer Guide</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-skills-framework-spec-driven-development-2026">Ai Agent Skills Framework Spec Driven Development 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-agent-tool-chain">Ai Agent Tool Chain</a></li>
+<li><a href="kr/ai-coding-agents/ai-coding-2026-q2-claude-code-cursor-codex-gemini-shootout">Ai Coding 2026 Q2 Claude Code Cursor Codex Gemini Shootout</a></li>
+<li><a href="kr/ai-coding-agents/ai-coding-agent-landscape-2026-skills-mcp-opensource">Ai Coding Agent Landscape 2026 Skills Mcp Opensource</a></li>
+<li><a href="kr/ai-coding-agents/ai-coding-agent-monthly-bill-2026-real-receipts">Ai Coding Agent Monthly Bill 2026 Real Receipts</a></li>
+<li><a href="kr/ai-coding-agents/ai-coding-ethics-corporate-policy-guide-2026">Ai Coding Ethics Corporate Policy Guide 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-coding-tools-cursor-alternatives-2026">Ai Coding Tools Cursor Alternatives 2026</a></li>
+<li><a href="kr/ai-coding-agents/ai-content-detector-tools">Ai Content Detector Tools</a></li>
+<li><a href="kr/ai-coding-agents/ai-customer-service-chatbot-tools">Ai Customer Service Chatbot Tools</a></li>
+<li><a href="kr/ai-coding-agents/ai-data-analysis-tools-2025">Ai Data Analysis Tools 2025</a></li>
+<li><a href="kr/ai-coding-agents/ai-developer-tools-ide-plugins-2025">Ai Developer Tools Ide Plugins 2025</a></li>
+<li><a href="kr/ai-coding-agents/ai-engineering-from-scratch">Ai Engineering From Scratch</a></li>
+<li><a href="kr/ai-coding-agents/ai-meeting-assistant-tools">Ai Meeting Assistant Tools</a></li>
+<li><a href="kr/ai-coding-agents/ai-presentation-tools">Ai Presentation Tools</a></li>
+<li><a href="kr/ai-coding-agents/ai-search-tools-perplexity-gemini-chatgpt">Ai Search Tools Perplexity Gemini Chatgpt</a></li>
+<li><a href="kr/ai-coding-agents/ai-seo-geo-dibi8-methodology-google-sge-perplexity">Ai Seo Geo Dibi8 Methodology Google Sge Perplexity</a></li>
+<li><a href="kr/ai-coding-agents/ai-seo-geo-toolkit-stack">Ai Seo Geo Toolkit Stack</a></li>
+<li><a href="kr/ai-coding-agents/ai-stack-builder">Ai Stack Builder</a></li>
+<li><a href="kr/ai-coding-agents/ai-token-monitor-conky-linux">Ai Token Monitor Conky Linux</a></li>
+<li><a href="kr/ai-coding-agents/ai-tools-directory">Ai Tools Directory</a></li>
+<li><a href="kr/ai-coding-agents/ai-trader">Ai Trader</a></li>
+<li><a href="kr/ai-coding-agents/ai-trading-stack">Ai Trading Stack</a></li>
+<li><a href="kr/ai-coding-agents/ai-translation-tools-compared-2025">Ai Translation Tools Compared 2025</a></li>
+<li><a href="kr/ai-coding-agents/aider-cline-openhands-2026-honest-comparison">Aider Cline Openhands 2026 Honest Comparison</a></li>
+<li><a href="kr/ai-coding-agents/aider">Aider</a></li>
+<li><a href="kr/ai-coding-agents/aiohttp-async-web-scraping">Aiohttp Async Web Scraping</a></li>
+<li><a href="kr/ai-coding-agents/aitoearn-ai-monetization">Aitoearn Ai Monetization</a></li>
+<li><a href="kr/ai-coding-agents/aitoearn-guide">Aitoearn Guide</a></li>
+<li><a href="kr/ai-coding-agents/aiwind-ai-prompt-library-generator">Aiwind Ai Prompt Library Generator</a></li>
+<li><a href="kr/ai-coding-agents/anthropic-financial-services-ai-finance-automation">Anthropic Financial Services Ai Finance Automation</a></li>
+<li><a href="kr/ai-coding-agents/anythingllm-architecture-local-rag">Anythingllm Architecture Local Rag</a></li>
+<li><a href="kr/ai-coding-agents/apple-container">Apple Container</a></li>
+<li><a href="kr/ai-coding-agents/appwrite-backend-as-service">Appwrite Backend As Service</a></li>
+<li><a href="kr/ai-coding-agents/arize-ai-observability-llm">Arize Ai Observability Llm</a></li>
+<li><a href="kr/ai-coding-agents/atuin">Atuin</a></li>
+<li><a href="kr/ai-coding-agents/auto-gpt-autonomous-agent-2026">Auto Gpt Autonomous Agent 2026</a></li>
+<li><a href="kr/ai-coding-agents/autogen-multi-agent-framework">Autogen Multi Agent Framework</a></li>
+<li><a href="kr/ai-coding-agents/autogen">Autogen</a></li>
+<li><a href="kr/ai-coding-agents/awesome-openclaw-usecases-ai-agent-daily-life">Awesome Openclaw Usecases Ai Agent Daily Life</a></li>
+<li><a href="kr/ai-coding-agents/axolotl-llm-fine-tuning-framework-2026">Axolotl Llm Fine Tuning Framework 2026</a></li>
+<li><a href="kr/ai-coding-agents/bat">Bat</a></li>
+<li><a href="kr/ai-coding-agents/best-ai-code-generators-2025">Best Ai Code Generators 2025</a></li>
+<li><a href="kr/ai-coding-agents/best-ai-coding-assistants">Best Ai Coding Assistants</a></li>
+<li><a href="kr/ai-coding-agents/best-ai-image-generators">Best Ai Image Generators</a></li>
+<li><a href="kr/ai-coding-agents/best-ai-writing-assistants-2025">Best Ai Writing Assistants 2025</a></li>
+<li><a href="kr/ai-coding-agents/beyond-chatbots-four-pillars-autonomous-ai-systems-2026">Beyond Chatbots Four Pillars Autonomous Ai Systems 2026</a></li>
+<li><a href="kr/ai-coding-agents/bitcoin-classic-btcc-cpu-mining-bitcoin-fork">Bitcoin Classic Btcc Cpu Mining Bitcoin Fork</a></li>
+<li><a href="kr/ai-coding-agents/bookstack-documentation-wiki">Bookstack Documentation Wiki</a></li>
+<li><a href="kr/ai-coding-agents/browser-harness-self-healing-llm-web-automation">Browser Harness Self Healing Llm Web Automation</a></li>
+<li><a href="kr/ai-coding-agents/browser-use">Browser Use</a></li>
+<li><a href="kr/ai-coding-agents/bumblebee-supply-chain-scanner-perplexity-2026">Bumblebee Supply Chain Scanner Perplexity 2026</a></li>
+<li><a href="kr/ai-coding-agents/bytedance-ui-tars-desktop-ai-agent-guide">Bytedance Ui Tars Desktop Ai Agent Guide</a></li>
+<li><a href="kr/ai-coding-agents/caveman">Caveman</a></li>
+<li><a href="kr/ai-coding-agents/cc-switch-ai-coding-agent-control-center-2026">Cc Switch Ai Coding Agent Control Center 2026</a></li>
+<li><a href="kr/ai-coding-agents/cc-switch-all-in-one-ai-coding-agent-manager">Cc Switch All In One Ai Coding Agent Manager</a></li>
+<li><a href="kr/ai-coding-agents/cc-switch-unified-ai-cli-control-center-2026">Cc Switch Unified Ai Cli Control Center 2026</a></li>
+<li><a href="kr/ai-coding-agents/cc-switch-unified-ai-cli-control-center">Cc Switch Unified Ai Cli Control Center</a></li>
+<li><a href="kr/ai-coding-agents/chatgpt-pro-vs-claude-pro">Chatgpt Pro Vs Claude Pro</a></li>
+<li><a href="kr/ai-coding-agents/chattts-dialogue-tts-2026">Chattts Dialogue Tts 2026</a></li>
+<li><a href="kr/ai-coding-agents/chattts">Chattts</a></li>
+<li><a href="kr/ai-coding-agents/chatwoot-open-source-customer-support-ai">Chatwoot Open Source Customer Support Ai</a></li>
+<li><a href="kr/ai-coding-agents/cheap-llm-stack">Cheap Llm Stack</a></li>
+<li><a href="kr/ai-coding-agents/chroma-vector-database-python">Chroma Vector Database Python</a></li>
+<li><a href="kr/ai-coding-agents/claude-4-opus-sonnet-review-2026">Claude 4 Opus Sonnet Review 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-agent-sdk-vs-openai-agents-sdk">Claude Agent Sdk Vs Openai Agents Sdk</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-custom-agent-authoring-guide-2026">Claude Code Custom Agent Authoring Guide 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-mcp-advanced-10-server-stack-2026">Claude Code Mcp Advanced 10 Server Stack 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-skill-authoring-guide-2026">Claude Code Skill Authoring Guide 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-subagent-mastery-stack">Claude Code Subagent Mastery Stack</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-subagent-patterns-multi-agent-workflows-2026">Claude Code Subagent Patterns Multi Agent Workflows 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-subagent-vs-mcp-server-skill-agent-2026">Claude Code Subagent Vs Mcp Server Skill Agent 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-subagents-vs-langgraph-crewai-autogen-2026">Claude Code Subagents Vs Langgraph Crewai Autogen 2026</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-vs-aider">Claude Code Vs Aider</a></li>
+<li><a href="kr/ai-coding-agents/claude-code-vs-cline">Claude Code Vs Cline</a></li>
+<li><a href="kr/ai-coding-agents/claude-code">Claude Code</a></li>
+<li><a href="kr/ai-coding-agents/cloakbrowser-stealth-browser-2026">Cloakbrowser Stealth Browser 2026</a></li>
+<li><a href="kr/ai-coding-agents/cloakbrowser-stealth-chromium-bot-detection-scraping">Cloakbrowser Stealth Chromium Bot Detection Scraping</a></li>
+<li><a href="kr/ai-coding-agents/codebase-memory-mcp-high-performance-code-intelligence">Codebase Memory Mcp High Performance Code Intelligence</a></li>
+<li><a href="kr/ai-coding-agents/codegraph-pre-indexed-code-knowledge-graph-ai-agents">Codegraph Pre Indexed Code Knowledge Graph Ai Agents</a></li>
+<li><a href="kr/ai-coding-agents/codegraph-pre-indexed-knowledge-graph-2026">Codegraph Pre Indexed Knowledge Graph 2026</a></li>
+<li><a href="kr/ai-coding-agents/colly">Colly</a></li>
+<li><a href="kr/ai-coding-agents/comfyui">Comfyui</a></li>
+<li><a href="kr/ai-coding-agents/compound-engineering-multi-agent-coding-claude-codex-cursor">Compound Engineering Multi Agent Coding Claude Codex Cursor</a></li>
+<li><a href="kr/ai-coding-agents/continue">Continue</a></li>
+<li><a href="kr/ai-coding-agents/copilotkit">Copilotkit</a></li>
+<li><a href="kr/ai-coding-agents/crawl4ai-tutorial-llm-ready-web-scraping-2026">Crawl4Ai Tutorial Llm Ready Web Scraping 2026</a></li>
+<li><a href="kr/ai-coding-agents/crewai-multi-agent-orchestration">Crewai Multi Agent Orchestration</a></li>
+<li><a href="kr/ai-coding-agents/crewai">Crewai</a></li>
+<li><a href="kr/ai-coding-agents/cross-border-ai-marketing-stack">Cross Border Ai Marketing Stack</a></li>
+<li><a href="kr/ai-coding-agents/cursor-alternatives-2026-best-ai-coding-tools">Cursor Alternatives 2026 Best Ai Coding Tools</a></li>
+<li><a href="kr/ai-coding-agents/cursor-cost-saving-strategies-2026">Cursor Cost Saving Strategies 2026</a></li>
+<li><a href="kr/ai-coding-agents/cursor-vs-claude-code">Cursor Vs Claude Code</a></li>
+<li><a href="kr/ai-coding-agents/cursor-vs-windsurf">Cursor Vs Windsurf</a></li>
+<li><a href="kr/ai-coding-agents/dagger">Dagger</a></li>
+<li><a href="kr/ai-coding-agents/dagster-data-pipeline-orchestrator">Dagster Data Pipeline Orchestrator</a></li>
+<li><a href="kr/ai-coding-agents/daily-stock-analysis-llm-powered-multi-market-stock-intelligence">Daily Stock Analysis Llm Powered Multi Market Stock Intelligence</a></li>
+<li><a href="kr/ai-coding-agents/deepseek-ds4-vs-openai-api">Deepseek Ds4 Vs Openai Api</a></li>
+<li><a href="kr/ai-coding-agents/deepseek-harness-plugin-ecosystem-2026">Deepseek Harness Plugin Ecosystem 2026</a></li>
+<li><a href="kr/ai-coding-agents/deepseek-reasonix-terminal-ai-coding-agent-prefix-cache">Deepseek Reasonix Terminal Ai Coding Agent Prefix Cache</a></li>
+<li><a href="kr/ai-coding-agents/deepseek-v3-vs-claude-sonnet">Deepseek V3 Vs Claude Sonnet</a></li>
+<li><a href="kr/ai-coding-agents/demucs">Demucs</a></li>
+<li><a href="kr/ai-coding-agents/design-md-google-open-source-format-ai-coding-agents-design-systems">Design Md Google Open Source Format Ai Coding Agents Design Systems</a></li>
+<li><a href="kr/ai-coding-agents/devtoys">Devtoys</a></li>
+<li><a href="kr/ai-coding-agents/dify-vs-flowise-2026">Dify Vs Flowise 2026</a></li>
+<li><a href="kr/ai-coding-agents/dify">Dify</a></li>
+<li><a href="kr/ai-coding-agents/directus-headless-cms-ai-content">Directus Headless Cms Ai Content</a></li>
+<li><a href="kr/ai-coding-agents/docker-compose">Docker Compose</a></li>
+<li><a href="kr/ai-coding-agents/docker-genai-stack-local-development">Docker Genai Stack Local Development</a></li>
+<li><a href="kr/ai-coding-agents/docmost-team-docs-collaboration">Docmost Team Docs Collaboration</a></li>
+<li><a href="kr/ai-coding-agents/docuseal-open-source-docusign-alternative">Docuseal Open Source Docusign Alternative</a></li>
+<li><a href="kr/ai-coding-agents/ds4-deepseek-4-flash-local-inference-engine">Ds4 Deepseek 4 Flash Local Inference Engine</a></li>
+<li><a href="kr/ai-coding-agents/ds4-deepseek-flash-local-inference">Ds4 Deepseek Flash Local Inference</a></li>
+<li><a href="kr/ai-coding-agents/ds4-open-source-deepseek-alternative-2026">Ds4 Open Source Deepseek Alternative 2026</a></li>
+<li><a href="kr/ai-coding-agents/dvc-data-version-control-ml">Dvc Data Version Control Ml</a></li>
+<li><a href="kr/ai-coding-agents/ecc-agent-harness-performance-optimization">Ecc Agent Harness Performance Optimization</a></li>
+<li><a href="kr/ai-coding-agents/egonex-understand-anything-interactive-knowledge-graph-ai">Egonex Understand Anything Interactive Knowledge Graph Ai</a></li>
+<li><a href="kr/ai-coding-agents/exo-dev-utils-2026">Exo Dev Utils 2026</a></li>
+<li><a href="kr/ai-coding-agents/facefusion-architecture-onnx-video-face-swap">Facefusion Architecture Onnx Video Face Swap</a></li>
+<li><a href="kr/ai-coding-agents/faster-whisper">Faster Whisper</a></li>
+<li><a href="kr/ai-coding-agents/fine-tuning-stack">Fine Tuning Stack</a></li>
+<li><a href="kr/ai-coding-agents/flowise-ai-workflow-builder-lowcode">Flowise Ai Workflow Builder Lowcode</a></li>
+<li><a href="kr/ai-coding-agents/flowise">Flowise</a></li>
+<li><a href="kr/ai-coding-agents/free-llm-api-resources-ai-development">Free Llm Api Resources Ai Development</a></li>
+<li><a href="kr/ai-coding-agents/free-mcp-tools-top10-2026">Free Mcp Tools Top10 2026</a></li>
+<li><a href="kr/ai-coding-agents/freellmapi-openai-compatible-proxy-free-llm-tiers-2026">Freellmapi Openai Compatible Proxy Free Llm Tiers 2026</a></li>
+<li><a href="kr/ai-coding-agents/gemini-cli-vs-claude-code-2026-real-comparison">Gemini Cli Vs Claude Code 2026 Real Comparison</a></li>
+<li><a href="kr/ai-coding-agents/gemini-cli-vs-claude-code">Gemini Cli Vs Claude Code</a></li>
+<li><a href="kr/ai-coding-agents/geo-ai-overviews-optimization-2026-practical">Geo Ai Overviews Optimization 2026 Practical</a></li>
+<li><a href="kr/ai-coding-agents/github-trending-projects-may-2026">Github Trending Projects May 2026</a></li>
+<li><a href="kr/ai-coding-agents/goose-ai-agent-open-source-automation">Goose Ai Agent Open Source Automation</a></li>
+<li><a href="kr/ai-coding-agents/gpt-researcher-llm-frameworks-2026">Gpt Researcher Llm Frameworks 2026</a></li>
+<li><a href="kr/ai-coding-agents/gpt-sovits">Gpt Sovits</a></li>
+<li><a href="kr/ai-coding-agents/graphrag-llm-frameworks-2026">Graphrag Llm Frameworks 2026</a></li>
+<li><a href="kr/ai-coding-agents/haystack-rag-pipeline-framework">Haystack Rag Pipeline Framework</a></li>
+<li><a href="kr/ai-coding-agents/headroom-token-compression-proxy-library-mcp-server">Headroom Token Compression Proxy Library Mcp Server</a></li>
+<li><a href="kr/ai-coding-agents/hello-agents-ai-agent-building-tutorial">Hello Agents Ai Agent Building Tutorial</a></li>
+<li><a href="kr/ai-coding-agents/hermes-agent-self-improving-ai-agent">Hermes Agent Self Improving Ai Agent</a></li>
+<li><a href="kr/ai-coding-agents/hkuds-ai-trader">Hkuds Ai Trader</a></li>
+<li><a href="kr/ai-coding-agents/hoppscotch">Hoppscotch</a></li>
+<li><a href="kr/ai-coding-agents/howtocook-programmer-open-source-cookbook">Howtocook Programmer Open Source Cookbook</a></li>
+<li><a href="kr/ai-coding-agents/httpie">Httpie</a></li>
+<li><a href="kr/ai-coding-agents/huggingface-transformers-guide">Huggingface Transformers Guide</a></li>
+<li><a href="kr/ai-coding-agents/impeccable-ai-design-language-harness-quality-ui">Impeccable Ai Design Language Harness Quality Ui</a></li>
+<li><a href="kr/ai-coding-agents/instructor-structured-llm-output">Instructor Structured Llm Output</a></li>
+<li><a href="kr/ai-coding-agents/invokeai">Invokeai</a></li>
+<li><a href="kr/ai-coding-agents/jesse-ai-trading-framework">Jesse Ai Trading Framework</a></li>
+<li><a href="kr/ai-coding-agents/justhireme-ai-job-search-workbench">Justhireme Ai Job Search Workbench</a></li>
+<li><a href="kr/ai-coding-agents/knowledge-base-stack">Knowledge Base Stack</a></li>
+<li><a href="kr/ai-coding-agents/knowledge-work-plugins">Knowledge Work Plugins</a></li>
+<li><a href="kr/ai-coding-agents/ladybird-independent-web-browser">Ladybird Independent Web Browser</a></li>
+<li><a href="kr/ai-coding-agents/langchain-complete-guide">Langchain Complete Guide</a></li>
+<li><a href="kr/ai-coding-agents/langchain">Langchain</a></li>
+<li><a href="kr/ai-coding-agents/langflow-visual-llm-workflow-builder-2026">Langflow Visual Llm Workflow Builder 2026</a></li>
+<li><a href="kr/ai-coding-agents/langgraph-stateful-agent-orchestration-2026">Langgraph Stateful Agent Orchestration 2026</a></li>
+<li><a href="kr/ai-coding-agents/langgraph-vs-crewai">Langgraph Vs Crewai</a></li>
+<li><a href="kr/ai-coding-agents/last30days-skill-ai-agent-research-engine-social-media">Last30Days Skill Ai Agent Research Engine Social Media</a></li>
+<li><a href="kr/ai-coding-agents/lazydocker">Lazydocker</a></li>
+<li><a href="kr/ai-coding-agents/litellm-unified-api-tutorial">Litellm Unified Api Tutorial</a></li>
+<li><a href="kr/ai-coding-agents/litellm">Litellm</a></li>
+<li><a href="kr/ai-coding-agents/llamafile-portable-local-llm">Llamafile Portable Local Llm</a></li>
+<li><a href="kr/ai-coding-agents/llamaindex-vs-langchain">Llamaindex Vs Langchain</a></li>
+<li><a href="kr/ai-coding-agents/llamaindex">Llamaindex</a></li>
+<li><a href="kr/ai-coding-agents/llm-cost-calculator">Llm Cost Calculator</a></li>
+<li><a href="kr/ai-coding-agents/llm-data-analysis-workflow-complete-guide">Llm Data Analysis Workflow Complete Guide</a></li>
+<li><a href="kr/ai-coding-agents/llm-evaluation-benchmarking-frameworks">Llm Evaluation Benchmarking Frameworks</a></li>
+<li><a href="kr/ai-coding-agents/llm-fine-tuning-frameworks-comparison">Llm Fine Tuning Frameworks Comparison</a></li>
+<li><a href="kr/ai-coding-agents/llm-gateway-portkey-litellm-openrouter-comparison-2026">Llm Gateway Portkey Litellm Openrouter Comparison 2026</a></li>
+<li><a href="kr/ai-coding-agents/llm-inference-cost-optimization-guide-2026">Llm Inference Cost Optimization Guide 2026</a></li>
+<li><a href="kr/ai-coding-agents/llm-recommender">Llm Recommender</a></li>
+<li><a href="kr/ai-coding-agents/llm-token-counter">Llm Token Counter</a></li>
+<li><a href="kr/ai-coding-agents/llms-txt-generator">Llms Txt Generator</a></li>
+<li><a href="kr/ai-coding-agents/lobe-chat-openai-alternative-ui">Lobe Chat Openai Alternative Ui</a></li>
+<li><a href="kr/ai-coding-agents/local-deep-research-local-first-ai-deep-research-tool">Local Deep Research Local First Ai Deep Research Tool</a></li>
+<li><a href="kr/ai-coding-agents/local-first-ai-stack-offline-development-2026">Local First Ai Stack Offline Development 2026</a></li>
+<li><a href="kr/ai-coding-agents/local-llm-runner-comparison-2026">Local Llm Runner Comparison 2026</a></li>
+<li><a href="kr/ai-coding-agents/log-monitoring-observability-tools-developers">Log Monitoring Observability Tools Developers</a></li>
+<li><a href="kr/ai-coding-agents/marker-dev-utils-2026">Marker Dev Utils 2026</a></li>
+<li><a href="kr/ai-coding-agents/markitdown-universal-file-to-markdown-converter">Markitdown Universal File To Markdown Converter</a></li>
+<li><a href="kr/ai-coding-agents/mastra">Mastra</a></li>
+<li><a href="kr/ai-coding-agents/mattpocock-skills-ai-agent-framework-guide">Mattpocock Skills Ai Agent Framework Guide</a></li>
+<li><a href="kr/ai-coding-agents/mcp-deep-dive-definitive-2026-guide">Mcp Deep Dive Definitive 2026 Guide</a></li>
+<li><a href="kr/ai-coding-agents/mcp-server-registry-comprehensive-guide-2026">Mcp Server Registry Comprehensive Guide 2026</a></li>
+<li><a href="kr/ai-coding-agents/mcp-server-security-audit-2026-real-cases">Mcp Server Security Audit 2026 Real Cases</a></li>
+<li><a href="kr/ai-coding-agents/mcp-servers-2026-rankings-selection-guide">Mcp Servers 2026 Rankings Selection Guide</a></li>
+<li><a href="kr/ai-coding-agents/melotts">Melotts</a></li>
+<li><a href="kr/ai-coding-agents/mem0">Mem0</a></li>
+<li><a href="kr/ai-coding-agents/mempalace-guide">Mempalace Guide</a></li>
+<li><a href="kr/ai-coding-agents/mempalace-open-source-ai-memory-system">Mempalace Open Source Ai Memory System</a></li>
+<li><a href="kr/ai-coding-agents/mempalace">Mempalace</a></li>
+<li><a href="kr/ai-coding-agents/metabase-business-intelligence-open">Metabase Business Intelligence Open</a></li>
+<li><a href="kr/ai-coding-agents/microsoft-markitdown-file-to-markdown-converter-cli">Microsoft Markitdown File To Markdown Converter Cli</a></li>
+<li><a href="kr/ai-coding-agents/minara-ai-trading-hyperliquid-review-2026">Minara Ai Trading Hyperliquid Review 2026</a></li>
+<li><a href="kr/ai-coding-agents/mineru-document-parsing-engine">Mineru Document Parsing Engine</a></li>
+<li><a href="kr/ai-coding-agents/mistral-ai-local-llm-deployment">Mistral Ai Local Llm Deployment</a></li>
+<li><a href="kr/ai-coding-agents/ml-systems-book-mit-press-textbook">Ml Systems Book Mit Press Textbook</a></li>
+<li><a href="kr/ai-coding-agents/moneyprinter-turbo-ai-video-generation-one-command">Moneyprinter Turbo Ai Video Generation One Command</a></li>
+<li><a href="kr/ai-coding-agents/moneyprinterturbo-one-click-ai-video-generator">Moneyprinterturbo One Click Ai Video Generator</a></li>
+<li><a href="kr/ai-coding-agents/moss-trade-bot-factory-2026-review">Moss Trade Bot Factory 2026 Review</a></li>
+<li><a href="kr/ai-coding-agents/multi-agent-pipeline-postmortem-5-failures-2026">Multi Agent Pipeline Postmortem 5 Failures 2026</a></li>
+<li><a href="kr/ai-coding-agents/multi-modal-content-pipeline">Multi Modal Content Pipeline</a></li>
+<li><a href="kr/ai-coding-agents/n8n-ai-automation-complete-guide">N8N Ai Automation Complete Guide</a></li>
+<li><a href="kr/ai-coding-agents/n8n-ai-workflow-automation-self-hosted-2026">N8N Ai Workflow Automation Self Hosted 2026</a></li>
+<li><a href="kr/ai-coding-agents/n8n-vs-make-com-2026">N8N Vs Make Com 2026</a></li>
+<li><a href="kr/ai-coding-agents/n8n">N8N</a></li>
+<li><a href="kr/ai-coding-agents/nanochat-karpathy-100-chatgpt-single-gpu">Nanochat Karpathy 100 Chatgpt Single Gpu</a></li>
+<li><a href="kr/ai-coding-agents/nanochat-karpathy-train-your-own-llm-100-dollars-2026">Nanochat Karpathy Train Your Own Llm 100 Dollars 2026</a></li>
+<li><a href="kr/ai-coding-agents/netdata">Netdata</a></li>
+<li><a href="kr/ai-coding-agents/noco-db-airtable-alternative">Noco Db Airtable Alternative</a></li>
+<li><a href="kr/ai-coding-agents/nuwa-skill-distill-thinking-model-ai-agent-skills">Nuwa Skill Distill Thinking Model Ai Agent Skills</a></li>
+<li><a href="kr/ai-coding-agents/nvidia-cosmos-world-models-platform-2026">Nvidia Cosmos World Models Platform 2026</a></li>
+<li><a href="kr/ai-coding-agents/obscura-rust-headless-browser-ai-agents-web-scraping">Obscura Rust Headless Browser Ai Agents Web Scraping</a></li>
+<li><a href="kr/ai-coding-agents/odysseus-self-hosted-ai-workspace-2026">Odysseus Self Hosted Ai Workspace 2026</a></li>
+<li><a href="kr/ai-coding-agents/odysseus-self-hosted-ai-workspace-chat-agent-deep-research">Odysseus Self Hosted Ai Workspace Chat Agent Deep Research</a></li>
+<li><a href="kr/ai-coding-agents/oh-my-pi">Oh My Pi</a></li>
+<li><a href="kr/ai-coding-agents/ohmyzsh">Ohmyzsh</a></li>
+<li><a href="kr/ai-coding-agents/ollama-local-llm-guide">Ollama Local Llm Guide</a></li>
+<li><a href="kr/ai-coding-agents/ollama-vs-lm-studio">Ollama Vs Lm Studio</a></li>
+<li><a href="kr/ai-coding-agents/ollama">Ollama</a></li>
+<li><a href="kr/ai-coding-agents/open-codesign-claude-design-alternative">Open Codesign Claude Design Alternative</a></li>
+<li><a href="kr/ai-coding-agents/open-codesign-vs-vercel-v0">Open Codesign Vs Vercel V0</a></li>
+<li><a href="kr/ai-coding-agents/open-design-local-first-ai-design-tool">Open Design Local First Ai Design Tool</a></li>
+<li><a href="kr/ai-coding-agents/open-llm-vtuber-voice-powered-ai-avatar">Open Llm Vtuber Voice Powered Ai Avatar</a></li>
+<li><a href="kr/ai-coding-agents/open-notebook-open-source-notebooklm-alternative-15-ai-providers">Open Notebook Open Source Notebooklm Alternative 15 Ai Providers</a></li>
+<li><a href="kr/ai-coding-agents/open-sora">Open Sora</a></li>
+<li><a href="kr/ai-coding-agents/open-source-ai-agent-framework-top-10-2026">Open Source Ai Agent Framework Top 10 2026</a></li>
+<li><a href="kr/ai-coding-agents/open-source-llm-ranking-guide">Open Source Llm Ranking Guide</a></li>
+<li><a href="kr/ai-coding-agents/openai-codex-cli-terminal-ai-coding-agent-2026">Openai Codex Cli Terminal Ai Coding Agent 2026</a></li>
+<li><a href="kr/ai-coding-agents/openai-codex-cli-vs-claude-code">Openai Codex Cli Vs Claude Code</a></li>
+<li><a href="kr/ai-coding-agents/openclaw-self-hosted-ai-assistant-setup-guide-2026">Openclaw Self Hosted Ai Assistant Setup Guide 2026</a></li>
+<li><a href="kr/ai-coding-agents/opencode-open-source-claude-code-alternative-2026">Opencode Open Source Claude Code Alternative 2026</a></li>
+<li><a href="kr/ai-coding-agents/openhands">Openhands</a></li>
+<li><a href="kr/ai-coding-agents/openhuman">Openhuman</a></li>
+<li><a href="kr/ai-coding-agents/openmontage-agentic-video-production-system">Openmontage Agentic Video Production System</a></li>
+<li><a href="kr/ai-coding-agents/openrouter-unified-llm-api-gateway">Openrouter Unified Llm Api Gateway</a></li>
+<li><a href="kr/ai-coding-agents/opensea-nft-marketplace-api">Opensea Nft Marketplace Api</a></li>
+<li><a href="kr/ai-coding-agents/pageindex-vectorless-reasoning-rag">Pageindex Vectorless Reasoning Rag</a></li>
+<li><a href="kr/ai-coding-agents/pancake-trading-bot-defi-bsc">Pancake Trading Bot Defi Bsc</a></li>
+<li><a href="kr/ai-coding-agents/paperclip-open-source-agent-workplace-managing-ai-agents-at-scale">Paperclip Open Source Agent Workplace Managing Ai Agents At Scale</a></li>
+<li><a href="kr/ai-coding-agents/perplexity-api-rag-search">Perplexity Api Rag Search</a></li>
+<li><a href="kr/ai-coding-agents/personal-ai-infrastructure-daniel-miessler">Personal Ai Infrastructure Daniel Miessler</a></li>
+<li><a href="kr/ai-coding-agents/pgvector-postgres-vector-extension">Pgvector Postgres Vector Extension</a></li>
+<li><a href="kr/ai-coding-agents/pixelle-video-ai-short-video-generator">Pixelle Video Ai Short Video Generator</a></li>
+<li><a href="kr/ai-coding-agents/plausible-analytics-privacy-google">Plausible Analytics Privacy Google</a></li>
+<li><a href="kr/ai-coding-agents/playwright-browser-automation-testing">Playwright Browser Automation Testing</a></li>
+<li><a href="kr/ai-coding-agents/pm-skills-68-product-management-skills-ai-agents">Pm Skills 68 Product Management Skills Ai Agents</a></li>
+<li><a href="kr/ai-coding-agents/polymarket-agents-ai-trading-bot-framework">Polymarket Agents Ai Trading Bot Framework</a></li>
+<li><a href="kr/ai-coding-agents/polymarket-trading-bot-stack">Polymarket Trading Bot Stack</a></li>
+<li><a href="kr/ai-coding-agents/portkey-ai-gateway-production">Portkey Ai Gateway Production</a></li>
+<li><a href="kr/ai-coding-agents/preset-superset-data-exploration">Preset Superset Data Exploration</a></li>
+<li><a href="kr/ai-coding-agents/product-hunt-alternatives">Product Hunt Alternatives</a></li>
+<li><a href="kr/ai-coding-agents/prompt-engineering-frameworks-tools">Prompt Engineering Frameworks Tools</a></li>
+<li><a href="kr/ai-coding-agents/prompt-optimizer">Prompt Optimizer</a></li>
+<li><a href="kr/ai-coding-agents/promptfoo-llm-frameworks-2026">Promptfoo Llm Frameworks 2026</a></li>
+<li><a href="kr/ai-coding-agents/prompts-chat">Prompts Chat</a></li>
+<li><a href="kr/ai-coding-agents/puppeteer">Puppeteer</a></li>
+<li><a href="kr/ai-coding-agents/python-context-managers-the-three-cases-you-actually-need">Python Context Managers The Three Cases You Actually Need</a></li>
+<li><a href="kr/ai-coding-agents/qdrant-vector-database-rust">Qdrant Vector Database Rust</a></li>
+<li><a href="kr/ai-coding-agents/qiaomu-anything-to-notebooklm">Qiaomu Anything To Notebooklm</a></li>
+<li><a href="kr/ai-coding-agents/rag-architecture-implementation-guide">Rag Architecture Implementation Guide</a></li>
+<li><a href="kr/ai-coding-agents/rag-vs-fine-tuning-2026-decision-framework">Rag Vs Fine Tuning 2026 Decision Framework</a></li>
+<li><a href="kr/ai-coding-agents/ragflow">Ragflow</a></li>
+<li><a href="kr/ai-coding-agents/reading-explain-analyze-postgres">Reading Explain Analyze Postgres</a></li>
+<li><a href="kr/ai-coding-agents/repomix-pack-repo-for-llm-context-2026">Repomix Pack Repo For Llm Context 2026</a></li>
+<li><a href="kr/ai-coding-agents/robots-txt-generator">Robots Txt Generator</a></li>
+<li><a href="kr/ai-coding-agents/rtk-rust-cli-proxy-ai-coding-cost-save-80-percent-2026">Rtk Rust Cli Proxy Ai Coding Cost Save 80 Percent 2026</a></li>
+<li><a href="kr/ai-coding-agents/rtk-rust-cli-proxy-ai-token-saver">Rtk Rust Cli Proxy Ai Token Saver</a></li>
+<li><a href="kr/ai-coding-agents/rtk-rust-cli-proxy-llm-token-savings-2026">Rtk Rust Cli Proxy Llm Token Savings 2026</a></li>
+<li><a href="kr/ai-coding-agents/ruv-pi">Ruv Pi</a></li>
+<li><a href="kr/ai-coding-agents/ruvnet-ruview-wifi-spatial-intelligence-guide">Ruvnet Ruview Wifi Spatial Intelligence Guide</a></li>
+<li><a href="kr/ai-coding-agents/scanners-box-cybersecurity-tools-collection">Scanners Box Cybersecurity Tools Collection</a></li>
+<li><a href="kr/ai-coding-agents/scrapy">Scrapy</a></li>
+<li><a href="kr/ai-coding-agents/self-hosted-ai-coding-workflow">Self Hosted Ai Coding Workflow</a></li>
+<li><a href="kr/ai-coding-agents/self-hosted-llm-2026-ollama-vllm-localai">Self Hosted Llm 2026 Ollama Vllm Localai</a></li>
+<li><a href="kr/ai-coding-agents/semgrep-15k-star-sast-security-scanner">Semgrep 15K Star Sast Security Scanner</a></li>
+<li><a href="kr/ai-coding-agents/sglang-structured-generation-llm">Sglang Structured Generation Llm</a></li>
+<li><a href="kr/ai-coding-agents/shellcheck">Shellcheck</a></li>
+<li><a href="kr/ai-coding-agents/signoz-apm-observability-open-source">Signoz Apm Observability Open Source</a></li>
+<li><a href="kr/ai-coding-agents/skillspector-nvidia-open-source-security-scanner-ai-agent-skills">Skillspector Nvidia Open Source Security Scanner Ai Agent Skills</a></li>
+<li><a href="kr/ai-coding-agents/skyvern-dev-utils-2026">Skyvern Dev Utils 2026</a></li>
+<li><a href="kr/ai-coding-agents/spec-kit-github-spec-driven-development-toolkit">Spec Kit Github Spec Driven Development Toolkit</a></li>
+<li><a href="kr/ai-coding-agents/stable-diffusion-webui-2026">Stable Diffusion Webui 2026</a></li>
+<li><a href="kr/ai-coding-agents/supabase-postgres-vector-ai-apps">Supabase Postgres Vector Ai Apps</a></li>
+<li><a href="kr/ai-coding-agents/supabase-vs-firebase">Supabase Vs Firebase</a></li>
+<li><a href="kr/ai-coding-agents/superagent-ai-agent-framework">Superagent Ai Agent Framework</a></li>
+<li><a href="kr/ai-coding-agents/supermemory-open-source-ai-memory-api">Supermemory Open Source Ai Memory Api</a></li>
+<li><a href="kr/ai-coding-agents/superpowers">Superpowers</a></li>
+<li><a href="kr/ai-coding-agents/tabby">Tabby</a></li>
+<li><a href="kr/ai-coding-agents/tabpfn-foundation-model-tabular-data">Tabpfn Foundation Model Tabular Data</a></li>
+<li><a href="kr/ai-coding-agents/taste-skill">Taste Skill</a></li>
+<li><a href="kr/ai-coding-agents/temporal-ai-workflow-orchestration">Temporal Ai Workflow Orchestration</a></li>
+<li><a href="kr/ai-coding-agents/tensortrade-rl-trading">Tensortrade Rl Trading</a></li>
+<li><a href="kr/ai-coding-agents/terax-ai-lightweight-ai-terminal">Terax Ai Lightweight Ai Terminal</a></li>
+<li><a href="kr/ai-coding-agents/top-10-open-source-ai-tools-2026">Top 10 Open Source Ai Tools 2026</a></li>
+<li><a href="kr/ai-coding-agents/top-rag-tools">Top Rag Tools</a></li>
+<li><a href="kr/ai-coding-agents/toprank-guide">Toprank Guide</a></li>
+<li><a href="kr/ai-coding-agents/toprank">Toprank</a></li>
+<li><a href="kr/ai-coding-agents/tradingagents-llm-multi-agent-trading-framework-2026">Tradingagents Llm Multi Agent Trading Framework 2026</a></li>
+<li><a href="kr/ai-coding-agents/traefik">Traefik</a></li>
+<li><a href="kr/ai-coding-agents/trino-distributed-sql-query">Trino Distributed Sql Query</a></li>
+<li><a href="kr/ai-coding-agents/trivy-production-security-scanner-2026">Trivy Production Security Scanner 2026</a></li>
+<li><a href="kr/ai-coding-agents/turbovec-rust-vector-index-2026">Turbovec Rust Vector Index 2026</a></li>
+<li><a href="kr/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases">Understand Anything Interactive Knowledge Graphs Codebases</a></li>
+<li><a href="kr/ai-coding-agents/unsloth-fast-llm-fine-tuning-2026">Unsloth Fast Llm Fine Tuning 2026</a></li>
+<li><a href="kr/ai-coding-agents/unstructured-data-preprocessing-llm">Unstructured Data Preprocessing Llm</a></li>
+<li><a href="kr/ai-coding-agents/vanna-ai-sql-generation">Vanna Ai Sql Generation</a></li>
+<li><a href="kr/ai-coding-agents/vectara-rag-as-service-platform">Vectara Rag As Service Platform</a></li>
+<li><a href="kr/ai-coding-agents/vector-database-comparison">Vector Database Comparison</a></li>
+<li><a href="kr/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus">Vector Db 2026 Qdrant Weaviate Milvus</a></li>
+<li><a href="kr/ai-coding-agents/vercel-ai-sdk-edge-compute">Vercel Ai Sdk Edge Compute</a></li>
+<li><a href="kr/ai-coding-agents/vibe-coding-2026-korean-concept-explained">Vibe Coding 2026 Korean Concept Explained</a></li>
+<li><a href="kr/ai-coding-agents/vimax-agentic-video-generation-multi-agent-2026">Vimax Agentic Video Generation Multi Agent 2026</a></li>
+<li><a href="kr/ai-coding-agents/voicebox-open-source-ai-voice-studio">Voicebox Open Source Ai Voice Studio</a></li>
+<li><a href="kr/ai-coding-agents/vs-code-ai-extensions-developers">Vs Code Ai Extensions Developers</a></li>
+<li><a href="kr/ai-coding-agents/vscode-copilot-vs-cursor">Vscode Copilot Vs Cursor</a></li>
+<li><a href="kr/ai-coding-agents/wan-2-1">Wan 2 1</a></li>
+<li><a href="kr/ai-coding-agents/wandb-ml-experiment-tracking-platform-2026">Wandb Ml Experiment Tracking Platform 2026</a></li>
+<li><a href="kr/ai-coding-agents/wifi-forge-safe-wifi-hacking-lab">Wifi Forge Safe Wifi Hacking Lab</a></li>
+<li><a href="kr/ai-coding-agents/windsurf-ai-ide">Windsurf Ai Ide</a></li>
+<li><a href="kr/ai-coding-agents/windsurf-vs-github-copilot-2026">Windsurf Vs Github Copilot 2026</a></li>
+<li><a href="kr/ai-coding-agents/worldmonitor-real-time-global-intelligence-dashboard">Worldmonitor Real Time Global Intelligence Dashboard</a></li>
+<li><a href="kr/ai-coding-agents/zed-vs-cursor">Zed Vs Cursor</a></li>
+<li><a href="kr/ai-coding-agents/zoxide">Zoxide</a></li>
+</ul>
+
+
+</div>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>소개: 데이터 웨어하우스가 페타바이트에 질식할 때 2024년, 싱가포르의 한 중견 핀테크 기업은 Snowflake 청구서가 월 $47,000에 달하는 것을 목격했다 — S3 데이터 레이크에 대한 임시 분석 쿼리 비용만. 12명 엔지니어로 구성된 데이터 팀은 실제 쿼리 작성보다 비용 최적화에 더 많은 시간을 쏟았다. 2025년 3월, 그들은 세 대의 베어 메탈 서버에서 자체 호스팅 Trino 클러스터로 마이그레이션했다. 쿼리 비용은 82% 감소했다. 상위 20개 대시보드의 쿼리 지연 시간은 평균 4.2초에서 1.1초로 개선되었다.
+이것은 고유한 사례가 아니다. 2026년 5월 기준으로 Trino(구 PrestoSQL)는 Netflix, Airbnb, Uber, Lyft, Goldman Sachs의 분석을 지원하고 있다. ```trinodb```` 조직 하에 약 11,000개의 GitHub Star를 보유하고 있으며, 2026년 초에 버전 **464&#43;**가 릴리스되었다. Trino는 기가바이트에서 페타바이트에 이르는 모든 크기의 데이터 소스에 대해 인터랙티브 분석 쿼리를 실행하도록 설계된 분산 SQL 쿼리 엔진이다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/trino-distributed-sql-query/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+소개 프로덕션에 배포되는 모든 컨테이너 이미지는 잠재적인 공격 표면입니다. Trivy는 컨테이너 이미지, 파일시스템, Kubernetes 클러스터 및 인프라스트럭처-어스-코드(IaC)에서 취약점, 오설정, 시크릿, 라이선스 문제를 스캔합니다. 60만 개 이상의 CVE를 데이터베이스에 보유하고 있으며 20개 이상의 패키지 포맷을 지원하여, 클라우드 네이티브 생태계에서 가장 널리 채택된 오픈소스 보안 스캐닝 도구 중 하나가 되었습니다.
+Trivy란? Trivy(일본어로 “맑은 눈”, “맑은 눈, 가득한 마음, 패하지 않는다&#34;는 말에서 유래)는 Aqua Security에서 제공하는 포괄적인 보안 스캐너로, 전체 소프트웨어 공급망을 커버합니다. 단순히 CVE 데이터베이스만 확인하는 기존 스캐너와 달리 Trivy는 오설정된 파일, 노출된 시크릿, 소프트웨어 라이선스도 탐지하여 애플리케이션 보안 팀을 위한 원스톱 솔루션이 됩니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>8 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/trivy-production-security-scanner-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>
+소개 RAG 애플리케이션은 추론 시간의 대부분을 벡터 검색이 결과를 반환하기를 기다리는 데 소비합니다. TurboVec은 Rust 레벨의 성능과 Python 편의성을 결합하여 TurboQuant라는 새로운 양자화 기술을 통해 최대 10 배 빠른 벡터 검색을 제공합니다. 10,500 개 이상의 GitHub stars 와 LangChain, LlamaIndex, Haystack, Agno 에 대한 드롭인 대체품을 갖추고 있어, 500ms 쿼리 지연 시간을 받아들이기를 거부하는 팀에게 기본 벡터 스토어가 되고 있습니다. 이 라이브러리는 적극적으로 유지 관리되고 있으며, 프로덕션 배포에서의 커뮤니티 피드백을 바탕으로 프레임워크 통합, 새로운 양자화 모드 및 성능 개선을 추가하는 정기적인 릴리스를 제공합니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/turbovec-rust-vector-index-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction 새로운 코드베이스를 클론합니다. 200개의 파일에 걸쳐 50,000줄의 코드가 있습니다. VS Code를 열고 파일 트리를 바라봅니다. 어디서부터 시작해야 할까요?
+대부분의 개발자들은 먼저 ```grep을 사용합니다. 그 다음은 ripgrep````을 사용합니다. 그런 다음 가장 많이 참조되는 10개의 파일을 열고 아키텍처를 머릿속으로 맞춰보려고 합니다. 작은 프로젝트에는 효과가 있습니다. 하지만 규모가 있는 프로젝트에서는 매우 힘듭니다.
+Understand-Anything는 근본적으로 다른 일을 합니다. 그것은 모든 코드베이스를 대화형 지식 그래프로 변환합니다 — 파일, 클래스, 함수에 대한 노드; 의존성과 관계에 대한 엣지. 당신은 코드에 대해 탐색하고, 검색하고, 질문할 수 있습니다. 정규표현식으로가 아니라, 자연어로.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>9 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/understand-anything-interactive-knowledge-graphs-codebases/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: [Python, PyTorch, CUDA, Triton] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“unsloth”, “파인튜닝”, “lora”, “qlora”, “grpo”, “빠른 훈련”] aliases:
+/posts/unsloth-fast-llm-fine-tuning-2026/ Axolotl이 프로덕션 멀티 GPU 파인튜닝 프레임워크라면, Unsloth는 단일 GPU 속도 왕. PyTorch의 일반 autograd 대신 커스텀 Triton &#43; Python으로 LLM 훈련 커널 재작성으로, Unsloth는 HuggingFace TRL 베이스라인보다 모델 2× 빠르게 파인튜닝 70% 적은 VRAM으로.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>7 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/unsloth-fast-llm-fine-tuning-2026/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“unstructured”, “문서파싱”, “llm”, “rag”, “데이터전처리”, “pdf”, “청킹”, “오픈소스”] aliases:
+/kr/posts/unstructured-data-preprocessing-llm/ 소개: 모든 RAG 파이프라인 뒤에 숨겨진 고통 Retrieval-Augmented Generation(RAG) 파이프라인의 품질은 입력 데이터의 품질에 전적으로 달려 있습니다. 최고의 임베딩 모델, 가장 비싼 벡터 데이터베이스, 최신 LLM을 가지고 있어도 — 소스 문서가 망가진 테이블이 있는 원시 PDF, OCR이 엉망인 스캔 이미지, 또는 보이지 않는 텍스트 상자가 있는 PowerPoint 슬라이드라면 검색 정확도는 떨어질 수밖에 없습니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/unstructured-data-preprocessing-llm/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>데이터베이스와 자연어를 사용하여 상호작용하는 능력은 오랫동안 데이터 분석의 성배로 여겨져 왔습니다. 매일 무수한 시간이 비즈니스 질문을 SQL 쿼리로 번역하는 데 낭비됩니다 — 이 과정은 데이터베이스 스키마, 테이블 관계 및 SQL 구문에 대한 깊은 지식을 요구합니다. 2026년, 이 병목 현상은 Vanna AI 덕분에 빠르게 사라지고 있습니다. Vanna AI는 데이터베이스 스키마에서 학습하여 평범한 영어로 90% 이상의 정확도로 프로덕션 수준의 SQL을 생성하는 오픈소스 Python 라이브러리입니다.
+18,000개 이상의 GitHub 스타와 MIT 라이선스를 보유한 Vanna AI는 정확성과 데이터 프라이버시를 모두 요구하는 팀을 위한 선도적인 Text-to-SQL 솔루션으로 부상했습니다. SQL 생성을 또 다른 번역 작업으로 취급하는 범용 LLM 접근 방식과 달리, Vanna는 데이터베이스 쿼리를 위해 특별히 설계된 검색 증강 생성(RAG) 아키텍처를 사용합니다. 스키마를 학습하고, 비즈니스 로직을 이해하며, 실제로 실행되는 SQL을 생성합니다 — 검증되고, 최적화되며, 프로덕션에 바로 사용할 준비가 되어 있습니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vanna-ai-sql-generation/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>Introduction: 대부분의 RAG 시스템이 프로덕션에서 실패하는 이유 데모는 봤다: 문서를 검색해 질문에 답하는 챗봇. 50개 PDF 토이 데이터셋에서는 잘 작동한다. 그런데 12개 언어의 50,000개 문서에 배포하면 모든 것이 물거품이 된다. 답변이 모호해지고, 출처가 틀리며, 할루시네이션이 스며들고, 지연이 감당할 수 없는 수준으로 치솟는다.
+이것이 RAG 프로덕션 절벽이다. Stanford HAI의 2025년 연구에서 엔터프라이즈 RAG 프로토타입의 78%가 10,000개 문서 이상으로 확장하면 정확도가 70% 아래로 떨어진다고 밝혔다. 원인은 익숙하다: 부실한 청킹 전략, 약한 임베딩 모델, 재순위화 부재, 할루시네이션 감지 없음, 거버넌스 부재.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>13 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vectara-rag-as-service-platform/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>벡터 데이터베이스 비교 2025: Pinecone vs Weaviate vs Chroma vs Milvus {&lt;/* resource-info */&gt;}
+LLM 기반 애플리케이션에서 RAG(검색 증강 생성)는 필수 아키텍처로 자리 잡았습니다. RAG의 핵심인 벡터 데이터베이스 선택은 전체 시스템의 성능과 비용을 좌우합니다. 이 글에서는 2025년 현재 가장 인기 있는 4개 벡터 데이터베이스를 심층 비교합니다.
+벡터 데이터베이스란 왜 필요한가? 벡터 임베딩 개념 텍스트, 이미지, 오디오 등의 데이터를 고차원 숫자 배열(벡터)로 변환하는 과정을 임베딩이라 합니다. 예를 들어 “사과&#34;라는 단어는 768차원의 실수 배열로 표현됩니다. 이런 벡터는 의미적 유사성을 공간적 거리로 계산할 수 있게 해줍니다.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>6 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vector-database-comparison/"></a>
+</article>
+
+<article class="post-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-25T00:00:00&#43;08:00 lastmod: 2026-05-25T00:00:00&#43;08:00 tech_stack: [Qdrant, Weaviate, Milvus, ‘Vector Search’, Embeddings] application_domain: LLM Frameworks source_version: “Qdrant 1.12 / Weaviate 1.27 / Milvus 2.5” licensing_model: Open Source license_type: ‘Apache-2.0’ last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“vector-database”, “qdrant”, “weaviate”, “milvus”, “rag”, “2026”] aliases:
+/kr/posts/vector-db-2026-qdrant-weaviate-milvus/ faq: - q: “2026년에 가장 좋은 벡터 DB는?” a: “개인 또는 소규모 팀 RAG에는 Qdrant(가장 단순하고 단일 노드에서 가장 빠름). 하이브리드 검색(벡터 &#43; 키워드 &#43; 필터)이 필요한 프로덕션에는 Weaviate. 십억 단위 워크로드에는 Milvus(수평 확장 최강). 2026년 기준 세 가지 모두 안정적입니다.” q: “언제 벡터 DB 대신 SQLite FTS5를 써야 하나요?” a: “문서 1만 개 이하에서는 SQLite 전체 텍스트 검색(FTS5)이 관련성 면에서 벡터 DB를 능가하는 경우가 많고 운영 복잡도가 10배 단순합니다. 문서가 5만 개를 넘거나 키워드가 아닌 의미적 유사성이 중요할 때만 벡터 DB의 복잡도가 정당화됩니다.” q: “pgvector는 어떤가요? Postgres만으로 충분할까요?” a: “이미 Postgres를 쓰고 있고 벡터 100만 개 이하라면 pgvector가 훌륭한 선택입니다. 그 이상에서는 성능이 떨어집니다. 신규 프로젝트거나 벡터 100만 개를 넘는다면 전용 벡터 DB가 유리합니다.” q: “하드웨어는 얼마나 필요한가요?” a: “100만 벡터 @ 768 차원: 약 3GB 메모리. 1000만 벡터: 약 30GB. 대부분의 프로덕션 워크로드는 32GB VM 한 대에서 충분히 돌아갑니다. 1억 벡터를 넘으면 샤딩 배포를 계획해야 합니다.” 2026 벡터 DB 선택 가이드: Qdrant vs Weaviate vs Milvus Meta Description: 500만 벡터로 세 가지를 모두 실측. 레이턴시, 처리량, 메모리, 설치 난이도. 언제 벡터 DB를 건너뛰고 SQLite FTS5를 써야 할지.
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026년 9월 20일</span>&nbsp;·&nbsp;<span>5 분</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/ko/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/ko/ai-coding-agents/page/38/">
+      «&nbsp;이전 페이지&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/ko/ai-coding-agents/page/40/">다음 페이지&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/ko/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

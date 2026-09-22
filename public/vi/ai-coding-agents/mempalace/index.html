@@ -1,216 +1,636 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/mempalace/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/mempalace/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/mempalace/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/mempalace/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/mempalace/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/mempalace/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/mempalace/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nPython application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: “https://github.com/MemPalace/mempalace\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /vi/posts/mempalace/ faqs: - q: ‘MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?’ a: ‘MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.’ q: ‘Cách cài đặt MemPalace như thế nào?’ a: ‘MemPalace là công cụ Python, có thể cài qua uv（uv tool install mempalace）hoặc pip（pip install mempalace）. Sau khi cài xong, chạy mempalace init ~/projects/myapp để khởi tạo cho dự án của bạn.’ q: ‘MemPalace so với Mem0 về độ chính xác khi truy xuất ra sao?’ a: ‘Trên bộ kiểm chuẩn LongMemEval, MemPalace đạt tỷ lệ truy xuất 96.6%, trong khi Mem0 chỉ đạt 89.2%. MemPalace chạy hoàn toàn cục bộ mà không cần bất kỳ lần gọi API nào, còn Mem0 yêu cầu OpenAI API trả phí.’ q: ‘MemPalace tổ chức bộ nhớ được lưu trữ như thế nào?’ a: ‘MemPalace sử dụng ẩn dụ cung điện với ba cấp độ: Wings dành cho người và dự án, Rooms dành cho các chủ đề trong từng dự án, và Drawers lưu nội dung gốc dưới dạng nguyên văn. Cấu trúc này cho phép bạn thu hẹp tìm kiếm vào một wing dự án hoặc room chủ đề cụ thể, thay vì truy vấn toàn bộ cơ sở dữ liệu vector phẳng.’ q: ‘MemPalace có tương thích với Claude Code và các công cụ AI khác không?’ a: ‘Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.’ {\u003c/* resource-info */\u003e}\nBảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra Khi đánh giá hệ thống bộ nhớ AI, hiệu năng và ngốn tài nguyên là chí mạng. Đây là cách MemPalace nghiền nát các đối thủ trong bài test LongMemEval: | Chỉ Số/Tính Năng | MemPalace | Mem0 | Mastra | Hindsight | | :— | :— | :— | :— | :— | | Tỷ Lệ Recall | 96.6% | 89.2% | 85.5% | 91.0% | | Số Lần Gọi API| Bằng Không (Local) | OpenAI API (Tốn tiền) | Anthropic API | Bằng Không | | Kiến Trúc Lưu Trữ| Lưu y xì đúc + Vector | Chỉ Vector | Graph + Vector | Chỉ Vector | | Hỗ Trợ Claude Code| Có (Native qua MCP) | Phải tự code tích hợp | Có | Không |\nMemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer Trong thế giới AI ngày nay, một vấn đề cốt lõi vẫn luôn thách thức các developer: làm sao để AI assistant thực sự nhớ. Không phải chỉ nhớ vài dòng chat gần nhất, mà là nhớ sở thích cá nhân, lịch sử hội thoại dài hạn, và ngữ cảnh phức tạp qua nhiều tuần, nhiều tháng.\nMemPalace — với 51,745 sao trên GitHub — chính là câu trả lời. Được mệnh danh là “The best-benchmarked open-source AI memory system”, MemPalace không chỉ miễn phí mà còn dễ dàng tích hợp vào bất kỳ dự án AI nào.\nVấn Đề Mà MemPalace Giải Quyết Hầu hết AI assistant hiện nay đều mắc phải “bệnh quên”: - Ngữ cảnh ngắn: Chỉ nhớ được vài nghìn token gần nhất.\nKhông nhớ người dùng: Mỗi phiên làm việc mới như gặp lại từ đầu. Thiếu cá nhân hóa: Không thể điều chỉnh phản hồi dựa trên sở thích đã học. MemPalace giải quyết triệt để bằng cách lưu trữ, truy xuất và cập nhật bộ nhớ dài hạn cho AI — giống như não bộ con người vậy.\nKiến Trúc Kỹ Thuật Của MemPalace MemPalace hoạt động dựa trên ba trụ cột chính: ### 1. Vector Memory Store\nMọi thông tin quan trọng đều được chuyển thành embedding vector và lưu trong vector database. Điều này cho phép truy xuất ngữ nghĩa thay vì chỉ tìm kiếm từ khóa.\n2. Hierarchical Memory Layers Working Memory: Ngữ cảnh ngắn hạn, phiên làm việc hiện tại. Episodic Memory: Các sự kiện, hội thoại quan trọng đã qua. Semantic Memory: Kiến thức tổng quát, sở thích, quy tắc của người dùng. 3. Smart Retrieval \u0026 Summarization Tự động tóm tắt, nén và ưu tiên thông tin — chỉ truy xuất điều thực sự cần thiết cho câu trả lời hiện tại.\nCài Đặt Và Sử Dụng MemPalace Cài đặt cực kỳ đơn giản: ````bash pip install mempalace\nHoặc với Docker: `````bash docker pull mempalace/mempalace:latest docker run -p 8080:8080 mempalace/mempalace:latest Ví Dụ Tích Hợp Cơ Bản from mempalace import MemoryPalace # Khởi tạo hệ thống trí nhớ memory = MemoryPalace( backend=\"chromadb\", # Hoặc pgvector, milvus, qdrant embedding_model=\"openai\", # Hoặc local model max_tokens=4000 ) # Lưu thông tin người dùng memory.remember( user_id=\"user_123\", content=\"Người dùng thích cà phê đen, không đường. Hay làm việc vào buổi tối.\", importance=\"high\" ) # Truy xuất ngữ cảnh liên quan context = memory.recall( user_id=\"user_123\", query=\"Gợi ý đồ uống phù hợp khi làm việc khuya\", top_k=3 ) print(context) # Output: ['Người dùng thích cà phê đen, không đường.', 'Hay làm việc vào buổi tối.'] Tích Hợp Với LangChain from langchain.chains import ConversationChain from mempalace.langchain import MemPalaceMemory memory = MemPalaceMemory( palace=memory, user_id=\"user_123\" ) chain = ConversationChain( llm=llm, memory=memory ) response = chain.predict(input=\"Tôi muốn một thứ gì đó tỉnh táo\") # AI sẽ tự động nhớ và gợi ý cà phê đen Cấu Hình Nâng Cao memory = MemoryPalace( backend=\"pgvector\", connection_string=\"postgresql://user:pass@localhost/db\", embedding_model=\"sentence-transformers/all-MiniLM-L6-v2\", compression_strategy=\"summarize\", # Tóm tắt thay vì cắt bớt decay_factor=0.95, # Thông tin cũ dần mờ đi importance_threshold=0.7 # Chỉ giữ thông tin quan trọng ) ```` * * * ## Tại Sao MemPalace Vượt Trội? | Tiêu Chí | MemPalace | Giải Pháp Khác | |---|---|---| | Benchmark | Cao nhất open-source | Không đồng nhất | | Mã nguồn | 100% mở | Thường proprietary | | Giá | Miễn phí | $$$ | | Tích hợp | LangChain, LlamaIndex, v.v. | Hạn chế | | Community | 51,745+ stars | Nhỏ hơn nhiều | * * * ## Kết Luận MemPalace không chỉ là một thư viện — nó là **nền tảng trí nhớ** cho thế hệ AI assistant tiếp theo. Với kiến trúc mở, benchmark dẫn đầu và cộng đồng đông đảo, đây là lựa chọn số một cho bất kỳ developer nào muốn AI của mình thực sự *thông minh* và *cá nhân hóa*. 👉 **GitHub**: [github.com/MemPalace/mempalace](https://github.com/MemPalace/mempalace) * * * ## Related Articles * * * *Bài viết được cập nhật lần cuối: 2026-05-10* ## FAQ: Chạy MemPalace Trên Môi Trường Production **Q: MemPalace ngốn bao nhiêu RAM? (how much RAM for MemPalace)** A: Nó được tối ưu cực gắt. Chạy mượt mà trên máy tính chỉ có 8GB RAM, nhưng nếu bạn kéo hàng ngàn session chat dài hạn thì nên cắm thanh 16GB. **Q: Có cắm MemPalace vào Claude Code được không?** A: Dư sức! Nó đẻ sẵn ra một cổng kết nối chuẩn MCP, giúp con AI coder của bạn có trí nhớ dai như đỉa. **Q: Lưu bộ nhớ local thì xài ChromaDB hay Pinecone?** A: MemPalace xài ChromaDB local để đảm bảo độ trễ bằng không và đách tốn 1 xu gọi API. Ngon hơn Pinecone nhiều nếu bạn sợ bị lộ source code lên mây. * * * ## Công Cụ Đề Xuất Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload. - **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức. - **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam. *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"MemPalace vs Mem0: Benchmark Recall 96.6% \u0026 Framework Bộ Nhớ AI Tốt Nhất 2026\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/mempalace\" } } \u003c/script\u003e ## Why This Matters Understanding mempalace vs mem0: benchmark recall 96.6% \u0026 framework bộ nhớ ai tốt nhất 2026 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion MemPalace vs Mem0: Benchmark Recall 96.6% \u0026 Framework Bộ Nhớ AI Tốt Nhất 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ","wordCount":"1707","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/mempalace/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/mempalace/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/mempalace/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/mempalace/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#b%e1%ba%a3ng-so-s%c3%a1nh-benchmark-mempalace-vs-mem0-vs-mastra aria-label="Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra">Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra</a></li><li><a href=#mempalace-gi%e1%ba%a3i-ph%c3%a1p-tr%c3%ad-nh%e1%bb%9b-ai-%c4%91%e1%bb%99t-ph%c3%a1-cho-m%e1%bb%8di-developer aria-label="MemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer">MemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer</a></li><li><a href=#v%e1%ba%a5n-%c4%91%e1%bb%81-m%c3%a0-mempalace-gi%e1%ba%a3i-quy%e1%ba%bft aria-label="Vấn Đề Mà MemPalace Giải Quyết">Vấn Đề Mà MemPalace Giải Quyết</a></li><li><a href=#ki%e1%ba%bfn-tr%c3%bac-k%e1%bb%b9-thu%e1%ba%adt-c%e1%bb%a7a-mempalace aria-label="Kiến Trúc Kỹ Thuật Của MemPalace">Kiến Trúc Kỹ Thuật Của MemPalace</a><ul><li><a href=#2-hierarchical-memory-layers aria-label="2. Hierarchical Memory Layers">2. Hierarchical Memory Layers</a></li><li><a href=#3-smart-retrieval--summarization aria-label="3. Smart Retrieval & Summarization">3. Smart Retrieval & Summarization</a></li></ul></li><li><a href=#c%c3%a0i-%c4%91%e1%ba%b7t-v%c3%a0-s%e1%bb%ad-d%e1%bb%a5ng-mempalace aria-label="Cài Đặt Và Sử Dụng MemPalace">Cài Đặt Và Sử Dụng MemPalace</a><ul><li><a href=#v%c3%ad-d%e1%bb%a5-t%c3%adch-h%e1%bb%a3p-c%c6%a1-b%e1%ba%a3n aria-label="Ví Dụ Tích Hợp Cơ Bản">Ví Dụ Tích Hợp Cơ Bản</a></li><li><a href=#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-langchain aria-label="Tích Hợp Với LangChain">Tích Hợp Với LangChain</a></li><li><a href=#c%e1%ba%a5u-h%c3%acnh-n%c3%a2ng-cao aria-label="Cấu Hình Nâng Cao">Cấu Hình Nâng Cao</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/mempalace/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/mempalace/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/mempalace/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/mempalace/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/mempalace/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/mempalace/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/mempalace/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-15T04:20:25+09:00 lastmod: 2026-05-15T04:20:25+09:00 tech_stack: - Docker\nPython application_domain: “Ai Tools” source_version: \"\" licensing_model: “Open Source” license_type: “MIT” file_size: \"\" file_md5: \"\" download_url: “https://github.com/MemPalace/mempalace\" backup_url: \"” last_maintained: “2026-05-15” draft: false aliases: /vi/posts/mempalace/ faqs: - q: ‘MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?’ a: ‘MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.’ q: ‘Cách cài đặt MemPalace như thế nào?’ a: ‘MemPalace là công cụ Python, có thể cài qua uv（uv tool install mempalace）hoặc pip（pip install mempalace）. Sau khi cài xong, chạy mempalace init ~/projects/myapp để khởi tạo cho dự án của bạn.’ q: ‘MemPalace so với Mem0 về độ chính xác khi truy xuất ra sao?’ a: ‘Trên bộ kiểm chuẩn LongMemEval, MemPalace đạt tỷ lệ truy xuất 96.6%, trong khi Mem0 chỉ đạt 89.2%. MemPalace chạy hoàn toàn cục bộ mà không cần bất kỳ lần gọi API nào, còn Mem0 yêu cầu OpenAI API trả phí.’ q: ‘MemPalace tổ chức bộ nhớ được lưu trữ như thế nào?’ a: ‘MemPalace sử dụng ẩn dụ cung điện với ba cấp độ: Wings dành cho người và dự án, Rooms dành cho các chủ đề trong từng dự án, và Drawers lưu nội dung gốc dưới dạng nguyên văn. Cấu trúc này cho phép bạn thu hẹp tìm kiếm vào một wing dự án hoặc room chủ đề cụ thể, thay vì truy vấn toàn bộ cơ sở dữ liệu vector phẳng.’ q: ‘MemPalace có tương thích với Claude Code và các công cụ AI khác không?’ a: ‘Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.’ {\u003c/* resource-info */\u003e}\nBảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra Khi đánh giá hệ thống bộ nhớ AI, hiệu năng và ngốn tài nguyên là chí mạng. Đây là cách MemPalace nghiền nát các đối thủ trong bài test LongMemEval: | Chỉ Số/Tính Năng | MemPalace | Mem0 | Mastra | Hindsight | | :— | :— | :— | :— | :— | | Tỷ Lệ Recall | 96.6% | 89.2% | 85.5% | 91.0% | | Số Lần Gọi API| Bằng Không (Local) | OpenAI API (Tốn tiền) | Anthropic API | Bằng Không | | Kiến Trúc Lưu Trữ| Lưu y xì đúc + Vector | Chỉ Vector | Graph + Vector | Chỉ Vector | | Hỗ Trợ Claude Code| Có (Native qua MCP) | Phải tự code tích hợp | Có | Không |\nMemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer Trong thế giới AI ngày nay, một vấn đề cốt lõi vẫn luôn thách thức các developer: làm sao để AI assistant thực sự nhớ. Không phải chỉ nhớ vài dòng chat gần nhất, mà là nhớ sở thích cá nhân, lịch sử hội thoại dài hạn, và ngữ cảnh phức tạp qua nhiều tuần, nhiều tháng.\nMemPalace — với 51,745 sao trên GitHub — chính là câu trả lời. Được mệnh danh là “The best-benchmarked open-source AI memory system”, MemPalace không chỉ miễn phí mà còn dễ dàng tích hợp vào bất kỳ dự án AI nào.\nVấn Đề Mà MemPalace Giải Quyết Hầu hết AI assistant hiện nay đều mắc phải “bệnh quên”: - Ngữ cảnh ngắn: Chỉ nhớ được vài nghìn token gần nhất.\nKhông nhớ người dùng: Mỗi phiên làm việc mới như gặp lại từ đầu. Thiếu cá nhân hóa: Không thể điều chỉnh phản hồi dựa trên sở thích đã học. MemPalace giải quyết triệt để bằng cách lưu trữ, truy xuất và cập nhật bộ nhớ dài hạn cho AI — giống như não bộ con người vậy.\nKiến Trúc Kỹ Thuật Của MemPalace MemPalace hoạt động dựa trên ba trụ cột chính: ### 1. Vector Memory Store\nMọi thông tin quan trọng đều được chuyển thành embedding vector và lưu trong vector database. Điều này cho phép truy xuất ngữ nghĩa thay vì chỉ tìm kiếm từ khóa.\n2. Hierarchical Memory Layers Working Memory: Ngữ cảnh ngắn hạn, phiên làm việc hiện tại. Episodic Memory: Các sự kiện, hội thoại quan trọng đã qua. Semantic Memory: Kiến thức tổng quát, sở thích, quy tắc của người dùng. 3. Smart Retrieval \u0026 Summarization Tự động tóm tắt, nén và ưu tiên thông tin — chỉ truy xuất điều thực sự cần thiết cho câu trả lời hiện tại.\nCài Đặt Và Sử Dụng MemPalace Cài đặt cực kỳ đơn giản: ````bash pip install mempalace\nHoặc với Docker: `````bash docker pull mempalace/mempalace:latest docker run -p 8080:8080 mempalace/mempalace:latest Ví Dụ Tích Hợp Cơ Bản from mempalace import MemoryPalace # Khởi tạo hệ thống trí nhớ memory = MemoryPalace( backend=\"chromadb\", # Hoặc pgvector, milvus, qdrant embedding_model=\"openai\", # Hoặc local model max_tokens=4000 ) # Lưu thông tin người dùng memory.remember( user_id=\"user_123\", content=\"Người dùng thích cà phê đen, không đường. Hay làm việc vào buổi tối.\", importance=\"high\" ) # Truy xuất ngữ cảnh liên quan context = memory.recall( user_id=\"user_123\", query=\"Gợi ý đồ uống phù hợp khi làm việc khuya\", top_k=3 ) print(context) # Output: ['Người dùng thích cà phê đen, không đường.', 'Hay làm việc vào buổi tối.'] Tích Hợp Với LangChain from langchain.chains import ConversationChain from mempalace.langchain import MemPalaceMemory memory = MemPalaceMemory( palace=memory, user_id=\"user_123\" ) chain = ConversationChain( llm=llm, memory=memory ) response = chain.predict(input=\"Tôi muốn một thứ gì đó tỉnh táo\") # AI sẽ tự động nhớ và gợi ý cà phê đen Cấu Hình Nâng Cao memory = MemoryPalace( backend=\"pgvector\", connection_string=\"postgresql://user:pass@localhost/db\", embedding_model=\"sentence-transformers/all-MiniLM-L6-v2\", compression_strategy=\"summarize\", # Tóm tắt thay vì cắt bớt decay_factor=0.95, # Thông tin cũ dần mờ đi importance_threshold=0.7 # Chỉ giữ thông tin quan trọng ) ```` * * * ## Tại Sao MemPalace Vượt Trội? | Tiêu Chí | MemPalace | Giải Pháp Khác | |---|---|---| | Benchmark | Cao nhất open-source | Không đồng nhất | | Mã nguồn | 100% mở | Thường proprietary | | Giá | Miễn phí | $$$ | | Tích hợp | LangChain, LlamaIndex, v.v. | Hạn chế | | Community | 51,745+ stars | Nhỏ hơn nhiều | * * * ## Kết Luận MemPalace không chỉ là một thư viện — nó là **nền tảng trí nhớ** cho thế hệ AI assistant tiếp theo. Với kiến trúc mở, benchmark dẫn đầu và cộng đồng đông đảo, đây là lựa chọn số một cho bất kỳ developer nào muốn AI của mình thực sự *thông minh* và *cá nhân hóa*. 👉 **GitHub**: [github.com/MemPalace/mempalace](https://github.com/MemPalace/mempalace) * * * ## Related Articles * * * *Bài viết được cập nhật lần cuối: 2026-05-10* ## FAQ: Chạy MemPalace Trên Môi Trường Production **Q: MemPalace ngốn bao nhiêu RAM? (how much RAM for MemPalace)** A: Nó được tối ưu cực gắt. Chạy mượt mà trên máy tính chỉ có 8GB RAM, nhưng nếu bạn kéo hàng ngàn session chat dài hạn thì nên cắm thanh 16GB. **Q: Có cắm MemPalace vào Claude Code được không?** A: Dư sức! Nó đẻ sẵn ra một cổng kết nối chuẩn MCP, giúp con AI coder của bạn có trí nhớ dai như đỉa. **Q: Lưu bộ nhớ local thì xài ChromaDB hay Pinecone?** A: MemPalace xài ChromaDB local để đảm bảo độ trễ bằng không và đách tốn 1 xu gọi API. Ngon hơn Pinecone nhiều nếu bạn sợ bị lộ source code lên mây. * * * ## Công Cụ Đề Xuất Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: - **** — $200 tín dụng miễn phí cho người dùng mới, 14+ region toàn cầu, droplet GPU/CPU một-cú-click cho AI workload. - **** — Proxy Anthropic Claude / OpenAI / DeepSeek API. Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v.v.) cần LLM API key — proxy này cho access ổn định top model với ~30% giá chính thức. - **** — Lựa chọn VPS giá tốt cho thị trường Việt Nam. *Affiliate link — không tăng chi phí của bạn nhưng giúp dibi8.com duy trì hoạt động.* { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"MemPalace vs Mem0: Benchmark Recall 96.6% \u0026 Framework Bộ Nhớ AI Tốt Nhất 2026\", \"datePublished\": \"2026-05-15\", \"dateModified\": \"2026-05-15\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/vi/resources/mempalace\" } } \u003c/script\u003e ## Why This Matters Understanding mempalace vs mem0: benchmark recall 96.6% \u0026 framework bộ nhớ ai tốt nhất 2026 is crucial for modern AI development. Here's why: ### Key Benefits - **Efficiency**: Save time on repetitive tasks - **Quality**: Improve output consistency - **Scalability**: Handle larger workloads - **Cost**: Reduce operational expenses ### Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines ### Getting Started To implement this in your workflow: 1. **Assess Your Needs** - Identify repetitive tasks - Measure current time costs - Define success metrics 2. **Choose Your Approach** - Start with simple automations - Gradually increase complexity - Test and iterate 3. **Measure Results** - Track time savings - Monitor quality improvements - Calculate ROI ## Conclusion MemPalace vs Mem0: Benchmark Recall 96.6% \u0026 Framework Bộ Nhớ AI Tốt Nhất 2026 represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge. For the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group * * * *Last updated: 2026-09-20* *Read time: ~5 minutes* ",
+  "wordCount" : "1707",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/mempalace/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>9 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/mempalace/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/mempalace/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/mempalace/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#b%e1%ba%a3ng-so-s%c3%a1nh-benchmark-mempalace-vs-mem0-vs-mastra" aria-label="Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra">Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra</a></li>
+            <li>
+                <a href="#mempalace-gi%e1%ba%a3i-ph%c3%a1p-tr%c3%ad-nh%e1%bb%9b-ai-%c4%91%e1%bb%99t-ph%c3%a1-cho-m%e1%bb%8di-developer" aria-label="MemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer">MemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer</a></li>
+            <li>
+                <a href="#v%e1%ba%a5n-%c4%91%e1%bb%81-m%c3%a0-mempalace-gi%e1%ba%a3i-quy%e1%ba%bft" aria-label="Vấn Đề Mà MemPalace Giải Quyết">Vấn Đề Mà MemPalace Giải Quyết</a></li>
+            <li>
+                <a href="#ki%e1%ba%bfn-tr%c3%bac-k%e1%bb%b9-thu%e1%ba%adt-c%e1%bb%a7a-mempalace" aria-label="Kiến Trúc Kỹ Thuật Của MemPalace">Kiến Trúc Kỹ Thuật Của MemPalace</a><ul>
+                    
+            <li>
+                <a href="#2-hierarchical-memory-layers" aria-label="2. Hierarchical Memory Layers">2. Hierarchical Memory Layers</a></li>
+            <li>
+                <a href="#3-smart-retrieval--summarization" aria-label="3. Smart Retrieval &amp; Summarization">3. Smart Retrieval &amp; Summarization</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a0i-%c4%91%e1%ba%b7t-v%c3%a0-s%e1%bb%ad-d%e1%bb%a5ng-mempalace" aria-label="Cài Đặt Và Sử Dụng MemPalace">Cài Đặt Và Sử Dụng MemPalace</a><ul>
+                    
+            <li>
+                <a href="#v%c3%ad-d%e1%bb%a5-t%c3%adch-h%e1%bb%a3p-c%c6%a1-b%e1%ba%a3n" aria-label="Ví Dụ Tích Hợp Cơ Bản">Ví Dụ Tích Hợp Cơ Bản</a></li>
+            <li>
+                <a href="#t%c3%adch-h%e1%bb%a3p-v%e1%bb%9bi-langchain" aria-label="Tích Hợp Với LangChain">Tích Hợp Với LangChain</a></li>
+            <li>
+                <a href="#c%e1%ba%a5u-h%c3%acnh-n%c3%a2ng-cao" aria-label="Cấu Hình Nâng Cao">Cấu Hình Nâng Cao</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-15T04:20:25+09:00
 lastmod: 2026-05-15T04:20:25+09:00
-tech_stack: - Docker</p><ul><li>Python
+tech_stack: - Docker</p>
+<ul>
+<li>Python
 application_domain: &ldquo;Ai Tools&rdquo;
-source_version: ""
+source_version: &quot;&quot;
 licensing_model: &ldquo;Open Source&rdquo;
 license_type: &ldquo;MIT&rdquo;
-file_size: ""
-file_md5: ""
-download_url: &ldquo;<a href=https://github.com/MemPalace/mempalace%22>https://github.com/MemPalace/mempalace"</a>
-backup_url: "&rdquo;
+file_size: &quot;&quot;
+file_md5: &quot;&quot;
+download_url: &ldquo;<a href="https://github.com/MemPalace/mempalace%22">https://github.com/MemPalace/mempalace"</a>
+backup_url: &quot;&rdquo;
 last_maintained: &ldquo;2026-05-15&rdquo;
 draft: false
-aliases:</li><li>/vi/posts/mempalace/
+aliases:</li>
+<li>/vi/posts/mempalace/
 faqs: - q: &lsquo;MemPalace là gì và nó cung cấp bộ nhớ cho AI như thế nào?&rsquo;
-a: &lsquo;MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.&rsquo;</li><li>q: &lsquo;Cách cài đặt MemPalace như thế nào?&rsquo;
-a: &lsquo;MemPalace là công cụ Python, có thể cài qua uv（uv tool install mempalace）hoặc pip（pip install mempalace）. Sau khi cài xong, chạy mempalace init ~/projects/myapp để khởi tạo cho dự án của bạn.&rsquo;</li><li>q: &lsquo;MemPalace so với Mem0 về độ chính xác khi truy xuất ra sao?&rsquo;
-a: &lsquo;Trên bộ kiểm chuẩn LongMemEval, MemPalace đạt tỷ lệ truy xuất 96.6%, trong khi Mem0 chỉ đạt 89.2%. MemPalace chạy hoàn toàn cục bộ mà không cần bất kỳ lần gọi API nào, còn Mem0 yêu cầu OpenAI API trả phí.&rsquo;</li><li>q: &lsquo;MemPalace tổ chức bộ nhớ được lưu trữ như thế nào?&rsquo;
-a: &lsquo;MemPalace sử dụng ẩn dụ cung điện với ba cấp độ: Wings dành cho người và dự án, Rooms dành cho các chủ đề trong từng dự án, và Drawers lưu nội dung gốc dưới dạng nguyên văn. Cấu trúc này cho phép bạn thu hẹp tìm kiếm vào một wing dự án hoặc room chủ đề cụ thể, thay vì truy vấn toàn bộ cơ sở dữ liệu vector phẳng.&rsquo;</li><li>q: &lsquo;MemPalace có tương thích với Claude Code và các công cụ AI khác không?&rsquo;
-a: &lsquo;Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.&rsquo;</li></ul><hr><p>{&lt;/* resource-info */>}</p><h2 id=bảng-so-sánh-benchmark-mempalace-vs-mem0-vs-mastra>Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra<a hidden class=anchor aria-hidden=true href=#bảng-so-sánh-benchmark-mempalace-vs-mem0-vs-mastra>#</a></h2><p>Khi đánh giá hệ thống bộ nhớ AI, hiệu năng và ngốn tài nguyên là chí mạng. Đây là cách MemPalace nghiền nát các đối thủ trong bài test <strong>LongMemEval</strong>: | Chỉ Số/Tính Năng | MemPalace | Mem0 | Mastra | Hindsight |
+a: &lsquo;MemPalace là một hệ thống bộ nhớ AI mã nguồn mở, miễn phí, ưu tiên chạy cục bộ. Nó lưu trữ lịch sử hội thoại và dự án của bạn dưới dạng văn bản nguyên gốc, sau đó truy xuất bằng tìm kiếm ngữ nghĩa. Hệ thống tạo ra một lớp bộ nhớ có cấu trúc bên ngoài mô hình, giúp AI của bạn nhớ được bối cảnh chính xác từ quá khứ thay vì phải bắt đầu lại từ đầu mỗi cuộc trò chuyện.&rsquo;</li>
+<li>q: &lsquo;Cách cài đặt MemPalace như thế nào?&rsquo;
+a: &lsquo;MemPalace là công cụ Python, có thể cài qua uv（uv tool install mempalace）hoặc pip（pip install mempalace）. Sau khi cài xong, chạy mempalace init ~/projects/myapp để khởi tạo cho dự án của bạn.&rsquo;</li>
+<li>q: &lsquo;MemPalace so với Mem0 về độ chính xác khi truy xuất ra sao?&rsquo;
+a: &lsquo;Trên bộ kiểm chuẩn LongMemEval, MemPalace đạt tỷ lệ truy xuất 96.6%, trong khi Mem0 chỉ đạt 89.2%. MemPalace chạy hoàn toàn cục bộ mà không cần bất kỳ lần gọi API nào, còn Mem0 yêu cầu OpenAI API trả phí.&rsquo;</li>
+<li>q: &lsquo;MemPalace tổ chức bộ nhớ được lưu trữ như thế nào?&rsquo;
+a: &lsquo;MemPalace sử dụng ẩn dụ cung điện với ba cấp độ: Wings dành cho người và dự án, Rooms dành cho các chủ đề trong từng dự án, và Drawers lưu nội dung gốc dưới dạng nguyên văn. Cấu trúc này cho phép bạn thu hẹp tìm kiếm vào một wing dự án hoặc room chủ đề cụ thể, thay vì truy vấn toàn bộ cơ sở dữ liệu vector phẳng.&rsquo;</li>
+<li>q: &lsquo;MemPalace có tương thích với Claude Code và các công cụ AI khác không?&rsquo;
+a: &lsquo;Có. MemPalace đi kèm các plugin gốc bao gồm thư mục .claude-plugin cho Claude Code, thư mục .codex-plugin cho OpenAI Codex, thư mục .agents/plugins cho các công cụ tương thích MCP, cùng hỗ trợ Gemini CLI và các mô hình cục bộ. Nó mặc định cung cấp endpoint tương thích MCP để phục vụ bộ nhớ liên tục cho coding agent.&rsquo;</li>
+</ul>
+<hr>
+<p>{&lt;/* resource-info */&gt;}</p>
+<h2 id="bảng-so-sánh-benchmark-mempalace-vs-mem0-vs-mastra">Bảng So Sánh Benchmark: MemPalace vs Mem0 vs Mastra<a hidden class="anchor" aria-hidden="true" href="#bảng-so-sánh-benchmark-mempalace-vs-mem0-vs-mastra">#</a></h2>
+<p>Khi đánh giá hệ thống bộ nhớ AI, hiệu năng và ngốn tài nguyên là chí mạng. Đây là cách MemPalace nghiền nát các đối thủ trong bài test <strong>LongMemEval</strong>: | Chỉ Số/Tính Năng | MemPalace | Mem0 | Mastra | Hindsight |
 | :&mdash; | :&mdash; | :&mdash; | :&mdash; | :&mdash; |
 | <strong>Tỷ Lệ Recall</strong> | <strong>96.6%</strong> | 89.2% | 85.5% | 91.0% |
 | <strong>Số Lần Gọi API</strong>| <strong>Bằng Không (Local)</strong> | OpenAI API (Tốn tiền) | Anthropic API | Bằng Không |
 | <strong>Kiến Trúc Lưu Trữ</strong>| Lưu y xì đúc + Vector | Chỉ Vector | Graph + Vector | Chỉ Vector |
-| <strong>Hỗ Trợ Claude Code</strong>| Có (Native qua MCP) | Phải tự code tích hợp | Có | Không |</p><h2 id=mempalace-giải-pháp-trí-nhớ-ai-đột-phá-cho-mọi-developer>MemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer<a hidden class=anchor aria-hidden=true href=#mempalace-giải-pháp-trí-nhớ-ai-đột-phá-cho-mọi-developer>#</a></h2><p>Trong thế giới AI ngày nay, một vấn đề cốt lõi vẫn luôn thách thức các developer: <strong>làm sao để AI assistant thực sự nhớ</strong>. Không phải chỉ nhớ vài dòng chat gần nhất, mà là nhớ sở thích cá nhân, lịch sử hội thoại dài hạn, và ngữ cảnh phức tạp qua nhiều tuần, nhiều tháng.</p><p>MemPalace — với <strong>51,745 sao trên GitHub</strong> — chính là câu trả lời. Được mệnh danh là <em>&ldquo;The best-benchmarked open-source AI memory system&rdquo;</em>, MemPalace không chỉ miễn phí mà còn dễ dàng tích hợp vào bất kỳ dự án AI nào.</p><hr><h2 id=vấn-đề-mà-mempalace-giải-quyết>Vấn Đề Mà MemPalace Giải Quyết<a hidden class=anchor aria-hidden=true href=#vấn-đề-mà-mempalace-giải-quyết>#</a></h2><p>Hầu hết AI assistant hiện nay đều mắc phải &ldquo;bệnh quên&rdquo;: - <strong>Ngữ cảnh ngắn</strong>: Chỉ nhớ được vài nghìn token gần nhất.</p><ul><li><strong>Không nhớ người dùng</strong>: Mỗi phiên làm việc mới như gặp lại từ đầu.</li><li><strong>Thiếu cá nhân hóa</strong>: Không thể điều chỉnh phản hồi dựa trên sở thích đã học.</li></ul><p>MemPalace giải quyết triệt để bằng cách lưu trữ, truy xuất và cập nhật <strong>bộ nhớ dài hạn</strong> cho AI — giống như não bộ con người vậy.</p><hr><h2 id=kiến-trúc-kỹ-thuật-của-mempalace>Kiến Trúc Kỹ Thuật Của MemPalace<a hidden class=anchor aria-hidden=true href=#kiến-trúc-kỹ-thuật-của-mempalace>#</a></h2><p>MemPalace hoạt động dựa trên ba trụ cột chính: ### 1. Vector Memory Store</p><p>Mọi thông tin quan trọng đều được chuyển thành <strong>embedding vector</strong> và lưu trong vector database. Điều này cho phép truy xuất ngữ nghĩa thay vì chỉ tìm kiếm từ khóa.</p><h3 id=2-hierarchical-memory-layers>2. Hierarchical Memory Layers<a hidden class=anchor aria-hidden=true href=#2-hierarchical-memory-layers>#</a></h3><ul><li><strong>Working Memory</strong>: Ngữ cảnh ngắn hạn, phiên làm việc hiện tại.</li><li><strong>Episodic Memory</strong>: Các sự kiện, hội thoại quan trọng đã qua.</li><li><strong>Semantic Memory</strong>: Kiến thức tổng quát, sở thích, quy tắc của người dùng.</li></ul><h3 id=3-smart-retrieval--summarization>3. Smart Retrieval & Summarization<a hidden class=anchor aria-hidden=true href=#3-smart-retrieval--summarization>#</a></h3><p>Tự động tóm tắt, nén và ưu tiên thông tin — chỉ truy xuất điều thực sự cần thiết cho câu trả lời hiện tại.</p><hr><h2 id=cài-đặt-và-sử-dụng-mempalace>Cài Đặt Và Sử Dụng MemPalace<a hidden class=anchor aria-hidden=true href=#cài-đặt-và-sử-dụng-mempalace>#</a></h2><p>Cài đặt cực kỳ đơn giản: ````bash
-pip install mempalace</p><pre tabindex=0><code>
+| <strong>Hỗ Trợ Claude Code</strong>| Có (Native qua MCP) | Phải tự code tích hợp | Có | Không |</p>
+<h2 id="mempalace-giải-pháp-trí-nhớ-ai-đột-phá-cho-mọi-developer">MemPalace: Giải Pháp Trí Nhớ AI Đột Phá Cho Mọi Developer<a hidden class="anchor" aria-hidden="true" href="#mempalace-giải-pháp-trí-nhớ-ai-đột-phá-cho-mọi-developer">#</a></h2>
+<p>Trong thế giới AI ngày nay, một vấn đề cốt lõi vẫn luôn thách thức các developer: <strong>làm sao để AI assistant thực sự nhớ</strong>. Không phải chỉ nhớ vài dòng chat gần nhất, mà là nhớ sở thích cá nhân, lịch sử hội thoại dài hạn, và ngữ cảnh phức tạp qua nhiều tuần, nhiều tháng.</p>
+<p>MemPalace — với <strong>51,745 sao trên GitHub</strong> — chính là câu trả lời. Được mệnh danh là <em>&ldquo;The best-benchmarked open-source AI memory system&rdquo;</em>, MemPalace không chỉ miễn phí mà còn dễ dàng tích hợp vào bất kỳ dự án AI nào.</p>
+<hr>
+<h2 id="vấn-đề-mà-mempalace-giải-quyết">Vấn Đề Mà MemPalace Giải Quyết<a hidden class="anchor" aria-hidden="true" href="#vấn-đề-mà-mempalace-giải-quyết">#</a></h2>
+<p>Hầu hết AI assistant hiện nay đều mắc phải &ldquo;bệnh quên&rdquo;: - <strong>Ngữ cảnh ngắn</strong>: Chỉ nhớ được vài nghìn token gần nhất.</p>
+<ul>
+<li><strong>Không nhớ người dùng</strong>: Mỗi phiên làm việc mới như gặp lại từ đầu.</li>
+<li><strong>Thiếu cá nhân hóa</strong>: Không thể điều chỉnh phản hồi dựa trên sở thích đã học.</li>
+</ul>
+<p>MemPalace giải quyết triệt để bằng cách lưu trữ, truy xuất và cập nhật <strong>bộ nhớ dài hạn</strong> cho AI — giống như não bộ con người vậy.</p>
+<hr>
+<h2 id="kiến-trúc-kỹ-thuật-của-mempalace">Kiến Trúc Kỹ Thuật Của MemPalace<a hidden class="anchor" aria-hidden="true" href="#kiến-trúc-kỹ-thuật-của-mempalace">#</a></h2>
+<p>MemPalace hoạt động dựa trên ba trụ cột chính: ### 1. Vector Memory Store</p>
+<p>Mọi thông tin quan trọng đều được chuyển thành <strong>embedding vector</strong> và lưu trong vector database. Điều này cho phép truy xuất ngữ nghĩa thay vì chỉ tìm kiếm từ khóa.</p>
+<h3 id="2-hierarchical-memory-layers">2. Hierarchical Memory Layers<a hidden class="anchor" aria-hidden="true" href="#2-hierarchical-memory-layers">#</a></h3>
+<ul>
+<li><strong>Working Memory</strong>: Ngữ cảnh ngắn hạn, phiên làm việc hiện tại.</li>
+<li><strong>Episodic Memory</strong>: Các sự kiện, hội thoại quan trọng đã qua.</li>
+<li><strong>Semantic Memory</strong>: Kiến thức tổng quát, sở thích, quy tắc của người dùng.</li>
+</ul>
+<h3 id="3-smart-retrieval--summarization">3. Smart Retrieval &amp; Summarization<a hidden class="anchor" aria-hidden="true" href="#3-smart-retrieval--summarization">#</a></h3>
+<p>Tự động tóm tắt, nén và ưu tiên thông tin — chỉ truy xuất điều thực sự cần thiết cho câu trả lời hiện tại.</p>
+<hr>
+<h2 id="cài-đặt-và-sử-dụng-mempalace">Cài Đặt Và Sử Dụng MemPalace<a hidden class="anchor" aria-hidden="true" href="#cài-đặt-và-sử-dụng-mempalace">#</a></h2>
+<p>Cài đặt cực kỳ đơn giản: ````bash
+pip install mempalace</p>
+<pre tabindex="0"><code>
 Hoặc với Docker: `````bash
 docker pull mempalace/mempalace:latest
 docker run -p 8080:8080 mempalace/mempalace:latest
-</code></pre><h3 id=ví-dụ-tích-hợp-cơ-bản>Ví Dụ Tích Hợp Cơ Bản<a hidden class=anchor aria-hidden=true href=#ví-dụ-tích-hợp-cơ-bản>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> mempalace <span style=color:#f92672>import</span> MemoryPalace
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Khởi tạo hệ thống trí nhớ</span>
-</span></span><span style=display:flex><span>memory <span style=color:#f92672>=</span> MemoryPalace(
-</span></span><span style=display:flex><span>    backend<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;chromadb&#34;</span>,      <span style=color:#75715e># Hoặc pgvector, milvus, qdrant</span>
-</span></span><span style=display:flex><span>    embedding_model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;openai&#34;</span>, <span style=color:#75715e># Hoặc local model</span>
-</span></span><span style=display:flex><span>    max_tokens<span style=color:#f92672>=</span><span style=color:#ae81ff>4000</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Lưu thông tin người dùng</span>
-</span></span><span style=display:flex><span>memory<span style=color:#f92672>.</span>remember(
-</span></span><span style=display:flex><span>    user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_123&#34;</span>,
-</span></span><span style=display:flex><span>    content<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Người dùng thích cà phê đen, không đường. Hay làm việc vào buổi tối.&#34;</span>,
-</span></span><span style=display:flex><span>    importance<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;high&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Truy xuất ngữ cảnh liên quan</span>
-</span></span><span style=display:flex><span>context <span style=color:#f92672>=</span> memory<span style=color:#f92672>.</span>recall(
-</span></span><span style=display:flex><span>    user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_123&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Gợi ý đồ uống phù hợp khi làm việc khuya&#34;</span>,
-</span></span><span style=display:flex><span>    top_k<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(context)
-</span></span><span style=display:flex><span><span style=color:#75715e># Output: [&#39;Người dùng thích cà phê đen, không đường.&#39;, &#39;Hay làm việc vào buổi tối.&#39;]</span>
-</span></span></code></pre></div><h3 id=tích-hợp-với-langchain>Tích Hợp Với LangChain<a hidden class=anchor aria-hidden=true href=#tích-hợp-với-langchain>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> langchain.chains <span style=color:#f92672>import</span> ConversationChain
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> mempalace.langchain <span style=color:#f92672>import</span> MemPalaceMemory
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>memory <span style=color:#f92672>=</span> MemPalaceMemory(
-</span></span><span style=display:flex><span>    palace<span style=color:#f92672>=</span>memory,
-</span></span><span style=display:flex><span>    user_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;user_123&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>chain <span style=color:#f92672>=</span> ConversationChain(
-</span></span><span style=display:flex><span>    llm<span style=color:#f92672>=</span>llm,
-</span></span><span style=display:flex><span>    memory<span style=color:#f92672>=</span>memory
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> chain<span style=color:#f92672>.</span>predict(input<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Tôi muốn một thứ gì đó tỉnh táo&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#75715e># AI sẽ tự động nhớ và gợi ý cà phê đen</span>
-</span></span></code></pre></div><h3 id=cấu-hình-nâng-cao>Cấu Hình Nâng Cao<a hidden class=anchor aria-hidden=true href=#cấu-hình-nâng-cao>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>memory <span style=color:#f92672>=</span> MemoryPalace(
-</span></span><span style=display:flex><span>    backend<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;pgvector&#34;</span>,
-</span></span><span style=display:flex><span>    connection_string<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;postgresql://user:pass@localhost/db&#34;</span>,
-</span></span><span style=display:flex><span>    embedding_model<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;sentence-transformers/all-MiniLM-L6-v2&#34;</span>,
-</span></span><span style=display:flex><span>    compression_strategy<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;summarize&#34;</span>,  <span style=color:#75715e># Tóm tắt thay vì cắt bớt</span>
-</span></span><span style=display:flex><span>    decay_factor<span style=color:#f92672>=</span><span style=color:#ae81ff>0.95</span>,                 <span style=color:#75715e># Thông tin cũ dần mờ đi</span>
-</span></span><span style=display:flex><span>    importance_threshold<span style=color:#f92672>=</span><span style=color:#ae81ff>0.7</span>           <span style=color:#75715e># Chỉ giữ thông tin quan trọng</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>````</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span> <span style=color:#f92672>*</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Tại Sao MemPalace Vượt Trội?</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> Tiêu Chí <span style=color:#f92672>|</span> MemPalace <span style=color:#f92672>|</span> Giải Pháp Khác <span style=color:#f92672>|</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|---|---|---|</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> Benchmark <span style=color:#f92672>|</span> Cao nhất open<span style=color:#f92672>-</span>source <span style=color:#f92672>|</span> Không đồng nhất <span style=color:#f92672>|</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> Mã nguồn <span style=color:#f92672>|</span> <span style=color:#ae81ff>100</span><span style=color:#f92672>%</span> mở <span style=color:#f92672>|</span> Thường proprietary <span style=color:#f92672>|</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> Giá <span style=color:#f92672>|</span> Miễn phí <span style=color:#f92672>|</span> <span style=color:#960050;background-color:#1e0010>$$$</span> <span style=color:#f92672>|</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> Tích hợp <span style=color:#f92672>|</span> LangChain, LlamaIndex, v<span style=color:#f92672>.</span>v<span style=color:#f92672>.</span> <span style=color:#f92672>|</span> Hạn chế <span style=color:#f92672>|</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>|</span> Community <span style=color:#f92672>|</span> <span style=color:#ae81ff>51</span>,<span style=color:#ae81ff>745</span><span style=color:#f92672>+</span> stars <span style=color:#f92672>|</span> Nhỏ hơn nhiều <span style=color:#f92672>|</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span> <span style=color:#f92672>*</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Kết Luận</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>MemPalace không chỉ là một thư viện <span style=color:#960050;background-color:#1e0010>—</span> nó là <span style=color:#f92672>**</span>nền tảng trí nhớ<span style=color:#f92672>**</span> cho thế hệ AI assistant tiếp theo<span style=color:#f92672>.</span> Với kiến trúc mở, benchmark dẫn đầu và cộng đồng đông đảo, đây là lựa chọn số một cho bất kỳ developer nào muốn AI của mình thực sự <span style=color:#f92672>*</span>thông minh<span style=color:#f92672>*</span> và <span style=color:#f92672>*</span>cá nhân hóa<span style=color:#f92672>*.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#960050;background-color:#1e0010>👉</span> <span style=color:#f92672>**</span>GitHub<span style=color:#f92672>**</span>: [github<span style=color:#f92672>.</span>com<span style=color:#f92672>/</span>MemPalace<span style=color:#f92672>/</span>mempalace](https:<span style=color:#f92672>//</span>github<span style=color:#f92672>.</span>com<span style=color:#f92672>/</span>MemPalace<span style=color:#f92672>/</span>mempalace)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span> <span style=color:#f92672>*</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Related Articles</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span> <span style=color:#f92672>*</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span>Bài viết được cập nhật lần cuối: <span style=color:#ae81ff>2026</span><span style=color:#f92672>-</span><span style=color:#ae81ff>05</span><span style=color:#f92672>-</span><span style=color:#ae81ff>10</span><span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## FAQ: Chạy MemPalace Trên Môi Trường Production</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>**</span>Q: MemPalace ngốn bao nhiêu RAM<span style=color:#960050;background-color:#1e0010>?</span> (how much RAM <span style=color:#66d9ef>for</span> MemPalace)<span style=color:#f92672>**</span>
-</span></span><span style=display:flex><span>A: Nó được tối ưu cực gắt<span style=color:#f92672>.</span> Chạy mượt mà trên máy tính chỉ có <span style=color:#ae81ff>8</span>GB RAM, nhưng nếu bạn kéo hàng ngàn session chat dài hạn thì nên cắm thanh <span style=color:#ae81ff>16</span>GB<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>**</span>Q: Có cắm MemPalace vào Claude Code được không<span style=color:#960050;background-color:#1e0010>?</span><span style=color:#f92672>**</span>
-</span></span><span style=display:flex><span>A: Dư sức<span style=color:#960050;background-color:#1e0010>!</span> Nó đẻ sẵn ra một cổng kết nối chuẩn MCP, giúp con AI coder của bạn có trí nhớ dai như đỉa<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>**</span>Q: Lưu bộ nhớ local thì xài ChromaDB hay Pinecone<span style=color:#960050;background-color:#1e0010>?</span><span style=color:#f92672>**</span>
-</span></span><span style=display:flex><span>A: MemPalace xài ChromaDB local để đảm bảo độ trễ bằng không và đách tốn <span style=color:#ae81ff>1</span> xu gọi API<span style=color:#f92672>.</span> Ngon hơn Pinecone nhiều nếu bạn sợ bị lộ source code lên mây<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span> <span style=color:#f92672>*</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Công Cụ Đề Xuất</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: <span style=color:#f92672>-</span> <span style=color:#f92672>****</span> <span style=color:#960050;background-color:#1e0010>—</span> <span style=color:#960050;background-color:#1e0010>$</span><span style=color:#ae81ff>200</span> tín dụng miễn phí cho người dùng mới, <span style=color:#ae81ff>14</span><span style=color:#f92672>+</span> region toàn cầu, droplet GPU<span style=color:#f92672>/</span>CPU một<span style=color:#f92672>-</span>cú<span style=color:#f92672>-</span>click cho AI workload<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#f92672>****</span> <span style=color:#960050;background-color:#1e0010>—</span> Proxy Anthropic Claude <span style=color:#f92672>/</span> OpenAI <span style=color:#f92672>/</span> DeepSeek API<span style=color:#f92672>.</span> Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v<span style=color:#f92672>.</span>v<span style=color:#f92672>.</span>) cần LLM API key <span style=color:#960050;background-color:#1e0010>—</span> proxy này cho access ổn định top model với <span style=color:#f92672>~</span><span style=color:#ae81ff>30</span><span style=color:#f92672>%</span> giá chính thức<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#f92672>****</span> <span style=color:#960050;background-color:#1e0010>—</span> Lựa chọn VPS giá tốt cho thị trường Việt Nam<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span>Affiliate link <span style=color:#960050;background-color:#1e0010>—</span> không tăng chi phí của bạn nhưng giúp dibi8<span style=color:#f92672>.</span>com duy trì hoạt động<span style=color:#f92672>.*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>{
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@context&#34;</span>: <span style=color:#e6db74>&#34;https://schema.org&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Article&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;headline&#34;</span>: <span style=color:#e6db74>&#34;MemPalace vs Mem0: Benchmark Recall 96.6% &amp; Framework Bộ Nhớ AI Tốt Nhất 2026&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;datePublished&#34;</span>: <span style=color:#e6db74>&#34;2026-05-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;dateModified&#34;</span>: <span style=color:#e6db74>&#34;2026-05-15&#34;</span>,
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;author&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;publisher&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;Organization&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;name&#34;</span>: <span style=color:#e6db74>&#34;Dibi8&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;logo&#34;</span>: {
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;ImageObject&#34;</span>,
-</span></span><span style=display:flex><span>      <span style=color:#e6db74>&#34;url&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/logo.png&#34;</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>  },
-</span></span><span style=display:flex><span>  <span style=color:#e6db74>&#34;mainEntityOfPage&#34;</span>: {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@type&#34;</span>: <span style=color:#e6db74>&#34;WebPage&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;@id&#34;</span>: <span style=color:#e6db74>&#34;https://dibi8.com/vi/resources/mempalace&#34;</span>
-</span></span><span style=display:flex><span>  }
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span><span style=color:#f92672>&lt;/</span>script<span style=color:#f92672>&gt;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Why This Matters</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>Understanding mempalace vs mem0: benchmark recall <span style=color:#ae81ff>96.6</span><span style=color:#f92672>%</span> <span style=color:#f92672>&amp;</span> framework bộ nhớ ai tốt nhất <span style=color:#ae81ff>2026</span> <span style=color:#f92672>is</span> crucial <span style=color:#66d9ef>for</span> modern AI development<span style=color:#f92672>.</span> Here<span style=color:#e6db74>&#39;s why: ### Key Benefits</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#f92672>**</span>Efficiency<span style=color:#f92672>**</span>: Save time on repetitive tasks
-</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#f92672>**</span>Quality<span style=color:#f92672>**</span>: Improve output consistency  
-</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#f92672>**</span>Scalability<span style=color:#f92672>**</span>: Handle larger workloads
-</span></span><span style=display:flex><span><span style=color:#f92672>-</span> <span style=color:#f92672>**</span>Cost<span style=color:#f92672>**</span>: Reduce operational expenses
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Real-World Applications</span>
-</span></span><span style=display:flex><span>Organizations are using similar approaches to: <span style=color:#ae81ff>1.</span> Automate code review processes
-</span></span><span style=display:flex><span><span style=color:#ae81ff>2.</span> Generate documentation automatically
-</span></span><span style=display:flex><span><span style=color:#ae81ff>3.</span> Build internal knowledge bases
-</span></span><span style=display:flex><span><span style=color:#ae81ff>4.</span> Streamline deployment pipelines
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>### Getting Started</span>
-</span></span><span style=display:flex><span>To implement this <span style=color:#f92672>in</span> your workflow: <span style=color:#ae81ff>1.</span> <span style=color:#f92672>**</span>Assess Your Needs<span style=color:#f92672>**</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Identify repetitive tasks
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Measure current time costs
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Define success metrics
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>2.</span> <span style=color:#f92672>**</span>Choose Your Approach<span style=color:#f92672>**</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Start <span style=color:#66d9ef>with</span> simple automations
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Gradually increase complexity
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Test <span style=color:#f92672>and</span> iterate
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#ae81ff>3.</span> <span style=color:#f92672>**</span>Measure Results<span style=color:#f92672>**</span>
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Track time savings
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Monitor quality improvements
-</span></span><span style=display:flex><span>   <span style=color:#f92672>-</span> Calculate ROI
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>## Conclusion</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>MemPalace vs Mem0: Benchmark Recall <span style=color:#ae81ff>96.6</span><span style=color:#f92672>%</span> <span style=color:#f92672>&amp;</span> Framework Bộ Nhớ AI Tốt Nhất <span style=color:#ae81ff>2026</span> represents an important step forward <span style=color:#f92672>in</span> AI<span style=color:#f92672>-</span>powered development<span style=color:#f92672>.</span> As the ecosystem matures, we expect to see even more powerful capabilities emerge<span style=color:#f92672>.</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>For the latest updates <span style=color:#f92672>and</span> community discussions, join our Telegram channel: https:<span style=color:#f92672>//</span>t<span style=color:#f92672>.</span>me<span style=color:#f92672>/</span>DIBI8_Group
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span> <span style=color:#f92672>*</span> <span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span>Last updated: <span style=color:#ae81ff>2026</span><span style=color:#f92672>-</span><span style=color:#ae81ff>09</span><span style=color:#f92672>-</span><span style=color:#ae81ff>20</span><span style=color:#f92672>*</span>
-</span></span><span style=display:flex><span><span style=color:#f92672>*</span>Read time: <span style=color:#f92672>~</span><span style=color:#ae81ff>5</span> minutes<span style=color:#f92672>*</span>
-</span></span></code></pre></div></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/mempalace-open-source-ai-memory-system/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/metabase-business-intelligence-open/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre><h3 id="ví-dụ-tích-hợp-cơ-bản">Ví Dụ Tích Hợp Cơ Bản<a hidden class="anchor" aria-hidden="true" href="#ví-dụ-tích-hợp-cơ-bản">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> mempalace <span style="color:#f92672">import</span> MemoryPalace
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Khởi tạo hệ thống trí nhớ</span>
+</span></span><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> MemoryPalace(
+</span></span><span style="display:flex;"><span>    backend<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;chromadb&#34;</span>,      <span style="color:#75715e"># Hoặc pgvector, milvus, qdrant</span>
+</span></span><span style="display:flex;"><span>    embedding_model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;openai&#34;</span>, <span style="color:#75715e"># Hoặc local model</span>
+</span></span><span style="display:flex;"><span>    max_tokens<span style="color:#f92672">=</span><span style="color:#ae81ff">4000</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Lưu thông tin người dùng</span>
+</span></span><span style="display:flex;"><span>memory<span style="color:#f92672">.</span>remember(
+</span></span><span style="display:flex;"><span>    user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_123&#34;</span>,
+</span></span><span style="display:flex;"><span>    content<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Người dùng thích cà phê đen, không đường. Hay làm việc vào buổi tối.&#34;</span>,
+</span></span><span style="display:flex;"><span>    importance<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;high&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Truy xuất ngữ cảnh liên quan</span>
+</span></span><span style="display:flex;"><span>context <span style="color:#f92672">=</span> memory<span style="color:#f92672">.</span>recall(
+</span></span><span style="display:flex;"><span>    user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_123&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Gợi ý đồ uống phù hợp khi làm việc khuya&#34;</span>,
+</span></span><span style="display:flex;"><span>    top_k<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(context)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Output: [&#39;Người dùng thích cà phê đen, không đường.&#39;, &#39;Hay làm việc vào buổi tối.&#39;]</span>
+</span></span></code></pre></div><h3 id="tích-hợp-với-langchain">Tích Hợp Với LangChain<a hidden class="anchor" aria-hidden="true" href="#tích-hợp-với-langchain">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> langchain.chains <span style="color:#f92672">import</span> ConversationChain
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> mempalace.langchain <span style="color:#f92672">import</span> MemPalaceMemory
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> MemPalaceMemory(
+</span></span><span style="display:flex;"><span>    palace<span style="color:#f92672">=</span>memory,
+</span></span><span style="display:flex;"><span>    user_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;user_123&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>chain <span style="color:#f92672">=</span> ConversationChain(
+</span></span><span style="display:flex;"><span>    llm<span style="color:#f92672">=</span>llm,
+</span></span><span style="display:flex;"><span>    memory<span style="color:#f92672">=</span>memory
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> chain<span style="color:#f92672">.</span>predict(input<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Tôi muốn một thứ gì đó tỉnh táo&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># AI sẽ tự động nhớ và gợi ý cà phê đen</span>
+</span></span></code></pre></div><h3 id="cấu-hình-nâng-cao">Cấu Hình Nâng Cao<a hidden class="anchor" aria-hidden="true" href="#cấu-hình-nâng-cao">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>memory <span style="color:#f92672">=</span> MemoryPalace(
+</span></span><span style="display:flex;"><span>    backend<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pgvector&#34;</span>,
+</span></span><span style="display:flex;"><span>    connection_string<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;postgresql://user:pass@localhost/db&#34;</span>,
+</span></span><span style="display:flex;"><span>    embedding_model<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;sentence-transformers/all-MiniLM-L6-v2&#34;</span>,
+</span></span><span style="display:flex;"><span>    compression_strategy<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;summarize&#34;</span>,  <span style="color:#75715e"># Tóm tắt thay vì cắt bớt</span>
+</span></span><span style="display:flex;"><span>    decay_factor<span style="color:#f92672">=</span><span style="color:#ae81ff">0.95</span>,                 <span style="color:#75715e"># Thông tin cũ dần mờ đi</span>
+</span></span><span style="display:flex;"><span>    importance_threshold<span style="color:#f92672">=</span><span style="color:#ae81ff">0.7</span>           <span style="color:#75715e"># Chỉ giữ thông tin quan trọng</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">````</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Tại Sao MemPalace Vượt Trội?</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Tiêu Chí <span style="color:#f92672">|</span> MemPalace <span style="color:#f92672">|</span> Giải Pháp Khác <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|---|---|---|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Benchmark <span style="color:#f92672">|</span> Cao nhất open<span style="color:#f92672">-</span>source <span style="color:#f92672">|</span> Không đồng nhất <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Mã nguồn <span style="color:#f92672">|</span> <span style="color:#ae81ff">100</span><span style="color:#f92672">%</span> mở <span style="color:#f92672">|</span> Thường proprietary <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Giá <span style="color:#f92672">|</span> Miễn phí <span style="color:#f92672">|</span> <span style="color:#960050;background-color:#1e0010">$$$</span> <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Tích hợp <span style="color:#f92672">|</span> LangChain, LlamaIndex, v<span style="color:#f92672">.</span>v<span style="color:#f92672">.</span> <span style="color:#f92672">|</span> Hạn chế <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">|</span> Community <span style="color:#f92672">|</span> <span style="color:#ae81ff">51</span>,<span style="color:#ae81ff">745</span><span style="color:#f92672">+</span> stars <span style="color:#f92672">|</span> Nhỏ hơn nhiều <span style="color:#f92672">|</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Kết Luận</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MemPalace không chỉ là một thư viện <span style="color:#960050;background-color:#1e0010">—</span> nó là <span style="color:#f92672">**</span>nền tảng trí nhớ<span style="color:#f92672">**</span> cho thế hệ AI assistant tiếp theo<span style="color:#f92672">.</span> Với kiến trúc mở, benchmark dẫn đầu và cộng đồng đông đảo, đây là lựa chọn số một cho bất kỳ developer nào muốn AI của mình thực sự <span style="color:#f92672">*</span>thông minh<span style="color:#f92672">*</span> và <span style="color:#f92672">*</span>cá nhân hóa<span style="color:#f92672">*.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">👉</span> <span style="color:#f92672">**</span>GitHub<span style="color:#f92672">**</span>: [github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>MemPalace<span style="color:#f92672">/</span>mempalace](https:<span style="color:#f92672">//</span>github<span style="color:#f92672">.</span>com<span style="color:#f92672">/</span>MemPalace<span style="color:#f92672">/</span>mempalace)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Related Articles</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Bài viết được cập nhật lần cuối: <span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">05</span><span style="color:#f92672">-</span><span style="color:#ae81ff">10</span><span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## FAQ: Chạy MemPalace Trên Môi Trường Production</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>Q: MemPalace ngốn bao nhiêu RAM<span style="color:#960050;background-color:#1e0010">?</span> (how much RAM <span style="color:#66d9ef">for</span> MemPalace)<span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>A: Nó được tối ưu cực gắt<span style="color:#f92672">.</span> Chạy mượt mà trên máy tính chỉ có <span style="color:#ae81ff">8</span>GB RAM, nhưng nếu bạn kéo hàng ngàn session chat dài hạn thì nên cắm thanh <span style="color:#ae81ff">16</span>GB<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>Q: Có cắm MemPalace vào Claude Code được không<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>A: Dư sức<span style="color:#960050;background-color:#1e0010">!</span> Nó đẻ sẵn ra một cổng kết nối chuẩn MCP, giúp con AI coder của bạn có trí nhớ dai như đỉa<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">**</span>Q: Lưu bộ nhớ local thì xài ChromaDB hay Pinecone<span style="color:#960050;background-color:#1e0010">?</span><span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>A: MemPalace xài ChromaDB local để đảm bảo độ trễ bằng không và đách tốn <span style="color:#ae81ff">1</span> xu gọi API<span style="color:#f92672">.</span> Ngon hơn Pinecone nhiều nếu bạn sợ bị lộ source code lên mây<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Công Cụ Đề Xuất</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Cho developer xây dựng hoặc triển khai công cụ AI mã nguồn mở: <span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> <span style="color:#960050;background-color:#1e0010">$</span><span style="color:#ae81ff">200</span> tín dụng miễn phí cho người dùng mới, <span style="color:#ae81ff">14</span><span style="color:#f92672">+</span> region toàn cầu, droplet GPU<span style="color:#f92672">/</span>CPU một<span style="color:#f92672">-</span>cú<span style="color:#f92672">-</span>click cho AI workload<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> Proxy Anthropic Claude <span style="color:#f92672">/</span> OpenAI <span style="color:#f92672">/</span> DeepSeek API<span style="color:#f92672">.</span> Hầu hết AI tool ở trên (chatbot, code gen, translation, search, v<span style="color:#f92672">.</span>v<span style="color:#f92672">.</span>) cần LLM API key <span style="color:#960050;background-color:#1e0010">—</span> proxy này cho access ổn định top model với <span style="color:#f92672">~</span><span style="color:#ae81ff">30</span><span style="color:#f92672">%</span> giá chính thức<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">****</span> <span style="color:#960050;background-color:#1e0010">—</span> Lựa chọn VPS giá tốt cho thị trường Việt Nam<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Affiliate link <span style="color:#960050;background-color:#1e0010">—</span> không tăng chi phí của bạn nhưng giúp dibi8<span style="color:#f92672">.</span>com duy trì hoạt động<span style="color:#f92672">.*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@context&#34;</span>: <span style="color:#e6db74">&#34;https://schema.org&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Article&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;headline&#34;</span>: <span style="color:#e6db74">&#34;MemPalace vs Mem0: Benchmark Recall 96.6% &amp; Framework Bộ Nhớ AI Tốt Nhất 2026&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;datePublished&#34;</span>: <span style="color:#e6db74">&#34;2026-05-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;dateModified&#34;</span>: <span style="color:#e6db74">&#34;2026-05-15&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;author&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;publisher&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;Organization&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;name&#34;</span>: <span style="color:#e6db74">&#34;Dibi8&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;logo&#34;</span>: {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;ImageObject&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;url&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/logo.png&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;mainEntityOfPage&#34;</span>: {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@type&#34;</span>: <span style="color:#e6db74">&#34;WebPage&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@id&#34;</span>: <span style="color:#e6db74">&#34;https://dibi8.com/vi/resources/mempalace&#34;</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#f92672">&lt;/</span>script<span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Why This Matters</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Understanding mempalace vs mem0: benchmark recall <span style="color:#ae81ff">96.6</span><span style="color:#f92672">%</span> <span style="color:#f92672">&amp;</span> framework bộ nhớ ai tốt nhất <span style="color:#ae81ff">2026</span> <span style="color:#f92672">is</span> crucial <span style="color:#66d9ef">for</span> modern AI development<span style="color:#f92672">.</span> Here<span style="color:#e6db74">&#39;s why: ### Key Benefits</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Efficiency<span style="color:#f92672">**</span>: Save time on repetitive tasks
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Quality<span style="color:#f92672">**</span>: Improve output consistency  
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Scalability<span style="color:#f92672">**</span>: Handle larger workloads
+</span></span><span style="display:flex;"><span><span style="color:#f92672">-</span> <span style="color:#f92672">**</span>Cost<span style="color:#f92672">**</span>: Reduce operational expenses
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Real-World Applications</span>
+</span></span><span style="display:flex;"><span>Organizations are using similar approaches to: <span style="color:#ae81ff">1.</span> Automate code review processes
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2.</span> Generate documentation automatically
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3.</span> Build internal knowledge bases
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">4.</span> Streamline deployment pipelines
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Getting Started</span>
+</span></span><span style="display:flex;"><span>To implement this <span style="color:#f92672">in</span> your workflow: <span style="color:#ae81ff">1.</span> <span style="color:#f92672">**</span>Assess Your Needs<span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Identify repetitive tasks
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Measure current time costs
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Define success metrics
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">2.</span> <span style="color:#f92672">**</span>Choose Your Approach<span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Start <span style="color:#66d9ef">with</span> simple automations
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Gradually increase complexity
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Test <span style="color:#f92672">and</span> iterate
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#ae81ff">3.</span> <span style="color:#f92672">**</span>Measure Results<span style="color:#f92672">**</span>
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Track time savings
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Monitor quality improvements
+</span></span><span style="display:flex;"><span>   <span style="color:#f92672">-</span> Calculate ROI
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## Conclusion</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>MemPalace vs Mem0: Benchmark Recall <span style="color:#ae81ff">96.6</span><span style="color:#f92672">%</span> <span style="color:#f92672">&amp;</span> Framework Bộ Nhớ AI Tốt Nhất <span style="color:#ae81ff">2026</span> represents an important step forward <span style="color:#f92672">in</span> AI<span style="color:#f92672">-</span>powered development<span style="color:#f92672">.</span> As the ecosystem matures, we expect to see even more powerful capabilities emerge<span style="color:#f92672">.</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>For the latest updates <span style="color:#f92672">and</span> community discussions, join our Telegram channel: https:<span style="color:#f92672">//</span>t<span style="color:#f92672">.</span>me<span style="color:#f92672">/</span>DIBI8_Group
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span> <span style="color:#f92672">*</span> <span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Last updated: <span style="color:#ae81ff">2026</span><span style="color:#f92672">-</span><span style="color:#ae81ff">09</span><span style="color:#f92672">-</span><span style="color:#ae81ff">20</span><span style="color:#f92672">*</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">*</span>Read time: <span style="color:#f92672">~</span><span style="color:#ae81ff">5</span> minutes<span style="color:#f92672">*</span>
+</span></span></code></pre></div>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/mempalace-open-source-ai-memory-system/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/metabase-business-intelligence-open/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

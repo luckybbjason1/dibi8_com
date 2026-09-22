@@ -1,14 +1,158 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>Tools | Dibi8</title><meta name=keywords content><meta name=description content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/tags/tools/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate type=application/rss+xml href=https://dibi8.com/zh/tags/tools/index.xml title=rss><link rel=alternate hreflang=en href=https://dibi8.com/tags/tools/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/tags/tools/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/tags/tools/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/tags/tools/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/tags/tools/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="Tools"><meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks"><meta property="og:locale" content="zh"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Tools"><meta name=twitter:description content="Hand-tested AI coding agent tools and open-source LLM frameworks"></head><body class=list id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><header class=page-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/tags/>Tags</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1>Tools</h1></header><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00+08:00 lastmod: 2026-05-21T00:00:00+08:00 tech_stack: [Python, PyTorch, CUDA, Triton] application_domain: Llm Frameworks source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“unsloth”, “微调”, “lora”, “qlora”, “grpo”, “快速训练”] aliases:
-/posts/unsloth-fast-llm-fine-tuning-2026/- 如果 Axolotl 是生产多 GPU 微调框架，Unsloth 是单 GPU 速度之王。通过用自定义 Triton + Python 重写 LLM 训练 kernel 而不依赖 PyTorch 通用 autograd，Unsloth 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/unsloth-fast-llm-fine-tuning-2026/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>引言：每个RAG流水线背后不为人知的痛点 你的检索增强生成（RAG）流水线的质量完全取决于你喂给它什么数据。你可以拥有最顶尖的嵌入模型、最昂贵的向量数据库、以及最先进的LLM — 但如果你的源文档是排版混乱的PDF、OCR识别失败的扫描件、或者带有隐藏文本框的PPT幻灯片，你的检索准确率必将大打折扣。
-我吃过这个苦头。一个客户项目将 12,000份PDF合同 灌入基于Pinecone的RAG系统。使用简单的 ```pdftotext 方法得到的块是这样的："第1页，共47页保密协议````" — 页眉与正文混在一起，表格行被拼接成不可读的 Blob，脚注直接插入句子中间。检索准确率：34%。切换到 Unstructured.io 并采用正确的分区与分块策略后：89%。
-这个差距 — 从34%到89% — 就是 Unstructured.io 存在的意义。该项目于2022年发布，目前版本为 v0.17.0（2026年4月），在 Apache-2.0 许可证下已积累 10,500+ GitHub Stars。它已成为将混乱的现实世界文档转换为LLM可用的干净结构化元素的事实标准。
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Tools | Dibi8</title>
+<meta name="keywords" content="">
+<meta name="description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/tags/tools/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" type="application/rss+xml" href="https://dibi8.com/zh/tags/tools/index.xml" title="rss">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/tags/tools/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/tags/tools/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/tags/tools/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/tags/tools/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/tags/tools/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="Tools">
+  <meta property="og:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="website">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Tools">
+  <meta name="twitter:description" content="Hand-tested AI coding agent tools and open-source LLM frameworks">
+
+</head>
+<body class="list" id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main"> 
+<header class="page-header"><nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/tags/">Tags</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+  <h1>
+    Tools
+  </h1>
+</header>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-21T00:00:00&#43;08:00 lastmod: 2026-05-21T00:00:00&#43;08:00 tech_stack: [Python, PyTorch, CUDA, Triton] application_domain: Llm Frameworks source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-21” draft: false categories: [“llm-frameworks”] tags: [“unsloth”, “微调”, “lora”, “qlora”, “grpo”, “快速训练”] aliases:
+/posts/unsloth-fast-llm-fine-tuning-2026/- 如果 Axolotl 是生产多 GPU 微调框架，Unsloth 是单 GPU 速度之王。通过用自定义 Triton &#43; Python 重写 LLM 训练 kernel 而不依赖 PyTorch 通用 autograd，Unsloth 比 HuggingFace TRL 基线快 2× 且少用 70% VRAM。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/unsloth-fast-llm-fine-tuning-2026/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>引言：每个RAG流水线背后不为人知的痛点 你的检索增强生成（RAG）流水线的质量完全取决于你喂给它什么数据。你可以拥有最顶尖的嵌入模型、最昂贵的向量数据库、以及最先进的LLM — 但如果你的源文档是排版混乱的PDF、OCR识别失败的扫描件、或者带有隐藏文本框的PPT幻灯片，你的检索准确率必将大打折扣。
+我吃过这个苦头。一个客户项目将 12,000份PDF合同 灌入基于Pinecone的RAG系统。使用简单的 ```pdftotext 方法得到的块是这样的：&#34;第1页，共47页保密协议````&#34; — 页眉与正文混在一起，表格行被拼接成不可读的 Blob，脚注直接插入句子中间。检索准确率：34%。切换到 Unstructured.io 并采用正确的分区与分块策略后：89%。
+这个差距 — 从34%到89% — 就是 Unstructured.io 存在的意义。该项目于2022年发布，目前版本为 v0.17.0（2026年4月），在 Apache-2.0 许可证下已积累 10,500&#43; GitHub Stars。它已成为将混乱的现实世界文档转换为LLM可用的干净结构化元素的事实标准。
 什么是 Unstructured.io？ Unstructured.io 是一个开源 Python 库和 API 服务，可从非结构化文档（PDF、Word文件、PPT演示文稿、HTML页面、图像等）中提取结构化内容，并将其转换为标准化的JSON元素，供下游 LLM、RAG 和 NLP 流水线使用。
 把它看作AI技术栈中文档的 ETL层。传统工具只是倾倒原始文本，而 Unstructured 保留了文档结构 — 识别标题、正文、表格、列表、图像及其层级关系 — 然后输出带有丰富元数据的干净、语义上有意义的数据块。
 Unstructured.io 的工作原理：架构与核心概念 Unstructured 的流水线包含三个不同阶段：分区 → 清洗 → 分块。理解每个阶段对于针对你的用例调优性能至关重要。
@@ -18,52 +162,164 @@ Unstructured.io 的工作原理：架构与核心概念 Unstructured 的流水�
 |
 |
 | | auto | 中等 | 高 | 通用场景，混合文档类型 | | fast | 快 | 中等 | 简单文本型PDF，批量处理 | | hi_res | 慢 | 最高 | 复杂排版，表格，扫描文档 | | ocr_only | 最慢 | 依赖OCR | 图像型PDF，扫描文档 |
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/unstructured-data-preprocessing-llm/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>使用自然语言与数据库交互的能力长期以来一直是数据分析领域的圣杯。每天，无数时间被浪费在将业务问题转化为 SQL 查询上 — 这个过程需要对数据库 Schema、表关系和 SQL 语法有深入的了解。2026年，这一瓶颈正在迅速消融，这要归功于 Vanna AI — 一款基于你的数据库 Schema 训练、以超过 90% 的准确率从纯英文生成生产级 SQL 的开源 Python 库。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/unstructured-data-preprocessing-llm/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>使用自然语言与数据库交互的能力长期以来一直是数据分析领域的圣杯。每天，无数时间被浪费在将业务问题转化为 SQL 查询上 — 这个过程需要对数据库 Schema、表关系和 SQL 语法有深入的了解。2026年，这一瓶颈正在迅速消融，这要归功于 Vanna AI — 一款基于你的数据库 Schema 训练、以超过 90% 的准确率从纯英文生成生产级 SQL 的开源 Python 库。
 凭借超过 18,000 个 GitHub Star 和 MIT 许可证，Vanna AI 已成为追求准确性和数据隐私的团队的首选 Text-to-SQL 解决方案。与将 SQL 生成视为另一种翻译任务的通用 LLM 方法不同，Vanna 使用了专为数据库查询设计的 检索增强生成（RAG） 架构。它学习你的 Schema、理解你的业务逻辑，并生成实际可运行的 SQL — 经过验证、优化，且可直接用于生产环境。
 在本综合指南中，我们将详细介绍关于 Vanna AI 的一切：从安装和 Schema 训练到高级 SQL 生成、验证和集成到分析工作流。无论你是想用英文提问的数据分析师，还是为数据平台构建自然语言界面的工程师，Vanna AI 都能提供你所需的工具，让 Text-to-SQL 成为现实。
 什么是 Vanna AI？自然语言遇见 SQL Vanna AI 是一款弥合人类语言和结构化查询语言之间差距的开源 Python 库。其核心是一个专为 SQL 生成而构建的 检索增强生成（RAG） 框架。与偶尔会产生表名幻觉或虚构列引用的通用 LLM 聊天机器人不同，Vanna 在你实际的数据库 Schema 上进行训练 — 学习你的表、列、关系，甚至你组织的命名约定。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vanna-ai-sql-generation/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“vectara”, “rag”, “向量搜索”, “llm”, “embedding”, “boomerang”, “hhem”, “幻觉检测”, “企业ai”] aliases:
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vanna-ai-sql-generation/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00&#43;08:00 lastmod: 2026-05-19T00:00:00&#43;08:00 tech_stack: [] application_domain: Data Science source_version: ’&#39; licensing_model: Open Source license_type: Apache-2.0 file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“vectara”, “rag”, “向量搜索”, “llm”, “embedding”, “boomerang”, “hhem”, “幻觉检测”, “企业ai”] aliases:
 /zh/posts/vectara-rag-as-service-platform/- Introduction：为什么大多数 RAG 系统在生产环境中失败 你一定见过这样的演示：一个聊天机器人通过搜索文档回答问题。在 50 个 PDF 的玩具数据集上运行良好。但当你在 12 种语言的 50,000 份文档上部署时，一切都崩了。答案变得模糊，来源错误，幻觉悄然渗入，延迟飙升到不可接受的水平。
 这就是 RAG 的生产悬崖。Stanford HAI 2025 年的一项研究发现，78% 的企业 RAG 原型在扩展到 10,000 份文档以上时准确率降至 70% 以下。罪魁祸首耳熟能详：糟糕的分块策略、弱嵌入模型、缺少重排序、无幻觉检测、零治理。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>{&lt;/* resource-info */>}
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>{&lt;/* resource-info */&gt;}
 在构建 RAG（检索增强生成）系统时，向量数据库的选择直接决定了检索质量、响应延迟和长期运维成本。2025 年的向量数据库市场百花齐放，从托管云原生方案到高性能开源引擎各有侧重。
 本文将深度对比 Pinecone、Weaviate、Chroma 和 Milvus 这四款主流向量数据库，帮你基于真实数据做出选型决策。
 什么是向量数据库？为什么 RAG 离不开它？ 向量数据库是一种专门存储和检索高维向量（嵌入向量）的数据库。与传统数据库基于精确匹配查询不同，向量数据库使用近似最近邻（ANN）算法来找到语义上最相似的向量。
 RAG 应用中的核心角色 在 RAG 管道中，向量数据库承担三个关键职责：
 存储文档嵌入：将分块后的文本通过 Embedding 模型转换为向量并持久化 语义检索：根据用户查询的向量表示，召回语义最相关的文档块 混合过滤：结合元数据过滤（如文件名、时间、标签）缩小检索范围 传统数据库如 MySQL、MongoDB 无法高效执行高维向量的相似性搜索，这正是专用向量数据库不可替代的原因。
 Pinecone：托管云原生首选 Pinecone 是向量数据库领域的先行者，2025 年已全面转向 Serverless 架构，用户无需管理任何基础设施。
-核心特点 完全托管：零运维，自动扩缩容 混合搜索：原生支持稠密向量 + 稀疏向量（BM25）的混合检索 元数据过滤：在向量搜索前进行精确的元数据过滤 单一 API：RESTful 接口，集成极其简单 定价模式 Pinecone 采用按存储 + 查询量计费的模式：
+核心特点 完全托管：零运维，自动扩缩容 混合搜索：原生支持稠密向量 &#43; 稀疏向量（BM25）的混合检索 元数据过滤：在向量搜索前进行精确的元数据过滤 单一 API：RESTful 接口，集成极其简单 定价模式 Pinecone 采用按存储 &#43; 查询量计费的模式：
 | 指标 | Serverless 定价 | 说明 | |
 |
 |
 | | 存储 | ~$0.10/GB/月 | 按实际存储向量占用计算 | | 查询 | ~$0.10/百万次查询 | 含检索和元数据过滤 |
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vector-database-comparison/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>2026 向量数据库选型：Qdrant vs Weaviate vs Milvus Meta Description：在 500 万向量上同时实测三家。延迟、吞吐、内存、上手成本。什么时候应该直接用 SQLite FTS5 跳过向量数据库。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>5 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vector-database-comparison/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>2026 向量数据库选型：Qdrant vs Weaviate vs Milvus Meta Description：在 500 万向量上同时实测三家。延迟、吞吐、内存、上手成本。什么时候应该直接用 SQLite FTS5 跳过向量数据库。
 向量数据库赛道在 2026 年基本尘埃落定：Qdrant、Weaviate、Milvus 三家占据主导。本文在 500 万向量的真实负载上同时测了三家，告诉你各自适合的场景——以及什么时候连向量数据库都不需要。
 ⚡ TL;DR Qdrant：上手最简单，单机最快。适合个人和小团队 RAG。
-Weaviate：混合检索（向量 + 关键词 + 过滤）最强。适合查询复杂的生产环境。
+Weaviate：混合检索（向量 &#43; 关键词 &#43; 过滤）最强。适合查询复杂的生产环境。
 Milvus：水平扩展最强。适合十亿级负载。
 跳过向量数据库：文档量低于 1 万时——SQLite FTS5 通常完胜。
-测试环境 500 万向量，768 维（BGE-large embedding） 纯相似度查询 + 带过滤条件的查询混合 单台 VM：16 vCPU、64GB RAM、1TB NVMe 100 个并发客户端 实测结果 延迟（p95，单位 ms） | 负载类型 | Qdrant | Weaviate | Milvus | |
+测试环境 500 万向量，768 维（BGE-large embedding） 纯相似度查询 &#43; 带过滤条件的查询混合 单台 VM：16 vCPU、64GB RAM、1TB NVMe 100 个并发客户端 实测结果 延迟（p95，单位 ms） | 负载类型 | Qdrant | Weaviate | Milvus | |
 |
 |
 |
-| | 纯相似度（top 10） | 8 | 12 | 14 | | 带过滤的相似度 | 15 | 10 | 22 | | 混合检索（向量 + 关键词） | N/A | 16 | N/A |
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>什么是 Vercel AI SDK？ Vercel AI SDK 是抽象构建 AI 应用复杂性的开源库。其核心提供三项主要能力：
+| | 纯相似度（top 10） | 8 | 12 | 14 | | 带过滤的相似度 | 15 | 10 | 22 | | 混合检索（向量 &#43; 关键词） | N/A | 16 | N/A |
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vector-db-2026-qdrant-weaviate-milvus/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>什么是 Vercel AI SDK？ Vercel AI SDK 是抽象构建 AI 应用复杂性的开源库。其核心提供三项主要能力：
 提供商无关 API：编写一次代码，部署到任意 LLM 提供商 流式优先架构：响应以 token 为单位流式传输到前端 框架集成：原生支持 React、Next.js、Vue、Svelte 和 SolidJS 为什么 Edge-First 对 AI 应用至关重要 传统 AI 应用遵循此模式：
 用户 → Web 服务器 → API 路由 → LLM 提供商 → 响应 每次跳转都增加延迟。Vercel 的 edge-first 方法消除中间环节：
 用户 → 边缘函数 → LLM 提供商 → 流式响应 边缘函数在 Cloudflare Worker、Fastly Compute@Edge 或 Vercel Edge Function 上运行——地理分布的节点通常距用户仅 100-300ms。对于聊天应用，这意味着首个 token 在 500ms 内到达。
-核心架构 // 提供商抽象层 import { createOpenAI } from "@ai-sdk/openai"; import { createAnthropic } from "@ai-sdk/anthropic"; import { createGoogleGenerativeAI } from "@ai-sdk/google"; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // 无论调用哪个提供商，统一 API 调用 const result = await streamText({ model: openai("gpt-4o"), messages: [{ role: "user", content: "你好！" }], system: "你是一个有帮助的助手。" }); 无论调用 GPT-4o、Claude 3.5 Sonnet 还是 Gemini 1.5 Pro，streamText 函数行为完全一致。只需更改一行即可切换提供商。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>氛围编程 2026：韩国概念，写给我们所有人 Meta Description：바이브 코딩 是韩国开发者对「自然语言优先编程」的称呼。Toss 和 Kakao 的工程师都在用。本文讲清含义、工作流，以及它为什么重要。
+核心架构 // 提供商抽象层 import { createOpenAI } from &#34;@ai-sdk/openai&#34;; import { createAnthropic } from &#34;@ai-sdk/anthropic&#34;; import { createGoogleGenerativeAI } from &#34;@ai-sdk/google&#34;; const openai = createOpenAI({ apiKey: process.env.OPENAI_API_KEY }); const anthropic = createAnthropic({ apiKey: process.env.ANTHROPIC_API_KEY }); // 无论调用哪个提供商，统一 API 调用 const result = await streamText({ model: openai(&#34;gpt-4o&#34;), messages: [{ role: &#34;user&#34;, content: &#34;你好！&#34; }], system: &#34;你是一个有帮助的助手。&#34; }); 无论调用 GPT-4o、Claude 3.5 Sonnet 还是 Gemini 1.5 Pro，streamText 函数行为完全一致。只需更改一行即可切换提供商。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>8 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vercel-ai-sdk-edge-compute/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>氛围编程 2026：韩国概念，写给我们所有人 Meta Description：바이브 코딩 是韩国开发者对「自然语言优先编程」的称呼。Toss 和 Kakao 的工程师都在用。本文讲清含义、工作流，以及它为什么重要。
 如果你在 2026 年关注过韩国开发者 Twitter 或 Velog 博客，「바이브 코딩」一定到处可见。它不是一个工具——而是一种工作流哲学，起源于韩国金融科技（Toss、Kakao Bank、K Bank），如今正在全球扩散。本文讲清它到底是什么、谁在用、是否值得这份热度。
 「氛围编程」到底是什么意思 这个术语：
 韩语：바이브 코딩（baibeu koding） 直译：「vibe coding」（氛围编程） 实质：以 AI 为先的编程，由自然语言驱动实现 转变在于：
 传统 AI 编码：AI 帮你更快地敲代码 氛围编程：AI 来实现；你用自然语言指挥 它不只是「更多地使用 AI」——而是工作流的反转。你用普通语言进行设计与审阅；让 AI 去写语法细节。
 它实际上是怎么运作的 某韩国金融科技公司一次典型的氛围编程会话（取自 Toss 工程博客匿名整理）：
-Human (Korean): "내가 만든 API endpoint에 rate limiting 추가해줘. Redis 사용. 분당 100 req. 초과시 429 응답." 中文翻译：「给我做的 API endpoint 加上限流。 用 Redis。每分钟 100 次请求。超过返回 429。」 AI Claude Code：[生成中间件，更新路由，加上测试] 人类审阅者：
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vibe-coding-2026-korean-concept-explained/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00+08:00 lastmod: 2026-05-23T00:00:00+08:00 tech_stack: [] application_domain: AI Tools source_version: ’' licensing_model: Open Source license_type: MIT file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-20” draft: false categories: [“ai-tools”] tags: [“vimax”, “agentic-video”, “ai-video-generation”, “hkuds”, “multi-agent”, “veo”, “long-form-video”, “video-ai”, “open-source-video”, “rag-screenwriting”] aliases:
+Human (Korean): &#34;내가 만든 API endpoint에 rate limiting 추가해줘. Redis 사용. 분당 100 req. 초과시 429 응답.&#34; 中文翻译：「给我做的 API endpoint 加上限流。 用 Redis。每分钟 100 次请求。超过返回 429。」 AI Claude Code：[生成中间件，更新路由，加上测试] 人类审阅者：
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vibe-coding-2026-korean-concept-explained/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-23T00:00:00&#43;08:00 lastmod: 2026-05-23T00:00:00&#43;08:00 tech_stack: [] application_domain: AI Tools source_version: ’&#39; licensing_model: Open Source license_type: MIT file_size: ’&#39; file_md5: ’&#39; download_url: ’&#39; backup_url: ’&#39; last_maintained: “2026-05-20” draft: false categories: [“ai-tools”] tags: [“vimax”, “agentic-video”, “ai-video-generation”, “hkuds”, “multi-agent”, “veo”, “long-form-video”, “video-ai”, “open-source-video”, “rag-screenwriting”] aliases:
 /zh/posts/vimax-agentic-video-generation-multi-agent-2026/- 2025 年压垮 AI 视频的三道天花板 2024–2025 年间所有冲进消费者视野的 AI 视频生成工具——Sora、Runway Gen-3、Pika、Luma Dream Machine、OpenSora——共享三道同样的天花板：
-只能出短片。 5–10 秒是实际上限。再长一点，一致性就崩。 一致性灾难。 同一个角色换个镜头脸就变；同一个房间道具来回重排。单 prompt 流水线根本没有"这是场景 1 里那只狗"这种概念。 只有画面。 没有剧本、没有叙事弧线、没有同步音轨。你拿到的是会动的好看图片，不是一部片子。 做短视频片段，这些限制还能忍。一旦想用 AI 真的讲个故事——讲解视频、教育内容、品牌叙事——只要用户希望场景 2 在逻辑上接着场景 1，整条流水线就当场断掉。
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/vimax-agentic-video-generation-multi-agent-2026/></a></article><article class="post-entry tag-entry"><header class=entry-header><h2 class=entry-hint-parent>AI Tool Guide</h2></header><div class=entry-content><p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false category: ai-tools tags: [“ai”, “语音ai”, “语音克隆”, “语音转文字”, “文字转语音”, “whisper”, “qwen3-tts”, “cuda”, “mlx”] slug: voicebox-open-source-ai-voice-studio
+只能出短片。 5–10 秒是实际上限。再长一点，一致性就崩。 一致性灾难。 同一个角色换个镜头脸就变；同一个房间道具来回重排。单 prompt 流水线根本没有&#34;这是场景 1 里那只狗&#34;这种概念。 只有画面。 没有剧本、没有叙事弧线、没有同步音轨。你拿到的是会动的好看图片，不是一部片子。 做短视频片段，这些限制还能忍。一旦想用 AI 真的讲个故事——讲解视频、教育内容、品牌叙事——只要用户希望场景 2 在逻辑上接着场景 1，整条流水线就当场断掉。
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/vimax-agentic-video-generation-multi-agent-2026/"></a>
+</article>
+
+<article class="post-entry tag-entry"> 
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">AI Tool Guide
+    </h2>
+  </header>
+  <div class="entry-content">
+    <p>title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-06-25 lastmod: 2026-06-25 draft: false category: ai-tools tags: [“ai”, “语音ai”, “语音克隆”, “语音转文字”, “文字转语音”, “whisper”, “qwen3-tts”, “cuda”, “mlx”] slug: voicebox-open-source-ai-voice-studio
 VoiceBox：开源AI语音工作室 VoiceBox 是一个全面的开源AI语音工作室，支持语音克隆、语音生成和听写——全部在您的机器上本地运行。凭借 33,745 个 GitHub Stars 和活跃的开发者社区，它已成为开发人员、内容创作者和注重隐私的用户的首选解决方案，无需依赖云API即可获得强大的语音AI能力。
 本文涵盖安装、语音克隆、听写模式、API使用、硬件需求和实际应用。
 TL;DR VoiceBox 提供一个完全在您的硬件上运行的完整语音AI堆栈。它支持从仅3秒音频开始的声音克隆、实时听写到任何应用程序，以及高质量的文本转语音生成。支持NVIDIA CUDA和Apple Silicon（MLX），它根据您的硬件进行调整同时保持隐私——您的语音数据永远不会离开您的机器。
@@ -72,11 +328,104 @@ TL;DR VoiceBox 提供一个完全在您的硬件上运行的完整语音AI堆栈
 语音克隆：录制或上传简短音频样本，创建可在该声音中生成语音的数字语音模型 听写：使用麦克风将文本听写到系统中的任何应用程序，支持实时转录 文本转语音：使用克隆语音或内置语音模型从文本生成自然语音 VoiceBox 建立在现代开源模型之上，包括Qwen3-TTS、Whisper和各种语音克隆架构，以零成本提供企业级语音AI能力。
 安装指南 前置条件 VoiceBox 支持多种硬件配置：
 GPU加速（推荐）：
-8GB+显存的NVIDIA GPU（RTX 3060或更好） 已安装CUDA 12.x工具包 16GB系统内存 Linux（Ubuntu 22.04+）或Windows 11 Apple Silicon：
-16GB+统一内存的M1/M2/M3芯片 macOS 14+（Sonoma或更新版本） 已安装MLX框架 纯CPU（较慢但可用）：
-...</p></div><footer class=entry-footer><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer><a class=entry-link aria-label="post link to AI Tool Guide" href=https://dibi8.com/zh/ai-coding-agents/voicebox-open-source-ai-voice-studio/></a></article><footer class=page-footer><nav class=pagination><a class=prev href=https://dibi8.com/zh/tags/tools/page/34/>«&nbsp;上一页&nbsp;
-</a><a class=next href=https://dibi8.com/zh/tags/tools/page/36/>下一页&nbsp;&nbsp;»</a></nav></footer></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script></body></html>
+8GB&#43;显存的NVIDIA GPU（RTX 3060或更好） 已安装CUDA 12.x工具包 16GB系统内存 Linux（Ubuntu 22.04&#43;）或Windows 11 Apple Silicon：
+16GB&#43;统一内存的M1/M2/M3芯片 macOS 14&#43;（Sonoma或更新版本） 已安装MLX框架 纯CPU（较慢但可用）：
+...</p>
+  </div>
+  <footer class="entry-footer">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>4 分钟</span></footer>
+  <a class="entry-link" aria-label="post link to AI Tool Guide" href="https://dibi8.com/zh/ai-coding-agents/voicebox-open-source-ai-voice-studio/"></a>
+</article>
+<footer class="page-footer">
+  <nav class="pagination">
+    <a class="prev" href="https://dibi8.com/zh/tags/tools/page/34/">
+      «&nbsp;上一页&nbsp;
+    </a>
+    <a class="next" href="https://dibi8.com/zh/tags/tools/page/36/">下一页&nbsp;&nbsp;»
+    </a>
+  </nav>
+</footer>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>

@@ -1,10 +1,315 @@
-<!doctype html><html lang=zh dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/vectara-rag-as-service-platform/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/vectara-rag-as-service-platform/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/vectara-rag-as-service-platform/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="zh"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/zh/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“vectara”, “rag”, “向量搜索”, “llm”, “embedding”, “boomerang”, “hhem”, “幻觉检测”, “企业ai”] aliases:\n/zh/posts/vectara-rag-as-service-platform/- Introduction：为什么大多数 RAG 系统在生产环境中失败 你一定见过这样的演示：一个聊天机器人通过搜索文档回答问题。在 50 个 PDF 的玩具数据集上运行良好。但当你在 12 种语言的 50,000 份文档上部署时，一切都崩了。答案变得模糊，来源错误，幻觉悄然渗入，延迟飙升到不可接受的水平。\n这就是 RAG 的生产悬崖。Stanford HAI 2025 年的一项研究发现，78% 的企业 RAG 原型在扩展到 10,000 份文档以上时准确率降至 70% 以下。罪魁祸首耳熟能详：糟糕的分块策略、弱嵌入模型、缺少重排序、无幻觉检测、零治理。\nVectara（2022 年由前 Google AI 研究员创立，总计融资 5,350 万美元，Apache-2.0 许可证的摄取工具，GitHub 约 800 Stars）采取了不同的方法。与其给你一个工具包去组装，Vectara 通过单一 API 提供完整的托管 RAG 管道：通过专有 Boomerang 模型进行嵌入、混合检索、重排序、通过 Mockingbird LLM 生成响应，以及通过 HHEM 进行内置幻觉检测。结果是：90%+ 的回答准确率，且无需你管理任何向量数据库。\n本文涵盖 Vectara 平台的架构、API 集成模式、基准测试以及 2026 年的诚实局限性。\n前置要求： Vectara 账户（有免费层），Python 3.10+，以及 ```curl或requests```` 用于 API 调用。\nWhat Is Vectara? Vectara 是一个 RAG-as-a-Service 平台，通过托管 API 提供完整的检索增强生成管道。由前 Google AI 研究员在帕洛阿尔托创立，该平台处理文档摄取、嵌入、混合搜索、重排序、响应生成和幻觉检测——所有这些都无需你操作向量数据库、嵌入模型或推理基础设施。\n该平台的核心差异化在于始终开启的治理。幻觉检测、事实一致性检查、品牌策略执行和引用追踪直接嵌入生成管道中，而非作为可选的后处理步骤附加。这使得 Vectara 对受监管行业特别具有吸引力，在这些行业中准确性和可审计性是不可协商的。\nHow Vectara Works Vectara 的架构是一个六阶段 RAG 管道，通过统一 API 暴露：\n┌─────────────────────────────────────────────────────────────┐ │ 1. 摄取 (INGESTION) │ │ 文档 → 文本提取 → 表格/图像解析 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 2. 分块与嵌入 (CHUNKING \u0026 EMBEDDING) │ │ 上下文感知分块 → Boomerang 嵌入 │ │ (多语言，零样本) │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 3. 索引 (INDEXING) │ │ 元数据提取 → 混合索引 (稠密 + 稀疏) │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 4. 检索 (RETRIEVAL) │ │ 混合搜索 → 神经重排序 → Top-K 选择 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 5. 生成 (GENERATION) │ │ Mockingbird LLM → 有依据的响应 + 引用 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 6. 治理 (GOVERNANCE) │ │ HHEM 幻觉检查 → 事实一致性 │ │ → 策略执行 → 审计追踪 │ └─────────────────────────────────────────────────────────────┘ 关键技术组件 Boomerang 嵌入模型。 Vectara 的专有嵌入模型开箱即支持 100+ 语言，零样本跨语言检索。与需要针对领域特定文档进行微调的通用嵌入模型不同，Boomerang 针对异构内容类型的检索准确率进行了优化。\nHHEM（Hughes 幻觉评估模型）。 一个开源幻觉检测器，评估生成声明是否得到检索块的支持。在 RTX 3090 上，HHEM 在 0.6 秒内完成评估，而使用前沿 LLM 评判的 RAGAS 在 4096 Token 上下文中需要约 35 秒。\nMockingbird LLM。 专为 RAG 应用构建的语言模型。根据 Vectara 发布的基准测试，Mockingbird 在 Bert-F1 基准测试上优于 GPT-4 和 Google Gemini-1.5-Pro，该基准衡量 RAG 模型将检索数据转换为提示响应的准确性。\n幻觉校正器。 2025 年 5 月推出，该组件在内容到达用户之前主动校正幻觉内容，即使使用低于 7B 参数的 LLM，也能实现 低于 1% 的幻觉率。\nGetting Started：从注册到首次查询，10 分钟 第一步：创建账户并获取 API 凭证 # 注册后，前往控制台获取凭证： # - Customer ID # - Corpus ID # - API Key # 存储为环境变量 export VECTARA_CUSTOMER_ID=\"your-customer-id\" export VECTARA_CORPUS_ID=\"your-corpus-id\" export VECTARA_API_KEY=\"zwt-your-api-key\" 第二步：安装 Python SDK # 安装官方 Vectara Python 客户端 pip install vectara # 或直接通过 REST API 使用 requests pip install requests 第三步：索引第一份文档 from vectara import VectaraClient # 初始化客户端 client = VectaraClient( customer_id=\"your-customer-id\", api_key=\"zwt-your-api-key\" ) # 创建语料库（文档集合） corpus = client.create_corpus( name=\"product-documentation\", description=\"Technical docs for our API platform\" ) # 索引文档 document = { \"documentId\": \"api-guide-v2\", \"title\": \"API Integration Guide v2.0\", \"metadataJson\": json.dumps({\"version\": \"2.0\", \"category\": \"technical\"}), \"parts\": [ { \"text\": \"The Vectara Query API accepts JSON payloads with three required fields: query, corpusKey, and numResults.\", \"metadataJson\": json.dumps({\"section\": \"authentication\"}) }, { \"text\": \"Authentication uses OAuth 2.0 client credentials flow. Obtain your client ID and secret from the Vectara Console.\", \"metadataJson\": json.dumps({\"section\": \"authentication\"}) } ] } client.index_document(corpus_id=corpus.corpus_id, document=document) print(f\"Document indexed to corpus {corpus.corpus_id}\") 第四步：运行首次 RAG 查询 # RAG 查询 response = client.query( corpus_id=\"your-corpus-id\", query=\"How do I authenticate with the Query API?\", num_results=5, generate=True, # 启用生成式摘要 generation_config={ \"max_tokens\": 256, \"temperature\": 0.0, # 事实性响应 \"citation_style\": \"numeric\" # 包含来源引用 } ) print(\"Answer:\", response.summary) print(\"\\nSources:\") for idx, result in enumerate(response.search_results, 1): print(f\"[{idx}] {result.text[:100]}... (score: {result.score:.3f})\") 输出：\nAnswer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2]. Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941) [2] The Vectara Query API accepts JSON payloads... (score: 0.893) 第五步：批量上传文档 import os from pathlib import Path # 批量上传目录中所有 PDF pdf_dir = Path(\"./documentation\") for pdf_file in pdf_dir.glob(\"*.pdf\"): with open(pdf_file, \"rb\") as f: client.upload_file( corpus_id=\"your-corpus-id\", file_content=f.read(), file_name=pdf_file.name, metadata={\"source\": \"docs\", \"format\": \"pdf\"} ) print(f\"Uploaded: {pdf_file.name}\") print(\"Batch upload complete!\") Integration with Mainstream Tools REST API 直接集成 对于没有官方 SDK 的语言，直接使用 REST API：\n# 查询端点 curl -X POST \"https://api.vectara.io/v1/query\" \\ -H \"x-api-key: ${VECTARA_API_KEY}\" \\ -H \"customer-id: ${VECTARA_CUSTOMER_ID}\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"query\": [ { \"query\": \"What are the pricing tiers?\", \"numResults\": 10, \"corpusKey\": [{\"customerId\": \"'\"${VECTARA_CUSTOMER_ID}\"'\", \"corpusId\": \"'\"${VECTARA_CORPUS_ID}\"'\"}], \"summary\": [{\"maxSummarizedResults\": 5, \"responseLang\": \"eng\"}] } ] }' Node.js / TypeScript 集成 import { VectaraClient } from \"@vectara/sdk\"; const client = new VectaraClient({ apiKey: process.env.VECTARA_API_KEY!, customerId: process.env.VECTARA_CUSTOMER_ID!, }); async function askQuestion(query: string) { const response = await client.query({ corpusId: process.env.VECTARA_CORPUS_ID!, query, numResults: 5, generate: true, }); return { answer: response.summary, sources: response.searchResults.map((r) =\u003e ({ text: r.text, score: r.score, documentId: r.documentId, })), }; } // Express.js 端点 app.post(\"/api/rag\", async (req, res) =\u003e { const result = await askQuestion(req.body.question); res.json(result); }); 元数据过滤 使用结构化元数据细化搜索结果：\n# 按元数据字段过滤 response = client.query( corpus_id=\"your-corpus-id\", query=\"API rate limits\", num_results=10, metadata_filter=\"doc.version \u003e= '2.0' AND doc.category = technical\", generate=True ) # 带日期范围的复杂过滤 response = client.query( corpus_id=\"your-corpus-id\", query=\"Recent security updates\", metadata_filter=\"doc.date \u003e= '2026-01-01' AND doc.type = 'security-bulletin'\", generate=True ) 多语言 RAG Vectara 的 Boomerang 模型原生处理跨语言检索：\n# 用英语查询西班牙语文档 response = client.query( corpus_id=\"your-corpus-id\", query=\"What are the safety guidelines?\", response_lang=\"eng\", # 响应语言 # 文档可以是西班牙语、德语、日语等 # Boomerang 自动跨语言检索 ) # 用中文查询 response = client.query( corpus_id=\"your-corpus-id\", query=\"如何集成API？\", response_lang=\"zho\" ) 流式响应 实时聊天界面使用流式传输：\nimport json # SSE 流式传输用于聊天应用 response = client.query( corpus_id=\"your-corpus-id\", query=\"Explain our refund policy\", generate=True, stream=True # 启用 Server-Sent Events ) # 处理流式块 for chunk in response: if chunk.type == \"search_result\": print(f\"Source: {chunk.document_id}\") elif chunk.type == \"generation\": print(chunk.text, end=\"\", flush=True) # 流式输出 token 混合搜索配置 调整关键词与语义搜索的平衡：\n# 配置混合搜索权重 response = client.query( corpus_id=\"your-corpus-id\", query=\"authentication errors\", num_results=10, search_config={ \"lexical_interpolation\": 0.3, # 30% 关键词，70% 语义 \"reranker\": { \"type\": \"mmr\", # 最大边际相关性 \"diversity_bias\": 0.2 } }, generate=True ) Benchmarks and Real-World Performance 回答准确率基准测试 | 基准测试 | Vectara (Mockingbird) | GPT-4 + 标准 RAG | 提升 | |\n|\n|\n|\n| | Bert-F1 (RAG 准确率) | 0.42 | 0.38 | +10.5% | | 幻觉率 (sub-7B LLM) | \u003c 1% | 8-12% | \u003e 8 倍降低 | | HHEM 忠实度分数 | 0.94 | N/A (无内置检查) | — | | 跨语言检索 (MIRACL) | 0.71 nDCG@10 | 0.63 nDCG@10 | +12.7% | | 检索延迟 (p99) | \u003c 400ms | 600-1200ms | 3 倍更快 |\nHHEM 性能特征 | 指标 | 数值 | 对比 | |\n|\n|\n| | 评估时间 (RTX 3090) | 0.6s | RAGAS: ~35s | | 评估时间 (CPU) | 2.1s | RAGAS: 120s | | 与人类评估的一致性 | 90%+ | 行业平均: 75% | | 模型大小 | 7B 参数 | RAGAS 使用前沿 LLM | | 每次评估成本 | **$0.001** | RAGAS: ~$0.05 |\n真实部署指标 案例 1 — 企业客户服务： Broadcom 于 2025 年选择 Vectara 为企业客户提供对话式 AI 服务。该系统每天处理 15,000+ 查询，覆盖 8 种语言的技术文档，平均响应准确率达到 92%（由人工评估员衡量）。\n案例 2 — 医疗知识库： 一家医院网络在 120,000 份临床文档上部署了 Vectara。临床医生查找治疗指南的时间减少了 43%，幻觉检测每周在到达临床人员之前拦截约 340 条无依据声明。\n案例 3 — 法律文件分析： 一家律所摄取了 50,000 份案件档案和合同。律师助理报告，Vectara 的引用支持答案使他们能够在 约 15 秒内根据来源材料验证声明，而之前手动搜索需要约 4 分钟。\nAdvanced Usage and Production Hardening 自定义重排序 针对领域特定应用微调结果排序：\n# MMR 重排序获取多样化结果 response = client.query( corpus_id=\"your-corpus-id\", query=\"cloud deployment options\", search_config={ \"reranker\": { \"type\": \"mmr\", \"diversity_bias\": 0.3 # 越高 = 来源越多样化 } } ) # 自定义评分权重 response = client.query( corpus_id=\"your-corpus-id\", query=\"security best practices\", search_config={ \"reranker\": { \"type\": \"slingshot\", # Vectara 的神经重排序器 \"cutoff\": 0.7 # 最低相关度分数 } } ) 文档更新与版本控制 处理文档变更而无需重新索引所有内容：\n# 更新特定文档 document_update = { \"documentId\": \"api-guide-v2\", \"title\": \"API Integration Guide v2.1\", \"metadataJson\": json.dumps({\"version\": \"2.1\", \"category\": \"technical\"}), \"parts\": [ { \"text\": \"Updated: The Query API now supports batch requests up to 100 queries per call.\", \"metadataJson\": json.dumps({\"section\": \"batch-operations\"}) } ] } # 重新索引以原子方式替换文档 client.index_document( corpus_id=\"your-corpus-id\", document=document_update ) 多语料库查询 同时搜索多个文档集合：\nresponse = client.query( query=\"authentication timeout\", corpus_keys=[ {\"corpusId\": \"product-docs\", \"weight\": 0.6}, {\"corpusId\": \"support-tickets\", \"weight\": 0.3}, {\"corpusId\": \"engineering-wiki\", \"weight\": 0.1} ], generate=True ) 实现对话历史 在多次交互中保持对话上下文：\n# 存储对话历史 conversation = [] def chat_turn(user_query: str) -\u003e str: global conversation response = client.query( corpus_id=\"your-corpus-id\", query=user_query, generate=True, chat_config={ \"store\": True, \"conversationId\": \"conv_001\", \"turns\": conversation[-5:] # 最近 5 轮用于上下文 } ) conversation.append({\"role\": \"user\", \"text\": user_query}) conversation.append({\"role\": \"assistant\", \"text\": response.summary}) return response.summary 监控与分析 # 获取语料库统计信息 stats = client.get_corpus_stats(corpus_id=\"your-corpus-id\") print(f\"Documents: {stats.num_docs}\") print(f\"Total parts: {stats.num_parts}\") print(f\"Avg document size: {stats.avg_doc_size} bytes\") # 查询分析 analytics = client.get_query_analytics( corpus_id=\"your-corpus-id\", start_date=\"2026-04-01\", end_date=\"2026-05-19\" ) print(f\"Total queries: {analytics.total_queries}\") print(f\"Avg latency: {analytics.avg_latency_ms}ms\") print(f\"Hallucination rate: {analytics.hallucination_rate}%\") Comparison with Alternatives | 特性 | Vectara | Pinecone | Weaviate | LlamaIndex | |\n|\n|\n|\n|\n| | 部署模式 | 全托管 SaaS | 托管 + 自建 | 自建 + 云 | 仅库 | | 包含嵌入模型 | Boomerang (专有) | 否 (自备) | 否 (自备) | 否 (自备) | | 幻觉检测 | HHEM 内置 | 否 | 否 | 通过集成 | | 包含生成式 LLM | Mockingbird (专有) | 否 | 否 | 通过集成 | | 多语言支持 | 100+ 语言 | 依赖嵌入模型 | 依赖嵌入模型 | 依赖嵌入模型 | | 混合搜索 | 稠密 + 稀疏原生 | 通过元数据稀疏 | 通过 BM25 稀疏 | 通过集成 | | 引用生成 | 内置 | 手动 | 手动 | 通过集成 | | SOC 2 / HIPAA | SOC 2 Type 2, HIPAA | SOC 2 | SOC 2 (自建: 无) | N/A (库) | | 定价模式 | 按量 (查询 + 存储) | 每 pod/小时 | 每核/小时 | 开源 | | 设置复杂度 | 仅需 API Key | 索引 + 模型设置 | Schema + 模型设置 | 需要组装 |\n选择 Vectara 的场景：\n需要无需操作向量数据库的托管 RAG 幻觉检测是硬性要求 需要 100+ 语言支持而无需微调嵌入 团队缺乏维护 RAG 技术栈的专职 ML 工程师 需要合规认证 (SOC 2, HIPAA) 选择其他方案的场景：\n选 Pinecone 如果你需要最大的向量搜索定制能力并有 ML 工程师 选 Weaviate 如果你想要带 GraphQL 接口的自建方案 选 LlamaIndex 如果你偏好用最大灵活性组装自己的 RAG 管道 Limitations: 诚实评估 1. 嵌入和生成的供应商锁定。 Boomerang 和 Mockingbird 是专有模型。你无法导出嵌入模型或在本地运行。如果离开 Vectara，必须使用不同的嵌入模型重新索引所有内容。\n2. 无真正的自建选项。 虽然 Vectara 提供客户管理的 VPC 和本地部署，但这些都是通常超过 5 万美元/年的企业合同。没有像 Weaviate 或 Qdrant 那样的免费自建社区版。\n3. 连接器生态系统有限。 与 LlamaIndex 的 160+ 数据连接器相比，Vectara 的预构建摄取连接器更有限。你可能需要为利基数据源编写自定义摄取逻辑。\n4. 规模化定价。 按量计费（查询 + 存储）对高流量应用可能变得昂贵。每天处理数百万查询的团队应仔细建模成本并协商企业合同。\n5. 检索调优控制较少。 Vectara 的检索管道是一个黑盒。虽然你可以调整混合权重和重排序，但无法更换单个组件（例如使用自定义嵌入模型或不同的重排序器）。\nFrequently Asked Questions Vectara 如何实现 90%+ 的回答准确率？ Vectara 结合专有为检索优化的嵌入模型 (Boomerang)、专为 RAG 构建的 LLM (Mockingbird)、神经重排序和 HHEM 幻觉检测模型。该管道是端到端为检索准确率优化的，而非由通用组件组装而成。Bert-F1 上的发布基准测试显示 Mockingbird 在 RAG 任务上优于 GPT-4。\n我可以将自己的 LLM 与 Vectara 一起使用吗？ 可以。Vectara 支持 BYOM（自带模型）。你可以使用 Vectara 检索管道（Boomerang + 混合搜索 + 重排序）并替换自己的 LLM 用于生成步骤。这在你对生成模型有特定要求或想在本地运行时很有用。\nVectara 是否符合 SOC 2 和 HIPAA？ 是。Vectara 持有 SOC 2 Type 2 认证并符合 HIPAA。对于医疗和受监管行业，他们提供客户管理的 VPC 和完全本地部署选项，数据永远不会离开你的基础设施。\nHHEM 与其他幻觉检测器相比如何？ HHEM 在 RTX 3090 上 0.6 秒内评估幻觉，而 RAGAS 使用前沿 LLM 评判需要约 35 秒。它在忠实度评分上实现 90%+ 与人类评估员的一致性。2026 年一代微调小模型 (Lynx 70B、Galileo Luna v2、Vectara HHEM-2.1) 在 RAG 基准测试上报告 85-90% 与人类评分的一致性，高于 2024 年基线的 70-75%。\n免费层限制是什么？ Vectara 免费层包含 50MB 存储和每月 10,000 次查询。这足以用于原型设计和小型内部工具。付费层根据存储量和查询量扩展，企业合同可用于高流量部署。\nVectara 能否处理多模态内容（图像、表格）？ 可以。Vectara 通过其多模态检索管道支持文本、表格和图像。图像经过视觉内容提取处理，表格在嵌入前解析为结构化表示。这对技术文档和研究论文特别有用。\nVectara 如何处理文档更新和版本控制？ 当你使用相同的 ````documentId``` 重新索引文档时，Vectara 以原子方式用新版本替换旧版本。无停机时间，更新期间的查询看到一致的状态。平台还随时间追踪引用完整性，当源文档变更时标记可能需要更新的响应。\nConclusion：让 Vectara 处理 RAG 的繁重工作 从零构建生产 RAG 系统意味着管理嵌入模型、向量数据库、重排序器、生成 LLM、幻觉检测器和监控——这是大多数产品团队无法承担的巨额工程投资。Vectara 将整个技术栈压缩为单次 API 调用，开箱即达 90%+ 准确率。\n对于需要准确、受治理、有引用支持的 AI 响应而无需操作基础设施的团队，Vectara 是 2026 年最成熟的托管 RAG 平台。从免费层开始，索引你的第一个语料库，自己衡量准确率。\n参与讨论： 在我们的 Telegram 群组 分享你的 Vectara 部署结果——我们比较检索基准、分享语料库调优策略，每周评审摄取管道。\nSources \u0026 Further Reading Vectara 官方网站 Vectara 文档 Vectara Ingest GitHub 仓库 HHEM 幻觉评估模型 (Hugging Face) Boomerang 嵌入模型论文 Mockingbird LLM 基准测试 Stanford HAI RAG 研究 2025 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\nAffiliate Disclosure 本文包含联盟链接。如果你通过我们的链接注册 DigitalOcean，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Vectara 提供免费层，无需信用卡，所有摄取工具在 Apache-2.0 许可证下开源。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/vectara-rag-as-service-platform\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n","wordCount":"1747","inLanguage":"zh","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/zh/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/zh/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/zh/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/zh/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/zh/>主页</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/zh/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/vectara-rag-as-service-platform/>En</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/vectara-rag-as-service-platform/>Ko</a></li><li><a href=https://dibi8.com/vi/ai-coding-agents/vectara-rag-as-service-platform/>Vi</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>目录</span></summary><div class=inner><ul><li><a href=#introduction%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a4%a7%e5%a4%9a%e6%95%b0-rag-%e7%b3%bb%e7%bb%9f%e5%9c%a8%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e4%b8%ad%e5%a4%b1%e8%b4%a5 aria-label="Introduction：为什么大多数 RAG 系统在生产环境中失败">Introduction：为什么大多数 RAG 系统在生产环境中失败</a></li><li><a href=#what-is-vectara aria-label="What Is Vectara?">What Is Vectara?</a></li><li><a href=#how-vectara-works aria-label="How Vectara Works">How Vectara Works</a><ul><li><a href=#%e5%85%b3%e9%94%ae%e6%8a%80%e6%9c%af%e7%bb%84%e4%bb%b6 aria-label=关键技术组件>关键技术组件</a></li></ul></li><li><a href=#getting-started%e4%bb%8e%e6%b3%a8%e5%86%8c%e5%88%b0%e9%a6%96%e6%ac%a1%e6%9f%a5%e8%af%a210-%e5%88%86%e9%92%9f aria-label="Getting Started：从注册到首次查询，10 分钟">Getting Started：从注册到首次查询，10 分钟</a><ul><li><a href=#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%88%9b%e5%bb%ba%e8%b4%a6%e6%88%b7%e5%b9%b6%e8%8e%b7%e5%8f%96-api-%e5%87%ad%e8%af%81 aria-label="第一步：创建账户并获取 API 凭证">第一步：创建账户并获取 API 凭证</a></li><li><a href=#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%ae%89%e8%a3%85-python-sdk aria-label="第二步：安装 Python SDK">第二步：安装 Python SDK</a></li><li><a href=#%e7%ac%ac%e4%b8%89%e6%ad%a5%e7%b4%a2%e5%bc%95%e7%ac%ac%e4%b8%80%e4%bb%bd%e6%96%87%e6%a1%a3 aria-label=第三步：索引第一份文档>第三步：索引第一份文档</a></li><li><a href=#%e7%ac%ac%e5%9b%9b%e6%ad%a5%e8%bf%90%e8%a1%8c%e9%a6%96%e6%ac%a1-rag-%e6%9f%a5%e8%af%a2 aria-label="第四步：运行首次 RAG 查询">第四步：运行首次 RAG 查询</a></li><li><a href=#%e7%ac%ac%e4%ba%94%e6%ad%a5%e6%89%b9%e9%87%8f%e4%b8%8a%e4%bc%a0%e6%96%87%e6%a1%a3 aria-label=第五步：批量上传文档>第五步：批量上传文档</a></li></ul></li><li><a href=#integration-with-mainstream-tools aria-label="Integration with Mainstream Tools">Integration with Mainstream Tools</a><ul><li><a href=#rest-api-%e7%9b%b4%e6%8e%a5%e9%9b%86%e6%88%90 aria-label="REST API 直接集成">REST API 直接集成</a></li><li><a href=#nodejs--typescript-%e9%9b%86%e6%88%90 aria-label="Node.js / TypeScript 集成">Node.js / TypeScript 集成</a></li><li><a href=#%e5%85%83%e6%95%b0%e6%8d%ae%e8%bf%87%e6%bb%a4 aria-label=元数据过滤>元数据过滤</a></li><li><a href=#%e5%a4%9a%e8%af%ad%e8%a8%80-rag aria-label="多语言 RAG">多语言 RAG</a></li><li><a href=#%e6%b5%81%e5%bc%8f%e5%93%8d%e5%ba%94 aria-label=流式响应>流式响应</a></li><li><a href=#%e6%b7%b7%e5%90%88%e6%90%9c%e7%b4%a2%e9%85%8d%e7%bd%ae aria-label=混合搜索配置>混合搜索配置</a></li></ul></li><li><a href=#benchmarks-and-real-world-performance aria-label="Benchmarks and Real-World Performance">Benchmarks and Real-World Performance</a><ul><li><a href=#%e5%9b%9e%e7%ad%94%e5%87%86%e7%a1%ae%e7%8e%87%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95 aria-label=回答准确率基准测试>回答准确率基准测试</a></li><li><a href=#hhem-%e6%80%a7%e8%83%bd%e7%89%b9%e5%be%81 aria-label="HHEM 性能特征">HHEM 性能特征</a></li><li><a href=#%e7%9c%9f%e5%ae%9e%e9%83%a8%e7%bd%b2%e6%8c%87%e6%a0%87 aria-label=真实部署指标>真实部署指标</a></li></ul></li><li><a href=#advanced-usage-and-production-hardening aria-label="Advanced Usage and Production Hardening">Advanced Usage and Production Hardening</a><ul><li><a href=#%e8%87%aa%e5%ae%9a%e4%b9%89%e9%87%8d%e6%8e%92%e5%ba%8f aria-label=自定义重排序>自定义重排序</a></li><li><a href=#%e6%96%87%e6%a1%a3%e6%9b%b4%e6%96%b0%e4%b8%8e%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6 aria-label=文档更新与版本控制>文档更新与版本控制</a></li><li><a href=#%e5%a4%9a%e8%af%ad%e6%96%99%e5%ba%93%e6%9f%a5%e8%af%a2 aria-label=多语料库查询>多语料库查询</a></li><li><a href=#%e5%ae%9e%e7%8e%b0%e5%af%b9%e8%af%9d%e5%8e%86%e5%8f%b2 aria-label=实现对话历史>实现对话历史</a></li><li><a href=#%e7%9b%91%e6%8e%a7%e4%b8%8e%e5%88%86%e6%9e%90 aria-label=监控与分析>监控与分析</a></li></ul></li><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations-%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0 aria-label="Limitations: 诚实评估">Limitations: 诚实评估</a></li><li><a href=#frequently-asked-questions aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul><li><a href=#vectara-%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0-90-%e7%9a%84%e5%9b%9e%e7%ad%94%e5%87%86%e7%a1%ae%e7%8e%87 aria-label="Vectara 如何实现 90%+ 的回答准确率？">Vectara 如何实现 90%+ 的回答准确率？</a></li><li><a href=#%e6%88%91%e5%8f%af%e4%bb%a5%e5%b0%86%e8%87%aa%e5%b7%b1%e7%9a%84-llm-%e4%b8%8e-vectara-%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8%e5%90%97 aria-label="我可以将自己的 LLM 与 Vectara 一起使用吗？">我可以将自己的 LLM 与 Vectara 一起使用吗？</a></li><li><a href=#vectara-%e6%98%af%e5%90%a6%e7%ac%a6%e5%90%88-soc-2-%e5%92%8c-hipaa aria-label="Vectara 是否符合 SOC 2 和 HIPAA？">Vectara 是否符合 SOC 2 和 HIPAA？</a></li><li><a href=#hhem-%e4%b8%8e%e5%85%b6%e4%bb%96%e5%b9%bb%e8%a7%89%e6%a3%80%e6%b5%8b%e5%99%a8%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95 aria-label="HHEM 与其他幻觉检测器相比如何？">HHEM 与其他幻觉检测器相比如何？</a></li><li><a href=#%e5%85%8d%e8%b4%b9%e5%b1%82%e9%99%90%e5%88%b6%e6%98%af%e4%bb%80%e4%b9%88 aria-label=免费层限制是什么？>免费层限制是什么？</a></li><li><a href=#vectara-%e8%83%bd%e5%90%a6%e5%a4%84%e7%90%86%e5%a4%9a%e6%a8%a1%e6%80%81%e5%86%85%e5%ae%b9%e5%9b%be%e5%83%8f%e8%a1%a8%e6%a0%bc aria-label="Vectara 能否处理多模态内容（图像、表格）？">Vectara 能否处理多模态内容（图像、表格）？</a></li><li><a href=#vectara-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86%e6%96%87%e6%a1%a3%e6%9b%b4%e6%96%b0%e5%92%8c%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6 aria-label="Vectara 如何处理文档更新和版本控制？">Vectara 如何处理文档更新和版本控制？</a></li></ul></li><li><a href=#conclusion%e8%ae%a9-vectara-%e5%a4%84%e7%90%86-rag-%e7%9a%84%e7%b9%81%e9%87%8d%e5%b7%a5%e4%bd%9c aria-label="Conclusion：让 Vectara 处理 RAG 的繁重工作">Conclusion：让 Vectara 处理 RAG 的繁重工作</a></li><li><a href=#sources--further-reading aria-label="Sources & Further Reading">Sources & Further Reading</a></li><li><a href=#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd aria-label=推荐部署与基础设施>推荐部署与基础设施</a></li><li><a href=#affiliate-disclosure aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="zh" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/vectara-rag-as-service-platform/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/vectara-rag-as-service-platform/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/vectara-rag-as-service-platform/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="zh">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/zh/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-19T00:00:00+08:00 lastmod: 2026-05-19T00:00:00+08:00 tech_stack: [] application_domain: Data Science source_version: ’' licensing_model: Open Source license_type: Apache-2.0 file_size: ’' file_md5: ’' download_url: ’' backup_url: ’' last_maintained: “2026-05-19” draft: false categories: [“data-science”] tags: [“vectara”, “rag”, “向量搜索”, “llm”, “embedding”, “boomerang”, “hhem”, “幻觉检测”, “企业ai”] aliases:\n/zh/posts/vectara-rag-as-service-platform/- Introduction：为什么大多数 RAG 系统在生产环境中失败 你一定见过这样的演示：一个聊天机器人通过搜索文档回答问题。在 50 个 PDF 的玩具数据集上运行良好。但当你在 12 种语言的 50,000 份文档上部署时，一切都崩了。答案变得模糊，来源错误，幻觉悄然渗入，延迟飙升到不可接受的水平。\n这就是 RAG 的生产悬崖。Stanford HAI 2025 年的一项研究发现，78% 的企业 RAG 原型在扩展到 10,000 份文档以上时准确率降至 70% 以下。罪魁祸首耳熟能详：糟糕的分块策略、弱嵌入模型、缺少重排序、无幻觉检测、零治理。\nVectara（2022 年由前 Google AI 研究员创立，总计融资 5,350 万美元，Apache-2.0 许可证的摄取工具，GitHub 约 800 Stars）采取了不同的方法。与其给你一个工具包去组装，Vectara 通过单一 API 提供完整的托管 RAG 管道：通过专有 Boomerang 模型进行嵌入、混合检索、重排序、通过 Mockingbird LLM 生成响应，以及通过 HHEM 进行内置幻觉检测。结果是：90%+ 的回答准确率，且无需你管理任何向量数据库。\n本文涵盖 Vectara 平台的架构、API 集成模式、基准测试以及 2026 年的诚实局限性。\n前置要求： Vectara 账户（有免费层），Python 3.10+，以及 ```curl或requests```` 用于 API 调用。\nWhat Is Vectara? Vectara 是一个 RAG-as-a-Service 平台，通过托管 API 提供完整的检索增强生成管道。由前 Google AI 研究员在帕洛阿尔托创立，该平台处理文档摄取、嵌入、混合搜索、重排序、响应生成和幻觉检测——所有这些都无需你操作向量数据库、嵌入模型或推理基础设施。\n该平台的核心差异化在于始终开启的治理。幻觉检测、事实一致性检查、品牌策略执行和引用追踪直接嵌入生成管道中，而非作为可选的后处理步骤附加。这使得 Vectara 对受监管行业特别具有吸引力，在这些行业中准确性和可审计性是不可协商的。\nHow Vectara Works Vectara 的架构是一个六阶段 RAG 管道，通过统一 API 暴露：\n┌─────────────────────────────────────────────────────────────┐ │ 1. 摄取 (INGESTION) │ │ 文档 → 文本提取 → 表格/图像解析 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 2. 分块与嵌入 (CHUNKING \u0026 EMBEDDING) │ │ 上下文感知分块 → Boomerang 嵌入 │ │ (多语言，零样本) │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 3. 索引 (INDEXING) │ │ 元数据提取 → 混合索引 (稠密 + 稀疏) │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 4. 检索 (RETRIEVAL) │ │ 混合搜索 → 神经重排序 → Top-K 选择 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 5. 生成 (GENERATION) │ │ Mockingbird LLM → 有依据的响应 + 引用 │ └─────────────────────────────────────────────────────────────┘ │ ┌─────────────────────────────────────────────────────────────┐ │ 6. 治理 (GOVERNANCE) │ │ HHEM 幻觉检查 → 事实一致性 │ │ → 策略执行 → 审计追踪 │ └─────────────────────────────────────────────────────────────┘ 关键技术组件 Boomerang 嵌入模型。 Vectara 的专有嵌入模型开箱即支持 100+ 语言，零样本跨语言检索。与需要针对领域特定文档进行微调的通用嵌入模型不同，Boomerang 针对异构内容类型的检索准确率进行了优化。\nHHEM（Hughes 幻觉评估模型）。 一个开源幻觉检测器，评估生成声明是否得到检索块的支持。在 RTX 3090 上，HHEM 在 0.6 秒内完成评估，而使用前沿 LLM 评判的 RAGAS 在 4096 Token 上下文中需要约 35 秒。\nMockingbird LLM。 专为 RAG 应用构建的语言模型。根据 Vectara 发布的基准测试，Mockingbird 在 Bert-F1 基准测试上优于 GPT-4 和 Google Gemini-1.5-Pro，该基准衡量 RAG 模型将检索数据转换为提示响应的准确性。\n幻觉校正器。 2025 年 5 月推出，该组件在内容到达用户之前主动校正幻觉内容，即使使用低于 7B 参数的 LLM，也能实现 低于 1% 的幻觉率。\nGetting Started：从注册到首次查询，10 分钟 第一步：创建账户并获取 API 凭证 # 注册后，前往控制台获取凭证： # - Customer ID # - Corpus ID # - API Key # 存储为环境变量 export VECTARA_CUSTOMER_ID=\"your-customer-id\" export VECTARA_CORPUS_ID=\"your-corpus-id\" export VECTARA_API_KEY=\"zwt-your-api-key\" 第二步：安装 Python SDK # 安装官方 Vectara Python 客户端 pip install vectara # 或直接通过 REST API 使用 requests pip install requests 第三步：索引第一份文档 from vectara import VectaraClient # 初始化客户端 client = VectaraClient( customer_id=\"your-customer-id\", api_key=\"zwt-your-api-key\" ) # 创建语料库（文档集合） corpus = client.create_corpus( name=\"product-documentation\", description=\"Technical docs for our API platform\" ) # 索引文档 document = { \"documentId\": \"api-guide-v2\", \"title\": \"API Integration Guide v2.0\", \"metadataJson\": json.dumps({\"version\": \"2.0\", \"category\": \"technical\"}), \"parts\": [ { \"text\": \"The Vectara Query API accepts JSON payloads with three required fields: query, corpusKey, and numResults.\", \"metadataJson\": json.dumps({\"section\": \"authentication\"}) }, { \"text\": \"Authentication uses OAuth 2.0 client credentials flow. Obtain your client ID and secret from the Vectara Console.\", \"metadataJson\": json.dumps({\"section\": \"authentication\"}) } ] } client.index_document(corpus_id=corpus.corpus_id, document=document) print(f\"Document indexed to corpus {corpus.corpus_id}\") 第四步：运行首次 RAG 查询 # RAG 查询 response = client.query( corpus_id=\"your-corpus-id\", query=\"How do I authenticate with the Query API?\", num_results=5, generate=True, # 启用生成式摘要 generation_config={ \"max_tokens\": 256, \"temperature\": 0.0, # 事实性响应 \"citation_style\": \"numeric\" # 包含来源引用 } ) print(\"Answer:\", response.summary) print(\"\\nSources:\") for idx, result in enumerate(response.search_results, 1): print(f\"[{idx}] {result.text[:100]}... (score: {result.score:.3f})\") 输出：\nAnswer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2]. Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941) [2] The Vectara Query API accepts JSON payloads... (score: 0.893) 第五步：批量上传文档 import os from pathlib import Path # 批量上传目录中所有 PDF pdf_dir = Path(\"./documentation\") for pdf_file in pdf_dir.glob(\"*.pdf\"): with open(pdf_file, \"rb\") as f: client.upload_file( corpus_id=\"your-corpus-id\", file_content=f.read(), file_name=pdf_file.name, metadata={\"source\": \"docs\", \"format\": \"pdf\"} ) print(f\"Uploaded: {pdf_file.name}\") print(\"Batch upload complete!\") Integration with Mainstream Tools REST API 直接集成 对于没有官方 SDK 的语言，直接使用 REST API：\n# 查询端点 curl -X POST \"https://api.vectara.io/v1/query\" \\ -H \"x-api-key: ${VECTARA_API_KEY}\" \\ -H \"customer-id: ${VECTARA_CUSTOMER_ID}\" \\ -H \"Content-Type: application/json\" \\ -d '{ \"query\": [ { \"query\": \"What are the pricing tiers?\", \"numResults\": 10, \"corpusKey\": [{\"customerId\": \"'\"${VECTARA_CUSTOMER_ID}\"'\", \"corpusId\": \"'\"${VECTARA_CORPUS_ID}\"'\"}], \"summary\": [{\"maxSummarizedResults\": 5, \"responseLang\": \"eng\"}] } ] }' Node.js / TypeScript 集成 import { VectaraClient } from \"@vectara/sdk\"; const client = new VectaraClient({ apiKey: process.env.VECTARA_API_KEY!, customerId: process.env.VECTARA_CUSTOMER_ID!, }); async function askQuestion(query: string) { const response = await client.query({ corpusId: process.env.VECTARA_CORPUS_ID!, query, numResults: 5, generate: true, }); return { answer: response.summary, sources: response.searchResults.map((r) =\u003e ({ text: r.text, score: r.score, documentId: r.documentId, })), }; } // Express.js 端点 app.post(\"/api/rag\", async (req, res) =\u003e { const result = await askQuestion(req.body.question); res.json(result); }); 元数据过滤 使用结构化元数据细化搜索结果：\n# 按元数据字段过滤 response = client.query( corpus_id=\"your-corpus-id\", query=\"API rate limits\", num_results=10, metadata_filter=\"doc.version \u003e= '2.0' AND doc.category = technical\", generate=True ) # 带日期范围的复杂过滤 response = client.query( corpus_id=\"your-corpus-id\", query=\"Recent security updates\", metadata_filter=\"doc.date \u003e= '2026-01-01' AND doc.type = 'security-bulletin'\", generate=True ) 多语言 RAG Vectara 的 Boomerang 模型原生处理跨语言检索：\n# 用英语查询西班牙语文档 response = client.query( corpus_id=\"your-corpus-id\", query=\"What are the safety guidelines?\", response_lang=\"eng\", # 响应语言 # 文档可以是西班牙语、德语、日语等 # Boomerang 自动跨语言检索 ) # 用中文查询 response = client.query( corpus_id=\"your-corpus-id\", query=\"如何集成API？\", response_lang=\"zho\" ) 流式响应 实时聊天界面使用流式传输：\nimport json # SSE 流式传输用于聊天应用 response = client.query( corpus_id=\"your-corpus-id\", query=\"Explain our refund policy\", generate=True, stream=True # 启用 Server-Sent Events ) # 处理流式块 for chunk in response: if chunk.type == \"search_result\": print(f\"Source: {chunk.document_id}\") elif chunk.type == \"generation\": print(chunk.text, end=\"\", flush=True) # 流式输出 token 混合搜索配置 调整关键词与语义搜索的平衡：\n# 配置混合搜索权重 response = client.query( corpus_id=\"your-corpus-id\", query=\"authentication errors\", num_results=10, search_config={ \"lexical_interpolation\": 0.3, # 30% 关键词，70% 语义 \"reranker\": { \"type\": \"mmr\", # 最大边际相关性 \"diversity_bias\": 0.2 } }, generate=True ) Benchmarks and Real-World Performance 回答准确率基准测试 | 基准测试 | Vectara (Mockingbird) | GPT-4 + 标准 RAG | 提升 | |\n|\n|\n|\n| | Bert-F1 (RAG 准确率) | 0.42 | 0.38 | +10.5% | | 幻觉率 (sub-7B LLM) | \u003c 1% | 8-12% | \u003e 8 倍降低 | | HHEM 忠实度分数 | 0.94 | N/A (无内置检查) | — | | 跨语言检索 (MIRACL) | 0.71 nDCG@10 | 0.63 nDCG@10 | +12.7% | | 检索延迟 (p99) | \u003c 400ms | 600-1200ms | 3 倍更快 |\nHHEM 性能特征 | 指标 | 数值 | 对比 | |\n|\n|\n| | 评估时间 (RTX 3090) | 0.6s | RAGAS: ~35s | | 评估时间 (CPU) | 2.1s | RAGAS: 120s | | 与人类评估的一致性 | 90%+ | 行业平均: 75% | | 模型大小 | 7B 参数 | RAGAS 使用前沿 LLM | | 每次评估成本 | **$0.001** | RAGAS: ~$0.05 |\n真实部署指标 案例 1 — 企业客户服务： Broadcom 于 2025 年选择 Vectara 为企业客户提供对话式 AI 服务。该系统每天处理 15,000+ 查询，覆盖 8 种语言的技术文档，平均响应准确率达到 92%（由人工评估员衡量）。\n案例 2 — 医疗知识库： 一家医院网络在 120,000 份临床文档上部署了 Vectara。临床医生查找治疗指南的时间减少了 43%，幻觉检测每周在到达临床人员之前拦截约 340 条无依据声明。\n案例 3 — 法律文件分析： 一家律所摄取了 50,000 份案件档案和合同。律师助理报告，Vectara 的引用支持答案使他们能够在 约 15 秒内根据来源材料验证声明，而之前手动搜索需要约 4 分钟。\nAdvanced Usage and Production Hardening 自定义重排序 针对领域特定应用微调结果排序：\n# MMR 重排序获取多样化结果 response = client.query( corpus_id=\"your-corpus-id\", query=\"cloud deployment options\", search_config={ \"reranker\": { \"type\": \"mmr\", \"diversity_bias\": 0.3 # 越高 = 来源越多样化 } } ) # 自定义评分权重 response = client.query( corpus_id=\"your-corpus-id\", query=\"security best practices\", search_config={ \"reranker\": { \"type\": \"slingshot\", # Vectara 的神经重排序器 \"cutoff\": 0.7 # 最低相关度分数 } } ) 文档更新与版本控制 处理文档变更而无需重新索引所有内容：\n# 更新特定文档 document_update = { \"documentId\": \"api-guide-v2\", \"title\": \"API Integration Guide v2.1\", \"metadataJson\": json.dumps({\"version\": \"2.1\", \"category\": \"technical\"}), \"parts\": [ { \"text\": \"Updated: The Query API now supports batch requests up to 100 queries per call.\", \"metadataJson\": json.dumps({\"section\": \"batch-operations\"}) } ] } # 重新索引以原子方式替换文档 client.index_document( corpus_id=\"your-corpus-id\", document=document_update ) 多语料库查询 同时搜索多个文档集合：\nresponse = client.query( query=\"authentication timeout\", corpus_keys=[ {\"corpusId\": \"product-docs\", \"weight\": 0.6}, {\"corpusId\": \"support-tickets\", \"weight\": 0.3}, {\"corpusId\": \"engineering-wiki\", \"weight\": 0.1} ], generate=True ) 实现对话历史 在多次交互中保持对话上下文：\n# 存储对话历史 conversation = [] def chat_turn(user_query: str) -\u003e str: global conversation response = client.query( corpus_id=\"your-corpus-id\", query=user_query, generate=True, chat_config={ \"store\": True, \"conversationId\": \"conv_001\", \"turns\": conversation[-5:] # 最近 5 轮用于上下文 } ) conversation.append({\"role\": \"user\", \"text\": user_query}) conversation.append({\"role\": \"assistant\", \"text\": response.summary}) return response.summary 监控与分析 # 获取语料库统计信息 stats = client.get_corpus_stats(corpus_id=\"your-corpus-id\") print(f\"Documents: {stats.num_docs}\") print(f\"Total parts: {stats.num_parts}\") print(f\"Avg document size: {stats.avg_doc_size} bytes\") # 查询分析 analytics = client.get_query_analytics( corpus_id=\"your-corpus-id\", start_date=\"2026-04-01\", end_date=\"2026-05-19\" ) print(f\"Total queries: {analytics.total_queries}\") print(f\"Avg latency: {analytics.avg_latency_ms}ms\") print(f\"Hallucination rate: {analytics.hallucination_rate}%\") Comparison with Alternatives | 特性 | Vectara | Pinecone | Weaviate | LlamaIndex | |\n|\n|\n|\n|\n| | 部署模式 | 全托管 SaaS | 托管 + 自建 | 自建 + 云 | 仅库 | | 包含嵌入模型 | Boomerang (专有) | 否 (自备) | 否 (自备) | 否 (自备) | | 幻觉检测 | HHEM 内置 | 否 | 否 | 通过集成 | | 包含生成式 LLM | Mockingbird (专有) | 否 | 否 | 通过集成 | | 多语言支持 | 100+ 语言 | 依赖嵌入模型 | 依赖嵌入模型 | 依赖嵌入模型 | | 混合搜索 | 稠密 + 稀疏原生 | 通过元数据稀疏 | 通过 BM25 稀疏 | 通过集成 | | 引用生成 | 内置 | 手动 | 手动 | 通过集成 | | SOC 2 / HIPAA | SOC 2 Type 2, HIPAA | SOC 2 | SOC 2 (自建: 无) | N/A (库) | | 定价模式 | 按量 (查询 + 存储) | 每 pod/小时 | 每核/小时 | 开源 | | 设置复杂度 | 仅需 API Key | 索引 + 模型设置 | Schema + 模型设置 | 需要组装 |\n选择 Vectara 的场景：\n需要无需操作向量数据库的托管 RAG 幻觉检测是硬性要求 需要 100+ 语言支持而无需微调嵌入 团队缺乏维护 RAG 技术栈的专职 ML 工程师 需要合规认证 (SOC 2, HIPAA) 选择其他方案的场景：\n选 Pinecone 如果你需要最大的向量搜索定制能力并有 ML 工程师 选 Weaviate 如果你想要带 GraphQL 接口的自建方案 选 LlamaIndex 如果你偏好用最大灵活性组装自己的 RAG 管道 Limitations: 诚实评估 1. 嵌入和生成的供应商锁定。 Boomerang 和 Mockingbird 是专有模型。你无法导出嵌入模型或在本地运行。如果离开 Vectara，必须使用不同的嵌入模型重新索引所有内容。\n2. 无真正的自建选项。 虽然 Vectara 提供客户管理的 VPC 和本地部署，但这些都是通常超过 5 万美元/年的企业合同。没有像 Weaviate 或 Qdrant 那样的免费自建社区版。\n3. 连接器生态系统有限。 与 LlamaIndex 的 160+ 数据连接器相比，Vectara 的预构建摄取连接器更有限。你可能需要为利基数据源编写自定义摄取逻辑。\n4. 规模化定价。 按量计费（查询 + 存储）对高流量应用可能变得昂贵。每天处理数百万查询的团队应仔细建模成本并协商企业合同。\n5. 检索调优控制较少。 Vectara 的检索管道是一个黑盒。虽然你可以调整混合权重和重排序，但无法更换单个组件（例如使用自定义嵌入模型或不同的重排序器）。\nFrequently Asked Questions Vectara 如何实现 90%+ 的回答准确率？ Vectara 结合专有为检索优化的嵌入模型 (Boomerang)、专为 RAG 构建的 LLM (Mockingbird)、神经重排序和 HHEM 幻觉检测模型。该管道是端到端为检索准确率优化的，而非由通用组件组装而成。Bert-F1 上的发布基准测试显示 Mockingbird 在 RAG 任务上优于 GPT-4。\n我可以将自己的 LLM 与 Vectara 一起使用吗？ 可以。Vectara 支持 BYOM（自带模型）。你可以使用 Vectara 检索管道（Boomerang + 混合搜索 + 重排序）并替换自己的 LLM 用于生成步骤。这在你对生成模型有特定要求或想在本地运行时很有用。\nVectara 是否符合 SOC 2 和 HIPAA？ 是。Vectara 持有 SOC 2 Type 2 认证并符合 HIPAA。对于医疗和受监管行业，他们提供客户管理的 VPC 和完全本地部署选项，数据永远不会离开你的基础设施。\nHHEM 与其他幻觉检测器相比如何？ HHEM 在 RTX 3090 上 0.6 秒内评估幻觉，而 RAGAS 使用前沿 LLM 评判需要约 35 秒。它在忠实度评分上实现 90%+ 与人类评估员的一致性。2026 年一代微调小模型 (Lynx 70B、Galileo Luna v2、Vectara HHEM-2.1) 在 RAG 基准测试上报告 85-90% 与人类评分的一致性，高于 2024 年基线的 70-75%。\n免费层限制是什么？ Vectara 免费层包含 50MB 存储和每月 10,000 次查询。这足以用于原型设计和小型内部工具。付费层根据存储量和查询量扩展，企业合同可用于高流量部署。\nVectara 能否处理多模态内容（图像、表格）？ 可以。Vectara 通过其多模态检索管道支持文本、表格和图像。图像经过视觉内容提取处理，表格在嵌入前解析为结构化表示。这对技术文档和研究论文特别有用。\nVectara 如何处理文档更新和版本控制？ 当你使用相同的 ````documentId``` 重新索引文档时，Vectara 以原子方式用新版本替换旧版本。无停机时间，更新期间的查询看到一致的状态。平台还随时间追踪引用完整性，当源文档变更时标记可能需要更新的响应。\nConclusion：让 Vectara 处理 RAG 的繁重工作 从零构建生产 RAG 系统意味着管理嵌入模型、向量数据库、重排序器、生成 LLM、幻觉检测器和监控——这是大多数产品团队无法承担的巨额工程投资。Vectara 将整个技术栈压缩为单次 API 调用，开箱即达 90%+ 准确率。\n对于需要准确、受治理、有引用支持的 AI 响应而无需操作基础设施的团队，Vectara 是 2026 年最成熟的托管 RAG 平台。从免费层开始，索引你的第一个语料库，自己衡量准确率。\n参与讨论： 在我们的 Telegram 群组 分享你的 Vectara 部署结果——我们比较检索基准、分享语料库调优策略，每周评审摄取管道。\nSources \u0026 Further Reading Vectara 官方网站 Vectara 文档 Vectara Ingest GitHub 仓库 HHEM 幻觉评估模型 (Hugging Face) Boomerang 嵌入模型论文 Mockingbird LLM 基准测试 Stanford HAI RAG 研究 2025 推荐部署与基础设施 上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：\nDigitalOcean — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。 HTStack — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。 Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。\nAffiliate Disclosure 本文包含联盟链接。如果你通过我们的链接注册 DigitalOcean，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Vectara 提供免费层，无需信用卡，所有摄取工具在 Apache-2.0 许可证下开源。\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试”, “datePublished”: “2026-05-19”, “dateModified”: “2026-05-19”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/zh/resources/vectara-rag-as-service-platform\" } } Related Articles 12-factor-agents-production-llm-software-2026 12-factor-agents 1m-context-window-llm-2026-real-test 9router-smart-llm-proxy-token-saver-free-coding ai-engineering-from-scratch Found this helpful? Join our Telegram community for daily AI tool updates!\n",
+  "wordCount" : "1747",
+  "inLanguage": "zh",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/zh/ai-coding-agents/vectara-rag-as-service-platform/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/zh/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/zh/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/zh/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/zh/">主页</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/zh/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>2026年9月20日</span>&nbsp;·&nbsp;<span>9 分钟</span>&nbsp;|&nbsp;<span>语言:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/vectara-rag-as-service-platform/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/vectara-rag-as-service-platform/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/vectara-rag-as-service-platform/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">目录</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#introduction%e4%b8%ba%e4%bb%80%e4%b9%88%e5%a4%a7%e5%a4%9a%e6%95%b0-rag-%e7%b3%bb%e7%bb%9f%e5%9c%a8%e7%94%9f%e4%ba%a7%e7%8e%af%e5%a2%83%e4%b8%ad%e5%a4%b1%e8%b4%a5" aria-label="Introduction：为什么大多数 RAG 系统在生产环境中失败">Introduction：为什么大多数 RAG 系统在生产环境中失败</a></li>
+            <li>
+                <a href="#what-is-vectara" aria-label="What Is Vectara?">What Is Vectara?</a></li>
+            <li>
+                <a href="#how-vectara-works" aria-label="How Vectara Works">How Vectara Works</a><ul>
+                    
+            <li>
+                <a href="#%e5%85%b3%e9%94%ae%e6%8a%80%e6%9c%af%e7%bb%84%e4%bb%b6" aria-label="关键技术组件">关键技术组件</a></li></ul>
+            </li>
+            <li>
+                <a href="#getting-started%e4%bb%8e%e6%b3%a8%e5%86%8c%e5%88%b0%e9%a6%96%e6%ac%a1%e6%9f%a5%e8%af%a210-%e5%88%86%e9%92%9f" aria-label="Getting Started：从注册到首次查询，10 分钟">Getting Started：从注册到首次查询，10 分钟</a><ul>
+                    
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%80%e6%ad%a5%e5%88%9b%e5%bb%ba%e8%b4%a6%e6%88%b7%e5%b9%b6%e8%8e%b7%e5%8f%96-api-%e5%87%ad%e8%af%81" aria-label="第一步：创建账户并获取 API 凭证">第一步：创建账户并获取 API 凭证</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%8c%e6%ad%a5%e5%ae%89%e8%a3%85-python-sdk" aria-label="第二步：安装 Python SDK">第二步：安装 Python SDK</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%b8%89%e6%ad%a5%e7%b4%a2%e5%bc%95%e7%ac%ac%e4%b8%80%e4%bb%bd%e6%96%87%e6%a1%a3" aria-label="第三步：索引第一份文档">第三步：索引第一份文档</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e5%9b%9b%e6%ad%a5%e8%bf%90%e8%a1%8c%e9%a6%96%e6%ac%a1-rag-%e6%9f%a5%e8%af%a2" aria-label="第四步：运行首次 RAG 查询">第四步：运行首次 RAG 查询</a></li>
+            <li>
+                <a href="#%e7%ac%ac%e4%ba%94%e6%ad%a5%e6%89%b9%e9%87%8f%e4%b8%8a%e4%bc%a0%e6%96%87%e6%a1%a3" aria-label="第五步：批量上传文档">第五步：批量上传文档</a></li></ul>
+            </li>
+            <li>
+                <a href="#integration-with-mainstream-tools" aria-label="Integration with Mainstream Tools">Integration with Mainstream Tools</a><ul>
+                    
+            <li>
+                <a href="#rest-api-%e7%9b%b4%e6%8e%a5%e9%9b%86%e6%88%90" aria-label="REST API 直接集成">REST API 直接集成</a></li>
+            <li>
+                <a href="#nodejs--typescript-%e9%9b%86%e6%88%90" aria-label="Node.js / TypeScript 集成">Node.js / TypeScript 集成</a></li>
+            <li>
+                <a href="#%e5%85%83%e6%95%b0%e6%8d%ae%e8%bf%87%e6%bb%a4" aria-label="元数据过滤">元数据过滤</a></li>
+            <li>
+                <a href="#%e5%a4%9a%e8%af%ad%e8%a8%80-rag" aria-label="多语言 RAG">多语言 RAG</a></li>
+            <li>
+                <a href="#%e6%b5%81%e5%bc%8f%e5%93%8d%e5%ba%94" aria-label="流式响应">流式响应</a></li>
+            <li>
+                <a href="#%e6%b7%b7%e5%90%88%e6%90%9c%e7%b4%a2%e9%85%8d%e7%bd%ae" aria-label="混合搜索配置">混合搜索配置</a></li></ul>
+            </li>
+            <li>
+                <a href="#benchmarks-and-real-world-performance" aria-label="Benchmarks and Real-World Performance">Benchmarks and Real-World Performance</a><ul>
+                    
+            <li>
+                <a href="#%e5%9b%9e%e7%ad%94%e5%87%86%e7%a1%ae%e7%8e%87%e5%9f%ba%e5%87%86%e6%b5%8b%e8%af%95" aria-label="回答准确率基准测试">回答准确率基准测试</a></li>
+            <li>
+                <a href="#hhem-%e6%80%a7%e8%83%bd%e7%89%b9%e5%be%81" aria-label="HHEM 性能特征">HHEM 性能特征</a></li>
+            <li>
+                <a href="#%e7%9c%9f%e5%ae%9e%e9%83%a8%e7%bd%b2%e6%8c%87%e6%a0%87" aria-label="真实部署指标">真实部署指标</a></li></ul>
+            </li>
+            <li>
+                <a href="#advanced-usage-and-production-hardening" aria-label="Advanced Usage and Production Hardening">Advanced Usage and Production Hardening</a><ul>
+                    
+            <li>
+                <a href="#%e8%87%aa%e5%ae%9a%e4%b9%89%e9%87%8d%e6%8e%92%e5%ba%8f" aria-label="自定义重排序">自定义重排序</a></li>
+            <li>
+                <a href="#%e6%96%87%e6%a1%a3%e6%9b%b4%e6%96%b0%e4%b8%8e%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" aria-label="文档更新与版本控制">文档更新与版本控制</a></li>
+            <li>
+                <a href="#%e5%a4%9a%e8%af%ad%e6%96%99%e5%ba%93%e6%9f%a5%e8%af%a2" aria-label="多语料库查询">多语料库查询</a></li>
+            <li>
+                <a href="#%e5%ae%9e%e7%8e%b0%e5%af%b9%e8%af%9d%e5%8e%86%e5%8f%b2" aria-label="实现对话历史">实现对话历史</a></li>
+            <li>
+                <a href="#%e7%9b%91%e6%8e%a7%e4%b8%8e%e5%88%86%e6%9e%90" aria-label="监控与分析">监控与分析</a></li></ul>
+            </li>
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations-%e8%af%9a%e5%ae%9e%e8%af%84%e4%bc%b0" aria-label="Limitations: 诚实评估">Limitations: 诚实评估</a></li>
+            <li>
+                <a href="#frequently-asked-questions" aria-label="Frequently Asked Questions">Frequently Asked Questions</a><ul>
+                    
+            <li>
+                <a href="#vectara-%e5%a6%82%e4%bd%95%e5%ae%9e%e7%8e%b0-90-%e7%9a%84%e5%9b%9e%e7%ad%94%e5%87%86%e7%a1%ae%e7%8e%87" aria-label="Vectara 如何实现 90%&#43; 的回答准确率？">Vectara 如何实现 90%+ 的回答准确率？</a></li>
+            <li>
+                <a href="#%e6%88%91%e5%8f%af%e4%bb%a5%e5%b0%86%e8%87%aa%e5%b7%b1%e7%9a%84-llm-%e4%b8%8e-vectara-%e4%b8%80%e8%b5%b7%e4%bd%bf%e7%94%a8%e5%90%97" aria-label="我可以将自己的 LLM 与 Vectara 一起使用吗？">我可以将自己的 LLM 与 Vectara 一起使用吗？</a></li>
+            <li>
+                <a href="#vectara-%e6%98%af%e5%90%a6%e7%ac%a6%e5%90%88-soc-2-%e5%92%8c-hipaa" aria-label="Vectara 是否符合 SOC 2 和 HIPAA？">Vectara 是否符合 SOC 2 和 HIPAA？</a></li>
+            <li>
+                <a href="#hhem-%e4%b8%8e%e5%85%b6%e4%bb%96%e5%b9%bb%e8%a7%89%e6%a3%80%e6%b5%8b%e5%99%a8%e7%9b%b8%e6%af%94%e5%a6%82%e4%bd%95" aria-label="HHEM 与其他幻觉检测器相比如何？">HHEM 与其他幻觉检测器相比如何？</a></li>
+            <li>
+                <a href="#%e5%85%8d%e8%b4%b9%e5%b1%82%e9%99%90%e5%88%b6%e6%98%af%e4%bb%80%e4%b9%88" aria-label="免费层限制是什么？">免费层限制是什么？</a></li>
+            <li>
+                <a href="#vectara-%e8%83%bd%e5%90%a6%e5%a4%84%e7%90%86%e5%a4%9a%e6%a8%a1%e6%80%81%e5%86%85%e5%ae%b9%e5%9b%be%e5%83%8f%e8%a1%a8%e6%a0%bc" aria-label="Vectara 能否处理多模态内容（图像、表格）？">Vectara 能否处理多模态内容（图像、表格）？</a></li>
+            <li>
+                <a href="#vectara-%e5%a6%82%e4%bd%95%e5%a4%84%e7%90%86%e6%96%87%e6%a1%a3%e6%9b%b4%e6%96%b0%e5%92%8c%e7%89%88%e6%9c%ac%e6%8e%a7%e5%88%b6" aria-label="Vectara 如何处理文档更新和版本控制？">Vectara 如何处理文档更新和版本控制？</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion%e8%ae%a9-vectara-%e5%a4%84%e7%90%86-rag-%e7%9a%84%e7%b9%81%e9%87%8d%e5%b7%a5%e4%bd%9c" aria-label="Conclusion：让 Vectara 处理 RAG 的繁重工作">Conclusion：让 Vectara 处理 RAG 的繁重工作</a></li>
+            <li>
+                <a href="#sources--further-reading" aria-label="Sources &amp; Further Reading">Sources &amp; Further Reading</a></li>
+            <li>
+                <a href="#%e6%8e%a8%e8%8d%90%e9%83%a8%e7%bd%b2%e4%b8%8e%e5%9f%ba%e7%a1%80%e8%ae%be%e6%96%bd" aria-label="推荐部署与基础设施">推荐部署与基础设施</a></li>
+            <li>
+                <a href="#affiliate-disclosure" aria-label="Affiliate Disclosure">Affiliate Disclosure</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a>
+            </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-19T00:00:00+08:00
 lastmod: 2026-05-19T00:00:00+08:00
@@ -21,7 +326,27 @@ last_maintained: &ldquo;2026-05-19&rdquo;
 draft: false
 categories: [&ldquo;data-science&rdquo;]
 tags: [&ldquo;vectara&rdquo;, &ldquo;rag&rdquo;, &ldquo;向量搜索&rdquo;, &ldquo;llm&rdquo;, &ldquo;embedding&rdquo;, &ldquo;boomerang&rdquo;, &ldquo;hhem&rdquo;, &ldquo;幻觉检测&rdquo;, &ldquo;企业ai&rdquo;]
-aliases:</p><ul><li>/zh/posts/vectara-rag-as-service-platform/-</li></ul><hr><h2 id=introduction为什么大多数-rag-系统在生产环境中失败>Introduction：为什么大多数 RAG 系统在生产环境中失败<a hidden class=anchor aria-hidden=true href=#introduction为什么大多数-rag-系统在生产环境中失败>#</a></h2><p>你一定见过这样的演示：一个聊天机器人通过搜索文档回答问题。在 50 个 PDF 的玩具数据集上运行良好。但当你在 12 种语言的 50,000 份文档上部署时，一切都崩了。答案变得模糊，来源错误，幻觉悄然渗入，延迟飙升到不可接受的水平。</p><p>这就是 RAG 的生产悬崖。Stanford HAI 2025 年的一项研究发现，<strong>78% 的企业 RAG 原型在扩展到 10,000 份文档以上时准确率降至 70% 以下</strong>。罪魁祸首耳熟能详：糟糕的分块策略、弱嵌入模型、缺少重排序、无幻觉检测、零治理。</p><p><a href=https://vectara.com>Vectara</a>（2022 年由前 Google AI 研究员创立，<strong>总计融资 5,350 万美元</strong>，Apache-2.0 许可证的摄取工具，GitHub <strong>约 800 Stars</strong>）采取了不同的方法。与其给你一个工具包去组装，Vectara 通过单一 API 提供<strong>完整的托管 RAG 管道</strong>：通过专有 Boomerang 模型进行嵌入、混合检索、重排序、通过 Mockingbird LLM 生成响应，以及通过 HHEM 进行内置幻觉检测。结果是：<strong>90%+ 的回答准确率</strong>，且无需你管理任何向量数据库。</p><p>本文涵盖 Vectara 平台的架构、API 集成模式、基准测试以及 2026 年的诚实局限性。</p><blockquote><p><strong>前置要求：</strong> Vectara 账户（有免费层），Python 3.10+，以及 ```curl<code>或</code>requests```` 用于 API 调用。</p></blockquote><hr><h2 id=what-is-vectara>What Is Vectara?<a hidden class=anchor aria-hidden=true href=#what-is-vectara>#</a></h2><p>Vectara 是一个 <strong>RAG-as-a-Service 平台</strong>，通过托管 API 提供完整的检索增强生成管道。由前 Google AI 研究员在帕洛阿尔托创立，该平台处理文档摄取、嵌入、混合搜索、重排序、响应生成和幻觉检测——所有这些都无需你操作向量数据库、嵌入模型或推理基础设施。</p><p>该平台的核心差异化在于<strong>始终开启的治理</strong>。幻觉检测、事实一致性检查、品牌策略执行和引用追踪直接嵌入生成管道中，而非作为可选的后处理步骤附加。这使得 Vectara 对受监管行业特别具有吸引力，在这些行业中准确性和可审计性是不可协商的。</p><hr><h2 id=how-vectara-works>How Vectara Works<a hidden class=anchor aria-hidden=true href=#how-vectara-works>#</a></h2><p>Vectara 的架构是一个<strong>六阶段 RAG 管道</strong>，通过统一 API 暴露：</p><pre tabindex=0><code>┌─────────────────────────────────────────────────────────────┐
+aliases:</p>
+<ul>
+<li>/zh/posts/vectara-rag-as-service-platform/-</li>
+</ul>
+<hr>
+<h2 id="introduction为什么大多数-rag-系统在生产环境中失败">Introduction：为什么大多数 RAG 系统在生产环境中失败<a hidden class="anchor" aria-hidden="true" href="#introduction为什么大多数-rag-系统在生产环境中失败">#</a></h2>
+<p>你一定见过这样的演示：一个聊天机器人通过搜索文档回答问题。在 50 个 PDF 的玩具数据集上运行良好。但当你在 12 种语言的 50,000 份文档上部署时，一切都崩了。答案变得模糊，来源错误，幻觉悄然渗入，延迟飙升到不可接受的水平。</p>
+<p>这就是 RAG 的生产悬崖。Stanford HAI 2025 年的一项研究发现，<strong>78% 的企业 RAG 原型在扩展到 10,000 份文档以上时准确率降至 70% 以下</strong>。罪魁祸首耳熟能详：糟糕的分块策略、弱嵌入模型、缺少重排序、无幻觉检测、零治理。</p>
+<p><a href="https://vectara.com">Vectara</a>（2022 年由前 Google AI 研究员创立，<strong>总计融资 5,350 万美元</strong>，Apache-2.0 许可证的摄取工具，GitHub <strong>约 800 Stars</strong>）采取了不同的方法。与其给你一个工具包去组装，Vectara 通过单一 API 提供<strong>完整的托管 RAG 管道</strong>：通过专有 Boomerang 模型进行嵌入、混合检索、重排序、通过 Mockingbird LLM 生成响应，以及通过 HHEM 进行内置幻觉检测。结果是：<strong>90%+ 的回答准确率</strong>，且无需你管理任何向量数据库。</p>
+<p>本文涵盖 Vectara 平台的架构、API 集成模式、基准测试以及 2026 年的诚实局限性。</p>
+<blockquote>
+<p><strong>前置要求：</strong> Vectara 账户（有免费层），Python 3.10+，以及 ```curl<code>或</code>requests```` 用于 API 调用。</p>
+</blockquote>
+<hr>
+<h2 id="what-is-vectara">What Is Vectara?<a hidden class="anchor" aria-hidden="true" href="#what-is-vectara">#</a></h2>
+<p>Vectara 是一个 <strong>RAG-as-a-Service 平台</strong>，通过托管 API 提供完整的检索增强生成管道。由前 Google AI 研究员在帕洛阿尔托创立，该平台处理文档摄取、嵌入、混合搜索、重排序、响应生成和幻觉检测——所有这些都无需你操作向量数据库、嵌入模型或推理基础设施。</p>
+<p>该平台的核心差异化在于<strong>始终开启的治理</strong>。幻觉检测、事实一致性检查、品牌策略执行和引用追踪直接嵌入生成管道中，而非作为可选的后处理步骤附加。这使得 Vectara 对受监管行业特别具有吸引力，在这些行业中准确性和可审计性是不可协商的。</p>
+<hr>
+<h2 id="how-vectara-works">How Vectara Works<a hidden class="anchor" aria-hidden="true" href="#how-vectara-works">#</a></h2>
+<p>Vectara 的架构是一个<strong>六阶段 RAG 管道</strong>，通过统一 API 暴露：</p>
+<pre tabindex="0"><code>┌─────────────────────────────────────────────────────────────┐
 │  1. 摄取 (INGESTION)                                        │
 │     文档 → 文本提取 → 表格/图像解析                           │
 └─────────────────────────────────────────────────────────────┘
@@ -52,289 +377,362 @@ aliases:</p><ul><li>/zh/posts/vectara-rag-as-service-platform/-</li></ul><hr><h2
 │     HHEM 幻觉检查 → 事实一致性                               │
 │     → 策略执行 → 审计追踪                                    │
 └─────────────────────────────────────────────────────────────┘
-</code></pre><h3 id=关键技术组件>关键技术组件<a hidden class=anchor aria-hidden=true href=#关键技术组件>#</a></h3><p><strong>Boomerang 嵌入模型。</strong> Vectara 的专有嵌入模型开箱即支持 <strong>100+ 语言</strong>，零样本跨语言检索。与需要针对领域特定文档进行微调的通用嵌入模型不同，Boomerang 针对异构内容类型的检索准确率进行了优化。</p><p><strong>HHEM（Hughes 幻觉评估模型）。</strong> 一个开源幻觉检测器，评估生成声明是否得到检索块的支持。在 RTX 3090 上，HHEM 在 <strong>0.6 秒</strong>内完成评估，而使用前沿 LLM 评判的 RAGAS 在 4096 Token 上下文中需要约 35 秒。</p><p><strong>Mockingbird LLM。</strong> 专为 RAG 应用构建的语言模型。根据 Vectara 发布的基准测试，Mockingbird 在 <strong>Bert-F1 基准测试</strong>上优于 GPT-4 和 Google Gemini-1.5-Pro，该基准衡量 RAG 模型将检索数据转换为提示响应的准确性。</p><p><strong>幻觉校正器。</strong> 2025 年 5 月推出，该组件在内容到达用户之前主动校正幻觉内容，即使使用低于 7B 参数的 LLM，也能实现 <strong>低于 1% 的幻觉率</strong>。</p><hr><h2 id=getting-started从注册到首次查询10-分钟>Getting Started：从注册到首次查询，10 分钟<a hidden class=anchor aria-hidden=true href=#getting-started从注册到首次查询10-分钟>#</a></h2><h3 id=第一步创建账户并获取-api-凭证>第一步：创建账户并获取 API 凭证<a hidden class=anchor aria-hidden=true href=#第一步创建账户并获取-api-凭证>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 注册后，前往控制台获取凭证：</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Customer ID</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - Corpus ID  </span>
-</span></span><span style=display:flex><span><span style=color:#75715e># - API Key</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 存储为环境变量</span>
-</span></span><span style=display:flex><span>export VECTARA_CUSTOMER_ID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-customer-id&#34;</span>
-</span></span><span style=display:flex><span>export VECTARA_CORPUS_ID<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>
-</span></span><span style=display:flex><span>export VECTARA_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;zwt-your-api-key&#34;</span>
-</span></span></code></pre></div><h3 id=第二步安装-python-sdk>第二步：安装 Python SDK<a hidden class=anchor aria-hidden=true href=#第二步安装-python-sdk>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 安装官方 Vectara Python 客户端</span>
-</span></span><span style=display:flex><span>pip install vectara
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 或直接通过 REST API 使用 requests</span>
-</span></span><span style=display:flex><span>pip install requests
-</span></span></code></pre></div><h3 id=第三步索引第一份文档>第三步：索引第一份文档<a hidden class=anchor aria-hidden=true href=#第三步索引第一份文档>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> vectara <span style=color:#f92672>import</span> VectaraClient
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 初始化客户端</span>
-</span></span><span style=display:flex><span>client <span style=color:#f92672>=</span> VectaraClient(
-</span></span><span style=display:flex><span>    customer_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-customer-id&#34;</span>,
-</span></span><span style=display:flex><span>    api_key<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;zwt-your-api-key&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 创建语料库（文档集合）</span>
-</span></span><span style=display:flex><span>corpus <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>create_corpus(
-</span></span><span style=display:flex><span>    name<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;product-documentation&#34;</span>,
-</span></span><span style=display:flex><span>    description<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Technical docs for our API platform&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 索引文档</span>
-</span></span><span style=display:flex><span>document <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;documentId&#34;</span>: <span style=color:#e6db74>&#34;api-guide-v2&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;API Integration Guide v2.0&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;metadataJson&#34;</span>: json<span style=color:#f92672>.</span>dumps({<span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;2.0&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>: <span style=color:#e6db74>&#34;technical&#34;</span>}),
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;parts&#34;</span>: [
-</span></span><span style=display:flex><span>        {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;The Vectara Query API accepts JSON payloads with three required fields: query, corpusKey, and numResults.&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;metadataJson&#34;</span>: json<span style=color:#f92672>.</span>dumps({<span style=color:#e6db74>&#34;section&#34;</span>: <span style=color:#e6db74>&#34;authentication&#34;</span>})
-</span></span><span style=display:flex><span>        },
-</span></span><span style=display:flex><span>        {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;Authentication uses OAuth 2.0 client credentials flow. Obtain your client ID and secret from the Vectara Console.&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;metadataJson&#34;</span>: json<span style=color:#f92672>.</span>dumps({<span style=color:#e6db74>&#34;section&#34;</span>: <span style=color:#e6db74>&#34;authentication&#34;</span>})
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    ]
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>index_document(corpus_id<span style=color:#f92672>=</span>corpus<span style=color:#f92672>.</span>corpus_id, document<span style=color:#f92672>=</span>document)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Document indexed to corpus </span><span style=color:#e6db74>{</span>corpus<span style=color:#f92672>.</span>corpus_id<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span></code></pre></div><h3 id=第四步运行首次-rag-查询>第四步：运行首次 RAG 查询<a hidden class=anchor aria-hidden=true href=#第四步运行首次-rag-查询>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># RAG 查询</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;How do I authenticate with the Query API?&#34;</span>,
-</span></span><span style=display:flex><span>    num_results<span style=color:#f92672>=</span><span style=color:#ae81ff>5</span>,
-</span></span><span style=display:flex><span>    generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,  <span style=color:#75715e># 启用生成式摘要</span>
-</span></span><span style=display:flex><span>    generation_config<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;max_tokens&#34;</span>: <span style=color:#ae81ff>256</span>,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;temperature&#34;</span>: <span style=color:#ae81ff>0.0</span>,  <span style=color:#75715e># 事实性响应</span>
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;citation_style&#34;</span>: <span style=color:#e6db74>&#34;numeric&#34;</span>  <span style=color:#75715e># 包含来源引用</span>
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;Answer:&#34;</span>, response<span style=color:#f92672>.</span>summary)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>Sources:&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> idx, result <span style=color:#f92672>in</span> enumerate(response<span style=color:#f92672>.</span>search_results, <span style=color:#ae81ff>1</span>): print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;[</span><span style=color:#e6db74>{</span>idx<span style=color:#e6db74>}</span><span style=color:#e6db74>] </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>text[:<span style=color:#ae81ff>100</span>]<span style=color:#e6db74>}</span><span style=color:#e6db74>... (score: </span><span style=color:#e6db74>{</span>result<span style=color:#f92672>.</span>score<span style=color:#e6db74>:</span><span style=color:#e6db74>.3f</span><span style=color:#e6db74>}</span><span style=color:#e6db74>)&#34;</span>)
-</span></span></code></pre></div><p>输出：</p><pre tabindex=0><code>Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
+</code></pre><h3 id="关键技术组件">关键技术组件<a hidden class="anchor" aria-hidden="true" href="#关键技术组件">#</a></h3>
+<p><strong>Boomerang 嵌入模型。</strong> Vectara 的专有嵌入模型开箱即支持 <strong>100+ 语言</strong>，零样本跨语言检索。与需要针对领域特定文档进行微调的通用嵌入模型不同，Boomerang 针对异构内容类型的检索准确率进行了优化。</p>
+<p><strong>HHEM（Hughes 幻觉评估模型）。</strong> 一个开源幻觉检测器，评估生成声明是否得到检索块的支持。在 RTX 3090 上，HHEM 在 <strong>0.6 秒</strong>内完成评估，而使用前沿 LLM 评判的 RAGAS 在 4096 Token 上下文中需要约 35 秒。</p>
+<p><strong>Mockingbird LLM。</strong> 专为 RAG 应用构建的语言模型。根据 Vectara 发布的基准测试，Mockingbird 在 <strong>Bert-F1 基准测试</strong>上优于 GPT-4 和 Google Gemini-1.5-Pro，该基准衡量 RAG 模型将检索数据转换为提示响应的准确性。</p>
+<p><strong>幻觉校正器。</strong> 2025 年 5 月推出，该组件在内容到达用户之前主动校正幻觉内容，即使使用低于 7B 参数的 LLM，也能实现 <strong>低于 1% 的幻觉率</strong>。</p>
+<hr>
+<h2 id="getting-started从注册到首次查询10-分钟">Getting Started：从注册到首次查询，10 分钟<a hidden class="anchor" aria-hidden="true" href="#getting-started从注册到首次查询10-分钟">#</a></h2>
+<h3 id="第一步创建账户并获取-api-凭证">第一步：创建账户并获取 API 凭证<a hidden class="anchor" aria-hidden="true" href="#第一步创建账户并获取-api-凭证">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 注册后，前往控制台获取凭证：</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Customer ID</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - Corpus ID  </span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># - API Key</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 存储为环境变量</span>
+</span></span><span style="display:flex;"><span>export VECTARA_CUSTOMER_ID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-customer-id&#34;</span>
+</span></span><span style="display:flex;"><span>export VECTARA_CORPUS_ID<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>
+</span></span><span style="display:flex;"><span>export VECTARA_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zwt-your-api-key&#34;</span>
+</span></span></code></pre></div><h3 id="第二步安装-python-sdk">第二步：安装 Python SDK<a hidden class="anchor" aria-hidden="true" href="#第二步安装-python-sdk">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 安装官方 Vectara Python 客户端</span>
+</span></span><span style="display:flex;"><span>pip install vectara
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 或直接通过 REST API 使用 requests</span>
+</span></span><span style="display:flex;"><span>pip install requests
+</span></span></code></pre></div><h3 id="第三步索引第一份文档">第三步：索引第一份文档<a hidden class="anchor" aria-hidden="true" href="#第三步索引第一份文档">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> vectara <span style="color:#f92672">import</span> VectaraClient
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 初始化客户端</span>
+</span></span><span style="display:flex;"><span>client <span style="color:#f92672">=</span> VectaraClient(
+</span></span><span style="display:flex;"><span>    customer_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-customer-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    api_key<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zwt-your-api-key&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 创建语料库（文档集合）</span>
+</span></span><span style="display:flex;"><span>corpus <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>create_corpus(
+</span></span><span style="display:flex;"><span>    name<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;product-documentation&#34;</span>,
+</span></span><span style="display:flex;"><span>    description<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Technical docs for our API platform&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 索引文档</span>
+</span></span><span style="display:flex;"><span>document <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;documentId&#34;</span>: <span style="color:#e6db74">&#34;api-guide-v2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;API Integration Guide v2.0&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;metadataJson&#34;</span>: json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.0&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;technical&#34;</span>}),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;parts&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;The Vectara Query API accepts JSON payloads with three required fields: query, corpusKey, and numResults.&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;metadataJson&#34;</span>: json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;section&#34;</span>: <span style="color:#e6db74">&#34;authentication&#34;</span>})
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;Authentication uses OAuth 2.0 client credentials flow. Obtain your client ID and secret from the Vectara Console.&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;metadataJson&#34;</span>: json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;section&#34;</span>: <span style="color:#e6db74">&#34;authentication&#34;</span>})
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>index_document(corpus_id<span style="color:#f92672">=</span>corpus<span style="color:#f92672">.</span>corpus_id, document<span style="color:#f92672">=</span>document)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Document indexed to corpus </span><span style="color:#e6db74">{</span>corpus<span style="color:#f92672">.</span>corpus_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span></code></pre></div><h3 id="第四步运行首次-rag-查询">第四步：运行首次 RAG 查询<a hidden class="anchor" aria-hidden="true" href="#第四步运行首次-rag-查询">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># RAG 查询</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;How do I authenticate with the Query API?&#34;</span>,
+</span></span><span style="display:flex;"><span>    num_results<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>,
+</span></span><span style="display:flex;"><span>    generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,  <span style="color:#75715e"># 启用生成式摘要</span>
+</span></span><span style="display:flex;"><span>    generation_config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;max_tokens&#34;</span>: <span style="color:#ae81ff">256</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;temperature&#34;</span>: <span style="color:#ae81ff">0.0</span>,  <span style="color:#75715e"># 事实性响应</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;citation_style&#34;</span>: <span style="color:#e6db74">&#34;numeric&#34;</span>  <span style="color:#75715e"># 包含来源引用</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Answer:&#34;</span>, response<span style="color:#f92672">.</span>summary)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">Sources:&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> idx, result <span style="color:#f92672">in</span> enumerate(response<span style="color:#f92672">.</span>search_results, <span style="color:#ae81ff">1</span>): print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;[</span><span style="color:#e6db74">{</span>idx<span style="color:#e6db74">}</span><span style="color:#e6db74">] </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>text[:<span style="color:#ae81ff">100</span>]<span style="color:#e6db74">}</span><span style="color:#e6db74">... (score: </span><span style="color:#e6db74">{</span>result<span style="color:#f92672">.</span>score<span style="color:#e6db74">:</span><span style="color:#e6db74">.3f</span><span style="color:#e6db74">}</span><span style="color:#e6db74">)&#34;</span>)
+</span></span></code></pre></div><p>输出：</p>
+<pre tabindex="0"><code>Answer: The Vectara Query API uses OAuth 2.0 client credentials flow for authentication [1]. You need to obtain your client ID and secret from the Vectara Console [1]. The API accepts JSON payloads with three required fields: query, corpusKey, and numResults [2].
 
 Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.941)
 [2] The Vectara Query API accepts JSON payloads... (score: 0.893)
-</code></pre><h3 id=第五步批量上传文档>第五步：批量上传文档<a hidden class=anchor aria-hidden=true href=#第五步批量上传文档>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> os
-</span></span><span style=display:flex><span><span style=color:#f92672>from</span> pathlib <span style=color:#f92672>import</span> Path
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 批量上传目录中所有 PDF</span>
-</span></span><span style=display:flex><span>pdf_dir <span style=color:#f92672>=</span> Path(<span style=color:#e6db74>&#34;./documentation&#34;</span>)
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> pdf_file <span style=color:#f92672>in</span> pdf_dir<span style=color:#f92672>.</span>glob(<span style=color:#e6db74>&#34;*.pdf&#34;</span>): <span style=color:#66d9ef>with</span> open(pdf_file, <span style=color:#e6db74>&#34;rb&#34;</span>) <span style=color:#66d9ef>as</span> f: client<span style=color:#f92672>.</span>upload_file(
-</span></span><span style=display:flex><span>            corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>            file_content<span style=color:#f92672>=</span>f<span style=color:#f92672>.</span>read(),
-</span></span><span style=display:flex><span>            file_name<span style=color:#f92672>=</span>pdf_file<span style=color:#f92672>.</span>name,
-</span></span><span style=display:flex><span>            metadata<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#34;source&#34;</span>: <span style=color:#e6db74>&#34;docs&#34;</span>, <span style=color:#e6db74>&#34;format&#34;</span>: <span style=color:#e6db74>&#34;pdf&#34;</span>}
-</span></span><span style=display:flex><span>        )
-</span></span><span style=display:flex><span>    print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Uploaded: </span><span style=color:#e6db74>{</span>pdf_file<span style=color:#f92672>.</span>name<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>&#34;Batch upload complete!&#34;</span>)
-</span></span></code></pre></div><hr><h2 id=integration-with-mainstream-tools>Integration with Mainstream Tools<a hidden class=anchor aria-hidden=true href=#integration-with-mainstream-tools>#</a></h2><h3 id=rest-api-直接集成>REST API 直接集成<a hidden class=anchor aria-hidden=true href=#rest-api-直接集成>#</a></h3><p>对于没有官方 SDK 的语言，直接使用 REST API：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># 查询端点</span>
-</span></span><span style=display:flex><span>curl -X POST <span style=color:#e6db74>&#34;https://api.vectara.io/v1/query&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;x-api-key: </span><span style=color:#e6db74>${</span>VECTARA_API_KEY<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;customer-id: </span><span style=color:#e6db74>${</span>VECTARA_CUSTOMER_ID<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -H <span style=color:#e6db74>&#34;Content-Type: application/json&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  -d <span style=color:#e6db74>&#39;{
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    &#34;query&#34;: [
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      {
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;query&#34;: &#34;What are the pricing tiers?&#34;,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;numResults&#34;: 10,
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;corpusKey&#34;: [{&#34;customerId&#34;: &#34;&#39;</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>VECTARA_CUSTOMER_ID<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>&#39;&#34;, &#34;corpusId&#34;: &#34;&#39;</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>${</span>VECTARA_CORPUS_ID<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span><span style=color:#e6db74>&#39;&#34;}],
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>        &#34;summary&#34;: [{&#34;maxSummarizedResults&#34;: 5, &#34;responseLang&#34;: &#34;eng&#34;}]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>      }
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>    ]
-</span></span></span><span style=display:flex><span><span style=color:#e6db74>  }&#39;</span>
-</span></span></code></pre></div><h3 id=nodejs--typescript-集成>Node.js / TypeScript 集成<a hidden class=anchor aria-hidden=true href=#nodejs--typescript-集成>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-typescript data-lang=typescript><span style=display:flex><span><span style=color:#66d9ef>import</span> { <span style=color:#a6e22e>VectaraClient</span> } <span style=color:#66d9ef>from</span> <span style=color:#e6db74>&#34;@vectara/sdk&#34;</span>;
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>const</span> <span style=color:#a6e22e>client</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>new</span> <span style=color:#a6e22e>VectaraClient</span>({
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>apiKey</span>: <span style=color:#66d9ef>process.env.VECTARA_API_KEY</span><span style=color:#f92672>!</span>,
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>customerId</span>: <span style=color:#66d9ef>process.env.VECTARA_CUSTOMER_ID</span><span style=color:#f92672>!</span>,
-</span></span><span style=display:flex><span>});
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>async</span> <span style=color:#66d9ef>function</span> <span style=color:#a6e22e>askQuestion</span>(<span style=color:#a6e22e>query</span>: <span style=color:#66d9ef>string</span>) {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>response</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>client</span>.<span style=color:#a6e22e>query</span>({
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>corpusId</span>: <span style=color:#66d9ef>process.env.VECTARA_CORPUS_ID</span><span style=color:#f92672>!</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>query</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>numResults</span>: <span style=color:#66d9ef>5</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>generate</span>: <span style=color:#66d9ef>true</span>,
-</span></span><span style=display:flex><span>  });
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>return</span> {
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>answer</span>: <span style=color:#66d9ef>response.summary</span>,
-</span></span><span style=display:flex><span>    <span style=color:#a6e22e>sources</span>: <span style=color:#66d9ef>response.searchResults.map</span>((<span style=color:#a6e22e>r</span>) <span style=color:#f92672>=&gt;</span> ({
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>text</span>: <span style=color:#66d9ef>r.text</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>score</span>: <span style=color:#66d9ef>r.score</span>,
-</span></span><span style=display:flex><span>      <span style=color:#a6e22e>documentId</span>: <span style=color:#66d9ef>r.documentId</span>,
-</span></span><span style=display:flex><span>    })),
-</span></span><span style=display:flex><span>  };
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e>// Express.js 端点
-</span></span></span><span style=display:flex><span><span style=color:#a6e22e>app</span>.<span style=color:#a6e22e>post</span>(<span style=color:#e6db74>&#34;/api/rag&#34;</span>, <span style=color:#66d9ef>async</span> (<span style=color:#a6e22e>req</span>, <span style=color:#a6e22e>res</span>) <span style=color:#f92672>=&gt;</span> {
-</span></span><span style=display:flex><span>  <span style=color:#66d9ef>const</span> <span style=color:#a6e22e>result</span> <span style=color:#f92672>=</span> <span style=color:#66d9ef>await</span> <span style=color:#a6e22e>askQuestion</span>(<span style=color:#a6e22e>req</span>.<span style=color:#a6e22e>body</span>.<span style=color:#a6e22e>question</span>);
-</span></span><span style=display:flex><span>  <span style=color:#a6e22e>res</span>.<span style=color:#a6e22e>json</span>(<span style=color:#a6e22e>result</span>);
-</span></span><span style=display:flex><span>});
-</span></span></code></pre></div><h3 id=元数据过滤>元数据过滤<a hidden class=anchor aria-hidden=true href=#元数据过滤>#</a></h3><p>使用结构化元数据细化搜索结果：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 按元数据字段过滤</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;API rate limits&#34;</span>,
-</span></span><span style=display:flex><span>    num_results<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    metadata_filter<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;doc.version &gt;= &#39;2.0&#39; AND doc.category = technical&#34;</span>,
-</span></span><span style=display:flex><span>    generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 带日期范围的复杂过滤</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Recent security updates&#34;</span>,
-</span></span><span style=display:flex><span>    metadata_filter<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;doc.date &gt;= &#39;2026-01-01&#39; AND doc.type = &#39;security-bulletin&#39;&#34;</span>,
-</span></span><span style=display:flex><span>    generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=多语言-rag>多语言 RAG<a hidden class=anchor aria-hidden=true href=#多语言-rag>#</a></h3><p>Vectara 的 Boomerang 模型原生处理跨语言检索：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 用英语查询西班牙语文档</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;What are the safety guidelines?&#34;</span>,
-</span></span><span style=display:flex><span>    response_lang<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;eng&#34;</span>,  <span style=color:#75715e># 响应语言</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># 文档可以是西班牙语、德语、日语等</span>
-</span></span><span style=display:flex><span>    <span style=color:#75715e># Boomerang 自动跨语言检索</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 用中文查询</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;如何集成API？&#34;</span>,
-</span></span><span style=display:flex><span>    response_lang<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;zho&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=流式响应>流式响应<a hidden class=anchor aria-hidden=true href=#流式响应>#</a></h3><p>实时聊天界面使用流式传输：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>import</span> json
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># SSE 流式传输用于聊天应用</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;Explain our refund policy&#34;</span>,
-</span></span><span style=display:flex><span>    generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>    stream<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>  <span style=color:#75715e># 启用 Server-Sent Events</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 处理流式块</span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>for</span> chunk <span style=color:#f92672>in</span> response: <span style=color:#66d9ef>if</span> chunk<span style=color:#f92672>.</span>type <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;search_result&#34;</span>: print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Source: </span><span style=color:#e6db74>{</span>chunk<span style=color:#f92672>.</span>document_id<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>elif</span> chunk<span style=color:#f92672>.</span>type <span style=color:#f92672>==</span> <span style=color:#e6db74>&#34;generation&#34;</span>: print(chunk<span style=color:#f92672>.</span>text, end<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;&#34;</span>, flush<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>)  <span style=color:#75715e># 流式输出 token</span>
-</span></span></code></pre></div><h3 id=混合搜索配置>混合搜索配置<a hidden class=anchor aria-hidden=true href=#混合搜索配置>#</a></h3><p>调整关键词与语义搜索的平衡：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 配置混合搜索权重</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;authentication errors&#34;</span>,
-</span></span><span style=display:flex><span>    num_results<span style=color:#f92672>=</span><span style=color:#ae81ff>10</span>,
-</span></span><span style=display:flex><span>    search_config<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;lexical_interpolation&#34;</span>: <span style=color:#ae81ff>0.3</span>,  <span style=color:#75715e># 30% 关键词，70% 语义</span>
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;reranker&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mmr&#34;</span>,  <span style=color:#75715e># 最大边际相关性</span>
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;diversity_bias&#34;</span>: <span style=color:#ae81ff>0.2</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    },
-</span></span><span style=display:flex><span>    generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><hr><h2 id=benchmarks-and-real-world-performance>Benchmarks and Real-World Performance<a hidden class=anchor aria-hidden=true href=#benchmarks-and-real-world-performance>#</a></h2><h3 id=回答准确率基准测试>回答准确率基准测试<a hidden class=anchor aria-hidden=true href=#回答准确率基准测试>#</a></h3><p>| 基准测试 | Vectara (Mockingbird) | GPT-4 + 标准 RAG | 提升 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="第五步批量上传文档">第五步：批量上传文档<a hidden class="anchor" aria-hidden="true" href="#第五步批量上传文档">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> os
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> pathlib <span style="color:#f92672">import</span> Path
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 批量上传目录中所有 PDF</span>
+</span></span><span style="display:flex;"><span>pdf_dir <span style="color:#f92672">=</span> Path(<span style="color:#e6db74">&#34;./documentation&#34;</span>)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> pdf_file <span style="color:#f92672">in</span> pdf_dir<span style="color:#f92672">.</span>glob(<span style="color:#e6db74">&#34;*.pdf&#34;</span>): <span style="color:#66d9ef">with</span> open(pdf_file, <span style="color:#e6db74">&#34;rb&#34;</span>) <span style="color:#66d9ef">as</span> f: client<span style="color:#f92672">.</span>upload_file(
+</span></span><span style="display:flex;"><span>            corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>            file_content<span style="color:#f92672">=</span>f<span style="color:#f92672">.</span>read(),
+</span></span><span style="display:flex;"><span>            file_name<span style="color:#f92672">=</span>pdf_file<span style="color:#f92672">.</span>name,
+</span></span><span style="display:flex;"><span>            metadata<span style="color:#f92672">=</span>{<span style="color:#e6db74">&#34;source&#34;</span>: <span style="color:#e6db74">&#34;docs&#34;</span>, <span style="color:#e6db74">&#34;format&#34;</span>: <span style="color:#e6db74">&#34;pdf&#34;</span>}
+</span></span><span style="display:flex;"><span>        )
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Uploaded: </span><span style="color:#e6db74">{</span>pdf_file<span style="color:#f92672">.</span>name<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">&#34;Batch upload complete!&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="integration-with-mainstream-tools">Integration with Mainstream Tools<a hidden class="anchor" aria-hidden="true" href="#integration-with-mainstream-tools">#</a></h2>
+<h3 id="rest-api-直接集成">REST API 直接集成<a hidden class="anchor" aria-hidden="true" href="#rest-api-直接集成">#</a></h3>
+<p>对于没有官方 SDK 的语言，直接使用 REST API：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># 查询端点</span>
+</span></span><span style="display:flex;"><span>curl -X POST <span style="color:#e6db74">&#34;https://api.vectara.io/v1/query&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;x-api-key: </span><span style="color:#e6db74">${</span>VECTARA_API_KEY<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;customer-id: </span><span style="color:#e6db74">${</span>VECTARA_CUSTOMER_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  -d <span style="color:#e6db74">&#39;{
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    &#34;query&#34;: [
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      {
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;query&#34;: &#34;What are the pricing tiers?&#34;,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;numResults&#34;: 10,
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;corpusKey&#34;: [{&#34;customerId&#34;: &#34;&#39;</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>VECTARA_CUSTOMER_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#39;&#34;, &#34;corpusId&#34;: &#34;&#39;</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>VECTARA_CORPUS_ID<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span><span style="color:#e6db74">&#39;&#34;}],
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">        &#34;summary&#34;: [{&#34;maxSummarizedResults&#34;: 5, &#34;responseLang&#34;: &#34;eng&#34;}]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">      }
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">    ]
+</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  }&#39;</span>
+</span></span></code></pre></div><h3 id="nodejs--typescript-集成">Node.js / TypeScript 集成<a hidden class="anchor" aria-hidden="true" href="#nodejs--typescript-集成">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">VectaraClient</span> } <span style="color:#66d9ef">from</span> <span style="color:#e6db74">&#34;@vectara/sdk&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">client</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">VectaraClient</span>({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">apiKey</span>: <span style="color:#66d9ef">process.env.VECTARA_API_KEY</span><span style="color:#f92672">!</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">customerId</span>: <span style="color:#66d9ef">process.env.VECTARA_CUSTOMER_ID</span><span style="color:#f92672">!</span>,
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">async</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">askQuestion</span>(<span style="color:#a6e22e">query</span>: <span style="color:#66d9ef">string</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">response</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">client</span>.<span style="color:#a6e22e">query</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">corpusId</span>: <span style="color:#66d9ef">process.env.VECTARA_CORPUS_ID</span><span style="color:#f92672">!</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">query</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">numResults</span>: <span style="color:#66d9ef">5</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">generate</span>: <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">answer</span>: <span style="color:#66d9ef">response.summary</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sources</span>: <span style="color:#66d9ef">response.searchResults.map</span>((<span style="color:#a6e22e">r</span>) <span style="color:#f92672">=&gt;</span> ({
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">text</span>: <span style="color:#66d9ef">r.text</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">score</span>: <span style="color:#66d9ef">r.score</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">documentId</span>: <span style="color:#66d9ef">r.documentId</span>,
+</span></span><span style="display:flex;"><span>    })),
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Express.js 端点
+</span></span></span><span style="display:flex;"><span><span style="color:#a6e22e">app</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/api/rag&#34;</span>, <span style="color:#66d9ef">async</span> (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) <span style="color:#f92672">=&gt;</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">askQuestion</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">body</span>.<span style="color:#a6e22e">question</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">json</span>(<span style="color:#a6e22e">result</span>);
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="元数据过滤">元数据过滤<a hidden class="anchor" aria-hidden="true" href="#元数据过滤">#</a></h3>
+<p>使用结构化元数据细化搜索结果：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 按元数据字段过滤</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;API rate limits&#34;</span>,
+</span></span><span style="display:flex;"><span>    num_results<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    metadata_filter<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;doc.version &gt;= &#39;2.0&#39; AND doc.category = technical&#34;</span>,
+</span></span><span style="display:flex;"><span>    generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 带日期范围的复杂过滤</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Recent security updates&#34;</span>,
+</span></span><span style="display:flex;"><span>    metadata_filter<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;doc.date &gt;= &#39;2026-01-01&#39; AND doc.type = &#39;security-bulletin&#39;&#34;</span>,
+</span></span><span style="display:flex;"><span>    generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="多语言-rag">多语言 RAG<a hidden class="anchor" aria-hidden="true" href="#多语言-rag">#</a></h3>
+<p>Vectara 的 Boomerang 模型原生处理跨语言检索：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 用英语查询西班牙语文档</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;What are the safety guidelines?&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;eng&#34;</span>,  <span style="color:#75715e"># 响应语言</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># 文档可以是西班牙语、德语、日语等</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># Boomerang 自动跨语言检索</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 用中文查询</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;如何集成API？&#34;</span>,
+</span></span><span style="display:flex;"><span>    response_lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;zho&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="流式响应">流式响应<a hidden class="anchor" aria-hidden="true" href="#流式响应">#</a></h3>
+<p>实时聊天界面使用流式传输：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> json
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># SSE 流式传输用于聊天应用</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Explain our refund policy&#34;</span>,
+</span></span><span style="display:flex;"><span>    generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>    stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>  <span style="color:#75715e"># 启用 Server-Sent Events</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 处理流式块</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> response: <span style="color:#66d9ef">if</span> chunk<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;search_result&#34;</span>: print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Source: </span><span style="color:#e6db74">{</span>chunk<span style="color:#f92672">.</span>document_id<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">elif</span> chunk<span style="color:#f92672">.</span>type <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;generation&#34;</span>: print(chunk<span style="color:#f92672">.</span>text, end<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>, flush<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)  <span style="color:#75715e"># 流式输出 token</span>
+</span></span></code></pre></div><h3 id="混合搜索配置">混合搜索配置<a hidden class="anchor" aria-hidden="true" href="#混合搜索配置">#</a></h3>
+<p>调整关键词与语义搜索的平衡：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 配置混合搜索权重</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;authentication errors&#34;</span>,
+</span></span><span style="display:flex;"><span>    num_results<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>,
+</span></span><span style="display:flex;"><span>    search_config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;lexical_interpolation&#34;</span>: <span style="color:#ae81ff">0.3</span>,  <span style="color:#75715e"># 30% 关键词，70% 语义</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;reranker&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;mmr&#34;</span>,  <span style="color:#75715e"># 最大边际相关性</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;diversity_bias&#34;</span>: <span style="color:#ae81ff">0.2</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><hr>
+<h2 id="benchmarks-and-real-world-performance">Benchmarks and Real-World Performance<a hidden class="anchor" aria-hidden="true" href="#benchmarks-and-real-world-performance">#</a></h2>
+<h3 id="回答准确率基准测试">回答准确率基准测试<a hidden class="anchor" aria-hidden="true" href="#回答准确率基准测试">#</a></h3>
+<p>| 基准测试 | Vectara (Mockingbird) | GPT-4 + 标准 RAG | 提升 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Bert-F1 (RAG 准确率) | <strong>0.42</strong> | 0.38 | +10.5% |
-| 幻觉率 (sub-7B LLM) | <strong>&lt; 1%</strong> | 8-12% | <strong>> 8 倍降低</strong> |
+| 幻觉率 (sub-7B LLM) | <strong>&lt; 1%</strong> | 8-12% | <strong>&gt; 8 倍降低</strong> |
 | HHEM 忠实度分数 | <strong>0.94</strong> | N/A (无内置检查) | — |
 | 跨语言检索 (MIRACL) | <strong>0.71 nDCG@10</strong> | 0.63 nDCG@10 | +12.7% |
-| 检索延迟 (p99) | <strong>&lt; 400ms</strong> | 600-1200ms | <strong>3 倍更快</strong> |</p><h3 id=hhem-性能特征>HHEM 性能特征<a hidden class=anchor aria-hidden=true href=#hhem-性能特征>#</a></h3><p>| 指标 | 数值 | 对比 |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 检索延迟 (p99) | <strong>&lt; 400ms</strong> | 600-1200ms | <strong>3 倍更快</strong> |</p>
+<h3 id="hhem-性能特征">HHEM 性能特征<a hidden class="anchor" aria-hidden="true" href="#hhem-性能特征">#</a></h3>
+<p>| 指标 | 数值 | 对比 |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | 评估时间 (RTX 3090) | <strong>0.6s</strong> | RAGAS: ~35s |
 | 评估时间 (CPU) | <strong>2.1s</strong> | RAGAS: <del>120s |
 | 与人类评估的一致性 | <strong>90%+</strong> | 行业平均: 75% |
 | 模型大小 | 7B 参数 | RAGAS 使用前沿 LLM |
-| 每次评估成本 | **</del>$0.001** | RAGAS: ~$0.05 |</p><h3 id=真实部署指标>真实部署指标<a hidden class=anchor aria-hidden=true href=#真实部署指标>#</a></h3><p><strong>案例 1 — 企业客户服务：</strong> Broadcom 于 2025 年选择 Vectara 为企业客户提供对话式 AI 服务。该系统每天处理 <strong>15,000+ 查询</strong>，覆盖 8 种语言的技术文档，平均响应准确率达到 <strong>92%</strong>（由人工评估员衡量）。</p><p><strong>案例 2 — 医疗知识库：</strong> 一家医院网络在 120,000 份临床文档上部署了 Vectara。临床医生查找治疗指南的时间减少了 <strong>43%</strong>，幻觉检测每周在到达临床人员之前拦截约 <strong>340 条无依据声明</strong>。</p><p><strong>案例 3 — 法律文件分析：</strong> 一家律所摄取了 50,000 份案件档案和合同。律师助理报告，Vectara 的引用支持答案使他们能够在 <strong>约 15 秒</strong>内根据来源材料验证声明，而之前手动搜索需要约 4 分钟。</p><hr><h2 id=advanced-usage-and-production-hardening>Advanced Usage and Production Hardening<a hidden class=anchor aria-hidden=true href=#advanced-usage-and-production-hardening>#</a></h2><h3 id=自定义重排序>自定义重排序<a hidden class=anchor aria-hidden=true href=#自定义重排序>#</a></h3><p>针对领域特定应用微调结果排序：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># MMR 重排序获取多样化结果</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;cloud deployment options&#34;</span>,
-</span></span><span style=display:flex><span>    search_config<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;reranker&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;mmr&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;diversity_bias&#34;</span>: <span style=color:#ae81ff>0.3</span>  <span style=color:#75715e># 越高 = 来源越多样化</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 自定义评分权重</span>
-</span></span><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;security best practices&#34;</span>,
-</span></span><span style=display:flex><span>    search_config<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#34;reranker&#34;</span>: {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;type&#34;</span>: <span style=color:#e6db74>&#34;slingshot&#34;</span>,  <span style=color:#75715e># Vectara 的神经重排序器</span>
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;cutoff&#34;</span>: <span style=color:#ae81ff>0.7</span>  <span style=color:#75715e># 最低相关度分数</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    }
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=文档更新与版本控制>文档更新与版本控制<a hidden class=anchor aria-hidden=true href=#文档更新与版本控制>#</a></h3><p>处理文档变更而无需重新索引所有内容：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 更新特定文档</span>
-</span></span><span style=display:flex><span>document_update <span style=color:#f92672>=</span> {
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;documentId&#34;</span>: <span style=color:#e6db74>&#34;api-guide-v2&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;title&#34;</span>: <span style=color:#e6db74>&#34;API Integration Guide v2.1&#34;</span>,
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;metadataJson&#34;</span>: json<span style=color:#f92672>.</span>dumps({<span style=color:#e6db74>&#34;version&#34;</span>: <span style=color:#e6db74>&#34;2.1&#34;</span>, <span style=color:#e6db74>&#34;category&#34;</span>: <span style=color:#e6db74>&#34;technical&#34;</span>}),
-</span></span><span style=display:flex><span>    <span style=color:#e6db74>&#34;parts&#34;</span>: [
-</span></span><span style=display:flex><span>        {
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;text&#34;</span>: <span style=color:#e6db74>&#34;Updated: The Query API now supports batch requests up to 100 queries per call.&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;metadataJson&#34;</span>: json<span style=color:#f92672>.</span>dumps({<span style=color:#e6db74>&#34;section&#34;</span>: <span style=color:#e6db74>&#34;batch-operations&#34;</span>})
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    ]
-</span></span><span style=display:flex><span>}
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 重新索引以原子方式替换文档</span>
-</span></span><span style=display:flex><span>client<span style=color:#f92672>.</span>index_document(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    document<span style=color:#f92672>=</span>document_update
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=多语料库查询>多语料库查询<a hidden class=anchor aria-hidden=true href=#多语料库查询>#</a></h3><p>同时搜索多个文档集合：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>    query<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;authentication timeout&#34;</span>,
-</span></span><span style=display:flex><span>    corpus_keys<span style=color:#f92672>=</span>[
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;corpusId&#34;</span>: <span style=color:#e6db74>&#34;product-docs&#34;</span>, <span style=color:#e6db74>&#34;weight&#34;</span>: <span style=color:#ae81ff>0.6</span>},
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;corpusId&#34;</span>: <span style=color:#e6db74>&#34;support-tickets&#34;</span>, <span style=color:#e6db74>&#34;weight&#34;</span>: <span style=color:#ae81ff>0.3</span>},
-</span></span><span style=display:flex><span>        {<span style=color:#e6db74>&#34;corpusId&#34;</span>: <span style=color:#e6db74>&#34;engineering-wiki&#34;</span>, <span style=color:#e6db74>&#34;weight&#34;</span>: <span style=color:#ae81ff>0.1</span>}
-</span></span><span style=display:flex><span>    ],
-</span></span><span style=display:flex><span>    generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>
-</span></span><span style=display:flex><span>)
-</span></span></code></pre></div><h3 id=实现对话历史>实现对话历史<a hidden class=anchor aria-hidden=true href=#实现对话历史>#</a></h3><p>在多次交互中保持对话上下文：</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 存储对话历史</span>
-</span></span><span style=display:flex><span>conversation <span style=color:#f92672>=</span> []
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>chat_turn</span>(user_query: str) <span style=color:#f92672>-&gt;</span> str: <span style=color:#66d9ef>global</span> conversation
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    response <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>query(
-</span></span><span style=display:flex><span>        corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>        query<span style=color:#f92672>=</span>user_query,
-</span></span><span style=display:flex><span>        generate<span style=color:#f92672>=</span><span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>        chat_config<span style=color:#f92672>=</span>{
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;store&#34;</span>: <span style=color:#66d9ef>True</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;conversationId&#34;</span>: <span style=color:#e6db74>&#34;conv_001&#34;</span>,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#34;turns&#34;</span>: conversation[<span style=color:#f92672>-</span><span style=color:#ae81ff>5</span>:]  <span style=color:#75715e># 最近 5 轮用于上下文</span>
-</span></span><span style=display:flex><span>        }
-</span></span><span style=display:flex><span>    )
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    conversation<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;user&#34;</span>, <span style=color:#e6db74>&#34;text&#34;</span>: user_query})
-</span></span><span style=display:flex><span>    conversation<span style=color:#f92672>.</span>append({<span style=color:#e6db74>&#34;role&#34;</span>: <span style=color:#e6db74>&#34;assistant&#34;</span>, <span style=color:#e6db74>&#34;text&#34;</span>: response<span style=color:#f92672>.</span>summary})
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> response<span style=color:#f92672>.</span>summary
-</span></span></code></pre></div><h3 id=监控与分析>监控与分析<a hidden class=anchor aria-hidden=true href=#监控与分析>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#75715e># 获取语料库统计信息</span>
-</span></span><span style=display:flex><span>stats <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>get_corpus_stats(corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Documents: </span><span style=color:#e6db74>{</span>stats<span style=color:#f92672>.</span>num_docs<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Total parts: </span><span style=color:#e6db74>{</span>stats<span style=color:#f92672>.</span>num_parts<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Avg document size: </span><span style=color:#e6db74>{</span>stats<span style=color:#f92672>.</span>avg_doc_size<span style=color:#e6db74>}</span><span style=color:#e6db74> bytes&#34;</span>)
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># 查询分析</span>
-</span></span><span style=display:flex><span>analytics <span style=color:#f92672>=</span> client<span style=color:#f92672>.</span>get_query_analytics(
-</span></span><span style=display:flex><span>    corpus_id<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-corpus-id&#34;</span>,
-</span></span><span style=display:flex><span>    start_date<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2026-04-01&#34;</span>,
-</span></span><span style=display:flex><span>    end_date<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;2026-05-19&#34;</span>
-</span></span><span style=display:flex><span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Total queries: </span><span style=color:#e6db74>{</span>analytics<span style=color:#f92672>.</span>total_queries<span style=color:#e6db74>}</span><span style=color:#e6db74>&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Avg latency: </span><span style=color:#e6db74>{</span>analytics<span style=color:#f92672>.</span>avg_latency_ms<span style=color:#e6db74>}</span><span style=color:#e6db74>ms&#34;</span>)
-</span></span><span style=display:flex><span>print(<span style=color:#e6db74>f</span><span style=color:#e6db74>&#34;Hallucination rate: </span><span style=color:#e6db74>{</span>analytics<span style=color:#f92672>.</span>hallucination_rate<span style=color:#e6db74>}</span><span style=color:#e6db74>%&#34;</span>)
-</span></span></code></pre></div><hr><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><p>| 特性 | Vectara | Pinecone | Weaviate | LlamaIndex |
-|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+| 每次评估成本 | **</del>$0.001** | RAGAS: ~$0.05 |</p>
+<h3 id="真实部署指标">真实部署指标<a hidden class="anchor" aria-hidden="true" href="#真实部署指标">#</a></h3>
+<p><strong>案例 1 — 企业客户服务：</strong> Broadcom 于 2025 年选择 Vectara 为企业客户提供对话式 AI 服务。该系统每天处理 <strong>15,000+ 查询</strong>，覆盖 8 种语言的技术文档，平均响应准确率达到 <strong>92%</strong>（由人工评估员衡量）。</p>
+<p><strong>案例 2 — 医疗知识库：</strong> 一家医院网络在 120,000 份临床文档上部署了 Vectara。临床医生查找治疗指南的时间减少了 <strong>43%</strong>，幻觉检测每周在到达临床人员之前拦截约 <strong>340 条无依据声明</strong>。</p>
+<p><strong>案例 3 — 法律文件分析：</strong> 一家律所摄取了 50,000 份案件档案和合同。律师助理报告，Vectara 的引用支持答案使他们能够在 <strong>约 15 秒</strong>内根据来源材料验证声明，而之前手动搜索需要约 4 分钟。</p>
+<hr>
+<h2 id="advanced-usage-and-production-hardening">Advanced Usage and Production Hardening<a hidden class="anchor" aria-hidden="true" href="#advanced-usage-and-production-hardening">#</a></h2>
+<h3 id="自定义重排序">自定义重排序<a hidden class="anchor" aria-hidden="true" href="#自定义重排序">#</a></h3>
+<p>针对领域特定应用微调结果排序：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># MMR 重排序获取多样化结果</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;cloud deployment options&#34;</span>,
+</span></span><span style="display:flex;"><span>    search_config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;reranker&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;mmr&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;diversity_bias&#34;</span>: <span style="color:#ae81ff">0.3</span>  <span style="color:#75715e"># 越高 = 来源越多样化</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 自定义评分权重</span>
+</span></span><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;security best practices&#34;</span>,
+</span></span><span style="display:flex;"><span>    search_config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;reranker&#34;</span>: {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;slingshot&#34;</span>,  <span style="color:#75715e"># Vectara 的神经重排序器</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;cutoff&#34;</span>: <span style="color:#ae81ff">0.7</span>  <span style="color:#75715e"># 最低相关度分数</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="文档更新与版本控制">文档更新与版本控制<a hidden class="anchor" aria-hidden="true" href="#文档更新与版本控制">#</a></h3>
+<p>处理文档变更而无需重新索引所有内容：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 更新特定文档</span>
+</span></span><span style="display:flex;"><span>document_update <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;documentId&#34;</span>: <span style="color:#e6db74">&#34;api-guide-v2&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;title&#34;</span>: <span style="color:#e6db74">&#34;API Integration Guide v2.1&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;metadataJson&#34;</span>: json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;version&#34;</span>: <span style="color:#e6db74">&#34;2.1&#34;</span>, <span style="color:#e6db74">&#34;category&#34;</span>: <span style="color:#e6db74">&#34;technical&#34;</span>}),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;parts&#34;</span>: [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;text&#34;</span>: <span style="color:#e6db74">&#34;Updated: The Query API now supports batch requests up to 100 queries per call.&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;metadataJson&#34;</span>: json<span style="color:#f92672">.</span>dumps({<span style="color:#e6db74">&#34;section&#34;</span>: <span style="color:#e6db74">&#34;batch-operations&#34;</span>})
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 重新索引以原子方式替换文档</span>
+</span></span><span style="display:flex;"><span>client<span style="color:#f92672">.</span>index_document(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    document<span style="color:#f92672">=</span>document_update
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="多语料库查询">多语料库查询<a hidden class="anchor" aria-hidden="true" href="#多语料库查询">#</a></h3>
+<p>同时搜索多个文档集合：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>    query<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;authentication timeout&#34;</span>,
+</span></span><span style="display:flex;"><span>    corpus_keys<span style="color:#f92672">=</span>[
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;corpusId&#34;</span>: <span style="color:#e6db74">&#34;product-docs&#34;</span>, <span style="color:#e6db74">&#34;weight&#34;</span>: <span style="color:#ae81ff">0.6</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;corpusId&#34;</span>: <span style="color:#e6db74">&#34;support-tickets&#34;</span>, <span style="color:#e6db74">&#34;weight&#34;</span>: <span style="color:#ae81ff">0.3</span>},
+</span></span><span style="display:flex;"><span>        {<span style="color:#e6db74">&#34;corpusId&#34;</span>: <span style="color:#e6db74">&#34;engineering-wiki&#34;</span>, <span style="color:#e6db74">&#34;weight&#34;</span>: <span style="color:#ae81ff">0.1</span>}
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>
+</span></span><span style="display:flex;"><span>)
+</span></span></code></pre></div><h3 id="实现对话历史">实现对话历史<a hidden class="anchor" aria-hidden="true" href="#实现对话历史">#</a></h3>
+<p>在多次交互中保持对话上下文：</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 存储对话历史</span>
+</span></span><span style="display:flex;"><span>conversation <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">chat_turn</span>(user_query: str) <span style="color:#f92672">-&gt;</span> str: <span style="color:#66d9ef">global</span> conversation
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    response <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>query(
+</span></span><span style="display:flex;"><span>        corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>        query<span style="color:#f92672">=</span>user_query,
+</span></span><span style="display:flex;"><span>        generate<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>        chat_config<span style="color:#f92672">=</span>{
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;store&#34;</span>: <span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;conversationId&#34;</span>: <span style="color:#e6db74">&#34;conv_001&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;turns&#34;</span>: conversation[<span style="color:#f92672">-</span><span style="color:#ae81ff">5</span>:]  <span style="color:#75715e"># 最近 5 轮用于上下文</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    )
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    conversation<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;user&#34;</span>, <span style="color:#e6db74">&#34;text&#34;</span>: user_query})
+</span></span><span style="display:flex;"><span>    conversation<span style="color:#f92672">.</span>append({<span style="color:#e6db74">&#34;role&#34;</span>: <span style="color:#e6db74">&#34;assistant&#34;</span>, <span style="color:#e6db74">&#34;text&#34;</span>: response<span style="color:#f92672">.</span>summary})
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> response<span style="color:#f92672">.</span>summary
+</span></span></code></pre></div><h3 id="监控与分析">监控与分析<a hidden class="anchor" aria-hidden="true" href="#监控与分析">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># 获取语料库统计信息</span>
+</span></span><span style="display:flex;"><span>stats <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_corpus_stats(corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Documents: </span><span style="color:#e6db74">{</span>stats<span style="color:#f92672">.</span>num_docs<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total parts: </span><span style="color:#e6db74">{</span>stats<span style="color:#f92672">.</span>num_parts<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Avg document size: </span><span style="color:#e6db74">{</span>stats<span style="color:#f92672">.</span>avg_doc_size<span style="color:#e6db74">}</span><span style="color:#e6db74"> bytes&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># 查询分析</span>
+</span></span><span style="display:flex;"><span>analytics <span style="color:#f92672">=</span> client<span style="color:#f92672">.</span>get_query_analytics(
+</span></span><span style="display:flex;"><span>    corpus_id<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-corpus-id&#34;</span>,
+</span></span><span style="display:flex;"><span>    start_date<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2026-04-01&#34;</span>,
+</span></span><span style="display:flex;"><span>    end_date<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;2026-05-19&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Total queries: </span><span style="color:#e6db74">{</span>analytics<span style="color:#f92672">.</span>total_queries<span style="color:#e6db74">}</span><span style="color:#e6db74">&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Avg latency: </span><span style="color:#e6db74">{</span>analytics<span style="color:#f92672">.</span>avg_latency_ms<span style="color:#e6db74">}</span><span style="color:#e6db74">ms&#34;</span>)
+</span></span><span style="display:flex;"><span>print(<span style="color:#e6db74">f</span><span style="color:#e6db74">&#34;Hallucination rate: </span><span style="color:#e6db74">{</span>analytics<span style="color:#f92672">.</span>hallucination_rate<span style="color:#e6db74">}</span><span style="color:#e6db74">%&#34;</span>)
+</span></span></code></pre></div><hr>
+<h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<p>| 特性 | Vectara | Pinecone | Weaviate | LlamaIndex |
+|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | <strong>部署模式</strong> | 全托管 SaaS | 托管 + 自建 | 自建 + 云 | 仅库 |
 | <strong>包含嵌入模型</strong> | Boomerang (专有) | 否 (自备) | 否 (自备) | 否 (自备) |
 | <strong>幻觉检测</strong> | HHEM 内置 | 否 | 否 | 通过集成 |
@@ -344,8 +742,74 @@ Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.
 | <strong>引用生成</strong> | 内置 | 手动 | 手动 | 通过集成 |
 | <strong>SOC 2 / HIPAA</strong> | SOC 2 Type 2, HIPAA | SOC 2 | SOC 2 (自建: 无) | N/A (库) |
 | <strong>定价模式</strong> | 按量 (查询 + 存储) | 每 pod/小时 | 每核/小时 | 开源 |
-| <strong>设置复杂度</strong> | 仅需 API Key | 索引 + 模型设置 | Schema + 模型设置 | 需要组装 |</p><p><strong>选择 Vectara 的场景：</strong></p><ul><li>需要<strong>无需操作向量数据库的托管 RAG</strong></li><li><strong>幻觉检测</strong>是硬性要求</li><li>需要 <strong>100+ 语言支持</strong>而无需微调嵌入</li><li>团队缺乏维护 RAG 技术栈的专职 ML 工程师</li><li>需要<strong>合规认证</strong> (SOC 2, HIPAA)</li></ul><p><strong>选择其他方案的场景：</strong></p><ul><li>选 <strong>Pinecone</strong> 如果你需要最大的向量搜索定制能力并有 ML 工程师</li><li>选 <strong>Weaviate</strong> 如果你想要带 GraphQL 接口的自建方案</li><li>选 <strong>LlamaIndex</strong> 如果你偏好用最大灵活性组装自己的 RAG 管道</li></ul><hr><h2 id=limitations-诚实评估>Limitations: 诚实评估<a hidden class=anchor aria-hidden=true href=#limitations-诚实评估>#</a></h2><p><strong>1. 嵌入和生成的供应商锁定。</strong> Boomerang 和 Mockingbird 是专有模型。你无法导出嵌入模型或在本地运行。如果离开 Vectara，必须使用不同的嵌入模型重新索引所有内容。</p><p><strong>2. 无真正的自建选项。</strong> 虽然 Vectara 提供客户管理的 VPC 和本地部署，但这些都是通常超过 5 万美元/年的企业合同。没有像 Weaviate 或 Qdrant 那样的免费自建社区版。</p><p><strong>3. 连接器生态系统有限。</strong> 与 LlamaIndex 的 160+ 数据连接器相比，Vectara 的预构建摄取连接器更有限。你可能需要为利基数据源编写自定义摄取逻辑。</p><p><strong>4. 规模化定价。</strong> 按量计费（查询 + 存储）对高流量应用可能变得昂贵。每天处理数百万查询的团队应仔细建模成本并协商企业合同。</p><p><strong>5. 检索调优控制较少。</strong> Vectara 的检索管道是一个黑盒。虽然你可以调整混合权重和重排序，但无法更换单个组件（例如使用自定义嵌入模型或不同的重排序器）。</p><hr><h2 id=frequently-asked-questions>Frequently Asked Questions<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions>#</a></h2><h3 id=vectara-如何实现-90-的回答准确率>Vectara 如何实现 90%+ 的回答准确率？<a hidden class=anchor aria-hidden=true href=#vectara-如何实现-90-的回答准确率>#</a></h3><p>Vectara 结合专有为检索优化的嵌入模型 (Boomerang)、专为 RAG 构建的 LLM (Mockingbird)、神经重排序和 HHEM 幻觉检测模型。该管道是端到端为检索准确率优化的，而非由通用组件组装而成。Bert-F1 上的发布基准测试显示 Mockingbird 在 RAG 任务上优于 GPT-4。</p><h3 id=我可以将自己的-llm-与-vectara-一起使用吗>我可以将自己的 LLM 与 Vectara 一起使用吗？<a hidden class=anchor aria-hidden=true href=#我可以将自己的-llm-与-vectara-一起使用吗>#</a></h3><p>可以。Vectara 支持 BYOM（自带模型）。你可以使用 Vectara 检索管道（Boomerang + 混合搜索 + 重排序）并替换自己的 LLM 用于生成步骤。这在你对生成模型有特定要求或想在本地运行时很有用。</p><h3 id=vectara-是否符合-soc-2-和-hipaa>Vectara 是否符合 SOC 2 和 HIPAA？<a hidden class=anchor aria-hidden=true href=#vectara-是否符合-soc-2-和-hipaa>#</a></h3><p>是。Vectara 持有 <strong>SOC 2 Type 2 认证</strong>并符合 <strong>HIPAA</strong>。对于医疗和受监管行业，他们提供客户管理的 VPC 和完全本地部署选项，数据永远不会离开你的基础设施。</p><h3 id=hhem-与其他幻觉检测器相比如何>HHEM 与其他幻觉检测器相比如何？<a hidden class=anchor aria-hidden=true href=#hhem-与其他幻觉检测器相比如何>#</a></h3><p>HHEM 在 <strong>RTX 3090 上 0.6 秒</strong>内评估幻觉，而 RAGAS 使用前沿 LLM 评判需要约 35 秒。它在忠实度评分上实现 <strong>90%+ 与人类评估员的一致性</strong>。2026 年一代微调小模型 (Lynx 70B、Galileo Luna v2、Vectara HHEM-2.1) 在 RAG 基准测试上报告 85-90% 与人类评分的一致性，高于 2024 年基线的 70-75%。</p><h3 id=免费层限制是什么>免费层限制是什么？<a hidden class=anchor aria-hidden=true href=#免费层限制是什么>#</a></h3><p>Vectara 免费层包含 <strong>50MB 存储</strong>和<strong>每月 10,000 次查询</strong>。这足以用于原型设计和小型内部工具。付费层根据存储量和查询量扩展，企业合同可用于高流量部署。</p><h3 id=vectara-能否处理多模态内容图像表格>Vectara 能否处理多模态内容（图像、表格）？<a hidden class=anchor aria-hidden=true href=#vectara-能否处理多模态内容图像表格>#</a></h3><p>可以。Vectara 通过其多模态检索管道支持文本、表格和图像。图像经过视觉内容提取处理，表格在嵌入前解析为结构化表示。这对技术文档和研究论文特别有用。</p><h3 id=vectara-如何处理文档更新和版本控制>Vectara 如何处理文档更新和版本控制？<a hidden class=anchor aria-hidden=true href=#vectara-如何处理文档更新和版本控制>#</a></h3><p>当你使用相同的 ````documentId``` 重新索引文档时，Vectara 以原子方式用新版本替换旧版本。无停机时间，更新期间的查询看到一致的状态。平台还随时间追踪引用完整性，当源文档变更时标记可能需要更新的响应。</p><hr><h2 id=conclusion让-vectara-处理-rag-的繁重工作>Conclusion：让 Vectara 处理 RAG 的繁重工作<a hidden class=anchor aria-hidden=true href=#conclusion让-vectara-处理-rag-的繁重工作>#</a></h2><p>从零构建生产 RAG 系统意味着管理嵌入模型、向量数据库、重排序器、生成 LLM、幻觉检测器和监控——这是大多数产品团队无法承担的巨额工程投资。Vectara 将整个技术栈压缩为单次 API 调用，开箱即达 <strong>90%+ 准确率</strong>。</p><p>对于需要准确、受治理、有引用支持的 AI 响应而无需操作基础设施的团队，Vectara 是 2026 年最成熟的托管 RAG 平台。从免费层开始，索引你的第一个语料库，自己衡量准确率。</p><blockquote><p><strong>参与讨论：</strong> 在我们的 <a href=https://t.me/dibi8ai_zh>Telegram 群组</a> 分享你的 Vectara 部署结果——我们比较检索基准、分享语料库调优策略，每周评审摄取管道。</p></blockquote><hr><h2 id=sources--further-reading>Sources & Further Reading<a hidden class=anchor aria-hidden=true href=#sources--further-reading>#</a></h2><ul><li><a href=https://vectara.com>Vectara 官方网站</a></li><li><a href=https://docs.vectara.com>Vectara 文档</a></li><li><a href=https://github.com/vectara/vectara-ingest>Vectara Ingest GitHub 仓库</a></li><li><a href=https://huggingface.co/vectara>HHEM 幻觉评估模型 (Hugging Face)</a></li><li><a href=https://vectara.com/blog>Boomerang 嵌入模型论文</a></li><li><a href=https://vectara.com/blog/mockingbird>Mockingbird LLM 基准测试</a></li><li><a href=https://hai.stanford.edu>Stanford HAI RAG 研究 2025</a></li></ul><hr><h2 id=推荐部署与基础设施>推荐部署与基础设施<a hidden class=anchor aria-hidden=true href=#推荐部署与基础设施>#</a></h2><p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p><ul><li><strong><a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li><li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li></ul><p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p><h2 id=affiliate-disclosure>Affiliate Disclosure<a hidden class=anchor aria-hidden=true href=#affiliate-disclosure>#</a></h2><p>本文包含联盟链接。如果你通过我们的链接注册 <a href=https://m.do.co/c/eca87ac14ee0>DigitalOcean</a>，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Vectara 提供免费层，无需信用卡，所有摄取工具在 Apache-2.0 许可证下开源。</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+| <strong>设置复杂度</strong> | 仅需 API Key | 索引 + 模型设置 | Schema + 模型设置 | 需要组装 |</p>
+<p><strong>选择 Vectara 的场景：</strong></p>
+<ul>
+<li>需要<strong>无需操作向量数据库的托管 RAG</strong></li>
+<li><strong>幻觉检测</strong>是硬性要求</li>
+<li>需要 <strong>100+ 语言支持</strong>而无需微调嵌入</li>
+<li>团队缺乏维护 RAG 技术栈的专职 ML 工程师</li>
+<li>需要<strong>合规认证</strong> (SOC 2, HIPAA)</li>
+</ul>
+<p><strong>选择其他方案的场景：</strong></p>
+<ul>
+<li>选 <strong>Pinecone</strong> 如果你需要最大的向量搜索定制能力并有 ML 工程师</li>
+<li>选 <strong>Weaviate</strong> 如果你想要带 GraphQL 接口的自建方案</li>
+<li>选 <strong>LlamaIndex</strong> 如果你偏好用最大灵活性组装自己的 RAG 管道</li>
+</ul>
+<hr>
+<h2 id="limitations-诚实评估">Limitations: 诚实评估<a hidden class="anchor" aria-hidden="true" href="#limitations-诚实评估">#</a></h2>
+<p><strong>1. 嵌入和生成的供应商锁定。</strong> Boomerang 和 Mockingbird 是专有模型。你无法导出嵌入模型或在本地运行。如果离开 Vectara，必须使用不同的嵌入模型重新索引所有内容。</p>
+<p><strong>2. 无真正的自建选项。</strong> 虽然 Vectara 提供客户管理的 VPC 和本地部署，但这些都是通常超过 5 万美元/年的企业合同。没有像 Weaviate 或 Qdrant 那样的免费自建社区版。</p>
+<p><strong>3. 连接器生态系统有限。</strong> 与 LlamaIndex 的 160+ 数据连接器相比，Vectara 的预构建摄取连接器更有限。你可能需要为利基数据源编写自定义摄取逻辑。</p>
+<p><strong>4. 规模化定价。</strong> 按量计费（查询 + 存储）对高流量应用可能变得昂贵。每天处理数百万查询的团队应仔细建模成本并协商企业合同。</p>
+<p><strong>5. 检索调优控制较少。</strong> Vectara 的检索管道是一个黑盒。虽然你可以调整混合权重和重排序，但无法更换单个组件（例如使用自定义嵌入模型或不同的重排序器）。</p>
+<hr>
+<h2 id="frequently-asked-questions">Frequently Asked Questions<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions">#</a></h2>
+<h3 id="vectara-如何实现-90-的回答准确率">Vectara 如何实现 90%+ 的回答准确率？<a hidden class="anchor" aria-hidden="true" href="#vectara-如何实现-90-的回答准确率">#</a></h3>
+<p>Vectara 结合专有为检索优化的嵌入模型 (Boomerang)、专为 RAG 构建的 LLM (Mockingbird)、神经重排序和 HHEM 幻觉检测模型。该管道是端到端为检索准确率优化的，而非由通用组件组装而成。Bert-F1 上的发布基准测试显示 Mockingbird 在 RAG 任务上优于 GPT-4。</p>
+<h3 id="我可以将自己的-llm-与-vectara-一起使用吗">我可以将自己的 LLM 与 Vectara 一起使用吗？<a hidden class="anchor" aria-hidden="true" href="#我可以将自己的-llm-与-vectara-一起使用吗">#</a></h3>
+<p>可以。Vectara 支持 BYOM（自带模型）。你可以使用 Vectara 检索管道（Boomerang + 混合搜索 + 重排序）并替换自己的 LLM 用于生成步骤。这在你对生成模型有特定要求或想在本地运行时很有用。</p>
+<h3 id="vectara-是否符合-soc-2-和-hipaa">Vectara 是否符合 SOC 2 和 HIPAA？<a hidden class="anchor" aria-hidden="true" href="#vectara-是否符合-soc-2-和-hipaa">#</a></h3>
+<p>是。Vectara 持有 <strong>SOC 2 Type 2 认证</strong>并符合 <strong>HIPAA</strong>。对于医疗和受监管行业，他们提供客户管理的 VPC 和完全本地部署选项，数据永远不会离开你的基础设施。</p>
+<h3 id="hhem-与其他幻觉检测器相比如何">HHEM 与其他幻觉检测器相比如何？<a hidden class="anchor" aria-hidden="true" href="#hhem-与其他幻觉检测器相比如何">#</a></h3>
+<p>HHEM 在 <strong>RTX 3090 上 0.6 秒</strong>内评估幻觉，而 RAGAS 使用前沿 LLM 评判需要约 35 秒。它在忠实度评分上实现 <strong>90%+ 与人类评估员的一致性</strong>。2026 年一代微调小模型 (Lynx 70B、Galileo Luna v2、Vectara HHEM-2.1) 在 RAG 基准测试上报告 85-90% 与人类评分的一致性，高于 2024 年基线的 70-75%。</p>
+<h3 id="免费层限制是什么">免费层限制是什么？<a hidden class="anchor" aria-hidden="true" href="#免费层限制是什么">#</a></h3>
+<p>Vectara 免费层包含 <strong>50MB 存储</strong>和<strong>每月 10,000 次查询</strong>。这足以用于原型设计和小型内部工具。付费层根据存储量和查询量扩展，企业合同可用于高流量部署。</p>
+<h3 id="vectara-能否处理多模态内容图像表格">Vectara 能否处理多模态内容（图像、表格）？<a hidden class="anchor" aria-hidden="true" href="#vectara-能否处理多模态内容图像表格">#</a></h3>
+<p>可以。Vectara 通过其多模态检索管道支持文本、表格和图像。图像经过视觉内容提取处理，表格在嵌入前解析为结构化表示。这对技术文档和研究论文特别有用。</p>
+<h3 id="vectara-如何处理文档更新和版本控制">Vectara 如何处理文档更新和版本控制？<a hidden class="anchor" aria-hidden="true" href="#vectara-如何处理文档更新和版本控制">#</a></h3>
+<p>当你使用相同的 ````documentId``` 重新索引文档时，Vectara 以原子方式用新版本替换旧版本。无停机时间，更新期间的查询看到一致的状态。平台还随时间追踪引用完整性，当源文档变更时标记可能需要更新的响应。</p>
+<hr>
+<h2 id="conclusion让-vectara-处理-rag-的繁重工作">Conclusion：让 Vectara 处理 RAG 的繁重工作<a hidden class="anchor" aria-hidden="true" href="#conclusion让-vectara-处理-rag-的繁重工作">#</a></h2>
+<p>从零构建生产 RAG 系统意味着管理嵌入模型、向量数据库、重排序器、生成 LLM、幻觉检测器和监控——这是大多数产品团队无法承担的巨额工程投资。Vectara 将整个技术栈压缩为单次 API 调用，开箱即达 <strong>90%+ 准确率</strong>。</p>
+<p>对于需要准确、受治理、有引用支持的 AI 响应而无需操作基础设施的团队，Vectara 是 2026 年最成熟的托管 RAG 平台。从免费层开始，索引你的第一个语料库，自己衡量准确率。</p>
+<blockquote>
+<p><strong>参与讨论：</strong> 在我们的 <a href="https://t.me/dibi8ai_zh">Telegram 群组</a> 分享你的 Vectara 部署结果——我们比较检索基准、分享语料库调优策略，每周评审摄取管道。</p>
+</blockquote>
+<hr>
+<h2 id="sources--further-reading">Sources &amp; Further Reading<a hidden class="anchor" aria-hidden="true" href="#sources--further-reading">#</a></h2>
+<ul>
+<li><a href="https://vectara.com">Vectara 官方网站</a></li>
+<li><a href="https://docs.vectara.com">Vectara 文档</a></li>
+<li><a href="https://github.com/vectara/vectara-ingest">Vectara Ingest GitHub 仓库</a></li>
+<li><a href="https://huggingface.co/vectara">HHEM 幻觉评估模型 (Hugging Face)</a></li>
+<li><a href="https://vectara.com/blog">Boomerang 嵌入模型论文</a></li>
+<li><a href="https://vectara.com/blog/mockingbird">Mockingbird LLM 基准测试</a></li>
+<li><a href="https://hai.stanford.edu">Stanford HAI RAG 研究 2025</a></li>
+</ul>
+<hr>
+<h2 id="推荐部署与基础设施">推荐部署与基础设施<a hidden class="anchor" aria-hidden="true" href="#推荐部署与基础设施">#</a></h2>
+<p>上述工具想要落地生产，靠谱的基础设施是前提。dibi8 自己也在用的两个选择：</p>
+<ul>
+<li><strong><a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a></strong> — 新用户 60 天 $200 免费额度，14+ 全球节点。运行开源 AI 工具的首选。</li>
+<li><strong><a href="https://my.htstack.com/aff.php?aff=27187">HTStack</a></strong> — 香港 VPS，国内访问低延迟，dibi8.com 自己也跑在它上面，生产环境验证过。</li>
+</ul>
+<p><em>Aff 链接 — 不增加你的成本，但能帮 dibi8 持续运营。</em></p>
+<h2 id="affiliate-disclosure">Affiliate Disclosure<a hidden class="anchor" aria-hidden="true" href="#affiliate-disclosure">#</a></h2>
+<p>本文包含联盟链接。如果你通过我们的链接注册 <a href="https://m.do.co/c/eca87ac14ee0">DigitalOcean</a>，我们会获得佣金，不会额外增加你的费用。我们只推荐用于自身部署的服务。Vectara 提供免费层，无需信用卡，所有摄取工具在 Apache-2.0 许可证下开源。</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;Vectara 2026: 准确率超 90% 的 RAG-as-a-Service 平台 — API 集成与基准测试&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-19&rdquo;,
@@ -359,18 +823,175 @@ Sources: [1] Authentication uses OAuth 2.0 client credentials flow... (score: 0.
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/zh/resources/vectara-rag-as-service-platform%22>https://dibi8.com/zh/resources/vectara-rag-as-service-platform"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/zh/resources/vectara-rag-as-service-platform%22">https://dibi8.com/zh/resources/vectara-rag-as-service-platform"</a>
 }
-}</script></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/zh/ai-coding-agents/vectara-rag-as-service-platform/>12-factor-agents-production-llm-software-2026</a></li><li><a href=/zh/ai-coding-agents/vectara-rag-as-service-platform/>12-factor-agents</a></li><li><a href=/zh/ai-coding-agents/vectara-rag-as-service-platform/>1m-context-window-llm-2026-real-test</a></li><li><a href=/zh/ai-coding-agents/vectara-rag-as-service-platform/>9router-smart-llm-proxy-token-saver-free-coding</a></li><li><a href=/zh/ai-coding-agents/vectara-rag-as-service-platform/>ai-engineering-from-scratch</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/zh/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/zh/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/zh/ai-coding-agents/vanna-ai-sql-generation/><span class=title>« 上一页</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/zh/ai-coding-agents/vector-database-comparison/><span class=title>下一页 »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/zh/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="复制";function s(){t.innerHTML="已复制！",setTimeout(()=>{t.innerHTML="复制"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+}
+</script></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/zh/ai-coding-agents/vectara-rag-as-service-platform/">12-factor-agents-production-llm-software-2026</a></li>
+<li><a href="/zh/ai-coding-agents/vectara-rag-as-service-platform/">12-factor-agents</a></li>
+<li><a href="/zh/ai-coding-agents/vectara-rag-as-service-platform/">1m-context-window-llm-2026-real-test</a></li>
+<li><a href="/zh/ai-coding-agents/vectara-rag-as-service-platform/">9router-smart-llm-proxy-token-saver-free-coding</a></li>
+<li><a href="/zh/ai-coding-agents/vectara-rag-as-service-platform/">ai-engineering-from-scratch</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/zh/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/zh/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/zh/ai-coding-agents/vanna-ai-sql-generation/">
+    <span class="title">« 上一页</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/zh/ai-coding-agents/vector-database-comparison/">
+    <span class="title">下一页 »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/zh/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = '复制';
+
+        function copyingDone() {
+            copybutton.innerHTML = '已复制！';
+            setTimeout(() => {
+                copybutton.innerHTML = '复制';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

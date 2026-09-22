@@ -1,10 +1,276 @@
-<!doctype html><html lang=vi dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/><link rel=alternate hreflang=ko href=https://dibi8.com/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/><link rel=alternate hreflang=vi href=https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="vi"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/vi/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “developer-tools”, “integration”, “2026”] aliases:\n/vi/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “MCP là gì và tại sao quan trọng năm 2026?” a: “Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026.” q: “Nên dùng stdio, HTTP hay SSE-based MCP servers?” a: “stdio cho servers chỉ local (filesystem, git, databases localhost) — latency thấp nhất, network zero. HTTP/SSE cho remote SaaS integrations (GitHub, Linear, Notion) nơi server hosted bởi bên thứ ba. MCP 2025-06 spec mới thêm OAuth bridge cho credential-managed servers. Hầu hết setup production dùng mix: 80% stdio local, 20% HTTP for SaaS.” q: “Rủi ro bảo mật khi cài community MCP servers là gì?” a: “Đáng kể. MCP servers chạy với full local permissions của bạn — có thể đọc files, exec commands, network calls. Anthropic-maintained reference servers được audit. Community servers khác nhau: luôn đọc source, ưu tiên servers với active maintainers và recent commits, không bao giờ cấp credentials bạn không dám paste plain text.” q: “Developers chuyên nghiệp thực sự dùng MCP servers nào?” a: “Dựa trên usage telemetry từ major MCP registries (giữa 2026): filesystem, github, git, postgres, sqlite top local stdio category. Cho SaaS: linear, slack, sentry, supabase. Cho specialized: playwright, puppeteer, brave-search, fetch. Long tail 900+ community servers cover niche integrations nhưng hầu hết developers dùng 5-10 core servers.” q: “Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?” a: “Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take \u003e500ms initialize, nó đang slow mọi agent session.” MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn Meta Description: Hệ sinh thái MCP vượt 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30, trade-off kiến trúc stdio/HTTP-SSE/OAuth, cây quyết định lựa chọn.\nTháng 11/2024 Anthropic release Model Context Protocol với 8 reference servers. 18 tháng sau, bạn có thể tìm 1000+ public MCP servers trong registries, GitHub, và corporate private package indexes. Tăng trưởng quá explosive khiến hầu hết developers ngày nay có vấn đề ngược 2024: MCP servers quá nhiều, không phải quá ít.\n⚡ TL;DR — 2 phút Quy mô hệ sinh thái: 1000+ public MCP servers, 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` là current standard.\nSử dụng thực tế: Hầu hết developers cài 5-10 core servers + dựa vào per-project mcp.json cho project-specific additions.\nTop 5 cho AI coding: filesystem, git, github, postgres, playwright.\nDecision principle: stdio \u003e HTTP \u003e OAuth, theo thứ tự ưu tiên này.\nĐừng cài mù quáng: mỗi community MCP server là code chạy với local permissions của bạn.\nBa Transport Modes 1. stdio (Standard I/O) Local process được MCP client spawn. Communication line-delimited JSON qua stdin/stdout. Dùng cho filesystem / git / sqlite / localhost postgres / playwright. Ưu: latency thấp nhất, zero credential exposure, offline OK. Nhược: full user permissions. Khi nào: First default.\n2. HTTP / SSE (Server-Sent Events) Long-running HTTP service. Dùng cho SaaS integrations (GitHub, Linear, Notion, Slack). Ưu: persist state across sessions, centralized credentials. Nhược: network latency, server availability. Khi nào: SaaS APIs genuinely không replicate được locally.\n3. OAuth-Bridged (MCP 2025-06) MCP server orchestrates OAuth flow để issue scoped credentials per session. Khi nào: Enterprise environments với credential rotation requirements.\nTop 30 MCP Servers Đáng Cài 2026 Tier 1: Universal Defaults Server Transport Maintainer Use Case Risk filesystem stdio Anthropic R/W scoped directories Thấp git stdio Anthropic Inspect repos, diff, blame Thấp github HTTP Anthropic PRs, issues, search Trung fetch stdio Anthropic Generic HTTP + markdown Trung sequentialthinking stdio Anthropic Structured planning helper Thấp Tier 2: Per Project Server Transport Use Case Risk postgres stdio Query Postgres Cao sqlite stdio Query SQLite Thấp playwright stdio Browser automation Trung brave-search HTTP Privacy web search Thấp linear HTTP Project management Trung slack HTTP Workspace queries Cao sentry HTTP Error monitoring Trung supabase HTTP DB + auth + storage Cao memory stdio Persistent agent memory Thấp Tier 3: Specialized kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot.\nCây Quyết Định Lựa Chọn Data/action có thể live trên local machine? │ ├── Yes → Ưu tiên stdio MCP server │ ├── Có Anthropic-maintained version? │ │ └── Yes → Dùng. │ │ └── No → Audit source: commit \u003c 90 ngày? Active maintainer? Stars \u003e 50? Không suspicious network calls? │ │ Yes hết: cài. No bất kỳ: viết 30-line wrapper script thay. │ └── No → SaaS hoặc remote resource ├── Có OAuth-bridged version + cần per-session credentials? → OAuth bridge ├── Không → HTTP/SSE với PAT ├── Audit: token scope minimal? trustworthy infra? rate limits documented? Ngắn nhất: stdio \u003e HTTP \u003e OAuth. Anthropic \u003e community \u003e archived. Đọc source trước khi cài.\nBảo Mật: Risk Hầu Hết Underestimate Mỗi MCP server bạn cài chạy code với full local permissions.\nReal attack patterns 2026 Typosquatting: Fake github-mcp-server-v2 exfiltrate tokens. Supply chain injection: Popular community server maintainer transfer ownership → telemetry leaks file paths. Over-scoped tokens: GitHub server với full-access PAT → prompt injection delete repos. Prompt injection via fetched content: fetch server pulled malicious markdown → exfil ~/.ssh/id_rsa. Defense checklist Fine-grained tokens. Không bao giờ full-access. Audit trước khi cài. 5 phút save breaches. Pin versions. Không auto-upgrade community. Sandbox. Container hoặc firejail. Monitor agent logs. Discovery mcp.so — Comprehensive community registry smithery.ai — High-curation + one-click install ````glama.ai/mcp/servers``` — Enterprise-friendly Anthropic reference servers: github.com/modelcontextprotocol/servers.\nHạ Tầng Đề Xuất Cho Self-Hosted MCP Servers Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **** — $200 credit 60 ngày.\n**** — VPS Hong Kong, cùng IDC với dibi8.com. Affiliate links — không tốn thêm chi phí, giúp dibi8.com hoạt động.\nKết Luận Hệ sinh thái MCP 2026 đủ trưởng thành để hữu ích, đủ hỗn loạn để cần curation. Reference servers xuất sắc. Community ecosystem khổng lồ nhưng không đều. Protocol bản thân ổn định.\nSai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi agent startup 8 giây không biết tại sao. Hoặc cấp community server full-access GitHub PAT vì README không cảnh báo.\nCure là selection, không phải abundance. Chọn 5 core stdio servers, thêm 2-3 project-specific per repo, audit trước khi cài, treat MCP servers như security-relevant code that happens to ergonomic. Workflow scales 18 tháng tới.\nReference: github.com/modelcontextprotocol/servers · Spec: MCP 2025-06 · Stars: 60K+\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn”, “datePublished”: “2026-05-26”, “dateModified”: “2026-05-26”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/mcp-servers-2026-rankings-selection-guide\" } } Why This Matters Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n","wordCount":"1460","inLanguage":"vi","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/vi/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/ title=English aria-label=English>En</a></li><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/vi/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/vi/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/vi/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/vi/>Trang chủ</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/vi/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>7 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span><ul class=i18n_list><li><a href=https://dibi8.com/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>En</a></li><li><a href=https://dibi8.com/zh/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>Zh</a></li><li><a href=https://dibi8.com/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>Ko</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Mục lục</span></summary><div class=inner><ul><li><a href=#mcp-servers-2026-b%e1%ba%a3n-%c4%91%e1%bb%93-h%e1%bb%87-sinh-th%c3%a1i-100--c%c3%a2y-quy%e1%ba%bft-%c4%91%e1%bb%8bnh-l%e1%bb%b1a-ch%e1%bb%8dn aria-label="MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn">MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn</a><ul><li><a href=#-tldr--2-ph%c3%bat aria-label="⚡ TL;DR — 2 phút">⚡ TL;DR — 2 phút</a></li><li><a href=#ba-transport-modes aria-label="Ba Transport Modes">Ba Transport Modes</a><ul><li><a href=#1-stdio-standard-io aria-label="1. stdio (Standard I/O)">1. stdio (Standard I/O)</a></li><li><a href=#2-http--sse-server-sent-events aria-label="2. HTTP / SSE (Server-Sent Events)">2. HTTP / SSE (Server-Sent Events)</a></li><li><a href=#3-oauth-bridged-mcp-2025-06 aria-label="3. OAuth-Bridged (MCP 2025-06)">3. OAuth-Bridged (MCP 2025-06)</a></li></ul></li><li><a href=#top-30-mcp-servers-%c4%91%c3%a1ng-c%c3%a0i-2026 aria-label="Top 30 MCP Servers Đáng Cài 2026">Top 30 MCP Servers Đáng Cài 2026</a><ul><li><a href=#tier-1-universal-defaults aria-label="Tier 1: Universal Defaults">Tier 1: Universal Defaults</a></li><li><a href=#tier-2-per-project aria-label="Tier 2: Per Project">Tier 2: Per Project</a></li><li><a href=#tier-3-specialized aria-label="Tier 3: Specialized">Tier 3: Specialized</a></li></ul></li><li><a href=#c%c3%a2y-quy%e1%ba%bft-%c4%91%e1%bb%8bnh-l%e1%bb%b1a-ch%e1%bb%8dn aria-label="Cây Quyết Định Lựa Chọn">Cây Quyết Định Lựa Chọn</a></li><li><a href=#b%e1%ba%a3o-m%e1%ba%adt-risk-h%e1%ba%a7u-h%e1%ba%bft-underestimate aria-label="Bảo Mật: Risk Hầu Hết Underestimate">Bảo Mật: Risk Hầu Hết Underestimate</a><ul><li><a href=#real-attack-patterns-2026 aria-label="Real attack patterns 2026">Real attack patterns 2026</a></li><li><a href=#defense-checklist aria-label="Defense checklist">Defense checklist</a></li></ul></li><li><a href=#discovery aria-label=Discovery>Discovery</a></li><li><a href=#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t-cho-self-hosted-mcp-servers aria-label="Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers">Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers</a></li><li><a href=#k%e1%ba%bft-lu%e1%ba%adn aria-label="Kết Luận">Kết Luận</a></li><li><a href=#why-this-matters aria-label="Why This Matters">Why This Matters</a><ul><li><a href=#real-world-applications aria-label="Real-World Applications">Real-World Applications</a></li><li><a href=#getting-started aria-label="Getting Started">Getting Started</a></li></ul></li><li><a href=#conclusion aria-label=Conclusion>Conclusion</a></li><li><a href=#related-articles aria-label="Related Articles">Related Articles</a></li><li><a href=#frequently-asked-questions-faq aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
+<!DOCTYPE html>
+<html lang="vi" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="vi">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/vi/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “AI Tool Guide” description: “Technical guide and comparison.” date: 2026-05-26T00:00:00+08:00 lastmod: 2026-05-26T00:00:00+08:00 tech_stack: [MCP, ‘Claude Code’, Cursor, TypeScript, Python] application_domain: LLM Frameworks source_version: “MCP 2025-06 spec” licensing_model: Open Source / Mixed license_type: Various last_maintained: “2026-05-25” draft: false categories: [“llm-frameworks”] tags: [“mcp”, “model-context-protocol”, “claude-code”, “ai-agents”, “developer-tools”, “integration”, “2026”] aliases:\n/vi/posts/mcp-servers-2026-rankings-selection-guide/ faq: - q: “MCP là gì và tại sao quan trọng năm 2026?” a: “Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026.” q: “Nên dùng stdio, HTTP hay SSE-based MCP servers?” a: “stdio cho servers chỉ local (filesystem, git, databases localhost) — latency thấp nhất, network zero. HTTP/SSE cho remote SaaS integrations (GitHub, Linear, Notion) nơi server hosted bởi bên thứ ba. MCP 2025-06 spec mới thêm OAuth bridge cho credential-managed servers. Hầu hết setup production dùng mix: 80% stdio local, 20% HTTP for SaaS.” q: “Rủi ro bảo mật khi cài community MCP servers là gì?” a: “Đáng kể. MCP servers chạy với full local permissions của bạn — có thể đọc files, exec commands, network calls. Anthropic-maintained reference servers được audit. Community servers khác nhau: luôn đọc source, ưu tiên servers với active maintainers và recent commits, không bao giờ cấp credentials bạn không dám paste plain text.” q: “Developers chuyên nghiệp thực sự dùng MCP servers nào?” a: “Dựa trên usage telemetry từ major MCP registries (giữa 2026): filesystem, github, git, postgres, sqlite top local stdio category. Cho SaaS: linear, slack, sentry, supabase. Cho specialized: playwright, puppeteer, brave-search, fetch. Long tail 900+ community servers cover niche integrations nhưng hầu hết developers dùng 5-10 core servers.” q: “Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?” a: “Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take \u003e500ms initialize, nó đang slow mọi agent session.” MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn Meta Description: Hệ sinh thái MCP vượt 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30, trade-off kiến trúc stdio/HTTP-SSE/OAuth, cây quyết định lựa chọn.\nTháng 11/2024 Anthropic release Model Context Protocol với 8 reference servers. 18 tháng sau, bạn có thể tìm 1000+ public MCP servers trong registries, GitHub, và corporate private package indexes. Tăng trưởng quá explosive khiến hầu hết developers ngày nay có vấn đề ngược 2024: MCP servers quá nhiều, không phải quá ít.\n⚡ TL;DR — 2 phút Quy mô hệ sinh thái: 1000+ public MCP servers, 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` là current standard.\nSử dụng thực tế: Hầu hết developers cài 5-10 core servers + dựa vào per-project mcp.json cho project-specific additions.\nTop 5 cho AI coding: filesystem, git, github, postgres, playwright.\nDecision principle: stdio \u003e HTTP \u003e OAuth, theo thứ tự ưu tiên này.\nĐừng cài mù quáng: mỗi community MCP server là code chạy với local permissions của bạn.\nBa Transport Modes 1. stdio (Standard I/O) Local process được MCP client spawn. Communication line-delimited JSON qua stdin/stdout. Dùng cho filesystem / git / sqlite / localhost postgres / playwright. Ưu: latency thấp nhất, zero credential exposure, offline OK. Nhược: full user permissions. Khi nào: First default.\n2. HTTP / SSE (Server-Sent Events) Long-running HTTP service. Dùng cho SaaS integrations (GitHub, Linear, Notion, Slack). Ưu: persist state across sessions, centralized credentials. Nhược: network latency, server availability. Khi nào: SaaS APIs genuinely không replicate được locally.\n3. OAuth-Bridged (MCP 2025-06) MCP server orchestrates OAuth flow để issue scoped credentials per session. Khi nào: Enterprise environments với credential rotation requirements.\nTop 30 MCP Servers Đáng Cài 2026 Tier 1: Universal Defaults Server Transport Maintainer Use Case Risk filesystem stdio Anthropic R/W scoped directories Thấp git stdio Anthropic Inspect repos, diff, blame Thấp github HTTP Anthropic PRs, issues, search Trung fetch stdio Anthropic Generic HTTP + markdown Trung sequentialthinking stdio Anthropic Structured planning helper Thấp Tier 2: Per Project Server Transport Use Case Risk postgres stdio Query Postgres Cao sqlite stdio Query SQLite Thấp playwright stdio Browser automation Trung brave-search HTTP Privacy web search Thấp linear HTTP Project management Trung slack HTTP Workspace queries Cao sentry HTTP Error monitoring Trung supabase HTTP DB + auth + storage Cao memory stdio Persistent agent memory Thấp Tier 3: Specialized kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot.\nCây Quyết Định Lựa Chọn Data/action có thể live trên local machine? │ ├── Yes → Ưu tiên stdio MCP server │ ├── Có Anthropic-maintained version? │ │ └── Yes → Dùng. │ │ └── No → Audit source: commit \u003c 90 ngày? Active maintainer? Stars \u003e 50? Không suspicious network calls? │ │ Yes hết: cài. No bất kỳ: viết 30-line wrapper script thay. │ └── No → SaaS hoặc remote resource ├── Có OAuth-bridged version + cần per-session credentials? → OAuth bridge ├── Không → HTTP/SSE với PAT ├── Audit: token scope minimal? trustworthy infra? rate limits documented? Ngắn nhất: stdio \u003e HTTP \u003e OAuth. Anthropic \u003e community \u003e archived. Đọc source trước khi cài.\nBảo Mật: Risk Hầu Hết Underestimate Mỗi MCP server bạn cài chạy code với full local permissions.\nReal attack patterns 2026 Typosquatting: Fake github-mcp-server-v2 exfiltrate tokens. Supply chain injection: Popular community server maintainer transfer ownership → telemetry leaks file paths. Over-scoped tokens: GitHub server với full-access PAT → prompt injection delete repos. Prompt injection via fetched content: fetch server pulled malicious markdown → exfil ~/.ssh/id_rsa. Defense checklist Fine-grained tokens. Không bao giờ full-access. Audit trước khi cài. 5 phút save breaches. Pin versions. Không auto-upgrade community. Sandbox. Container hoặc firejail. Monitor agent logs. Discovery mcp.so — Comprehensive community registry smithery.ai — High-curation + one-click install ````glama.ai/mcp/servers``` — Enterprise-friendly Anthropic reference servers: github.com/modelcontextprotocol/servers.\nHạ Tầng Đề Xuất Cho Self-Hosted MCP Servers Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **** — $200 credit 60 ngày.\n**** — VPS Hong Kong, cùng IDC với dibi8.com. Affiliate links — không tốn thêm chi phí, giúp dibi8.com hoạt động.\nKết Luận Hệ sinh thái MCP 2026 đủ trưởng thành để hữu ích, đủ hỗn loạn để cần curation. Reference servers xuất sắc. Community ecosystem khổng lồ nhưng không đều. Protocol bản thân ổn định.\nSai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi agent startup 8 giây không biết tại sao. Hoặc cấp community server full-access GitHub PAT vì README không cảnh báo.\nCure là selection, không phải abundance. Chọn 5 core stdio servers, thêm 2-3 project-specific per repo, audit trước khi cài, treat MCP servers như security-relevant code that happens to ergonomic. Workflow scales 18 tháng tới.\nReference: github.com/modelcontextprotocol/servers · Spec: MCP 2025-06 · Stars: 60K+\n{ “@context”: “https://schema.org”, “@type”: “Article”, “headline”: “MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn”, “datePublished”: “2026-05-26”, “dateModified”: “2026-05-26”, “author”: { “@type”: “Organization”, “name”: “Dibi8” }, “publisher”: { “@type”: “Organization”, “name”: “Dibi8”, “logo”: { “@type”: “ImageObject”, “url”: “https://dibi8.com/logo.png\" } }, “mainEntityOfPage”: { “@type”: “WebPage”, “@id”: “https://dibi8.com/vi/resources/mcp-servers-2026-rankings-selection-guide\" } } Why This Matters Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here\"s why: ### Key Benefits\nEfficiency: Save time on repetitive tasks Quality: Improve output consistency Scalability: Handle larger workloads Cost: Reduce operational expenses Real-World Applications Organizations are using similar approaches to: 1. Automate code review processes 2. Generate documentation automatically 3. Build internal knowledge bases 4. Streamline deployment pipelines\nGetting Started To implement this in your workflow: 1. Assess Your Needs\nIdentify repetitive tasks Measure current time costs Define success metrics Choose Your Approach\nStart with simple automations Gradually increase complexity Test and iterate Measure Results\nTrack time savings Monitor quality improvements Calculate ROI Conclusion MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.\nFor the latest updates and community discussions, join our Telegram channel: https://t.me/DIBI8_Group\nLast updated: 2026-09-20 Read time: ~5 minutes\nRelated Articles claude-code-vs-cline gemini-cli-vs-claude-code cc-switch-all-in-one-ai-coding-agent-manager claude-code-vs-aider cursor-vs-claude-code Found this helpful? Join our Telegram community for daily AI tool updates!\nFrequently Asked Questions (FAQ) 问：AI Agent和传统自动化有什么区别？\nAI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。\n问：如何选择合适的AI Agent框架？\n考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。\n问：AI Agent的安全性如何保证？\n实施权限最小化、输入验证、审计日志、以及定期安全评估。\n问：AI Agent的学习成本有多高？\n入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。\n问：能否自定义AI Agent的行为？\n是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。\n",
+  "wordCount" : "1460",
+  "inLanguage": "vi",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/vi/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/" title="English"
+                                aria-label="English">En</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/vi/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/vi/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/vi/">Trang chủ</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/vi/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>20 tháng 9, 2026</span>&nbsp;·&nbsp;<span>7 phút</span>&nbsp;|&nbsp;<span>Bản dịch:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">En</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">Ko</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Mục lục</span>
+    </summary>
+
+    <div class="inner"><ul>
+            <li>
+                <a href="#mcp-servers-2026-b%e1%ba%a3n-%c4%91%e1%bb%93-h%e1%bb%87-sinh-th%c3%a1i-100--c%c3%a2y-quy%e1%ba%bft-%c4%91%e1%bb%8bnh-l%e1%bb%b1a-ch%e1%bb%8dn" aria-label="MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100&#43; &#43; Cây Quyết Định Lựa Chọn">MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn</a><ul>
+                    
+            <li>
+                <a href="#-tldr--2-ph%c3%bat" aria-label="⚡ TL;DR — 2 phút">⚡ TL;DR — 2 phút</a></li>
+            <li>
+                <a href="#ba-transport-modes" aria-label="Ba Transport Modes">Ba Transport Modes</a><ul>
+                    
+            <li>
+                <a href="#1-stdio-standard-io" aria-label="1. stdio (Standard I/O)">1. stdio (Standard I/O)</a></li>
+            <li>
+                <a href="#2-http--sse-server-sent-events" aria-label="2. HTTP / SSE (Server-Sent Events)">2. HTTP / SSE (Server-Sent Events)</a></li>
+            <li>
+                <a href="#3-oauth-bridged-mcp-2025-06" aria-label="3. OAuth-Bridged (MCP 2025-06)">3. OAuth-Bridged (MCP 2025-06)</a></li></ul>
+            </li>
+            <li>
+                <a href="#top-30-mcp-servers-%c4%91%c3%a1ng-c%c3%a0i-2026" aria-label="Top 30 MCP Servers Đáng Cài 2026">Top 30 MCP Servers Đáng Cài 2026</a><ul>
+                    
+            <li>
+                <a href="#tier-1-universal-defaults" aria-label="Tier 1: Universal Defaults">Tier 1: Universal Defaults</a></li>
+            <li>
+                <a href="#tier-2-per-project" aria-label="Tier 2: Per Project">Tier 2: Per Project</a></li>
+            <li>
+                <a href="#tier-3-specialized" aria-label="Tier 3: Specialized">Tier 3: Specialized</a></li></ul>
+            </li>
+            <li>
+                <a href="#c%c3%a2y-quy%e1%ba%bft-%c4%91%e1%bb%8bnh-l%e1%bb%b1a-ch%e1%bb%8dn" aria-label="Cây Quyết Định Lựa Chọn">Cây Quyết Định Lựa Chọn</a></li>
+            <li>
+                <a href="#b%e1%ba%a3o-m%e1%ba%adt-risk-h%e1%ba%a7u-h%e1%ba%bft-underestimate" aria-label="Bảo Mật: Risk Hầu Hết Underestimate">Bảo Mật: Risk Hầu Hết Underestimate</a><ul>
+                    
+            <li>
+                <a href="#real-attack-patterns-2026" aria-label="Real attack patterns 2026">Real attack patterns 2026</a></li>
+            <li>
+                <a href="#defense-checklist" aria-label="Defense checklist">Defense checklist</a></li></ul>
+            </li>
+            <li>
+                <a href="#discovery" aria-label="Discovery">Discovery</a></li>
+            <li>
+                <a href="#h%e1%ba%a1-t%e1%ba%a7ng-%c4%91%e1%bb%81-xu%e1%ba%a5t-cho-self-hosted-mcp-servers" aria-label="Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers">Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers</a></li>
+            <li>
+                <a href="#k%e1%ba%bft-lu%e1%ba%adn" aria-label="Kết Luận">Kết Luận</a></li>
+            <li>
+                <a href="#why-this-matters" aria-label="Why This Matters">Why This Matters</a><ul>
+                    
+            <li>
+                <a href="#real-world-applications" aria-label="Real-World Applications">Real-World Applications</a></li>
+            <li>
+                <a href="#getting-started" aria-label="Getting Started">Getting Started</a></li></ul>
+            </li>
+            <li>
+                <a href="#conclusion" aria-label="Conclusion">Conclusion</a></li>
+            <li>
+                <a href="#related-articles" aria-label="Related Articles">Related Articles</a></li>
+            <li>
+                <a href="#frequently-asked-questions-faq" aria-label="Frequently Asked Questions (FAQ)">Frequently Asked Questions (FAQ)</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;AI Tool Guide&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-05-26T00:00:00+08:00
 lastmod: 2026-05-26T00:00:00+08:00
@@ -17,13 +283,163 @@ last_maintained: &ldquo;2026-05-25&rdquo;
 draft: false
 categories: [&ldquo;llm-frameworks&rdquo;]
 tags: [&ldquo;mcp&rdquo;, &ldquo;model-context-protocol&rdquo;, &ldquo;claude-code&rdquo;, &ldquo;ai-agents&rdquo;, &ldquo;developer-tools&rdquo;, &ldquo;integration&rdquo;, &ldquo;2026&rdquo;]
-aliases:</p><ul><li>/vi/posts/mcp-servers-2026-rankings-selection-guide/
+aliases:</p>
+<ul>
+<li>/vi/posts/mcp-servers-2026-rankings-selection-guide/
 faq: - q: &ldquo;MCP là gì và tại sao quan trọng năm 2026?&rdquo;
-a: &ldquo;Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026.&rdquo;</li><li>q: &ldquo;Nên dùng stdio, HTTP hay SSE-based MCP servers?&rdquo;
-a: &ldquo;stdio cho servers chỉ local (filesystem, git, databases localhost) — latency thấp nhất, network zero. HTTP/SSE cho remote SaaS integrations (GitHub, Linear, Notion) nơi server hosted bởi bên thứ ba. MCP 2025-06 spec mới thêm OAuth bridge cho credential-managed servers. Hầu hết setup production dùng mix: 80% stdio local, 20% HTTP for SaaS.&rdquo;</li><li>q: &ldquo;Rủi ro bảo mật khi cài community MCP servers là gì?&rdquo;
-a: &ldquo;Đáng kể. MCP servers chạy với full local permissions của bạn — có thể đọc files, exec commands, network calls. Anthropic-maintained reference servers được audit. Community servers khác nhau: luôn đọc source, ưu tiên servers với active maintainers và recent commits, không bao giờ cấp credentials bạn không dám paste plain text.&rdquo;</li><li>q: &ldquo;Developers chuyên nghiệp thực sự dùng MCP servers nào?&rdquo;
-a: &ldquo;Dựa trên usage telemetry từ major MCP registries (giữa 2026): filesystem, github, git, postgres, sqlite top local stdio category. Cho SaaS: linear, slack, sentry, supabase. Cho specialized: playwright, puppeteer, brave-search, fetch. Long tail 900+ community servers cover niche integrations nhưng hầu hết developers dùng 5-10 core servers.&rdquo;</li><li>q: &ldquo;Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?&rdquo;
-a: &ldquo;Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take >500ms initialize, nó đang slow mọi agent session.&rdquo;</li></ul><hr><h1 id=mcp-servers-2026-bản-đồ-hệ-sinh-thái-100--cây-quyết-định-lựa-chọn>MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn<a hidden class=anchor aria-hidden=true href=#mcp-servers-2026-bản-đồ-hệ-sinh-thái-100--cây-quyết-định-lựa-chọn>#</a></h1><blockquote><p><strong>Meta Description</strong>: Hệ sinh thái MCP vượt 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30, trade-off kiến trúc stdio/HTTP-SSE/OAuth, cây quyết định lựa chọn.</p></blockquote><p>Tháng 11/2024 Anthropic release Model Context Protocol với 8 reference servers. 18 tháng sau, bạn có thể tìm 1000+ public MCP servers trong registries, GitHub, và corporate private package indexes. Tăng trưởng quá explosive khiến hầu hết developers ngày nay có vấn đề ngược 2024: MCP servers <strong>quá nhiều</strong>, không phải quá ít.</p><h2 id=-tldr--2-phút>⚡ TL;DR — 2 phút<a hidden class=anchor aria-hidden=true href=#-tldr--2-phút>#</a></h2><blockquote><p><strong>Quy mô hệ sinh thái</strong>: 1000+ public MCP servers, 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` là current standard.</p><p><strong>Sử dụng thực tế</strong>: Hầu hết developers cài 5-10 core servers + dựa vào per-project <code>mcp.json</code> cho project-specific additions.</p><p><strong>Top 5 cho AI coding</strong>: <code>filesystem</code>, <code>git</code>, <code>github</code>, <code>postgres</code>, <code>playwright</code>.</p><p><strong>Decision principle</strong>: stdio > HTTP > OAuth, theo thứ tự ưu tiên này.</p><p><strong>Đừng cài mù quáng</strong>: mỗi community MCP server là code chạy với local permissions của bạn.</p></blockquote><hr><h2 id=ba-transport-modes>Ba Transport Modes<a hidden class=anchor aria-hidden=true href=#ba-transport-modes>#</a></h2><h3 id=1-stdio-standard-io>1. stdio (Standard I/O)<a hidden class=anchor aria-hidden=true href=#1-stdio-standard-io>#</a></h3><p>Local process được MCP client spawn. Communication line-delimited JSON qua stdin/stdout. Dùng cho filesystem / git / sqlite / localhost postgres / playwright. <strong>Ưu</strong>: latency thấp nhất, zero credential exposure, offline OK. <strong>Nhược</strong>: full user permissions. <strong>Khi nào</strong>: First default.</p><h3 id=2-http--sse-server-sent-events>2. HTTP / SSE (Server-Sent Events)<a hidden class=anchor aria-hidden=true href=#2-http--sse-server-sent-events>#</a></h3><p>Long-running HTTP service. Dùng cho SaaS integrations (GitHub, Linear, Notion, Slack). <strong>Ưu</strong>: persist state across sessions, centralized credentials. <strong>Nhược</strong>: network latency, server availability. <strong>Khi nào</strong>: SaaS APIs genuinely không replicate được locally.</p><h3 id=3-oauth-bridged-mcp-2025-06>3. OAuth-Bridged (MCP 2025-06)<a hidden class=anchor aria-hidden=true href=#3-oauth-bridged-mcp-2025-06>#</a></h3><p>MCP server orchestrates OAuth flow để issue scoped credentials per session. <strong>Khi nào</strong>: Enterprise environments với credential rotation requirements.</p><h2 id=top-30-mcp-servers-đáng-cài-2026>Top 30 MCP Servers Đáng Cài 2026<a hidden class=anchor aria-hidden=true href=#top-30-mcp-servers-đáng-cài-2026>#</a></h2><h3 id=tier-1-universal-defaults>Tier 1: Universal Defaults<a hidden class=anchor aria-hidden=true href=#tier-1-universal-defaults>#</a></h3><table><thead><tr><th>Server</th><th>Transport</th><th>Maintainer</th><th>Use Case</th><th>Risk</th></tr></thead><tbody><tr><td><strong>filesystem</strong></td><td>stdio</td><td>Anthropic</td><td>R/W scoped directories</td><td>Thấp</td></tr><tr><td><strong>git</strong></td><td>stdio</td><td>Anthropic</td><td>Inspect repos, diff, blame</td><td>Thấp</td></tr><tr><td><strong>github</strong></td><td>HTTP</td><td>Anthropic</td><td>PRs, issues, search</td><td>Trung</td></tr><tr><td><strong>fetch</strong></td><td>stdio</td><td>Anthropic</td><td>Generic HTTP + markdown</td><td>Trung</td></tr><tr><td><strong>sequentialthinking</strong></td><td>stdio</td><td>Anthropic</td><td>Structured planning helper</td><td>Thấp</td></tr></tbody></table><h3 id=tier-2-per-project>Tier 2: Per Project<a hidden class=anchor aria-hidden=true href=#tier-2-per-project>#</a></h3><table><thead><tr><th>Server</th><th>Transport</th><th>Use Case</th><th>Risk</th></tr></thead><tbody><tr><td><strong>postgres</strong></td><td>stdio</td><td>Query Postgres</td><td>Cao</td></tr><tr><td><strong>sqlite</strong></td><td>stdio</td><td>Query SQLite</td><td>Thấp</td></tr><tr><td><strong>playwright</strong></td><td>stdio</td><td>Browser automation</td><td>Trung</td></tr><tr><td><strong>brave-search</strong></td><td>HTTP</td><td>Privacy web search</td><td>Thấp</td></tr><tr><td><strong>linear</strong></td><td>HTTP</td><td>Project management</td><td>Trung</td></tr><tr><td><strong>slack</strong></td><td>HTTP</td><td>Workspace queries</td><td>Cao</td></tr><tr><td><strong>sentry</strong></td><td>HTTP</td><td>Error monitoring</td><td>Trung</td></tr><tr><td><strong>supabase</strong></td><td>HTTP</td><td>DB + auth + storage</td><td>Cao</td></tr><tr><td><strong>memory</strong></td><td>stdio</td><td>Persistent agent memory</td><td>Thấp</td></tr></tbody></table><h3 id=tier-3-specialized>Tier 3: Specialized<a hidden class=anchor aria-hidden=true href=#tier-3-specialized>#</a></h3><p>kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot.</p><h2 id=cây-quyết-định-lựa-chọn>Cây Quyết Định Lựa Chọn<a hidden class=anchor aria-hidden=true href=#cây-quyết-định-lựa-chọn>#</a></h2><pre tabindex=0><code>Data/action có thể live trên local machine?
+a: &ldquo;Model Context Protocol (MCP) là spec open-source của Anthropic để kết nối AI agent với external tools, data sources và services. Năm 2026 trở thành plug-in standard de facto được Claude Code, Cursor, Codex CLI, Gemini CLI và hầu hết AI coding agents lớn hỗ trợ. Hệ sinh thái tăng từ ~30 servers cuối 2024 lên 1000+ public servers giữa 2026.&rdquo;</li>
+<li>q: &ldquo;Nên dùng stdio, HTTP hay SSE-based MCP servers?&rdquo;
+a: &ldquo;stdio cho servers chỉ local (filesystem, git, databases localhost) — latency thấp nhất, network zero. HTTP/SSE cho remote SaaS integrations (GitHub, Linear, Notion) nơi server hosted bởi bên thứ ba. MCP 2025-06 spec mới thêm OAuth bridge cho credential-managed servers. Hầu hết setup production dùng mix: 80% stdio local, 20% HTTP for SaaS.&rdquo;</li>
+<li>q: &ldquo;Rủi ro bảo mật khi cài community MCP servers là gì?&rdquo;
+a: &ldquo;Đáng kể. MCP servers chạy với full local permissions của bạn — có thể đọc files, exec commands, network calls. Anthropic-maintained reference servers được audit. Community servers khác nhau: luôn đọc source, ưu tiên servers với active maintainers và recent commits, không bao giờ cấp credentials bạn không dám paste plain text.&rdquo;</li>
+<li>q: &ldquo;Developers chuyên nghiệp thực sự dùng MCP servers nào?&rdquo;
+a: &ldquo;Dựa trên usage telemetry từ major MCP registries (giữa 2026): filesystem, github, git, postgres, sqlite top local stdio category. Cho SaaS: linear, slack, sentry, supabase. Cho specialized: playwright, puppeteer, brave-search, fetch. Long tail 900+ community servers cover niche integrations nhưng hầu hết developers dùng 5-10 core servers.&rdquo;</li>
+<li>q: &ldquo;Làm sao tránh MCP server hell (quá nhiều servers, startup chậm)?&rdquo;
+a: &ldquo;Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integrations tốt hơn là one-off scripts. (2) Dùng per-project MCP config (.cursor/mcp.json, .claude/mcp.json) thay vì global, để unrelated agents không load 30 servers. (3) Audit startup time — nếu server take &gt;500ms initialize, nó đang slow mọi agent session.&rdquo;</li>
+</ul>
+<hr>
+<h1 id="mcp-servers-2026-bản-đồ-hệ-sinh-thái-100--cây-quyết-định-lựa-chọn">MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn<a hidden class="anchor" aria-hidden="true" href="#mcp-servers-2026-bản-đồ-hệ-sinh-thái-100--cây-quyết-định-lựa-chọn">#</a></h1>
+<blockquote>
+<p><strong>Meta Description</strong>: Hệ sinh thái MCP vượt 1000+ public servers giữa 2026. Hướng dẫn xếp hạng top 30, trade-off kiến trúc stdio/HTTP-SSE/OAuth, cây quyết định lựa chọn.</p>
+</blockquote>
+<p>Tháng 11/2024 Anthropic release Model Context Protocol với 8 reference servers. 18 tháng sau, bạn có thể tìm 1000+ public MCP servers trong registries, GitHub, và corporate private package indexes. Tăng trưởng quá explosive khiến hầu hết developers ngày nay có vấn đề ngược 2024: MCP servers <strong>quá nhiều</strong>, không phải quá ít.</p>
+<h2 id="-tldr--2-phút">⚡ TL;DR — 2 phút<a hidden class="anchor" aria-hidden="true" href="#-tldr--2-phút">#</a></h2>
+<blockquote>
+<p><strong>Quy mô hệ sinh thái</strong>: 1000+ public MCP servers, 3 transport modes (stdio, HTTP/SSE, OAuth-bridge). Spec version ```2025-06```` là current standard.</p>
+<p><strong>Sử dụng thực tế</strong>: Hầu hết developers cài 5-10 core servers + dựa vào per-project <code>mcp.json</code> cho project-specific additions.</p>
+<p><strong>Top 5 cho AI coding</strong>: <code>filesystem</code>, <code>git</code>, <code>github</code>, <code>postgres</code>, <code>playwright</code>.</p>
+<p><strong>Decision principle</strong>: stdio &gt; HTTP &gt; OAuth, theo thứ tự ưu tiên này.</p>
+<p><strong>Đừng cài mù quáng</strong>: mỗi community MCP server là code chạy với local permissions của bạn.</p>
+</blockquote>
+<hr>
+<h2 id="ba-transport-modes">Ba Transport Modes<a hidden class="anchor" aria-hidden="true" href="#ba-transport-modes">#</a></h2>
+<h3 id="1-stdio-standard-io">1. stdio (Standard I/O)<a hidden class="anchor" aria-hidden="true" href="#1-stdio-standard-io">#</a></h3>
+<p>Local process được MCP client spawn. Communication line-delimited JSON qua stdin/stdout. Dùng cho filesystem / git / sqlite / localhost postgres / playwright. <strong>Ưu</strong>: latency thấp nhất, zero credential exposure, offline OK. <strong>Nhược</strong>: full user permissions. <strong>Khi nào</strong>: First default.</p>
+<h3 id="2-http--sse-server-sent-events">2. HTTP / SSE (Server-Sent Events)<a hidden class="anchor" aria-hidden="true" href="#2-http--sse-server-sent-events">#</a></h3>
+<p>Long-running HTTP service. Dùng cho SaaS integrations (GitHub, Linear, Notion, Slack). <strong>Ưu</strong>: persist state across sessions, centralized credentials. <strong>Nhược</strong>: network latency, server availability. <strong>Khi nào</strong>: SaaS APIs genuinely không replicate được locally.</p>
+<h3 id="3-oauth-bridged-mcp-2025-06">3. OAuth-Bridged (MCP 2025-06)<a hidden class="anchor" aria-hidden="true" href="#3-oauth-bridged-mcp-2025-06">#</a></h3>
+<p>MCP server orchestrates OAuth flow để issue scoped credentials per session. <strong>Khi nào</strong>: Enterprise environments với credential rotation requirements.</p>
+<h2 id="top-30-mcp-servers-đáng-cài-2026">Top 30 MCP Servers Đáng Cài 2026<a hidden class="anchor" aria-hidden="true" href="#top-30-mcp-servers-đáng-cài-2026">#</a></h2>
+<h3 id="tier-1-universal-defaults">Tier 1: Universal Defaults<a hidden class="anchor" aria-hidden="true" href="#tier-1-universal-defaults">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Server</th>
+					<th>Transport</th>
+					<th>Maintainer</th>
+					<th>Use Case</th>
+					<th>Risk</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>filesystem</strong></td>
+					<td>stdio</td>
+					<td>Anthropic</td>
+					<td>R/W scoped directories</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td><strong>git</strong></td>
+					<td>stdio</td>
+					<td>Anthropic</td>
+					<td>Inspect repos, diff, blame</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td><strong>github</strong></td>
+					<td>HTTP</td>
+					<td>Anthropic</td>
+					<td>PRs, issues, search</td>
+					<td>Trung</td>
+			</tr>
+			<tr>
+					<td><strong>fetch</strong></td>
+					<td>stdio</td>
+					<td>Anthropic</td>
+					<td>Generic HTTP + markdown</td>
+					<td>Trung</td>
+			</tr>
+			<tr>
+					<td><strong>sequentialthinking</strong></td>
+					<td>stdio</td>
+					<td>Anthropic</td>
+					<td>Structured planning helper</td>
+					<td>Thấp</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="tier-2-per-project">Tier 2: Per Project<a hidden class="anchor" aria-hidden="true" href="#tier-2-per-project">#</a></h3>
+<table>
+	<thead>
+			<tr>
+					<th>Server</th>
+					<th>Transport</th>
+					<th>Use Case</th>
+					<th>Risk</th>
+			</tr>
+	</thead>
+	<tbody>
+			<tr>
+					<td><strong>postgres</strong></td>
+					<td>stdio</td>
+					<td>Query Postgres</td>
+					<td>Cao</td>
+			</tr>
+			<tr>
+					<td><strong>sqlite</strong></td>
+					<td>stdio</td>
+					<td>Query SQLite</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td><strong>playwright</strong></td>
+					<td>stdio</td>
+					<td>Browser automation</td>
+					<td>Trung</td>
+			</tr>
+			<tr>
+					<td><strong>brave-search</strong></td>
+					<td>HTTP</td>
+					<td>Privacy web search</td>
+					<td>Thấp</td>
+			</tr>
+			<tr>
+					<td><strong>linear</strong></td>
+					<td>HTTP</td>
+					<td>Project management</td>
+					<td>Trung</td>
+			</tr>
+			<tr>
+					<td><strong>slack</strong></td>
+					<td>HTTP</td>
+					<td>Workspace queries</td>
+					<td>Cao</td>
+			</tr>
+			<tr>
+					<td><strong>sentry</strong></td>
+					<td>HTTP</td>
+					<td>Error monitoring</td>
+					<td>Trung</td>
+			</tr>
+			<tr>
+					<td><strong>supabase</strong></td>
+					<td>HTTP</td>
+					<td>DB + auth + storage</td>
+					<td>Cao</td>
+			</tr>
+			<tr>
+					<td><strong>memory</strong></td>
+					<td>stdio</td>
+					<td>Persistent agent memory</td>
+					<td>Thấp</td>
+			</tr>
+	</tbody>
+</table>
+<h3 id="tier-3-specialized">Tier 3: Specialized<a hidden class="anchor" aria-hidden="true" href="#tier-3-specialized">#</a></h3>
+<p>kubernetes / terraform / aws / gcloud / figma / notion / redis / mongodb / elasticsearch / graphql / openapi / shopify / hubspot.</p>
+<h2 id="cây-quyết-định-lựa-chọn">Cây Quyết Định Lựa Chọn<a hidden class="anchor" aria-hidden="true" href="#cây-quyết-định-lựa-chọn">#</a></h2>
+<pre tabindex="0"><code>Data/action có thể live trên local machine?
 │
 ├── Yes → Ưu tiên stdio MCP server
 │         ├── Có Anthropic-maintained version?
@@ -35,8 +451,45 @@ a: &ldquo;Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integ
           ├── Có OAuth-bridged version + cần per-session credentials? → OAuth bridge
           ├── Không → HTTP/SSE với PAT
           ├── Audit: token scope minimal? trustworthy infra? rate limits documented?
-</code></pre><p>Ngắn nhất: <strong>stdio > HTTP > OAuth. Anthropic > community > archived. Đọc source trước khi cài.</strong></p><h2 id=bảo-mật-risk-hầu-hết-underestimate>Bảo Mật: Risk Hầu Hết Underestimate<a hidden class=anchor aria-hidden=true href=#bảo-mật-risk-hầu-hết-underestimate>#</a></h2><p>Mỗi MCP server bạn cài chạy code với full local permissions.</p><h3 id=real-attack-patterns-2026>Real attack patterns 2026<a hidden class=anchor aria-hidden=true href=#real-attack-patterns-2026>#</a></h3><ul><li><strong>Typosquatting</strong>: Fake <code>github-mcp-server-v2</code> exfiltrate tokens.</li><li><strong>Supply chain injection</strong>: Popular community server maintainer transfer ownership → telemetry leaks file paths.</li><li><strong>Over-scoped tokens</strong>: GitHub server với full-access PAT → prompt injection delete repos.</li><li><strong>Prompt injection via fetched content</strong>: <code>fetch</code> server pulled malicious markdown → exfil <code>~/.ssh/id_rsa</code>.</li></ul><h3 id=defense-checklist>Defense checklist<a hidden class=anchor aria-hidden=true href=#defense-checklist>#</a></h3><ol><li><strong>Fine-grained tokens</strong>. Không bao giờ full-access.</li><li><strong>Audit trước khi cài</strong>. 5 phút save breaches.</li><li><strong>Pin versions</strong>. Không auto-upgrade community.</li><li><strong>Sandbox</strong>. Container hoặc <code>firejail</code>.</li><li><strong>Monitor agent logs</strong>.</li></ol><h2 id=discovery>Discovery<a hidden class=anchor aria-hidden=true href=#discovery>#</a></h2><ul><li><strong><code>mcp.so</code></strong> — Comprehensive community registry</li><li><strong><code>smithery.ai</code></strong> — High-curation + one-click install</li><li><strong>````glama.ai/mcp/servers```</strong> — Enterprise-friendly</li></ul><p>Anthropic reference servers: <a href=https://github.com/modelcontextprotocol/servers>github.com/modelcontextprotocol/servers</a>.</p><h2 id=hạ-tầng-đề-xuất-cho-self-hosted-mcp-servers>Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers<a hidden class=anchor aria-hidden=true href=#hạ-tầng-đề-xuất-cho-self-hosted-mcp-servers>#</a></h2><p>Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **** — $200 credit 60 ngày.</p><ul><li>**** — VPS Hong Kong, cùng IDC với dibi8.com.</li></ul><p><em>Affiliate links — không tốn thêm chi phí, giúp dibi8.com hoạt động.</em></p><h2 id=kết-luận>Kết Luận<a hidden class=anchor aria-hidden=true href=#kết-luận>#</a></h2><p>Hệ sinh thái MCP 2026 đủ trưởng thành để hữu ích, đủ hỗn loạn để cần curation. Reference servers xuất sắc. Community ecosystem khổng lồ nhưng không đều. Protocol bản thân ổn định.</p><p>Sai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi agent startup 8 giây không biết tại sao. Hoặc cấp community server full-access GitHub PAT vì README không cảnh báo.</p><p><strong>Cure là selection, không phải abundance</strong>. Chọn 5 core stdio servers, thêm 2-3 project-specific per repo, audit trước khi cài, treat MCP servers như security-relevant code that happens to ergonomic. Workflow scales 18 tháng tới.</p><hr><p><strong>Reference</strong>: <a href=https://github.com/modelcontextprotocol/servers>github.com/modelcontextprotocol/servers</a> · <strong>Spec</strong>: MCP 2025-06 · <strong>Stars</strong>: 60K+</p><p>{
-&ldquo;@context&rdquo;: &ldquo;<a href=https://schema.org>https://schema.org</a>&rdquo;,
+</code></pre><p>Ngắn nhất: <strong>stdio &gt; HTTP &gt; OAuth. Anthropic &gt; community &gt; archived. Đọc source trước khi cài.</strong></p>
+<h2 id="bảo-mật-risk-hầu-hết-underestimate">Bảo Mật: Risk Hầu Hết Underestimate<a hidden class="anchor" aria-hidden="true" href="#bảo-mật-risk-hầu-hết-underestimate">#</a></h2>
+<p>Mỗi MCP server bạn cài chạy code với full local permissions.</p>
+<h3 id="real-attack-patterns-2026">Real attack patterns 2026<a hidden class="anchor" aria-hidden="true" href="#real-attack-patterns-2026">#</a></h3>
+<ul>
+<li><strong>Typosquatting</strong>: Fake <code>github-mcp-server-v2</code> exfiltrate tokens.</li>
+<li><strong>Supply chain injection</strong>: Popular community server maintainer transfer ownership → telemetry leaks file paths.</li>
+<li><strong>Over-scoped tokens</strong>: GitHub server với full-access PAT → prompt injection delete repos.</li>
+<li><strong>Prompt injection via fetched content</strong>: <code>fetch</code> server pulled malicious markdown → exfil <code>~/.ssh/id_rsa</code>.</li>
+</ul>
+<h3 id="defense-checklist">Defense checklist<a hidden class="anchor" aria-hidden="true" href="#defense-checklist">#</a></h3>
+<ol>
+<li><strong>Fine-grained tokens</strong>. Không bao giờ full-access.</li>
+<li><strong>Audit trước khi cài</strong>. 5 phút save breaches.</li>
+<li><strong>Pin versions</strong>. Không auto-upgrade community.</li>
+<li><strong>Sandbox</strong>. Container hoặc <code>firejail</code>.</li>
+<li><strong>Monitor agent logs</strong>.</li>
+</ol>
+<h2 id="discovery">Discovery<a hidden class="anchor" aria-hidden="true" href="#discovery">#</a></h2>
+<ul>
+<li><strong><code>mcp.so</code></strong> — Comprehensive community registry</li>
+<li><strong><code>smithery.ai</code></strong> — High-curation + one-click install</li>
+<li><strong>````glama.ai/mcp/servers```</strong> — Enterprise-friendly</li>
+</ul>
+<p>Anthropic reference servers: <a href="https://github.com/modelcontextprotocol/servers">github.com/modelcontextprotocol/servers</a>.</p>
+<h2 id="hạ-tầng-đề-xuất-cho-self-hosted-mcp-servers">Hạ Tầng Đề Xuất Cho Self-Hosted MCP Servers<a hidden class="anchor" aria-hidden="true" href="#hạ-tầng-đề-xuất-cho-self-hosted-mcp-servers">#</a></h2>
+<p>Nếu chạy team-shared MCP servers (HTTP/SSE), VPS ổn định quan trọng: - **** — $200 credit 60 ngày.</p>
+<ul>
+<li>**** — VPS Hong Kong, cùng IDC với dibi8.com.</li>
+</ul>
+<p><em>Affiliate links — không tốn thêm chi phí, giúp dibi8.com hoạt động.</em></p>
+<h2 id="kết-luận">Kết Luận<a hidden class="anchor" aria-hidden="true" href="#kết-luận">#</a></h2>
+<p>Hệ sinh thái MCP 2026 đủ trưởng thành để hữu ích, đủ hỗn loạn để cần curation. Reference servers xuất sắc. Community ecosystem khổng lồ nhưng không đều. Protocol bản thân ổn định.</p>
+<p>Sai lầm phổ biến nhất: developers cài 30+ MCP servers vì free, rồi agent startup 8 giây không biết tại sao. Hoặc cấp community server full-access GitHub PAT vì README không cảnh báo.</p>
+<p><strong>Cure là selection, không phải abundance</strong>. Chọn 5 core stdio servers, thêm 2-3 project-specific per repo, audit trước khi cài, treat MCP servers như security-relevant code that happens to ergonomic. Workflow scales 18 tháng tới.</p>
+<hr>
+<p><strong>Reference</strong>: <a href="https://github.com/modelcontextprotocol/servers">github.com/modelcontextprotocol/servers</a> · <strong>Spec</strong>: MCP 2025-06 · <strong>Stars</strong>: 60K+</p>
+<p>{
+&ldquo;@context&rdquo;: &ldquo;<a href="https://schema.org">https://schema.org</a>&rdquo;,
 &ldquo;@type&rdquo;: &ldquo;Article&rdquo;,
 &ldquo;headline&rdquo;: &ldquo;MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn&rdquo;,
 &ldquo;datePublished&rdquo;: &ldquo;2026-05-26&rdquo;,
@@ -50,22 +503,230 @@ a: &ldquo;Ba quy tắc: (1) Chỉ cài servers dùng hàng tuần — rare integ
 &ldquo;name&rdquo;: &ldquo;Dibi8&rdquo;,
 &ldquo;logo&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;ImageObject&rdquo;,
-&ldquo;url&rdquo;: &ldquo;<a href=https://dibi8.com/logo.png%22>https://dibi8.com/logo.png"</a>
+&ldquo;url&rdquo;: &ldquo;<a href="https://dibi8.com/logo.png%22">https://dibi8.com/logo.png"</a>
 }
 },
 &ldquo;mainEntityOfPage&rdquo;: {
 &ldquo;@type&rdquo;: &ldquo;WebPage&rdquo;,
-&ldquo;@id&rdquo;: &ldquo;<a href=https://dibi8.com/vi/resources/mcp-servers-2026-rankings-selection-guide%22>https://dibi8.com/vi/resources/mcp-servers-2026-rankings-selection-guide"</a>
+&ldquo;@id&rdquo;: &ldquo;<a href="https://dibi8.com/vi/resources/mcp-servers-2026-rankings-selection-guide%22">https://dibi8.com/vi/resources/mcp-servers-2026-rankings-selection-guide"</a>
 }
-}</script></p><h2 id=why-this-matters>Why This Matters<a hidden class=anchor aria-hidden=true href=#why-this-matters>#</a></h2><p>Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here"s why: ### Key Benefits</p><ul><li><strong>Efficiency</strong>: Save time on repetitive tasks</li><li><strong>Quality</strong>: Improve output consistency</li><li><strong>Scalability</strong>: Handle larger workloads</li><li><strong>Cost</strong>: Reduce operational expenses</li></ul><h3 id=real-world-applications>Real-World Applications<a hidden class=anchor aria-hidden=true href=#real-world-applications>#</a></h3><p>Organizations are using similar approaches to: 1. Automate code review processes
+}
+</script></p>
+<h2 id="why-this-matters">Why This Matters<a hidden class="anchor" aria-hidden="true" href="#why-this-matters">#</a></h2>
+<p>Understanding mcp servers 2026: bản đồ hệ sinh thái 100+ + cây quyết định lựa chọn is crucial for modern AI development. Here&quot;s why: ### Key Benefits</p>
+<ul>
+<li><strong>Efficiency</strong>: Save time on repetitive tasks</li>
+<li><strong>Quality</strong>: Improve output consistency</li>
+<li><strong>Scalability</strong>: Handle larger workloads</li>
+<li><strong>Cost</strong>: Reduce operational expenses</li>
+</ul>
+<h3 id="real-world-applications">Real-World Applications<a hidden class="anchor" aria-hidden="true" href="#real-world-applications">#</a></h3>
+<p>Organizations are using similar approaches to: 1. Automate code review processes
 2. Generate documentation automatically
 3. Build internal knowledge bases
-4. Streamline deployment pipelines</p><h3 id=getting-started>Getting Started<a hidden class=anchor aria-hidden=true href=#getting-started>#</a></h3><p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p><ul><li>Identify repetitive tasks</li><li>Measure current time costs</li><li>Define success metrics</li></ul><ol start=2><li><p><strong>Choose Your Approach</strong></p><ul><li>Start with simple automations</li><li>Gradually increase complexity</li><li>Test and iterate</li></ul></li><li><p><strong>Measure Results</strong></p><ul><li>Track time savings</li><li>Monitor quality improvements</li><li>Calculate ROI</li></ul></li></ol><h2 id=conclusion>Conclusion<a hidden class=anchor aria-hidden=true href=#conclusion>#</a></h2><p>MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p><p>For the latest updates and community discussions, join our Telegram channel: <a href=https://t.me/DIBI8_Group>https://t.me/DIBI8_Group</a></p><hr><p><em>Last updated: 2026-09-20</em>
-<em>Read time: ~5 minutes</em></p><hr><h2 id=related-articles>Related Articles<a hidden class=anchor aria-hidden=true href=#related-articles>#</a></h2><ul><li><a href=/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>claude-code-vs-cline</a></li><li><a href=/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>gemini-cli-vs-claude-code</a></li><li><a href=/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>cc-switch-all-in-one-ai-coding-agent-manager</a></li><li><a href=/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>claude-code-vs-aider</a></li><li><a href=/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/>cursor-vs-claude-code</a></li></ul><hr><p><em>Found this helpful? <a href=https://t.me/DIBI8_Group>Join our Telegram community</a> for daily AI tool updates!</em></p><h2 id=frequently-asked-questions-faq>Frequently Asked Questions (FAQ)<a hidden class=anchor aria-hidden=true href=#frequently-asked-questions-faq>#</a></h2><p><strong>问：AI Agent和传统自动化有什么区别？</strong></p><p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p><p><strong>问：如何选择合适的AI Agent框架？</strong></p><p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p><p><strong>问：AI Agent的安全性如何保证？</strong></p><p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p><p><strong>问：AI Agent的学习成本有多高？</strong></p><p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p><p><strong>问：能否自定义AI Agent的行为？</strong></p><p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/vi/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/vi/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/vi/ai-coding-agents/mcp-server-security-audit-2026-real-cases/><span class=title>« Trang trước</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/vi/ai-coding-agents/melotts/><span class=title>Trang tiếp theo »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/vi/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="Sao chép";function s(){t.innerHTML="Đã sao chép!",setTimeout(()=>{t.innerHTML="Sao chép"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+4. Streamline deployment pipelines</p>
+<h3 id="getting-started">Getting Started<a hidden class="anchor" aria-hidden="true" href="#getting-started">#</a></h3>
+<p>To implement this in your workflow: 1. <strong>Assess Your Needs</strong></p>
+<ul>
+<li>Identify repetitive tasks</li>
+<li>Measure current time costs</li>
+<li>Define success metrics</li>
+</ul>
+<ol start="2">
+<li>
+<p><strong>Choose Your Approach</strong></p>
+<ul>
+<li>Start with simple automations</li>
+<li>Gradually increase complexity</li>
+<li>Test and iterate</li>
+</ul>
+</li>
+<li>
+<p><strong>Measure Results</strong></p>
+<ul>
+<li>Track time savings</li>
+<li>Monitor quality improvements</li>
+<li>Calculate ROI</li>
+</ul>
+</li>
+</ol>
+<h2 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h2>
+<p>MCP Servers 2026: Bản Đồ Hệ Sinh Thái 100+ + Cây Quyết Định Lựa Chọn represents an important step forward in AI-powered development. As the ecosystem matures, we expect to see even more powerful capabilities emerge.</p>
+<p>For the latest updates and community discussions, join our Telegram channel: <a href="https://t.me/DIBI8_Group">https://t.me/DIBI8_Group</a></p>
+<hr>
+<p><em>Last updated: 2026-09-20</em>
+<em>Read time: ~5 minutes</em></p>
+<hr>
+<h2 id="related-articles">Related Articles<a hidden class="anchor" aria-hidden="true" href="#related-articles">#</a></h2>
+<ul>
+<li><a href="/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">claude-code-vs-cline</a></li>
+<li><a href="/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">gemini-cli-vs-claude-code</a></li>
+<li><a href="/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">cc-switch-all-in-one-ai-coding-agent-manager</a></li>
+<li><a href="/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">claude-code-vs-aider</a></li>
+<li><a href="/vi/ai-coding-agents/mcp-servers-2026-rankings-selection-guide/">cursor-vs-claude-code</a></li>
+</ul>
+<hr>
+<p><em>Found this helpful? <a href="https://t.me/DIBI8_Group">Join our Telegram community</a> for daily AI tool updates!</em></p>
+<h2 id="frequently-asked-questions-faq">Frequently Asked Questions (FAQ)<a hidden class="anchor" aria-hidden="true" href="#frequently-asked-questions-faq">#</a></h2>
+<p><strong>问：AI Agent和传统自动化有什么区别？</strong></p>
+<p>AI Agent具有自主决策能力，能够根据环境变化调整策略，而传统自动化只能执行预设规则。</p>
+<p><strong>问：如何选择合适的AI Agent框架？</strong></p>
+<p>考虑因素包括：部署难度、社区活跃度、扩展性、成本。Claude Code适合开发者，AutoGen适合复杂多智能体场景。</p>
+<p><strong>问：AI Agent的安全性如何保证？</strong></p>
+<p>实施权限最小化、输入验证、审计日志、以及定期安全评估。</p>
+<p><strong>问：AI Agent的学习成本有多高？</strong></p>
+<p>入门级使用3-5天，高级配置需要2-4周，取决于团队技术基础。</p>
+<p><strong>问：能否自定义AI Agent的行为？</strong></p>
+<p>是的，通过提示工程、工具定义、记忆系统、以及行为约束来定制。</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/vi/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/vi/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/vi/ai-coding-agents/mcp-server-security-audit-2026-real-cases/">
+    <span class="title">« Trang trước</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/vi/ai-coding-agents/melotts/">
+    <span class="title">Trang tiếp theo »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/vi/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'Sao chép';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'Đã sao chép!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'Sao chép';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>

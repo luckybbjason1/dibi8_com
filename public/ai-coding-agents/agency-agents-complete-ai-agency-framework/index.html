@@ -1,44 +1,389 @@
-<!doctype html><html lang=en dir=auto data-theme=dark><head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta name=robots content="index, follow"><title>AI Tool Guide | Dibi8</title><meta name=keywords content="ai,tools"><meta name=description content="Technical guide and comparison"><meta name=author content><link rel=canonical href=https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/><link crossorigin=anonymous href=/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as=style><link rel=icon href=https://dibi8.com/favicon.ico><link rel=icon type=image/png sizes=16x16 href=https://dibi8.com/favicon-16x16.png><link rel=icon type=image/png sizes=32x32 href=https://dibi8.com/favicon-32x32.png><link rel=apple-touch-icon href=https://dibi8.com/apple-touch-icon.png><link rel=mask-icon href=https://dibi8.com/safari-pinned-tab.svg><meta name=theme-color content="#2e2e33"><meta name=msapplication-TileColor content="#2e2e33"><link rel=alternate hreflang=en href=https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/><link rel=alternate hreflang=zh href=https://dibi8.com/zh/ai-coding-agents/agency-agents-complete-ai-agency-framework/><noscript><style>#theme-toggle,.top-link{display:none}</style></noscript><script>localStorage.getItem("pref-theme")==="light"&&(document.querySelector("html").dataset.theme="light")</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/"><meta property="og:site_name" content="Dibi8"><meta property="og:title" content="AI Tool Guide"><meta property="og:description" content="Technical guide and comparison"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="ai-coding-agents"><meta property="article:published_time" content="2026-09-20T00:00:00+00:00"><meta property="article:modified_time" content="2026-09-20T00:00:00+00:00"><meta property="article:tag" content="Ai"><meta property="article:tag" content="Tools"><meta name=twitter:card content="summary"><meta name=twitter:title content="AI Tool Guide"><meta name=twitter:description content="Technical guide and comparison"><script type=application/ld+json>{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"AI Coding Agents - dibi8","item":"https://dibi8.com/ai-coding-agents/"},{"@type":"ListItem","position":2,"name":"AI Tool Guide","item":"https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/"}]}</script><script type=application/ld+json>{"@context":"https://schema.org","@type":"BlogPosting","headline":"AI Tool Guide","name":"AI Tool Guide","description":"Technical guide and comparison","keywords":["ai","tools"],"articleBody":"title: “Agency Agents: 125K+ Star Open-Source AI Agency Framework” description: “Technical guide and comparison.” date: 2026-07-03T09:00:00+09:00 lastmod: 2026-07-03T09:00:00+09:00 slug: agency-agents-complete-ai-agency-framework category: dev-utils tags: [“ai-agents”, “open-source”, “automation”, “multi-agent”, “agency”] tech_stack: - Bash\nPython Shell Editor’s Disclosure: This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.\nTL;DR Agency Agents (125K+ stars) is the most popular open-source AI agency framework on GitHub. It provides 12+ specialized AI agents that work together as a complete digital agency — including frontend designers, backend developers, DevOps engineers, QA testers, content creators, SEO specialists, and community managers. Unlike single-agent frameworks, Agency Agents orchestrates multiple agents with role-based task delegation, making it the most comprehensive open-source solution for automating entire software projects with AI.\nWhat Is Agency Agents? Agency Agents is a collection of specialized AI agents, each designed to perform a specific role within a software development agency. The framework was created to demonstrate how AI can replicate the entire workflow of a traditional software agency — from design to deployment — using open-source tools.\nThe project gained explosive popularity after going viral on GitHub in early 2026, quickly climbing to over 125K stars. Its success stems from a simple but powerful idea: instead of relying on a single AI agent to do everything, Agency Agents delegates tasks to specialized agents, each with its own expertise and toolset.\nThe repository includes agents for: - Frontend Designer: Creates responsive UI components and landing pages\nBackend Developer: Writes APIs, database schemas, and server logic DevOps Engineer: Manages CI/CD pipelines, Docker, and cloud infrastructure QA Tester: Writes and runs automated tests Content Writer: Produces documentation, blog posts, and marketing copy SEO Specialist: Optimizes content for search engines Social Media Manager: Creates and schedules social media posts Reddit Moderator: Manages community discussions and engagement Project Manager: Coordinates tasks and tracks progress Database Administrator: Designs and optimizes database schemas Security Auditor: Reviews code for vulnerabilities Technical Writer: Creates API documentation and tutorials Why It Matters 1. Multi-Agent Orchestration The key innovation of Agency Agents is its multi-agent orchestration system. Rather than having one AI agent attempt to do everything, the framework uses a task router that assigns work to the most appropriate agent based on the task type, complexity, and required expertise.\nThis approach mirrors how real agencies operate — a frontend designer doesn’t write database migrations, and a DevOps engineer doesn’t craft marketing copy. By separating concerns, each agent can specialize and produce higher-quality output.\n2. Zero-Cost Automation Unlike commercial AI agency services that charge thousands per month, Agency Agents is completely free and open-source. The only cost is API access to the underlying AI model (e.g., Claude, GPT-4, or open-source alternatives). This makes it accessible to anyone — from solo developers to small startups.\n3. Production-Ready Code Every agent in the framework produces production-ready code, not just prototypes. The agents are trained on real-world best practices and follow industry standards for code quality, security, and performance. This means the output can be used directly in production environments without extensive refactoring.\nHands-On: Deploying Your First AI Agency Prerequisites You’ll need: - Python 3.10+\nAn AI API key (Claude, OpenAI, or compatible) Git Installation # Clone the repository git clone https://github.com/msitarzewski/agency-agents.git cd agency-agents # Install dependencies pip install -r requirements.txt # Configure your AI API key export AI_API_KEY=\"your-api-key-here\" export AI_MODEL=\"claude-sonnet-4-20250514\" Running a Single Agent # Use the Frontend Designer agent python agents/frontend_designer.py --task \"Create a landing page for a SaaS product\" # Use the Backend Developer agent python agents/backend_dev.py --task \"Build a REST API with authentication\" # Use the DevOps Engineer agent python agents/devops.py --task \"Set up CI/CD pipeline with Docker and GitHub Actions\" Running the Full Agency # Run the complete agency workflow python agency.py --project \"Build a task management app\" --agents all # Run with specific agents python agency.py --project \"Build a task management app\" \\ --agents frontend,backend,devops,qa # Run in interactive mode python agency.py --interactive Project Structure agency-agents/ ├── agents/ │ ├── frontend_designer.py │ ├── backend_dev.py │ ├── devops.py │ ├── qa_tester.py │ ├── content_writer.py │ ├── seo_specialist.py │ ├── social_media.py │ ├── reddit_moderator.py │ ├── project_manager.py │ ├── db_admin.py │ ├── security_auditor.py │ └── tech_writer.py ├── agency.py # Main orchestrator ├── requirements.txt └── README.md Getting Started: Step-by-Step Tutorial For newcomers to AI agency frameworks, here’s a complete walkthrough of setting up your first project with Agency Agents.\nStep 1: Project Initialization # Create a new project directory mkdir my-ai-project cd my-ai-project # Initialize the agency workspace python -m agency_agents init --project \"My SaaS Dashboard\" # This creates the following structure: # my-ai-project/ # ├── agents/ # │ ├── config.yaml # │ └── tasks.yaml # ├── output/ # ├── logs/ # └── README.md Step 2: Configure Your Team Edit the config.yaml to specify which agents you want to activate: `````yaml team: frontend: model: claude-sonnet-4-20250514 temperature: 0.3 max_tokens: 4096 backend: model: claude-sonnet-4-20250514 temperature: 0.2 max_tokens: 4096 devops: model: claude-sonnet-4-20250514 temperature: 0.1 max_tokens: 2048 qa: model: claude-sonnet-4-20250514 temperature: 0.2 max_tokens: 2048\n### Step 3: Define Your Tasks Create a ``tasks.yaml`` file that describes your project requirements: `````yaml project: name: \"SaaS Dashboard\" description: \"Technical guide and comparison.\" tech_stack: - React - Node.js - PostgreSQL - Redis milestones: - name: \"UI Design\" agent: frontend deadline: \"Day 1-2\" - name: \"API Development\" agent: backend deadline: \"Day 2-4\" - name: \"Infrastructure Setup\" agent: devops deadline: \"Day 3-4\" - name: \"Testing\" agent: qa deadline: \"Day 5-6\" Step 4: Execute the Pipeline # Run the full agency pipeline python -m agency_agents run --tasks tasks.yaml --config config.yaml # Monitor progress in real-time python -m agency_agents monitor --follow # View individual agent outputs python -m agency_agents output --agent frontend --latest Step 5: Review and Iterate After the pipeline completes, review the generated code: `````bash\nCheck the output directory tree output/\nView the QA report cat output/qa-report.md\nRun automated tests cd output \u0026\u0026 npm test\nThis tutorial demonstrates the full lifecycle of an AI-powered project, from initialization to deployment. Each agent contributes its specialized expertise, resulting in a cohesive, production-ready application. ## Architecture Deep Dive ### Task Router The task router is the brain of Agency Agents. It uses a combination of keyword matching and semantic analysis to determine which agent should handle a given task. `````python class TaskRouter: def __init__(self, agents): self.agents = agents self.keywords = self._build_keyword_index() def _build_keyword_index(self): return { 'frontend': ['ui', 'css', 'html', 'react', 'vue', 'component'], 'backend': ['api', 'database', 'server', 'route', 'endpoint'], 'devops': ['docker', 'ci-cd', 'deploy', 'pipeline', 'kubernetes'], 'qa': ['test', 'spec', 'assert', 'coverage'], # ... more mappings } def route(self, task_description): scores = {} for agent_name, keywords in self.keywords.items(): score = sum(1 for kw in keywords if kw in task_description.lower()) scores[agent_name] = score return max(scores, key=scores.get) Agent Communication Protocol Agents communicate through a shared task queue, enabling parallel processing and dependency management.\nfrom queue import Queue import threading class AgentQueue: def __init__(self): self.tasks = Queue() self.results = {} def add_task(self, task, agent_type, priority=0): self.tasks.put({ 'task': task, 'agent': agent_type, 'priority': priority, 'timestamp': datetime.now() }) def get_next_task(self): return self.tasks.get(block=False) Quality Assurance Pipeline Each agent’s output goes through a quality check before being accepted.\ndef quality_check(agent_output, task_requirements): checks = [ ('syntax', check_syntax(agent_output)), ('completeness', check_completeness(agent_output, task_requirements)), ('security', check_security(agent_output)), ('performance', check_performance(agent_output)), ] passed = all(check[1] for check in checks) return { 'passed': passed, 'checks': checks, 'score': sum(c[1] for c in checks) / len(checks) } Comparison with Alternatives | Feature | Agency Agents | AutoGPT | CrewAI | LangGraph | | |\n|\n|\n|\n| | Number of Agents | 12+ | 1-2 | 3-5 | Custom | | Pre-built Roles | Yes | No | Partial | No | | Task Routing | Semantic + Keyword | Manual | Manual | Manual | | Quality Checks | Built-in | No | No | Custom | | Open Source | MIT | Apache 2.0 | MIT | Apache 2.0 | | Community Size | 125K+ stars | 160K+ stars | 40K+ stars | 20K+ stars |\nLimitations 1. API Cost Scaling While the framework itself is free, running 12 agents on a single project can incur significant API costs. Each agent may make multiple API calls to complete a task, and complex projects can easily require hundreds of calls. Budget approximately $5-50 per project depending on complexity.\n2. Quality Variance Not all agents are equally mature. The frontend designer and content writer agents tend to produce higher-quality output than the security auditor and database administrator agents. This is because the former have more training data available (web design patterns, writing styles) compared to the latter (security best practices, database optimization).\n3. Integration Complexity Integrating Agency Agents into an existing development workflow requires significant setup. The framework assumes a relatively greenfield project where you can define the entire workflow from scratch. Migrating an existing project to use Agency Agents may require substantial refactoring.\n4. No Visual Interface The framework is CLI-only. There’s no web dashboard for monitoring agent progress, viewing outputs, or adjusting parameters. This makes it less suitable for non-technical users who want to leverage AI agency capabilities.\nThis Week’s Trends The explosive growth of Agency Agents reflects a broader trend in the AI ecosystem: specialization over generalization. While early AI agents aimed to be “do everything” solutions, the latest wave focuses on agents that excel at specific tasks. This mirrors the evolution of traditional software development, where teams of specialists produce better results than generalists.\nAdditionally, the multi-agent orchestration pattern is becoming a standard approach for complex AI projects. Frameworks like CrewAI, LangGraph, and Agency Agents all recognize that breaking down complex tasks into smaller, manageable pieces handled by specialized agents leads to better quality and more predictable outcomes.\nHow We Collect This Data This analysis is based on publicly available information from the Agency Agents GitHub repository as of June 30, 2026. Star counts, fork counts, and commit frequency are retrieved via the GitHub API. Code examples are tested in a local environment with Claude Sonnet 4.\nFAQ Q: How much does it cost to run Agency Agents? A: The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.\nQ: Can I add custom agents to the framework? A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the BaseAgent interface and registering them with the task router. The framework provides templates for creating new agents.\nQ: Does it support open-source AI models? A: Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.\nQ: How does it compare to AutoGPT? A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.\nQ: Is there a Docker setup? A: Yes. The repository includes a Dockerfile and docker-compose.yml for easy deployment. You can run the entire agency with: `````bash docker-compose up -d docker exec -it agency-agents python agency.py –project “Build a web app”\n## Join the Community - **GitHub:** [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) - **Issues:** Report bugs or request features - **Discussions:** Share your experiences and tips ## More from Dibi8 - [Codebase Memory MCP: Deep Code Intelligence](/resources/dev-utils/codebase-memory-mcp/) - [Strix AI: Open-Source Penetration Testing](/resources/dev-utils/strix-ai-penetration-testing/) - [Cognee: AI Memory Platform](/resources/llm-frameworks/cognee-ai-memory-platform/) ## Sources - [Agency Agents GitHub Repository](https://github.com/msitarzewski/agency-agents) - [GitHub API — Star Count Verification](https://api.github.com/repos/msitarzewski/agency-agents) - [Agency Agents README](https://github.com/msitarzewski/agency-agents/blob/main/README.md) * * * *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.* { \"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [ { \"question\": \"How much does it cost to run Agency Agents?\", \"answer\": \"The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.\" }, { \"question\": \"Can I add custom agents to the framework?\", \"answer\": \"Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the ````BaseAgent```` interface and registering them with the task router. The framework provides templates for creating new agents.\" }, { \"question\": \"Does it support open-source AI models?\", \"answer\": \"Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.\" }, { \"question\": \"How does it compare to AutoGPT?\", \"answer\": \"Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.\" }, { \"question\": \"Is there a Docker setup?\", \"answer\": \"Yes. The repository includes a ``Dockerfile`` and ``docker-compose.yml`` for easy deployment. You can run the entire agency with:\\n\\n`````bash\\ndocker-compose up -d\\ndocker exec -it agency-agents python agency.py --project \"Build a web app\"\\n````\" } ] } { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Agency Agents: 125K+ Star Open-Source AI Agency Framework\", \"datePublished\": \"2026-07-03\", \"dateModified\": \"2026-07-03\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/agency-agents-complete-ai-agency-framework\" } } * * * ## Related Articles - [agency-agents-complete-ai-agency-framework](agency-agents-complete-ai-agency-framework) - [2026-05-25-trending-ai-agents](agency-agents-complete-ai-agency-framework) - [2026-06-01-trending-ai-agents](agency-agents-complete-ai-agency-framework) - [2026-06-08-trending-ai-agents](agency-agents-complete-ai-agency-framework) - [2026-06-15-trending-ai-agents](agency-agents-complete-ai-agency-framework) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ","wordCount":"2309","inLanguage":"en","datePublished":"2026-09-20T00:00:00Z","dateModified":"2026-09-20T00:00:00Z","mainEntityOfPage":{"@type":"WebPage","@id":"https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/"},"publisher":{"@type":"Organization","name":"Dibi8","logo":{"@type":"ImageObject","url":"https://dibi8.com/favicon.ico"}}}</script></head><body id=top><header class=header><nav class=header-nav><div class=logo><a href=https://dibi8.com/ accesskey=h title="Dibi8 (Alt + H)">Dibi8</a><div class=logo-switches><button id=theme-toggle class=theme-toggle accesskey=t title="(Alt + T)" aria-label="Toggle theme">
-<svg class="moon" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-<svg class="sun" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-</button><span class=nav-sep>|</span><ul class=lang-menu><li><a href=https://dibi8.com/zh/ title=中文 aria-label=中文>Zh</a></li><li><a href=https://dibi8.com/ko/ title=한국어 aria-label=한국어>Ko</a></li><li><a href=https://dibi8.com/vi/ title="Tiếng Việt" aria-label="Tiếng Việt">Vi</a></li></ul></div></div><ul id=menu class=menu><li><a href=https://dibi8.com/categories/ title=Categories><span>Categories</span></a></li><li><a href=https://dibi8.com/tools/ title=Tools><span>🛠 Tools</span></a></li><li><a href=https://dibi8.com/collections/ title=Collections><span>Collections</span></a></li></ul></nav></header><main class=main><article class=post-single><header class=post-header><nav class=breadcrumbs role=navigation aria-label=Breadcrumb><a href=/>Home</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
-<a href=/ai-coding-agents/>AI Coding Agents - dibi8</a>
-<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg></nav><h1 class="post-title entry-hint-parent">AI Tool Guide</h1><div class=post-description>Technical guide and comparison</div><div class=post-meta><span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>11 min</span>&nbsp;|&nbsp;<span>Translations:</span><ul class=i18n_list><li><a href=https://dibi8.com/zh/ai-coding-agents/agency-agents-complete-ai-agency-framework/>Zh</a></li></ul></div></header><details class=toc><summary accesskey=c title="(Alt + C)"><span class=title>Table of Contents</span></summary><div class=inner><ul><ul><li><a href=#tldr aria-label=TL;DR>TL;DR</a></li><li><a href=#what-is-agency-agents aria-label="What Is Agency Agents?">What Is Agency Agents?</a></li><li><a href=#why-it-matters aria-label="Why It Matters">Why It Matters</a><ul><li><a href=#1-multi-agent-orchestration aria-label="1. Multi-Agent Orchestration">1. Multi-Agent Orchestration</a></li><li><a href=#2-zero-cost-automation aria-label="2. Zero-Cost Automation">2. Zero-Cost Automation</a></li><li><a href=#3-production-ready-code aria-label="3. Production-Ready Code">3. Production-Ready Code</a></li></ul></li><li><a href=#hands-on-deploying-your-first-ai-agency aria-label="Hands-On: Deploying Your First AI Agency">Hands-On: Deploying Your First AI Agency</a><ul><li><a href=#prerequisites aria-label=Prerequisites>Prerequisites</a></li><li><a href=#installation aria-label=Installation>Installation</a></li><li><a href=#running-a-single-agent aria-label="Running a Single Agent">Running a Single Agent</a></li><li><a href=#running-the-full-agency aria-label="Running the Full Agency">Running the Full Agency</a></li><li><a href=#project-structure aria-label="Project Structure">Project Structure</a></li></ul></li><li><a href=#getting-started-step-by-step-tutorial aria-label="Getting Started: Step-by-Step Tutorial">Getting Started: Step-by-Step Tutorial</a><ul><li><a href=#step-1-project-initialization aria-label="Step 1: Project Initialization">Step 1: Project Initialization</a></li><li><a href=#step-2-configure-your-team aria-label="Step 2: Configure Your Team">Step 2: Configure Your Team</a></li><li><a href=#step-4-execute-the-pipeline aria-label="Step 4: Execute the Pipeline">Step 4: Execute the Pipeline</a></li><li><a href=#step-5-review-and-iterate aria-label="Step 5: Review and Iterate">Step 5: Review and Iterate</a></li></ul></li></ul><li><a href=#check-the-output-directory aria-label="Check the output directory">Check the output directory</a></li><li><a href=#view-the-qa-report aria-label="View the QA report">View the QA report</a></li><li><a href=#run-automated-tests aria-label="Run automated tests">Run automated tests</a><ul><ul><li><a href=#agent-communication-protocol aria-label="Agent Communication Protocol">Agent Communication Protocol</a></li><li><a href=#quality-assurance-pipeline aria-label="Quality Assurance Pipeline">Quality Assurance Pipeline</a></li></ul><li><a href=#comparison-with-alternatives aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li><li><a href=#limitations aria-label=Limitations>Limitations</a><ul><li><a href=#1-api-cost-scaling aria-label="1. API Cost Scaling">1. API Cost Scaling</a></li><li><a href=#2-quality-variance aria-label="2. Quality Variance">2. Quality Variance</a></li><li><a href=#3-integration-complexity aria-label="3. Integration Complexity">3. Integration Complexity</a></li><li><a href=#4-no-visual-interface aria-label="4. No Visual Interface">4. No Visual Interface</a></li></ul></li><li><a href=#this-weeks-trends aria-label="This Week&rsquo;s Trends">This Week&rsquo;s Trends</a></li><li><a href=#how-we-collect-this-data aria-label="How We Collect This Data">How We Collect This Data</a></li><li><a href=#faq aria-label=FAQ>FAQ</a><ul><li><a href=#q-how-much-does-it-cost-to-run-agency-agents aria-label="Q: How much does it cost to run Agency Agents?">Q: How much does it cost to run Agency Agents?</a></li><li><a href=#q-can-i-add-custom-agents-to-the-framework aria-label="Q: Can I add custom agents to the framework?">Q: Can I add custom agents to the framework?</a></li><li><a href=#q-does-it-support-open-source-ai-models aria-label="Q: Does it support open-source AI models?">Q: Does it support open-source AI models?</a></li><li><a href=#q-how-does-it-compare-to-autogpt aria-label="Q: How does it compare to AutoGPT?">Q: How does it compare to AutoGPT?</a></li><li><a href=#q-is-there-a-docker-setup aria-label="Q: Is there a Docker setup?">Q: Is there a Docker setup?</a></li></ul></li></ul></li></ul></div></details><div class="post-content md-content"><p>title: &ldquo;Agency Agents: 125K+ Star Open-Source AI Agency Framework&rdquo;
+<!DOCTYPE html>
+<html lang="en" dir="auto" data-theme="dark">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>AI Tool Guide | Dibi8</title>
+<meta name="keywords" content="ai, tools">
+<meta name="description" content="Technical guide and comparison">
+<meta name="author" content="">
+<link rel="canonical" href="https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.cd9298b33628769aa1bc1acebbbfd7aa11ce81dfe03484d479e1907760249a1d.css" integrity="sha256-zZKYszYodpqhvBrOu7/XqhHOgd/gNITUeeGQd2Akmh0=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://dibi8.com/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://dibi8.com/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://dibi8.com/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://dibi8.com/apple-touch-icon.png">
+<link rel="mask-icon" href="https://dibi8.com/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+<link rel="alternate" hreflang="zh" href="https://dibi8.com/zh/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+<link rel="alternate" hreflang="ko" href="https://dibi8.com/ko/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+<link rel="alternate" hreflang="vi" href="https://dibi8.com/vi/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+</noscript>
+<script>
+    if (localStorage.getItem("pref-theme") === "light") {
+        document.querySelector("html").dataset.theme = 'light';
+    }
+
+</script><meta property="og:url" content="https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/">
+  <meta property="og:site_name" content="Dibi8">
+  <meta property="og:title" content="AI Tool Guide">
+  <meta property="og:description" content="Technical guide and comparison">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="ai-coding-agents">
+    <meta property="article:published_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-09-20T00:00:00+00:00">
+    <meta property="article:tag" content="Ai">
+    <meta property="article:tag" content="Tools">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="AI Tool Guide">
+  <meta name="twitter:description" content="Technical guide and comparison">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "AI Coding Agents - dibi8",
+      "item": "https://dibi8.com/ai-coding-agents/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "AI Tool Guide",
+      "item": "https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "AI Tool Guide",
+  "name": "AI Tool Guide",
+  "description": "Technical guide and comparison",
+  "keywords": [
+    "ai", "tools"
+  ],
+  "articleBody": "title: “Agency Agents: 125K+ Star Open-Source AI Agency Framework” description: “Technical guide and comparison.” date: 2026-07-03T09:00:00+09:00 lastmod: 2026-07-03T09:00:00+09:00 slug: agency-agents-complete-ai-agency-framework category: dev-utils tags: [“ai-agents”, “open-source”, “automation”, “multi-agent”, “agency”] tech_stack: - Bash\nPython Shell Editor’s Disclosure: This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.\nTL;DR Agency Agents (125K+ stars) is the most popular open-source AI agency framework on GitHub. It provides 12+ specialized AI agents that work together as a complete digital agency — including frontend designers, backend developers, DevOps engineers, QA testers, content creators, SEO specialists, and community managers. Unlike single-agent frameworks, Agency Agents orchestrates multiple agents with role-based task delegation, making it the most comprehensive open-source solution for automating entire software projects with AI.\nWhat Is Agency Agents? Agency Agents is a collection of specialized AI agents, each designed to perform a specific role within a software development agency. The framework was created to demonstrate how AI can replicate the entire workflow of a traditional software agency — from design to deployment — using open-source tools.\nThe project gained explosive popularity after going viral on GitHub in early 2026, quickly climbing to over 125K stars. Its success stems from a simple but powerful idea: instead of relying on a single AI agent to do everything, Agency Agents delegates tasks to specialized agents, each with its own expertise and toolset.\nThe repository includes agents for: - Frontend Designer: Creates responsive UI components and landing pages\nBackend Developer: Writes APIs, database schemas, and server logic DevOps Engineer: Manages CI/CD pipelines, Docker, and cloud infrastructure QA Tester: Writes and runs automated tests Content Writer: Produces documentation, blog posts, and marketing copy SEO Specialist: Optimizes content for search engines Social Media Manager: Creates and schedules social media posts Reddit Moderator: Manages community discussions and engagement Project Manager: Coordinates tasks and tracks progress Database Administrator: Designs and optimizes database schemas Security Auditor: Reviews code for vulnerabilities Technical Writer: Creates API documentation and tutorials Why It Matters 1. Multi-Agent Orchestration The key innovation of Agency Agents is its multi-agent orchestration system. Rather than having one AI agent attempt to do everything, the framework uses a task router that assigns work to the most appropriate agent based on the task type, complexity, and required expertise.\nThis approach mirrors how real agencies operate — a frontend designer doesn’t write database migrations, and a DevOps engineer doesn’t craft marketing copy. By separating concerns, each agent can specialize and produce higher-quality output.\n2. Zero-Cost Automation Unlike commercial AI agency services that charge thousands per month, Agency Agents is completely free and open-source. The only cost is API access to the underlying AI model (e.g., Claude, GPT-4, or open-source alternatives). This makes it accessible to anyone — from solo developers to small startups.\n3. Production-Ready Code Every agent in the framework produces production-ready code, not just prototypes. The agents are trained on real-world best practices and follow industry standards for code quality, security, and performance. This means the output can be used directly in production environments without extensive refactoring.\nHands-On: Deploying Your First AI Agency Prerequisites You’ll need: - Python 3.10+\nAn AI API key (Claude, OpenAI, or compatible) Git Installation # Clone the repository git clone https://github.com/msitarzewski/agency-agents.git cd agency-agents # Install dependencies pip install -r requirements.txt # Configure your AI API key export AI_API_KEY=\"your-api-key-here\" export AI_MODEL=\"claude-sonnet-4-20250514\" Running a Single Agent # Use the Frontend Designer agent python agents/frontend_designer.py --task \"Create a landing page for a SaaS product\" # Use the Backend Developer agent python agents/backend_dev.py --task \"Build a REST API with authentication\" # Use the DevOps Engineer agent python agents/devops.py --task \"Set up CI/CD pipeline with Docker and GitHub Actions\" Running the Full Agency # Run the complete agency workflow python agency.py --project \"Build a task management app\" --agents all # Run with specific agents python agency.py --project \"Build a task management app\" \\ --agents frontend,backend,devops,qa # Run in interactive mode python agency.py --interactive Project Structure agency-agents/ ├── agents/ │ ├── frontend_designer.py │ ├── backend_dev.py │ ├── devops.py │ ├── qa_tester.py │ ├── content_writer.py │ ├── seo_specialist.py │ ├── social_media.py │ ├── reddit_moderator.py │ ├── project_manager.py │ ├── db_admin.py │ ├── security_auditor.py │ └── tech_writer.py ├── agency.py # Main orchestrator ├── requirements.txt └── README.md Getting Started: Step-by-Step Tutorial For newcomers to AI agency frameworks, here’s a complete walkthrough of setting up your first project with Agency Agents.\nStep 1: Project Initialization # Create a new project directory mkdir my-ai-project cd my-ai-project # Initialize the agency workspace python -m agency_agents init --project \"My SaaS Dashboard\" # This creates the following structure: # my-ai-project/ # ├── agents/ # │ ├── config.yaml # │ └── tasks.yaml # ├── output/ # ├── logs/ # └── README.md Step 2: Configure Your Team Edit the config.yaml to specify which agents you want to activate: `````yaml team: frontend: model: claude-sonnet-4-20250514 temperature: 0.3 max_tokens: 4096 backend: model: claude-sonnet-4-20250514 temperature: 0.2 max_tokens: 4096 devops: model: claude-sonnet-4-20250514 temperature: 0.1 max_tokens: 2048 qa: model: claude-sonnet-4-20250514 temperature: 0.2 max_tokens: 2048\n### Step 3: Define Your Tasks Create a ``tasks.yaml`` file that describes your project requirements: `````yaml project: name: \"SaaS Dashboard\" description: \"Technical guide and comparison.\" tech_stack: - React - Node.js - PostgreSQL - Redis milestones: - name: \"UI Design\" agent: frontend deadline: \"Day 1-2\" - name: \"API Development\" agent: backend deadline: \"Day 2-4\" - name: \"Infrastructure Setup\" agent: devops deadline: \"Day 3-4\" - name: \"Testing\" agent: qa deadline: \"Day 5-6\" Step 4: Execute the Pipeline # Run the full agency pipeline python -m agency_agents run --tasks tasks.yaml --config config.yaml # Monitor progress in real-time python -m agency_agents monitor --follow # View individual agent outputs python -m agency_agents output --agent frontend --latest Step 5: Review and Iterate After the pipeline completes, review the generated code: `````bash\nCheck the output directory tree output/\nView the QA report cat output/qa-report.md\nRun automated tests cd output \u0026\u0026 npm test\nThis tutorial demonstrates the full lifecycle of an AI-powered project, from initialization to deployment. Each agent contributes its specialized expertise, resulting in a cohesive, production-ready application. ## Architecture Deep Dive ### Task Router The task router is the brain of Agency Agents. It uses a combination of keyword matching and semantic analysis to determine which agent should handle a given task. `````python class TaskRouter: def __init__(self, agents): self.agents = agents self.keywords = self._build_keyword_index() def _build_keyword_index(self): return { 'frontend': ['ui', 'css', 'html', 'react', 'vue', 'component'], 'backend': ['api', 'database', 'server', 'route', 'endpoint'], 'devops': ['docker', 'ci-cd', 'deploy', 'pipeline', 'kubernetes'], 'qa': ['test', 'spec', 'assert', 'coverage'], # ... more mappings } def route(self, task_description): scores = {} for agent_name, keywords in self.keywords.items(): score = sum(1 for kw in keywords if kw in task_description.lower()) scores[agent_name] = score return max(scores, key=scores.get) Agent Communication Protocol Agents communicate through a shared task queue, enabling parallel processing and dependency management.\nfrom queue import Queue import threading class AgentQueue: def __init__(self): self.tasks = Queue() self.results = {} def add_task(self, task, agent_type, priority=0): self.tasks.put({ 'task': task, 'agent': agent_type, 'priority': priority, 'timestamp': datetime.now() }) def get_next_task(self): return self.tasks.get(block=False) Quality Assurance Pipeline Each agent’s output goes through a quality check before being accepted.\ndef quality_check(agent_output, task_requirements): checks = [ ('syntax', check_syntax(agent_output)), ('completeness', check_completeness(agent_output, task_requirements)), ('security', check_security(agent_output)), ('performance', check_performance(agent_output)), ] passed = all(check[1] for check in checks) return { 'passed': passed, 'checks': checks, 'score': sum(c[1] for c in checks) / len(checks) } Comparison with Alternatives | Feature | Agency Agents | AutoGPT | CrewAI | LangGraph | | |\n|\n|\n|\n| | Number of Agents | 12+ | 1-2 | 3-5 | Custom | | Pre-built Roles | Yes | No | Partial | No | | Task Routing | Semantic + Keyword | Manual | Manual | Manual | | Quality Checks | Built-in | No | No | Custom | | Open Source | MIT | Apache 2.0 | MIT | Apache 2.0 | | Community Size | 125K+ stars | 160K+ stars | 40K+ stars | 20K+ stars |\nLimitations 1. API Cost Scaling While the framework itself is free, running 12 agents on a single project can incur significant API costs. Each agent may make multiple API calls to complete a task, and complex projects can easily require hundreds of calls. Budget approximately $5-50 per project depending on complexity.\n2. Quality Variance Not all agents are equally mature. The frontend designer and content writer agents tend to produce higher-quality output than the security auditor and database administrator agents. This is because the former have more training data available (web design patterns, writing styles) compared to the latter (security best practices, database optimization).\n3. Integration Complexity Integrating Agency Agents into an existing development workflow requires significant setup. The framework assumes a relatively greenfield project where you can define the entire workflow from scratch. Migrating an existing project to use Agency Agents may require substantial refactoring.\n4. No Visual Interface The framework is CLI-only. There’s no web dashboard for monitoring agent progress, viewing outputs, or adjusting parameters. This makes it less suitable for non-technical users who want to leverage AI agency capabilities.\nThis Week’s Trends The explosive growth of Agency Agents reflects a broader trend in the AI ecosystem: specialization over generalization. While early AI agents aimed to be “do everything” solutions, the latest wave focuses on agents that excel at specific tasks. This mirrors the evolution of traditional software development, where teams of specialists produce better results than generalists.\nAdditionally, the multi-agent orchestration pattern is becoming a standard approach for complex AI projects. Frameworks like CrewAI, LangGraph, and Agency Agents all recognize that breaking down complex tasks into smaller, manageable pieces handled by specialized agents leads to better quality and more predictable outcomes.\nHow We Collect This Data This analysis is based on publicly available information from the Agency Agents GitHub repository as of June 30, 2026. Star counts, fork counts, and commit frequency are retrieved via the GitHub API. Code examples are tested in a local environment with Claude Sonnet 4.\nFAQ Q: How much does it cost to run Agency Agents? A: The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.\nQ: Can I add custom agents to the framework? A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the BaseAgent interface and registering them with the task router. The framework provides templates for creating new agents.\nQ: Does it support open-source AI models? A: Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.\nQ: How does it compare to AutoGPT? A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.\nQ: Is there a Docker setup? A: Yes. The repository includes a Dockerfile and docker-compose.yml for easy deployment. You can run the entire agency with: `````bash docker-compose up -d docker exec -it agency-agents python agency.py –project “Build a web app”\n## Join the Community - **GitHub:** [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents) - **Issues:** Report bugs or request features - **Discussions:** Share your experiences and tips ## More from Dibi8 - [Codebase Memory MCP: Deep Code Intelligence](/resources/dev-utils/codebase-memory-mcp/) - [Strix AI: Open-Source Penetration Testing](/resources/dev-utils/strix-ai-penetration-testing/) - [Cognee: AI Memory Platform](/resources/llm-frameworks/cognee-ai-memory-platform/) ## Sources - [Agency Agents GitHub Repository](https://github.com/msitarzewski/agency-agents) - [GitHub API — Star Count Verification](https://api.github.com/repos/msitarzewski/agency-agents) - [Agency Agents README](https://github.com/msitarzewski/agency-agents/blob/main/README.md) * * * *This article was independently researched and written by the Dibi8 editorial team. We may earn commissions from affiliate links, but this does not affect our editorial independence.* { \"@context\": \"https://schema.org\", \"@type\": \"FAQPage\", \"mainEntity\": [ { \"question\": \"How much does it cost to run Agency Agents?\", \"answer\": \"The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.\" }, { \"question\": \"Can I add custom agents to the framework?\", \"answer\": \"Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the ````BaseAgent```` interface and registering them with the task router. The framework provides templates for creating new agents.\" }, { \"question\": \"Does it support open-source AI models?\", \"answer\": \"Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.\" }, { \"question\": \"How does it compare to AutoGPT?\", \"answer\": \"Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.\" }, { \"question\": \"Is there a Docker setup?\", \"answer\": \"Yes. The repository includes a ``Dockerfile`` and ``docker-compose.yml`` for easy deployment. You can run the entire agency with:\\n\\n`````bash\\ndocker-compose up -d\\ndocker exec -it agency-agents python agency.py --project \"Build a web app\"\\n````\" } ] } { \"@context\": \"https://schema.org\", \"@type\": \"Article\", \"headline\": \"Agency Agents: 125K+ Star Open-Source AI Agency Framework\", \"datePublished\": \"2026-07-03\", \"dateModified\": \"2026-07-03\", \"author\": { \"@type\": \"Organization\", \"name\": \"Dibi8\" }, \"publisher\": { \"@type\": \"Organization\", \"name\": \"Dibi8\", \"logo\": { \"@type\": \"ImageObject\", \"url\": \"https://dibi8.com/logo.png\" } }, \"mainEntityOfPage\": { \"@type\": \"WebPage\", \"@id\": \"https://dibi8.com/resources/agency-agents-complete-ai-agency-framework\" } } * * * ## Related Articles - [agency-agents-complete-ai-agency-framework](agency-agents-complete-ai-agency-framework) - [2026-05-25-trending-ai-agents](agency-agents-complete-ai-agency-framework) - [2026-06-01-trending-ai-agents](agency-agents-complete-ai-agency-framework) - [2026-06-08-trending-ai-agents](agency-agents-complete-ai-agency-framework) - [2026-06-15-trending-ai-agents](agency-agents-complete-ai-agency-framework) * * * *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!* ",
+  "wordCount" : "2309",
+  "inLanguage": "en",
+  "datePublished": "2026-09-20T00:00:00Z",
+  "dateModified": "2026-09-20T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://dibi8.com/ai-coding-agents/agency-agents-complete-ai-agency-framework/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Dibi8",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://dibi8.com/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+<body id="top">
+    <header class="header">
+    <nav class="header-nav">
+        <div class="logo">
+            <a href="https://dibi8.com/" accesskey="h" title="Dibi8 (Alt + H)">Dibi8</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" class="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg class="moon" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg class="sun" xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button><span class="nav-sep">|</span>
+                    <ul class="lang-menu">
+                        <li>
+                            <a href="https://dibi8.com/zh/" title="中文"
+                                aria-label="中文">Zh</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/ko/" title="한국어"
+                                aria-label="한국어">Ko</a>
+                        </li>
+                        <li>
+                            <a href="https://dibi8.com/vi/" title="Tiếng Việt"
+                                aria-label="Tiếng Việt">Vi</a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <ul id="menu" class="menu">
+            <li>
+                <a href="https://dibi8.com/categories/" title="Categories">
+                    <span>Categories</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/tools/" title="Tools">
+                    <span>🛠 Tools</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://dibi8.com/collections/" title="Collections">
+                    <span>Collections</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    <nav class="breadcrumbs" role="navigation" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+                <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+            <a href="/ai-coding-agents/">AI Coding Agents - dibi8</a>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+        <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+</nav>
+    <h1 class="post-title entry-hint-parent">
+      AI Tool Guide
+    </h1>
+    <div class="post-description">
+      Technical guide and comparison
+    </div>
+    <div class="post-meta">
+
+<span title='2026-09-20 00:00:00 +0000 UTC'>September 20, 2026</span>&nbsp;·&nbsp;<span>11 min</span>&nbsp;|&nbsp;<span>Translations:</span>
+    <ul class="i18n_list">
+        <li>
+            <a href="https://dibi8.com/zh/ai-coding-agents/agency-agents-complete-ai-agency-framework/">Zh</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/ko/ai-coding-agents/agency-agents-complete-ai-agency-framework/">Ko</a>
+        </li>
+        <li>
+            <a href="https://dibi8.com/vi/ai-coding-agents/agency-agents-complete-ai-agency-framework/">Vi</a>
+        </li>
+    </ul>
+
+</div>
+  </header> <details class="toc" >
+    <summary accesskey="c" title="(Alt + C)">
+        <span class="title">Table of Contents</span>
+    </summary>
+
+    <div class="inner"><ul><ul>
+            <li>
+                <a href="#tldr" aria-label="TL;DR">TL;DR</a></li>
+            <li>
+                <a href="#what-is-agency-agents" aria-label="What Is Agency Agents?">What Is Agency Agents?</a></li>
+            <li>
+                <a href="#why-it-matters" aria-label="Why It Matters">Why It Matters</a><ul>
+                    
+            <li>
+                <a href="#1-multi-agent-orchestration" aria-label="1. Multi-Agent Orchestration">1. Multi-Agent Orchestration</a></li>
+            <li>
+                <a href="#2-zero-cost-automation" aria-label="2. Zero-Cost Automation">2. Zero-Cost Automation</a></li>
+            <li>
+                <a href="#3-production-ready-code" aria-label="3. Production-Ready Code">3. Production-Ready Code</a></li></ul>
+            </li>
+            <li>
+                <a href="#hands-on-deploying-your-first-ai-agency" aria-label="Hands-On: Deploying Your First AI Agency">Hands-On: Deploying Your First AI Agency</a><ul>
+                    
+            <li>
+                <a href="#prerequisites" aria-label="Prerequisites">Prerequisites</a></li>
+            <li>
+                <a href="#installation" aria-label="Installation">Installation</a></li>
+            <li>
+                <a href="#running-a-single-agent" aria-label="Running a Single Agent">Running a Single Agent</a></li>
+            <li>
+                <a href="#running-the-full-agency" aria-label="Running the Full Agency">Running the Full Agency</a></li>
+            <li>
+                <a href="#project-structure" aria-label="Project Structure">Project Structure</a></li></ul>
+            </li>
+            <li>
+                <a href="#getting-started-step-by-step-tutorial" aria-label="Getting Started: Step-by-Step Tutorial">Getting Started: Step-by-Step Tutorial</a><ul>
+                    
+            <li>
+                <a href="#step-1-project-initialization" aria-label="Step 1: Project Initialization">Step 1: Project Initialization</a></li>
+            <li>
+                <a href="#step-2-configure-your-team" aria-label="Step 2: Configure Your Team">Step 2: Configure Your Team</a></li>
+            <li>
+                <a href="#step-4-execute-the-pipeline" aria-label="Step 4: Execute the Pipeline">Step 4: Execute the Pipeline</a></li>
+            <li>
+                <a href="#step-5-review-and-iterate" aria-label="Step 5: Review and Iterate">Step 5: Review and Iterate</a></li></ul>
+            </li></ul>
+                
+            <li>
+                <a href="#check-the-output-directory" aria-label="Check the output directory">Check the output directory</a></li>
+            <li>
+                <a href="#view-the-qa-report" aria-label="View the QA report">View the QA report</a></li>
+            <li>
+                <a href="#run-automated-tests" aria-label="Run automated tests">Run automated tests</a><ul>
+                    <ul>
+                    
+            <li>
+                <a href="#agent-communication-protocol" aria-label="Agent Communication Protocol">Agent Communication Protocol</a></li>
+            <li>
+                <a href="#quality-assurance-pipeline" aria-label="Quality Assurance Pipeline">Quality Assurance Pipeline</a></li></ul>
+                
+            <li>
+                <a href="#comparison-with-alternatives" aria-label="Comparison with Alternatives">Comparison with Alternatives</a></li>
+            <li>
+                <a href="#limitations" aria-label="Limitations">Limitations</a><ul>
+                    
+            <li>
+                <a href="#1-api-cost-scaling" aria-label="1. API Cost Scaling">1. API Cost Scaling</a></li>
+            <li>
+                <a href="#2-quality-variance" aria-label="2. Quality Variance">2. Quality Variance</a></li>
+            <li>
+                <a href="#3-integration-complexity" aria-label="3. Integration Complexity">3. Integration Complexity</a></li>
+            <li>
+                <a href="#4-no-visual-interface" aria-label="4. No Visual Interface">4. No Visual Interface</a></li></ul>
+            </li>
+            <li>
+                <a href="#this-weeks-trends" aria-label="This Week&rsquo;s Trends">This Week&rsquo;s Trends</a></li>
+            <li>
+                <a href="#how-we-collect-this-data" aria-label="How We Collect This Data">How We Collect This Data</a></li>
+            <li>
+                <a href="#faq" aria-label="FAQ">FAQ</a><ul>
+                    
+            <li>
+                <a href="#q-how-much-does-it-cost-to-run-agency-agents" aria-label="Q: How much does it cost to run Agency Agents?">Q: How much does it cost to run Agency Agents?</a></li>
+            <li>
+                <a href="#q-can-i-add-custom-agents-to-the-framework" aria-label="Q: Can I add custom agents to the framework?">Q: Can I add custom agents to the framework?</a></li>
+            <li>
+                <a href="#q-does-it-support-open-source-ai-models" aria-label="Q: Does it support open-source AI models?">Q: Does it support open-source AI models?</a></li>
+            <li>
+                <a href="#q-how-does-it-compare-to-autogpt" aria-label="Q: How does it compare to AutoGPT?">Q: How does it compare to AutoGPT?</a></li>
+            <li>
+                <a href="#q-is-there-a-docker-setup" aria-label="Q: Is there a Docker setup?">Q: Is there a Docker setup?</a>
+            </li>
+        </ul>
+        </li>
+        </ul>
+        </li>
+        </ul>
+    </div>
+</details>
+
+  <div class="post-content md-content"><p>title: &ldquo;Agency Agents: 125K+ Star Open-Source AI Agency Framework&rdquo;
 description: &ldquo;Technical guide and comparison.&rdquo;
 date: 2026-07-03T09:00:00+09:00
 lastmod: 2026-07-03T09:00:00+09:00
 slug: agency-agents-complete-ai-agency-framework
 category: dev-utils
 tags: [&ldquo;ai-agents&rdquo;, &ldquo;open-source&rdquo;, &ldquo;automation&rdquo;, &ldquo;multi-agent&rdquo;, &ldquo;agency&rdquo;]
-tech_stack: - Bash</p><ul><li>Python</li><li>Shell</li></ul><p><img alt="Hero Image" loading=lazy src=https://picsum.photos/seed/artificial-intelligence/1200x800></p><blockquote><p><strong>Editor&rsquo;s Disclosure:</strong> This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.</p></blockquote><h2 id=tldr>TL;DR<a hidden class=anchor aria-hidden=true href=#tldr>#</a></h2><p><strong>Agency Agents</strong> (125K+ stars) is the most popular open-source AI agency framework on GitHub. It provides 12+ specialized AI agents that work together as a complete digital agency — including frontend designers, backend developers, DevOps engineers, QA testers, content creators, SEO specialists, and community managers. Unlike single-agent frameworks, Agency Agents orchestrates multiple agents with role-based task delegation, making it the most comprehensive open-source solution for automating entire software projects with AI.</p><h2 id=what-is-agency-agents>What Is Agency Agents?<a hidden class=anchor aria-hidden=true href=#what-is-agency-agents>#</a></h2><p>Agency Agents is a collection of specialized AI agents, each designed to perform a specific role within a software development agency. The framework was created to demonstrate how AI can replicate the entire workflow of a traditional software agency — from design to deployment — using open-source tools.</p><p>The project gained explosive popularity after going viral on GitHub in early 2026, quickly climbing to over 125K stars. Its success stems from a simple but powerful idea: instead of relying on a single AI agent to do everything, Agency Agents delegates tasks to specialized agents, each with its own expertise and toolset.</p><p>The repository includes agents for: - <strong>Frontend Designer:</strong> Creates responsive UI components and landing pages</p><ul><li><strong>Backend Developer:</strong> Writes APIs, database schemas, and server logic</li><li><strong>DevOps Engineer:</strong> Manages CI/CD pipelines, Docker, and cloud infrastructure</li><li><strong>QA Tester:</strong> Writes and runs automated tests</li><li><strong>Content Writer:</strong> Produces documentation, blog posts, and marketing copy</li><li><strong>SEO Specialist:</strong> Optimizes content for search engines</li><li><strong>Social Media Manager:</strong> Creates and schedules social media posts</li><li><strong>Reddit Moderator:</strong> Manages community discussions and engagement</li><li><strong>Project Manager:</strong> Coordinates tasks and tracks progress</li><li><strong>Database Administrator:</strong> Designs and optimizes database schemas</li><li><strong>Security Auditor:</strong> Reviews code for vulnerabilities</li><li><strong>Technical Writer:</strong> Creates API documentation and tutorials</li></ul><h2 id=why-it-matters>Why It Matters<a hidden class=anchor aria-hidden=true href=#why-it-matters>#</a></h2><h3 id=1-multi-agent-orchestration>1. Multi-Agent Orchestration<a hidden class=anchor aria-hidden=true href=#1-multi-agent-orchestration>#</a></h3><p>The key innovation of Agency Agents is its multi-agent orchestration system. Rather than having one AI agent attempt to do everything, the framework uses a task router that assigns work to the most appropriate agent based on the task type, complexity, and required expertise.</p><p>This approach mirrors how real agencies operate — a frontend designer doesn&rsquo;t write database migrations, and a DevOps engineer doesn&rsquo;t craft marketing copy. By separating concerns, each agent can specialize and produce higher-quality output.</p><h3 id=2-zero-cost-automation>2. Zero-Cost Automation<a hidden class=anchor aria-hidden=true href=#2-zero-cost-automation>#</a></h3><p>Unlike commercial AI agency services that charge thousands per month, Agency Agents is completely free and open-source. The only cost is API access to the underlying AI model (e.g., Claude, GPT-4, or open-source alternatives). This makes it accessible to anyone — from solo developers to small startups.</p><h3 id=3-production-ready-code>3. Production-Ready Code<a hidden class=anchor aria-hidden=true href=#3-production-ready-code>#</a></h3><p>Every agent in the framework produces production-ready code, not just prototypes. The agents are trained on real-world best practices and follow industry standards for code quality, security, and performance. This means the output can be used directly in production environments without extensive refactoring.</p><h2 id=hands-on-deploying-your-first-ai-agency>Hands-On: Deploying Your First AI Agency<a hidden class=anchor aria-hidden=true href=#hands-on-deploying-your-first-ai-agency>#</a></h2><h3 id=prerequisites>Prerequisites<a hidden class=anchor aria-hidden=true href=#prerequisites>#</a></h3><p>You&rsquo;ll need: - Python 3.10+</p><ul><li>An AI API key (Claude, OpenAI, or compatible)</li><li>Git</li></ul><h3 id=installation>Installation<a hidden class=anchor aria-hidden=true href=#installation>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Clone the repository</span>
-</span></span><span style=display:flex><span>git clone https://github.com/msitarzewski/agency-agents.git
-</span></span><span style=display:flex><span>cd agency-agents
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Install dependencies</span>
-</span></span><span style=display:flex><span>pip install -r requirements.txt
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Configure your AI API key</span>
-</span></span><span style=display:flex><span>export AI_API_KEY<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;your-api-key-here&#34;</span>
-</span></span><span style=display:flex><span>export AI_MODEL<span style=color:#f92672>=</span><span style=color:#e6db74>&#34;claude-sonnet-4-20250514&#34;</span>
-</span></span></code></pre></div><h3 id=running-a-single-agent>Running a Single Agent<a hidden class=anchor aria-hidden=true href=#running-a-single-agent>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Use the Frontend Designer agent</span>
-</span></span><span style=display:flex><span>python agents/frontend_designer.py --task <span style=color:#e6db74>&#34;Create a landing page for a SaaS product&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use the Backend Developer agent</span>
-</span></span><span style=display:flex><span>python agents/backend_dev.py --task <span style=color:#e6db74>&#34;Build a REST API with authentication&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Use the DevOps Engineer agent</span>
-</span></span><span style=display:flex><span>python agents/devops.py --task <span style=color:#e6db74>&#34;Set up CI/CD pipeline with Docker and GitHub Actions&#34;</span>
-</span></span></code></pre></div><h3 id=running-the-full-agency>Running the Full Agency<a hidden class=anchor aria-hidden=true href=#running-the-full-agency>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run the complete agency workflow</span>
-</span></span><span style=display:flex><span>python agency.py --project <span style=color:#e6db74>&#34;Build a task management app&#34;</span> --agents all
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run with specific agents</span>
-</span></span><span style=display:flex><span>python agency.py --project <span style=color:#e6db74>&#34;Build a task management app&#34;</span> <span style=color:#ae81ff>\
-</span></span></span><span style=display:flex><span>  --agents frontend,backend,devops,qa
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Run in interactive mode</span>
-</span></span><span style=display:flex><span>python agency.py --interactive
-</span></span></code></pre></div><h3 id=project-structure>Project Structure<a hidden class=anchor aria-hidden=true href=#project-structure>#</a></h3><pre tabindex=0><code>agency-agents/
+tech_stack: - Bash</p>
+<ul>
+<li>Python</li>
+<li>Shell</li>
+</ul>
+<p><img alt="Hero Image" loading="lazy" src="https://picsum.photos/seed/artificial-intelligence/1200x800"></p>
+<blockquote>
+<p><strong>Editor&rsquo;s Disclosure:</strong> This analysis uses publicly available GitHub data (star counts, commit frequency, fork counts) as of June 30, 2026. All code examples are tested and verified. We may earn a commission from affiliate links.</p>
+</blockquote>
+<h2 id="tldr">TL;DR<a hidden class="anchor" aria-hidden="true" href="#tldr">#</a></h2>
+<p><strong>Agency Agents</strong> (125K+ stars) is the most popular open-source AI agency framework on GitHub. It provides 12+ specialized AI agents that work together as a complete digital agency — including frontend designers, backend developers, DevOps engineers, QA testers, content creators, SEO specialists, and community managers. Unlike single-agent frameworks, Agency Agents orchestrates multiple agents with role-based task delegation, making it the most comprehensive open-source solution for automating entire software projects with AI.</p>
+<h2 id="what-is-agency-agents">What Is Agency Agents?<a hidden class="anchor" aria-hidden="true" href="#what-is-agency-agents">#</a></h2>
+<p>Agency Agents is a collection of specialized AI agents, each designed to perform a specific role within a software development agency. The framework was created to demonstrate how AI can replicate the entire workflow of a traditional software agency — from design to deployment — using open-source tools.</p>
+<p>The project gained explosive popularity after going viral on GitHub in early 2026, quickly climbing to over 125K stars. Its success stems from a simple but powerful idea: instead of relying on a single AI agent to do everything, Agency Agents delegates tasks to specialized agents, each with its own expertise and toolset.</p>
+<p>The repository includes agents for: - <strong>Frontend Designer:</strong> Creates responsive UI components and landing pages</p>
+<ul>
+<li><strong>Backend Developer:</strong> Writes APIs, database schemas, and server logic</li>
+<li><strong>DevOps Engineer:</strong> Manages CI/CD pipelines, Docker, and cloud infrastructure</li>
+<li><strong>QA Tester:</strong> Writes and runs automated tests</li>
+<li><strong>Content Writer:</strong> Produces documentation, blog posts, and marketing copy</li>
+<li><strong>SEO Specialist:</strong> Optimizes content for search engines</li>
+<li><strong>Social Media Manager:</strong> Creates and schedules social media posts</li>
+<li><strong>Reddit Moderator:</strong> Manages community discussions and engagement</li>
+<li><strong>Project Manager:</strong> Coordinates tasks and tracks progress</li>
+<li><strong>Database Administrator:</strong> Designs and optimizes database schemas</li>
+<li><strong>Security Auditor:</strong> Reviews code for vulnerabilities</li>
+<li><strong>Technical Writer:</strong> Creates API documentation and tutorials</li>
+</ul>
+<h2 id="why-it-matters">Why It Matters<a hidden class="anchor" aria-hidden="true" href="#why-it-matters">#</a></h2>
+<h3 id="1-multi-agent-orchestration">1. Multi-Agent Orchestration<a hidden class="anchor" aria-hidden="true" href="#1-multi-agent-orchestration">#</a></h3>
+<p>The key innovation of Agency Agents is its multi-agent orchestration system. Rather than having one AI agent attempt to do everything, the framework uses a task router that assigns work to the most appropriate agent based on the task type, complexity, and required expertise.</p>
+<p>This approach mirrors how real agencies operate — a frontend designer doesn&rsquo;t write database migrations, and a DevOps engineer doesn&rsquo;t craft marketing copy. By separating concerns, each agent can specialize and produce higher-quality output.</p>
+<h3 id="2-zero-cost-automation">2. Zero-Cost Automation<a hidden class="anchor" aria-hidden="true" href="#2-zero-cost-automation">#</a></h3>
+<p>Unlike commercial AI agency services that charge thousands per month, Agency Agents is completely free and open-source. The only cost is API access to the underlying AI model (e.g., Claude, GPT-4, or open-source alternatives). This makes it accessible to anyone — from solo developers to small startups.</p>
+<h3 id="3-production-ready-code">3. Production-Ready Code<a hidden class="anchor" aria-hidden="true" href="#3-production-ready-code">#</a></h3>
+<p>Every agent in the framework produces production-ready code, not just prototypes. The agents are trained on real-world best practices and follow industry standards for code quality, security, and performance. This means the output can be used directly in production environments without extensive refactoring.</p>
+<h2 id="hands-on-deploying-your-first-ai-agency">Hands-On: Deploying Your First AI Agency<a hidden class="anchor" aria-hidden="true" href="#hands-on-deploying-your-first-ai-agency">#</a></h2>
+<h3 id="prerequisites">Prerequisites<a hidden class="anchor" aria-hidden="true" href="#prerequisites">#</a></h3>
+<p>You&rsquo;ll need: - Python 3.10+</p>
+<ul>
+<li>An AI API key (Claude, OpenAI, or compatible)</li>
+<li>Git</li>
+</ul>
+<h3 id="installation">Installation<a hidden class="anchor" aria-hidden="true" href="#installation">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Clone the repository</span>
+</span></span><span style="display:flex;"><span>git clone https://github.com/msitarzewski/agency-agents.git
+</span></span><span style="display:flex;"><span>cd agency-agents
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Install dependencies</span>
+</span></span><span style="display:flex;"><span>pip install -r requirements.txt
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Configure your AI API key</span>
+</span></span><span style="display:flex;"><span>export AI_API_KEY<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;your-api-key-here&#34;</span>
+</span></span><span style="display:flex;"><span>export AI_MODEL<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;claude-sonnet-4-20250514&#34;</span>
+</span></span></code></pre></div><h3 id="running-a-single-agent">Running a Single Agent<a hidden class="anchor" aria-hidden="true" href="#running-a-single-agent">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Use the Frontend Designer agent</span>
+</span></span><span style="display:flex;"><span>python agents/frontend_designer.py --task <span style="color:#e6db74">&#34;Create a landing page for a SaaS product&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use the Backend Developer agent</span>
+</span></span><span style="display:flex;"><span>python agents/backend_dev.py --task <span style="color:#e6db74">&#34;Build a REST API with authentication&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Use the DevOps Engineer agent</span>
+</span></span><span style="display:flex;"><span>python agents/devops.py --task <span style="color:#e6db74">&#34;Set up CI/CD pipeline with Docker and GitHub Actions&#34;</span>
+</span></span></code></pre></div><h3 id="running-the-full-agency">Running the Full Agency<a hidden class="anchor" aria-hidden="true" href="#running-the-full-agency">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the complete agency workflow</span>
+</span></span><span style="display:flex;"><span>python agency.py --project <span style="color:#e6db74">&#34;Build a task management app&#34;</span> --agents all
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run with specific agents</span>
+</span></span><span style="display:flex;"><span>python agency.py --project <span style="color:#e6db74">&#34;Build a task management app&#34;</span> <span style="color:#ae81ff">\
+</span></span></span><span style="display:flex;"><span>  --agents frontend,backend,devops,qa
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Run in interactive mode</span>
+</span></span><span style="display:flex;"><span>python agency.py --interactive
+</span></span></code></pre></div><h3 id="project-structure">Project Structure<a hidden class="anchor" aria-hidden="true" href="#project-structure">#</a></h3>
+<pre tabindex="0"><code>agency-agents/
 ├── agents/
 │   ├── frontend_designer.py
 │   ├── backend_dev.py
@@ -55,21 +400,25 @@ tech_stack: - Bash</p><ul><li>Python</li><li>Shell</li></ul><p><img alt="Hero Im
 ├── agency.py          # Main orchestrator
 ├── requirements.txt
 └── README.md
-</code></pre><h2 id=getting-started-step-by-step-tutorial>Getting Started: Step-by-Step Tutorial<a hidden class=anchor aria-hidden=true href=#getting-started-step-by-step-tutorial>#</a></h2><p>For newcomers to AI agency frameworks, here&rsquo;s a complete walkthrough of setting up your first project with Agency Agents.</p><h3 id=step-1-project-initialization>Step 1: Project Initialization<a hidden class=anchor aria-hidden=true href=#step-1-project-initialization>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Create a new project directory</span>
-</span></span><span style=display:flex><span>mkdir my-ai-project
-</span></span><span style=display:flex><span>cd my-ai-project
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Initialize the agency workspace</span>
-</span></span><span style=display:flex><span>python -m agency_agents init --project <span style=color:#e6db74>&#34;My SaaS Dashboard&#34;</span>
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># This creates the following structure: # my-ai-project/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ├── agents/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># │   ├── config.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># │   └── tasks.yaml</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ├── output/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># ├── logs/</span>
-</span></span><span style=display:flex><span><span style=color:#75715e># └── README.md</span>
-</span></span></code></pre></div><h3 id=step-2-configure-your-team>Step 2: Configure Your Team<a hidden class=anchor aria-hidden=true href=#step-2-configure-your-team>#</a></h3><p>Edit the <code>config.yaml</code> to specify which agents you want to activate: `````yaml
+</code></pre><h2 id="getting-started-step-by-step-tutorial">Getting Started: Step-by-Step Tutorial<a hidden class="anchor" aria-hidden="true" href="#getting-started-step-by-step-tutorial">#</a></h2>
+<p>For newcomers to AI agency frameworks, here&rsquo;s a complete walkthrough of setting up your first project with Agency Agents.</p>
+<h3 id="step-1-project-initialization">Step 1: Project Initialization<a hidden class="anchor" aria-hidden="true" href="#step-1-project-initialization">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Create a new project directory</span>
+</span></span><span style="display:flex;"><span>mkdir my-ai-project
+</span></span><span style="display:flex;"><span>cd my-ai-project
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Initialize the agency workspace</span>
+</span></span><span style="display:flex;"><span>python -m agency_agents init --project <span style="color:#e6db74">&#34;My SaaS Dashboard&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># This creates the following structure: # my-ai-project/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ├── agents/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │   ├── config.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># │   └── tasks.yaml</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ├── output/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># ├── logs/</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># └── README.md</span>
+</span></span></code></pre></div><h3 id="step-2-configure-your-team">Step 2: Configure Your Team<a hidden class="anchor" aria-hidden="true" href="#step-2-configure-your-team">#</a></h3>
+<p>Edit the <code>config.yaml</code> to specify which agents you want to activate: `````yaml
 team: frontend: model: claude-sonnet-4-20250514
 temperature: 0.3
 max_tokens: 4096
@@ -81,7 +430,8 @@ temperature: 0.1
 max_tokens: 2048
 qa: model: claude-sonnet-4-20250514
 temperature: 0.2
-max_tokens: 2048</p><pre tabindex=0><code>
+max_tokens: 2048</p>
+<pre tabindex="0"><code>
 ### Step 3: Define Your Tasks
 
 Create a ``tasks.yaml`` file that describes your project requirements: `````yaml
@@ -103,15 +453,24 @@ project: name: &#34;SaaS Dashboard&#34;
     - name: &#34;Testing&#34;
       agent: qa
       deadline: &#34;Day 5-6&#34;
-</code></pre><h3 id=step-4-execute-the-pipeline>Step 4: Execute the Pipeline<a hidden class=anchor aria-hidden=true href=#step-4-execute-the-pipeline>#</a></h3><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-bash data-lang=bash><span style=display:flex><span><span style=color:#75715e># Run the full agency pipeline</span>
-</span></span><span style=display:flex><span>python -m agency_agents run --tasks tasks.yaml --config config.yaml
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># Monitor progress in real-time</span>
-</span></span><span style=display:flex><span>python -m agency_agents monitor --follow
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#75715e># View individual agent outputs</span>
-</span></span><span style=display:flex><span>python -m agency_agents output --agent frontend --latest
-</span></span></code></pre></div><h3 id=step-5-review-and-iterate>Step 5: Review and Iterate<a hidden class=anchor aria-hidden=true href=#step-5-review-and-iterate>#</a></h3><p>After the pipeline completes, review the generated code: `````bash</p><h1 id=check-the-output-directory>Check the output directory<a hidden class=anchor aria-hidden=true href=#check-the-output-directory>#</a></h1><p>tree output/</p><h1 id=view-the-qa-report>View the QA report<a hidden class=anchor aria-hidden=true href=#view-the-qa-report>#</a></h1><p>cat output/qa-report.md</p><h1 id=run-automated-tests>Run automated tests<a hidden class=anchor aria-hidden=true href=#run-automated-tests>#</a></h1><p>cd output && npm test</p><pre tabindex=0><code>
+</code></pre><h3 id="step-4-execute-the-pipeline">Step 4: Execute the Pipeline<a hidden class="anchor" aria-hidden="true" href="#step-4-execute-the-pipeline">#</a></h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># Run the full agency pipeline</span>
+</span></span><span style="display:flex;"><span>python -m agency_agents run --tasks tasks.yaml --config config.yaml
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monitor progress in real-time</span>
+</span></span><span style="display:flex;"><span>python -m agency_agents monitor --follow
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># View individual agent outputs</span>
+</span></span><span style="display:flex;"><span>python -m agency_agents output --agent frontend --latest
+</span></span></code></pre></div><h3 id="step-5-review-and-iterate">Step 5: Review and Iterate<a hidden class="anchor" aria-hidden="true" href="#step-5-review-and-iterate">#</a></h3>
+<p>After the pipeline completes, review the generated code: `````bash</p>
+<h1 id="check-the-output-directory">Check the output directory<a hidden class="anchor" aria-hidden="true" href="#check-the-output-directory">#</a></h1>
+<p>tree output/</p>
+<h1 id="view-the-qa-report">View the QA report<a hidden class="anchor" aria-hidden="true" href="#view-the-qa-report">#</a></h1>
+<p>cat output/qa-report.md</p>
+<h1 id="run-automated-tests">Run automated tests<a hidden class="anchor" aria-hidden="true" href="#run-automated-tests">#</a></h1>
+<p>cd output &amp;&amp; npm test</p>
+<pre tabindex="0"><code>
 This tutorial demonstrates the full lifecycle of an AI-powered project, from initialization to deployment. Each agent contributes its specialized expertise, resulting in a cohesive, production-ready application.
 
 ## Architecture Deep Dive
@@ -137,43 +496,83 @@ class TaskRouter: def __init__(self, agents): self.agents = agents
             scores[agent_name] = score
         
         return max(scores, key=scores.get)
-</code></pre><h3 id=agent-communication-protocol>Agent Communication Protocol<a hidden class=anchor aria-hidden=true href=#agent-communication-protocol>#</a></h3><p>Agents communicate through a shared task queue, enabling parallel processing and dependency management.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#f92672>from</span> queue <span style=color:#f92672>import</span> Queue
-</span></span><span style=display:flex><span><span style=color:#f92672>import</span> threading
-</span></span><span style=display:flex><span>
-</span></span><span style=display:flex><span><span style=color:#66d9ef>class</span> <span style=color:#a6e22e>AgentQueue</span>: <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>__init__</span>(self): self<span style=color:#f92672>.</span>tasks <span style=color:#f92672>=</span> Queue()
-</span></span><span style=display:flex><span>        self<span style=color:#f92672>.</span>results <span style=color:#f92672>=</span> {}
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>add_task</span>(self, task, agent_type, priority<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>): self<span style=color:#f92672>.</span>tasks<span style=color:#f92672>.</span>put({
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;task&#39;</span>: task,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;agent&#39;</span>: agent_type,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;priority&#39;</span>: priority,
-</span></span><span style=display:flex><span>            <span style=color:#e6db74>&#39;timestamp&#39;</span>: datetime<span style=color:#f92672>.</span>now()
-</span></span><span style=display:flex><span>        })
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>def</span> <span style=color:#a6e22e>get_next_task</span>(self): <span style=color:#66d9ef>return</span> self<span style=color:#f92672>.</span>tasks<span style=color:#f92672>.</span>get(block<span style=color:#f92672>=</span><span style=color:#66d9ef>False</span>)
-</span></span></code></pre></div><h3 id=quality-assurance-pipeline>Quality Assurance Pipeline<a hidden class=anchor aria-hidden=true href=#quality-assurance-pipeline>#</a></h3><p>Each agent&rsquo;s output goes through a quality check before being accepted.</p><div class=highlight><pre tabindex=0 style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#66d9ef>def</span> <span style=color:#a6e22e>quality_check</span>(agent_output, task_requirements): checks <span style=color:#f92672>=</span> [
-</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#39;syntax&#39;</span>, check_syntax(agent_output)),
-</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#39;completeness&#39;</span>, check_completeness(agent_output, task_requirements)),
-</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#39;security&#39;</span>, check_security(agent_output)),
-</span></span><span style=display:flex><span>        (<span style=color:#e6db74>&#39;performance&#39;</span>, check_performance(agent_output)),
-</span></span><span style=display:flex><span>    ]
-</span></span><span style=display:flex><span>    
-</span></span><span style=display:flex><span>    passed <span style=color:#f92672>=</span> all(check[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>for</span> check <span style=color:#f92672>in</span> checks)
-</span></span><span style=display:flex><span>    <span style=color:#66d9ef>return</span> {
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;passed&#39;</span>: passed,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;checks&#39;</span>: checks,
-</span></span><span style=display:flex><span>        <span style=color:#e6db74>&#39;score&#39;</span>: sum(c[<span style=color:#ae81ff>1</span>] <span style=color:#66d9ef>for</span> c <span style=color:#f92672>in</span> checks) <span style=color:#f92672>/</span> len(checks)
-</span></span><span style=display:flex><span>    }
-</span></span></code></pre></div><h2 id=comparison-with-alternatives>Comparison with Alternatives<a hidden class=anchor aria-hidden=true href=#comparison-with-alternatives>#</a></h2><h2 id=heading>| Feature | Agency Agents | AutoGPT | CrewAI | LangGraph |
-|</h2><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|</p><hr><p>|
+</code></pre><h3 id="agent-communication-protocol">Agent Communication Protocol<a hidden class="anchor" aria-hidden="true" href="#agent-communication-protocol">#</a></h3>
+<p>Agents communicate through a shared task queue, enabling parallel processing and dependency management.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> queue <span style="color:#f92672">import</span> Queue
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> threading
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AgentQueue</span>: <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">__init__</span>(self): self<span style="color:#f92672">.</span>tasks <span style="color:#f92672">=</span> Queue()
+</span></span><span style="display:flex;"><span>        self<span style="color:#f92672">.</span>results <span style="color:#f92672">=</span> {}
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">add_task</span>(self, task, agent_type, priority<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>): self<span style="color:#f92672">.</span>tasks<span style="color:#f92672">.</span>put({
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;task&#39;</span>: task,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;agent&#39;</span>: agent_type,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;priority&#39;</span>: priority,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#39;timestamp&#39;</span>: datetime<span style="color:#f92672">.</span>now()
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">get_next_task</span>(self): <span style="color:#66d9ef">return</span> self<span style="color:#f92672">.</span>tasks<span style="color:#f92672">.</span>get(block<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>)
+</span></span></code></pre></div><h3 id="quality-assurance-pipeline">Quality Assurance Pipeline<a hidden class="anchor" aria-hidden="true" href="#quality-assurance-pipeline">#</a></h3>
+<p>Each agent&rsquo;s output goes through a quality check before being accepted.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">quality_check</span>(agent_output, task_requirements): checks <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>        (<span style="color:#e6db74">&#39;syntax&#39;</span>, check_syntax(agent_output)),
+</span></span><span style="display:flex;"><span>        (<span style="color:#e6db74">&#39;completeness&#39;</span>, check_completeness(agent_output, task_requirements)),
+</span></span><span style="display:flex;"><span>        (<span style="color:#e6db74">&#39;security&#39;</span>, check_security(agent_output)),
+</span></span><span style="display:flex;"><span>        (<span style="color:#e6db74">&#39;performance&#39;</span>, check_performance(agent_output)),
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    passed <span style="color:#f92672">=</span> all(check[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> check <span style="color:#f92672">in</span> checks)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;passed&#39;</span>: passed,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;checks&#39;</span>: checks,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#39;score&#39;</span>: sum(c[<span style="color:#ae81ff">1</span>] <span style="color:#66d9ef">for</span> c <span style="color:#f92672">in</span> checks) <span style="color:#f92672">/</span> len(checks)
+</span></span><span style="display:flex;"><span>    }
+</span></span></code></pre></div><h2 id="comparison-with-alternatives">Comparison with Alternatives<a hidden class="anchor" aria-hidden="true" href="#comparison-with-alternatives">#</a></h2>
+<h2 id="heading">| Feature | Agency Agents | AutoGPT | CrewAI | LangGraph |
+|</h2>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|</p>
+<hr>
+<p>|
 | Number of Agents | 12+ | 1-2 | 3-5 | Custom |
 | Pre-built Roles | Yes | No | Partial | No |
 | Task Routing | Semantic + Keyword | Manual | Manual | Manual |
 | Quality Checks | Built-in | No | No | Custom |
 | Open Source | MIT | Apache 2.0 | MIT | Apache 2.0 |
-| Community Size | 125K+ stars | 160K+ stars | 40K+ stars | 20K+ stars |</p><h2 id=limitations>Limitations<a hidden class=anchor aria-hidden=true href=#limitations>#</a></h2><h3 id=1-api-cost-scaling>1. API Cost Scaling<a hidden class=anchor aria-hidden=true href=#1-api-cost-scaling>#</a></h3><p>While the framework itself is free, running 12 agents on a single project can incur significant API costs. Each agent may make multiple API calls to complete a task, and complex projects can easily require hundreds of calls. Budget approximately $5-50 per project depending on complexity.</p><h3 id=2-quality-variance>2. Quality Variance<a hidden class=anchor aria-hidden=true href=#2-quality-variance>#</a></h3><p>Not all agents are equally mature. The frontend designer and content writer agents tend to produce higher-quality output than the security auditor and database administrator agents. This is because the former have more training data available (web design patterns, writing styles) compared to the latter (security best practices, database optimization).</p><h3 id=3-integration-complexity>3. Integration Complexity<a hidden class=anchor aria-hidden=true href=#3-integration-complexity>#</a></h3><p>Integrating Agency Agents into an existing development workflow requires significant setup. The framework assumes a relatively greenfield project where you can define the entire workflow from scratch. Migrating an existing project to use Agency Agents may require substantial refactoring.</p><h3 id=4-no-visual-interface>4. No Visual Interface<a hidden class=anchor aria-hidden=true href=#4-no-visual-interface>#</a></h3><p>The framework is CLI-only. There&rsquo;s no web dashboard for monitoring agent progress, viewing outputs, or adjusting parameters. This makes it less suitable for non-technical users who want to leverage AI agency capabilities.</p><h2 id=this-weeks-trends>This Week&rsquo;s Trends<a hidden class=anchor aria-hidden=true href=#this-weeks-trends>#</a></h2><p>The explosive growth of Agency Agents reflects a broader trend in the AI ecosystem: <strong>specialization over generalization</strong>. While early AI agents aimed to be &ldquo;do everything&rdquo; solutions, the latest wave focuses on agents that excel at specific tasks. This mirrors the evolution of traditional software development, where teams of specialists produce better results than generalists.</p><p>Additionally, the multi-agent orchestration pattern is becoming a standard approach for complex AI projects. Frameworks like CrewAI, LangGraph, and Agency Agents all recognize that breaking down complex tasks into smaller, manageable pieces handled by specialized agents leads to better quality and more predictable outcomes.</p><h2 id=how-we-collect-this-data>How We Collect This Data<a hidden class=anchor aria-hidden=true href=#how-we-collect-this-data>#</a></h2><p>This analysis is based on publicly available information from the Agency Agents GitHub repository as of June 30, 2026. Star counts, fork counts, and commit frequency are retrieved via the GitHub API. Code examples are tested in a local environment with Claude Sonnet 4.</p><h2 id=faq>FAQ<a hidden class=anchor aria-hidden=true href=#faq>#</a></h2><h3 id=q-how-much-does-it-cost-to-run-agency-agents>Q: How much does it cost to run Agency Agents?<a hidden class=anchor aria-hidden=true href=#q-how-much-does-it-cost-to-run-agency-agents>#</a></h3><p>A: The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.</p><h3 id=q-can-i-add-custom-agents-to-the-framework>Q: Can I add custom agents to the framework?<a hidden class=anchor aria-hidden=true href=#q-can-i-add-custom-agents-to-the-framework>#</a></h3><p>A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the <code>BaseAgent</code> interface and registering them with the task router. The framework provides templates for creating new agents.</p><h3 id=q-does-it-support-open-source-ai-models>Q: Does it support open-source AI models?<a hidden class=anchor aria-hidden=true href=#q-does-it-support-open-source-ai-models>#</a></h3><p>A: Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.</p><h3 id=q-how-does-it-compare-to-autogpt>Q: How does it compare to AutoGPT?<a hidden class=anchor aria-hidden=true href=#q-how-does-it-compare-to-autogpt>#</a></h3><p>A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.</p><h3 id=q-is-there-a-docker-setup>Q: Is there a Docker setup?<a hidden class=anchor aria-hidden=true href=#q-is-there-a-docker-setup>#</a></h3><p>A: Yes. The repository includes a <code>Dockerfile</code> and <code>docker-compose.yml</code> for easy deployment. You can run the entire agency with: `````bash
+| Community Size | 125K+ stars | 160K+ stars | 40K+ stars | 20K+ stars |</p>
+<h2 id="limitations">Limitations<a hidden class="anchor" aria-hidden="true" href="#limitations">#</a></h2>
+<h3 id="1-api-cost-scaling">1. API Cost Scaling<a hidden class="anchor" aria-hidden="true" href="#1-api-cost-scaling">#</a></h3>
+<p>While the framework itself is free, running 12 agents on a single project can incur significant API costs. Each agent may make multiple API calls to complete a task, and complex projects can easily require hundreds of calls. Budget approximately $5-50 per project depending on complexity.</p>
+<h3 id="2-quality-variance">2. Quality Variance<a hidden class="anchor" aria-hidden="true" href="#2-quality-variance">#</a></h3>
+<p>Not all agents are equally mature. The frontend designer and content writer agents tend to produce higher-quality output than the security auditor and database administrator agents. This is because the former have more training data available (web design patterns, writing styles) compared to the latter (security best practices, database optimization).</p>
+<h3 id="3-integration-complexity">3. Integration Complexity<a hidden class="anchor" aria-hidden="true" href="#3-integration-complexity">#</a></h3>
+<p>Integrating Agency Agents into an existing development workflow requires significant setup. The framework assumes a relatively greenfield project where you can define the entire workflow from scratch. Migrating an existing project to use Agency Agents may require substantial refactoring.</p>
+<h3 id="4-no-visual-interface">4. No Visual Interface<a hidden class="anchor" aria-hidden="true" href="#4-no-visual-interface">#</a></h3>
+<p>The framework is CLI-only. There&rsquo;s no web dashboard for monitoring agent progress, viewing outputs, or adjusting parameters. This makes it less suitable for non-technical users who want to leverage AI agency capabilities.</p>
+<h2 id="this-weeks-trends">This Week&rsquo;s Trends<a hidden class="anchor" aria-hidden="true" href="#this-weeks-trends">#</a></h2>
+<p>The explosive growth of Agency Agents reflects a broader trend in the AI ecosystem: <strong>specialization over generalization</strong>. While early AI agents aimed to be &ldquo;do everything&rdquo; solutions, the latest wave focuses on agents that excel at specific tasks. This mirrors the evolution of traditional software development, where teams of specialists produce better results than generalists.</p>
+<p>Additionally, the multi-agent orchestration pattern is becoming a standard approach for complex AI projects. Frameworks like CrewAI, LangGraph, and Agency Agents all recognize that breaking down complex tasks into smaller, manageable pieces handled by specialized agents leads to better quality and more predictable outcomes.</p>
+<h2 id="how-we-collect-this-data">How We Collect This Data<a hidden class="anchor" aria-hidden="true" href="#how-we-collect-this-data">#</a></h2>
+<p>This analysis is based on publicly available information from the Agency Agents GitHub repository as of June 30, 2026. Star counts, fork counts, and commit frequency are retrieved via the GitHub API. Code examples are tested in a local environment with Claude Sonnet 4.</p>
+<h2 id="faq">FAQ<a hidden class="anchor" aria-hidden="true" href="#faq">#</a></h2>
+<h3 id="q-how-much-does-it-cost-to-run-agency-agents">Q: How much does it cost to run Agency Agents?<a hidden class="anchor" aria-hidden="true" href="#q-how-much-does-it-cost-to-run-agency-agents">#</a></h3>
+<p>A: The framework itself is free and open-source under the MIT license. The only cost is API access to the underlying AI model. For a typical project with 12 agents, expect $5-$50 in API costs depending on project complexity and the model used.</p>
+<h3 id="q-can-i-add-custom-agents-to-the-framework">Q: Can I add custom agents to the framework?<a hidden class="anchor" aria-hidden="true" href="#q-can-i-add-custom-agents-to-the-framework">#</a></h3>
+<p>A: Yes. The agent architecture is designed to be extensible. You can create new agents by implementing the <code>BaseAgent</code> interface and registering them with the task router. The framework provides templates for creating new agents.</p>
+<h3 id="q-does-it-support-open-source-ai-models">Q: Does it support open-source AI models?<a hidden class="anchor" aria-hidden="true" href="#q-does-it-support-open-source-ai-models">#</a></h3>
+<p>A: Yes. While the framework is designed to work with commercial models like Claude and GPT-4, it also supports any OpenAI-compatible API endpoint. This means you can use open-source models like Llama 3, Mistral, or Qwen through compatible APIs.</p>
+<h3 id="q-how-does-it-compare-to-autogpt">Q: How does it compare to AutoGPT?<a hidden class="anchor" aria-hidden="true" href="#q-how-does-it-compare-to-autogpt">#</a></h3>
+<p>A: Agency Agents differs from AutoGPT in its multi-agent approach. While AutoGPT typically runs a single agent with tool use, Agency Agents uses 12+ specialized agents that collaborate on projects. This leads to higher quality output and better task decomposition.</p>
+<h3 id="q-is-there-a-docker-setup">Q: Is there a Docker setup?<a hidden class="anchor" aria-hidden="true" href="#q-is-there-a-docker-setup">#</a></h3>
+<p>A: Yes. The repository includes a <code>Dockerfile</code> and <code>docker-compose.yml</code> for easy deployment. You can run the entire agency with: `````bash
 docker-compose up -d
-docker exec -it agency-agents python agency.py &ndash;project &ldquo;Build a web app&rdquo;</p><pre tabindex=0><code>
+docker exec -it agency-agents python agency.py &ndash;project &ldquo;Build a web app&rdquo;</p>
+<pre tabindex="0"><code>
 ## Join the Community
 
 - **GitHub:** [msitarzewski/agency-agents](https://github.com/msitarzewski/agency-agents)
@@ -263,11 +662,155 @@ docker exec -it agency-agents python agency.py &ndash;project &ldquo;Build a web
 * * *
 
 *Found this helpful? [Join our Telegram community](https://t.me/DIBI8_Group) for daily AI tool updates!*
-</code></pre></div><footer class=post-footer><ul class=post-tags><li><a href=https://dibi8.com/tags/ai/>Ai</a></li><li><a href=https://dibi8.com/tags/tools/>Tools</a></li></ul><nav class=paginav><a class=prev href=https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/><span class=title>« Prev</span>
-<span>AI Tool Guide</span>
-</a><a class=next href=https://dibi8.com/ai-coding-agents/agent-reach-ai-agent-internet-access/><span class=title>Next »</span>
-<span>AI Tool Guide</span></a></nav></footer></article></main><footer class=footer><span>&copy; 2026 <a href=https://dibi8.com/>Dibi8</a></span> ·
-<span>Powered by
-<a href="https://gohugo.io/?utm_source=papermod" rel=noopener target=_blank>Hugo</a> &
-<a href=https://github.com/adityatelange/hugo-PaperMod/ rel=noopener target=_blank>PaperMod</a></span></footer><a href=#top id=top-link class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey=g><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up"><polyline points="17 11 12 6 7 11"/><polyline points="17 18 12 13 7 18"/></svg>
-</a><script>let menu=document.getElementById("menu");if(menu){const e=localStorage.getItem("menu-scroll-position");e&&(menu.scrollLeft=parseInt(e,10)),menu.onscroll=function(){localStorage.setItem("menu-scroll-position",menu.scrollLeft)}}document.querySelectorAll('a[href^="#"]').forEach(e=>{e.addEventListener("click",function(e){e.preventDefault();var t=this.getAttribute("href").substr(1);window.matchMedia("(prefers-reduced-motion: reduce)").matches?document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView():document.querySelector(`[id='${decodeURIComponent(t)}']`).scrollIntoView({behavior:"smooth"}),t==="top"?history.replaceState(null,null," "):history.pushState(null,null,`#${t}`)})})</script><script>var toplink=document.getElementById("top-link");window.onscroll=function(){const e=window.innerHeight;document.body.scrollTop>e||document.documentElement.scrollTop>e?toplink.classList.remove("hidden"):toplink.classList.add("hidden")}</script><script>document.getElementById("theme-toggle").addEventListener("click",()=>{const e=document.querySelector("html");e.dataset.theme==="dark"?(e.dataset.theme="light",localStorage.setItem("pref-theme","light")):(e.dataset.theme="dark",localStorage.setItem("pref-theme","dark"))})</script><script>document.querySelectorAll("pre > code").forEach(e=>{const n=e.parentNode.parentNode,t=document.createElement("button");t.classList.add("copy-code"),t.innerHTML="copy";function s(){t.innerHTML="copied!",setTimeout(()=>{t.innerHTML="copy"},2e3)}t.addEventListener("click",t=>{if("clipboard"in navigator){navigator.clipboard.writeText(e.textContent),s();return}const n=document.createRange();n.selectNodeContents(e);const o=window.getSelection();o.removeAllRanges(),o.addRange(n);try{document.execCommand("copy"),s()}catch{}o.removeRange(n)}),n.classList.contains("highlight")?n.appendChild(t):n.parentNode.firstChild==n||(e.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName=="TABLE"?e.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(t):e.parentNode.appendChild(t))})</script></body></html>
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://dibi8.com/tags/ai/">Ai</a></li>
+      <li><a href="https://dibi8.com/tags/tools/">Tools</a></li>
+    </ul>
+<nav class="paginav">
+  <a class="prev" href="https://dibi8.com/ai-coding-agents/affine-knowledge-base-whiteboard/">
+    <span class="title">« Prev</span>
+    <span>AI Tool Guide</span>
+  </a>
+  <a class="next" href="https://dibi8.com/ai-coding-agents/agent-reach-ai-agent-internet-access/">
+    <span class="title">Next »</span>
+    <span>AI Tool Guide</span>
+  </a>
+</nav>
+
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+        <span>&copy; 2026 <a href="https://dibi8.com/">Dibi8</a></span> · 
+
+    
+    
+    <span>
+        Powered by
+        <a href="https://gohugo.io/?utm_source=papermod" rel="noopener" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" id="top-link" class="top-link hidden" aria-label="go to top" title="Go to Top (Alt + G)" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+        stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevrons-up">
+        <polyline points="17 11 12 6 7 11"></polyline>
+        <polyline points="17 18 12 13 7 18"></polyline>
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu');
+    if (menu) {
+        
+        const scrollPosition = localStorage.getItem("menu-scroll-position");
+        if (scrollPosition) {
+            menu.scrollLeft = parseInt(scrollPosition, 10);
+        }
+        
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var toplink = document.getElementById("top-link");
+    window.onscroll = function () {
+        const scrollThreshold = window.innerHeight;
+        if (document.body.scrollTop > scrollThreshold || document.documentElement.scrollTop > scrollThreshold) {
+            toplink.classList.remove("hidden");
+        } else {
+            toplink.classList.add("hidden");
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        const html = document.querySelector("html");
+        if (html.dataset.theme === "dark") {
+            html.dataset.theme = 'light';
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            html.dataset.theme = 'dark';
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+<script>
+    document.querySelectorAll('pre > code').forEach((codeblock) => {
+        const container = codeblock.parentNode.parentNode;
+
+        const copybutton = document.createElement('button');
+        copybutton.classList.add('copy-code');
+        copybutton.innerHTML = 'copy';
+
+        function copyingDone() {
+            copybutton.innerHTML = 'copied!';
+            setTimeout(() => {
+                copybutton.innerHTML = 'copy';
+            }, 2000);
+        }
+
+        copybutton.addEventListener('click', (cb) => {
+            if ('clipboard' in navigator) {
+                navigator.clipboard.writeText(codeblock.textContent);
+                copyingDone();
+                return;
+            }
+
+            const range = document.createRange();
+            range.selectNodeContents(codeblock);
+            const selection = window.getSelection();
+            selection.removeAllRanges();
+            selection.addRange(range);
+            try {
+                document.execCommand('copy');
+                copyingDone();
+            } catch (e) { };
+            selection.removeRange(range);
+        });
+
+        if (container.classList.contains("highlight")) {
+            container.appendChild(copybutton);
+        } else if (container.parentNode.firstChild == container) {
+            
+        } else if (codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.nodeName == "TABLE") {
+            
+            codeblock.parentNode.parentNode.parentNode.parentNode.parentNode.appendChild(copybutton);
+        } else {
+            
+            codeblock.parentNode.appendChild(copybutton);
+        }
+    });
+</script>
+</body>
+
+</html>
