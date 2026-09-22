@@ -9,46 +9,46 @@
     <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/github/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>ECC (affaan-m/ECC): Hệ Thống Điều Khiển Agent Mạnh Nhất 2026</title>
+      <title>ECC (affaan-m/ECC): 2026년 최고 Agent 제어 시스템</title>
       <link>https://dibi8.com/ko/ecc-agent-harness/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/ecc-agent-harness/</guid>
-      <description>ECC là agent harness performance optimization system với 265K GitHub stars. Hỗ trợ 68 agents, 286 skills, 94 commands. Tích hợp AgentShield bảo mật. Tương thích Claude Code, Codex, Cursor, OpenCode và nhiều hơn nữa.</description>
+      <description>ECC는 265K GitHub stars를 갖춘 agent harness 성능 최적화 시스템입니다. 68개 agents, 286개 skills, 94개 commands 지원. AgentShield 보안 내장. Claude Code, Codex, Cursor, OpenCode 호환.</description>
     </item>
     <item>
-      <title>mattpocock/skills: Bộ Kỹ Năng Chuẩn Cho Engineers 2026</title>
+      <title>mattpocock/skills: 2026년 엔지니어를 위한 필수 스킬 모음</title>
       <link>https://dibi8.com/ko/mattpocock-skills/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/mattpocock-skills/</guid>
-      <description>mattpocock/skills có 267.501 GitHub stars — cao nhất trong các bộ agent skills. Được tạo bởi Matt Pocock, chuyên gia TypeScript hàng đầu. Bộ kỹ năng thực chiến, không học thuật.</description>
+      <description>mattpocock/skills는 267.501 GitHub stars로 모든 agent skills 중 가장 많습니다. TypeScript 전문가 Matt Pocock가 만들었습니다. 전술 스킬, 이론이 아닌.</description>
     </item>
     <item>
-      <title>n8n: Workflow Automation Platform 2026 (205K Stars)</title>
+      <title>n8n: 2026년 워크플로 자동화 플랫폼 (205K Stars)</title>
       <link>https://dibi8.com/ko/n8n-workflow-automation/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/n8n-workflow-automation/</guid>
-      <description>n8n là fair-code workflow automation platform với native AI capabilities. 400&#43; integrations, self-hostable, hỗ trợ visual building &#43; custom code. Đạt 205K GitHub stars.</description>
+      <description>n8n은 네이티브 AI 기능을 갖춘 fair-code 워크플로 자동화 플랫폼입니다. 400&#43; 통합, 자체 호스팅 가능, 시각적 빌드 &#43; 사용자 정의 코드 지원. 205K GitHub stars 획득.</description>
     </item>
     <item>
-      <title>Ponytail: Biến AI Agent Thành &#39;Kỹ Sư Lười&#39; Hiệu Quả Nhất</title>
+      <title>Ponytail: AI Agent를 &#39;가장 게으른 시니어 개발자&#39;로 만드는 법</title>
       <link>https://dibi8.com/ko/ponytail-lazy-dev/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/ponytail-lazy-dev/</guid>
-      <description>Ponytail của DietrichGebert đạt 144K stars. Kỹ năng buộc agent viết code tối thiểu — ít nhất 54% LOC, nhanh nhất 27%, rẻ nhất 20%. &amp;#39;He says nothing. He writes one line. It works.&amp;#39;</description>
+      <description>DietrichGebert의 Ponytail은 144K stars를 기록했다. 에이전트가 최소 코드를 작성하도록 강제 — 최소 54% LOC, 27% 더 빠름, 20% 더 저렴. &amp;#39;그는 말하지 않는다. 한 줄을 쓴다. 작동한다.&amp;#39;</description>
     </item>
     <item>
-      <title>RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding</title>
+      <title>RTK (rtk-ai/rtk): AI 코딩의 90% Token 비용 절감</title>
       <link>https://dibi8.com/ko/rtk-token-killer/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/rtk-token-killer/</guid>
-      <description>RTK là CLI proxy viết bằng Rust giúp giảm 60-90% token consumption khi agent đọc output từ terminal. Hỗ trợ 100&#43; commands, &amp;lt;10ms overhead. Đạt 81K GitHub stars.</description>
+      <description>RTK는 Rust로 작성된 CLI 프록시로, 에이전트가 터미널 출력을 읽을 때 token 소비를 60-90% 줄입니다. 100&#43; 명령 지원, &amp;lt;10ms 지연. 81K GitHub stars 획득.</description>
     </item>
     <item>
-      <title>VoiceStudio: Alternativa Open-Source Cho ElevenLabs (34K Stars)</title>
+      <title>VoiceStudio: ElevenLabs의 오픈소스 대안 (34K Stars)</title>
       <link>https://dibi8.com/ko/voicestudio-voice-cloning/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/voicestudio-voice-cloning/</guid>
-      <description>VoiceStudio là công cụ voice cloning hoàn toàn local, hỗ trợ 646 ngôn ngữ, 150&#43; free models. Thay thế ElevenLabs miễn phí với chất lượng tương đương.</description>
+      <description>VoiceStudio는 완전히 로컬에서 실행되는 음성 클로닝 도구로, 646개 언어, 150&#43; 무료 모델을 지원합니다. 동일 품질의 무료 ElevenLabs 대안.</description>
     </item>
   </channel>
 </rss>

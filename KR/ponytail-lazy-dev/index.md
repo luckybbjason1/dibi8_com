@@ -1,138 +1,137 @@
 ---
-title: "Ponytail: Biến AI Agent Thành 'Kỹ Sư Lười' Hiệu Quả Nhất"
-description: "Ponytail của DietrichGebert đạt 144K stars. Kỹ năng buộc agent viết code tối thiểu — ít nhất 54% LOC, nhanh nhất 27%, rẻ nhất 20%. 'He says nothing. He writes one line. It works.'"
+title: "Ponytail: AI Agent를 '가장 게으른 시니어 개발자'로 만드는 법"
+description: "DietrichGebert의 Ponytail은 144K stars를 기록했다. 에이전트가 최소 코드를 작성하도록 강제 — 최소 54% LOC, 27% 더 빠름, 20% 더 저렴. '그는 말하지 않는다. 한 줄을 쓴다. 작동한다.'"
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, ponytail, minimal-code, claude-code, efficiency]
 category: github-tools
 image: https://raw.githubusercontent.com/DietrichGebert/ponytail/main/assets/logo.png
 related_posts:
-  - /cn/ecc-agent-harness
-  - /cn/rtk-token-killer
-  - /cn/rag-systems-2026
+  - /ko/ecc-agent-harness
+  - /ko/rtk-token-killer
+  - /ko/rag-systems-2026
 toc: true
 ---
 
-## Ponytail là gì?
+## Ponytail이란?
 
-**Ponytail** của `DietrichGebert` đạt **144.072 stars** trên GitHub. Concept: "Làm cho AI agent của bạn nghĩ như một kỹ sư senior lười nhất — người chỉ viết dòng code cần thiết, không thêm thắt."
+**Ponytail**은 `DietrichGebert`가 개발한 **144,072 stars**를 기록한 도구입니다. 개념: "AI 에이전트가 가장 게으른 시니어 개발자처럼 생각하게 만들기 — 필요한 코드를 쓰고, 불필요한 것은 추가하지 않기."
 
 ![Ponytail Logo](https://raw.githubusercontent.com/DietrichGebert/ponytail/main/assets/logo.png)
 
-> **Slogan:** "He says nothing. He writes one line. It works."
+> **슬로건:** "그는 말하지 않는다. 한 줄을 쓴다. 작동한다."
 
-## Problem Ponytail giải quyết
+## Ponytail이 해결하는 문제
 
-Khi bạn bảo agent "làm cho tôi date picker", thông thường agent sẽ:
-1. Install `flatpickr` package
-2. Viết wrapper component
-3. Thêm stylesheet
-4. Bắt đầu thảo luận về timezone
-5. Tạo 15-20 dòng code
+에이전트에게 "데이트 피커를 만들어 달라"고 할 때, 일반적으로 에이전트는:
+1. `flatpickr` 패키지를 설치
+2. 래퍼 컴포넌트 작성
+3. 스타일시트 추가
+4. 타임존에 대한 논의 시작
+5. 15-20줄의 코드 생성
 
-**Với Ponytail:**
+**Ponytail 사용 시:**
 
 ```html
 <!-- ponytail: browser has one -->
 <input type="date">
 ```
 
-Chỉ 1 dòng. Browser đã có built-in date picker.
+한 줄만. 브라우저에는 내장 날짜 선택기가 이미 있습니다.
 
-## Benchmark results
+## 벤치마크 결과
 
-Được đo trên real agent (Claude Code Haiku 4.5) sửa real repo (FastAPI + React template):
+실제 에이전트(Claude Code Haiku 4.5)로 실제 저장소(FastAPI + React 템플릿) 수정 측정:
 
-| Metric | Ponytail | Baseline | Improvement |
-|--------|----------|----------|-------------|
-| Lines of code | -54% | - | **Giảm 54%** |
-| Tokens used | -22% | - | **Giảm 22%** |
-| Cost | -20% | - | **Giảm 20%** |
-| Time | -27% | - | **Nhanh 27%** |
-| Safety | 100% | 100% | Bằng nhau |
+| 지표 | Ponytail | 기준 | 개선 |
+|------|----------|------|------|
+| 코드 줄 수 | -54% | - | **54% 감소** |
+| 사용된 token | -22% | - | **22% 감소** |
+| 비용 | -20% | - | **20% 감소** |
+| 시간 | -27% | - | **27% 빠름** |
+| 안전성 | 100% | 100% | 동일 |
 
-> **Lưu ý:** Trong một số cases (như date picker), Ponytail giảm đến **94% LOC** so với baseline over-engineering.
+> **참고:** 일부 경우(예: 날짜 선택기), Ponytail은 기준 과잉 엔지니어링 대비 **최대 94% LOC 감소**.
 
-## Cách Ponytail hoạt động
+## Ponytail 작동 방식
 
-### Nguyên tắc cốt lõi
+### 핵심 원칙
+1. **내장 기능 우선** — 브라우저/OS의 내장 기능 먼저 사용
+2. **최대 1개 의존성** — 필요 없으면 패키지 추가하지 않기
+3. **과잉 엔지니어링 금지** — 가장 간단한 솔루션이 충분
+4. **모든 것 의문시** — 구현 전 "진짜 이게 필요해?" 물어보기
 
-1. **Built-ins first** — Dùng tính năng có sẵn của browser/OS trước
-2. **One dependency max** — Không thêm package nếu không cần thiết
-3. **No over-engineering** — Giải pháp đơn giản nhất đủ để work
-4. **Question everything** — Hỏi "thực sự cần cái này không?" trước khi implement
+### 실제 예시
 
-### Ví dụ thực tế
+**요구사항:** "등록 폼 만들어줘"
 
-**Yêu cầu:** "Làm form đăng ký"
-
-❌ **Baseline (không Ponytail):**
+❌ **기준 (Ponytail 없음):**
 ```tsx
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-// ... 150 dòng code
+// ... 150줄 코드
 
 const formSchema = z.object({
   email: z.string().email(),
   password: z.string().min(8),
-  // ... validation phức tạp
+  // ... 복잡한 유효성 검사
 });
 ```
 
-✅ **Ponytail approach:**
+✅ **Ponytail 방식:**
 ```tsx
 <form action="/api/register" method="POST">
   <input name="email" type="email" required />
   <input name="password" type="password" required minLength={8} />
-  <button type="submit">Register</button>
+  <button type="submit">등록</button>
 </form>
 ```
 
-## Cài đặt
+## 설치
 
 ```bash
-# Cài qua npm
+# npm으로 설치
 npm install -g @dietrichgebert/ponytail
 
-# Hoặc dùng với agent
+# 또는 에이전트와 함께 사용
 npx ponytail
 ```
 
-### Hỗ trợ 20+ agents
+### 20+ 에이전트 지원
 
-Ponytail tương thích với:
+Ponytail은 다음과 호환됩니다:
 - Claude Code ✅
 - Cursor ✅
 - Codex ✅
 - Gemini CLI ✅
 - Windsurf ✅
 - OpenCode ✅
-- Và 15 agents khác...
+- 기타 15개 에이전트...
 
-## Tại sao Ponytail hiệu quả?
+## 왜 Ponytail이 효과적인가?
 
-1. **Chống over-engineering** — Agent thường mặc định chọn giải pháp phức tạp
-2. **Tiết kiệm cost** — Ít code = ít tokens = rẻ hơn
-3. **Dễ maintain** — Code ít hơn = ít bug hơn
-4. **Fast delivery** — Làm nhanh, deploy nhanh
-5. **Human-like thinking** — Giống cách kỹ sư senior suy nghĩ thực sự
+1. **과잉 엔지니어링 방지** — 에이전트는 보통 복잡한 솔루션을 기본적으로 선택
+2. **비용 절감** — 적은 코드 = 적은 token = 저렴함
+3. **유지보수 용이** — 적은 코드 = 적은 버그
+4. **빠른 납품** — 빠르게 만들고 빠르게 배포
+5. **인간적인 사고** — 진짜 시니어 개발자처럼 생각
 
-## So sánh với ECC và RTK
+## ECC 및 RTK와 비교
 
-| Tool | Focus | Savings | Use case |
-|------|-------|---------|----------|
-| **Ponytail** | Code brevity | -54% LOC, -20% cost | Mọi project |
-| **ECC** | Engineering system | Broad optimization | Large teams |
-| **RTK** | Token reduction | -60-90% tokens | Agent-heavy workflows |
+| 도구 | 초점 | 절약 | 사용 사례 |
+|------|------|------|----------|
+| **Ponytail** | 코드 간결성 | -54% LOC, -20% 비용 | 모든 프로젝트 |
+| **ECC** | 엔지니어링 시스템 | 광범위 최적화 | 대형 팀 |
+| **RTK** | Token 감소 | -60-90% tokens | 에이전트 중심 워크플로우 |
 
-> **Gợi ý:** Dùng cả ba! Ponytail giảm code, RTK giảm token, ECC quản lý workflow.
+> **提案:** 세 개 모두 사용! Ponytail은 코드를 줄이고, RTK는 token을 줄이고, ECC는 워크플로우를 관리합니다.
 
-## Kết luận
+## 결론
 
-Ponytail là skill **bắt buộc** cho bất kỳ developer nào dùng AI coding agents. Nó dạy agent cách "lười thông minh" — làm ít nhất có thể, hiệu quả nhất có thể.
+Ponytail은 AI 코딩 에이전트를 사용하는 모든 개발자에게 **필수** 스킬입니다. "스마트하게 게으르게" 일하는 법을 가르칩니다 — 최대한 적게 하고, 최대한 효율적으로 완료하기.
 
-**Link:** [github.com/DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
-**Website:** [ponytail.dev](https://ponytail.dev)
+**링크:** [github.com/DietrichGebert/ponytail](https://github.com/DietrichGebert/ponytail)
+**웹사이트:** [ponytail.dev](https://ponytail.dev)

@@ -9,13 +9,6 @@
     <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>About</title>
-      <link>https://dibi8.com/ko/tags/about/</link>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/about/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Ai-Agent</title>
       <link>https://dibi8.com/ko/tags/ai-agent/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
@@ -30,13 +23,6 @@
       <description></description>
     </item>
     <item>
-      <title>Ai-Coding-Agents</title>
-      <link>https://dibi8.com/ko/tags/ai-coding-agents/</link>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/ai-coding-agents/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Automation</title>
       <link>https://dibi8.com/ko/tags/automation/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
@@ -44,7 +30,7 @@
       <description></description>
     </item>
     <item>
-      <title>Claude Code</title>
+      <title>Claude-Code</title>
       <link>https://dibi8.com/ko/tags/claude-code/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/tags/claude-code/</guid>
@@ -100,31 +86,10 @@
       <description></description>
     </item>
     <item>
-      <title>Llm-Frameworks</title>
-      <link>https://dibi8.com/ko/tags/llm-frameworks/</link>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/llm-frameworks/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Mattpocock</title>
       <link>https://dibi8.com/ko/tags/mattpocock/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/tags/mattpocock/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Mcp-Tools</title>
-      <link>https://dibi8.com/ko/tags/mcp-tools/</link>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/mcp-tools/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Meta</title>
-      <link>https://dibi8.com/ko/tags/meta/</link>
-      <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/meta/</guid>
       <description></description>
     </item>
     <item>
@@ -212,24 +177,10 @@
       <description></description>
     </item>
     <item>
-      <title>Ai</title>
-      <link>https://dibi8.com/ko/tags/ai/</link>
+      <title>Agent</title>
+      <link>https://dibi8.com/ko/tags/agent/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/ai/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>AI 감지</title>
-      <link>https://dibi8.com/ko/tags/ai-%EA%B0%90%EC%A7%80/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/ai-%EA%B0%90%EC%A7%80/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>AI 글쓰기</title>
-      <link>https://dibi8.com/ko/tags/ai-%EA%B8%80%EC%93%B0%EA%B8%B0/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/ai-%EA%B8%80%EC%93%B0%EA%B8%B0/</guid>
+      <guid>https://dibi8.com/ko/tags/agent/</guid>
       <description></description>
     </item>
     <item>
@@ -240,10 +191,17 @@
       <description></description>
     </item>
     <item>
-      <title>Ai-Frameworks</title>
-      <link>https://dibi8.com/ko/tags/ai-frameworks/</link>
+      <title>Ai-Tools</title>
+      <link>https://dibi8.com/ko/tags/ai-tools/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/ai-frameworks/</guid>
+      <guid>https://dibi8.com/ko/tags/ai-tools/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ai-Writing</title>
+      <link>https://dibi8.com/ko/tags/ai-writing/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/ai-writing/</guid>
       <description></description>
     </item>
     <item>
@@ -251,6 +209,20 @@
       <link>https://dibi8.com/ko/tags/archify/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/tags/archify/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Architecture-Diagrams</title>
+      <link>https://dibi8.com/ko/tags/architecture-diagrams/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/architecture-diagrams/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Code-Analysis</title>
+      <link>https://dibi8.com/ko/tags/code-analysis/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/code-analysis/</guid>
       <description></description>
     </item>
     <item>
@@ -265,6 +237,13 @@
       <link>https://dibi8.com/ko/tags/comparison/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/tags/comparison/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Content-Creation</title>
+      <link>https://dibi8.com/ko/tags/content-creation/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/content-creation/</guid>
       <description></description>
     </item>
     <item>
@@ -310,10 +289,24 @@
       <description></description>
     </item>
     <item>
+      <title>Llm-Frameworks</title>
+      <link>https://dibi8.com/ko/tags/llm-frameworks/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/llm-frameworks/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>Opencode</title>
       <link>https://dibi8.com/ko/tags/opencode/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/tags/opencode/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Production</title>
+      <link>https://dibi8.com/ko/tags/production/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/production/</guid>
       <description></description>
     </item>
     <item>
@@ -324,52 +317,24 @@
       <description></description>
     </item>
     <item>
-      <title>Tools</title>
-      <link>https://dibi8.com/ko/tags/tools/</link>
+      <title>Retrieval-Augmented-Generation</title>
+      <link>https://dibi8.com/ko/tags/retrieval-augmented-generation/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/tools/</guid>
+      <guid>https://dibi8.com/ko/tags/retrieval-augmented-generation/</guid>
       <description></description>
     </item>
     <item>
-      <title>검색증강생성</title>
-      <link>https://dibi8.com/ko/tags/%EA%B2%80%EC%83%89%EC%A6%9D%EA%B0%95%EC%83%9D%EC%84%B1/</link>
+      <title>Visualization</title>
+      <link>https://dibi8.com/ko/tags/visualization/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/%EA%B2%80%EC%83%89%EC%A6%9D%EA%B0%95%EC%83%9D%EC%84%B1/</guid>
+      <guid>https://dibi8.com/ko/tags/visualization/</guid>
       <description></description>
     </item>
     <item>
-      <title>시각화</title>
-      <link>https://dibi8.com/ko/tags/%EC%8B%9C%EA%B0%81%ED%99%94/</link>
+      <title>Writing-Assistant</title>
+      <link>https://dibi8.com/ko/tags/writing-assistant/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/%EC%8B%9C%EA%B0%81%ED%99%94/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>아키텍처 다이어그램</title>
-      <link>https://dibi8.com/ko/tags/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98-%EB%8B%A4%EC%9D%B4%EC%96%B4%EA%B7%B8%EB%9E%A8/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>코드 분석</title>
-      <link>https://dibi8.com/ko/tags/%EC%BD%94%EB%93%9C-%EB%B6%84%EC%84%9D/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/%EC%BD%94%EB%93%9C-%EB%B6%84%EC%84%9D/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>텍스트 개선</title>
-      <link>https://dibi8.com/ko/tags/%ED%85%8D%EC%8A%A4%ED%8A%B8-%EA%B0%9C%EC%84%A0/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/%ED%85%8D%EC%8A%A4%ED%8A%B8-%EA%B0%9C%EC%84%A0/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>프로덕션</title>
-      <link>https://dibi8.com/ko/tags/%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/%ED%94%84%EB%A1%9C%EB%8D%95%EC%85%98/</guid>
+      <guid>https://dibi8.com/ko/tags/writing-assistant/</guid>
       <description></description>
     </item>
     <item>
@@ -429,13 +394,6 @@
       <description></description>
     </item>
     <item>
-      <title>Plugin</title>
-      <link>https://dibi8.com/ko/tags/plugin/</link>
-      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/plugin/</guid>
-      <description></description>
-    </item>
-    <item>
       <title>Python</title>
       <link>https://dibi8.com/ko/tags/python/</link>
       <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
@@ -443,10 +401,24 @@
       <description></description>
     </item>
     <item>
-      <title>Scraping</title>
-      <link>https://dibi8.com/ko/tags/scraping/</link>
+      <title>스크래핑</title>
+      <link>https://dibi8.com/ko/tags/%EC%8A%A4%ED%81%AC%EB%9E%98%ED%95%91/</link>
       <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/tags/scraping/</guid>
+      <guid>https://dibi8.com/ko/tags/%EC%8A%A4%ED%81%AC%EB%9E%98%ED%95%91/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>자동화</title>
+      <link>https://dibi8.com/ko/tags/%EC%9E%90%EB%8F%99%ED%99%94/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/%EC%9E%90%EB%8F%99%ED%99%94/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>플러그인</title>
+      <link>https://dibi8.com/ko/tags/%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/tags/%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8/</guid>
       <description></description>
     </item>
   </channel>

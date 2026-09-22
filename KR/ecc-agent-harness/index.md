@@ -1,133 +1,129 @@
 ---
-title: "ECC (affaan-m/ECC): Hệ Thống Điều Khiển Agent Mạnh Nhất 2026"
-description: "ECC là agent harness performance optimization system với 265K GitHub stars. Hỗ trợ 68 agents, 286 skills, 94 commands. Tích hợp AgentShield bảo mật. Tương thích Claude Code, Codex, Cursor, OpenCode và nhiều hơn nữa."
+title: "ECC (affaan-m/ECC): 2026년 최고 Agent 제어 시스템"
+description: "ECC는 265K GitHub stars를 갖춘 agent harness 성능 최적화 시스템입니다. 68개 agents, 286개 skills, 94개 commands 지원. AgentShield 보안 내장. Claude Code, Codex, Cursor, OpenCode 호환."
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, ecc, claude-code, coding-agent, performance]
 category: github-tools
 image: https://raw.githubusercontent.com/affaan-m/ECC/main/assets/hero.png
 related_posts:
-  - /cn/archify-diagrams
-  - /cn/rag-systems-2026
-  - /cn/ai-coding-agents-comparison
+  - /ko/archify-diagrams
+  - /ko/rag-systems-2026
+  - /ko/ai-coding-agents-comparison
 toc: true
 ---
 
-## ECC là gì?
+## ECC란?
 
-**ECC** (Agent Harness Performance Optimization System) của `affaan-m` đã đạt **265.039 stars** trên GitHub. Đây không chỉ là một bộ kỹ năng — đây là hệ điều hành cho agent coding của bạn.
+**ECC** (Agent Harness Performance Optimization System)는 `affaan-m`이 개발한 **265,039 stars**를 기록한 도구입니다. 단순한 스킬 패키지가 아닌 당신의 코딩 agent를 위한 운영체제입니다.
 
 ![ECC Hero Image](https://raw.githubusercontent.com/affaan-m/ECC/main/assets/hero.png)
 
-> **Tóm tắt nhanh:** ECC biến agent coding từ "công cụ viết code" thành "hệ thống kỹ thuật đồng bộ" — lập kế hoạch trước, kiểm thử trước, xem xét lại, và học hỏi liên tục.
+> **빠른 요약:** ECC는 AI 코딩 에이전트를 "코드 작성 도구"에서 "협업 엔지니어링 시스템"으로 변환합니다 — 빌드 전에 계획하고, 검증 전에 테스트하고, 새로울 컨텍스트에서 작업을 검토하며, 지속적인 학습을 통해 반복된 성공을 재사용 가능한 스킬과 워크플로로 변환합니다.
 
-## Tại sao ECC đặc biệt?
+## 왜 ECC가 특별한가?
 
-### 1. Con số biết nói
+### 1. 숫자가 말해줍니다
 
-| Thành phần | Số lượng |
-|------------|----------|
+| 구성 요소 | 수량 |
+|-----------|------|
 | Agents | 68 |
 | Skills | 286 |
 | Commands | 94 |
-| Hooks/Rules | Hỗ trợ runtime |
-| AgentShield | Tích hợp sẵn |
+| Hooks/Rules | 런타임 지원 |
+| AgentShield | 내장 통합 |
 
-### 2. Hỗ trợ đa nền tảng
+### 2. 다중 플랫폼 지원
 
-ECC không giới hạn ở một agent duy nhất:
+ECC는 단일 에이전트에 국한되지 않습니다:
 
-- ✅ **Claude Code** — native support
-- ✅ **OpenAI Codex** — có sync path
-- ✅ **Cursor** — adapter cục bộ
-- ✅ **OpenCode** — plugin full
-- ✅ **Gemini CLI** — cài đặt tối giản
-- ✅ **Zed** — adapter cục bộ
-- ✅ **Hermes** — setup guide riêng
-- ✅ **Quay số khác**: Antigravity, Qwen, Kimi, CodeBuddy, JoyCode, GitHub Copilot
+- ✅ **Claude Code** — 네이티브 지원
+- ✅ **OpenAI Codex** — 동기화 경로 있음
+- ✅ **Cursor** — 로컬 어댑터
+- ✅ **OpenCode** — 완전한 플러그인
+- ✅ **Gemini CLI** — 미니멀 설치
+- ✅ **Zed** — 로컬 어댑터
+- ✅ **Hermes** — 전용 설정 가이드
+- ✅ **기타**: Antigravity, Qwen, Kimi, CodeBuddy, JoyCode, GitHub Copilot
 
-### 3. AgentShield — Bảo mật tự động
+### 3. AgentShield — 자동 보안
 
-Một trong những tính năng hiếm có: **AgentShield** quét tự động:
-- Prompts độc hại
-- MCP config nguy hiểm
-- Secrets rò rỉ
-- Permission abuse
+귀중한 기능: **AgentShield**가 자동으로 스캔합니다:
+- 악의적인 프롬프트
+- 위험한 MCP 구성
+- 누설된 시크릿
+- 권한 남용
 
-## Cài đặt như thế nào?
+## 설치 방법
 
-### Với Claude Code
-
+### Claude Code 사용
 ```bash
-# Cách 1: Install script
+# 방법 1: 설치 스크립트
 ./install.sh --profile minimal --target claude
 
-# Cách 2: Sử dụng plugin
+# 방법 2: 플러그인 사용
 claude plugin install ecc@ecc
 ```
 
-### Với Codex CLI
-
+### Codex CLI 사용
 ```bash
 ./install.sh --profile minimal --target codex
 ```
 
-### Với Cursor
-
+### Cursor 사용
 ```bash
 ./install.sh --profile minimal --target cursor
 ```
 
-### Manual install (cross-platform)
-
+### 수동 설치 (크로스 플랫폼)
 ```bash
 npm install -g ecc-universal
 npm install -g ecc-agentshield
 ```
 
-## Agent nào có sẵn?
+## 사용 가능한 Agents
 
 ### Planning Agents
-- `planner` — phân tích yêu cầu, tạo kế hoạch
-- `tdd-workflow` — test-before-code enforcement
-- `spec-analyzer` — phân tích specifications
+- `planner` — 요구사항 분석, 계획 수립
+- `tdd-workflow` — 테스트 먼저 강제
+- `spec-analyzer` — 사양 분석
 
 ### Security Agents
-- `security-reviewer` — review code security
-- `dependency-auditor` — quét lỗ hổng dependencies
-- `prompt-injection-detector` — phát hiện injection attacks
+- `security-reviewer` — 코드 보안 검토
+- `dependency-auditor` — 의존성 취약점 스캔
+- `prompt-injection-detector` — 주입 공격 감지
 
 ### Architecture Agents
-- `architecture-reviewer` — review kiến trúc hệ thống
-- `performance-analyst` — phân tích và tối ưu performance
-- `code-reviewer` — review code quality
+- `architecture-reviewer` — 시스템 아키텍처 검토
+- `performance-analyst` — 성능 분석 및 최적화
+- `code-reviewer` — 코드 품질 검토
 
 ### Domain Agents
-- `database-reviewer` — audit database queries
-- `api-designer` — thiết kế REST/GraphQL APIs
-- `frontend-developer` — UI/UX implementation
+- `database-reviewer` — 데이터베이스 쿼리 감사
+- `api-designer` — REST/GraphQL API 설계
+- `frontend-developer` — UI/UX 구현
 
-## So sánh với alternatives
+## 대안과 비교
 
-| Tính năng | ECC | Ponytail | agent-skills |
-|-----------|-----|----------|--------------|
-| Số lượng agents | 68 | Tập trung vào brevity | 20+ skills |
-| Bảo mật | AgentShield tích hợp | Không | Có cơ bản |
-| Đa platform | 10+ agents | Claude Code focus | Various |
-| Learning system | Continuous learning | Static rules | Static rules |
-| Pricing | Open source (MIT) | Open source | Open source |
+| 기능 | ECC | Ponytail | agent-skills |
+|------|-----|----------|--------------|
+| Agent 수 | 68 | 간결성 집중 | 20+ 스킬 |
+| 보안 | AgentShield 내장 | 없음 | 기본 |
+| 다중 플랫폼 | 10+ agents | Claude Code 집중 | 다양한 |
+| 학습 시스템 | 지속적 학습 | 정적 규칙 | 정적 규칙 |
+| 가격 | 오픈 소스 (MIT) | 오픈 소스 | 오픈 소스 |
 
-## Tại sao bạn nên dùng ECC?
+## 왜 사용해야 하나요?
 
-1. **Lập kế hoạch trước khi code** — Không phải viết code mù quáng
-2. **Test-driven development** — Viết test trước, code sau
-3. **Security-first** — AgentShield bảo vệ bạn tự động
-4. **Continuous learning** — Học hỏi từ mỗi session
-5. **Cross-harness** — Dùng được với nhiều AI tools
+1. **코딩 전에 계획** —盲目的으로 코드 작성하지 않기
+2. **테스트 주도 개발** — 먼저 테스트 작성, 나중에 코드
+3. **보안 우선** — AgentShield가 자동으로 보호
+4. **지속적 학습** — 모든 세션에서 학습
+5. **크로스 헐리스** — 다양한 AI 도구와 호환
 
-## Kết luận
+## 결론
 
-ECC không chỉ là một bộ kỹ năng — nó là **hệ điều hành cho agent coding của bạn**. Với 265K stars và cộng đồng đang phát triển nhanh, ECC là lựa chọn hàng đầu cho developer muốn tối ưu hóa workflow với AI.
+ECC는 단순한 스킬 패키지가 아닙니다 — 그것은 **당신의 AI 코딩 agent를 위한 운영체제**입니다. 265K stars와 빠르게 성장하는 커뮤니티를 갖춘 ECC는 AI 워크플로우를 최적화하려는 개발者的首选입니다.
 
-**Link:** [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC)
-**Docs:** [ecc.tools](https://ecc.tools)
+**링크:** [github.com/affaan-m/ECC](https://github.com/affaan-m/ECC)
+**문서:** [ecc.tools](https://ecc.tools)

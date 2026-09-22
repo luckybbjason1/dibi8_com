@@ -1,77 +1,77 @@
 ---
-title: "n8n: Workflow Automation Platform 2026 (205K Stars)"
-description: "n8n là fair-code workflow automation platform với native AI capabilities. 400+ integrations, self-hostable, hỗ trợ visual building + custom code. Đạt 205K GitHub stars."
+title: "n8n: 2026년 워크플로 자동화 플랫폼 (205K Stars)"
+description: "n8n은 네이티브 AI 기능을 갖춘 fair-code 워크플로 자동화 플랫폼입니다. 400+ 통합, 자체 호스팅 가능, 시각적 빌드 + 사용자 정의 코드 지원. 205K GitHub stars 획득."
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, n8n, workflow, automation, ai-agent]
 category: github-tools
 image: https://raw.githubusercontent.com/n8n-io/n8n/main/assets/hero.png
 related_posts:
-  - /cn/ecc-agent-harness
-  - /cn/ponytail-lazy-dev
-  - /cn/voicestudio-voice-cloning
+  - /ko/ecc-agent-harness
+  - /ko/ponytail-lazy-dev
+  - /ko/voicestudio-voice-cloning
 toc: true
 ---
 
-## n8n là gì?
+## n8n이란?
 
-**n8n** là workflow automation platform mã nguồn mở, đạt **205.668 stars**. Khác với Zapier hay Make, n8n có thể **self-host** hoàn toàn — dữ liệu của bạn ở lại server của bạn.
+**n8n**은 오픈소스 워크플로 자동화 플랫폼으로, **205,668 stars**를 기록했습니다. Zapier나 Make와 달리 n8n은 **완전히 자체 호스팅**할 수 있습니다 — 당신의 데이터는 당신의 서버에 남습니다.
 
 ![n8n Hero](https://raw.githubusercontent.com/n8n-io/n8n/main/assets/hero.png)
 
-> **Fair-code license:** Miễn phí cho commercial use với điều kiện không bán lại platform.
+> **Fair-code 라이선스:** 상업적 사용 무료, 단 플랫폼을 재판매하지 않는 조건.
 
-## Tại sao n8n khác biệt?
+## 왜 n8n이 다른가?
 
-### 1. Self-hosted
-- Dữ liệu không ra khỏi server của bạn
-- Không lệ thuộc third-party
-- Control hoàn toàn
+### 1. 자체 호스팅
+- 데이터가 서버를 벗어나지 않음
+- 서드파티에 의존하지 않음
+- 완전한 제어
 
-### 2. Native AI Capabilities
-- AI agent nodes
-- LLM integration (OpenAI, Anthropic, local models)
-- RAG workflows
-- Vector database connections
+### 2. 네이티브 AI 기능
+- AI 에이전트 노드
+- LLM 통합 (OpenAI, Anthropic, 로컬 모델)
+- RAG 워크플로
+- 벡터 데이터베이스 연결
 
-### 3. 400+ Integrations
+### 3. 400+ 통합
 - Google Workspace
 - Slack, Discord, Telegram
 - GitHub, GitLab
-- databases (PostgreSQL, MongoDB, MySQL)
-- APIs khắp nơi
+- 데이터베이스 (PostgreSQL, MongoDB, MySQL)
+- 모든 API
 
-### 4. Visual + Code
-- Drag-and-drop workflow builder
-- JavaScript/Python nodes cho custom logic
-- Debug trực quan
+### 4. 시각적 + 코드
+- 드래그 앤 드롭 워크플로 빌더
+- 사용자 정의 로직용 JavaScript/Python 노드
+- 시각적 디버그
 
-## Use cases phổ biến
+## 일반적인 사용 사례
 
-### AI Agent Workflows
+### AI 에이전트 워크플로
 ```
-Trigger (webhook) → AI Process → Database → Notification
-```
-
-Ví dụ: tự động xử lý email, classify, lưu vào DB, alert khi cần.
-
-### Data Pipeline
-```
-API → Transform → Store → Dashboard
+트리거 (webhook) → AI 처리 → 데이터베이스 → 알림
 ```
 
-Ví dụ: scrape data từ multiple sources, clean, lưu vào warehouse.
+예: 이메일 자동 처리, 분류, DB 저장, 필요 시 alert.
 
-### Automation
+### 데이터 파이프라인
 ```
-Schedule → Check conditions → Act → Report
+API → 변환 → 저장 → 대시보드
 ```
 
-Ví dụ: daily check inventory, auto-order khi low stock.
+예: 여러 소스에서 데이터 수집, 정리, 웨어하우스 저장.
 
-## Cài đặt
+### 자동화
+```
+일정 → 조건 확인 → 실행 → 보고서
+```
 
-### Docker (recommended)
+예: 일일 재고 확인, 재고 부족 시 자동 주문.
+
+## 설치
+
+### Docker (추천)
 ```bash
 docker run -d \
   --name n8n \
@@ -92,62 +92,62 @@ helm repo add n8n https://n8n.io/charts
 helm install n8n n8n/n8n
 ```
 
-## AI-Native Workflows
+## AI-Native 워크플로
 
-### LLM Agent
+### LLM 에이전트
 ```json
 {
   "nodes": [
-    {"type": "chatTrigger", "name": "Chat Input"},
+    {"type": "chatTrigger", "name": "채팅 입력"},
     {"type": "llmChain", "name": "GPT-4", "params": {"model": "gpt-4"}},
-    {"type": "code", "name": "Process", "params": {"functionCode": "return items"}},
-    {"type": "chatRespond", "name": "Chat Output"}
+    {"type": "code", "name": "처리", "params": {"functionCode": "return items"}},
+    {"type": "chatRespond", "name": "채팅 출력"}
   ]
 }
 ```
 
-### RAG Pipeline
+### RAG 파이프라인
 ```
-Document → Split → Embed → Vector Store → Retrieve → LLM → Answer
-```
-
-### Multi-Agent System
-```
-Orchestrator Agent → Specialist Agents → Merge → Output
+문서 → 분할 → 임베딩 → 벡터 저장 → 검색 → LLM → 답변
 ```
 
-## So sánh alternatives
+### 다중 에이전트 시스템
+```
+오케스트레이터 에이전트 → 전문 에이전트 → 병합 → 출력
+```
 
-| Feature | n8n | Zapier | Make | Airflow |
-|---------|-----|--------|------|---------|
-| Self-host | ✅ | ❌ | ❌ | ✅ |
-| Price | Free* | Expensive | Expensive | Free |
-| AI native | ✅ | Basic | Basic | ❌ |
-| Visual builder | ✅ | ✅ | ✅ | ❌ |
-| Code flexibility | ✅ | Limited | Limited | ✅ |
-| Community | 200K+ | Large | Medium | Large |
+## 대안과 비교
 
-*Fair-code: free cho commercial use, trừ khi bán lại platform.
+| 기능 | n8n | Zapier | Make | Airflow |
+|------|-----|--------|------|---------|
+| 자체 호스팅 | ✅ | ❌ | ❌ | ✅ |
+| 가격 | 무료* | 비쌈 | 비쌈 | 무료 |
+| 네이티브 AI | ✅ | 기본 | 기본 | ❌ |
+| 시각적 빌더 | ✅ | ✅ | ✅ | ❌ |
+| 코드 유연성 | ✅ | 제한적 | 제한적 | ✅ |
+| 커뮤니티 | 200K+ | 크음 | 중간 | 크음 |
 
-## Tích hợp với AI Agents
+*Fair-code: 상업적 사용 무료, 단 플랫폼 재판매 불가.
 
-n8n có thể kết hợp với:
-- **ECC** — orchestrate agent workflows
-- **Claude Code** — generate code từ workflow
-- **Hermes** — trigger agents from events
-- **Custom agents** — build your own
+## AI 에이전트와 통합
 
-## Limitations
+n8n은 다음과 결합할 수 있습니다:
+- **ECC** — 에이전트 워크플로 오케스트레이션
+- **Claude Code** — 워크플로에서 코드 생성
+- **Hermes** — 이벤트에서 에이전트 트리거
+- **사용자 정의 에이전트** — 직접 만들기
 
-⚠️ **Cần lưu ý:**
-- Self-hosting cần运维 knowledge
-- Complex workflows cần JavaScript skills
-- Community nodes có thể chưa stable
--Enterprise features cần paid plan
+## 제한사항
 
-## Kết luận
+⚠️ **주의할 점:**
+- 자체 호스팅에는运维 지식 필요
+- 복잡한 워크플로는 JavaScript 기술 필요
+- 커뮤니티 노드는 불안정할 수 있음
+- Enterprise 기능은 유료 플랜 필요
 
-n8n là **sweet spot** giữa power và ease-of-use. Cho người muốn automation mạnh mẽ mà không muốn trả giá đắt cho SaaS.
+## 결론
 
-**Link:** [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n)
-**Website:** [n8n.io](https://n8n.io)
+n8n은 **힘과 사용やすさ 사이의 달콤한 점**입니다. 강력한 자동화를 원하지만 SaaS에 비싼 비용을 지불하고 싶지 않은 사용자를 위한 것입니다.
+
+**링크:** [github.com/n8n-io/n8n](https://github.com/n8n-io/n8n)
+**웹사이트:** [n8n.io](https://n8n.io)

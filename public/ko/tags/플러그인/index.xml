@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>플러그인 on Dibi8</title>
+    <link>https://dibi8.com/ko/tags/%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8/</link>
+    <description>Recent content in 플러그인 on Dibi8</description>
+    <generator>Hugo</generator>
+    <language>ko</language>
+    <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://dibi8.com/ko/tags/%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DeepSeek Harness: 229K-Star 플러그인 생태계가 모든 것을 확장 가능하게 — 완전 2026 설정 가이드</title>
+      <link>https://dibi8.com/ko/deepseek-harness-plugin-ecosystem-2026/</link>
+      <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/deepseek-harness-plugin-ecosystem-2026/</guid>
+      <description>DeepSeek Harness(DSH)는 2026년 가장 빠르게 성장하는 AI 에이전트 프레임워크로 GitHub 스타 229K&#43;를 기록했습니다. 커스텀 플러그인 빌드, Claude Code/Cursor/Codex 통합, 몇 분 안에 프로덕션 에이전트 배포 방법을 배우세요.</description>
+    </item>
+  </channel>
+</rss>

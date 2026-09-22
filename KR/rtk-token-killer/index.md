@@ -1,92 +1,88 @@
 ---
-title: "RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding"
-description: "RTK là CLI proxy viết bằng Rust giúp giảm 60-90% token consumption khi agent đọc output từ terminal. Hỗ trợ 100+ commands, <10ms overhead. Đạt 81K GitHub stars."
+title: "RTK (rtk-ai/rtk): AI 코딩의 90% Token 비용 절감"
+description: "RTK는 Rust로 작성된 CLI 프록시로, 에이전트가 터미널 출력을 읽을 때 token 소비를 60-90% 줄입니다. 100+ 명령 지원, <10ms 지연. 81K GitHub stars 획득."
 date: 2026-09-22
 lastmod: 2026-09-22
 tags: [github, rtk, token-optimization, claude-code, cost-reduction]
 category: github-tools
 image: https://raw.githubusercontent.com/rtk-ai/rtk/main/assets/hero.png
 related_posts:
-  - /cn/ecc-agent-harness
-  - /cn/mattpocock-skills
-  - /cn/rag-systems-2026
+  - /ko/ecc-agent-harness
+  - /ko/mattpocock-skills
+  - /ko/rag-systems-2026
 toc: true
 ---
 
-## Vấn đề token cost
+## Token 비용 문제
 
-Khi dùng AI coding agents (Claude Code, Codex, Cursor), bạn đang trả tiền cho mỗi token input. Một lệnh `git log` hay `ls -la` có thể xuất ra hàng ngàn dòng, và mỗi dòng đó cost money.
+AI 코딩 에이전트(Claude Code, Codex, Cursor)를 사용할 때 입력 token마다 비용을 지불합니다. `git log`나 `ls -la` 같은 명령은 수천 줄을 출력할 수 있으며, 각 줄이 비용입니다.
 
-**RTK giải quyết vấn đề này.**
+**RTK가 이 문제를 해결합니다.**
 
 ![RTK Hero](https://raw.githubusercontent.com/rtk-ai/rtk/main/assets/hero.png)
 
-> **Tóm tắt:** RTK lọc và nén output từ CLI trước khi gửi tới LLM. Giảm 60-90% token usage mà không mất thông tin quan trọng.
+> **요약:** RTK는 CLI 출력을 LLM에 보내기 전에 필터링하고 압축합니다. 60-90% token 사용 감소, 중요한 정보 손실 없이.
 
-## RTK hoạt động thế nào?
+## RTK 작동 방식
 
-### Cơ chế hoạt động
-
+### 작동 메커니즘
 ```
-Bạn chạy: git status
+실행: git status
 ↓
-RTK intercept và filter output
+RTK가 인터셉트하고 필터링
 ↓
-Agent nhận được phiên bản đã nén (90% nhỏ hơn)
+에이전트는 압축된 버전 받음 (90% 작음)
 ↓
-Cost giảm, context window được bảo toàn
+비용 감소, 컨텍스트 창 보존
 ```
 
-### Supported Commands (100+)
+### 지원 명령 (100+)
 
-**Git operations:**
+**Git 작업:**
 - `rtk git status`, `rtk git log`, `rtk git diff`
 - `rtk gh pr list`, `rtk gh issue view`
 
-**File operations:**
+**파일 작업:**
 - `rtk find`, `rtk grep`, `rtk rg`
 - `rtk cat`, `rtk head`, `rtk tail`
 
-**Package management:**
+**패키지 관리:**
 - `rtk npm list`, `rtk yarn why`
 - `rtk cargo tree`, `rtk pip list`
 
-**Process monitoring:**
+**프로세스 모니터링:**
 - `rtk ps`, `rtk top`, `rtk docker ps`
 
-## Cài đặt
+## 설치
 
-### macOS/Linux (Homebrew - recommended)
-
+### macOS/Linux (Homebrew - 추천)
 ```bash
 brew install rtk
-rtk init -g  # Global hook cho Claude Code/Copilot
+rtk init -g  # Claude Code/Copilot용 글로벌 훅
 ```
 
 ### Windows (winget)
-
 ```powershell
 winget install rtk-ai.rtk
 rtk init -g
 ```
 
-### Via Cargo
-
+### Cargo로
 ```bash
 cargo install --git https://github.com/rtk-ai/rtk
 rtk init -g
 ```
 
-### Pre-built binaries
+### 사전 구축된 바이너리
 
-[Tải về từ releases](https://github.com/rtk-ai/rtk/releases)
+[releases에서 다운로드](https://github.com/rtk-ai/rtk/releases)
 
-## Kết hợp với agents
+## 에이전트와 통합
 
 ### Claude Code / GitHub Copilot
 ```bash
 rtk init -g
-# Tự động hook vào bash
+# bash에 자동으로 훅
 ```
 
 ### Gemini CLI
@@ -110,50 +106,50 @@ rtk init -g --agent windsurf
 rtk init -g --agent hermes
 ```
 
-## Benchmarks
+## 벤치마크 결과
 
-Theo [rtk-ai.app/benchmarks](https://www.rtk-ai.app/benchmarks):
+[rtk-ai.app/benchmarks](https://www.rtk-ai.app/benchmarks)에 따르면:
 
-| Metric | Without RTK | With RTK | Savings |
-|--------|-------------|----------|---------|
-| Average token usage | 100% | 10-40% | **60-90%** |
-| Cost per session | $1.00 | $0.10-$0.40 | **60-90%** |
-| Context window usage | 100% | 15-50% | **50-85%** |
+| 지표 | RTK 없음 | RTK 있음 | 절약 |
+|------|----------|----------|------|
+| 평균 token 사용 | 100% | 10-40% | **60-90%** |
+| 세션당 비용 | $1.00 | $0.10-$0.40 | **60-90%** |
+| 컨텍스트 창 사용 | 100% | 15-50% | **50-85%** |
 
-### Real-world example
+### 실제 사례
 
-Task: Review PR with 500 lines changed
-- Without RTK: Agent đọc toàn bộ `git diff` → ~15.000 tokens
-- With RTK: RTK lọc chỉ giữ changes quan trọng → ~2.500 tokens
-- **Tiết kiệm: 12.500 tokens (~$0.05)**
+작업: 500줄 변경된 PR 검토
+- RTK 없음: 에이전트가 전체 `git diff` 읽음 → ~15,000 tokens
+- RTK 있음: RTK가 중요 변경만 필터링 → ~2,500 tokens
+- **절약: 12,500 tokens (~$0.05)**
 
-## Tại sao nên dùng RTK?
+## 왜 사용해야 하나요?
 
-1. **Giảm chi phí đáng kể** — 60-90% token savings
-2. **Tăng tốc độ** — output nhỏ hơn = xử lý nhanh hơn
-3. **Bảo toàn context** — không bị overflow token limit
-4. **Zero config** — cài xong là chạy
-5. **Cross-platform** — macOS, Linux, Windows
-6. **Open source** — Apache 2.0 license
+1. **비용을 크게 줄임** — 60-90% token 절약
+2. **속도 향상** — 더 작은 출력 = 더 빠른 처리
+3. **컨텍스트 보존** — token 제한을 넘지 않음
+4. **제로 구성** — 설치하면 작동
+5. **크로스 플랫폼** — macOS, Linux, Windows
+6. **오픈 소스** — Apache 2.0 라이선스
 
-## So sánh với alternatives
+## 대안과 비교
 
-| Tool | Giá | Token Savings | Complexity |
-|------|-----|---------------|------------|
-| RTK | Free | 60-90% | Low |
-| Caveman | Free | ~30% | Medium |
-| Ponytail | Free | ~54% code | Low |
-| Manual filters | Free | Variable | High |
+| 도구 | 가격 | Token 절약 | 복잡도 |
+|------|------|-----------|--------|
+| RTK | 무료 | 60-90% | 낮음 |
+| Caveman | 무료 | ~30% | 중간 |
+| Ponytail | 무료 | ~54% 코드 | 낮음 |
+| 수동 필터 | 무료 | 가변 | 높음 |
 
-## Lưu ý quan trọng
+## 중요 참고사항
 
-> ⚠️ **RTK không giảm 90% bill của bạn** — nó giảm 90% output tokens. Input tokens từ prompt, system prompt, và conversation history vẫn tính đầy đủ.
+> ⚠️ **RTK는 당신의.bill을 90% 줄이지 않습니다** — 그것은 출력 tokens를 90% 줄입니다. 프롬프트, 시스템 프롬프트, 대화 기록에서 오는 입력 tokens는 여전히 전체 계산됩니다.
 
-Tuy nhiên, vì input tokens thường chiếm phần lớn trong total cost, savings thực tế vẫn rất đáng kể.
+그러나 입력 tokens는 일반적으로 총 비용의 대부분을 차지하므로, 실제 절약 vẫn 매우 큽니다.
 
-## Kết luận
+## 결론
 
-RTK là công cụ **phải có** nếu bạn dùng AI coding agents thường xuyên. Cài đặt trong 1 phút, tiết kiệm hàng giờ và hàng chục USD mỗi tháng.
+RTK는 AI 코딩 에이전트를 자주 사용하는 개발자의 **필수 도구**입니다. 1분 설치, 월간 시간과 수십 달러 절약.
 
-**Link:** [github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk)
-**Website:** [rtk-ai.app](https://www.rtk-ai.app)
+**링크:** [github.com/rtk-ai/rtk](https://github.com/rtk-ai/rtk)
+**웹사이트:** [rtk-ai.app](https://www.rtk-ai.app)

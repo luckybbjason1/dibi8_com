@@ -1,40 +1,33 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>Claude Code on Dibi8</title>
+    <title>Claude-Code on Dibi8</title>
     <link>https://dibi8.com/ko/tags/claude-code/</link>
-    <description>Recent content in Claude Code on Dibi8</description>
+    <description>Recent content in Claude-Code on Dibi8</description>
     <generator>Hugo</generator>
     <language>ko</language>
     <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/claude-code/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>ECC (affaan-m/ECC): Hệ Thống Điều Khiển Agent Mạnh Nhất 2026</title>
+      <title>ECC (affaan-m/ECC): 2026년 최고 Agent 제어 시스템</title>
       <link>https://dibi8.com/ko/ecc-agent-harness/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/ecc-agent-harness/</guid>
-      <description>ECC là agent harness performance optimization system với 265K GitHub stars. Hỗ trợ 68 agents, 286 skills, 94 commands. Tích hợp AgentShield bảo mật. Tương thích Claude Code, Codex, Cursor, OpenCode và nhiều hơn nữa.</description>
+      <description>ECC는 265K GitHub stars를 갖춘 agent harness 성능 최적화 시스템입니다. 68개 agents, 286개 skills, 94개 commands 지원. AgentShield 보안 내장. Claude Code, Codex, Cursor, OpenCode 호환.</description>
     </item>
     <item>
-      <title>Ponytail: Biến AI Agent Thành &#39;Kỹ Sư Lười&#39; Hiệu Quả Nhất</title>
+      <title>Ponytail: AI Agent를 &#39;가장 게으른 시니어 개발자&#39;로 만드는 법</title>
       <link>https://dibi8.com/ko/ponytail-lazy-dev/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/ponytail-lazy-dev/</guid>
-      <description>Ponytail của DietrichGebert đạt 144K stars. Kỹ năng buộc agent viết code tối thiểu — ít nhất 54% LOC, nhanh nhất 27%, rẻ nhất 20%. &amp;#39;He says nothing. He writes one line. It works.&amp;#39;</description>
+      <description>DietrichGebert의 Ponytail은 144K stars를 기록했다. 에이전트가 최소 코드를 작성하도록 강제 — 최소 54% LOC, 27% 더 빠름, 20% 더 저렴. &amp;#39;그는 말하지 않는다. 한 줄을 쓴다. 작동한다.&amp;#39;</description>
     </item>
     <item>
-      <title>RTK (rtk-ai/rtk): Giảm 90% Token Cost Cho AI Coding</title>
+      <title>RTK (rtk-ai/rtk): AI 코딩의 90% Token 비용 절감</title>
       <link>https://dibi8.com/ko/rtk-token-killer/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/rtk-token-killer/</guid>
-      <description>RTK là CLI proxy viết bằng Rust giúp giảm 60-90% token consumption khi agent đọc output từ terminal. Hỗ trợ 100&#43; commands, &amp;lt;10ms overhead. Đạt 81K GitHub stars.</description>
-    </item>
-    <item>
-      <title>2026년 AI 코딩 에이전트 완전 비교: OpenCode vs Claude Code vs Cursor vs Codex</title>
-      <link>https://dibi8.com/ko/ai-coding-agents-full-comparison/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/ai-coding-agents-full-comparison/</guid>
-      <description>OpenCode(45K stars), Claude Code, Cursor, Codex AI coding agents 완전 비교. 벤치마크, 가격, 의사결정 프레임워크.</description>
+      <description>RTK는 Rust로 작성된 CLI 프록시로, 에이전트가 터미널 출력을 읽을 때 token 소비를 60-90% 줄입니다. 100&#43; 명령 지원, &amp;lt;10ms 지연. 81K GitHub stars 획득.</description>
     </item>
     <item>
       <title>AI Coding Agents 2026: Claude Code vs Cursor vs Codex - 완전 비교</title>
@@ -44,25 +37,18 @@
       <description>2026년 상위 3개 AI 코딩 에이전트 심층 비교. 터미널 기반 Claude Code, IDE 내장 Cursor, 클라우드 자동화 Codex 중 어느 것이 당신의 워크플로우에 적합할까요?</description>
     </item>
     <item>
-      <title>Archify: 2026년 프로덕션 준비 완료 아키텍처 다이어그램 생성</title>
-      <link>https://dibi8.com/ko/archify-diagrams/</link>
+      <title>AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex</title>
+      <link>https://dibi8.com/ko/ai-coding-agents-full-comparison/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/archify-diagrams/</guid>
-      <description>2026년 최고의 아키텍처 시각화 도구 Archify 완벽 가이드. 코드 분석으로 대화형 다이어그램 생성, Claude Code 통합, 실제 워크플로우 실습.</description>
+      <guid>https://dibi8.com/ko/ai-coding-agents-full-comparison/</guid>
+      <description>Complete comparison of OpenCode (45K stars), Claude Code, Cursor, and Codex AI coding agents. Benchmarks, pricing, and decision framework.</description>
     </item>
     <item>
-      <title>Humanizer: 2026년 AI 글쓰기 패턴 제거</title>
-      <link>https://dibi8.com/ko/humanizer-ai-writing/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/humanizer-ai-writing/</guid>
-      <description>Wikipedia 기반 35개 패턴 시스템으로 AI 글을 인간처럼 자연스럽게 변조하는 Humanizer 완벽 가이드. Claude Code 통합 및 실제 사용 사례.</description>
-    </item>
-    <item>
-      <title>Addy Osmani&#39;s Agent Skills: 96K-Star Framework for Production-Grade AI Coding Workflows</title>
+      <title>Addy Osmani의 Agent Skills: 96K-Star 프로덕션 등급 AI 코딩 워크플로우 프레임워크</title>
       <link>https://dibi8.com/ko/addy-osmani-agent-skills-production-guide-2026/</link>
       <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/addy-osmani-agent-skills-production-guide-2026/</guid>
-      <description>Learn how Addy Osmani built a skills system that transforms Claude Code, Cursor, and other AI editors into powerful, composable workspaces. Complete guide to implementation, deployment, and advanced patterns.</description>
+      <description>Addy Osmani가 Claude Code, Cursor 및 기타 AI 에디터를 강력하고 구성된 작업 공간으로 변환하는 스킬 시스템을 어떻게 구축했는지 배우세요. 완전한 구현, 배포 및 고급 패턴 가이드.</description>
     </item>
   </channel>
 </rss>

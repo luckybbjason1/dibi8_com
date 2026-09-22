@@ -9,11 +9,11 @@
     <lastBuildDate>Tue, 22 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/elevenlabs-alternative/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>VoiceStudio: Alternativa Open-Source Cho ElevenLabs (34K Stars)</title>
+      <title>VoiceStudio: ElevenLabs의 오픈소스 대안 (34K Stars)</title>
       <link>https://dibi8.com/ko/voicestudio-voice-cloning/</link>
       <pubDate>Tue, 22 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/voicestudio-voice-cloning/</guid>
-      <description>VoiceStudio là công cụ voice cloning hoàn toàn local, hỗ trợ 646 ngôn ngữ, 150&#43; free models. Thay thế ElevenLabs miễn phí với chất lượng tương đương.</description>
+      <description>VoiceStudio는 완전히 로컬에서 실행되는 음성 클로닝 도구로, 646개 언어, 150&#43; 무료 모델을 지원합니다. 동일 품질의 무료 ElevenLabs 대안.</description>
     </item>
   </channel>
 </rss>

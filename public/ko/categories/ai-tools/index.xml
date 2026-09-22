@@ -9,18 +9,18 @@
     <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/categories/ai-tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>2026년 AI 코딩 에이전트 완전 비교: OpenCode vs Claude Code vs Cursor vs Codex</title>
+      <title>AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex</title>
       <link>https://dibi8.com/ko/ai-coding-agents-full-comparison/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/ai-coding-agents-full-comparison/</guid>
-      <description>OpenCode(45K stars), Claude Code, Cursor, Codex AI coding agents 완전 비교. 벤치마크, 가격, 의사결정 프레임워크.</description>
+      <description>Complete comparison of OpenCode (45K stars), Claude Code, Cursor, and Codex AI coding agents. Benchmarks, pricing, and decision framework.</description>
     </item>
     <item>
-      <title>Humanizer: 2026년 AI 글쓰기 패턴 제거</title>
+      <title>Humanizer: 2026년 AI 작성 패턴 제거 완전 가이드</title>
       <link>https://dibi8.com/ko/humanizer-ai-writing/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/humanizer-ai-writing/</guid>
-      <description>Wikipedia 기반 35개 패턴 시스템으로 AI 글을 인간처럼 자연스럽게 변조하는 Humanizer 완벽 가이드. Claude Code 통합 및 실제 사용 사례.</description>
+      <description>Humanizer는 텍스트에서 AI 생성 작성 패턴을 제거하면서 원래 의미를 보존하는 강력한 에이전트 스킬입니다. blader가 제작했으며, 2026년 1월 출시 이후 49,212개의 GitHub 스타와 3,993개의 fork를 기록했습니다.</description>
     </item>
   </channel>
 </rss>

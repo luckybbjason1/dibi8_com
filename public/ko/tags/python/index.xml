@@ -9,11 +9,11 @@
     <lastBuildDate>Sat, 19 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Agent-Reach: 83K-Star Open Source Tool That Gives AI Agents Eyes to See the Entire Internet (Zero API Costs)</title>
+      <title>Agent-Reach: 83K-Star 인터넷 접근 도구 (제로 API 비용)</title>
       <link>https://dibi8.com/ko/agent-reach-internet-access-for-ai-agents-2026/</link>
       <pubDate>Sat, 19 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/agent-reach-internet-access-for-ai-agents-2026/</guid>
-      <description>Agent-Reach is a Python CLI tool that lets any AI agent read and search Twitter, Reddit, YouTube, GitHub, Bilibili, and XiaoHongShu without paying for APIs. Learn how to integrate it into your workflow in 2026.</description>
+      <description>Agent-Reach는 Python CLI 도구로, AI 에이전트가 Twitter, Reddit, YouTube, GitHub, Bilibili, XiaoHongShu 등을 API 비용 없이 검색하고 스크래핑할 수 있게 합니다. 2026년 워크플로우 통합 가이드.</description>
     </item>
   </channel>
 </rss>

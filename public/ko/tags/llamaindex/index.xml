@@ -9,11 +9,11 @@
     <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/llamaindex/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>LangChain vs LlamaIndex vs LangGraph 2026: 완전 비교 가이드</title>
+      <title>LangChain vs LlamaIndex vs LangGraph 2026: 完整対比特指南</title>
       <link>https://dibi8.com/ko/langchain-vs-llamaindex-vs-langgraph/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/langchain-vs-llamaindex-vs-langgraph/</guid>
-      <description>2026년 LangChain, LlamaIndex, LangGraph 세 대장 LLM 프레임워크 심층 비교. RAG 성능, Agent 오케스트레이션부터 프로덕션 배포까지, 프로젝트에最适合인 프레임워크를 선택하세요.</description>
+      <description>2026年のLangChain、LlamaIndex、LangGraphの3大LLMフレームワークの深い比較。RAGパフォーマンス、エージェントオーケストレーションから本番デプロイまで、プロジェクトに最適なフレームワークを選びます。</description>
     </item>
   </channel>
 </rss>
