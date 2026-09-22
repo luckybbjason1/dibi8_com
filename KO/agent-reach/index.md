@@ -10,7 +10,6 @@ stars: 83111
 maintainer: 'Panniantong'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
-lang: ko
 ---
 
 # Agent-Reach: 무료 인터넷 접근성

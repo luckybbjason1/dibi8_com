@@ -10,7 +10,6 @@ stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: en
 ---
 
 # DeepSeek Harness: The Plugin Framework Taking Over 2026

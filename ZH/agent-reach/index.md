@@ -10,7 +10,6 @@ stars: 83111
 maintainer: 'Panniantong'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
-lang: zh
 ---
 
 # Agent-Reach：给你的 AI Agent 免费上网能力

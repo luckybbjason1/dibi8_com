@@ -10,7 +10,6 @@ stars: 83111
 maintainer: 'Panniantong'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
-lang: vi
 ---
 
 # Agent-Reach: Truy Cập Internet Miễn Phí Cho Agent AI Của Bạn

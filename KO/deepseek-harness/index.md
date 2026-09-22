@@ -10,7 +10,6 @@ stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: ko
 ---
 
 # DeepSeek Harness: 2026년을 장악한 플러그인 프레임워크

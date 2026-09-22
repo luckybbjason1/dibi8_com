@@ -10,7 +10,6 @@ stars: 229103
 maintainer: 'deepseek-ai'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/deepseek-ai/deepseek-harness'
-lang: zh
 ---
 
 # DeepSeek Harness：正在席卷2026的插件框架

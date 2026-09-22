@@ -10,7 +10,6 @@ stars: 83111
 maintainer: 'Panniantong'
 license: MIT
 featureImage: 'https://opengraph.github.com/github/Panniantong/Agent-Reach'
-lang: en
 ---
 
 # Agent-Reach: Free Internet Access for Your AI Agent
