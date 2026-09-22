@@ -1027,6 +1027,31 @@
                 href="https://dibi8.com/vi/tags/2026/"
                 />
   </url><url>
+    <loc>https://dibi8.com/ko/ai-coding-agents-full-comparison/</loc>
+    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.5</priority>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en-us"
+                href="https://dibi8.com/ai-coding-agents-full-comparison/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="zh"
+                href="https://dibi8.com/zh/ai-coding-agents-full-comparison/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="ko"
+                href="https://dibi8.com/ko/ai-coding-agents-full-comparison/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="vi"
+                href="https://dibi8.com/vi/ai-coding-agents-full-comparison/"
+                />
+  </url><url>
     <loc>https://dibi8.com/ko/tags/ai/</loc>
     <lastmod>2026-09-20T00:00:00+00:00</lastmod>
     <changefreq>weekly</changefreq>
@@ -1075,31 +1100,6 @@
                 rel="alternate"
                 hreflang="vi"
                 href="https://dibi8.com/vi/ai-coding-agents-comparison/"
-                />
-  </url><url>
-    <loc>https://dibi8.com/ko/ai-coding-agents-full-comparison/</loc>
-    <lastmod>2026-09-20T00:00:00+00:00</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.5</priority>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en-us"
-                href="https://dibi8.com/ai-coding-agents-full-comparison/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="zh"
-                href="https://dibi8.com/zh/ai-coding-agents-full-comparison/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="ko"
-                href="https://dibi8.com/ko/ai-coding-agents-full-comparison/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="vi"
-                href="https://dibi8.com/vi/ai-coding-agents-full-comparison/"
                 />
   </url><url>
     <loc>https://dibi8.com/ko/ai-coding-agents/12-factor-agents-production-llm-software-2026/</loc>

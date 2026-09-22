@@ -9,18 +9,18 @@
     <lastBuildDate>Sun, 20 Sep 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://dibi8.com/ko/tags/ai-coding/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>2026년 AI 코딩 에이전트 완전 비교: OpenCode vs Claude Code vs Cursor vs Codex</title>
+      <link>https://dibi8.com/ko/ai-coding-agents-full-comparison/</link>
+      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
+      <guid>https://dibi8.com/ko/ai-coding-agents-full-comparison/</guid>
+      <description>OpenCode(45K stars), Claude Code, Cursor, Codex AI coding agents 완전 비교. 벤치마크, 가격, 의사결정 프레임워크.</description>
+    </item>
+    <item>
       <title>AI Coding Agents 2026: Claude Code vs Cursor vs Codex - 완전 비교</title>
       <link>https://dibi8.com/ko/ai-coding-agents-comparison/</link>
       <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
       <guid>https://dibi8.com/ko/ai-coding-agents-comparison/</guid>
       <description>2026년 상위 3개 AI 코딩 에이전트 심층 비교. 터미널 기반 Claude Code, IDE 내장 Cursor, 클라우드 자동화 Codex 중 어느 것이 당신의 워크플로우에 적합할까요?</description>
-    </item>
-    <item>
-      <title>AI Coding Agents 2026: OpenCode vs Claude Code vs Cursor vs Codex</title>
-      <link>https://dibi8.com/ko/ai-coding-agents-full-comparison/</link>
-      <pubDate>Sun, 20 Sep 2026 00:00:00 +0000</pubDate>
-      <guid>https://dibi8.com/ko/ai-coding-agents-full-comparison/</guid>
-      <description>OpenCode(45K stars), Claude Code, Cursor, Codex AI coding agents 완전 비교. 벤치마크, 가격, 의사결정 프레임워크.</description>
     </item>
   </channel>
 </rss>
